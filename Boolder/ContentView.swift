@@ -16,26 +16,24 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if showList {
-                    List {
-                        ForEach(areaDataSource.annotations, id: \.id) { (problem: ProblemAnnotation) in
-                            HStack {
-                                Text(problem.displayLabel)
-                                    .font(.headline)
-                                    .foregroundColor(Color(problem.displayColor()))
-                                    .frame(minWidth: 30, alignment: .leading)
-                                Text(problem.name ?? "-")
-                                Spacer()
-                                Text(problem.grade?.string ?? "-")
-                            }
+                List {
+                    ForEach(areaDataSource.annotations, id: \.id) { (problem: ProblemAnnotation) in
+                        HStack {
+                            Text(problem.displayLabel)
+                                .font(.headline)
+                                .foregroundColor(Color(problem.displayColor()))
+                                .frame(minWidth: 30, alignment: .leading)
+                            Text(problem.name ?? "-")
+                            Spacer()
+                            Text(problem.grade?.string ?? "-")
                         }
                     }
                 }
-                else {
-                    MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
-                        .edgesIgnoringSafeArea(.bottom)
-                }
-                Text("\(selectedProblem?.id ?? 0)")
+                .zIndex(showList ? 1 : 0)
+                
+                MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .zIndex(showList ? 0 : 1)
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(leading:
