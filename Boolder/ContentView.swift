@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
     @State private var showList = false
-    @State private var selectedProblem: ProblemAnnotation?
+    @State private var selectedProblem: ProblemAnnotation? = nil
     
     var body: some View {
         NavigationView {
@@ -34,6 +34,7 @@ struct ContentView: View {
                 MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
+                
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(leading:
@@ -47,6 +48,7 @@ struct ContentView: View {
                 }
             )
         }
+        .accentColor(Color.green)
     }
 }
 
