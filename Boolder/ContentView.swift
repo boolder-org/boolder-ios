@@ -17,18 +17,21 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach(areaDataSource.annotations, id: \.id) { (problem: ProblemAnnotation) in
-                        HStack {
-                            Text(problem.displayLabel)
-                                .font(.headline)
-                                .foregroundColor(Color(problem.displayColor()))
-                                .frame(minWidth: 30, alignment: .leading)
-                            Text(problem.name ?? "-")
-                            Spacer()
-                            Text(problem.grade?.string ?? "-")
+                    Section(header: Text("Niveau 3").font(.title).bold().foregroundColor(Color(UIColor.label)).padding(.top), footer: Rectangle().fill(Color.clear).frame(width: 1, height: 120, alignment: .center)) {
+                        ForEach(areaDataSource.annotations, id: \.id) { (problem: ProblemAnnotation) in
+                            HStack {
+                                Text(problem.displayLabel)
+                                    .font(.headline)
+                                    .foregroundColor(Color(problem.displayColor()))
+                                    .frame(minWidth: 30, alignment: .leading)
+                                Text(problem.name ?? "-")
+                                Spacer()
+                                Text(problem.grade?.string ?? "-")
+                            }
                         }
                     }
                 }
+                .listStyle(GroupedListStyle())
                 .zIndex(showList ? 1 : 0)
                 
                 MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
@@ -56,6 +59,14 @@ struct ContentView: View {
             )
         }
         .accentColor(Color.green)
+    }
+    
+    init() {
+        // To remove only extra separators below the list:
+//        UITableView.appearance().tableFooterView = UIView()
+
+        // To remove all separators including the actual ones:
+//        UITableView.appearance().separatorStyle = .none
     }
 }
 

@@ -13,7 +13,7 @@ struct FabFiltersView: View {
         ZStack {
             HStack(spacing: 16) {
                 Button(action: {
-                    // do someting
+                    // do something
                 }) {
                     Rectangle()
                         .fill(Color.red)
@@ -25,24 +25,21 @@ struct FabFiltersView: View {
                 Divider().frame(width: 1, height: 44, alignment: .center)
                 
                 Button(action: {
-                  print("button pressed")
+                  print("button tapped")
 
                 }) {
                     Image(systemName: "slider.horizontal.3")
-//                        .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                     Text("Filtres")
                     
                 }
                 .padding(.vertical, 11)
-//                .layoutPriority(1)
             }
         }
-        .accentColor(Color.black)
-//        .frame(height: 44, alignment: .center)
+        .accentColor(Color(UIColor.label))
         .padding(.horizontal, 16)
-        .background(Color.white)
+        .background(Color(UIColor.systemBackground))
         .cornerRadius(10)
-        .shadow(radius: 8)
+        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
         .padding()
         
     }
