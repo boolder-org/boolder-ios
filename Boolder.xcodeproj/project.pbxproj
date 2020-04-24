@@ -250,6 +250,7 @@
 		37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
 		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
+		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -498,6 +499,7 @@
 		37A8C8142453272900DC161F /* ProblemAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotationView.swift; sourceTree = "<group>"; };
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
 		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -536,6 +538,7 @@
 				37A8C63D2453269100DC161F /* Data */,
 				37A8C62D2453263300DC161F /* ContentView.swift */,
 				37A8C8192453320D00DC161F /* MapView.swift */,
+				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6342453263400DC161F /* LaunchScreen.storyboard */,
 				37A8C6372453263400DC161F /* Info.plist */,
@@ -1116,6 +1119,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */,

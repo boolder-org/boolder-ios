@@ -35,6 +35,13 @@ struct ContentView: View {
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
                 
+                VStack {
+                    Spacer()
+                    FabFiltersView()
+                        .padding(.bottom, 24)
+                }
+                .zIndex(10)
+                
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(leading:
