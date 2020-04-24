@@ -249,6 +249,7 @@
 		37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8132453272900DC161F /* ProblemAnnotation.swift */; };
 		37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
+		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -496,6 +497,7 @@
 		37A8C8132453272900DC161F /* ProblemAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37A8C8142453272900DC161F /* ProblemAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotationView.swift; sourceTree = "<group>"; };
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
+		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -533,6 +535,7 @@
 				37A8C808245326F200DC161F /* Models */,
 				37A8C63D2453269100DC161F /* Data */,
 				37A8C62D2453263300DC161F /* ContentView.swift */,
+				37A8C8192453320D00DC161F /* MapView.swift */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6342453263400DC161F /* LaunchScreen.storyboard */,
 				37A8C6372453263400DC161F /* Info.plist */,
@@ -1117,6 +1120,7 @@
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
+				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,
 				37A8C807245326DB00DC161F /* ProblemDataSource.swift in Sources */,
 				37A8C62E2453263300DC161F /* ContentView.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
@@ -1262,13 +1266,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
+				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Boolder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.Boolder;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-swiftui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1281,13 +1286,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
+				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Boolder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.Boolder;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-swiftui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

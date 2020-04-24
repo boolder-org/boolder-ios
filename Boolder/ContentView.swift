@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    let areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
+    @State private var areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
     @State private var showList = false
+    @State private var selectedProblem: ProblemAnnotation?
     
     var body: some View {
         NavigationView {
@@ -31,11 +32,18 @@ struct ContentView: View {
                     }
                 }
                 else {
-                    Text("carte")
+                    MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
+                        .edgesIgnoringSafeArea(.bottom)
                 }
+                Text("\(selectedProblem?.id ?? 0)")
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading:
+            Button("Test") {
+                self.selectedProblem = nil
+                self.areaDataSource = ProblemDataSource(circuitFilter: .yellow, filters: Filters())
+            },
+            trailing:
                 Button(showList ? "Carte" : "Liste") {
                     self.showList.toggle()
                 }

@@ -34,6 +34,7 @@ struct TopoCollection: Decodable {
     }
 }
 
+// FIXME: rename to GeoDataSource
 class ProblemDataSource {
 
     var overlays: [MKOverlay]
