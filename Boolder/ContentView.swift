@@ -12,6 +12,8 @@ struct ContentView: View {
     @State private var areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
     @State private var showList = false
     @State private var selectedProblem: ProblemAnnotation? = nil
+    @State private var presentProblemDetails = false
+    
     
     var body: some View {
         NavigationView {
@@ -19,9 +21,12 @@ struct ContentView: View {
                 ProblemListView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
                 .zIndex(showList ? 1 : 0)
                 
-                MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
+                MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
+                    .onAppear {
+                        self.selectedProblem = nil
+                    }
                 
                 VStack {
                     Spacer()
@@ -29,6 +34,8 @@ struct ContentView: View {
                         .padding(.bottom, 24)
                 }
                 .zIndex(10)
+                
+                NavigationLink(destination: Text(selectedProblem?.name ?? "-"), isActive: $presentProblemDetails) { EmptyView() }
                 
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)

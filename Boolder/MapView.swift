@@ -14,6 +14,7 @@ import SwiftUI
 struct MapView: UIViewRepresentable {
     let areaDataSource: ProblemDataSource
     @Binding var selectedProblem: ProblemAnnotation?
+    @Binding var presentProblemDetails: Bool
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
@@ -41,6 +42,13 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ mapView: MKMapView, context: Context) {
+
+        if selectedProblem == nil {
+            for annotation in mapView.selectedAnnotations {
+                mapView.deselectAnnotation(annotation, animated: true)
+            }
+        }
+        
         let previousAnnotationsIds: [Int] = mapView.annotations.map{ annotation in
             if let problem = annotation as? ProblemAnnotation {
                 return problem.id!
@@ -53,9 +61,6 @@ struct MapView: UIViewRepresentable {
         
         let previousHash = previousAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
-        
-//        print(previousHash)
-//        print(newHash)
         
         if previousHash != newHash {
             mapView.removeAnnotations(mapView.annotations)
@@ -115,6 +120,7 @@ struct MapView: UIViewRepresentable {
             guard let problem = view.annotation as? ProblemAnnotation else { return }
             
             parent.selectedProblem = problem
+            parent.presentProblemDetails = true
         }
     }
 }
