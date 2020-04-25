@@ -15,10 +15,10 @@ struct FabFiltersView: View {
                 Button(action: {
                     // do something
                 }) {
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 6)
                         .fill(Color.red)
-                        .frame(width: 22, height: 22)
-                        .cornerRadius(6)
+                        .frame(width: 20, height: 20)
+                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
                     Text("Circuit")
                 }
                 
@@ -32,13 +32,14 @@ struct FabFiltersView: View {
                     Text("Filtres")
                     
                 }
-                .padding(.vertical, 11)
+                .padding(.vertical, 12)
             }
         }
         .accentColor(Color(UIColor.label))
         .padding(.horizontal, 16)
         .background(Color(UIColor.systemBackground))
         .cornerRadius(10)
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
         .padding()
         
