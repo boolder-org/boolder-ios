@@ -16,28 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List {
-                    ForEach(Array(self.areaDataSource.groupedAnnotations.keys.sorted()), id: \.self) { grade in
-                        Section(header:
-                            Text("Niveau \(grade)").font(.title).bold().foregroundColor(Color(UIColor.label)).padding(.top, (grade == self.areaDataSource.groupedAnnotations.keys.sorted().first) ? 32 : 0),
-                                footer:
-                            Rectangle().fill(Color.clear).frame(width: 1, height: (grade == self.areaDataSource.groupedAnnotations.keys.sorted().last) ? 120 : 0, alignment: .center)
-                            ) {
-                            ForEach(self.areaDataSource.groupedAnnotations[grade]!, id: \.self) { (problem: ProblemAnnotation) in
-                                HStack {
-                                    Text(problem.displayLabel)
-                                        .font(.headline)
-                                        .foregroundColor(Color(problem.displayColor()))
-                                        .frame(minWidth: 30, alignment: .leading)
-                                    Text(problem.name ?? "-")
-                                    Spacer()
-                                    Text(problem.grade?.string ?? "-")
-                                }
-                            }
-                        }
-                    }
-                }
-                .listStyle(GroupedListStyle())
+                ProblemListView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
                 .zIndex(showList ? 1 : 0)
                 
                 MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
