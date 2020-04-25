@@ -38,7 +38,23 @@ struct TopoCollection: Decodable {
 class ProblemDataSource {
 
     var overlays: [MKOverlay]
-    var annotations: [ProblemAnnotation]
+    var annotations: [ProblemAnnotation] {
+        didSet {
+            if annotations != oldValue {
+                var sortedAnnotations = annotations
+                sortedAnnotations.sort { (lhs, rhs) -> Bool in
+                    guard let lhsGrade = lhs.grade else { return true }
+                    guard let rhsGrade = rhs.grade else { return false }
+                    
+                    return lhsGrade < rhsGrade
+                }
+                
+                groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in problem.grade?.category() ?? 0 })
+            }
+        }
+    }
+    
+    var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
     var topoCollection: TopoCollection
     var circuitFilter: Circuit.CircuitType?
     var filters: Filters
@@ -46,6 +62,7 @@ class ProblemDataSource {
     init(circuitFilter: Circuit.CircuitType?, filters: Filters) {
         overlays = [MKOverlay]()
         annotations = [ProblemAnnotation]()
+        groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
         topoCollection = TopoCollection.init(topos: nil)
         
         self.circuitFilter = circuitFilter

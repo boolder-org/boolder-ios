@@ -17,16 +17,22 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 List {
-                    Section(header: Text("Niveau 3").font(.title).bold().foregroundColor(Color(UIColor.label)).padding(.top), footer: Rectangle().fill(Color.clear).frame(width: 1, height: 120, alignment: .center)) {
-                        ForEach(areaDataSource.annotations, id: \.id) { (problem: ProblemAnnotation) in
-                            HStack {
-                                Text(problem.displayLabel)
-                                    .font(.headline)
-                                    .foregroundColor(Color(problem.displayColor()))
-                                    .frame(minWidth: 30, alignment: .leading)
-                                Text(problem.name ?? "-")
-                                Spacer()
-                                Text(problem.grade?.string ?? "-")
+                    ForEach(Array(self.areaDataSource.groupedAnnotations.keys.sorted()), id: \.self) { grade in
+                        Section(header:
+                            Text("Niveau \(grade)").font(.title).bold().foregroundColor(Color(UIColor.label)).padding(.top, (grade == self.areaDataSource.groupedAnnotations.keys.sorted().first) ? 32 : 0),
+                                footer:
+                            Rectangle().fill(Color.clear).frame(width: 1, height: (grade == self.areaDataSource.groupedAnnotations.keys.sorted().last) ? 120 : 0, alignment: .center)
+                            ) {
+                            ForEach(self.areaDataSource.groupedAnnotations[grade]!, id: \.self) { (problem: ProblemAnnotation) in
+                                HStack {
+                                    Text(problem.displayLabel)
+                                        .font(.headline)
+                                        .foregroundColor(Color(problem.displayColor()))
+                                        .frame(minWidth: 30, alignment: .leading)
+                                    Text(problem.name ?? "-")
+                                    Spacer()
+                                    Text(problem.grade?.string ?? "-")
+                                }
                             }
                         }
                     }
@@ -59,14 +65,6 @@ struct ContentView: View {
             )
         }
         .accentColor(Color.green)
-    }
-    
-    init() {
-        // To remove only extra separators below the list:
-//        UITableView.appearance().tableFooterView = UIView()
-
-        // To remove all separators including the actual ones:
-//        UITableView.appearance().separatorStyle = .none
     }
 }
 
