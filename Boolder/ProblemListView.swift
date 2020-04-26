@@ -43,11 +43,11 @@ struct ProblemListView: View {
 }
 
 struct ProblemListView_Previews: PreviewProvider {
+    static let areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
+    
     static var previews: some View {
-        let areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
-        
-        return NavigationView {
-                ProblemListView(areaDataSource: areaDataSource, selectedProblem: .constant(nil))
+        NavigationView {
+            ProblemListView(areaDataSource: areaDataSource, selectedProblem: .constant(nil))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
     }

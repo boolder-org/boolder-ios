@@ -14,7 +14,6 @@ struct ContentView: View {
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
     
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -33,22 +32,25 @@ struct ContentView: View {
                     FabFiltersView()
                         .padding(.bottom, 24)
                 }
-                .zIndex(10)
+                    .zIndex(10)
                 
-                NavigationLink(destination: Text(selectedProblem?.name ?? "-"), isActive: $presentProblemDetails) { EmptyView() }
+//                NavigationLink(destination: ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation()), isActive: $presentProblemDetails) { EmptyView() }
                 
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
-            .navigationBarItems(leading:
-            Button("Test") {
-                self.selectedProblem = nil
-                self.areaDataSource = ProblemDataSource(circuitFilter: .yellow, filters: Filters())
-            },
-            trailing:
-                Button(showList ? "Carte" : "Liste") {
+            .navigationBarItems(
+                leading: Button("Test") {
+                    self.selectedProblem = nil
+                    self.areaDataSource = ProblemDataSource(circuitFilter: .yellow, filters: Filters())
+                },
+                trailing: Button(showList ? "Carte" : "Liste") {
                     self.showList.toggle()
                 }
             )
+                .sheet(isPresented: $presentProblemDetails) {
+                    ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation())
+            }
+                    
         }
         .accentColor(Color.green)
     }

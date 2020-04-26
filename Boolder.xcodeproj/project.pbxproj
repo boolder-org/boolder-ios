@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
+		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
 		37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
 		37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
 		37A8C62E2453263300DC161F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* ContentView.swift */; };
@@ -256,6 +257,7 @@
 
 /* Begin PBXFileReference section */
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
+		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
 		37A8C6262453263300DC161F /* Boolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A8C6292453263300DC161F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A8C62B2453263300DC161F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				37638B83245437A000C5CD82 /* ProblemListView.swift */,
 				37A8C8192453320D00DC161F /* MapView.swift */,
 				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
+				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6342453263400DC161F /* LaunchScreen.storyboard */,
 				37A8C6372453263400DC161F /* Info.plist */,
@@ -1127,6 +1130,7 @@
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
+				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,
 				37A8C807245326DB00DC161F /* ProblemDataSource.swift in Sources */,
 				37A8C62E2453263300DC161F /* ContentView.swift in Sources */,

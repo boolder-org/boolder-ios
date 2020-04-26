@@ -49,5 +49,6 @@ struct FabFiltersView: View {
 struct FabFiltersView_Previews: PreviewProvider {
     static var previews: some View {
         FabFiltersView()
+            .previewLayout(.fixed(width: 300, height: 70))
     }
 }

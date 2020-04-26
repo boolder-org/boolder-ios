@@ -35,6 +35,15 @@ class ProblemAnnotation: NSObject, MKAnnotation {
     func isPhotoPresent() -> Bool {
         topo?.photo() != nil
     }
+    
+    func mainTopoPhoto() -> UIImage {
+        if let topoPhoto = topo?.photo() {
+            return topoPhoto
+        }
+        else {
+            return UIImage(named: "placeholder.png")!
+        }
+    }
 }
 
 //class ProblemAnnotation: NSObject, Decodable, MKAnnotation {
