@@ -14,9 +14,14 @@ struct ProblemDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Image(uiImage: self.problem.mainTopoPhoto())
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                ZStack {
+                    Image(uiImage: self.problem.mainTopoPhoto())
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
+                    BezierViewRepresentable(problem: problem)
+                    
+                }
                 
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
@@ -36,11 +41,11 @@ struct ProblemDetailsView: View {
                                 }
                             }
                             
-                            Rectangle()
-                            .fill(Color.green)
-                            .frame(width: 70, height: 4, alignment: .leading)
+//                            Rectangle()
+//                            .fill(Color.green)
+//                            .frame(width: 70, height: 4, alignment: .leading)
                         }
-                        .padding(.bottom, 16)
+//                        .padding(.bottom, 16)
                     
                         
                         HStack(alignment: .firstTextBaseline) {
@@ -60,7 +65,7 @@ struct ProblemDetailsView: View {
                                 .font(.body)
                             Text("Peu risqué")
                                 .font(.body)
-                            Text("hauteur 3 m")
+                            Text("hauteur : 3m")
                                 .font(.caption)
                                 .foregroundColor(Color(UIColor.systemGray))
                         }
@@ -107,17 +112,17 @@ struct ProblemDetailsView: View {
                     }
                     .padding(.vertical)
                     
-                    VStack(alignment: .leading) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Circuit")
-                                .font(.title)
-                                .fontWeight(.bold)
-                            Rectangle()
-                                .fill(Color.green)
-                                .frame(width: 70, height: 4, alignment: .leading)
-                        }
-                    }
-                    .padding(.vertical, 16)
+//                    VStack(alignment: .leading) {
+//                        VStack(alignment: .leading, spacing: 4) {
+//                            Text("Circuit")
+//                                .font(.title)
+//                                .fontWeight(.bold)
+//                            Rectangle()
+//                                .fill(Color.green)
+//                                .frame(width: 70, height: 4, alignment: .leading)
+//                        }
+//                    }
+//                    .padding(.vertical, 16)
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)
