@@ -27,7 +27,7 @@ struct CircuitFilterView: View {
                 ForEach(circuits, id: \.self) { circuitType in
                     Button(action: {
                         self.dataStore.filters.circuit = circuitType
-                        self.dismiss()
+                        self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack(alignment: .center) {
                             CircuitRectangle(color: Color(Circuit(circuitType).color))
@@ -47,7 +47,7 @@ struct CircuitFilterView: View {
                 Section {
                     Button(action: {
                         self.dataStore.filters.circuit = nil
-                        self.dismiss()
+                        self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Montrer toutes les voies")
                     }
@@ -65,11 +65,6 @@ struct CircuitFilterView: View {
                 }
             )
         }
-    }
-    
-    func dismiss() {
-        presentationMode.wrappedValue.dismiss()
-        self.dataStore.refresh()
     }
 }
 

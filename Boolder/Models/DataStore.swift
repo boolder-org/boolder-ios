@@ -18,7 +18,11 @@ class DataStore : ObservableObject {
     @Published var groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
     @Published var topoCollection = GeoStore.TopoCollection.init(topos: nil)
     
-    @Published var filters = Filters()
+    // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
+    var filters = Filters() {
+        willSet { objectWillChange.send() }
+        didSet { self.refresh() }
+    }
 
     init() {
         refresh()

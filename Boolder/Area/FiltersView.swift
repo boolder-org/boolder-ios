@@ -27,6 +27,14 @@ struct FiltersView: View {
                         }
                     }
                 }
+                
+                Section {
+                    HStack {
+                        Toggle(isOn: $dataStore.filters.photoPresent) {
+                            Text("Photo")
+                        }
+                    }
+                }
             }
             .navigationBarTitle("Filtres", displayMode: .inline)
             .navigationBarItems(
@@ -98,8 +106,6 @@ struct GradeFilterView: View {
                         else {
                             self.dataStore.filters.gradeCategories.insert(category)
                         }
-                        
-                        self.dataStore.refresh()
                     }) {
                         HStack {
                             Text("Niveau \(category)").foregroundColor(Color(UIColor.label))
