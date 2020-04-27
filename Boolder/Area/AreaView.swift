@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AreaView: View {
-    @ObservedObject var areaDataSource = DataStore()
+    @EnvironmentObject var dataStore: DataStore
     @State private var showList = false
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
@@ -17,10 +17,10 @@ struct AreaView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ProblemListView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
+                ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                 .zIndex(showList ? 1 : 0)
                 
-                MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
+                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
                     .sheet(isPresented: $presentProblemDetails) {
@@ -29,7 +29,7 @@ struct AreaView: View {
                 
                 VStack {
                     Spacer()
-                    FabFiltersView(areaDataSource: areaDataSource)
+                    FabFiltersView()
                         .padding(.bottom, 24)
                 }
                 .zIndex(10)
@@ -51,5 +51,6 @@ struct AreaView: View {
 struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         AreaView()
+            .environmentObject(DataStore())
     }
 }

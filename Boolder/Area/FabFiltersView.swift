@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FabFiltersView: View {
     @State private var presentCircuitFilter = false
-    @ObservedObject var areaDataSource: DataStore
+    @EnvironmentObject var dataStore: DataStore
     
     var body: some View {
         ZStack {
@@ -18,7 +18,7 @@ struct FabFiltersView: View {
                 Button(action: {
                     self.presentCircuitFilter.toggle()
                 }) {
-                    if areaDataSource.filters.circuit != nil {
+                    if dataStore.filters.circuit != nil {
                         RoundedRectangle(cornerRadius: 6)
                             .fill(circuitColor())
                             .frame(width: 20, height: 20)
@@ -30,13 +30,17 @@ struct FabFiltersView: View {
                     }
                 }
                 .sheet(isPresented: $presentCircuitFilter) {
-                    CircuitFilterView(areaDataSource: self.areaDataSource)
+                    CircuitFilterView()
+                        // FIXME: use accent color on all views by default (even for modals)
+                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
+                        .environmentObject(self.dataStore)
+                        .accentColor(Color.green)
                 }
                 
                 Divider().frame(width: 1, height: 44, alignment: .center)
                 
                 Button(action: {
-//                    self.areaDataSource.filters.circuit = .orange
+//                    self.dataStore.filters.circuit = .orange
 
                 }) {
                     Image(systemName: "slider.horizontal.3")
@@ -56,7 +60,7 @@ struct FabFiltersView: View {
     }
     
     func circuitColor() -> Color {
-        if let circuit = areaDataSource.filters.circuit {
+        if let circuit = dataStore.filters.circuit {
             return Color(Circuit(circuit).color)
         }
         else {
@@ -67,7 +71,8 @@ struct FabFiltersView: View {
 
 struct FabFiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FabFiltersView(areaDataSource: DataStore())
+        FabFiltersView()
+            .environmentObject(DataStore())
             .previewLayout(.fixed(width: 300, height: 70))
     }
 }

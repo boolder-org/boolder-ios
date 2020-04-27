@@ -152,11 +152,11 @@ struct ProblemDetailsView: View {
 }
 
 struct ProblemDetailsView_Previews: PreviewProvider {
-    static let areaDataSource = DataStore()
+    static let dataStore = DataStore()
     
     static var previews: some View {
 //        NavigationView {
-            ProblemDetailsView(problem: areaDataSource.annotations.first!)
+            ProblemDetailsView(problem: dataStore.annotations.first!)
 //        }
     }
 }

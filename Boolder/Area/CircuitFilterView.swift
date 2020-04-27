@@ -19,14 +19,14 @@ struct CircuitFilterView: View {
     ]
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var areaDataSource: DataStore
+    @EnvironmentObject var dataStore: DataStore
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(circuits, id: \.self) { circuitType in
                     Button(action: {
-                        self.areaDataSource.filters.circuit = circuitType
+                        self.dataStore.filters.circuit = circuitType
                         self.dismiss()
                     }) {
                         HStack(alignment: .center) {
@@ -46,7 +46,7 @@ struct CircuitFilterView: View {
                 
                 Section {
                     Button(action: {
-                        self.areaDataSource.filters.circuit = nil
+                        self.dataStore.filters.circuit = nil
                         self.dismiss()
                     }) {
                         Text("Montrer toutes les voies")
@@ -63,19 +63,17 @@ struct CircuitFilterView: View {
                 }
             )
         }
-        // FIXME: use accent color on all views by default (even for modals)
-        .accentColor(Color.green)
     }
     
     func dismiss() {
-        areaDataSource.refresh()
+        dataStore.refresh()
         presentationMode.wrappedValue.dismiss()
     }
 }
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView(areaDataSource: DataStore())
+        CircuitFilterView()
     }
 }
 

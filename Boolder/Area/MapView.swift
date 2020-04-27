@@ -12,7 +12,7 @@ import SwiftUI
 // heavily inspired from https://www.hackingwithswift.com/books/ios-swiftui/advanced-mkmapview-with-swiftui
 
 struct MapView: UIViewRepresentable {
-    @ObservedObject var areaDataSource: DataStore
+    @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: ProblemAnnotation?
     @Binding var presentProblemDetails: Bool
     
@@ -35,8 +35,8 @@ struct MapView: UIViewRepresentable {
     
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
-        mapView.addOverlays(areaDataSource.overlays)
-        mapView.addAnnotations(areaDataSource.annotations)
+        mapView.addOverlays(dataStore.overlays)
+        mapView.addAnnotations(dataStore.annotations)
         
         return mapView
     }
@@ -51,7 +51,7 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        let newAnnotationsIds: [Int] = areaDataSource.annotations.map{ $0.id! }
+        let newAnnotationsIds: [Int] = dataStore.annotations.map{ $0.id! }
         
         let previousHash = previousAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
@@ -59,8 +59,8 @@ struct MapView: UIViewRepresentable {
         if previousHash != newHash {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
-            mapView.addAnnotations(areaDataSource.annotations)
-            mapView.addOverlays(areaDataSource.overlays)
+            mapView.addAnnotations(dataStore.annotations)
+            mapView.addOverlays(dataStore.overlays)
         }
     }
     
