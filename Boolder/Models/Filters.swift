@@ -9,7 +9,7 @@
 import SwiftUI
 
 class Filters {
-    var gradeCategories: [Int] = [] // empty means all grades
+    var gradeCategories = Set<Int>() // empty means all grades
     var steepness: [Steepness.SteepnessType] = Steepness.SteepnessType.allCases
     var heightMax: Int = 6
     var photoPresent = false

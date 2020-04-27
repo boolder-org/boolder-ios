@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FabFiltersView: View {
     @State private var presentCircuitFilter = false
+    @State private var presentFilters = false
     @EnvironmentObject var dataStore: DataStore
     
     var body: some View {
@@ -40,14 +41,20 @@ struct FabFiltersView: View {
                 Divider().frame(width: 1, height: 44, alignment: .center)
                 
                 Button(action: {
-//                    self.dataStore.filters.circuit = .orange
-
+                    self.presentFilters.toggle()
                 }) {
                     Image(systemName: "slider.horizontal.3")
                     Text("Filtres")
                     
                 }
                 .padding(.vertical, 12)
+                .sheet(isPresented: $presentFilters) {
+                    FiltersView()
+                        // FIXME: use accent color on all views by default (even for modals)
+                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
+                        .environmentObject(self.dataStore)
+                        .accentColor(Color.green)
+                }
             }
         }
         .accentColor(Color(UIColor.label))

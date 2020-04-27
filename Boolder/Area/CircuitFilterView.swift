@@ -58,8 +58,10 @@ struct CircuitFilterView: View {
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Circuit", displayMode: .inline)
             .navigationBarItems(
-                trailing: Button("OK") {
+                trailing: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("OK").bold()
                 }
             )
         }
