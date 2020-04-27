@@ -568,7 +568,6 @@
 		37A8C63D2453269100DC161F /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				37A8C806245326DB00DC161F /* DataStore.swift */,
 				37A8C63E245326B300DC161F /* area-1 */,
 			);
 			path = Data;
@@ -819,6 +818,7 @@
 		37A8C808245326F200DC161F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				37A8C806245326DB00DC161F /* DataStore.swift */,
 				37A8C8152453272900DC161F /* CircuitOverlay.swift */,
 				37A8C8132453272900DC161F /* ProblemAnnotation.swift */,
 				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,

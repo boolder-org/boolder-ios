@@ -9,31 +9,6 @@
 import UIKit
 import MapKit
 
-struct ProblemProperties: Decodable {
-    let circuit: String?
-    let circuitNumber: String?
-    let grade: String?
-    let name: String?
-    let steepness: String?
-    let id: Int
-    let height: Int?
-    let topos: [TopoRef]?
-    
-    struct TopoRef: Decodable {
-        let id: Int
-    }
-}
-
-struct TopoCollection: Decodable {
-    let topos: [Topo]?
-    
-    func topo(withId id: Int) -> Topo? {
-        return topos?.first(where: { topo in
-            topo.id == id
-        })
-    }
-}
-
 class DataStore : ObservableObject {
 
     @Published var overlays: [MKOverlay]
@@ -224,3 +199,27 @@ class DataStore : ObservableObject {
     }
 }
 
+struct ProblemProperties: Decodable {
+    let circuit: String?
+    let circuitNumber: String?
+    let grade: String?
+    let name: String?
+    let steepness: String?
+    let id: Int
+    let height: Int?
+    let topos: [TopoRef]?
+    
+    struct TopoRef: Decodable {
+        let id: Int
+    }
+}
+
+struct TopoCollection: Decodable {
+    let topos: [Topo]?
+    
+    func topo(withId id: Int) -> Topo? {
+        return topos?.first(where: { topo in
+            topo.id == id
+        })
+    }
+}
