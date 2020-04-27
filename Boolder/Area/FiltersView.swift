@@ -62,7 +62,7 @@ struct FiltersView: View {
             .navigationBarTitle("Filtres", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Réinitialiser") {
-                    
+                    self.dataStore.filters = Filters()
                 },
                 trailing: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
