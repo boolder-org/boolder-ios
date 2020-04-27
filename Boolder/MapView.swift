@@ -42,12 +42,6 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ mapView: MKMapView, context: Context) {
-
-        if selectedProblem == nil {
-            for annotation in mapView.selectedAnnotations {
-                mapView.deselectAnnotation(annotation, animated: true)
-            }
-        }
         
         let previousAnnotationsIds: [Int] = mapView.annotations.map{ annotation in
             if let problem = annotation as? ProblemAnnotation {
@@ -121,6 +115,8 @@ struct MapView: UIViewRepresentable {
             
             parent.selectedProblem = problem
             parent.presentProblemDetails = true
+            
+            mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
         }
     }
 }
