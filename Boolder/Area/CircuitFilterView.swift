@@ -66,8 +66,8 @@ struct CircuitFilterView: View {
     }
     
     func dismiss() {
-        dataStore.refresh()
         presentationMode.wrappedValue.dismiss()
+        self.dataStore.refresh()
     }
 }
 
