@@ -28,7 +28,7 @@ struct ProblemDetailsView: View {
                     
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
-                                Text(problem.name ?? "")
+                                Text(problem.name ?? "-")
                                     .font(.title)
                                     .fontWeight(.bold)
                                 
