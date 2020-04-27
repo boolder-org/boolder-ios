@@ -13,7 +13,11 @@ struct BezierViewRepresentable: UIViewRepresentable {
     
     func makeUIView(context: Context) -> BezierView {
         let bezierView = BezierView()
-        bezierView.dataSource = context.coordinator
+        
+        if problem.topo?.line != nil && problem.isPhotoPresent() {
+            bezierView.dataSource = context.coordinator
+        }
+        
         bezierView.lineColor = problem.displayColor()
         return bezierView
     }
