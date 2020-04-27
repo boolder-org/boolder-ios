@@ -11,6 +11,7 @@ import SwiftUI
 struct ProblemListView: View {
     let areaDataSource: ProblemDataSource
     @Binding var selectedProblem: ProblemAnnotation?
+    @Binding var presentProblemDetails: Bool
     
     var body: some View {
         List {
@@ -23,7 +24,11 @@ struct ProblemListView: View {
                     ) {
                     ForEach(self.areaDataSource.groupedAnnotations[grade]!, id: \.self) { (problem: ProblemAnnotation) in
                         
-                        NavigationLink(destination: Text("\(problem.name ?? "")")) {
+//                        NavigationLink(destination: Text("\(problem.name ?? "")")) {
+                        Button(action: {
+                            self.selectedProblem = problem
+                            self.presentProblemDetails = true
+                        }) {
                             HStack {
                                 Text(problem.displayLabel)
                                     .font(.headline)
@@ -34,6 +39,8 @@ struct ProblemListView: View {
                                 Text(problem.grade?.string ?? "-")
                             }
                         }
+                        .foregroundColor(Color(UIColor.label))
+//                        }
                     }
                 }
             }
@@ -47,7 +54,7 @@ struct ProblemListView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(areaDataSource: areaDataSource, selectedProblem: .constant(nil))
+            ProblemListView(areaDataSource: areaDataSource, selectedProblem: .constant(nil), presentProblemDetails: .constant(false))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
     }

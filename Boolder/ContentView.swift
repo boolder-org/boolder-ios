@@ -21,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ProblemListView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem)
+                ProblemListView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                 .zIndex(showList ? 1 : 0)
                 
                 MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)

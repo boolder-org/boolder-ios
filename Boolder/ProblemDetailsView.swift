@@ -58,16 +58,20 @@ struct ProblemDetailsView: View {
                                 .foregroundColor(Color(UIColor.systemGray))
                         }
                         
-                        Divider()
+                        if problem.height != nil {
                         
-                        HStack {
-                            Image(systemName: "checkmark.shield")
-                                .font(.body)
-                            Text("Peu risqué")
-                                .font(.body)
-                            Text("hauteur : 3m")
-                                .font(.caption)
-                                .foregroundColor(Color(UIColor.systemGray))
+                            Divider()
+                            
+                            HStack {
+                                Image(systemName: "checkmark.shield")
+                                    .font(.body)
+                                Text("Hauteur \(problem.height!)m")
+                                    .font(.body)
+    //                            Text("hauteur : 3m")
+    //                                .font(.caption)
+    //                                .foregroundColor(Color(UIColor.systemGray))
+                                
+                                }
                         }
                     }
 //                    .padding(0)
