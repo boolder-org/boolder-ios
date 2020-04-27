@@ -6,11 +6,13 @@
 //  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
-class Filters {
+import SwiftUI
+
+class Filters: ObservableObject {
     
-    var gradeCategories: [Int] = [] // empty means all grades
-    var steepness: [Steepness.SteepnessType] = Steepness.SteepnessType.allCases
-    var heightMax: Int = 6
-    var photoPresent = false
-    
+    @Published var gradeCategories: [Int] = [] // empty means all grades
+    @Published var steepness: [Steepness.SteepnessType] = Steepness.SteepnessType.allCases
+    @Published var heightMax: Int = 6
+    @Published var photoPresent = false
+    @Published var circuit: Circuit.CircuitType? = nil
 }

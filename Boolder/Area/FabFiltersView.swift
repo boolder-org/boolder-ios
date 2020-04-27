@@ -9,11 +9,14 @@
 import SwiftUI
 
 struct FabFiltersView: View {
+    @Binding var presentCircuitFilter: Bool
+    @ObservedObject var filters: Filters
+    
     var body: some View {
         ZStack {
             HStack(spacing: 16) {
                 Button(action: {
-                    // do something
+                    self.presentCircuitFilter.toggle()
                 }) {
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.red)
@@ -21,11 +24,14 @@ struct FabFiltersView: View {
                         .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
                     Text("Circuit")
                 }
+                .sheet(isPresented: $presentCircuitFilter) {
+                    CircuitFilterView(filters: self.filters)
+                }
                 
                 Divider().frame(width: 1, height: 44, alignment: .center)
                 
                 Button(action: {
-                  print("button tapped")
+                    self.filters.circuit = .orange
 
                 }) {
                     Image(systemName: "slider.horizontal.3")
@@ -42,13 +48,12 @@ struct FabFiltersView: View {
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
         .padding()
-        
     }
 }
 
 struct FabFiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FabFiltersView()
+        FabFiltersView(presentCircuitFilter: .constant(false), filters: Filters())
             .previewLayout(.fixed(width: 300, height: 70))
     }
 }

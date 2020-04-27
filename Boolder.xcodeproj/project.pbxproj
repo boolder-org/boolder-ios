@@ -14,7 +14,7 @@
 		3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C361245600FD005E786E /* BezierViewRepresentable.swift */; };
 		37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
 		37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
-		37A8C62E2453263300DC161F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* ContentView.swift */; };
+		37A8C62E2453263300DC161F /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* AreaView.swift */; };
 		37A8C6302453263400DC161F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C62F2453263400DC161F /* Assets.xcassets */; };
 		37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6322453263400DC161F /* Preview Assets.xcassets */; };
 		37A8C6362453263400DC161F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6342453263400DC161F /* LaunchScreen.storyboard */; };
@@ -256,6 +256,7 @@
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
 		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
 		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
+		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,7 +268,7 @@
 		37A8C6262453263300DC161F /* Boolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A8C6292453263300DC161F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A8C62B2453263300DC161F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		37A8C62D2453263300DC161F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		37A8C62D2453263300DC161F /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		37A8C62F2453263400DC161F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37A8C6322453263400DC161F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		37A8C6352453263400DC161F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -510,6 +511,7 @@
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
 		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
+		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -546,14 +548,7 @@
 				37A8C62B2453263300DC161F /* SceneDelegate.swift */,
 				37A8C808245326F200DC161F /* Models */,
 				37A8C63D2453269100DC161F /* Data */,
-				37A8C62D2453263300DC161F /* ContentView.swift */,
-				37638B83245437A000C5CD82 /* ProblemListView.swift */,
-				37A8C8192453320D00DC161F /* MapView.swift */,
-				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
-				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
-				3790C35D2456008F005E786E /* BezierView.swift */,
-				3790C361245600FD005E786E /* BezierViewRepresentable.swift */,
-				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+				37F12D852456D4FC0036E3E3 /* Area */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6342453263400DC161F /* LaunchScreen.storyboard */,
 				37A8C6372453263400DC161F /* Info.plist */,
@@ -834,6 +829,38 @@
 				37A8C80D245326F200DC161F /* Filters.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		37F12D852456D4FC0036E3E3 /* Area */ = {
+			isa = PBXGroup;
+			children = (
+				37A8C62D2453263300DC161F /* AreaView.swift */,
+				37A8C8192453320D00DC161F /* MapView.swift */,
+				37638B83245437A000C5CD82 /* ProblemListView.swift */,
+				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
+				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
+				37F12D862456D50E0036E3E3 /* Problem details */,
+			);
+			path = Area;
+			sourceTree = "<group>";
+		};
+		37F12D862456D50E0036E3E3 /* Problem details */ = {
+			isa = PBXGroup;
+			children = (
+				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
+				37F12D872456D51F0036E3E3 /* BezierView */,
+			);
+			path = "Problem details";
+			sourceTree = "<group>";
+		};
+		37F12D872456D51F0036E3E3 /* BezierView */ = {
+			isa = PBXGroup;
+			children = (
+				3790C35D2456008F005E786E /* BezierView.swift */,
+				3790C361245600FD005E786E /* BezierViewRepresentable.swift */,
+				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+			);
+			path = BezierView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1136,6 +1163,7 @@
 			files = (
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
+				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */,
 				3790C35F2456008F005E786E /* BezierView.swift in Sources */,
@@ -1144,7 +1172,7 @@
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,
 				37A8C807245326DB00DC161F /* ProblemDataSource.swift in Sources */,
-				37A8C62E2453263300DC161F /* ContentView.swift in Sources */,
+				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,

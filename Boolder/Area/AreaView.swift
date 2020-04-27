@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  AreaView.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 24/04/2020.
@@ -8,15 +8,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State private var areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
+struct AreaView: View {
+    @ObservedObject var filters: Filters = Filters()
+    @State private var areaDataSource: ProblemDataSource = ProblemDataSource(circuitFilter: nil, filters: Filters())
     @State private var showList = false
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
-    
-//    init(){
-//        UITableView.appearance().backgroundColor = .white
-//    }
+    @State private var presentCircuitFilter = false
     
     var body: some View {
         NavigationView {
@@ -27,38 +25,38 @@ struct ContentView: View {
                 MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
+                    .sheet(isPresented: $presentProblemDetails) {
+                        ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation())
+                    }
                 
                 VStack {
                     Spacer()
-                    FabFiltersView()
+                    FabFiltersView(presentCircuitFilter: $presentCircuitFilter, filters: filters)
                         .padding(.bottom, 24)
                 }
-                    .zIndex(10)
+                .zIndex(10)
                 
 //                NavigationLink(destination: ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation()), isActive: $presentProblemDetails) { EmptyView() }
                 
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(
-                leading: Button("Test") {
-//                    self.selectedProblem = nil
-                    self.areaDataSource = ProblemDataSource(circuitFilter: .yellow, filters: Filters())
-                },
                 trailing: Button(showList ? "Carte" : "Liste") {
                     self.showList.toggle()
                 }
             )
-                .sheet(isPresented: $presentProblemDetails) {
-                    ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation())
+            .onAppear {
+                print(self.filters.circuit)
+                self.areaDataSource = ProblemDataSource(circuitFilter: self.filters.circuit, filters: self.filters)
             }
-                    
+            
         }
         .accentColor(Color.green)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        AreaView()
     }
 }
