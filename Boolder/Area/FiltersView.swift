@@ -86,12 +86,11 @@ struct FiltersView_Previews: PreviewProvider {
 
 struct GradeFilterView: View {
     @EnvironmentObject var dataStore: DataStore
-    private let allCategories = [1,2,3,4,5,6,7,8]
     
     var body: some View {
         List {
             Section {
-                ForEach(allCategories, id: \.self) { category in
+                ForEach(Filters.allGradeCategories, id: \.self) { category in
                     Button(action: {
                         if self.dataStore.filters.gradeCategories.contains(category) {
                             self.dataStore.filters.gradeCategories.remove(category)
@@ -99,9 +98,8 @@ struct GradeFilterView: View {
                         else {
                             self.dataStore.filters.gradeCategories.insert(category)
                         }
-                        // FIXME: use a cleaner solution
-                        // read this: https://stackoverflow.com/questions/57459727/why-an-observedobject-array-is-not-updated-in-my-swiftui-application
-                        self.dataStore.objectWillChange.send()
+                        
+                        self.dataStore.refresh()
                     }) {
                         HStack {
                             Text("Niveau \(category)").foregroundColor(Color(UIColor.label))
@@ -113,9 +111,17 @@ struct GradeFilterView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
+            
+            Section {
+                Button(action: {
+                    self.dataStore.filters.gradeCategories = Set<Int>()
+                }) {
+                    Text("Tous les niveaux").foregroundColor(Color(UIColor.label))
+                }
+            }
         }
-    .navigationBarTitle("Niveaux")
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("Niveaux")
     }
 }
