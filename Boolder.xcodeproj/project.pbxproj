@@ -245,7 +245,7 @@
 		37A8C803245326B400DC161F /* topo-178.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C720245326B400DC161F /* topo-178.jpg */; };
 		37A8C804245326B400DC161F /* area-1-data.kml in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C721245326B400DC161F /* area-1-data.kml */; };
 		37A8C805245326B400DC161F /* area-1-topos.json in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C722245326B400DC161F /* area-1-topos.json */; };
-		37A8C807245326DB00DC161F /* ProblemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* ProblemDataSource.swift */; };
+		37A8C807245326DB00DC161F /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* DataStore.swift */; };
 		37A8C80E245326F200DC161F /* Steepness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C809245326F200DC161F /* Steepness.swift */; };
 		37A8C80F245326F200DC161F /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80A245326F200DC161F /* Grade.swift */; };
 		37A8C810245326F200DC161F /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
@@ -500,7 +500,7 @@
 		37A8C720245326B400DC161F /* topo-178.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-178.jpg"; sourceTree = "<group>"; };
 		37A8C721245326B400DC161F /* area-1-data.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "area-1-data.kml"; sourceTree = "<group>"; };
 		37A8C722245326B400DC161F /* area-1-topos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topos.json"; sourceTree = "<group>"; };
-		37A8C806245326DB00DC161F /* ProblemDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemDataSource.swift; sourceTree = "<group>"; };
+		37A8C806245326DB00DC161F /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		37A8C809245326F200DC161F /* Steepness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steepness.swift; sourceTree = "<group>"; };
 		37A8C80A245326F200DC161F /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		37A8C80B245326F200DC161F /* Circuit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circuit.swift; sourceTree = "<group>"; };
@@ -568,7 +568,7 @@
 		37A8C63D2453269100DC161F /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				37A8C806245326DB00DC161F /* ProblemDataSource.swift */,
+				37A8C806245326DB00DC161F /* DataStore.swift */,
 				37A8C63E245326B300DC161F /* area-1 */,
 			);
 			path = Data;
@@ -1171,7 +1171,7 @@
 				3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,
-				37A8C807245326DB00DC161F /* ProblemDataSource.swift in Sources */,
+				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,

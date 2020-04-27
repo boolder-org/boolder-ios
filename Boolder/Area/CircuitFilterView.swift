@@ -19,7 +19,7 @@ struct CircuitFilterView: View {
     ]
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var areaDataSource: ProblemDataSource
+    @ObservedObject var areaDataSource: DataStore
     
     var body: some View {
         NavigationView {
@@ -27,9 +27,7 @@ struct CircuitFilterView: View {
                 ForEach(circuits, id: \.self) { circuitType in
                     Button(action: {
                         self.areaDataSource.filters.circuit = circuitType
-                        self.areaDataSource.refresh()
-                        
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.dismiss()
                     }) {
                         HStack(alignment: .center) {
                             CircuitRectangle(color: Color(Circuit(circuitType).color))
@@ -47,19 +45,37 @@ struct CircuitFilterView: View {
                 }
                 
                 Section {
-                    Text("Montrer toutes les voies")
+                    Button(action: {
+                        self.areaDataSource.filters.circuit = nil
+                        self.dismiss()
+                    }) {
+                        Text("Montrer toutes les voies")
+                    }
+                    .foregroundColor(Color(UIColor.label))
                 }
             }
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Circuit", displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button("OK") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            )
         }
+        // FIXME: use accent color on all views by default (even for modals)
+        .accentColor(Color.green)
+    }
+    
+    func dismiss() {
+        areaDataSource.refresh()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView(areaDataSource: ProblemDataSource())
+        CircuitFilterView(areaDataSource: DataStore())
     }
 }
 

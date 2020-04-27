@@ -34,8 +34,7 @@ struct TopoCollection: Decodable {
     }
 }
 
-// FIXME: rename to GeoStore
-class ProblemDataSource : ObservableObject {
+class DataStore : ObservableObject {
 
     @Published var overlays: [MKOverlay]
     @Published var annotations: [ProblemAnnotation]

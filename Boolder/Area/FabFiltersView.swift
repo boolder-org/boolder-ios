@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FabFiltersView: View {
     @State private var presentCircuitFilter = false
-    @ObservedObject var areaDataSource: ProblemDataSource
+    @ObservedObject var areaDataSource: DataStore
     
     var body: some View {
         ZStack {
@@ -67,7 +67,7 @@ struct FabFiltersView: View {
 
 struct FabFiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FabFiltersView(areaDataSource: ProblemDataSource())
+        FabFiltersView(areaDataSource: DataStore())
             .previewLayout(.fixed(width: 300, height: 70))
     }
 }

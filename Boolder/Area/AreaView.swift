@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AreaView: View {
-    @ObservedObject var areaDataSource = ProblemDataSource()
+    @ObservedObject var areaDataSource = DataStore()
     @State private var showList = false
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
@@ -42,7 +42,6 @@ struct AreaView: View {
                 trailing: Button(showList ? "Carte" : "Liste") {
                     self.showList.toggle()
                 }
-                .padding(.vertical)
             )
         }
         .accentColor(Color.green)
