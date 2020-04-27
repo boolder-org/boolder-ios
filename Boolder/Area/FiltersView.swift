@@ -29,6 +29,29 @@ struct FiltersView: View {
                 }
                 
                 Section {
+                    ForEach(Steepness.SteepnessType.allCases, id: \.self) { steepness in
+                        
+                        Button(action: {
+                            if self.dataStore.filters.steepness.contains(steepness) {
+                                self.dataStore.filters.steepness.remove(steepness)
+                            }
+                            else {
+                                self.dataStore.filters.steepness.insert(steepness)
+                            }
+                        }) {
+                            HStack {
+                                Text(Steepness(steepness).name).foregroundColor(Color(UIColor.label))
+                                Spacer()
+                                
+                                if self.dataStore.filters.steepness.contains(steepness) {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                Section {
                     HStack {
                         Toggle(isOn: $dataStore.filters.photoPresent) {
                             Text("Photo")

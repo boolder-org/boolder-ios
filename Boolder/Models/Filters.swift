@@ -12,7 +12,7 @@ struct Filters {
     static let allGradeCategories = [1,2,3,4,5,6,7,8]
     
     var gradeCategories = Set<Int>() // empty means all grades
-    var steepness: [Steepness.SteepnessType] = Steepness.SteepnessType.allCases
+    var steepness: Set<Steepness.SteepnessType> = Set(Steepness.SteepnessType.allCases)
     var heightMax: Int = 6
     var photoPresent = false
     var circuit: Circuit.CircuitType? = .orange
