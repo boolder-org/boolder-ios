@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct FabFiltersView: View {
-    @Binding var presentCircuitFilter: Bool
-    @ObservedObject var filters: Filters
+    @State private var presentCircuitFilter = false
+    @ObservedObject var areaDataSource: ProblemDataSource
     
     var body: some View {
         ZStack {
@@ -18,20 +18,25 @@ struct FabFiltersView: View {
                 Button(action: {
                     self.presentCircuitFilter.toggle()
                 }) {
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.red)
-                        .frame(width: 20, height: 20)
-                        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
-                    Text("Circuit")
+                    if areaDataSource.filters.circuit != nil {
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(circuitColor())
+                            .frame(width: 20, height: 20)
+                            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
+                        Text("Circuit")
+                    }
+                    else {
+                        Text("Pas de circuit")
+                    }
                 }
                 .sheet(isPresented: $presentCircuitFilter) {
-                    CircuitFilterView(filters: self.filters)
+                    CircuitFilterView(areaDataSource: self.areaDataSource)
                 }
                 
                 Divider().frame(width: 1, height: 44, alignment: .center)
                 
                 Button(action: {
-                    self.filters.circuit = .orange
+//                    self.areaDataSource.filters.circuit = .orange
 
                 }) {
                     Image(systemName: "slider.horizontal.3")
@@ -49,11 +54,20 @@ struct FabFiltersView: View {
         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
         .padding()
     }
+    
+    func circuitColor() -> Color {
+        if let circuit = areaDataSource.filters.circuit {
+            return Color(Circuit(circuit).color)
+        }
+        else {
+            return Color.white
+        }
+    }
 }
 
 struct FabFiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FabFiltersView(presentCircuitFilter: .constant(false), filters: Filters())
+        FabFiltersView(areaDataSource: ProblemDataSource())
             .previewLayout(.fixed(width: 300, height: 70))
     }
 }

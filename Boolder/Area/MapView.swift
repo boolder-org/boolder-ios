@@ -12,7 +12,7 @@ import SwiftUI
 // heavily inspired from https://www.hackingwithswift.com/books/ios-swiftui/advanced-mkmapview-with-swiftui
 
 struct MapView: UIViewRepresentable {
-    let areaDataSource: ProblemDataSource
+    @ObservedObject var areaDataSource: ProblemDataSource
     @Binding var selectedProblem: ProblemAnnotation?
     @Binding var presentProblemDetails: Bool
     

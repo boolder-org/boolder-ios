@@ -9,12 +9,10 @@
 import SwiftUI
 
 struct AreaView: View {
-    @ObservedObject var filters: Filters = Filters()
-    @State private var areaDataSource: ProblemDataSource = ProblemDataSource(circuitFilter: nil, filters: Filters())
+    @ObservedObject var areaDataSource = ProblemDataSource()
     @State private var showList = false
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
-    @State private var presentCircuitFilter = false
     
     var body: some View {
         NavigationView {
@@ -31,7 +29,7 @@ struct AreaView: View {
                 
                 VStack {
                     Spacer()
-                    FabFiltersView(presentCircuitFilter: $presentCircuitFilter, filters: filters)
+                    FabFiltersView(areaDataSource: areaDataSource)
                         .padding(.bottom, 24)
                 }
                 .zIndex(10)
@@ -44,12 +42,8 @@ struct AreaView: View {
                 trailing: Button(showList ? "Carte" : "Liste") {
                     self.showList.toggle()
                 }
+                .padding(.vertical)
             )
-            .onAppear {
-                print(self.filters.circuit)
-                self.areaDataSource = ProblemDataSource(circuitFilter: self.filters.circuit, filters: self.filters)
-            }
-            
         }
         .accentColor(Color.green)
     }

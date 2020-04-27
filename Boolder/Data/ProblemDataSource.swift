@@ -34,39 +34,22 @@ struct TopoCollection: Decodable {
     }
 }
 
-// FIXME: rename to GeoDataSource
-class ProblemDataSource {
+// FIXME: rename to GeoStore
+class ProblemDataSource : ObservableObject {
 
-    var overlays: [MKOverlay]
-    var annotations: [ProblemAnnotation] {
-        didSet {
-            if annotations != oldValue {
-                var sortedAnnotations = annotations
-                sortedAnnotations.sort { (lhs, rhs) -> Bool in
-                    guard let lhsGrade = lhs.grade else { return true }
-                    guard let rhsGrade = rhs.grade else { return false }
-                    
-                    return lhsGrade < rhsGrade
-                }
-                
-                groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in problem.grade?.category() ?? 0 })
-            }
-        }
-    }
+    @Published var overlays: [MKOverlay]
+    @Published var annotations: [ProblemAnnotation]
     
-    var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
-    var topoCollection: TopoCollection
-    var circuitFilter: Circuit.CircuitType?
-    var filters: Filters
+    @Published var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
+    @Published var topoCollection: TopoCollection
+    @Published var filters: Filters
 
-    init(circuitFilter: Circuit.CircuitType?, filters: Filters) {
+    init() {
         overlays = [MKOverlay]()
         annotations = [ProblemAnnotation]()
         groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
         topoCollection = TopoCollection.init(topos: nil)
-        
-        self.circuitFilter = circuitFilter
-        self.filters = filters
+        filters = Filters()
         
         if let topojsonUrl = Bundle.main.url(forResource: "area-1-topos", withExtension: "json") {
             do {
@@ -77,6 +60,16 @@ class ProblemDataSource {
                 print("Error decoding topos json: \(error).")
             }
         }
+        
+        refresh()
+    }
+    
+    // FIXME: don't parse the json all over again everytime
+    func refresh() {
+        
+        overlays = [MKOverlay]()
+        annotations = [ProblemAnnotation]()
+        groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
 
         if let geojsonUrl = Bundle.main.url(forResource: "area-1-data", withExtension: "geojson") {
             do {
@@ -90,6 +83,17 @@ class ProblemDataSource {
                 print("Error decoding GeoJSON: \(error).")
             }
         }
+        
+        var sortedAnnotations = annotations
+        sortedAnnotations.sort { (lhs, rhs) -> Bool in
+            guard let lhsGrade = lhs.grade else { return true }
+            guard let rhsGrade = rhs.grade else { return false }
+            
+            return lhsGrade < rhsGrade
+        }
+        
+        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in problem.grade?.category() ?? 0 })
+        
     }
 
     private func parse(_ jsonObjects: [MKGeoJSONObject]) {
@@ -117,7 +121,7 @@ class ProblemDataSource {
                     } else if let polyline = geometry as? MKPolyline {
                         let circuitOverlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
                         configure(circuitOverlay: circuitOverlay, using: feature.properties)
-                        if(circuitOverlay.circuitType == circuitFilter) {
+                        if(circuitOverlay.circuitType == filters.circuit) {
                             overlays.append(circuitOverlay)
                         }
                     } else if let point = geometry as? MKPointAnnotation {
@@ -133,7 +137,7 @@ class ProblemDataSource {
                         
                         configure(annotation: problem, using: feature.properties)
                         
-                        if(circuitFilter == nil || problem.circuitType == circuitFilter) {
+                        if(filters.circuit == nil || problem.circuitType == filters.circuit) {
                             if let gradeCategory = problem.grade?.category() {
                                 if filters.gradeCategories.isEmpty || filters.gradeCategories.contains(gradeCategory) {
                                     if filters.steepness.contains(problem.steepness) {
@@ -201,7 +205,7 @@ class ProblemDataSource {
 //            annotation.subtitle = annotation.grade
             
             annotation.circuitType = Circuit.circuitTypeFromString(properties.circuit)
-            annotation.belongsToCircuit = (circuitFilter == annotation.circuitType)
+            annotation.belongsToCircuit = (filters.circuit == annotation.circuitType)
         }
         else {
             print("Could not parse properties for MKPointAnnotation: \(annotation)")

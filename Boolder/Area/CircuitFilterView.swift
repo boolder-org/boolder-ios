@@ -18,15 +18,17 @@ struct CircuitFilterView: View {
         Circuit.CircuitType.white,
     ]
     
-    @ObservedObject var filters: Filters
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var areaDataSource: ProblemDataSource
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(circuits, id: \.self) { circuitType in
                     Button(action: {
-                        self.filters.circuit = .orange
+                        self.areaDataSource.filters.circuit = circuitType
+                        self.areaDataSource.refresh()
+                        
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack(alignment: .center) {
@@ -57,7 +59,7 @@ struct CircuitFilterView: View {
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView(filters: Filters())
+        CircuitFilterView(areaDataSource: ProblemDataSource())
     }
 }
 

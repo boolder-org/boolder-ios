@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ProblemListView: View {
-    let areaDataSource: ProblemDataSource
+    @ObservedObject var areaDataSource: ProblemDataSource
     @Binding var selectedProblem: ProblemAnnotation?
     @Binding var presentProblemDetails: Bool
     
@@ -50,7 +50,7 @@ struct ProblemListView: View {
 }
 
 struct ProblemListView_Previews: PreviewProvider {
-    static let areaDataSource = ProblemDataSource(circuitFilter: .red, filters: Filters())
+    static let areaDataSource = ProblemDataSource()
     
     static var previews: some View {
         NavigationView {
