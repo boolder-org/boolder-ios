@@ -14,6 +14,10 @@ struct ContentView: View {
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
     
+//    init(){
+//        UITableView.appearance().backgroundColor = .white
+//    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -23,9 +27,6 @@ struct ContentView: View {
                 MapView(areaDataSource: self.areaDataSource, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
-                    .onAppear {
-                        self.selectedProblem = nil
-                    }
                 
                 VStack {
                     Spacer()
@@ -40,7 +41,7 @@ struct ContentView: View {
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(
                 leading: Button("Test") {
-                    self.selectedProblem = nil
+//                    self.selectedProblem = nil
                     self.areaDataSource = ProblemDataSource(circuitFilter: .yellow, filters: Filters())
                 },
                 trailing: Button(showList ? "Carte" : "Liste") {
