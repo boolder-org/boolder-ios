@@ -10,6 +10,8 @@ import SwiftUI
 
 struct AreaView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
+    
     @State private var showList = false
     @State private var selectedProblem: ProblemAnnotation? = nil
     @State private var presentProblemDetails = false
