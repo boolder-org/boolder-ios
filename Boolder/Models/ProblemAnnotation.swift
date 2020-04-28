@@ -55,6 +55,14 @@ class ProblemAnnotation: NSObject, MKAnnotation {
         return false
     }
     
+    func topoFirstPoint() -> Topo.PhotoPercentCoordinate? {
+        guard let topo = topo else { return nil }
+        guard let line = topo.line else { return nil }
+        guard let firstPoint = line.first else { return nil }
+        
+        return firstPoint
+    }
+    
     // FIXME: use Color
     func displayColor() -> UIColor {
         guard let circuitType = circuitType else { return UIColor.gray }

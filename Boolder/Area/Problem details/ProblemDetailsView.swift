@@ -51,18 +51,13 @@ struct ProblemDetailsView: View {
                                         .fontWeight(.bold)
                                 }
                             }
-                            
-//                            Rectangle()
-//                            .fill(Color.green)
-//                            .frame(width: 70, height: 4, alignment: .leading)
                         }
-//                        .padding(.bottom, 16)
                     
                         
                         HStack(alignment: .firstTextBaseline) {
                             Image(Steepness(problem.steepness).imageName)
                                 .font(.body)
-                                .frame(minWidth: 20)
+                                .frame(minWidth: 16)
                             Text(Steepness(problem.steepness).name)
                                 .font(.body)
                             Text(problem.readableDescription() ?? "")
@@ -78,18 +73,13 @@ struct ProblemDetailsView: View {
                                 Image(systemName: "exclamationmark.shield.fill")
                                     .font(.body)
                                     .foregroundColor(Color.red)
-                                    .frame(minWidth: 20)
+                                    .frame(minWidth: 16)
                                 Text("Danger en cas de chute")
                                     .font(.body)
                                     .foregroundColor(Color.red)
-//                                Text("hauteur : 3m")
-//                                    .font(.caption)
-//                                    .foregroundColor(Color(UIColor.systemGray))
-                                
                                 }
                         }
                     }
-//                    .padding(0)
                     
                     HStack(spacing: 16) {
                         Button(action: {}) {
@@ -126,8 +116,6 @@ struct ProblemDetailsView: View {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color(UIColor.systemGreen), lineWidth: 2)
                         )
-//                        .layoutPriority(1)
-                        
                     }
                     .padding(.vertical)
                     
@@ -157,11 +145,7 @@ struct ProblemDetailsView: View {
                 Button(action: {}) {
                     Image(systemName: "square.and.arrow.up")
                 }
-//                Button(action: {}) {
-//                    Image(systemName: "heart")
-//                }
             }
-            
         )
     }
 }
@@ -170,8 +154,6 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let dataStore = DataStore()
     
     static var previews: some View {
-//        NavigationView {
-            ProblemDetailsView(problem: dataStore.annotations[49])
-//        }
+        ProblemDetailsView(problem: dataStore.annotations.first!)
     }
 }
