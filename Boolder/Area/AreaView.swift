@@ -13,7 +13,7 @@ struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
     
     @State private var showList = false
-    @State private var selectedProblem: ProblemAnnotation? = nil
+    @State private var selectedProblem = ProblemAnnotation()
     @State private var presentProblemDetails = false
     
     var body: some View {
@@ -26,7 +26,7 @@ struct AreaView: View {
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
                     .sheet(isPresented: $presentProblemDetails) {
-                        ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation())
+                        ProblemDetailsView(problem: self.$selectedProblem)
                     }
                 
                 VStack {
@@ -53,6 +53,6 @@ struct AreaView: View {
 struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         AreaView()
-            .environmentObject(DataStore())
+            .environmentObject(DataStore.shared)
     }
 }

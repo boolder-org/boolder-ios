@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProblemListView: View {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: ProblemAnnotation?
+    @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
     
     var body: some View {
@@ -54,9 +54,9 @@ struct ProblemListView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(selectedProblem: .constant(nil), presentProblemDetails: .constant(false))
+            ProblemListView(selectedProblem: .constant(ProblemAnnotation()), presentProblemDetails: .constant(false))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
-        .environmentObject(DataStore())
+        .environmentObject(DataStore.shared)
     }
 }

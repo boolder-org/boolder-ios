@@ -10,7 +10,9 @@ import SwiftUI
 
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
-    var problem: ProblemAnnotation
+    @EnvironmentObject var dataStore: DataStore
+    
+    @Binding var problem: ProblemAnnotation
     
     var body: some View {
         ScrollView {
@@ -82,7 +84,9 @@ struct ProblemDetailsView: View {
                     }
                     
                     HStack(spacing: 16) {
-                        Button(action: {}) {
+                        Button(action: {
+                            
+                        }) {
                             HStack(alignment: .center, spacing: 16) {
                                 Image(systemName: "star")
                                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -151,9 +155,9 @@ struct ProblemDetailsView: View {
 }
 
 struct ProblemDetailsView_Previews: PreviewProvider {
-    static let dataStore = DataStore()
+    static let dataStore = DataStore.shared
     
     static var previews: some View {
-        ProblemDetailsView(problem: dataStore.annotations.first!)
+        ProblemDetailsView(problem: .constant(dataStore.annotations.last!))
     }
 }

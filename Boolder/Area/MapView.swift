@@ -13,7 +13,7 @@ import SwiftUI
 
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: ProblemAnnotation?
+    @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
     
     func makeUIView(context: Context) -> MKMapView {
