@@ -14,6 +14,8 @@ struct FiltersView: View {
     
     @State private var presentGradeFilter = false
     
+    let userVisibleSteepnessTypes: [Steepness.SteepnessType] = [.wall, .slab, .overhang, .traverse]
+    
     var body: some View {
         NavigationView {
             Form {
@@ -29,19 +31,17 @@ struct FiltersView: View {
                 }
                 
                 Section {
-                    ForEach(Steepness.SteepnessType.allCases, id: \.self) { steepness in
+                    ForEach(userVisibleSteepnessTypes, id: \.self) { steepness in
                         
                         Button(action: {
-                            if self.dataStore.filters.steepness.contains(steepness) {
-                                self.dataStore.filters.steepness.remove(steepness)
-                            }
-                            else {
-                                self.dataStore.filters.steepness.insert(steepness)
-                            }
+                            self.steepnessTapped(steepness)
                         }) {
                             HStack {
-                                Image(Steepness(steepness).imageName).foregroundColor(Color(UIColor.label))
-                                Text(Steepness(steepness).name).foregroundColor(Color(UIColor.label))
+                                Image(Steepness(steepness).imageName)
+                                    .foregroundColor(Color(UIColor.label))
+                                    .frame(minWidth: 20)
+                                Text(Steepness(steepness).name)
+                                    .foregroundColor(Color(UIColor.label))
                                 Spacer()
                                 
                                 if self.dataStore.filters.steepness.contains(steepness) {
@@ -73,6 +73,29 @@ struct FiltersView: View {
             )
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
+        }
+    }
+    
+    private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
+        // toggle value for this steepness
+        if self.dataStore.filters.steepness.contains(steepness) {
+            self.dataStore.filters.steepness.remove(steepness)
+        }
+        else {
+            self.dataStore.filters.steepness.insert(steepness)
+        }
+        
+        // auto add/remove some values for user friendliness
+        
+        if self.dataStore.filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
+            self.dataStore.filters.steepness.formUnion([.other, .roof])
+        }
+        else {
+            self.dataStore.filters.steepness.subtract([.other, .roof])
+            
+            if self.dataStore.filters.steepness.contains(.overhang) {
+                self.dataStore.filters.steepness.insert(.roof)
+            }
         }
     }
     

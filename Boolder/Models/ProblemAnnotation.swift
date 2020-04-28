@@ -21,7 +21,7 @@ class ProblemAnnotation: NSObject, MKAnnotation {
     var grade: Grade?
     var name: String? = nil
     var height: Int? = nil
-    var steepness: Steepness.SteepnessType = .unknown
+    var steepness: Steepness.SteepnessType = .other
     var id: Int!
     var topo: Topo?
     

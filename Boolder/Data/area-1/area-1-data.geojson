@@ -6,6 +6,76 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.663394,
+          48.461988
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 25,
+        "grade": "2a",
+        "circuitNumber": "25",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Fun and Games",
+        "circuit": "yellow",
+        "topos": [
+          {
+            "id": 132
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.662692,
+          48.461309
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 13,
+        "grade": "2a",
+        "circuitNumber": "37",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "circuit": "yellow",
+        "topos": [
+          {
+            "id": 87
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663396,
+          48.462156
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 26,
+        "grade": "3a",
+        "circuitNumber": "24",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "circuit": "yellow"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.662758,
           48.462985
         ]
@@ -13,11 +83,11 @@
       "properties": {
         "type": "problem",
         "id": 1,
-        "name": "Poseurs",
         "grade": "3b",
         "circuitNumber": "13",
         "steepness": "slab",
         "height": 4,
+        "name": "Poseurs",
         "circuit": "yellow",
         "topos": [
           {
@@ -38,11 +108,11 @@
       "properties": {
         "type": "problem",
         "id": 2,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "48",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -63,11 +133,11 @@
       "properties": {
         "type": "problem",
         "id": 3,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "47",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -88,11 +158,11 @@
       "properties": {
         "type": "problem",
         "id": 4,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "46",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -113,11 +183,11 @@
       "properties": {
         "type": "problem",
         "id": 5,
-        "name": null,
         "grade": "2a+",
         "circuitNumber": "45",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -138,11 +208,11 @@
       "properties": {
         "type": "problem",
         "id": 6,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "44",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -158,11 +228,11 @@
       "properties": {
         "type": "problem",
         "id": 7,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "43",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -183,11 +253,11 @@
       "properties": {
         "type": "problem",
         "id": 8,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "42",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -208,11 +278,11 @@
       "properties": {
         "type": "problem",
         "id": 9,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "41",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -233,11 +303,11 @@
       "properties": {
         "type": "problem",
         "id": 10,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "40",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -253,11 +323,11 @@
       "properties": {
         "type": "problem",
         "id": 11,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "39",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -278,37 +348,12 @@
       "properties": {
         "type": "problem",
         "id": 12,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "38",
         "steepness": "traverse",
         "height": null,
-        "circuit": "yellow"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.662692,
-          48.461309
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 13,
         "name": null,
-        "grade": "2a",
-        "circuitNumber": "37",
-        "steepness": null,
-        "height": null,
-        "circuit": "yellow",
-        "topos": [
-          {
-            "id": 87
-          }
-        ]
+        "circuit": "yellow"
       }
     },
     {
@@ -323,11 +368,11 @@
       "properties": {
         "type": "problem",
         "id": 14,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "36",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -348,11 +393,11 @@
       "properties": {
         "type": "problem",
         "id": 15,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "35",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -368,11 +413,11 @@
       "properties": {
         "type": "problem",
         "id": 16,
-        "name": null,
         "grade": "1b",
         "circuitNumber": "34",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -393,11 +438,11 @@
       "properties": {
         "type": "problem",
         "id": 17,
-        "name": "Lola",
         "grade": "2c",
         "circuitNumber": "33",
         "steepness": "slab",
         "height": null,
+        "name": "Lola",
         "circuit": "yellow",
         "topos": [
           {
@@ -418,11 +463,11 @@
       "properties": {
         "type": "problem",
         "id": 18,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "32",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -438,11 +483,11 @@
       "properties": {
         "type": "problem",
         "id": 19,
-        "name": null,
         "grade": "3b",
         "circuitNumber": "31",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -463,11 +508,11 @@
       "properties": {
         "type": "problem",
         "id": 20,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "30",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -488,11 +533,11 @@
       "properties": {
         "type": "problem",
         "id": 22,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "28",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -513,37 +558,17 @@
       "properties": {
         "type": "problem",
         "id": 24,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "26",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
             "id": 123
           }
         ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663396,
-          48.462156
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 26,
-        "name": null,
-        "grade": "3a",
-        "circuitNumber": "24",
-        "steepness": null,
-        "height": null,
-        "circuit": "yellow"
       }
     },
     {
@@ -558,11 +583,11 @@
       "properties": {
         "type": "problem",
         "id": 27,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "23",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -578,11 +603,11 @@
       "properties": {
         "type": "problem",
         "id": 28,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "22",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -603,11 +628,11 @@
       "properties": {
         "type": "problem",
         "id": 29,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "21",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -628,11 +653,11 @@
       "properties": {
         "type": "problem",
         "id": 31,
-        "name": "Autoroute du Soleil",
         "grade": "2c",
         "circuitNumber": "19",
         "steepness": "overhang",
         "height": null,
+        "name": "Autoroute du Soleil",
         "circuit": "yellow",
         "topos": [
           {
@@ -653,11 +678,11 @@
       "properties": {
         "type": "problem",
         "id": 32,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "18",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -678,11 +703,11 @@
       "properties": {
         "type": "problem",
         "id": 33,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "17",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -698,11 +723,11 @@
       "properties": {
         "type": "problem",
         "id": 34,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "16",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -718,11 +743,11 @@
       "properties": {
         "type": "problem",
         "id": 35,
-        "name": null,
         "grade": "1c",
         "circuitNumber": "15",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -738,11 +763,11 @@
       "properties": {
         "type": "problem",
         "id": 37,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "12",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -763,11 +788,11 @@
       "properties": {
         "type": "problem",
         "id": 38,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "11",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -788,11 +813,11 @@
       "properties": {
         "type": "problem",
         "id": 39,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "10",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -808,11 +833,11 @@
       "properties": {
         "type": "problem",
         "id": 42,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "7",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -833,11 +858,11 @@
       "properties": {
         "type": "problem",
         "id": 40,
-        "name": "Sauvetage",
         "grade": "2a",
         "circuitNumber": "9",
         "steepness": "wall",
         "height": 5,
+        "name": "Sauvetage",
         "circuit": "yellow"
       }
     },
@@ -853,11 +878,11 @@
       "properties": {
         "type": "problem",
         "id": 36,
-        "name": "Le Bistrot",
         "grade": "3a",
         "circuitNumber": "14",
         "steepness": "slab",
         "height": 3,
+        "name": "Le Bistrot",
         "circuit": "yellow",
         "topos": [
           {
@@ -878,40 +903,15 @@
       "properties": {
         "type": "problem",
         "id": 30,
-        "name": "Pseudonyme",
         "grade": "2b",
         "circuitNumber": "20",
         "steepness": "wall",
         "height": 2,
+        "name": "Pseudonyme",
         "circuit": "yellow",
         "topos": [
           {
             "id": 124
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663394,
-          48.461988
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 25,
-        "name": "Fun and Games",
-        "grade": "2a",
-        "circuitNumber": "25",
-        "steepness": null,
-        "height": 4,
-        "circuit": "yellow",
-        "topos": [
-          {
-            "id": 132
           }
         ]
       }
@@ -928,11 +928,11 @@
       "properties": {
         "type": "problem",
         "id": 23,
-        "name": "Tintin",
         "grade": "2b",
         "circuitNumber": "27",
         "steepness": "wall",
         "height": 3,
+        "name": "Tintin",
         "circuit": "yellow",
         "topos": [
           {
@@ -953,17 +953,62 @@
       "properties": {
         "type": "problem",
         "id": 21,
-        "name": "Magouilles",
         "grade": "3b",
         "circuitNumber": "29",
         "steepness": "wall",
         "height": 5,
+        "name": "Magouilles",
         "circuit": "yellow",
         "topos": [
           {
             "id": 96
           }
         ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.664168,
+          48.461068
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 50,
+        "grade": "3a",
+        "circuitNumber": "42",
+        "steepness": "overhang",
+        "height": null,
+        "name": "La calandre",
+        "circuit": "orange",
+        "topos": [
+          {
+            "id": 183
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663794,
+          48.462359
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 80,
+        "grade": "2c",
+        "circuitNumber": "8",
+        "steepness": "traverse",
+        "height": null,
+        "name": "L'Ex Saut du Jaune",
+        "circuit": "orange"
       }
     },
     {
@@ -978,11 +1023,11 @@
       "properties": {
         "type": "problem",
         "id": 60,
-        "name": "Imogen",
         "grade": "3c",
         "circuitNumber": "31",
         "steepness": "wall",
         "height": 5,
+        "name": "Imogen",
         "circuit": "orange",
         "topos": [
           {
@@ -1003,11 +1048,11 @@
       "properties": {
         "type": "problem",
         "id": 43,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "6",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -1028,11 +1073,11 @@
       "properties": {
         "type": "problem",
         "id": 44,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "5",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -1053,11 +1098,11 @@
       "properties": {
         "type": "problem",
         "id": 45,
-        "name": null,
         "grade": "2b",
         "circuitNumber": "4",
         "steepness": "overhang",
         "height": null,
+        "name": null,
         "circuit": "yellow"
       }
     },
@@ -1073,11 +1118,11 @@
       "properties": {
         "type": "problem",
         "id": 46,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "3",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -1098,11 +1143,11 @@
       "properties": {
         "type": "problem",
         "id": 47,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "2",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -1123,11 +1168,11 @@
       "properties": {
         "type": "problem",
         "id": 48,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "1",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "yellow",
         "topos": [
           {
@@ -1148,40 +1193,15 @@
       "properties": {
         "type": "problem",
         "id": 49,
-        "name": "La Crêpe",
         "grade": "4a",
         "circuitNumber": "43",
         "steepness": "slab",
         "height": 5,
+        "name": "La Crêpe",
         "circuit": "orange",
         "topos": [
           {
             "id": 32
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.664168,
-          48.461068
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 50,
-        "name": "La calandre",
-        "grade": "3a",
-        "circuitNumber": "42",
-        "steepness": null,
-        "height": null,
-        "circuit": "orange",
-        "topos": [
-          {
-            "id": 183
           }
         ]
       }
@@ -1198,11 +1218,11 @@
       "properties": {
         "type": "problem",
         "id": 51,
-        "name": null,
         "grade": "3b",
         "circuitNumber": "41",
         "steepness": "overhang",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1223,11 +1243,11 @@
       "properties": {
         "type": "problem",
         "id": 52,
-        "name": null,
         "grade": "3b+",
         "circuitNumber": "40",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1248,11 +1268,11 @@
       "properties": {
         "type": "problem",
         "id": 53,
-        "name": null,
         "grade": "4a",
         "circuitNumber": "39",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1273,11 +1293,11 @@
       "properties": {
         "type": "problem",
         "id": 54,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "38",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1298,11 +1318,11 @@
       "properties": {
         "type": "problem",
         "id": 55,
-        "name": "La cheminée",
         "grade": "3b",
         "circuitNumber": "36",
         "steepness": "traverse",
         "height": null,
+        "name": "La cheminée",
         "circuit": "orange"
       }
     },
@@ -1318,11 +1338,11 @@
       "properties": {
         "type": "problem",
         "id": 56,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "35",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1343,11 +1363,11 @@
       "properties": {
         "type": "problem",
         "id": 57,
-        "name": "Le Tour de Canon",
         "grade": "2b",
         "circuitNumber": "34",
         "steepness": "wall",
         "height": null,
+        "name": "Le Tour de Canon",
         "circuit": "orange",
         "topos": [
           {
@@ -1368,11 +1388,11 @@
       "properties": {
         "type": "problem",
         "id": 58,
-        "name": null,
         "grade": "4a",
         "circuitNumber": "33",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "orange"
       }
     },
@@ -1388,11 +1408,11 @@
       "properties": {
         "type": "problem",
         "id": 61,
-        "name": null,
         "grade": "3c",
         "circuitNumber": "30",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1413,11 +1433,11 @@
       "properties": {
         "type": "problem",
         "id": 62,
-        "name": null,
         "grade": "3c+",
         "circuitNumber": "28",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1438,11 +1458,11 @@
       "properties": {
         "type": "problem",
         "id": 63,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "27",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1463,11 +1483,11 @@
       "properties": {
         "type": "problem",
         "id": 64,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "29",
         "steepness": "slab",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1488,11 +1508,11 @@
       "properties": {
         "type": "problem",
         "id": 67,
-        "name": "Drambruie",
         "grade": "3a",
         "circuitNumber": "24",
         "steepness": "wall",
         "height": null,
+        "name": "Drambruie",
         "circuit": "orange",
         "topos": [
           {
@@ -1513,11 +1533,11 @@
       "properties": {
         "type": "problem",
         "id": 71,
-        "name": null,
         "grade": "2a",
         "circuitNumber": "20",
         "steepness": "overhang",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1538,11 +1558,11 @@
       "properties": {
         "type": "problem",
         "id": 73,
-        "name": null,
         "grade": "2b+",
         "circuitNumber": "14",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1563,11 +1583,11 @@
       "properties": {
         "type": "problem",
         "id": 74,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "13",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1588,11 +1608,11 @@
       "properties": {
         "type": "problem",
         "id": 75,
-        "name": null,
         "grade": "3a+",
         "circuitNumber": "18",
         "steepness": "overhang",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1613,11 +1633,11 @@
       "properties": {
         "type": "problem",
         "id": 76,
-        "name": null,
         "grade": "1a+",
         "circuitNumber": "12",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange"
       }
     },
@@ -1633,11 +1653,11 @@
       "properties": {
         "type": "problem",
         "id": 78,
-        "name": null,
         "grade": "2c",
         "circuitNumber": "10",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1658,31 +1678,11 @@
       "properties": {
         "type": "problem",
         "id": 79,
-        "name": "La Contrabasse",
         "grade": "3c+",
         "circuitNumber": "9",
         "steepness": "slab",
         "height": null,
-        "circuit": "orange"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663794,
-          48.462359
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 80,
-        "name": "L'Ex Saut du Jaune",
-        "grade": "2c",
-        "circuitNumber": "8",
-        "steepness": "other",
-        "height": null,
+        "name": "La Contrabasse",
         "circuit": "orange"
       }
     },
@@ -1698,11 +1698,11 @@
       "properties": {
         "type": "problem",
         "id": 81,
-        "name": null,
         "grade": "3c",
         "circuitNumber": "6",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -1723,11 +1723,11 @@
       "properties": {
         "type": "problem",
         "id": 77,
-        "name": "Couche-Tard",
         "grade": "3a",
         "circuitNumber": "17",
         "steepness": "wall",
         "height": 4,
+        "name": "Couche-Tard",
         "circuit": "orange",
         "topos": [
           {
@@ -1748,11 +1748,11 @@
       "properties": {
         "type": "problem",
         "id": 72,
-        "name": "Tour d'Eiffel",
         "grade": "3b",
         "circuitNumber": "19",
         "steepness": "slab",
         "height": 6,
+        "name": "Tour d'Eiffel",
         "circuit": "orange",
         "topos": [
           {
@@ -1773,11 +1773,11 @@
       "properties": {
         "type": "problem",
         "id": 70,
-        "name": "Le Bouchon",
         "grade": "3b",
         "circuitNumber": "21",
         "steepness": "overhang",
         "height": 3,
+        "name": "Le Bouchon",
         "circuit": "orange",
         "topos": [
           {
@@ -1798,11 +1798,11 @@
       "properties": {
         "type": "problem",
         "id": 69,
-        "name": "Confiance",
         "grade": "4a",
         "circuitNumber": "22",
         "steepness": "slab",
         "height": 6,
+        "name": "Confiance",
         "circuit": "orange",
         "topos": [
           {
@@ -1823,11 +1823,11 @@
       "properties": {
         "type": "problem",
         "id": 68,
-        "name": "Ninkenphoop",
         "grade": "4b+",
         "circuitNumber": "23",
         "steepness": "traverse",
         "height": 4,
+        "name": "Ninkenphoop",
         "circuit": "orange",
         "topos": [
           {
@@ -1848,11 +1848,11 @@
       "properties": {
         "type": "problem",
         "id": 65,
-        "name": "Bofinger",
         "grade": "3b",
         "circuitNumber": "26",
         "steepness": "slab",
         "height": 4,
+        "name": "Bofinger",
         "circuit": "orange",
         "topos": [
           {
@@ -1873,11 +1873,11 @@
       "properties": {
         "type": "problem",
         "id": 66,
-        "name": "L'Arête gauche du Cervin",
         "grade": "2c+",
         "circuitNumber": "25",
         "steepness": "slab",
         "height": 6,
+        "name": "L'Arête gauche du Cervin",
         "circuit": "orange",
         "topos": [
           {
@@ -1898,15 +1898,40 @@
       "properties": {
         "type": "problem",
         "id": 59,
-        "name": "Candide",
         "grade": "4a+",
         "circuitNumber": "32",
         "steepness": "overhang",
         "height": 4,
+        "name": "Candide",
         "circuit": "orange",
         "topos": [
           {
             "id": 35
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663394,
+          48.461605
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 102,
+        "grade": "5a+",
+        "circuitNumber": "38",
+        "steepness": "wall",
+        "height": null,
+        "name": "L'Impossible",
+        "circuit": "skyblue",
+        "topos": [
+          {
+            "id": 79
           }
         ]
       }
@@ -1923,11 +1948,11 @@
       "properties": {
         "type": "problem",
         "id": 89,
-        "name": "La Queue du Dromadaire",
         "grade": "4b+",
         "circuitNumber": "13",
         "steepness": "wall",
         "height": 4,
+        "name": "La Queue du Dromadaire",
         "circuit": "skyblue",
         "topos": [
           {
@@ -1948,11 +1973,11 @@
       "properties": {
         "type": "problem",
         "id": 88,
-        "name": "Le Pilier du Dromadaire",
         "grade": "4c",
         "circuitNumber": "14",
         "steepness": "wall",
         "height": 5,
+        "name": "Le Pilier du Dromadaire",
         "circuit": "skyblue",
         "topos": [
           {
@@ -1973,11 +1998,11 @@
       "properties": {
         "type": "problem",
         "id": 100,
-        "name": "Le French Cancan",
         "grade": "4c",
         "circuitNumber": "36",
         "steepness": "wall",
         "height": 3,
+        "name": "Le French Cancan",
         "circuit": "skyblue",
         "topos": [
           {
@@ -1998,11 +2023,11 @@
       "properties": {
         "type": "problem",
         "id": 109,
-        "name": "Le Smig",
         "grade": "6a+",
         "circuitNumber": "13",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Smig",
         "circuit": "red",
         "topos": [
           {
@@ -2023,11 +2048,11 @@
       "properties": {
         "type": "problem",
         "id": 103,
-        "name": "Le Jeu de Go",
         "grade": "5a+",
         "circuitNumber": "39",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Jeu de Go",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2048,11 +2073,11 @@
       "properties": {
         "type": "problem",
         "id": 104,
-        "name": "Superlative",
         "grade": "6b+",
         "circuitNumber": "14",
         "steepness": "slab",
         "height": 6,
+        "name": "Superlative",
         "circuit": "red",
         "topos": [
           {
@@ -2073,11 +2098,11 @@
       "properties": {
         "type": "problem",
         "id": 101,
-        "name": "Le Cervin",
         "grade": "4b",
         "circuitNumber": "40",
         "steepness": "slab",
         "height": 6,
+        "name": "Le Cervin",
         "circuit": "skyblue"
       }
     },
@@ -2093,11 +2118,11 @@
       "properties": {
         "type": "problem",
         "id": 114,
-        "name": "Le dévers",
         "grade": "4b",
         "circuitNumber": "7",
         "steepness": "overhang",
         "height": 3,
+        "name": "Le dévers",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2118,11 +2143,11 @@
       "properties": {
         "type": "problem",
         "id": 117,
-        "name": "Le Bloc",
         "grade": "5b",
         "circuitNumber": "5",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Bloc",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2143,11 +2168,11 @@
       "properties": {
         "type": "problem",
         "id": 115,
-        "name": "Le Talon d'Achille",
         "grade": "6a+",
         "circuitNumber": "3",
         "steepness": "wall",
         "height": 3,
+        "name": "Le Talon d'Achille",
         "circuit": "red",
         "topos": [
           {
@@ -2168,11 +2193,11 @@
       "properties": {
         "type": "problem",
         "id": 118,
-        "name": "L'Appuyette",
         "grade": "5b",
         "circuitNumber": "4",
         "steepness": "slab",
         "height": 5,
+        "name": "L'Appuyette",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2193,11 +2218,11 @@
       "properties": {
         "type": "problem",
         "id": 111,
-        "name": "Presse Citron",
         "grade": "6a",
         "circuitNumber": "8",
         "steepness": "wall",
         "height": 3,
+        "name": "Presse Citron",
         "circuit": "red",
         "topos": [
           {
@@ -2218,11 +2243,11 @@
       "properties": {
         "type": "problem",
         "id": 110,
-        "name": "Jets Interdits",
         "grade": "6a+",
         "circuitNumber": "7",
         "steepness": "wall",
         "height": 3,
+        "name": "Jets Interdits",
         "circuit": "red",
         "topos": [
           {
@@ -2243,11 +2268,11 @@
       "properties": {
         "type": "problem",
         "id": 84,
-        "name": "La Folklorique",
         "grade": "2a",
         "circuitNumber": "3",
         "steepness": "traverse",
         "height": null,
+        "name": "La Folklorique",
         "circuit": "orange",
         "topos": [
           {
@@ -2268,11 +2293,11 @@
       "properties": {
         "type": "problem",
         "id": 85,
-        "name": null,
         "grade": "3a",
         "circuitNumber": "2",
         "steepness": "traverse",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -2293,11 +2318,11 @@
       "properties": {
         "type": "problem",
         "id": 87,
-        "name": "L'Ex-Souche",
         "grade": "3c+",
         "circuitNumber": "11",
         "steepness": "wall",
         "height": null,
+        "name": "L'Ex-Souche",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2318,11 +2343,11 @@
       "properties": {
         "type": "problem",
         "id": 90,
-        "name": "Le Prétoire",
         "grade": "4c",
         "circuitNumber": "31",
         "steepness": "wall",
         "height": null,
+        "name": "Le Prétoire",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2343,11 +2368,11 @@
       "properties": {
         "type": "problem",
         "id": 94,
-        "name": "La Norma",
         "grade": "3b",
         "circuitNumber": "33",
         "steepness": "wall",
         "height": null,
+        "name": "La Norma",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2368,11 +2393,11 @@
       "properties": {
         "type": "problem",
         "id": 95,
-        "name": "L'Imprévue",
         "grade": "5a+",
         "circuitNumber": "34",
         "steepness": "wall",
         "height": null,
+        "name": "L'Imprévue",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2393,40 +2418,15 @@
       "properties": {
         "type": "problem",
         "id": 96,
-        "name": "La Cachée",
         "grade": "4c",
         "circuitNumber": "35",
         "steepness": "wall",
         "height": null,
+        "name": "La Cachée",
         "circuit": "skyblue",
         "topos": [
           {
             "id": 162
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663394,
-          48.461605
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 102,
-        "name": "L'Impossible",
-        "grade": "5a+",
-        "circuitNumber": "38",
-        "steepness": "mur",
-        "height": null,
-        "circuit": "skyblue",
-        "topos": [
-          {
-            "id": 79
           }
         ]
       }
@@ -2443,11 +2443,11 @@
       "properties": {
         "type": "problem",
         "id": 105,
-        "name": "Le Rouge et le Noir",
         "grade": "5b+",
         "circuitNumber": "12",
         "steepness": "wall",
         "height": null,
+        "name": "Le Rouge et le Noir",
         "circuit": "red",
         "topos": [
           {
@@ -2468,11 +2468,11 @@
       "properties": {
         "type": "problem",
         "id": 106,
-        "name": "Le Nain Jaune",
         "grade": "5c+",
         "circuitNumber": "11",
         "steepness": "wall",
         "height": null,
+        "name": "Le Nain Jaune",
         "circuit": "red",
         "topos": [
           {
@@ -2493,11 +2493,11 @@
       "properties": {
         "type": "problem",
         "id": 107,
-        "name": "Adrénaline",
         "grade": "6a",
         "circuitNumber": "10",
         "steepness": "overhang",
         "height": null,
+        "name": "Adrénaline",
         "circuit": "red",
         "topos": [
           {
@@ -2518,11 +2518,11 @@
       "properties": {
         "type": "problem",
         "id": 108,
-        "name": "Coup de Poker",
         "grade": "5c",
         "circuitNumber": "9",
         "steepness": "wall",
         "height": null,
+        "name": "Coup de Poker",
         "circuit": "red",
         "topos": [
           {
@@ -2543,11 +2543,11 @@
       "properties": {
         "type": "problem",
         "id": 91,
-        "name": "La Fédérale",
         "grade": "5a+",
         "circuitNumber": "32",
         "steepness": "wall",
         "height": 3,
+        "name": "La Fédérale",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2568,11 +2568,11 @@
       "properties": {
         "type": "problem",
         "id": 93,
-        "name": "Le Whist",
         "grade": "5c",
         "circuitNumber": "17",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Whist",
         "circuit": "red",
         "topos": [
           {
@@ -2593,11 +2593,11 @@
       "properties": {
         "type": "problem",
         "id": 86,
-        "name": "Le Beaufort",
         "grade": "5b",
         "circuitNumber": "12",
         "steepness": "overhang",
         "height": 5,
+        "name": "Le Beaufort",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2618,11 +2618,11 @@
       "properties": {
         "type": "problem",
         "id": 97,
-        "name": "Le Sphinx (droite)",
         "grade": "5c+",
         "circuitNumber": "8",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Sphinx (droite)",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2643,11 +2643,11 @@
       "properties": {
         "type": "problem",
         "id": 98,
-        "name": "La Golgotha (gauche)",
         "grade": "5b+",
         "circuitNumber": "9",
         "steepness": "wall",
         "height": 4,
+        "name": "La Golgotha (gauche)",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2668,11 +2668,11 @@
       "properties": {
         "type": "problem",
         "id": 99,
-        "name": "Le Serpent",
         "grade": "4c",
         "circuitNumber": "37",
         "steepness": "traverse",
         "height": 3,
+        "name": "Le Serpent",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2693,11 +2693,11 @@
       "properties": {
         "type": "problem",
         "id": 112,
-        "name": "L'Ancien",
         "grade": "6a",
         "circuitNumber": "5",
         "steepness": "overhang",
         "height": 4,
+        "name": "L'Ancien",
         "circuit": "red",
         "topos": [
           {
@@ -2718,11 +2718,11 @@
       "properties": {
         "type": "problem",
         "id": 113,
-        "name": "Dure Limite",
         "grade": "6b",
         "circuitNumber": "4",
         "steepness": "overhang",
         "height": 4,
+        "name": "Dure Limite",
         "circuit": "red",
         "topos": [
           {
@@ -2743,11 +2743,11 @@
       "properties": {
         "type": "problem",
         "id": 116,
-        "name": "L'Atrappe-Mouche",
         "grade": "5a+",
         "circuitNumber": "6",
         "steepness": "wall",
         "height": 4,
+        "name": "L'Atrappe-Mouche",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2768,11 +2768,11 @@
       "properties": {
         "type": "problem",
         "id": 130,
-        "name": "Nocturne",
         "grade": "3c",
         "circuitNumber": "32",
         "steepness": "wall",
         "height": 3,
+        "name": "Nocturne",
         "circuit": "blue",
         "topos": [
           {
@@ -2793,11 +2793,11 @@
       "properties": {
         "type": "problem",
         "id": 132,
-        "name": "Saillie d'Esprit",
         "grade": "6b+",
         "circuitNumber": "42",
         "steepness": "wall",
         "height": 3,
+        "name": "Saillie d'Esprit",
         "circuit": "red",
         "topos": [
           {
@@ -2818,11 +2818,11 @@
       "properties": {
         "type": "problem",
         "id": 127,
-        "name": "Faute de Frappe",
         "grade": "5c",
         "circuitNumber": "15",
         "steepness": "wall",
         "height": 3,
+        "name": "Faute de Frappe",
         "circuit": "red",
         "topos": [
           {
@@ -2843,11 +2843,11 @@
       "properties": {
         "type": "problem",
         "id": 119,
-        "name": "Le Pied Levé",
         "grade": "4a",
         "circuitNumber": "2",
         "steepness": "overhang",
         "height": 6,
+        "name": "Le Pied Levé",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2868,11 +2868,11 @@
       "properties": {
         "type": "problem",
         "id": 122,
-        "name": "Force G",
         "grade": "6a+",
         "circuitNumber": "1",
         "steepness": "wall",
         "height": 6,
+        "name": "Force G",
         "circuit": "red",
         "topos": [
           {
@@ -2893,11 +2893,11 @@
       "properties": {
         "type": "problem",
         "id": 126,
-        "name": "Le Cap Gap",
         "grade": "5a",
         "circuitNumber": "1",
         "steepness": "slab",
         "height": 5,
+        "name": "Le Cap Gap",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2918,11 +2918,11 @@
       "properties": {
         "type": "problem",
         "id": 120,
-        "name": "Scarlatine",
         "grade": "6b",
         "circuitNumber": "2",
         "steepness": "slab",
         "height": null,
+        "name": "Scarlatine",
         "circuit": "red",
         "topos": [
           {
@@ -2943,11 +2943,11 @@
       "properties": {
         "type": "problem",
         "id": 121,
-        "name": "Le Bombé",
         "grade": "5a",
         "circuitNumber": "3",
         "steepness": "overhang",
         "height": null,
+        "name": "Le Bombé",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2968,11 +2968,11 @@
       "properties": {
         "type": "problem",
         "id": 123,
-        "name": "L'Intermédiaire",
         "grade": "4a",
         "circuitNumber": "10",
         "steepness": "wall",
         "height": null,
+        "name": "L'Intermédiaire",
         "circuit": "skyblue",
         "topos": [
           {
@@ -2993,11 +2993,11 @@
       "properties": {
         "type": "problem",
         "id": 125,
-        "name": null,
         "grade": "3c",
         "circuitNumber": "37",
         "steepness": "wall",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -3018,11 +3018,11 @@
       "properties": {
         "type": "problem",
         "id": 128,
-        "name": "Poésies",
         "grade": "4a",
         "circuitNumber": "31",
         "steepness": "slab",
         "height": null,
+        "name": "Poésies",
         "circuit": "blue",
         "topos": [
           {
@@ -3043,11 +3043,11 @@
       "properties": {
         "type": "problem",
         "id": 131,
-        "name": "Macadam",
         "grade": "6a",
         "circuitNumber": "41",
         "steepness": "wall",
         "height": null,
+        "name": "Macadam",
         "circuit": "red",
         "topos": [
           {
@@ -3068,11 +3068,11 @@
       "properties": {
         "type": "problem",
         "id": 133,
-        "name": "L'Araignée",
         "grade": "6a",
         "circuitNumber": "38",
         "steepness": "overhang",
         "height": null,
+        "name": "L'Araignée",
         "circuit": "red",
         "topos": [
           {
@@ -3093,11 +3093,11 @@
       "properties": {
         "type": "problem",
         "id": 171,
-        "name": "L'Abîme",
         "grade": "4a+",
         "circuitNumber": "1",
         "steepness": "wall",
         "height": 5,
+        "name": "L'Abîme",
         "circuit": "blue",
         "topos": [
           {
@@ -3118,11 +3118,11 @@
       "properties": {
         "type": "problem",
         "id": 195,
-        "name": "Le Tabac",
         "grade": "3a",
         "circuitNumber": "1",
         "steepness": "wall",
         "height": 5,
+        "name": "Le Tabac",
         "circuit": "orange",
         "topos": [
           {
@@ -3143,11 +3143,11 @@
       "properties": {
         "type": "problem",
         "id": 138,
-        "name": "Quatrain",
         "grade": "4a+",
         "circuitNumber": "27",
         "steepness": "wall",
         "height": 4,
+        "name": "Quatrain",
         "circuit": "blue",
         "topos": [
           {
@@ -3168,11 +3168,11 @@
       "properties": {
         "type": "problem",
         "id": 135,
-        "name": "La Dame de Pique",
         "grade": "5c",
         "circuitNumber": "39",
         "steepness": "slab",
         "height": 4,
+        "name": "La Dame de Pique",
         "circuit": "red",
         "topos": [
           {
@@ -3193,11 +3193,11 @@
       "properties": {
         "type": "problem",
         "id": 134,
-        "name": "Le Pont Mirabeau",
         "grade": "5a",
         "circuitNumber": "28",
         "steepness": "slab",
         "height": 4,
+        "name": "Le Pont Mirabeau",
         "circuit": "blue",
         "topos": [
           {
@@ -3218,11 +3218,11 @@
       "properties": {
         "type": "problem",
         "id": 136,
-        "name": "Hôtels",
         "grade": "4b",
         "circuitNumber": "29",
         "steepness": "wall",
         "height": 4,
+        "name": "Hôtels",
         "circuit": "blue",
         "topos": [
           {
@@ -3243,11 +3243,11 @@
       "properties": {
         "type": "problem",
         "id": 137,
-        "name": "Le Pot de Fer",
         "grade": "6b",
         "circuitNumber": "40",
         "steepness": "overhang",
         "height": 4,
+        "name": "Le Pot de Fer",
         "circuit": "red",
         "topos": [
           {
@@ -3268,11 +3268,11 @@
       "properties": {
         "type": "problem",
         "id": 129,
-        "name": "Contemplations",
         "grade": "5b",
         "circuitNumber": "30",
         "steepness": "wall",
         "height": 3,
+        "name": "Contemplations",
         "circuit": "blue",
         "topos": [
           {
@@ -3293,11 +3293,11 @@
       "properties": {
         "type": "problem",
         "id": 124,
-        "name": "Quintessence",
         "grade": "5c",
         "circuitNumber": "6",
         "steepness": "slab",
         "height": 4,
+        "name": "Quintessence",
         "circuit": "red",
         "topos": [
           {
@@ -3318,11 +3318,11 @@
       "properties": {
         "type": "problem",
         "id": 220,
-        "name": "Cadeau du Vent",
         "grade": "7b",
         "circuitNumber": "1",
         "steepness": "overhang",
         "height": 5,
+        "name": "Cadeau du Vent",
         "circuit": "white",
         "topos": [
           {
@@ -3343,11 +3343,11 @@
       "properties": {
         "type": "problem",
         "id": 83,
-        "name": "Le Butte",
         "grade": "3b",
         "circuitNumber": "4",
         "steepness": "slab",
         "height": 3,
+        "name": "Le Butte",
         "circuit": "orange",
         "topos": [
           {
@@ -3368,11 +3368,11 @@
       "properties": {
         "type": "problem",
         "id": 82,
-        "name": "Le Dalle Bleu",
         "grade": "4c",
         "circuitNumber": "5",
         "steepness": "slab",
         "height": 5,
+        "name": "Le Dalle Bleu",
         "circuit": "orange",
         "topos": [
           {
@@ -3393,11 +3393,11 @@
       "properties": {
         "type": "problem",
         "id": 41,
-        "name": "Champagne Frappé",
         "grade": "2a",
         "circuitNumber": "8",
         "steepness": "slab",
         "height": 4,
+        "name": "Champagne Frappé",
         "circuit": "yellow",
         "topos": [
           {
@@ -3418,11 +3418,11 @@
       "properties": {
         "type": "problem",
         "id": 230,
-        "name": "Lévitation",
         "grade": "7a+",
         "circuitNumber": "10",
         "steepness": "roof",
         "height": 4,
+        "name": "Lévitation",
         "circuit": "white",
         "topos": [
           {
@@ -3443,11 +3443,11 @@
       "properties": {
         "type": "problem",
         "id": 92,
-        "name": "Le Bossu",
         "grade": "6b",
         "circuitNumber": "16",
         "steepness": "overhang",
         "height": 4,
+        "name": "Le Bossu",
         "circuit": "red",
         "topos": [
           {
@@ -3468,11 +3468,11 @@
       "properties": {
         "type": "problem",
         "id": 155,
-        "name": "Cadavre Exquis",
         "grade": "4c",
         "circuitNumber": "18",
         "steepness": "slab",
         "height": 4,
+        "name": "Cadavre Exquis",
         "circuit": "blue",
         "topos": [
           {
@@ -3493,11 +3493,11 @@
       "properties": {
         "type": "problem",
         "id": 156,
-        "name": "Paysage",
         "grade": "3b",
         "circuitNumber": "19",
         "steepness": "wall",
         "height": 4,
+        "name": "Paysage",
         "circuit": "blue",
         "topos": [
           {
@@ -3518,11 +3518,11 @@
       "properties": {
         "type": "problem",
         "id": 154,
-        "name": "Mariage de Figaro",
         "grade": "3b+",
         "circuitNumber": "16",
         "steepness": "traverse",
         "height": 4,
+        "name": "Mariage de Figaro",
         "circuit": "orange",
         "topos": [
           {
@@ -3543,11 +3543,11 @@
       "properties": {
         "type": "problem",
         "id": 149,
-        "name": "Les Temps Modernes",
         "grade": "6b",
         "circuitNumber": "29",
         "steepness": "traverse",
         "height": null,
+        "name": "Les Temps Modernes",
         "circuit": "red",
         "topos": [
           {
@@ -3568,11 +3568,11 @@
       "properties": {
         "type": "problem",
         "id": 150,
-        "name": "Le Chou-Fleur",
         "grade": "4a",
         "circuitNumber": "22",
         "steepness": "wall",
         "height": null,
+        "name": "Le Chou-Fleur",
         "circuit": "blue",
         "topos": [
           {
@@ -3593,11 +3593,11 @@
       "properties": {
         "type": "problem",
         "id": 152,
-        "name": "Prison",
         "grade": "2b",
         "circuitNumber": "15",
         "steepness": "wall",
         "height": null,
+        "name": "Prison",
         "circuit": "orange",
         "topos": [
           {
@@ -3618,11 +3618,11 @@
       "properties": {
         "type": "problem",
         "id": 159,
-        "name": "Complainte",
         "grade": "3b",
         "circuitNumber": "5",
         "steepness": "slab",
         "height": null,
+        "name": "Complainte",
         "circuit": "blue",
         "topos": [
           {
@@ -3643,11 +3643,11 @@
       "properties": {
         "type": "problem",
         "id": 160,
-        "name": "L'Hiver",
         "grade": "4b+",
         "circuitNumber": "4",
         "steepness": "overhang",
         "height": null,
+        "name": "L'Hiver",
         "circuit": "blue",
         "topos": [
           {
@@ -3668,11 +3668,11 @@
       "properties": {
         "type": "problem",
         "id": 157,
-        "name": "Ode",
         "grade": "4b+",
         "circuitNumber": "7",
         "steepness": "wall",
         "height": 3,
+        "name": "Ode",
         "circuit": "blue",
         "topos": [
           {
@@ -3693,11 +3693,11 @@
       "properties": {
         "type": "problem",
         "id": 161,
-        "name": "Puzzle",
         "grade": "5c",
         "circuitNumber": "28",
         "steepness": "overhang",
         "height": 4,
+        "name": "Puzzle",
         "circuit": "red",
         "topos": [
           {
@@ -3718,11 +3718,11 @@
       "properties": {
         "type": "problem",
         "id": 158,
-        "name": "Ballade",
         "grade": "4a+",
         "circuitNumber": "6",
         "steepness": "wall",
         "height": 4,
+        "name": "Ballade",
         "circuit": "blue",
         "topos": [
           {
@@ -3743,11 +3743,11 @@
       "properties": {
         "type": "problem",
         "id": 151,
-        "name": "L'Amour du Mensonge",
         "grade": "4c",
         "circuitNumber": "20",
         "steepness": "wall",
         "height": 4,
+        "name": "L'Amour du Mensonge",
         "circuit": "blue",
         "topos": [
           {
@@ -3768,11 +3768,11 @@
       "properties": {
         "type": "problem",
         "id": 153,
-        "name": "Prose",
         "grade": "4c",
         "circuitNumber": "21",
         "steepness": "wall",
         "height": 4,
+        "name": "Prose",
         "circuit": "blue",
         "topos": [
           {
@@ -3793,11 +3793,11 @@
       "properties": {
         "type": "problem",
         "id": 143,
-        "name": "Le Pion Cassé",
         "grade": "5a",
         "circuitNumber": "32",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Pion Cassé",
         "circuit": "red",
         "topos": [
           {
@@ -3818,11 +3818,11 @@
       "properties": {
         "type": "problem",
         "id": 144,
-        "name": "L'Astragale",
         "grade": "6b",
         "circuitNumber": "33",
         "steepness": "wall",
         "height": 4,
+        "name": "L'Astragale",
         "circuit": "red",
         "topos": [
           {
@@ -3843,11 +3843,11 @@
       "properties": {
         "type": "problem",
         "id": 145,
-        "name": "Caprice",
         "grade": "6a",
         "circuitNumber": "34",
         "steepness": "wall",
         "height": 4,
+        "name": "Caprice",
         "circuit": "red",
         "topos": [
           {
@@ -3868,11 +3868,11 @@
       "properties": {
         "type": "problem",
         "id": 140,
-        "name": "Chanson d'Automne",
         "grade": "4a",
         "circuitNumber": "23",
         "steepness": "wall",
         "height": 5,
+        "name": "Chanson d'Automne",
         "circuit": "blue",
         "topos": [
           {
@@ -3893,11 +3893,11 @@
       "properties": {
         "type": "problem",
         "id": 141,
-        "name": "Bateau Ivre",
         "grade": "4b+",
         "circuitNumber": "24",
         "steepness": "wall",
         "height": 5,
+        "name": "Bateau Ivre",
         "circuit": "blue",
         "topos": [
           {
@@ -3918,11 +3918,11 @@
       "properties": {
         "type": "problem",
         "id": 139,
-        "name": "Le Sylphe",
         "grade": "5a",
         "circuitNumber": "26",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Sylphe",
         "circuit": "blue",
         "topos": [
           {
@@ -3943,11 +3943,11 @@
       "properties": {
         "type": "problem",
         "id": 147,
-        "name": "L'Oeuf de Colombe",
         "grade": "6a",
         "circuitNumber": "31",
         "steepness": "wall",
         "height": 3,
+        "name": "L'Oeuf de Colombe",
         "circuit": "red",
         "topos": [
           {
@@ -3968,11 +3968,11 @@
       "properties": {
         "type": "problem",
         "id": 142,
-        "name": "Il va Neiger",
         "grade": "3c",
         "circuitNumber": "25",
         "steepness": "wall",
         "height": null,
+        "name": "Il va Neiger",
         "circuit": "blue",
         "topos": [
           {
@@ -3993,11 +3993,11 @@
       "properties": {
         "type": "problem",
         "id": 146,
-        "name": "La Longue Marche",
         "grade": "6b",
         "circuitNumber": "35",
         "steepness": "traverse",
         "height": null,
+        "name": "La Longue Marche",
         "circuit": "red",
         "topos": [
           {
@@ -4018,15 +4018,40 @@
       "properties": {
         "type": "problem",
         "id": 148,
-        "name": "Pyramide",
         "grade": "5c",
         "circuitNumber": "36",
         "steepness": "slab",
         "height": null,
+        "name": "Pyramide",
         "circuit": "red",
         "topos": [
           {
             "id": 31
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.664453,
+          48.46265
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 175,
+        "grade": "4a",
+        "circuitNumber": "D",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Fantaisie",
+        "circuit": "blue",
+        "topos": [
+          {
+            "id": 23
           }
         ]
       }
@@ -4043,11 +4068,11 @@
       "properties": {
         "type": "problem",
         "id": 176,
-        "name": "Le Damier",
         "grade": "6b+",
         "circuitNumber": "26",
         "steepness": "slab",
         "height": 4,
+        "name": "Le Damier",
         "circuit": "red",
         "topos": [
           {
@@ -4068,11 +4093,11 @@
       "properties": {
         "type": "problem",
         "id": 177,
-        "name": "L'Espace",
         "grade": "5a",
         "circuitNumber": "8",
         "steepness": "wall",
         "height": 4,
+        "name": "L'Espace",
         "circuit": "blue",
         "topos": [
           {
@@ -4093,11 +4118,11 @@
       "properties": {
         "type": "problem",
         "id": 164,
-        "name": "Égérie",
         "grade": "4b",
         "circuitNumber": "10",
         "steepness": "slab",
         "height": 4,
+        "name": "Égérie",
         "circuit": "blue",
         "topos": [
           {
@@ -4118,11 +4143,11 @@
       "properties": {
         "type": "problem",
         "id": 163,
-        "name": "La Contralto",
         "grade": "5a",
         "circuitNumber": "20",
         "steepness": "wall",
         "height": 6,
+        "name": "La Contralto",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4143,11 +4168,11 @@
       "properties": {
         "type": "problem",
         "id": 183,
-        "name": "Chlorophylle",
         "grade": "6b",
         "circuitNumber": "20",
         "steepness": "slab",
         "height": 6,
+        "name": "Chlorophylle",
         "circuit": "red",
         "topos": [
           {
@@ -4168,11 +4193,11 @@
       "properties": {
         "type": "problem",
         "id": 182,
-        "name": "Le Cheval d'Arçon",
         "grade": "5b+",
         "circuitNumber": "17",
         "steepness": "wall",
         "height": 6,
+        "name": "Le Cheval d'Arçon",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4193,11 +4218,11 @@
       "properties": {
         "type": "problem",
         "id": 184,
-        "name": "La Vieille",
         "grade": "5c+",
         "circuitNumber": "21",
         "steepness": "wall",
         "height": 6,
+        "name": "La Vieille",
         "circuit": "red",
         "topos": [
           {
@@ -4218,11 +4243,11 @@
       "properties": {
         "type": "problem",
         "id": 193,
-        "name": "Les Petits Pieds",
         "grade": "6a",
         "circuitNumber": "19",
         "steepness": "slab",
         "height": 4,
+        "name": "Les Petits Pieds",
         "circuit": "red",
         "topos": [
           {
@@ -4243,11 +4268,11 @@
       "properties": {
         "type": "problem",
         "id": 162,
-        "name": "Le Dé",
         "grade": "5b",
         "circuitNumber": "30",
         "steepness": "overhang",
         "height": 5,
+        "name": "Le Dé",
         "circuit": "red",
         "topos": [
           {
@@ -4268,11 +4293,11 @@
       "properties": {
         "type": "problem",
         "id": 196,
-        "name": "Outrage",
         "grade": "5b+",
         "circuitNumber": "43",
         "steepness": "wall",
         "height": 4,
+        "name": "Outrage",
         "circuit": "red",
         "topos": [
           {
@@ -4293,11 +4318,11 @@
       "properties": {
         "type": "problem",
         "id": 165,
-        "name": "Sonnets Posthumes",
         "grade": "4c",
         "circuitNumber": "11",
         "steepness": "wall",
         "height": null,
+        "name": "Sonnets Posthumes",
         "circuit": "blue",
         "topos": [
           {
@@ -4318,11 +4343,11 @@
       "properties": {
         "type": "problem",
         "id": 167,
-        "name": "Opus Dei",
         "grade": "3c",
         "circuitNumber": "11",
         "steepness": "wall",
         "height": null,
+        "name": "Opus Dei",
         "circuit": "orange"
       }
     },
@@ -4338,11 +4363,11 @@
       "properties": {
         "type": "problem",
         "id": 168,
-        "name": "Strophe",
         "grade": "4a",
         "circuitNumber": "12",
         "steepness": "wall",
         "height": null,
+        "name": "Strophe",
         "circuit": "blue",
         "topos": [
           {
@@ -4363,11 +4388,11 @@
       "properties": {
         "type": "problem",
         "id": 169,
-        "name": "Stances",
         "grade": "4c",
         "circuitNumber": "13",
         "steepness": "overhang",
         "height": null,
+        "name": "Stances",
         "circuit": "blue"
       }
     },
@@ -4383,11 +4408,11 @@
       "properties": {
         "type": "problem",
         "id": 170,
-        "name": "Crépuscule",
         "grade": "4b",
         "circuitNumber": "9",
         "steepness": "wall",
         "height": null,
+        "name": "Crépuscule",
         "circuit": "blue",
         "topos": [
           {
@@ -4408,11 +4433,11 @@
       "properties": {
         "type": "problem",
         "id": 181,
-        "name": "Le Cruciverbiste",
         "grade": "6a",
         "circuitNumber": "16b",
         "steepness": "slab",
         "height": null,
+        "name": "Le Cruciverbiste",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4433,11 +4458,11 @@
       "properties": {
         "type": "problem",
         "id": 185,
-        "name": "Styrax",
         "grade": "5c",
         "circuitNumber": "22",
         "steepness": "wall",
         "height": null,
+        "name": "Styrax",
         "circuit": "red",
         "topos": [
           {
@@ -4458,11 +4483,11 @@
       "properties": {
         "type": "problem",
         "id": 186,
-        "name": "La Dalle de Marbre",
         "grade": "4c",
         "circuitNumber": "15",
         "steepness": "slab",
         "height": null,
+        "name": "La Dalle de Marbre",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4483,11 +4508,11 @@
       "properties": {
         "type": "problem",
         "id": 187,
-        "name": "L'eunnuque",
         "grade": "4a",
         "circuitNumber": "22",
         "steepness": "wall",
         "height": null,
+        "name": "L'eunnuque",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4508,11 +4533,11 @@
       "properties": {
         "type": "problem",
         "id": 188,
-        "name": "La Frouch'mammouth",
         "grade": "4c",
         "circuitNumber": "24",
         "steepness": "wall",
         "height": null,
+        "name": "La Frouch'mammouth",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4533,11 +4558,11 @@
       "properties": {
         "type": "problem",
         "id": 189,
-        "name": "Les Plats",
         "grade": "4b",
         "circuitNumber": "23",
         "steepness": "wall",
         "height": null,
+        "name": "Les Plats",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4558,11 +4583,11 @@
       "properties": {
         "type": "problem",
         "id": 190,
-        "name": null,
         "grade": "3c",
         "circuitNumber": "7",
         "steepness": "overhang",
         "height": null,
+        "name": null,
         "circuit": "orange",
         "topos": [
           {
@@ -4583,11 +4608,11 @@
       "properties": {
         "type": "problem",
         "id": 191,
-        "name": "SOS Glycogène",
         "grade": "5c",
         "circuitNumber": "23",
         "steepness": "overhang",
         "height": null,
+        "name": "SOS Glycogène",
         "circuit": "red",
         "topos": [
           {
@@ -4608,11 +4633,11 @@
       "properties": {
         "type": "problem",
         "id": 192,
-        "name": "Le Couloir",
         "grade": "4b",
         "circuitNumber": "30",
         "steepness": "wall",
         "height": null,
+        "name": "Le Couloir",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4633,11 +4658,11 @@
       "properties": {
         "type": "problem",
         "id": 194,
-        "name": "L'Emmenthal",
         "grade": "4a",
         "circuitNumber": "16",
         "steepness": "wall",
         "height": null,
+        "name": "L'Emmenthal",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4658,11 +4683,11 @@
       "properties": {
         "type": "problem",
         "id": 197,
-        "name": "Échec et Mat",
         "grade": "5c",
         "circuitNumber": "37",
         "steepness": "wall",
         "height": null,
+        "name": "Échec et Mat",
         "circuit": "red",
         "topos": [
           {
@@ -4683,11 +4708,11 @@
       "properties": {
         "type": "problem",
         "id": 198,
-        "name": "Bateau Pilote",
         "grade": "6a",
         "circuitNumber": "18",
         "steepness": "wall",
         "height": null,
+        "name": "Bateau Pilote",
         "circuit": "red",
         "topos": [
           {
@@ -4708,11 +4733,11 @@
       "properties": {
         "type": "problem",
         "id": 173,
-        "name": "La Belle Vieille",
         "grade": "3c",
         "circuitNumber": "3",
         "steepness": "wall",
         "height": 5,
+        "name": "La Belle Vieille",
         "circuit": "blue",
         "topos": [
           {
@@ -4733,11 +4758,11 @@
       "properties": {
         "type": "problem",
         "id": 174,
-        "name": "Solitude",
         "grade": "4a",
         "circuitNumber": "2",
         "steepness": "wall",
         "height": 5,
+        "name": "Solitude",
         "circuit": "blue",
         "topos": [
           {
@@ -4758,40 +4783,15 @@
       "properties": {
         "type": "problem",
         "id": 172,
-        "name": "La Prothèse",
         "grade": "6a+",
         "circuitNumber": "27",
         "steepness": "wall",
         "height": 5,
+        "name": "La Prothèse",
         "circuit": "red",
         "topos": [
           {
             "id": 62
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.664453,
-          48.46265
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 175,
-        "name": "Fantaisie",
-        "grade": "4a",
-        "circuitNumber": "D",
-        "steepness": "other",
-        "height": 4,
-        "circuit": "blue",
-        "topos": [
-          {
-            "id": 23
           }
         ]
       }
@@ -4808,11 +4808,11 @@
       "properties": {
         "type": "problem",
         "id": 166,
-        "name": "La Bendix",
         "grade": "5b+",
         "circuitNumber": "21",
         "steepness": "wall",
         "height": 5,
+        "name": "La Bendix",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4833,11 +4833,11 @@
       "properties": {
         "type": "problem",
         "id": 178,
-        "name": "Le Fourre-Tout",
         "grade": "6a+",
         "circuitNumber": "24",
         "steepness": "traverse",
         "height": 4,
+        "name": "Le Fourre-Tout",
         "circuit": "red",
         "topos": [
           {
@@ -4858,11 +4858,11 @@
       "properties": {
         "type": "problem",
         "id": 180,
-        "name": "La Soprano",
         "grade": "4a",
         "circuitNumber": "18",
         "steepness": "overhang",
         "height": 5,
+        "name": "La Soprano",
         "circuit": "skyblue",
         "topos": [
           {
@@ -4883,15 +4883,40 @@
       "properties": {
         "type": "problem",
         "id": 179,
-        "name": "La Goulotte",
         "grade": "3c",
         "circuitNumber": "19",
         "steepness": "wall",
         "height": 3,
+        "name": "La Goulotte",
         "circuit": "skyblue",
         "topos": [
           {
             "id": 189
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.662543,
+          48.462416
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 206,
+        "grade": "4c",
+        "circuitNumber": "45",
+        "steepness": "wall",
+        "height": null,
+        "name": "Boute-en-Train",
+        "circuit": "red",
+        "topos": [
+          {
+            "id": 41
           }
         ]
       }
@@ -4908,11 +4933,11 @@
       "properties": {
         "type": "problem",
         "id": 221,
-        "name": "Magifix",
         "grade": "6c+",
         "circuitNumber": "2",
         "steepness": "overhang",
         "height": 4,
+        "name": "Magifix",
         "circuit": "white",
         "topos": [
           {
@@ -4933,11 +4958,11 @@
       "properties": {
         "type": "problem",
         "id": 223,
-        "name": "L'Innominata",
         "grade": "6c+",
         "circuitNumber": "4",
         "steepness": "wall",
         "height": 4,
+        "name": "L'Innominata",
         "circuit": "white",
         "topos": [
           {
@@ -4958,11 +4983,11 @@
       "properties": {
         "type": "problem",
         "id": 226,
-        "name": "Morphotype",
         "grade": "6c+",
         "circuitNumber": "6",
         "steepness": "overhang",
         "height": 5,
+        "name": "Morphotype",
         "circuit": "white",
         "topos": [
           {
@@ -4983,11 +5008,11 @@
       "properties": {
         "type": "problem",
         "id": 229,
-        "name": "Beaux Mouvements sur Fonds Sableux",
         "grade": "6c+",
         "circuitNumber": "9",
         "steepness": "overhang",
         "height": 3,
+        "name": "Beaux Mouvements sur Fonds Sableux",
         "circuit": "white",
         "topos": [
           {
@@ -5008,11 +5033,11 @@
       "properties": {
         "type": "problem",
         "id": 209,
-        "name": "Les Chimères",
         "grade": "4a",
         "circuitNumber": "37",
         "steepness": "traverse",
         "height": 3,
+        "name": "Les Chimères",
         "circuit": "blue",
         "topos": [
           {
@@ -5033,11 +5058,11 @@
       "properties": {
         "type": "problem",
         "id": 211,
-        "name": "Anthologie",
         "grade": "4b",
         "circuitNumber": "39",
         "steepness": "slab",
         "height": 4,
+        "name": "Anthologie",
         "circuit": "blue",
         "topos": [
           {
@@ -5058,11 +5083,11 @@
       "properties": {
         "type": "problem",
         "id": 199,
-        "name": "Le But",
         "grade": "4a",
         "circuitNumber": "26",
         "steepness": "wall",
         "height": null,
+        "name": "Le But",
         "circuit": "skyblue",
         "topos": [
           {
@@ -5083,11 +5108,11 @@
       "properties": {
         "type": "problem",
         "id": 200,
-        "name": "L'Oubliée",
         "grade": "4b",
         "circuitNumber": "27",
         "steepness": "wall",
         "height": null,
+        "name": "L'Oubliée",
         "circuit": "skyblue",
         "topos": [
           {
@@ -5108,11 +5133,11 @@
       "properties": {
         "type": "problem",
         "id": 203,
-        "name": "Les Horloges",
         "grade": "3b",
         "circuitNumber": "33",
         "steepness": "wall",
         "height": null,
+        "name": "Les Horloges",
         "circuit": "blue",
         "topos": [
           {
@@ -5133,11 +5158,11 @@
       "properties": {
         "type": "problem",
         "id": 204,
-        "name": "Gravitation",
         "grade": "4a",
         "circuitNumber": "34",
         "steepness": "overhang",
         "height": null,
+        "name": "Gravitation",
         "circuit": "blue",
         "topos": [
           {
@@ -5158,40 +5183,15 @@
       "properties": {
         "type": "problem",
         "id": 205,
-        "name": "Le Tarot",
         "grade": "5c",
         "circuitNumber": "44",
         "steepness": "overhang",
         "height": null,
+        "name": "Le Tarot",
         "circuit": "red",
         "topos": [
           {
             "id": 57
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.662543,
-          48.462416
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 206,
-        "name": "Boute-en-Train",
-        "grade": "4c",
-        "circuitNumber": "45",
-        "steepness": "other",
-        "height": null,
-        "circuit": "red",
-        "topos": [
-          {
-            "id": 41
           }
         ]
       }
@@ -5208,11 +5208,11 @@
       "properties": {
         "type": "problem",
         "id": 207,
-        "name": "Angoisse",
         "grade": "4b",
         "circuitNumber": "35",
         "steepness": "wall",
         "height": null,
+        "name": "Angoisse",
         "circuit": "blue",
         "topos": [
           {
@@ -5233,11 +5233,11 @@
       "properties": {
         "type": "problem",
         "id": 208,
-        "name": "Tristesse",
         "grade": "4a",
         "circuitNumber": "36",
         "steepness": "overhang",
         "height": null,
+        "name": "Tristesse",
         "circuit": "blue",
         "topos": [
           {
@@ -5258,11 +5258,11 @@
       "properties": {
         "type": "problem",
         "id": 210,
-        "name": "Méditation",
         "grade": "4c",
         "circuitNumber": "38",
         "steepness": "wall",
         "height": null,
+        "name": "Méditation",
         "circuit": "blue",
         "topos": [
           {
@@ -5283,11 +5283,11 @@
       "properties": {
         "type": "problem",
         "id": 222,
-        "name": "Lune de Fiel",
         "grade": "7a",
         "circuitNumber": "3",
         "steepness": "traverse",
         "height": null,
+        "name": "Lune de Fiel",
         "circuit": "white",
         "topos": [
           {
@@ -5308,11 +5308,11 @@
       "properties": {
         "type": "problem",
         "id": 224,
-        "name": "Les Câlins de Kim",
         "grade": "7a",
         "circuitNumber": "5",
         "steepness": "overhang",
         "height": null,
+        "name": "Les Câlins de Kim",
         "circuit": "white",
         "topos": [
           {
@@ -5333,11 +5333,11 @@
       "properties": {
         "type": "problem",
         "id": 225,
-        "name": "Cocaline",
         "grade": "7b+",
         "circuitNumber": "5b",
         "steepness": "traverse",
         "height": null,
+        "name": "Cocaline",
         "circuit": "white",
         "topos": [
           {
@@ -5358,11 +5358,11 @@
       "properties": {
         "type": "problem",
         "id": 227,
-        "name": "Canonnerie",
         "grade": "6c",
         "circuitNumber": "7",
         "steepness": "traverse",
         "height": null,
+        "name": "Canonnerie",
         "circuit": "white",
         "topos": [
           {
@@ -5383,11 +5383,11 @@
       "properties": {
         "type": "problem",
         "id": 228,
-        "name": "Pot de Terre",
         "grade": "6c+",
         "circuitNumber": "8",
         "steepness": "wall",
         "height": null,
+        "name": "Pot de Terre",
         "circuit": "white",
         "topos": [
           {
@@ -5408,11 +5408,11 @@
       "properties": {
         "type": "problem",
         "id": 219,
-        "name": "Nuage Blanc",
         "grade": "6a+",
         "circuitNumber": "25",
         "steepness": "overhang",
         "height": 4,
+        "name": "Nuage Blanc",
         "circuit": "red",
         "topos": [
           {
@@ -5433,11 +5433,11 @@
       "properties": {
         "type": "problem",
         "id": 218,
-        "name": "Le Surplomb du Bengale",
         "grade": "5c",
         "circuitNumber": "25",
         "steepness": "overhang",
         "height": 4,
+        "name": "Le Surplomb du Bengale",
         "circuit": "skyblue",
         "topos": [
           {
@@ -5458,11 +5458,11 @@
       "properties": {
         "type": "problem",
         "id": 217,
-        "name": "Élégie",
         "grade": "3c",
         "circuitNumber": "14",
         "steepness": "wall",
         "height": 4,
+        "name": "Élégie",
         "circuit": "blue",
         "topos": [
           {
@@ -5483,11 +5483,11 @@
       "properties": {
         "type": "problem",
         "id": 216,
-        "name": "L'Amérique",
         "grade": "4a",
         "circuitNumber": "15",
         "steepness": "wall",
         "height": 4,
+        "name": "L'Amérique",
         "circuit": "blue",
         "topos": [
           {
@@ -5508,11 +5508,11 @@
       "properties": {
         "type": "problem",
         "id": 215,
-        "name": "Le Vallon",
         "grade": "5c",
         "circuitNumber": "16",
         "steepness": "wall",
         "height": 4,
+        "name": "Le Vallon",
         "circuit": "blue",
         "topos": [
           {
@@ -5533,11 +5533,11 @@
       "properties": {
         "type": "problem",
         "id": 214,
-        "name": "Soleil Couchant",
         "grade": "4b",
         "circuitNumber": "17",
         "steepness": "wall",
         "height": 4,
+        "name": "Soleil Couchant",
         "circuit": "blue",
         "topos": [
           {
@@ -5558,11 +5558,11 @@
       "properties": {
         "type": "problem",
         "id": 213,
-        "name": "Boomerang",
         "grade": "6a",
         "circuitNumber": "46",
         "steepness": "wall",
         "height": 5,
+        "name": "Boomerang",
         "circuit": "red",
         "topos": [
           {
@@ -5583,11 +5583,11 @@
       "properties": {
         "type": "problem",
         "id": 212,
-        "name": "Fables",
         "grade": "4a+",
         "circuitNumber": "40",
         "steepness": "slab",
         "height": 5,
+        "name": "Fables",
         "circuit": "blue",
         "topos": [
           {
@@ -5608,11 +5608,11 @@
       "properties": {
         "type": "problem",
         "id": 201,
-        "name": "La Spéciale",
         "grade": "4a+",
         "circuitNumber": "28",
         "steepness": "wall",
         "height": 4,
+        "name": "La Spéciale",
         "circuit": "skyblue",
         "topos": [
           {
@@ -5633,15 +5633,40 @@
       "properties": {
         "type": "problem",
         "id": 202,
-        "name": "La Bizuth",
         "grade": "4b",
         "circuitNumber": "29",
         "steepness": "wall",
         "height": 3,
+        "name": "La Bizuth",
         "circuit": "skyblue",
         "topos": [
           {
             "id": 28
+          }
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663771,
+          48.460933
+        ]
+      },
+      "properties": {
+        "type": "problem",
+        "id": 243,
+        "grade": "7a",
+        "circuitNumber": "22",
+        "steepness": "wall",
+        "height": 5,
+        "name": "Les Grimpeurs se Cachent pour Médire",
+        "circuit": "white",
+        "topos": [
+          {
+            "id": 101
           }
         ]
       }
@@ -5658,11 +5683,11 @@
       "properties": {
         "type": "problem",
         "id": 231,
-        "name": "Sledgehammer",
         "grade": "7a",
         "circuitNumber": "11",
         "steepness": "traverse",
         "height": null,
+        "name": "Sledgehammer",
         "circuit": "white",
         "topos": [
           {
@@ -5683,11 +5708,11 @@
       "properties": {
         "type": "problem",
         "id": 233,
-        "name": "Expositions retrospectives",
         "grade": "6c+",
         "circuitNumber": "13",
         "steepness": "wall",
         "height": null,
+        "name": "Expositions retrospectives",
         "circuit": "white",
         "topos": [
           {
@@ -5708,11 +5733,11 @@
       "properties": {
         "type": "problem",
         "id": 234,
-        "name": "Les Copains d'abord",
         "grade": "7a",
         "circuitNumber": "14",
         "steepness": "overhang",
         "height": null,
+        "name": "Les Copains d'abord",
         "circuit": "white",
         "topos": [
           {
@@ -5733,11 +5758,11 @@
       "properties": {
         "type": "problem",
         "id": 240,
-        "name": "36.15 Power",
         "grade": "7c",
         "circuitNumber": "20b",
         "steepness": "overhang",
         "height": null,
+        "name": "36.15 Power",
         "circuit": "white",
         "topos": [
           {
@@ -5758,11 +5783,11 @@
       "properties": {
         "type": "problem",
         "id": 241,
-        "name": "36.15 Gauche",
         "grade": "7a",
         "circuitNumber": "20",
         "steepness": "overhang",
         "height": null,
+        "name": "36.15 Gauche",
         "circuit": "white",
         "topos": [
           {
@@ -5783,11 +5808,11 @@
       "properties": {
         "type": "problem",
         "id": 232,
-        "name": "Jour de Pluie",
         "grade": "7b",
         "circuitNumber": "12",
         "steepness": "overhang",
         "height": 4,
+        "name": "Jour de Pluie",
         "circuit": "white",
         "topos": [
           {
@@ -5808,11 +5833,11 @@
       "properties": {
         "type": "problem",
         "id": 236,
-        "name": "Gainage et Dévers",
         "grade": "6c",
         "circuitNumber": "16",
         "steepness": "traverse",
         "height": 3,
+        "name": "Gainage et Dévers",
         "circuit": "white",
         "topos": [
           {
@@ -5833,11 +5858,11 @@
       "properties": {
         "type": "problem",
         "id": 235,
-        "name": "La Singlette",
         "grade": "6b+",
         "circuitNumber": "15",
         "steepness": "traverse",
         "height": 4,
+        "name": "La Singlette",
         "circuit": "white",
         "topos": [
           {
@@ -5858,11 +5883,11 @@
       "properties": {
         "type": "problem",
         "id": 238,
-        "name": "La Dénoyautée",
         "grade": "7a+",
         "circuitNumber": "18",
         "steepness": "wall",
         "height": 4,
+        "name": "La Dénoyautée",
         "circuit": "white",
         "topos": [
           {
@@ -5883,11 +5908,11 @@
       "properties": {
         "type": "problem",
         "id": 237,
-        "name": "Délivrance / Marquis de Sade",
         "grade": "7a+",
         "circuitNumber": "17",
         "steepness": "slab",
         "height": 6,
+        "name": "Délivrance / Marquis de Sade",
         "circuit": "white",
         "topos": [
           {
@@ -5908,11 +5933,11 @@
       "properties": {
         "type": "problem",
         "id": 239,
-        "name": "Nut's",
         "grade": "7b",
         "circuitNumber": "19",
         "steepness": "overhang",
         "height": 4,
+        "name": "Nut's",
         "circuit": "white",
         "topos": [
           {
@@ -5933,40 +5958,15 @@
       "properties": {
         "type": "problem",
         "id": 242,
-        "name": "Fantasia chez les Ploucs",
         "grade": "7a+",
         "circuitNumber": "21",
         "steepness": "overhang",
         "height": 4,
+        "name": "Fantasia chez les Ploucs",
         "circuit": "white",
         "topos": [
           {
             "id": 100
-          }
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663771,
-          48.460933
-        ]
-      },
-      "properties": {
-        "type": "problem",
-        "id": 243,
-        "name": "Les Grimpeurs se Cachent pour Médire",
-        "grade": "7a",
-        "circuitNumber": "22",
-        "steepness": null,
-        "height": 5,
-        "circuit": "white",
-        "topos": [
-          {
-            "id": 101
           }
         ]
       }
@@ -5983,11 +5983,11 @@
       "properties": {
         "type": "problem",
         "id": 245,
-        "name": "Chasseur de Prises",
         "grade": "7a",
         "circuitNumber": "24",
         "steepness": "wall",
         "height": 4,
+        "name": "Chasseur de Prises",
         "circuit": "white",
         "topos": [
           {
@@ -6008,11 +6008,11 @@
       "properties": {
         "type": "problem",
         "id": 244,
-        "name": "La Théorie du Chaos",
         "grade": "7b",
         "circuitNumber": "23",
         "steepness": "overhang",
         "height": 4,
+        "name": "La Théorie du Chaos",
         "circuit": "white",
         "topos": [
           {

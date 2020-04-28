@@ -13,7 +13,7 @@ class Steepness  {
         case overhang
         case roof
         case traverse
-        case unknown
+        case other
     }
     
     let type: SteepnessType
@@ -34,11 +34,11 @@ class Steepness  {
             self.type = .roof
         case "traverse":
             self.type = .traverse
-        case "unknown":
-            self.type = .unknown
+        case "other":
+            self.type = .other
         default:
             // FIXME: add warning
-            self.type = .unknown
+            self.type = .other
         }
     }
     
@@ -54,7 +54,7 @@ class Steepness  {
             return "Toit"
         case .traverse:
             return "Traversée"
-        case .unknown:
+        case .other:
             return "Autre"
         }
     }
@@ -71,8 +71,8 @@ class Steepness  {
             return "steepness.roof"
         case .traverse:
             return "steepness.traverse.left.right"
-        case .unknown:
-            return "steepness.unknown"
+        case .other:
+            return "steepness.other"
         }
     }
 }
