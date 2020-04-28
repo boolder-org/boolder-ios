@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37043E032458BE2A002782AB /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37043E022458BE2A002782AB /* area-1-data.geojson */; };
+		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
 		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
@@ -262,6 +263,7 @@
 
 /* Begin PBXFileReference section */
 		37043E022458BE2A002782AB /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
+		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
 		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
@@ -819,6 +821,7 @@
 		37A8C808245326F200DC161F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				37A8C806245326DB00DC161F /* DataStore.swift */,
 				37A276282457424500F53D80 /* GeoStore.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
@@ -1168,6 +1171,7 @@
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */,
+				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */,
 				3790C35F2456008F005E786E /* BezierView.swift in Sources */,
@@ -1382,6 +1386,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		37043E272458D5A0002782AB /* UserStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				37043E282458D5A0002782AB /* UserStore.xcdatamodel */,
+			);
+			currentVersion = 37043E282458D5A0002782AB /* UserStore.xcdatamodel */;
+			path = UserStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 37A8C61E2453263300DC161F /* Project object */;
 }

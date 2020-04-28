@@ -11,6 +11,7 @@ import SwiftUI
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     @Binding var problem: ProblemAnnotation
     
