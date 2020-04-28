@@ -124,6 +124,8 @@ class GeoStore {
                 annotation.topo = topoCollection.topo(withId: topo.id)
             }
             
+            annotation.tags = properties.tags
+            
 //            if let line = properties.photoLine {
 //                annotation.photoLine = line.map{ProblemAnnotation.PhotoPercentCoordinate(x: $0.x, y: $0.y)}
 //            }
@@ -159,6 +161,7 @@ class GeoStore {
         let id: Int
         let height: Int?
         let topos: [TopoRef]?
+        let tags: [String]?
         
         struct TopoRef: Decodable {
             let id: Int

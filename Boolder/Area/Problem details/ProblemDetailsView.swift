@@ -9,22 +9,32 @@
 import SwiftUI
 
 struct ProblemDetailsView: View {
+    @Environment(\.presentationMode) var presentationMode
     var problem: ProblemAnnotation
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ZStack {
+                ZStack(alignment: .topLeading) {
                     Image(uiImage: self.problem.mainTopoPhoto())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
                     BezierViewRepresentable(problem: problem)
                     
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 30))
+                            .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
+                            .padding(16)
+                            .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
+                    }
                 }
                 
-                VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 8) {
                     
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
@@ -52,25 +62,29 @@ struct ProblemDetailsView: View {
                         HStack(alignment: .firstTextBaseline) {
                             Image(Steepness(problem.steepness).imageName)
                                 .font(.body)
+                                .frame(minWidth: 20)
                             Text(Steepness(problem.steepness).name)
                                 .font(.body)
-                            Text("arête, fissure")
+                            Text(problem.readableDescription() ?? "")
                                 .font(.caption)
                                 .foregroundColor(Color.gray)
                         }
                         
-                        if problem.height != nil {
+                        if problem.isRisky() {
                         
                             Divider()
                             
                             HStack {
-                                Image(systemName: "checkmark.shield")
+                                Image(systemName: "exclamationmark.shield.fill")
                                     .font(.body)
-                                Text("Hauteur \(problem.height!)m")
+                                    .foregroundColor(Color.red)
+                                    .frame(minWidth: 20)
+                                Text("Danger en cas de chute")
                                     .font(.body)
-    //                            Text("hauteur : 3m")
-    //                                .font(.caption)
-    //                                .foregroundColor(Color(UIColor.systemGray))
+                                    .foregroundColor(Color.red)
+//                                Text("hauteur : 3m")
+//                                    .font(.caption)
+//                                    .foregroundColor(Color(UIColor.systemGray))
                                 
                                 }
                         }
@@ -157,7 +171,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     
     static var previews: some View {
 //        NavigationView {
-            ProblemDetailsView(problem: dataStore.annotations.first!)
+            ProblemDetailsView(problem: dataStore.annotations[49])
 //        }
     }
 }

@@ -24,6 +24,36 @@ class ProblemAnnotation: NSObject, MKAnnotation {
     var steepness: Steepness.SteepnessType = .other
     var id: Int!
     var topo: Topo?
+    var tags: [String]?
+    
+    func readableDescription() -> String? {
+        var strings = Set<String>()
+        
+        if let tags = tags {
+            strings.formUnion(tags)
+            strings.remove("risky") // FIXME: use enum
+        }
+        
+        if let height = height {
+            strings.insert("hauteur \(height)m")
+        }
+        
+        return strings.map { (string: String) in
+            switch string {
+            case "sit_start":
+                return "départ assis"
+            default:
+                return string
+            }
+        }.joined(separator: ", ")
+    }
+    
+    func isRisky() -> Bool {
+        if let tags = tags {
+            return tags.contains("risky") // FIXME: use enum
+        }
+        return false
+    }
     
     // FIXME: use Color
     func displayColor() -> UIColor {
