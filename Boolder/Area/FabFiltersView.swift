@@ -57,7 +57,7 @@ struct FabFiltersView: View {
                 }
             }
         }
-        .accentColor(Color(UIColor.label))
+        .accentColor(Color(.label))
         .padding(.horizontal, 16)
         .background(Color(UIColor.systemBackground))
         .cornerRadius(10)

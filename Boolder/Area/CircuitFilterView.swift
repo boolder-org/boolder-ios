@@ -40,7 +40,7 @@ struct CircuitFilterView: View {
                             .font(.caption)
                             .foregroundColor(Color(UIColor.systemGray))
                         }
-                        .foregroundColor(Color(UIColor.label))
+                        .foregroundColor(Color(.label))
                     }
                 }
                 
@@ -51,7 +51,7 @@ struct CircuitFilterView: View {
                     }) {
                         Text("Montrer toutes les voies")
                     }
-                    .foregroundColor(Color(UIColor.label))
+                    .foregroundColor(Color(.label))
                 }
             }
             .listStyle(GroupedListStyle())

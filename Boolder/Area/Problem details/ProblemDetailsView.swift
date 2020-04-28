@@ -28,9 +28,10 @@ struct ProblemDetailsView: View {
                     
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
-                                Text(problem.name ?? "-")
+                                Text(problem.name ?? "Sans nom")
                                     .font(.title)
                                     .fontWeight(.bold)
+                                    .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
                                 
                                 Spacer()
                                 
@@ -55,7 +56,7 @@ struct ProblemDetailsView: View {
                                 .font(.body)
                             Text("arête, fissure")
                                 .font(.caption)
-                                .foregroundColor(Color(UIColor.systemGray))
+                                .foregroundColor(Color.gray)
                         }
                         
                         if problem.height != nil {
