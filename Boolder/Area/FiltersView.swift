@@ -40,6 +40,7 @@ struct FiltersView: View {
                             }
                         }) {
                             HStack {
+                                Image(Steepness(steepness).imageName).foregroundColor(Color(UIColor.label))
                                 Text(Steepness(steepness).name).foregroundColor(Color(UIColor.label))
                                 Spacer()
                                 
@@ -134,7 +135,7 @@ struct GradeFilterView: View {
                             Text("Niveau \(category)").foregroundColor(Color(UIColor.label))
                             Spacer()
                             if self.dataStore.filters.gradeCategories.contains(category) {
-                                Image(systemName: "checkmark")
+                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
                             }
                         }
                     }

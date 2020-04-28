@@ -58,4 +58,21 @@ class Steepness  {
             return "Autre"
         }
     }
+    
+    var imageName: String {
+        switch type {
+        case .wall:
+            return "steepness.wall"
+        case .slab:
+            return "steepness.slab"
+        case .overhang:
+            return "steepness.overhang"
+        case .roof:
+            return "steepness.roof"
+        case .traverse:
+            return "steepness.traverse.left.right"
+        case .unknown:
+            return "steepness.unknown"
+        }
+    }
 }

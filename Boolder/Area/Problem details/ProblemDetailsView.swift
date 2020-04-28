@@ -49,7 +49,7 @@ struct ProblemDetailsView: View {
                     
                         
                         HStack(alignment: .firstTextBaseline) {
-                            Image(systemName: "arrow.up.right")
+                            Image(Steepness(problem.steepness).imageName)
                                 .font(.body)
                             Text(Steepness(problem.steepness).name)
                                 .font(.body)
