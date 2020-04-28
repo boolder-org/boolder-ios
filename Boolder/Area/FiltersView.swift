@@ -44,7 +44,7 @@ struct FiltersView: View {
                                 Spacer()
                                 
                                 if self.dataStore.filters.steepness.contains(steepness) {
-                                    Image(systemName: "checkmark")
+                                    Image(systemName: "checkmark").font(Font.body.weight(.bold))
                                 }
                             }
                         }
