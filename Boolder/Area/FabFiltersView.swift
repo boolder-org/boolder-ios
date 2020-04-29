@@ -11,7 +11,9 @@ import SwiftUI
 struct FabFiltersView: View {
     @State private var presentCircuitFilter = false
     @State private var presentFilters = false
+    
     @EnvironmentObject var dataStore: DataStore
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var body: some View {
         ZStack {
@@ -32,9 +34,10 @@ struct FabFiltersView: View {
                 }
                 .sheet(isPresented: $presentCircuitFilter) {
                     CircuitFilterView()
-                        // FIXME: use accent color on all views by default (even for modals)
-                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
+                        // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
+                        // remove these lines as soon as it's fixed
                         .environmentObject(self.dataStore)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
                         .accentColor(Color.green)
                 }
                 
@@ -50,9 +53,10 @@ struct FabFiltersView: View {
                 .padding(.vertical, 12)
                 .sheet(isPresented: $presentFilters) {
                     FiltersView()
-                        // FIXME: use accent color on all views by default (even for modals)
-                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
+                        // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
+                        // remove these lines as soon as it's fixed
                         .environmentObject(self.dataStore)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
                         .accentColor(Color.green)
                 }
             }

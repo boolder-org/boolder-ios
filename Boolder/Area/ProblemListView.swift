@@ -13,6 +13,9 @@ struct ProblemListView: View {
     @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
+    
     var body: some View {
         List {
             ForEach(Array(self.dataStore.groupedAnnotations.keys.sorted()), id: \.self) { grade in
@@ -34,9 +37,17 @@ struct ProblemListView: View {
                                     .font(.headline)
                                     .foregroundColor(Color(problem.displayColor()))
                                     .frame(minWidth: 30, alignment: .leading)
+                                
                                 Text(problem.name ?? "Sans nom")
                                     .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
+                                
                                 Spacer()
+                                
+                                if self.isFavorite(problem: problem) {
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(Color.yellow)
+                                }
+                                
                                 Text(problem.grade?.string ?? "")
                             }
                         }
@@ -47,6 +58,12 @@ struct ProblemListView: View {
             }
         }
         .listStyle(GroupedListStyle())
+    }
+    
+    func isFavorite(problem: ProblemAnnotation) -> Bool {
+        favorites.contains { (favorite: Favorite) -> Bool in
+            return Int(favorite.problemId) == problem.id
+        }
     }
 }
 

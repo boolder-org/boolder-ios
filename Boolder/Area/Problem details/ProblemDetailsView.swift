@@ -11,7 +11,9 @@ import SwiftUI
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
+    
     @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     
     @Binding var problem: ProblemAnnotation
     
@@ -86,7 +88,7 @@ struct ProblemDetailsView: View {
                     
                     HStack(spacing: 16) {
                         Button(action: {
-                            
+                            self.createFavorite()
                         }) {
                             HStack(alignment: .center, spacing: 16) {
                                 Image(systemName: "star")
@@ -152,6 +154,19 @@ struct ProblemDetailsView: View {
                 }
             }
         )
+    }
+    
+    func createFavorite() {
+        let favorite = Favorite(context: self.managedObjectContext)
+        favorite.id = UUID()
+        favorite.problemId = Int64(self.problem.id)
+        favorite.createdAt = Date()
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
+        }
     }
 }
 
