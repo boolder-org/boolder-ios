@@ -55,7 +55,7 @@ struct FiltersView: View {
                 Section {
                     HStack {
                         Toggle(isOn: $dataStore.filters.photoPresent) {
-                            Text("Photo")
+                            Text("Avec photo")
                         }
                     }
                 }
