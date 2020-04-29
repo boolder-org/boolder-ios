@@ -42,6 +42,9 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ mapView: MKMapView, context: Context) {
+        print("update map ui")
+        
+        // remove & add annotations back only if needed to avoid flickering
         
         let previousAnnotationsIds: [Int] = mapView.annotations.map{ annotation in
             if let problem = annotation as? ProblemAnnotation {
@@ -62,6 +65,20 @@ struct MapView: UIViewRepresentable {
             mapView.addAnnotations(dataStore.annotations)
             mapView.addOverlays(dataStore.overlays)
         }
+        
+        // refresh all annotation views
+        
+        for annotation in mapView.annotations {
+            if let problem = annotation as? ProblemAnnotation {
+                if let annotationView = mapView.view(for: problem) as? ProblemAnnotationView {
+                    annotationView.refreshBadge()
+                }
+            }
+        }
+    }
+    
+    private func reloadAnnotationsIfNeeded() {
+        
     }
     
     func makeCoordinator() -> Coordinator {
@@ -120,9 +137,3 @@ struct MapView: UIViewRepresentable {
         }
     }
 }
-
-//struct MapView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MapView()
-//    }
-//}

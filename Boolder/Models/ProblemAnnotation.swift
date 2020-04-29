@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import CoreData
 
 class ProblemAnnotation: NSObject, MKAnnotation {
     // This property must be key-value observable, which the `@objc dynamic` attributes provide.
@@ -81,6 +82,30 @@ class ProblemAnnotation: NSObject, MKAnnotation {
         else {
             return UIImage(named: "placeholder.png")!
         }
+    }
+    
+    func isFavorite() -> Bool {
+        favorite() != nil
+    }
+    
+    func favorite() -> Favorite? {
+        favorites().first { (favorite: Favorite) -> Bool in
+            return Int(favorite.problemId) == self.id
+        }
+    }
+    
+    func favorites() -> [Favorite] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        request.sortDescriptors = []
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
     }
 }
 
