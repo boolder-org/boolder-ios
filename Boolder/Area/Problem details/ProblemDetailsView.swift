@@ -88,14 +88,25 @@ struct ProblemDetailsView: View {
                     
                     HStack(spacing: 16) {
                         Button(action: {
-                            self.createFavorite()
+                            self.toggleFavorite()
                         }) {
                             HStack(alignment: .center, spacing: 16) {
-                                Image(systemName: "star")
-                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                                Text("Ajouter")
-                                    .fontWeight(.bold)
-                                    .padding(.vertical)
+                                if self.isFavorite() {
+                                    Image(systemName: "star.fill")
+                                        .font(.title)
+                                    Text("Favori")
+                                        .fontWeight(.bold)
+                                        .padding(.vertical)
+                                        .fixedSize(horizontal: true, vertical: true)
+                                }
+                                else {
+                                    Image(systemName: "star")
+                                        .font(.title)
+                                    Text("Ajouter")
+                                        .fontWeight(.bold)
+                                        .padding(.vertical)
+                                        .fixedSize(horizontal: true, vertical: true)
+                                }
                             }
                             .padding(.horizontal)
                         }
@@ -107,7 +118,7 @@ struct ProblemDetailsView: View {
                         Button(action: {}) {
                             HStack(alignment: .center, spacing: 16) {
                                 Image(systemName: "square")
-                                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                    .font(.title)
                                 Text("Cocher")
                                     .fontWeight(.bold)
                                     .padding(.vertical)
@@ -146,14 +157,33 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
-        .navigationBarTitle(Text(self.problem.name ?? ""), displayMode: .inline)
-        .navigationBarItems(trailing:
-            HStack(spacing: 16) {
-                Button(action: {}) {
-                    Image(systemName: "square.and.arrow.up")
-                }
-            }
-        )
+//        .navigationBarTitle(Text(self.problem.name ?? ""), displayMode: .inline)
+//        .navigationBarItems(trailing:
+//            HStack(spacing: 16) {
+//                Button(action: {}) {
+//                    Image(systemName: "square.and.arrow.up")
+//                }
+//            }
+//        )
+    }
+        
+    func isFavorite() -> Bool {
+        favorite() != nil
+    }
+    
+    func favorite() -> Favorite? {
+        favorites.first { (favorite: Favorite) -> Bool in
+            return Int(favorite.problemId) == problem.id
+        }
+    }
+    
+    func toggleFavorite() {
+        if isFavorite() {
+            deleteFavorite()
+        }
+        else {
+            createFavorite()
+        }
     }
     
     func createFavorite() {
@@ -161,6 +191,17 @@ struct ProblemDetailsView: View {
         favorite.id = UUID()
         favorite.problemId = Int64(self.problem.id)
         favorite.createdAt = Date()
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
+        }
+    }
+    
+    func deleteFavorite() {
+        guard let favorite = favorite() else { return }
+        managedObjectContext.delete(favorite)
         
         do {
             try self.managedObjectContext.save()
