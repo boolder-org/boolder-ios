@@ -21,7 +21,15 @@ class ProblemAnnotationView: MKAnnotationView {
     // 	https://developer.apple.com/documentation/mapkit/mkannotationview/2921514-preparefordisplay
     override var annotation: MKAnnotation? {
         willSet {
-            self.displayPriority = .defaultLow
+            if let problem = newValue as? ProblemAnnotation {
+                if(problem.isFavorite()) {
+                    self.displayPriority = .defaultHigh
+                }
+                else {
+                    self.displayPriority = .defaultLow
+                }
+                
+            }
         }
         didSet {
             refreshUI()
@@ -44,6 +52,7 @@ class ProblemAnnotationView: MKAnnotationView {
     private let overlayCircleView = UIView()
     private let circleView = UIView()
     private let label = UILabel()
+    private var badgeView = UIImageView()
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -77,6 +86,15 @@ class ProblemAnnotationView: MKAnnotationView {
         label.minimumScaleFactor = 0.5
         addSubview(label)
         
+        let badgeImage = UIImage(systemName: "star.fill")!.withTintColor(.yellow, renderingMode: .alwaysOriginal)
+        //        let badgeImage = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
+                
+        badgeView = UIImageView(image: badgeImage)
+        badgeView.frame = CGRect(x: 18, y: -6, width: 16, height: 16)
+        badgeView.layer.zPosition = 10
+        badgeView.isHidden = true
+        addSubview(badgeView)
+        
         hasBeenSetup = true
     }
     
@@ -87,6 +105,15 @@ class ProblemAnnotationView: MKAnnotationView {
         
         circleView.backgroundColor = annotation.displayColor()
         label.text = annotation.displayLabel
+        
+        if annotation.isFavorite() {
+            badgeView.isHidden = false
+            badgeView.alpha = 1
+        }
+        else {
+            badgeView.isHidden = true
+            badgeView.alpha = 0
+        }
     }
     
     func refreshSize() {
@@ -115,7 +142,7 @@ class ProblemAnnotationView: MKAnnotationView {
     override var alignmentRectInsets: UIEdgeInsets {
         switch size {
         case .full:
-            return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+            return UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         case .medium:
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         case .small:

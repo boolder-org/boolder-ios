@@ -98,8 +98,17 @@ struct MapView: UIViewRepresentable {
                 animateAnnotationViews { [weak self] in
                     guard let self = self else { return }
                     
-                    self.mapView.annotations.forEach {
-                        (self.mapView.view(for: $0) as? ProblemAnnotationView)?.size = self.annotationSize
+                    for annotation in self.mapView.annotations {
+                        guard let problem = annotation as? ProblemAnnotation else { return }
+                        let annotationView = self.mapView.view(for: problem) as? ProblemAnnotationView
+                        
+                        if problem.isFavorite() {
+                            annotationView?.size = .full
+                        }
+                        else
+                        {
+                            annotationView?.size = self.annotationSize
+                        }
                     }
                 }
             }
@@ -157,9 +166,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            self.mapView = mapView
-            
-//            print(mapView.camera.altitude)
+            self.mapView = mapView // FIXME: quick hack to pass mapview to annotationSize's property wrapper
             
             if(mapView.camera.altitude < 150) {
                 annotationSize = .full
