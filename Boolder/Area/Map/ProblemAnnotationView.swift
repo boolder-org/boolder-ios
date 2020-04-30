@@ -68,6 +68,15 @@ class ProblemAnnotationView: MKAnnotationView {
         
         circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
         
+        label.frame = CGRect(x: 0, y: 0, width: frameSize, height: frameSize)
+        label.textColor = .systemBackground
+        label.text = ""
+        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        addSubview(label)
+        
         hasBeenSetup = true
     }
     
@@ -76,21 +85,24 @@ class ProblemAnnotationView: MKAnnotationView {
         
         refreshSize()
         
-        self.setContent(color: annotation.displayColor())
-    }
-    
-    func setContent(color: UIColor, borderColor: UIColor? = nil) {
-        circleView.backgroundColor = color
+        circleView.backgroundColor = annotation.displayColor()
+        label.text = annotation.displayLabel
     }
     
     func refreshSize() {
         switch size {
         case .full:
             circleView.transform = .identity
+            label.isHidden = false
+            label.alpha = 1
         case .medium:
             circleView.transform = CGAffineTransform(scaleX: scaleMedium, y: scaleMedium)
+            label.isHidden = true
+            label.alpha = 0
         case .small:
             circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
+            label.isHidden = true
+            label.alpha = 0
         }
     }
     
