@@ -9,13 +9,16 @@
 import MapKit
 
 enum ProblemAnnotationViewSize: Int {
-    case dot
+    case small
+    case medium
     case full
 }
 
 class ProblemAnnotationView: MKAnnotationView {
     static let ReuseID = "problemAnnotation"
     
+    // FIXME: use prepareForDisplay()
+    // 	https://developer.apple.com/documentation/mapkit/mkannotationview/2921514-preparefordisplay
     override var annotation: MKAnnotation? {
         willSet {
             self.displayPriority = .defaultLow
@@ -25,22 +28,17 @@ class ProblemAnnotationView: MKAnnotationView {
         }
     }
     
-    var size: ProblemAnnotationViewSize = .dot {
+    var size: ProblemAnnotationViewSize = .small {
         didSet {
             guard size != oldValue else { return }
             
-            switch size {
-            case .full:
-                problemMarkerView.isMinimal = false
-                
-            case .dot:
-                problemMarkerView.isMinimal = true
-            }
+            problemMarkerView.size = size
         }
     }
     
     var hasBeenSetup = false
-    let problemMarkerView = ProblemMarkerView(size: 28)
+    let frameSize: CGFloat = 28
+    var problemMarkerView = ProblemMarkerView(size: 28)
     let textLabel = UILabel()
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
@@ -54,12 +52,13 @@ class ProblemAnnotationView: MKAnnotationView {
     }
     
     func initUI() {
-        backgroundColor = UIColor.clear
+//        backgroundColor = UIColor.white
+//        alpha = 1
         
-        //      addSubview(textLabel)
-        //      textLabel.textAlignment = .center
-        //      textLabel.padding = UIEdgeInsets(top: topPadding, left: sidePadding, bottom: topPadding, right: sidePadding)
+        collisionMode = .circle
+        frame = CGRect(x: -14, y: -14, width: frameSize, height: frameSize)
         
+        problemMarkerView = ProblemMarkerView(size: frameSize)
         addSubview(problemMarkerView)
         
         hasBeenSetup = true
@@ -69,18 +68,23 @@ class ProblemAnnotationView: MKAnnotationView {
         guard hasBeenSetup, let annotation = annotation as? ProblemAnnotation else { return }
         
         problemMarkerView.setContent(color: annotation.displayColor())
-        
-        //        problemMarkerView.center = CGPoint(x: , y: )
-        //        center = CGPoint(x: center.x, y: center.y)
-        //        centerOffset = CGPoint(x: 0, y: )
-        
-        center = CGPoint(x: center.x, y: center.y)
-        centerOffset = CGPoint(x: -14, y: -14)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         refreshUI()
+    }
+    
+    override var alignmentRectInsets: UIEdgeInsets {
+        switch size {
+        case .full:
+            return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        case .medium:
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        case .small:
+            return UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        }
+        
     }
 }

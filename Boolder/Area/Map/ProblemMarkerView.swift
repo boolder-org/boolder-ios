@@ -9,21 +9,22 @@
 import UIKit
 
 class ProblemMarkerView: UIView {
+    let scaleSmall: CGFloat = 0.2
+    let scaleMedium: CGFloat = 0.4
+    
+    
     // MARK: Properties
-    var isMinimal: Bool = true {
+    var size: ProblemAnnotationViewSize = .small {
         didSet {
-            guard isMinimal != oldValue else { return }
+            guard size != oldValue else { return }
             
-            if isMinimal {
-//                overlayCircleView.transform = CGAffineTransform(scaleX: 0.43, y: 0.43)
-                circleView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-                //        imageView.transform = CGAffineTransform(scaleX: 0.33, y: 0.33)
-                //        imageView.alpha = 0
-            } else {
-//                overlayCircleView.transform = .identity
+            switch size {
+            case .full:
                 circleView.transform = .identity
-                //        imageView.transform = .identity
-                //        imageView.alpha = 1
+            case .medium:
+                circleView.transform = CGAffineTransform(scaleX: scaleMedium, y: scaleMedium)
+            case .small:
+                circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
             }
         }
     }
@@ -31,10 +32,10 @@ class ProblemMarkerView: UIView {
     // MARK: Subviews
     let overlayCircleView = UIView()
     let circleView = UIView()
-    //  let imageView = UIImageView()
+    let label = UILabel()
     
     // MARK: Constants
-    private let borderSize: CGFloat = 2
+    private let borderSize: CGFloat = 0
     
     // MARK: Life cycle
     init(size: CGFloat) {
@@ -49,28 +50,16 @@ class ProblemMarkerView: UIView {
     
     // MARK: UI
     private func initUI(size: CGFloat) {
-//        overlayCircleView.alpha = 0.3
-//        overlayCircleView.frame = bounds
-//        overlayCircleView.layer.cornerRadius = size / 2
-//        addSubview(overlayCircleView)
-        
 //        backgroundColor = .white
         
         circleView.frame = CGRect(x: borderSize, y: borderSize, width: bounds.width - 2 * borderSize, height: bounds.height - 2 * borderSize)
         circleView.layer.cornerRadius = (size - 2 * borderSize) / 2
         addSubview(circleView)
         
-//        overlayCircleView.transform = CGAffineTransform(scaleX: 0.43, y: 0.43)
-        circleView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-        
-        //    imageView.frame = bounds
-        //    imageView.contentMode = .center
-        //    addSubview(imageView)
+        circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
     }
     
     func setContent(color: UIColor, borderColor: UIColor? = nil) {
-//        overlayCircleView.backgroundColor = borderColor ?? color
         circleView.backgroundColor = color
-        //    imageView.image = image
     }
 }
