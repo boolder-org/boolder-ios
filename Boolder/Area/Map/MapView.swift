@@ -21,7 +21,7 @@ struct MapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         
         let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
-                    
+        
         let regionRadius: CLLocationDistance = 250
         let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
@@ -32,7 +32,7 @@ struct MapView: UIViewRepresentable {
         mapView.isPitchEnabled = false
         
         mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 20_000_000), animated: true)
-    
+        
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         mapView.addOverlays(dataStore.overlays)
@@ -40,7 +40,7 @@ struct MapView: UIViewRepresentable {
         
         return mapView
     }
-
+    
     func updateUIView(_ mapView: MKMapView, context: Context) {
         print("update map ui")
         
@@ -92,39 +92,39 @@ struct MapView: UIViewRepresentable {
         var mapView: MKMapView! = nil // FIXME: might crash
         
         private var annotationSize: ProblemAnnotationViewSize = .dot {
-          didSet {
-            guard annotationSize != oldValue else { return }
-            
-            animateAnnotationViews { [weak self] in
-              guard let self = self else { return }
-              
-              self.mapView.annotations.forEach {
-                (self.mapView.view(for: $0) as? ProblemAnnotationView)?.size = self.annotationSize
-              }
+            didSet {
+                guard annotationSize != oldValue else { return }
+                
+                animateAnnotationViews { [weak self] in
+                    guard let self = self else { return }
+                    
+                    self.mapView.annotations.forEach {
+                        (self.mapView.view(for: $0) as? ProblemAnnotationView)?.size = self.annotationSize
+                    }
+                }
             }
-          }
         }
-
+        
         init(_ parent: MapView) {
             self.parent = parent
         }
         
         func animateAnnotationViews(_ animations: @escaping () -> Void) {
-          UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: animations, completion: nil)
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: animations, completion: nil)
         }
         
         // MARK: MKMapViewDelegate delegate methods
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-                
-    //        if let multiPolygon = overlay as? MKMultiPolygon {
-    //            let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)
-    //            renderer.fillColor = UIColor(named: "OverlayFill")
-    //            renderer.strokeColor = UIColor(named: "OverlayStroke")
-    //            renderer.lineWidth = 2.0
-        //
-    //            return renderer
-    //        }
+            
+            //        if let multiPolygon = overlay as? MKMultiPolygon {
+            //            let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)
+            //            renderer.fillColor = UIColor(named: "OverlayFill")
+            //            renderer.strokeColor = UIColor(named: "OverlayStroke")
+            //            renderer.lineWidth = 2.0
+            //
+            //            return renderer
+            //        }
             
             if let multiPolygon = overlay as? MKMultiPolygon {
                 let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)
