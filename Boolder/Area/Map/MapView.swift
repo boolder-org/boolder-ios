@@ -128,9 +128,10 @@ struct MapView: UIViewRepresentable {
             
             if let multiPolygon = overlay as? MKMultiPolygon {
                 let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)
-                renderer.strokeColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
+                renderer.strokeColor = UIColor.init(white: 0.6, alpha: 1.0)
                 renderer.lineWidth = 1
-                renderer.fillColor = UIColor.init(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+                renderer.fillColor = UIColor.init(white: 0.7, alpha: 1.0)
+                renderer.lineJoin = .round
                 return renderer
             }
             else if let circuitOverlay = overlay as? CircuitOverlay {

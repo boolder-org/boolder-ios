@@ -17,6 +17,9 @@ class ProblemAnnotationView: MKAnnotationView {
     static let ReuseID = "problemAnnotation"
     
     override var annotation: MKAnnotation? {
+        willSet {
+            self.displayPriority = .defaultLow
+        }
         didSet {
             refreshUI()
         }
@@ -70,6 +73,9 @@ class ProblemAnnotationView: MKAnnotationView {
         //        problemMarkerView.center = CGPoint(x: , y: )
         //        center = CGPoint(x: center.x, y: center.y)
         //        centerOffset = CGPoint(x: 0, y: )
+        
+        center = CGPoint(x: center.x, y: center.y)
+        centerOffset = CGPoint(x: -14, y: -14)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

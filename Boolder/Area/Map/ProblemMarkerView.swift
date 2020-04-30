@@ -15,12 +15,12 @@ class ProblemMarkerView: UIView {
             guard isMinimal != oldValue else { return }
             
             if isMinimal {
-                overlayCircleView.transform = CGAffineTransform(scaleX: 0.43, y: 0.43)
-                circleView.transform = CGAffineTransform(scaleX: 0.33, y: 0.33)
+//                overlayCircleView.transform = CGAffineTransform(scaleX: 0.43, y: 0.43)
+                circleView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
                 //        imageView.transform = CGAffineTransform(scaleX: 0.33, y: 0.33)
                 //        imageView.alpha = 0
             } else {
-                overlayCircleView.transform = .identity
+//                overlayCircleView.transform = .identity
                 circleView.transform = .identity
                 //        imageView.transform = .identity
                 //        imageView.alpha = 1
@@ -49,17 +49,19 @@ class ProblemMarkerView: UIView {
     
     // MARK: UI
     private func initUI(size: CGFloat) {
-        overlayCircleView.alpha = 0.3
-        overlayCircleView.frame = bounds
-        overlayCircleView.layer.cornerRadius = size / 2
-        addSubview(overlayCircleView)
+//        overlayCircleView.alpha = 0.3
+//        overlayCircleView.frame = bounds
+//        overlayCircleView.layer.cornerRadius = size / 2
+//        addSubview(overlayCircleView)
+        
+//        backgroundColor = .white
         
         circleView.frame = CGRect(x: borderSize, y: borderSize, width: bounds.width - 2 * borderSize, height: bounds.height - 2 * borderSize)
         circleView.layer.cornerRadius = (size - 2 * borderSize) / 2
         addSubview(circleView)
         
-        overlayCircleView.transform = CGAffineTransform(scaleX: 0.43, y: 0.43)
-        circleView.transform = CGAffineTransform(scaleX: 0.33, y: 0.33)
+//        overlayCircleView.transform = CGAffineTransform(scaleX: 0.43, y: 0.43)
+        circleView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
         
         //    imageView.frame = bounds
         //    imageView.contentMode = .center
@@ -67,7 +69,7 @@ class ProblemMarkerView: UIView {
     }
     
     func setContent(color: UIColor, borderColor: UIColor? = nil) {
-        overlayCircleView.backgroundColor = borderColor ?? color
+//        overlayCircleView.backgroundColor = borderColor ?? color
         circleView.backgroundColor = color
         //    imageView.image = image
     }
