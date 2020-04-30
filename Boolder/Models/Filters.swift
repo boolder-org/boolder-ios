@@ -15,5 +15,5 @@ struct Filters {
     var steepness: Set<Steepness.SteepnessType> = Set(Steepness.SteepnessType.allCases)
     var heightMax: Int = 6
     var photoPresent = false
-    var circuit: Circuit.CircuitType? = .orange
+    var circuit: Circuit.CircuitType? = nil
 }

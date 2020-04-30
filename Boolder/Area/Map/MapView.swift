@@ -71,7 +71,7 @@ struct MapView: UIViewRepresentable {
         for annotation in mapView.annotations {
             if let problem = annotation as? ProblemAnnotation {
                 if let annotationView = mapView.view(for: problem) as? ProblemAnnotationView {
-                    annotationView.refreshBadge()
+                    annotationView.refreshUI()
                 }
             }
         }
@@ -89,9 +89,28 @@ struct MapView: UIViewRepresentable {
     
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
+        var mapView: MKMapView! = nil // FIXME: might crash
+        
+        private var annotationSize: ProblemAnnotationViewSize = .dot {
+          didSet {
+            guard annotationSize != oldValue else { return }
+            
+            animateAnnotationViews { [weak self] in
+              guard let self = self else { return }
+              
+              self.mapView.annotations.forEach {
+                (self.mapView.view(for: $0) as? ProblemAnnotationView)?.size = self.annotationSize
+              }
+            }
+          }
+        }
 
         init(_ parent: MapView) {
             self.parent = parent
+        }
+        
+        func animateAnnotationViews(_ animations: @escaping () -> Void) {
+          UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: animations, completion: nil)
         }
         
         // MARK: MKMapViewDelegate delegate methods
@@ -134,6 +153,17 @@ struct MapView: UIViewRepresentable {
             parent.presentProblemDetails = true
             
             mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+        }
+        
+        func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+            self.mapView = mapView
+            
+            if(mapView.camera.altitude < 150) {
+                annotationSize = .full
+            }
+            else {
+                annotationSize = .dot
+            }
         }
     }
 }
