@@ -258,7 +258,6 @@
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
 		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
 		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
-		37D7B16C245B095400B522A6 /* ProblemMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D7B16B245B095400B522A6 /* ProblemMarkerView.swift */; };
 		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
 /* End PBXBuildFile section */
 
@@ -516,7 +515,6 @@
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
 		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
-		37D7B16B245B095400B522A6 /* ProblemMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemMarkerView.swift; sourceTree = "<group>"; };
 		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -842,7 +840,6 @@
 				37A8C8192453320D00DC161F /* MapView.swift */,
 				37A8C8132453272900DC161F /* ProblemAnnotation.swift */,
 				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,
-				37D7B16B245B095400B522A6 /* ProblemMarkerView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1193,7 +1190,6 @@
 				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
-				37D7B16C245B095400B522A6 /* ProblemMarkerView.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,

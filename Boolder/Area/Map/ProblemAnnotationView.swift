@@ -31,15 +31,19 @@ class ProblemAnnotationView: MKAnnotationView {
     var size: ProblemAnnotationViewSize = .small {
         didSet {
             guard size != oldValue else { return }
-            
-            problemMarkerView.size = size
+            refreshSize()
         }
     }
     
-    var hasBeenSetup = false
-    let frameSize: CGFloat = 28
-    var problemMarkerView = ProblemMarkerView(size: 28)
-    let textLabel = UILabel()
+    private var hasBeenSetup = false
+    private let frameSize: CGFloat = 28
+    private let scaleSmall: CGFloat = 0.2
+    private let scaleMedium: CGFloat = 0.4
+    private let borderSize: CGFloat = 0
+    
+    private let overlayCircleView = UIView()
+    private let circleView = UIView()
+    private let label = UILabel()
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -58,8 +62,11 @@ class ProblemAnnotationView: MKAnnotationView {
         collisionMode = .circle
         frame = CGRect(x: -14, y: -14, width: frameSize, height: frameSize)
         
-        problemMarkerView = ProblemMarkerView(size: frameSize)
-        addSubview(problemMarkerView)
+        circleView.frame = CGRect(x: borderSize, y: borderSize, width: bounds.width - 2 * borderSize, height: bounds.height - 2 * borderSize)
+        circleView.layer.cornerRadius = (frameSize - 2 * borderSize) / 2
+        addSubview(circleView)
+        
+        circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
         
         hasBeenSetup = true
     }
@@ -67,7 +74,24 @@ class ProblemAnnotationView: MKAnnotationView {
     func refreshUI() {
         guard hasBeenSetup, let annotation = annotation as? ProblemAnnotation else { return }
         
-        problemMarkerView.setContent(color: annotation.displayColor())
+        refreshSize()
+        
+        self.setContent(color: annotation.displayColor())
+    }
+    
+    func setContent(color: UIColor, borderColor: UIColor? = nil) {
+        circleView.backgroundColor = color
+    }
+    
+    func refreshSize() {
+        switch size {
+        case .full:
+            circleView.transform = .identity
+        case .medium:
+            circleView.transform = CGAffineTransform(scaleX: scaleMedium, y: scaleMedium)
+        case .small:
+            circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
