@@ -45,7 +45,9 @@ class DataStore : ObservableObject {
                         if filters.steepness.contains(problem.steepness) {
                             if filters.photoPresent == false || problem.isPhotoPresent() {
                                 if isHeightOk(problem) {
-                                    return true
+                                    if filters.favorite == false || problem.isFavorite()  {
+                                        return true
+                                    }
                                 }
                             }
                         }

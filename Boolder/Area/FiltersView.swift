@@ -34,15 +34,19 @@ struct FiltersView: View {
                                 .foregroundColor(Color.gray)
                         }
                     }
-                }
                 
-                Section {
                     NavigationLink(destination: GradeFilterView(), isActive: $presentGradeFilter) {
                         HStack {
                             Text("Niveaux")
                             Spacer()
                             Text(labelForCategories(dataStore.filters.gradeCategories))
                                 .foregroundColor(Color.gray)
+                        }
+                    }
+                    
+                    HStack {
+                        Toggle(isOn: $dataStore.filters.favorite) {
+                            Text("Favori")
                         }
                     }
                 }

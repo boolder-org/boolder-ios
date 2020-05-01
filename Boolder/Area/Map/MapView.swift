@@ -134,7 +134,7 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        func refreshAnnotationViewSize() {            
+        func refreshAnnotationViewSize() {
             animateAnnotationViews { [weak self] in
                 guard let self = self else { return }
                 
@@ -143,6 +143,12 @@ struct MapView: UIViewRepresentable {
                     let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
                     
                     if(problem.belongsToCircuit) {
+                        annotationView?.size = .full
+                    }
+                    else if(self.parent.dataStore.filters.favorite) {
+                        annotationView?.size = .full
+                    }
+                    else if(self.parent.dataStore.annotations.count < 30) {
                         annotationView?.size = .full
                     }
                     else {

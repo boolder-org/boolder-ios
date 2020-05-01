@@ -16,6 +16,8 @@ struct Filters {
     var heightMax: Int = 6
     var photoPresent = false
     var circuit: Circuit.CircuitType? = nil
+    var favorite = false
+    var ticked = false
     
     func filtersCount() -> Int {
         let initialValues = Filters()
@@ -26,6 +28,8 @@ struct Filters {
         if heightMax != initialValues.heightMax { count += 1 }
         if photoPresent != initialValues.photoPresent { count += 1 }
         if circuit != initialValues.circuit { count += 1 }
+        if favorite != initialValues.favorite { count += 1 }
+        if ticked != initialValues.ticked { count += 1 }
         
         return count
     }
