@@ -64,6 +64,7 @@ struct FiltersView: View {
             .navigationBarItems(
                 leading: Button("Réinitialiser") {
                     self.dataStore.filters = Filters()
+                    self.presentationMode.wrappedValue.dismiss()
                 },
                 trailing: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
