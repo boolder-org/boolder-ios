@@ -18,7 +18,6 @@ struct AreaView: View {
     @State private var showList = false
     @State private var selectedProblem = ProblemAnnotation()
     @State private var presentProblemDetails = false
-    @State private var zoomToRegion = false
     
     var body: some View {
         NavigationView {
@@ -57,23 +56,11 @@ struct AreaView: View {
         }
         .accentColor(Color.green)
 //        .onAppear {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self.setZoomToRegion()
-//            }
-//        }
-//        .onAppear {
 //                let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
 //                let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
 //                do { try self.managedObjectContext.execute(DelAllReqVar) }
 //                catch { print(error) }
 //        }
-    }
-    
-    func setZoomToRegion() {
-        self.zoomToRegion.toggle()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.zoomToRegion = false
-        }
     }
 }
 

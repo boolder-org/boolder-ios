@@ -23,7 +23,6 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
-//    @Binding var zoomToRegion: Bool
     
     var mapView = MKMapView()
     
@@ -47,6 +46,7 @@ struct MapView: UIViewRepresentable {
         mapView.addOverlays(dataStore.overlays)
         mapView.addAnnotations(dataStore.annotations)
         
+        // doing this async because otherwise animation doesnt work
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.zoomToRegion(mapView: self.mapView)
         }
@@ -54,23 +54,11 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
     
-    func zoomToRegion(mapView: MKMapView) {
-        let initialLocation = CLLocation(latitude: 48.461788 + Double.random(in: 0..<0.00001), longitude: 2.663394) // randomize to trigger map annotations collisions
-        let regionRadius: CLLocationDistance = 250
-        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        
-        mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
-    }
-    
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        print("update map ui")
+//        print("update map ui")
         
         let changedCircuit = context.coordinator.lastCircuit != dataStore.filters.circuit && dataStore.filters.circuit != nil
         context.coordinator.lastCircuit = dataStore.filters.circuit
-        print(changedCircuit)
-        
-//        let didStartZoom = context.coordinator.didStartZoom
-//        context.coordinator.didStartZoom = true
         
         if changedCircuit {
             zoomToRegion(mapView: mapView)
@@ -113,6 +101,14 @@ struct MapView: UIViewRepresentable {
         }
     }
     
+    func zoomToRegion(mapView: MKMapView) {
+        let initialLocation = CLLocation(latitude: 48.461788 + Double.random(in: 0..<0.00001), longitude: 2.663394) // randomize to trigger map annotations collisions
+        let regionRadius: CLLocationDistance = 250
+        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        
+        mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
+    }
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -138,19 +134,13 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        func refreshAnnotationViewSize() {
-//            print("refresh annotations size")
-            
+        func refreshAnnotationViewSize() {            
             animateAnnotationViews { [weak self] in
                 guard let self = self else { return }
                 
                 for annotation in self.parent.mapView.annotations {
                     guard let problem = annotation as? ProblemAnnotation else { return }
                     let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
-                    
-//                    if problem.id == 1 {
-//                        print("refresh annotations size for problem #1")
-//                    }
                     
                     if(problem.belongsToCircuit) {
                         annotationView?.size = .full
