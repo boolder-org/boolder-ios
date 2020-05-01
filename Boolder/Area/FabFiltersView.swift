@@ -14,34 +14,38 @@ struct FabFiltersView: View {
     
     @EnvironmentObject var dataStore: DataStore
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
             HStack(spacing: 16) {
-                Button(action: {
-                    self.presentCircuitFilter.toggle()
-                }) {
-                    if dataStore.filters.circuit != nil {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(circuitColor())
-                            .frame(width: 20, height: 20)
-                            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
-                        Text("Circuit")
-                    }
-                    else {
-                        Text("Pas de circuit")
-                    }
-                }
-                .sheet(isPresented: $presentCircuitFilter) {
-                    CircuitFilterView()
-                        // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
-                        // remove these lines as soon as it's fixed
-                        .environmentObject(self.dataStore)
-                        .environment(\.managedObjectContext, self.managedObjectContext)
-                        .accentColor(Color.green)
-                }
                 
-                Divider().frame(width: 1, height: 44, alignment: .center)
+                if false { // dataStore.filters.circuit != nil {
+                    Button(action: {
+                        self.presentCircuitFilter.toggle()
+                    }) {
+                        if dataStore.filters.circuit != nil {
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(circuitColor())
+                                .frame(width: 20, height: 20)
+                                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
+                            Text("Circuit")
+                        }
+                        else {
+                            Text("Pas de circuit")
+                        }
+                    }
+                    .sheet(isPresented: $presentCircuitFilter) {
+                        StandaloneCircuitFilterView(presentCircuitFilter: self.$presentCircuitFilter)
+                            // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
+                            // remove these lines as soon as it's fixed
+                            .environmentObject(self.dataStore)
+                            .environment(\.managedObjectContext, self.managedObjectContext)
+                            .accentColor(Color.green)
+                    }
+                    
+                    Divider().frame(width: 1, height: 44, alignment: .center)
+                }
                 
                 Button(action: {
                     self.presentFilters.toggle()

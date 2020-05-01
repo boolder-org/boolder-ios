@@ -21,13 +21,15 @@ struct CircuitFilterView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
     
+    @Binding var presentCircuitFilter: Bool
+    
     var body: some View {
-        NavigationView {
-            List {
+        List {
+            Section {
                 ForEach(circuits, id: \.self) { circuitType in
                     Button(action: {
                         self.dataStore.filters.circuit = circuitType
-                        self.presentationMode.wrappedValue.dismiss()
+                        self.presentCircuitFilter = false
                     }) {
                         HStack(alignment: .center) {
                             CircuitRectangle(color: Color(Circuit(circuitType).color))
@@ -43,34 +45,24 @@ struct CircuitFilterView: View {
                         .foregroundColor(Color(.label))
                     }
                 }
-                
-                Section {
-                    Button(action: {
-                        self.dataStore.filters.circuit = nil
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Montrer toutes les voies")
-                    }
-                    .foregroundColor(Color(.label))
-                }
             }
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
-            .navigationBarTitle("Circuit", displayMode: .inline)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+            
+            Section {
+                Button(action: {
+                    self.dataStore.filters.circuit = nil
+                    self.presentCircuitFilter = false
                 }) {
-                    Text("OK").bold()
+                    Text("Aucun circuit")
                 }
-            )
+                .foregroundColor(Color(.label))
+            }
         }
     }
 }
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView()
+        CircuitFilterView(presentCircuitFilter: .constant(true))
     }
 }
 

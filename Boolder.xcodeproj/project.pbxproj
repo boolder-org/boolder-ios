@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		37043E032458BE2A002782AB /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37043E022458BE2A002782AB /* area-1-data.geojson */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
+		371B152A245C717700D473C4 /* StandaloneCircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B1529245C717700D473C4 /* StandaloneCircuitFilterView.swift */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
 		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
@@ -264,6 +265,7 @@
 /* Begin PBXFileReference section */
 		37043E022458BE2A002782AB /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
+		371B1529245C717700D473C4 /* StandaloneCircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneCircuitFilterView.swift; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
 		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
@@ -852,6 +854,7 @@
 				37638B83245437A000C5CD82 /* ProblemListView.swift */,
 				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
 				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
+				371B1529245C717700D473C4 /* StandaloneCircuitFilterView.swift */,
 				37A2762A2457633E00F53D80 /* FiltersView.swift */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
@@ -1177,6 +1180,7 @@
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
+				371B152A245C717700D473C4 /* StandaloneCircuitFilterView.swift in Sources */,
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,

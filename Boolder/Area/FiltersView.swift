@@ -13,12 +13,29 @@ struct FiltersView: View {
     @EnvironmentObject var dataStore: DataStore
     
     @State private var presentGradeFilter = false
+    @State private var presentCircuitFilter = false
     
     let userVisibleSteepnessTypes: [Steepness.SteepnessType] = [.wall, .slab, .overhang, .traverse]
     
     var body: some View {
         NavigationView {
             Form {
+                Section {
+                    NavigationLink(destination:
+                        CircuitFilterView(presentCircuitFilter: $presentCircuitFilter)
+                        .listStyle(GroupedListStyle())
+                        .environment(\.horizontalSizeClass, .regular)
+                        .navigationBarTitle("Circuit", displayMode: .inline)
+                    , isActive: $presentCircuitFilter) {
+                        HStack {
+                            Text("Circuit")
+                            Spacer()
+                            Text(labelForCircuit())
+                                .foregroundColor(Color.gray)
+                        }
+                    }
+                }
+                
                 Section {
                     NavigationLink(destination: GradeFilterView(), isActive: $presentGradeFilter) {
                         HStack {
@@ -100,6 +117,15 @@ struct FiltersView: View {
         }
     }
     
+    private func labelForCircuit() -> String {
+        if let circuit = dataStore.filters.circuit {
+            return Circuit(circuit).name
+        }
+        else {
+            return "Aucun"
+        }
+    }
+    
     private func labelForCategories(_ categories: Set<Int>) -> String {
         let categories = Array(categories).sorted()
         
@@ -136,6 +162,7 @@ struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             FiltersView()
+            .environmentObject(DataStore.shared)
         }
     }
 }
