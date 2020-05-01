@@ -23,10 +23,9 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
-    @Binding var zoomToRegion: Bool
+//    @Binding var zoomToRegion: Bool
     
     var mapView = MKMapView()
-    var lastCircuitFilter: Circuit.CircuitType? = nil
     
     func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
@@ -48,18 +47,33 @@ struct MapView: UIViewRepresentable {
         mapView.addOverlays(dataStore.overlays)
         mapView.addAnnotations(dataStore.annotations)
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.zoomToRegion(mapView: self.mapView)
+        }
+        
         return mapView
     }
     
-    func updateUIView(_ mapView: MKMapView, context: Context) {
-//        print("update map ui")
+    func zoomToRegion(mapView: MKMapView) {
+        let initialLocation = CLLocation(latitude: 48.461788 + Double.random(in: 0..<0.00001), longitude: 2.663394) // randomize to trigger map annotations collisions
+        let regionRadius: CLLocationDistance = 250
+        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         
-        if zoomToRegion {
-            let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
-            let regionRadius: CLLocationDistance = 250
-            let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-            
-            mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
+        mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
+    }
+    
+    func updateUIView(_ mapView: MKMapView, context: Context) {
+        print("update map ui")
+        
+        let changedCircuit = context.coordinator.lastCircuit != dataStore.filters.circuit && dataStore.filters.circuit != nil
+        context.coordinator.lastCircuit = dataStore.filters.circuit
+        print(changedCircuit)
+        
+//        let didStartZoom = context.coordinator.didStartZoom
+//        context.coordinator.didStartZoom = true
+        
+        if changedCircuit {
+            zoomToRegion(mapView: mapView)
         }
         
         // remove & add annotations back only if needed to avoid flickering
@@ -113,6 +127,8 @@ struct MapView: UIViewRepresentable {
         }
         
         var parent: MapView
+        var lastCircuit: Circuit.CircuitType? = nil
+        var didStartZoom = false
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
             didSet {
