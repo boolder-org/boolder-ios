@@ -117,7 +117,7 @@ struct ProblemDetailsView: View {
                         
                         Button(action: {}) {
                             HStack(alignment: .center, spacing: 16) {
-                                Image(systemName: "square")
+                                Image(systemName: "circle")
                                     .font(.title)
                                 Text("Cocher")
                                     .fontWeight(.bold)
