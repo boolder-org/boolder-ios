@@ -25,8 +25,9 @@ struct MapView: UIViewRepresentable {
     @Binding var presentProblemDetails: Bool
     @Binding var zoomToRegion: Bool
     
+    var mapView = MKMapView()
+    
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
         mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 20_000_000), animated: true)
@@ -84,6 +85,8 @@ struct MapView: UIViewRepresentable {
         
         // refresh all annotation views
         
+        context.coordinator.refreshAnnotationViewSize()
+        
         for annotation in mapView.annotations {
             if let problem = annotation as? ProblemAnnotation {
                 if let annotationView = mapView.view(for: problem) as? ProblemAnnotationView {
@@ -91,10 +94,6 @@ struct MapView: UIViewRepresentable {
                 }
             }
         }
-    }
-    
-    private func reloadAnnotationsIfNeeded() {
-        
     }
     
     func makeCoordinator() -> Coordinator {
@@ -111,31 +110,40 @@ struct MapView: UIViewRepresentable {
         }
         
         var parent: MapView
-        var mapView: MKMapView! = nil // FIXME: might crash
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
             didSet {
                 guard zoomLevel != oldValue else { return }
                 
-                animateAnnotationViews { [weak self] in
-                    guard let self = self else { return }
+                self.refreshAnnotationViewSize()
+            }
+        }
+        
+        func refreshAnnotationViewSize() {
+            print("refresh annotations size")
+            
+            animateAnnotationViews { [weak self] in
+                guard let self = self else { return }
+                
+                for annotation in self.parent.mapView.annotations {
+                    guard let problem = annotation as? ProblemAnnotation else { return }
+                    let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
                     
-                    for annotation in self.mapView.annotations {
-                        guard let problem = annotation as? ProblemAnnotation else { return }
-                        guard let annotationView = self.mapView.view(for: problem) as? ProblemAnnotationView else { return }
-                        
-                        if(problem.belongsToCircuit) {
-                            annotationView.size = .full
-                        }
-                        else {
-                            switch self.zoomLevel {
-                            case .zoomedIn:
-                                annotationView.size = .full
-                            case .zoomedIntermediate:
-                                annotationView.size = .medium
-                            case .zoomedOut:
-                                annotationView.size = .small
-                            }
+                    if problem.id == 1 {
+                        print("refresh annotations size for problem #1")
+                    }
+                    
+                    if(problem.belongsToCircuit) {
+                        annotationView?.size = .full
+                    }
+                    else {
+                        switch self.zoomLevel {
+                        case .zoomedIn:
+                            annotationView?.size = .full
+                        case .zoomedIntermediate:
+                            annotationView?.size = .medium
+                        case .zoomedOut:
+                            annotationView?.size = .small
                         }
                     }
                 }
@@ -194,8 +202,6 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            self.mapView = mapView // FIXME: quick hack to pass mapview to annotationSize's property wrapper
-            
             if(mapView.camera.altitude < 150) {
                 zoomLevel = .zoomedIn
             }
