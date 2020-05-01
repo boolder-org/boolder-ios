@@ -101,14 +101,7 @@ struct MapView: UIViewRepresentable {
                     for annotation in self.mapView.annotations {
                         guard let problem = annotation as? ProblemAnnotation else { return }
                         let annotationView = self.mapView.view(for: problem) as? ProblemAnnotationView
-                        
-                        if problem.isFavorite() {
-                            annotationView?.size = .full
-                        }
-                        else
-                        {
-                            annotationView?.size = self.annotationSize
-                        }
+                        annotationView?.size = self.annotationSize
                     }
                 }
             }

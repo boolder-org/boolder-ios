@@ -85,14 +85,12 @@ class ProblemAnnotationView: MKAnnotationView {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         addSubview(label)
-        
-        let badgeImage = UIImage(systemName: "star.fill")!.withTintColor(.yellow, renderingMode: .alwaysOriginal)
-        //        let badgeImage = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
                 
-        badgeView = UIImageView(image: badgeImage)
+        badgeView = UIImageView()
         badgeView.frame = CGRect(x: 18, y: -6, width: 16, height: 16)
         badgeView.layer.zPosition = 10
         badgeView.isHidden = true
+        badgeView.isUserInteractionEnabled = false
         addSubview(badgeView)
         
         hasBeenSetup = true
@@ -102,18 +100,10 @@ class ProblemAnnotationView: MKAnnotationView {
         guard hasBeenSetup, let annotation = annotation as? ProblemAnnotation else { return }
         
         refreshSize()
+        refreshBadge()
         
         circleView.backgroundColor = annotation.displayColor()
         label.text = annotation.displayLabel
-        
-        if annotation.isFavorite() {
-            badgeView.isHidden = false
-            badgeView.alpha = 1
-        }
-        else {
-            badgeView.isHidden = true
-            badgeView.alpha = 0
-        }
     }
     
     func refreshSize() {
@@ -122,14 +112,34 @@ class ProblemAnnotationView: MKAnnotationView {
             circleView.transform = .identity
             label.isHidden = false
             label.alpha = 1
+            badgeView.isHidden = false
+            badgeView.alpha = 1
         case .medium:
             circleView.transform = CGAffineTransform(scaleX: scaleMedium, y: scaleMedium)
             label.isHidden = true
             label.alpha = 0
+            badgeView.isHidden = true
+            badgeView.alpha = 0
         case .small:
             circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
             label.isHidden = true
             label.alpha = 0
+            badgeView.isHidden = true
+            badgeView.alpha = 0
+        }
+    }
+    
+    func refreshBadge() {
+        guard let annotation = annotation as? ProblemAnnotation else { return }
+        
+        if annotation.isFavorite() {
+            let badgeImage = UIImage(systemName: "star.fill")!.withTintColor(.yellow, renderingMode: .alwaysOriginal)
+            //        let badgeImage = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
+            
+            badgeView.image = badgeImage
+        }
+        else {
+            badgeView.image = nil
         }
     }
     
@@ -142,7 +152,7 @@ class ProblemAnnotationView: MKAnnotationView {
     override var alignmentRectInsets: UIEdgeInsets {
         switch size {
         case .full:
-            return UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+            return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         case .medium:
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         case .small:
