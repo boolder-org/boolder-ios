@@ -8,14 +8,15 @@
 
 import SwiftUI
 
+let userVisibleSteepnessTypes: [Steepness.SteepnessType] = [.wall, .slab, .overhang, .traverse]
+
 struct FiltersView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
     
     @State private var presentGradeFilter = false
     @State private var presentCircuitFilter = false
-    
-    let userVisibleSteepnessTypes: [Steepness.SteepnessType] = [.wall, .slab, .overhang, .traverse]
+    @State private var presentSteepnessFilter = false
     
     var body: some View {
         NavigationView {
@@ -52,28 +53,15 @@ struct FiltersView: View {
                 }
                 
                 Section {
-                    ForEach(userVisibleSteepnessTypes, id: \.self) { steepness in
-                        
-                        Button(action: {
-                            self.steepnessTapped(steepness)
-                        }) {
-                            HStack {
-                                Image(Steepness(steepness).imageName)
-                                    .foregroundColor(Color(.label))
-                                    .frame(minWidth: 20)
-                                Text(Steepness(steepness).name)
-                                    .foregroundColor(Color(.label))
-                                Spacer()
-                                
-                                if self.dataStore.filters.steepness.contains(steepness) {
-                                    Image(systemName: "checkmark").font(Font.body.weight(.bold))
-                                }
-                            }
+                    NavigationLink(destination: SteepnessFilterView(), isActive: $presentSteepnessFilter) {
+                        HStack {
+                            Text("Type")
+                            Spacer()
+                            Text(labelForSteepness())
+                                .foregroundColor(Color.gray)
                         }
                     }
-                }
                 
-                Section {
                     HStack {
                         Toggle(isOn: $dataStore.filters.photoPresent) {
                             Text("Avec photo")
@@ -98,29 +86,6 @@ struct FiltersView: View {
         }
     }
     
-    private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
-        // toggle value for this steepness
-        if self.dataStore.filters.steepness.contains(steepness) {
-            self.dataStore.filters.steepness.remove(steepness)
-        }
-        else {
-            self.dataStore.filters.steepness.insert(steepness)
-        }
-        
-        // auto add/remove some values for user friendliness
-        
-        if self.dataStore.filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
-            self.dataStore.filters.steepness.formUnion([.other, .roof])
-        }
-        else {
-            self.dataStore.filters.steepness.subtract([.other, .roof])
-            
-            if self.dataStore.filters.steepness.contains(.overhang) {
-                self.dataStore.filters.steepness.insert(.roof)
-            }
-        }
-    }
-    
     private func labelForCircuit() -> String {
         if let circuit = dataStore.filters.circuit {
             return Circuit(circuit).name
@@ -128,6 +93,16 @@ struct FiltersView: View {
         else {
             return "Aucun"
         }
+    }
+    
+    private func labelForSteepness() -> String {
+        if dataStore.filters.steepness == Set(Steepness.SteepnessType.allCases) {
+            return "Tous"
+        }
+        
+        let visibleAndSelected = dataStore.filters.steepness.intersection(userVisibleSteepnessTypes)
+        let string = visibleAndSelected.map{ Steepness($0).name.lowercased() }.joined(separator: ", ")
+        return String(string.prefix(1).capitalized + string.dropFirst())
     }
     
     private func labelForCategories(_ categories: Set<Int>) -> String {
@@ -208,5 +183,59 @@ struct GradeFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Niveaux")
+    }
+}
+
+struct SteepnessFilterView: View {
+    @EnvironmentObject var dataStore: DataStore
+    
+    var body: some View {
+        List {
+            ForEach(userVisibleSteepnessTypes, id: \.self) { steepness in
+                
+                Button(action: {
+                    self.steepnessTapped(steepness)
+                }) {
+                    HStack {
+                        Image(Steepness(steepness).imageName)
+                            .foregroundColor(Color(.label))
+                            .frame(minWidth: 20)
+                        Text(Steepness(steepness).name)
+                            .foregroundColor(Color(.label))
+                        Spacer()
+                        
+                        if self.dataStore.filters.steepness.contains(steepness) {
+                            Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("Type")
+    }
+    
+    private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
+        // toggle value for this steepness
+        if self.dataStore.filters.steepness.contains(steepness) {
+            self.dataStore.filters.steepness.remove(steepness)
+        }
+        else {
+            self.dataStore.filters.steepness.insert(steepness)
+        }
+        
+        // auto add/remove some values for user friendliness
+        
+        if self.dataStore.filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
+            self.dataStore.filters.steepness.formUnion([.other, .roof])
+        }
+        else {
+            self.dataStore.filters.steepness.subtract([.other, .roof])
+            
+            if self.dataStore.filters.steepness.contains(.overhang) {
+                self.dataStore.filters.steepness.insert(.roof)
+            }
+        }
     }
 }
