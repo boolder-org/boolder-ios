@@ -13,10 +13,11 @@ struct StandaloneCircuitFilterView: View {
     @EnvironmentObject var dataStore: DataStore
     
     @Binding var presentCircuitFilter: Bool
+    @Binding var presentFilters: Bool
     
     var body: some View {
         NavigationView {
-            CircuitFilterView(presentCircuitFilter: $presentCircuitFilter)
+            CircuitFilterView(presentCircuitFilter: $presentCircuitFilter, presentFilters: $presentFilters)
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Circuit", displayMode: .inline)

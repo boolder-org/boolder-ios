@@ -22,6 +22,7 @@ struct CircuitFilterView: View {
     @EnvironmentObject var dataStore: DataStore
     
     @Binding var presentCircuitFilter: Bool
+    @Binding var presentFilters: Bool
     
     var body: some View {
         List {
@@ -29,6 +30,7 @@ struct CircuitFilterView: View {
                 ForEach(circuits, id: \.self) { circuitType in
                     Button(action: {
                         self.dataStore.filters.circuit = circuitType
+                        self.presentFilters = false
                         self.presentCircuitFilter = false
                     }) {
                         HStack(alignment: .center) {
@@ -50,6 +52,7 @@ struct CircuitFilterView: View {
             Section {
                 Button(action: {
                     self.dataStore.filters.circuit = nil
+                    self.presentFilters = false
                     self.presentCircuitFilter = false
                 }) {
                     Text("Aucun circuit")
@@ -62,7 +65,7 @@ struct CircuitFilterView: View {
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView(presentCircuitFilter: .constant(true))
+        CircuitFilterView(presentCircuitFilter: .constant(true), presentFilters: .constant(true))
     }
 }
 

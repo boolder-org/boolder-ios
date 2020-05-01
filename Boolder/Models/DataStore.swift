@@ -8,6 +8,7 @@
 
 
 import MapKit
+import CoreData
 
 class DataStore : ObservableObject {
     
@@ -94,5 +95,19 @@ class DataStore : ObservableObject {
         for problem in geoStore.annotations {
             problem.belongsToCircuit = (filters.circuit == problem.circuitType)
         }
+    }
+    
+    func favorites() -> [Favorite] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        request.sortDescriptors = []
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
     }
 }

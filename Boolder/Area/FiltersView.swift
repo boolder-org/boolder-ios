@@ -17,13 +17,14 @@ struct FiltersView: View {
     @State private var presentGradeFilter = false
     @State private var presentCircuitFilter = false
     @State private var presentSteepnessFilter = false
+    @Binding var presentFilters: Bool
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     NavigationLink(destination:
-                        CircuitFilterView(presentCircuitFilter: $presentCircuitFilter)
+                        CircuitFilterView(presentCircuitFilter: $presentCircuitFilter, presentFilters: $presentFilters)
                         .listStyle(GroupedListStyle())
                         .environment(\.horizontalSizeClass, .regular)
                         .navigationBarTitle("Circuit", displayMode: .inline)
@@ -38,21 +39,13 @@ struct FiltersView: View {
                 
                     NavigationLink(destination: GradeFilterView(), isActive: $presentGradeFilter) {
                         HStack {
-                            Text("Niveaux")
+                            Text("Niveau")
                             Spacer()
                             Text(labelForCategories(dataStore.filters.gradeCategories))
                                 .foregroundColor(Color.gray)
                         }
                     }
                     
-                    HStack {
-                        Toggle(isOn: $dataStore.filters.favorite) {
-                            Text("Favori")
-                        }
-                    }
-                }
-                
-                Section {
                     NavigationLink(destination: SteepnessFilterView(), isActive: $presentSteepnessFilter) {
                         HStack {
                             Text("Type")
@@ -61,11 +54,29 @@ struct FiltersView: View {
                                 .foregroundColor(Color.gray)
                         }
                     }
-                
+                    
                     HStack {
-                        Toggle(isOn: $dataStore.filters.photoPresent) {
-                            Text("Avec photo")
+                        Toggle(isOn: $dataStore.filters.favorite) {
+                            Text("Favori")
+                                .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
                         }
+                        .disabled(dataStore.favorites().count == 0)
+                    }
+                }
+                
+                Section(header: Text("Sécurité").font(.subheadline)) {
+                    HStack {
+                        Text("Hauteur maximum")
+                        Spacer()
+                        Text("3m")
+                            .foregroundColor(Color.gray)
+                    }
+                    
+                    HStack {
+                        Text("Risque en cas de chute")
+                        Spacer()
+                        Text("Tous")
+                            .foregroundColor(Color.gray)
                     }
                 }
             }
@@ -140,7 +151,7 @@ struct FiltersView: View {
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FiltersView()
+            FiltersView(presentFilters: .constant(true))
             .environmentObject(DataStore.shared)
         }
     }

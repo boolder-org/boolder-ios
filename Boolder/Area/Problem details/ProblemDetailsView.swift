@@ -79,7 +79,7 @@ struct ProblemDetailsView: View {
                                     .font(.body)
                                     .foregroundColor(Color.red)
                                     .frame(minWidth: 16)
-                                Text("Danger en cas de chute")
+                                Text("Dangereux en cas de chute")
                                     .font(.body)
                                     .foregroundColor(Color.red)
                                 }

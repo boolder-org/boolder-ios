@@ -89,23 +89,9 @@ class ProblemAnnotation: NSObject, MKAnnotation {
     }
     
     func favorite() -> Favorite? {
-        favorites().first { (favorite: Favorite) -> Bool in
+        DataStore.shared.favorites().first { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == self.id
         }
-    }
-    
-    func favorites() -> [Favorite] {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
-        request.sortDescriptors = []
-        
-        do {
-            return try context.fetch(request)
-        } catch {
-            fatalError("Failed to fetch employees: \(error)")
-        }
-        
     }
 }
 
