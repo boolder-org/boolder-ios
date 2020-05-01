@@ -23,7 +23,7 @@ class ProblemAnnotationView: MKAnnotationView {
         willSet {
             if let problem = newValue as? ProblemAnnotation {
                 if(problem.isFavorite()) {
-                    self.displayPriority = .defaultHigh
+                    self.displayPriority = .required
                 }
                 else {
                     self.displayPriority = .defaultLow

@@ -104,20 +104,39 @@ struct MapView: UIViewRepresentable {
     // MARK: Coordinator
     
     class Coordinator: NSObject, MKMapViewDelegate {
+        enum ZoomLevel: Int {
+            case zoomedIn
+            case zoomedIntermediate
+            case zoomedOut
+        }
+        
         var parent: MapView
         var mapView: MKMapView! = nil // FIXME: might crash
         
-        private var annotationSize: ProblemAnnotationViewSize = .small {
+        private var zoomLevel: ZoomLevel = .zoomedOut {
             didSet {
-                guard annotationSize != oldValue else { return }
+                guard zoomLevel != oldValue else { return }
                 
                 animateAnnotationViews { [weak self] in
                     guard let self = self else { return }
                     
                     for annotation in self.mapView.annotations {
                         guard let problem = annotation as? ProblemAnnotation else { return }
-                        let annotationView = self.mapView.view(for: problem) as? ProblemAnnotationView
-                        annotationView?.size = self.annotationSize
+                        guard let annotationView = self.mapView.view(for: problem) as? ProblemAnnotationView else { return }
+                        
+                        if(problem.belongsToCircuit) {
+                            annotationView.size = .full
+                        }
+                        else {
+                            switch self.zoomLevel {
+                            case .zoomedIn:
+                                annotationView.size = .full
+                            case .zoomedIntermediate:
+                                annotationView.size = .medium
+                            case .zoomedOut:
+                                annotationView.size = .small
+                            }
+                        }
                     }
                 }
             }
@@ -178,13 +197,13 @@ struct MapView: UIViewRepresentable {
             self.mapView = mapView // FIXME: quick hack to pass mapview to annotationSize's property wrapper
             
             if(mapView.camera.altitude < 150) {
-                annotationSize = .full
+                zoomLevel = .zoomedIn
             }
             else if(mapView.camera.altitude < 500) {
-                annotationSize = .medium
+                zoomLevel = .zoomedIntermediate
             }
             else {
-                annotationSize = .small
+                zoomLevel = .zoomedOut
             }
         }
     }
