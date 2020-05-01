@@ -64,6 +64,21 @@ class ProblemAnnotationView: MKAnnotationView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForDisplay() {
+        super.prepareForDisplay()
+        
+//        guard let annotation = annotation as? ProblemAnnotation else { return }
+//        print("preparfordisplay \(annotation.id!)")
+        
+        refreshUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        size = .small
+    }
+    
     func initUI() {
 //        backgroundColor = UIColor.white
 //        alpha = 1

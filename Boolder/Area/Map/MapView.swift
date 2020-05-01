@@ -26,6 +26,7 @@ struct MapView: UIViewRepresentable {
     @Binding var zoomToRegion: Bool
     
     var mapView = MKMapView()
+    var lastCircuitFilter: Circuit.CircuitType? = nil
     
     func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
@@ -51,7 +52,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        print("update map ui")
+//        print("update map ui")
         
         if zoomToRegion {
             let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
@@ -84,8 +85,10 @@ struct MapView: UIViewRepresentable {
         }
         
         // refresh all annotation views
-        
-        context.coordinator.refreshAnnotationViewSize()
+        // FIXME: doesn't seem to work syncronously
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            context.coordinator.refreshAnnotationViewSize()
+        }
         
         for annotation in mapView.annotations {
             if let problem = annotation as? ProblemAnnotation {
@@ -120,7 +123,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func refreshAnnotationViewSize() {
-            print("refresh annotations size")
+//            print("refresh annotations size")
             
             animateAnnotationViews { [weak self] in
                 guard let self = self else { return }
@@ -129,9 +132,9 @@ struct MapView: UIViewRepresentable {
                     guard let problem = annotation as? ProblemAnnotation else { return }
                     let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
                     
-                    if problem.id == 1 {
-                        print("refresh annotations size for problem #1")
-                    }
+//                    if problem.id == 1 {
+//                        print("refresh annotations size for problem #1")
+//                    }
                     
                     if(problem.belongsToCircuit) {
                         annotationView?.size = .full
