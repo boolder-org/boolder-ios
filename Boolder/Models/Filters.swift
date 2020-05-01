@@ -16,4 +16,17 @@ struct Filters {
     var heightMax: Int = 6
     var photoPresent = false
     var circuit: Circuit.CircuitType? = nil
+    
+    func filtersCount() -> Int {
+        let initialValues = Filters()
+        var count = 0
+        
+        if gradeCategories != initialValues.gradeCategories { count += 1 }
+        if steepness != initialValues.steepness { count += 1 }
+        if heightMax != initialValues.heightMax { count += 1 }
+        if photoPresent != initialValues.photoPresent { count += 1 }
+        if circuit != initialValues.circuit { count += 1 }
+        
+        return count
+    }
 }

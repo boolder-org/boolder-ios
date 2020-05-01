@@ -50,8 +50,23 @@ struct FabFiltersView: View {
                 Button(action: {
                     self.presentFilters.toggle()
                 }) {
-                    Image(systemName: "slider.horizontal.3")
-                    Text("Filtres")
+                    if dataStore.filters.filtersCount() == 0 {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                    else
+                    {
+                        RoundedRectangle(cornerRadius: 6)
+                        .fill(Color.green)
+                            .frame(width: 20, height: 20)
+                            .overlay(Text(String(dataStore.filters.filtersCount()))
+                            .font(.headline)
+                            .padding(.horizontal, 4)
+                            )
+//                            .background(Color.green)
+                            .foregroundColor(Color(.systemBackground))
+//                            .cornerRadius(8)
+                    }
+                    Text(dataStore.filters.filtersCount() == 1 ? "Filtre" : "Filtres")
                     
                 }
                 .padding(.vertical, 12)
