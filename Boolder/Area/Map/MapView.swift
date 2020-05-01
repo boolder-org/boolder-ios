@@ -11,27 +11,35 @@ import SwiftUI
 
 // heavily inspired from https://www.hackingwithswift.com/books/ios-swiftui/advanced-mkmapview-with-swiftui
 
+extension MKMapView {
+    func animatedZoom(zoomRegion:MKCoordinateRegion, duration:TimeInterval) {
+        MKMapView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.setRegion(zoomRegion, animated: true)
+            }, completion: nil)
+    }
+}
+
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
+    @Binding var zoomToRegion: Bool
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
+        mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 20_000_000), animated: true)
         
-        let regionRadius: CLLocationDistance = 250
+        let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
+        let regionRadius: CLLocationDistance = 1_000
         let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
+        mapView.setRegion(coordinateRegion, animated: false)
         
         mapView.showsCompass = false
         mapView.showsScale = true
         mapView.isRotateEnabled = false
         mapView.isPitchEnabled = false
-        
-        mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 20_000_000), animated: true)
         
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
@@ -43,6 +51,14 @@ struct MapView: UIViewRepresentable {
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
         print("update map ui")
+        
+        if zoomToRegion {
+            let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
+            let regionRadius: CLLocationDistance = 250
+            let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+            
+            mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
+        }
         
         // remove & add annotations back only if needed to avoid flickering
         
@@ -107,12 +123,12 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        init(_ parent: MapView) {
-            self.parent = parent
-        }
-        
         func animateAnnotationViews(_ animations: @escaping () -> Void) {
             UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: animations, completion: nil)
+        }
+        
+        init(_ parent: MapView) {
+            self.parent = parent
         }
         
         // MARK: MKMapViewDelegate delegate methods
