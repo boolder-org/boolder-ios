@@ -62,6 +62,14 @@ struct FiltersView: View {
                         }
                         .disabled(dataStore.favorites().count == 0)
                     }
+                    
+                    HStack {
+                        Toggle(isOn: $dataStore.filters.ticked) {
+                            Text("Coché")
+                                .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
+                        }
+                        .disabled(dataStore.ticks().count == 0)
+                    }
                 }
                 
                 Section(header: Text("Sécurité").font(.subheadline)) {

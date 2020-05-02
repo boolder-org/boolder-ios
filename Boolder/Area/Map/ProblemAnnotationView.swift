@@ -162,6 +162,9 @@ class ProblemAnnotationView: MKAnnotationView {
     func refreshBadge() {
         guard let annotation = annotation as? ProblemAnnotation else { return }
         
+        badgeView.layer.removeAllAnimations()
+        badgeViewBackground.layer.removeAllAnimations()
+        
         if annotation.isTicked() {
             badgeView.image = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
             badgeViewBackground.isHidden = false
