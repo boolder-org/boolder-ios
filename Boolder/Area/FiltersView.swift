@@ -56,7 +56,7 @@ struct FiltersView: View {
                     }
                 }
                 
-                Section(header: Text("Sécurité").font(.subheadline)) {
+                Section {
                     
                     NavigationLink(destination: HeightFilterView()) {
                         HStack {
@@ -77,7 +77,7 @@ struct FiltersView: View {
                     }
                 }
                 
-                Section(header: Text("Par vous").font(.subheadline)) {
+                Section {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.favorite) {
