@@ -72,11 +72,13 @@ struct FiltersView: View {
                             .foregroundColor(Color.gray)
                     }
                     
-                    HStack {
-                        Text("Risque en cas de chute")
-                        Spacer()
-                        Text("Tous")
-                            .foregroundColor(Color.gray)
+                    NavigationLink(destination: RiskyFilterView()) {
+                        HStack {
+                            Text("Risque en cas de chute")
+                            Spacer()
+                            Text(dataStore.filters.risky ? "Tous" : "Moins dangereux")
+                                .foregroundColor(Color.gray)
+                        }
                     }
                 }
             }
@@ -194,6 +196,52 @@ struct GradeFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Niveaux")
+    }
+}
+
+struct RiskyFilterView: View {
+    @EnvironmentObject var dataStore: DataStore
+    
+    var body: some View {
+        List {
+            Section(
+                footer: Text("Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.").padding(.top)
+            ) {
+                Button(action: {
+                    
+                }) {
+                    HStack {
+                        Image(systemName: "exclamationmark.shield")
+                            .font(.body)
+                            .foregroundColor(Color(.label))
+                            .frame(minWidth: 16)
+                        Text("Moins dangereux en cas de chute").foregroundColor(Color(.label))
+                        Spacer()
+                        Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                    }
+                }
+                
+                Button(action: {
+                    self.dataStore.filters.risky.toggle()
+                }) {
+                    HStack {
+                        Image(systemName: "exclamationmark.shield.fill")
+                            .font(.body)
+                            .foregroundColor(Color.red)
+                            .frame(minWidth: 16)
+                        Text("Dangereux en cas de chute")
+                            .foregroundColor(Color.red)
+                        Spacer()
+                        if dataStore.filters.risky {
+                            Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("Risque en cas de chute")
     }
 }
 

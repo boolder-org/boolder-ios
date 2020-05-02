@@ -18,6 +18,7 @@ struct Filters {
     var circuit: Circuit.CircuitType? = nil
     var favorite = false
     var ticked = false
+    var risky = true
     
     func filtersCount() -> Int {
         let initialValues = Filters()
@@ -30,6 +31,7 @@ struct Filters {
         if circuit != initialValues.circuit { count += 1 }
         if favorite != initialValues.favorite { count += 1 }
         if ticked != initialValues.ticked { count += 1 }
+        if risky != initialValues.risky { count += 1 }
         
         return count
     }

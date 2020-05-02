@@ -47,7 +47,9 @@ class DataStore : ObservableObject {
                             if filters.photoPresent == false || problem.isPhotoPresent() {
                                 if isHeightOk(problem) {
                                     if filters.favorite == false || problem.isFavorite()  {
-                                        return true
+                                        if filters.risky == true || !problem.isRisky()  {
+                                            return true
+                                        }
                                     }
                                 }
                             }
