@@ -269,8 +269,11 @@ struct ProblemDetailsView: View {
 
 struct ProblemDetailsView_Previews: PreviewProvider {
     static let dataStore = DataStore.shared
+    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
         ProblemDetailsView(problem: .constant(dataStore.annotations.last!))
+            .environment(\.managedObjectContext, self.context)
+            .environmentObject(DataStore.shared)
     }
 }
