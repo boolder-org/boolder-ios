@@ -77,7 +77,7 @@ struct FiltersView: View {
                     }
                 }
                 
-                Section(header: Text("Votre sélection").font(.subheadline)) {
+                Section(header: Text("Par vous").font(.subheadline)) {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.favorite) {
