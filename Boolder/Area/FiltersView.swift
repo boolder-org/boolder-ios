@@ -56,25 +56,6 @@ struct FiltersView: View {
                     }
                 }
                 
-                Section {
-                    
-                    HStack {
-                        Toggle(isOn: $dataStore.filters.favorite) {
-                            Text("Favori")
-                                .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
-                        }
-                        .disabled(dataStore.favorites().count == 0)
-                    }
-                    
-                    HStack {
-                        Toggle(isOn: $dataStore.filters.ticked) {
-                            Text("Coché")
-                                .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
-                        }
-                        .disabled(dataStore.ticks().count == 0)
-                    }
-                }
-                
                 Section(header: Text("Sécurité").font(.subheadline)) {
                     
                     NavigationLink(destination: HeightFilterView()) {
@@ -93,6 +74,25 @@ struct FiltersView: View {
                             Text(dataStore.filters.risky ? "Tous" : "Moins dangereux")
                                 .foregroundColor(Color.gray)
                         }
+                    }
+                }
+                
+                Section(header: Text("Votre sélection").font(.subheadline)) {
+                    
+                    HStack {
+                        Toggle(isOn: $dataStore.filters.favorite) {
+                            Text("Favori")
+                                .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
+                        }
+                        .disabled(dataStore.favorites().count == 0)
+                    }
+                    
+                    HStack {
+                        Toggle(isOn: $dataStore.filters.ticked) {
+                            Text("Coché")
+                                .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
+                        }
+                        .disabled(dataStore.ticks().count == 0)
                     }
                 }
             }
