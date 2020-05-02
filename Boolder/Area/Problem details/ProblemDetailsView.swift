@@ -14,6 +14,7 @@ struct ProblemDetailsView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
+    @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: ProblemAnnotation
     
@@ -115,14 +116,26 @@ struct ProblemDetailsView: View {
                         .foregroundColor(Color(UIColor.systemBackground))
                         .cornerRadius(8)
                         
-                        Button(action: {}) {
+                        Button(action: {
+                            self.toggleTick()
+                        }) {
                             HStack(alignment: .center, spacing: 16) {
-                                Image(systemName: "circle")
-                                    .font(.title)
-                                Text("Cocher")
-                                    .fontWeight(.bold)
-                                    .padding(.vertical)
-                                    .fixedSize(horizontal: true, vertical: true)
+                                if self.isTicked() {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.title)
+                                    Text("Coché")
+                                        .fontWeight(.bold)
+                                        .padding(.vertical)
+                                        .fixedSize(horizontal: true, vertical: true)
+                                }
+                                else {
+                                    Image(systemName: "circle")
+                                        .font(.title)
+                                    Text("Cocher")
+                                        .fontWeight(.bold)
+                                        .padding(.vertical)
+                                        .fixedSize(horizontal: true, vertical: true)
+                                }
                             }
                             .padding(.horizontal)
                         }
@@ -202,6 +215,49 @@ struct ProblemDetailsView: View {
     func deleteFavorite() {
         guard let favorite = favorite() else { return }
         managedObjectContext.delete(favorite)
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
+        }
+    }
+    
+    func isTicked() -> Bool {
+        tick() != nil
+    }
+    
+    func tick() -> Tick? {
+        ticks.first { (tick: Tick) -> Bool in
+            return Int(tick.problemId) == problem.id
+        }
+    }
+    
+    func toggleTick() {
+        if isTicked() {
+            deleteTick()
+        }
+        else {
+            createTick()
+        }
+    }
+    
+    func createTick() {
+        let tick = Tick(context: self.managedObjectContext)
+        tick.id = UUID()
+        tick.problemId = Int64(self.problem.id)
+        tick.createdAt = Date()
+        
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
+        }
+    }
+    
+    func deleteTick() {
+        guard let tick = tick() else { return }
+        managedObjectContext.delete(tick)
         
         do {
             try self.managedObjectContext.save()
