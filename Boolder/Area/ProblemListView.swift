@@ -59,6 +59,7 @@ struct ProblemListView: View {
             }
         }
         .listStyle(GroupedListStyle())
+        .animation(.easeInOut(duration: 0))
     }
     
     func isFavorite(problem: ProblemAnnotation) -> Bool {

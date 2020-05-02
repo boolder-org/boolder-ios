@@ -9,7 +9,7 @@
 import MapKit
 import CoreData
 
-class ProblemAnnotation: NSObject, MKAnnotation {
+class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     // This property must be key-value observable, which the `@objc dynamic` attributes provide.
     @objc dynamic var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
