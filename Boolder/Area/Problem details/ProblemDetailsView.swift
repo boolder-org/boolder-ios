@@ -28,6 +28,13 @@ struct ProblemDetailsView: View {
                     
                     BezierViewRepresentable(problem: problem)
                     
+                    GeometryReader { geo in
+                        if self.topoFirstPoint(photoSize: geo.size) != nil {
+                            CircuitNumberView(number: self.problem.displayLabel, color: self.problem.displayColor())
+                                .offset(x: self.topoFirstPoint(photoSize: geo.size)!.x - 14, y: self.topoFirstPoint(photoSize: geo.size)!.y - 14)
+                        }
+                    }
+                    
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
@@ -179,6 +186,12 @@ struct ProblemDetailsView: View {
 //            }
 //        )
     }
+    
+    func topoFirstPoint(photoSize size: CGSize) -> CGPoint? {
+        guard let topoFirstPoint = problem.topoFirstPoint() else { return nil }
+            
+        return CGPoint(x: CGFloat(topoFirstPoint.x) * size.width, y: CGFloat(topoFirstPoint.y) * size.height)
+    }
         
     func isFavorite() -> Bool {
         favorite() != nil
@@ -277,3 +290,4 @@ struct ProblemDetailsView_Previews: PreviewProvider {
             .environmentObject(DataStore.shared)
     }
 }
+
