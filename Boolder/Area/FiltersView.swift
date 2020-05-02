@@ -54,6 +54,9 @@ struct FiltersView: View {
                                 .foregroundColor(Color.gray)
                         }
                     }
+                }
+                
+                Section {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.favorite) {
