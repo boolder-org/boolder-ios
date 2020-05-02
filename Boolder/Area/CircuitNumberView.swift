@@ -25,16 +25,26 @@ struct CircuitNumberView: View {
         ZStack {
             Circle()
                 .fill(Color(color))
-                .frame(width: 28, height: 28)
             Text(number)
                 .font(.headline)
                 .foregroundColor(Color(readableColor()))
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+                .overlay(
+                    Circle()
+                        .stroke(Color.black, lineWidth: 1)
+                        .frame(width: 28, height: 28)
+                        .opacity(color == Circuit(.white).color ? 1.0 : 0.0)
+                )
+                .frame(width: 26, height: 26)
         }
+        .frame(width: 28, height: 28)
     }
 }
 
 struct CircuitNumberView_Previews: PreviewProvider {
     static var previews: some View {
         CircuitNumberView(number: "17", color: .red)
+            .previewLayout(.fixed(width: 50, height: 50))
     }
 }
