@@ -72,11 +72,11 @@ struct MapView: UIViewRepresentable {
         
         // remove & add annotations back only if needed to avoid flickering
         
-        let previousAnnotationsIds: [Int] = mapView.annotations.map{ annotation in
+        let previousAnnotationsIds: [Int] = mapView.annotations.compactMap{ annotation in
             if let problem = annotation as? ProblemAnnotation {
                 return problem.id!
             } else {
-                return 0
+                return nil
             }
         }
         
