@@ -189,7 +189,7 @@ struct GradeFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("Niveaux")
+        .navigationBarTitle("Niveau")
     }
 }
 
