@@ -14,7 +14,7 @@ struct CircuitNumberView: View {
     
     func readableColor() -> UIColor {
         if color == Circuit(.white).color {
-            return .label
+            return .black
         }
         else {
             return .systemBackground

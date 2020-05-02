@@ -854,6 +854,7 @@
 				37A8C62D2453263300DC161F /* AreaView.swift */,
 				37D7B16A245B091100B522A6 /* Map */,
 				37638B83245437A000C5CD82 /* ProblemListView.swift */,
+				37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */,
 				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
 				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
 				371B1529245C717700D473C4 /* StandaloneCircuitFilterView.swift */,
@@ -867,7 +868,6 @@
 			isa = PBXGroup;
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
-				37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */,
 				37F12D872456D51F0036E3E3 /* BezierView */,
 			);
 			path = "Problem details";
