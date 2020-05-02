@@ -93,6 +93,16 @@ class ProblemAnnotation: NSObject, MKAnnotation {
             return Int(favorite.problemId) == self.id
         }
     }
+    
+    func isTicked() -> Bool {
+        tick() != nil
+    }
+    
+    func tick() -> Tick? {
+        DataStore.shared.ticks().first { (tick: Tick) -> Bool in
+            return Int(tick.problemId) == self.id
+        }
+    }
 }
 
 //class ProblemAnnotation: NSObject, Decodable, MKAnnotation {

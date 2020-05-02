@@ -108,8 +108,20 @@ class DataStore : ObservableObject {
         do {
             return try context.fetch(request)
         } catch {
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch favorites: \(error)")
         }
+    }
+    
+    func ticks() -> [Tick] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
+        let request: NSFetchRequest<Tick> = Tick.fetchRequest()
+        request.sortDescriptors = []
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch ticks: \(error)")
+        }
     }
 }

@@ -25,6 +25,9 @@ class ProblemAnnotationView: MKAnnotationView {
                 if(problem.isFavorite()) {
                     self.displayPriority = .required
                 }
+                else if(problem.isTicked()) {
+                    self.displayPriority = .defaultHigh
+                }
                 else {
                     self.displayPriority = .defaultLow
                 }
@@ -52,7 +55,9 @@ class ProblemAnnotationView: MKAnnotationView {
     private let overlayCircleView = UIView()
     private let circleView = UIView()
     private let label = UILabel()
+    private var badgeViewContainer = UIView()
     private var badgeView = UIImageView()
+    private var badgeViewBackground = UIView()
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -77,6 +82,8 @@ class ProblemAnnotationView: MKAnnotationView {
         super.prepareForReuse()
         
         size = .small
+        badgeView.image = nil
+        badgeViewBackground.isHidden = true
     }
     
     func initUI() {
@@ -100,13 +107,21 @@ class ProblemAnnotationView: MKAnnotationView {
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
         addSubview(label)
-                
-        badgeView = UIImageView()
-        badgeView.frame = CGRect(x: 18, y: -6, width: 16, height: 16)
-        badgeView.layer.zPosition = 10
-        badgeView.isHidden = true
-        badgeView.isUserInteractionEnabled = false
-        addSubview(badgeView)
+        
+        badgeViewContainer.frame = CGRect(x: 18, y: -6, width: 16, height: 16)
+        badgeViewContainer.layer.zPosition = 10
+        badgeViewContainer.isHidden = true
+        badgeViewContainer.isUserInteractionEnabled = false
+        addSubview(badgeViewContainer)
+        
+        badgeView.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        badgeViewContainer.addSubview(badgeView)
+        
+        badgeViewBackground.frame = CGRect(x: 4, y: 4, width: 8, height: 8)
+        badgeViewBackground.backgroundColor = .systemBackground
+        badgeViewBackground.layer.cornerRadius = 4
+        badgeViewBackground.layer.zPosition = -1
+        badgeViewContainer.addSubview(badgeViewBackground)
         
         hasBeenSetup = true
     }
@@ -127,34 +142,37 @@ class ProblemAnnotationView: MKAnnotationView {
             circleView.transform = .identity
             label.isHidden = false
             label.alpha = 1
-            badgeView.isHidden = false
-            badgeView.alpha = 1
+            badgeViewContainer.isHidden = false
+            badgeViewContainer.alpha = 1
         case .medium:
             circleView.transform = CGAffineTransform(scaleX: scaleMedium, y: scaleMedium)
             label.isHidden = true
             label.alpha = 0
-            badgeView.isHidden = true
-            badgeView.alpha = 0
+            badgeViewContainer.isHidden = true
+            badgeViewContainer.alpha = 0
         case .small:
             circleView.transform = CGAffineTransform(scaleX: scaleSmall, y: scaleSmall)
             label.isHidden = true
             label.alpha = 0
-            badgeView.isHidden = true
-            badgeView.alpha = 0
+            badgeViewContainer.isHidden = true
+            badgeViewContainer.alpha = 0
         }
     }
     
     func refreshBadge() {
         guard let annotation = annotation as? ProblemAnnotation else { return }
         
-        if annotation.isFavorite() {
-            let badgeImage = UIImage(systemName: "star.fill")!.withTintColor(.yellow, renderingMode: .alwaysOriginal)
-            //        let badgeImage = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
-            
-            badgeView.image = badgeImage
+        if annotation.isTicked() {
+            badgeView.image = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
+            badgeViewBackground.isHidden = false
+        }
+        else if annotation.isFavorite() {
+            badgeView.image = UIImage(systemName: "star.fill")!.withTintColor(.yellow, renderingMode: .alwaysOriginal)
+            badgeViewBackground.isHidden = true
         }
         else {
             badgeView.image = nil
+            badgeViewBackground.isHidden = true
         }
     }
     
