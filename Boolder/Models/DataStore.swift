@@ -62,7 +62,7 @@ class DataStore : ObservableObject {
     }
     
     private func isHeightOk(_ problem: ProblemAnnotation) -> Bool {
-        if filters.heightMax == 6 { return true }
+        if filters.heightMax == Int.max { return true }
         
         if let height = problem.height {
             return (height <= filters.heightMax)

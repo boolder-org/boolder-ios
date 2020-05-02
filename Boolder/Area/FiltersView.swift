@@ -65,11 +65,14 @@ struct FiltersView: View {
                 }
                 
                 Section(header: Text("Sécurité").font(.subheadline)) {
-                    HStack {
-                        Text("Hauteur maximum")
-                        Spacer()
-                        Text("3m")
-                            .foregroundColor(Color.gray)
+                    
+                    NavigationLink(destination: HeightFilterView()) {
+                        HStack {
+                            Text("Hauteur")
+                            Spacer()
+                            Text(dataStore.filters.heightMax == Int.max ? "Tous" : "Moins de \(String(dataStore.filters.heightMax)) m")
+                                .foregroundColor(Color.gray)
+                        }
                     }
                     
                     NavigationLink(destination: RiskyFilterView()) {
@@ -242,6 +245,48 @@ struct RiskyFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Risque en cas de chute")
+    }
+}
+
+struct HeightFilterView: View {
+    @EnvironmentObject var dataStore: DataStore
+    let visibleHeightMaxValues = [3,4,5,6,7,8]
+    
+    var body: some View {
+        List {
+            Section() {
+                ForEach(visibleHeightMaxValues, id: \.self) { height in
+                    Button(action: {
+                        self.dataStore.filters.heightMax = height
+                    }) {
+                        HStack {
+                            Text("Moins de \(String(height)) m").foregroundColor(Color(.label))
+                            Spacer()
+                            if self.dataStore.filters.heightMax == height {
+                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                            }
+                        }
+                    }
+                }
+            }
+            
+            Section {
+                Button(action: {
+                    self.dataStore.filters.heightMax = Int.max
+                }) {
+                    HStack {
+                        Text("Pas de limite").foregroundColor(Color(.label))
+                        Spacer()
+                        if self.dataStore.filters.heightMax == Int.max {
+                            Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("Hauteur")
     }
 }
 
