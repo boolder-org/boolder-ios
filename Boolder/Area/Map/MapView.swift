@@ -8,6 +8,7 @@
 
 import MapKit
 import SwiftUI
+import CoreLocation
 
 // heavily inspired from https://www.hackingwithswift.com/books/ios-swiftui/advanced-mkmapview-with-swiftui
 
@@ -36,6 +37,7 @@ struct MapView: UIViewRepresentable {
         let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: false)
         
+        mapView.showsUserLocation = true
         mapView.showsCompass = false
         mapView.showsScale = true
         mapView.isRotateEnabled = false
@@ -49,6 +51,10 @@ struct MapView: UIViewRepresentable {
         // doing this async because otherwise animation doesnt work
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.zoomToRegion(mapView: self.mapView)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            context.coordinator.showUserLocation()
         }
         
         return mapView
@@ -115,7 +121,7 @@ struct MapView: UIViewRepresentable {
     
     // MARK: Coordinator
     
-    class Coordinator: NSObject, MKMapViewDelegate {
+    class Coordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
         enum ZoomLevel: Int {
             case zoomedIn
             case zoomedIntermediate
@@ -125,6 +131,7 @@ struct MapView: UIViewRepresentable {
         var parent: MapView
         var lastCircuit: Circuit.CircuitType? = nil
         var didStartZoom = false
+        var locationManager = CLLocationManager()
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
             didSet {
@@ -139,26 +146,27 @@ struct MapView: UIViewRepresentable {
                 guard let self = self else { return }
                 
                 for annotation in self.parent.mapView.annotations {
-                    guard let problem = annotation as? ProblemAnnotation else { return }
-                    let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
-                    
-                    if(problem.belongsToCircuit) {
-                        annotationView?.size = .full
-                    }
-                    else if(self.parent.dataStore.filters.favorite) {
-                        annotationView?.size = .full
-                    }
-                    else if(self.parent.dataStore.annotations.count < 30) {
-                        annotationView?.size = .full
-                    }
-                    else {
-                        switch self.zoomLevel {
-                        case .zoomedIn:
+                    if let problem = annotation as? ProblemAnnotation {
+                        let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
+                        
+                        if(problem.belongsToCircuit) {
                             annotationView?.size = .full
-                        case .zoomedIntermediate:
-                            annotationView?.size = .medium
-                        case .zoomedOut:
-                            annotationView?.size = .small
+                        }
+                        else if(self.parent.dataStore.filters.favorite) {
+                            annotationView?.size = .full
+                        }
+                        else if(self.parent.dataStore.annotations.count < 30) {
+                            annotationView?.size = .full
+                        }
+                        else {
+                            switch self.zoomLevel {
+                            case .zoomedIn:
+                                annotationView?.size = .full
+                            case .zoomedIntermediate:
+                                annotationView?.size = .medium
+                            case .zoomedOut:
+                                annotationView?.size = .small
+                            }
                         }
                     }
                 }
@@ -171,6 +179,15 @@ struct MapView: UIViewRepresentable {
         
         init(_ parent: MapView) {
             self.parent = parent
+        }
+        
+//        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//            print(status.rawValue)
+//        }
+        
+        func showUserLocation() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
         }
         
         // MARK: MKMapViewDelegate delegate methods
