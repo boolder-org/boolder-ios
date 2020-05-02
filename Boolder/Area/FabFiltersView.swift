@@ -35,12 +35,9 @@ struct FabFiltersView: View {
                             .font(.headline)
                             .padding(.horizontal, 4)
                             )
-//                            .background(Color.green)
                             .foregroundColor(Color(.systemBackground))
-//                            .cornerRadius(8)
                     }
                     Text(dataStore.filters.filtersCount() == 1 ? "Filtre" : "Filtres")
-                    
                 }
                 .padding(.vertical, 12)
                 .sheet(isPresented: $presentFilters) {

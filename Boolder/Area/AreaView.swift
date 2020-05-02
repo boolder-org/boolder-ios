@@ -43,9 +43,6 @@ struct AreaView: View {
                         .padding(.bottom, 24)
                 }
                 .zIndex(10)
-                
-//                NavigationLink(destination: ProblemDetailsView(problem: self.selectedProblem ?? ProblemAnnotation()), isActive: $presentProblemDetails) { EmptyView() }
-                
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(
