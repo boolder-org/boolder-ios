@@ -133,7 +133,9 @@ class ProblemAnnotationView: MKAnnotationView {
         refreshBadge()
         
         circleView.backgroundColor = annotation.displayColor()
+        
         label.text = annotation.displayLabel
+        label.textColor = (annotation.displayColor() == Circuit(.white).color) ? .label : .systemBackground
     }
     
     func refreshSize() {

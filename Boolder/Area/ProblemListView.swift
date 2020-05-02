@@ -33,10 +33,7 @@ struct ProblemListView: View {
                             self.presentProblemDetails = true
                         }) {
                             HStack {
-                                Text(problem.displayLabel)
-                                    .font(.headline)
-                                    .foregroundColor(Color(problem.displayColor()))
-                                    .frame(minWidth: 30, alignment: .leading)
+                                CircuitNumberView(number: problem.displayLabel, color: problem.displayColor())
                                 
                                 Text(problem.name ?? "Sans nom")
                                     .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
@@ -78,6 +75,7 @@ struct ProblemListView: View {
 }
 
 struct ProblemListView_Previews: PreviewProvider {
+    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
         NavigationView {
@@ -85,5 +83,6 @@ struct ProblemListView_Previews: PreviewProvider {
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
         .environmentObject(DataStore.shared)
+        .environment(\.managedObjectContext, self.context)
     }
 }
