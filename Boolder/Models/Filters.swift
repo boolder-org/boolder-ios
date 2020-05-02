@@ -11,7 +11,7 @@ import SwiftUI
 struct Filters {
     static let allGradeCategories = [1,2,3,4,5,6,7,8]
     
-    var gradeCategories = Set<Int>() // empty means all grades
+    var gradeCategories = Set(Self.allGradeCategories)
     var steepness: Set<Steepness.SteepnessType> = Set(Steepness.SteepnessType.allCases)
     var heightMax = Int.max
     var photoPresent = false

@@ -122,22 +122,21 @@ struct FiltersView: View {
     }
     
     private func labelForCategories(_ categories: Set<Int>) -> String {
-        let categories = Array(categories).sorted()
-        
-        if categories.isEmpty {
+        if categories == Set(Filters.allGradeCategories) {
             return "Tous"
         }
-        else {
-            if categories.count == 1 {
-                return String(categories.first!)
-            }
-            else if consecutiveNumbers(categories) {
-                return "\(categories.min()!) à \(categories.max()!)"
-            }
-            else
-            {
-                return categories.sorted().map{String($0)}.joined(separator: ",")
-            }
+        
+        let array = Array(categories).sorted()
+        
+        if array.count == 1 {
+            return String(array.first!)
+        }
+        else if consecutiveNumbers(array) {
+            return "\(array.min()!) à \(array.max()!)"
+        }
+        else
+        {
+            return array.sorted().map{String($0)}.joined(separator: ",")
         }
     }
     
@@ -185,14 +184,6 @@ struct GradeFilterView: View {
                             }
                         }
                     }
-                }
-            }
-            
-            Section {
-                Button(action: {
-                    self.dataStore.filters.gradeCategories = Set<Int>()
-                }) {
-                    Text("Tous les niveaux").foregroundColor(Color(.label))
                 }
             }
         }

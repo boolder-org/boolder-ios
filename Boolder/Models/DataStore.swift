@@ -42,7 +42,7 @@ class DataStore : ObservableObject {
         annotations = geoStore.annotations.filter { problem in
             if(filters.circuit == nil || problem.circuitType == filters.circuit) {
                 if let gradeCategory = problem.grade?.category() {
-                    if filters.gradeCategories.isEmpty || filters.gradeCategories.contains(gradeCategory) {
+                    if filters.gradeCategories.contains(gradeCategory) {
                         if filters.steepness.contains(problem.steepness) {
                             if filters.photoPresent == false || problem.isPhotoPresent() {
                                 if isHeightOk(problem) {
