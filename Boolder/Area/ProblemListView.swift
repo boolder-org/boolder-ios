@@ -15,6 +15,7 @@ struct ProblemListView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
+    @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     var body: some View {
         List {
@@ -27,7 +28,6 @@ struct ProblemListView: View {
                     ) {
                     ForEach(self.dataStore.groupedAnnotations[grade]!, id: \.self) { (problem: ProblemAnnotation) in
                         
-//                        NavigationLink(destination: Text("\(problem.name ?? "")")) {
                         Button(action: {
                             self.selectedProblem = problem
                             self.presentProblemDetails = true
@@ -48,11 +48,15 @@ struct ProblemListView: View {
                                         .foregroundColor(Color.yellow)
                                 }
                                 
+                                if self.isTicked(problem: problem) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color.green)
+                                }
+                                
                                 Text(problem.grade?.string ?? "")
                             }
                         }
                         .foregroundColor(Color(.label))
-//                        }
                     }
                 }
             }
@@ -63,6 +67,12 @@ struct ProblemListView: View {
     func isFavorite(problem: ProblemAnnotation) -> Bool {
         favorites.contains { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == problem.id
+        }
+    }
+    
+    func isTicked(problem: ProblemAnnotation) -> Bool {
+        ticks.contains { (tick: Tick) -> Bool in
+            return Int(tick.problemId) == problem.id
         }
     }
 }
