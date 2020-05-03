@@ -209,9 +209,9 @@ struct MapView: UIViewRepresentable {
             
             if let multiPolygon = overlay as? MKMultiPolygon {
                 let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)
-                renderer.strokeColor = UIColor.init(white: 0.55, alpha: 1.0)
+                renderer.strokeColor = UIColor.init(white: 0.7, alpha: 1.0)
                 renderer.lineWidth = 1
-                renderer.fillColor = UIColor.init(white: 0.65, alpha: 1.0)
+                renderer.fillColor = UIColor.init(white: 0.8, alpha: 1.0)
                 renderer.lineJoin = .round
                 return renderer
             }
