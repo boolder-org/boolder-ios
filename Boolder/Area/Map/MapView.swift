@@ -46,11 +46,14 @@ struct MapView: UIViewRepresentable {
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         mapView.addOverlays(dataStore.overlays)
-        mapView.addAnnotations(dataStore.annotations)
         
         // doing this async because otherwise animation doesnt work
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.zoomToRegion(mapView: self.mapView)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
+            self.mapView.addAnnotations(self.dataStore.annotations)
         }
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -86,9 +89,9 @@ struct MapView: UIViewRepresentable {
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         
         if previousHash != newHash {
-            mapView.removeAnnotations(mapView.annotations)
+//            mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
-            mapView.addAnnotations(dataStore.annotations)
+//            mapView.addAnnotations(dataStore.annotations)
             mapView.addOverlays(dataStore.overlays)
         }
         
@@ -221,6 +224,22 @@ struct MapView: UIViewRepresentable {
             }
             else {
                 return MKOverlayRenderer()
+            }
+        }
+        
+        func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+            print(#function)
+
+            for view in views {
+                if view.annotation is MKUserLocation {
+                    continue;
+                }
+
+                view.alpha = 0.0
+
+                UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations:{() in
+                    view.alpha = 1.0
+                })
             }
         }
         
