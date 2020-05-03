@@ -53,6 +53,7 @@ struct AreaView: View {
         }
         .accentColor(Color.green)
 //        .onAppear {
+//        #if DEBUG
 //            // delete all favorites
 //            let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
 //            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
@@ -64,6 +65,7 @@ struct AreaView: View {
 //            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
 //            do { try self.managedObjectContext.execute(DelAllReqVar) }
 //            catch { print(error) }
+//        #endif
 //        }
     }
 }
