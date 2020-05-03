@@ -110,7 +110,7 @@ struct ProblemDetailsView: View {
                                 else {
                                     Image(systemName: "star")
                                         .font(.title)
-                                    Text("Ajouter")
+                                    Text("Favori")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -130,7 +130,7 @@ struct ProblemDetailsView: View {
                                 if self.isTicked() {
                                     Image(systemName: "checkmark.circle.fill")
                                         .font(.title)
-                                    Text("Coché")
+                                    Text("Fait")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -138,7 +138,7 @@ struct ProblemDetailsView: View {
                                 else {
                                     Image(systemName: "circle")
                                         .font(.title)
-                                    Text("Cocher")
+                                    Text("Fait")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)

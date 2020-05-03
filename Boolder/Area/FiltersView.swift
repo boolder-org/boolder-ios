@@ -89,7 +89,7 @@ struct FiltersView: View {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.ticked) {
-                            Text("Coché")
+                            Text("Déjà fait")
                                 .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
                         }
                         .disabled(dataStore.ticks().count == 0)
@@ -220,10 +220,11 @@ struct RiskyFilterView: View {
                             .font(.body)
                             .foregroundColor(Color(.label))
                             .frame(minWidth: 16)
-                        Text("Moins dangereux en cas de chute").foregroundColor(Color(.label))
+                        Text("Moins dangereux en cas de chute").foregroundColor(Color(.systemGray))
                         Spacer()
                         Image(systemName: "checkmark").font(Font.body.weight(.bold))
                     }
+                .disabled(true)
                 }
                 
                 Button(action: {
