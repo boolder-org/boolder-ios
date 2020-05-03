@@ -88,10 +88,10 @@ struct MapView: UIViewRepresentable {
         let previousHash = previousAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         
-        if previousHash != newHash {
-//            mapView.removeAnnotations(mapView.annotations)
+        if previousHash != newHash && context.coordinator.didStartAnimation {
+            mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
-//            mapView.addAnnotations(dataStore.annotations)
+            mapView.addAnnotations(dataStore.annotations)
             mapView.addOverlays(dataStore.overlays)
         }
         
@@ -134,6 +134,7 @@ struct MapView: UIViewRepresentable {
         var parent: MapView
         var lastCircuit: Circuit.CircuitType? = nil
         var didStartZoom = false
+        var didStartAnimation = false
         var locationManager = CLLocationManager()
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
@@ -228,7 +229,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-            print(#function)
+            guard !didStartAnimation else { return }
 
             for view in views {
                 if view.annotation is MKUserLocation {
@@ -241,6 +242,8 @@ struct MapView: UIViewRepresentable {
                     view.alpha = 1.0
                 })
             }
+            
+            didStartAnimation = true
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
