@@ -46,8 +46,12 @@ struct AreaView: View {
             }
             .navigationBarTitle("Rocher Canon", displayMode: .inline)
             .navigationBarItems(
-                trailing: Button(showList ? "Carte" : "Liste") {
+                trailing: Button(action: {
                     self.showList.toggle()
+                }) {
+                    Text(showList ? "Carte" : "Liste")
+                        .padding(.vertical)
+                        .padding(.leading)
                 }
             )
         }

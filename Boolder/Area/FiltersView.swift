@@ -98,14 +98,19 @@ struct FiltersView: View {
             }
             .navigationBarTitle("Filtres", displayMode: .inline)
             .navigationBarItems(
-                leading: Button("Réinitialiser") {
+                leading: Button(action: {
                     self.dataStore.filters = Filters()
                     self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Réinitialiser")
+                        .padding(.vertical)
                 },
                 trailing: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("OK").bold()
+                    Text("OK")
+                        .bold()
+                        .padding(.vertical)
                 }
             )
             .listStyle(GroupedListStyle())
