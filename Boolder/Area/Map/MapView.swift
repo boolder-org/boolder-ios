@@ -53,9 +53,9 @@ struct MapView: UIViewRepresentable {
             self.zoomToRegion(mapView: self.mapView)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            context.coordinator.showUserLocation()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            context.coordinator.showUserLocation()
+//        }
         
         return mapView
     }
