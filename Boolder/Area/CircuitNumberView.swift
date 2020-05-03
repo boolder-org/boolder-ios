@@ -11,6 +11,7 @@ import SwiftUI
 struct CircuitNumberView: View {
     var number: String
     var color: UIColor
+    var showStroke = true
     
     func readableColor() -> UIColor {
         if color == Circuit(.white).color {
@@ -34,7 +35,7 @@ struct CircuitNumberView: View {
                     Circle()
                         .stroke(Color.black, lineWidth: 1)
                         .frame(width: 28, height: 28)
-                        .opacity(color == Circuit(.white).color ? 1.0 : 0.0)
+                        .opacity(color == Circuit(.white).color && showStroke ? 1.0 : 0.0)
                 )
                 .frame(width: 26, height: 26)
         }

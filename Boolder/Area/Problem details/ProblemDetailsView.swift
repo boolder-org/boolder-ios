@@ -30,7 +30,7 @@ struct ProblemDetailsView: View {
                     
                     GeometryReader { geo in
                         if self.topoFirstPoint(photoSize: geo.size) != nil {
-                            CircuitNumberView(number: self.problem.displayLabel, color: self.problem.displayColor())
+                            CircuitNumberView(number: self.problem.displayLabel, color: self.problem.displayColor(), showStroke: false)
                                 .offset(x: self.topoFirstPoint(photoSize: geo.size)!.x - 14, y: self.topoFirstPoint(photoSize: geo.size)!.y - 14)
                         }
                     }
