@@ -53,21 +53,21 @@ class Circuit {
     var overallLevelDescription: String {
         switch type {
         case .whiteForKids:
-            return "Niveau 1"
+            return "1"
         case .yellow:
-            return "Niveau 1b à 3b"
+            return "1b à 3b"
         case .orange:
-            return "Niveau 1a à 4c"
+            return "1a à 4c"
         case .blue:
-            return "Niveau 3b à 5c"
+            return "3b à 5c"
         case .skyBlue:
-            return "Niveau 3b à 6a"
+            return "3b à 6a"
         case .red:
-            return "Niveau 4c à 6b"
+            return "4c à 6b"
         case .black:
-            return "Niveau 6"
+            return "6"
         case .white:
-            return "Niveau 6b à 7c"
+            return "6b à 7c"
         case .offCircuit:
             return ""
         }

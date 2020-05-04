@@ -31,7 +31,7 @@ struct FabFiltersView: View {
                         Text("Circuit")
                     }
                     else {
-                        Image(systemName: "slider.horizontal.3")
+                        Image("circuit")
                         Text("Circuits")
                     }
                 }
