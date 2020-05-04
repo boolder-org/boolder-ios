@@ -18,7 +18,8 @@ class DataStore : ObservableObject {
 
     @Published var overlays = [MKOverlay]()
     @Published var annotations = [ProblemAnnotation]()
-    @Published var groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
+    @Published var groupedAnnotations = Dictionary<Circuit.CircuitType, [ProblemAnnotation]>()
+    @Published var groupedAnnotationsKeys = [Circuit.CircuitType]()
     @Published var topoCollection = GeoStore.TopoCollection.init(topos: nil)
     
     // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
@@ -87,12 +88,22 @@ class DataStore : ObservableObject {
     private func createGroupedAnnotations() {
         var sortedAnnotations = annotations
         sortedAnnotations.sort { (lhs, rhs) -> Bool in
-            guard let lhsGrade = lhs.grade else { return true }
-            guard let rhsGrade = rhs.grade else { return false }
+            guard let lhsCircuit = lhs.circuitType else { return true }
+            guard let rhsCircuit = rhs.circuitType else { return false }
             
-            return lhsGrade < rhsGrade
+            if lhs.circuitType == rhs.circuitType {
+                return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+            }
+            else {
+                return lhsCircuit < rhsCircuit
+            }
         }
-        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in problem.grade?.category() ?? 0 })
+        
+        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in
+            problem.circuitType ?? Circuit.CircuitType.offCircuit
+        })
+        
+        groupedAnnotationsKeys = groupedAnnotations.keys.sorted()
     }
     
     private func setBelongsToCircuit() {

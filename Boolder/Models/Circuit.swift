@@ -9,7 +9,7 @@
 import UIKit
 
 class Circuit {
-    enum CircuitType {
+    enum CircuitType: Int, Comparable {
         case whiteForKids
         case yellow
         case orange
@@ -19,6 +19,12 @@ class Circuit {
         case black
         case white
         case offCircuit
+        
+        static
+        func < (lhs:Self, rhs:Self) -> Bool
+        {
+            return lhs.rawValue < rhs.rawValue
+        }
     }
     
     let type: CircuitType

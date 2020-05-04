@@ -84,6 +84,20 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
         }
     }
     
+    func circuitNumberComparableValue() -> Double {
+        if let int = Int(displayLabel) {
+            return Double(int)
+        }
+        else {
+            if let int = Int(displayLabel.dropLast()) {
+                return 0.5 + Double(int)
+            }
+            else {
+                return 0
+            }
+        }
+    }
+    
     func isFavorite() -> Bool {
         favorite() != nil
     }
