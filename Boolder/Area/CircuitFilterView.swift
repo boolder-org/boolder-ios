@@ -21,51 +21,58 @@ struct CircuitFilterView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
     
-    @Binding var presentCircuitFilter: Bool
-    @Binding var presentFilters: Bool
-    
     var body: some View {
-        List {
-            Section {
-                ForEach(circuits, id: \.self) { circuitType in
-                    Button(action: {
-                        self.dataStore.filters.circuit = circuitType
-                        self.presentFilters = false
-                        self.presentCircuitFilter = false
-                    }) {
-                        HStack(alignment: .center) {
-                            CircuitRectangle(color: Color(Circuit(circuitType).color))
-                            
-                            Text("\(Circuit(circuitType).name)")
-                            
-                            Spacer()
-                            
-                            Text(Circuit(circuitType).overallLevelDescription)
-                            .font(.caption)
-                            .foregroundColor(Color(UIColor.systemGray))
+        NavigationView {
+            List {
+                Section {
+                    ForEach(circuits, id: \.self) { circuitType in
+                        Button(action: {
+                            self.dataStore.filters.circuit = circuitType
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            HStack(alignment: .center) {
+                                CircuitRectangle(color: Color(Circuit(circuitType).color))
+                                
+                                Text("\(Circuit(circuitType).name)")
+                                
+                                Spacer()
+                                
+                                Text(Circuit(circuitType).overallLevelDescription)
+                                .font(.caption)
+                                .foregroundColor(Color(UIColor.systemGray))
+                            }
+                            .foregroundColor(Color(.label))
                         }
-                        .foregroundColor(Color(.label))
                     }
                 }
-            }
-            
-            Section {
-                Button(action: {
-                    self.dataStore.filters.circuit = nil
-                    self.presentFilters = false
-                    self.presentCircuitFilter = false
-                }) {
-                    Text("Aucun circuit")
+                
+                Section {
+                    Button(action: {
+                        self.dataStore.filters.circuit = nil
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Aucun circuit")
+                    }
+                    .foregroundColor(Color(.label))
                 }
-                .foregroundColor(Color(.label))
             }
+            .listStyle(GroupedListStyle())
+            .environment(\.horizontalSizeClass, .regular)
+            .navigationBarTitle("Circuit", displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("OK").bold()
+                }
+            )
         }
     }
 }
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView(presentCircuitFilter: .constant(true), presentFilters: .constant(true))
+        CircuitFilterView()
     }
 }
 

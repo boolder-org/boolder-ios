@@ -22,21 +22,7 @@ struct FiltersView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    NavigationLink(destination:
-                        CircuitFilterView(presentCircuitFilter: $presentCircuitFilter, presentFilters: $presentFilters)
-                        .listStyle(GroupedListStyle())
-                        .environment(\.horizontalSizeClass, .regular)
-                        .navigationBarTitle("Circuit", displayMode: .inline)
-                    , isActive: $presentCircuitFilter) {
-                        HStack {
-                            Text("Circuit")
-                            Spacer()
-                            Text(labelForCircuit())
-                                .foregroundColor(Color.gray)
-                        }
-                    }
-                
+                Section {                
                     NavigationLink(destination: GradeFilterView(), isActive: $presentGradeFilter) {
                         HStack {
                             Text("Niveau")
@@ -99,7 +85,9 @@ struct FiltersView: View {
             .navigationBarTitle("Filtres", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    self.dataStore.filters = Filters()
+                    var newFilters = Filters()
+                    newFilters.circuit = self.dataStore.filters.circuit
+                    self.dataStore.filters = newFilters
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Réinitialiser")

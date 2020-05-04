@@ -55,19 +55,19 @@ class Circuit {
         case .whiteForKids:
             return "Niveau 1"
         case .yellow:
-            return "Niveau 2c"
+            return "Niveau 1b à 3b"
         case .orange:
-            return "Niveau 3b+"
+            return "Niveau 1a à 4c"
         case .blue:
-            return "Niveau 4b+"
+            return "Niveau 3b à 5c"
         case .skyBlue:
-            return "Niveau 5a"
+            return "Niveau 3b à 6a"
         case .red:
-            return "Niveau 6a+"
+            return "Niveau 4c à 6b"
         case .black:
             return "Niveau 6"
         case .white:
-            return "Niveau 7a+"
+            return "Niveau 6b à 7c"
         case .offCircuit:
             return ""
         }

@@ -28,7 +28,6 @@ struct Filters {
         if steepness != initialValues.steepness { count += 1 }
         if heightMax != initialValues.heightMax { count += 1 }
         if photoPresent != initialValues.photoPresent { count += 1 }
-        if circuit != initialValues.circuit { count += 1 }
         if favorite != initialValues.favorite { count += 1 }
         if ticked != initialValues.ticked { count += 1 }
         if risky != initialValues.risky { count += 1 }

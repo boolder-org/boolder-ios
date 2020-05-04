@@ -21,6 +21,31 @@ struct FabFiltersView: View {
             HStack(spacing: 16) {
                 
                 Button(action: {
+                    self.presentCircuitFilter.toggle()
+                }) {
+                    if dataStore.filters.circuit != nil {
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(circuitColor())
+                            .frame(width: 20, height: 20)
+                            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
+                        Text("Circuit")
+                    }
+                    else {
+                        Image(systemName: "slider.horizontal.3")
+                        Text("Circuits")
+                    }
+                }
+                .sheet(isPresented: $presentCircuitFilter) {
+                    CircuitFilterView()
+                        // FIXME: use accent color on all views by default (even for modals)
+                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
+                        .environmentObject(self.dataStore)
+                        .accentColor(Color.green)
+                }
+                
+                Divider().frame(width: 1, height: 44, alignment: .center)
+                
+                Button(action: {
                     self.presentFilters.toggle()
                 }) {
                     if dataStore.filters.filtersCount() == 0 {
@@ -38,6 +63,7 @@ struct FabFiltersView: View {
                             .foregroundColor(Color(.systemBackground))
                     }
                     Text(dataStore.filters.filtersCount() == 1 ? "Filtre" : "Filtres")
+                        .fixedSize(horizontal: true, vertical: true)
                 }
                 .padding(.vertical, 12)
                 .sheet(isPresented: $presentFilters) {
