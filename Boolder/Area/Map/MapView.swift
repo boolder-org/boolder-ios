@@ -24,6 +24,7 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: ProblemAnnotation
     @Binding var presentProblemDetails: Bool
+    @Binding var presentParkingActionSheet: Bool
     
     var mapView = MKMapView()
     
@@ -254,8 +255,9 @@ struct MapView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
-//            if let annotation = view.annotation, annotation.isKind(of: ProblemAnnotation.self) {
-//            }
+            if let annotation = view.annotation, annotation.isKind(of: PoiAnnotation.self) {
+                parent.presentParkingActionSheet = true
+            }
         }
         
         func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {

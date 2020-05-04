@@ -262,6 +262,7 @@
 		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircuitNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */; };
 		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
+		37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -522,6 +523,7 @@
 		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitNumberView.swift; sourceTree = "<group>"; };
 		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
+		37FD85A22460A4F90054982F /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -843,6 +845,7 @@
 			isa = PBXGroup;
 			children = (
 				37A8C8192453320D00DC161F /* MapView.swift */,
+				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				37A8C8132453272900DC161F /* ProblemAnnotation.swift */,
 				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,
 				375666DA245F3CDF007170C7 /* PoiAnnotation.swift */,
@@ -1203,6 +1206,7 @@
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
+				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,
 				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,

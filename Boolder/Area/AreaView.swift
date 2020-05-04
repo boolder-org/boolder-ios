@@ -18,14 +18,15 @@ struct AreaView: View {
     @State private var showList = false
     @State private var selectedProblem = ProblemAnnotation()
     @State private var presentProblemDetails = false
+    @State private var presentParkingActionSheet = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
-                .zIndex(showList ? 1 : 0)
+                    .zIndex(showList ? 1 : 0)
                 
-                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
+                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, presentParkingActionSheet: $presentParkingActionSheet)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
                     .sheet(isPresented: $presentProblemDetails) {
@@ -36,6 +37,7 @@ struct AreaView: View {
                             .environment(\.managedObjectContext, self.managedObjectContext)
                             .accentColor(Color.green)
                     }
+                .background(PoiActionSheet(presentParkingActionSheet: $presentParkingActionSheet))
                 
                 VStack {
                     Spacer()
@@ -63,7 +65,7 @@ struct AreaView: View {
 //            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
 //            do { try self.managedObjectContext.execute(DelAllReqVar) }
 //            catch { print(error) }
-//            
+//
 //            // delete all ticks
 //            let ReqVar2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Tick")
 //            let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: ReqVar2)
