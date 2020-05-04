@@ -10,12 +10,4 @@ import MapKit
 
 class PoiAnnotationView: MKMarkerAnnotationView {
     static let ReuseID = "poiAnnotation"
-    
-    // FIXME: use prepareForDisplay()
-    //     https://developer.apple.com/documentation/mapkit/mkannotationview/2921514-preparefordisplay
-    override var annotation: MKAnnotation? {
-        willSet {
-            self.displayPriority = .required
-        }
-    }
 }

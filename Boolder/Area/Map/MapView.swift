@@ -43,7 +43,8 @@ struct MapView: UIViewRepresentable {
         mapView.isRotateEnabled = false
         mapView.isPitchEnabled = false
         
-        mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: ProblemAnnotationView.ReuseID)
+        mapView.register(PoiAnnotationView.self, forAnnotationViewWithReuseIdentifier: PoiAnnotationView.ReuseID)
         
         mapView.addOverlays(dataStore.overlays)
         
@@ -54,6 +55,12 @@ struct MapView: UIViewRepresentable {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
             self.mapView.addAnnotations(self.dataStore.annotations)
+            
+            let parkingAnnotation = PoiAnnotation()
+            parkingAnnotation.coordinate = CLLocationCoordinate2D(latitude: 48.463215, longitude: 2.665457)
+            parkingAnnotation.title = "Parking"
+            parkingAnnotation.subtitle = "2 min de marche"
+            self.mapView.addAnnotation(parkingAnnotation)
         }
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -226,6 +233,33 @@ struct MapView: UIViewRepresentable {
             else {
                 return MKOverlayRenderer()
             }
+        }
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            guard !annotation.isKind(of: MKUserLocation.self) else {
+                return nil
+            }
+            
+            if let annotation = annotation as? ProblemAnnotation {
+                return ProblemAnnotationView(annotation: annotation, reuseIdentifier: ProblemAnnotationView.ReuseID)
+            }
+            else if let annotation = annotation as? PoiAnnotation {
+                let annotationView = PoiAnnotationView(annotation: annotation, reuseIdentifier: PoiAnnotationView.ReuseID)
+                annotationView.canShowCallout = true
+                annotationView.markerTintColor = annotation.tintColor
+                annotationView.glyphText = "P"
+                annotationView.rightCalloutAccessoryView = UIButton(type: .infoLight)
+                
+                return annotationView
+            }
+            
+            return nil
+        }
+        
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            
+//            if let annotation = view.annotation, annotation.isKind(of: ProblemAnnotation.self) {
+//            }
         }
         
         func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {

@@ -14,5 +14,5 @@ class PoiAnnotation: NSObject, MKAnnotation {
     
     internal var title: String?
     internal var subtitle: String?
-    var glyphColor = UIColor.gray
+    var tintColor = UIColor.gray
 }
