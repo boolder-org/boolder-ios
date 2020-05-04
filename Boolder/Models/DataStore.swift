@@ -32,6 +32,15 @@ class DataStore : ObservableObject {
         refresh()
     }
     
+    func parkingAnnotation() -> PoiAnnotation {
+        let parkingAnnotation = PoiAnnotation()
+        parkingAnnotation.coordinate = CLLocationCoordinate2D(latitude: 48.462965, longitude: 2.665628)
+        parkingAnnotation.title = "Parking"
+        parkingAnnotation.subtitle = "2 min de marche"
+        
+        return parkingAnnotation
+    }
+    
     func refresh() {
         filterCircuits()
         filterProblems()
@@ -85,6 +94,10 @@ class DataStore : ObservableObject {
     private func filterCircuits() {
         overlays = geoStore.overlays.filter { overlay in
             if let circuit = overlay as? CircuitOverlay {
+                if circuit.circuitType == Circuit.CircuitType.offCircuit && filters.circuit == nil {
+                    return true
+                }
+                
                 return circuit.circuitType == filters.circuit
             }
             

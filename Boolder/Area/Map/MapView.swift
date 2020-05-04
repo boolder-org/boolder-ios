@@ -55,12 +55,7 @@ struct MapView: UIViewRepresentable {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
             self.mapView.addAnnotations(self.dataStore.annotations)
-            
-            let parkingAnnotation = PoiAnnotation()
-            parkingAnnotation.coordinate = CLLocationCoordinate2D(latitude: 48.463215, longitude: 2.665457)
-            parkingAnnotation.title = "Parking"
-            parkingAnnotation.subtitle = "2 min de marche"
-            self.mapView.addAnnotation(parkingAnnotation)
+            self.mapView.addAnnotation(self.dataStore.parkingAnnotation())
         }
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -100,6 +95,7 @@ struct MapView: UIViewRepresentable {
             mapView.removeOverlays(mapView.overlays)
             mapView.addAnnotations(dataStore.annotations)
             mapView.addOverlays(dataStore.overlays)
+            mapView.addAnnotation(self.dataStore.parkingAnnotation())
         }
         
         // refresh all annotation views
