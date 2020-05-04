@@ -11,6 +11,7 @@ import SwiftUI
 
 struct PoiActionSheet: View {
     @Binding var presentParkingActionSheet: Bool
+    @State private var showShareSheet = false
     let location = CLLocationCoordinate2D(latitude: 48.462965, longitude: 2.665628)
     
     func buttons() -> [Alert.Button] {
@@ -43,7 +44,9 @@ struct PoiActionSheet: View {
         )
         
         buttons.append(
-            .default(Text("Coordonnées GPS"))
+            .default(Text("Coordonnées GPS")) {
+                self.showShareSheet = true
+            }
         )
         
         buttons.append(
@@ -60,6 +63,35 @@ struct PoiActionSheet: View {
                     title: Text("Ouvrir dans :"),
                     buttons: buttons()
                 )
-            }
+        }
+        .background(
+            EmptyView()
+                .sheet(isPresented: $showShareSheet) {
+                    ShareSheet(activityItems: ["Coordonnées GPS du parking Rocher Canon : \(self.location.latitude),\(self.location.longitude)"])
+                }
+        )
+    }
+}
+
+
+struct ShareSheet: UIViewControllerRepresentable {
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+      
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    let callback: Callback? = nil
+      
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: applicationActivities)
+        controller.excludedActivityTypes = excludedActivityTypes
+        controller.completionWithItemsHandler = callback
+        return controller
+    }
+      
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // nothing to do here
     }
 }
