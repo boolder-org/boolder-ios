@@ -63,11 +63,11 @@ struct AreaView: View {
 //            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
 //            do { try self.managedObjectContext.execute(DelAllReqVar) }
 //            catch { print(error) }
-            
+//            
 //            // delete all ticks
-//            let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Tick")
-//            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
-//            do { try self.managedObjectContext.execute(DelAllReqVar) }
+//            let ReqVar2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Tick")
+//            let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: ReqVar2)
+//            do { try self.managedObjectContext.execute(DelAllReqVar2) }
 //            catch { print(error) }
 //        #endif
 //        }
