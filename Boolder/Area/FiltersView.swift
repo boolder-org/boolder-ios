@@ -27,7 +27,7 @@ struct FiltersView: View {
                         HStack {
                             Text("Niveau")
                             Spacer()
-                            Text(labelForCategories(dataStore.filters.gradeCategories))
+                            Text(labelForCategories())
                                 .foregroundColor(Color.gray)
                         }
                     }
@@ -125,22 +125,12 @@ struct FiltersView: View {
         return String(string.prefix(1).capitalized + string.dropFirst())
     }
     
-    private func labelForCategories(_ categories: Set<Int>) -> String {
-        if categories == Set(Filters.allGradeCategories) {
+    private func labelForCategories() -> String {
+        if dataStore.filters.gradeMin == Filters().gradeMin && dataStore.filters.gradeMax == Filters().gradeMax {
             return "Tous"
         }
-        
-        let array = Array(categories).sorted()
-        
-        if array.count == 1 {
-            return String(array.first!)
-        }
-        else if consecutiveNumbers(array) {
-            return "\(array.min()!) à \(array.max()!)"
-        }
-        else
-        {
-            return array.sorted().map{String($0)}.joined(separator: ",")
+        else {
+            return "Entre \(dataStore.filters.gradeMin.string) et \(dataStore.filters.gradeMax.string)"
         }
     }
     
@@ -171,19 +161,50 @@ struct GradeFilterView: View {
     var body: some View {
         List {
             Section {
-                ForEach(Filters.allGradeCategories, id: \.self) { category in
+                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMin, title: "Niveau minimum")) {
+                    HStack {
+                        Text("Niveau minimum")
+                        Spacer()
+                        Text(dataStore.filters.gradeMin.string)
+                            .foregroundColor(Color.gray)
+                    }
+                }
+                
+                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMax, title: "Niveau maximum")) {
+                    HStack {
+                        Text("Niveau maximum")
+                        Spacer()
+                        Text(dataStore.filters.gradeMax.string)
+                            .foregroundColor(Color.gray)
+                    }
+                }
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("Niveau")
+    }
+}
+
+struct GradeMinMaxFilterView: View {
+    @EnvironmentObject var dataStore: DataStore
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var gradeFilter: Grade
+    var title: String
+    
+    var body: some View {
+        List {
+            Section {
+                ForEach(Grade.visibleGrades, id: \.self) { grade in
                     Button(action: {
-                        if self.dataStore.filters.gradeCategories.contains(category) {
-                            self.dataStore.filters.gradeCategories.remove(category)
-                        }
-                        else {
-                            self.dataStore.filters.gradeCategories.insert(category)
-                        }
+                        self.gradeFilter = try! Grade(grade)
+                        self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
-                            Text("Niveau \(category)").foregroundColor(Color(.label))
+                            Text(grade)
+                                .foregroundColor(Color(.label))
                             Spacer()
-                            if self.dataStore.filters.gradeCategories.contains(category) {
+                            if grade == self.gradeFilter.string {
                                 Image(systemName: "checkmark").font(Font.body.weight(.bold))
                             }
                         }
@@ -193,7 +214,7 @@ struct GradeFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("Niveau")
+        .navigationBarTitle(title)
     }
 }
 

@@ -11,7 +11,8 @@ import SwiftUI
 struct Filters {
     static let allGradeCategories = [1,2,3,4,5,6,7,8]
     
-    var gradeCategories = Set(Self.allGradeCategories)
+    var gradeMin = try! Grade("1a")
+    var gradeMax = try! Grade("9a")
     var steepness: Set<Steepness.SteepnessType> = Set(Steepness.SteepnessType.allCases)
     var heightMax = Int.max
     var photoPresent = false
@@ -24,7 +25,7 @@ struct Filters {
         let initialValues = Filters()
         var count = 0
         
-        if gradeCategories != initialValues.gradeCategories { count += 1 }
+        if gradeMin != initialValues.gradeMin || gradeMax != initialValues.gradeMax { count += 1 }
         if steepness != initialValues.steepness { count += 1 }
         if heightMax != initialValues.heightMax { count += 1 }
         if photoPresent != initialValues.photoPresent { count += 1 }

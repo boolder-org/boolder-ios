@@ -42,16 +42,14 @@ class DataStore : ObservableObject {
     private func filterProblems() {
         annotations = geoStore.annotations.filter { problem in
             if(filters.circuit == nil || problem.circuitType == filters.circuit) {
-                if let gradeCategory = problem.grade?.category() {
-                    if filters.gradeCategories.contains(gradeCategory) {
-                        if filters.steepness.contains(problem.steepness) {
-                            if filters.photoPresent == false || problem.isPhotoPresent() {
-                                if isHeightOk(problem) {
-                                    if filters.favorite == false || problem.isFavorite()  {
-                                        if filters.ticked == false || problem.isTicked()  {
-                                            if filters.risky == true || !problem.isRisky()  {
-                                                return true
-                                            }
+                if isGradeOk(problem)  {
+                    if filters.steepness.contains(problem.steepness) {
+                        if filters.photoPresent == false || problem.isPhotoPresent() {
+                            if isHeightOk(problem) {
+                                if filters.favorite == false || problem.isFavorite()  {
+                                    if filters.ticked == false || problem.isTicked()  {
+                                        if filters.risky == true || !problem.isRisky()  {
+                                            return true
                                         }
                                     }
                                 }
@@ -72,6 +70,15 @@ class DataStore : ObservableObject {
         }
         else {
             return false
+        }
+    }
+    
+    private func isGradeOk(_ problem: ProblemAnnotation) -> Bool {
+        if let grade = problem.grade {
+            return grade >= filters.gradeMin && grade <= filters.gradeMax
+        }
+        else {
+            return (filters.gradeMin == Filters().gradeMin && filters.gradeMax == Filters().gradeMax)
         }
     }
     
