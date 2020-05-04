@@ -6,6 +6,7 @@
       "size" : "20x20"
     },
     {
+      "filename" : "Icon-App-20x20.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
@@ -31,11 +32,13 @@
       "size" : "40x40"
     },
     {
+      "filename" : "Icon-App-40x40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "Icon-App-60x60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -86,6 +89,7 @@
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "icon-app-itunes-1024x1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
