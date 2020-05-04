@@ -36,9 +36,9 @@ class Circuit {
     var name: String {
         switch type {
         case .whiteForKids:
-            return "Blanc (enfants)"
+            return "Blanc (enfant)"
         case .yellow:
-            return "Jaune"
+            return "Jaune (débutant)"
         case .orange:
             return "Orange"
         case .blue:
@@ -61,19 +61,19 @@ class Circuit {
         case .whiteForKids:
             return "1"
         case .yellow:
-            return "1b à 3b"
+            return "entre 1b et 3b"
         case .orange:
-            return "1a à 4c"
+            return "entre 1a et 4c"
         case .blue:
-            return "3b à 5c"
+            return "entre 3b et 5c"
         case .skyBlue:
-            return "3b à 6a"
+            return "entre 3b et 6a"
         case .red:
-            return "4c à 6b"
+            return "entre 4c et 6b"
         case .black:
             return "6"
         case .white:
-            return "6b à 7c"
+            return "entre 6b et 7c"
         case .offCircuit:
             return ""
         }
