@@ -12,6 +12,7 @@ struct CircuitNumberView: View {
     var number: String
     var color: UIColor
     var showStroke = true
+    var height: CGFloat = 28
     
     func readableColor() -> UIColor {
         if color == Circuit(.white).color {
@@ -33,13 +34,13 @@ struct CircuitNumberView: View {
                 .lineLimit(1)
                 .overlay(
                     Circle()
-                        .stroke(Color.black, lineWidth: 1)
-                        .frame(width: 28, height: 28)
+                        .stroke(Color(UIColor.systemGray3), lineWidth: 1)
+                        .frame(width: height, height: height)
                         .opacity(color == Circuit(.white).color && showStroke ? 1.0 : 0.0)
                 )
-                .frame(width: 26, height: 26)
+                .frame(width: height-2, height: height-2)
         }
-        .frame(width: 28, height: 28)
+        .frame(width: height, height: height)
     }
 }
 

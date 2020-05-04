@@ -24,10 +24,7 @@ struct FabFiltersView: View {
                     self.presentCircuitFilter.toggle()
                 }) {
                     if dataStore.filters.circuit != nil {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(circuitColor())
-                            .frame(width: 20, height: 20)
-                            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
+                        CircuitNumberView(number: "", color: circuitColor(), height: 20)
                         Text("Circuit")
                     }
                     else {
@@ -85,12 +82,12 @@ struct FabFiltersView: View {
         .padding()
     }
     
-    func circuitColor() -> Color {
+    func circuitColor() -> UIColor {
         if let circuit = dataStore.filters.circuit {
-            return Color(Circuit(circuit).color)
+            return Circuit(circuit).color
         }
         else {
-            return Color.white
+            return UIColor.white
         }
     }
 }

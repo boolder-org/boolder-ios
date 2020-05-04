@@ -31,7 +31,7 @@ struct CircuitFilterView: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack(alignment: .center) {
-                                CircuitRectangle(color: Color(Circuit(circuitType).color))
+                                CircuitNumberView(number: "", color: Circuit(circuitType).color, height: 20)
                                 
                                 Text("\(Circuit(circuitType).name)")
                                 
@@ -73,16 +73,5 @@ struct CircuitFilterView: View {
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
         CircuitFilterView()
-    }
-}
-
-struct CircuitRectangle: View {
-    var color: Color
-    
-    var body: some View {
-        RoundedRectangle(cornerRadius: 6)
-            .fill(color)
-            .frame(width: 20, height: 20)
-            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(UIColor.init(white: 0.8, alpha: 0.6)), lineWidth: 1.0))
     }
 }
