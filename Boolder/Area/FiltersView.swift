@@ -23,7 +23,7 @@ struct FiltersView: View {
         NavigationView {
             Form {
                 Section {                
-                    NavigationLink(destination: GradeFilterView(), isActive: $presentGradeFilter) {
+                    NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
                         HStack {
                             Text("Niveau")
                             Spacer()
@@ -32,7 +32,7 @@ struct FiltersView: View {
                         }
                     }
                     
-                    NavigationLink(destination: SteepnessFilterView(), isActive: $presentSteepnessFilter) {
+                    NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters), isActive: $presentSteepnessFilter) {
                         HStack {
                             Text("Type")
                             Spacer()
@@ -44,7 +44,7 @@ struct FiltersView: View {
                 
                 Section {
                     
-                    NavigationLink(destination: HeightFilterView()) {
+                    NavigationLink(destination: HeightFilterView(presentFilters: $presentFilters)) {
                         HStack {
                             Text("Hauteur")
                             Spacer()
@@ -53,7 +53,7 @@ struct FiltersView: View {
                         }
                     }
                     
-                    NavigationLink(destination: RiskyFilterView()) {
+                    NavigationLink(destination: RiskyFilterView(presentFilters: $presentFilters)) {
                         HStack {
                             Text("Risque en cas de chute")
                             Spacer()
@@ -157,6 +157,7 @@ struct FiltersView_Previews: PreviewProvider {
 
 struct GradeFilterView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Binding var presentFilters: Bool
     
     var body: some View {
         List {
@@ -183,6 +184,15 @@ struct GradeFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Niveau")
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.presentFilters = false
+            }) {
+                Text("OK")
+                    .bold()
+                    .padding(.vertical)
+            }
+        )
     }
 }
 
@@ -220,6 +230,7 @@ struct GradeMinMaxFilterView: View {
 
 struct RiskyFilterView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Binding var presentFilters: Bool
     
     var body: some View {
         List {
@@ -262,11 +273,21 @@ struct RiskyFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Risque en cas de chute")
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.presentFilters = false
+            }) {
+                Text("OK")
+                    .bold()
+                    .padding(.vertical)
+            }
+        )
     }
 }
 
 struct HeightFilterView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Binding var presentFilters: Bool
     let visibleHeightMaxValues = [3,4,5,6,7,8]
     
     var body: some View {
@@ -304,11 +325,21 @@ struct HeightFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Hauteur")
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.presentFilters = false
+            }) {
+                Text("OK")
+                    .bold()
+                    .padding(.vertical)
+            }
+        )
     }
 }
 
 struct SteepnessFilterView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Binding var presentFilters: Bool
     
     var body: some View {
         List {
@@ -335,6 +366,15 @@ struct SteepnessFilterView: View {
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
         .navigationBarTitle("Type")
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.presentFilters = false
+            }) {
+                Text("OK")
+                    .bold()
+                    .padding(.vertical)
+            }
+        )
     }
     
     private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
