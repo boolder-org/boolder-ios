@@ -22,16 +22,7 @@ struct FiltersView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {                
-                    NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
-                        HStack {
-                            Text("Niveau")
-                            Spacer()
-                            Text(labelForCategories())
-                                .foregroundColor(Color.gray)
-                        }
-                    }
-                    
+                Section {
                     NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters), isActive: $presentSteepnessFilter) {
                         HStack {
                             Text("Type")
@@ -40,9 +31,6 @@ struct FiltersView: View {
                                 .foregroundColor(Color.gray)
                         }
                     }
-                }
-                
-                Section {
                     
                     NavigationLink(destination: HeightFilterView(presentFilters: $presentFilters)) {
                         HStack {
@@ -58,6 +46,15 @@ struct FiltersView: View {
                             Text("Risque en cas de chute")
                             Spacer()
                             Text(dataStore.filters.risky ? "Tous" : "Moins dangereux")
+                                .foregroundColor(Color.gray)
+                        }
+                    }
+                    
+                    NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
+                        HStack {
+                            Text("Niveau")
+                            Spacer()
+                            Text(labelForCategories())
                                 .foregroundColor(Color.gray)
                         }
                     }
