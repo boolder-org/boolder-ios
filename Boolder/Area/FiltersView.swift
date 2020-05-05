@@ -159,7 +159,7 @@ struct GradeFilterView: View {
     var body: some View {
         List {
             Section {
-                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMin, title: "Niveau minimum")) {
+                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMin, type: .min)) {
                     HStack {
                         Text("Niveau minimum")
                         Spacer()
@@ -168,7 +168,7 @@ struct GradeFilterView: View {
                     }
                 }
                 
-                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMax, title: "Niveau maximum")) {
+                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMax, type: .max)) {
                     HStack {
                         Text("Niveau maximum")
                         Spacer()
@@ -197,22 +197,30 @@ struct GradeMinMaxFilterView: View {
     @EnvironmentObject var dataStore: DataStore
     @Environment(\.presentationMode) var presentationMode
     @Binding var gradeFilter: Grade
-    var title: String
+    var type: GradeFilterType
+    
+    enum GradeFilterType {
+        case min
+        case max
+    }
     
     var body: some View {
         List {
             Section {
                 ForEach(Grade.visibleGrades, id: \.self) { grade in
                     Button(action: {
-                        self.gradeFilter = try! Grade(grade)
-                        self.presentationMode.wrappedValue.dismiss()
+                        if !self.isDisabled(grade: grade) {
+                            self.gradeFilter = try! Grade(grade)
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     }) {
                         HStack {
                             Text(grade)
-                                .foregroundColor(Color(.label))
+                                .foregroundColor(self.isDisabled(grade: grade) ? Color(.gray) : Color(.label))
                             Spacer()
                             if grade == self.gradeFilter.string {
                                 Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                                    .disabled(self.isDisabled(grade: grade))
                             }
                         }
                     }
@@ -221,7 +229,16 @@ struct GradeMinMaxFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle(title)
+        .navigationBarTitle(type == .min ? "Niveau minimum" : "Niveau maximum")
+    }
+    
+    func isDisabled(grade: String) -> Bool {
+        if type == .min {
+            return (try! Grade(grade)) > self.dataStore.filters.gradeMax
+        }
+        else {
+            return (try! Grade(grade)) < self.dataStore.filters.gradeMin
+        }
     }
 }
 
