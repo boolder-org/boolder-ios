@@ -75,5 +75,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    // MARK: - DataStore
+    
+    lazy var dataStore: DataStore = {
+       DataStore()
+    }()
 }
 

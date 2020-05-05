@@ -11,9 +11,6 @@ import MapKit
 import CoreData
 
 class DataStore : ObservableObject {
-    
-    static let shared = DataStore()
-    
     var geoStore = GeoStore()
 
     @Published var overlays = [MKOverlay]()

@@ -121,7 +121,7 @@ struct RoundedCorner: Shape {
 struct CircuitHelpView_Previews: PreviewProvider {
     static var previews: some View {
         CircuitHelpView()
-            .environmentObject(DataStore.shared)
+            .environmentObject(DataStore())
     }
 }
 

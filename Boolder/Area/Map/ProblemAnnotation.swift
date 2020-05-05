@@ -98,12 +98,16 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
         }
     }
     
+    private func dataStore() -> DataStore {
+        (UIApplication.shared.delegate as! AppDelegate).dataStore
+    }
+    
     func isFavorite() -> Bool {
         favorite() != nil
     }
     
     func favorite() -> Favorite? {
-        DataStore.shared.favorites().first { (favorite: Favorite) -> Bool in
+        dataStore().favorites().first { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == self.id
         }
     }
@@ -113,7 +117,7 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     }
     
     func tick() -> Tick? {
-        DataStore.shared.ticks().first { (tick: Tick) -> Bool in
+        dataStore().ticks().first { (tick: Tick) -> Bool in
             return Int(tick.problemId) == self.id
         }
     }

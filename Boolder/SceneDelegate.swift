@@ -21,12 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Get the managed object context from the shared persistent container.
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        // Get the DataStore
+        let dataStore = (UIApplication.shared.delegate as! AppDelegate).dataStore
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        
         let contentView = AreaView()
             .environment(\.managedObjectContext, context)
-            .environmentObject(DataStore.shared)
+            .environmentObject(dataStore)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

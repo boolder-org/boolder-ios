@@ -79,6 +79,6 @@ struct AreaView: View {
 struct AreaView_Previews: PreviewProvider {
     static var previews: some View {
         AreaView()
-            .environmentObject(DataStore.shared)
+            .environmentObject(DataStore())
     }
 }

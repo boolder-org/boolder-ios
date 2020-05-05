@@ -148,7 +148,7 @@ struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             FiltersView(presentFilters: .constant(true))
-            .environmentObject(DataStore.shared)
+            .environmentObject(DataStore())
         }
     }
 }

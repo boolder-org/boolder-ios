@@ -101,6 +101,6 @@ struct CircuitFilterView: View {
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
         CircuitFilterView()
-            .environmentObject(DataStore.shared)
+            .environmentObject(DataStore())
     }
 }

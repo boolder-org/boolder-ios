@@ -83,7 +83,7 @@ struct ProblemListView_Previews: PreviewProvider {
             ProblemListView(selectedProblem: .constant(ProblemAnnotation()), presentProblemDetails: .constant(false))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
-        .environmentObject(DataStore.shared)
+        .environmentObject(DataStore())
         .environment(\.managedObjectContext, self.context)
     }
 }
