@@ -34,14 +34,18 @@ struct CircuitFilterView: View {
                                 CircuitNumberView(number: "", color: Circuit(circuitType).color, height: 20)
                                 
                                 Text("\(Circuit(circuitType).name)")
+                                    .foregroundColor(Color(.label))
                                 
                                 Spacer()
                                 
                                 Text(Circuit(circuitType).overallLevelDescription)
                                 .font(.caption)
                                 .foregroundColor(Color(UIColor.systemGray))
+                                
+                                if self.dataStore.filters.circuit == circuitType {
+                                    Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                                }
                             }
-                            .foregroundColor(Color(.label))
                         }
                     }
                 }
@@ -51,9 +55,17 @@ struct CircuitFilterView: View {
                         self.dataStore.filters.circuit = nil
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text("Aucun circuit")
+                        HStack {
+                            Text("Pas de circuit")
+                                .foregroundColor(Color(.label))
+                            
+                            Spacer()
+                            
+                            if self.dataStore.filters.circuit == nil {
+                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                            }
+                        }
                     }
-                    .foregroundColor(Color(.label))
                 }
             }
             .listStyle(GroupedListStyle())
