@@ -91,6 +91,7 @@ struct CircuitFilterView: View {
                     Text("OK")
                         .bold()
                         .padding(.vertical)
+                        .padding(.leading, 32)
                 }
             )
         }

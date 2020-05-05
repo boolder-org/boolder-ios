@@ -96,6 +96,7 @@ struct FiltersView: View {
                     Text("OK")
                         .bold()
                         .padding(.vertical)
+                        .padding(.leading, 32)
                 }
             )
             .listStyle(GroupedListStyle())
@@ -188,6 +189,7 @@ struct GradeFilterView: View {
                 Text("OK")
                     .bold()
                     .padding(.vertical)
+                    .padding(.leading, 32)
             }
         )
     }
@@ -294,6 +296,7 @@ struct RiskyFilterView: View {
                 Text("OK")
                     .bold()
                     .padding(.vertical)
+                    .padding(.leading, 32)
             }
         )
     }
@@ -346,6 +349,7 @@ struct HeightFilterView: View {
                 Text("OK")
                     .bold()
                     .padding(.vertical)
+                    .padding(.leading, 32)
             }
         )
     }
@@ -387,6 +391,7 @@ struct SteepnessFilterView: View {
                 Text("OK")
                     .bold()
                     .padding(.vertical)
+                    .padding(.leading, 32)
             }
         )
     }
