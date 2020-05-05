@@ -94,7 +94,7 @@ class DataStore : ObservableObject {
     private func filterCircuits() {
         overlays = geoStore.overlays.filter { overlay in
             if let circuit = overlay as? CircuitOverlay {
-                if circuit.circuitType == Circuit.CircuitType.offCircuit && filters.circuit == nil {
+                if circuit.circuitType == Circuit.CircuitType.offCircuit {
                     return true
                 }
                 
