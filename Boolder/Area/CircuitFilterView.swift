@@ -40,10 +40,6 @@ struct CircuitFilterView: View {
                                 
                                 Spacer()
                                 
-                                Text(Circuit(circuitType).overallLevelDescription)
-                                .font(.caption)
-                                .foregroundColor(Color(UIColor.systemGray))
-                                
                                 if self.dataStore.filters.circuit == circuitType {
                                     Image(systemName: "checkmark").font(Font.body.weight(.bold))
                                 }

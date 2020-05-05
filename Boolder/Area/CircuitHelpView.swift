@@ -11,32 +11,69 @@ import SwiftUI
 let circuitSize: CGFloat = 28
 
 struct CircuitHelpView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-//        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    VStack(alignment: .center) {
-                        Text("Circuits")
-                            .font(.largeTitle)
-                            .foregroundColor(Color(.systemGreen))
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                    }
-                    .padding(.bottom, 48)
-                    
-                    VStack(alignment: .leading, spacing: 48) {
-                        
-                        Text("Les circuits s'étalent sur plusieurs niveaux, avec des variations d'un secteur à l'autre.")
-                        
-                        CircuitLevelMatrix()
-                            .padding(.trailing, 32)
-                            
-                        Spacer()
-                    }
+        ScrollView {
+            VStack(alignment: .leading) {
+                VStack(alignment: .center) {
+                    Text("Circuits")
+                        .font(.largeTitle)
+                        .foregroundColor(Color(.systemGreen))
+                        .bold()
+                        .frame(maxWidth: .infinity)
                 }
-                .padding()
+                .padding(.bottom, 32)
+                
+                VStack(alignment: .leading, spacing: 16) {
+                    
+                    Text("Les circuits sont très pratiques pour découvrir un secteur.")
+                    
+                    Text("Ils regroupent des voies de niveau relativement homogène.")
+                    
+                    CircuitLevelMatrix()
+                        .padding(.trailing, 32)
+                        .padding(.top, 16)
+                    
+                    Text("N'hésitez pas à regarder le détail de chaque circuit pour en savoir plus sur les niveaux précis de chaque voie.")
+                    
+                    Text("Mieux qu'un GPS")
+                        .font(.title)
+                        .padding(.top, 32)
+                    
+                    Text("Le numéro de chaque voie est peint directement sur la roche, ce qui permet de se repérer facilement.")
+                    
+                    Image("yellow-circuit-start")
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(RoundedRectangle(cornerRadius: 32))
+                        .padding(.top, 16)
+                        
+                    
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack(alignment: .center, spacing: 16) {
+                            Text("J'ai bien compris !")
+                                .fontWeight(.bold)
+                                .padding(.vertical)
+                                .fixedSize(horizontal: true, vertical: true)
+                        }
+                        .padding(.horizontal)
+                    }
+                    .frame(maxWidth: .infinity)
+                       .background(Color(UIColor.systemBackground))
+                       .foregroundColor(Color(UIColor.systemGreen))
+                       .cornerRadius(8)
+                       .overlay(
+                           RoundedRectangle(cornerRadius: 8)
+                               .stroke(Color(UIColor.systemGreen), lineWidth: 2)
+                       )
+                        .padding(.vertical, 32)
+                }
             }
-//        }
+            .padding(32)
+        }
     }
 }
 
@@ -91,6 +128,19 @@ struct CircuitHelpView_Previews: PreviewProvider {
 struct CircuitLevelMatrix: View {
     var body: some View {
         VStack(spacing: 0) {
+            HStack {
+                RowLabelView(grade: "9")
+                
+                HStack() {
+                    CircuitCellView()
+                    CircuitCellView()
+                    CircuitCellView()
+                    CircuitCellView()
+                    CircuitCellView(noSpacer: true)
+                }
+            }
+            .frame(height: circuitSize)
+            
             HStack {
                 RowLabelView(grade: "8")
                 
