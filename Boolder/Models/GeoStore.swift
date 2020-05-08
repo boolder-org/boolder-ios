@@ -14,6 +14,7 @@ class GeoStore {
     var annotations: [ProblemAnnotation]
     var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
     var topoCollection: TopoCollection
+    let areaId = "2"
 
     init() {
         overlays = [MKOverlay]()
@@ -25,7 +26,7 @@ class GeoStore {
     }
     
     func loadData() {
-        if let topojsonUrl = Bundle.main.url(forResource: "area-1-topos", withExtension: "json") {
+        if let topojsonUrl = Bundle.main.url(forResource: "area-\(areaId)-topos", withExtension: "json") {
             do {
                 let jsonData = try Data(contentsOf: topojsonUrl)
                 topoCollection = try! JSONDecoder().decode(TopoCollection.self, from: jsonData)
@@ -35,7 +36,7 @@ class GeoStore {
             }
         }
         
-        if let geojsonUrl = Bundle.main.url(forResource: "area-1-data", withExtension: "geojson") {
+        if let geojsonUrl = Bundle.main.url(forResource: "area-\(areaId)-data", withExtension: "geojson") {
             do {
                 let eventData = try Data(contentsOf: geojsonUrl)
                 let decoder = MKGeoJSONDecoder()
@@ -60,28 +61,16 @@ class GeoStore {
             if let feature = object as? MKGeoJSONFeature {
                 for geometry in feature.geometry {
 
-                    /*
-                     Separate out annotation objects from overlay objects
-                     because they are added to the map view in different ways.
-                     This sample GeoJSON only contains points and multipolygon
-                     geometry. In a generic parser, check for all possible
-                     geometry types.
-                    */
                     if let multiPolygon = geometry as? MKMultiPolygon {
                         overlays.append(multiPolygon)
                     } else if let polygon = geometry as? MKPolygon {
                         overlays.append(MKMultiPolygon([polygon]))
                     } else if let polyline = geometry as? MKPolyline {
+                        
                         let circuitOverlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
                         configure(circuitOverlay: circuitOverlay, using: feature.properties)
                         overlays.append(circuitOverlay)
                     } else if let point = geometry as? MKPointAnnotation {
-
-                        /*
-                         The name of the annotation is passed in the feature
-                         properties. Parse the name and apply it to the
-                         annotation.
-                        */
                         
                         let problem = ProblemAnnotation()
                         problem.coordinate = point.coordinate
