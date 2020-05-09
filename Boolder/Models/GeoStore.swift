@@ -10,6 +10,7 @@ import MapKit
 
 class GeoStore {
 
+    var circuits = [Circuit]()
     var overlays: [MKOverlay]
     var annotations: [ProblemAnnotation]
     var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
@@ -53,91 +54,97 @@ class GeoStore {
     private func parse(_ jsonObjects: [MKGeoJSONObject]) {
         for object in jsonObjects {
 
-            /*
-             In this sample's GeoJSON data there are only features in the
-             top-level so this parse method only checks for those. In a generic
-             parser, check for geometry objects here too.
-            */
             if let feature = object as? MKGeoJSONFeature {
-                for geometry in feature.geometry {
-
-                    if let multiPolygon = geometry as? MKMultiPolygon {
-                        overlays.append(multiPolygon)
-                    } else if let polygon = geometry as? MKPolygon {
-                        overlays.append(MKMultiPolygon([polygon]))
-                    } else if let polyline = geometry as? MKPolyline {
-                        
-                        let circuitOverlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
-                        configure(circuitOverlay: circuitOverlay, using: feature.properties)
-                        overlays.append(circuitOverlay)
-                    } else if let point = geometry as? MKPointAnnotation {
-                        
-                        let problem = ProblemAnnotation()
-                        problem.coordinate = point.coordinate
-                        
-                        configure(annotation: problem, using: feature.properties)
-                        annotations.append(problem)
-                    }
+                
+                var type: String?
+                var id: Int?
+                
+                if let first = feature.identifier?.split(separator: "_").first, let last = feature.identifier?.split(separator: "_").last {
+                    type = String(first)
+                    id = Int(last)
+                }
+                
+                if type == "circuit", let id = id {
+                    parseCircuit(feature: feature, id: id)
+                }
+                else if type == "boulder", let id = id {
+                    parseBoulder(feature: feature, id: id)
+                }
+                else if type == "problem", let id = id {
+                    parseProblem(feature: feature, id: id)
+                }
+                else {
+                    print("Could not parse feature (identifier: \(feature.identifier ?? "")")
                 }
             }
         }
     }
-
-    private func configure(annotation: ProblemAnnotation, using properties: Data?) {
-        guard let properties = properties else {
-            return
-        }
-
-        let decoder = JSONDecoder()
-        if let properties = try? decoder.decode(ProblemProperties.self, from: properties) {
-            // FIXME: refactor
-            
-            annotation.displayLabel = properties.circuitNumber ?? ""
-            annotation.name = properties.name
-            
-            if let height = properties.height {
-                annotation.height = height
+    
+    private func parseCircuit(feature: MKGeoJSONFeature, id: Int) {
+        for geometry in feature.geometry {
+            if let polyline = geometry as? MKPolyline, let properties = feature.properties {
+                
+                let circuitOverlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
+                
+                let decoder = JSONDecoder()
+                if let dictionary = try? decoder.decode([String: String].self, from: properties) {
+                    circuitOverlay.circuitType = Circuit.circuitTypeFromString(dictionary["color"])
+                }
+                
+                overlays.append(circuitOverlay)
             }
-            
-            if let steepness = properties.steepness {
-                annotation.steepness = Steepness(string: steepness).type
-            }
-            
-            if let gradeString = properties.grade {
-                do { annotation.grade = try Grade(gradeString) } catch {  }
-            }
-            
-            annotation.id = properties.id
-            
-            if let topo = properties.topos?.first {
-                annotation.topo = topoCollection.topo(withId: topo.id)
-            }
-            
-            annotation.tags = properties.tags
-            
-//            if let line = properties.photoLine {
-//                annotation.photoLine = line.map{ProblemAnnotation.PhotoPercentCoordinate(x: $0.x, y: $0.y)}
-//            }
-            
-//            annotation.title = " "
-//            annotation.subtitle = annotation.grade
-            
-            annotation.circuitType = Circuit.circuitTypeFromString(properties.circuit)
-        }
-        else {
-            print("Could not parse properties for MKPointAnnotation: \(annotation)")
         }
     }
     
-    // FIXME: make DRY
-    private func configure(circuitOverlay: CircuitOverlay, using properties: Data?) {
-        guard let properties = properties else {
-            return
+    private func parseBoulder(feature: MKGeoJSONFeature, id: Int) {
+        for geometry in feature.geometry {
+            if let polygon = geometry as? MKPolygon {
+                overlays.append(MKMultiPolygon([polygon]))
+            }
+//            else if let multiPolygon = geometry as? MKMultiPolygon {
+//                overlays.append(multiPolygon)
+//            }
         }
-
-        let decoder = JSONDecoder()
-        if let dictionary = try? decoder.decode([String: String].self, from: properties) {
-            circuitOverlay.circuitType = Circuit.circuitTypeFromString(dictionary["circuit"])
+    }
+    
+    private func parseProblem(feature: MKGeoJSONFeature, id: Int) {
+        for geometry in feature.geometry {
+            
+            if let point = geometry as? MKPointAnnotation, let properties = feature.properties {
+                
+                let annotation = ProblemAnnotation()
+                annotation.id = id
+                annotation.coordinate = point.coordinate
+                
+                let decoder = JSONDecoder()
+                if let properties = try? decoder.decode(ProblemProperties.self, from: properties) {
+                    
+                    annotation.displayLabel = properties.circuitNumber ?? ""
+                    annotation.name = properties.name
+                    
+                    if let height = properties.height {
+                        annotation.height = height
+                    }
+                    
+                    if let steepness = properties.steepness {
+                        annotation.steepness = Steepness(string: steepness).type
+                    }
+                    
+                    if let gradeString = properties.grade {
+                        do { annotation.grade = try Grade(gradeString) } catch {  }
+                    }
+                    
+                    if let topo = properties.topos?.first {
+                        annotation.topo = topoCollection.topo(withId: topo.id)
+                    }
+                    
+                    annotation.tags = properties.tags
+                    
+                    annotation.circuitType = Circuit.circuitTypeFromString(properties.circuit)
+                }
+                
+                annotations.append(annotation)
+            }
         }
     }
     
@@ -147,7 +154,6 @@ class GeoStore {
         let grade: String?
         let name: String?
         let steepness: String?
-        let id: Int
         let height: Int?
         let topos: [TopoRef]?
         let tags: [String]?
@@ -167,5 +173,3 @@ class GeoStore {
         }
     }
 }
-
-

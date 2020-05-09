@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3701844D2465EE9100C6530C /* area-2-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 3701844C2465EE9100C6530C /* area-2-data.geojson */; };
+		370184552466B9EB00C6530C /* area-2-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 370184542466B9EB00C6530C /* area-2-data.geojson */; };
 		37043E032458BE2A002782AB /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37043E022458BE2A002782AB /* area-1-data.geojson */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
@@ -268,7 +268,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3701844C2465EE9100C6530C /* area-2-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-2-data.geojson"; sourceTree = "<group>"; };
+		370184542466B9EB00C6530C /* area-2-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-2-data.geojson"; sourceTree = "<group>"; };
 		37043E022458BE2A002782AB /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
@@ -544,7 +544,7 @@
 		3701844B2465A92A00C6530C /* area-2 */ = {
 			isa = PBXGroup;
 			children = (
-				3701844C2465EE9100C6530C /* area-2-data.geojson */,
+				370184542466B9EB00C6530C /* area-2-data.geojson */,
 			);
 			path = "area-2";
 			sourceTree = "<group>";
@@ -1154,7 +1154,7 @@
 				37A8C7CF245326B400DC161F /* topo-81.jpg in Resources */,
 				37A8C73E245326B400DC161F /* topo-89.jpg in Resources */,
 				37A8C784245326B400DC161F /* topo-113.jpg in Resources */,
-				3701844D2465EE9100C6530C /* area-2-data.geojson in Resources */,
+				370184552466B9EB00C6530C /* area-2-data.geojson in Resources */,
 				37A8C799245326B400DC161F /* topo-20.jpg in Resources */,
 				37A8C7BA245326B400DC161F /* topo-82.jpg in Resources */,
 				37A8C7EA245326B400DC161F /* topo-85.jpg in Resources */,
