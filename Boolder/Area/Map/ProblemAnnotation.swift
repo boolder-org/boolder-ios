@@ -13,17 +13,16 @@ class ProblemAnnotation: NSObject, MKAnnotation {
     @objc dynamic var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     let problem: Problem
-    var displayLabel: String {
+    
+    var glyphText: String {
         problem.circuitNumber
+    }
+    
+    var tintColor: UIColor {
+        problem.circuitColor?.uicolor ?? UIColor.gray
     }
     
     init(problem: Problem) {
         self.problem = problem
-    }
-
-    func displayColor() -> UIColor {
-        guard let circuitColor = problem.circuitColor else { return UIColor.gray }
-        
-        return circuitColor.uicolor
     }
 }

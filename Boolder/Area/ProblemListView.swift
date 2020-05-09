@@ -33,7 +33,7 @@ struct ProblemListView: View {
                             self.presentProblemDetails = true
                         }) {
                             HStack {
-                                CircuitNumberView(number: problem.circuitNumber, color: problem.displayColor())
+                                CircuitNumberView(number: problem.circuitNumber, color: problem.circuitUIColor)
 
                                 Text(problem.name ?? "Sans nom")
                                     .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)

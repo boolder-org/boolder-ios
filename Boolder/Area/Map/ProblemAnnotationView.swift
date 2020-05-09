@@ -132,10 +132,10 @@ class ProblemAnnotationView: MKAnnotationView {
         refreshSize()
         refreshBadge()
         
-        circleView.backgroundColor = annotation.displayColor()
+        circleView.backgroundColor = annotation.tintColor
         
-        label.text = annotation.displayLabel
-        label.textColor = (annotation.displayColor() == Circuit.CircuitColor.white.uicolor) ? .black : .systemBackground
+        label.text = annotation.glyphText
+        label.textColor = (annotation.tintColor == Circuit.CircuitColor.white.uicolor) ? .black : .systemBackground
     }
     
     func refreshSize() {

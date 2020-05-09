@@ -18,7 +18,7 @@ struct BezierViewRepresentable: UIViewRepresentable {
             bezierView.dataSource = context.coordinator
         }
         
-        bezierView.lineColor = problem.displayColor()
+        bezierView.lineColor = problem.circuitUIColor
         return bezierView
     }
     
