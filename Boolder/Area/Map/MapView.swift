@@ -48,16 +48,9 @@ struct MapView: UIViewRepresentable {
         mapView.register(PoiAnnotationView.self, forAnnotationViewWithReuseIdentifier: PoiAnnotationView.ReuseID)
         
         mapView.addOverlays(dataStore.overlays)
-        
-        // doing this async because otherwise animation doesnt work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.zoomToRegion(mapView: self.mapView)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-            self.mapView.addAnnotations(self.dataStore.annotations)
-            self.mapView.addAnnotation(self.dataStore.parkingAnnotation())
-        }
+        self.mapView.addAnnotations(self.dataStore.annotations)
+//        self.mapView.addAnnotation(self.dataStore.parkingAnnotation())
+        self.zoomToRegion(mapView: self.mapView)
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            context.coordinator.showUserLocation()
@@ -67,15 +60,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-//        print("update map ui")
-        
-        let changedCircuit = context.coordinator.lastCircuit != dataStore.filters.circuit && dataStore.filters.circuit != nil
-        context.coordinator.lastCircuit = dataStore.filters.circuit
-        
-        if changedCircuit {
-            zoomToRegion(mapView: mapView)
-        }
-        
+
         // remove & add annotations back only if needed to avoid flickering
         
         let previousAnnotationsIds: [Int] = mapView.annotations.compactMap{ annotation in
@@ -96,7 +81,7 @@ struct MapView: UIViewRepresentable {
             mapView.removeOverlays(mapView.overlays)
             mapView.addAnnotations(dataStore.annotations)
             mapView.addOverlays(dataStore.overlays)
-            mapView.addAnnotation(self.dataStore.parkingAnnotation())
+//            mapView.addAnnotation(self.dataStore.parkingAnnotation())
         }
         
         // refresh all annotation views
@@ -112,14 +97,24 @@ struct MapView: UIViewRepresentable {
                 }
             }
         }
+        
+        // zoom to new region
+        
+        let changedCircuit = context.coordinator.lastCircuit != dataStore.filters.circuit && dataStore.filters.circuit != nil
+        context.coordinator.lastCircuit = dataStore.filters.circuit
+        
+        if changedCircuit {
+            zoomToRegion(mapView: mapView)
+        }
     }
     
     func zoomToRegion(mapView: MKMapView) {
-        let initialLocation = CLLocation(latitude: 48.461788 + Double.random(in: 0..<0.00001), longitude: 2.663394) // randomize to trigger map annotations collisions
-        let regionRadius: CLLocationDistance = 250
-        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        
-        mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
+//        let initialLocation = CLLocation(latitude: 48.461788 + Double.random(in: 0..<0.00001), longitude: 2.663394) // randomize to trigger map annotations collisions
+//        let regionRadius: CLLocationDistance = 250
+//        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+//
+//        mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
     func makeCoordinator() -> Coordinator {
