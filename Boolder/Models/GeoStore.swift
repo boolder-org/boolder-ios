@@ -119,7 +119,7 @@ class GeoStore {
                     
                     problem.tags = properties.tags
                     
-                    problem.circuitColor = Circuit.circuitColorFromString(properties.circuit)
+                    problem.circuitColor = Circuit.circuitColorFromString(properties.circuitColor)
                     
                     problem.id = id
                     
@@ -135,7 +135,7 @@ class GeoStore {
     }
     
     struct ProblemProperties: Decodable {
-        let circuit: String?
+        let circuitColor: String?
         let circuitNumber: String?
         let grade: String?
         let name: String?

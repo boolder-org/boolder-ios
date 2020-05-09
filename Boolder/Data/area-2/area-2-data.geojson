@@ -16,7 +16,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le bac à Eau",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_272"
     },
@@ -35,7 +35,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Gageure",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_313"
     },
@@ -54,7 +54,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Motte de Grès",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_248"
     },
@@ -73,7 +73,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Rebord",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_246"
     },
@@ -92,7 +92,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_247"
     },
@@ -111,7 +111,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_249"
     },
@@ -130,7 +130,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Les Petits Pas",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_260"
     },
@@ -149,7 +149,7 @@
         "steepness": "slab",
         "height": null,
         "name": "L'Angle Rond",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_261"
     },
@@ -168,7 +168,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'Additif",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_259"
     },
@@ -187,7 +187,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_262"
     },
@@ -206,7 +206,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_263"
     },
@@ -225,7 +225,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Flop",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_267"
     },
@@ -244,7 +244,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_265"
     },
@@ -263,7 +263,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_266"
     },
@@ -282,7 +282,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_270"
     },
@@ -301,7 +301,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_273"
     },
@@ -320,7 +320,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_274"
     },
@@ -339,7 +339,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_275"
     },
@@ -358,7 +358,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_276"
     },
@@ -377,7 +377,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_278"
     },
@@ -396,7 +396,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_282"
     },
@@ -415,7 +415,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_283"
     },
@@ -434,7 +434,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_285"
     },
@@ -453,7 +453,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_287"
     },
@@ -472,7 +472,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_288"
     },
@@ -491,7 +491,7 @@
         "steepness": "other",
         "height": null,
         "name": "L'Embarras",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_286"
     },
@@ -510,7 +510,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_290"
     },
@@ -529,7 +529,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_291"
     },
@@ -548,7 +548,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_294"
     },
@@ -567,7 +567,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_295"
     },
@@ -586,7 +586,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_296"
     },
@@ -605,7 +605,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_297"
     },
@@ -624,7 +624,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_298"
     },
@@ -643,7 +643,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_299"
     },
@@ -662,7 +662,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_302"
     },
@@ -681,7 +681,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_303"
     },
@@ -700,7 +700,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_308"
     },
@@ -719,7 +719,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_312"
     },
@@ -738,7 +738,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_314"
     },
@@ -757,7 +757,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_315"
     },
@@ -776,7 +776,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_316"
     },
@@ -795,7 +795,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_317"
     },
@@ -814,7 +814,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_318"
     },
@@ -833,7 +833,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_319"
     },
@@ -852,7 +852,7 @@
         "steepness": "slab",
         "height": null,
         "name": "L'Autorisation",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_320"
     },
@@ -871,7 +871,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_323"
     },
@@ -890,7 +890,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_325"
     },
@@ -909,7 +909,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_330"
     },
@@ -928,7 +928,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_335"
     },
@@ -947,7 +947,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_336"
     },
@@ -966,7 +966,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_337"
     },
@@ -985,7 +985,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_339"
     },
@@ -1004,7 +1004,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_340"
     },
@@ -1023,7 +1023,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_343"
     },
@@ -1042,7 +1042,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_345"
     },
@@ -1061,7 +1061,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_349"
     },
@@ -1080,7 +1080,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_350"
     },
@@ -1099,7 +1099,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_351"
     },
@@ -1118,7 +1118,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_353"
     },
@@ -1137,7 +1137,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_354"
     },
@@ -1156,7 +1156,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_356"
     },
@@ -1175,7 +1175,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_357"
     },
@@ -1194,7 +1194,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_358"
     },
@@ -1213,7 +1213,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_359"
     },
@@ -1232,7 +1232,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_360"
     },
@@ -1251,7 +1251,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_361"
     },
@@ -1270,7 +1270,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_362"
     },
@@ -1289,7 +1289,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_363"
     },
@@ -1308,7 +1308,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_364"
     },
@@ -1327,7 +1327,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_365"
     },
@@ -1346,7 +1346,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_366"
     },
@@ -1365,7 +1365,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_367"
     },
@@ -1384,7 +1384,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_368"
     },
@@ -1403,7 +1403,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_369"
     },
@@ -1422,7 +1422,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_370"
     },
@@ -1441,7 +1441,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_371"
     },
@@ -1460,7 +1460,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_372"
     },
@@ -1479,7 +1479,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_373"
     },
@@ -1498,7 +1498,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_374"
     },
@@ -1517,7 +1517,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_375"
     },
@@ -1536,7 +1536,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_376"
     },
@@ -1555,7 +1555,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_377"
     },
@@ -1574,7 +1574,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_378"
     },
@@ -1593,7 +1593,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_379"
     },
@@ -1612,7 +1612,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_380"
     },
@@ -1631,7 +1631,7 @@
         "steepness": "other",
         "height": null,
         "name": "blue 16",
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_250"
     },
@@ -1650,7 +1650,7 @@
         "steepness": "other",
         "height": null,
         "name": "blue 2",
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_251"
     },
@@ -1669,7 +1669,7 @@
         "steepness": "other",
         "height": null,
         "name": "blue 40",
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_252"
     },
@@ -1688,7 +1688,7 @@
         "steepness": "other",
         "height": null,
         "name": "red 12",
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_253"
     },
@@ -1707,7 +1707,7 @@
         "steepness": "other",
         "height": null,
         "name": "red 19",
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_254"
     },
@@ -1726,7 +1726,7 @@
         "steepness": "other",
         "height": null,
         "name": "red 27",
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_255"
     },
@@ -1745,7 +1745,7 @@
         "steepness": "other",
         "height": null,
         "name": "red 31",
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_256"
     },
@@ -1764,7 +1764,7 @@
         "steepness": "other",
         "height": null,
         "name": "red 38",
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_257"
     },
@@ -1783,7 +1783,7 @@
         "steepness": "other",
         "height": null,
         "name": "red 4",
-        "circuit": "red"
+        "circuitColor": "red"
       },
       "id": "problem_258"
     },
@@ -1802,7 +1802,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Bête de Somme",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_264"
     },
@@ -1821,7 +1821,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Livret",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_271"
     },
@@ -1840,7 +1840,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Fuite en Amont",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_309"
     },
@@ -1859,7 +1859,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Bourru",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_322"
     },
@@ -1878,7 +1878,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Boisseau",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_324"
     },
@@ -1897,7 +1897,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Placette",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_342"
     },
@@ -1916,7 +1916,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Vigoureux",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_321"
     },
@@ -1935,7 +1935,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Sortie du Tunnel",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_381"
     },
@@ -1954,7 +1954,7 @@
         "steepness": "other",
         "height": null,
         "name": "L'Embarcadère",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_382"
     },
@@ -1973,7 +1973,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Front de Mer",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_383"
     },
@@ -1992,7 +1992,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Brise-Lame",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_384"
     },
@@ -2011,7 +2011,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Terminal",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_385"
     },
@@ -2030,7 +2030,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Encoignure",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_269"
     },
@@ -2049,7 +2049,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Aisée",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_268"
     },
@@ -2068,7 +2068,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'Envers du Toit",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_277"
     },
@@ -2087,7 +2087,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Paisible",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_279"
     },
@@ -2106,7 +2106,7 @@
         "steepness": "slab",
         "height": null,
         "name": "L'Indulgent",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_280"
     },
@@ -2125,7 +2125,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Évitable Bi",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_281"
     },
@@ -2144,7 +2144,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Cireur",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_289"
     },
@@ -2163,7 +2163,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Réta",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_292"
     },
@@ -2182,7 +2182,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Coiné",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_293"
     },
@@ -2201,7 +2201,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Rampe",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_301"
     },
@@ -2220,7 +2220,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Vigoureux",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_304"
     },
@@ -2239,7 +2239,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Aérien",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_305"
     },
@@ -2258,7 +2258,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Montant",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_306"
     },
@@ -2277,7 +2277,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Glissade",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_307"
     },
@@ -2296,7 +2296,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Marche",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_310"
     },
@@ -2315,7 +2315,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Autre Voie",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_311"
     },
@@ -2334,7 +2334,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Audacieuse",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_326"
     },
@@ -2353,7 +2353,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Couloir",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_327"
     },
@@ -2372,7 +2372,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Combine",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_328"
     },
@@ -2391,7 +2391,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Trace",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_329"
     },
@@ -2410,7 +2410,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Mogette",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_331"
     },
@@ -2429,7 +2429,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Obstiné",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_300"
     },
@@ -2448,7 +2448,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Bustier",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_284"
     },
@@ -2467,7 +2467,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Terminus",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_334"
     },
@@ -2486,7 +2486,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Pas de Géant",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_338"
     },
@@ -2505,7 +2505,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Rabiboche",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_341"
     },
@@ -2524,7 +2524,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Sortant",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_352"
     },
@@ -2543,7 +2543,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Rotation",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_355"
     },
@@ -2562,7 +2562,7 @@
         "steepness": "other",
         "height": null,
         "name": "L'Abri",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_347"
     },
@@ -2581,7 +2581,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Cheminée",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_348"
     },
@@ -2600,7 +2600,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Bravoure",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_344"
     },
@@ -2619,7 +2619,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Oblique",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_346"
     },
@@ -2638,7 +2638,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Briscard",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_333"
     },
@@ -2657,7 +2657,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Roi Mage",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_332"
     },

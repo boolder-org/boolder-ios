@@ -16,7 +16,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -43,7 +43,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ]
@@ -65,7 +65,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ]
@@ -87,7 +87,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -114,7 +114,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Sauvetage",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ]
@@ -136,7 +136,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Magouilles",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -163,7 +163,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 87
@@ -187,7 +187,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_26"
     },
@@ -206,7 +206,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Fun and Games",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -233,7 +233,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -260,7 +260,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -287,7 +287,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ],
@@ -314,7 +314,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "tags": [
           "risky"
         ]
@@ -336,7 +336,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Poseurs",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 1
@@ -360,7 +360,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 199
@@ -384,7 +384,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 154
@@ -408,7 +408,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_6"
     },
@@ -427,7 +427,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 157
@@ -451,7 +451,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 68
@@ -475,7 +475,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 88
@@ -499,7 +499,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_12"
     },
@@ -518,7 +518,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 82
@@ -542,7 +542,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Lola",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 77
@@ -566,7 +566,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_18"
     },
@@ -585,7 +585,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 133
@@ -609,7 +609,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 105
@@ -633,7 +633,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 107
@@ -657,7 +657,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 123
@@ -681,7 +681,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 70
@@ -705,7 +705,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 76
@@ -729,7 +729,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Autoroute du Soleil",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 131
@@ -753,7 +753,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_33"
     },
@@ -772,7 +772,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_34"
     },
@@ -791,7 +791,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_35"
     },
@@ -810,7 +810,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 115
@@ -834,7 +834,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 95
@@ -858,7 +858,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_39"
     },
@@ -877,7 +877,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 134
@@ -901,7 +901,7 @@
         "steepness": "slab",
         "height": 3,
         "name": "Le Bistrot",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 106
@@ -925,7 +925,7 @@
         "steepness": "wall",
         "height": 2,
         "name": "Pseudonyme",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 124
@@ -949,7 +949,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Tintin",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 114
@@ -973,7 +973,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'Ex Saut du Jaune",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_80"
     },
@@ -992,7 +992,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "La calandre",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -1019,7 +1019,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "Confiance",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -1046,7 +1046,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Imogen",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -1073,7 +1073,7 @@
         "steepness": "slab",
         "height": 5,
         "name": "La Crêpe",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -1100,7 +1100,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "Tour d'Eiffel",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -1127,7 +1127,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "L'Arête gauche du Cervin",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -1154,7 +1154,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 156
@@ -1178,7 +1178,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 184
@@ -1202,7 +1202,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuit": "yellow"
+        "circuitColor": "yellow"
       },
       "id": "problem_45"
     },
@@ -1221,7 +1221,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 222
@@ -1245,7 +1245,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 205
@@ -1269,7 +1269,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 21
@@ -1293,7 +1293,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 200
@@ -1317,7 +1317,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 221
@@ -1341,7 +1341,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 206
@@ -1365,7 +1365,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 178
@@ -1389,7 +1389,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La cheminée",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_55"
     },
@@ -1408,7 +1408,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 136
@@ -1432,7 +1432,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Tour de Canon",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 155
@@ -1456,7 +1456,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_58"
     },
@@ -1475,7 +1475,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 33
@@ -1499,7 +1499,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 18
@@ -1523,7 +1523,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 2
@@ -1547,7 +1547,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 48
@@ -1571,7 +1571,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Drambruie",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 67
@@ -1595,7 +1595,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 36
@@ -1619,7 +1619,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 65
@@ -1643,7 +1643,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 19
@@ -1667,7 +1667,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 34
@@ -1691,7 +1691,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_76"
     },
@@ -1710,7 +1710,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 180
@@ -1734,7 +1734,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Contrabasse",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_79"
     },
@@ -1753,7 +1753,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 139
@@ -1777,7 +1777,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Couche-Tard",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 4
@@ -1801,7 +1801,7 @@
         "steepness": "overhang",
         "height": 3,
         "name": "Le Bouchon",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 49
@@ -1825,7 +1825,7 @@
         "steepness": "traverse",
         "height": 4,
         "name": "Ninkenphoop",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 176
@@ -1849,7 +1849,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Bofinger",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 37
@@ -1873,7 +1873,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Candide",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 35
@@ -1897,7 +1897,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Impossible",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 79
@@ -1921,7 +1921,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Le Pilier du Dromadaire",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -1948,7 +1948,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "Superlative",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -1975,7 +1975,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "Le Cervin",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ]
@@ -1997,7 +1997,7 @@
         "steepness": "slab",
         "height": 5,
         "name": "L'Appuyette",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -2024,7 +2024,7 @@
         "steepness": "overhang",
         "height": 5,
         "name": "Le Beaufort",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -2051,7 +2051,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "La Queue du Dromadaire",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 15
@@ -2075,7 +2075,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Le French Cancan",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 74
@@ -2099,7 +2099,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Smig",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 104
@@ -2123,7 +2123,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Jeu de Go",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 80
@@ -2147,7 +2147,7 @@
         "steepness": "overhang",
         "height": 3,
         "name": "Le dévers",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 73
@@ -2171,7 +2171,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Bloc",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 81
@@ -2195,7 +2195,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Le Talon d'Achille",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 72
@@ -2219,7 +2219,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Presse Citron",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 93
@@ -2243,7 +2243,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Jets Interdits",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 90
@@ -2267,7 +2267,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Folklorique",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 209
@@ -2291,7 +2291,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 218
@@ -2315,7 +2315,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Ex-Souche",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 188
@@ -2339,7 +2339,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Prétoire",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 210
@@ -2363,7 +2363,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Norma",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 151
@@ -2387,7 +2387,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Imprévue",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 140
@@ -2411,7 +2411,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Cachée",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 162
@@ -2435,7 +2435,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Rouge et le Noir",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 94
@@ -2459,7 +2459,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Nain Jaune",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 85
@@ -2483,7 +2483,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Adrénaline",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 84
@@ -2507,7 +2507,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Coup de Poker",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 97
@@ -2531,7 +2531,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "La Fédérale",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 217
@@ -2555,7 +2555,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Whist",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 187
@@ -2579,7 +2579,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Sphinx (droite)",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 174
@@ -2603,7 +2603,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "La Golgotha (gauche)",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 64
@@ -2627,7 +2627,7 @@
         "steepness": "traverse",
         "height": 3,
         "name": "Le Serpent",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 54
@@ -2651,7 +2651,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "L'Ancien",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 86
@@ -2675,7 +2675,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Dure Limite",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 83
@@ -2699,7 +2699,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "L'Atrappe-Mouche",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 78
@@ -2723,7 +2723,7 @@
         "steepness": "overhang",
         "height": 6,
         "name": "Le Pied Levé",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -2750,7 +2750,7 @@
         "steepness": "wall",
         "height": 6,
         "name": "Force G",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -2777,7 +2777,7 @@
         "steepness": "slab",
         "height": 5,
         "name": "Le Cap Gap",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -2804,7 +2804,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "L'Abîme",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "tags": [
           "risky"
         ],
@@ -2831,7 +2831,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Le Tabac",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -2858,7 +2858,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Nocturne",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 129
@@ -2882,7 +2882,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Saillie d'Esprit",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 116
@@ -2906,7 +2906,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Faute de Frappe",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 120
@@ -2930,7 +2930,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Scarlatine",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 98
@@ -2954,7 +2954,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Bombé",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 103
@@ -2978,7 +2978,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Intermédiaire",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 109
@@ -3002,7 +3002,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 125
@@ -3026,7 +3026,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Poésies",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 75
@@ -3050,7 +3050,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Macadam",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 126
@@ -3074,7 +3074,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Araignée",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 121
@@ -3098,7 +3098,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Quatrain",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 91
@@ -3122,7 +3122,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "La Dame de Pique",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 102
@@ -3146,7 +3146,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Le Pont Mirabeau",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 99
@@ -3170,7 +3170,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Hôtels",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 113
@@ -3194,7 +3194,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Le Pot de Fer",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 108
@@ -3218,7 +3218,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Contemplations",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 71
@@ -3242,7 +3242,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Quintessence",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 130
@@ -3266,7 +3266,7 @@
         "steepness": "roof",
         "height": 4,
         "name": "Lévitation",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "sit_start"
         ],
@@ -3293,7 +3293,7 @@
         "steepness": "overhang",
         "height": 5,
         "name": "Cadeau du Vent",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "risky"
         ],
@@ -3320,7 +3320,7 @@
         "steepness": "slab",
         "height": 5,
         "name": "Le Dalle Bleu",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "tags": [
           "risky"
         ],
@@ -3347,7 +3347,7 @@
         "steepness": "slab",
         "height": 3,
         "name": "Le Butte",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 173
@@ -3371,7 +3371,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Champagne Frappé",
-        "circuit": "yellow",
+        "circuitColor": "yellow",
         "topos": [
           {
             "id": 158
@@ -3395,7 +3395,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Le Bossu",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 196
@@ -3419,7 +3419,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Cadavre Exquis",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 172
@@ -3443,7 +3443,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Paysage",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 149
@@ -3467,7 +3467,7 @@
         "steepness": "traverse",
         "height": 4,
         "name": "Mariage de Figaro",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 165
@@ -3491,7 +3491,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Les Temps Modernes",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 22
@@ -3515,7 +3515,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Chou-Fleur",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 198
@@ -3539,7 +3539,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Prison",
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 208
@@ -3563,7 +3563,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Complainte",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 45
@@ -3587,7 +3587,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Hiver",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 29
@@ -3611,7 +3611,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Pyramide",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -3638,7 +3638,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Chanson d'Automne",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "tags": [
           "risky"
         ],
@@ -3665,7 +3665,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Bateau Ivre",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "tags": [
           "risky"
         ],
@@ -3692,7 +3692,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Ode",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 142
@@ -3716,7 +3716,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Puzzle",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 24
@@ -3740,7 +3740,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Ballade",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 40
@@ -3764,7 +3764,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "L'Amour du Mensonge",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 185
@@ -3788,7 +3788,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Prose",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 219
@@ -3812,7 +3812,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Pion Cassé",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 141
@@ -3836,7 +3836,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "L'Astragale",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 197
@@ -3860,7 +3860,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Caprice",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 186
@@ -3884,7 +3884,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Sylphe",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 92
@@ -3908,7 +3908,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "L'Oeuf de Colombe",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 220
@@ -3932,7 +3932,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Il va Neiger",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 150
@@ -3956,7 +3956,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Longue Marche",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 207
@@ -3980,7 +3980,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Fantaisie",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 23
@@ -4004,7 +4004,7 @@
         "steepness": "overhang",
         "height": 5,
         "name": "La Soprano",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -4031,7 +4031,7 @@
         "steepness": "wall",
         "height": 6,
         "name": "La Contralto",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -4058,7 +4058,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "Chlorophylle",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -4085,7 +4085,7 @@
         "steepness": "wall",
         "height": 6,
         "name": "Le Cheval d'Arçon",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -4112,7 +4112,7 @@
         "steepness": "wall",
         "height": 6,
         "name": "La Vieille",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -4139,7 +4139,7 @@
         "steepness": "overhang",
         "height": 5,
         "name": "Le Dé",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -4166,7 +4166,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "La Belle Vieille",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "tags": [
           "risky"
         ],
@@ -4193,7 +4193,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Solitude",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "tags": [
           "risky"
         ],
@@ -4220,7 +4220,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "La Prothèse",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -4247,7 +4247,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "La Bendix",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "tags": [
           "risky"
         ],
@@ -4274,7 +4274,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Le Damier",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 6
@@ -4298,7 +4298,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "L'Espace",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 14
@@ -4322,7 +4322,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Égérie",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 39
@@ -4346,7 +4346,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Les Petits Pieds",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 202
@@ -4370,7 +4370,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Outrage",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 177
@@ -4394,7 +4394,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Sonnets Posthumes",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 46
@@ -4418,7 +4418,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Opus Dei",
-        "circuit": "orange"
+        "circuitColor": "orange"
       },
       "id": "problem_167"
     },
@@ -4437,7 +4437,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Strophe",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 163
@@ -4461,7 +4461,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Stances",
-        "circuit": "blue"
+        "circuitColor": "blue"
       },
       "id": "problem_169"
     },
@@ -4480,7 +4480,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Crépuscule",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 38
@@ -4504,7 +4504,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Cruciverbiste",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 153
@@ -4528,7 +4528,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Styrax",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 203
@@ -4552,7 +4552,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Dalle de Marbre",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 181
@@ -4576,7 +4576,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'eunnuque",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 201
@@ -4600,7 +4600,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Frouch'mammouth",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 17
@@ -4624,7 +4624,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Les Plats",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 3
@@ -4648,7 +4648,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuit": "orange",
+        "circuitColor": "orange",
         "topos": [
           {
             "id": 223
@@ -4672,7 +4672,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "SOS Glycogène",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 204
@@ -4696,7 +4696,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Couloir",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 179
@@ -4720,7 +4720,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Emmenthal",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 138
@@ -4744,7 +4744,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Échec et Mat",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 160
@@ -4768,7 +4768,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Bateau Pilote",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 51
@@ -4792,7 +4792,7 @@
         "steepness": "traverse",
         "height": 4,
         "name": "Le Fourre-Tout",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 195
@@ -4816,7 +4816,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "La Goulotte",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 189
@@ -4840,7 +4840,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Boute-en-Train",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 41
@@ -4864,7 +4864,7 @@
         "steepness": "overhang",
         "height": 3,
         "name": "Beaux Mouvements sur Fonds Sableux",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "sit_start"
         ],
@@ -4891,7 +4891,7 @@
         "steepness": "overhang",
         "height": 5,
         "name": "Morphotype",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "sit_start",
           "risky"
@@ -4919,7 +4919,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Boomerang",
-        "circuit": "red",
+        "circuitColor": "red",
         "tags": [
           "risky"
         ],
@@ -4946,7 +4946,7 @@
         "steepness": "slab",
         "height": 5,
         "name": "Fables",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "tags": [
           "risky"
         ],
@@ -4973,7 +4973,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Magifix",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 145
@@ -4997,7 +4997,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "L'Innominata",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 170
@@ -5021,7 +5021,7 @@
         "steepness": "traverse",
         "height": 3,
         "name": "Les Chimères",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 143
@@ -5045,7 +5045,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Anthologie",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 56
@@ -5069,7 +5069,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le But",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 66
@@ -5093,7 +5093,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Oubliée",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 10
@@ -5117,7 +5117,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Les Horloges",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 25
@@ -5141,7 +5141,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Gravitation",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 60
@@ -5165,7 +5165,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Tarot",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 57
@@ -5189,7 +5189,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Angoisse",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 44
@@ -5213,7 +5213,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Tristesse",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 148
@@ -5237,7 +5237,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Méditation",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 61
@@ -5261,7 +5261,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Lune de Fiel",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 167
@@ -5285,7 +5285,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Les Câlins de Kim",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 212
@@ -5309,7 +5309,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Cocaline",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 215
@@ -5333,7 +5333,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Canonnerie",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 190
@@ -5357,7 +5357,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Pot de Terre",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 8
@@ -5381,7 +5381,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Nuage Blanc",
-        "circuit": "red",
+        "circuitColor": "red",
         "topos": [
           {
             "id": 214
@@ -5405,7 +5405,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Le Surplomb du Bengale",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 213
@@ -5429,7 +5429,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Élégie",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 26
@@ -5453,7 +5453,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "L'Amérique",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 27
@@ -5477,7 +5477,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Le Vallon",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 12
@@ -5501,7 +5501,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Soleil Couchant",
-        "circuit": "blue",
+        "circuitColor": "blue",
         "topos": [
           {
             "id": 9
@@ -5525,7 +5525,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "La Spéciale",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 11
@@ -5549,7 +5549,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "La Bizuth",
-        "circuit": "skyblue",
+        "circuitColor": "skyblue",
         "topos": [
           {
             "id": 28
@@ -5573,7 +5573,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Jour de Pluie",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "sit_start"
         ],
@@ -5600,7 +5600,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Les Copains d'abord",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "sit_start"
         ],
@@ -5627,7 +5627,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "La Théorie du Chaos",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "risky"
         ],
@@ -5654,7 +5654,7 @@
         "steepness": "wall",
         "height": 5,
         "name": "Les Grimpeurs se Cachent pour Médire",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "risky"
         ],
@@ -5681,7 +5681,7 @@
         "steepness": "slab",
         "height": 6,
         "name": "Délivrance / Marquis de Sade",
-        "circuit": "white",
+        "circuitColor": "white",
         "tags": [
           "risky"
         ],
@@ -5708,7 +5708,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Sledgehammer",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 216
@@ -5732,7 +5732,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Expositions retrospectives",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 191
@@ -5756,7 +5756,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "36.15 Power",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 111
@@ -5780,7 +5780,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "36.15 Gauche",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 110
@@ -5804,7 +5804,7 @@
         "steepness": "traverse",
         "height": 3,
         "name": "Gainage et Dévers",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 168
@@ -5828,7 +5828,7 @@
         "steepness": "traverse",
         "height": 4,
         "name": "La Singlette",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 144
@@ -5852,7 +5852,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "La Dénoyautée",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 59
@@ -5876,7 +5876,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Nut's",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 58
@@ -5900,7 +5900,7 @@
         "steepness": "overhang",
         "height": 4,
         "name": "Fantasia chez les Ploucs",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 100
@@ -5924,7 +5924,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Chasseur de Prises",
-        "circuit": "white",
+        "circuitColor": "white",
         "topos": [
           {
             "id": 119
