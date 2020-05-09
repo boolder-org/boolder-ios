@@ -48,7 +48,7 @@ class DataStore : ObservableObject {
     
     private func filterProblems() {
         annotations = geoStore.annotations.filter { problem in
-            if(filters.circuit == nil || problem.circuitType == filters.circuit) {
+            if(filters.circuit == nil || problem.circuitColor == filters.circuit) {
                 if isGradeOk(problem)  {
                     if filters.steepness.contains(problem.steepness) {
                         if filters.photoPresent == false || problem.isPhotoPresent() {
@@ -94,8 +94,8 @@ class DataStore : ObservableObject {
     }
     
     private func filterCircuit() {
-        if let circuitType = filters.circuit {
-            if let circuit = (geoStore.circuits.first { $0.type == circuitType }) {
+        if let circuitColor = filters.circuit {
+            if let circuit = (geoStore.circuits.first { $0.color == circuitColor }) {
                 overlays.append(circuit.overlay!)
             }
         }
@@ -104,10 +104,10 @@ class DataStore : ObservableObject {
     private func createGroupedAnnotations() {
         var sortedAnnotations = annotations
         sortedAnnotations.sort { (lhs, rhs) -> Bool in
-            guard let lhsCircuit = lhs.circuitType else { return true }
-            guard let rhsCircuit = rhs.circuitType else { return false }
+            guard let lhsCircuit = lhs.circuitColor else { return true }
+            guard let rhsCircuit = rhs.circuitColor else { return false }
             
-            if lhs.circuitType == rhs.circuitType {
+            if lhs.circuitColor == rhs.circuitColor {
                 return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
             }
             else {
@@ -116,7 +116,7 @@ class DataStore : ObservableObject {
         }
         
         groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in
-            problem.circuitType ?? Circuit.CircuitColor.offCircuit
+            problem.circuitColor ?? Circuit.CircuitColor.offCircuit
         })
         
         groupedAnnotationsKeys = groupedAnnotations.keys.sorted()
@@ -124,7 +124,7 @@ class DataStore : ObservableObject {
     
     private func setBelongsToCircuit() {
         for problem in geoStore.annotations {
-            problem.belongsToCircuit = (filters.circuit == problem.circuitType)
+            problem.belongsToCircuit = (filters.circuit == problem.circuitColor)
         }
     }
     

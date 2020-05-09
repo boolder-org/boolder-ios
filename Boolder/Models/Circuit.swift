@@ -50,17 +50,17 @@ class Circuit {
         }
     }
     
-    init(type: CircuitColor, name: String, overlay: CircuitOverlay? = nil) {
-        self.type = type
+    init(color: CircuitColor, name: String, overlay: CircuitOverlay? = nil) {
+        self.color = color
         self.name = name
         self.overlay = overlay
     }
     
-    let type: CircuitColor
+    let color: CircuitColor
     let name: String
     let overlay: CircuitOverlay? // FIXME: make non optional
     
-    static func circuitTypeFromString(_ string: String?) -> CircuitColor {
+    static func circuitColorFromString(_ string: String?) -> CircuitColor {
         switch string {
         // FIXME Add white for kids
         case "yellow":

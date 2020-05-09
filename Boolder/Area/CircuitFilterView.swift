@@ -18,20 +18,20 @@ struct CircuitFilterView: View {
         NavigationView {
             List {
                 Section {
-                    ForEach(dataStore.geoStore.circuits, id: \.type) { (circuit: Circuit) in
+                    ForEach(dataStore.geoStore.circuits, id: \.color) { (circuit: Circuit) in
                         Button(action: {
-                            self.dataStore.filters.circuit = circuit.type
+                            self.dataStore.filters.circuit = circuit.color
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack(alignment: .center) {
-                                CircuitNumberView(number: "", color: circuit.type.uicolor, height: 20)
+                                CircuitNumberView(number: "", color: circuit.color.uicolor, height: 20)
                                 
                                 Text("\(circuit.name)")
                                     .foregroundColor(Color(.label))
                                 
                                 Spacer()
                                 
-                                if self.dataStore.filters.circuit == circuit.type {
+                                if self.dataStore.filters.circuit == circuit.color {
                                     Image(systemName: "checkmark").font(Font.body.weight(.bold))
                                 }
                             }
