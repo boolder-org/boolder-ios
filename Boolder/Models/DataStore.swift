@@ -95,10 +95,14 @@ class DataStore : ObservableObject {
     
     private func filterCircuit() {
         if let circuitColor = filters.circuit {
-            if let circuit = (geoStore.circuits.first { $0.color == circuitColor }) {
+            if let circuit = circuit(withColor: circuitColor) {
                 overlays.append(circuit.overlay!)
             }
         }
+    }
+    
+    func circuit(withColor color: Circuit.CircuitColor) -> Circuit? {
+        geoStore.circuits.first { $0.color == color }
     }
     
     private func createGroupedAnnotations() {

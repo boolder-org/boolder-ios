@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let areaId = "2"
+let areaId = "1"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

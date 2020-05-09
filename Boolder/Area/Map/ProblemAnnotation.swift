@@ -112,8 +112,6 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
         (UIApplication.shared.delegate as! AppDelegate).dataStore
     }
     
-    
-    
     func isFavorite() -> Bool {
         favorite() != nil
     }
