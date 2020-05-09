@@ -15,4 +15,5 @@ class PoiAnnotation: NSObject, MKAnnotation {
     internal var title: String?
     internal var subtitle: String?
     var tintColor = UIColor.gray
+    weak var poi: Poi?
 }

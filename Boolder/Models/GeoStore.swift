@@ -87,12 +87,14 @@ class GeoStore {
                 
                 let decoder = JSONDecoder()
                 if let dictionary = try? decoder.decode([String: String].self, from: properties) {
+                    
                     let annotation = PoiAnnotation()
                     annotation.coordinate = point.coordinate
                     annotation.title = dictionary["title"]
                     annotation.subtitle = dictionary["subtitle"]
                     
                     let poi = Poi(title: dictionary["title"], subtitle: dictionary["subtitle"], description: dictionary["description"], coordinate: point.coordinate, annotation: annotation)
+                    
                     pois.append(poi)
                 }
             }

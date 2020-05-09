@@ -24,7 +24,7 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
-    @Binding var presentParkingActionSheet: Bool
+    @Binding var presentPoiActionSheet: Bool
     
     var mapView = MKMapView()
     
@@ -49,7 +49,7 @@ struct MapView: UIViewRepresentable {
         
         mapView.addOverlays(dataStore.overlays)
         self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-        self.mapView.addAnnotations(self.dataStore.pois.map{$0.annotation})
+        self.mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
         self.zoomToRegion(mapView: self.mapView)
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -80,7 +80,7 @@ struct MapView: UIViewRepresentable {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
             mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-            mapView.addAnnotations(self.dataStore.pois.map{$0.annotation})
+            mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
             mapView.addOverlays(dataStore.overlays)
         }
         
@@ -240,7 +240,7 @@ struct MapView: UIViewRepresentable {
                 let annotationView = PoiAnnotationView(annotation: annotation, reuseIdentifier: PoiAnnotationView.ReuseID)
                 annotationView.canShowCallout = true
                 annotationView.markerTintColor = annotation.tintColor
-                annotationView.glyphText = "P"
+                annotationView.glyphText = String(annotation.title?.prefix(1) ?? "")
                 annotationView.rightCalloutAccessoryView = UIButton(type: .infoLight)
                 
                 return annotationView
@@ -252,7 +252,7 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             
             if let annotation = view.annotation, annotation.isKind(of: PoiAnnotation.self) {
-                parent.presentParkingActionSheet = true
+                parent.presentPoiActionSheet = true
             }
         }
         

@@ -13,7 +13,11 @@ class Poi {
     let subtitle: String?
     let description: String?
     let coordinate: CLLocationCoordinate2D
-    let annotation: PoiAnnotation
+    var annotation: PoiAnnotation {
+        didSet {
+            annotation.poi = self
+        }
+    }
     
     init(title: String?, subtitle: String?, description: String?, coordinate: CLLocationCoordinate2D, annotation: PoiAnnotation) {
         self.title = title
