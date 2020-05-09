@@ -14,29 +14,16 @@ class GeoStore {
     var overlays: [MKOverlay]
     var annotations: [ProblemAnnotation]
     var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
-    var topoCollection: TopoCollection
-    let areaId = "2"
 
     init() {
         overlays = [MKOverlay]()
         annotations = [ProblemAnnotation]()
         groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
-        topoCollection = TopoCollection.init(topos: nil)
         
         loadData()
     }
     
-    func loadData() {
-        if let topojsonUrl = Bundle.main.url(forResource: "area-\(areaId)-topos", withExtension: "json") {
-            do {
-                let jsonData = try Data(contentsOf: topojsonUrl)
-                topoCollection = try! JSONDecoder().decode(TopoCollection.self, from: jsonData)
-
-            } catch {
-                print("Error decoding topos json: \(error).")
-            }
-        }
-        
+    func loadData() {        
         if let geojsonUrl = Bundle.main.url(forResource: "area-\(areaId)-data", withExtension: "geojson") {
             do {
                 let eventData = try Data(contentsOf: geojsonUrl)
@@ -74,7 +61,7 @@ class GeoStore {
                     parseProblem(feature: feature, id: id)
                 }
                 else {
-                    print("Could not parse feature (identifier: \(feature.identifier ?? "")")
+                    print("Could not parse feature with identifier: \(feature.identifier ?? "")")
                 }
             }
         }
@@ -135,7 +122,7 @@ class GeoStore {
                     }
                     
                     if let topo = properties.topos?.first {
-                        annotation.topo = topoCollection.topo(withId: topo.id)
+                        annotation.topoId = topo.id
                     }
                     
                     annotation.tags = properties.tags
@@ -160,16 +147,6 @@ class GeoStore {
         
         struct TopoRef: Decodable {
             let id: Int
-        }
-    }
-
-    struct TopoCollection: Decodable {
-        let topos: [Topo]?
-        
-        func topo(withId id: Int) -> Topo? {
-            return topos?.first(where: { topo in
-                topo.id == id
-            })
         }
     }
 }

@@ -24,7 +24,7 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     var height: Int? = nil
     var steepness: Steepness.SteepnessType = .other
     var id: Int!
-    var topo: Topo?
+    var topoId: Int?
     var tags: [String]?
     
     func readableDescription() -> String? {
@@ -54,6 +54,16 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
             return tags.contains("risky") // FIXME: use enum
         }
         return false
+    }
+    
+    var topo: Topo? {
+        if let topoId = topoId {
+            return dataStore.topoStore.topoCollection.topo(withId: topoId)
+        }
+        else
+        {
+            return nil
+        }
     }
     
     func topoFirstPoint() -> Topo.PhotoPercentCoordinate? {
@@ -98,16 +108,18 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
         }
     }
     
-    private func dataStore() -> DataStore {
+    var dataStore: DataStore {
         (UIApplication.shared.delegate as! AppDelegate).dataStore
     }
+    
+    
     
     func isFavorite() -> Bool {
         favorite() != nil
     }
     
     func favorite() -> Favorite? {
-        dataStore().favorites().first { (favorite: Favorite) -> Bool in
+        dataStore.favorites().first { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == self.id
         }
     }
@@ -117,7 +129,7 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     }
     
     func tick() -> Tick? {
-        dataStore().ticks().first { (tick: Tick) -> Bool in
+        dataStore.ticks().first { (tick: Tick) -> Bool in
             return Int(tick.problemId) == self.id
         }
     }

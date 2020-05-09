@@ -12,12 +12,12 @@ import CoreData
 
 class DataStore : ObservableObject {
     var geoStore = GeoStore()
+    var topoStore = TopoStore()
 
     @Published var overlays = [MKOverlay]()
     @Published var annotations = [ProblemAnnotation]()
     @Published var groupedAnnotations = Dictionary<Circuit.CircuitType, [ProblemAnnotation]>()
     @Published var groupedAnnotationsKeys = [Circuit.CircuitType]()
-    @Published var topoCollection = GeoStore.TopoCollection.init(topos: nil)
     
     // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
     var filters = Filters() {

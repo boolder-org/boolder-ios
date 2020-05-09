@@ -11,8 +11,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 14,
         "grade": "2a",
         "circuitNumber": "36",
         "steepness": "slab",
@@ -27,7 +25,8 @@
             "id": 69
           }
         ]
-      }
+      },
+      "id": "problem_14"
     },
     {
       "type": "Feature",
@@ -39,8 +38,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 15,
         "grade": "2a",
         "circuitNumber": "35",
         "steepness": "traverse",
@@ -50,7 +47,8 @@
         "tags": [
           "risky"
         ]
-      }
+      },
+      "id": "problem_15"
     },
     {
       "type": "Feature",
@@ -62,8 +60,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 27,
         "grade": "2b",
         "circuitNumber": "23",
         "steepness": "wall",
@@ -73,7 +69,8 @@
         "tags": [
           "risky"
         ]
-      }
+      },
+      "id": "problem_27"
     },
     {
       "type": "Feature",
@@ -85,8 +82,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 32,
         "grade": "2a",
         "circuitNumber": "18",
         "steepness": "wall",
@@ -101,7 +96,8 @@
             "id": 122
           }
         ]
-      }
+      },
+      "id": "problem_32"
     },
     {
       "type": "Feature",
@@ -113,8 +109,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 40,
         "grade": "2a",
         "circuitNumber": "9",
         "steepness": "wall",
@@ -124,7 +118,8 @@
         "tags": [
           "risky"
         ]
-      }
+      },
+      "id": "problem_40"
     },
     {
       "type": "Feature",
@@ -136,8 +131,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 21,
         "grade": "3b",
         "circuitNumber": "29",
         "steepness": "wall",
@@ -152,7 +145,8 @@
             "id": 96
           }
         ]
-      }
+      },
+      "id": "problem_21"
     },
     {
       "type": "Feature",
@@ -164,8 +158,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 13,
         "grade": "2a",
         "circuitNumber": "37",
         "steepness": "wall",
@@ -177,7 +169,8 @@
             "id": 87
           }
         ]
-      }
+      },
+      "id": "problem_13"
     },
     {
       "type": "Feature",
@@ -189,15 +182,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 26,
         "grade": "3a",
         "circuitNumber": "24",
         "steepness": "wall",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_26"
     },
     {
       "type": "Feature",
@@ -209,8 +201,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 25,
         "grade": "2a",
         "circuitNumber": "25",
         "steepness": "wall",
@@ -225,7 +215,8 @@
             "id": 132
           }
         ]
-      }
+      },
+      "id": "problem_25"
     },
     {
       "type": "Feature",
@@ -237,8 +228,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 2,
         "grade": "2c",
         "circuitNumber": "48",
         "steepness": "slab",
@@ -253,7 +242,8 @@
             "id": 182
           }
         ]
-      }
+      },
+      "id": "problem_2"
     },
     {
       "type": "Feature",
@@ -265,8 +255,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 4,
         "grade": "2a",
         "circuitNumber": "46",
         "steepness": "traverse",
@@ -281,7 +269,8 @@
             "id": 135
           }
         ]
-      }
+      },
+      "id": "problem_4"
     },
     {
       "type": "Feature",
@@ -293,8 +282,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 8,
         "grade": "3a",
         "circuitNumber": "42",
         "steepness": "slab",
@@ -309,7 +296,8 @@
             "id": 50
           }
         ]
-      }
+      },
+      "id": "problem_8"
     },
     {
       "type": "Feature",
@@ -321,8 +309,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 10,
         "grade": "2a",
         "circuitNumber": "40",
         "steepness": "slab",
@@ -332,7 +318,8 @@
         "tags": [
           "risky"
         ]
-      }
+      },
+      "id": "problem_10"
     },
     {
       "type": "Feature",
@@ -344,8 +331,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 1,
         "grade": "3b",
         "circuitNumber": "13",
         "steepness": "slab",
@@ -357,7 +342,8 @@
             "id": 1
           }
         ]
-      }
+      },
+      "id": "problem_1"
     },
     {
       "type": "Feature",
@@ -369,8 +355,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 3,
         "grade": "3a",
         "circuitNumber": "47",
         "steepness": "slab",
@@ -382,7 +366,8 @@
             "id": 199
           }
         ]
-      }
+      },
+      "id": "problem_3"
     },
     {
       "type": "Feature",
@@ -394,8 +379,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 5,
         "grade": "2a+",
         "circuitNumber": "45",
         "steepness": "slab",
@@ -407,7 +390,8 @@
             "id": 154
           }
         ]
-      }
+      },
+      "id": "problem_5"
     },
     {
       "type": "Feature",
@@ -419,15 +403,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 6,
         "grade": "2a",
         "circuitNumber": "44",
         "steepness": "traverse",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_6"
     },
     {
       "type": "Feature",
@@ -439,8 +422,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 7,
         "grade": "2b",
         "circuitNumber": "43",
         "steepness": "traverse",
@@ -452,7 +433,8 @@
             "id": 157
           }
         ]
-      }
+      },
+      "id": "problem_7"
     },
     {
       "type": "Feature",
@@ -464,8 +446,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 9,
         "grade": "2b",
         "circuitNumber": "41",
         "steepness": "wall",
@@ -477,7 +457,8 @@
             "id": 68
           }
         ]
-      }
+      },
+      "id": "problem_9"
     },
     {
       "type": "Feature",
@@ -489,8 +470,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 11,
         "grade": "2a",
         "circuitNumber": "39",
         "steepness": "slab",
@@ -502,7 +481,8 @@
             "id": 88
           }
         ]
-      }
+      },
+      "id": "problem_11"
     },
     {
       "type": "Feature",
@@ -514,15 +494,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 12,
         "grade": "3a",
         "circuitNumber": "38",
         "steepness": "traverse",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_12"
     },
     {
       "type": "Feature",
@@ -534,8 +513,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 16,
         "grade": "1b",
         "circuitNumber": "34",
         "steepness": "slab",
@@ -547,7 +524,8 @@
             "id": 82
           }
         ]
-      }
+      },
+      "id": "problem_16"
     },
     {
       "type": "Feature",
@@ -559,8 +537,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 17,
         "grade": "2c",
         "circuitNumber": "33",
         "steepness": "slab",
@@ -572,7 +548,8 @@
             "id": 77
           }
         ]
-      }
+      },
+      "id": "problem_17"
     },
     {
       "type": "Feature",
@@ -584,15 +561,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 18,
         "grade": "2a",
         "circuitNumber": "32",
         "steepness": "traverse",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_18"
     },
     {
       "type": "Feature",
@@ -604,8 +580,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 19,
         "grade": "3b",
         "circuitNumber": "31",
         "steepness": "wall",
@@ -617,7 +591,8 @@
             "id": 133
           }
         ]
-      }
+      },
+      "id": "problem_19"
     },
     {
       "type": "Feature",
@@ -629,8 +604,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 20,
         "grade": "2b",
         "circuitNumber": "30",
         "steepness": "slab",
@@ -642,7 +615,8 @@
             "id": 105
           }
         ]
-      }
+      },
+      "id": "problem_20"
     },
     {
       "type": "Feature",
@@ -654,8 +628,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 22,
         "grade": "2b",
         "circuitNumber": "28",
         "steepness": "traverse",
@@ -667,7 +639,8 @@
             "id": 107
           }
         ]
-      }
+      },
+      "id": "problem_22"
     },
     {
       "type": "Feature",
@@ -679,8 +652,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 24,
         "grade": "2a",
         "circuitNumber": "26",
         "steepness": "slab",
@@ -692,7 +663,8 @@
             "id": 123
           }
         ]
-      }
+      },
+      "id": "problem_24"
     },
     {
       "type": "Feature",
@@ -704,8 +676,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 28,
         "grade": "3a",
         "circuitNumber": "22",
         "steepness": "wall",
@@ -717,7 +687,8 @@
             "id": 70
           }
         ]
-      }
+      },
+      "id": "problem_28"
     },
     {
       "type": "Feature",
@@ -729,8 +700,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 29,
         "grade": "2c",
         "circuitNumber": "21",
         "steepness": "traverse",
@@ -742,7 +711,8 @@
             "id": 76
           }
         ]
-      }
+      },
+      "id": "problem_29"
     },
     {
       "type": "Feature",
@@ -754,8 +724,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 31,
         "grade": "2c",
         "circuitNumber": "19",
         "steepness": "overhang",
@@ -767,7 +735,8 @@
             "id": 131
           }
         ]
-      }
+      },
+      "id": "problem_31"
     },
     {
       "type": "Feature",
@@ -779,15 +748,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 33,
         "grade": "2b",
         "circuitNumber": "17",
         "steepness": "wall",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_33"
     },
     {
       "type": "Feature",
@@ -799,15 +767,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 34,
         "grade": "2c",
         "circuitNumber": "16",
         "steepness": "traverse",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_34"
     },
     {
       "type": "Feature",
@@ -819,15 +786,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 35,
         "grade": "1c",
         "circuitNumber": "15",
         "steepness": "slab",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_35"
     },
     {
       "type": "Feature",
@@ -839,8 +805,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 37,
         "grade": "3a",
         "circuitNumber": "12",
         "steepness": "slab",
@@ -852,7 +816,8 @@
             "id": 115
           }
         ]
-      }
+      },
+      "id": "problem_37"
     },
     {
       "type": "Feature",
@@ -864,8 +829,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 38,
         "grade": "2c",
         "circuitNumber": "11",
         "steepness": "wall",
@@ -877,7 +840,8 @@
             "id": 95
           }
         ]
-      }
+      },
+      "id": "problem_38"
     },
     {
       "type": "Feature",
@@ -889,15 +853,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 39,
         "grade": "2b",
         "circuitNumber": "10",
         "steepness": "slab",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_39"
     },
     {
       "type": "Feature",
@@ -909,8 +872,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 42,
         "grade": "2a",
         "circuitNumber": "7",
         "steepness": "traverse",
@@ -922,7 +883,8 @@
             "id": 134
           }
         ]
-      }
+      },
+      "id": "problem_42"
     },
     {
       "type": "Feature",
@@ -934,8 +896,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 36,
         "grade": "3a",
         "circuitNumber": "14",
         "steepness": "slab",
@@ -947,7 +907,8 @@
             "id": 106
           }
         ]
-      }
+      },
+      "id": "problem_36"
     },
     {
       "type": "Feature",
@@ -959,8 +920,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 30,
         "grade": "2b",
         "circuitNumber": "20",
         "steepness": "wall",
@@ -972,7 +931,8 @@
             "id": 124
           }
         ]
-      }
+      },
+      "id": "problem_30"
     },
     {
       "type": "Feature",
@@ -984,8 +944,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 23,
         "grade": "2b",
         "circuitNumber": "27",
         "steepness": "wall",
@@ -997,7 +955,8 @@
             "id": 114
           }
         ]
-      }
+      },
+      "id": "problem_23"
     },
     {
       "type": "Feature",
@@ -1009,15 +968,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 80,
         "grade": "2c",
         "circuitNumber": "8",
         "steepness": "traverse",
         "height": null,
         "name": "L'Ex Saut du Jaune",
         "circuit": "orange"
-      }
+      },
+      "id": "problem_80"
     },
     {
       "type": "Feature",
@@ -1029,8 +987,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 50,
         "grade": "3a",
         "circuitNumber": "42",
         "steepness": "overhang",
@@ -1045,7 +1001,8 @@
             "id": 183
           }
         ]
-      }
+      },
+      "id": "problem_50"
     },
     {
       "type": "Feature",
@@ -1057,8 +1014,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 69,
         "grade": "4a",
         "circuitNumber": "22",
         "steepness": "slab",
@@ -1073,7 +1028,8 @@
             "id": 159
           }
         ]
-      }
+      },
+      "id": "problem_69"
     },
     {
       "type": "Feature",
@@ -1085,8 +1041,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 60,
         "grade": "3c",
         "circuitNumber": "31",
         "steepness": "wall",
@@ -1101,7 +1055,8 @@
             "id": 20
           }
         ]
-      }
+      },
+      "id": "problem_60"
     },
     {
       "type": "Feature",
@@ -1113,8 +1068,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 49,
         "grade": "4a",
         "circuitNumber": "43",
         "steepness": "slab",
@@ -1129,7 +1082,8 @@
             "id": 32
           }
         ]
-      }
+      },
+      "id": "problem_49"
     },
     {
       "type": "Feature",
@@ -1141,8 +1095,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 72,
         "grade": "3b",
         "circuitNumber": "19",
         "steepness": "slab",
@@ -1157,7 +1109,8 @@
             "id": 53
           }
         ]
-      }
+      },
+      "id": "problem_72"
     },
     {
       "type": "Feature",
@@ -1169,8 +1122,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 66,
         "grade": "2c+",
         "circuitNumber": "25",
         "steepness": "slab",
@@ -1185,7 +1136,8 @@
             "id": 52
           }
         ]
-      }
+      },
+      "id": "problem_66"
     },
     {
       "type": "Feature",
@@ -1197,8 +1149,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 43,
         "grade": "2b",
         "circuitNumber": "6",
         "steepness": "wall",
@@ -1210,7 +1160,8 @@
             "id": 156
           }
         ]
-      }
+      },
+      "id": "problem_43"
     },
     {
       "type": "Feature",
@@ -1222,8 +1173,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 44,
         "grade": "3a",
         "circuitNumber": "5",
         "steepness": "slab",
@@ -1235,7 +1184,8 @@
             "id": 184
           }
         ]
-      }
+      },
+      "id": "problem_44"
     },
     {
       "type": "Feature",
@@ -1247,15 +1197,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 45,
         "grade": "2b",
         "circuitNumber": "4",
         "steepness": "overhang",
         "height": null,
         "name": null,
         "circuit": "yellow"
-      }
+      },
+      "id": "problem_45"
     },
     {
       "type": "Feature",
@@ -1267,8 +1216,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 46,
         "grade": "2c",
         "circuitNumber": "3",
         "steepness": "traverse",
@@ -1280,7 +1227,8 @@
             "id": 222
           }
         ]
-      }
+      },
+      "id": "problem_46"
     },
     {
       "type": "Feature",
@@ -1292,8 +1240,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 47,
         "grade": "2a",
         "circuitNumber": "2",
         "steepness": "slab",
@@ -1305,7 +1251,8 @@
             "id": 205
           }
         ]
-      }
+      },
+      "id": "problem_47"
     },
     {
       "type": "Feature",
@@ -1317,8 +1264,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 48,
         "grade": "2c",
         "circuitNumber": "1",
         "steepness": "traverse",
@@ -1330,7 +1275,8 @@
             "id": 21
           }
         ]
-      }
+      },
+      "id": "problem_48"
     },
     {
       "type": "Feature",
@@ -1342,8 +1288,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 51,
         "grade": "3b",
         "circuitNumber": "41",
         "steepness": "overhang",
@@ -1355,7 +1299,8 @@
             "id": 200
           }
         ]
-      }
+      },
+      "id": "problem_51"
     },
     {
       "type": "Feature",
@@ -1367,8 +1312,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 52,
         "grade": "3b+",
         "circuitNumber": "40",
         "steepness": "wall",
@@ -1380,7 +1323,8 @@
             "id": 221
           }
         ]
-      }
+      },
+      "id": "problem_52"
     },
     {
       "type": "Feature",
@@ -1392,8 +1336,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 53,
         "grade": "4a",
         "circuitNumber": "39",
         "steepness": "traverse",
@@ -1405,7 +1347,8 @@
             "id": 206
           }
         ]
-      }
+      },
+      "id": "problem_53"
     },
     {
       "type": "Feature",
@@ -1417,8 +1360,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 54,
         "grade": "3a",
         "circuitNumber": "38",
         "steepness": "wall",
@@ -1430,7 +1371,8 @@
             "id": 178
           }
         ]
-      }
+      },
+      "id": "problem_54"
     },
     {
       "type": "Feature",
@@ -1442,15 +1384,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 55,
         "grade": "3b",
         "circuitNumber": "36",
         "steepness": "traverse",
         "height": null,
         "name": "La cheminée",
         "circuit": "orange"
-      }
+      },
+      "id": "problem_55"
     },
     {
       "type": "Feature",
@@ -1462,8 +1403,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 56,
         "grade": "3a",
         "circuitNumber": "35",
         "steepness": "wall",
@@ -1475,7 +1414,8 @@
             "id": 136
           }
         ]
-      }
+      },
+      "id": "problem_56"
     },
     {
       "type": "Feature",
@@ -1487,8 +1427,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 57,
         "grade": "2b",
         "circuitNumber": "34",
         "steepness": "wall",
@@ -1500,7 +1438,8 @@
             "id": 155
           }
         ]
-      }
+      },
+      "id": "problem_57"
     },
     {
       "type": "Feature",
@@ -1512,15 +1451,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 58,
         "grade": "4a",
         "circuitNumber": "33",
         "steepness": "traverse",
         "height": null,
         "name": null,
         "circuit": "orange"
-      }
+      },
+      "id": "problem_58"
     },
     {
       "type": "Feature",
@@ -1532,8 +1470,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 61,
         "grade": "3c",
         "circuitNumber": "30",
         "steepness": "slab",
@@ -1545,7 +1481,8 @@
             "id": 33
           }
         ]
-      }
+      },
+      "id": "problem_61"
     },
     {
       "type": "Feature",
@@ -1557,8 +1494,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 62,
         "grade": "3c+",
         "circuitNumber": "28",
         "steepness": "wall",
@@ -1570,7 +1505,8 @@
             "id": 18
           }
         ]
-      }
+      },
+      "id": "problem_62"
     },
     {
       "type": "Feature",
@@ -1582,8 +1518,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 63,
         "grade": "2c",
         "circuitNumber": "27",
         "steepness": "wall",
@@ -1595,7 +1529,8 @@
             "id": 2
           }
         ]
-      }
+      },
+      "id": "problem_63"
     },
     {
       "type": "Feature",
@@ -1607,8 +1542,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 64,
         "grade": "3a",
         "circuitNumber": "29",
         "steepness": "slab",
@@ -1620,7 +1553,8 @@
             "id": 48
           }
         ]
-      }
+      },
+      "id": "problem_64"
     },
     {
       "type": "Feature",
@@ -1632,8 +1566,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 67,
         "grade": "3a",
         "circuitNumber": "24",
         "steepness": "wall",
@@ -1645,7 +1577,8 @@
             "id": 67
           }
         ]
-      }
+      },
+      "id": "problem_67"
     },
     {
       "type": "Feature",
@@ -1657,8 +1590,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 71,
         "grade": "2a",
         "circuitNumber": "20",
         "steepness": "overhang",
@@ -1670,7 +1601,8 @@
             "id": 36
           }
         ]
-      }
+      },
+      "id": "problem_71"
     },
     {
       "type": "Feature",
@@ -1682,8 +1614,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 73,
         "grade": "2b+",
         "circuitNumber": "14",
         "steepness": "wall",
@@ -1695,7 +1625,8 @@
             "id": 65
           }
         ]
-      }
+      },
+      "id": "problem_73"
     },
     {
       "type": "Feature",
@@ -1707,8 +1638,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 74,
         "grade": "3a",
         "circuitNumber": "13",
         "steepness": "wall",
@@ -1720,7 +1649,8 @@
             "id": 19
           }
         ]
-      }
+      },
+      "id": "problem_74"
     },
     {
       "type": "Feature",
@@ -1732,8 +1662,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 75,
         "grade": "3a+",
         "circuitNumber": "18",
         "steepness": "overhang",
@@ -1745,7 +1673,8 @@
             "id": 34
           }
         ]
-      }
+      },
+      "id": "problem_75"
     },
     {
       "type": "Feature",
@@ -1757,15 +1686,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 76,
         "grade": "1a+",
         "circuitNumber": "12",
         "steepness": "wall",
         "height": null,
         "name": null,
         "circuit": "orange"
-      }
+      },
+      "id": "problem_76"
     },
     {
       "type": "Feature",
@@ -1777,8 +1705,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 78,
         "grade": "2c",
         "circuitNumber": "10",
         "steepness": "wall",
@@ -1790,7 +1716,8 @@
             "id": 180
           }
         ]
-      }
+      },
+      "id": "problem_78"
     },
     {
       "type": "Feature",
@@ -1802,15 +1729,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 79,
         "grade": "3c+",
         "circuitNumber": "9",
         "steepness": "slab",
         "height": null,
         "name": "La Contrabasse",
         "circuit": "orange"
-      }
+      },
+      "id": "problem_79"
     },
     {
       "type": "Feature",
@@ -1822,8 +1748,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 81,
         "grade": "3c",
         "circuitNumber": "6",
         "steepness": "traverse",
@@ -1835,7 +1759,8 @@
             "id": 139
           }
         ]
-      }
+      },
+      "id": "problem_81"
     },
     {
       "type": "Feature",
@@ -1847,8 +1772,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 77,
         "grade": "3a",
         "circuitNumber": "17",
         "steepness": "wall",
@@ -1860,7 +1783,8 @@
             "id": 4
           }
         ]
-      }
+      },
+      "id": "problem_77"
     },
     {
       "type": "Feature",
@@ -1872,8 +1796,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 70,
         "grade": "3b",
         "circuitNumber": "21",
         "steepness": "overhang",
@@ -1885,7 +1807,8 @@
             "id": 49
           }
         ]
-      }
+      },
+      "id": "problem_70"
     },
     {
       "type": "Feature",
@@ -1897,8 +1820,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 68,
         "grade": "4b+",
         "circuitNumber": "23",
         "steepness": "traverse",
@@ -1910,7 +1831,8 @@
             "id": 176
           }
         ]
-      }
+      },
+      "id": "problem_68"
     },
     {
       "type": "Feature",
@@ -1922,8 +1844,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 65,
         "grade": "3b",
         "circuitNumber": "26",
         "steepness": "slab",
@@ -1935,7 +1855,8 @@
             "id": 37
           }
         ]
-      }
+      },
+      "id": "problem_65"
     },
     {
       "type": "Feature",
@@ -1947,8 +1868,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 59,
         "grade": "4a+",
         "circuitNumber": "32",
         "steepness": "overhang",
@@ -1960,7 +1879,8 @@
             "id": 35
           }
         ]
-      }
+      },
+      "id": "problem_59"
     },
     {
       "type": "Feature",
@@ -1972,8 +1892,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 102,
         "grade": "5a+",
         "circuitNumber": "38",
         "steepness": "wall",
@@ -1985,7 +1903,8 @@
             "id": 79
           }
         ]
-      }
+      },
+      "id": "problem_102"
     },
     {
       "type": "Feature",
@@ -1997,8 +1916,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 88,
         "grade": "4c",
         "circuitNumber": "14",
         "steepness": "wall",
@@ -2013,7 +1930,8 @@
             "id": 7
           }
         ]
-      }
+      },
+      "id": "problem_88"
     },
     {
       "type": "Feature",
@@ -2025,8 +1943,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 104,
         "grade": "6b+",
         "circuitNumber": "14",
         "steepness": "slab",
@@ -2041,7 +1957,8 @@
             "id": 89
           }
         ]
-      }
+      },
+      "id": "problem_104"
     },
     {
       "type": "Feature",
@@ -2053,8 +1970,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 101,
         "grade": "4b",
         "circuitNumber": "40",
         "steepness": "slab",
@@ -2064,7 +1979,8 @@
         "tags": [
           "risky"
         ]
-      }
+      },
+      "id": "problem_101"
     },
     {
       "type": "Feature",
@@ -2076,8 +1992,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 118,
         "grade": "5b",
         "circuitNumber": "4",
         "steepness": "slab",
@@ -2092,7 +2006,8 @@
             "id": 128
           }
         ]
-      }
+      },
+      "id": "problem_118"
     },
     {
       "type": "Feature",
@@ -2104,8 +2019,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 86,
         "grade": "5b",
         "circuitNumber": "12",
         "steepness": "overhang",
@@ -2120,7 +2033,8 @@
             "id": 194
           }
         ]
-      }
+      },
+      "id": "problem_86"
     },
     {
       "type": "Feature",
@@ -2132,8 +2046,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 89,
         "grade": "4b+",
         "circuitNumber": "13",
         "steepness": "wall",
@@ -2145,7 +2057,8 @@
             "id": 15
           }
         ]
-      }
+      },
+      "id": "problem_89"
     },
     {
       "type": "Feature",
@@ -2157,8 +2070,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 100,
         "grade": "4c",
         "circuitNumber": "36",
         "steepness": "wall",
@@ -2170,7 +2081,8 @@
             "id": 74
           }
         ]
-      }
+      },
+      "id": "problem_100"
     },
     {
       "type": "Feature",
@@ -2182,8 +2094,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 109,
         "grade": "6a+",
         "circuitNumber": "13",
         "steepness": "wall",
@@ -2195,7 +2105,8 @@
             "id": 104
           }
         ]
-      }
+      },
+      "id": "problem_109"
     },
     {
       "type": "Feature",
@@ -2207,8 +2118,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 103,
         "grade": "5a+",
         "circuitNumber": "39",
         "steepness": "wall",
@@ -2220,7 +2129,8 @@
             "id": 80
           }
         ]
-      }
+      },
+      "id": "problem_103"
     },
     {
       "type": "Feature",
@@ -2232,8 +2142,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 114,
         "grade": "4b",
         "circuitNumber": "7",
         "steepness": "overhang",
@@ -2245,7 +2153,8 @@
             "id": 73
           }
         ]
-      }
+      },
+      "id": "problem_114"
     },
     {
       "type": "Feature",
@@ -2257,8 +2166,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 117,
         "grade": "5b",
         "circuitNumber": "5",
         "steepness": "wall",
@@ -2270,7 +2177,8 @@
             "id": 81
           }
         ]
-      }
+      },
+      "id": "problem_117"
     },
     {
       "type": "Feature",
@@ -2282,8 +2190,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 115,
         "grade": "6a+",
         "circuitNumber": "3",
         "steepness": "wall",
@@ -2295,7 +2201,8 @@
             "id": 72
           }
         ]
-      }
+      },
+      "id": "problem_115"
     },
     {
       "type": "Feature",
@@ -2307,8 +2214,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 111,
         "grade": "6a",
         "circuitNumber": "8",
         "steepness": "wall",
@@ -2320,7 +2225,8 @@
             "id": 93
           }
         ]
-      }
+      },
+      "id": "problem_111"
     },
     {
       "type": "Feature",
@@ -2332,8 +2238,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 110,
         "grade": "6a+",
         "circuitNumber": "7",
         "steepness": "wall",
@@ -2345,7 +2249,8 @@
             "id": 90
           }
         ]
-      }
+      },
+      "id": "problem_110"
     },
     {
       "type": "Feature",
@@ -2357,8 +2262,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 84,
         "grade": "2a",
         "circuitNumber": "3",
         "steepness": "traverse",
@@ -2370,7 +2273,8 @@
             "id": 209
           }
         ]
-      }
+      },
+      "id": "problem_84"
     },
     {
       "type": "Feature",
@@ -2382,8 +2286,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 85,
         "grade": "3a",
         "circuitNumber": "2",
         "steepness": "traverse",
@@ -2395,7 +2297,8 @@
             "id": 218
           }
         ]
-      }
+      },
+      "id": "problem_85"
     },
     {
       "type": "Feature",
@@ -2407,8 +2310,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 87,
         "grade": "3c+",
         "circuitNumber": "11",
         "steepness": "wall",
@@ -2420,7 +2321,8 @@
             "id": 188
           }
         ]
-      }
+      },
+      "id": "problem_87"
     },
     {
       "type": "Feature",
@@ -2432,8 +2334,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 90,
         "grade": "4c",
         "circuitNumber": "31",
         "steepness": "wall",
@@ -2445,7 +2345,8 @@
             "id": 210
           }
         ]
-      }
+      },
+      "id": "problem_90"
     },
     {
       "type": "Feature",
@@ -2457,8 +2358,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 94,
         "grade": "3b",
         "circuitNumber": "33",
         "steepness": "wall",
@@ -2470,7 +2369,8 @@
             "id": 151
           }
         ]
-      }
+      },
+      "id": "problem_94"
     },
     {
       "type": "Feature",
@@ -2482,8 +2382,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 95,
         "grade": "5a+",
         "circuitNumber": "34",
         "steepness": "wall",
@@ -2495,7 +2393,8 @@
             "id": 140
           }
         ]
-      }
+      },
+      "id": "problem_95"
     },
     {
       "type": "Feature",
@@ -2507,8 +2406,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 96,
         "grade": "4c",
         "circuitNumber": "35",
         "steepness": "wall",
@@ -2520,7 +2417,8 @@
             "id": 162
           }
         ]
-      }
+      },
+      "id": "problem_96"
     },
     {
       "type": "Feature",
@@ -2532,8 +2430,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 105,
         "grade": "5b+",
         "circuitNumber": "12",
         "steepness": "wall",
@@ -2545,7 +2441,8 @@
             "id": 94
           }
         ]
-      }
+      },
+      "id": "problem_105"
     },
     {
       "type": "Feature",
@@ -2557,8 +2454,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 106,
         "grade": "5c+",
         "circuitNumber": "11",
         "steepness": "wall",
@@ -2570,7 +2465,8 @@
             "id": 85
           }
         ]
-      }
+      },
+      "id": "problem_106"
     },
     {
       "type": "Feature",
@@ -2582,8 +2478,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 107,
         "grade": "6a",
         "circuitNumber": "10",
         "steepness": "overhang",
@@ -2595,7 +2489,8 @@
             "id": 84
           }
         ]
-      }
+      },
+      "id": "problem_107"
     },
     {
       "type": "Feature",
@@ -2607,8 +2502,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 108,
         "grade": "5c",
         "circuitNumber": "9",
         "steepness": "wall",
@@ -2620,7 +2513,8 @@
             "id": 97
           }
         ]
-      }
+      },
+      "id": "problem_108"
     },
     {
       "type": "Feature",
@@ -2632,8 +2526,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 91,
         "grade": "5a+",
         "circuitNumber": "32",
         "steepness": "wall",
@@ -2645,7 +2537,8 @@
             "id": 217
           }
         ]
-      }
+      },
+      "id": "problem_91"
     },
     {
       "type": "Feature",
@@ -2657,8 +2550,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 93,
         "grade": "5c",
         "circuitNumber": "17",
         "steepness": "wall",
@@ -2670,7 +2561,8 @@
             "id": 187
           }
         ]
-      }
+      },
+      "id": "problem_93"
     },
     {
       "type": "Feature",
@@ -2682,8 +2574,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 97,
         "grade": "5c+",
         "circuitNumber": "8",
         "steepness": "wall",
@@ -2695,7 +2585,8 @@
             "id": 174
           }
         ]
-      }
+      },
+      "id": "problem_97"
     },
     {
       "type": "Feature",
@@ -2707,8 +2598,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 98,
         "grade": "5b+",
         "circuitNumber": "9",
         "steepness": "wall",
@@ -2720,7 +2609,8 @@
             "id": 64
           }
         ]
-      }
+      },
+      "id": "problem_98"
     },
     {
       "type": "Feature",
@@ -2732,8 +2622,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 99,
         "grade": "4c",
         "circuitNumber": "37",
         "steepness": "traverse",
@@ -2745,7 +2633,8 @@
             "id": 54
           }
         ]
-      }
+      },
+      "id": "problem_99"
     },
     {
       "type": "Feature",
@@ -2757,8 +2646,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 112,
         "grade": "6a",
         "circuitNumber": "5",
         "steepness": "overhang",
@@ -2770,7 +2657,8 @@
             "id": 86
           }
         ]
-      }
+      },
+      "id": "problem_112"
     },
     {
       "type": "Feature",
@@ -2782,8 +2670,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 113,
         "grade": "6b",
         "circuitNumber": "4",
         "steepness": "overhang",
@@ -2795,7 +2681,8 @@
             "id": 83
           }
         ]
-      }
+      },
+      "id": "problem_113"
     },
     {
       "type": "Feature",
@@ -2807,8 +2694,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 116,
         "grade": "5a+",
         "circuitNumber": "6",
         "steepness": "wall",
@@ -2820,7 +2705,8 @@
             "id": 78
           }
         ]
-      }
+      },
+      "id": "problem_116"
     },
     {
       "type": "Feature",
@@ -2832,8 +2718,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 119,
         "grade": "4a",
         "circuitNumber": "2",
         "steepness": "overhang",
@@ -2848,7 +2732,8 @@
             "id": 127
           }
         ]
-      }
+      },
+      "id": "problem_119"
     },
     {
       "type": "Feature",
@@ -2860,8 +2745,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 122,
         "grade": "6a+",
         "circuitNumber": "1",
         "steepness": "wall",
@@ -2876,7 +2759,8 @@
             "id": 112
           }
         ]
-      }
+      },
+      "id": "problem_122"
     },
     {
       "type": "Feature",
@@ -2888,8 +2772,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 126,
         "grade": "5a",
         "circuitNumber": "1",
         "steepness": "slab",
@@ -2904,7 +2786,8 @@
             "id": 117
           }
         ]
-      }
+      },
+      "id": "problem_126"
     },
     {
       "type": "Feature",
@@ -2916,8 +2799,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 171,
         "grade": "4a+",
         "circuitNumber": "1",
         "steepness": "wall",
@@ -2932,7 +2813,8 @@
             "id": 47
           }
         ]
-      }
+      },
+      "id": "problem_171"
     },
     {
       "type": "Feature",
@@ -2944,8 +2826,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 195,
         "grade": "3a",
         "circuitNumber": "1",
         "steepness": "wall",
@@ -2960,7 +2840,8 @@
             "id": 152
           }
         ]
-      }
+      },
+      "id": "problem_195"
     },
     {
       "type": "Feature",
@@ -2972,8 +2853,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 130,
         "grade": "3c",
         "circuitNumber": "32",
         "steepness": "wall",
@@ -2985,7 +2864,8 @@
             "id": 129
           }
         ]
-      }
+      },
+      "id": "problem_130"
     },
     {
       "type": "Feature",
@@ -2997,8 +2877,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 132,
         "grade": "6b+",
         "circuitNumber": "42",
         "steepness": "wall",
@@ -3010,7 +2888,8 @@
             "id": 116
           }
         ]
-      }
+      },
+      "id": "problem_132"
     },
     {
       "type": "Feature",
@@ -3022,8 +2901,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 127,
         "grade": "5c",
         "circuitNumber": "15",
         "steepness": "wall",
@@ -3035,7 +2912,8 @@
             "id": 120
           }
         ]
-      }
+      },
+      "id": "problem_127"
     },
     {
       "type": "Feature",
@@ -3047,8 +2925,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 120,
         "grade": "6b",
         "circuitNumber": "2",
         "steepness": "slab",
@@ -3060,7 +2936,8 @@
             "id": 98
           }
         ]
-      }
+      },
+      "id": "problem_120"
     },
     {
       "type": "Feature",
@@ -3072,8 +2949,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 121,
         "grade": "5a",
         "circuitNumber": "3",
         "steepness": "overhang",
@@ -3085,7 +2960,8 @@
             "id": 103
           }
         ]
-      }
+      },
+      "id": "problem_121"
     },
     {
       "type": "Feature",
@@ -3097,8 +2973,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 123,
         "grade": "4a",
         "circuitNumber": "10",
         "steepness": "wall",
@@ -3110,7 +2984,8 @@
             "id": 109
           }
         ]
-      }
+      },
+      "id": "problem_123"
     },
     {
       "type": "Feature",
@@ -3122,8 +2997,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 125,
         "grade": "3c",
         "circuitNumber": "37",
         "steepness": "wall",
@@ -3135,7 +3008,8 @@
             "id": 125
           }
         ]
-      }
+      },
+      "id": "problem_125"
     },
     {
       "type": "Feature",
@@ -3147,8 +3021,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 128,
         "grade": "4a",
         "circuitNumber": "31",
         "steepness": "slab",
@@ -3160,7 +3032,8 @@
             "id": 75
           }
         ]
-      }
+      },
+      "id": "problem_128"
     },
     {
       "type": "Feature",
@@ -3172,8 +3045,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 131,
         "grade": "6a",
         "circuitNumber": "41",
         "steepness": "wall",
@@ -3185,7 +3056,8 @@
             "id": 126
           }
         ]
-      }
+      },
+      "id": "problem_131"
     },
     {
       "type": "Feature",
@@ -3197,8 +3069,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 133,
         "grade": "6a",
         "circuitNumber": "38",
         "steepness": "overhang",
@@ -3210,7 +3080,8 @@
             "id": 121
           }
         ]
-      }
+      },
+      "id": "problem_133"
     },
     {
       "type": "Feature",
@@ -3222,8 +3093,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 138,
         "grade": "4a+",
         "circuitNumber": "27",
         "steepness": "wall",
@@ -3235,7 +3104,8 @@
             "id": 91
           }
         ]
-      }
+      },
+      "id": "problem_138"
     },
     {
       "type": "Feature",
@@ -3247,8 +3117,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 135,
         "grade": "5c",
         "circuitNumber": "39",
         "steepness": "slab",
@@ -3260,7 +3128,8 @@
             "id": 102
           }
         ]
-      }
+      },
+      "id": "problem_135"
     },
     {
       "type": "Feature",
@@ -3272,8 +3141,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 134,
         "grade": "5a",
         "circuitNumber": "28",
         "steepness": "slab",
@@ -3285,7 +3152,8 @@
             "id": 99
           }
         ]
-      }
+      },
+      "id": "problem_134"
     },
     {
       "type": "Feature",
@@ -3297,8 +3165,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 136,
         "grade": "4b",
         "circuitNumber": "29",
         "steepness": "wall",
@@ -3310,7 +3176,8 @@
             "id": 113
           }
         ]
-      }
+      },
+      "id": "problem_136"
     },
     {
       "type": "Feature",
@@ -3322,8 +3189,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 137,
         "grade": "6b",
         "circuitNumber": "40",
         "steepness": "overhang",
@@ -3335,7 +3200,8 @@
             "id": 108
           }
         ]
-      }
+      },
+      "id": "problem_137"
     },
     {
       "type": "Feature",
@@ -3347,8 +3213,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 129,
         "grade": "5b",
         "circuitNumber": "30",
         "steepness": "wall",
@@ -3360,7 +3224,8 @@
             "id": 71
           }
         ]
-      }
+      },
+      "id": "problem_129"
     },
     {
       "type": "Feature",
@@ -3372,8 +3237,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 124,
         "grade": "5c",
         "circuitNumber": "6",
         "steepness": "slab",
@@ -3385,7 +3248,8 @@
             "id": 130
           }
         ]
-      }
+      },
+      "id": "problem_124"
     },
     {
       "type": "Feature",
@@ -3397,8 +3261,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 230,
         "grade": "7a+",
         "circuitNumber": "10",
         "steepness": "roof",
@@ -3413,7 +3275,8 @@
             "id": 211
           }
         ]
-      }
+      },
+      "id": "problem_230"
     },
     {
       "type": "Feature",
@@ -3425,8 +3288,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 220,
         "grade": "7b",
         "circuitNumber": "1",
         "steepness": "overhang",
@@ -3441,7 +3302,8 @@
             "id": 146
           }
         ]
-      }
+      },
+      "id": "problem_220"
     },
     {
       "type": "Feature",
@@ -3453,8 +3315,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 82,
         "grade": "4c",
         "circuitNumber": "5",
         "steepness": "slab",
@@ -3469,7 +3329,8 @@
             "id": 164
           }
         ]
-      }
+      },
+      "id": "problem_82"
     },
     {
       "type": "Feature",
@@ -3481,8 +3342,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 83,
         "grade": "3b",
         "circuitNumber": "4",
         "steepness": "slab",
@@ -3494,7 +3353,8 @@
             "id": 173
           }
         ]
-      }
+      },
+      "id": "problem_83"
     },
     {
       "type": "Feature",
@@ -3506,8 +3366,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 41,
         "grade": "2a",
         "circuitNumber": "8",
         "steepness": "slab",
@@ -3519,7 +3377,8 @@
             "id": 158
           }
         ]
-      }
+      },
+      "id": "problem_41"
     },
     {
       "type": "Feature",
@@ -3531,8 +3390,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 92,
         "grade": "6b",
         "circuitNumber": "16",
         "steepness": "overhang",
@@ -3544,7 +3401,8 @@
             "id": 196
           }
         ]
-      }
+      },
+      "id": "problem_92"
     },
     {
       "type": "Feature",
@@ -3556,8 +3414,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 155,
         "grade": "4c",
         "circuitNumber": "18",
         "steepness": "slab",
@@ -3569,7 +3425,8 @@
             "id": 172
           }
         ]
-      }
+      },
+      "id": "problem_155"
     },
     {
       "type": "Feature",
@@ -3581,8 +3438,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 156,
         "grade": "3b",
         "circuitNumber": "19",
         "steepness": "wall",
@@ -3594,7 +3449,8 @@
             "id": 149
           }
         ]
-      }
+      },
+      "id": "problem_156"
     },
     {
       "type": "Feature",
@@ -3606,8 +3462,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 154,
         "grade": "3b+",
         "circuitNumber": "16",
         "steepness": "traverse",
@@ -3619,7 +3473,8 @@
             "id": 165
           }
         ]
-      }
+      },
+      "id": "problem_154"
     },
     {
       "type": "Feature",
@@ -3631,8 +3486,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 149,
         "grade": "6b",
         "circuitNumber": "29",
         "steepness": "traverse",
@@ -3644,7 +3497,8 @@
             "id": 22
           }
         ]
-      }
+      },
+      "id": "problem_149"
     },
     {
       "type": "Feature",
@@ -3656,8 +3510,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 150,
         "grade": "4a",
         "circuitNumber": "22",
         "steepness": "wall",
@@ -3669,7 +3521,8 @@
             "id": 198
           }
         ]
-      }
+      },
+      "id": "problem_150"
     },
     {
       "type": "Feature",
@@ -3681,8 +3534,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 152,
         "grade": "2b",
         "circuitNumber": "15",
         "steepness": "wall",
@@ -3694,7 +3545,8 @@
             "id": 208
           }
         ]
-      }
+      },
+      "id": "problem_152"
     },
     {
       "type": "Feature",
@@ -3706,8 +3558,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 159,
         "grade": "3b",
         "circuitNumber": "5",
         "steepness": "slab",
@@ -3719,7 +3569,8 @@
             "id": 45
           }
         ]
-      }
+      },
+      "id": "problem_159"
     },
     {
       "type": "Feature",
@@ -3731,8 +3582,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 160,
         "grade": "4b+",
         "circuitNumber": "4",
         "steepness": "overhang",
@@ -3744,7 +3593,8 @@
             "id": 29
           }
         ]
-      }
+      },
+      "id": "problem_160"
     },
     {
       "type": "Feature",
@@ -3756,8 +3606,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 148,
         "grade": "5c",
         "circuitNumber": "36",
         "steepness": "slab",
@@ -3772,7 +3620,8 @@
             "id": 31
           }
         ]
-      }
+      },
+      "id": "problem_148"
     },
     {
       "type": "Feature",
@@ -3784,8 +3633,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 140,
         "grade": "4a",
         "circuitNumber": "23",
         "steepness": "wall",
@@ -3800,7 +3647,8 @@
             "id": 166
           }
         ]
-      }
+      },
+      "id": "problem_140"
     },
     {
       "type": "Feature",
@@ -3812,8 +3660,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 141,
         "grade": "4b+",
         "circuitNumber": "24",
         "steepness": "wall",
@@ -3828,7 +3674,8 @@
             "id": 171
           }
         ]
-      }
+      },
+      "id": "problem_141"
     },
     {
       "type": "Feature",
@@ -3840,8 +3687,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 157,
         "grade": "4b+",
         "circuitNumber": "7",
         "steepness": "wall",
@@ -3853,7 +3698,8 @@
             "id": 142
           }
         ]
-      }
+      },
+      "id": "problem_157"
     },
     {
       "type": "Feature",
@@ -3865,8 +3711,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 161,
         "grade": "5c",
         "circuitNumber": "28",
         "steepness": "overhang",
@@ -3878,7 +3722,8 @@
             "id": 24
           }
         ]
-      }
+      },
+      "id": "problem_161"
     },
     {
       "type": "Feature",
@@ -3890,8 +3735,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 158,
         "grade": "4a+",
         "circuitNumber": "6",
         "steepness": "wall",
@@ -3903,7 +3746,8 @@
             "id": 40
           }
         ]
-      }
+      },
+      "id": "problem_158"
     },
     {
       "type": "Feature",
@@ -3915,8 +3759,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 151,
         "grade": "4c",
         "circuitNumber": "20",
         "steepness": "wall",
@@ -3928,7 +3770,8 @@
             "id": 185
           }
         ]
-      }
+      },
+      "id": "problem_151"
     },
     {
       "type": "Feature",
@@ -3940,8 +3783,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 153,
         "grade": "4c",
         "circuitNumber": "21",
         "steepness": "wall",
@@ -3953,7 +3794,8 @@
             "id": 219
           }
         ]
-      }
+      },
+      "id": "problem_153"
     },
     {
       "type": "Feature",
@@ -3965,8 +3807,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 143,
         "grade": "5a",
         "circuitNumber": "32",
         "steepness": "wall",
@@ -3978,7 +3818,8 @@
             "id": 141
           }
         ]
-      }
+      },
+      "id": "problem_143"
     },
     {
       "type": "Feature",
@@ -3990,8 +3831,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 144,
         "grade": "6b",
         "circuitNumber": "33",
         "steepness": "wall",
@@ -4003,7 +3842,8 @@
             "id": 197
           }
         ]
-      }
+      },
+      "id": "problem_144"
     },
     {
       "type": "Feature",
@@ -4015,8 +3855,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 145,
         "grade": "6a",
         "circuitNumber": "34",
         "steepness": "wall",
@@ -4028,7 +3866,8 @@
             "id": 186
           }
         ]
-      }
+      },
+      "id": "problem_145"
     },
     {
       "type": "Feature",
@@ -4040,8 +3879,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 139,
         "grade": "5a",
         "circuitNumber": "26",
         "steepness": "wall",
@@ -4053,7 +3890,8 @@
             "id": 92
           }
         ]
-      }
+      },
+      "id": "problem_139"
     },
     {
       "type": "Feature",
@@ -4065,8 +3903,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 147,
         "grade": "6a",
         "circuitNumber": "31",
         "steepness": "wall",
@@ -4078,7 +3914,8 @@
             "id": 220
           }
         ]
-      }
+      },
+      "id": "problem_147"
     },
     {
       "type": "Feature",
@@ -4090,8 +3927,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 142,
         "grade": "3c",
         "circuitNumber": "25",
         "steepness": "wall",
@@ -4103,7 +3938,8 @@
             "id": 150
           }
         ]
-      }
+      },
+      "id": "problem_142"
     },
     {
       "type": "Feature",
@@ -4115,8 +3951,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 146,
         "grade": "6b",
         "circuitNumber": "35",
         "steepness": "traverse",
@@ -4128,7 +3962,8 @@
             "id": 207
           }
         ]
-      }
+      },
+      "id": "problem_146"
     },
     {
       "type": "Feature",
@@ -4140,8 +3975,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 175,
         "grade": "4a",
         "circuitNumber": "D",
         "steepness": "wall",
@@ -4153,7 +3986,8 @@
             "id": 23
           }
         ]
-      }
+      },
+      "id": "problem_175"
     },
     {
       "type": "Feature",
@@ -4165,8 +3999,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 180,
         "grade": "4a",
         "circuitNumber": "18",
         "steepness": "overhang",
@@ -4181,7 +4013,8 @@
             "id": 137
           }
         ]
-      }
+      },
+      "id": "problem_180"
     },
     {
       "type": "Feature",
@@ -4193,8 +4026,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 163,
         "grade": "5a",
         "circuitNumber": "20",
         "steepness": "wall",
@@ -4209,7 +4040,8 @@
             "id": 16
           }
         ]
-      }
+      },
+      "id": "problem_163"
     },
     {
       "type": "Feature",
@@ -4221,8 +4053,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 183,
         "grade": "6b",
         "circuitNumber": "20",
         "steepness": "slab",
@@ -4237,7 +4067,8 @@
             "id": 161
           }
         ]
-      }
+      },
+      "id": "problem_183"
     },
     {
       "type": "Feature",
@@ -4249,8 +4080,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 182,
         "grade": "5b+",
         "circuitNumber": "17",
         "steepness": "wall",
@@ -4265,7 +4094,8 @@
             "id": 175
           }
         ]
-      }
+      },
+      "id": "problem_182"
     },
     {
       "type": "Feature",
@@ -4277,8 +4107,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 184,
         "grade": "5c+",
         "circuitNumber": "21",
         "steepness": "wall",
@@ -4293,7 +4121,8 @@
             "id": 224
           }
         ]
-      }
+      },
+      "id": "problem_184"
     },
     {
       "type": "Feature",
@@ -4305,8 +4134,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 162,
         "grade": "5b",
         "circuitNumber": "30",
         "steepness": "overhang",
@@ -4321,7 +4148,8 @@
             "id": 5
           }
         ]
-      }
+      },
+      "id": "problem_162"
     },
     {
       "type": "Feature",
@@ -4333,8 +4161,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 173,
         "grade": "3c",
         "circuitNumber": "3",
         "steepness": "wall",
@@ -4349,7 +4175,8 @@
             "id": 55
           }
         ]
-      }
+      },
+      "id": "problem_173"
     },
     {
       "type": "Feature",
@@ -4361,8 +4188,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 174,
         "grade": "4a",
         "circuitNumber": "2",
         "steepness": "wall",
@@ -4377,7 +4202,8 @@
             "id": 30
           }
         ]
-      }
+      },
+      "id": "problem_174"
     },
     {
       "type": "Feature",
@@ -4389,8 +4215,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 172,
         "grade": "6a+",
         "circuitNumber": "27",
         "steepness": "wall",
@@ -4405,7 +4229,8 @@
             "id": 62
           }
         ]
-      }
+      },
+      "id": "problem_172"
     },
     {
       "type": "Feature",
@@ -4417,8 +4242,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 166,
         "grade": "5b+",
         "circuitNumber": "21",
         "steepness": "wall",
@@ -4433,7 +4256,8 @@
             "id": 63
           }
         ]
-      }
+      },
+      "id": "problem_166"
     },
     {
       "type": "Feature",
@@ -4445,8 +4269,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 176,
         "grade": "6b+",
         "circuitNumber": "26",
         "steepness": "slab",
@@ -4458,7 +4280,8 @@
             "id": 6
           }
         ]
-      }
+      },
+      "id": "problem_176"
     },
     {
       "type": "Feature",
@@ -4470,8 +4293,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 177,
         "grade": "5a",
         "circuitNumber": "8",
         "steepness": "wall",
@@ -4483,7 +4304,8 @@
             "id": 14
           }
         ]
-      }
+      },
+      "id": "problem_177"
     },
     {
       "type": "Feature",
@@ -4495,8 +4317,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 164,
         "grade": "4b",
         "circuitNumber": "10",
         "steepness": "slab",
@@ -4508,7 +4328,8 @@
             "id": 39
           }
         ]
-      }
+      },
+      "id": "problem_164"
     },
     {
       "type": "Feature",
@@ -4520,8 +4341,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 193,
         "grade": "6a",
         "circuitNumber": "19",
         "steepness": "slab",
@@ -4533,7 +4352,8 @@
             "id": 202
           }
         ]
-      }
+      },
+      "id": "problem_193"
     },
     {
       "type": "Feature",
@@ -4545,8 +4365,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 196,
         "grade": "5b+",
         "circuitNumber": "43",
         "steepness": "wall",
@@ -4558,7 +4376,8 @@
             "id": 177
           }
         ]
-      }
+      },
+      "id": "problem_196"
     },
     {
       "type": "Feature",
@@ -4570,8 +4389,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 165,
         "grade": "4c",
         "circuitNumber": "11",
         "steepness": "wall",
@@ -4583,7 +4400,8 @@
             "id": 46
           }
         ]
-      }
+      },
+      "id": "problem_165"
     },
     {
       "type": "Feature",
@@ -4595,15 +4413,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 167,
         "grade": "3c",
         "circuitNumber": "11",
         "steepness": "wall",
         "height": null,
         "name": "Opus Dei",
         "circuit": "orange"
-      }
+      },
+      "id": "problem_167"
     },
     {
       "type": "Feature",
@@ -4615,8 +4432,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 168,
         "grade": "4a",
         "circuitNumber": "12",
         "steepness": "wall",
@@ -4628,7 +4443,8 @@
             "id": 163
           }
         ]
-      }
+      },
+      "id": "problem_168"
     },
     {
       "type": "Feature",
@@ -4640,15 +4456,14 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 169,
         "grade": "4c",
         "circuitNumber": "13",
         "steepness": "overhang",
         "height": null,
         "name": "Stances",
         "circuit": "blue"
-      }
+      },
+      "id": "problem_169"
     },
     {
       "type": "Feature",
@@ -4660,8 +4475,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 170,
         "grade": "4b",
         "circuitNumber": "9",
         "steepness": "wall",
@@ -4673,7 +4486,8 @@
             "id": 38
           }
         ]
-      }
+      },
+      "id": "problem_170"
     },
     {
       "type": "Feature",
@@ -4685,8 +4499,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 181,
         "grade": "6a",
         "circuitNumber": "16b",
         "steepness": "slab",
@@ -4698,7 +4510,8 @@
             "id": 153
           }
         ]
-      }
+      },
+      "id": "problem_181"
     },
     {
       "type": "Feature",
@@ -4710,8 +4523,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 185,
         "grade": "5c",
         "circuitNumber": "22",
         "steepness": "wall",
@@ -4723,7 +4534,8 @@
             "id": 203
           }
         ]
-      }
+      },
+      "id": "problem_185"
     },
     {
       "type": "Feature",
@@ -4735,8 +4547,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 186,
         "grade": "4c",
         "circuitNumber": "15",
         "steepness": "slab",
@@ -4748,7 +4558,8 @@
             "id": 181
           }
         ]
-      }
+      },
+      "id": "problem_186"
     },
     {
       "type": "Feature",
@@ -4760,8 +4571,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 187,
         "grade": "4a",
         "circuitNumber": "22",
         "steepness": "wall",
@@ -4773,7 +4582,8 @@
             "id": 201
           }
         ]
-      }
+      },
+      "id": "problem_187"
     },
     {
       "type": "Feature",
@@ -4785,8 +4595,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 188,
         "grade": "4c",
         "circuitNumber": "24",
         "steepness": "wall",
@@ -4798,7 +4606,8 @@
             "id": 17
           }
         ]
-      }
+      },
+      "id": "problem_188"
     },
     {
       "type": "Feature",
@@ -4810,8 +4619,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 189,
         "grade": "4b",
         "circuitNumber": "23",
         "steepness": "wall",
@@ -4823,7 +4630,8 @@
             "id": 3
           }
         ]
-      }
+      },
+      "id": "problem_189"
     },
     {
       "type": "Feature",
@@ -4835,8 +4643,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 190,
         "grade": "3c",
         "circuitNumber": "7",
         "steepness": "overhang",
@@ -4848,7 +4654,8 @@
             "id": 223
           }
         ]
-      }
+      },
+      "id": "problem_190"
     },
     {
       "type": "Feature",
@@ -4860,8 +4667,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 191,
         "grade": "5c",
         "circuitNumber": "23",
         "steepness": "overhang",
@@ -4873,7 +4678,8 @@
             "id": 204
           }
         ]
-      }
+      },
+      "id": "problem_191"
     },
     {
       "type": "Feature",
@@ -4885,8 +4691,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 192,
         "grade": "4b",
         "circuitNumber": "30",
         "steepness": "wall",
@@ -4898,7 +4702,8 @@
             "id": 179
           }
         ]
-      }
+      },
+      "id": "problem_192"
     },
     {
       "type": "Feature",
@@ -4910,8 +4715,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 194,
         "grade": "4a",
         "circuitNumber": "16",
         "steepness": "wall",
@@ -4923,7 +4726,8 @@
             "id": 138
           }
         ]
-      }
+      },
+      "id": "problem_194"
     },
     {
       "type": "Feature",
@@ -4935,8 +4739,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 197,
         "grade": "5c",
         "circuitNumber": "37",
         "steepness": "wall",
@@ -4948,7 +4750,8 @@
             "id": 160
           }
         ]
-      }
+      },
+      "id": "problem_197"
     },
     {
       "type": "Feature",
@@ -4960,8 +4763,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 198,
         "grade": "6a",
         "circuitNumber": "18",
         "steepness": "wall",
@@ -4973,7 +4774,8 @@
             "id": 51
           }
         ]
-      }
+      },
+      "id": "problem_198"
     },
     {
       "type": "Feature",
@@ -4985,8 +4787,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 178,
         "grade": "6a+",
         "circuitNumber": "24",
         "steepness": "traverse",
@@ -4998,7 +4798,8 @@
             "id": 195
           }
         ]
-      }
+      },
+      "id": "problem_178"
     },
     {
       "type": "Feature",
@@ -5010,8 +4811,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 179,
         "grade": "3c",
         "circuitNumber": "19",
         "steepness": "wall",
@@ -5023,7 +4822,8 @@
             "id": 189
           }
         ]
-      }
+      },
+      "id": "problem_179"
     },
     {
       "type": "Feature",
@@ -5035,8 +4835,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 206,
         "grade": "4c",
         "circuitNumber": "45",
         "steepness": "wall",
@@ -5048,7 +4846,8 @@
             "id": 41
           }
         ]
-      }
+      },
+      "id": "problem_206"
     },
     {
       "type": "Feature",
@@ -5060,8 +4859,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 229,
         "grade": "6c+",
         "circuitNumber": "9",
         "steepness": "overhang",
@@ -5076,7 +4873,8 @@
             "id": 13
           }
         ]
-      }
+      },
+      "id": "problem_229"
     },
     {
       "type": "Feature",
@@ -5088,8 +4886,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 226,
         "grade": "6c+",
         "circuitNumber": "6",
         "steepness": "overhang",
@@ -5105,7 +4901,8 @@
             "id": 193
           }
         ]
-      }
+      },
+      "id": "problem_226"
     },
     {
       "type": "Feature",
@@ -5117,8 +4914,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 213,
         "grade": "6a",
         "circuitNumber": "46",
         "steepness": "wall",
@@ -5133,7 +4928,8 @@
             "id": 43
           }
         ]
-      }
+      },
+      "id": "problem_213"
     },
     {
       "type": "Feature",
@@ -5145,8 +4941,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 212,
         "grade": "4a+",
         "circuitNumber": "40",
         "steepness": "slab",
@@ -5161,7 +4955,8 @@
             "id": 42
           }
         ]
-      }
+      },
+      "id": "problem_212"
     },
     {
       "type": "Feature",
@@ -5173,8 +4968,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 221,
         "grade": "6c+",
         "circuitNumber": "2",
         "steepness": "overhang",
@@ -5186,7 +4979,8 @@
             "id": 145
           }
         ]
-      }
+      },
+      "id": "problem_221"
     },
     {
       "type": "Feature",
@@ -5198,8 +4992,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 223,
         "grade": "6c+",
         "circuitNumber": "4",
         "steepness": "wall",
@@ -5211,7 +5003,8 @@
             "id": 170
           }
         ]
-      }
+      },
+      "id": "problem_223"
     },
     {
       "type": "Feature",
@@ -5223,8 +5016,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 209,
         "grade": "4a",
         "circuitNumber": "37",
         "steepness": "traverse",
@@ -5236,7 +5027,8 @@
             "id": 143
           }
         ]
-      }
+      },
+      "id": "problem_209"
     },
     {
       "type": "Feature",
@@ -5248,8 +5040,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 211,
         "grade": "4b",
         "circuitNumber": "39",
         "steepness": "slab",
@@ -5261,7 +5051,8 @@
             "id": 56
           }
         ]
-      }
+      },
+      "id": "problem_211"
     },
     {
       "type": "Feature",
@@ -5273,8 +5064,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 199,
         "grade": "4a",
         "circuitNumber": "26",
         "steepness": "wall",
@@ -5286,7 +5075,8 @@
             "id": 66
           }
         ]
-      }
+      },
+      "id": "problem_199"
     },
     {
       "type": "Feature",
@@ -5298,8 +5088,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 200,
         "grade": "4b",
         "circuitNumber": "27",
         "steepness": "wall",
@@ -5311,7 +5099,8 @@
             "id": 10
           }
         ]
-      }
+      },
+      "id": "problem_200"
     },
     {
       "type": "Feature",
@@ -5323,8 +5112,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 203,
         "grade": "3b",
         "circuitNumber": "33",
         "steepness": "wall",
@@ -5336,7 +5123,8 @@
             "id": 25
           }
         ]
-      }
+      },
+      "id": "problem_203"
     },
     {
       "type": "Feature",
@@ -5348,8 +5136,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 204,
         "grade": "4a",
         "circuitNumber": "34",
         "steepness": "overhang",
@@ -5361,7 +5147,8 @@
             "id": 60
           }
         ]
-      }
+      },
+      "id": "problem_204"
     },
     {
       "type": "Feature",
@@ -5373,8 +5160,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 205,
         "grade": "5c",
         "circuitNumber": "44",
         "steepness": "overhang",
@@ -5386,7 +5171,8 @@
             "id": 57
           }
         ]
-      }
+      },
+      "id": "problem_205"
     },
     {
       "type": "Feature",
@@ -5398,8 +5184,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 207,
         "grade": "4b",
         "circuitNumber": "35",
         "steepness": "wall",
@@ -5411,7 +5195,8 @@
             "id": 44
           }
         ]
-      }
+      },
+      "id": "problem_207"
     },
     {
       "type": "Feature",
@@ -5423,8 +5208,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 208,
         "grade": "4a",
         "circuitNumber": "36",
         "steepness": "overhang",
@@ -5436,7 +5219,8 @@
             "id": 148
           }
         ]
-      }
+      },
+      "id": "problem_208"
     },
     {
       "type": "Feature",
@@ -5448,8 +5232,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 210,
         "grade": "4c",
         "circuitNumber": "38",
         "steepness": "wall",
@@ -5461,7 +5243,8 @@
             "id": 61
           }
         ]
-      }
+      },
+      "id": "problem_210"
     },
     {
       "type": "Feature",
@@ -5473,8 +5256,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 222,
         "grade": "7a",
         "circuitNumber": "3",
         "steepness": "traverse",
@@ -5486,7 +5267,8 @@
             "id": 167
           }
         ]
-      }
+      },
+      "id": "problem_222"
     },
     {
       "type": "Feature",
@@ -5498,8 +5280,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 224,
         "grade": "7a",
         "circuitNumber": "5",
         "steepness": "overhang",
@@ -5511,7 +5291,8 @@
             "id": 212
           }
         ]
-      }
+      },
+      "id": "problem_224"
     },
     {
       "type": "Feature",
@@ -5523,8 +5304,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 225,
         "grade": "7b+",
         "circuitNumber": "5b",
         "steepness": "traverse",
@@ -5536,7 +5315,8 @@
             "id": 215
           }
         ]
-      }
+      },
+      "id": "problem_225"
     },
     {
       "type": "Feature",
@@ -5548,8 +5328,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 227,
         "grade": "6c",
         "circuitNumber": "7",
         "steepness": "traverse",
@@ -5561,7 +5339,8 @@
             "id": 190
           }
         ]
-      }
+      },
+      "id": "problem_227"
     },
     {
       "type": "Feature",
@@ -5573,8 +5352,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 228,
         "grade": "6c+",
         "circuitNumber": "8",
         "steepness": "wall",
@@ -5586,7 +5363,8 @@
             "id": 8
           }
         ]
-      }
+      },
+      "id": "problem_228"
     },
     {
       "type": "Feature",
@@ -5598,8 +5376,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 219,
         "grade": "6a+",
         "circuitNumber": "25",
         "steepness": "overhang",
@@ -5611,7 +5387,8 @@
             "id": 214
           }
         ]
-      }
+      },
+      "id": "problem_219"
     },
     {
       "type": "Feature",
@@ -5623,8 +5400,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 218,
         "grade": "5c",
         "circuitNumber": "25",
         "steepness": "overhang",
@@ -5636,7 +5411,8 @@
             "id": 213
           }
         ]
-      }
+      },
+      "id": "problem_218"
     },
     {
       "type": "Feature",
@@ -5648,8 +5424,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 217,
         "grade": "3c",
         "circuitNumber": "14",
         "steepness": "wall",
@@ -5661,7 +5435,8 @@
             "id": 26
           }
         ]
-      }
+      },
+      "id": "problem_217"
     },
     {
       "type": "Feature",
@@ -5673,8 +5448,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 216,
         "grade": "4a",
         "circuitNumber": "15",
         "steepness": "wall",
@@ -5686,7 +5459,8 @@
             "id": 27
           }
         ]
-      }
+      },
+      "id": "problem_216"
     },
     {
       "type": "Feature",
@@ -5698,8 +5472,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 215,
         "grade": "5c",
         "circuitNumber": "16",
         "steepness": "wall",
@@ -5711,7 +5483,8 @@
             "id": 12
           }
         ]
-      }
+      },
+      "id": "problem_215"
     },
     {
       "type": "Feature",
@@ -5723,8 +5496,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 214,
         "grade": "4b",
         "circuitNumber": "17",
         "steepness": "wall",
@@ -5736,7 +5507,8 @@
             "id": 9
           }
         ]
-      }
+      },
+      "id": "problem_214"
     },
     {
       "type": "Feature",
@@ -5748,8 +5520,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 201,
         "grade": "4a+",
         "circuitNumber": "28",
         "steepness": "wall",
@@ -5761,7 +5531,8 @@
             "id": 11
           }
         ]
-      }
+      },
+      "id": "problem_201"
     },
     {
       "type": "Feature",
@@ -5773,8 +5544,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 202,
         "grade": "4b",
         "circuitNumber": "29",
         "steepness": "wall",
@@ -5786,7 +5555,8 @@
             "id": 28
           }
         ]
-      }
+      },
+      "id": "problem_202"
     },
     {
       "type": "Feature",
@@ -5798,8 +5568,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 232,
         "grade": "7b",
         "circuitNumber": "12",
         "steepness": "overhang",
@@ -5814,7 +5582,8 @@
             "id": 192
           }
         ]
-      }
+      },
+      "id": "problem_232"
     },
     {
       "type": "Feature",
@@ -5826,8 +5595,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 234,
         "grade": "7a",
         "circuitNumber": "14",
         "steepness": "overhang",
@@ -5842,7 +5609,8 @@
             "id": 147
           }
         ]
-      }
+      },
+      "id": "problem_234"
     },
     {
       "type": "Feature",
@@ -5854,8 +5622,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 244,
         "grade": "7b",
         "circuitNumber": "23",
         "steepness": "overhang",
@@ -5870,7 +5636,8 @@
             "id": 118
           }
         ]
-      }
+      },
+      "id": "problem_244"
     },
     {
       "type": "Feature",
@@ -5882,8 +5649,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 243,
         "grade": "7a",
         "circuitNumber": "22",
         "steepness": "wall",
@@ -5898,7 +5663,8 @@
             "id": 101
           }
         ]
-      }
+      },
+      "id": "problem_243"
     },
     {
       "type": "Feature",
@@ -5910,8 +5676,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 237,
         "grade": "7a+",
         "circuitNumber": "17",
         "steepness": "slab",
@@ -5926,7 +5690,8 @@
             "id": 169
           }
         ]
-      }
+      },
+      "id": "problem_237"
     },
     {
       "type": "Feature",
@@ -5938,8 +5703,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 231,
         "grade": "7a",
         "circuitNumber": "11",
         "steepness": "traverse",
@@ -5951,7 +5714,8 @@
             "id": 216
           }
         ]
-      }
+      },
+      "id": "problem_231"
     },
     {
       "type": "Feature",
@@ -5963,8 +5727,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 233,
         "grade": "6c+",
         "circuitNumber": "13",
         "steepness": "wall",
@@ -5976,7 +5738,8 @@
             "id": 191
           }
         ]
-      }
+      },
+      "id": "problem_233"
     },
     {
       "type": "Feature",
@@ -5988,8 +5751,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 240,
         "grade": "7c",
         "circuitNumber": "20b",
         "steepness": "overhang",
@@ -6001,7 +5762,8 @@
             "id": 111
           }
         ]
-      }
+      },
+      "id": "problem_240"
     },
     {
       "type": "Feature",
@@ -6013,8 +5775,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 241,
         "grade": "7a",
         "circuitNumber": "20",
         "steepness": "overhang",
@@ -6026,7 +5786,8 @@
             "id": 110
           }
         ]
-      }
+      },
+      "id": "problem_241"
     },
     {
       "type": "Feature",
@@ -6038,8 +5799,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 236,
         "grade": "6c",
         "circuitNumber": "16",
         "steepness": "traverse",
@@ -6051,7 +5810,8 @@
             "id": 168
           }
         ]
-      }
+      },
+      "id": "problem_236"
     },
     {
       "type": "Feature",
@@ -6063,8 +5823,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 235,
         "grade": "6b+",
         "circuitNumber": "15",
         "steepness": "traverse",
@@ -6076,7 +5834,8 @@
             "id": 144
           }
         ]
-      }
+      },
+      "id": "problem_235"
     },
     {
       "type": "Feature",
@@ -6088,8 +5847,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 238,
         "grade": "7a+",
         "circuitNumber": "18",
         "steepness": "wall",
@@ -6101,7 +5858,8 @@
             "id": 59
           }
         ]
-      }
+      },
+      "id": "problem_238"
     },
     {
       "type": "Feature",
@@ -6113,8 +5871,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 239,
         "grade": "7b",
         "circuitNumber": "19",
         "steepness": "overhang",
@@ -6126,7 +5882,8 @@
             "id": 58
           }
         ]
-      }
+      },
+      "id": "problem_239"
     },
     {
       "type": "Feature",
@@ -6138,8 +5895,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 242,
         "grade": "7a+",
         "circuitNumber": "21",
         "steepness": "overhang",
@@ -6151,7 +5906,8 @@
             "id": 100
           }
         ]
-      }
+      },
+      "id": "problem_242"
     },
     {
       "type": "Feature",
@@ -6163,8 +5919,6 @@
         ]
       },
       "properties": {
-        "type": "problem",
-        "id": 245,
         "grade": "7a",
         "circuitNumber": "24",
         "steepness": "wall",
@@ -6176,307 +5930,8 @@
             "id": 119
           }
         ]
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.6637,
-              48.462596
-            ],
-            [
-              2.663743,
-              48.462575
-            ],
-            [
-              2.663771,
-              48.462601
-            ],
-            [
-              2.663715,
-              48.46262
-            ],
-            [
-              2.6637,
-              48.462596
-            ]
-          ]
-        ]
       },
-      "properties": {
-        "type": "boulder",
-        "id": 197
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663634,
-              48.462566
-            ],
-            [
-              2.663662,
-              48.462586
-            ],
-            [
-              2.66372,
-              48.462561
-            ],
-            [
-              2.663678,
-              48.46253
-            ],
-            [
-              2.663634,
-              48.462566
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 198
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663575,
-              48.462601
-            ],
-            [
-              2.663599,
-              48.46262
-            ],
-            [
-              2.663645,
-              48.462598
-            ],
-            [
-              2.663617,
-              48.462573
-            ],
-            [
-              2.663575,
-              48.462601
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 199
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663535,
-              48.462766
-            ],
-            [
-              2.663574,
-              48.462741
-            ],
-            [
-              2.663601,
-              48.462748
-            ],
-            [
-              2.663632,
-              48.462745
-            ],
-            [
-              2.663644,
-              48.462758
-            ],
-            [
-              2.663578,
-              48.462789
-            ],
-            [
-              2.663535,
-              48.462766
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 200
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663772,
-              48.462428
-            ],
-            [
-              2.663806,
-              48.462444
-            ],
-            [
-              2.663788,
-              48.462472
-            ],
-            [
-              2.663711,
-              48.462475
-            ],
-            [
-              2.663696,
-              48.462451
-            ],
-            [
-              2.663722,
-              48.462431
-            ],
-            [
-              2.663772,
-              48.462428
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 201
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663829,
-              48.462402
-            ],
-            [
-              2.663844,
-              48.462425
-            ],
-            [
-              2.663911,
-              48.462391
-            ],
-            [
-              2.663957,
-              48.462358
-            ],
-            [
-              2.663911,
-              48.462332
-            ],
-            [
-              2.663829,
-              48.462402
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 202
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.662272,
-              48.462315
-            ],
-            [
-              2.662249,
-              48.462343
-            ],
-            [
-              2.662216,
-              48.462331
-            ],
-            [
-              2.66224,
-              48.462305
-            ],
-            [
-              2.662272,
-              48.462315
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 203
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.662383,
-              48.462271
-            ],
-            [
-              2.662385,
-              48.462285
-            ],
-            [
-              2.662406,
-              48.462291
-            ],
-            [
-              2.662432,
-              48.462285
-            ],
-            [
-              2.662434,
-              48.462269
-            ],
-            [
-              2.662408,
-              48.462267
-            ],
-            [
-              2.662383,
-              48.462271
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "type": "boulder",
-        "id": 204
-      }
+      "id": "problem_245"
     },
     {
       "type": "Feature",
@@ -6508,9 +5963,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 205
-      }
+      },
+      "id": "boulder_205"
     },
     {
       "type": "Feature",
@@ -6542,9 +5996,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 206
-      }
+      },
+      "id": "boulder_206"
     },
     {
       "type": "Feature",
@@ -6584,9 +6037,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 207
-      }
+      },
+      "id": "boulder_207"
     },
     {
       "type": "Feature",
@@ -6618,9 +6070,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 208
-      }
+      },
+      "id": "boulder_208"
     },
     {
       "type": "Feature",
@@ -6652,9 +6103,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 209
-      }
+      },
+      "id": "boulder_209"
     },
     {
       "type": "Feature",
@@ -6686,9 +6136,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 210
-      }
+      },
+      "id": "boulder_210"
     },
     {
       "type": "Feature",
@@ -6720,9 +6169,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 211
-      }
+      },
+      "id": "boulder_211"
     },
     {
       "type": "Feature",
@@ -6754,9 +6202,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 212
-      }
+      },
+      "id": "boulder_212"
     },
     {
       "type": "Feature",
@@ -6788,9 +6235,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 213
-      }
+      },
+      "id": "boulder_213"
     },
     {
       "type": "Feature",
@@ -6826,9 +6272,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 214
-      }
+      },
+      "id": "boulder_214"
     },
     {
       "type": "Feature",
@@ -6860,9 +6305,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 215
-      }
+      },
+      "id": "boulder_215"
     },
     {
       "type": "Feature",
@@ -6898,9 +6342,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 216
-      }
+      },
+      "id": "boulder_216"
     },
     {
       "type": "Feature",
@@ -6940,9 +6383,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 217
-      }
+      },
+      "id": "boulder_217"
     },
     {
       "type": "Feature",
@@ -6978,9 +6420,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 218
-      }
+      },
+      "id": "boulder_218"
     },
     {
       "type": "Feature",
@@ -7036,9 +6477,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 219
-      }
+      },
+      "id": "boulder_219"
     },
     {
       "type": "Feature",
@@ -7070,9 +6510,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 220
-      }
+      },
+      "id": "boulder_220"
     },
     {
       "type": "Feature",
@@ -7104,9 +6543,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 221
-      }
+      },
+      "id": "boulder_221"
     },
     {
       "type": "Feature",
@@ -7150,9 +6588,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 222
-      }
+      },
+      "id": "boulder_222"
     },
     {
       "type": "Feature",
@@ -7184,9 +6621,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 223
-      }
+      },
+      "id": "boulder_223"
     },
     {
       "type": "Feature",
@@ -7226,9 +6662,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 224
-      }
+      },
+      "id": "boulder_224"
     },
     {
       "type": "Feature",
@@ -7268,9 +6703,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 225
-      }
+      },
+      "id": "boulder_225"
     },
     {
       "type": "Feature",
@@ -7310,9 +6744,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 226
-      }
+      },
+      "id": "boulder_226"
     },
     {
       "type": "Feature",
@@ -7348,9 +6781,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 227
-      }
+      },
+      "id": "boulder_227"
     },
     {
       "type": "Feature",
@@ -7382,9 +6814,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 228
-      }
+      },
+      "id": "boulder_228"
     },
     {
       "type": "Feature",
@@ -7416,9 +6847,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 229
-      }
+      },
+      "id": "boulder_229"
     },
     {
       "type": "Feature",
@@ -7450,9 +6880,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 230
-      }
+      },
+      "id": "boulder_230"
     },
     {
       "type": "Feature",
@@ -7484,9 +6913,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 231
-      }
+      },
+      "id": "boulder_231"
     },
     {
       "type": "Feature",
@@ -7526,9 +6954,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 232
-      }
+      },
+      "id": "boulder_232"
     },
     {
       "type": "Feature",
@@ -7560,9 +6987,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 233
-      }
+      },
+      "id": "boulder_233"
     },
     {
       "type": "Feature",
@@ -7594,9 +7020,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 234
-      }
+      },
+      "id": "boulder_234"
     },
     {
       "type": "Feature",
@@ -7628,9 +7053,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 235
-      }
+      },
+      "id": "boulder_235"
     },
     {
       "type": "Feature",
@@ -7670,9 +7094,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 236
-      }
+      },
+      "id": "boulder_236"
     },
     {
       "type": "Feature",
@@ -7712,9 +7135,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 237
-      }
+      },
+      "id": "boulder_237"
     },
     {
       "type": "Feature",
@@ -7766,9 +7188,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 238
-      }
+      },
+      "id": "boulder_238"
     },
     {
       "type": "Feature",
@@ -7800,9 +7221,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 239
-      }
+      },
+      "id": "boulder_239"
     },
     {
       "type": "Feature",
@@ -7846,9 +7266,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 240
-      }
+      },
+      "id": "boulder_240"
     },
     {
       "type": "Feature",
@@ -7896,9 +7315,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 241
-      }
+      },
+      "id": "boulder_241"
     },
     {
       "type": "Feature",
@@ -7930,9 +7348,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 242
-      }
+      },
+      "id": "boulder_242"
     },
     {
       "type": "Feature",
@@ -7968,9 +7385,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 243
-      }
+      },
+      "id": "boulder_243"
     },
     {
       "type": "Feature",
@@ -8002,9 +7418,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 244
-      }
+      },
+      "id": "boulder_244"
     },
     {
       "type": "Feature",
@@ -8036,9 +7451,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 245
-      }
+      },
+      "id": "boulder_245"
     },
     {
       "type": "Feature",
@@ -8078,9 +7492,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 246
-      }
+      },
+      "id": "boulder_246"
     },
     {
       "type": "Feature",
@@ -8116,9 +7529,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 247
-      }
+      },
+      "id": "boulder_247"
     },
     {
       "type": "Feature",
@@ -8150,9 +7562,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 248
-      }
+      },
+      "id": "boulder_248"
     },
     {
       "type": "Feature",
@@ -8192,9 +7603,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 249
-      }
+      },
+      "id": "boulder_249"
     },
     {
       "type": "Feature",
@@ -8230,9 +7640,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 250
-      }
+      },
+      "id": "boulder_250"
     },
     {
       "type": "Feature",
@@ -8264,9 +7673,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 251
-      }
+      },
+      "id": "boulder_251"
     },
     {
       "type": "Feature",
@@ -8302,9 +7710,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 252
-      }
+      },
+      "id": "boulder_252"
     },
     {
       "type": "Feature",
@@ -8348,9 +7755,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 253
-      }
+      },
+      "id": "boulder_253"
     },
     {
       "type": "Feature",
@@ -8390,9 +7796,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 254
-      }
+      },
+      "id": "boulder_254"
     },
     {
       "type": "Feature",
@@ -8428,9 +7833,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 255
-      }
+      },
+      "id": "boulder_255"
     },
     {
       "type": "Feature",
@@ -8462,9 +7866,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 256
-      }
+      },
+      "id": "boulder_256"
     },
     {
       "type": "Feature",
@@ -8496,9 +7899,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 257
-      }
+      },
+      "id": "boulder_257"
     },
     {
       "type": "Feature",
@@ -8530,9 +7932,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 258
-      }
+      },
+      "id": "boulder_258"
     },
     {
       "type": "Feature",
@@ -8568,9 +7969,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 259
-      }
+      },
+      "id": "boulder_259"
     },
     {
       "type": "Feature",
@@ -8602,9 +8002,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 260
-      }
+      },
+      "id": "boulder_260"
     },
     {
       "type": "Feature",
@@ -8648,9 +8047,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 261
-      }
+      },
+      "id": "boulder_261"
     },
     {
       "type": "Feature",
@@ -8686,9 +8084,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 262
-      }
+      },
+      "id": "boulder_262"
     },
     {
       "type": "Feature",
@@ -8720,9 +8117,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 263
-      }
+      },
+      "id": "boulder_263"
     },
     {
       "type": "Feature",
@@ -8754,9 +8150,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 264
-      }
+      },
+      "id": "boulder_264"
     },
     {
       "type": "Feature",
@@ -8804,9 +8199,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 265
-      }
+      },
+      "id": "boulder_265"
     },
     {
       "type": "Feature",
@@ -8858,9 +8252,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 266
-      }
+      },
+      "id": "boulder_266"
     },
     {
       "type": "Feature",
@@ -8904,9 +8297,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 267
-      }
+      },
+      "id": "boulder_267"
     },
     {
       "type": "Feature",
@@ -8970,9 +8362,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 268
-      }
+      },
+      "id": "boulder_268"
     },
     {
       "type": "Feature",
@@ -9012,9 +8403,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 269
-      }
+      },
+      "id": "boulder_269"
     },
     {
       "type": "Feature",
@@ -9058,9 +8448,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 270
-      }
+      },
+      "id": "boulder_270"
     },
     {
       "type": "Feature",
@@ -9096,9 +8485,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 271
-      }
+      },
+      "id": "boulder_271"
     },
     {
       "type": "Feature",
@@ -9138,9 +8526,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 272
-      }
+      },
+      "id": "boulder_272"
     },
     {
       "type": "Feature",
@@ -9196,9 +8583,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 273
-      }
+      },
+      "id": "boulder_273"
     },
     {
       "type": "Feature",
@@ -9238,9 +8624,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 274
-      }
+      },
+      "id": "boulder_274"
     },
     {
       "type": "Feature",
@@ -9276,9 +8661,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 275
-      }
+      },
+      "id": "boulder_275"
     },
     {
       "type": "Feature",
@@ -9310,9 +8694,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 276
-      }
+      },
+      "id": "boulder_276"
     },
     {
       "type": "Feature",
@@ -9352,9 +8735,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 277
-      }
+      },
+      "id": "boulder_277"
     },
     {
       "type": "Feature",
@@ -9386,9 +8768,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 278
-      }
+      },
+      "id": "boulder_278"
     },
     {
       "type": "Feature",
@@ -9432,9 +8813,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 279
-      }
+      },
+      "id": "boulder_279"
     },
     {
       "type": "Feature",
@@ -9466,9 +8846,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 280
-      }
+      },
+      "id": "boulder_280"
     },
     {
       "type": "Feature",
@@ -9500,9 +8879,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 281
-      }
+      },
+      "id": "boulder_281"
     },
     {
       "type": "Feature",
@@ -9538,9 +8916,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 282
-      }
+      },
+      "id": "boulder_282"
     },
     {
       "type": "Feature",
@@ -9572,9 +8949,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 283
-      }
+      },
+      "id": "boulder_283"
     },
     {
       "type": "Feature",
@@ -9606,9 +8982,300 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 284
-      }
+      },
+      "id": "boulder_284"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6637,
+              48.462596
+            ],
+            [
+              2.663743,
+              48.462575
+            ],
+            [
+              2.663771,
+              48.462601
+            ],
+            [
+              2.663715,
+              48.46262
+            ],
+            [
+              2.6637,
+              48.462596
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_197"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663634,
+              48.462566
+            ],
+            [
+              2.663662,
+              48.462586
+            ],
+            [
+              2.66372,
+              48.462561
+            ],
+            [
+              2.663678,
+              48.46253
+            ],
+            [
+              2.663634,
+              48.462566
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_198"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663575,
+              48.462601
+            ],
+            [
+              2.663599,
+              48.46262
+            ],
+            [
+              2.663645,
+              48.462598
+            ],
+            [
+              2.663617,
+              48.462573
+            ],
+            [
+              2.663575,
+              48.462601
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_199"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663535,
+              48.462766
+            ],
+            [
+              2.663574,
+              48.462741
+            ],
+            [
+              2.663601,
+              48.462748
+            ],
+            [
+              2.663632,
+              48.462745
+            ],
+            [
+              2.663644,
+              48.462758
+            ],
+            [
+              2.663578,
+              48.462789
+            ],
+            [
+              2.663535,
+              48.462766
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_200"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663772,
+              48.462428
+            ],
+            [
+              2.663806,
+              48.462444
+            ],
+            [
+              2.663788,
+              48.462472
+            ],
+            [
+              2.663711,
+              48.462475
+            ],
+            [
+              2.663696,
+              48.462451
+            ],
+            [
+              2.663722,
+              48.462431
+            ],
+            [
+              2.663772,
+              48.462428
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_201"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663829,
+              48.462402
+            ],
+            [
+              2.663844,
+              48.462425
+            ],
+            [
+              2.663911,
+              48.462391
+            ],
+            [
+              2.663957,
+              48.462358
+            ],
+            [
+              2.663911,
+              48.462332
+            ],
+            [
+              2.663829,
+              48.462402
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_202"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.662272,
+              48.462315
+            ],
+            [
+              2.662249,
+              48.462343
+            ],
+            [
+              2.662216,
+              48.462331
+            ],
+            [
+              2.66224,
+              48.462305
+            ],
+            [
+              2.662272,
+              48.462315
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_203"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.662383,
+              48.462271
+            ],
+            [
+              2.662385,
+              48.462285
+            ],
+            [
+              2.662406,
+              48.462291
+            ],
+            [
+              2.662432,
+              48.462285
+            ],
+            [
+              2.662434,
+              48.462269
+            ],
+            [
+              2.662408,
+              48.462267
+            ],
+            [
+              2.662383,
+              48.462271
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_204"
     },
     {
       "type": "Feature",
@@ -9640,9 +9307,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 285
-      }
+      },
+      "id": "boulder_285"
     },
     {
       "type": "Feature",
@@ -9678,9 +9344,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 286
-      }
+      },
+      "id": "boulder_286"
     },
     {
       "type": "Feature",
@@ -9712,9 +9377,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 287
-      }
+      },
+      "id": "boulder_287"
     },
     {
       "type": "Feature",
@@ -9746,9 +9410,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 288
-      }
+      },
+      "id": "boulder_288"
     },
     {
       "type": "Feature",
@@ -9780,9 +9443,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 289
-      }
+      },
+      "id": "boulder_289"
     },
     {
       "type": "Feature",
@@ -9814,9 +9476,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 290
-      }
+      },
+      "id": "boulder_290"
     },
     {
       "type": "Feature",
@@ -9848,9 +9509,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 291
-      }
+      },
+      "id": "boulder_291"
     },
     {
       "type": "Feature",
@@ -9882,9 +9542,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 292
-      }
+      },
+      "id": "boulder_292"
     },
     {
       "type": "Feature",
@@ -9924,9 +9583,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 293
-      }
+      },
+      "id": "boulder_293"
     },
     {
       "type": "Feature",
@@ -9966,9 +9624,8 @@
         ]
       },
       "properties": {
-        "type": "boulder",
-        "id": 294
-      }
+      },
+      "id": "boulder_294"
     },
     {
       "type": "Feature",
@@ -10170,39 +9827,10 @@
         ]
       },
       "properties": {
-        "circuit": "yellow"
-      }
-    },
-    {
-        "type": "Feature",
-        "properties": {
-            "poiType": "parking_path"
-        },
-        "geometry": {
-            "type": "LineString",
-            "coordinates": [
-                [2.66560150708247, 48.462975735402125],
-                [2.665382114189644, 48.463488146711342],
-                [2.665106654186892, 48.46347036594009],
-                [2.664460664002277, 48.463717679401519],
-                [2.664299775880756, 48.463526941045913],
-                [2.664404596892454, 48.463273160853909],
-                [2.664648366847817, 48.463205270409553],
-                [2.664686794790582, 48.4631519689353],
-                [2.664686794790582, 48.463102248147067],
-                [2.664623846821739, 48.463065417902186],
-                [2.664513687915042, 48.463048230454802],
-                [2.664439631483618, 48.463062348704547],
-                [2.664384089198903, 48.463051299625185],
-                [2.664375757851942, 48.463026746116263],
-                [2.664402603303172, 48.463002192595489],
-                [2.664467402640122, 48.462992985018609],
-                [2.664493535431233, 48.462959690742011],
-                [2.664492553659445, 48.462936471495851],
-                [2.664475209304565, 48.462912167213183],
-                [2.664431411616574, 48.462875515530875]
-            ]
-        }
+        "color": "yellow",
+        "name": "Jaune (débutant)"
+      },
+      "id": "circuit_1"
     },
     {
       "type": "Feature",
@@ -10384,8 +10012,10 @@
         ]
       },
       "properties": {
-        "circuit": "orange"
-      }
+        "color": "orange",
+        "name": "Orange"
+      },
+      "id": "circuit_2"
     },
     {
       "type": "Feature",
@@ -10559,8 +10189,10 @@
         ]
       },
       "properties": {
-        "circuit": "skyblue"
-      }
+        "color": "skyblue",
+        "name": "Bleu ciel"
+      },
+      "id": "circuit_3"
     },
     {
       "type": "Feature",
@@ -10754,8 +10386,10 @@
         ]
       },
       "properties": {
-        "circuit": "red"
-      }
+        "color": "red",
+        "name": "Rouge"
+      },
+      "id": "circuit_4"
     },
     {
       "type": "Feature",
@@ -10929,8 +10563,10 @@
         ]
       },
       "properties": {
-        "circuit": "blue"
-      }
+        "color": "blue",
+        "name": "Bleu"
+      },
+      "id": "circuit_5"
     },
     {
       "type": "Feature",
@@ -11044,8 +10680,10 @@
         ]
       },
       "properties": {
-        "circuit": "white"
-      }
+        "color": "white",
+        "name": "Blanc"
+      },
+      "id": "circuit_6"
     }
   ]
 }
