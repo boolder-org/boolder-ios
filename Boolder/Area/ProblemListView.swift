@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProblemListView: View {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: ProblemAnnotation
+    @Binding var selectedProblem: OldProblemAnnotation
     @Binding var presentProblemDetails: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -26,7 +26,7 @@ struct ProblemListView: View {
                     header: Text("Circuit \(self.dataStore.circuit(withColor: circuitColor)?.name ?? "")").font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == self.dataStore.groupedAnnotationsKeys.first) ? 32 : 0),
                     footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == self.dataStore.groupedAnnotationsKeys.last) ? 120 : 0, alignment: .center)
                     ) {
-                    ForEach(self.dataStore.groupedAnnotations[circuitColor]!, id: \.self) { (problem: ProblemAnnotation) in
+                    ForEach(self.dataStore.groupedAnnotations[circuitColor]!, id: \.self) { (problem: OldProblemAnnotation) in
                         
                         Button(action: {
                             self.selectedProblem = problem
@@ -62,13 +62,13 @@ struct ProblemListView: View {
         .animation(.easeInOut(duration: 0))
     }
     
-    func isFavorite(problem: ProblemAnnotation) -> Bool {
+    func isFavorite(problem: OldProblemAnnotation) -> Bool {
         favorites.contains { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == problem.id
         }
     }
     
-    func isTicked(problem: ProblemAnnotation) -> Bool {
+    func isTicked(problem: OldProblemAnnotation) -> Bool {
         ticks.contains { (tick: Tick) -> Bool in
             return Int(tick.problemId) == problem.id
         }
@@ -80,7 +80,7 @@ struct ProblemListView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(selectedProblem: .constant(ProblemAnnotation()), presentProblemDetails: .constant(false))
+            ProblemListView(selectedProblem: .constant(OldProblemAnnotation()), presentProblemDetails: .constant(false))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
         .environmentObject(DataStore())

@@ -12,12 +12,13 @@ class GeoStore {
 
     var circuits = [Circuit]()
     var boulderOverlays = [BoulderOverlay]()
-    var annotations: [ProblemAnnotation]
-    var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
+    var problems = [Problem]()
+    var annotations: [OldProblemAnnotation]
+    var groupedAnnotations: Dictionary<Int, [OldProblemAnnotation]>
 
     init() {
-        annotations = [ProblemAnnotation]()
-        groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
+        annotations = [OldProblemAnnotation]()
+        groupedAnnotations = Dictionary<Int, [OldProblemAnnotation]>()
         
         loadData()
     }
@@ -97,38 +98,43 @@ class GeoStore {
             
             if let point = geometry as? MKPointAnnotation, let properties = feature.properties {
                 
-                let annotation = ProblemAnnotation()
-                annotation.id = id
-                annotation.coordinate = point.coordinate
-                
                 let decoder = JSONDecoder()
                 if let properties = try? decoder.decode(ProblemProperties.self, from: properties) {
                     
-                    annotation.displayLabel = properties.circuitNumber ?? ""
-                    annotation.name = properties.name
+                    let problem = Problem()
+                    
+                    problem.circuitNumber = properties.circuitNumber ?? ""
+                    problem.name = properties.name
                     
                     if let height = properties.height {
-                        annotation.height = height
+                        problem.height = height
                     }
                     
                     if let steepness = properties.steepness {
-                        annotation.steepness = Steepness(string: steepness).type
+                        problem.steepness = Steepness(string: steepness).type
                     }
                     
                     if let gradeString = properties.grade {
-                        do { annotation.grade = try Grade(gradeString) } catch {  }
+                        do { problem.grade = try Grade(gradeString) } catch {  }
                     }
                     
                     if let topo = properties.topos?.first {
-                        annotation.topoId = topo.id
+                        problem.topoId = topo.id
                     }
                     
-                    annotation.tags = properties.tags
+                    problem.tags = properties.tags
                     
-                    annotation.circuitColor = Circuit.circuitColorFromString(properties.circuit)
+                    problem.circuitColor = Circuit.circuitColorFromString(properties.circuit)
+                    
+                    problem.id = id
+                    
+                    let annotation = ProblemAnnotation(problem: problem)
+                    annotation.coordinate = point.coordinate
+                    
+                    problem.annotation = annotation // FIXME: circular reference
+                    
+                    problems.append(problem)
                 }
-                
-                annotations.append(annotation)
             }
         }
     }

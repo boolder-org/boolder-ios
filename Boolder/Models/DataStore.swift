@@ -15,8 +15,9 @@ class DataStore : ObservableObject {
     var topoStore = TopoStore()
 
     @Published var overlays = [MKOverlay]()
-    @Published var annotations = [ProblemAnnotation]()
-    @Published var groupedAnnotations = Dictionary<Circuit.CircuitColor, [ProblemAnnotation]>()
+    @Published var problems = [Problem]()
+    @Published var annotations = [OldProblemAnnotation]()
+    @Published var groupedAnnotations = Dictionary<Circuit.CircuitColor, [OldProblemAnnotation]>()
     @Published var groupedAnnotationsKeys = [Circuit.CircuitColor]()
     
     // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
@@ -44,13 +45,13 @@ class DataStore : ObservableObject {
             overlays.append(circuitOverlay)
         }
         
-        filterProblems()
+        problems = filteredProblems()
         setBelongsToCircuit()
-        createGroupedAnnotations()
+//        createGroupedAnnotations()
     }
     
-    private func filterProblems() {
-        annotations = geoStore.annotations.filter { problem in
+    private func filteredProblems() -> [Problem] {
+        return geoStore.problems.filter { problem in
             if(filters.circuit == nil || problem.circuitColor == filters.circuit) {
                 if isGradeOk(problem)  {
                     if filters.steepness.contains(problem.steepness) {
@@ -72,7 +73,7 @@ class DataStore : ObservableObject {
         }
     }
     
-    private func isHeightOk(_ problem: ProblemAnnotation) -> Bool {
+    private func isHeightOk(_ problem: Problem) -> Bool {
         if filters.heightMax == Int.max { return true }
         
         if let height = problem.height {
@@ -83,7 +84,7 @@ class DataStore : ObservableObject {
         }
     }
     
-    private func isGradeOk(_ problem: ProblemAnnotation) -> Bool {
+    private func isGradeOk(_ problem: Problem) -> Bool {
         if let grade = problem.grade {
             return grade >= filters.gradeMin && grade <= filters.gradeMax
         }
@@ -120,7 +121,7 @@ class DataStore : ObservableObject {
             }
         }
         
-        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in
+        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: OldProblemAnnotation) in
             problem.circuitColor ?? Circuit.CircuitColor.offCircuit
         })
         
@@ -128,7 +129,7 @@ class DataStore : ObservableObject {
     }
     
     private func setBelongsToCircuit() {
-        for problem in geoStore.annotations {
+        for problem in problems {
             problem.belongsToCircuit = (filters.circuit == problem.circuitColor)
         }
     }

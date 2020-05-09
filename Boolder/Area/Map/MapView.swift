@@ -22,7 +22,7 @@ extension MKMapView {
 
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: ProblemAnnotation
+    @Binding var selectedProblem: OldProblemAnnotation
     @Binding var presentProblemDetails: Bool
     @Binding var presentParkingActionSheet: Bool
     
@@ -48,7 +48,7 @@ struct MapView: UIViewRepresentable {
         mapView.register(PoiAnnotationView.self, forAnnotationViewWithReuseIdentifier: PoiAnnotationView.ReuseID)
         
         mapView.addOverlays(dataStore.overlays)
-        self.mapView.addAnnotations(self.dataStore.annotations)
+        self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
 //        self.mapView.addAnnotation(self.dataStore.parkingAnnotation())
         self.zoomToRegion(mapView: self.mapView)
         
@@ -64,22 +64,22 @@ struct MapView: UIViewRepresentable {
         // remove & add annotations back only if needed to avoid flickering
         
         let previousAnnotationsIds: [Int] = mapView.annotations.compactMap{ annotation in
-            if let problem = annotation as? ProblemAnnotation {
-                return problem.id!
+            if let annotation = annotation as? OldProblemAnnotation {
+                return annotation.id!
             } else {
                 return nil
             }
         }
         
-        let newAnnotationsIds: [Int] = dataStore.annotations.map{ $0.id! }
+        let newAnnotationsIds: [Int] = dataStore.problems.map{ $0.id! }
         
         let previousHash = previousAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         
-        if previousHash != newHash && context.coordinator.didStartAnimation {
+        if true { //previousHash != newHash && context.coordinator.didStartAnimation {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
-            mapView.addAnnotations(dataStore.annotations)
+            self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
             mapView.addOverlays(dataStore.overlays)
 //            mapView.addAnnotation(self.dataStore.parkingAnnotation())
         }
@@ -91,8 +91,8 @@ struct MapView: UIViewRepresentable {
         }
         
         for annotation in mapView.annotations {
-            if let problem = annotation as? ProblemAnnotation {
-                if let annotationView = mapView.view(for: problem) as? ProblemAnnotationView {
+            if let annotation = annotation as? ProblemAnnotation {
+                if let annotationView = mapView.view(for: annotation) as? ProblemAnnotationView {
                     annotationView.refreshUI()
                 }
             }
@@ -149,10 +149,10 @@ struct MapView: UIViewRepresentable {
                 guard let self = self else { return }
                 
                 for annotation in self.parent.mapView.annotations {
-                    if let problem = annotation as? ProblemAnnotation {
-                        let annotationView = self.parent.mapView.view(for: problem) as? ProblemAnnotationView
+                    if let annotation = annotation as? ProblemAnnotation {
+                        let annotationView = self.parent.mapView.view(for: annotation) as? ProblemAnnotationView
                         
-                        if(problem.belongsToCircuit) {
+                        if(annotation.problem.belongsToCircuit) {
                             annotationView?.size = .full
                         }
                         else if(self.parent.dataStore.filters.favorite) {
@@ -275,7 +275,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            guard let problem = view.annotation as? ProblemAnnotation else { return }
+            guard let problem = view.annotation as? OldProblemAnnotation else { return }
             
             parent.selectedProblem = problem
             parent.presentProblemDetails = true

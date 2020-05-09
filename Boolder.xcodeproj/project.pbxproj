@@ -257,12 +257,14 @@
 		37A8C810245326F200DC161F /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
 		37A8C811245326F200DC161F /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80C245326F200DC161F /* Topo.swift */; };
 		37A8C812245326F200DC161F /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
-		37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8132453272900DC161F /* ProblemAnnotation.swift */; };
 		37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
 		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
 		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
 		37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
+		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
+		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
+		37BCA9882467168E00D56252 /* OldProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA9872467168E00D56252 /* OldProblemAnnotation.swift */; };
 		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircuitNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */; };
 		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
@@ -522,12 +524,14 @@
 		37A8C80B245326F200DC161F /* Circuit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circuit.swift; sourceTree = "<group>"; };
 		37A8C80C245326F200DC161F /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
 		37A8C80D245326F200DC161F /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
-		37A8C8132453272900DC161F /* ProblemAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37A8C8142453272900DC161F /* ProblemAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotationView.swift; sourceTree = "<group>"; };
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
 		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
 		37BCA981246704EB00D56252 /* BoulderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderOverlay.swift; sourceTree = "<group>"; };
+		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
+		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
+		37BCA9872467168E00D56252 /* OldProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitNumberView.swift; sourceTree = "<group>"; };
 		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
@@ -855,6 +859,7 @@
 				37A8C809245326F200DC161F /* Steepness.swift */,
 				37A8C80A245326F200DC161F /* Grade.swift */,
 				37A8C80B245326F200DC161F /* Circuit.swift */,
+				37BCA98524670DC000D56252 /* Problem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -864,12 +869,13 @@
 			children = (
 				37A8C8192453320D00DC161F /* MapView.swift */,
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
-				37A8C8132453272900DC161F /* ProblemAnnotation.swift */,
+				37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */,
 				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,
 				375666DA245F3CDF007170C7 /* PoiAnnotation.swift */,
 				3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */,
 				37A8C8152453272900DC161F /* CircuitOverlay.swift */,
 				37BCA981246704EB00D56252 /* BoulderOverlay.swift */,
+				37BCA9872467168E00D56252 /* OldProblemAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1207,6 +1213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37BCA9882467168E00D56252 /* OldProblemAnnotation.swift in Sources */,
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
@@ -1215,9 +1222,9 @@
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */,
-				37A8C8162453272900DC161F /* ProblemAnnotation.swift in Sources */,
 				3790C35F2456008F005E786E /* BezierView.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
+				37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */,
 				3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircuitNumberView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
@@ -1231,6 +1238,7 @@
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,
 				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,
+				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */,
 				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,

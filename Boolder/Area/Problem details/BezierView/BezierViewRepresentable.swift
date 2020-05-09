@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BezierViewRepresentable: UIViewRepresentable {
-    var problem: ProblemAnnotation
+    var problem: OldProblemAnnotation
     
     func makeUIView(context: Context) -> BezierView {
         let bezierView = BezierView()

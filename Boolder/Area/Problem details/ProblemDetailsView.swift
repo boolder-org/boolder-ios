@@ -16,7 +16,7 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var problem: ProblemAnnotation
+    @Binding var problem: OldProblemAnnotation
     
     var body: some View {
         ScrollView {

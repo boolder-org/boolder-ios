@@ -21,11 +21,11 @@ class ProblemAnnotationView: MKAnnotationView {
     // 	https://developer.apple.com/documentation/mapkit/mkannotationview/2921514-preparefordisplay
     override var annotation: MKAnnotation? {
         willSet {
-            if let problem = newValue as? ProblemAnnotation {
-                if(problem.isFavorite()) {
+            if let annotation = newValue as? ProblemAnnotation {
+                if(annotation.problem.isFavorite()) {
                     self.displayPriority = .required
                 }
-                else if(problem.isTicked()) {
+                else if(annotation.problem.isTicked()) {
                     self.displayPriority = .defaultHigh
                 }
                 else {
@@ -167,11 +167,11 @@ class ProblemAnnotationView: MKAnnotationView {
         badgeView.layer.removeAllAnimations()
         badgeViewBackground.layer.removeAllAnimations()
         
-        if annotation.isTicked() {
+        if annotation.problem.isTicked() {
             badgeView.image = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), renderingMode: .alwaysOriginal)
             badgeViewBackground.isHidden = false
         }
-        else if annotation.isFavorite() {
+        else if annotation.problem.isFavorite() {
             badgeView.image = UIImage(systemName: "star.fill")!.withTintColor(.yellow, renderingMode: .alwaysOriginal)
             badgeViewBackground.isHidden = true
         }

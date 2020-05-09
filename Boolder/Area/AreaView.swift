@@ -16,7 +16,7 @@ struct AreaView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showList = false
-    @State private var selectedProblem = ProblemAnnotation()
+    @State private var selectedProblem = OldProblemAnnotation()
     @State private var presentProblemDetails = false
     @State private var presentParkingActionSheet = false
     
