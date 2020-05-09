@@ -206,8 +206,8 @@ struct MapView: UIViewRepresentable {
             //            return renderer
             //        }
             
-            if let multiPolygon = overlay as? MKMultiPolygon {
-                let renderer = MKMultiPolygonRenderer(multiPolygon: multiPolygon)
+            if let boulderOverlay = overlay as? BoulderOverlay {
+                let renderer = MKMultiPolygonRenderer(multiPolygon: boulderOverlay)
                 renderer.strokeColor = UIColor.init(white: 0.7, alpha: 1.0)
                 renderer.lineWidth = 1
                 renderer.fillColor = UIColor.init(white: 0.8, alpha: 1.0)

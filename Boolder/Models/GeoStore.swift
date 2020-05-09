@@ -11,12 +11,11 @@ import MapKit
 class GeoStore {
 
     var circuits = [Circuit]()
-    var overlays: [MKOverlay]
+    var boulderOverlays = [BoulderOverlay]()
     var annotations: [ProblemAnnotation]
     var groupedAnnotations: Dictionary<Int, [ProblemAnnotation]>
 
     init() {
-        overlays = [MKOverlay]()
         annotations = [ProblemAnnotation]()
         groupedAnnotations = Dictionary<Int, [ProblemAnnotation]>()
         
@@ -85,7 +84,7 @@ class GeoStore {
     private func parseBoulder(feature: MKGeoJSONFeature, id: Int) {
         for geometry in feature.geometry {
             if let polygon = geometry as? MKPolygon {
-                overlays.append(MKMultiPolygon([polygon]))
+                boulderOverlays.append(BoulderOverlay([polygon]))
             }
 //            else if let multiPolygon = geometry as? MKMultiPolygon {
 //                overlays.append(multiPolygon)

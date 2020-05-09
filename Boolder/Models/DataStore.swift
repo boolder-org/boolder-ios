@@ -39,8 +39,11 @@ class DataStore : ObservableObject {
     }
     
     func refresh() {
-        filterBoulders()
-        filterCircuit()
+        overlays = geoStore.boulderOverlays
+        if let circuitOverlay = circuitOverlay() {
+            overlays.append(circuitOverlay)
+        }
+        
         filterProblems()
         setBelongsToCircuit()
         createGroupedAnnotations()
@@ -89,16 +92,14 @@ class DataStore : ObservableObject {
         }
     }
     
-    private func filterBoulders() {
-        overlays = geoStore.overlays // FIXME: use boulders instead of overlays
-    }
-    
-    private func filterCircuit() {
+    private func circuitOverlay() -> CircuitOverlay? {
         if let circuitColor = filters.circuit {
             if let circuit = circuit(withColor: circuitColor) {
-                overlays.append(circuit.overlay)
+                return circuit.overlay
             }
         }
+        
+        return nil
     }
     
     func circuit(withColor color: Circuit.CircuitColor) -> Circuit? {

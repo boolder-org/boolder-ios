@@ -62,7 +62,6 @@ class Circuit {
     
     static func circuitColorFromString(_ string: String?) -> CircuitColor {
         switch string {
-        // FIXME Add white for kids
         case "yellow":
             return CircuitColor.yellow
         case "orange":
