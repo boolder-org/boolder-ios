@@ -8,16 +8,7 @@
 
 import SwiftUI
 
-struct CircuitFilterView: View {
-    let circuits = [
-        Circuit.CircuitColor.yellow,
-        Circuit.CircuitColor.orange,
-        Circuit.CircuitColor.blue,
-        Circuit.CircuitColor.skyBlue,
-        Circuit.CircuitColor.red,
-        Circuit.CircuitColor.white,
-    ]
-    
+struct CircuitFilterView: View {    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
     
@@ -27,20 +18,20 @@ struct CircuitFilterView: View {
         NavigationView {
             List {
                 Section {
-                    ForEach(circuits, id: \.self) { circuitType in
+                    ForEach(dataStore.geoStore.circuits, id: \.type) { (circuit: Circuit) in
                         Button(action: {
-                            self.dataStore.filters.circuit = circuitType
+                            self.dataStore.filters.circuit = circuit.type
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack(alignment: .center) {
-                                CircuitNumberView(number: "", color: Circuit(type: circuitType, name: "").color, height: 20)
+                                CircuitNumberView(number: "", color: circuit.color, height: 20)
                                 
-                                Text("\(Circuit(type: circuitType, name: "").name)")
+                                Text("\(circuit.name)")
                                     .foregroundColor(Color(.label))
                                 
                                 Spacer()
                                 
-                                if self.dataStore.filters.circuit == circuitType {
+                                if self.dataStore.filters.circuit == circuit.type {
                                     Image(systemName: "checkmark").font(Font.body.weight(.bold))
                                 }
                             }
