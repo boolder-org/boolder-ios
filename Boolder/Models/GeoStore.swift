@@ -75,7 +75,7 @@ class GeoStore {
                 if let dictionary = try? decoder.decode([String: String].self, from: properties) {
                     let overlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
                     let circuit = Circuit(type: Circuit.circuitTypeFromString(dictionary["color"]), name: dictionary["name"] ?? "Sans nom", overlay: overlay)
-                    overlay.strokeColor = circuit.color
+                    overlay.strokeColor = circuit.uicolor
                     circuits.append(circuit)
                 }
             }

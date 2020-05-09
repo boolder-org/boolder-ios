@@ -37,7 +37,7 @@ class Circuit {
     let name: String
     let overlay: CircuitOverlay? // FIXME: make non optional
     
-    var color: UIColor {
+    var uicolor: UIColor {
         switch type {
         case .whiteForKids:
             return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
