@@ -13,7 +13,9 @@ class ProblemAnnotation: NSObject, MKAnnotation {
     @objc dynamic var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     let problem: Problem
-    var displayLabel: String = ""
+    var displayLabel: String {
+        problem.circuitNumber
+    }
     
     init(problem: Problem) {
         self.problem = problem

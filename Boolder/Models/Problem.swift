@@ -21,6 +21,12 @@ class Problem : Identifiable {
     var tags: [String]?
     var annotation: ProblemAnnotation!
     
+    func displayColor() -> UIColor {
+        guard let circuitColor = circuitColor else { return UIColor.gray }
+        
+        return circuitColor.uicolor
+    }
+    
     func readableDescription() -> String? {
         var strings = Set<String>()
         

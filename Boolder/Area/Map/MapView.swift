@@ -22,7 +22,7 @@ extension MKMapView {
 
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: OldProblemAnnotation
+    @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     @Binding var presentParkingActionSheet: Bool
     
@@ -64,8 +64,8 @@ struct MapView: UIViewRepresentable {
         // remove & add annotations back only if needed to avoid flickering
         
         let previousAnnotationsIds: [Int] = mapView.annotations.compactMap{ annotation in
-            if let annotation = annotation as? OldProblemAnnotation {
-                return annotation.id!
+            if let annotation = annotation as? ProblemAnnotation {
+                return annotation.problem.id
             } else {
                 return nil
             }
@@ -79,10 +79,10 @@ struct MapView: UIViewRepresentable {
         if true { //previousHash != newHash && context.coordinator.didStartAnimation {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
-            self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
+            mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
             mapView.addOverlays(dataStore.overlays)
 //            mapView.addAnnotation(self.dataStore.parkingAnnotation())
-        }
+        }        
         
         // refresh all annotation views
         // FIXME: doesn't seem to work syncronously
@@ -158,7 +158,7 @@ struct MapView: UIViewRepresentable {
                         else if(self.parent.dataStore.filters.favorite) {
                             annotationView?.size = .full
                         }
-                        else if(self.parent.dataStore.annotations.count < 30) {
+                        else if(self.parent.dataStore.problems.count < 30) {
                             annotationView?.size = .full
                         }
                         else {
@@ -275,9 +275,9 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            guard let problem = view.annotation as? OldProblemAnnotation else { return }
+            guard let annotation = view.annotation as? ProblemAnnotation else { return }
             
-            parent.selectedProblem = problem
+            parent.selectedProblem = annotation.problem
             parent.presentProblemDetails = true
             
             mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)

@@ -16,8 +16,7 @@ class DataStore : ObservableObject {
 
     @Published var overlays = [MKOverlay]()
     @Published var problems = [Problem]()
-    @Published var annotations = [OldProblemAnnotation]()
-    @Published var groupedAnnotations = Dictionary<Circuit.CircuitColor, [OldProblemAnnotation]>()
+    @Published var groupedAnnotations = Dictionary<Circuit.CircuitColor, [ProblemAnnotation]>()
     @Published var groupedAnnotationsKeys = [Circuit.CircuitColor]()
     
     // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
@@ -107,26 +106,26 @@ class DataStore : ObservableObject {
         geoStore.circuits.first { $0.color == color }
     }
     
-    private func createGroupedAnnotations() {
-        var sortedAnnotations = annotations
-        sortedAnnotations.sort { (lhs, rhs) -> Bool in
-            guard let lhsCircuit = lhs.circuitColor else { return true }
-            guard let rhsCircuit = rhs.circuitColor else { return false }
-            
-            if lhs.circuitColor == rhs.circuitColor {
-                return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
-            }
-            else {
-                return lhsCircuit < rhsCircuit
-            }
-        }
-        
-        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: OldProblemAnnotation) in
-            problem.circuitColor ?? Circuit.CircuitColor.offCircuit
-        })
-        
-        groupedAnnotationsKeys = groupedAnnotations.keys.sorted()
-    }
+//    private func createGroupedAnnotations() {
+//        var sortedAnnotations = annotations
+//        sortedAnnotations.sort { (lhs, rhs) -> Bool in
+//            guard let lhsCircuit = lhs.circuitColor else { return true }
+//            guard let rhsCircuit = rhs.circuitColor else { return false }
+//            
+//            if lhs.circuitColor == rhs.circuitColor {
+//                return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+//            }
+//            else {
+//                return lhsCircuit < rhsCircuit
+//            }
+//        }
+//        
+//        groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: OldProblemAnnotation) in
+//            problem.circuitColor ?? Circuit.CircuitColor.offCircuit
+//        })
+//        
+//        groupedAnnotationsKeys = groupedAnnotations.keys.sorted()
+//    }
     
     private func setBelongsToCircuit() {
         for problem in problems {

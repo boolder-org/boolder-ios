@@ -16,7 +16,7 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var problem: OldProblemAnnotation
+    @Binding var problem: Problem
     
     var body: some View {
         ScrollView {
@@ -30,7 +30,7 @@ struct ProblemDetailsView: View {
                     
                     GeometryReader { geo in
                         if self.topoFirstPoint(photoSize: geo.size) != nil {
-                            CircuitNumberView(number: self.problem.displayLabel, color: self.problem.displayColor(), showStroke: false)
+                            CircuitNumberView(number: self.problem.circuitNumber, color: self.problem.displayColor(), showStroke: false)
                                 .offset(x: self.topoFirstPoint(photoSize: geo.size)!.x - 14, y: self.topoFirstPoint(photoSize: geo.size)!.y - 14)
                         }
                     }
@@ -285,7 +285,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.annotations.last!))
+        ProblemDetailsView(problem: .constant(dataStore.problems.last!))
             .environment(\.managedObjectContext, self.context)
             .environmentObject(dataStore)
     }

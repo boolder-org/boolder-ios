@@ -13,13 +13,8 @@ class GeoStore {
     var circuits = [Circuit]()
     var boulderOverlays = [BoulderOverlay]()
     var problems = [Problem]()
-    var annotations: [OldProblemAnnotation]
-    var groupedAnnotations: Dictionary<Int, [OldProblemAnnotation]>
 
-    init() {
-        annotations = [OldProblemAnnotation]()
-        groupedAnnotations = Dictionary<Int, [OldProblemAnnotation]>()
-        
+    init() {        
         loadData()
     }
     
