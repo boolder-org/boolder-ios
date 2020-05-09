@@ -71,14 +71,13 @@ class GeoStore {
         for geometry in feature.geometry {
             if let polyline = geometry as? MKPolyline, let properties = feature.properties {
                 
-                let circuitOverlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
-                
                 let decoder = JSONDecoder()
                 if let dictionary = try? decoder.decode([String: String].self, from: properties) {
-                    circuitOverlay.circuitType = Circuit.circuitTypeFromString(dictionary["color"])
+                    let overlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
+                    let circuit = Circuit(type: Circuit.circuitTypeFromString(dictionary["color"]), name: dictionary["name"] ?? "Sans nom", overlay: overlay)
+                    overlay.strokeColor = circuit.color
+                    circuits.append(circuit)
                 }
-                
-                overlays.append(circuitOverlay)
             }
         }
     }

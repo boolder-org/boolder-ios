@@ -131,7 +131,7 @@ struct MapView: UIViewRepresentable {
         }
         
         var parent: MapView
-        var lastCircuit: Circuit.CircuitType? = nil
+        var lastCircuit: Circuit.CircuitColor? = nil
         var didStartZoom = false
         var didStartAnimation = false
         var locationManager = CLLocationManager()
@@ -215,8 +215,9 @@ struct MapView: UIViewRepresentable {
                 return renderer
             }
             else if let circuitOverlay = overlay as? CircuitOverlay {
+                
                 let renderer = MKPolylineRenderer(polyline: circuitOverlay)
-                renderer.strokeColor = Circuit(circuitOverlay.circuitType ?? Circuit.CircuitType.orange).color
+                renderer.strokeColor = circuitOverlay.strokeColor ?? UIColor.black
                 renderer.lineWidth = 2
                 renderer.lineDashPattern = [5,5]
                 renderer.lineJoin = .bevel

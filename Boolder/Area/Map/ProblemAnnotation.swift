@@ -16,7 +16,7 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     // FIXME: re-think the way to handle the defaults (use enums? don't use nil values?)
     var title: String?
     var displayLabel: String = ""
-    var circuitType: Circuit.CircuitType?
+    var circuitType: Circuit.CircuitColor?
     var identifier: String?
     var belongsToCircuit: Bool = false
     var grade: Grade?
@@ -78,7 +78,7 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     func displayColor() -> UIColor {
         guard let circuitType = circuitType else { return UIColor.gray }
         
-        return Circuit(circuitType).color
+        return Circuit(type: circuitType, name: "").color
     }
     
     func isPhotoPresent() -> Bool {

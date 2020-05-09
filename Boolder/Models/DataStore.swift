@@ -16,8 +16,8 @@ class DataStore : ObservableObject {
 
     @Published var overlays = [MKOverlay]()
     @Published var annotations = [ProblemAnnotation]()
-    @Published var groupedAnnotations = Dictionary<Circuit.CircuitType, [ProblemAnnotation]>()
-    @Published var groupedAnnotationsKeys = [Circuit.CircuitType]()
+    @Published var groupedAnnotations = Dictionary<Circuit.CircuitColor, [ProblemAnnotation]>()
+    @Published var groupedAnnotationsKeys = [Circuit.CircuitColor]()
     
     // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
     var filters = Filters() {
@@ -39,7 +39,8 @@ class DataStore : ObservableObject {
     }
     
     func refresh() {
-        filterCircuits()
+        filterBoulders()
+        filterCircuit()
         filterProblems()
         setBelongsToCircuit()
         createGroupedAnnotations()
@@ -88,17 +89,15 @@ class DataStore : ObservableObject {
         }
     }
     
-    private func filterCircuits() {
-        overlays = geoStore.overlays.filter { overlay in
-            if let circuit = overlay as? CircuitOverlay {
-                if circuit.circuitType == Circuit.CircuitType.offCircuit {
-                    return true
-                }
-                
-                return circuit.circuitType == filters.circuit
+    private func filterBoulders() {
+        overlays = geoStore.overlays // FIXME: use boulders instead of overlays
+    }
+    
+    private func filterCircuit() {
+        if let circuitType = filters.circuit {
+            if let circuit = (geoStore.circuits.first { $0.type == circuitType }) {
+                overlays.append(circuit.overlay!)
             }
-            
-            return true
         }
     }
     
@@ -117,7 +116,7 @@ class DataStore : ObservableObject {
         }
         
         groupedAnnotations = Dictionary(grouping: sortedAnnotations, by: { (problem: ProblemAnnotation) in
-            problem.circuitType ?? Circuit.CircuitType.offCircuit
+            problem.circuitType ?? Circuit.CircuitColor.offCircuit
         })
         
         groupedAnnotationsKeys = groupedAnnotations.keys.sorted()

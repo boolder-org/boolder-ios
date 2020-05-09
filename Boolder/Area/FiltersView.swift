@@ -106,7 +106,7 @@ struct FiltersView: View {
     
     private func labelForCircuit() -> String {
         if let circuit = dataStore.filters.circuit {
-            return Circuit(circuit).name
+            return Circuit(type: circuit, name: "").name
         }
         else {
             return "Aucun"

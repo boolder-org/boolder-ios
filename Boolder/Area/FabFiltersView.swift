@@ -84,7 +84,7 @@ struct FabFiltersView: View {
     
     func circuitColor() -> UIColor {
         if let circuit = dataStore.filters.circuit {
-            return Circuit(circuit).color
+            return Circuit(type: circuit, name: "").color
         }
         else {
             return UIColor.white

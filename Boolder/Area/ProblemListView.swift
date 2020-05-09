@@ -19,11 +19,11 @@ struct ProblemListView: View {
     
     var body: some View {
         List {
-            ForEach(dataStore.groupedAnnotationsKeys, id: \.self) { (circuit: Circuit.CircuitType) in
+            ForEach(dataStore.groupedAnnotationsKeys, id: \.self) { (circuit: Circuit.CircuitColor) in
                 // FIXME: simplify the code by using a tableview footer when/if it becomes possible
                 // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
                 Section(
-                    header: Text("Circuit \(Circuit(circuit).name)").font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuit == self.dataStore.groupedAnnotationsKeys.first) ? 32 : 0),
+                    header: Text("Circuit \(Circuit(type: circuit, name: "").name)").font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuit == self.dataStore.groupedAnnotationsKeys.first) ? 32 : 0),
                     footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuit == self.dataStore.groupedAnnotationsKeys.last) ? 120 : 0, alignment: .center)
                     ) {
                     ForEach(self.dataStore.groupedAnnotations[circuit]!, id: \.self) { (problem: ProblemAnnotation) in

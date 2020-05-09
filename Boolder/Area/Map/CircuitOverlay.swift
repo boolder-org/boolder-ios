@@ -10,6 +10,5 @@ import UIKit
 import MapKit
 
 class CircuitOverlay: MKPolyline {
-    var circuitType: Circuit.CircuitType?
-    
+    var strokeColor: UIColor?
 }

@@ -10,12 +10,12 @@ import SwiftUI
 
 struct CircuitFilterView: View {
     let circuits = [
-        Circuit.CircuitType.yellow,
-        Circuit.CircuitType.orange,
-        Circuit.CircuitType.blue,
-        Circuit.CircuitType.skyBlue,
-        Circuit.CircuitType.red,
-        Circuit.CircuitType.white,
+        Circuit.CircuitColor.yellow,
+        Circuit.CircuitColor.orange,
+        Circuit.CircuitColor.blue,
+        Circuit.CircuitColor.skyBlue,
+        Circuit.CircuitColor.red,
+        Circuit.CircuitColor.white,
     ]
     
     @Environment(\.presentationMode) var presentationMode
@@ -33,9 +33,9 @@ struct CircuitFilterView: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack(alignment: .center) {
-                                CircuitNumberView(number: "", color: Circuit(circuitType).color, height: 20)
+                                CircuitNumberView(number: "", color: Circuit(type: circuitType, name: "").color, height: 20)
                                 
-                                Text("\(Circuit(circuitType).name)")
+                                Text("\(Circuit(type: circuitType, name: "").name)")
                                     .foregroundColor(Color(.label))
                                 
                                 Spacer()

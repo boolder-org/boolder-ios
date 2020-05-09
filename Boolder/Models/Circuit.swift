@@ -9,7 +9,7 @@
 import UIKit
 
 class Circuit {
-    enum CircuitType: Int, Comparable {
+    enum CircuitColor: Int, Comparable {
         case whiteForKids
         case yellow
         case orange
@@ -27,57 +27,15 @@ class Circuit {
         }
     }
     
-    let type: CircuitType
-    
-    init(_ type: CircuitType) {
+    init(type: CircuitColor, name: String, overlay: CircuitOverlay? = nil) {
         self.type = type
+        self.name = name
+        self.overlay = overlay
     }
     
-    var name: String {
-        switch type {
-        case .whiteForKids:
-            return "Blanc (enfant)"
-        case .yellow:
-            return "Jaune (débutant)"
-        case .orange:
-            return "Orange"
-        case .blue:
-            return "Bleu"
-        case .skyBlue:
-            return "Bleu ciel"
-        case .red:
-            return "Rouge"
-        case .black:
-            return "Noir"
-        case .white:
-            return "Blanc"
-        case .offCircuit:
-            return "Hors circuit"
-        }
-    }
-    
-    var overallLevelDescription: String {
-        switch type {
-        case .whiteForKids:
-            return "1"
-        case .yellow:
-            return "entre 1b et 3b"
-        case .orange:
-            return "entre 1a et 4c"
-        case .blue:
-            return "entre 3b et 5c"
-        case .skyBlue:
-            return "entre 3b et 6a"
-        case .red:
-            return "entre 4c et 6b"
-        case .black:
-            return "6"
-        case .white:
-            return "entre 6b et 7c"
-        case .offCircuit:
-            return ""
-        }
-    }
+    let type: CircuitColor
+    let name: String
+    let overlay: CircuitOverlay? // FIXME: make non optional
     
     var color: UIColor {
         switch type {
@@ -102,25 +60,25 @@ class Circuit {
         }
     }
     
-    static func circuitTypeFromString(_ string: String?) -> CircuitType {
+    static func circuitTypeFromString(_ string: String?) -> CircuitColor {
         switch string {
         // FIXME Add white for kids
         case "yellow":
-            return CircuitType.yellow
+            return CircuitColor.yellow
         case "orange":
-            return CircuitType.orange
+            return CircuitColor.orange
         case "blue":
-            return CircuitType.blue
+            return CircuitColor.blue
         case "skyblue":
-            return CircuitType.skyBlue
+            return CircuitColor.skyBlue
         case "red":
-            return CircuitType.red
+            return CircuitColor.red
         case "black":
-            return CircuitType.black
+            return CircuitColor.black
         case "white":
-            return CircuitType.white
+            return CircuitColor.white
         default:
-            return CircuitType.offCircuit
+            return CircuitColor.offCircuit
         }
     }
 }
