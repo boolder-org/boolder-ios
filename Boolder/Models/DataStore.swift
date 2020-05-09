@@ -96,7 +96,7 @@ class DataStore : ObservableObject {
     private func filterCircuit() {
         if let circuitColor = filters.circuit {
             if let circuit = circuit(withColor: circuitColor) {
-                overlays.append(circuit.overlay!)
+                overlays.append(circuit.overlay)
             }
         }
     }

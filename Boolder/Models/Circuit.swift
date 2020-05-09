@@ -50,7 +50,7 @@ class Circuit {
         }
     }
     
-    init(color: CircuitColor, name: String, overlay: CircuitOverlay? = nil) {
+    init(color: CircuitColor, name: String, overlay: CircuitOverlay) {
         self.color = color
         self.name = name
         self.overlay = overlay
@@ -58,7 +58,7 @@ class Circuit {
     
     let color: CircuitColor
     let name: String
-    let overlay: CircuitOverlay? // FIXME: make non optional
+    let overlay: CircuitOverlay
     
     static func circuitColorFromString(_ string: String?) -> CircuitColor {
         switch string {

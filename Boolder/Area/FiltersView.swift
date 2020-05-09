@@ -104,15 +104,6 @@ struct FiltersView: View {
         }
     }
     
-    private func labelForCircuit() -> String {
-        if let circuit = dataStore.filters.circuit {
-            return Circuit(color: circuit, name: "").name
-        }
-        else {
-            return "Aucun"
-        }
-    }
-    
     private func labelForSteepness() -> String {
         if dataStore.filters.steepness == Set(Steepness.SteepnessType.allCases) {
             return "Tous"
