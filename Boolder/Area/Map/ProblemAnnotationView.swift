@@ -135,7 +135,7 @@ class ProblemAnnotationView: MKAnnotationView {
         circleView.backgroundColor = annotation.displayColor()
         
         label.text = annotation.displayLabel
-        label.textColor = (annotation.displayColor() == Circuit(type: .white, name: "").uicolor) ? .black : .systemBackground
+        label.textColor = (annotation.displayColor() == Circuit.CircuitColor.white.uicolor) ? .black : .systemBackground
     }
     
     func refreshSize() {

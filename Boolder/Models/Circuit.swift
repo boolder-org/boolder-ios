@@ -25,6 +25,29 @@ class Circuit {
         {
             return lhs.rawValue < rhs.rawValue
         }
+        
+        var uicolor: UIColor {
+            switch self {
+            case .whiteForKids:
+                return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            case .yellow:
+                return #colorLiteral(red: 1, green: 0.8, blue: 0.007843137255, alpha: 1)
+            case .orange:
+                return #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
+            case .blue:
+                return #colorLiteral(red: 0.003921568627, green: 0.4784313725, blue: 1, alpha: 1)
+            case .skyBlue:
+                return #colorLiteral(red: 0.3529411765, green: 0.7803921569, blue: 0.9803921569, alpha: 1)
+            case .red:
+                return #colorLiteral(red: 1, green: 0.231372549, blue: 0.1843137255, alpha: 1)
+            case .black:
+                return #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
+            case .white:
+                return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            case .offCircuit:
+                return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            }
+        }
     }
     
     init(type: CircuitColor, name: String, overlay: CircuitOverlay? = nil) {
@@ -36,29 +59,6 @@ class Circuit {
     let type: CircuitColor
     let name: String
     let overlay: CircuitOverlay? // FIXME: make non optional
-    
-    var uicolor: UIColor {
-        switch type {
-        case .whiteForKids:
-            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        case .yellow:
-            return #colorLiteral(red: 1, green: 0.8, blue: 0.007843137255, alpha: 1)
-        case .orange:
-            return #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
-        case .blue:
-            return #colorLiteral(red: 0.003921568627, green: 0.4784313725, blue: 1, alpha: 1)
-        case .skyBlue:
-            return #colorLiteral(red: 0.3529411765, green: 0.7803921569, blue: 0.9803921569, alpha: 1)
-        case .red:
-            return #colorLiteral(red: 1, green: 0.231372549, blue: 0.1843137255, alpha: 1)
-        case .black:
-            return #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
-        case .white:
-            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        case .offCircuit:
-            return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        }
-    }
     
     static func circuitTypeFromString(_ string: String?) -> CircuitColor {
         switch string {

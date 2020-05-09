@@ -78,7 +78,7 @@ class ProblemAnnotation: NSObject, MKAnnotation, Identifiable {
     func displayColor() -> UIColor {
         guard let circuitType = circuitType else { return UIColor.gray }
         
-        return Circuit(type: circuitType, name: "").uicolor
+        return circuitType.uicolor
     }
     
     func isPhotoPresent() -> Bool {

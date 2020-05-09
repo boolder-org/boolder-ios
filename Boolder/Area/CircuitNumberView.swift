@@ -15,7 +15,7 @@ struct CircuitNumberView: View {
     var height: CGFloat = 28
     
     func readableColor() -> UIColor {
-        if color == Circuit(type: .white, name: "").uicolor {
+        if color == Circuit.CircuitColor.white.uicolor {
             return .black
         }
         else {
@@ -36,7 +36,7 @@ struct CircuitNumberView: View {
                     Circle()
                         .stroke(Color(UIColor.systemGray3), lineWidth: 1)
                         .frame(width: height, height: height)
-                        .opacity(color == Circuit(type: .white, name: "").uicolor && showStroke ? 1.0 : 0.0)
+                        .opacity(color == Circuit.CircuitColor.white.uicolor && showStroke ? 1.0 : 0.0)
                 )
                 .frame(width: height-2, height: height-2)
         }
