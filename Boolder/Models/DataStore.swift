@@ -32,9 +32,12 @@ class DataStore : ObservableObject {
     
     func refresh() {
         overlays = geoStore.boulderOverlays
+        
         if let circuitOverlay = circuitOverlay() {
             overlays.append(circuitOverlay)
         }
+        
+        overlays.append(contentsOf: geoStore.poiRouteOverlays)
         
         problems = filteredProblems()
         setBelongsToCircuit()

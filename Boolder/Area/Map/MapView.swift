@@ -224,6 +224,15 @@ struct MapView: UIViewRepresentable {
                 renderer.lineJoin = .bevel
                 return renderer
             }
+            else if let poiRouteOverlay = overlay as? PoiRouteOverlay {
+                
+                let renderer = MKPolylineRenderer(polyline: poiRouteOverlay)
+                renderer.strokeColor = .gray
+                renderer.lineWidth = 2
+                renderer.lineDashPattern = [5,5]
+                renderer.lineJoin = .bevel
+                return renderer
+            }
             else {
                 return MKOverlayRenderer()
             }

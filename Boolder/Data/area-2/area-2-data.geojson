@@ -6372,6 +6372,22 @@
         "name": "Bleu"
       },
       "id": "circuit_12"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5092921,
+          48.3725942
+        ]
+      },
+      "properties": {
+        "title": "Parking",
+        "subtitle": "15 min de marche",
+        "description": "Parking Roche aux Sabots"
+      },
+      "id": "poi_2"
     }
   ]
 }
