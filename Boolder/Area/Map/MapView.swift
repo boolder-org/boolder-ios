@@ -76,13 +76,13 @@ struct MapView: UIViewRepresentable {
         let previousHash = previousAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         
-        if true { //previousHash != newHash && context.coordinator.didStartAnimation {
+        if previousHash != newHash && context.coordinator.didStartAnimation {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
             mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
             mapView.addOverlays(dataStore.overlays)
 //            mapView.addAnnotation(self.dataStore.parkingAnnotation())
-        }        
+        }
         
         // refresh all annotation views
         // FIXME: doesn't seem to work syncronously

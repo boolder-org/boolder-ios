@@ -18,49 +18,48 @@ struct ProblemListView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     var body: some View {
-        Text("coucou")
-//        List {
-//            ForEach(dataStore.groupedAnnotationsKeys, id: \.self) { circuitColor in
-//                // FIXME: simplify the code by using a tableview footer when/if it becomes possible
-//                // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
-//                Section(
-//                    header: Text("Circuit \(self.dataStore.circuit(withColor: circuitColor)?.name ?? "")").font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == self.dataStore.groupedAnnotationsKeys.first) ? 32 : 0),
-//                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == self.dataStore.groupedAnnotationsKeys.last) ? 120 : 0, alignment: .center)
-//                    ) {
-//                    ForEach(self.dataStore.groupedAnnotations[circuitColor]!, id: \.self) { (problem: ProblemAnnotation) in
-//
-//                        Button(action: {
-//                            self.selectedProblem = problem
-//                            self.presentProblemDetails = true
-//                        }) {
-//                            HStack {
-//                                CircuitNumberView(number: problem.displayLabel, color: problem.displayColor())
-//
-//                                Text(problem.name ?? "Sans nom")
-//                                    .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
-//
-//                                Spacer()
-//
-//                                if self.isFavorite(problem: problem) {
-//                                    Image(systemName: "star.fill")
-//                                        .foregroundColor(Color.yellow)
-//                                }
-//
-//                                if self.isTicked(problem: problem) {
-//                                    Image(systemName: "checkmark.circle.fill")
-//                                        .foregroundColor(Color.green)
-//                                }
-//
-//                                Text(problem.grade?.string ?? "")
-//                            }
-//                        }
-//                        .foregroundColor(Color(.label))
-//                    }
-//                }
-//            }
-//        }
-//        .listStyle(GroupedListStyle())
-//        .animation(.easeInOut(duration: 0))
+        List {
+            ForEach(dataStore.groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
+                // FIXME: simplify the code by using a tableview footer when/if it becomes possible
+                // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
+                Section(
+                    header: Text("Circuit \(self.dataStore.circuit(withColor: circuitColor)?.name ?? "")").font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == self.dataStore.groupedProblemsKeys.first) ? 32 : 0),
+                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == self.dataStore.groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
+                    ) {
+                    ForEach(self.dataStore.groupedProblems[circuitColor]!) { (problem: Problem) in
+
+                        Button(action: {
+                            self.selectedProblem = problem
+                            self.presentProblemDetails = true
+                        }) {
+                            HStack {
+                                CircuitNumberView(number: problem.circuitNumber, color: problem.displayColor())
+
+                                Text(problem.name ?? "Sans nom")
+                                    .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
+
+                                Spacer()
+
+                                if self.isFavorite(problem: problem) {
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(Color.yellow)
+                                }
+
+                                if self.isTicked(problem: problem) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color.green)
+                                }
+
+                                Text(problem.grade?.string ?? "")
+                            }
+                        }
+                        .foregroundColor(Color(.label))
+                    }
+                }
+            }
+        }
+        .listStyle(GroupedListStyle())
+        .animation(.easeInOut(duration: 0))
     }
     
     func isFavorite(problem: Problem) -> Bool {

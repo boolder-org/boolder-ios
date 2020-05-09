@@ -264,7 +264,6 @@
 		37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
 		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
-		37BCA9882467168E00D56252 /* OlddProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA9872467168E00D56252 /* OlddProblemAnnotation.swift */; };
 		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircuitNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */; };
 		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
@@ -531,7 +530,6 @@
 		37BCA981246704EB00D56252 /* BoulderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderOverlay.swift; sourceTree = "<group>"; };
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
-		37BCA9872467168E00D56252 /* OlddProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OlddProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitNumberView.swift; sourceTree = "<group>"; };
 		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
@@ -875,7 +873,6 @@
 				3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */,
 				37A8C8152453272900DC161F /* CircuitOverlay.swift */,
 				37BCA981246704EB00D56252 /* BoulderOverlay.swift */,
-				37BCA9872467168E00D56252 /* OlddProblemAnnotation.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1213,7 +1210,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37BCA9882467168E00D56252 /* OlddProblemAnnotation.swift in Sources */,
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
