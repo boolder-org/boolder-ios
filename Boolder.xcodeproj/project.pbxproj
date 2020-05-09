@@ -263,8 +263,10 @@
 		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
 		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
-		37E260C02467251E003BC672 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37E260BF2467251E003BC672 /* area-1-data.geojson */; };
 		37E260C224672529003BC672 /* area-2-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37E260C124672529003BC672 /* area-2-data.geojson */; };
+		37E260C424674356003BC672 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37E260C324674356003BC672 /* area-1-data.geojson */; };
+		37E260C624674466003BC672 /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
+		37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircuitNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */; };
 		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
 		37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
@@ -529,8 +531,10 @@
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
 		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
-		37E260BF2467251E003BC672 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37E260C124672529003BC672 /* area-2-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-2-data.geojson"; sourceTree = "<group>"; };
+		37E260C324674356003BC672 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
+		37E260C524674466003BC672 /* Poi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poi.swift; sourceTree = "<group>"; };
+		37E260C724674612003BC672 /* PoiRouteOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRouteOverlay.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircuitNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitNumberView.swift; sourceTree = "<group>"; };
 		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
 		37FD85A22460A4F90054982F /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
@@ -607,7 +611,7 @@
 		37A8C63E245326B300DC161F /* area-1 */ = {
 			isa = PBXGroup;
 			children = (
-				37E260BF2467251E003BC672 /* area-1-data.geojson */,
+				37E260C324674356003BC672 /* area-1-data.geojson */,
 				37A8C722245326B400DC161F /* area-1-topos.json */,
 				37A8C640245326B300DC161F /* topos */,
 			);
@@ -858,6 +862,7 @@
 				37A8C80A245326F200DC161F /* Grade.swift */,
 				37A8C80B245326F200DC161F /* Circuit.swift */,
 				37BCA98524670DC000D56252 /* Problem.swift */,
+				37E260C524674466003BC672 /* Poi.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -869,10 +874,11 @@
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */,
 				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,
-				375666DA245F3CDF007170C7 /* PoiAnnotation.swift */,
-				3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */,
 				37A8C8152453272900DC161F /* CircuitOverlay.swift */,
 				37BCA981246704EB00D56252 /* BoulderOverlay.swift */,
+				375666DA245F3CDF007170C7 /* PoiAnnotation.swift */,
+				3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */,
+				37E260C724674612003BC672 /* PoiRouteOverlay.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -972,6 +978,7 @@
 			files = (
 				37A8C774245326B400DC161F /* topo-29.jpg in Resources */,
 				37A8C745245326B400DC161F /* topo-167.jpg in Resources */,
+				37E260C424674356003BC672 /* area-1-data.geojson in Resources */,
 				37A8C7E6245326B400DC161F /* topo-53.jpg in Resources */,
 				37A8C79F245326B400DC161F /* topo-125.jpg in Resources */,
 				37A8C787245326B400DC161F /* topo-2.jpg in Resources */,
@@ -1028,7 +1035,6 @@
 				37A8C6302453263400DC161F /* Assets.xcassets in Resources */,
 				37A8C747245326B400DC161F /* topo-205.jpg in Resources */,
 				37A8C786245326B400DC161F /* topo-3.jpg in Resources */,
-				37E260C02467251E003BC672 /* area-1-data.geojson in Resources */,
 				37A8C7F3245326B400DC161F /* topo-186.jpg in Resources */,
 				37A8C74C245326B400DC161F /* topo-73.jpg in Resources */,
 				37A8C7EC245326B400DC161F /* topo-184.jpg in Resources */,
@@ -1211,6 +1217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
+				37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
@@ -1222,6 +1229,7 @@
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */,
 				3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */,
+				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircuitNumberView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,

@@ -13,6 +13,7 @@ class GeoStore {
     var circuits = [Circuit]()
     var boulderOverlays = [BoulderOverlay]()
     var problems = [Problem]()
+    var pois = [Poi]()
 
     init() {        
         loadData()
@@ -55,6 +56,9 @@ class GeoStore {
                 else if type == "problem", let id = id {
                     parseProblem(feature: feature, id: id)
                 }
+                else if type == "poi", let id = id {
+                    parsePoi(feature: feature, id: id)
+                }
                 else {
                     print("Could not parse feature with identifier: \(feature.identifier ?? "")")
                 }
@@ -72,6 +76,24 @@ class GeoStore {
                     let circuit = Circuit(color: Circuit.circuitColorFromString(dictionary["color"]), name: dictionary["name"] ?? "Sans nom", overlay: overlay)
                     overlay.strokeColor = circuit.color.uicolor
                     circuits.append(circuit)
+                }
+            }
+        }
+    }
+    
+    private func parsePoi(feature: MKGeoJSONFeature, id: Int) {
+        for geometry in feature.geometry {
+            if let point = geometry as? MKPointAnnotation, let properties = feature.properties {
+                
+                let decoder = JSONDecoder()
+                if let dictionary = try? decoder.decode([String: String].self, from: properties) {
+                    let annotation = PoiAnnotation()
+                    annotation.coordinate = point.coordinate
+                    annotation.title = dictionary["title"]
+                    annotation.subtitle = dictionary["subtitle"]
+                    
+                    let poi = Poi(title: dictionary["title"], subtitle: dictionary["subtitle"], description: dictionary["description"], coordinate: point.coordinate, annotation: annotation)
+                    pois.append(poi)
                 }
             }
         }

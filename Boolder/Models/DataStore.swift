@@ -16,6 +16,7 @@ class DataStore : ObservableObject {
 
     @Published var overlays = [MKOverlay]()
     @Published var problems = [Problem]()
+    @Published var pois = [Poi]()
     @Published var groupedProblems = Dictionary<Circuit.CircuitColor, [Problem]>()
     @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
@@ -29,15 +30,6 @@ class DataStore : ObservableObject {
         refresh()
     }
     
-    func parkingAnnotation() -> PoiAnnotation {
-        let parkingAnnotation = PoiAnnotation()
-        parkingAnnotation.coordinate = CLLocationCoordinate2D(latitude: 48.462965, longitude: 2.665628)
-        parkingAnnotation.title = "Parking"
-        parkingAnnotation.subtitle = "2 min de marche"
-        
-        return parkingAnnotation
-    }
-    
     func refresh() {
         overlays = geoStore.boulderOverlays
         if let circuitOverlay = circuitOverlay() {
@@ -47,6 +39,8 @@ class DataStore : ObservableObject {
         problems = filteredProblems()
         setBelongsToCircuit()
         createGroupedAnnotations()
+        
+        pois = geoStore.pois
     }
     
     private func filteredProblems() -> [Problem] {

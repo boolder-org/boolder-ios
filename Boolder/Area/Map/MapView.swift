@@ -49,7 +49,7 @@ struct MapView: UIViewRepresentable {
         
         mapView.addOverlays(dataStore.overlays)
         self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-//        self.mapView.addAnnotation(self.dataStore.parkingAnnotation())
+        self.mapView.addAnnotations(self.dataStore.pois.map{$0.annotation})
         self.zoomToRegion(mapView: self.mapView)
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -80,8 +80,8 @@ struct MapView: UIViewRepresentable {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
             mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
+            mapView.addAnnotations(self.dataStore.pois.map{$0.annotation})
             mapView.addOverlays(dataStore.overlays)
-//            mapView.addAnnotation(self.dataStore.parkingAnnotation())
         }
         
         // refresh all annotation views
