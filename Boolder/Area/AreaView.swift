@@ -18,6 +18,7 @@ struct AreaView: View {
     @State private var showList = false
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
+    @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
     
     var body: some View {
@@ -26,7 +27,7 @@ struct AreaView: View {
                 ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                     .zIndex(showList ? 1 : 0)
                 
-                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, presentPoiActionSheet: $presentPoiActionSheet)
+                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, selectedPoi: $selectedPoi, presentPoiActionSheet: $presentPoiActionSheet)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
                     .sheet(isPresented: $presentProblemDetails) {
@@ -37,7 +38,7 @@ struct AreaView: View {
                             .environment(\.managedObjectContext, self.managedObjectContext)
                             .accentColor(Color.green)
                     }
-                .background(PoiActionSheet(presentParkingActionSheet: $presentPoiActionSheet))
+                .background(PoiActionSheet(presentParkingActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
                 
                 VStack {
                     Spacer()

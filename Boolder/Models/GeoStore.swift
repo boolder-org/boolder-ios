@@ -95,6 +95,8 @@ class GeoStore {
                     
                     let poi = Poi(title: dictionary["title"], subtitle: dictionary["subtitle"], description: dictionary["description"], coordinate: point.coordinate, annotation: annotation)
                     
+                    annotation.poi = poi
+                    
                     pois.append(poi)
                 }
             }

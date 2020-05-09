@@ -11,8 +11,12 @@ import SwiftUI
 
 struct PoiActionSheet: View {
     @Binding var presentParkingActionSheet: Bool
+    @Binding var selectedPoi: Poi?
     @State private var showShareSheet = false
-    let location = CLLocationCoordinate2D(latitude: 48.462965, longitude: 2.665628)
+    
+    var location: CLLocationCoordinate2D {
+        selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    }
     
     func buttons() -> [Alert.Button] {
         var buttons = [Alert.Button]()
@@ -37,7 +41,7 @@ struct PoiActionSheet: View {
         buttons.append(
             .default(Text("Apple Maps")) {
                 let destination = MKMapItem(placemark: MKPlacemark(coordinate: self.location))
-                destination.name = "Parking Rocher Canon"
+                destination.name = self.selectedPoi?.description ?? ""
 
                 MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
             }
@@ -67,7 +71,7 @@ struct PoiActionSheet: View {
         .background(
             EmptyView()
                 .sheet(isPresented: $showShareSheet) {
-                    ShareSheet(activityItems: ["Coordonnées GPS du parking Rocher Canon : \(self.location.latitude),\(self.location.longitude)"])
+                    ShareSheet(activityItems: ["Coordonnées GPS \(self.selectedPoi?.description ?? "") : \(self.location.latitude),\(self.location.longitude)"])
                 }
         )
     }
