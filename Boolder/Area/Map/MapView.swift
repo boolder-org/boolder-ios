@@ -12,14 +12,6 @@ import CoreLocation
 
 // heavily inspired from https://www.hackingwithswift.com/books/ios-swiftui/advanced-mkmapview-with-swiftui
 
-extension MKMapView {
-    func animatedZoom(zoomRegion:MKCoordinateRegion, duration:TimeInterval) {
-        MKMapView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.setRegion(zoomRegion, animated: true)
-            }, completion: nil)
-    }
-}
-
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     @Binding var selectedProblem: Problem
@@ -110,12 +102,9 @@ struct MapView: UIViewRepresentable {
     }
     
     func zoomToRegion(mapView: MKMapView) {
-//        let initialLocation = CLLocation(latitude: 48.461788 + Double.random(in: 0..<0.00001), longitude: 2.663394) // randomize to trigger map annotations collisions
-//        let regionRadius: CLLocationDistance = 250
-//        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-//
-//        mapView.animatedZoom(zoomRegion: coordinateRegion, duration: 1)
-        mapView.showAnnotations(mapView.annotations, animated: true)
+        MKMapView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            mapView.showAnnotations(self.dataStore.problems.map{$0.annotation}, animated: true)
+        }, completion: nil)
     }
     
     func makeCoordinator() -> Coordinator {
