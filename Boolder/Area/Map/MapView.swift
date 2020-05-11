@@ -91,12 +91,15 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        // zoom to new region
+        // zoom to new region if needed
         
         let changedCircuit = context.coordinator.lastCircuit != dataStore.filters.circuit && dataStore.filters.circuit != nil
         context.coordinator.lastCircuit = dataStore.filters.circuit
         
-        if changedCircuit {
+        let changedArea = context.coordinator.lastArea != dataStore.areaId
+        context.coordinator.lastArea = dataStore.areaId
+        
+        if changedCircuit || changedArea {
             zoomToRegion(mapView: mapView)
         }
     }
@@ -122,6 +125,7 @@ struct MapView: UIViewRepresentable {
         
         var parent: MapView
         var lastCircuit: Circuit.CircuitColor? = nil
+        var lastArea: Int? = nil
         var didStartZoom = false
         var didStartAnimation = false
         var locationManager = CLLocationManager()

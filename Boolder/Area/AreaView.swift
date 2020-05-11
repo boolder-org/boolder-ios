@@ -20,6 +20,7 @@ struct AreaView: View {
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
+    @State private var presentAreaPicker = false
     
     var body: some View {
         NavigationView {
@@ -38,7 +39,18 @@ struct AreaView: View {
                             .environment(\.managedObjectContext, self.managedObjectContext)
                             .accentColor(Color.green)
                     }
-                .background(PoiActionSheet(presentParkingActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
+                .background(PoiActionSheet(presentPoiActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
+                .background(
+                    EmptyView()
+                        .sheet(isPresented: $presentAreaPicker) {
+                            AreaPickerView()
+                                // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
+                                // remove these lines as soon as it's fixed
+                                .environmentObject(self.dataStore)
+                                .environment(\.managedObjectContext, self.managedObjectContext)
+                                .accentColor(Color.green)
+                        }
+                )
                 
                 VStack {
                     Spacer()
@@ -47,8 +59,13 @@ struct AreaView: View {
                 }
                 .zIndex(10)
             }
-            .navigationBarTitle("Rocher Canon", displayMode: .inline)
+            .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
             .navigationBarItems(
+                leading: Button(action: {
+                    self.presentAreaPicker = true
+                }) {
+                    Text("Secteur")
+                },
                 trailing: Button(action: {
                     self.showList.toggle()
                 }) {

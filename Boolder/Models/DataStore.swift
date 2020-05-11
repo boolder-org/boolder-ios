@@ -11,8 +11,24 @@ import MapKit
 import CoreData
 
 class DataStore : ObservableObject {
-    var geoStore = GeoStore()
-    var topoStore = TopoStore()
+    var geoStore = GeoStore(areaId: 1)
+    var topoStore = TopoStore(areaId: 1)
+    
+    var areaId: Int = 1 {
+        didSet {
+            if oldValue != areaId {
+                self.geoStore = GeoStore(areaId: areaId)
+                self.topoStore = TopoStore(areaId: areaId)
+                self.refresh()
+            }
+        }
+    }
+    
+    // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
+    var filters = Filters() {
+        willSet { objectWillChange.send() }
+        didSet { self.refresh() }
+    }
 
     @Published var overlays = [MKOverlay]()
     @Published var problems = [Problem]()
@@ -20,11 +36,7 @@ class DataStore : ObservableObject {
     @Published var groupedProblems = Dictionary<Circuit.CircuitColor, [Problem]>()
     @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
-    // custom wrapper instead of @Published, to be able to refresh data store everytime filters change
-    var filters = Filters() {
-        willSet { objectWillChange.send() }
-        didSet { self.refresh() }
-    }
+    let areas = [1: "Rocher Canon", 2: "Cul de Chien"]
 
     init() {
         refresh()

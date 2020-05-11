@@ -10,7 +10,7 @@ import MapKit
 import SwiftUI
 
 struct PoiActionSheet: View {
-    @Binding var presentParkingActionSheet: Bool
+    @Binding var presentPoiActionSheet: Bool
     @Binding var selectedPoi: Poi?
     @State private var showShareSheet = false
     
@@ -62,7 +62,7 @@ struct PoiActionSheet: View {
     
     var body: some View {
         EmptyView()
-            .actionSheet(isPresented: $presentParkingActionSheet) {
+            .actionSheet(isPresented: $presentPoiActionSheet) {
                 ActionSheet(
                     title: Text("Ouvrir dans :"),
                     buttons: buttons()

@@ -15,8 +15,11 @@ class GeoStore {
     var problems = [Problem]()
     var pois = [Poi]()
     var poiRouteOverlays = [PoiRouteOverlay]()
+    
+    private var areaId: Int
 
-    init() {        
+    init(areaId: Int) {
+        self.areaId = areaId
         loadData()
     }
     

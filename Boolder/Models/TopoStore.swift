@@ -11,7 +11,10 @@ import Foundation
 class TopoStore {
     var topoCollection = TopoCollection(topos: nil)
     
-    init() {
+    private var areaId: Int
+    
+    init(areaId: Int) {
+        self.areaId = areaId
         loadData()
     }
     

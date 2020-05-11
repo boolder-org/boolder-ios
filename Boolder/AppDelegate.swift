@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-let areaId = "2"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
