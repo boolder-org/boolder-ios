@@ -32,9 +32,9 @@ struct MapView: UIViewRepresentable {
         mapView.setRegion(coordinateRegion, animated: false)
         
         mapView.showsUserLocation = true
-        mapView.showsCompass = false
+        mapView.showsCompass = true
         mapView.showsScale = true
-        mapView.isRotateEnabled = false
+        mapView.isRotateEnabled = true
         mapView.isPitchEnabled = false
         
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: ProblemAnnotationView.ReuseID)

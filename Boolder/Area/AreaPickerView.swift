@@ -17,6 +17,7 @@ struct AreaPickerView: View {
             List {
                 ForEach(self.dataStore.areas.keys.sorted(), id: \.self) { areaId in
                     Button(action: {
+                        self.dataStore.filters = Filters()
                         self.dataStore.areaId = areaId
                         self.presentationMode.wrappedValue.dismiss()
                     }) {

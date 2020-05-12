@@ -285,7 +285,7 @@
 		3790C361245600FD005E786E /* BezierViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewRepresentable.swift; sourceTree = "<group>"; };
 		37A276282457424500F53D80 /* GeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoStore.swift; sourceTree = "<group>"; };
 		37A2762A2457633E00F53D80 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
-		37A8C6262453263300DC161F /* Boolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A8C6262453263300DC161F /* Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A8C6292453263300DC161F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A8C62B2453263300DC161F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		37A8C62D2453263300DC161F /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
@@ -572,7 +572,7 @@
 		37A8C6272453263300DC161F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37A8C6262453263300DC161F /* Boolder.app */,
+				37A8C6262453263300DC161F /* Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -938,7 +938,7 @@
 			);
 			name = Boolder;
 			productName = Boolder;
-			productReference = 37A8C6262453263300DC161F /* Boolder.app */;
+			productReference = 37A8C6262453263300DC161F /* Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1399,8 +1399,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder.dev;
+				PRODUCT_NAME = Dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1421,8 +1421,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder.dev;
+				PRODUCT_NAME = Dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
