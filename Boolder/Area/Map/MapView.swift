@@ -45,9 +45,9 @@ struct MapView: UIViewRepresentable {
         self.mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
         self.zoomToRegion(mapView: self.mapView)
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            context.coordinator.showUserLocation()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            context.coordinator.showUserLocation()
+        }
         
         return mapView
     }
@@ -299,6 +299,8 @@ struct MapView: UIViewRepresentable {
             else {
                 zoomLevel = .zoomedOut
             }
+            
+            refreshAnnotationViewSize()
         }
     }
 }
