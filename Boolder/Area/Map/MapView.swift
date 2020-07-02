@@ -49,6 +49,8 @@ struct MapView: UIViewRepresentable {
             context.coordinator.showUserLocation()
         }
         
+        context.coordinator.locationManager.startUpdatingHeading()
+        
         return mapView
     }
     
@@ -263,21 +265,58 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-            guard !didStartAnimation else { return }
-
-            for view in views {
-                if view.annotation is MKUserLocation {
-                    continue;
-                }
-
-                view.alpha = 0.0
-
-                UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations:{() in
-                    view.alpha = 1.0
-                })
-            }
+//            guard !didStartAnimation else { return }
+//
+//            for view in views {
+//                if view.annotation is MKUserLocation {
+//                    continue;
+//                }
+//
+//                view.alpha = 0.0
+//
+//                UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations:{() in
+//                    view.alpha = 1.0
+//                })
+//            }
+//
+//            didStartAnimation = true
             
-            didStartAnimation = true
+            if views.last?.annotation is MKUserLocation {
+                addHeadingView(toAnnotationView: views.last!)
+            }
+        }
+        
+        var headingImageView: UIImageView?
+        var userHeading: CLLocationDirection?
+        
+        func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
+            if headingImageView == nil {
+                let image = UIImage(named: "heading")
+                headingImageView = UIImageView(image: image)
+                headingImageView!.frame = CGRect(x: (annotationView.frame.size.width - image!.size.width)/2+20, y: (annotationView.frame.size.height - image!.size.height)/2+20, width: image!.size.width, height: image!.size.height)
+                annotationView.insertSubview(headingImageView!, at: 0)
+                headingImageView!.isHidden = true
+             }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+            if newHeading.headingAccuracy < 0 { return }
+            
+            print(newHeading)
+
+            let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
+            userHeading = heading
+            updateHeadingRotation()
+        }
+        
+        func updateHeadingRotation() {
+            if let heading = userHeading,
+                let headingImageView = headingImageView {
+
+                headingImageView.isHidden = false
+                let rotation = CGFloat(heading/180 * Double.pi)
+                headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
+            }
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
