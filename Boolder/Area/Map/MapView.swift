@@ -313,6 +313,7 @@ struct MapView: UIViewRepresentable {
         
         // MARK: CLLocationManagerDelegate methods
         
+        // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
         func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
             if newHeading.headingAccuracy < 0 { return }
             
