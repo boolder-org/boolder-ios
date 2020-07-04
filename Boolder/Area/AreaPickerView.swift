@@ -34,7 +34,7 @@ struct AreaPickerView: View {
                     }
                 }
             }
-            .navigationBarTitle("Secteur", displayMode: .inline)
+            .navigationBarTitle("Secteurs", displayMode: .inline)
         }
     }
 }

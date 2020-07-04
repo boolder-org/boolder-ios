@@ -64,7 +64,7 @@ struct AreaView: View {
                 leading: Button(action: {
                     self.presentAreaPicker = true
                 }) {
-                    Text("Secteur")
+                    Text("Secteurs")
                 },
                 trailing: Button(action: {
                     self.showList.toggle()
