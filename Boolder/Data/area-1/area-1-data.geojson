@@ -2794,33 +2794,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.664508,
-          48.462601
-        ]
-      },
-      "properties": {
-        "grade": "4a+",
-        "circuitNumber": "1",
-        "steepness": "wall",
-        "height": 5,
-        "name": "L'Abîme",
-        "circuitColor": "blue",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 47
-          }
-        ]
-      },
-      "id": "problem_171"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.664495,
           48.4626
         ]
@@ -2861,7 +2834,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 129
+            "id": 252
           }
         ]
       },
@@ -3029,7 +3002,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 75
+            "id": 234
           }
         ]
       },
@@ -3101,7 +3074,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 91
+            "id": 235
           }
         ]
       },
@@ -3149,7 +3122,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 99
+            "id": 249
           }
         ]
       },
@@ -3173,7 +3146,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 113
+            "id": 248
           }
         ]
       },
@@ -3221,7 +3194,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 71
+            "id": 243
           }
         ]
       },
@@ -3422,7 +3395,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 172
+            "id": 261
           }
         ]
       },
@@ -3446,7 +3419,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 149
+            "id": 256
           }
         ]
       },
@@ -3518,7 +3491,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 198
+            "id": 260
           }
         ]
       },
@@ -3566,7 +3539,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 45
+            "id": 240
           }
         ]
       },
@@ -3590,7 +3563,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 29
+            "id": 237
           }
         ]
       },
@@ -3644,7 +3617,7 @@
         ],
         "topos": [
           {
-            "id": 166
+            "id": 257
           }
         ]
       },
@@ -3671,7 +3644,7 @@
         ],
         "topos": [
           {
-            "id": 171
+            "id": 253
           }
         ]
       },
@@ -3695,7 +3668,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 142
+            "id": 250
           }
         ]
       },
@@ -3743,7 +3716,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 40
+            "id": 247
           }
         ]
       },
@@ -3767,7 +3740,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 185
+            "id": 230
           }
         ]
       },
@@ -3791,7 +3764,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 219
+            "id": 229
           }
         ]
       },
@@ -3887,7 +3860,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 92
+            "id": 242
           }
         ]
       },
@@ -3935,7 +3908,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 150
+            "id": 244
           }
         ]
       },
@@ -3964,30 +3937,6 @@
         ]
       },
       "id": "problem_146"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.664453,
-          48.46265
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "D",
-        "steepness": "wall",
-        "height": 4,
-        "name": "Fantaisie",
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 23
-          }
-        ]
-      },
-      "id": "problem_175"
     },
     {
       "type": "Feature",
@@ -4172,7 +4121,7 @@
         ],
         "topos": [
           {
-            "id": 55
+            "id": 233
           }
         ]
       },
@@ -4199,7 +4148,7 @@
         ],
         "topos": [
           {
-            "id": 30
+            "id": 225
           }
         ]
       },
@@ -4301,7 +4250,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 14
+            "id": 236
           }
         ]
       },
@@ -4325,7 +4274,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 39
+            "id": 239
           }
         ]
       },
@@ -4397,7 +4346,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 46
+            "id": 238
           }
         ]
       },
@@ -4440,7 +4389,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 163
+            "id": 251
           }
         ]
       },
@@ -4461,7 +4410,12 @@
         "steepness": "overhang",
         "height": null,
         "name": "Stances",
-        "circuitColor": "blue"
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 246
+          }
+        ]
       },
       "id": "problem_169"
     },
@@ -4483,7 +4437,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 38
+            "id": 241
           }
         ]
       },
@@ -4952,7 +4906,7 @@
         ],
         "topos": [
           {
-            "id": 42
+            "id": 226
           }
         ]
       },
@@ -5024,7 +4978,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 143
+            "id": 228
           }
         ]
       },
@@ -5048,7 +5002,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 56
+            "id": 255
           }
         ]
       },
@@ -5120,7 +5074,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 25
+            "id": 245
           }
         ]
       },
@@ -5144,7 +5098,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 60
+            "id": 259
           }
         ]
       },
@@ -5192,7 +5146,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 44
+            "id": 258
           }
         ]
       },
@@ -5216,7 +5170,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 148
+            "id": 231
           }
         ]
       },
@@ -5240,7 +5194,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 61
+            "id": 262
           }
         ]
       },
@@ -5432,7 +5386,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 26
+            "id": 264
           }
         ]
       },
@@ -5456,7 +5410,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 27
+            "id": 254
           }
         ]
       },
@@ -5480,7 +5434,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 12
+            "id": 232
           }
         ]
       },
@@ -5504,7 +5458,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 9
+            "id": 227
           }
         ]
       },
@@ -5932,6 +5886,30 @@
         ]
       },
       "id": "problem_245"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.664453,
+          48.46265
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "1",
+        "steepness": "wall",
+        "height": 4,
+        "name": "l'Abîme",
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 263
+          }
+        ]
+      },
+      "id": "problem_175"
     },
     {
       "type": "Feature",
@@ -10025,10 +10003,6 @@
           [
             2.664453,
             48.46265
-          ],
-          [
-            2.664508,
-            48.462601
           ],
           [
             2.664437,
