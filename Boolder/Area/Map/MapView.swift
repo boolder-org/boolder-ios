@@ -47,9 +47,8 @@ struct MapView: UIViewRepresentable {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             context.coordinator.showUserLocation()
+            context.coordinator.locationManager.startUpdatingHeading()
         }
-        
-        context.coordinator.locationManager.startUpdatingHeading()
         
         return mapView
     }
@@ -309,6 +308,8 @@ struct MapView: UIViewRepresentable {
             }
             
             refreshAnnotationViewSize()
+            
+            self.updateHeadingRotation()
         }
         
         // MARK: CLLocationManagerDelegate methods
@@ -316,8 +317,6 @@ struct MapView: UIViewRepresentable {
         // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
         func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
             if newHeading.headingAccuracy < 0 { return }
-            
-            print(newHeading)
 
             let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
             userHeading = heading
@@ -329,7 +328,7 @@ struct MapView: UIViewRepresentable {
                 let headingImageView = headingImageView {
 
                 headingImageView.isHidden = false
-                let rotation = CGFloat(heading/180 * Double.pi)
+                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi)
                 headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
             }
         }
