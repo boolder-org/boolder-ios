@@ -55,28 +55,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663378,
-          48.462161
-        ]
-      },
-      "properties": {
-        "grade": "2b",
-        "circuitNumber": "23",
-        "steepness": "wall",
-        "height": null,
-        "name": null,
-        "circuitColor": "yellow",
-        "tags": [
-          "risky"
-        ]
-      },
-      "id": "problem_27"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663151,
           48.462298
         ]
@@ -171,25 +149,6 @@
         ]
       },
       "id": "problem_13"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663396,
-          48.462156
-        ]
-      },
-      "properties": {
-        "grade": "3a",
-        "circuitNumber": "24",
-        "steepness": "wall",
-        "height": null,
-        "name": null,
-        "circuitColor": "yellow"
-      },
-      "id": "problem_26"
     },
     {
       "type": "Feature",
@@ -1009,33 +968,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663505,
-          48.462185
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "22",
-        "steepness": "slab",
-        "height": 6,
-        "name": "Confiance",
-        "circuitColor": "orange",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 159
-          }
-        ]
-      },
-      "id": "problem_69"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663192,
           48.460763
         ]
@@ -1090,33 +1022,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663693,
-          48.462243
-        ]
-      },
-      "properties": {
-        "grade": "3b",
-        "circuitNumber": "19",
-        "steepness": "slab",
-        "height": 6,
-        "name": "Tour d'Eiffel",
-        "circuitColor": "orange",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 53
-          }
-        ]
-      },
-      "id": "problem_72"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663474,
           48.461601
         ]
@@ -1138,6 +1043,28 @@
         ]
       },
       "id": "problem_66"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663378867634463,
+          48.462174605814965
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "circuitNumber": "23",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "circuitColor": "yellow",
+        "tags": [
+          "risky"
+        ]
+      },
+      "id": "problem_27"
     },
     {
       "type": "Feature",
@@ -1253,30 +1180,6 @@
         ]
       },
       "id": "problem_47"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663267,
-          48.462846
-        ]
-      },
-      "properties": {
-        "grade": "2c",
-        "circuitNumber": "1",
-        "steepness": "traverse",
-        "height": null,
-        "name": null,
-        "circuitColor": "yellow",
-        "topos": [
-          {
-            "id": 21
-          }
-        ]
-      },
-      "id": "problem_48"
     },
     {
       "type": "Feature",
@@ -1585,30 +1488,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663724,
-          48.462244
-        ]
-      },
-      "properties": {
-        "grade": "2a",
-        "circuitNumber": "20",
-        "steepness": "overhang",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 36
-          }
-        ]
-      },
-      "id": "problem_71"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.66344,
           48.462636
         ]
@@ -1743,30 +1622,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.664159,
-          48.462267
-        ]
-      },
-      "properties": {
-        "grade": "3c",
-        "circuitNumber": "6",
-        "steepness": "traverse",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 139
-          }
-        ]
-      },
-      "id": "problem_81"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663661,
           48.46247
         ]
@@ -1785,30 +1640,6 @@
         ]
       },
       "id": "problem_77"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663592,
-          48.46222
-        ]
-      },
-      "properties": {
-        "grade": "3b",
-        "circuitNumber": "21",
-        "steepness": "overhang",
-        "height": 3,
-        "name": "Le Bouchon",
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 49
-          }
-        ]
-      },
-      "id": "problem_70"
     },
     {
       "type": "Feature",
@@ -2035,6 +1866,78 @@
         ]
       },
       "id": "problem_86"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663231656722472,
+          48.462808892466285
+        ]
+      },
+      "properties": {
+        "grade": "2c",
+        "circuitNumber": "1",
+        "steepness": "traverse",
+        "height": null,
+        "name": null,
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 21
+          }
+        ]
+      },
+      "id": "problem_48"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.66374693722218,
+          48.46225596862653
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "circuitNumber": "20",
+        "steepness": "overhang",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 36
+          }
+        ]
+      },
+      "id": "problem_71"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663625705214155,
+          48.4622048825939
+        ]
+      },
+      "properties": {
+        "grade": "3b",
+        "circuitNumber": "21",
+        "steepness": "overhang",
+        "height": 3,
+        "name": "Le Bouchon",
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 49
+          }
+        ]
+      },
+      "id": "problem_70"
     },
     {
       "type": "Feature",
@@ -2545,30 +2448,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663635,
-          48.461923
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "17",
-        "steepness": "wall",
-        "height": 4,
-        "name": "Le Whist",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 187
-          }
-        ]
-      },
-      "id": "problem_93"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663782,
           48.461616
         ]
@@ -2587,30 +2466,6 @@
         ]
       },
       "id": "problem_97"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663721,
-          48.461599
-        ]
-      },
-      "properties": {
-        "grade": "5b+",
-        "circuitNumber": "9",
-        "steepness": "wall",
-        "height": 4,
-        "name": "La Golgotha (gauche)",
-        "circuitColor": "skyblue",
-        "topos": [
-          {
-            "id": 64
-          }
-        ]
-      },
-      "id": "problem_98"
     },
     {
       "type": "Feature",
@@ -2887,6 +2742,54 @@
         ]
       },
       "id": "problem_127"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663742913539906,
+          48.46160695327346
+        ]
+      },
+      "properties": {
+        "grade": "5b+",
+        "circuitNumber": "9",
+        "steepness": "wall",
+        "height": 4,
+        "name": "La Golgotha (gauche)",
+        "circuitColor": "skyblue",
+        "topos": [
+          {
+            "id": 64
+          }
+        ]
+      },
+      "id": "problem_98"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663631875905796,
+          48.46193633892956
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "circuitNumber": "17",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Le Whist",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 187
+          }
+        ]
+      },
+      "id": "problem_93"
     },
     {
       "type": "Feature",
@@ -3358,30 +3261,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663605,
-          48.461918
-        ]
-      },
-      "properties": {
-        "grade": "6b",
-        "circuitNumber": "16",
-        "steepness": "overhang",
-        "height": 4,
-        "name": "Le Bossu",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 196
-          }
-        ]
-      },
-      "id": "problem_92"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663717,
           48.462588
         ]
@@ -3595,60 +3474,6 @@
         ]
       },
       "id": "problem_148"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663298,
-          48.46284
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "23",
-        "steepness": "wall",
-        "height": 5,
-        "name": "Chanson d'Automne",
-        "circuitColor": "blue",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 257
-          }
-        ]
-      },
-      "id": "problem_140"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663286,
-          48.462893
-        ]
-      },
-      "properties": {
-        "grade": "4b+",
-        "circuitNumber": "24",
-        "steepness": "wall",
-        "height": 5,
-        "name": "Bateau Ivre",
-        "circuitColor": "blue",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 253
-          }
-        ]
-      },
-      "id": "problem_141"
     },
     {
       "type": "Feature",
@@ -3943,60 +3768,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663576,
-          48.46222
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "18",
-        "steepness": "overhang",
-        "height": 5,
-        "name": "La Soprano",
-        "circuitColor": "skyblue",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 137
-          }
-        ]
-      },
-      "id": "problem_180"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663704,
-          48.462238
-        ]
-      },
-      "properties": {
-        "grade": "5a",
-        "circuitNumber": "20",
-        "steepness": "wall",
-        "height": 6,
-        "name": "La Contralto",
-        "circuitColor": "skyblue",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 16
-          }
-        ]
-      },
-      "id": "problem_163"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663504,
           48.462145
         ]
@@ -4018,87 +3789,6 @@
         ]
       },
       "id": "problem_183"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663522,
-          48.462181
-        ]
-      },
-      "properties": {
-        "grade": "5b+",
-        "circuitNumber": "17",
-        "steepness": "wall",
-        "height": 6,
-        "name": "Le Cheval d'Arçon",
-        "circuitColor": "skyblue",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 175
-          }
-        ]
-      },
-      "id": "problem_182"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663494,
-          48.462184
-        ]
-      },
-      "properties": {
-        "grade": "5c+",
-        "circuitNumber": "21",
-        "steepness": "wall",
-        "height": 6,
-        "name": "La Vieille",
-        "circuitColor": "red",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 224
-          }
-        ]
-      },
-      "id": "problem_184"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663324,
-          48.462853
-        ]
-      },
-      "properties": {
-        "grade": "5b",
-        "circuitNumber": "30",
-        "steepness": "overhang",
-        "height": 5,
-        "name": "Le Dé",
-        "circuitColor": "red",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 5
-          }
-        ]
-      },
-      "id": "problem_162"
     },
     {
       "type": "Feature",
@@ -4261,54 +3951,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.66371,
-          48.462256
-        ]
-      },
-      "properties": {
-        "grade": "4b",
-        "circuitNumber": "10",
-        "steepness": "slab",
-        "height": 4,
-        "name": "Égérie",
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 239
-          }
-        ]
-      },
-      "id": "problem_164"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663493,
-          48.462112
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "19",
-        "steepness": "slab",
-        "height": 4,
-        "name": "Les Petits Pieds",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 202
-          }
-        ]
-      },
-      "id": "problem_193"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.662638,
           48.462517
         ]
@@ -4448,78 +4090,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663497,
-          48.462121
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "16b",
-        "steepness": "slab",
-        "height": null,
-        "name": "Le Cruciverbiste",
-        "circuitColor": "skyblue",
-        "topos": [
-          {
-            "id": 153
-          }
-        ]
-      },
-      "id": "problem_181"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.66347,
-          48.462185
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "22",
-        "steepness": "wall",
-        "height": null,
-        "name": "Styrax",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 203
-          }
-        ]
-      },
-      "id": "problem_185"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663443,
-          48.462087
-        ]
-      },
-      "properties": {
-        "grade": "4c",
-        "circuitNumber": "15",
-        "steepness": "slab",
-        "height": null,
-        "name": "La Dalle de Marbre",
-        "circuitColor": "skyblue",
-        "topos": [
-          {
-            "id": 181
-          }
-        ]
-      },
-      "id": "problem_186"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663886,
           48.462353
         ]
@@ -4616,54 +4186,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.66344,
-          48.462184
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "23",
-        "steepness": "overhang",
-        "height": null,
-        "name": "SOS Glycogène",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 204
-          }
-        ]
-      },
-      "id": "problem_191"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.66342,
-          48.462115
-        ]
-      },
-      "properties": {
-        "grade": "4b",
-        "circuitNumber": "30",
-        "steepness": "wall",
-        "height": null,
-        "name": "Le Couloir",
-        "circuitColor": "skyblue",
-        "topos": [
-          {
-            "id": 179
-          }
-        ]
-      },
-      "id": "problem_192"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663529,
           48.462104
         ]
@@ -4706,78 +4228,6 @@
         ]
       },
       "id": "problem_197"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663535,
-          48.462116
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "18",
-        "steepness": "wall",
-        "height": null,
-        "name": "Bateau Pilote",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 51
-          }
-        ]
-      },
-      "id": "problem_198"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663573,
-          48.462237
-        ]
-      },
-      "properties": {
-        "grade": "6a+",
-        "circuitNumber": "24",
-        "steepness": "traverse",
-        "height": 4,
-        "name": "Le Fourre-Tout",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 195
-          }
-        ]
-      },
-      "id": "problem_178"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663605,
-          48.462235
-        ]
-      },
-      "properties": {
-        "grade": "3c",
-        "circuitNumber": "19",
-        "steepness": "wall",
-        "height": 3,
-        "name": "La Goulotte",
-        "circuitColor": "skyblue",
-        "topos": [
-          {
-            "id": 189
-          }
-        ]
-      },
-      "id": "problem_179"
     },
     {
       "type": "Feature",
@@ -4959,6 +4409,111 @@
         ]
       },
       "id": "problem_223"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663736340948389,
+          48.46226020225462
+        ]
+      },
+      "properties": {
+        "grade": "5a",
+        "circuitNumber": "20",
+        "steepness": "wall",
+        "height": 6,
+        "name": "La Contralto",
+        "circuitColor": "skyblue",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 16
+          }
+        ]
+      },
+      "id": "problem_163"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663754080433399,
+          48.462286488739366
+        ]
+      },
+      "properties": {
+        "grade": "4b",
+        "circuitNumber": "10",
+        "steepness": "slab",
+        "height": 4,
+        "name": "Égérie",
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 239
+          }
+        ]
+      },
+      "id": "problem_164"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663566834945923,
+          48.46221234946462
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "18",
+        "steepness": "overhang",
+        "height": 5,
+        "name": "La Soprano",
+        "circuitColor": "skyblue",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 137
+          }
+        ]
+      },
+      "id": "problem_180"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.66353903963308,
+          48.46216920203198
+        ]
+      },
+      "properties": {
+        "grade": "5b+",
+        "circuitNumber": "17",
+        "steepness": "wall",
+        "height": 6,
+        "name": "Le Cheval d'Arçon",
+        "circuitColor": "skyblue",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 175
+          }
+        ]
+      },
+      "id": "problem_182"
     },
     {
       "type": "Feature",
@@ -5676,30 +5231,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663455,
-          48.462184
-        ]
-      },
-      "properties": {
-        "grade": "6c+",
-        "circuitNumber": "13",
-        "steepness": "wall",
-        "height": null,
-        "name": "Expositions retrospectives",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 191
-          }
-        ]
-      },
-      "id": "problem_233"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663742,
           48.461375
         ]
@@ -5914,6 +5445,475 @@
     {
       "type": "Feature",
       "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.664184377113016,
+          48.46231995278958
+        ]
+      },
+      "properties": {
+        "grade": "3c",
+        "circuitNumber": "6",
+        "steepness": "traverse",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 139
+          }
+        ]
+      },
+      "id": "problem_81"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663602423183721,
+          48.46192982872554
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "16",
+        "steepness": "overhang",
+        "height": 4,
+        "name": "Le Bossu",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 196
+          }
+        ]
+      },
+      "id": "problem_92"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663283376599776,
+          48.46285108974369
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "23",
+        "steepness": "wall",
+        "height": 5,
+        "name": "Chanson d'Automne",
+        "circuitColor": "blue",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 257
+          }
+        ]
+      },
+      "id": "problem_140"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663305555090709,
+          48.462882478119134
+        ]
+      },
+      "properties": {
+        "grade": "4b+",
+        "circuitNumber": "24",
+        "steepness": "wall",
+        "height": 5,
+        "name": "Bateau Ivre",
+        "circuitColor": "blue",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 253
+          }
+        ]
+      },
+      "id": "problem_141"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663335561107063,
+          48.46286856229558
+        ]
+      },
+      "properties": {
+        "grade": "5b",
+        "circuitNumber": "30",
+        "steepness": "overhang",
+        "height": 5,
+        "name": "Le Dé",
+        "circuitColor": "red",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 5
+          }
+        ]
+      },
+      "id": "problem_162"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.66372728433247,
+          48.46227460446396
+        ]
+      },
+      "properties": {
+        "grade": "3b",
+        "circuitNumber": "19",
+        "steepness": "slab",
+        "height": 6,
+        "name": "Tour d'Eiffel",
+        "circuitColor": "orange",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 53
+          }
+        ]
+      },
+      "id": "problem_72"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663382796388222,
+          48.462150792575564
+        ]
+      },
+      "properties": {
+        "grade": "3a",
+        "circuitNumber": "24",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "circuitColor": "yellow"
+      },
+      "id": "problem_26"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.66351243695934,
+          48.46219241153401
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "22",
+        "steepness": "slab",
+        "height": 6,
+        "name": "Confiance",
+        "circuitColor": "orange",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 159
+          }
+        ]
+      },
+      "id": "problem_69"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.66346691158743,
+          48.46211705951099
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "19",
+        "steepness": "slab",
+        "height": 4,
+        "name": "Les Petits Pieds",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 202
+          }
+        ]
+      },
+      "id": "problem_193"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663478048234204,
+          48.462123740717736
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "16b",
+        "steepness": "slab",
+        "height": null,
+        "name": "Le Cruciverbiste",
+        "circuitColor": "skyblue",
+        "topos": [
+          {
+            "id": 153
+          }
+        ]
+      },
+      "id": "problem_181"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663487179652291,
+          48.46219550921333
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "circuitNumber": "22",
+        "steepness": "wall",
+        "height": null,
+        "name": "Styrax",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 203
+          }
+        ]
+      },
+      "id": "problem_185"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663425118021293,
+          48.46207804030553
+        ]
+      },
+      "properties": {
+        "grade": "4c",
+        "circuitNumber": "15",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Dalle de Marbre",
+        "circuitColor": "skyblue",
+        "topos": [
+          {
+            "id": 181
+          }
+        ]
+      },
+      "id": "problem_186"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663455768384235,
+          48.462171241249344
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "circuitNumber": "23",
+        "steepness": "overhang",
+        "height": null,
+        "name": "SOS Glycogène",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 204
+          }
+        ]
+      },
+      "id": "problem_191"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663413501387394,
+          48.46214088713016
+        ]
+      },
+      "properties": {
+        "grade": "4b",
+        "circuitNumber": "30",
+        "steepness": "wall",
+        "height": null,
+        "name": "Le Couloir",
+        "circuitColor": "skyblue",
+        "topos": [
+          {
+            "id": 179
+          }
+        ]
+      },
+      "id": "problem_192"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663550901713489,
+          48.46212406408588
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "18",
+        "steepness": "wall",
+        "height": null,
+        "name": "Bateau Pilote",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 51
+          }
+        ]
+      },
+      "id": "problem_198"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663572932332445,
+          48.462245137595104
+        ]
+      },
+      "properties": {
+        "grade": "6a+",
+        "circuitNumber": "24",
+        "steepness": "traverse",
+        "height": 4,
+        "name": "Le Fourre-Tout",
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 195
+          }
+        ]
+      },
+      "id": "problem_178"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663528162521197,
+          48.46218759920623
+        ]
+      },
+      "properties": {
+        "grade": "5c+",
+        "circuitNumber": "21",
+        "steepness": "wall",
+        "height": 6,
+        "name": "La Vieille",
+        "circuitColor": "red",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 224
+          }
+        ]
+      },
+      "id": "problem_184"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663617308971767,
+          48.46221103665114
+        ]
+      },
+      "properties": {
+        "grade": "3c",
+        "circuitNumber": "19",
+        "steepness": "wall",
+        "height": 3,
+        "name": "La Goulotte",
+        "circuitColor": "skyblue",
+        "topos": [
+          {
+            "id": 189
+          }
+        ]
+      },
+      "id": "problem_179"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663475818796259,
+          48.462189425998396
+        ]
+      },
+      "properties": {
+        "grade": "6c+",
+        "circuitNumber": "13",
+        "steepness": "wall",
+        "height": null,
+        "name": "Expositions retrospectives",
+        "circuitColor": "white",
+        "topos": [
+          {
+            "id": 191
+          }
+        ]
+      },
+      "id": "problem_233"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
@@ -6124,39 +6124,6 @@
         "coordinates": [
           [
             [
-              2.663522,
-              48.462102
-            ],
-            [
-              2.663592,
-              48.462093
-            ],
-            [
-              2.663608,
-              48.462143
-            ],
-            [
-              2.663547,
-              48.462157
-            ],
-            [
-              2.663522,
-              48.462102
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_211"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
               2.663161,
               48.463285
             ],
@@ -6223,43 +6190,6 @@
         "coordinates": [
           [
             [
-              2.663518,
-              48.462163
-            ],
-            [
-              2.663493,
-              48.462108
-            ],
-            [
-              2.663403,
-              48.462117
-            ],
-            [
-              2.663436,
-              48.462192
-            ],
-            [
-              2.663529,
-              48.462186
-            ],
-            [
-              2.663518,
-              48.462163
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_214"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
               2.663428,
               48.462089
             ],
@@ -6285,43 +6215,6 @@
       "properties": {
       },
       "id": "boulder_215"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.66359,
-              48.462249
-            ],
-            [
-              2.663564,
-              48.462245
-            ],
-            [
-              2.663569,
-              48.462222
-            ],
-            [
-              2.663596,
-              48.462218
-            ],
-            [
-              2.663611,
-              48.462234
-            ],
-            [
-              2.66359,
-              48.462249
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_216"
     },
     {
       "type": "Feature",
@@ -6601,47 +6494,6 @@
       "properties": {
       },
       "id": "boulder_223"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663739,
-              48.462279
-            ],
-            [
-              2.663691,
-              48.462245
-            ],
-            [
-              2.663717,
-              48.462234
-            ],
-            [
-              2.663742,
-              48.462239
-            ],
-            [
-              2.663754,
-              48.46225
-            ],
-            [
-              2.663747,
-              48.462276
-            ],
-            [
-              2.663739,
-              48.462279
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_224"
     },
     {
       "type": "Feature",
@@ -7365,6 +7217,80 @@
       "properties": {
       },
       "id": "boulder_243"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663522,
+              48.462102
+            ],
+            [
+              2.663569147826662,
+              48.46207862392861
+            ],
+            [
+              2.663629359908321,
+              48.46213411638663
+            ],
+            [
+              2.663576296202594,
+              48.462151695415706
+            ],
+            [
+              2.663522,
+              48.462102
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_211"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663572726033119,
+              48.462249409632236
+            ],
+            [
+              2.663542688121857,
+              48.46222527692103
+            ],
+            [
+              2.663615984002252,
+              48.462183163074286
+            ],
+            [
+              2.663639120834309,
+              48.46219893742697
+            ],
+            [
+              2.663616529038896,
+              48.46221207066641
+            ],
+            [
+              2.663629113938878,
+              48.4622216867764
+            ],
+            [
+              2.663572726033119,
+              48.462249409632236
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_216"
     },
     {
       "type": "Feature",
@@ -8342,47 +8268,6 @@
       "properties": {
       },
       "id": "boulder_268"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.663747,
-              48.461219
-            ],
-            [
-              2.663869,
-              48.461234
-            ],
-            [
-              2.6639,
-              48.461238
-            ],
-            [
-              2.663868,
-              48.461289
-            ],
-            [
-              2.663727,
-              48.461255
-            ],
-            [
-              2.663718,
-              48.461223
-            ],
-            [
-              2.663747,
-              48.461219
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_269"
     },
     {
       "type": "Feature",
@@ -9608,11 +9493,299 @@
     {
       "type": "Feature",
       "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663907879154615,
+              48.46126455118572
+            ],
+            [
+              2.663868,
+              48.461289
+            ],
+            [
+              2.663762855327286,
+              48.46122829484445
+            ],
+            [
+              2.663800610146108,
+              48.46119691610151
+            ],
+            [
+              2.663907879154615,
+              48.46126455118572
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_269"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6634291552224,
+              48.46298685508504
+            ],
+            [
+              2.663493700548956,
+              48.4630027146183
+            ],
+            [
+              2.663512579789145,
+              48.46296685039591
+            ],
+            [
+              2.66345705097553,
+              48.462950312851596
+            ],
+            [
+              2.6634291552224,
+              48.46298685508504
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_388"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663575444699507,
+              48.46288478675223
+            ],
+            [
+              2.663558119274067,
+              48.462867150764986
+            ],
+            [
+              2.663632717270394,
+              48.46287172430453
+            ],
+            [
+              2.663633726040764,
+              48.462894290125064
+            ],
+            [
+              2.663575444699507,
+              48.46288478675223
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_389"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663757151246833,
+              48.46224762106624
+            ],
+            [
+              2.663733337894816,
+              48.462256727235435
+            ],
+            [
+              2.663737897910412,
+              48.46226588035167
+            ],
+            [
+              2.66372235970694,
+              48.46227407664299
+            ],
+            [
+              2.663796595235347,
+              48.46230731273318
+            ],
+            [
+              2.663826591545259,
+              48.46229358770643
+            ],
+            [
+              2.663757151246833,
+              48.46224762106624
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_224"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.66346499202019,
+              48.462112812686165
+            ],
+            [
+              2.663440273697469,
+              48.46210908467143
+            ],
+            [
+              2.663411617293974,
+              48.46211952654408
+            ],
+            [
+              2.663406648141798,
+              48.4621385834915
+            ],
+            [
+              2.663487533372413,
+              48.46220019790115
+            ],
+            [
+              2.663525701309464,
+              48.462191157980875
+            ],
+            [
+              2.663547572130941,
+              48.4621702748748
+            ],
+            [
+              2.663506764826618,
+              48.46214252209539
+            ],
+            [
+              2.66346499202019,
+              48.462112812686165
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_390"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663398237445646,
+              48.46212286296528
+            ],
+            [
+              2.663374121577893,
+              48.46210675949505
+            ],
+            [
+              2.66339444941072,
+              48.462094334081364
+            ],
+            [
+              2.663412296743097,
+              48.46210865685864
+            ],
+            [
+              2.663398237445646,
+              48.46212286296528
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_391"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663417754181255,
+              48.462231590777684
+            ],
+            [
+              2.663400246112589,
+              48.462200082166305
+            ],
+            [
+              2.663432961223541,
+              48.46218561878261
+            ],
+            [
+              2.663459769670315,
+              48.46220850275314
+            ],
+            [
+              2.663417754181255,
+              48.462231590777684
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_392"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.663482710726051,
+              48.46225962711774
+            ],
+            [
+              2.663448797272677,
+              48.46222929548816
+            ],
+            [
+              2.663469342566694,
+              48.46221433189515
+            ],
+            [
+              2.66350522762505,
+              48.46224369420326
+            ],
+            [
+              2.663482710726051,
+              48.46225962711774
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_393"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            2.663267,
-            48.462846
+            2.663231656722472,
+            48.462808892466285
           ],
           [
             2.663299,
@@ -9699,12 +9872,12 @@
             48.462104
           ],
           [
-            2.663378,
-            48.462161
+            2.663378867634463,
+            48.462174605814965
           ],
           [
-            2.663396,
-            48.462156
+            2.663382796388222,
+            48.462150792575564
           ],
           [
             2.663394,
@@ -9836,8 +10009,8 @@
             48.462339
           ],
           [
-            2.664159,
-            48.462267
+            2.664184377113016,
+            48.46231995278958
           ],
           [
             2.663937,
@@ -9888,20 +10061,20 @@
             48.462441
           ],
           [
-            2.663693,
-            48.462243
+            2.66372728433247,
+            48.46227460446396
           ],
           [
-            2.663724,
-            48.462244
+            2.66374693722218,
+            48.46225596862653
           ],
           [
-            2.663592,
-            48.46222
+            2.663625705214155,
+            48.4622048825939
           ],
           [
-            2.663505,
-            48.462185
+            2.66351243695934,
+            48.46219241153401
           ],
           [
             2.663648,
@@ -10037,8 +10210,8 @@
             48.462407
           ],
           [
-            2.66371,
-            48.462256
+            2.663754080433399,
+            48.462286488739366
           ],
           [
             2.663688,
@@ -10089,12 +10262,12 @@
             48.462747
           ],
           [
-            2.663298,
-            48.46284
+            2.663283376599776,
+            48.46285108974369
           ],
           [
-            2.663286,
-            48.462893
+            2.663305555090709,
+            48.462882478119134
           ],
           [
             2.663229,
@@ -10206,8 +10379,8 @@
             48.461616
           ],
           [
-            2.663721,
-            48.461599
+            2.663742913539906,
+            48.46160695327346
           ],
           [
             2.663809,
@@ -10230,32 +10403,32 @@
             48.461908
           ],
           [
-            2.663443,
-            48.462087
+            2.663425118021293,
+            48.46207804030553
           ],
           [
             2.663529,
             48.462104
           ],
           [
-            2.663497,
-            48.462121
+            2.663478048234204,
+            48.462123740717736
           ],
           [
-            2.663522,
-            48.462181
+            2.66353903963308,
+            48.46216920203198
           ],
           [
-            2.663576,
-            48.46222
+            2.663566834945923,
+            48.46221234946462
           ],
           [
-            2.663605,
-            48.462235
+            2.663617308971767,
+            48.46221103665114
           ],
           [
-            2.663704,
-            48.462238
+            2.663736340948389,
+            48.46226020225462
           ],
           [
             2.663761,
@@ -10294,8 +10467,8 @@
             48.462185
           ],
           [
-            2.66342,
-            48.462115
+            2.663413501387394,
+            48.46214088713016
           ],
           [
             2.663363,
@@ -10411,40 +10584,40 @@
             48.461611
           ],
           [
-            2.663605,
-            48.461918
+            2.663602423183721,
+            48.46192982872554
           ],
           [
-            2.663635,
-            48.461923
+            2.663631875905796,
+            48.46193633892956
           ],
           [
-            2.663535,
-            48.462116
+            2.663550901713489,
+            48.46212406408588
           ],
           [
-            2.663493,
-            48.462112
+            2.66346691158743,
+            48.46211705951099
           ],
           [
             2.663504,
             48.462145
           ],
           [
-            2.663494,
-            48.462184
+            2.663528162521197,
+            48.46218759920623
           ],
           [
-            2.66347,
-            48.462185
+            2.663487179652291,
+            48.46219550921333
           ],
           [
-            2.66344,
-            48.462184
+            2.663455768384235,
+            48.462171241249344
           ],
           [
-            2.663573,
-            48.462237
+            2.663572932332445,
+            48.462245137595104
           ],
           [
             2.663734,
@@ -10467,8 +10640,8 @@
             48.462796
           ],
           [
-            2.663324,
-            48.462853
+            2.663335561107063,
+            48.46286856229558
           ],
           [
             2.663433,
@@ -10600,8 +10773,8 @@
             48.462209
           ],
           [
-            2.663455,
-            48.462184
+            2.663475818796259,
+            48.462189425998396
           ],
           [
             2.664324,
@@ -10681,84 +10854,16 @@
         "type": "LineString",
         "coordinates": [
           [
-            2.66560150708247,
-            48.462975735402125
+            2.665619456423328,
+            48.46297034909122
           ],
           [
-            2.665382114189644,
-            48.46348814671134
+            2.665684496575492,
+            48.462799752093844
           ],
           [
-            2.665106654186892,
-            48.46347036594009
-          ],
-          [
-            2.664460664002277,
-            48.46371767940152
-          ],
-          [
-            2.664299775880756,
-            48.46352694104591
-          ],
-          [
-            2.664404596892454,
-            48.46327316085391
-          ],
-          [
-            2.664648366847817,
-            48.46320527040955
-          ],
-          [
-            2.664686794790582,
-            48.4631519689353
-          ],
-          [
-            2.664686794790582,
-            48.46310224814707
-          ],
-          [
-            2.664623846821739,
-            48.463065417902186
-          ],
-          [
-            2.664513687915042,
-            48.4630482304548
-          ],
-          [
-            2.664439631483618,
-            48.46306234870455
-          ],
-          [
-            2.664384089198903,
-            48.463051299625185
-          ],
-          [
-            2.664375757851942,
-            48.46302674611626
-          ],
-          [
-            2.664402603303172,
-            48.46300219259549
-          ],
-          [
-            2.664467402640122,
-            48.46299298501861
-          ],
-          [
-            2.664493535431233,
-            48.46295969074201
-          ],
-          [
-            2.664492553659445,
-            48.46293647149585
-          ],
-          [
-            2.664475209304565,
-            48.46291216721318
-          ],
-          [
-            2.664431411616574,
-            48.462875515530875
+            2.664588931346267,
+            48.462655990134024
           ]
         ]
       },
