@@ -9,7 +9,58 @@
 "areas" = "Secteurs";
 "map" = "Carte";
 "list" = "Liste";
+
+// POI
 "gps_coordinates" = "Coordonnées GPS";
 "cancel" = "Annuler";
 "open_in" = "Ouvrir dans : ";
 "gps_coordinates_for_poi" = "Coordonnées GPS %@ : %@,%@";
+
+// Area view
+"no_name" = "Sans nom";
+"circuit" = "Circuit";
+"circuits" = "Circuits";
+"filter" = "Filtre";
+"filters" = "Filtres";
+
+// Filters
+"no_circuit" = "Pas de circuit";
+"type" = "Type";
+"height" = "Hauteur";
+"all" = "Tous";
+"less than %@ m" = "Moins de %@ m";
+"risk" = "Risque en cas de chute";
+"less_risky" = "Moins dangereux";
+"less_risky.long" = "Moins dangereux en cas de chute";
+"risky.long" = "Dangereux en cas de chute";
+"level" = "Niveau";
+"favorite" = "Favori";
+"ticked" = "Déjà fait";
+"ticked.short" = "Fait";
+"reset" = "Réinitialiser";
+"grade_between" = "Entre %@ and %@";
+"level_min" = "Niveau minimum";
+"level_max" = "Niveau maximum";
+"level" = "Niveau";
+"risky_definition" = "Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.";
+"no_limit" = "Pas de limite";
+
+// Circuit help
+"circuit_help.circuits.p1" = "Les circuits sont très pratiques pour découvrir un secteur.";
+"circuit_help.circuits.p2" = "Ils regroupent des voies de niveau relativement homogène.";
+"circuit_help.circuits.p3" = "N'hésitez pas à regarder le détail de chaque circuit pour en savoir plus sur les niveaux précis de chaque voie.";
+"circuit_help.numbers.title" = "Mieux qu'un GPS";
+"circuit_help.numbers.p1" = "Le numéro de chaque voie est peint directement sur la roche, ce qui permet de se repérer facilement.";
+"circuit_help.got_it" = "J'ai bien compris !";
+
+// Steepness
+"steepness.wall" = "Mur vertical";
+"steepness.slab" = "Dalle";
+"steepness.overhang" = "Dévers";
+"steepness.roof" = "Toit";
+"steepness.traverse" = "Traversée";
+"steepness.other" = "Autre";
+
+// Problem details
+"sit_start" = "départ assis";
+"height_desc" = "hauteur %@ m";

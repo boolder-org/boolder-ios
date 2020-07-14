@@ -51,7 +51,7 @@ struct ProblemDetailsView: View {
                     
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
-                                Text(problem.name ?? "Sans nom")
+                                Text(problem.nameWithFallback())
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
@@ -87,7 +87,7 @@ struct ProblemDetailsView: View {
                                     .font(.body)
                                     .foregroundColor(Color.red)
                                     .frame(minWidth: 16)
-                                Text("Dangereux en cas de chute")
+                                Text("risky.long")
                                     .font(.body)
                                     .foregroundColor(Color.red)
                                 }
@@ -102,7 +102,7 @@ struct ProblemDetailsView: View {
                                 if self.isFavorite() {
                                     Image(systemName: "star.fill")
                                         .font(.title)
-                                    Text("Favori")
+                                    Text("favorite")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -110,7 +110,7 @@ struct ProblemDetailsView: View {
                                 else {
                                     Image(systemName: "star")
                                         .font(.title)
-                                    Text("Favori")
+                                    Text("favorite")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -130,7 +130,7 @@ struct ProblemDetailsView: View {
                                 if self.isTicked() {
                                     Image(systemName: "checkmark.circle.fill")
                                         .font(.title)
-                                    Text("Fait")
+                                    Text("ticked.short")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -138,7 +138,7 @@ struct ProblemDetailsView: View {
                                 else {
                                     Image(systemName: "circle")
                                         .font(.title)
-                                    Text("Fait")
+                                    Text("ticked.short")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)

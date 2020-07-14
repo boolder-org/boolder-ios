@@ -34,8 +34,8 @@ struct ProblemListView: View {
                         }) {
                             HStack {
                                 CircuitNumberView(number: problem.circuitNumber, color: problem.circuitUIColor)
-
-                                Text(problem.name ?? "Sans nom")
+                                
+                                Text(problem.nameWithFallback())
                                     .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
 
                                 Spacer()

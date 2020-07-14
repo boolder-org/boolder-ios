@@ -25,6 +25,10 @@ class Problem : Identifiable {
         circuitColor?.uicolor ?? UIColor.gray
     }
     
+    func nameWithFallback() -> String {
+        self.name ?? NSLocalizedString("no_name", comment: "")
+    }
+    
     func readableDescription() -> String? {
         var strings = Set<String>()
         
@@ -34,13 +38,15 @@ class Problem : Identifiable {
         }
         
         if let height = height {
-            strings.insert("hauteur \(height)m")
+            strings.insert(
+                String.localizedStringWithFormat(NSLocalizedString("height_desc", comment: ""), height.description)
+            )
         }
         
         return strings.map { (string: String) in
             switch string {
             case "sit_start":
-                return "départ assis"
+                return NSLocalizedString("sit_start", comment: "")
             default:
                 return string
             }

@@ -17,7 +17,7 @@ struct CircuitHelpView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 VStack(alignment: .center) {
-                    Text("Circuits")
+                    Text("circuits")
                         .font(.largeTitle)
                         .foregroundColor(Color(.systemGreen))
                         .bold()
@@ -27,21 +27,21 @@ struct CircuitHelpView: View {
                 
                 VStack(alignment: .leading, spacing: 16) {
                     
-                    Text("Les circuits sont très pratiques pour découvrir un secteur.")
+                    Text("circuit_help.circuits.p1")
                     
-                    Text("Ils regroupent des voies de niveau relativement homogène.")
+                    Text("circuit_help.circuits.p2")
                     
                     CircuitLevelMatrix()
                         .padding(.trailing, 32)
                         .padding(.top, 16)
                     
-                    Text("N'hésitez pas à regarder le détail de chaque circuit pour en savoir plus sur les niveaux précis de chaque voie.")
+                    Text("circuit_help.circuits.p3")
                     
-                    Text("Mieux qu'un GPS")
+                    Text("circuit_help.numbers.title")
                         .font(.title)
                         .padding(.top, 32)
                     
-                    Text("Le numéro de chaque voie est peint directement sur la roche, ce qui permet de se repérer facilement.")
+                    Text("circuit_help.numbers.p1")
                     
                     Image("yellow-circuit-start")
                         .resizable()
@@ -54,7 +54,7 @@ struct CircuitHelpView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack(alignment: .center, spacing: 16) {
-                            Text("J'ai bien compris !")
+                            Text("circuit_help.got_it")
                                 .fontWeight(.bold)
                                 .padding(.vertical)
                                 .fixedSize(horizontal: true, vertical: true)

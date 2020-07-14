@@ -25,11 +25,11 @@ struct FabFiltersView: View {
                 }) {
                     if dataStore.filters.circuit != nil {
                         CircuitNumberView(number: "", color: circuitColor(), height: 20)
-                        Text("Circuit")
+                        Text("circuit")
                     }
                     else {
                         Image("circuit")
-                        Text("Circuits")
+                        Text("circuits")
                     }
                 }
                 .sheet(isPresented: $presentCircuitFilter) {
@@ -59,7 +59,7 @@ struct FabFiltersView: View {
                             )
                             .foregroundColor(Color(.systemBackground))
                     }
-                    Text(dataStore.filters.filtersCount() == 1 ? "Filtre" : "Filtres")
+                    Text(dataStore.filters.filtersCount() == 1 ? "filter" : "filters")
                         .fixedSize(horizontal: true, vertical: true)
                 }
                 .padding(.vertical, 12)

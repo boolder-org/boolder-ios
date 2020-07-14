@@ -45,7 +45,7 @@ struct CircuitFilterView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
-                            Text("Pas de circuit")
+                            Text("no_circuit")
                                 .foregroundColor(Color(.label))
                             
                             Spacer()
@@ -59,7 +59,7 @@ struct CircuitFilterView: View {
             }
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
-            .navigationBarTitle("Circuit", displayMode: .inline)
+            .navigationBarTitle("circuit", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
                     self.presentCircuitArticle.toggle()

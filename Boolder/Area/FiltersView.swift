@@ -25,7 +25,7 @@ struct FiltersView: View {
                 Section {
                     NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters), isActive: $presentSteepnessFilter) {
                         HStack {
-                            Text("Type")
+                            Text("type")
                             Spacer()
                             Text(labelForSteepness())
                                 .foregroundColor(Color.gray)
@@ -34,25 +34,25 @@ struct FiltersView: View {
                     
                     NavigationLink(destination: HeightFilterView(presentFilters: $presentFilters)) {
                         HStack {
-                            Text("Hauteur")
+                            Text("height")
                             Spacer()
-                            Text(dataStore.filters.heightMax == Int.max ? "Tous" : "Moins de \(String(dataStore.filters.heightMax)) m")
+                            Text(dataStore.filters.heightMax == Int.max ? "all" : "less than \(String(dataStore.filters.heightMax)) m")
                                 .foregroundColor(Color.gray)
                         }
                     }
                     
                     NavigationLink(destination: RiskyFilterView(presentFilters: $presentFilters)) {
                         HStack {
-                            Text("Risque en cas de chute")
+                            Text("risk")
                             Spacer()
-                            Text(dataStore.filters.risky ? "Tous" : "Moins dangereux")
+                            Text(dataStore.filters.risky ? "all" : "less_risky")
                                 .foregroundColor(Color.gray)
                         }
                     }
                     
                     NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
                         HStack {
-                            Text("Niveau")
+                            Text("level")
                             Spacer()
                             Text(labelForCategories())
                                 .foregroundColor(Color.gray)
@@ -64,7 +64,7 @@ struct FiltersView: View {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.favorite) {
-                            Text("Favori")
+                            Text("favorite")
                                 .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
                         }
                         .disabled(dataStore.favorites().count == 0)
@@ -72,14 +72,14 @@ struct FiltersView: View {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.ticked) {
-                            Text("Déjà fait")
+                            Text("ticked")
                                 .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
                         }
                         .disabled(dataStore.ticks().count == 0)
                     }
                 }
             }
-            .navigationBarTitle("Filtres", displayMode: .inline)
+            .navigationBarTitle("filters", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
                     var newFilters = Filters()
@@ -87,7 +87,7 @@ struct FiltersView: View {
                     self.dataStore.filters = newFilters
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("Réinitialiser")
+                    Text("reset")
                         .padding(.vertical)
                 },
                 trailing: Button(action: {
@@ -106,7 +106,7 @@ struct FiltersView: View {
     
     private func labelForSteepness() -> String {
         if dataStore.filters.steepness == Set(Steepness.SteepnessType.allCases) {
-            return "Tous"
+            return NSLocalizedString("all", comment: "")
         }
         
         let visibleAndSelected = dataStore.filters.steepness.intersection(userVisibleSteepnessTypes)
@@ -116,10 +116,10 @@ struct FiltersView: View {
     
     private func labelForCategories() -> String {
         if dataStore.filters.gradeMin == Filters().gradeMin && dataStore.filters.gradeMax == Filters().gradeMax {
-            return "Tous"
+            return NSLocalizedString("all", comment: "")
         }
         else {
-            return "Entre \(dataStore.filters.gradeMin.string) et \(dataStore.filters.gradeMax.string)"
+            return String.localizedStringWithFormat(NSLocalizedString("grade_between", comment: ""), dataStore.filters.gradeMin.string, dataStore.filters.gradeMax.string)
         }
     }
     
@@ -153,7 +153,7 @@ struct GradeFilterView: View {
             Section {
                 NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMin, type: .min)) {
                     HStack {
-                        Text("Niveau minimum")
+                        Text("level_min")
                         Spacer()
                         Text(dataStore.filters.gradeMin.string)
                             .foregroundColor(Color.gray)
@@ -162,7 +162,7 @@ struct GradeFilterView: View {
                 
                 NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMax, type: .max)) {
                     HStack {
-                        Text("Niveau maximum")
+                        Text("level_max")
                         Spacer()
                         Text(dataStore.filters.gradeMax.string)
                             .foregroundColor(Color.gray)
@@ -172,7 +172,7 @@ struct GradeFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("Niveau")
+        .navigationBarTitle("level")
         .navigationBarItems(
             trailing: Button(action: {
                 self.presentFilters = false
@@ -222,7 +222,7 @@ struct GradeMinMaxFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle(type == .min ? "Niveau minimum" : "Niveau maximum")
+        .navigationBarTitle(type == .min ? "level_min" : "level_max")
     }
     
     func isDisabled(grade: String) -> Bool {
@@ -242,7 +242,7 @@ struct RiskyFilterView: View {
     var body: some View {
         List {
             Section(
-                footer: Text("Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.").padding(.top)
+                footer: Text("risky_definition").padding(.top)
             ) {
                 Button(action: {
                     
@@ -252,7 +252,7 @@ struct RiskyFilterView: View {
                             .font(.body)
                             .foregroundColor(Color(.label))
                             .frame(minWidth: 16)
-                        Text("Moins dangereux en cas de chute").foregroundColor(Color(.systemGray))
+                        Text("less_risky.long").foregroundColor(Color(.systemGray))
                         Spacer()
                         Image(systemName: "checkmark").font(Font.body.weight(.bold))
                     }
@@ -267,7 +267,7 @@ struct RiskyFilterView: View {
                             .font(.body)
                             .foregroundColor(Color.red)
                             .frame(minWidth: 16)
-                        Text("Dangereux en cas de chute")
+                        Text("risky.long")
                             .foregroundColor(Color.red)
                         Spacer()
                         if dataStore.filters.risky {
@@ -279,7 +279,7 @@ struct RiskyFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("Risque en cas de chute")
+        .navigationBarTitle("risky")
         .navigationBarItems(
             trailing: Button(action: {
                 self.presentFilters = false
@@ -306,7 +306,7 @@ struct HeightFilterView: View {
                         self.dataStore.filters.heightMax = height
                     }) {
                         HStack {
-                            Text("Moins de \(String(height)) m").foregroundColor(Color(.label))
+                            Text("less than \(String(height)) m").foregroundColor(Color(.label))
                             Spacer()
                             if self.dataStore.filters.heightMax == height {
                                 Image(systemName: "checkmark").font(Font.body.weight(.bold))
@@ -321,7 +321,7 @@ struct HeightFilterView: View {
                     self.dataStore.filters.heightMax = Int.max
                 }) {
                     HStack {
-                        Text("Pas de limite").foregroundColor(Color(.label))
+                        Text("no_limit").foregroundColor(Color(.label))
                         Spacer()
                         if self.dataStore.filters.heightMax == Int.max {
                             Image(systemName: "checkmark").font(Font.body.weight(.bold))
@@ -332,7 +332,7 @@ struct HeightFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("Hauteur")
+        .navigationBarTitle("height")
         .navigationBarItems(
             trailing: Button(action: {
                 self.presentFilters = false
@@ -374,7 +374,7 @@ struct SteepnessFilterView: View {
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("Type")
+        .navigationBarTitle("type")
         .navigationBarItems(
             trailing: Button(action: {
                 self.presentFilters = false

@@ -6,6 +6,8 @@
 //  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
+import Foundation
+
 class Steepness  {
     enum SteepnessType: CaseIterable {
         case wall
@@ -45,17 +47,17 @@ class Steepness  {
     var name: String {
         switch type {
         case .wall:
-            return "Mur vertical"
+            return NSLocalizedString("steepness.wall", comment: "")
         case .slab:
-            return "Dalle"
+            return NSLocalizedString("steepness.slab", comment: "")
         case .overhang:
-            return "Dévers"
+            return NSLocalizedString("steepness.overhang", comment: "")
         case .roof:
-            return "Toit"
+            return NSLocalizedString("steepness.roof", comment: "")
         case .traverse:
-            return "Traversée"
+            return NSLocalizedString("steepness.traverse", comment: "")
         case .other:
-            return "Autre"
+            return NSLocalizedString("steepness.other", comment: "")
         }
     }
     

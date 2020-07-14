@@ -9,7 +9,58 @@
 "areas" = "Areas";
 "map" = "Map";
 "list" = "List";
+
+// POI
 "gps_coordinates" = "GPS coordinates";
 "cancel" = "Cancel";
 "open_in" = "Open in:";
 "gps_coordinates_for_poi" = "GPS coordinates %@ : %@,%@";
+
+// Area view
+"no_name" = "No name";
+"circuit" = "Circuit";
+"circuits" = "Circuits";
+"filter" = "Filter";
+"filters" = "Filters";
+
+// Filters
+"no_circuit" = "No circuit";
+"type" = "Type";
+"height" = "Height";
+"all" = "All";
+"less than %@ m" = "Less than %@ m";
+"risk" = "Risk";
+"less_risky" = "Less risky";
+"less_risky.long" = "Less risky";
+"risky.long" = "Risky";
+"level" = "Level";
+"favorite" = "Favorite";
+"ticked" = "Already done";
+"ticked.short" = "Done";
+"reset" = "Reset";
+"grade_between" = "Between %@ and %@";
+"level_min" = "Minimum level";
+"level_max" = "Maximum level";
+"level" = "Level";
+"risky_definition" = "A problem is considered risky when the ground makes the landing difficult or when the problem is high.";
+"no_limit" = "No limit";
+
+// Circuit help
+"circuit_help.circuits.p1" = "Circuits are very helpful to discover an area.";
+"circuit_help.circuits.p2" = "They are composed of problems with relatively homogeneous levels.";
+"circuit_help.circuits.p3" = "Feel free to have a look at the problems of each circuit to know more about the required level.";
+"circuit_help.numbers.title" = "Better than a GPS";
+"circuit_help.numbers.p1" = "Each problem's number is painted directly on the boulder, which is very handy to locate yourself.";
+"circuit_help.got_it" = "Got it!";
+
+// Steepness
+"steepness.wall" = "Wall";
+"steepness.slab" = "Slab";
+"steepness.overhang" = "Overhang";
+"steepness.roof" = "Roof";
+"steepness.traverse" = "Traverse";
+"steepness.other" = "Other";
+
+// Problem details
+"sit_start" = "sit start";
+"height_desc" = "height %@ m";
