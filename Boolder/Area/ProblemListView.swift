@@ -23,7 +23,9 @@ struct ProblemListView: View {
                 // FIXME: simplify the code by using a tableview footer when/if it becomes possible
                 // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
                 Section(
-                    header: Text("Circuit \(self.dataStore.circuit(withColor: circuitColor)?.name ?? "")").font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == self.dataStore.groupedProblemsKeys.first) ? 32 : 0),
+                    header: Text(
+                        "\(self.dataStore.circuit(withColor: circuitColor)?.localizedName() ?? "") circuit"
+                    ).font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == self.dataStore.groupedProblemsKeys.first) ? 32 : 0),
                     footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == self.dataStore.groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
                     ) {
                     ForEach(self.dataStore.groupedProblems[circuitColor]!) { (problem: Problem) in

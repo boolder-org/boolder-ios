@@ -50,15 +50,20 @@ class Circuit {
         }
     }
     
-    init(color: CircuitColor, name: String, overlay: CircuitOverlay) {
+    enum CircuitLevel {
+        case beginner
+        case unknown
+    }
+    
+    init(color: CircuitColor, level: CircuitLevel, overlay: CircuitOverlay) {
         self.color = color
-        self.name = name
+        self.level = level
         self.overlay = overlay
     }
     
     let color: CircuitColor
-    let name: String
     let overlay: CircuitOverlay
+    let level: CircuitLevel
     
     static func circuitColorFromString(_ string: String?) -> CircuitColor {
         switch string {
@@ -78,6 +83,38 @@ class Circuit {
             return CircuitColor.white
         default:
             return CircuitColor.offCircuit
+        }
+    }
+    
+    static func circuitLevelFromString(_ string: String?) -> CircuitLevel {
+        switch string {
+        case "beginner":
+            return CircuitLevel.beginner
+        default:
+            return CircuitLevel.unknown
+        }
+    }
+    
+    func localizedName() -> String {
+        switch color {
+        case .yellow:
+            return NSLocalizedString("circuit.color.yellow", comment: "")
+        case .orange:
+            return NSLocalizedString("circuit.color.orange", comment: "")
+        case .blue:
+            return NSLocalizedString("circuit.color.blue", comment: "")
+        case .skyBlue:
+            return NSLocalizedString("circuit.color.skyblue", comment: "")
+        case .red:
+            return NSLocalizedString("circuit.color.red", comment: "")
+        case .white:
+            return NSLocalizedString("circuit.color.white", comment: "")
+        case .whiteForKids:
+            return NSLocalizedString("circuit.color.white_for_kids", comment: "")
+        case .black:
+            return NSLocalizedString("circuit.color.black", comment: "")
+        default:
+            return NSLocalizedString("circuit.color.no_name", comment: "")
         }
     }
 }

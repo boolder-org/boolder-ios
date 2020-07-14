@@ -9979,7 +9979,7 @@
       },
       "properties": {
         "color": "yellow",
-        "name": "Jaune (débutant)"
+        "level": "beginner"
       },
       "id": "circuit_1"
     },
@@ -10164,7 +10164,7 @@
       },
       "properties": {
         "color": "orange",
-        "name": "Orange"
+        "level": "unknown"
       },
       "id": "circuit_2"
     },
@@ -10337,7 +10337,7 @@
       },
       "properties": {
         "color": "blue",
-        "name": "Bleu"
+        "level": "unknown"
       },
       "id": "circuit_5"
     },
@@ -10514,7 +10514,7 @@
       },
       "properties": {
         "color": "skyblue",
-        "name": "Bleu ciel"
+        "level": "unknown"
       },
       "id": "circuit_3"
     },
@@ -10711,7 +10711,7 @@
       },
       "properties": {
         "color": "red",
-        "name": "Rouge"
+        "level": "unknown"
       },
       "id": "circuit_4"
     },
@@ -10828,7 +10828,7 @@
       },
       "properties": {
         "color": "white",
-        "name": "Blanc"
+        "level": "unknown"
       },
       "id": "circuit_6"
     },

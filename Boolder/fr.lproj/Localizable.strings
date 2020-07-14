@@ -10,6 +10,19 @@
 "map" = "Carte";
 "list" = "Liste";
 
+// Circuit
+"circuit.color.yellow" = "Jaune";
+"circuit.color.orange" = "Orange";
+"circuit.color.blue" = "Bleu";
+"circuit.color.skyblue" = "Bleu ciel";
+"circuit.color.red" = "Rouge";
+"circuit.color.white" = "Blanc";
+"circuit.color.black" = "Noir";
+"circuit.color.white_for_kids" = "Blanc";
+"circuit.color.no_name" = "Sans nom";
+"%@ circuit" = "Circuit %@";
+"circuit.level.beginner" = "débutant";
+
 // POI
 "gps_coordinates" = "Coordonnées GPS";
 "cancel" = "Annuler";

@@ -26,8 +26,15 @@ struct CircuitFilterView: View {
                             HStack(alignment: .center) {
                                 CircuitNumberView(number: "", color: circuit.color.uicolor, height: 20)
                                 
-                                Text("\(circuit.name)")
+                                Text("\(circuit.localizedName())")
                                     .foregroundColor(Color(.label))
+                                
+                                if circuit.level == .beginner {
+                                    Text(
+                                        "(" + NSLocalizedString("circuit.level.beginner", comment: "") + ")"
+                                    )
+                                        .foregroundColor(Color.gray)
+                                }
                                 
                                 Spacer()
                                 
