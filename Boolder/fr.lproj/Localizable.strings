@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Boolder
+
+  Created by Nicolas Mondollot on 14/07/2020.
+  Copyright © 2020 Nicolas Mondollot. All rights reserved.
+*/
+
+"areas" = "Secteurs";
+"map" = "Carte";
+"list" = "Liste";
+"gps_coordinates" = "Coordonnées GPS";
+"cancel" = "Annuler";
+"open_in" = "Ouvrir dans : ";
+"gps_coordinates_for_poi" = "Coordonnées GPS %@ : %@,%@";

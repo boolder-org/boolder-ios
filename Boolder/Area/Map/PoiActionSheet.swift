@@ -48,13 +48,13 @@ struct PoiActionSheet: View {
         )
         
         buttons.append(
-            .default(Text("Coordonnées GPS")) {
+            .default(Text("gps_coordinates")) {
                 self.showShareSheet = true
             }
         )
         
         buttons.append(
-            .cancel(Text("Annuler"))
+            .cancel(Text("cancel"))
         )
         
         return buttons
@@ -64,14 +64,16 @@ struct PoiActionSheet: View {
         EmptyView()
             .actionSheet(isPresented: $presentPoiActionSheet) {
                 ActionSheet(
-                    title: Text("Ouvrir dans :"),
+                    title: Text("open_in"),
                     buttons: buttons()
                 )
         }
         .background(
             EmptyView()
                 .sheet(isPresented: $showShareSheet) {
-                    ShareSheet(activityItems: ["Coordonnées GPS \(self.selectedPoi?.description ?? "") : \(self.location.latitude),\(self.location.longitude)"])
+                    ShareSheet(activityItems: [
+                        String.localizedStringWithFormat(NSLocalizedString("gps_coordinates_for_poi", comment: ""), self.selectedPoi?.description ?? "", self.location.latitude.description, self.location.longitude.description)
+                    ])
                 }
         )
     }

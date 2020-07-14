@@ -64,12 +64,12 @@ struct AreaView: View {
                 leading: Button(action: {
                     self.presentAreaPicker = true
                 }) {
-                    Text("Secteurs")
+                    Text("areas")
                 },
                 trailing: Button(action: {
                     self.showList.toggle()
                 }) {
-                    Text(showList ? "Carte" : "Liste")
+                    Text(showList ? "map" : "list")
                         .padding(.vertical)
                         .padding(.leading)
                 }
