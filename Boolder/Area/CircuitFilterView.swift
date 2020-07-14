@@ -93,6 +93,7 @@ struct CircuitFilterView: View {
                 }
             )
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

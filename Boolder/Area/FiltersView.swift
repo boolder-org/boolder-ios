@@ -102,6 +102,7 @@ struct FiltersView: View {
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func labelForSteepness() -> String {
@@ -141,6 +142,7 @@ struct FiltersView_Previews: PreviewProvider {
             FiltersView(presentFilters: .constant(true))
             .environmentObject(DataStore())
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

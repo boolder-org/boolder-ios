@@ -85,6 +85,7 @@ struct ProblemListView_Previews: PreviewProvider {
             ProblemListView(selectedProblem: .constant(Problem()), presentProblemDetails: .constant(false))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(DataStore())
         .environment(\.managedObjectContext, self.context)
     }

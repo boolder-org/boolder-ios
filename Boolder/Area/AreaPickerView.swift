@@ -36,6 +36,7 @@ struct AreaPickerView: View {
             }
             .navigationBarTitle("areas", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

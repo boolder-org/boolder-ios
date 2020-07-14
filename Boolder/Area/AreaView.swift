@@ -75,6 +75,7 @@ struct AreaView: View {
                 }
             )
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .accentColor(Color.green)
 //        .onAppear {
 //        #if DEBUG
