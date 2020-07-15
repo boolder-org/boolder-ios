@@ -18,6 +18,7 @@ struct MapView: UIViewRepresentable {
     @Binding var presentProblemDetails: Bool
     @Binding var selectedPoi: Poi?
     @Binding var presentPoiActionSheet: Bool
+    @Binding var centerOnCurrentLocationCount: Int
     
     var mapView = MKMapView()
     
@@ -43,12 +44,7 @@ struct MapView: UIViewRepresentable {
         mapView.addOverlays(dataStore.overlays)
         self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
         self.mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
-        self.zoomToRegion(mapView: self.mapView)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            context.coordinator.showUserLocation()
-            context.coordinator.locationManager.startUpdatingHeading()
-        }
+        self.zoomToVisibleAnnotations(mapView: self.mapView)
         
         return mapView
     }
@@ -101,11 +97,16 @@ struct MapView: UIViewRepresentable {
         context.coordinator.lastArea = dataStore.areaId
         
         if changedCircuit || changedArea {
-            zoomToRegion(mapView: mapView)
+            zoomToVisibleAnnotations(mapView: mapView)
+        }
+        
+        // zoom to current location
+        if centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
+            context.coordinator.locate()
         }
     }
     
-    func zoomToRegion(mapView: MKMapView) {
+    func zoomToVisibleAnnotations(mapView: MKMapView) {
         MKMapView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
             mapView.showAnnotations(self.dataStore.problems.map{$0.annotation}, animated: true)
         }, completion: nil)
@@ -130,6 +131,8 @@ struct MapView: UIViewRepresentable {
         var didStartZoom = false
         var didStartAnimation = false
         var locationManager = CLLocationManager()
+        var lastLocation: CLLocationCoordinate2D?
+        var lastCenterOnCurrentLocationCount = 0
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
             didSet {
@@ -177,15 +180,6 @@ struct MapView: UIViewRepresentable {
         
         init(_ parent: MapView) {
             self.parent = parent
-        }
-        
-//        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//            print(status.rawValue)
-//        }
-        
-        func showUserLocation() {
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
         }
         
         // MARK: MKMapViewDelegate methods
@@ -313,6 +307,44 @@ struct MapView: UIViewRepresentable {
         }
         
         // MARK: CLLocationManagerDelegate methods
+        
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            var firstTime = false
+            
+            if self.lastLocation == nil {
+                firstTime = true
+            }
+            
+            self.lastLocation = locations.last?.coordinate
+            
+            if firstTime {
+                locate()
+            }
+        }
+        
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            locate()
+        }
+        
+        func locate() {
+            startLocationManager()
+            
+            if let lastLocation = lastLocation {
+                
+                parent.mapView.setCamera(MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: lastLocation.latitude, longitude: lastLocation.longitude), fromDistance: 300, pitch: 0, heading: parent.mapView.camera.heading), animated: true)
+            }
+            else {
+                print("no location yet")
+            }
+        }
+        
+        func startLocationManager() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            
+            locationManager.startUpdatingHeading()
+            locationManager.startUpdatingLocation()
+        }
         
         // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
         func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

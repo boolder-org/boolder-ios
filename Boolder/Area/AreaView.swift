@@ -21,6 +21,7 @@ struct AreaView: View {
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
     @State private var presentAreaPicker = false
+    @State private var centerOnCurrentLocationCount = 0
     
     var body: some View {
         NavigationView {
@@ -28,7 +29,7 @@ struct AreaView: View {
                 ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                     .zIndex(showList ? 1 : 0)
                 
-                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, selectedPoi: $selectedPoi, presentPoiActionSheet: $presentPoiActionSheet)
+                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, selectedPoi: $selectedPoi, presentPoiActionSheet: $presentPoiActionSheet, centerOnCurrentLocationCount: $centerOnCurrentLocationCount)
                     .edgesIgnoringSafeArea(.bottom)
                     .zIndex(showList ? 0 : 1)
                     .sheet(isPresented: $presentProblemDetails) {
@@ -57,6 +58,31 @@ struct AreaView: View {
                     FabFiltersView()
                         .padding(.bottom, 24)
                 }
+                .zIndex(10)
+                
+                HStack {
+                    Spacer()
+                    
+                    VStack {
+                        Spacer()
+                        
+                        Button(action: {
+                            self.centerOnCurrentLocationCount += 1
+                        }) {
+                            Image(systemName: "location")
+                            .padding(12)
+                        }
+                        .accentColor(Color(.label))
+                        .background(Color(UIColor.systemBackground))
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding()
+                    }
+                }
+                .padding(.bottom, 28)
                 .zIndex(10)
             }
             .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
