@@ -41,6 +41,7 @@ class ProblemAnnotationView: MKAnnotationView {
     
     var size: ProblemAnnotationViewSize = .small {
         didSet {
+            self.isEnabled = (size == .full)
             guard size != oldValue else { return }
             refreshSize()
         }
