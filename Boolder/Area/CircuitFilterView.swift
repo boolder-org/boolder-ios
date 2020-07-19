@@ -74,6 +74,7 @@ struct CircuitFilterView: View {
                     Image(systemName: "questionmark.circle")
                         .font(.system(size: 20, weight: .regular))
                         .padding(.vertical)
+                        .padding(.trailing, 32)
                 }
                 .sheet(isPresented: $presentCircuitArticle) {
                     CircuitHelpView()
