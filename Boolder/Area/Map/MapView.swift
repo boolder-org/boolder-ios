@@ -28,7 +28,7 @@ struct MapView: UIViewRepresentable {
         mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 10, maxCenterCoordinateDistance: 20_000_000), animated: true)
         
         let initialLocation = CLLocation(latitude: 48.461788, longitude: 2.663394)
-        let regionRadius: CLLocationDistance = 1_000
+        let regionRadius: CLLocationDistance = 7_000
         let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: false)
         
@@ -44,7 +44,6 @@ struct MapView: UIViewRepresentable {
         mapView.addOverlays(dataStore.overlays)
         self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
         self.mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
-        self.zoomToVisibleAnnotations(mapView: self.mapView)
         
         return mapView
     }
@@ -66,12 +65,15 @@ struct MapView: UIViewRepresentable {
         let previousHash = previousAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         
-        if previousHash != newHash && context.coordinator.didStartAnimation {
-            mapView.removeAnnotations(mapView.annotations)
-            mapView.removeOverlays(mapView.overlays)
-            mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-            mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
-            mapView.addOverlays(dataStore.overlays)
+        if previousHash != newHash {
+            MKMapView.animate(withDuration: 3.0, delay: 1.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
+                
+                mapView.removeAnnotations(mapView.annotations)
+                mapView.removeOverlays(mapView.overlays)
+                mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
+                mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
+                mapView.addOverlays(self.dataStore.overlays)
+            }, completion: nil)
         }
         
         // refresh all annotation views
@@ -97,21 +99,19 @@ struct MapView: UIViewRepresentable {
         context.coordinator.lastArea = dataStore.areaId
         
         if changedCircuit || changedArea {
-            zoomToVisibleAnnotations(mapView: mapView)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                let rect = context.coordinator.rectThatFits(self.dataStore.problems.map{$0.annotation}+self.dataStore.pois.map{$0.annotation})
+                mapView.setVisibleMapRect(rect, animated: true)
+            }
         }
         
         // zoom to current location
         if centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
             context.coordinator.locate()
+            context.coordinator.lastCenterOnCurrentLocationCount = centerOnCurrentLocationCount
         }
     }
-    
-    func zoomToVisibleAnnotations(mapView: MKMapView) {
-        MKMapView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            mapView.showAnnotations(self.dataStore.problems.map{$0.annotation}, animated: true)
-        }, completion: nil)
-    }
-    
+
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -128,10 +128,8 @@ struct MapView: UIViewRepresentable {
         var parent: MapView
         var lastCircuit: Circuit.CircuitColor? = nil
         var lastArea: Int? = nil
-        var didStartZoom = false
-        var didStartAnimation = false
         var locationManager = CLLocationManager()
-        var lastLocation: CLLocationCoordinate2D?
+        var lastLocation: CLLocation?
         var lastCenterOnCurrentLocationCount = 0
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
@@ -236,10 +234,8 @@ struct MapView: UIViewRepresentable {
             }
             else if let annotation = annotation as? PoiAnnotation {
                 let annotationView = PoiAnnotationView(annotation: annotation, reuseIdentifier: PoiAnnotationView.ReuseID)
-                annotationView.canShowCallout = true
                 annotationView.markerTintColor = annotation.tintColor
                 annotationView.glyphText = String(annotation.title?.prefix(1) ?? "")
-                annotationView.rightCalloutAccessoryView = UIButton(type: .infoLight)
                 
                 return annotationView
             }
@@ -247,47 +243,28 @@ struct MapView: UIViewRepresentable {
             return nil
         }
         
-        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-            
-            if let annotation = view.annotation {
-                if let annotation = annotation as? PoiAnnotation {
-                    parent.selectedPoi = annotation.poi
-                    parent.presentPoiActionSheet = true
-                }
-            }
-        }
-        
         func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
             if views.last?.annotation is MKUserLocation {
                 addHeadingView(toAnnotationView: views.last!)
             }
-            
-            // FIXME: animation code below doesn't really work as intended, but removing it breaks the circuit views (?!)
-            
-            guard !didStartAnimation else { return }
-
-            for view in views {
-                if view.annotation is MKUserLocation {
-                    continue;
-                }
-
-                view.alpha = 0.0
-
-                UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations:{() in
-                    view.alpha = 1.0
-                })
-            }
-
-            didStartAnimation = true
         }
         
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            guard let annotation = view.annotation as? ProblemAnnotation else { return }
-            
-            parent.selectedProblem = annotation.problem
-            parent.presentProblemDetails = true
-            
-            mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+            if let annotation = view.annotation {
+                if let annotation = annotation as? PoiAnnotation {
+                    parent.selectedPoi = annotation.poi
+                    parent.presentPoiActionSheet = true
+                    
+                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+                }
+                
+                if let annotation = annotation as? ProblemAnnotation {
+                    parent.selectedProblem = annotation.problem
+                    parent.presentProblemDetails = true
+                    
+                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+                }
+            }
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
@@ -315,7 +292,7 @@ struct MapView: UIViewRepresentable {
                 firstTime = true
             }
             
-            self.lastLocation = locations.last?.coordinate
+            self.lastLocation = locations.last
             
             if firstTime {
                 locate()
@@ -331,11 +308,43 @@ struct MapView: UIViewRepresentable {
             
             if let lastLocation = lastLocation {
                 
-                parent.mapView.setCamera(MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: lastLocation.latitude, longitude: lastLocation.longitude), fromDistance: 300, pitch: 0, heading: parent.mapView.camera.heading), animated: true)
+                // FIXME: filter by parking only
+                if let parking = parent.dataStore.pois.first {
+                    let distance = lastLocation.distance(from: CLLocation(latitude: parking.coordinate.latitude, longitude: parking.coordinate.longitude))
+                    
+                    if distance > 1_000 {
+                        parent.mapView.setVisibleMapRect(rectThatFits(parent.mapView.annotations), animated: true)
+                    }
+                    else {
+                        parent.mapView.setCamera(MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude), fromDistance: 300, pitch: 0, heading: parent.mapView.camera.heading), animated: true)
+                    }
+                }
+                else {
+                    // TODO: handle case when there's no parking
+                }
             }
             else {
-                print("no location yet")
+//                print("no location yet")
             }
+        }
+        
+        // inspired from https://gist.github.com/andrewgleave/915374
+        func rectThatFits(_ annotations: [MKAnnotation]) -> MKMapRect {
+            var rect = MKMapRect.null
+            
+            for annotation in annotations {
+                let annotationPoint = MKMapPoint.init(annotation.coordinate)
+                let pointRect = MKMapRect.init(x: annotationPoint.x, y: annotationPoint.y, width: 0, height: 0)
+                
+                if rect.isNull {
+                    rect = pointRect
+                }
+                else {
+                    rect = rect.union(pointRect)
+                }
+            }
+            
+            return parent.mapView.mapRectThatFits(rect, edgePadding: UIEdgeInsets(top: 40, left: 40, bottom: 120, right: 40))
         }
         
         func startLocationManager() {

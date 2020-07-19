@@ -10,4 +10,12 @@ import MapKit
 
 class PoiAnnotationView: MKMarkerAnnotationView {
     static let ReuseID = "poiAnnotation"
+    
+    override var annotation: MKAnnotation? {
+        willSet {
+            if let _ = newValue as? PoiAnnotation {
+                self.displayPriority = .required
+            }
+        }
+    }
 }

@@ -24,9 +24,9 @@
 "circuit.level.beginner" = "beginner";
 
 // POI
-"gps_coordinates" = "GPS coordinates";
+"see_in" = "See in %@";
+"share" = "Share";
 "cancel" = "Cancel";
-"open_in" = "Open in:";
 "gps_coordinates_for_poi" = "GPS coordinates %@ : %@,%@";
 
 // Area view

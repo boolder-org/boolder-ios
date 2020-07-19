@@ -60,30 +60,33 @@ struct AreaView: View {
                 }
                 .zIndex(10)
                 
-                HStack {
-                    Spacer()
-                    
-                    VStack {
+                if !showList {
+                    HStack {
                         Spacer()
                         
-                        Button(action: {
-                            self.centerOnCurrentLocationCount += 1
-                        }) {
-                            Image(systemName: "location")
-                            .padding(12)
+                        VStack {
+                            Spacer()
+                            
+                            Button(action: {
+                                self.centerOnCurrentLocationCount += 1
+                            }) {
+                                Image(systemName: "location")
+                                .padding(12)
+                                .offset(x: -1, y: 0)
+                            }
+                            .accentColor(Color(.label))
+                            .background(Color(UIColor.systemBackground))
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle().stroke(Color.gray, lineWidth: 0.25)
+                            )
+                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            .padding()
                         }
-                        .accentColor(Color(.label))
-                        .background(Color(UIColor.systemBackground))
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding()
                     }
+                    .padding(.bottom, 28)
+                    .zIndex(10)
                 }
-                .padding(.bottom, 28)
-                .zIndex(10)
             }
             .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
             .navigationBarItems(

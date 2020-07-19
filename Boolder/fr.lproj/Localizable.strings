@@ -24,9 +24,9 @@
 "circuit.level.beginner" = "débutant";
 
 // POI
-"gps_coordinates" = "Coordonnées GPS";
+"see_in" = "Voir dans %@";
+"share" = "Partager";
 "cancel" = "Annuler";
-"open_in" = "Ouvrir dans : ";
 "gps_coordinates_for_poi" = "Coordonnées GPS %@ : %@,%@";
 
 // Area view

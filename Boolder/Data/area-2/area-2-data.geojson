@@ -6007,7 +6007,7 @@
       },
       "properties": {
         "color": "orange",
-        "name": "Orange"
+        "level": "unknown"
       },
       "id": "circuit_10"
     },
@@ -6204,7 +6204,7 @@
       },
       "properties": {
         "color": "blue",
-        "name": "Bleu"
+        "level": "unknown"
       },
       "id": "circuit_12"
     },
@@ -6369,7 +6369,7 @@
       },
       "properties": {
         "color": "red",
-        "name": "Rouge"
+        "level": "unknown"
       },
       "id": "circuit_11"
     },
@@ -6384,7 +6384,7 @@
       },
       "properties": {
         "title": "Parking",
-        "subtitle": "15 min de marche",
+        "subtitle": "Roche aux Sabots",
         "description": "Parking Roche aux Sabots"
       },
       "id": "poi_2"
