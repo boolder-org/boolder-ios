@@ -90,11 +90,11 @@ struct AreaView: View {
             }
             .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
             .navigationBarItems(
-                leading: Button(action: {
-                    self.presentAreaPicker = true
-                }) {
-                    Text("areas")
-                },
+//                leading: Button(action: {
+//                    self.presentAreaPicker = true
+//                }) {
+//                    Text("areas")
+//                },
                 trailing: Button(action: {
                     self.showList.toggle()
                 }) {
