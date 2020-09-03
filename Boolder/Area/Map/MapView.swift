@@ -313,7 +313,10 @@ struct MapView: UIViewRepresentable {
                     let distance = lastLocation.distance(from: CLLocation(latitude: parking.coordinate.latitude, longitude: parking.coordinate.longitude))
                     
                     if distance > 1_000 {
-                        parent.mapView.setVisibleMapRect(rectThatFits(parent.mapView.annotations), animated: true)
+                        parent.mapView.setVisibleMapRect(
+                            rectThatFits(parent.mapView.annotations, edgePadding: UIEdgeInsets(top: 80, left: 80, bottom: 160, right: 80)),
+                            animated: true
+                        )
                     }
                     else {
                         parent.mapView.setCamera(MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude), fromDistance: 300, pitch: 0, heading: parent.mapView.camera.heading), animated: true)
@@ -329,7 +332,7 @@ struct MapView: UIViewRepresentable {
         }
         
         // inspired from https://gist.github.com/andrewgleave/915374
-        func rectThatFits(_ annotations: [MKAnnotation]) -> MKMapRect {
+        func rectThatFits(_ annotations: [MKAnnotation], edgePadding: UIEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 120, right: 40)) -> MKMapRect {
             var rect = MKMapRect.null
             
             for annotation in annotations {
@@ -344,7 +347,7 @@ struct MapView: UIViewRepresentable {
                 }
             }
             
-            return parent.mapView.mapRectThatFits(rect, edgePadding: UIEdgeInsets(top: 40, left: 40, bottom: 120, right: 40))
+            return parent.mapView.mapRectThatFits(rect, edgePadding: edgePadding)
         }
         
         func startLocationManager() {
