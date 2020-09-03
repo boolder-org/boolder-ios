@@ -22,7 +22,7 @@
         ],
         "topos": [
           {
-            "id": 69
+            "id": 371
           }
         ]
       },
@@ -46,6 +46,11 @@
         "circuitColor": "yellow",
         "tags": [
           "risky"
+        ],
+        "topos": [
+          {
+            "id": 356
+          }
         ]
       },
       "id": "problem_15"
@@ -71,7 +76,7 @@
         ],
         "topos": [
           {
-            "id": 122
+            "id": 319
           }
         ]
       },
@@ -95,6 +100,11 @@
         "circuitColor": "yellow",
         "tags": [
           "risky"
+        ],
+        "topos": [
+          {
+            "id": 280
+          }
         ]
       },
       "id": "problem_40"
@@ -120,7 +130,7 @@
         ],
         "topos": [
           {
-            "id": 96
+            "id": 306
           }
         ]
       },
@@ -144,7 +154,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 87
+            "id": 424
           }
         ]
       },
@@ -171,7 +181,7 @@
         ],
         "topos": [
           {
-            "id": 132
+            "id": 299
           }
         ]
       },
@@ -198,7 +208,7 @@
         ],
         "topos": [
           {
-            "id": 182
+            "id": 303
           }
         ]
       },
@@ -222,11 +232,6 @@
         "circuitColor": "yellow",
         "tags": [
           "risky"
-        ],
-        "topos": [
-          {
-            "id": 135
-          }
         ]
       },
       "id": "problem_4"
@@ -249,11 +254,6 @@
         "circuitColor": "yellow",
         "tags": [
           "risky"
-        ],
-        "topos": [
-          {
-            "id": 50
-          }
         ]
       },
       "id": "problem_8"
@@ -276,6 +276,11 @@
         "circuitColor": "yellow",
         "tags": [
           "risky"
+        ],
+        "topos": [
+          {
+            "id": 400
+          }
         ]
       },
       "id": "problem_10"
@@ -298,7 +303,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 1
+            "id": 312
           }
         ]
       },
@@ -322,7 +327,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 199
+            "id": 436
           }
         ]
       },
@@ -343,12 +348,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuitColor": "yellow",
-        "topos": [
-          {
-            "id": 154
-          }
-        ]
+        "circuitColor": "yellow"
       },
       "id": "problem_5"
     },
@@ -389,7 +389,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 157
+            "id": 334
           }
         ]
       },
@@ -413,7 +413,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 68
+            "id": 396
           }
         ]
       },
@@ -437,7 +437,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 88
+            "id": 345
           }
         ]
       },
@@ -458,7 +458,12 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 343
+          }
+        ]
       },
       "id": "problem_12"
     },
@@ -480,7 +485,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 82
+            "id": 329
           }
         ]
       },
@@ -504,7 +509,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 77
+            "id": 294
           }
         ]
       },
@@ -525,7 +530,12 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 289
+          }
+        ]
       },
       "id": "problem_18"
     },
@@ -547,7 +557,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 133
+            "id": 453
           }
         ]
       },
@@ -571,7 +581,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 105
+            "id": 439
           }
         ]
       },
@@ -595,7 +605,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 107
+            "id": 277
           }
         ]
       },
@@ -619,7 +629,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 123
+            "id": 443
           }
         ]
       },
@@ -643,7 +653,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 70
+            "id": 324
           }
         ]
       },
@@ -667,7 +677,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 76
+            "id": 420
           }
         ]
       },
@@ -691,7 +701,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 131
+            "id": 369
           }
         ]
       },
@@ -712,7 +722,12 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 403
+          }
+        ]
       },
       "id": "problem_33"
     },
@@ -731,7 +746,12 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 393
+          }
+        ]
       },
       "id": "problem_34"
     },
@@ -772,7 +792,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 115
+            "id": 269
           }
         ]
       },
@@ -796,7 +816,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 95
+            "id": 457
           }
         ]
       },
@@ -817,7 +837,12 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 432
+          }
+        ]
       },
       "id": "problem_39"
     },
@@ -839,7 +864,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 134
+            "id": 438
           }
         ]
       },
@@ -863,7 +888,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 106
+            "id": 336
           }
         ]
       },
@@ -887,7 +912,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 124
+            "id": 376
           }
         ]
       },
@@ -911,7 +936,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 114
+            "id": 450
           }
         ]
       },
@@ -932,7 +957,12 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'Ex Saut du Jaune",
-        "circuitColor": "orange"
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 361
+          }
+        ]
       },
       "id": "problem_80"
     },
@@ -954,11 +984,6 @@
         "circuitColor": "orange",
         "tags": [
           "risky"
-        ],
-        "topos": [
-          {
-            "id": 183
-          }
         ]
       },
       "id": "problem_50"
@@ -984,7 +1009,7 @@
         ],
         "topos": [
           {
-            "id": 20
+            "id": 328
           }
         ]
       },
@@ -1011,7 +1036,7 @@
         ],
         "topos": [
           {
-            "id": 32
+            "id": 471
           }
         ]
       },
@@ -1038,7 +1063,7 @@
         ],
         "topos": [
           {
-            "id": 52
+            "id": 377
           }
         ]
       },
@@ -1062,6 +1087,11 @@
         "circuitColor": "yellow",
         "tags": [
           "risky"
+        ],
+        "topos": [
+          {
+            "id": 363
+          }
         ]
       },
       "id": "problem_27"
@@ -1084,7 +1114,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 156
+            "id": 454
           }
         ]
       },
@@ -1108,7 +1138,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 184
+            "id": 291
           }
         ]
       },
@@ -1129,7 +1159,12 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 292
+          }
+        ]
       },
       "id": "problem_45"
     },
@@ -1151,7 +1186,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 222
+            "id": 331
           }
         ]
       },
@@ -1175,7 +1210,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 205
+            "id": 354
           }
         ]
       },
@@ -1196,12 +1231,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 200
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_51"
     },
@@ -1220,12 +1250,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 221
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_52"
     },
@@ -1244,12 +1269,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 206
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_53"
     },
@@ -1268,12 +1288,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 178
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_54"
     },
@@ -1292,7 +1307,12 @@
         "steepness": "traverse",
         "height": null,
         "name": "La cheminée",
-        "circuitColor": "orange"
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 293
+          }
+        ]
       },
       "id": "problem_55"
     },
@@ -1311,12 +1331,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 136
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_56"
     },
@@ -1338,7 +1353,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 155
+            "id": 470
           }
         ]
       },
@@ -1359,7 +1374,12 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
-        "circuitColor": "orange"
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 373
+          }
+        ]
       },
       "id": "problem_58"
     },
@@ -1381,7 +1401,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 33
+            "id": 355
           }
         ]
       },
@@ -1402,12 +1422,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 18
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_62"
     },
@@ -1426,12 +1441,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 2
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_63"
     },
@@ -1450,12 +1460,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 48
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_64"
     },
@@ -1477,7 +1482,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 67
+            "id": 421
           }
         ]
       },
@@ -1498,12 +1503,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 65
-          }
-        ]
+        "circuitColor": "orange"
       },
       "id": "problem_73"
     },
@@ -1525,7 +1525,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 19
+            "id": 392
           }
         ]
       },
@@ -1549,7 +1549,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 34
+            "id": 463
           }
         ]
       },
@@ -1570,7 +1570,12 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "orange"
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 402
+          }
+        ]
       },
       "id": "problem_76"
     },
@@ -1592,7 +1597,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 180
+            "id": 350
           }
         ]
       },
@@ -1613,7 +1618,12 @@
         "steepness": "slab",
         "height": null,
         "name": "La Contrabasse",
-        "circuitColor": "orange"
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 325
+          }
+        ]
       },
       "id": "problem_79"
     },
@@ -1635,7 +1645,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 4
+            "id": 271
           }
         ]
       },
@@ -1659,7 +1669,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 176
+            "id": 459
           }
         ]
       },
@@ -1683,7 +1693,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 37
+            "id": 362
           }
         ]
       },
@@ -1707,7 +1717,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 35
+            "id": 426
           }
         ]
       },
@@ -1731,7 +1741,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 79
+            "id": 379
           }
         ]
       },
@@ -1758,7 +1768,7 @@
         ],
         "topos": [
           {
-            "id": 7
+            "id": 375
           }
         ]
       },
@@ -1785,7 +1795,7 @@
         ],
         "topos": [
           {
-            "id": 89
+            "id": 372
           }
         ]
       },
@@ -1809,6 +1819,11 @@
         "circuitColor": "skyblue",
         "tags": [
           "risky"
+        ],
+        "topos": [
+          {
+            "id": 360
+          }
         ]
       },
       "id": "problem_101"
@@ -1834,7 +1849,7 @@
         ],
         "topos": [
           {
-            "id": 128
+            "id": 335
           }
         ]
       },
@@ -1861,7 +1876,7 @@
         ],
         "topos": [
           {
-            "id": 194
+            "id": 442
           }
         ]
       },
@@ -1885,7 +1900,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 21
+            "id": 370
           }
         ]
       },
@@ -1909,7 +1924,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 36
+            "id": 298
           }
         ]
       },
@@ -1933,7 +1948,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 49
+            "id": 285
           }
         ]
       },
@@ -1957,7 +1972,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 15
+            "id": 451
           }
         ]
       },
@@ -1981,7 +1996,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 74
+            "id": 339
           }
         ]
       },
@@ -2005,7 +2020,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 104
+            "id": 468
           }
         ]
       },
@@ -2029,7 +2044,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 80
+            "id": 419
           }
         ]
       },
@@ -2053,7 +2068,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 73
+            "id": 401
           }
         ]
       },
@@ -2077,7 +2092,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 81
+            "id": 351
           }
         ]
       },
@@ -2101,7 +2116,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 72
+            "id": 333
           }
         ]
       },
@@ -2122,12 +2137,7 @@
         "steepness": "wall",
         "height": 3,
         "name": "Presse Citron",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 93
-          }
-        ]
+        "circuitColor": "red"
       },
       "id": "problem_111"
     },
@@ -2149,7 +2159,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 90
+            "id": 435
           }
         ]
       },
@@ -2173,7 +2183,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 209
+            "id": 276
           }
         ]
       },
@@ -2197,7 +2207,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 218
+            "id": 307
           }
         ]
       },
@@ -2221,7 +2231,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 188
+            "id": 297
           }
         ]
       },
@@ -2245,7 +2255,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 210
+            "id": 309
           }
         ]
       },
@@ -2269,7 +2279,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 151
+            "id": 458
           }
         ]
       },
@@ -2293,7 +2303,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 140
+            "id": 388
           }
         ]
       },
@@ -2317,7 +2327,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 162
+            "id": 408
           }
         ]
       },
@@ -2338,12 +2348,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Rouge et le Noir",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 94
-          }
-        ]
+        "circuitColor": "red"
       },
       "id": "problem_105"
     },
@@ -2365,7 +2370,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 85
+            "id": 295
           }
         ]
       },
@@ -2389,7 +2394,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 84
+            "id": 290
           }
         ]
       },
@@ -2410,12 +2415,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Coup de Poker",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 97
-          }
-        ]
+        "circuitColor": "red"
       },
       "id": "problem_108"
     },
@@ -2437,7 +2437,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 217
+            "id": 429
           }
         ]
       },
@@ -2461,7 +2461,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 174
+            "id": 320
           }
         ]
       },
@@ -2485,7 +2485,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 54
+            "id": 348
           }
         ]
       },
@@ -2509,7 +2509,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 86
+            "id": 267
           }
         ]
       },
@@ -2533,7 +2533,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 83
+            "id": 316
           }
         ]
       },
@@ -2557,7 +2557,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 78
+            "id": 395
           }
         ]
       },
@@ -2584,7 +2584,7 @@
         ],
         "topos": [
           {
-            "id": 127
+            "id": 268
           }
         ]
       },
@@ -2611,7 +2611,7 @@
         ],
         "topos": [
           {
-            "id": 112
+            "id": 397
           }
         ]
       },
@@ -2638,7 +2638,7 @@
         ],
         "topos": [
           {
-            "id": 117
+            "id": 456
           }
         ]
       },
@@ -2665,7 +2665,7 @@
         ],
         "topos": [
           {
-            "id": 152
+            "id": 265
           }
         ]
       },
@@ -2689,7 +2689,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 252
+            "id": 415
           }
         ]
       },
@@ -2713,7 +2713,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 116
+            "id": 423
           }
         ]
       },
@@ -2737,7 +2737,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 120
+            "id": 425
           }
         ]
       },
@@ -2761,7 +2761,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 64
+            "id": 367
           }
         ]
       },
@@ -2785,7 +2785,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 187
+            "id": 357
           }
         ]
       },
@@ -2809,7 +2809,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 98
+            "id": 352
           }
         ]
       },
@@ -2833,7 +2833,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 103
+            "id": 315
           }
         ]
       },
@@ -2857,7 +2857,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 109
+            "id": 287
           }
         ]
       },
@@ -2881,7 +2881,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 125
+            "id": 288
           }
         ]
       },
@@ -2905,7 +2905,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 234
+            "id": 318
           }
         ]
       },
@@ -2929,7 +2929,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 126
+            "id": 327
           }
         ]
       },
@@ -2953,7 +2953,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 121
+            "id": 441
           }
         ]
       },
@@ -2977,7 +2977,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 235
+            "id": 321
           }
         ]
       },
@@ -3001,7 +3001,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 102
+            "id": 414
           }
         ]
       },
@@ -3025,7 +3025,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 249
+            "id": 407
           }
         ]
       },
@@ -3049,7 +3049,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 248
+            "id": 390
           }
         ]
       },
@@ -3073,7 +3073,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 108
+            "id": 358
           }
         ]
       },
@@ -3097,7 +3097,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 243
+            "id": 368
           }
         ]
       },
@@ -3118,12 +3118,7 @@
         "steepness": "slab",
         "height": 4,
         "name": "Quintessence",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 130
-          }
-        ]
+        "circuitColor": "red"
       },
       "id": "problem_124"
     },
@@ -3148,7 +3143,7 @@
         ],
         "topos": [
           {
-            "id": 211
+            "id": 418
           }
         ]
       },
@@ -3175,7 +3170,7 @@
         ],
         "topos": [
           {
-            "id": 146
+            "id": 300
           }
         ]
       },
@@ -3202,7 +3197,7 @@
         ],
         "topos": [
           {
-            "id": 164
+            "id": 341
           }
         ]
       },
@@ -3226,7 +3221,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 173
+            "id": 346
           }
         ]
       },
@@ -3250,7 +3245,7 @@
         "circuitColor": "yellow",
         "topos": [
           {
-            "id": 158
+            "id": 305
           }
         ]
       },
@@ -3274,7 +3269,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 261
+            "id": 469
           }
         ]
       },
@@ -3298,7 +3293,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 256
+            "id": 440
           }
         ]
       },
@@ -3322,7 +3317,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 165
+            "id": 314
           }
         ]
       },
@@ -3346,7 +3341,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 22
+            "id": 465
           }
         ]
       },
@@ -3370,7 +3365,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 260
+            "id": 466
           }
         ]
       },
@@ -3394,7 +3389,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 208
+            "id": 431
           }
         ]
       },
@@ -3418,7 +3413,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 240
+            "id": 347
           }
         ]
       },
@@ -3442,7 +3437,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 237
+            "id": 340
           }
         ]
       },
@@ -3466,11 +3461,6 @@
         "circuitColor": "red",
         "tags": [
           "risky"
-        ],
-        "topos": [
-          {
-            "id": 31
-          }
         ]
       },
       "id": "problem_148"
@@ -3493,7 +3483,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 250
+            "id": 409
           }
         ]
       },
@@ -3517,7 +3507,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 24
+            "id": 460
           }
         ]
       },
@@ -3541,7 +3531,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 247
+            "id": 387
           }
         ]
       },
@@ -3565,7 +3555,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 230
+            "id": 301
           }
         ]
       },
@@ -3589,7 +3579,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 229
+            "id": 283
           }
         ]
       },
@@ -3613,7 +3603,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 141
+            "id": 433
           }
         ]
       },
@@ -3637,7 +3627,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 197
+            "id": 472
           }
         ]
       },
@@ -3661,7 +3651,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 186
+            "id": 394
           }
         ]
       },
@@ -3685,7 +3675,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 242
+            "id": 366
           }
         ]
       },
@@ -3709,7 +3699,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 220
+            "id": 313
           }
         ]
       },
@@ -3733,7 +3723,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 244
+            "id": 381
           }
         ]
       },
@@ -3757,7 +3747,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 207
+            "id": 404
           }
         ]
       },
@@ -3784,7 +3774,7 @@
         ],
         "topos": [
           {
-            "id": 161
+            "id": 338
           }
         ]
       },
@@ -3811,7 +3801,7 @@
         ],
         "topos": [
           {
-            "id": 233
+            "id": 308
           }
         ]
       },
@@ -3838,7 +3828,7 @@
         ],
         "topos": [
           {
-            "id": 225
+            "id": 275
           }
         ]
       },
@@ -3865,7 +3855,7 @@
         ],
         "topos": [
           {
-            "id": 62
+            "id": 311
           }
         ]
       },
@@ -3892,7 +3882,7 @@
         ],
         "topos": [
           {
-            "id": 63
+            "id": 353
           }
         ]
       },
@@ -3916,7 +3906,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 6
+            "id": 272
           }
         ]
       },
@@ -3940,7 +3930,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 236
+            "id": 322
           }
         ]
       },
@@ -3964,7 +3954,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 177
+            "id": 374
           }
         ]
       },
@@ -3988,7 +3978,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 238
+            "id": 342
           }
         ]
       },
@@ -4009,7 +3999,12 @@
         "steepness": "wall",
         "height": null,
         "name": "Opus Dei",
-        "circuitColor": "orange"
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 337
+          }
+        ]
       },
       "id": "problem_167"
     },
@@ -4031,7 +4026,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 251
+            "id": 413
           }
         ]
       },
@@ -4055,7 +4050,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 246
+            "id": 384
           }
         ]
       },
@@ -4079,7 +4074,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 241
+            "id": 365
           }
         ]
       },
@@ -4103,7 +4098,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 201
+            "id": 398
           }
         ]
       },
@@ -4127,7 +4122,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 17
+            "id": 437
           }
         ]
       },
@@ -4151,7 +4146,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 3
+            "id": 399
           }
         ]
       },
@@ -4175,7 +4170,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 223
+            "id": 386
           }
         ]
       },
@@ -4199,7 +4194,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 138
+            "id": 326
           }
         ]
       },
@@ -4220,12 +4215,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Échec et Mat",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 160
-          }
-        ]
+        "circuitColor": "red"
       },
       "id": "problem_197"
     },
@@ -4244,12 +4234,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Boute-en-Train",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 41
-          }
-        ]
+        "circuitColor": "red"
       },
       "id": "problem_206"
     },
@@ -4274,7 +4259,7 @@
         ],
         "topos": [
           {
-            "id": 13
+            "id": 405
           }
         ]
       },
@@ -4299,11 +4284,6 @@
         "tags": [
           "sit_start",
           "risky"
-        ],
-        "topos": [
-          {
-            "id": 193
-          }
         ]
       },
       "id": "problem_226"
@@ -4329,7 +4309,7 @@
         ],
         "topos": [
           {
-            "id": 43
+            "id": 296
           }
         ]
       },
@@ -4356,7 +4336,7 @@
         ],
         "topos": [
           {
-            "id": 226
+            "id": 279
           }
         ]
       },
@@ -4380,7 +4360,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 145
+            "id": 445
           }
         ]
       },
@@ -4404,7 +4384,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 170
+            "id": 380
           }
         ]
       },
@@ -4431,7 +4411,7 @@
         ],
         "topos": [
           {
-            "id": 16
+            "id": 332
           }
         ]
       },
@@ -4455,7 +4435,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 239
+            "id": 344
           }
         ]
       },
@@ -4482,7 +4462,7 @@
         ],
         "topos": [
           {
-            "id": 137
+            "id": 385
           }
         ]
       },
@@ -4509,7 +4489,7 @@
         ],
         "topos": [
           {
-            "id": 175
+            "id": 359
           }
         ]
       },
@@ -4533,7 +4513,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 228
+            "id": 282
           }
         ]
       },
@@ -4557,7 +4537,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 255
+            "id": 434
           }
         ]
       },
@@ -4581,7 +4561,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 66
+            "id": 266
           }
         ]
       },
@@ -4605,7 +4585,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 10
+            "id": 317
           }
         ]
       },
@@ -4629,7 +4609,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 245
+            "id": 382
           }
         ]
       },
@@ -4653,7 +4633,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 259
+            "id": 464
           }
         ]
       },
@@ -4677,7 +4657,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 57
+            "id": 452
           }
         ]
       },
@@ -4698,12 +4678,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Angoisse",
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 258
-          }
-        ]
+        "circuitColor": "blue"
       },
       "id": "problem_207"
     },
@@ -4725,7 +4700,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 231
+            "id": 302
           }
         ]
       },
@@ -4749,7 +4724,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 262
+            "id": 473
           }
         ]
       },
@@ -4773,7 +4748,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 167
+            "id": 448
           }
         ]
       },
@@ -4797,7 +4772,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 212
+            "id": 417
           }
         ]
       },
@@ -4818,12 +4793,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Cocaline",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 215
-          }
-        ]
+        "circuitColor": "white"
       },
       "id": "problem_225"
     },
@@ -4842,12 +4812,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Canonnerie",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 190
-          }
-        ]
+        "circuitColor": "white"
       },
       "id": "problem_227"
     },
@@ -4869,7 +4834,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 8
+            "id": 391
           }
         ]
       },
@@ -4893,7 +4858,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 214
+            "id": 474
           }
         ]
       },
@@ -4917,7 +4882,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 213
+            "id": 455
           }
         ]
       },
@@ -4941,7 +4906,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 264
+            "id": 476
           }
         ]
       },
@@ -4965,7 +4930,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 254
+            "id": 427
           }
         ]
       },
@@ -4989,7 +4954,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 232
+            "id": 304
           }
         ]
       },
@@ -5013,7 +4978,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 227
+            "id": 281
           }
         ]
       },
@@ -5037,7 +5002,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 11
+            "id": 446
           }
         ]
       },
@@ -5061,7 +5026,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 28
+            "id": 447
           }
         ]
       },
@@ -5088,7 +5053,7 @@
         ],
         "topos": [
           {
-            "id": 192
+            "id": 364
           }
         ]
       },
@@ -5112,11 +5077,6 @@
         "circuitColor": "white",
         "tags": [
           "sit_start"
-        ],
-        "topos": [
-          {
-            "id": 147
-          }
         ]
       },
       "id": "problem_234"
@@ -5142,7 +5102,7 @@
         ],
         "topos": [
           {
-            "id": 118
+            "id": 278
           }
         ]
       },
@@ -5166,11 +5126,6 @@
         "circuitColor": "white",
         "tags": [
           "risky"
-        ],
-        "topos": [
-          {
-            "id": 101
-          }
         ]
       },
       "id": "problem_243"
@@ -5196,7 +5151,7 @@
         ],
         "topos": [
           {
-            "id": 169
+            "id": 444
           }
         ]
       },
@@ -5220,7 +5175,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 216
+            "id": 378
           }
         ]
       },
@@ -5241,12 +5196,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "36.15 Power",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 111
-          }
-        ]
+        "circuitColor": "white"
       },
       "id": "problem_240"
     },
@@ -5265,12 +5215,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "36.15 Gauche",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 110
-          }
-        ]
+        "circuitColor": "white"
       },
       "id": "problem_241"
     },
@@ -5292,7 +5237,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 168
+            "id": 449
           }
         ]
       },
@@ -5316,7 +5261,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 144
+            "id": 284
           }
         ]
       },
@@ -5340,7 +5285,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 59
+            "id": 310
           }
         ]
       },
@@ -5364,7 +5309,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 58
+            "id": 274
           }
         ]
       },
@@ -5388,7 +5333,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 100
+            "id": 428
           }
         ]
       },
@@ -5409,12 +5354,7 @@
         "steepness": "wall",
         "height": 4,
         "name": "Chasseur de Prises",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 119
-          }
-        ]
+        "circuitColor": "white"
       },
       "id": "problem_245"
     },
@@ -5436,7 +5376,7 @@
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 263
+            "id": 475
           }
         ]
       },
@@ -5460,7 +5400,7 @@
         "circuitColor": "orange",
         "topos": [
           {
-            "id": 139
+            "id": 410
           }
         ]
       },
@@ -5484,7 +5424,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 196
+            "id": 330
           }
         ]
       },
@@ -5511,7 +5451,7 @@
         ],
         "topos": [
           {
-            "id": 257
+            "id": 461
           }
         ]
       },
@@ -5538,7 +5478,7 @@
         ],
         "topos": [
           {
-            "id": 253
+            "id": 416
           }
         ]
       },
@@ -5565,7 +5505,7 @@
         ],
         "topos": [
           {
-            "id": 5
+            "id": 270
           }
         ]
       },
@@ -5592,7 +5532,7 @@
         ],
         "topos": [
           {
-            "id": 53
+            "id": 462
           }
         ]
       },
@@ -5613,7 +5553,12 @@
         "steepness": "wall",
         "height": null,
         "name": null,
-        "circuitColor": "yellow"
+        "circuitColor": "yellow",
+        "topos": [
+          {
+            "id": 286
+          }
+        ]
       },
       "id": "problem_26"
     },
@@ -5638,7 +5583,7 @@
         ],
         "topos": [
           {
-            "id": 159
+            "id": 467
           }
         ]
       },
@@ -5662,7 +5607,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 202
+            "id": 412
           }
         ]
       },
@@ -5683,12 +5628,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Cruciverbiste",
-        "circuitColor": "skyblue",
-        "topos": [
-          {
-            "id": 153
-          }
-        ]
+        "circuitColor": "skyblue"
       },
       "id": "problem_181"
     },
@@ -5710,7 +5650,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 203
+            "id": 389
           }
         ]
       },
@@ -5734,7 +5674,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 181
+            "id": 422
           }
         ]
       },
@@ -5758,7 +5698,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 204
+            "id": 406
           }
         ]
       },
@@ -5782,7 +5722,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 179
+            "id": 273
           }
         ]
       },
@@ -5806,7 +5746,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 51
+            "id": 383
           }
         ]
       },
@@ -5830,7 +5770,7 @@
         "circuitColor": "red",
         "topos": [
           {
-            "id": 195
+            "id": 430
           }
         ]
       },
@@ -5857,7 +5797,7 @@
         ],
         "topos": [
           {
-            "id": 224
+            "id": 349
           }
         ]
       },
@@ -5881,7 +5821,7 @@
         "circuitColor": "skyblue",
         "topos": [
           {
-            "id": 189
+            "id": 411
           }
         ]
       },
@@ -5905,7 +5845,7 @@
         "circuitColor": "white",
         "topos": [
           {
-            "id": 191
+            "id": 323
           }
         ]
       },
