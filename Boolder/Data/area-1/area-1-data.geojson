@@ -1911,30 +1911,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663625705214155,
-          48.4622048825939
-        ]
-      },
-      "properties": {
-        "grade": "3b",
-        "circuitNumber": "21",
-        "steepness": "overhang",
-        "height": 3,
-        "name": "Le Bouchon",
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 285
-          }
-        ]
-      },
-      "id": "problem_70"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663131230167965,
           48.462965514778936
         ]
@@ -1953,6 +1929,33 @@
         ]
       },
       "id": "problem_45"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663625705214155,
+          48.4622048825939
+        ]
+      },
+      "properties": {
+        "grade": "3b",
+        "circuitNumber": "21",
+        "steepness": "overhang",
+        "height": 3,
+        "name": "Le Bouchon",
+        "circuitColor": "orange",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 285
+          }
+        ]
+      },
+      "id": "problem_70"
     },
     {
       "type": "Feature",
@@ -4759,25 +4762,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663293,
-          48.463183
-        ]
-      },
-      "properties": {
-        "grade": "7b+",
-        "circuitNumber": "5b",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Cocaline",
-        "circuitColor": "white"
-      },
-      "id": "problem_225"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663118,
           48.463323
         ]
@@ -5162,25 +5146,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663742,
-          48.461375
-        ]
-      },
-      "properties": {
-        "grade": "7c",
-        "circuitNumber": "20b",
-        "steepness": "overhang",
-        "height": null,
-        "name": "36.15 Power",
-        "circuitColor": "white"
-      },
-      "id": "problem_240"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663746,
           48.46137
         ]
@@ -5540,33 +5505,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.66351243695934,
-          48.46219241153401
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "22",
-        "steepness": "slab",
-        "height": 6,
-        "name": "Confiance",
-        "circuitColor": "orange",
-        "tags": [
-          "risky"
-        ],
-        "topos": [
-          {
-            "id": 467
-          }
-        ]
-      },
-      "id": "problem_69"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.66346691158743,
           48.46211705951099
         ]
@@ -5585,49 +5523,6 @@
         ]
       },
       "id": "problem_193"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663478048234204,
-          48.462123740717736
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "16b",
-        "steepness": "slab",
-        "height": null,
-        "name": "Le Cruciverbiste",
-        "circuitColor": "skyblue"
-      },
-      "id": "problem_181"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.663487179652291,
-          48.46219550921333
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "22",
-        "steepness": "wall",
-        "height": null,
-        "name": "Styrax",
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 389
-          }
-        ]
-      },
-      "id": "problem_185"
     },
     {
       "type": "Feature",
@@ -5805,30 +5700,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.663475818796259,
-          48.462189425998396
-        ]
-      },
-      "properties": {
-        "grade": "6c+",
-        "circuitNumber": "13",
-        "steepness": "wall",
-        "height": null,
-        "name": "Expositions retrospectives",
-        "circuitColor": "white",
-        "topos": [
-          {
-            "id": 323
-          }
-        ]
-      },
-      "id": "problem_233"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.663309437742506,
           48.46284415939012
         ]
@@ -5850,6 +5721,87 @@
         ]
       },
       "id": "problem_162"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.66351243695934,
+          48.46219241153401
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "22",
+        "steepness": "slab",
+        "height": 6,
+        "name": "Confiance",
+        "circuitColor": "orange",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 467
+          }
+        ]
+      },
+      "id": "problem_69"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663487179652291,
+          48.46219550921333
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "circuitNumber": "22",
+        "steepness": "wall",
+        "height": null,
+        "name": "Styrax",
+        "circuitColor": "red",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 389
+          }
+        ]
+      },
+      "id": "problem_185"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.663475818796259,
+          48.462189425998396
+        ]
+      },
+      "properties": {
+        "grade": "6c+",
+        "circuitNumber": "13",
+        "steepness": "wall",
+        "height": null,
+        "name": "Expositions retrospectives",
+        "circuitColor": "white",
+        "tags": [
+          "risky"
+        ],
+        "topos": [
+          {
+            "id": 323
+          }
+        ]
+      },
+      "id": "problem_233"
     },
     {
       "type": "Feature",
@@ -10487,10 +10439,6 @@
             48.462104
           ],
           [
-            2.663478048234204,
-            48.462123740717736
-          ],
-          [
             2.66353903963308,
             48.46216920203198
           ],
@@ -10817,10 +10765,6 @@
             48.463159
           ],
           [
-            2.663293,
-            48.463183
-          ],
-          [
             2.663483,
             48.463299
           ],
@@ -10879,10 +10823,6 @@
           [
             2.663746,
             48.46137
-          ],
-          [
-            2.663742,
-            48.461375
           ],
           [
             2.663869,
