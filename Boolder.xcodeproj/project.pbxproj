@@ -260,6 +260,7 @@
 		37F9356C2502D47800B1CAB2 /* topo-477.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37F9356B2502D47800B1CAB2 /* topo-477.jpg */; };
 		37F935872503A12000B1CAB2 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37F935852503A12000B1CAB2 /* area-1-data.geojson */; };
 		37F935882503A12000B1CAB2 /* area-1-topos.json in Resources */ = {isa = PBXBuildFile; fileRef = 37F935862503A12000B1CAB2 /* area-1-topos.json */; };
+		37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
 		37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
 /* End PBXBuildFile section */
 
@@ -520,6 +521,8 @@
 		37F9356B2502D47800B1CAB2 /* topo-477.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-477.jpg"; sourceTree = "<group>"; };
 		37F935852503A12000B1CAB2 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37F935862503A12000B1CAB2 /* area-1-topos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topos.json"; sourceTree = "<group>"; };
+		37F9358C250578D000B1CAB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		37F9358E250578D700B1CAB2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37FD85A22460A4F90054982F /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -569,6 +572,7 @@
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6342453263400DC161F /* LaunchScreen.storyboard */,
 				37A8C6372453263400DC161F /* Info.plist */,
+				37F9358D250578D000B1CAB2 /* InfoPlist.strings */,
 				37A6572724BDC00500273A9A /* Localizable.strings */,
 				37A8C6312453263400DC161F /* Preview Content */,
 			);
@@ -1058,6 +1062,7 @@
 				3747702825018FC200D2F113 /* topo-290.jpg in Resources */,
 				3747704225018FC300D2F113 /* topo-307.jpg in Resources */,
 				37476F9F25018FC200D2F113 /* topo-405.jpg in Resources */,
+				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				37476F8225018FC200D2F113 /* topo-323.jpg in Resources */,
 				3747704D25018FC300D2F113 /* topo-306.jpg in Resources */,
 				37476FDF25018FC200D2F113 /* topo-430.jpg in Resources */,
@@ -1236,6 +1241,15 @@
 				37A8C6352453263400DC161F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		37F9358D250578D000B1CAB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37F9358C250578D000B1CAB2 /* en */,
+				37F9358E250578D700B1CAB2 /* fr */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Boolder
+
+  Created by Nicolas Mondollot on 06/09/2020.
+  Copyright © 2020 Nicolas Mondollot. All rights reserved.
+*/
+
+NSLocationWhenInUseUsageDescription = "Your location will be displayed on the map to help you find your way around.";
