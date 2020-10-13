@@ -364,6 +364,7 @@ struct MapView: UIViewRepresentable {
 
             let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
             userHeading = heading
+            //print(userHeading)
             updateHeadingRotation()
         }
         
@@ -372,7 +373,7 @@ struct MapView: UIViewRepresentable {
                 let headingImageView = headingImageView {
 
                 headingImageView.isHidden = false
-                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi)
+                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi) // FIXME: add 90 for iPad
                 headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
             }
         }
