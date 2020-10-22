@@ -224,6 +224,30 @@
 		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
+		3766A691253EDDF100AC3477 /* area-4-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 3766A68F253EDDF100AC3477 /* area-4-data.geojson */; };
+		3766A692253EDDF100AC3477 /* area-4-topos.json in Resources */ = {isa = PBXBuildFile; fileRef = 3766A690253EDDF100AC3477 /* area-4-topos.json */; };
+		3766A6AB253EDDFE00AC3477 /* topo-499.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A695253EDDFE00AC3477 /* topo-499.jpg */; };
+		3766A6AC253EDDFE00AC3477 /* topo-506.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A696253EDDFE00AC3477 /* topo-506.jpg */; };
+		3766A6AD253EDDFE00AC3477 /* topo-498.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A697253EDDFE00AC3477 /* topo-498.jpg */; };
+		3766A6AE253EDDFE00AC3477 /* topo-505.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A698253EDDFE00AC3477 /* topo-505.jpg */; };
+		3766A6AF253EDDFE00AC3477 /* topo-504.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A699253EDDFE00AC3477 /* topo-504.jpg */; };
+		3766A6B0253EDDFE00AC3477 /* topo-500.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69A253EDDFE00AC3477 /* topo-500.jpg */; };
+		3766A6B1253EDDFE00AC3477 /* topo-501.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69B253EDDFE00AC3477 /* topo-501.jpg */; };
+		3766A6B2253EDDFE00AC3477 /* topo-488.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69C253EDDFE00AC3477 /* topo-488.jpg */; };
+		3766A6B3253EDDFE00AC3477 /* topo-503.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69D253EDDFE00AC3477 /* topo-503.jpg */; };
+		3766A6B4253EDDFE00AC3477 /* topo-502.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69E253EDDFE00AC3477 /* topo-502.jpg */; };
+		3766A6B5253EDDFE00AC3477 /* topo-489.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69F253EDDFE00AC3477 /* topo-489.jpg */; };
+		3766A6B6253EDDFE00AC3477 /* topo-490.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A0253EDDFE00AC3477 /* topo-490.jpg */; };
+		3766A6B7253EDDFE00AC3477 /* topo-491.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A1253EDDFE00AC3477 /* topo-491.jpg */; };
+		3766A6B8253EDDFE00AC3477 /* topo-485.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A2253EDDFE00AC3477 /* topo-485.jpg */; };
+		3766A6B9253EDDFE00AC3477 /* topo-493.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A3253EDDFE00AC3477 /* topo-493.jpg */; };
+		3766A6BA253EDDFE00AC3477 /* topo-487.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A4253EDDFE00AC3477 /* topo-487.jpg */; };
+		3766A6BB253EDDFF00AC3477 /* topo-486.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A5253EDDFE00AC3477 /* topo-486.jpg */; };
+		3766A6BC253EDDFF00AC3477 /* topo-492.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A6253EDDFE00AC3477 /* topo-492.jpg */; };
+		3766A6BD253EDDFF00AC3477 /* topo-496.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A7253EDDFE00AC3477 /* topo-496.jpg */; };
+		3766A6BE253EDDFF00AC3477 /* topo-497.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A8253EDDFE00AC3477 /* topo-497.jpg */; };
+		3766A6BF253EDDFF00AC3477 /* topo-495.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A9253EDDFE00AC3477 /* topo-495.jpg */; };
+		3766A6C0253EDDFF00AC3477 /* topo-494.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6AA253EDDFE00AC3477 /* topo-494.jpg */; };
 		376AB07B24C3A418007A7CB9 /* area-2-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 376AB07A24C3A417007A7CB9 /* area-2-data.geojson */; };
 		3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
 		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
@@ -482,6 +506,30 @@
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
+		3766A68F253EDDF100AC3477 /* area-4-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-4-data.geojson"; sourceTree = "<group>"; };
+		3766A690253EDDF100AC3477 /* area-4-topos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-4-topos.json"; sourceTree = "<group>"; };
+		3766A695253EDDFE00AC3477 /* topo-499.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-499.jpg"; sourceTree = "<group>"; };
+		3766A696253EDDFE00AC3477 /* topo-506.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-506.jpg"; sourceTree = "<group>"; };
+		3766A697253EDDFE00AC3477 /* topo-498.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-498.jpg"; sourceTree = "<group>"; };
+		3766A698253EDDFE00AC3477 /* topo-505.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-505.jpg"; sourceTree = "<group>"; };
+		3766A699253EDDFE00AC3477 /* topo-504.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-504.jpg"; sourceTree = "<group>"; };
+		3766A69A253EDDFE00AC3477 /* topo-500.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-500.jpg"; sourceTree = "<group>"; };
+		3766A69B253EDDFE00AC3477 /* topo-501.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-501.jpg"; sourceTree = "<group>"; };
+		3766A69C253EDDFE00AC3477 /* topo-488.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-488.jpg"; sourceTree = "<group>"; };
+		3766A69D253EDDFE00AC3477 /* topo-503.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-503.jpg"; sourceTree = "<group>"; };
+		3766A69E253EDDFE00AC3477 /* topo-502.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-502.jpg"; sourceTree = "<group>"; };
+		3766A69F253EDDFE00AC3477 /* topo-489.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-489.jpg"; sourceTree = "<group>"; };
+		3766A6A0253EDDFE00AC3477 /* topo-490.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-490.jpg"; sourceTree = "<group>"; };
+		3766A6A1253EDDFE00AC3477 /* topo-491.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-491.jpg"; sourceTree = "<group>"; };
+		3766A6A2253EDDFE00AC3477 /* topo-485.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-485.jpg"; sourceTree = "<group>"; };
+		3766A6A3253EDDFE00AC3477 /* topo-493.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-493.jpg"; sourceTree = "<group>"; };
+		3766A6A4253EDDFE00AC3477 /* topo-487.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-487.jpg"; sourceTree = "<group>"; };
+		3766A6A5253EDDFE00AC3477 /* topo-486.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-486.jpg"; sourceTree = "<group>"; };
+		3766A6A6253EDDFE00AC3477 /* topo-492.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-492.jpg"; sourceTree = "<group>"; };
+		3766A6A7253EDDFE00AC3477 /* topo-496.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-496.jpg"; sourceTree = "<group>"; };
+		3766A6A8253EDDFE00AC3477 /* topo-497.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-497.jpg"; sourceTree = "<group>"; };
+		3766A6A9253EDDFE00AC3477 /* topo-495.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-495.jpg"; sourceTree = "<group>"; };
+		3766A6AA253EDDFE00AC3477 /* topo-494.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-494.jpg"; sourceTree = "<group>"; };
 		376AB07A24C3A417007A7CB9 /* area-2-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-2-data.geojson"; sourceTree = "<group>"; };
 		3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotationView.swift; sourceTree = "<group>"; };
 		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
@@ -545,6 +593,45 @@
 			path = "area-2";
 			sourceTree = "<group>";
 		};
+		3766A68E253EDDD800AC3477 /* area-4 */ = {
+			isa = PBXGroup;
+			children = (
+				3766A68F253EDDF100AC3477 /* area-4-data.geojson */,
+				3766A690253EDDF100AC3477 /* area-4-topos.json */,
+				3766A694253EDDFE00AC3477 /* topos */,
+			);
+			path = "area-4";
+			sourceTree = "<group>";
+		};
+		3766A694253EDDFE00AC3477 /* topos */ = {
+			isa = PBXGroup;
+			children = (
+				3766A695253EDDFE00AC3477 /* topo-499.jpg */,
+				3766A696253EDDFE00AC3477 /* topo-506.jpg */,
+				3766A697253EDDFE00AC3477 /* topo-498.jpg */,
+				3766A698253EDDFE00AC3477 /* topo-505.jpg */,
+				3766A699253EDDFE00AC3477 /* topo-504.jpg */,
+				3766A69A253EDDFE00AC3477 /* topo-500.jpg */,
+				3766A69B253EDDFE00AC3477 /* topo-501.jpg */,
+				3766A69C253EDDFE00AC3477 /* topo-488.jpg */,
+				3766A69D253EDDFE00AC3477 /* topo-503.jpg */,
+				3766A69E253EDDFE00AC3477 /* topo-502.jpg */,
+				3766A69F253EDDFE00AC3477 /* topo-489.jpg */,
+				3766A6A0253EDDFE00AC3477 /* topo-490.jpg */,
+				3766A6A1253EDDFE00AC3477 /* topo-491.jpg */,
+				3766A6A2253EDDFE00AC3477 /* topo-485.jpg */,
+				3766A6A3253EDDFE00AC3477 /* topo-493.jpg */,
+				3766A6A4253EDDFE00AC3477 /* topo-487.jpg */,
+				3766A6A5253EDDFE00AC3477 /* topo-486.jpg */,
+				3766A6A6253EDDFE00AC3477 /* topo-492.jpg */,
+				3766A6A7253EDDFE00AC3477 /* topo-496.jpg */,
+				3766A6A8253EDDFE00AC3477 /* topo-497.jpg */,
+				3766A6A9253EDDFE00AC3477 /* topo-495.jpg */,
+				3766A6AA253EDDFE00AC3477 /* topo-494.jpg */,
+			);
+			path = topos;
+			sourceTree = "<group>";
+		};
 		37A8C61D2453263300DC161F = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +679,7 @@
 			children = (
 				37A8C63E245326B300DC161F /* area-1 */,
 				3701844B2465A92A00C6530C /* area-2 */,
+				3766A68E253EDDD800AC3477 /* area-4 */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -923,7 +1011,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Nicolas Mondollot";
 				TargetAttributes = {
 					37A8C6252453263300DC161F = {
@@ -972,12 +1060,14 @@
 				37476FB525018FC200D2F113 /* topo-304.jpg in Resources */,
 				37476FEB25018FC200D2F113 /* topo-310.jpg in Resources */,
 				37476F9B25018FC200D2F113 /* topo-464.jpg in Resources */,
+				3766A6AE253EDDFE00AC3477 /* topo-505.jpg in Resources */,
 				3747701B25018FC200D2F113 /* topo-474.jpg in Resources */,
 				37476FA325018FC200D2F113 /* topo-335.jpg in Resources */,
 				37476FD225018FC200D2F113 /* topo-439.jpg in Resources */,
 				37476FA025018FC200D2F113 /* topo-433.jpg in Resources */,
 				3747703325018FC300D2F113 /* topo-443.jpg in Resources */,
 				37476FEA25018FC200D2F113 /* topo-364.jpg in Resources */,
+				3766A6B7253EDDFE00AC3477 /* topo-491.jpg in Resources */,
 				37F9356C2502D47800B1CAB2 /* topo-477.jpg in Resources */,
 				37476FCD25018FC200D2F113 /* topo-327.jpg in Resources */,
 				37476FD525018FC200D2F113 /* topo-428.jpg in Resources */,
@@ -985,6 +1075,7 @@
 				3747700F25018FC200D2F113 /* topo-449.jpg in Resources */,
 				3747703B25018FC300D2F113 /* topo-406.jpg in Resources */,
 				3747700825018FC200D2F113 /* topo-288.jpg in Resources */,
+				3766A6BF253EDDFF00AC3477 /* topo-495.jpg in Resources */,
 				37476FB825018FC200D2F113 /* topo-463.jpg in Resources */,
 				3747700525018FC200D2F113 /* topo-322.jpg in Resources */,
 				37476FE925018FC200D2F113 /* topo-266.jpg in Resources */,
@@ -997,6 +1088,7 @@
 				37476F9425018FC200D2F113 /* topo-287.jpg in Resources */,
 				37476F9D25018FC200D2F113 /* topo-459.jpg in Resources */,
 				37476FA825018FC200D2F113 /* topo-399.jpg in Resources */,
+				3766A6BB253EDDFF00AC3477 /* topo-486.jpg in Resources */,
 				3747702F25018FC300D2F113 /* topo-413.jpg in Resources */,
 				3747704025018FC300D2F113 /* topo-383.jpg in Resources */,
 				3747704C25018FC300D2F113 /* topo-312.jpg in Resources */,
@@ -1008,6 +1100,7 @@
 				37476F9E25018FC200D2F113 /* topo-315.jpg in Resources */,
 				37476FD425018FC200D2F113 /* topo-319.jpg in Resources */,
 				37476FEF25018FC200D2F113 /* topo-467.jpg in Resources */,
+				3766A6AD253EDDFE00AC3477 /* topo-498.jpg in Resources */,
 				3747703C25018FC300D2F113 /* topo-340.jpg in Resources */,
 				3747700025018FC200D2F113 /* topo-269.jpg in Resources */,
 				37476FEC25018FC200D2F113 /* topo-336.jpg in Resources */,
@@ -1023,18 +1116,23 @@
 				376AB07B24C3A418007A7CB9 /* area-2-data.geojson in Resources */,
 				3747703125018FC300D2F113 /* topo-462.jpg in Resources */,
 				37476FD725018FC200D2F113 /* topo-456.jpg in Resources */,
+				3766A6B8253EDDFE00AC3477 /* topo-485.jpg in Resources */,
 				3747701125018FC200D2F113 /* topo-361.jpg in Resources */,
 				37476FD125018FC200D2F113 /* topo-431.jpg in Resources */,
 				3747700325018FC200D2F113 /* topo-353.jpg in Resources */,
 				37476F9C25018FC200D2F113 /* topo-442.jpg in Resources */,
+				3766A6B9253EDDFE00AC3477 /* topo-493.jpg in Resources */,
+				3766A6C0253EDDFF00AC3477 /* topo-494.jpg in Resources */,
 				3747702525018FC200D2F113 /* topo-355.jpg in Resources */,
 				37476FC125018FC200D2F113 /* topo-278.jpg in Resources */,
+				3766A6BE253EDDFF00AC3477 /* topo-497.jpg in Resources */,
 				37476FA725018FC200D2F113 /* topo-354.jpg in Resources */,
 				3747701725018FC200D2F113 /* topo-337.jpg in Resources */,
 				3747702125018FC200D2F113 /* topo-294.jpg in Resources */,
 				37476F8C25018FC200D2F113 /* topo-280.jpg in Resources */,
 				37F935882503A12000B1CAB2 /* area-1-topos.json in Resources */,
 				37476FB725018FC200D2F113 /* topo-457.jpg in Resources */,
+				3766A6AB253EDDFE00AC3477 /* topo-499.jpg in Resources */,
 				3747701F25018FC200D2F113 /* topo-445.jpg in Resources */,
 				37476F9725018FC200D2F113 /* topo-396.jpg in Resources */,
 				37476F9A25018FC200D2F113 /* topo-407.jpg in Resources */,
@@ -1043,9 +1141,11 @@
 				37476FBF25018FC200D2F113 /* topo-435.jpg in Resources */,
 				37476FE725018FC200D2F113 /* topo-316.jpg in Resources */,
 				37476FF425018FC200D2F113 /* topo-301.jpg in Resources */,
+				3766A6AC253EDDFE00AC3477 /* topo-506.jpg in Resources */,
 				37476FB325018FC200D2F113 /* topo-419.jpg in Resources */,
 				3747702E25018FC300D2F113 /* topo-300.jpg in Resources */,
 				3747703025018FC300D2F113 /* topo-293.jpg in Resources */,
+				3766A6AF253EDDFE00AC3477 /* topo-504.jpg in Resources */,
 				37476F7F25018FC200D2F113 /* topo-338.jpg in Resources */,
 				37476FCE25018FC200D2F113 /* topo-409.jpg in Resources */,
 				37476FC025018FC200D2F113 /* topo-303.jpg in Resources */,
@@ -1057,6 +1157,7 @@
 				37476F8025018FC200D2F113 /* topo-271.jpg in Resources */,
 				37476FAF25018FC200D2F113 /* topo-451.jpg in Resources */,
 				37476FFD25018FC200D2F113 /* topo-386.jpg in Resources */,
+				3766A6B5253EDDFE00AC3477 /* topo-489.jpg in Resources */,
 				3747702325018FC200D2F113 /* topo-400.jpg in Resources */,
 				3747700C25018FC200D2F113 /* topo-344.jpg in Resources */,
 				3747702825018FC200D2F113 /* topo-290.jpg in Resources */,
@@ -1066,6 +1167,7 @@
 				37476F8225018FC200D2F113 /* topo-323.jpg in Resources */,
 				3747704D25018FC300D2F113 /* topo-306.jpg in Resources */,
 				37476FDF25018FC200D2F113 /* topo-430.jpg in Resources */,
+				3766A691253EDDF100AC3477 /* area-4-data.geojson in Resources */,
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				37476FE625018FC200D2F113 /* topo-475.jpg in Resources */,
 				37476F8725018FC200D2F113 /* topo-365.jpg in Resources */,
@@ -1078,6 +1180,7 @@
 				37476FCF25018FC200D2F113 /* topo-392.jpg in Resources */,
 				37F935872503A12000B1CAB2 /* area-1-data.geojson in Resources */,
 				37476F8625018FC200D2F113 /* topo-325.jpg in Resources */,
+				3766A6BC253EDDFF00AC3477 /* topo-492.jpg in Resources */,
 				37476F9925018FC200D2F113 /* topo-281.jpg in Resources */,
 				37476FD825018FC200D2F113 /* topo-345.jpg in Resources */,
 				37476FF625018FC200D2F113 /* topo-298.jpg in Resources */,
@@ -1086,6 +1189,7 @@
 				3747704825018FC300D2F113 /* topo-429.jpg in Resources */,
 				37476FCB25018FC200D2F113 /* topo-279.jpg in Resources */,
 				37476FC925018FC200D2F113 /* topo-369.jpg in Resources */,
+				3766A6BD253EDDFF00AC3477 /* topo-496.jpg in Resources */,
 				3747704F25018FC300D2F113 /* topo-425.jpg in Resources */,
 				37476FC525018FC200D2F113 /* topo-468.jpg in Resources */,
 				37476FBB25018FC200D2F113 /* topo-382.jpg in Resources */,
@@ -1093,6 +1197,7 @@
 				37476FDB25018FC200D2F113 /* topo-333.jpg in Resources */,
 				37476FC425018FC200D2F113 /* topo-342.jpg in Resources */,
 				37476FA125018FC200D2F113 /* topo-398.jpg in Resources */,
+				3766A6B1253EDDFE00AC3477 /* topo-501.jpg in Resources */,
 				37476F8525018FC200D2F113 /* topo-285.jpg in Resources */,
 				37476FAD25018FC200D2F113 /* topo-332.jpg in Resources */,
 				37476F8125018FC200D2F113 /* topo-330.jpg in Resources */,
@@ -1105,6 +1210,7 @@
 				37476FB025018FC200D2F113 /* topo-444.jpg in Resources */,
 				37476FD625018FC200D2F113 /* topo-356.jpg in Resources */,
 				37476F8F25018FC200D2F113 /* topo-372.jpg in Resources */,
+				3766A6B0253EDDFE00AC3477 /* topo-500.jpg in Resources */,
 				3747702B25018FC300D2F113 /* topo-427.jpg in Resources */,
 				37476FA925018FC200D2F113 /* topo-276.jpg in Resources */,
 				37476FDE25018FC200D2F113 /* topo-286.jpg in Resources */,
@@ -1141,6 +1247,7 @@
 				37476FB425018FC200D2F113 /* topo-274.jpg in Resources */,
 				37476F8A25018FC200D2F113 /* topo-397.jpg in Resources */,
 				37476F8D25018FC200D2F113 /* topo-418.jpg in Resources */,
+				3766A6B3253EDDFE00AC3477 /* topo-503.jpg in Resources */,
 				3747704A25018FC300D2F113 /* topo-452.jpg in Resources */,
 				37476FE825018FC200D2F113 /* topo-476.jpg in Resources */,
 				37476FED25018FC200D2F113 /* topo-437.jpg in Resources */,
@@ -1161,6 +1268,7 @@
 				37476FAA25018FC200D2F113 /* topo-436.jpg in Resources */,
 				3747701E25018FC200D2F113 /* topo-341.jpg in Resources */,
 				37476FAB25018FC200D2F113 /* topo-371.jpg in Resources */,
+				3766A6BA253EDDFE00AC3477 /* topo-487.jpg in Resources */,
 				37476FB125018FC200D2F113 /* topo-360.jpg in Resources */,
 				3747701025018FC200D2F113 /* topo-367.jpg in Resources */,
 				37476FF125018FC200D2F113 /* topo-291.jpg in Resources */,
@@ -1169,13 +1277,17 @@
 				3747700125018FC200D2F113 /* topo-426.jpg in Resources */,
 				3747700625018FC200D2F113 /* topo-320.jpg in Resources */,
 				3747703425018FC300D2F113 /* topo-395.jpg in Resources */,
+				3766A6B6253EDDFE00AC3477 /* topo-490.jpg in Resources */,
 				37476FC625018FC200D2F113 /* topo-434.jpg in Resources */,
 				37476FDA25018FC200D2F113 /* topo-363.jpg in Resources */,
 				37476FE125018FC200D2F113 /* topo-328.jpg in Resources */,
+				3766A692253EDDF100AC3477 /* area-4-topos.json in Resources */,
+				3766A6B4253EDDFE00AC3477 /* topo-502.jpg in Resources */,
 				37476FF225018FC200D2F113 /* topo-472.jpg in Resources */,
 				37476FFC25018FC200D2F113 /* topo-347.jpg in Resources */,
 				3747701425018FC200D2F113 /* topo-311.jpg in Resources */,
 				3747705025018FC300D2F113 /* topo-448.jpg in Resources */,
+				3766A6B2253EDDFE00AC3477 /* topo-488.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,6 +1394,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1343,6 +1456,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
