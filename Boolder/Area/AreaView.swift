@@ -24,88 +24,79 @@ struct AreaView: View {
     @State private var centerOnCurrentLocationCount = 0
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
-                    .zIndex(showList ? 1 : 0)
-                
-                MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, selectedPoi: $selectedPoi, presentPoiActionSheet: $presentPoiActionSheet, centerOnCurrentLocationCount: $centerOnCurrentLocationCount)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .zIndex(showList ? 0 : 1)
-                    .sheet(isPresented: $presentProblemDetails) {
-                        ProblemDetailsView(problem: self.$selectedProblem)
+        ZStack {
+            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
+                .zIndex(showList ? 1 : 0)
+            
+            MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, selectedPoi: $selectedPoi, presentPoiActionSheet: $presentPoiActionSheet, centerOnCurrentLocationCount: $centerOnCurrentLocationCount)
+                .edgesIgnoringSafeArea(.bottom)
+                .zIndex(showList ? 0 : 1)
+                .sheet(isPresented: $presentProblemDetails) {
+                    ProblemDetailsView(problem: self.$selectedProblem)
+                        // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
+                        // remove these lines as soon as it's fixed
+                        .environmentObject(self.dataStore)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
+                        .accentColor(Color.green)
+                }
+            .background(PoiActionSheet(presentPoiActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
+            .background(
+                EmptyView()
+                    .sheet(isPresented: $presentAreaPicker) {
+                        AreaPickerView()
                             // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                             // remove these lines as soon as it's fixed
                             .environmentObject(self.dataStore)
                             .environment(\.managedObjectContext, self.managedObjectContext)
                             .accentColor(Color.green)
                     }
-                .background(PoiActionSheet(presentPoiActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
-                .background(
-                    EmptyView()
-                        .sheet(isPresented: $presentAreaPicker) {
-                            AreaPickerView()
-                                // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
-                                // remove these lines as soon as it's fixed
-                                .environmentObject(self.dataStore)
-                                .environment(\.managedObjectContext, self.managedObjectContext)
-                                .accentColor(Color.green)
-                        }
-                )
-                
-                VStack {
+            )
+            
+            VStack {
+                Spacer()
+                FabFiltersView()
+                    .padding(.bottom, 24)
+            }
+            .zIndex(10)
+            
+            if !showList {
+                HStack {
                     Spacer()
-                    FabFiltersView()
-                        .padding(.bottom, 24)
-                }
-                .zIndex(10)
-                
-                if !showList {
-                    HStack {
+                    
+                    VStack {
                         Spacer()
                         
-                        VStack {
-                            Spacer()
-                            
-                            Button(action: {
-                                self.centerOnCurrentLocationCount += 1
-                            }) {
-                                Image(systemName: "location")
-                                .padding(12)
-                                .offset(x: -1, y: 0)
-                            }
-                            .accentColor(Color(.label))
-                            .background(Color(UIColor.systemBackground))
-                            .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color.gray, lineWidth: 0.25)
-                            )
-                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                            .padding()
+                        Button(action: {
+                            self.centerOnCurrentLocationCount += 1
+                        }) {
+                            Image(systemName: "location")
+                            .padding(12)
+                            .offset(x: -1, y: 0)
                         }
+                        .accentColor(Color(.label))
+                        .background(Color(UIColor.systemBackground))
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding()
                     }
-                    .padding(.bottom, 28)
-                    .zIndex(10)
                 }
+                .padding(.bottom, 28)
+                .zIndex(10)
             }
-            .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
-            .navigationBarItems(
-//                leading: Button(action: {
-//                    self.presentAreaPicker = true
-//                }) {
-//                    Text("areas")
-//                },
-                trailing: Button(action: {
-                    self.showList.toggle()
-                }) {
-                    Text(showList ? "map" : "list")
-                        .padding(.vertical)
-                        .padding(.leading)
-                }
-            )
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-        .accentColor(Color.green)
+        .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.showList.toggle()
+            }) {
+                Text(showList ? "map" : "list")
+                    .padding(.vertical)
+                    .padding(.leading)
+            }
+        )
 //        .onAppear {
 //        #if DEBUG
 //            // delete all favorites
