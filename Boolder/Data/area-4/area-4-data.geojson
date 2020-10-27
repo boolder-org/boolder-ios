@@ -3,616 +3,13 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "21",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_407"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "22",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_408"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "1",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_387"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "2",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_388"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "3",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_389"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "4",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_390"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "5",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_391"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "6",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_392"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "7",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_393"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "8",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_394"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "9",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_395"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "10",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_396"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "11",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_397"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "12",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_398"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "14",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_400"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "15",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_401"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "16",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_402"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "17",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_403"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "18",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_404"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "19",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_405"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "20",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_406"
-    },
-    {
-      "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63793667,
-          48.44730833
+          2.63947471909,
+          48.44683364617
         ]
       },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "13",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 491
-          }
-        ]
-      },
-      "id": "problem_399"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "23",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_409"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "24",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_410"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "26",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_412"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "27",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_413"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "28",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_414"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "29",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_415"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "31",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_417"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "32",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_418"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "33",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_419"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "34",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_420"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "35",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_421"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "37",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_423"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "38",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_424"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "39",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_425"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "40",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_426"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "41",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_427"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "42",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_428"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "43",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_429"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "44",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_430"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "45",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_431"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "46",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_432"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "47",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_433"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "48",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_434"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "49",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange"
-      },
-      "id": "problem_435"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
       "properties": {
         "grade": null,
         "circuitNumber": "50",
@@ -625,72 +22,32 @@
     },
     {
       "type": "Feature",
-      "geometry": null,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63882227175,
+          48.44733714277
+        ]
+      },
       "properties": {
         "grade": null,
-        "circuitNumber": "1",
+        "circuitNumber": "32",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "blue"
+        "circuitColor": "orange"
       },
-      "id": "problem_437"
+      "id": "problem_418"
     },
     {
       "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "2",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63795524769,
+          48.44738428973
+        ]
       },
-      "id": "problem_438"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "3",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_439"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "5",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_441"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "6",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_442"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
       "properties": {
         "grade": null,
         "circuitNumber": "7",
@@ -703,371 +60,75 @@
     },
     {
       "type": "Feature",
-      "geometry": null,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63991661303,
+          48.44710318649
+        ]
+      },
       "properties": {
         "grade": null,
-        "circuitNumber": "11",
+        "circuitNumber": "48",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "blue"
+        "circuitColor": "orange"
       },
-      "id": "problem_447"
+      "id": "problem_434"
     },
     {
       "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "12",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63840854101,
+          48.44750438083
+        ]
       },
-      "id": "problem_448"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "15",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_451"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "16",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_452"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "17",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_453"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "18",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_454"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "19",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_455"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "20",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_456"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "21",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_457"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "22",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_458"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "23",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_459"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "24",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_460"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "25",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_461"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "26",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_462"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "27",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_463"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "28",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_464"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
       "properties": {
         "grade": null,
         "circuitNumber": "31",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "blue"
+        "circuitColor": "orange"
       },
-      "id": "problem_467"
+      "id": "problem_417"
     },
     {
       "type": "Feature",
-      "geometry": null,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63897314601,
+          48.44726775661
+        ]
+      },
       "properties": {
-        "grade": null,
-        "circuitNumber": "32",
+        "grade": "",
+        "circuitNumber": "30",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "blue"
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 500
+          }
+        ]
       },
-      "id": "problem_468"
+      "id": "problem_466"
     },
     {
       "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "33",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63945996694,
+          48.44682163691
+        ]
       },
-      "id": "problem_469"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "34",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_470"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "35",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_471"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "36",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_472"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "37",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_473"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "38",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_474"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "44",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_480"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "45",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_481"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "46",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_482"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "47",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue"
-      },
-      "id": "problem_483"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
       "properties": {
         "grade": null,
         "circuitNumber": "48",
@@ -1083,8 +144,975 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.637945,
-          48.44748333
+          2.63825900786,
+          48.44717968943
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "21",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_407"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63801090352,
+          48.44733491886
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "5",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_441"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6395954185,
+          48.44671889094
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "47",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_483"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63901874356,
+          48.44712987357
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "39",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 506
+          }
+        ]
+      },
+      "id": "problem_475"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63948209517,
+          48.44742209622
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "31",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_467"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6388229423,
+          48.44694929071
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "37",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_521"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6388678693,
+          48.44688212795
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "38",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_522"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6395364099,
+          48.4475026017
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "32",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_468"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63875856929,
+          48.44687723529
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "18",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_454"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63831097616,
+          48.44673990685
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "17",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_453"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63768300347,
+          48.44735849234
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "26",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_412"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63872906499,
+          48.44677715816
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "42",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_526"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63951696388,
+          48.44742654404
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "37",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_423"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63876795702,
+          48.44703380001
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "36",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_520"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63877332143,
+          48.44684343148
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "41",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_525"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63955853812,
+          48.44751816905
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "39",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_425"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63791635565,
+          48.44756175758
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "28",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_414"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63944521479,
+          48.44687590093
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "27",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_511"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63910189204,
+          48.44708450552
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "22",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 503
+          }
+        ]
+      },
+      "id": "problem_506"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63914547794,
+          48.44711786439
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "24",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_508"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63926148348,
+          48.44679539445
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "33",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_517"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63966247372,
+          48.44759022355
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "42",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_428"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63960882954,
+          48.44759066833
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "40",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_426"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63809673421,
+          48.44733358451
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "10",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_494"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63794585995,
+          48.44662192702
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "2",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_438"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6382134103,
+          48.4475684293
+        ]
+      },
+      "properties": {
+        "grade": "4c",
+        "circuitNumber": "14",
+        "steepness": "wall",
+        "height": null,
+        "name": "La Fissure Morin",
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 486
+          }
+        ]
+      },
+      "id": "problem_450"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6380786293,
+          48.44769341253
+        ]
+      },
+      "properties": {
+        "grade": "3a+",
+        "circuitNumber": "30",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Fissure des Enfants",
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 485
+          }
+        ]
+      },
+      "id": "problem_416"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63817049496,
+          48.44735048626
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "23",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_409"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6388075196,
+          48.44729889144
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "12",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 497
+          }
+        ]
+      },
+      "id": "problem_496"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6378764583,
+          48.44666373684
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "3",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_439"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63895034723,
+          48.44727709706
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "35",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_421"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63884104721,
+          48.44731668276
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "13",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 496
+          }
+        ]
+      },
+      "id": "problem_497"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63898990981,
+          48.44728643751
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "36",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange",
+        "topos": [
+          {
+            "id": 499
+          }
+        ]
+      },
+      "id": "problem_422"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63891346686,
+          48.44680251105
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "21",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_457"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63946801357,
+          48.44687056349
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "44",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_480"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63964101605,
+          48.4475519724
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "36",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_472"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63791099124,
+          48.4472708701
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "4",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 493
+          }
+        ]
+      },
+      "id": "problem_440"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63893090121,
+          48.44716856982
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "37",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_473"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63956859641,
+          48.44672378361
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "31",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_515"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63897716932,
+          48.44715522629
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "38",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_474"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.64024048977,
+          48.44714722017
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "46",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_432"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63797603481,
+          48.4474372188
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "6",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red",
+        "topos": [
+          {
+            "id": 494
+          }
+        ]
+      },
+      "id": "problem_490"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.64028474621,
+          48.44713343185
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "47",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_433"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63908311658,
+          48.44709784907
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "40",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 505
+          }
+        ]
+      },
+      "id": "problem_476"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6396095001,
+          48.44747547003
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "38",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_424"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63807527654,
+          48.44766583619
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "12",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_448"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63915084235,
+          48.44715389194
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "41",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 502
+          }
+        ]
+      },
+      "id": "problem_477"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63792037897,
+          48.44746612962
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "8",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_492"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63794317774,
+          48.44753373638
         ]
       },
       "properties": {
@@ -1107,48 +1135,746 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63811333,
-          48.44743667000001
+          2.63884104721,
+          48.44697731223
         ]
       },
       "properties": {
-        "grade": "",
-        "circuitNumber": "8",
+        "grade": null,
+        "circuitNumber": "24",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 490
-          }
-        ]
+        "circuitColor": "blue"
       },
-      "id": "problem_444"
+      "id": "problem_460"
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.6379083299999997,
-          48.44726667000001
+          2.63800017469,
+          48.44755953368
         ]
       },
       "properties": {
         "grade": "",
-        "circuitNumber": "4",
+        "circuitNumber": "13",
         "steepness": "other",
         "height": null,
         "name": null,
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 493
+            "id": 488
           }
         ]
       },
-      "id": "problem_440"
+      "id": "problem_449"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63775609367,
+          48.44750482561
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "27",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_413"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63786120323,
+          48.44664527811
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "2",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_486"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63846754961,
+          48.447471467
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "9",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_493"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63956457309,
+          48.44680918287
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "49",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_435"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63963296942,
+          48.44671132954
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "30",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_514"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6387766742,
+          48.44721571693
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "33",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_419"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63884037666,
+          48.44704981228
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "25",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_461"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63782247834,
+          48.44689636112
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "4",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_488"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.639492824,
+          48.44681763383
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "45",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_481"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63950422339,
+          48.44678427476
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "46",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_482"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63896711104,
+          48.44671221912
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "20",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_456"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63962224059,
+          48.44753596029
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "35",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_471"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63920582764,
+          48.44707427547
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "23",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_507"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63789355688,
+          48.44691148387
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "10",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_396"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63798441704,
+          48.44669531694
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "9",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_395"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6383005821,
+          48.44696307908
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "16",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_402"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63844877414,
+          48.44717034896
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "20",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_406"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6378848397,
+          48.44733892191
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "12",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_398"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63868346743,
+          48.44699777238
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "19",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_405"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63802297346,
+          48.4473798419
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "14",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_400"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63891681962,
+          48.44675180526
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "2",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_388"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6388511055,
+          48.44657522415
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "5",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_391"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63786069982,
+          48.44692794096
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "11",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_397"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63790478913,
+          48.44659579532
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "7",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_393"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63898789816,
+          48.44679183615
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "1",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_387"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63820804588,
+          48.44704403007
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "15",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_401"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63890542023,
+          48.44670109941
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "3",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_389"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63800688021,
+          48.44738606886
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "6",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_442"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63868598133,
+          48.44685577477
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "18",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_404"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63884641163,
+          48.44719748079
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "27",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_463"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6378523185,
+          48.44671766738
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "8",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_394"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63803034954,
+          48.44656677315
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "1",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_437"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63834953241,
+          48.44724062482
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "11",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_495"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63887591593,
+          48.44666996422
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "4",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_390"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63802498512,
+          48.44775301297
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "29",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_415"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63814635508,
+          48.44733269495
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "15",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_451"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63888597421,
+          48.44719214338
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "34",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_420"
     },
     {
       "type": "Feature",
@@ -1179,657 +1905,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.6389916700000002,
-          48.44730333
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "36",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 499
-          }
-        ]
-      },
-      "id": "problem_422"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.6389916700000002,
-          48.44730333
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "30",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 500
-          }
-        ]
-      },
-      "id": "problem_466"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.63913,
-          48.44718833
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "42",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 501
-          }
-        ]
-      },
-      "id": "problem_478"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.6390800000000003,
-          48.447021670000005
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "40",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 505
-          }
-        ]
-      },
-      "id": "problem_476"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.639055,
-          48.44708667000001
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "39",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 506
-          }
-        ]
-      },
-      "id": "problem_475"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.63806167,
-          48.4476
-        ]
-      },
-      "properties": {
-        "grade": "4c",
-        "circuitNumber": "14",
-        "steepness": "wall",
-        "height": null,
-        "name": "La Fissure Morin",
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 486
-          }
-        ]
-      },
-      "id": "problem_450"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "1",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_485"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "2",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_486"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "3",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_487"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "4",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_488"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "7",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_491"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "8",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_492"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "9",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_493"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "10",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_494"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "11",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_495"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "14",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_498"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "15",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_499"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "16",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_500"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "17",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_501"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "18",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_502"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "19",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_503"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "20",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_504"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "21",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_505"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "23",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_507"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "24",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_508"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "25",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_509"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "26",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_510"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "27",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_511"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "28",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_512"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "29",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_513"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "30",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_514"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "31",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_515"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "32",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_516"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "33",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_517"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "34",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_518"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "35",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_519"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "36",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_520"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "37",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_521"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "38",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_522"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "39",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_523"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "40",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_524"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "41",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_525"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": null,
-        "circuitNumber": "42",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red"
-      },
-      "id": "problem_526"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.63787,
-          48.447525000000006
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "10",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "blue",
-        "topos": [
-          {
-            "id": 487
-          }
-        ]
-      },
-      "id": "problem_446"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.6389383299999998,
-          48.44722
+          2.63892754845,
+          48.44725085484
         ]
       },
       "properties": {
@@ -1852,8 +1929,89 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63916333,
-          48.447066670000005
+          2.63947270744,
+          48.44680295584
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "29",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_513"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6388973736,
+          48.44681185159
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "40",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_524"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63792641394,
+          48.44757776969
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "10",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 487
+          }
+        ]
+      },
+      "id": "problem_446"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63916090064,
+          48.44714188276
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "25",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_509"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63914078407,
+          48.44708539509
         ]
       },
       "properties": {
@@ -1876,32 +2034,279 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.6380299999999997,
-          48.447741670000006
+          2.63922862642,
+          48.44711030305
         ]
       },
       "properties": {
-        "grade": "3a+",
-        "circuitNumber": "30",
-        "steepness": "slab",
+        "grade": null,
+        "circuitNumber": "26",
+        "steepness": "other",
         "height": null,
-        "name": "La Fissure des Enfants",
-        "circuitColor": "orange",
-        "topos": [
-          {
-            "id": 485
-          }
-        ]
+        "name": null,
+        "circuitColor": "red"
       },
-      "id": "problem_416"
+      "id": "problem_510"
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63803333,
-          48.44755832999999
+          2.63882830672,
+          48.44686433647
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "39",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_523"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63791836731,
+          48.44745545486
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "7",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_491"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63887859814,
+          48.44719748079
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "14",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_498"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63892084343,
+          48.44717357331
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "16",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_500"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63891078515,
+          48.44717902192
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "15",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_499"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63900432719,
+          48.44710652204
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "21",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_505"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63898856921,
+          48.44714866539
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "18",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_502"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63901220618,
+          48.44713432109
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "20",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_504"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63894380985,
+          48.44717524125
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "17",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_501"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63899745403,
+          48.44714355037
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "19",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_503"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63810276952,
+          48.44673801661
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "17",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_403"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63886518709,
+          48.44686522605
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "22",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_458"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63794317774,
+          48.44743632924
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "8",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue",
+        "topos": [
+          {
+            "id": 490
+          }
+        ]
+      },
+      "id": "problem_444"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6379746937,
+          48.44733491886
         ]
       },
       "properties": {
@@ -1910,22 +2315,307 @@
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "blue",
+        "circuitColor": "orange",
         "topos": [
           {
-            "id": 488
+            "id": 491
           }
         ]
       },
-      "id": "problem_449"
+      "id": "problem_399"
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63793667,
-          48.44730833
+          2.63951294057,
+          48.44683008787
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "28",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_512"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63806857102,
+          48.4476876304
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "11",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_447"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63822548024,
+          48.44730022579
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "22",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_408"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63888865642,
+          48.44693683669
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "35",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_519"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63874448769,
+          48.44678872264
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "19",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_455"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.638748511,
+          48.44696530301
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "23",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_459"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63808734648,
+          48.44736249539
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "24",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_410"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63883769445,
+          48.44729889144
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "28",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_464"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63963766329,
+          48.44752172729
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "43",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_429"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63787109388,
+          48.446703879
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "3",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_487"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63921320371,
+          48.44683675968
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "34",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_518"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63944186203,
+          48.44682697436
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "32",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_516"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63969063692,
+          48.44755419631
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "44",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_430"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.64016739957,
+          48.44717079374
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "45",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_431"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63961151175,
+          48.44748525523
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "33",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_469"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63799346916,
+          48.44733447408
         ]
       },
       "properties": {
@@ -1948,120 +2638,3185 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63798667,
-          48.44736167
+          2.63813093238,
+          48.44650717132
         ]
       },
       "properties": {
-        "grade": "",
+        "grade": null,
         "circuitNumber": "6",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 494
-          }
-        ]
+        "circuitColor": "orange"
       },
-      "id": "problem_490"
+      "id": "problem_392"
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.63890833,
-          48.44731333
+          2.6395954185,
+          48.44749281651
         ]
       },
       "properties": {
-        "grade": "",
-        "circuitNumber": "13",
+        "grade": null,
+        "circuitNumber": "34",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 496
-          }
-        ]
+        "circuitColor": "blue"
       },
-      "id": "problem_497"
+      "id": "problem_470"
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.6387799999999997,
-          48.44730333
+          2.63832539253,
+          48.44725085484
         ]
       },
       "properties": {
-        "grade": "",
-        "circuitNumber": "12",
+        "grade": null,
+        "circuitNumber": "16",
         "steepness": "other",
         "height": null,
         "name": null,
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 497
-          }
-        ]
+        "circuitColor": "blue"
       },
-      "id": "problem_496"
+      "id": "problem_452"
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.6391616700000005,
-          48.447138329999994
+          2.63956859641,
+          48.44762180296
         ]
       },
       "properties": {
-        "grade": "",
+        "grade": null,
         "circuitNumber": "41",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "orange"
+      },
+      "id": "problem_427"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63794602759,
+          48.44661956408
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "1",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "red"
+      },
+      "id": "problem_485"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63882830672,
+          48.44718769554
+        ]
+      },
+      "properties": {
+        "grade": null,
+        "circuitNumber": "26",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "circuitColor": "blue"
+      },
+      "id": "problem_462"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63911865585,
+          48.44711786439
+        ]
+      },
+      "properties": {
+        "grade": "",
+        "circuitNumber": "42",
         "steepness": "other",
         "height": null,
         "name": null,
         "circuitColor": "blue",
         "topos": [
           {
-            "id": 502
+            "id": 501
           }
         ]
       },
-      "id": "problem_477"
+      "id": "problem_478"
     },
     {
       "type": "Feature",
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          2.63916333,
-          48.447066670000005
+          [
+            [
+              2.63792708382,
+              48.44767651135
+            ],
+            [
+              2.63795390591,
+              48.44765783059
+            ],
+            [
+              2.63790830836,
+              48.44763114379
+            ],
+            [
+              2.63787746295,
+              48.44765160367
+            ],
+            [
+              2.63792708382,
+              48.44767651135
+            ]
+          ]
         ]
       },
       "properties": {
-        "grade": "",
-        "circuitNumber": "22",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "circuitColor": "red",
-        "topos": [
-          {
-            "id": 503
-          }
+      },
+      "id": "boulder_400"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63961285219,
+              48.44758132838
+            ],
+            [
+              2.63966247305,
+              48.44758043882
+            ],
+            [
+              2.63966381416,
+              48.4475991196
+            ],
+            [
+              2.63960748777,
+              48.44760089873
+            ],
+            [
+              2.63961285219,
+              48.44758132838
+            ]
+          ]
         ]
       },
-      "id": "problem_506"
+      "properties": {
+      },
+      "id": "boulder_401"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63920381531,
+              48.44710985871
+            ],
+            [
+              2.63921856746,
+              48.44708850903
+            ],
+            [
+              2.63920247421,
+              48.44707071763
+            ],
+            [
+              2.63925075397,
+              48.44706626978
+            ],
+            [
+              2.63926818833,
+              48.44707605505
+            ],
+            [
+              2.63927355275,
+              48.44711074828
+            ],
+            [
+              2.63920381531,
+              48.44710985871
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_402"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63885378703,
+              48.44720148429
+            ],
+            [
+              2.63882428274,
+              48.4471845825
+            ],
+            [
+              2.63877600297,
+              48.44721571737
+            ],
+            [
+              2.63880818948,
+              48.44723261916
+            ],
+            [
+              2.63885378703,
+              48.44720148429
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_403"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63783588871,
+              48.44729222014
+            ],
+            [
+              2.63792440161,
+              48.44726731227
+            ],
+            [
+              2.637890874,
+              48.44723528786
+            ],
+            [
+              2.63780370221,
+              48.44726464357
+            ],
+            [
+              2.63783588871,
+              48.44729222014
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_404"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63921990857,
+              48.44683231225
+            ],
+            [
+              2.63924941286,
+              48.4468376497
+            ],
+            [
+              2.63926416501,
+              48.44685277246
+            ],
+            [
+              2.6392601417,
+              48.44686700564
+            ],
+            [
+              2.63919174537,
+              48.44685010374
+            ],
+            [
+              2.63921990857,
+              48.44683231225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_405"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63942509755,
+              48.44683231225
+            ],
+            [
+              2.63942107424,
+              48.44686967436
+            ],
+            [
+              2.63946667179,
+              48.44688123882
+            ],
+            [
+              2.63947740063,
+              48.44681718948
+            ],
+            [
+              2.63942509755,
+              48.44683231225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_406"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63800218567,
+              48.44755997891
+            ],
+            [
+              2.637980728,
+              48.44752350686
+            ],
+            [
+              2.63790696725,
+              48.44754396679
+            ],
+            [
+              2.63792708382,
+              48.4475786597
+            ],
+            [
+              2.63800218567,
+              48.44755997891
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_407"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63945862517,
+              48.44742921317
+            ],
+            [
+              2.63950556383,
+              48.44741409058
+            ],
+            [
+              2.63953372702,
+              48.44744255663
+            ],
+            [
+              2.63946130738,
+              48.44745945834
+            ],
+            [
+              2.63945862517,
+              48.44742921317
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_408"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63877497196,
+              48.44684278322
+            ],
+            [
+              2.63883116906,
+              48.44685748377
+            ],
+            [
+              2.63881193915,
+              48.44689731042
+            ],
+            [
+              2.63875701026,
+              48.44688289917
+            ],
+            [
+              2.63877497196,
+              48.44684278322
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_409"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63888060912,
+              48.4467593671
+            ],
+            [
+              2.63891681895,
+              48.44676203582
+            ],
+            [
+              2.63891681895,
+              48.44674157558
+            ],
+            [
+              2.63888463244,
+              48.446740686
+            ],
+            [
+              2.63888060912,
+              48.4467593671
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_410"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63825699553,
+              48.44690703645
+            ],
+            [
+              2.63831198081,
+              48.44691771132
+            ],
+            [
+              2.63830125198,
+              48.44696307952
+            ],
+            [
+              2.63824090227,
+              48.44694973594
+            ],
+            [
+              2.63825699553,
+              48.44690703645
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_411"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6380115734,
+              48.44656188091
+            ],
+            [
+              2.63810813293,
+              48.44658056207
+            ],
+            [
+              2.6381590949,
+              48.44651117487
+            ],
+            [
+              2.63809606299,
+              48.44650049991
+            ],
+            [
+              2.63807862863,
+              48.44653252479
+            ],
+            [
+              2.6380115734,
+              48.44656188091
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_412"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63889536127,
+              48.44729933667
+            ],
+            [
+              2.63895168766,
+              48.44728955144
+            ],
+            [
+              2.63898119196,
+              48.44732157582
+            ],
+            [
+              2.63891145453,
+              48.44733580887
+            ],
+            [
+              2.63889536127,
+              48.44729933667
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_413"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63791233167,
+              48.44733314017
+            ],
+            [
+              2.63802498445,
+              48.44733491931
+            ],
+            [
+              2.63802364334,
+              48.44738651408
+            ],
+            [
+              2.63791233167,
+              48.44738295583
+            ],
+            [
+              2.63791233167,
+              48.44733314017
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_414"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63800056813,
+              48.44776318389
+            ],
+            [
+              2.63803191954,
+              48.44775113369
+            ],
+            [
+              2.63804466257,
+              48.4477678875
+            ],
+            [
+              2.63801474092,
+              48.44778144298
+            ],
+            [
+              2.63800056813,
+              48.44776318389
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_415"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63895705208,
+              48.44713654579
+            ],
+            [
+              2.63900667295,
+              48.44710807957
+            ],
+            [
+              2.63897314534,
+              48.44708317161
+            ],
+            [
+              2.63892218336,
+              48.44711430656
+            ],
+            [
+              2.63895705208,
+              48.44713654579
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_416"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.64028474554,
+              48.44713654579
+            ],
+            [
+              2.64028474554,
+              48.44711786483
+            ],
+            [
+              2.64030754432,
+              48.4471187544
+            ],
+            [
+              2.64030352101,
+              48.44713565622
+            ],
+            [
+              2.64028474554,
+              48.44713654579
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_417"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63815104827,
+              48.44727887664
+            ],
+            [
+              2.63806521758,
+              48.44728065577
+            ],
+            [
+              2.638070582,
+              48.44733314017
+            ],
+            [
+              2.63816714153,
+              48.44733225061
+            ],
+            [
+              2.63815104827,
+              48.44727887664
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_418"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63969197735,
+              48.44753329205
+            ],
+            [
+              2.63969331846,
+              48.44757777014
+            ],
+            [
+              2.63974025711,
+              48.44757599101
+            ],
+            [
+              2.63972818717,
+              48.44753062336
+            ],
+            [
+              2.63969197735,
+              48.44753329205
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_419"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6388210918,
+              48.44657539733
+            ],
+            [
+              2.6388765421,
+              48.44657475204
+            ],
+            [
+              2.63887459648,
+              48.4465521671
+            ],
+            [
+              2.63882011899,
+              48.44655410295
+            ],
+            [
+              2.6388210918,
+              48.44657539733
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_420"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63803303108,
+              48.44768362783
+            ],
+            [
+              2.63806655869,
+              48.44770230857
+            ],
+            [
+              2.6380397366,
+              48.44771832063
+            ],
+            [
+              2.6380102323,
+              48.44770230857
+            ],
+            [
+              2.63803303108,
+              48.44768362783
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_421"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6398837553,
+              48.44708584032
+            ],
+            [
+              2.63993337616,
+              48.44708584032
+            ],
+            [
+              2.63993337616,
+              48.44710363172
+            ],
+            [
+              2.6398837553,
+              48.44710363172
+            ],
+            [
+              2.6398837553,
+              48.44708584032
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_422"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6379512237,
+              48.44743366099
+            ],
+            [
+              2.63796999916,
+              48.44743455056
+            ],
+            [
+              2.63798743352,
+              48.4474407775
+            ],
+            [
+              2.63799413905,
+              48.44745234183
+            ],
+            [
+              2.63799145684,
+              48.44746746441
+            ],
+            [
+              2.63797804579,
+              48.4474772496
+            ],
+            [
+              2.63795390591,
+              48.44747902873
+            ],
+            [
+              2.63793647155,
+              48.44747547048
+            ],
+            [
+              2.6379217194,
+              48.4474701331
+            ],
+            [
+              2.63791769609,
+              48.44745323139
+            ],
+            [
+              2.63792708382,
+              48.4474407775
+            ],
+            [
+              2.6379512237,
+              48.44743366099
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_423"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63825833663,
+              48.44719792602
+            ],
+            [
+              2.63833075628,
+              48.44716501199
+            ],
+            [
+              2.63832405075,
+              48.44714544148
+            ],
+            [
+              2.63828784093,
+              48.4471418832
+            ],
+            [
+              2.63825967774,
+              48.44714988932
+            ],
+            [
+              2.63825833663,
+              48.44719792602
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_424"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63759985432,
+              48.44755197285
+            ],
+            [
+              2.63763740525,
+              48.44755286241
+            ],
+            [
+              2.63763874635,
+              48.44752350686
+            ],
+            [
+              2.63759851322,
+              48.44752528599
+            ],
+            [
+              2.63759985432,
+              48.44755197285
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_425"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63784393534,
+              48.44733669844
+            ],
+            [
+              2.63790428504,
+              48.4473402567
+            ],
+            [
+              2.63790294394,
+              48.44736516453
+            ],
+            [
+              2.63784527645,
+              48.4473633854
+            ],
+            [
+              2.63784393534,
+              48.44733669844
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_426"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6395565258,
+              48.44750215736
+            ],
+            [
+              2.6395270215,
+              48.44750304693
+            ],
+            [
+              2.63952970371,
+              48.44753329205
+            ],
+            [
+              2.63956189021,
+              48.44753151292
+            ],
+            [
+              2.6395565258,
+              48.44750215736
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_427"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63876259193,
+              48.44680117714
+            ],
+            [
+              2.63872235879,
+              48.44677271073
+            ],
+            [
+              2.63879611954,
+              48.44676470455
+            ],
+            [
+              2.63880953059,
+              48.44677804818
+            ],
+            [
+              2.63877600297,
+              48.44678249606
+            ],
+            [
+              2.63876259193,
+              48.44680117714
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_428"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63816580042,
+              48.44723884613
+            ],
+            [
+              2.63821542129,
+              48.44723084002
+            ],
+            [
+              2.63825431332,
+              48.4472557479
+            ],
+            [
+              2.63825297222,
+              48.44727531837
+            ],
+            [
+              2.63822346792,
+              48.44728243491
+            ],
+            [
+              2.63816580042,
+              48.44723884613
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_429"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63886988029,
+              48.44667040945
+            ],
+            [
+              2.63888999686,
+              48.44666774072
+            ],
+            [
+              2.63888731465,
+              48.44665617621
+            ],
+            [
+              2.63886585698,
+              48.44665973452
+            ],
+            [
+              2.63886988029,
+              48.44667040945
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_430"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6402404891,
+              48.44715077889
+            ],
+            [
+              2.64023914799,
+              48.44713654579
+            ],
+            [
+              2.64025792345,
+              48.44713654579
+            ],
+            [
+              2.64025792345,
+              48.44715166846
+            ],
+            [
+              2.6402404891,
+              48.44715077889
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_431"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63873979315,
+              48.44700577896
+            ],
+            [
+              2.63880953059,
+              48.44698709796
+            ],
+            [
+              2.63878673181,
+              48.44695507337
+            ],
+            [
+              2.63871699437,
+              48.44697375438
+            ],
+            [
+              2.63873979315,
+              48.44700577896
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_432"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63896778092,
+              48.44726197487
+            ],
+            [
+              2.63900533184,
+              48.44730289493
+            ],
+            [
+              2.63904020056,
+              48.44729044101
+            ],
+            [
+              2.63899728522,
+              48.4472450731
+            ],
+            [
+              2.63896778092,
+              48.44726197487
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_433"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63810276717,
+              48.44673801816
+            ],
+            [
+              2.63817921013,
+              48.44674068689
+            ],
+            [
+              2.63817786902,
+              48.44669353934
+            ],
+            [
+              2.63810142606,
+              48.44669176019
+            ],
+            [
+              2.63810276717,
+              48.44673801816
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_434"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63805358314,
+              48.44767710351
+            ],
+            [
+              2.6380892219,
+              48.44765823702
+            ],
+            [
+              2.63812376814,
+              48.44767931501
+            ],
+            [
+              2.63808549226,
+              48.44769850633
+            ],
+            [
+              2.63805358314,
+              48.44767710351
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_435"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63887524471,
+              48.4472397357
+            ],
+            [
+              2.63891279563,
+              48.44723350873
+            ],
+            [
+              2.63895168766,
+              48.44727709751
+            ],
+            [
+              2.63888463244,
+              48.44728510361
+            ],
+            [
+              2.63886451587,
+              48.44725841661
+            ],
+            [
+              2.63887524471,
+              48.4472397357
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_436"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6395860301,
+              48.44762224818
+            ],
+            [
+              2.63955384359,
+              48.44762135862
+            ],
+            [
+              2.63955244438,
+              48.44764363309
+            ],
+            [
+              2.63959260778,
+              48.44764474312
+            ],
+            [
+              2.6395860301,
+              48.44762224818
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_437"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63896912202,
+              48.44673534855
+            ],
+            [
+              2.63901740178,
+              48.44673356939
+            ],
+            [
+              2.63901606068,
+              48.44668553226
+            ],
+            [
+              2.63896778092,
+              48.44669086972
+            ],
+            [
+              2.63896912202,
+              48.44673534855
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_438"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63900667295,
+              48.44719258861
+            ],
+            [
+              2.63897716865,
+              48.44715522673
+            ],
+            [
+              2.63902947173,
+              48.44712409182
+            ],
+            [
+              2.6390509294,
+              48.44716323285
+            ],
+            [
+              2.63900667295,
+              48.44719258861
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_439"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.64007285103,
+              48.44714722062
+            ],
+            [
+              2.64009699091,
+              48.44714811018
+            ],
+            [
+              2.6400943087,
+              48.44713209794
+            ],
+            [
+              2.64007285103,
+              48.44713209794
+            ],
+            [
+              2.64007285103,
+              48.44714722062
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_440"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63947069511,
+              48.44680473544
+            ],
+            [
+              2.63951897487,
+              48.44683320182
+            ],
+            [
+              2.63959139451,
+              48.44679406054
+            ],
+            [
+              2.63956725463,
+              48.44678160648
+            ],
+            [
+              2.63953909144,
+              48.44678961266
+            ],
+            [
+              2.63950556383,
+              48.44678338563
+            ],
+            [
+              2.63947069511,
+              48.44680473544
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_441"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63868614897,
+              48.44686433692
+            ],
+            [
+              2.63870894775,
+              48.44686522649
+            ],
+            [
+              2.63870760664,
+              48.44684743501
+            ],
+            [
+              2.63868614897,
+              48.44684743501
+            ],
+            [
+              2.63868614897,
+              48.44686433692
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_442"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63840049371,
+              48.44748258698
+            ],
+            [
+              2.63846754894,
+              48.4474701331
+            ],
+            [
+              2.63849437103,
+              48.4475155008
+            ],
+            [
+              2.63841792807,
+              48.4475297338
+            ],
+            [
+              2.63840049371,
+              48.44748258698
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_443"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6382194446,
+              48.44701289553
+            ],
+            [
+              2.63829052314,
+              48.44701823296
+            ],
+            [
+              2.63827979431,
+              48.44705559494
+            ],
+            [
+              2.63820469245,
+              48.44705292623
+            ],
+            [
+              2.6382194446,
+              48.44701289553
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_444"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63876795635,
+              48.44730022623
+            ],
+            [
+              2.63883903489,
+              48.4472984471
+            ],
+            [
+              2.6388443993,
+              48.447337588
+            ],
+            [
+              2.63875722751,
+              48.44733491931
+            ],
+            [
+              2.63876795635,
+              48.44730022623
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_445"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63878002629,
+              48.44707249677
+            ],
+            [
+              2.63885915145,
+              48.44704314095
+            ],
+            [
+              2.63882562384,
+              48.44701467468
+            ],
+            [
+              2.63875052199,
+              48.44704047224
+            ],
+            [
+              2.63878002629,
+              48.44707249677
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_446"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63820134036,
+              48.44764181807
+            ],
+            [
+              2.638183906,
+              48.44766094361
+            ],
+            [
+              2.63821139865,
+              48.44767028399
+            ],
+            [
+              2.63825029068,
+              48.44765427191
+            ],
+            [
+              2.63820134036,
+              48.44764181807
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_447"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63865798578,
+              48.44700311025
+            ],
+            [
+              2.63870358333,
+              48.44699421454
+            ],
+            [
+              2.63871833548,
+              48.44701734339
+            ],
+            [
+              2.63866871461,
+              48.44702712867
+            ],
+            [
+              2.63865798578,
+              48.44700311025
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_448"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63885646924,
+              48.44678338563
+            ],
+            [
+              2.63892620668,
+              48.44679406054
+            ],
+            [
+              2.63890072569,
+              48.44681185203
+            ],
+            [
+              2.63887792692,
+              48.44681274161
+            ],
+            [
+              2.63885110483,
+              48.44679850841
+            ],
+            [
+              2.63885646924,
+              48.44678338563
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_449"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63785332307,
+              48.4467371277
+            ],
+            [
+              2.63789623842,
+              48.4467371277
+            ],
+            [
+              2.63789355621,
+              48.44670421337
+            ],
+            [
+              2.63785064086,
+              48.44670421337
+            ],
+            [
+              2.63785332307,
+              48.4467371277
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_450"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63898789749,
+              48.44679228139
+            ],
+            [
+              2.63900935516,
+              48.44679139181
+            ],
+            [
+              2.63901069626,
+              48.44675314007
+            ],
+            [
+              2.63898655638,
+              48.44675491922
+            ],
+            [
+              2.63898789749,
+              48.44679228139
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_451"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63799413905,
+              48.44771832063
+            ],
+            [
+              2.6380088912,
+              48.44772365799
+            ],
+            [
+              2.63799011573,
+              48.44773967004
+            ],
+            [
+              2.63797536358,
+              48.44773433269
+            ],
+            [
+              2.63799413905,
+              48.44771832063
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_452"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63776615128,
+              48.44692126961
+            ],
+            [
+              2.63777956232,
+              48.4469346132
+            ],
+            [
+              2.63780772552,
+              48.44694528807
+            ],
+            [
+              2.63783857092,
+              48.44694706722
+            ],
+            [
+              2.6378613697,
+              48.44692749662
+            ],
+            [
+              2.63786002859,
+              48.44689725114
+            ],
+            [
+              2.63779967889,
+              48.44689547199
+            ],
+            [
+              2.6377728568,
+              48.44690703645
+            ],
+            [
+              2.63776615128,
+              48.44692126961
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_453"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6400044547,
+              48.44711430656
+            ],
+            [
+              2.64003932342,
+              48.44712853967
+            ],
+            [
+              2.64001786575,
+              48.4471418832
+            ],
+            [
+              2.63998567924,
+              48.4471276501
+            ],
+            [
+              2.6400044547,
+              48.44711430656
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_454"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63914614782,
+              48.44714277277
+            ],
+            [
+              2.6392292963,
+              48.44713832493
+            ],
+            [
+              2.63923331961,
+              48.44716501199
+            ],
+            [
+              2.63915955886,
+              48.44716857026
+            ],
+            [
+              2.63914614782,
+              48.44714277277
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_455"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63809865628,
+              48.44765765367
+            ],
+            [
+              2.63812716278,
+              48.44767395407
+            ],
+            [
+              2.63816058419,
+              48.44766612988
+            ],
+            [
+              2.63815960121,
+              48.4476589577
+            ],
+            [
+              2.63813011173,
+              48.44764135325
+            ],
+            [
+              2.63809865628,
+              48.44765765367
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_456"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6392292963,
+              48.44678783351
+            ],
+            [
+              2.63930573925,
+              48.44680562501
+            ],
+            [
+              2.63929501042,
+              48.44682430608
+            ],
+            [
+              2.63921856746,
+              48.44680651459
+            ],
+            [
+              2.6392292963,
+              48.44678783351
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_457"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63770848379,
+              48.44693639235
+            ],
+            [
+              2.63771116599,
+              48.44688924498
+            ],
+            [
+              2.63769104943,
+              48.44688924498
+            ],
+            [
+              2.63767093286,
+              48.44689547199
+            ],
+            [
+              2.63766556844,
+              48.44691237388
+            ],
+            [
+              2.63766690955,
+              48.44692749662
+            ],
+            [
+              2.63767897949,
+              48.4469346132
+            ],
+            [
+              2.63770848379,
+              48.44693639235
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_458"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63782381877,
+              48.44741586971
+            ],
+            [
+              2.6378613697,
+              48.44741053233
+            ],
+            [
+              2.63787746295,
+              48.44742832361
+            ],
+            [
+              2.6378305243,
+              48.44743810881
+            ],
+            [
+              2.63782381877,
+              48.44741586971
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_459"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6381577538,
+              48.44722639219
+            ],
+            [
+              2.63820201024,
+              48.44722016521
+            ],
+            [
+              2.63824224338,
+              48.44720059472
+            ],
+            [
+              2.63823822007,
+              48.44715077889
+            ],
+            [
+              2.63813897833,
+              48.44719080947
+            ],
+            [
+              2.6381577538,
+              48.44722639219
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_460"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63967039439,
+              48.44666591237
+            ],
+            [
+              2.63969426966,
+              48.44667963765
+            ],
+            [
+              2.63967039439,
+              48.44669125135
+            ],
+            [
+              2.63964970249,
+              48.4466733029
+            ],
+            [
+              2.63967039439,
+              48.44666591237
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_461"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63895302877,
+              48.4472477418
+            ],
+            [
+              2.63898387417,
+              48.44723172959
+            ],
+            [
+              2.6389624165,
+              48.44721571737
+            ],
+            [
+              2.63893693551,
+              48.44722995046
+            ],
+            [
+              2.63895302877,
+              48.4472477418
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_462"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63808533415,
+              48.44734381496
+            ],
+            [
+              2.6380397366,
+              48.4473429254
+            ],
+            [
+              2.63803839549,
+              48.44738028713
+            ],
+            [
+              2.63808935747,
+              48.44738028713
+            ],
+            [
+              2.63808533415,
+              48.44734381496
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_463"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63884037599,
+              48.44697820224
+            ],
+            [
+              2.63882294163,
+              48.44694973594
+            ],
+            [
+              2.63888463244,
+              48.44692927577
+            ],
+            [
+              2.63890474901,
+              48.44696841695
+            ],
+            [
+              2.63884037599,
+              48.44697820224
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_464"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63838440046,
+              48.44720148429
+            ],
+            [
+              2.63839378819,
+              48.44722105478
+            ],
+            [
+              2.63842865691,
+              48.44722639219
+            ],
+            [
+              2.63845011458,
+              48.44722461305
+            ],
+            [
+              2.63845011458,
+              48.44715522673
+            ],
+            [
+              2.63839244708,
+              48.44715433717
+            ],
+            [
+              2.63838440046,
+              48.44720148429
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_465"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63823955983,
+              48.44722372437
+            ],
+            [
+              2.63829186425,
+              48.44725485834
+            ],
+            [
+              2.63831063971,
+              48.4472557479
+            ],
+            [
+              2.63833343849,
+              48.4472477418
+            ],
+            [
+              2.63835489616,
+              48.44723795656
+            ],
+            [
+              2.6383669661,
+              48.44722372348
+            ],
+            [
+              2.63837098941,
+              48.44720326342
+            ],
+            [
+              2.63834953174,
+              48.4471703494
+            ],
+            [
+              2.63823955983,
+              48.44722372437
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_466"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6379203783,
+              48.44672645279
+            ],
+            [
+              2.6379820691,
+              48.44672734236
+            ],
+            [
+              2.63798475131,
+              48.44668553226
+            ],
+            [
+              2.6379203783,
+              48.44668553226
+            ],
+            [
+              2.6379203783,
+              48.44672645279
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_467"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63819262251,
+              48.44727442881
+            ],
+            [
+              2.63822749123,
+              48.4473011158
+            ],
+            [
+              2.63817250594,
+              48.4473011158
+            ],
+            [
+              2.63816606864,
+              48.44727852081
+            ],
+            [
+              2.63819262251,
+              48.44727442881
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_468"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63962089881,
+              48.44752172774
+            ],
+            [
+              2.63965844974,
+              48.44752083818
+            ],
+            [
+              2.63966113195,
+              48.44755197285
+            ],
+            [
+              2.63962626323,
+              48.44755108329
+            ],
+            [
+              2.63962089881,
+              48.44752172774
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_469"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63908311591,
+              48.44711608569
+            ],
+            [
+              2.63908579811,
+              48.44708406118
+            ],
+            [
+              2.63915398399,
+              48.44708657388
+            ],
+            [
+              2.63914614782,
+              48.44711786483
+            ],
+            [
+              2.63908311591,
+              48.44711608569
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_470"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63829588756,
+              48.44671488829
+            ],
+            [
+              2.63836160168,
+              48.4467033238
+            ],
+            [
+              2.63839110598,
+              48.44676737328
+            ],
+            [
+              2.63832539186,
+              48.446770042
+            ],
+            [
+              2.63829588756,
+              48.44671488829
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_471"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63820469245,
+              48.44734203583
+            ],
+            [
+              2.63815104827,
+              48.44735448975
+            ],
+            [
+              2.63815373048,
+              48.44736605409
+            ],
+            [
+              2.63818323478,
+              48.44737583931
+            ],
+            [
+              2.63824224338,
+              48.44736160627
+            ],
+            [
+              2.63820469245,
+              48.44734203583
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_472"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63787880406,
+              48.44693016534
+            ],
+            [
+              2.63787880406,
+              48.44691059474
+            ],
+            [
+              2.63790562615,
+              48.44691237388
+            ],
+            [
+              2.63790562615,
+              48.44693194449
+            ],
+            [
+              2.63787880406,
+              48.44693016534
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_473"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.64012649521,
+              48.44718102422
+            ],
+            [
+              2.6401519762,
+              48.44718013465
+            ],
+            [
+              2.64015084256,
+              48.4471658475
+            ],
+            [
+              2.64012536157,
+              48.44716673707
+            ],
+            [
+              2.64012649521,
+              48.44718102422
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_474"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63760387763,
+              48.44733225061
+            ],
+            [
+              2.63768032059,
+              48.44733314017
+            ],
+            [
+              2.6376843439,
+              48.44736783322
+            ],
+            [
+              2.63759583101,
+              48.44736783322
+            ],
+            [
+              2.63760387763,
+              48.44733225061
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_475"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63954445586,
+              48.44672823194
+            ],
+            [
+              2.63964503869,
+              48.44670955083
+            ],
+            [
+              2.63962089881,
+              48.44667752607
+            ],
+            [
+              2.63953506812,
+              48.44669709676
+            ],
+            [
+              2.63954445586,
+              48.44672823194
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_476"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63840988144,
+              48.44754129811
+            ],
+            [
+              2.63839512929,
+              48.4475083843
+            ],
+            [
+              2.63835623726,
+              48.44751639037
+            ],
+            [
+              2.6383683072,
+              48.44754752504
+            ],
+            [
+              2.63840988144,
+              48.44754129811
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_477"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63892218336,
+              48.44721660694
+            ],
+            [
+              2.63896643981,
+              48.44719881559
+            ],
+            [
+              2.63896643981,
+              48.44718903034
+            ],
+            [
+              2.6389315711,
+              48.4471676807
+            ],
+            [
+              2.63887792692,
+              48.44719703645
+            ],
+            [
+              2.63892218336,
+              48.44721660694
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_478"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6377138482,
+              48.44752884424
+            ],
+            [
+              2.63775408134,
+              48.44752884424
+            ],
+            [
+              2.63775676355,
+              48.44749948868
+            ],
+            [
+              2.63770580158,
+              48.44750037824
+            ],
+            [
+              2.6377138482,
+              48.44752884424
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_479"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63956859574,
+              48.44747280179
+            ],
+            [
+              2.63960882887,
+              48.4474701331
+            ],
+            [
+              2.63961285219,
+              48.44749148261
+            ],
+            [
+              2.63957127795,
+              48.44749504086
+            ],
+            [
+              2.63956859574,
+              48.44747280179
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_480"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63887792692,
+              48.44671666745
+            ],
+            [
+              2.6389034079,
+              48.44671755702
+            ],
+            [
+              2.63890586783,
+              48.44668655454
+            ],
+            [
+              2.63888038684,
+              48.44668566496
+            ],
+            [
+              2.63887792692,
+              48.44671666745
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_481"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63814970784,
+              48.44764671065
+            ],
+            [
+              2.63813294403,
+              48.44763381203
+            ],
+            [
+              2.6381376379,
+              48.44762269252
+            ],
+            [
+              2.63815775447,
+              48.44761379691
+            ],
+            [
+              2.63817585938,
+              48.44761379691
+            ],
+            [
+              2.6381966465,
+              48.44763737027
+            ],
+            [
+              2.63814970784,
+              48.44764671065
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_482"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6382134103,
+              48.4475519724
+            ],
+            [
+              2.63821408086,
+              48.4475822175
+            ],
+            [
+              2.63824962012,
+              48.44758177272
+            ],
+            [
+              2.63825029068,
+              48.4475866653
+            ],
+            [
+              2.6382865005,
+              48.4475866653
+            ],
+            [
+              2.63826705448,
+              48.44754707981
+            ],
+            [
+              2.6382134103,
+              48.4475519724
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_483"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.64016806945,
+              48.44717390768
+            ],
+            [
+              2.64016806945,
+              48.44715789544
+            ],
+            [
+              2.64018952712,
+              48.44715789544
+            ],
+            [
+              2.64018952712,
+              48.44717390768
+            ],
+            [
+              2.64016806945,
+              48.44717390768
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_484"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63886988029,
+              48.44689102413
+            ],
+            [
+              2.63889670238,
+              48.44689102413
+            ],
+            [
+              2.63889938459,
+              48.44685633075
+            ],
+            [
+              2.63886451587,
+              48.44685988905
+            ],
+            [
+              2.63886988029,
+              48.44689102413
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_485"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.63786002859,
+              48.44665884494
+            ],
+            [
+              2.63788148627,
+              48.44666507199
+            ],
+            [
+              2.63790428504,
+              48.4466686303
+            ],
+            [
+              2.63792543969,
+              48.44666440454
+            ],
+            [
+              2.63793647155,
+              48.44665439706
+            ],
+            [
+              2.63794585928,
+              48.44664372213
+            ],
+            [
+              2.63794600331,
+              48.44662237666
+            ],
+            [
+              2.63794743445,
+              48.4465948
+            ],
+            [
+              2.63786035419,
+              48.44659368773
+            ],
+            [
+              2.63786002859,
+              48.44665884494
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_486"
     },
     {
       "type": "Feature",
@@ -2069,20 +5824,204 @@
         "type": "LineString",
         "coordinates": [
           [
-            2.63793667,
-            48.44730833
+            2.63898789816,
+            48.44679183615
+          ],
+          [
+            2.63891681962,
+            48.44675180526
+          ],
+          [
+            2.63890542023,
+            48.44670109941
+          ],
+          [
+            2.63887591593,
+            48.44666996422
+          ],
+          [
+            2.6388511055,
+            48.44657522415
+          ],
+          [
+            2.63813093238,
+            48.44650717132
+          ],
+          [
+            2.63790478913,
+            48.44659579532
+          ],
+          [
+            2.6378523185,
+            48.44671766738
+          ],
+          [
+            2.63798441704,
+            48.44669531694
+          ],
+          [
+            2.63789355688,
+            48.44691148387
+          ],
+          [
+            2.63786069982,
+            48.44692794096
+          ],
+          [
+            2.6378848397,
+            48.44733892191
+          ],
+          [
+            2.6379746937,
+            48.44733491886
+          ],
+          [
+            2.63802297346,
+            48.4473798419
+          ],
+          [
+            2.63820804588,
+            48.44704403007
+          ],
+          [
+            2.6383005821,
+            48.44696307908
+          ],
+          [
+            2.63810276952,
+            48.44673801661
+          ],
+          [
+            2.63868598133,
+            48.44685577477
+          ],
+          [
+            2.63868346743,
+            48.44699777238
+          ],
+          [
+            2.63844877414,
+            48.44717034896
+          ],
+          [
+            2.63825900786,
+            48.44717968943
+          ],
+          [
+            2.63822548024,
+            48.44730022579
+          ],
+          [
+            2.63817049496,
+            48.44735048626
+          ],
+          [
+            2.63808734648,
+            48.44736249539
           ],
           [
             2.63798667,
             48.44736167
           ],
           [
-            2.6380299999999997,
-            48.447741670000006
+            2.63768300347,
+            48.44735849234
           ],
           [
-            2.6389916700000002,
-            48.44730333
+            2.63775609367,
+            48.44750482561
+          ],
+          [
+            2.63791635565,
+            48.44756175758
+          ],
+          [
+            2.63802498512,
+            48.44775301297
+          ],
+          [
+            2.6380786293,
+            48.44769341253
+          ],
+          [
+            2.63840854101,
+            48.44750438083
+          ],
+          [
+            2.63882227175,
+            48.44733714277
+          ],
+          [
+            2.6387766742,
+            48.44721571693
+          ],
+          [
+            2.63888597421,
+            48.44719214338
+          ],
+          [
+            2.63895034723,
+            48.44727709706
+          ],
+          [
+            2.63898990981,
+            48.44728643751
+          ],
+          [
+            2.63951696388,
+            48.44742654404
+          ],
+          [
+            2.6396095001,
+            48.44747547003
+          ],
+          [
+            2.63955853812,
+            48.44751816905
+          ],
+          [
+            2.63960882954,
+            48.44759066833
+          ],
+          [
+            2.63956859641,
+            48.44762180296
+          ],
+          [
+            2.63966247372,
+            48.44759022355
+          ],
+          [
+            2.63963766329,
+            48.44752172729
+          ],
+          [
+            2.63969063692,
+            48.44755419631
+          ],
+          [
+            2.64016739957,
+            48.44717079374
+          ],
+          [
+            2.64024048977,
+            48.44714722017
+          ],
+          [
+            2.64028474621,
+            48.44713343185
+          ],
+          [
+            2.63991661303,
+            48.44710318649
+          ],
+          [
+            2.63956457309,
+            48.44680918287
+          ],
+          [
+            2.63947471909,
+            48.44683364617
           ]
         ]
       },
@@ -2098,56 +6037,196 @@
         "type": "LineString",
         "coordinates": [
           [
-            2.6379083299999997,
-            48.44726667000001
+            2.63803034954,
+            48.44656677315
           ],
           [
-            2.63811333,
-            48.44743667000001
+            2.63794585995,
+            48.44662192702
           ],
           [
-            2.637945,
-            48.44748333
+            2.6378764583,
+            48.44666373684
           ],
           [
-            2.63787,
-            48.447525000000006
+            2.63791099124,
+            48.4472708701
           ],
           [
-            2.63803333,
-            48.44755832999999
+            2.63801090352,
+            48.44733491886
           ],
           [
-            2.63806167,
-            48.4476
+            2.63800688021,
+            48.44738606886
           ],
           [
-            2.6389383299999998,
-            48.44722
+            2.63795524769,
+            48.44738428973
           ],
           [
-            2.6389916700000002,
-            48.44730333
+            2.63794317774,
+            48.44743632924
           ],
           [
-            2.639055,
-            48.44708667000001
+            2.63794317774,
+            48.44753373638
           ],
           [
-            2.6390800000000003,
-            48.447021670000005
+            2.63792641394,
+            48.44757776969
           ],
           [
-            2.6391616700000005,
-            48.447138329999994
+            2.63806857102,
+            48.4476876304
           ],
           [
-            2.63913,
-            48.44718833
+            2.63807527654,
+            48.44766583619
           ],
           [
-            2.63916333,
-            48.447066670000005
+            2.63800017469,
+            48.44755953368
+          ],
+          [
+            2.6382134103,
+            48.4475684293
+          ],
+          [
+            2.63814635508,
+            48.44733269495
+          ],
+          [
+            2.63832539253,
+            48.44725085484
+          ],
+          [
+            2.63831097616,
+            48.44673990685
+          ],
+          [
+            2.63875856929,
+            48.44687723529
+          ],
+          [
+            2.63874448769,
+            48.44678872264
+          ],
+          [
+            2.63896711104,
+            48.44671221912
+          ],
+          [
+            2.63891346686,
+            48.44680251105
+          ],
+          [
+            2.63886518709,
+            48.44686522605
+          ],
+          [
+            2.638748511,
+            48.44696530301
+          ],
+          [
+            2.63884104721,
+            48.44697731223
+          ],
+          [
+            2.63884037666,
+            48.44704981228
+          ],
+          [
+            2.63882830672,
+            48.44718769554
+          ],
+          [
+            2.63884641163,
+            48.44719748079
+          ],
+          [
+            2.63883769445,
+            48.44729889144
+          ],
+          [
+            2.63892754845,
+            48.44725085484
+          ],
+          [
+            2.63897314601,
+            48.44726775661
+          ],
+          [
+            2.63948209517,
+            48.44742209622
+          ],
+          [
+            2.6395364099,
+            48.4475026017
+          ],
+          [
+            2.63961151175,
+            48.44748525523
+          ],
+          [
+            2.6395954185,
+            48.44749281651
+          ],
+          [
+            2.63962224059,
+            48.44753596029
+          ],
+          [
+            2.63964101605,
+            48.4475519724
+          ],
+          [
+            2.63893090121,
+            48.44716856982
+          ],
+          [
+            2.63897716932,
+            48.44715522629
+          ],
+          [
+            2.63901874356,
+            48.44712987357
+          ],
+          [
+            2.63908311658,
+            48.44709784907
+          ],
+          [
+            2.63915084235,
+            48.44715389194
+          ],
+          [
+            2.63911865585,
+            48.44711786439
+          ],
+          [
+            2.63914078407,
+            48.44708539509
+          ],
+          [
+            2.63946801357,
+            48.44687056349
+          ],
+          [
+            2.639492824,
+            48.44681763383
+          ],
+          [
+            2.63950422339,
+            48.44678427476
+          ],
+          [
+            2.6395954185,
+            48.44671889094
+          ],
+          [
+            2.63945996694,
+            48.44682163691
           ]
         ]
       },
@@ -2163,24 +6242,172 @@
         "type": "LineString",
         "coordinates": [
           [
-            2.63793667,
-            48.44730833
+            2.63794602759,
+            48.44661956408
           ],
           [
-            2.63798667,
-            48.44736167
+            2.63786120323,
+            48.44664527811
           ],
           [
-            2.6387799999999997,
-            48.44730333
+            2.63787109388,
+            48.446703879
           ],
           [
-            2.63890833,
-            48.44731333
+            2.63782247834,
+            48.44689636112
           ],
           [
-            2.63916333,
-            48.447066670000005
+            2.63799346916,
+            48.44733447408
+          ],
+          [
+            2.63797603481,
+            48.4474372188
+          ],
+          [
+            2.63791836731,
+            48.44745545486
+          ],
+          [
+            2.63792037897,
+            48.44746612962
+          ],
+          [
+            2.63846754961,
+            48.447471467
+          ],
+          [
+            2.63809673421,
+            48.44733358451
+          ],
+          [
+            2.63834953241,
+            48.44724062482
+          ],
+          [
+            2.6388075196,
+            48.44729889144
+          ],
+          [
+            2.63884104721,
+            48.44731668276
+          ],
+          [
+            2.63887859814,
+            48.44719748079
+          ],
+          [
+            2.63891078515,
+            48.44717902192
+          ],
+          [
+            2.63892084343,
+            48.44717357331
+          ],
+          [
+            2.63894380985,
+            48.44717524125
+          ],
+          [
+            2.63898856921,
+            48.44714866539
+          ],
+          [
+            2.63899745403,
+            48.44714355037
+          ],
+          [
+            2.63901220618,
+            48.44713432109
+          ],
+          [
+            2.63900432719,
+            48.44710652204
+          ],
+          [
+            2.63910189204,
+            48.44708450552
+          ],
+          [
+            2.63920582764,
+            48.44707427547
+          ],
+          [
+            2.63914547794,
+            48.44711786439
+          ],
+          [
+            2.63916090064,
+            48.44714188276
+          ],
+          [
+            2.63922862642,
+            48.44711030305
+          ],
+          [
+            2.63944521479,
+            48.44687590093
+          ],
+          [
+            2.63951294057,
+            48.44683008787
+          ],
+          [
+            2.63947270744,
+            48.44680295584
+          ],
+          [
+            2.63963296942,
+            48.44671132954
+          ],
+          [
+            2.63956859641,
+            48.44672378361
+          ],
+          [
+            2.63944186203,
+            48.44682697436
+          ],
+          [
+            2.63926148348,
+            48.44679539445
+          ],
+          [
+            2.63921320371,
+            48.44683675968
+          ],
+          [
+            2.63888865642,
+            48.44693683669
+          ],
+          [
+            2.63876795702,
+            48.44703380001
+          ],
+          [
+            2.6388229423,
+            48.44694929071
+          ],
+          [
+            2.6388678693,
+            48.44688212795
+          ],
+          [
+            2.63882830672,
+            48.44686433647
+          ],
+          [
+            2.6388973736,
+            48.44681185159
+          ],
+          [
+            2.63877332143,
+            48.44684343148
+          ],
+          [
+            2.63872906499,
+            48.44677715816
           ]
         ]
       },
@@ -2189,6 +6416,45 @@
         "level": "unknown"
       },
       "id": "circuit_15"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.63764344089,
+          48.44596363496
+        ]
+      },
+      "properties": {
+        "title": "Parking",
+        "subtitle": "Carrefour de l'épine",
+        "description": "Parking du carrefour de l'épine (Cuvier)"
+      },
+      "id": "poi_3"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.63764344089,
+            48.44596363496
+          ],
+          [
+            2.63785600394,
+            48.4460806172
+          ],
+          [
+            2.63799547881,
+            48.44647203423
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "poiroute_3"
     }
   ]
 }
