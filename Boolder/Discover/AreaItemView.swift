@@ -22,7 +22,7 @@ struct AreaItemView: View {
                 .font(.subheadline)
                 .foregroundColor(Color.gray)
         }
-        .padding(.leading, 15)
+        .padding(.leading, 16)
     }
 }
 

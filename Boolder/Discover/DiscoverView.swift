@@ -11,40 +11,57 @@ import SwiftUI
 struct DiscoverView: View {
     var body: some View {
         NavigationView {
-            LazyVStack {
-                
-                VStack(alignment: .leading) {
-                    Text("Récents")
-                        .font(.title3).bold()
-                        .padding(.top, 30)
+            ScrollView {
+                LazyVStack {
                     
-                    NavigationLink(
-                        destination: AreaView(),
-                        label: {
-                            Text("Rocher Canon")
-                                .font(.title3)
-                                .foregroundColor(Color.green)
-                        })
+                    VStack(alignment: .leading) {
+                        Text("Récents")
+                            .font(.title3).bold()
+                            .padding(.top, 30)
+                        
+                        Divider()
+                        
+                        NavigationLink(
+                            destination: AreaView(),
+                            label: {
+                                HStack {
+                                    Text("Rocher Canon")
+                                        .font(.title3)
+                                        .foregroundColor(Color.green)
+                                    Spacer()
+                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                }
+                                
+                            })
+                        
+                        Divider()
+                        
+                        NavigationLink(
+                            destination: AreaView(),
+                            label: {
+                                HStack {
+                                    Text("Cuvier")
+                                        .font(.title3)
+                                        .foregroundColor(Color.green)
+                                    Spacer()
+                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                }
+                            })
+                        
+                        Divider()
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(.horizontal)
                     
-                    NavigationLink(
-                        destination: AreaView(),
-                        label: {
-                            Text("Cuvier")
-                            .font(.title3)
-                            .foregroundColor(Color.green)
-                        })
+                    VStack {
+                        AreaRowView()
+                        AreaRowView()
+                            .padding(.bottom, 20)
+                    }
+    //                .listRowInsets(EdgeInsets())
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                .padding()
-                
-                VStack {
-                    AreaRowView()
-                    AreaRowView()
-                        .padding(.bottom, 20)
-                }
-                .listRowInsets(EdgeInsets())
+                .navigationBarTitle(Text("Secteurs"), displayMode: .inline)
             }
-            .navigationBarTitle(Text("Secteurs"), displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .accentColor(Color.green)

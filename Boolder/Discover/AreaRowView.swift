@@ -13,14 +13,15 @@ struct AreaRowView: View {
         VStack(alignment: .leading) {
             Text("Idéal pour débuter")
                 .font(.title3).bold()
-                .padding(.leading, 15)
-                .padding(.top, 30)
+                .padding(.horizontal, 16)
+                .padding(.top, 32)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     AreaItemView()
                     AreaItemView()
                     AreaItemView()
+                    .padding(.trailing, 16)
                 }
             }
 //            .frame(height: 185)
