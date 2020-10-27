@@ -373,7 +373,9 @@ struct MapView: UIViewRepresentable {
                 let headingImageView = headingImageView {
 
                 headingImageView.isHidden = false
-                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi) // FIXME: add 90 for iPad
+                
+                let offset = (UIDevice.current.userInterfaceIdiom == .pad ? 90.0 : 0.0) // not sure why, but heading seems offset by 90° on iPad :thinking_face:
+                let rotation = CGFloat((heading-parent.mapView.camera.heading+offset)/180 * Double.pi)
                 headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
             }
         }
