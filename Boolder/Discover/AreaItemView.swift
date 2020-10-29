@@ -11,13 +11,14 @@ import SwiftUI
 struct AreaItemView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Image("rocher-canon-cover")
-                .renderingMode(.original)
+            Image("rocher-canon-cover3")
+//                .renderingMode(.original)
                 .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 255, height: 155)
                 .cornerRadius(16)
-            Text("Rocher Canon")
-                .font(.body)
+//            Text("Rocher Canon")
+//                .font(.body)
             Text("80 voies pour débutants")
                 .font(.subheadline)
                 .foregroundColor(Color.gray)

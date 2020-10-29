@@ -14,7 +14,7 @@ struct AreaRowView: View {
             Text("Idéal pour débuter")
                 .font(.title3).bold()
                 .padding(.horizontal, 16)
-                .padding(.top, 32)
+                .padding(.top, 16)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
