@@ -24,6 +24,7 @@ struct AreaView: View {
     @State private var centerOnCurrentLocationCount = 0
     
     var body: some View {
+        NavigationView {
         ZStack {
             ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                 .zIndex(showList ? 1 : 0)
@@ -89,6 +90,12 @@ struct AreaView: View {
         }
         .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
         .navigationBarItems(
+            leading: Button(action: {
+                self.presentAreaPicker = true
+            }) {
+                Text("areas")
+            },
+
             trailing: Button(action: {
                 self.showList.toggle()
             }) {
@@ -112,6 +119,9 @@ struct AreaView: View {
 //            catch { print(error) }
 //        #endif
 //        }
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .accentColor(Color.green)
     }
 }
 
