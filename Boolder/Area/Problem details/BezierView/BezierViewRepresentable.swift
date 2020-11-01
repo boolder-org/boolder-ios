@@ -14,7 +14,7 @@ struct BezierViewRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> BezierView {
         let bezierView = BezierView()
         
-        if problem.topo?.line != nil && problem.isPhotoPresent() {
+        if problem.line?.coordinates != nil && problem.isPhotoPresent() {
             bezierView.dataSource = context.coordinator
         }
         
@@ -37,7 +37,7 @@ struct BezierViewRepresentable: UIViewRepresentable {
         }
         
         func bezierViewDataPoints(bezierView: BezierView) -> [CGPoint] {
-            if let line = parent.problem.topo?.line {
+            if let line = parent.problem.line?.coordinates {
                 return line.map{CGPoint(x: $0.x * Double(bezierView.bounds.size.width), y: $0.y * Double(bezierView.bounds.size.height))}
             }
             else {

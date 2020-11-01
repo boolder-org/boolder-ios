@@ -8,9 +8,10 @@
 
 import UIKit
 
-struct Topo: Decodable {
+struct Line: Decodable {
     let id: Int
-    let line: [PhotoPercentCoordinate]?
+    let topoId: Int
+    let coordinates: [PhotoPercentCoordinate]?
     
     struct PhotoPercentCoordinate: Decodable {
         let x: Double
@@ -18,6 +19,6 @@ struct Topo: Decodable {
     }
     
     func photo() -> UIImage? {
-        UIImage(named: "topo-\(String(id)).jpg")
+        UIImage(named: "topo-\(String(topoId)).jpg")
     }
 }

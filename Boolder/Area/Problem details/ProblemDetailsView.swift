@@ -29,9 +29,9 @@ struct ProblemDetailsView: View {
                     BezierViewRepresentable(problem: problem)
                     
                     GeometryReader { geo in
-                        if self.topoFirstPoint(photoSize: geo.size) != nil {
+                        if self.lineFirstPoint(photoSize: geo.size) != nil {
                             CircuitNumberView(number: self.problem.circuitNumber, color: self.problem.circuitUIColor, showStroke: false)
-                                .offset(x: self.topoFirstPoint(photoSize: geo.size)!.x - 14, y: self.topoFirstPoint(photoSize: geo.size)!.y - 14)
+                                .offset(x: self.lineFirstPoint(photoSize: geo.size)!.x - 14, y: self.lineFirstPoint(photoSize: geo.size)!.y - 14)
                         }
                     }
                     
@@ -187,10 +187,10 @@ struct ProblemDetailsView: View {
 //        )
     }
     
-    func topoFirstPoint(photoSize size: CGSize) -> CGPoint? {
-        guard let topoFirstPoint = problem.topoFirstPoint() else { return nil }
+    func lineFirstPoint(photoSize size: CGSize) -> CGPoint? {
+        guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
             
-        return CGPoint(x: CGFloat(topoFirstPoint.x) * size.width, y: CGFloat(topoFirstPoint.y) * size.height)
+        return CGPoint(x: CGFloat(lineFirstPoint.x) * size.width, y: CGFloat(lineFirstPoint.y) * size.height)
     }
         
     func isFavorite() -> Bool {

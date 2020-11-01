@@ -17,7 +17,7 @@ class Problem : Identifiable {
     var height: Int? = nil
     var steepness: Steepness.SteepnessType = .other
     var id: Int!
-    var topoId: Int?
+    var lineId: Int?
     var tags: [String]?
     var annotation: ProblemAnnotation!
     
@@ -60,9 +60,9 @@ class Problem : Identifiable {
         return false
     }
     
-    var topo: Topo? {
-        if let topoId = topoId {
-            return dataStore.topoStore.topoCollection.topo(withId: topoId)
+    var line: Line? {
+        if let lineId = lineId {
+            return dataStore.topoStore.lineCollection.line(withId: lineId)
         }
         else
         {
@@ -70,20 +70,20 @@ class Problem : Identifiable {
         }
     }
     
-    func topoFirstPoint() -> Topo.PhotoPercentCoordinate? {
-        guard let topo = topo else { return nil }
-        guard let line = topo.line else { return nil }
-        guard let firstPoint = line.first else { return nil }
+    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        guard let coordinates = line.coordinates else { return nil }
+        guard let firstPoint = coordinates.first else { return nil }
         
         return firstPoint
     }
     
     func isPhotoPresent() -> Bool {
-        topo?.photo() != nil
+        line?.photo() != nil
     }
     
     func mainTopoPhoto() -> UIImage {
-        if let topoPhoto = topo?.photo() {
+        if let topoPhoto = line?.photo() {
             return topoPhoto
         }
         else {

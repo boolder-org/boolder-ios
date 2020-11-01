@@ -155,8 +155,8 @@ class GeoStore {
                         do { problem.grade = try Grade(gradeString) } catch {  }
                     }
                     
-                    if let topo = properties.topos?.first {
-                        problem.topoId = topo.id
+                    if let line = properties.lines?.first {
+                        problem.lineId = line.id
                     }
                     
                     problem.tags = properties.tags
@@ -183,10 +183,10 @@ class GeoStore {
         let name: String?
         let steepness: String?
         let height: Int?
-        let topos: [TopoRef]?
+        let lines: [LineRef]?
         let tags: [String]?
         
-        struct TopoRef: Decodable {
+        struct LineRef: Decodable {
             let id: Int
         }
     }

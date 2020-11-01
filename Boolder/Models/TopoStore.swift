@@ -9,7 +9,7 @@
 import Foundation
 
 class TopoStore {
-    var topoCollection = TopoCollection(topos: nil)
+    var lineCollection = LineCollection(lines: nil)
     
     private var areaId: Int
     
@@ -19,10 +19,10 @@ class TopoStore {
     }
     
     private func loadData() {
-        if let topojsonUrl = Bundle.main.url(forResource: "area-\(areaId)-topos", withExtension: "json") {
+        if let linejsonUrl = Bundle.main.url(forResource: "area-\(areaId)-topo-lines", withExtension: "json") {
             do {
-                let jsonData = try Data(contentsOf: topojsonUrl)
-                topoCollection = try! JSONDecoder().decode(TopoCollection.self, from: jsonData)
+                let jsonData = try Data(contentsOf: linejsonUrl)
+                lineCollection = try! JSONDecoder().decode(LineCollection.self, from: jsonData)
 
             } catch {
                 print("Error decoding topos json: \(error).")
@@ -31,12 +31,12 @@ class TopoStore {
     }
     
     
-    struct TopoCollection: Decodable {
-        let topos: [Topo]?
+    struct LineCollection: Decodable {
+        let lines: [Line]?
         
-        func topo(withId id: Int) -> Topo? {
-            return topos?.first(where: { topo in
-                topo.id == id
+        func line(withId id: Int) -> Line? {
+            return lines?.first(where: { line in
+                line.id == id
             })
         }
     }

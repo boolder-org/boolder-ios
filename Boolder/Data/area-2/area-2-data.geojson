@@ -196,25 +196,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52292,
-          48.375109
-        ]
-      },
-      "properties": {
-        "grade": "2a",
-        "circuitNumber": "1",
-        "steepness": "slab",
-        "height": 3,
-        "name": "La Motte de Grès",
-        "circuitColor": "orange"
-      },
-      "id": "problem_248"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.522625,
           48.375
         ]
@@ -2660,6 +2641,25 @@
         "circuitColor": "orange"
       },
       "id": "problem_332"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52292,
+          48.375109
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "circuitNumber": "1",
+        "steepness": "slab",
+        "height": 3,
+        "name": "La Motte de Grès",
+        "circuitColor": "orange"
+      },
+      "id": "problem_248"
     },
     {
       "type": "Feature",
