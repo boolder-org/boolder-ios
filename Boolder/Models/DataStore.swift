@@ -118,14 +118,14 @@ class DataStore : ObservableObject {
     private func createGroupedAnnotations() {
         var sortedProblems = problems
         sortedProblems.sort { (lhs, rhs) -> Bool in
-            guard let lhsCircuit = lhs.circuitColor else { return true }
-            guard let rhsCircuit = rhs.circuitColor else { return false }
+            guard let lhsGrade = lhs.grade else { return true }
+            guard let rhsGrade = rhs.grade else { return false }
             
-            if lhs.circuitColor == rhs.circuitColor {
-                return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+            if lhs.circuitNumber == rhs.circuitNumber {
+                return lhsGrade < rhsGrade
             }
             else {
-                return lhsCircuit < rhsCircuit
+                return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
             }
         }
         
