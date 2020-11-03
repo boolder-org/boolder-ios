@@ -78,20 +78,20 @@ struct ProblemDetailsView: View {
                                 .foregroundColor(Color.gray)
                         }
                         
-                        if problem.isRisky() {
-                        
-                            Divider()
-                            
-                            HStack {
-                                Image(systemName: "exclamationmark.shield.fill")
-                                    .font(.body)
-                                    .foregroundColor(Color.red)
-                                    .frame(minWidth: 16)
-                                Text("risky.long")
-                                    .font(.body)
-                                    .foregroundColor(Color.red)
-                                }
-                        }
+//                        if problem.isRisky() {
+//                        
+//                            Divider()
+//                            
+//                            HStack {
+//                                Image(systemName: "exclamationmark.shield.fill")
+//                                    .font(.body)
+//                                    .foregroundColor(Color.red)
+//                                    .frame(minWidth: 16)
+//                                Text("risky.long")
+//                                    .font(.body)
+//                                    .foregroundColor(Color.red)
+//                                }
+//                        }
                     }
                     
                     HStack(spacing: 16) {

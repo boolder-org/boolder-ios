@@ -32,23 +32,23 @@ struct FiltersView: View {
                         }
                     }
                     
-                    NavigationLink(destination: HeightFilterView(presentFilters: $presentFilters)) {
-                        HStack {
-                            Text("height")
-                            Spacer()
-                            Text(dataStore.filters.heightMax == Int.max ? "all" : "less than \(String(dataStore.filters.heightMax)) m")
-                                .foregroundColor(Color.gray)
-                        }
-                    }
-                    
-                    NavigationLink(destination: RiskyFilterView(presentFilters: $presentFilters)) {
-                        HStack {
-                            Text("risk")
-                            Spacer()
-                            Text(dataStore.filters.risky ? "all" : "less_risky")
-                                .foregroundColor(Color.gray)
-                        }
-                    }
+//                    NavigationLink(destination: HeightFilterView(presentFilters: $presentFilters)) {
+//                        HStack {
+//                            Text("height")
+//                            Spacer()
+//                            Text(dataStore.filters.heightMax == Int.max ? "all" : "less than \(String(dataStore.filters.heightMax)) m")
+//                                .foregroundColor(Color.gray)
+//                        }
+//                    }
+//                    
+//                    NavigationLink(destination: RiskyFilterView(presentFilters: $presentFilters)) {
+//                        HStack {
+//                            Text("risk")
+//                            Spacer()
+//                            Text(dataStore.filters.risky ? "all" : "less_risky")
+//                                .foregroundColor(Color.gray)
+//                        }
+//                    }
                     
                     NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
                         HStack {
