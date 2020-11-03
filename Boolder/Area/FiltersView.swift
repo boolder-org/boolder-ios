@@ -89,6 +89,7 @@ struct FiltersView: View {
                 }) {
                     Text("reset")
                         .padding(.vertical)
+                        .font(.body)
                 },
                 trailing: Button(action: {
                     self.presentationMode.wrappedValue.dismiss()

@@ -94,12 +94,16 @@ struct AreaView: View {
                 self.presentAreaPicker = true
             }) {
                 Text("areas")
+                    .font(.body)
+                    .padding(.vertical)
+                    .padding(.trailing)
             },
 
             trailing: Button(action: {
                 self.showList.toggle()
             }) {
                 Text(showList ? "map" : "list")
+                    .font(.body)
                     .padding(.vertical)
                     .padding(.leading)
             }
