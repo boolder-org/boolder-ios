@@ -48,6 +48,52 @@ class Circuit {
                 return #colorLiteral(red: 0.8763859868, green: 0.8711766005, blue: 0.8803905845, alpha: 1)
             }
         }
+        
+        func shortName() -> String {
+            switch self {
+            case .yellow:
+                return NSLocalizedString("circuit.short_name.yellow", comment: "")
+            case .orange:
+                return NSLocalizedString("circuit.short_name.orange", comment: "")
+            case .blue:
+                return NSLocalizedString("circuit.short_name.blue", comment: "")
+            case .skyBlue:
+                return NSLocalizedString("circuit.short_name.skyblue", comment: "")
+            case .red:
+                return NSLocalizedString("circuit.short_name.red", comment: "")
+            case .white:
+                return NSLocalizedString("circuit.short_name.white", comment: "")
+            case .whiteForKids:
+                return NSLocalizedString("circuit.short_name.white_for_kids", comment: "")
+            case .black:
+                return NSLocalizedString("circuit.short_name.black", comment: "")
+            case .offCircuit:
+                return NSLocalizedString("circuit.short_name.off_circuit", comment: "")
+            }
+        }
+        
+        func longName() -> String {
+            switch self {
+            case .yellow:
+                return NSLocalizedString("circuit.long_name.yellow", comment: "")
+            case .orange:
+                return NSLocalizedString("circuit.long_name.orange", comment: "")
+            case .blue:
+                return NSLocalizedString("circuit.long_name.blue", comment: "")
+            case .skyBlue:
+                return NSLocalizedString("circuit.long_name.skyblue", comment: "")
+            case .red:
+                return NSLocalizedString("circuit.long_name.red", comment: "")
+            case .white:
+                return NSLocalizedString("circuit.long_name.white", comment: "")
+            case .whiteForKids:
+                return NSLocalizedString("circuit.long_name.white_for_kids", comment: "")
+            case .black:
+                return NSLocalizedString("circuit.long_name.black", comment: "")
+            case .offCircuit:
+                return NSLocalizedString("circuit.long_name.off_circuit", comment: "")
+            }
+        }
     }
     
     enum CircuitLevel {
@@ -92,29 +138,6 @@ class Circuit {
             return CircuitLevel.beginner
         default:
             return CircuitLevel.unknown
-        }
-    }
-    
-    func localizedName() -> String {
-        switch color {
-        case .yellow:
-            return NSLocalizedString("circuit.color.yellow", comment: "")
-        case .orange:
-            return NSLocalizedString("circuit.color.orange", comment: "")
-        case .blue:
-            return NSLocalizedString("circuit.color.blue", comment: "")
-        case .skyBlue:
-            return NSLocalizedString("circuit.color.skyblue", comment: "")
-        case .red:
-            return NSLocalizedString("circuit.color.red", comment: "")
-        case .white:
-            return NSLocalizedString("circuit.color.white", comment: "")
-        case .whiteForKids:
-            return NSLocalizedString("circuit.color.white_for_kids", comment: "")
-        case .black:
-            return NSLocalizedString("circuit.color.black", comment: "")
-        default:
-            return NSLocalizedString("circuit.color.no_name", comment: "")
         }
     }
 }

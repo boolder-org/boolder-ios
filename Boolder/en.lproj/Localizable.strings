@@ -11,16 +11,26 @@
 "list" = "List";
 
 // Circuit
-"circuit.color.yellow" = "Yellow";
-"circuit.color.orange" = "Orange";
-"circuit.color.blue" = "Blue";
-"circuit.color.skyblue" = "Sky blue";
-"circuit.color.red" = "Red";
-"circuit.color.white" = "White";
-"circuit.color.black" = "Black";
-"circuit.color.white_for_kids" = "White";
-"circuit.color.no_name" = "No name";
-"%@ circuit" = "%@ circuit";
+"circuit.long_name.yellow" = "Yellow circuit";
+"circuit.long_name.orange" = "Orange circuit";
+"circuit.long_name.blue" = "Blue circuit";
+"circuit.long_name.skyblue" = "Sky blue circuit";
+"circuit.long_name.red" = "Red circuit";
+"circuit.long_name.white" = "White circuit";
+"circuit.long_name.black" = "Black circuit";
+"circuit.long_name.white_for_kids" = "White circuit (for kids)";
+"circuit.long_name.off_circuit" = "Other";
+
+"circuit.short_name.yellow" = "Yellow";
+"circuit.short_name.orange" = "Orange";
+"circuit.short_name.blue" = "Blue";
+"circuit.short_name.skyblue" = "Sky blue";
+"circuit.short_name.red" = "Red";
+"circuit.short_name.white" = "White";
+"circuit.short_name.black" = "Black";
+"circuit.short_name.white_for_kids" = "White";
+"circuit.short_name.off_circuit" = "Other";
+
 "circuit.level.beginner" = "beginner";
 
 // POI
