@@ -29,7 +29,12 @@ class ProblemAnnotationView: MKAnnotationView {
                     self.displayPriority = .defaultHigh
                 }
                 else {
-                    self.displayPriority = .defaultLow
+                    if annotation.problem.circuitColor != .offCircuit {
+                        self.displayPriority = MKFeatureDisplayPriority.init(250)
+                    }
+                    else {
+                        self.displayPriority = MKFeatureDisplayPriority.init(249)
+                    }
                 }
                 
             }
@@ -41,7 +46,7 @@ class ProblemAnnotationView: MKAnnotationView {
     
     var size: ProblemAnnotationViewSize = .small {
         didSet {
-            self.isEnabled = (size == .full)
+            self.isEnabled = (size == .full || size == .medium)
             guard size != oldValue else { return }
             refreshSize()
         }

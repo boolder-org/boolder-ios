@@ -41,6 +41,7 @@ struct CircuitNumberView: View {
                 .frame(width: height-2, height: height-2)
         }
         .frame(width: height, height: height)
+        .opacity(color != Circuit.CircuitColor.offCircuit.uicolor ? 1.0 : 0.0)
     }
 }
 

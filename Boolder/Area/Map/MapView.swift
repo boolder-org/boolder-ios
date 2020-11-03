@@ -157,6 +157,16 @@ struct MapView: UIViewRepresentable {
                         else if(self.parent.dataStore.problems.count < 30) {
                             annotationView?.size = .full
                         }
+                        else if(annotation.problem.circuitColor == .offCircuit) {
+                            switch self.zoomLevel {
+                            case .zoomedIn:
+                                annotationView?.size = .medium
+                            case .zoomedIntermediate:
+                                annotationView?.size = .medium
+                            case .zoomedOut:
+                                annotationView?.size = .small
+                            }
+                        }
                         else {
                             switch self.zoomLevel {
                             case .zoomedIn:
@@ -195,9 +205,9 @@ struct MapView: UIViewRepresentable {
             
             if let boulderOverlay = overlay as? BoulderOverlay {
                 let renderer = MKMultiPolygonRenderer(multiPolygon: boulderOverlay)
-                renderer.strokeColor = UIColor.init(white: 0.7, alpha: 1.0)
+                renderer.strokeColor = UIColor.init(white: 0.6, alpha: 0.7)
                 renderer.lineWidth = 1
-                renderer.fillColor = UIColor.init(white: 0.8, alpha: 1.0)
+                renderer.fillColor = UIColor.init(white: 0.7, alpha: 1.0)
                 renderer.lineJoin = .round
                 return renderer
             }
