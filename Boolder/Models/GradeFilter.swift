@@ -28,6 +28,19 @@ struct GradeFilter {
             }
         }
         
+        var description: String {
+            switch self {
+            case .kid:
+                return NSLocalizedString("grade.category.description.kid", comment: "")
+            case .beginner:
+                return NSLocalizedString("grade.category.description.beginner", comment: "")
+            case .intermediate:
+                return NSLocalizedString("grade.category.description.intermediate", comment: "")
+            case .advanced:
+                return NSLocalizedString("grade.category.description.advanced", comment: "")
+            }
+        }
+        
         var grades: Set<Grade> {
             switch self {
             case .kid:

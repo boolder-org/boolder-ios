@@ -160,7 +160,10 @@ struct GradeFilterView: View {
                     categoryTapped(category)
                 }) {
                     HStack {
-                        Text(category.name).foregroundColor(Color(.label))
+                        VStack(alignment: .leading) {
+                            Text(category.name).foregroundColor(Color(.label))
+                            Text(category.description).foregroundColor(Color(.systemGray)).font(.caption)
+                        }
                         Spacer()
                         if self.dataStore.filters.gradeFilter.categories.contains(category) {
                             Image(systemName: "checkmark").font(Font.body.weight(.bold))
