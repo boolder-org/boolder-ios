@@ -111,7 +111,7 @@ class DataStore : ObservableObject {
         return nil
     }
     
-    func circuit(withColor color: Circuit.CircuitColor) -> Circuit? {
+    private func circuit(withColor color: Circuit.CircuitColor) -> Circuit? {
         geoStore.circuits.first { $0.color == color }
     }
     

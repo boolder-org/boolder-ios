@@ -152,7 +152,7 @@ class GeoStore {
                     }
                     
                     if let gradeString = properties.grade {
-                        do { problem.grade = try Grade(gradeString) } catch {  }
+                        problem.grade = Grade(gradeString)
                     }
                     
                     if let line = properties.lines?.first {
