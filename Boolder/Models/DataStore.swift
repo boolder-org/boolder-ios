@@ -62,7 +62,7 @@ class DataStore : ObservableObject {
         return geoStore.problems.filter { problem in
             if(filters.circuit == nil || problem.circuitColor == filters.circuit) {
                 if isGradeOk(problem)  {
-                    if filters.steepness.contains(problem.steepness) {
+                    if isSteepnessOk(problem) {
                         if filters.photoPresent == false || problem.isPhotoPresent() {
                             if isHeightOk(problem) {
                                 if filters.favorite == false || problem.isFavorite()  {
@@ -93,9 +93,21 @@ class DataStore : ObservableObject {
     }
     
     private func isGradeOk(_ problem: Problem) -> Bool {
+        if filters.gradeFilter.categories.isEmpty {
+            return true
+        }
+        
         return filters.gradeFilter.categories.contains { category in
             category.grades.contains(problem.grade)
         }
+    }
+    
+    private func isSteepnessOk(_ problem: Problem) -> Bool {
+        if filters.steepness.isEmpty {
+            return true
+        }
+        
+        return filters.steepness.contains(problem.steepness)
     }
     
     private func circuitOverlay() -> CircuitOverlay? {

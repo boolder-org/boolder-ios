@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct Filters {
-    var gradeFilter = GradeFilter(Set(GradeFilter.allCategories))
-    var steepness: Set<Steepness.SteepnessType> = Set(Steepness.SteepnessType.allCases)
+    var gradeFilter = GradeFilter(Set())
+    var steepness: Set<Steepness.SteepnessType> = Set()
     var heightMax = Int.max
     var photoPresent = false
     var circuit: Circuit.CircuitColor? = nil

@@ -107,7 +107,7 @@ struct FiltersView: View {
     }
     
     private func labelForSteepness() -> String {
-        if dataStore.filters.steepness == Set(Steepness.SteepnessType.allCases) {
+        if dataStore.filters.steepness == Filters().steepness {
             return NSLocalizedString("all", comment: "")
         }
         
