@@ -96,20 +96,13 @@ class Circuit {
         }
     }
     
-    enum CircuitLevel {
-        case beginner
-        case unknown
-    }
-    
-    init(color: CircuitColor, level: CircuitLevel, overlay: CircuitOverlay) {
+    init(color: CircuitColor, overlay: CircuitOverlay) {
         self.color = color
-        self.level = level
         self.overlay = overlay
     }
     
     let color: CircuitColor
     let overlay: CircuitOverlay
-    let level: CircuitLevel
     
     static func circuitColorFromString(_ string: String?) -> CircuitColor {
         switch string {
@@ -129,15 +122,6 @@ class Circuit {
             return CircuitColor.white
         default:
             return CircuitColor.offCircuit
-        }
-    }
-    
-    static func circuitLevelFromString(_ string: String?) -> CircuitLevel {
-        switch string {
-        case "beginner":
-            return CircuitLevel.beginner
-        default:
-            return CircuitLevel.unknown
         }
     }
 }

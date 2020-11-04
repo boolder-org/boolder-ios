@@ -29,13 +29,6 @@ struct CircuitFilterView: View {
                                 Text("\(circuit.color.shortName())")
                                     .foregroundColor(Color(.label))
                                 
-                                if circuit.level == .beginner {
-                                    Text(
-                                        "(" + NSLocalizedString("circuit.level.beginner", comment: "") + ")"
-                                    )
-                                        .foregroundColor(Color.gray)
-                                }
-                                
                                 Spacer()
                                 
                                 if self.dataStore.filters.circuit == circuit.color {
