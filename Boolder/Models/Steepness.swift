@@ -9,7 +9,7 @@
 import Foundation
 
 class Steepness  {
-    enum SteepnessType: CaseIterable {
+    enum SteepnessType: CaseIterable, Comparable {
         case wall
         case slab
         case overhang

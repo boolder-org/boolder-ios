@@ -9,7 +9,7 @@
 import Foundation
 
 struct GradeFilter {
-    enum Category: CaseIterable {
+    enum Category: CaseIterable, Comparable {
         case kid
         case beginner
         case intermediate

@@ -61,9 +61,6 @@
 "ticked" = "Déjà fait";
 "ticked.short" = "Fait";
 "reset" = "Réinitialiser";
-"grade_between" = "Entre %@ and %@";
-"level_min" = "Niveau minimum";
-"level_max" = "Niveau maximum";
 "level" = "Niveau";
 "risky_definition" = "Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.";
 "no_limit" = "Pas de limite";

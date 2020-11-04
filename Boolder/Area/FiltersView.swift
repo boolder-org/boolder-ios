@@ -111,17 +111,19 @@ struct FiltersView: View {
             return NSLocalizedString("all", comment: "")
         }
         
-        let visibleAndSelected = dataStore.filters.steepness.intersection(userVisibleSteepnessTypes)
+        let visibleAndSelected = dataStore.filters.steepness.intersection(userVisibleSteepnessTypes).sorted()
         let string = visibleAndSelected.map{ Steepness($0).name.lowercased() }.joined(separator: ", ")
         return String(string.prefix(1).capitalized + string.dropFirst())
     }
     
     private func labelForCategories() -> String {
-        if dataStore.filters.gradeMin == Filters().gradeMin && dataStore.filters.gradeMax == Filters().gradeMax {
+        if dataStore.filters.gradeFilter.categories == Filters().gradeFilter.categories {
             return NSLocalizedString("all", comment: "")
         }
         else {
-            return String.localizedStringWithFormat(NSLocalizedString("grade_between", comment: ""), dataStore.filters.gradeMin.string, dataStore.filters.gradeMax.string)
+            let string = dataStore.filters.gradeFilter.categories
+                .sorted().map{ $0.name.lowercased() }.joined(separator: ", ")
+            return String(string.prefix(1).capitalized + string.dropFirst())
         }
     }
     
@@ -166,14 +168,6 @@ struct GradeFilterView: View {
                     }
                 }
             }
-//            Section {
-//                HStack {
-//                    Text("level_max")
-//                    Spacer()
-//                    Text(dataStore.filters.gradeMax.string)
-//                        .foregroundColor(Color.gray)
-//                }
-//            }
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
@@ -199,55 +193,6 @@ struct GradeFilterView: View {
         }
     }
 }
-
-//struct GradeMinMaxFilterView: View {
-//    @EnvironmentObject var dataStore: DataStore
-//    @Environment(\.presentationMode) var presentationMode
-//    @Binding var gradeFilter: Grade
-//    var type: GradeFilterType
-//
-//    enum GradeFilterType {
-//        case min
-//        case max
-//    }
-//
-//    var body: some View {
-//        List {
-//            Section {
-//                ForEach(Grade.visibleGrades, id: \.self) { grade in
-//                    Button(action: {
-//                        if !self.isDisabled(grade: grade) {
-//                            self.gradeFilter = try! Grade(grade)
-//                            self.presentationMode.wrappedValue.dismiss()
-//                        }
-//                    }) {
-//                        HStack {
-//                            Text(grade)
-//                                .foregroundColor(self.isDisabled(grade: grade) ? Color(.gray) : Color(.label))
-//                            Spacer()
-//                            if grade == self.gradeFilter.string {
-//                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
-//                                    .disabled(self.isDisabled(grade: grade))
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        .listStyle(GroupedListStyle())
-//        .environment(\.horizontalSizeClass, .regular)
-//        .navigationBarTitle(type == .min ? "level_min" : "level_max")
-//    }
-//
-//    func isDisabled(grade: String) -> Bool {
-//        if type == .min {
-//            return (try! Grade(grade)) > self.dataStore.filters.gradeMax
-//        }
-//        else {
-//            return (try! Grade(grade)) < self.dataStore.filters.gradeMin
-//        }
-//    }
-//}
 
 struct RiskyFilterView: View {
     @EnvironmentObject var dataStore: DataStore

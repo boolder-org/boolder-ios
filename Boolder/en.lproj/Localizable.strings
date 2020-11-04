@@ -61,9 +61,6 @@
 "ticked" = "Already done";
 "ticked.short" = "Done";
 "reset" = "Reset";
-"grade_between" = "Between %@ and %@";
-"level_min" = "Minimum level";
-"level_max" = "Maximum level";
 "level" = "Level";
 "risky_definition" = "A problem is considered risky when the ground makes the landing difficult or when the problem is high.";
 "no_limit" = "No limit";
