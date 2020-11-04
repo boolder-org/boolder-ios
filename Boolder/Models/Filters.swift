@@ -9,10 +9,11 @@
 import SwiftUI
 
 struct Filters {
-    static let allGradeCategories = [1,2,3,4,5,6,7,8]
+//    static let allGradeCategories = [1,2,3,4,5,6,7,8]
     
-    var gradeMin = try! Grade("1a")
-    var gradeMax = try! Grade("9a")
+    var gradeMin = Grade("1a")
+    var gradeMax = Grade("9a")
+    var gradeFilter = GradeFilter(Set(GradeFilter.allCategories))
     var steepness: Set<Steepness.SteepnessType> = Set(Steepness.SteepnessType.allCases)
     var heightMax = Int.max
     var photoPresent = false

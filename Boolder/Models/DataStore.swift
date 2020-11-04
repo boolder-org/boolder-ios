@@ -93,11 +93,8 @@ class DataStore : ObservableObject {
     }
     
     private func isGradeOk(_ problem: Problem) -> Bool {
-        if let grade = problem.grade {
-            return grade >= filters.gradeMin && grade <= filters.gradeMax
-        }
-        else {
-            return (filters.gradeMin == Filters().gradeMin && filters.gradeMax == Filters().gradeMax)
+        return filters.gradeFilter.categories.contains { category in
+            category.grades.contains(problem.grade)
         }
     }
     
@@ -118,11 +115,8 @@ class DataStore : ObservableObject {
     private func createGroupedAnnotations() {
         var sortedProblems = problems
         sortedProblems.sort { (lhs, rhs) -> Bool in
-            guard let lhsGrade = lhs.grade else { return true }
-            guard let rhsGrade = rhs.grade else { return false }
-            
             if lhs.circuitNumber == rhs.circuitNumber {
-                return lhsGrade < rhsGrade
+                return lhs.grade < rhs.grade
             }
             else {
                 return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()

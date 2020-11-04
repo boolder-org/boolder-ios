@@ -58,11 +58,9 @@ struct ProblemDetailsView: View {
                                 
                                 Spacer()
                                 
-                                if problem.grade != nil {
-                                    Text(problem.grade?.string ?? "")
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                }
+                                Text(problem.grade.string)
+                                    .font(.title)
+                                    .fontWeight(.bold)
                             }
                         }
                     

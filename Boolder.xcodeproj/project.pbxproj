@@ -230,6 +230,7 @@
 		37675AF7255199D2009C880C /* topo-346.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3B255199D2009C880C /* topo-346.jpg */; };
 		37675AFC2551A59B009C880C /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37675AFA2551A59B009C880C /* area-1-data.geojson */; };
 		37675AFD2551A59B009C880C /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 37675AFB2551A59B009C880C /* area-1-topo-lines.json */; };
+		37675B002552106B009C880C /* GradeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37675AFF2552106A009C880C /* GradeFilter.swift */; };
 		3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
 		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
 		3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
@@ -490,6 +491,7 @@
 		37675A3B255199D2009C880C /* topo-346.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-346.jpg"; sourceTree = "<group>"; };
 		37675AFA2551A59B009C880C /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37675AFB2551A59B009C880C /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
+		37675AFF2552106A009C880C /* GradeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeFilter.swift; sourceTree = "<group>"; };
 		3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotationView.swift; sourceTree = "<group>"; };
 		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 				3701845A2466BD0800C6530C /* TopoStore.swift */,
 				37A8C80C245326F200DC161F /* Line.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
+				37675AFF2552106A009C880C /* GradeFilter.swift */,
 				37A8C809245326F200DC161F /* Steepness.swift */,
 				37A8C80A245326F200DC161F /* Grade.swift */,
 				37A8C80B245326F200DC161F /* Circuit.swift */,
@@ -1224,6 +1227,7 @@
 				37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
+				37675B002552106B009C880C /* GradeFilter.swift in Sources */,
 				3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */,
 				3790C35F2456008F005E786E /* BezierView.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,

@@ -50,7 +50,7 @@ struct ProblemListView: View {
                                         .foregroundColor(Color.green)
                                 }
 
-                                Text(problem.grade?.string ?? "")
+                                Text(problem.grade.string)
                             }
                         }
                         .foregroundColor(Color(.label))

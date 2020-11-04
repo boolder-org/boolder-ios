@@ -67,6 +67,10 @@
 "level" = "Niveau";
 "risky_definition" = "Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.";
 "no_limit" = "Pas de limite";
+"grade.category.kid" = "Enfant";
+"grade.category.beginner" = "Débutant";
+"grade.category.intermediate" = "Intermédiaire";
+"grade.category.advanced" = "Avancé";
 
 // Circuit help
 "circuit_help.circuits.p1" = "Les circuits sont très pratiques pour découvrir un secteur.";

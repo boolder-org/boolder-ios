@@ -12,7 +12,7 @@ class Problem : Identifiable {
     var circuitColor: Circuit.CircuitColor?
     var circuitNumber: String = ""
     var belongsToCircuit: Bool = false
-    var grade: Grade?
+    var grade = Grade.min
     var name: String? = nil
     var height: Int? = nil
     var steepness: Steepness.SteepnessType = .other

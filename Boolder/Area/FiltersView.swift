@@ -153,25 +153,27 @@ struct GradeFilterView: View {
     
     var body: some View {
         List {
-            Section {
-                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMin, type: .min)) {
+            ForEach(GradeFilter.allCategories, id: \.self) { category in
+                Button(action: {
+                    categoryTapped(category)
+                }) {
                     HStack {
-                        Text("level_min")
+                        Text(category.name).foregroundColor(Color(.label))
                         Spacer()
-                        Text(dataStore.filters.gradeMin.string)
-                            .foregroundColor(Color.gray)
-                    }
-                }
-                
-                NavigationLink(destination: GradeMinMaxFilterView(gradeFilter: $dataStore.filters.gradeMax, type: .max)) {
-                    HStack {
-                        Text("level_max")
-                        Spacer()
-                        Text(dataStore.filters.gradeMax.string)
-                            .foregroundColor(Color.gray)
+                        if self.dataStore.filters.gradeFilter.categories.contains(category) {
+                            Image(systemName: "checkmark").font(Font.body.weight(.bold))
+                        }
                     }
                 }
             }
+//            Section {
+//                HStack {
+//                    Text("level_max")
+//                    Spacer()
+//                    Text(dataStore.filters.gradeMax.string)
+//                        .foregroundColor(Color.gray)
+//                }
+//            }
         }
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
@@ -187,56 +189,65 @@ struct GradeFilterView: View {
             }
         )
     }
-}
-
-struct GradeMinMaxFilterView: View {
-    @EnvironmentObject var dataStore: DataStore
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var gradeFilter: Grade
-    var type: GradeFilterType
     
-    enum GradeFilterType {
-        case min
-        case max
-    }
-    
-    var body: some View {
-        List {
-            Section {
-                ForEach(Grade.visibleGrades, id: \.self) { grade in
-                    Button(action: {
-                        if !self.isDisabled(grade: grade) {
-                            self.gradeFilter = try! Grade(grade)
-                            self.presentationMode.wrappedValue.dismiss()
-                        }
-                    }) {
-                        HStack {
-                            Text(grade)
-                                .foregroundColor(self.isDisabled(grade: grade) ? Color(.gray) : Color(.label))
-                            Spacer()
-                            if grade == self.gradeFilter.string {
-                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
-                                    .disabled(self.isDisabled(grade: grade))
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .listStyle(GroupedListStyle())
-        .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle(type == .min ? "level_min" : "level_max")
-    }
-    
-    func isDisabled(grade: String) -> Bool {
-        if type == .min {
-            return (try! Grade(grade)) > self.dataStore.filters.gradeMax
+    private func categoryTapped(_ category: GradeFilter.Category) {
+        if self.dataStore.filters.gradeFilter.categories.contains(category) {
+            self.dataStore.filters.gradeFilter.categories.remove(category)
         }
         else {
-            return (try! Grade(grade)) < self.dataStore.filters.gradeMin
+            self.dataStore.filters.gradeFilter.categories.insert(category)
         }
     }
 }
+
+//struct GradeMinMaxFilterView: View {
+//    @EnvironmentObject var dataStore: DataStore
+//    @Environment(\.presentationMode) var presentationMode
+//    @Binding var gradeFilter: Grade
+//    var type: GradeFilterType
+//
+//    enum GradeFilterType {
+//        case min
+//        case max
+//    }
+//
+//    var body: some View {
+//        List {
+//            Section {
+//                ForEach(Grade.visibleGrades, id: \.self) { grade in
+//                    Button(action: {
+//                        if !self.isDisabled(grade: grade) {
+//                            self.gradeFilter = try! Grade(grade)
+//                            self.presentationMode.wrappedValue.dismiss()
+//                        }
+//                    }) {
+//                        HStack {
+//                            Text(grade)
+//                                .foregroundColor(self.isDisabled(grade: grade) ? Color(.gray) : Color(.label))
+//                            Spacer()
+//                            if grade == self.gradeFilter.string {
+//                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
+//                                    .disabled(self.isDisabled(grade: grade))
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        .listStyle(GroupedListStyle())
+//        .environment(\.horizontalSizeClass, .regular)
+//        .navigationBarTitle(type == .min ? "level_min" : "level_max")
+//    }
+//
+//    func isDisabled(grade: String) -> Bool {
+//        if type == .min {
+//            return (try! Grade(grade)) > self.dataStore.filters.gradeMax
+//        }
+//        else {
+//            return (try! Grade(grade)) < self.dataStore.filters.gradeMin
+//        }
+//    }
+//}
 
 struct RiskyFilterView: View {
     @EnvironmentObject var dataStore: DataStore
