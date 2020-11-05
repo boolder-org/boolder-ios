@@ -8,11 +8,12 @@
 
 import SwiftUI
 
-struct CircuitNumberView: View {
+struct CircleView: View {
     var number: String
     var color: UIColor
     var showStroke = true
     var height: CGFloat = 28
+    var scaleEffect: CGFloat = 1.0
     
     func readableColor() -> UIColor {
         if color == Circuit.CircuitColor.white.uicolor {
@@ -40,14 +41,14 @@ struct CircuitNumberView: View {
                 )
                 .frame(width: height-2, height: height-2)
         }
+        .scaleEffect(scaleEffect)
         .frame(width: height, height: height)
-        .opacity(color != Circuit.CircuitColor.offCircuit.uicolor ? 1.0 : 0.0)
     }
 }
 
 struct CircuitNumberView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitNumberView(number: "17", color: .red)
+        CircleView(number: "17", color: .red)
             .previewLayout(.fixed(width: 50, height: 50))
     }
 }

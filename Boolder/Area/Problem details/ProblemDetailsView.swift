@@ -30,7 +30,7 @@ struct ProblemDetailsView: View {
                     
                     GeometryReader { geo in
                         if self.lineFirstPoint(photoSize: geo.size) != nil {
-                            CircuitNumberView(number: self.problem.circuitNumber, color: self.problem.circuitUIColor, showStroke: false)
+                            ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
                                 .offset(x: self.lineFirstPoint(photoSize: geo.size)!.x - 14, y: self.lineFirstPoint(photoSize: geo.size)!.y - 14)
                         }
                     }

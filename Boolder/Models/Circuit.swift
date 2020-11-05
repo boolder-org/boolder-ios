@@ -45,7 +45,16 @@ class Circuit {
             case .white:
                 return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             case .offCircuit:
-                return #colorLiteral(red: 0.8763859868, green: 0.8711766005, blue: 0.8803905845, alpha: 1)
+                return #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            }
+        }
+        
+        func uicolorForPhotoOverlay() -> UIColor {
+            if self == .offCircuit {
+                return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            }
+            else {
+                return uicolor
             }
         }
         

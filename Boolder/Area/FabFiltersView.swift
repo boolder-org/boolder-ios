@@ -24,7 +24,7 @@ struct FabFiltersView: View {
                     self.presentCircuitFilter.toggle()
                 }) {
                     if dataStore.filters.circuit != nil {
-                        CircuitNumberView(number: "", color: circuitColor(), height: 20)
+                        CircleView(number: "", color: circuitColor(), height: 20)
                         Text("circuit")
                     }
                     else {

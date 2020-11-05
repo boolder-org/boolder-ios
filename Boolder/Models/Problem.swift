@@ -25,6 +25,10 @@ class Problem : Identifiable {
         circuitColor?.uicolor ?? UIColor.gray
     }
     
+    var circuitUIColorForPhotoOverlay: UIColor {
+        circuitColor?.uicolorForPhotoOverlay() ?? UIColor.gray
+    }
+    
     func nameWithFallback() -> String {
         self.name ?? NSLocalizedString("no_name", comment: "")
     }

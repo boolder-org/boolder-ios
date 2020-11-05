@@ -24,7 +24,7 @@ struct CircuitFilterView: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack(alignment: .center) {
-                                CircuitNumberView(number: "", color: circuit.color.uicolor, height: 20)
+                                CircleView(number: "", color: circuit.color.uicolor, height: 20)
                                 
                                 Text("\(circuit.color.shortName())")
                                     .foregroundColor(Color(.label))
