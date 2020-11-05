@@ -160,7 +160,7 @@ struct MapView: UIViewRepresentable {
                         else if(annotation.problem.circuitColor == .offCircuit) {
                             switch self.zoomLevel {
                             case .zoomedIn:
-                                annotationView?.size = .medium
+                                annotationView?.size = .large
                             case .zoomedIntermediate:
                                 annotationView?.size = .medium
                             case .zoomedOut:

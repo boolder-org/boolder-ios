@@ -11,6 +11,7 @@ import MapKit
 enum ProblemAnnotationViewSize: Int {
     case small
     case medium
+    case large
     case full
 }
 
@@ -46,7 +47,7 @@ class ProblemAnnotationView: MKAnnotationView {
     
     var size: ProblemAnnotationViewSize = .small {
         didSet {
-            self.isEnabled = (size == .full || size == .medium)
+            self.isEnabled = (size == .full || size == .large || size == .medium)
             guard size != oldValue else { return }
             refreshSize()
         }
@@ -56,6 +57,7 @@ class ProblemAnnotationView: MKAnnotationView {
     private let frameSize: CGFloat = 28
     private let scaleSmall: CGFloat = 0.2
     private let scaleMedium: CGFloat = 0.4
+    private let scaleLarge: CGFloat = 0.7
     private let borderSize: CGFloat = 0
     
     private let overlayCircleView = UIView()
@@ -152,6 +154,12 @@ class ProblemAnnotationView: MKAnnotationView {
             label.alpha = 1
             badgeViewContainer.isHidden = false
             badgeViewContainer.alpha = 1
+        case .large:
+            circleView.transform = CGAffineTransform(scaleX: scaleLarge, y: scaleLarge)
+            label.isHidden = true
+            label.alpha = 0
+            badgeViewContainer.isHidden = true
+            badgeViewContainer.alpha = 0
         case .medium:
             circleView.transform = CGAffineTransform(scaleX: scaleMedium, y: scaleMedium)
             label.isHidden = true
@@ -196,6 +204,8 @@ class ProblemAnnotationView: MKAnnotationView {
     override var alignmentRectInsets: UIEdgeInsets {
         switch size {
         case .full:
+            return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        case .large:
             return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         case .medium:
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
