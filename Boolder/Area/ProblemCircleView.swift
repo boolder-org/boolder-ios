@@ -15,7 +15,7 @@ struct ProblemCircleView: View {
     var body: some View {
         CircleView(number: problem.circuitNumber,
                    color: isDisplayedOnPhoto ? problem.circuitUIColorForPhotoOverlay : problem.circuitUIColor,
-                   showStroke: !isDisplayedOnPhoto,
+                   showStroke: problem.circuitColor == .white && !isDisplayedOnPhoto,
                    scaleEffect: (problem.circuitColor == .offCircuit) ? 0.7 : 1.0
         )
     }

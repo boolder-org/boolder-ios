@@ -37,7 +37,7 @@ struct CircleView: View {
                     Circle()
                         .stroke(Color(UIColor.systemGray3), lineWidth: 1)
                         .frame(width: height, height: height)
-                        .opacity(color == Circuit.CircuitColor.white.uicolor && showStroke ? 1.0 : 0.0)
+                        .opacity(showStroke ? 1.0 : 0.0)
                 )
                 .frame(width: height-2, height: height-2)
         }
