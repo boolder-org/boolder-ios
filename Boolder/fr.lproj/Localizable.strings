@@ -10,7 +10,13 @@
 "map" = "Carte";
 "list" = "Liste";
 
+// shared
+"shared.ticked.short" = "Fait";
+"shared.favorite" = "Favori";
+
 // Circuit
+"circuit" = "Circuit";
+
 "circuit.long_name.yellow" = "Circuit Jaune";
 "circuit.long_name.orange" = "Circuit Orange";
 "circuit.long_name.blue" = "Circuit Bleu";
@@ -31,8 +37,6 @@
 "circuit.short_name.white_for_kids" = "Blanc";
 "circuit.short_name.off_circuit" = "Hors circuit";
 
-"circuit.level.beginner" = "débutant";
-
 // POI
 "see_in" = "Voir dans %@";
 "share" = "Partager";
@@ -41,29 +45,19 @@
 
 // Area view
 "no_name" = "Sans nom";
-"circuit" = "Circuit";
-"circuits" = "Circuits";
 "filter" = "Filtre";
 "filters" = "Filtres";
 
 // Filters
-"no_circuit" = "Pas de circuit";
-"type" = "Type";
-"height" = "Hauteur";
-"all" = "Tous";
-"less than %@ m" = "Moins de %@ m";
-"risk" = "Risque en cas de chute";
-"less_risky" = "Moins dangereux";
-"less_risky.long" = "Moins dangereux en cas de chute";
-"risky.long" = "Dangereux en cas de chute";
-"level" = "Niveau";
-"favorite" = "Favori";
-"ticked" = "Déjà fait";
-"ticked.short" = "Fait";
-"reset" = "Réinitialiser";
-"level" = "Niveau";
-"risky_definition" = "Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.";
-"no_limit" = "Pas de limite";
+"filters.title" = "Filtres";
+"filters.level" = "Niveau";
+"filters.circuit" = "Circuit";
+"filters.advanced_filters" = "Filtres avancés";
+"filters.type" = "Type";
+"filters.all" = "Tous";
+"filters.favorite" = "Favori";
+"filters.ticked" = "Déjà fait";
+"filters.reset" = "Réinitialiser";
 "grade.range.beginner" = "Débutant";
 "grade.range.intermediate" = "Intermédiaire";
 "grade.range.advanced" = "Avancé";

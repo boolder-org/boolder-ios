@@ -10,7 +10,13 @@
 "map" = "Map";
 "list" = "List";
 
+// shared
+"shared.ticked.short" = "Done";
+"shared.favorite" = "Favorite";
+
 // Circuit
+"circuit" = "Circuit";
+
 "circuit.long_name.yellow" = "Yellow circuit";
 "circuit.long_name.orange" = "Orange circuit";
 "circuit.long_name.blue" = "Blue circuit";
@@ -31,8 +37,6 @@
 "circuit.short_name.white_for_kids" = "White";
 "circuit.short_name.off_circuit" = "Other";
 
-"circuit.level.beginner" = "beginner";
-
 // POI
 "see_in" = "See in %@";
 "share" = "Share";
@@ -41,29 +45,19 @@
 
 // Area view
 "no_name" = "No name";
-"circuit" = "Circuit";
-"circuits" = "Circuits";
 "filter" = "Filter";
 "filters" = "Filters";
 
 // Filters
-"no_circuit" = "No circuit";
-"type" = "Type";
-"height" = "Height";
-"all" = "All";
-"less than %@ m" = "Less than %@ m";
-"risk" = "Risk";
-"less_risky" = "Less risky";
-"less_risky.long" = "Less risky";
-"risky.long" = "Risky";
-"level" = "Level";
-"favorite" = "Favorite";
-"ticked" = "Already done";
-"ticked.short" = "Done";
-"reset" = "Reset";
-"level" = "Level";
-"risky_definition" = "A problem is considered risky when the ground makes the landing difficult or when the problem is high.";
-"no_limit" = "No limit";
+"filters.title" = "Filters";
+"filters.level" = "Level";
+"filters.circuit" = "Circuit";
+"filters.advanced_filters" = "Advanced Filters";
+"filters.type" = "Type";
+"filters.all" = "All";
+"filters.favorite" = "Favorite";
+"filters.ticked" = "Already done";
+"filters.reset" = "Reset";
 "grade.range.beginner" = "Beginner";
 "grade.range.intermediate" = "Intermediate";
 "grade.range.advanced" = "Advanced";

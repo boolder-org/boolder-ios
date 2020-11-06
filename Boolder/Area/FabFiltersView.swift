@@ -20,28 +20,6 @@ struct FabFiltersView: View {
         ZStack {
             HStack(spacing: 16) {
                 
-//                Button(action: {
-//                    self.presentCircuitFilter.toggle()
-//                }) {
-//                    if dataStore.filters.circuit != nil {
-//                        CircleView(number: "", color: circuitColor(), height: 20)
-//                        Text("circuit")
-//                    }
-//                    else {
-//                        Image("circuit")
-//                        Text("circuits")
-//                    }
-//                }
-//                .sheet(isPresented: $presentCircuitFilter) {
-//                    CircuitFilterView()
-//                        // FIXME: use accent color on all views by default (even for modals)
-//                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
-//                        .environmentObject(self.dataStore)
-//                        .accentColor(Color.green)
-//                }
-//                
-//                Divider().frame(width: 1, height: 44, alignment: .center)
-                
                 Button(action: {
                     self.presentFilters.toggle()
                 }) {
@@ -80,15 +58,6 @@ struct FabFiltersView: View {
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
         .padding()
-    }
-    
-    func circuitColor() -> UIColor {
-        if let circuit = dataStore.filters.circuit {
-            return circuit.uicolor
-        }
-        else {
-            return UIColor.white
-        }
     }
 }
 

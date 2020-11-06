@@ -15,68 +15,56 @@ struct CircuitFilterView: View {
     @State private var presentCircuitArticle = false
     
     var body: some View {
-//        NavigationView {
-            Form {
-                Section {
-                    ForEach(dataStore.geoStore.circuits, id: \.color) { (circuit: Circuit) in
-                        Button(action: {
-                            if self.dataStore.filters.circuit == circuit.color {
-                                self.dataStore.filters.circuit = nil
-                            }
-                            else {
-                                self.dataStore.filters.circuit = circuit.color
-                                self.dataStore.filters.gradeRange = nil
-                            }
+        Form {
+            Section {
+                ForEach(dataStore.geoStore.circuits, id: \.color) { (circuit: Circuit) in
+                    Button(action: {
+                        if self.dataStore.filters.circuit == circuit.color {
+                            self.dataStore.filters.circuit = nil
+                        }
+                        else {
+                            self.dataStore.filters.circuit = circuit.color
+                            self.dataStore.filters.gradeRange = nil
+                        }
+                        
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack(alignment: .center) {
+                            CircleView(number: "", color: circuit.color.uicolor, height: 20)
                             
-                            self.presentationMode.wrappedValue.dismiss()
-                        }) {
-                            HStack(alignment: .center) {
-                                CircleView(number: "", color: circuit.color.uicolor, height: 20)
-                                
-                                Text("\(circuit.color.shortName())")
-                                    .foregroundColor(Color(.label))
-                                
-                                Spacer()
-                                
-                                if self.dataStore.filters.circuit == circuit.color {
-                                    Image(systemName: "checkmark").font(Font.body.weight(.bold))
-                                }
+                            Text("\(circuit.color.shortName())")
+                                .foregroundColor(Color(.label))
+                            
+                            Spacer()
+                            
+                            if self.dataStore.filters.circuit == circuit.color {
+                                Image(systemName: "checkmark").font(Font.body.weight(.bold))
                             }
                         }
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
-            .navigationBarTitle("circuit", displayMode: .inline)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    self.presentCircuitArticle.toggle()
-                }) {
-                    Image(systemName: "questionmark.circle")
-                        .font(.system(size: 20, weight: .regular))
-                        .padding(.vertical)
-                        .padding(.leading, 32)
-                }
-                .sheet(isPresented: $presentCircuitArticle) {
-                    CircuitHelpView()
-                        // FIXME: use accent color on all views by default (even for modals)
-                        // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
-                        .environmentObject(self.dataStore)
-                        .accentColor(Color.green)
-                }
-//                ,
-//                trailing: Button(action: {
-//                    self.presentationMode.wrappedValue.dismiss()
-//                }) {
-//                    Text("OK")
-//                        .bold()
-//                        .padding(.vertical)
-//                        .padding(.leading, 32)
-//                }
-            )
-//        }
-//        .navigationViewStyle(StackNavigationViewStyle())
+        }
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .navigationBarTitle("filters.circuit", displayMode: .inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                self.presentCircuitArticle.toggle()
+            }) {
+                Image(systemName: "questionmark.circle")
+                    .font(.system(size: 20, weight: .regular))
+                    .padding(.vertical)
+                    .padding(.leading, 32)
+            }
+            .sheet(isPresented: $presentCircuitArticle) {
+                CircuitHelpView()
+                    // FIXME: use accent color on all views by default (even for modals)
+                    // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
+                    .environmentObject(self.dataStore)
+                    .accentColor(Color.green)
+            }
+        )
     }
 }
 
