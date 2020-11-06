@@ -20,7 +20,6 @@ struct FiltersView: View {
     var body: some View {
         NavigationView {
             Form {
-                
                 Section(header: Text("filters.level").padding(.top, 16)) {
                     
                     ForEach(GradeRange.allCases, id: \.self) { range in
@@ -138,7 +137,7 @@ struct SteepnessFilterView: View {
     @Binding var presentFilters: Bool
     
     var body: some View {
-        List {
+        Form {
             ForEach(userVisibleSteepnessTypes, id: \.self) { steepness in
                 
                 Button(action: {
