@@ -36,7 +36,7 @@ struct ProblemListView: View {
                                 ProblemCircleView(problem: problem)
                                 
                                 Text(problem.nameWithFallback())
-                                    .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
+                                    .foregroundColor(Color(.label))
 
                                 Spacer()
 

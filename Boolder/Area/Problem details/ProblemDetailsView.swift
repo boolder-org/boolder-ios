@@ -54,7 +54,7 @@ struct ProblemDetailsView: View {
                                 Text(problem.nameWithFallback())
                                     .font(.title)
                                     .fontWeight(.bold)
-                                    .foregroundColor(problem.name != nil ? Color(.label) : Color.gray)
+                                    .foregroundColor(Color(.label))
                                 
                                 Spacer()
                                 

@@ -30,7 +30,17 @@ class Problem : Identifiable {
     }
     
     func nameWithFallback() -> String {
-        self.name ?? NSLocalizedString("problem.no_name", comment: "")
+        if let circuitColor = circuitColor {
+            if circuitNumber != "" {
+                return self.name ?? (circuitColor.shortName() + " " + circuitNumber)
+            }
+            else {
+                return self.name ?? NSLocalizedString("problem.no_name", comment: "")
+            }
+        }
+        else {
+            return self.name ?? NSLocalizedString("problem.no_name", comment: "")
+        }
     }
     
     func readableDescription() -> String? {
