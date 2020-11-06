@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Filters {
-    var gradeFilter = GradeFilter(Set())
+    var gradeRange: GradeRange? = nil
     var steepness: Set<Steepness.SteepnessType> = Set()
     var heightMax = Int.max
     var photoPresent = false
@@ -22,7 +22,7 @@ struct Filters {
         let initialValues = Filters()
         var count = 0
         
-        if gradeFilter.categories != initialValues.gradeFilter.categories { count += 1 }
+        if gradeRange != initialValues.gradeRange || circuit != initialValues.circuit { count += 1 }
         if steepness != initialValues.steepness { count += 1 }
         if heightMax != initialValues.heightMax { count += 1 }
         if photoPresent != initialValues.photoPresent { count += 1 }

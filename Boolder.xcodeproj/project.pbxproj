@@ -16,6 +16,7 @@
 		37158D0B25488AE000A8B696 /* AreaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0A25488AE000A8B696 /* AreaRowView.swift */; };
 		37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0D25488B4100A8B696 /* AreaItemView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
+		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
@@ -231,7 +232,6 @@
 		37675AF7255199D2009C880C /* topo-346.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3B255199D2009C880C /* topo-346.jpg */; };
 		37675AFC2551A59B009C880C /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37675AFA2551A59B009C880C /* area-1-data.geojson */; };
 		37675AFD2551A59B009C880C /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 37675AFB2551A59B009C880C /* area-1-topo-lines.json */; };
-		37675B002552106B009C880C /* GradeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37675AFF2552106A009C880C /* GradeFilter.swift */; };
 		3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
 		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
 		3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
@@ -278,6 +278,7 @@
 		37158D0A25488AE000A8B696 /* AreaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaRowView.swift; sourceTree = "<group>"; };
 		37158D0D25488B4100A8B696 /* AreaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaItemView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
+		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
@@ -493,7 +494,6 @@
 		37675A3B255199D2009C880C /* topo-346.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-346.jpg"; sourceTree = "<group>"; };
 		37675AFA2551A59B009C880C /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37675AFB2551A59B009C880C /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
-		37675AFF2552106A009C880C /* GradeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeFilter.swift; sourceTree = "<group>"; };
 		3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotationView.swift; sourceTree = "<group>"; };
 		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
@@ -561,6 +561,15 @@
 				37158D0D25488B4100A8B696 /* AreaItemView.swift */,
 			);
 			path = Discover;
+			sourceTree = "<group>";
+		};
+		37254DE525557BAD00264034 /* CircleView */ = {
+			isa = PBXGroup;
+			children = (
+				37E42EE0245DB52F00EEBA96 /* CircleView.swift */,
+				37166735255405CA0078AE09 /* ProblemCircleView.swift */,
+			);
+			path = CircleView;
 			sourceTree = "<group>";
 		};
 		3766A68E253EDDD800AC3477 /* area-4 */ = {
@@ -869,9 +878,9 @@
 				3701845A2466BD0800C6530C /* TopoStore.swift */,
 				37A8C80C245326F200DC161F /* Line.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
-				37675AFF2552106A009C880C /* GradeFilter.swift */,
 				37A8C809245326F200DC161F /* Steepness.swift */,
 				37A8C80A245326F200DC161F /* Grade.swift */,
+				37254DE825557F9700264034 /* GradeRange.swift */,
 				37A8C80B245326F200DC161F /* Circuit.swift */,
 				37BCA98524670DC000D56252 /* Problem.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
@@ -902,11 +911,10 @@
 				37CF8E9924699F3900E996C0 /* AreaPickerView.swift */,
 				37D7B16A245B091100B522A6 /* Map */,
 				37638B83245437A000C5CD82 /* ProblemListView.swift */,
-				37E42EE0245DB52F00EEBA96 /* CircleView.swift */,
-				37166735255405CA0078AE09 /* ProblemCircleView.swift */,
+				37254DE525557BAD00264034 /* CircleView */,
 				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
-				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
 				37A2762A2457633E00F53D80 /* FiltersView.swift */,
+				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
 				37BFFB512461B10400837F64 /* CircuitHelpView.swift */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
@@ -1231,7 +1239,6 @@
 				37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
-				37675B002552106B009C880C /* GradeFilter.swift in Sources */,
 				3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */,
 				3790C35F2456008F005E786E /* BezierView.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
@@ -1248,6 +1255,7 @@
 				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
+				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,

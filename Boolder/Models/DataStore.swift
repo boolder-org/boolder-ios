@@ -93,12 +93,11 @@ class DataStore : ObservableObject {
     }
     
     private func isGradeOk(_ problem: Problem) -> Bool {
-        if filters.gradeFilter.categories.isEmpty {
-            return true
+        if let range = filters.gradeRange {
+            return range.grades.contains(problem.grade)
         }
-        
-        return filters.gradeFilter.categories.contains { category in
-            category.grades.contains(problem.grade)
+        else {
+            return true
         }
     }
     

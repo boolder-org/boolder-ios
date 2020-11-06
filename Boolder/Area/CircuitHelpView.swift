@@ -27,21 +27,21 @@ struct CircuitHelpView: View {
                 
                 VStack(alignment: .leading, spacing: 16) {
                     
-                    Text("circuit_help.circuits.p1")
+                    Text("circuit_help.circuits.p1").font(.body)
                     
-                    Text("circuit_help.circuits.p2")
+                    Text("circuit_help.circuits.p2").font(.body)
                     
                     CircuitLevelMatrix()
                         .padding(.trailing, 32)
                         .padding(.top, 16)
                     
-                    Text("circuit_help.circuits.p3")
+                    Text("circuit_help.circuits.p3").font(.body)
                     
                     Text("circuit_help.numbers.title")
                         .font(.title)
                         .padding(.top, 32)
                     
-                    Text("circuit_help.numbers.p1")
+                    Text("circuit_help.numbers.p1").font(.body)
                     
                     Image("yellow-circuit-start")
                         .resizable()
@@ -54,10 +54,12 @@ struct CircuitHelpView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack(alignment: .center, spacing: 16) {
+                            Spacer()
                             Text("circuit_help.got_it")
                                 .fontWeight(.bold)
                                 .padding(.vertical)
                                 .fixedSize(horizontal: true, vertical: true)
+                            Spacer()
                         }
                         .padding(.horizontal)
                     }

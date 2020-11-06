@@ -64,14 +64,12 @@
 "level" = "Level";
 "risky_definition" = "A problem is considered risky when the ground makes the landing difficult or when the problem is high.";
 "no_limit" = "No limit";
-"grade.category.kid" = "Kid";
-"grade.category.beginner" = "Beginner";
-"grade.category.intermediate" = "Intermediate";
-"grade.category.advanced" = "Advanced";
-"grade.category.description.kid" = "Level 1";
-"grade.category.description.beginner" = "Level 2, 3";
-"grade.category.description.intermediate" = "Level 4, 5";
-"grade.category.description.advanced" = "Level 6, 7, 8";
+"grade.range.beginner" = "Beginner";
+"grade.range.intermediate" = "Intermediate";
+"grade.range.advanced" = "Advanced";
+"grade.range.description.beginner" = "Level 1, 2, 3";
+"grade.range.description.intermediate" = "Level 4, 5";
+"grade.range.description.advanced" = "Level 6, 7, 8";
 
 // Circuit help
 "circuit_help.circuits.p1" = "Circuits are very helpful to discover an area.";

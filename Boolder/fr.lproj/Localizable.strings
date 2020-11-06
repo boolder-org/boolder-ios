@@ -64,14 +64,12 @@
 "level" = "Niveau";
 "risky_definition" = "Une voie est considérée comme dangereuse lorsque le terrain rend la réception difficile ou lorsque la hauteur est importante.";
 "no_limit" = "Pas de limite";
-"grade.category.kid" = "Enfant";
-"grade.category.beginner" = "Débutant";
-"grade.category.intermediate" = "Intermédiaire";
-"grade.category.advanced" = "Avancé";
-"grade.category.description.kid" = "Niveau 1";
-"grade.category.description.beginner" = "Niveau 2, 3";
-"grade.category.description.intermediate" = "Niveau 4, 5";
-"grade.category.description.advanced" = "Niveau 6, 7, 8";
+"grade.range.beginner" = "Débutant";
+"grade.range.intermediate" = "Intermédiaire";
+"grade.range.advanced" = "Avancé";
+"grade.range.description.beginner" = "Niveau 1, 2, 3";
+"grade.range.description.intermediate" = "Niveau 4, 5";
+"grade.range.description.advanced" = "Niveau 6, 7, 8";
 
 // Circuit help
 "circuit_help.circuits.p1" = "Les circuits sont très pratiques pour découvrir un secteur.";

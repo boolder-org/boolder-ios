@@ -19,10 +19,86 @@ struct FiltersView: View {
     @State private var presentSteepnessFilter = false
     @Binding var presentFilters: Bool
     
+//    private func categoryTapped(_ category: GradeFilter.Category) {
+//        if self.dataStore.filters.gradeFilter.categories.contains(category) {
+//            self.dataStore.filters.gradeFilter.categories.remove(category)
+//        }
+//        else {
+//            self.dataStore.filters.gradeFilter.categories.insert(category)
+//        }
+//    }
+    
     var body: some View {
         NavigationView {
             Form {
-                Section {
+                
+                Section(header: Text("Niveau").padding(.top, 16)) {
+                    
+                    ForEach(GradeRange.allCases, id: \.self) { range in
+                        Button(action: {
+                            if self.dataStore.filters.gradeRange == range {
+                                self.dataStore.filters.gradeRange = nil
+                            }
+                            else {
+                                self.dataStore.filters.gradeRange = range
+                                self.dataStore.filters.circuit = nil
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: self.dataStore.filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
+                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
+                                
+                                Text(range.name).foregroundColor(Color(.label))
+                                Spacer()
+                                Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
+                            }
+                        }
+                    }
+                    
+                    NavigationLink(destination: CircuitFilterView()) {
+                        HStack {
+                            
+                            if let circuit = self.dataStore.filters.circuit {
+                                Image(systemName: "largecircle.fill.circle").font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(Color.green)
+                                Text("Circuit")
+                                Spacer()
+                                Text("\(circuit.shortName())").foregroundColor(Color(.systemGray)).font(.caption)
+                            } else
+                            {
+                                Image(systemName: "circle").font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(Color.green)
+                                Text("Circuit")
+                            }
+                        }
+                    }
+                }
+                
+//                Section(header: Text("Circuit")) {
+//                    ForEach(dataStore.geoStore.circuits, id: \.color) { (circuit: Circuit) in
+//                        Button(action: {
+//                            if self.dataStore.filters.circuit == circuit.color {
+//                                self.dataStore.filters.circuit = nil
+//                            }
+//                            else {
+//                                self.dataStore.filters.circuit = circuit.color
+//                            }
+//                        }) {
+//                            HStack(alignment: .center) {
+//                                CircleView(number: "", color: circuit.color.uicolor, height: 20)
+//
+//                                Text("\(circuit.color.shortName())")
+//                                    .foregroundColor(Color(.label))
+//
+//                                Spacer()
+//
+//                                if self.dataStore.filters.circuit == circuit.color {
+//                                    Image(systemName: "checkmark").font(Font.body.weight(.bold))
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+                
+                Section(header: Text("Filtres avancés")) {
                     NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters), isActive: $presentSteepnessFilter) {
                         HStack {
                             Text("type")
@@ -50,17 +126,15 @@ struct FiltersView: View {
 //                        }
 //                    }
                     
-                    NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
-                        HStack {
-                            Text("level")
-                            Spacer()
-                            Text(labelForCategories())
-                                .foregroundColor(Color.gray)
-                        }
-                    }
-                }
+//                    NavigationLink(destination: GradeFilterView(presentFilters: $presentFilters), isActive: $presentGradeFilter) {
+//                        HStack {
+//                            Text("level")
+//                            Spacer()
+//                            Text(labelForCategories())
+//                                .foregroundColor(Color.gray)
+//                        }
+//                    }
                 
-                Section {
                     
                     HStack {
                         Toggle(isOn: $dataStore.filters.favorite) {
@@ -82,10 +156,7 @@ struct FiltersView: View {
             .navigationBarTitle("filters", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    var newFilters = Filters()
-                    newFilters.circuit = self.dataStore.filters.circuit
-                    self.dataStore.filters = newFilters
-                    self.presentationMode.wrappedValue.dismiss()
+                    self.dataStore.filters = Filters()
                 }) {
                     Text("reset")
                         .padding(.vertical)
@@ -116,27 +187,27 @@ struct FiltersView: View {
         return String(string.prefix(1).capitalized + string.dropFirst())
     }
     
-    private func labelForCategories() -> String {
-        if dataStore.filters.gradeFilter.categories == Filters().gradeFilter.categories {
-            return NSLocalizedString("all", comment: "")
-        }
-        else {
-            let string = dataStore.filters.gradeFilter.categories
-                .sorted().map{ $0.name.lowercased() }.joined(separator: ", ")
-            return String(string.prefix(1).capitalized + string.dropFirst())
-        }
-    }
+//    private func labelForCategories() -> String {
+//        if dataStore.filters.gradeFilter.categories == Filters().gradeFilter.categories {
+//            return NSLocalizedString("all", comment: "")
+//        }
+//        else {
+//            let string = dataStore.filters.gradeFilter.categories
+//                .sorted().map{ $0.name.lowercased() }.joined(separator: ", ")
+//            return String(string.prefix(1).capitalized + string.dropFirst())
+//        }
+//    }
     
-    private func consecutiveNumbers(_ categories: [Int]) -> Bool {
-        if categories.count < 2 { return false }
-        
-        for i in 0..<categories.count {
-            if i > 0 {
-                if categories[i] != (categories[i-1] + 1) { return false }
-            }
-        }
-        return true
-    }
+//    private func consecutiveNumbers(_ categories: [Int]) -> Bool {
+//        if categories.count < 2 { return false }
+//
+//        for i in 0..<categories.count {
+//            if i > 0 {
+//                if categories[i] != (categories[i-1] + 1) { return false }
+//            }
+//        }
+//        return true
+//    }
 }
 
 struct FiltersView_Previews: PreviewProvider {
@@ -149,53 +220,53 @@ struct FiltersView_Previews: PreviewProvider {
     }
 }
 
-struct GradeFilterView: View {
-    @EnvironmentObject var dataStore: DataStore
-    @Binding var presentFilters: Bool
-    
-    var body: some View {
-        List {
-            ForEach(GradeFilter.allCategories, id: \.self) { category in
-                Button(action: {
-                    categoryTapped(category)
-                }) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(category.name).foregroundColor(Color(.label))
-                            Text(category.description).foregroundColor(Color(.systemGray)).font(.caption)
-                        }
-                        Spacer()
-                        if self.dataStore.filters.gradeFilter.categories.contains(category) {
-                            Image(systemName: "checkmark").font(Font.body.weight(.bold))
-                        }
-                    }
-                }
-            }
-        }
-        .listStyle(GroupedListStyle())
-        .environment(\.horizontalSizeClass, .regular)
-        .navigationBarTitle("level")
-        .navigationBarItems(
-            trailing: Button(action: {
-                self.presentFilters = false
-            }) {
-                Text("OK")
-                    .bold()
-                    .padding(.vertical)
-                    .padding(.leading, 32)
-            }
-        )
-    }
-    
-    private func categoryTapped(_ category: GradeFilter.Category) {
-        if self.dataStore.filters.gradeFilter.categories.contains(category) {
-            self.dataStore.filters.gradeFilter.categories.remove(category)
-        }
-        else {
-            self.dataStore.filters.gradeFilter.categories.insert(category)
-        }
-    }
-}
+//struct GradeFilterView: View {
+//    @EnvironmentObject var dataStore: DataStore
+//    @Binding var presentFilters: Bool
+//
+//    var body: some View {
+//        List {
+//            ForEach(GradeFilter.allCategories, id: \.self) { category in
+//                Button(action: {
+//                    categoryTapped(category)
+//                }) {
+//                    HStack {
+//                        VStack(alignment: .leading) {
+//                            Text(category.name).foregroundColor(Color(.label))
+//                            Text(category.description).foregroundColor(Color(.systemGray)).font(.caption)
+//                        }
+//                        Spacer()
+//                        if self.dataStore.filters.gradeFilter.categories.contains(category) {
+//                            Image(systemName: "checkmark").font(Font.body.weight(.bold))
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        .listStyle(GroupedListStyle())
+//        .environment(\.horizontalSizeClass, .regular)
+//        .navigationBarTitle("level")
+//        .navigationBarItems(
+//            trailing: Button(action: {
+//                self.presentFilters = false
+//            }) {
+//                Text("OK")
+//                    .bold()
+//                    .padding(.vertical)
+//                    .padding(.leading, 32)
+//            }
+//        )
+//    }
+//
+//    private func categoryTapped(_ category: GradeFilter.Category) {
+//        if self.dataStore.filters.gradeFilter.categories.contains(category) {
+//            self.dataStore.filters.gradeFilter.categories.remove(category)
+//        }
+//        else {
+//            self.dataStore.filters.gradeFilter.categories.insert(category)
+//        }
+//    }
+//}
 
 struct RiskyFilterView: View {
     @EnvironmentObject var dataStore: DataStore
