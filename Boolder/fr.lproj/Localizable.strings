@@ -6,17 +6,13 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
-"areas" = "Secteurs";
-"map" = "Carte";
-"list" = "Liste";
+// MARK: Area view
+"area.filter" = "Filtre";
+"area.filters" = "Filtres";
+"area.map" = "Carte";
+"area.list" = "Liste";
 
-// shared
-"shared.ticked.short" = "Fait";
-"shared.favorite" = "Favori";
-
-// Circuit
-"circuit" = "Circuit";
-
+// MARK: Circuit
 "circuit.long_name.yellow" = "Circuit Jaune";
 "circuit.long_name.orange" = "Circuit Orange";
 "circuit.long_name.blue" = "Circuit Bleu";
@@ -37,18 +33,13 @@
 "circuit.short_name.white_for_kids" = "Blanc";
 "circuit.short_name.off_circuit" = "Hors circuit";
 
-// POI
-"see_in" = "Voir dans %@";
-"share" = "Partager";
-"cancel" = "Annuler";
-"gps_coordinates_for_poi" = "Coordonnées GPS %@ : %@,%@";
+// MARK: POI
+"poi.see_in" = "Voir dans %@";
+"poi.share" = "Partager";
+"poi.cancel" = "Annuler";
+"poi.gps_coordinates_for_poi" = "Coordonnées GPS %@ : %@,%@";
 
-// Area view
-"no_name" = "Sans nom";
-"filter" = "Filtre";
-"filters" = "Filtres";
-
-// Filters
+// MARK: Filters
 "filters.title" = "Filtres";
 "filters.level" = "Niveau";
 "filters.circuit" = "Circuit";
@@ -58,14 +49,14 @@
 "filters.favorite" = "Favori";
 "filters.ticked" = "Déjà fait";
 "filters.reset" = "Réinitialiser";
-"grade.range.beginner" = "Débutant";
-"grade.range.intermediate" = "Intermédiaire";
-"grade.range.advanced" = "Avancé";
-"grade.range.description.beginner" = "Niveau 1, 2, 3";
-"grade.range.description.intermediate" = "Niveau 4, 5";
-"grade.range.description.advanced" = "Niveau 6, 7, 8";
+"filters.grade.range.beginner" = "Débutant";
+"filters.grade.range.intermediate" = "Intermédiaire";
+"filters.grade.range.advanced" = "Avancé";
+"filters.grade.range.description.beginner" = "Niveau 1, 2, 3";
+"filters.grade.range.description.intermediate" = "Niveau 4, 5";
+"filters.grade.range.description.advanced" = "Niveau 6, 7, 8";
 
-// Circuit help
+// MARK: Circuit help
 "circuit_help.circuits.p1" = "Les circuits sont très pratiques pour découvrir un secteur.";
 "circuit_help.circuits.p2" = "Ils regroupent des voies de niveau relativement homogène.";
 "circuit_help.circuits.p3" = "N'hésitez pas à regarder le détail de chaque circuit pour en savoir plus sur les niveaux précis de chaque voie.";
@@ -73,7 +64,7 @@
 "circuit_help.numbers.p1" = "Le numéro de chaque voie est peint directement sur la roche, ce qui permet de se repérer facilement.";
 "circuit_help.got_it" = "J'ai bien compris !";
 
-// Steepness
+// MARK: Steepness
 "steepness.wall" = "Mur vertical";
 "steepness.slab" = "Dalle";
 "steepness.overhang" = "Dévers";
@@ -81,6 +72,9 @@
 "steepness.traverse" = "Traversée";
 "steepness.other" = "Autre";
 
-// Problem details
-"sit_start" = "départ assis";
-"height_desc" = "hauteur %@ m";
+// MARK: Problem details
+"problem.no_name" = "Sans nom";
+"problem.sit_start" = "départ assis";
+"problem.height_desc" = "hauteur %@ m";
+"problem.ticked.short" = "Fait";
+"problem.favorite" = "Favori";

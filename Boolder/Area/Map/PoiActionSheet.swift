@@ -24,7 +24,7 @@ struct PoiActionSheet: View {
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
             buttons.append(
                 .default(Text(
-                    String.localizedStringWithFormat(NSLocalizedString("see_in", comment: ""), "Google Maps")
+                    String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Google Maps")
                 )) {
                     UIApplication.shared.open(URL(string: "comgooglemaps://?daddr=\(self.location.latitude),\(self.location.longitude)")!)
                 }
@@ -34,7 +34,7 @@ struct PoiActionSheet: View {
         if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
             buttons.append(
                 .default(Text(
-                    String.localizedStringWithFormat(NSLocalizedString("see_in", comment: ""), "Waze")
+                    String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Waze")
                 )) {
                     let urlStr: String = "waze://?ll=\(self.location.latitude),\(self.location.longitude)&navigate=yes"
                     UIApplication.shared.open(URL(string: urlStr)!)
@@ -44,7 +44,7 @@ struct PoiActionSheet: View {
         
         buttons.append(
             .default(Text(
-                String.localizedStringWithFormat(NSLocalizedString("see_in", comment: ""), "Apple Maps")
+                String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Apple Maps")
             )) {
                 let destination = MKMapItem(placemark: MKPlacemark(coordinate: self.location))
                 destination.name = self.selectedPoi?.description ?? ""
@@ -54,13 +54,13 @@ struct PoiActionSheet: View {
         )
         
         buttons.append(
-            .default(Text("share")) {
+            .default(Text("poi.share")) {
                 self.showShareSheet = true
             }
         )
         
         buttons.append(
-            .cancel(Text("cancel"))
+            .cancel(Text("poi.cancel"))
         )
         
         return buttons
@@ -78,7 +78,7 @@ struct PoiActionSheet: View {
             EmptyView()
                 .sheet(isPresented: $showShareSheet) {
                     ShareSheet(activityItems: [
-                        String.localizedStringWithFormat(NSLocalizedString("gps_coordinates_for_poi", comment: ""), self.selectedPoi?.description ?? "", self.location.latitude.description, self.location.longitude.description)
+                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), self.selectedPoi?.description ?? "", self.location.latitude.description, self.location.longitude.description)
                     ])
                 }
         )

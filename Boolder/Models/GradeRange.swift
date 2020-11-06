@@ -16,22 +16,22 @@ enum GradeRange: CaseIterable, Comparable {
     var name: String {
         switch self {
         case .beginner:
-            return NSLocalizedString("grade.range.beginner", comment: "")
+            return NSLocalizedString("filters.grade.range.beginner", comment: "")
         case .intermediate:
-            return NSLocalizedString("grade.range.intermediate", comment: "")
+            return NSLocalizedString("filters.grade.range.intermediate", comment: "")
         case .advanced:
-            return NSLocalizedString("grade.range.advanced", comment: "")
+            return NSLocalizedString("filters.grade.range.advanced", comment: "")
         }
     }
     
     var description: String {
         switch self {
         case .beginner:
-            return NSLocalizedString("grade.range.description.beginner", comment: "")
+            return NSLocalizedString("filters.grade.range.description.beginner", comment: "")
         case .intermediate:
-            return NSLocalizedString("grade.range.description.intermediate", comment: "")
+            return NSLocalizedString("filters.grade.range.description.intermediate", comment: "")
         case .advanced:
-            return NSLocalizedString("grade.range.description.advanced", comment: "")
+            return NSLocalizedString("filters.grade.range.description.advanced", comment: "")
         }
     }
     

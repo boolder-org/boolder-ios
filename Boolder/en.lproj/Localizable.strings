@@ -6,17 +6,13 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
-"areas" = "Areas";
-"map" = "Map";
-"list" = "List";
+// MARK: Area view
+"area.filter" = "Filter";
+"area.filters" = "Filters";
+"area.map" = "Map";
+"area.list" = "List";
 
-// shared
-"shared.ticked.short" = "Done";
-"shared.favorite" = "Favorite";
-
-// Circuit
-"circuit" = "Circuit";
-
+// MARK: Circuit
 "circuit.long_name.yellow" = "Yellow circuit";
 "circuit.long_name.orange" = "Orange circuit";
 "circuit.long_name.blue" = "Blue circuit";
@@ -37,18 +33,13 @@
 "circuit.short_name.white_for_kids" = "White";
 "circuit.short_name.off_circuit" = "Other";
 
-// POI
-"see_in" = "See in %@";
-"share" = "Share";
-"cancel" = "Cancel";
-"gps_coordinates_for_poi" = "GPS coordinates %@ : %@,%@";
+// MARK: POI
+"poi.see_in" = "See in %@";
+"poi.share" = "Share";
+"poi.cancel" = "Cancel";
+"poi.gps_coordinates_for_poi" = "GPS coordinates %@ : %@,%@";
 
-// Area view
-"no_name" = "No name";
-"filter" = "Filter";
-"filters" = "Filters";
-
-// Filters
+// MARK: Filters
 "filters.title" = "Filters";
 "filters.level" = "Level";
 "filters.circuit" = "Circuit";
@@ -58,14 +49,14 @@
 "filters.favorite" = "Favorite";
 "filters.ticked" = "Already done";
 "filters.reset" = "Reset";
-"grade.range.beginner" = "Beginner";
-"grade.range.intermediate" = "Intermediate";
-"grade.range.advanced" = "Advanced";
-"grade.range.description.beginner" = "Level 1, 2, 3";
-"grade.range.description.intermediate" = "Level 4, 5";
-"grade.range.description.advanced" = "Level 6, 7, 8";
+"filters.grade.range.beginner" = "Beginner";
+"filters.grade.range.intermediate" = "Intermediate";
+"filters.grade.range.advanced" = "Advanced";
+"filters.grade.range.description.beginner" = "Level 1, 2, 3";
+"filters.grade.range.description.intermediate" = "Level 4, 5";
+"filters.grade.range.description.advanced" = "Level 6, 7, 8";
 
-// Circuit help
+// MARK: Circuit help
 "circuit_help.circuits.p1" = "Circuits are very helpful to discover an area.";
 "circuit_help.circuits.p2" = "They are composed of problems with relatively homogeneous levels.";
 "circuit_help.circuits.p3" = "Feel free to have a look at the problems of each circuit to know more about the required level.";
@@ -73,7 +64,7 @@
 "circuit_help.numbers.p1" = "Each problem's number is painted directly on the boulder, which is very handy to locate yourself.";
 "circuit_help.got_it" = "Got it!";
 
-// Steepness
+// MARK: Steepness
 "steepness.wall" = "Wall";
 "steepness.slab" = "Slab";
 "steepness.overhang" = "Overhang";
@@ -81,6 +72,9 @@
 "steepness.traverse" = "Traverse";
 "steepness.other" = "Other";
 
-// Problem details
-"sit_start" = "sit start";
-"height_desc" = "height %@ m";
+// MARK: Problem details
+"problem.no_name" = "No name";
+"problem.sit_start" = "sit start";
+"problem.height_desc" = "height %@ m";
+"problem.ticked.short" = "Done";
+"problem.favorite" = "Favorite";

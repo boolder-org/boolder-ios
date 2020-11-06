@@ -100,7 +100,7 @@ struct ProblemDetailsView: View {
                                 if self.isFavorite() {
                                     Image(systemName: "star.fill")
                                         .font(.title)
-                                    Text("shared.favorite")
+                                    Text("problem.favorite")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -108,7 +108,7 @@ struct ProblemDetailsView: View {
                                 else {
                                     Image(systemName: "star")
                                         .font(.title)
-                                    Text("favorite")
+                                    Text("problem.favorite")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -128,7 +128,7 @@ struct ProblemDetailsView: View {
                                 if self.isTicked() {
                                     Image(systemName: "checkmark.circle.fill")
                                         .font(.title)
-                                    Text("shared.ticked.short")
+                                    Text("problem.ticked.short")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)
@@ -136,7 +136,7 @@ struct ProblemDetailsView: View {
                                 else {
                                     Image(systemName: "circle")
                                         .font(.title)
-                                    Text("shared.ticked.short")
+                                    Text("problem.ticked.short")
                                         .fontWeight(.bold)
                                         .padding(.vertical)
                                         .fixedSize(horizontal: true, vertical: true)

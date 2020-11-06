@@ -37,7 +37,7 @@ struct FabFiltersView: View {
                             )
                             .foregroundColor(Color(.systemBackground))
                     }
-                    Text(dataStore.filters.filtersCount() == 1 ? "filter" : "filters")
+                    Text(dataStore.filters.filtersCount() == 1 ? "area.filter" : "area.filters")
                         .fixedSize(horizontal: true, vertical: true)
                 }
                 .padding(.vertical, 12)

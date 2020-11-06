@@ -572,6 +572,17 @@
 			path = CircleView;
 			sourceTree = "<group>";
 		};
+		37254DED2555945100264034 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
+				37A8C806245326DB00DC161F /* DataStore.swift */,
+				37A276282457424500F53D80 /* GeoStore.swift */,
+				3701845A2466BD0800C6530C /* TopoStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
 		3766A68E253EDDD800AC3477 /* area-4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -827,6 +838,7 @@
 			children = (
 				37A8C6292453263300DC161F /* AppDelegate.swift */,
 				37A8C62B2453263300DC161F /* SceneDelegate.swift */,
+				37254DED2555945100264034 /* Stores */,
 				37A8C808245326F200DC161F /* Models */,
 				37158D0425487F1700A8B696 /* Discover */,
 				37F12D852456D4FC0036E3E3 /* Area */,
@@ -872,17 +884,13 @@
 		37A8C808245326F200DC161F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				37A8C806245326DB00DC161F /* DataStore.swift */,
-				37A276282457424500F53D80 /* GeoStore.swift */,
-				3701845A2466BD0800C6530C /* TopoStore.swift */,
+				37BCA98524670DC000D56252 /* Problem.swift */,
 				37A8C80C245326F200DC161F /* Line.swift */,
-				37A8C80D245326F200DC161F /* Filters.swift */,
+				37A8C80B245326F200DC161F /* Circuit.swift */,
 				37A8C809245326F200DC161F /* Steepness.swift */,
 				37A8C80A245326F200DC161F /* Grade.swift */,
 				37254DE825557F9700264034 /* GradeRange.swift */,
-				37A8C80B245326F200DC161F /* Circuit.swift */,
-				37BCA98524670DC000D56252 /* Problem.swift */,
+				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
 			);
 			path = Models;

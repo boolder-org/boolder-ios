@@ -92,7 +92,7 @@ struct AreaView: View {
             trailing: Button(action: {
                 self.showList.toggle()
             }) {
-                Text(showList ? "map" : "list")
+                Text(showList ? "area.map" : "area.list")
                     .font(.body)
                     .padding(.vertical)
                     .padding(.leading)

@@ -30,7 +30,7 @@ class Problem : Identifiable {
     }
     
     func nameWithFallback() -> String {
-        self.name ?? NSLocalizedString("no_name", comment: "")
+        self.name ?? NSLocalizedString("problem.no_name", comment: "")
     }
     
     func readableDescription() -> String? {
@@ -43,14 +43,14 @@ class Problem : Identifiable {
         
         if let height = height {
             strings.insert(
-                String.localizedStringWithFormat(NSLocalizedString("height_desc", comment: ""), height.description)
+                String.localizedStringWithFormat(NSLocalizedString("problem.height_desc", comment: ""), height.description)
             )
         }
         
         return strings.map { (string: String) in
             switch string {
             case "sit_start":
-                return NSLocalizedString("sit_start", comment: "")
+                return NSLocalizedString("problem.sit_start", comment: "")
             default:
                 return string
             }
