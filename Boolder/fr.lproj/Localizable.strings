@@ -57,6 +57,7 @@
 "filters.grade.range.description.advanced" = "Niveau 6, 7, 8";
 
 // MARK: Circuit help
+"circuit_help.title" = "Circuits";
 "circuit_help.circuits.p1" = "Les circuits sont très pratiques pour découvrir un secteur.";
 "circuit_help.circuits.p2" = "Ils regroupent des voies de niveau relativement homogène.";
 "circuit_help.circuits.p3" = "N'hésitez pas à regarder le détail de chaque circuit pour en savoir plus sur les niveaux précis de chaque voie.";
@@ -78,3 +79,4 @@
 "problem.height_desc" = "hauteur %@ m";
 "problem.ticked.short" = "Fait";
 "problem.favorite" = "Favori";
+"problem.risky.long" = "Dangereux en cas de chute";

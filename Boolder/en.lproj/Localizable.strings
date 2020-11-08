@@ -57,6 +57,7 @@
 "filters.grade.range.description.advanced" = "Level 6, 7, 8";
 
 // MARK: Circuit help
+"circuit_help.title" = "Circuits";
 "circuit_help.circuits.p1" = "Circuits are very helpful to discover an area.";
 "circuit_help.circuits.p2" = "They are composed of problems with relatively homogeneous levels.";
 "circuit_help.circuits.p3" = "Feel free to have a look at the problems of each circuit to know more about the required level.";
@@ -78,3 +79,4 @@
 "problem.height_desc" = "height %@ m";
 "problem.ticked.short" = "Done";
 "problem.favorite" = "Favorite";
+"problem.risky.long" = "Dangerous if you fall";

@@ -17,7 +17,7 @@ struct CircuitHelpView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 VStack(alignment: .center) {
-                    Text("circuits")
+                    Text("circuit_help.title")
                         .font(.largeTitle)
                         .foregroundColor(Color(.systemGreen))
                         .bold()
