@@ -23,7 +23,7 @@ struct FabFiltersView: View {
             HStack(spacing: 16) {
                 
                 Button(action: {
-                    self.presentFilters.toggle()
+                    presentFilters.toggle()
                 }) {
                     if dataStore.filters.filtersCount() == 0 {
                         Image(systemName: "slider.horizontal.3")
@@ -44,13 +44,13 @@ struct FabFiltersView: View {
                 }
                 .padding(.vertical, 12)
                 .sheet(isPresented: $presentFilters, onDismiss: {
-                    self.dataStore.filters = filters
+                    dataStore.filters = filters
                 }) {
-                    FiltersView(presentFilters: self.$presentFilters, filters: $filters)
+                    FiltersView(presentFilters: $presentFilters, filters: $filters)
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
-                        .environmentObject(self.dataStore)
-                        .environment(\.managedObjectContext, self.managedObjectContext)
+                        .environmentObject(dataStore)
+                        .environment(\.managedObjectContext, managedObjectContext)
                         .accentColor(Color.green)
                 }
             }

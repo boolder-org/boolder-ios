@@ -32,11 +32,11 @@ struct AreaView: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
                 .sheet(isPresented: $presentProblemDetails) {
-                    ProblemDetailsView(problem: self.$selectedProblem)
+                    ProblemDetailsView(problem: $selectedProblem)
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
-                        .environmentObject(self.dataStore)
-                        .environment(\.managedObjectContext, self.managedObjectContext)
+                        .environmentObject(dataStore)
+                        .environment(\.managedObjectContext, managedObjectContext)
                         .accentColor(Color.green)
                 }
             .background(PoiActionSheet(presentPoiActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
@@ -46,8 +46,8 @@ struct AreaView: View {
                         AreaPickerView()
                             // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                             // remove these lines as soon as it's fixed
-                            .environmentObject(self.dataStore)
-                            .environment(\.managedObjectContext, self.managedObjectContext)
+                            .environmentObject(dataStore)
+                            .environment(\.managedObjectContext, managedObjectContext)
                             .accentColor(Color.green)
                     }
             )
@@ -67,7 +67,7 @@ struct AreaView: View {
                         Spacer()
                         
                         Button(action: {
-                            self.centerOnCurrentLocationCount += 1
+                            centerOnCurrentLocationCount += 1
                         }) {
                             Image(systemName: "location")
                             .padding(12)
@@ -90,7 +90,7 @@ struct AreaView: View {
         .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
-                self.showList.toggle()
+                showList.toggle()
             }) {
                 Text(showList ? "area.map" : "area.list")
                     .font(.body)
@@ -103,13 +103,13 @@ struct AreaView: View {
 //            // delete all favorites
 //            let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
 //            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
-//            do { try self.managedObjectContext.execute(DelAllReqVar) }
+//            do { try managedObjectContext.execute(DelAllReqVar) }
 //            catch { print(error) }
 //
 //            // delete all ticks
 //            let ReqVar2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Tick")
 //            let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: ReqVar2)
-//            do { try self.managedObjectContext.execute(DelAllReqVar2) }
+//            do { try managedObjectContext.execute(DelAllReqVar2) }
 //            catch { print(error) }
 //        #endif
 //        }

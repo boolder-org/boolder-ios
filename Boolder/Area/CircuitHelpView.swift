@@ -51,7 +51,7 @@ struct CircuitHelpView: View {
                         
                     
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack(alignment: .center, spacing: 16) {
                             Spacer()

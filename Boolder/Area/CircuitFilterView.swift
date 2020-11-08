@@ -28,7 +28,7 @@ struct CircuitFilterView: View {
                             filters.gradeRange = nil
                         }
                         
-                        self.presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack(alignment: .center) {
                             CircleView(number: "", color: circuit.color.uicolor, height: 20)
@@ -51,7 +51,7 @@ struct CircuitFilterView: View {
         .navigationBarTitle("filters.circuit", displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
-                self.presentCircuitArticle.toggle()
+                presentCircuitArticle.toggle()
             }) {
                 Image(systemName: "questionmark.circle")
                     .font(.system(size: 20, weight: .regular))
@@ -62,7 +62,7 @@ struct CircuitFilterView: View {
                 CircuitHelpView()
                     // FIXME: use accent color on all views by default (even for modals)
                     // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
-                    .environmentObject(self.dataStore)
+                    .environmentObject(dataStore)
                     .accentColor(Color.green)
             }
         )

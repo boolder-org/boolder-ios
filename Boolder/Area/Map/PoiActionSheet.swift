@@ -26,7 +26,7 @@ struct PoiActionSheet: View {
                 .default(Text(
                     String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Google Maps")
                 )) {
-                    UIApplication.shared.open(URL(string: "comgooglemaps://?daddr=\(self.location.latitude),\(self.location.longitude)")!)
+                    UIApplication.shared.open(URL(string: "comgooglemaps://?daddr=\(location.latitude),\(location.longitude)")!)
                 }
             )
         }
@@ -36,7 +36,7 @@ struct PoiActionSheet: View {
                 .default(Text(
                     String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Waze")
                 )) {
-                    let urlStr: String = "waze://?ll=\(self.location.latitude),\(self.location.longitude)&navigate=yes"
+                    let urlStr: String = "waze://?ll=\(location.latitude),\(location.longitude)&navigate=yes"
                     UIApplication.shared.open(URL(string: urlStr)!)
                 }
             )
@@ -46,8 +46,8 @@ struct PoiActionSheet: View {
             .default(Text(
                 String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Apple Maps")
             )) {
-                let destination = MKMapItem(placemark: MKPlacemark(coordinate: self.location))
-                destination.name = self.selectedPoi?.description ?? ""
+                let destination = MKMapItem(placemark: MKPlacemark(coordinate: location))
+                destination.name = selectedPoi?.description ?? ""
 
                 MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
             }
@@ -55,7 +55,7 @@ struct PoiActionSheet: View {
         
         buttons.append(
             .default(Text("poi.share")) {
-                self.showShareSheet = true
+                showShareSheet = true
             }
         )
         
@@ -70,7 +70,7 @@ struct PoiActionSheet: View {
         EmptyView()
             .actionSheet(isPresented: $presentPoiActionSheet) {
                 ActionSheet(
-                    title: Text(self.selectedPoi?.description ?? ""),
+                    title: Text(selectedPoi?.description ?? ""),
                     buttons: buttons()
                 )
         }
@@ -78,7 +78,7 @@ struct PoiActionSheet: View {
             EmptyView()
                 .sheet(isPresented: $showShareSheet) {
                     ShareSheet(activityItems: [
-                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), self.selectedPoi?.description ?? "", self.location.latitude.description, self.location.longitude.description)
+                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), selectedPoi?.description ?? "", location.latitude.description, location.longitude.description)
                     ])
                 }
         )

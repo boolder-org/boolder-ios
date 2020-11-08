@@ -24,17 +24,17 @@ class ProblemAnnotationView: MKAnnotationView {
         willSet {
             if let annotation = newValue as? ProblemAnnotation {
                 if(annotation.problem.isFavorite()) {
-                    self.displayPriority = .required
+                    displayPriority = .required
                 }
                 else if(annotation.problem.isTicked()) {
-                    self.displayPriority = .defaultHigh
+                    displayPriority = .defaultHigh
                 }
                 else {
                     if annotation.problem.circuitColor != .offCircuit {
-                        self.displayPriority = MKFeatureDisplayPriority.init(250)
+                        displayPriority = MKFeatureDisplayPriority.init(250)
                     }
                     else {
-                        self.displayPriority = MKFeatureDisplayPriority.init(249)
+                        displayPriority = MKFeatureDisplayPriority.init(249)
                     }
                 }
                 

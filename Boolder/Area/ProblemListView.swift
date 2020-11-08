@@ -23,14 +23,14 @@ struct ProblemListView: View {
                 // FIXME: simplify the code by using a tableview footer when/if it becomes possible
                 // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
                 Section(
-                    header: Text(circuitColor.longName()).font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == self.dataStore.groupedProblemsKeys.first) ? 32 : 0).textCase(.none),
-                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == self.dataStore.groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
+                    header: Text(circuitColor.longName()).font(.title).bold().foregroundColor(Color(.label)).padding(.top, (circuitColor == dataStore.groupedProblemsKeys.first) ? 32 : 0).textCase(.none),
+                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == dataStore.groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
                     ) {
-                    ForEach(self.dataStore.groupedProblems[circuitColor]!) { (problem: Problem) in
+                    ForEach(dataStore.groupedProblems[circuitColor]!) { (problem: Problem) in
 
                         Button(action: {
-                            self.selectedProblem = problem
-                            self.presentProblemDetails = true
+                            selectedProblem = problem
+                            presentProblemDetails = true
                         }) {
                             HStack {
                                 ProblemCircleView(problem: problem)
@@ -40,12 +40,12 @@ struct ProblemListView: View {
 
                                 Spacer()
 
-                                if self.isFavorite(problem: problem) {
+                                if isFavorite(problem: problem) {
                                     Image(systemName: "star.fill")
                                         .foregroundColor(Color.yellow)
                                 }
 
-                                if self.isTicked(problem: problem) {
+                                if isTicked(problem: problem) {
                                     Image(systemName: "checkmark.circle.fill")
                                         .foregroundColor(Color.green)
                                 }
@@ -85,6 +85,6 @@ struct ProblemListView_Previews: PreviewProvider {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(DataStore())
-        .environment(\.managedObjectContext, self.context)
+        .environment(\.managedObjectContext, context)
     }
 }

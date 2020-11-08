@@ -15,18 +15,18 @@ struct AreaPickerView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(self.dataStore.areas.keys.sorted(), id: \.self) { areaId in
+                ForEach(dataStore.areas.keys.sorted(), id: \.self) { areaId in
                     Button(action: {
-                        self.dataStore.filters = Filters()
-                        self.dataStore.areaId = areaId
-                        self.presentationMode.wrappedValue.dismiss()
+                        dataStore.filters = Filters()
+                        dataStore.areaId = areaId
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
-                            Text(self.dataStore.areas[areaId]!)
+                            Text(dataStore.areas[areaId]!)
                             
                             Spacer()
                             
-                            if self.dataStore.areaId == areaId {
+                            if dataStore.areaId == areaId {
                                 Image(systemName: "checkmark").font(Font.body.weight(.bold))
                                     .foregroundColor(Color.green)
                             }

@@ -32,14 +32,14 @@ class Problem : Identifiable {
     func nameWithFallback() -> String {
         if let circuitColor = circuitColor {
             if circuitNumber != "" {
-                return self.name ?? (circuitColor.shortName() + " " + circuitNumber)
+                return name ?? (circuitColor.shortName() + " " + circuitNumber)
             }
             else {
-                return self.name ?? NSLocalizedString("problem.no_name", comment: "")
+                return name ?? NSLocalizedString("problem.no_name", comment: "")
             }
         }
         else {
-            return self.name ?? NSLocalizedString("problem.no_name", comment: "")
+            return name ?? NSLocalizedString("problem.no_name", comment: "")
         }
     }
     
@@ -129,7 +129,7 @@ class Problem : Identifiable {
     
     func favorite() -> Favorite? {
         dataStore.favorites().first { (favorite: Favorite) -> Bool in
-            return Int(favorite.problemId) == self.id
+            return Int(favorite.problemId) == id
         }
     }
     
@@ -139,7 +139,7 @@ class Problem : Identifiable {
     
     func tick() -> Tick? {
         dataStore.ticks().first { (tick: Tick) -> Bool in
-            return Int(tick.problemId) == self.id
+            return Int(tick.problemId) == id
         }
     }
     

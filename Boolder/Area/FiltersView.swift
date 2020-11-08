@@ -26,16 +26,16 @@ struct FiltersView: View {
                     
                     ForEach(GradeRange.allCases, id: \.self) { range in
                         Button(action: {
-                            if self.filters.gradeRange == range {
-                                self.filters.gradeRange = nil
+                            if filters.gradeRange == range {
+                                filters.gradeRange = nil
                             }
                             else {
-                                self.filters.gradeRange = range
-                                self.filters.circuit = nil
+                                filters.gradeRange = range
+                                filters.circuit = nil
                             }
                         }) {
                             HStack {
-                                Image(systemName: self.filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
+                                Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
                                     .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
                                 
                                 Text(range.name).foregroundColor(Color(.label))
@@ -48,7 +48,7 @@ struct FiltersView: View {
                     NavigationLink(destination: CircuitFilterView(filters: $filters)) {
                         HStack {
                             
-                            if let circuit = self.filters.circuit {
+                            if let circuit = filters.circuit {
                                 Image(systemName: "largecircle.fill.circle").font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(Color.green)
                                 Text("filters.circuit")
                                 Spacer()
@@ -92,14 +92,14 @@ struct FiltersView: View {
             .navigationBarTitle("filters.title", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    self.filters = Filters()
+                    filters = Filters()
                 }) {
                     Text("filters.reset")
                         .padding(.vertical)
                         .font(.body)
                 },
                 trailing: Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("OK")
                         .bold()
@@ -145,7 +145,7 @@ struct SteepnessFilterView: View {
             ForEach(userVisibleSteepnessTypes, id: \.self) { steepness in
                 
                 Button(action: {
-                    self.steepnessTapped(steepness)
+                    steepnessTapped(steepness)
                 }) {
                     HStack {
                         Image(Steepness(steepness).imageName)
@@ -155,7 +155,7 @@ struct SteepnessFilterView: View {
                             .foregroundColor(Color(.label))
                         Spacer()
                         
-                        if self.filters.steepness.contains(steepness) {
+                        if filters.steepness.contains(steepness) {
                             Image(systemName: "checkmark").font(Font.body.weight(.bold))
                         }
                     }
@@ -167,7 +167,7 @@ struct SteepnessFilterView: View {
         .navigationBarTitle("filters.type")
         .navigationBarItems(
             trailing: Button(action: {
-                self.presentFilters = false
+                presentFilters = false
             }) {
                 Text("OK")
                     .bold()
@@ -179,23 +179,23 @@ struct SteepnessFilterView: View {
     
     private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
         // toggle value for this steepness
-        if self.filters.steepness.contains(steepness) {
-            self.filters.steepness.remove(steepness)
+        if filters.steepness.contains(steepness) {
+            filters.steepness.remove(steepness)
         }
         else {
-            self.filters.steepness.insert(steepness)
+            filters.steepness.insert(steepness)
         }
         
         // auto add/remove some values for user friendliness
         
-        if self.filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
-            self.filters.steepness.formUnion([.other, .roof])
+        if filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
+            filters.steepness.formUnion([.other, .roof])
         }
         else {
-            self.filters.steepness.subtract([.other, .roof])
+            filters.steepness.subtract([.other, .roof])
             
-            if self.filters.steepness.contains(.overhang) {
-                self.filters.steepness.insert(.roof)
+            if filters.steepness.contains(.overhang) {
+                filters.steepness.insert(.roof)
             }
         }
     }

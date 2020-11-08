@@ -22,21 +22,21 @@ struct ProblemDetailsView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 ZStack(alignment: .topLeading) {
-                    Image(uiImage: self.problem.mainTopoPhoto())
+                    Image(uiImage: problem.mainTopoPhoto())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
                     BezierViewRepresentable(problem: problem)
                     
                     GeometryReader { geo in
-                        if self.lineFirstPoint(photoSize: geo.size) != nil {
+                        if lineFirstPoint(photoSize: geo.size) != nil {
                             ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                .offset(x: self.lineFirstPoint(photoSize: geo.size)!.x - 14, y: self.lineFirstPoint(photoSize: geo.size)!.y - 14)
+                                .offset(x: lineFirstPoint(photoSize: geo.size)!.x - 14, y: lineFirstPoint(photoSize: geo.size)!.y - 14)
                         }
                     }
                     
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "chevron.down.circle.fill")
                             .font(.system(size: 30))
@@ -94,10 +94,10 @@ struct ProblemDetailsView: View {
                     
                     HStack(spacing: 16) {
                         Button(action: {
-                            self.toggleFavorite()
+                            toggleFavorite()
                         }) {
                             HStack(alignment: .center, spacing: 16) {
-                                if self.isFavorite() {
+                                if isFavorite() {
                                     Image(systemName: "star.fill")
                                         .font(.title)
                                     Text("problem.favorite")
@@ -122,10 +122,10 @@ struct ProblemDetailsView: View {
                         .cornerRadius(8)
                         
                         Button(action: {
-                            self.toggleTick()
+                            toggleTick()
                         }) {
                             HStack(alignment: .center, spacing: 16) {
-                                if self.isTicked() {
+                                if isTicked() {
                                     Image(systemName: "checkmark.circle.fill")
                                         .font(.title)
                                     Text("problem.ticked.short")
@@ -175,7 +175,7 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
-//        .navigationBarTitle(Text(self.problem.name ?? ""), displayMode: .inline)
+//        .navigationBarTitle(Text(problem.name ?? ""), displayMode: .inline)
 //        .navigationBarItems(trailing:
 //            HStack(spacing: 16) {
 //                Button(action: {}) {
@@ -211,13 +211,13 @@ struct ProblemDetailsView: View {
     }
     
     func createFavorite() {
-        let favorite = Favorite(context: self.managedObjectContext)
+        let favorite = Favorite(context: managedObjectContext)
         favorite.id = UUID()
-        favorite.problemId = Int64(self.problem.id)
+        favorite.problemId = Int64(problem.id)
         favorite.createdAt = Date()
         
         do {
-            try self.managedObjectContext.save()
+            try managedObjectContext.save()
         } catch {
             // handle the Core Data error
         }
@@ -228,7 +228,7 @@ struct ProblemDetailsView: View {
         managedObjectContext.delete(favorite)
         
         do {
-            try self.managedObjectContext.save()
+            try managedObjectContext.save()
         } catch {
             // handle the Core Data error
         }
@@ -254,13 +254,13 @@ struct ProblemDetailsView: View {
     }
     
     func createTick() {
-        let tick = Tick(context: self.managedObjectContext)
+        let tick = Tick(context: managedObjectContext)
         tick.id = UUID()
-        tick.problemId = Int64(self.problem.id)
+        tick.problemId = Int64(problem.id)
         tick.createdAt = Date()
         
         do {
-            try self.managedObjectContext.save()
+            try managedObjectContext.save()
         } catch {
             // handle the Core Data error
         }
@@ -271,7 +271,7 @@ struct ProblemDetailsView: View {
         managedObjectContext.delete(tick)
         
         do {
-            try self.managedObjectContext.save()
+            try managedObjectContext.save()
         } catch {
             // handle the Core Data error
         }
@@ -284,7 +284,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     
     static var previews: some View {
         ProblemDetailsView(problem: .constant(dataStore.problems.last!))
-            .environment(\.managedObjectContext, self.context)
+            .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
     }
 }

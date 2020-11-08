@@ -33,7 +33,7 @@ class BezierView: UIView {
     //MARK: Private members
     
     private var dataPoints: [CGPoint]? {
-		return self.dataSource?.bezierViewDataPoints(bezierView: self)
+		return dataSource?.bezierViewDataPoints(bezierView: self)
     }
     
     private let cubicCurveAlgorithm = CubicCurveAlgorithm()
