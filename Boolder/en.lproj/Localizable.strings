@@ -51,7 +51,7 @@
 "filters.reset" = "Reset";
 "filters.grade.range.beginner" = "Beginner";
 "filters.grade.range.intermediate" = "Intermediate";
-"filters.grade.range.advanced" = "Advanced";
+"filters.grade.range.advanced" = "Experienced";
 "filters.grade.range.description.beginner" = "Level 1, 2, 3";
 "filters.grade.range.description.intermediate" = "Level 4, 5";
 "filters.grade.range.description.advanced" = "Level 6, 7, 8";
