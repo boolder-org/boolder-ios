@@ -16,6 +16,8 @@ struct FabFiltersView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
     
+    @State var filters: Filters
+    
     var body: some View {
         ZStack {
             HStack(spacing: 16) {
@@ -41,8 +43,10 @@ struct FabFiltersView: View {
                         .fixedSize(horizontal: true, vertical: true)
                 }
                 .padding(.vertical, 12)
-                .sheet(isPresented: $presentFilters) {
-                    FiltersView(presentFilters: self.$presentFilters)
+                .sheet(isPresented: $presentFilters, onDismiss: {
+                    self.dataStore.filters = filters
+                }) {
+                    FiltersView(presentFilters: self.$presentFilters, filters: $filters)
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
                         .environmentObject(self.dataStore)
@@ -63,7 +67,7 @@ struct FabFiltersView: View {
 
 struct FabFiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FabFiltersView()
+        FabFiltersView(filters: Filters())
             .environmentObject(DataStore())
             .previewLayout(.fixed(width: 300, height: 70))
     }

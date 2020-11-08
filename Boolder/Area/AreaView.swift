@@ -54,7 +54,7 @@ struct AreaView: View {
             
             VStack {
                 Spacer()
-                FabFiltersView()
+                FabFiltersView(filters: dataStore.filters)
                     .padding(.bottom, 24)
             }
             .zIndex(10)

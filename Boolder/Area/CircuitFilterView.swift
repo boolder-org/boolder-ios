@@ -13,18 +13,19 @@ struct CircuitFilterView: View {
     @EnvironmentObject var dataStore: DataStore
     
     @State private var presentCircuitArticle = false
+    @Binding var filters: Filters
     
     var body: some View {
         Form {
             Section {
                 ForEach(dataStore.geoStore.circuits, id: \.color) { (circuit: Circuit) in
                     Button(action: {
-                        if self.dataStore.filters.circuit == circuit.color {
-                            self.dataStore.filters.circuit = nil
+                        if filters.circuit == circuit.color {
+                            filters.circuit = nil
                         }
                         else {
-                            self.dataStore.filters.circuit = circuit.color
-                            self.dataStore.filters.gradeRange = nil
+                            filters.circuit = circuit.color
+                            filters.gradeRange = nil
                         }
                         
                         self.presentationMode.wrappedValue.dismiss()
@@ -37,7 +38,7 @@ struct CircuitFilterView: View {
                             
                             Spacer()
                             
-                            if self.dataStore.filters.circuit == circuit.color {
+                            if filters.circuit == circuit.color {
                                 Image(systemName: "checkmark").font(Font.body.weight(.bold))
                             }
                         }
@@ -70,7 +71,7 @@ struct CircuitFilterView: View {
 
 struct CircuitFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        CircuitFilterView()
+        CircuitFilterView(filters: .constant(Filters()))
             .environmentObject(DataStore())
     }
 }

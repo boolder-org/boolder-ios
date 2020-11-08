@@ -17,6 +17,8 @@ struct FiltersView: View {
     @State private var presentSteepnessFilter = false
     @Binding var presentFilters: Bool
     
+    @Binding var filters: Filters
+    
     var body: some View {
         NavigationView {
             Form {
@@ -24,16 +26,16 @@ struct FiltersView: View {
                     
                     ForEach(GradeRange.allCases, id: \.self) { range in
                         Button(action: {
-                            if self.dataStore.filters.gradeRange == range {
-                                self.dataStore.filters.gradeRange = nil
+                            if self.filters.gradeRange == range {
+                                self.filters.gradeRange = nil
                             }
                             else {
-                                self.dataStore.filters.gradeRange = range
-                                self.dataStore.filters.circuit = nil
+                                self.filters.gradeRange = range
+                                self.filters.circuit = nil
                             }
                         }) {
                             HStack {
-                                Image(systemName: self.dataStore.filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
+                                Image(systemName: self.filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
                                     .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
                                 
                                 Text(range.name).foregroundColor(Color(.label))
@@ -43,10 +45,10 @@ struct FiltersView: View {
                         }
                     }
                     
-                    NavigationLink(destination: CircuitFilterView()) {
+                    NavigationLink(destination: CircuitFilterView(filters: $filters)) {
                         HStack {
                             
-                            if let circuit = self.dataStore.filters.circuit {
+                            if let circuit = self.filters.circuit {
                                 Image(systemName: "largecircle.fill.circle").font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(Color.green)
                                 Text("filters.circuit")
                                 Spacer()
@@ -61,7 +63,7 @@ struct FiltersView: View {
                 }
                 
                 Section(header: Text("filters.advanced_filters")) {
-                    NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters), isActive: $presentSteepnessFilter) {
+                    NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters, filters: $filters), isActive: $presentSteepnessFilter) {
                         HStack {
                             Text("filters.type")
                             Spacer()
@@ -71,7 +73,7 @@ struct FiltersView: View {
                     }
                     
                     HStack {
-                        Toggle(isOn: $dataStore.filters.favorite) {
+                        Toggle(isOn: $filters.favorite) {
                             Text("filters.favorite")
                                 .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
                         }
@@ -79,7 +81,7 @@ struct FiltersView: View {
                     }
                     
                     HStack {
-                        Toggle(isOn: $dataStore.filters.ticked) {
+                        Toggle(isOn: $filters.ticked) {
                             Text("filters.ticked")
                                 .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
                         }
@@ -90,7 +92,7 @@ struct FiltersView: View {
             .navigationBarTitle("filters.title", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    self.dataStore.filters = Filters()
+                    self.filters = Filters()
                 }) {
                     Text("filters.reset")
                         .padding(.vertical)
@@ -112,11 +114,11 @@ struct FiltersView: View {
     }
     
     private func labelForSteepness() -> String {
-        if dataStore.filters.steepness == Filters().steepness {
+        if filters.steepness == Filters().steepness {
             return NSLocalizedString("filters.all", comment: "")
         }
         
-        let visibleAndSelected = dataStore.filters.steepness.intersection(userVisibleSteepnessTypes).sorted()
+        let visibleAndSelected = filters.steepness.intersection(userVisibleSteepnessTypes).sorted()
         let string = visibleAndSelected.map{ Steepness($0).name.lowercased() }.joined(separator: ", ")
         return String(string.prefix(1).capitalized + string.dropFirst())
     }
@@ -125,7 +127,7 @@ struct FiltersView: View {
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            FiltersView(presentFilters: .constant(true))
+            FiltersView(presentFilters: .constant(true), filters: .constant(Filters()))
             .environmentObject(DataStore())
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -135,6 +137,8 @@ struct FiltersView_Previews: PreviewProvider {
 struct SteepnessFilterView: View {
     @EnvironmentObject var dataStore: DataStore
     @Binding var presentFilters: Bool
+    
+    @Binding var filters: Filters
     
     var body: some View {
         Form {
@@ -151,7 +155,7 @@ struct SteepnessFilterView: View {
                             .foregroundColor(Color(.label))
                         Spacer()
                         
-                        if self.dataStore.filters.steepness.contains(steepness) {
+                        if self.filters.steepness.contains(steepness) {
                             Image(systemName: "checkmark").font(Font.body.weight(.bold))
                         }
                     }
@@ -175,23 +179,23 @@ struct SteepnessFilterView: View {
     
     private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
         // toggle value for this steepness
-        if self.dataStore.filters.steepness.contains(steepness) {
-            self.dataStore.filters.steepness.remove(steepness)
+        if self.filters.steepness.contains(steepness) {
+            self.filters.steepness.remove(steepness)
         }
         else {
-            self.dataStore.filters.steepness.insert(steepness)
+            self.filters.steepness.insert(steepness)
         }
         
         // auto add/remove some values for user friendliness
         
-        if self.dataStore.filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
-            self.dataStore.filters.steepness.formUnion([.other, .roof])
+        if self.filters.steepness.isSuperset(of: Set(userVisibleSteepnessTypes)) {
+            self.filters.steepness.formUnion([.other, .roof])
         }
         else {
-            self.dataStore.filters.steepness.subtract([.other, .roof])
+            self.filters.steepness.subtract([.other, .roof])
             
-            if self.dataStore.filters.steepness.contains(.overhang) {
-                self.dataStore.filters.steepness.insert(.roof)
+            if self.filters.steepness.contains(.overhang) {
+                self.filters.steepness.insert(.roof)
             }
         }
     }
