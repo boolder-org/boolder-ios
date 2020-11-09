@@ -32,9 +32,25 @@ struct ProblemDetailsView: View {
                     LineView(problem: $problem, drawPercentage: $drawPercentage)
                     
                     GeometryReader { geo in
-                        if lineFirstPoint(photoSize: geo.size) != nil {
+                        ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
+                            Button(action: {
+                                drawPercentage = 0.0
+                                problem = secondaryProblem
+
+                                // doing it async to be sure that the line is reset to zero
+                                // (there's probably a cleaner way to do it)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    animate { drawPercentage = 1.0 }
+                                }
+                            }) {
+                                ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                            }
+                            .offset(lineOrigin(problem: secondaryProblem, inRectOfSize: geo.size)!)
+                        }
+                        
+                        if lineOrigin(problem: problem, inRectOfSize: geo.size) != nil {
                             ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                .offset(x: lineFirstPoint(photoSize: geo.size)!.x - 14, y: lineFirstPoint(photoSize: geo.size)!.y - 14)
+                                .offset(lineOrigin(problem: problem, inRectOfSize: geo.size)!)
                         }
                     }
                     
@@ -97,25 +113,6 @@ struct ProblemDetailsView: View {
                     }
                     
                     VStack {
-                        Divider()
-                        
-                        Button(action:{
-                            drawPercentage = 0.0
-                            problem = dataStore.problems.randomElement()!
-                            
-                            // doing it async to be sure that the line is reset to zero
-                            // (there's probably a cleaner way to do it)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                animate { drawPercentage = 1.0 }
-                            }
-                        }) {
-                            HStack {
-                                Text("Test")
-                                    .font(.body)
-                                Spacer()
-                            }
-                        }
-                        
                         Divider()
                         
                         Button(action:{
@@ -207,10 +204,13 @@ struct ProblemDetailsView: View {
         }
     }
     
-    func lineFirstPoint(photoSize size: CGSize) -> CGPoint? {
+    func lineOrigin(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
             
-        return CGPoint(x: CGFloat(lineFirstPoint.x) * size.width, y: CGFloat(lineFirstPoint.y) * size.height)
+        return CGSize(
+            width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
+            height: (CGFloat(lineFirstPoint.y) * size.height) - 14
+        )
     }
         
     func isFavorite() -> Bool {

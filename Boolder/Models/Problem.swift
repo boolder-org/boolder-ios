@@ -85,6 +85,14 @@ class Problem : Identifiable {
         }
     }
     
+    var otherProblemsOnSameTopo: [Problem] {
+        guard line != nil else { return [] }
+        
+        return dataStore.problems.filter { problem in
+            (line?.topoId == problem.line?.topoId) && (id != problem.id)
+        }
+    }
+    
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         guard let coordinates = line.coordinates else { return nil }
