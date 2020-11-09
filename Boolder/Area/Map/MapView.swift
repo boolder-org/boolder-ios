@@ -41,10 +41,6 @@ struct MapView: UIViewRepresentable {
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: ProblemAnnotationView.ReuseID)
         mapView.register(PoiAnnotationView.self, forAnnotationViewWithReuseIdentifier: PoiAnnotationView.ReuseID)
         
-        mapView.addOverlays(dataStore.overlays)
-        self.mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-        self.mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
-        
         return mapView
     }
     
@@ -66,20 +62,11 @@ struct MapView: UIViewRepresentable {
         let newHash = newAnnotationsIds.sorted().map{String($0)}.joined(separator: "-")
         
         if previousHash != newHash {
-            MKMapView.animate(withDuration: 3.0, delay: 1.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {
-                
-                mapView.removeAnnotations(mapView.annotations)
-                mapView.removeOverlays(mapView.overlays)
-                mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-                mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
-                mapView.addOverlays(self.dataStore.overlays)
-            }, completion: nil)
-        }
-        
-        // refresh all annotation views
-        // FIXME: doesn't seem to work syncronously
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            context.coordinator.refreshAnnotationViewSize()
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.removeOverlays(mapView.overlays)
+            mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
+            mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
+            mapView.addOverlays(self.dataStore.overlays)
         }
         
         for annotation in mapView.annotations {
@@ -101,7 +88,7 @@ struct MapView: UIViewRepresentable {
         if changedCircuit || changedArea {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 let rect = context.coordinator.rectThatFits(self.dataStore.problems.map{$0.annotation}+self.dataStore.pois.map{$0.annotation})
-                mapView.setVisibleMapRect(rect, animated: true)
+                mapView.setVisibleMapRect(rect, animated: false)
             }
         }
         
