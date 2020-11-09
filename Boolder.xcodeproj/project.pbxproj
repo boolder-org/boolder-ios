@@ -231,12 +231,11 @@
 		37675AF6255199D2009C880C /* topo-352.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3A255199D2009C880C /* topo-352.jpg */; };
 		37675AF7255199D2009C880C /* topo-346.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3B255199D2009C880C /* topo-346.jpg */; };
 		3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
-		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
 		3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
-		3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C361245600FD005E786E /* BezierViewRepresentable.swift */; };
 		37A276292457424500F53D80 /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
 		37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* FiltersView.swift */; };
 		37A4833A2558AC3900DBD526 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37A483392558AC3900DBD526 /* area-1-data.geojson */; };
+		37A483402559A73A00DBD526 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4833F2559A73A00DBD526 /* LineView.swift */; };
 		37A6572524BDC00500273A9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37A6572724BDC00500273A9A /* Localizable.strings */; };
 		37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
 		37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
@@ -492,12 +491,11 @@
 		37675A3A255199D2009C880C /* topo-352.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-352.jpg"; sourceTree = "<group>"; };
 		37675A3B255199D2009C880C /* topo-346.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-346.jpg"; sourceTree = "<group>"; };
 		3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotationView.swift; sourceTree = "<group>"; };
-		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
-		3790C361245600FD005E786E /* BezierViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewRepresentable.swift; sourceTree = "<group>"; };
 		37A276282457424500F53D80 /* GeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoStore.swift; sourceTree = "<group>"; };
 		37A2762A2457633E00F53D80 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		37A483392558AC3900DBD526 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
+		37A4833F2559A73A00DBD526 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		37A6572624BDC00500273A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A6572924BDC07000273A9A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A8C6262453263300DC161F /* Boolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -930,19 +928,10 @@
 			isa = PBXGroup;
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
-				37F12D872456D51F0036E3E3 /* BezierView */,
-			);
-			path = "Problem details";
-			sourceTree = "<group>";
-		};
-		37F12D872456D51F0036E3E3 /* BezierView */ = {
-			isa = PBXGroup;
-			children = (
-				3790C35D2456008F005E786E /* BezierView.swift */,
-				3790C361245600FD005E786E /* BezierViewRepresentable.swift */,
+				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
 			);
-			path = BezierView;
+			path = "Problem details";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1242,13 +1231,12 @@
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */,
+				37A483402559A73A00DBD526 /* LineView.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */,
-				3790C35F2456008F005E786E /* BezierView.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */,
-				3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */,
