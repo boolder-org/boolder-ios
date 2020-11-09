@@ -77,6 +77,10 @@
 "problem.no_name" = "Sans nom";
 "problem.sit_start" = "départ assis";
 "problem.height_desc" = "hauteur %@ m";
-"problem.ticked.short" = "Fait";
-"problem.favorite" = "Favori";
 "problem.risky.long" = "Dangereux en cas de chute";
+"problem.action.favorite.add" = "Ajouter en favori";
+"problem.action.favorite.remove" = "Retirer le favori";
+"problem.action.tick" = "Marquer en réussi";
+"problem.action.untick" = "Marquer en non réussi";
+"problem.action.plus" = "Plus";
+"problem.action.see_on_bleau_info" = "Voir sur bleau.info";

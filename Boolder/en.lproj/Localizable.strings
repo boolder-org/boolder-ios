@@ -77,6 +77,10 @@
 "problem.no_name" = "No name";
 "problem.sit_start" = "sit start";
 "problem.height_desc" = "height %@ m";
-"problem.ticked.short" = "Done";
-"problem.favorite" = "Favorite";
 "problem.risky.long" = "Dangerous if you fall";
+"problem.action.favorite.add" = "Add to favorites";
+"problem.action.favorite.remove" = "Remove from favorites";
+"problem.action.tick" = "Tick";
+"problem.action.untick" = "Untick";
+"problem.action.plus" = "Plus";
+"problem.action.see_on_bleau_info" = "See on bleau.info";

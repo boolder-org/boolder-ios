@@ -11,12 +11,14 @@ import SwiftUI
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
+    @Environment(\.openURL) var openURL
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
+    @State var showMoreActionsheet = false
     
     var body: some View {
         ScrollView {
@@ -92,97 +94,83 @@ struct ProblemDetailsView: View {
                         }
                     }
                     
-                    HStack(spacing: 16) {
-                        Button(action: {
+                    
+                    VStack {
+                        Divider()
+                        
+                        Button(action:{
                             toggleFavorite()
                         }) {
-                            HStack(alignment: .center, spacing: 16) {
+                            HStack {
                                 if isFavorite() {
-                                    Image(systemName: "star.fill")
-                                        .font(.title)
-                                    Text("problem.favorite")
-                                        .fontWeight(.bold)
-                                        .padding(.vertical)
-                                        .fixedSize(horizontal: true, vertical: true)
+                                    Image(systemName: "star.fill").foregroundColor(Color.yellow)
+                                    Text("problem.action.favorite.remove")
+                                        .font(.body)
                                 }
                                 else {
                                     Image(systemName: "star")
-                                        .font(.title)
-                                    Text("problem.favorite")
-                                        .fontWeight(.bold)
-                                        .padding(.vertical)
-                                        .fixedSize(horizontal: true, vertical: true)
+                                    Text("problem.action.favorite.add")
+                                        .font(.body)
                                 }
+                                Spacer()
                             }
-                            .padding(.horizontal)
                         }
-                        .frame(maxWidth: .infinity)
-                        .background(Color(UIColor.systemGreen))
-                        .foregroundColor(Color(UIColor.systemBackground))
-                        .cornerRadius(8)
                         
-                        Button(action: {
+                        Divider()
+                        
+                        Button(action:{
                             toggleTick()
                         }) {
-                            HStack(alignment: .center, spacing: 16) {
+                            HStack {
                                 if isTicked() {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .font(.title)
-                                    Text("problem.ticked.short")
-                                        .fontWeight(.bold)
-                                        .padding(.vertical)
-                                        .fixedSize(horizontal: true, vertical: true)
+                                    Text("problem.action.untick")
+                                        .font(.body)
                                 }
                                 else {
-                                    Image(systemName: "circle")
-                                        .font(.title)
-                                    Text("problem.ticked.short")
-                                        .fontWeight(.bold)
-                                        .padding(.vertical)
-                                        .fixedSize(horizontal: true, vertical: true)
+                                    Image(systemName: "checkmark.circle")
+                                    Text("problem.action.tick")
+                                        .font(.body)
+                                }
+                                Spacer()
+                            }
+                        }
+                        
+                        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                            Divider()
+                            
+                            Button(action: {
+                                showMoreActionsheet = true
+                            })
+                            {
+                                HStack {
+                                    Image(systemName: "ellipsis.circle")
+                                    Text("problem.action.plus")
+                                        .font(.body)
+                                        .foregroundColor(Color.green)
+                                    Spacer()
                                 }
                             }
-                            .padding(.horizontal)
+                            .actionSheet(isPresented: $showMoreActionsheet) {
+                                ActionSheet(title: Text("problem.action.plus"), buttons: [
+                                    .default(Text("problem.action.see_on_bleau_info")) {
+                                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                                    },
+                                    .cancel()
+                                ])
+                            }
                         }
-                        .frame(maxWidth: .infinity)
-                        .background(Color(UIColor.systemBackground))
-                        .foregroundColor(Color(UIColor.systemGreen))
-                        .cornerRadius(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(UIColor.systemGreen), lineWidth: 2)
-                        )
+                        
+                        Divider()
                     }
-                    .padding(.vertical)
-                    
-//                    VStack(alignment: .leading) {
-//                        VStack(alignment: .leading, spacing: 4) {
-//                            Text("Circuit")
-//                                .font(.title)
-//                                .fontWeight(.bold)
-//                            Rectangle()
-//                                .fill(Color.green)
-//                                .frame(width: 70, height: 4, alignment: .leading)
-//                        }
-//                    }
-//                    .padding(.vertical, 16)
+                    .padding(.top, 16)
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)
                 
-                
-                
                 Spacer()
             }
         }
-//        .navigationBarTitle(Text(problem.name ?? ""), displayMode: .inline)
-//        .navigationBarItems(trailing:
-//            HStack(spacing: 16) {
-//                Button(action: {}) {
-//                    Image(systemName: "square.and.arrow.up")
-//                }
-//            }
-//        )
     }
     
     func lineFirstPoint(photoSize size: CGSize) -> CGPoint? {
@@ -283,7 +271,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.problems.last!))
+        ProblemDetailsView(problem: .constant(dataStore.problems.first!))
             .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
     }
