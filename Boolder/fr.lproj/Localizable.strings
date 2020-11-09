@@ -79,8 +79,8 @@
 "problem.height_desc" = "hauteur %@ m";
 "problem.risky.long" = "Dangereux en cas de chute";
 "problem.action.favorite.add" = "Ajouter en favori";
-"problem.action.favorite.remove" = "Retirer le favori";
-"problem.action.tick" = "Marquer en réussi";
-"problem.action.untick" = "Marquer en non réussi";
+"problem.action.favorite.remove" = "Retirer des favoris";
+"problem.action.tick" = "Marquer comme réussi";
+"problem.action.untick" = "Marquer comme non réussi";
 "problem.action.plus" = "Plus";
 "problem.action.see_on_bleau_info" = "Voir sur bleau.info";
