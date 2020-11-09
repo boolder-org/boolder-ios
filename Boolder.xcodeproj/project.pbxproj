@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3701845B2466BD0800C6530C /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
-		370BD239255851C500F547E0 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 370BD238255851C500F547E0 /* area-1-data.geojson */; };
 		370FD7A7254F0E80003C3910 /* area-4-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 370FD7A5254F0E80003C3910 /* area-4-topo-lines.json */; };
 		370FD7A8254F0E80003C3910 /* area-4-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 370FD7A6254F0E80003C3910 /* area-4-data.geojson */; };
 		370FD7AC254F0EB2003C3910 /* area-2-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 370FD7AB254F0EB2003C3910 /* area-2-data.geojson */; };
@@ -231,13 +230,13 @@
 		37675AF5255199D2009C880C /* topo-385.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A39255199D2009C880C /* topo-385.jpg */; };
 		37675AF6255199D2009C880C /* topo-352.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3A255199D2009C880C /* topo-352.jpg */; };
 		37675AF7255199D2009C880C /* topo-346.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3B255199D2009C880C /* topo-346.jpg */; };
-		37675AFD2551A59B009C880C /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 37675AFB2551A59B009C880C /* area-1-topo-lines.json */; };
 		3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
 		3790C35F2456008F005E786E /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35D2456008F005E786E /* BezierView.swift */; };
 		3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
 		3790C362245600FD005E786E /* BezierViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C361245600FD005E786E /* BezierViewRepresentable.swift */; };
 		37A276292457424500F53D80 /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
 		37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* FiltersView.swift */; };
+		37A4833A2558AC3900DBD526 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37A483392558AC3900DBD526 /* area-1-data.geojson */; };
 		37A6572524BDC00500273A9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37A6572724BDC00500273A9A /* Localizable.strings */; };
 		37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
 		37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
@@ -255,6 +254,7 @@
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
 		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
 		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
+		37BC54B225586758002F0BB5 /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 37BC54B025586758002F0BB5 /* area-1-topo-lines.json */; };
 		37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
 		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
@@ -271,7 +271,6 @@
 /* Begin PBXFileReference section */
 		3701845A2466BD0800C6530C /* TopoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoStore.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
-		370BD238255851C500F547E0 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		370FD7A5254F0E80003C3910 /* area-4-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-4-topo-lines.json"; sourceTree = "<group>"; };
 		370FD7A6254F0E80003C3910 /* area-4-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-4-data.geojson"; sourceTree = "<group>"; };
 		370FD7AB254F0EB2003C3910 /* area-2-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-2-data.geojson"; sourceTree = "<group>"; };
@@ -493,13 +492,13 @@
 		37675A39255199D2009C880C /* topo-385.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-385.jpg"; sourceTree = "<group>"; };
 		37675A3A255199D2009C880C /* topo-352.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-352.jpg"; sourceTree = "<group>"; };
 		37675A3B255199D2009C880C /* topo-346.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topo-346.jpg"; sourceTree = "<group>"; };
-		37675AFB2551A59B009C880C /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
 		3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotationView.swift; sourceTree = "<group>"; };
 		3790C35D2456008F005E786E /* BezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 		3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
 		3790C361245600FD005E786E /* BezierViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewRepresentable.swift; sourceTree = "<group>"; };
 		37A276282457424500F53D80 /* GeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoStore.swift; sourceTree = "<group>"; };
 		37A2762A2457633E00F53D80 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		37A483392558AC3900DBD526 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		37A6572624BDC00500273A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A6572924BDC07000273A9A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A8C6262453263300DC161F /* Boolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -520,6 +519,7 @@
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
 		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
+		37BC54B025586758002F0BB5 /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
 		37BCA981246704EB00D56252 /* BoulderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderOverlay.swift; sourceTree = "<group>"; };
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
@@ -874,8 +874,8 @@
 		37A8C63E245326B300DC161F /* area-1 */ = {
 			isa = PBXGroup;
 			children = (
-				370BD238255851C500F547E0 /* area-1-data.geojson */,
-				37675AFB2551A59B009C880C /* area-1-topo-lines.json */,
+				37A483392558AC3900DBD526 /* area-1-data.geojson */,
+				37BC54B025586758002F0BB5 /* area-1-topo-lines.json */,
 				3767597F255199D2009C880C /* topos */,
 			);
 			path = "area-1";
@@ -1179,7 +1179,7 @@
 				37675AB0255199D2009C880C /* topo-508.jpg in Resources */,
 				37675A82255199D2009C880C /* topo-271.jpg in Resources */,
 				3766A6B0253EDDFE00AC3477 /* topo-500.jpg in Resources */,
-				370BD239255851C500F547E0 /* area-1-data.geojson in Resources */,
+				37A4833A2558AC3900DBD526 /* area-1-data.geojson in Resources */,
 				37675A6E255199D2009C880C /* topo-302.jpg in Resources */,
 				37675AAF255199D2009C880C /* topo-520.jpg in Resources */,
 				37A6572524BDC00500273A9A /* Localizable.strings in Resources */,
@@ -1215,7 +1215,7 @@
 				37675AD7255199D2009C880C /* topo-383.jpg in Resources */,
 				3766A6B2253EDDFE00AC3477 /* topo-488.jpg in Resources */,
 				37675AA3255199D2009C880C /* topo-337.jpg in Resources */,
-				37675AFD2551A59B009C880C /* area-1-topo-lines.json in Resources */,
+				37BC54B225586758002F0BB5 /* area-1-topo-lines.json in Resources */,
 				37675A3E255199D2009C880C /* topo-411.jpg in Resources */,
 				37675A4A255199D2009C880C /* topo-361.jpg in Resources */,
 				37675A77255199D2009C880C /* topo-515.jpg in Resources */,

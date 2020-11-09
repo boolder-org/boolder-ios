@@ -14,6 +14,7 @@ class Problem : Identifiable {
     var belongsToCircuit: Bool = false
     var grade = Grade.min
     var name: String? = nil
+    var bleauInfoId: String? = nil
     var height: Int? = nil
     var steepness: Steepness.SteepnessType = .other
     var id: Int!

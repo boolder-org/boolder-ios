@@ -155,6 +155,10 @@ class GeoStore {
                         problem.grade = Grade(gradeString)
                     }
                     
+                    if let bleauInfoId = properties.bleauInfoId {
+                        problem.bleauInfoId = bleauInfoId
+                    }
+                    
                     if let line = properties.lines?.first {
                         problem.lineId = line.id
                     }
@@ -183,6 +187,7 @@ class GeoStore {
         let name: String?
         let steepness: String?
         let height: Int?
+        let bleauInfoId: String?
         let lines: [LineRef]?
         let tags: [String]?
         
