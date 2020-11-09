@@ -8,6 +8,15 @@
 
 import SwiftUI
 
+struct ScaledBezier: Shape {
+    let bezierPath: Path
+
+    func path(in rect: CGRect) -> Path {
+        let transform = CGAffineTransform(scaleX: rect.width, y: rect.height)
+        return bezierPath.applying(transform)
+    }
+}
+
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
@@ -19,6 +28,40 @@ struct ProblemDetailsView: View {
     
     @Binding var problem: Problem
     @State var showMoreActionsheet = false
+
+    @State private var percentage: CGFloat = .zero
+    
+    private func linePoints() -> [CGPoint] {
+        if let line = problem.line?.coordinates {
+            return line.map{CGPoint(x: $0.x, y: $0.y)}
+        }
+        else {
+            return []
+        }
+    }
+    
+    func linePath() -> Path {
+        guard problem.line != nil else { return Path() }
+//        guard problem.line?.coordinates != nil else { return Path() }
+        if problem.line?.coordinates?.count == 0 { return Path() }
+        
+        let points = linePoints()
+        let controlPoints = CubicCurveAlgorithm().controlPointsFromPoints(dataPoints: points)
+        
+        return Path { path in
+            for i in 0..<points.count {
+                let point = points[i]
+                
+                if i==0 {
+                    path.move(to: CGPoint(x: point.x, y: point.y))
+                } else {
+                    let segment = controlPoints[i-1]
+                    path.addCurve(to: point, control1: segment.controlPoint1, control2: segment.controlPoint2)
+                }
+            }
+        }
+    }
+    
     
     var body: some View {
         ScrollView {
@@ -28,7 +71,13 @@ struct ProblemDetailsView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
-                    BezierViewRepresentable(problem: problem)
+//                    BezierViewRepresentable(problem: problem)
+                    
+                    ScaledBezier(bezierPath: linePath())
+                        .trim(from: 0, to: percentage) // << breaks path by parts, animatable
+                        .stroke(Color(problem.circuitUIColorForPhotoOverlay), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+//                        .animation(Animation.easeInOut(duration: 0.5).delay(0.5)) // << animate
+                        
                     
                     GeometryReader { geo in
                         if lineFirstPoint(photoSize: geo.size) != nil {
@@ -57,6 +106,8 @@ struct ProblemDetailsView: View {
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .foregroundColor(Color(.label))
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.5)
                                 
                                 Spacer()
                                 
@@ -96,6 +147,25 @@ struct ProblemDetailsView: View {
                     
                     
                     VStack {
+                        Divider()
+                        
+                        Button(action:{
+                            percentage = 0.0
+                            problem = dataStore.problems.randomElement()!
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                withAnimation(Animation.easeInOut(duration: 0.5)) {
+                                    percentage = 1.0
+                                }
+                            }
+                        }) {
+                            HStack {
+                                Text("Test")
+                                    .font(.body)
+                                Spacer()
+                            }
+                        }
+                        
                         Divider()
                         
                         Button(action:{
@@ -169,6 +239,13 @@ struct ProblemDetailsView: View {
                 .padding(.top, 0)
                 
                 Spacer()
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(Animation.easeInOut(duration: 0.5)) {
+                    percentage = 1.0
+                }
             }
         }
     }
