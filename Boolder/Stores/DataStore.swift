@@ -53,7 +53,7 @@ class DataStore : ObservableObject {
         
         problems = filteredProblems()
         setBelongsToCircuit()
-        createGroupedAnnotations()
+        createGroupedProblems()
         
         pois = geoStore.pois
     }
@@ -123,7 +123,7 @@ class DataStore : ObservableObject {
         geoStore.circuits.first { $0.color == color }
     }
     
-    private func createGroupedAnnotations() {
+    private func createGroupedProblems() {
         var sortedProblems = problems
         sortedProblems.sort { (lhs, rhs) -> Bool in
             if lhs.circuitNumber == rhs.circuitNumber {
@@ -139,6 +139,16 @@ class DataStore : ObservableObject {
         })
         
         groupedProblemsKeys = groupedProblems.keys.sorted()
+    }
+    
+    func orderedProblems() -> [Problem] {
+        var result: [Problem] = []
+        
+        for key in groupedProblemsKeys {
+            result.append(contentsOf: groupedProblems[key]!)
+        }
+        
+        return result
     }
     
     private func setBelongsToCircuit() {

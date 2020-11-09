@@ -33,24 +33,19 @@ struct ProblemDetailsView: View {
                     
                     GeometryReader { geo in
                         ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                            Button(action: {
-                                drawPercentage = 0.0
-                                problem = secondaryProblem
-
-                                // doing it async to be sure that the line is reset to zero
-                                // (there's probably a cleaner way to do it)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    animate { drawPercentage = 1.0 }
+                            if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
+                                Button(action: {
+                                    switchToProblem(secondaryProblem)
+                                }) {
+                                    ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
                                 }
-                            }) {
-                                ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                .offset(lineStart)
                             }
-                            .offset(lineOrigin(problem: secondaryProblem, inRectOfSize: geo.size)!)
                         }
                         
-                        if lineOrigin(problem: problem, inRectOfSize: geo.size) != nil {
+                        if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                             ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                .offset(lineOrigin(problem: problem, inRectOfSize: geo.size)!)
+                                .offset(lineStart)
                         }
                     }
                     
@@ -97,8 +92,6 @@ struct ProblemDetailsView: View {
                         }
                         
                         if problem.isRisky() {
-                        
-                            Divider()
                             
                             HStack {
                                 Image(systemName: "exclamationmark.shield.fill")
@@ -188,6 +181,28 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
+        .gesture(
+            DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+            .onEnded { value in
+                let orderedProblems = dataStore.orderedProblems()
+                let currentProblemIndex = orderedProblems.firstIndex{problem.id == $0.id}
+                
+                // left swipe
+                if value.translation.width < 0 && value.translation.height > -30 && value.translation.height < 30 {
+                    if let currentProblemIndex = currentProblemIndex {
+                        let newProblem = orderedProblems[(currentProblemIndex+1) % orderedProblems.count]
+                        switchToProblem(newProblem)
+                    }
+                }
+                // right swipe
+                else if value.translation.width > 0 && value.translation.height > -30 && value.translation.height < 30 {
+                    if let currentProblemIndex = currentProblemIndex {
+                        let newProblem = orderedProblems[(currentProblemIndex+orderedProblems.count-1) % orderedProblems.count]
+                        switchToProblem(newProblem)
+                    }
+                }
+            }
+        )
         .onAppear {
             // hack to make the animation start after the view is properly loaded
             // I tried doing it synchronously by I couldn't make it work :grimacing:
@@ -204,13 +219,24 @@ struct ProblemDetailsView: View {
         }
     }
     
-    func lineOrigin(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
+    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
             
         return CGSize(
             width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
             height: (CGFloat(lineFirstPoint.y) * size.height) - 14
         )
+    }
+    
+    func switchToProblem(_ newProblem: Problem) {
+        drawPercentage = 0.0
+        problem = newProblem
+
+        // doing it async to be sure that the line is reset to zero
+        // (there's probably a cleaner way to do it)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            animate { drawPercentage = 1.0 }
+        }
     }
         
     func isFavorite() -> Bool {
