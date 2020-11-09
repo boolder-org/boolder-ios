@@ -20,7 +20,6 @@ struct AreaView: View {
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
-    @State private var presentAreaPicker = false
     @State private var centerOnCurrentLocationCount = 0
     
     var body: some View {
@@ -40,17 +39,6 @@ struct AreaView: View {
                         .accentColor(Color.green)
                 }
             .background(PoiActionSheet(presentPoiActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
-            .background(
-                EmptyView()
-                    .sheet(isPresented: $presentAreaPicker) {
-                        AreaPickerView()
-                            // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
-                            // remove these lines as soon as it's fixed
-                            .environmentObject(dataStore)
-                            .environment(\.managedObjectContext, managedObjectContext)
-                            .accentColor(Color.green)
-                    }
-            )
             
             VStack {
                 Spacer()

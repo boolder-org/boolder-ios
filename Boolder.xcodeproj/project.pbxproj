@@ -259,7 +259,6 @@
 		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
 		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
-		37CF8E9A24699F3900E996C0 /* AreaPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CF8E9924699F3900E996C0 /* AreaPickerView.swift */; };
 		37E260C624674466003BC672 /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
 		37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
@@ -524,7 +523,6 @@
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
 		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
-		37CF8E9924699F3900E996C0 /* AreaPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaPickerView.swift; sourceTree = "<group>"; };
 		37E260C524674466003BC672 /* Poi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poi.swift; sourceTree = "<group>"; };
 		37E260C724674612003BC672 /* PoiRouteOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRouteOverlay.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
@@ -916,7 +914,6 @@
 			isa = PBXGroup;
 			children = (
 				37A8C62D2453263300DC161F /* AreaView.swift */,
-				37CF8E9924699F3900E996C0 /* AreaPickerView.swift */,
 				37D7B16A245B091100B522A6 /* Map */,
 				37638B83245437A000C5CD82 /* ProblemListView.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
@@ -1255,7 +1252,6 @@
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */,
-				37CF8E9A24699F3900E996C0 /* AreaPickerView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,
 				3701845B2466BD0800C6530C /* TopoStore.swift in Sources */,
