@@ -45,7 +45,7 @@ class Circuit {
             case .white:
                 return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             case .offCircuit:
-                return #colorLiteral(red: 0.6306057572, green: 0.6335269809, blue: 0.6406573653, alpha: 1)
+                return #colorLiteral(red: 0.5308170319, green: 0.5417798758, blue: 0.5535028577, alpha: 1)
             }
         }
         
