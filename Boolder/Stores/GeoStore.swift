@@ -169,6 +169,8 @@ class GeoStore {
                     
                     problem.id = id
                     
+                    problem.coordinate = point.coordinate
+                    
                     let annotation = ProblemAnnotation(problem: problem)
                     annotation.coordinate = point.coordinate
                     

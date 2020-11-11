@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class Problem : Identifiable {
     var circuitColor: Circuit.CircuitColor?
@@ -21,6 +22,7 @@ class Problem : Identifiable {
     var lineId: Int?
     var tags: [String]?
     var annotation: ProblemAnnotation!
+    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray

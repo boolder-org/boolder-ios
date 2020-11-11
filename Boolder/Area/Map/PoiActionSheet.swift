@@ -10,15 +10,36 @@ import MapKit
 import SwiftUI
 
 struct PoiActionSheet: View {
+    let description: String
+    var location: CLLocationCoordinate2D
+    let navigationMode: Bool
+    
     @Binding var presentPoiActionSheet: Bool
-    @Binding var selectedPoi: Poi?
     @State private var showShareSheet = false
     
-    var location: CLLocationCoordinate2D {
-        selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var body: some View {
+        EmptyView()
+            .actionSheet(isPresented: $presentPoiActionSheet) {
+                ActionSheet(
+                    title: Text(description),
+                    buttons: buttons()
+                )
+        }
+        .background(
+            EmptyView()
+                .sheet(isPresented: $showShareSheet) {
+                    ShareSheet(activityItems: [
+                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), description, round(location.latitude), round(location.longitude))
+                    ])
+                }
+        )
     }
     
-    func buttons() -> [Alert.Button] {
+    private func round(_ number: CLLocationDegrees) -> String {
+        String(format: "%.6f", number)
+    }
+    
+    private func buttons() -> [Alert.Button] {
         var buttons = [Alert.Button]()
         
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
@@ -26,17 +47,18 @@ struct PoiActionSheet: View {
                 .default(Text(
                     String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Google Maps")
                 )) {
-                    UIApplication.shared.open(URL(string: "comgooglemaps://?daddr=\(location.latitude),\(location.longitude)")!)
+                    let param = navigationMode ? "daddr" : "q"
+                    UIApplication.shared.open(URL(string: "comgooglemaps://?\(param)=\(round(location.latitude)),\(round(location.longitude))")!)
                 }
             )
         }
         
-        if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
+        if UIApplication.shared.canOpenURL(URL(string: "waze://")!) && navigationMode {
             buttons.append(
                 .default(Text(
                     String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Waze")
                 )) {
-                    let urlStr: String = "waze://?ll=\(location.latitude),\(location.longitude)&navigate=yes"
+                    let urlStr: String = "waze://?ll=\(round(location.latitude)),\(round(location.longitude))&navigate=yes"
                     UIApplication.shared.open(URL(string: urlStr)!)
                 }
             )
@@ -47,14 +69,19 @@ struct PoiActionSheet: View {
                 String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Apple Maps")
             )) {
                 let destination = MKMapItem(placemark: MKPlacemark(coordinate: location))
-                destination.name = selectedPoi?.description ?? ""
+                destination.name = description
 
-                MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+                if navigationMode {
+                    MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+                }
+                else {
+                    MKMapItem.openMaps(with: [destination])
+                }
             }
         )
         
         buttons.append(
-            .default(Text("poi.share")) {
+            .default(Text("poi.share_gps_coordinates")) {
                 showShareSheet = true
             }
         )
@@ -64,24 +91,6 @@ struct PoiActionSheet: View {
         )
         
         return buttons
-    }
-    
-    var body: some View {
-        EmptyView()
-            .actionSheet(isPresented: $presentPoiActionSheet) {
-                ActionSheet(
-                    title: Text(selectedPoi?.description ?? ""),
-                    buttons: buttons()
-                )
-        }
-        .background(
-            EmptyView()
-                .sheet(isPresented: $showShareSheet) {
-                    ShareSheet(activityItems: [
-                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), selectedPoi?.description ?? "", location.latitude.description, location.longitude.description)
-                    ])
-                }
-        )
     }
 }
 

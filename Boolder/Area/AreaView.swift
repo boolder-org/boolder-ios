@@ -38,7 +38,14 @@ struct AreaView: View {
                         .environment(\.managedObjectContext, managedObjectContext)
                         .accentColor(Color.green)
                 }
-            .background(PoiActionSheet(presentPoiActionSheet: $presentPoiActionSheet, selectedPoi: $selectedPoi))
+                .background(
+                    PoiActionSheet(
+                        description: (selectedPoi?.description ?? ""),
+                        location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+                        navigationMode: true,
+                        presentPoiActionSheet: $presentPoiActionSheet
+                    )
+                )
             
             VStack {
                 Spacer()

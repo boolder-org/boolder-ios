@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -19,6 +20,8 @@ struct ProblemDetailsView: View {
     
     @Binding var problem: Problem
     @State var showMoreActionsheet = false
+    @State var showSaveActionsheet = false
+    @State private var presentPoiActionSheet = false
     @State private var drawPercentage: CGFloat = .zero
     
     var body: some View {
@@ -80,15 +83,30 @@ struct ProblemDetailsView: View {
                             }
                         }
                         
-                        HStack(alignment: .firstTextBaseline) {
-                            Image(Steepness(problem.steepness).imageName)
-                                .font(.body)
-                                .frame(minWidth: 16)
-                            Text(Steepness(problem.steepness).name)
-                                .font(.body)
-                            Text(problem.readableDescription() ?? "")
-                                .font(.caption)
-                                .foregroundColor(Color.gray)
+                        HStack {
+                            
+                            HStack(alignment: .firstTextBaseline) {
+                                Image(Steepness(problem.steepness).imageName)
+                                    .font(.body)
+                                    .frame(minWidth: 16)
+                                Text(Steepness(problem.steepness).name)
+                                    .font(.body)
+                                Text(problem.readableDescription() ?? "")
+                                    .font(.caption)
+                                    .foregroundColor(Color.gray)
+                            }
+                            
+                            Spacer()
+                            
+                            if isFavorite() {
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color.yellow)
+                            }
+
+                            if isTicked() {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(Color.green)
+                            }
                         }
                         
                         if problem.isRisky() {
@@ -109,42 +127,45 @@ struct ProblemDetailsView: View {
                         Divider()
                         
                         Button(action:{
-                            toggleFavorite()
+                            showSaveActionsheet = true
                         }) {
                             HStack {
-                                if isFavorite() {
-                                    Image(systemName: "star.fill").foregroundColor(Color.yellow)
-                                    Text("problem.action.favorite.remove")
-                                        .font(.body)
-                                }
-                                else {
-                                    Image(systemName: "star")
-                                    Text("problem.action.favorite.add")
-                                        .font(.body)
-                                }
+                                Image(systemName: "square.and.arrow.down")
+                                Text("problem.action.save").font(.body)
                                 Spacer()
                             }
+                        }
+                        .actionSheet(isPresented: $showSaveActionsheet) {
+                            ActionSheet(title: Text("problem.action.save"), buttons: [
+                                .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+                                    toggleFavorite()
+                                },
+                                .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+                                    toggleTick()
+                                },
+                                .cancel()
+                            ])
                         }
                         
                         Divider()
                         
                         Button(action:{
-                            toggleTick()
+                            presentPoiActionSheet = true
                         }) {
                             HStack {
-                                if isTicked() {
-                                    Image(systemName: "checkmark.circle.fill")
-                                    Text("problem.action.untick")
-                                        .font(.body)
-                                }
-                                else {
-                                    Image(systemName: "checkmark.circle")
-                                    Text("problem.action.tick")
-                                        .font(.body)
-                                }
+                                Image(systemName: "square.and.arrow.up")
+                                Text("problem.action.share").font(.body)
                                 Spacer()
                             }
                         }
+                        .background(
+                            PoiActionSheet(
+                                description: problem.nameWithFallback() + " (" + dataStore.areas[dataStore.areaId]! + ")",
+                                location: problem.coordinate,
+                                navigationMode: false,
+                                presentPoiActionSheet: $presentPoiActionSheet
+                            )
+                        )
                         
                         if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
                             Divider()
@@ -155,14 +176,14 @@ struct ProblemDetailsView: View {
                             {
                                 HStack {
                                     Image(systemName: "ellipsis.circle")
-                                    Text("problem.action.plus")
+                                    Text("problem.action.more")
                                         .font(.body)
                                         .foregroundColor(Color.green)
                                     Spacer()
                                 }
                             }
                             .actionSheet(isPresented: $showMoreActionsheet) {
-                                ActionSheet(title: Text("problem.action.plus"), buttons: [
+                                ActionSheet(title: Text("problem.action.more"), buttons: [
                                     .default(Text("problem.action.see_on_bleau_info")) {
                                         openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
                                     },

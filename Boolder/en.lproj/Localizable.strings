@@ -35,9 +35,9 @@
 
 // MARK: POI
 "poi.see_in" = "See in %@";
-"poi.share" = "Share";
+"poi.share_gps_coordinates" = "Share coordinates";
 "poi.cancel" = "Cancel";
-"poi.gps_coordinates_for_poi" = "GPS coordinates %@ : %@,%@";
+"poi.gps_coordinates_for_poi" = "Hey! Here are the GPS coordinates for %@ : %@,%@";
 
 // MARK: Filters
 "filters.title" = "Filters";
@@ -78,9 +78,11 @@
 "problem.sit_start" = "sit start";
 "problem.height_desc" = "height %@ m";
 "problem.risky.long" = "Dangerous if you fall";
+"problem.action.save" = "Save";
 "problem.action.favorite.add" = "Add to favorites";
 "problem.action.favorite.remove" = "Remove from favorites";
 "problem.action.tick" = "Tick";
 "problem.action.untick" = "Untick";
-"problem.action.plus" = "Plus";
+"problem.action.more" = "More";
 "problem.action.see_on_bleau_info" = "See on bleau.info";
+"problem.action.share" = "Share";
