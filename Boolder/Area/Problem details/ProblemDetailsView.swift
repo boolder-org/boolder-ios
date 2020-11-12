@@ -130,7 +130,7 @@ struct ProblemDetailsView: View {
                             showSaveActionsheet = true
                         }) {
                             HStack {
-                                Image(systemName: "square.and.arrow.down")
+                                Image(systemName: "star")
                                 Text("problem.action.save").font(.body)
                                 Spacer()
                             }

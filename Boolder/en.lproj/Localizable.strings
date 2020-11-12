@@ -37,7 +37,7 @@
 "poi.see_in" = "See in %@";
 "poi.share_gps_coordinates" = "Share coordinates";
 "poi.cancel" = "Cancel";
-"poi.gps_coordinates_for_poi" = "Hey! Here are the GPS coordinates for %@ : %@,%@";
+"poi.gps_coordinates_for_poi" = "Here are the GPS coordinates for %@ : %@,%@";
 
 // MARK: Filters
 "filters.title" = "Filters";
