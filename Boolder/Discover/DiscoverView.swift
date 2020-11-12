@@ -24,53 +24,115 @@ struct DiscoverView: View {
                         Text("Fontainebleau")
                             .font(.title2).bold()
                         
-                        Divider()
+                        Group {
                         
-//                        NavigationLink(
-//                            destination: AreaView(),
-//                            label: {
-//                                HStack {
-//                                    Text("Rocher Canon")
-//                                        .font(.body)
-//                                        .foregroundColor(Color.green)
-//                                    Spacer()
-//                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-//                                }
-//
-//                            }
-//                        )
-//
-//                        Divider()
-//
-//                        NavigationLink(
-//                            destination: AreaView(),
-//                            label: {
-//                                HStack {
-//                                    Text("Cuvier")
-//                                        .font(.body)
-//                                        .foregroundColor(Color.green)
-//                                    Spacer()
-//                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-//                                }
-//                            }
-//                        )
-//
-//                        Divider()
-                        
-                        NavigationLink(
-                            destination: EmptyView(),
-                            label: {
-                                HStack {
-                                    Text("Voir les secteurs à Fontainebleau")
-                                        .font(.body)
-                                        .foregroundColor(Color.green)
-                                    Spacer()
-                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Cul de Chien")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 2
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
                                 }
-                            }
-                        )
+                            )
+                            
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Cuvier")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 4
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Franchard Isatis")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Rocher Canon")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 1
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                    
+                        }
                         
-                        Divider()
+                        Group {
+                            NavigationLink(
+                                destination: EmptyView(),
+                                label: {
+                                    HStack {
+                                        Text("Autres secteurs")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                        }
+                        
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.horizontal)
@@ -96,11 +158,12 @@ struct DiscoverView: View {
                                                 .cornerRadius(16)
                                             Text("130 voies de niveau débutant")
                                                 .font(.subheadline)
-                                                .foregroundColor(Color.gray)
+                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .padding(.leading, 16)
                                         .onTapGesture {
-                                            self.dataStore.areaId = 1
+                                            dataStore.areaId = 1
+                                            dataStore.filters = Filters()
                                             presentArea = true
                                         }
                                     }
@@ -114,11 +177,9 @@ struct DiscoverView: View {
                                                 .cornerRadius(16)
                                             Text("90 voies de niveau débutant")
                                                 .font(.subheadline)
-                                                .foregroundColor(Color.gray)
+                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-//                                            self.dataStore.areaId =
-//                                            presentArea = true
                                         }
                                     }
                                     .padding(.leading, 16)
@@ -132,10 +193,11 @@ struct DiscoverView: View {
                                                 .cornerRadius(16)
                                             Text("70 voies de niveau débutant")
                                                 .font(.subheadline)
-                                                .foregroundColor(Color.gray)
+                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-                                            self.dataStore.areaId = 2
+                                            dataStore.areaId = 2
+                                            dataStore.filters = Filters()
                                             presentArea = true
                                         }
                                     }
@@ -164,10 +226,11 @@ struct DiscoverView: View {
                                                 .cornerRadius(16)
                                             Text("400 voies entre 6a et 8c+")
                                                 .font(.subheadline)
-                                                .foregroundColor(Color.gray)
+                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-                                            self.dataStore.areaId = 4
+                                            dataStore.areaId = 4
+                                            dataStore.filters = Filters()
                                             presentArea = true
                                         }
                                     }
@@ -182,10 +245,11 @@ struct DiscoverView: View {
                                                 .cornerRadius(16)
                                             Text("300 voies entre 6a et 8c")
                                                 .font(.subheadline)
-                                                .foregroundColor(Color.gray)
+                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-                                            self.dataStore.areaId = 1
+                                            dataStore.areaId = 1
+                                            dataStore.filters = Filters()
                                             presentArea = true
                                         }
                                     }
@@ -200,10 +264,11 @@ struct DiscoverView: View {
                                                 .cornerRadius(16)
                                             Text("250 voies entre 6a et 8c")
                                                 .font(.subheadline)
-                                                .foregroundColor(Color.gray)
+                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-//                                            self.dataStore.areaId =
+//                                            dataStore.areaId =
+//                                            dataStore.filters = Filters()
 //                                            presentArea = true
                                         }
                                     }
