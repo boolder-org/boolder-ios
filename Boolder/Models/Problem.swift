@@ -46,6 +46,16 @@ class Problem : Identifiable {
         }
     }
     
+    func nameForDirections() -> String {
+        if let circuitColor = circuitColor {
+            if circuitNumber != "" {
+                return circuitColor.shortName() + " " + circuitNumber
+            }
+        }
+        
+        return name ?? NSLocalizedString("problem.no_name", comment: "")
+    }
+    
     func readableDescription() -> String? {
         var strings = Set<String>()
         

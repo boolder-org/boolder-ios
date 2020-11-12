@@ -86,3 +86,4 @@
 "problem.action.more" = "Plus";
 "problem.action.see_on_bleau_info" = "Voir sur bleau.info";
 "problem.action.share" = "Partager";
+"problem.action.share.description" = "« %@ » à %@";

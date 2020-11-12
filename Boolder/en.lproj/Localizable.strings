@@ -86,3 +86,4 @@
 "problem.action.more" = "More";
 "problem.action.see_on_bleau_info" = "See on bleau.info";
 "problem.action.share" = "Share";
+"problem.action.share.description" = "“%@” at %@";

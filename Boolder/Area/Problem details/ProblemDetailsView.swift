@@ -160,7 +160,7 @@ struct ProblemDetailsView: View {
                         }
                         .background(
                             PoiActionSheet(
-                                description: problem.nameWithFallback() + " (" + dataStore.areas[dataStore.areaId]! + ")",
+                                description: shareProblemDescription(),
                                 location: problem.coordinate,
                                 navigationMode: false,
                                 presentPoiActionSheet: $presentPoiActionSheet
@@ -232,6 +232,10 @@ struct ProblemDetailsView: View {
                 animate { drawPercentage = 1.0 }
             }
         }
+    }
+    
+    func shareProblemDescription() -> String {
+        return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.areas[dataStore.areaId]!)
     }
     
     func animate(action: () -> Void) {
