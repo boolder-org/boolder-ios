@@ -19,8 +19,8 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
-    @State var showMoreActionsheet = false
-    @State var showSaveActionsheet = false
+    @State var presentMoreActionsheet = false
+    @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
     @State private var drawPercentage: CGFloat = .zero
     
@@ -127,7 +127,7 @@ struct ProblemDetailsView: View {
                         Divider()
                         
                         Button(action:{
-                            showSaveActionsheet = true
+                            presentSaveActionsheet = true
                         }) {
                             HStack {
                                 Image(systemName: "star")
@@ -135,7 +135,7 @@ struct ProblemDetailsView: View {
                                 Spacer()
                             }
                         }
-                        .actionSheet(isPresented: $showSaveActionsheet) {
+                        .actionSheet(isPresented: $presentSaveActionsheet) {
                             ActionSheet(title: Text("problem.action.save"), buttons: [
                                 .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
                                     toggleFavorite()
@@ -171,7 +171,7 @@ struct ProblemDetailsView: View {
                             Divider()
                             
                             Button(action: {
-                                showMoreActionsheet = true
+                                presentMoreActionsheet = true
                             })
                             {
                                 HStack {
@@ -182,7 +182,7 @@ struct ProblemDetailsView: View {
                                     Spacer()
                                 }
                             }
-                            .actionSheet(isPresented: $showMoreActionsheet) {
+                            .actionSheet(isPresented: $presentMoreActionsheet) {
                                 ActionSheet(title: Text("problem.action.more"), buttons: [
                                     .default(Text("problem.action.see_on_bleau_info")) {
                                         openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)

@@ -15,7 +15,7 @@ struct PoiActionSheet: View {
     let navigationMode: Bool
     
     @Binding var presentPoiActionSheet: Bool
-    @State private var showShareSheet = false
+    @State private var presentShareSheet = false
     
     var body: some View {
         EmptyView()
@@ -27,7 +27,7 @@ struct PoiActionSheet: View {
         }
         .background(
             EmptyView()
-                .sheet(isPresented: $showShareSheet) {
+                .sheet(isPresented: $presentShareSheet) {
                     ShareSheet(activityItems: [
                         String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), description, round(location.latitude), round(location.longitude))
                     ])
@@ -82,7 +82,7 @@ struct PoiActionSheet: View {
         
         buttons.append(
             .default(Text("poi.share_gps_coordinates")) {
-                showShareSheet = true
+                presentShareSheet = true
             }
         )
         
