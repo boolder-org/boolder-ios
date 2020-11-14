@@ -209,7 +209,7 @@ struct DiscoverView: View {
                         
                         
                         VStack(alignment: .leading) {
-                            Text("Envie de performer ?")
+                            Text("Grande variété de 5,6,7,8")
                                 .font(.title2).bold()
                                 .padding(.horizontal, 16)
                                 .padding(.top, 16)
