@@ -64,11 +64,11 @@ class Problem : Identifiable {
             strings.remove("risky") // FIXME: use enum
         }
         
-        if let height = height {
-            strings.insert(
-                String.localizedStringWithFormat(NSLocalizedString("problem.height_desc", comment: ""), height.description)
-            )
-        }
+//        if let height = height {
+//            strings.insert(
+//                String.localizedStringWithFormat(NSLocalizedString("problem.height_desc", comment: ""), height.description)
+//            )
+//        }
         
         return strings.map { (string: String) in
             switch string {

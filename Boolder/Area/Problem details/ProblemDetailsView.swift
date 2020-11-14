@@ -85,15 +85,17 @@ struct ProblemDetailsView: View {
                         
                         HStack {
                             
-                            HStack(alignment: .firstTextBaseline) {
-                                Image(Steepness(problem.steepness).imageName)
-                                    .font(.body)
-                                    .frame(minWidth: 16)
-                                Text(Steepness(problem.steepness).name)
-                                    .font(.body)
-                                Text(problem.readableDescription() ?? "")
-                                    .font(.caption)
-                                    .foregroundColor(Color.gray)
+                            if problem.steepness != .other {
+                                HStack(alignment: .firstTextBaseline) {
+                                    Image(Steepness(problem.steepness).imageName)
+                                        .font(.body)
+                                        .frame(minWidth: 16)
+                                    Text(Steepness(problem.steepness).name)
+                                        .font(.body)
+                                    Text(problem.readableDescription() ?? "")
+                                        .font(.caption)
+                                        .foregroundColor(Color.gray)
+                                }
                             }
                             
                             Spacer()
