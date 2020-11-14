@@ -209,7 +209,7 @@ struct DiscoverView: View {
                         
                         
                         VStack(alignment: .leading) {
-                            Text("Grande variété de 5,6,7,8")
+                            Text("Grande variété entre 5 et 8")
                                 .font(.title2).bold()
                                 .padding(.horizontal, 16)
                                 .padding(.top, 16)
@@ -224,7 +224,7 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("400 voies entre 6a et 8c+")
+                                            Text("400 voies entre 5a et 8c+")
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -243,7 +243,7 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("300 voies entre 6a et 8c")
+                                            Text("300 voies entre 5a et 8c")
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -262,7 +262,7 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("250 voies entre 6a et 8c")
+                                            Text("250 voies entre 5a et 8c")
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
