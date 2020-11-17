@@ -86,6 +86,9 @@ struct DiscoverView: View {
                                     }
                                     .contentShape(Rectangle())
                                     .onTapGesture {
+                                        dataStore.areaId = 5
+                                        dataStore.filters = Filters()
+                                        presentArea = true
                                     }
                                 }
                             )
@@ -180,6 +183,9 @@ struct DiscoverView: View {
                                                 .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
+                                            dataStore.areaId = 5
+                                            dataStore.filters = Filters()
+                                            presentArea = true
                                         }
                                     }
                                     .padding(.leading, 16)
@@ -267,9 +273,9 @@ struct DiscoverView: View {
                                                 .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-//                                            dataStore.areaId =
-//                                            dataStore.filters = Filters()
-//                                            presentArea = true
+                                            dataStore.areaId = 5
+                                            dataStore.filters = Filters()
+                                            presentArea = true
                                         }
                                     }
                                     .padding(.leading, 16)

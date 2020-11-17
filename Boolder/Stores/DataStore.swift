@@ -36,7 +36,7 @@ class DataStore : ObservableObject {
     @Published var groupedProblems = Dictionary<Circuit.CircuitColor, [Problem]>()
     @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
-    let areas = [1: "Rocher Canon", 2: "Cul de Chien", 4: "Cuvier"]
+    let areas = [1: "Rocher Canon", 2: "Cul de Chien", 4: "Cuvier", 5: "Franchard Isatis"]
 
     init() {
         refresh()
