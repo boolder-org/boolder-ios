@@ -177,6 +177,10 @@ struct MapView: UIViewRepresentable {
             self.parent = parent
         }
         
+        deinit {
+            NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+        }
+        
         // MARK: MKMapViewDelegate methods
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -328,7 +332,7 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        // inspired from https://gist.github.com/andrewgleave/915374
+        // inspired by https://gist.github.com/andrewgleave/915374
         func rectThatFits(_ annotations: [MKAnnotation], edgePadding: UIEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 120, right: 40)) -> MKMapRect {
             var rect = MKMapRect.null
             
@@ -349,10 +353,37 @@ struct MapView: UIViewRepresentable {
         
         func startLocationManager() {
             locationManager.delegate = self
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate), name: UIDevice.orientationDidChangeNotification, object: nil)
+            
             locationManager.requestWhenInUseAuthorization()
             
             locationManager.startUpdatingHeading()
             locationManager.startUpdatingLocation()
+        }
+        
+        @objc func deviceDidRotate() {
+            // we do this to avoid default behavior (which is apparently to stay in portrait)
+            // more info at https://developer.apple.com/documentation/corelocation/cllocationmanager/1620556-headingorientation
+            
+            switch UIDevice.current.orientation {
+            case .landscapeLeft:
+                locationManager.headingOrientation = .landscapeLeft
+            case .landscapeRight:
+                locationManager.headingOrientation = .landscapeRight
+            case .portraitUpsideDown:
+                locationManager.headingOrientation = .portraitUpsideDown
+            case .unknown:
+                locationManager.headingOrientation = .unknown
+            case .portrait:
+                locationManager.headingOrientation = .portrait
+            case .faceUp:
+                locationManager.headingOrientation = .faceUp
+            case .faceDown:
+                locationManager.headingOrientation = .faceDown
+            @unknown default:
+                locationManager.headingOrientation = .portrait
+            }
         }
         
         // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
@@ -371,8 +402,7 @@ struct MapView: UIViewRepresentable {
 
                 headingImageView.isHidden = false
                 
-                let offset = (UIDevice.current.userInterfaceIdiom == .pad ? 90.0 : 0.0) // not sure why, but heading seems offset by 90° on iPad :thinking_face:
-                let rotation = CGFloat((heading-parent.mapView.camera.heading+offset)/180 * Double.pi)
+                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi)
                 headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
             }
         }
