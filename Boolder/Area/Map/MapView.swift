@@ -385,6 +385,8 @@ struct MapView: UIViewRepresentable {
             
             locationManager.requestWhenInUseAuthorization()
             
+            deviceDidRotate()
+            
             locationManager.startUpdatingHeading()
             locationManager.startUpdatingLocation()
         }
@@ -401,7 +403,7 @@ struct MapView: UIViewRepresentable {
             case .portraitUpsideDown:
                 locationManager.headingOrientation = .portraitUpsideDown
             case .unknown:
-                locationManager.headingOrientation = .unknown
+                locationManager.headingOrientation = CLDeviceOrientation(rawValue: Int32(statusBarOrientation!.rawValue)) ?? .unknown
             case .portrait:
                 locationManager.headingOrientation = .portrait
             case .faceUp:
@@ -410,6 +412,22 @@ struct MapView: UIViewRepresentable {
                 locationManager.headingOrientation = .faceDown
             @unknown default:
                 locationManager.headingOrientation = .portrait
+            }
+            
+            print("\(UIDevice.current.orientation.rawValue)")
+        }
+        
+        // https://stackoverflow.com/a/58082422/230309
+        var statusBarOrientation: UIInterfaceOrientation? {
+            get {
+                guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
+                    #if DEBUG
+                    fatalError("Could not obtain UIInterfaceOrientation from a valid windowScene")
+                    #else
+                    return nil
+                    #endif
+                }
+                return orientation
             }
         }
         
