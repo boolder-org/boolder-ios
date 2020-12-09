@@ -455,18 +455,20 @@ struct MapView: UIViewRepresentable {
                     let rotation = CGFloat((heading-self.parent.mapView.camera.heading)/180 * Double.pi)
                     let rotateTransform = CGAffineTransform(rotationAngle: rotation)
                     
-                    var scaleTransform = CGAffineTransform.identity
-//                    headingImageView.transform = scaleTransform
+                    self.arrow.path = self.arrowPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy! : 90.0)
                     
-                    self.arrow.path = self.arrowPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy! : 180.0)
-                    
-                    if let lastLocationAccuracy = self.lastLocationAccuracy {
-                        var scaleFactor = CGFloat(lastLocationAccuracy/distance)
-                        if scaleFactor < 2.5 { scaleFactor = 2.5 }
-                        if scaleFactor > 10 { scaleFactor = 10 }
-                        scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+                    if let headingAccuracy = self.lastHeadingAccuracy {
+                        self.arrow.isHidden = (headingAccuracy >= 90)
                     }
                     
+                    var scaleTransform = CGAffineTransform.identity
+                    
+                    if let lastLocationAccuracy = self.lastLocationAccuracy {
+                        var scaleFactor = CGFloat(lastLocationAccuracy/distance)*1.5
+                        if scaleFactor < 2.5 { scaleFactor = 2.5 }
+                        if scaleFactor > 15 { scaleFactor = 15 }
+                        scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+                    }
                     
                     headingImageView.transform = rotateTransform.concatenating(scaleTransform)
 //                    headingImageView.transform = scaleTransform
@@ -494,7 +496,7 @@ struct MapView: UIViewRepresentable {
                     arrow.path = arrowPath(size: headingImageView!.bounds.size, angleInDegrees: (lastHeadingAccuracy != nil) ? lastHeadingAccuracy! : 90.0)
                     
 //                    arrow.position = CGPoint(x: headingImageView!.frame.midX, y: headingImageView!.frame.midY)
-                    arrow.fillColor = UIColor.white.cgColor
+//                    arrow.fillColor = UIColor.white.cgColor
                     
                     
                     let gradientLayer = CAGradientLayer()
@@ -504,11 +506,17 @@ struct MapView: UIViewRepresentable {
                     
                     // make sure to use .cgColor
                     gradientLayer.colors = [
+                        UIColor(Color.green).withAlphaComponent(0.0).cgColor,
                         UIColor(Color.green).withAlphaComponent(0.8).cgColor,
                         UIColor(Color.green).withAlphaComponent(0.0).cgColor
                     ]
+                    
                     gradientLayer.frame = headingImageView!.bounds
                     gradientLayer.mask = arrow
+                    
+                    if let headingAccuracy = lastHeadingAccuracy {
+                        arrow.isHidden = (headingAccuracy >= 90)
+                    }
                     
                     headingImageView!.layer.addSublayer(gradientLayer)
                    
