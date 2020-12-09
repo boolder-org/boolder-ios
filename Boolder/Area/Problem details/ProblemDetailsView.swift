@@ -73,7 +73,6 @@ struct ProblemDetailsView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(Color(.label))
                                     .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
                                 
                                 Spacer()
                                 
