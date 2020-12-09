@@ -19,8 +19,10 @@ struct MapView: UIViewRepresentable {
     @Binding var selectedPoi: Poi?
     @Binding var presentPoiActionSheet: Bool
     @Binding var centerOnCurrentLocationCount: Int
+    @Binding var centerOnProblem: Problem?
+    @Binding var centerOnProblemCount: Int
     
-    var mapView = MKMapView()
+    var mapView = MKMapView() // FIXME: put in makeUIView() ?
     
     func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
@@ -44,6 +46,10 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
     
+    // FIXME: is there a cleaner way to trigger a UI refresh?
+    // current approach: - compare a hash of objects (before/after)
+    //                   - increment a counter
+    // which is a bit ugly :(
     func updateUIView(_ mapView: MKMapView, context: Context) {
 
         // remove & add annotations back only if needed to avoid flickering
@@ -92,10 +98,21 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        // zoom to current location
+        // zoom on current location
+        
         if centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
             context.coordinator.locate()
             context.coordinator.lastCenterOnCurrentLocationCount = centerOnCurrentLocationCount
+        }
+        
+        // zoom on problem
+        
+        if centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
+            if let problem = centerOnProblem {
+                mapView.setCamera(MKMapCamera(lookingAtCenter: problem.coordinate, fromDistance: 50, pitch: 0, heading: mapView.camera.heading), animated: true)
+                
+                context.coordinator.lastCenterOnProblemCount = centerOnProblemCount
+            }
         }
     }
 
@@ -118,6 +135,7 @@ struct MapView: UIViewRepresentable {
         var locationManager = CLLocationManager()
         var lastLocation: CLLocation?
         var lastCenterOnCurrentLocationCount = 0
+        var lastCenterOnProblemCount = 0
         
         private var zoomLevel: ZoomLevel = .zoomedOut {
             didSet {

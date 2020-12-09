@@ -20,18 +20,34 @@ struct AreaView: View {
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
-    @State private var centerOnCurrentLocationCount = 0
+    
+    @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
+    @State private var centerOnProblem: Problem? = nil
+    @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
     
     var body: some View {
         ZStack {
             ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                 .zIndex(showList ? 1 : 0)
             
-            MapView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, selectedPoi: $selectedPoi, presentPoiActionSheet: $presentPoiActionSheet, centerOnCurrentLocationCount: $centerOnCurrentLocationCount)
+            MapView(
+                selectedProblem: $selectedProblem,
+                presentProblemDetails: $presentProblemDetails,
+                selectedPoi: $selectedPoi,
+                presentPoiActionSheet: $presentPoiActionSheet,
+                centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
+                centerOnProblem: $centerOnProblem,
+                centerOnProblemCount: $centerOnProblemCount
+            )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
                 .sheet(isPresented: $presentProblemDetails) {
-                    ProblemDetailsView(problem: $selectedProblem)
+                    ProblemDetailsView(
+                        problem: $selectedProblem,
+                        centerOnProblem: $centerOnProblem,
+                        centerOnProblemCount: $centerOnProblemCount,
+                        showList: $showList
+                    )
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
                         .environmentObject(dataStore)

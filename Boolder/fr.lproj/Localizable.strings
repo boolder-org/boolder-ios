@@ -85,5 +85,6 @@
 "problem.action.untick" = "Marquer comme non réussi";
 "problem.action.more" = "Plus";
 "problem.action.see_on_bleau_info" = "Voir sur bleau.info";
+"problem.action.center_on_map" = "Centrer sur la carte";
 "problem.action.share" = "Partager";
 "problem.action.share.description" = "« %@ » à %@";

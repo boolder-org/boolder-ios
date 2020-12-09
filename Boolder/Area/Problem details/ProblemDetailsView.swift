@@ -19,6 +19,10 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
+    @Binding var centerOnProblem: Problem?
+    @Binding var centerOnProblemCount: Int
+    @Binding var showList: Bool
+    
     @State var presentMoreActionsheet = false
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
@@ -168,29 +172,25 @@ struct ProblemDetailsView: View {
                             )
                         )
                         
-                        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-                            Divider()
-                            
-                            Button(action: {
-                                presentMoreActionsheet = true
-                            })
-                            {
-                                HStack {
-                                    Image(systemName: "ellipsis.circle")
-                                    Text("problem.action.more")
-                                        .font(.body)
-                                        .foregroundColor(Color.green)
-                                    Spacer()
-                                }
+                        Divider()
+                        
+                        Button(action: {
+                            presentMoreActionsheet = true
+                        })
+                        {
+                            HStack {
+                                Image(systemName: "ellipsis.circle")
+                                Text("problem.action.more")
+                                    .font(.body)
+                                    .foregroundColor(Color.green)
+                                Spacer()
                             }
-                            .actionSheet(isPresented: $presentMoreActionsheet) {
-                                ActionSheet(title: Text("problem.action.more"), buttons: [
-                                    .default(Text("problem.action.see_on_bleau_info")) {
-                                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-                                    },
-                                    .cancel()
-                                ])
-                            }
+                        }
+                        .actionSheet(isPresented: $presentMoreActionsheet) {
+                            ActionSheet(
+                                title: Text("problem.action.more"),
+                                buttons: buttonsForMoreActionSheet()
+                            )
                         }
                         
                         Divider()
@@ -233,6 +233,31 @@ struct ProblemDetailsView: View {
                 animate { drawPercentage = 1.0 }
             }
         }
+    }
+    
+    private func buttonsForMoreActionSheet() -> [Alert.Button] {
+        var buttons = [Alert.Button]()
+        
+        buttons.append(
+            .default(Text("problem.action.center_on_map")) {
+                presentationMode.wrappedValue.dismiss()
+                showList = false
+                centerOnProblem = problem
+                centerOnProblemCount += 1 // triggers a map refresh
+            }
+        )
+        
+        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+            buttons.append(
+                .default(Text("problem.action.see_on_bleau_info")) {
+                    openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                }
+            )
+        }
+        
+        buttons.append(.cancel())
+        
+        return buttons
     }
     
     func shareProblemDescription() -> String {
@@ -357,7 +382,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.problems.first!))
+        ProblemDetailsView(problem: .constant(dataStore.problems.first!), centerOnProblem: .constant(nil), centerOnProblemCount: .constant(0), showList: .constant(true))
             .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
     }
