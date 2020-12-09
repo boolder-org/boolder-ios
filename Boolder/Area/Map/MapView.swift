@@ -458,17 +458,18 @@ struct MapView: UIViewRepresentable {
                     var scaleTransform = CGAffineTransform.identity
 //                    headingImageView.transform = scaleTransform
                     
-                    self.arrow.path = self.arrowPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy!*2 : 180.0)
+                    self.arrow.path = self.arrowPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy! : 180.0)
                     
                     if let lastLocationAccuracy = self.lastLocationAccuracy {
                         var scaleFactor = CGFloat(lastLocationAccuracy/distance)
-                        if scaleFactor < 1.5 { scaleFactor = 1.5 }
+                        if scaleFactor < 2.5 { scaleFactor = 2.5 }
                         if scaleFactor > 10 { scaleFactor = 10 }
                         scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
                     }
                     
                     
                     headingImageView.transform = rotateTransform.concatenating(scaleTransform)
+//                    headingImageView.transform = scaleTransform
                 }
 
             }
@@ -490,7 +491,7 @@ struct MapView: UIViewRepresentable {
                 if arrow == nil {
                     arrow = CAShapeLayer()
                     arrow.frame = CGRect(x: 0, y: 0, width: headingImageView!.frame.size.width, height: headingImageView!.frame.size.height)
-                    arrow.path = arrowPath(size: headingImageView!.bounds.size, angleInDegrees: (lastHeadingAccuracy != nil) ? lastHeadingAccuracy!*2 : 90.0)
+                    arrow.path = arrowPath(size: headingImageView!.bounds.size, angleInDegrees: (lastHeadingAccuracy != nil) ? lastHeadingAccuracy! : 90.0)
                     
 //                    arrow.position = CGPoint(x: headingImageView!.frame.midX, y: headingImageView!.frame.midY)
                     arrow.fillColor = UIColor.white.cgColor
@@ -522,31 +523,46 @@ struct MapView: UIViewRepresentable {
         
         // Calculate the vector path for an arrow, for use in a shape layer.
         private func arrowPath(size: CGSize, angleInDegrees: Double) -> CGPath {
-//            let angleInDegrees: Double = 90
-            let halfAngleInRadian = angleInDegrees/2 * Double.pi / 180
             
-            let topLeft = CGPoint(
-                x: (1.0-sin(halfAngleInRadian))/2*Double(size.width),
-                y: (1.0-cos(halfAngleInRadian))/2*Double(size.height)
+            var bezierPath = UIBezierPath(
+                arcCenter: CGPoint(x: size.width/2, y: size.height/2),
+                radius: size.height/2,
+                startAngle: CGFloat(-90-angleInDegrees) * CGFloat(Double.pi) / 180,
+                endAngle: CGFloat(-90+angleInDegrees) * CGFloat(Double.pi) / 180,
+                clockwise: true
             )
             
-            let center = CGPoint(
-                x: size.width*0.5,
-                y: size.height*0.5
-            )
-           
-            let topRight = CGPoint(
-                x: Double(size.width) - (1.0-sin(halfAngleInRadian))/2*Double(size.width),
-                y: (1.0-cos(halfAngleInRadian))/2*Double(size.height)
-            )
+            bezierPath.addLine(to: CGPoint(x: size.width/2, y: size.height/2))
             
-            let bezierPath = UIBezierPath()
-            bezierPath.move(to: topLeft)
-            bezierPath.addLine(to: center)
-            bezierPath.addLine(to: topRight)
-            bezierPath.close()
             
             return bezierPath.cgPath
+            
+            
+////            let angleInDegrees: Double = 90
+//            let halfAngleInRadian = angleInDegrees/2 * Double.pi / 180
+//
+//            let topLeft = CGPoint(
+//                x: (1.0-sin(halfAngleInRadian))/2*Double(size.width),
+//                y: (1.0-cos(halfAngleInRadian))/2*Double(size.height)
+//            )
+//
+//            let center = CGPoint(
+//                x: size.width*0.5,
+//                y: size.height*0.5
+//            )
+//
+//            let topRight = CGPoint(
+//                x: Double(size.width) - (1.0-sin(halfAngleInRadian))/2*Double(size.width),
+//                y: (1.0-cos(halfAngleInRadian))/2*Double(size.height)
+//            )
+//
+//            let bezierPath = UIBezierPath()
+//            bezierPath.move(to: topLeft)
+//            bezierPath.addLine(to: center)
+//            bezierPath.addLine(to: topRight)
+//            bezierPath.close()
+//
+//            return bezierPath.cgPath
         }
 
     }
