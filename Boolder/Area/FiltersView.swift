@@ -93,6 +93,7 @@ struct FiltersView: View {
             .navigationBarItems(
                 leading: Button(action: {
                     filters = Filters()
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("filters.reset")
                         .padding(.vertical)
