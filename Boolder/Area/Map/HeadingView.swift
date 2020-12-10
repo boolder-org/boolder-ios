@@ -25,7 +25,7 @@ class HeadingView: UIView {
     
     var headingAccuracy: CLLocationDirectionAccuracy = 90 {
         didSet {
-            headingArcLayer.path = arcPath(size: bounds.size, angleInDegrees: CGFloat(headingAccuracy))
+            headingArcLayer.path = arcPath(angleInDegrees: CGFloat(headingAccuracy))
             headingArcLayer.isHidden = (headingAccuracy >= 90)
         }
     }
@@ -55,17 +55,17 @@ class HeadingView: UIView {
         }
     }
     
-    private func arcPath(size: CGSize, angleInDegrees: CGFloat) -> CGPath {
+    private func arcPath(angleInDegrees: CGFloat) -> CGPath {
         
         let bezierPath = UIBezierPath(
-            arcCenter: CGPoint(x: size.width/2, y: size.height/2),
-            radius: size.height/2,
+            arcCenter: CGPoint(x: bounds.size.width/2, y: bounds.size.height/2),
+            radius: bounds.size.height/2,
             startAngle: (-90-angleInDegrees) * CGFloat.pi / 180,
             endAngle: (-90+angleInDegrees) * CGFloat.pi / 180,
             clockwise: true
         )
         
-        bezierPath.addLine(to: CGPoint(x: size.width/2, y: size.height/2))
+        bezierPath.addLine(to: CGPoint(x: bounds.size.width/2, y: bounds.size.height/2))
         
         return bezierPath.cgPath
     }
