@@ -132,10 +132,6 @@ struct MapView: UIViewRepresentable {
         var parent: MapView
         var lastCircuit: Circuit.CircuitColor? = nil
         var lastArea: Int? = nil
-        var locationManager = CLLocationManager()
-        var lastLocation: CLLocation?
-        var lastLocationAccuracy: CLLocationAccuracy?
-        var lastHeadingAccuracy: CLLocationDirectionAccuracy?
         var lastCenterOnCurrentLocationCount = 0
         var lastCenterOnProblemCount = 0
         
@@ -199,6 +195,25 @@ struct MapView: UIViewRepresentable {
         
         deinit {
             NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+        }
+        
+        // inspired by https://gist.github.com/andrewgleave/915374
+        func rectThatFits(_ annotations: [MKAnnotation], edgePadding: UIEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 120, right: 40)) -> MKMapRect {
+            var rect = MKMapRect.null
+            
+            for annotation in annotations {
+                let annotationPoint = MKMapPoint.init(annotation.coordinate)
+                let pointRect = MKMapRect.init(x: annotationPoint.x, y: annotationPoint.y, width: 0, height: 0)
+                
+                if rect.isNull {
+                    rect = pointRect
+                }
+                else {
+                    rect = rect.union(pointRect)
+                }
+            }
+            
+            return parent.mapView.mapRectThatFits(rect, edgePadding: edgePadding)
         }
         
         // MARK: MKMapViewDelegate methods
@@ -301,10 +316,16 @@ struct MapView: UIViewRepresentable {
             
             refreshAnnotationViewSize()
             
-            self.updateHeadingRotation()
+            self.updateHeadingUI()
         }
         
         // MARK: CLLocationManagerDelegate methods
+        
+        var locationManager = CLLocationManager()
+        var lastLocation: CLLocation?
+        var lastLocationAccuracy: CLLocationAccuracy?
+        var lastHeading: CLLocationDirection?
+        var lastHeadingAccuracy: CLLocationDirectionAccuracy?
         
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             var firstTime = false
@@ -315,6 +336,8 @@ struct MapView: UIViewRepresentable {
             
             self.lastLocation = locations.last
             self.lastLocationAccuracy = lastLocation?.horizontalAccuracy
+            
+            updateHeadingUI()
             
             if firstTime {
                 locate()
@@ -353,25 +376,6 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        // inspired by https://gist.github.com/andrewgleave/915374
-        func rectThatFits(_ annotations: [MKAnnotation], edgePadding: UIEdgeInsets = UIEdgeInsets(top: 40, left: 40, bottom: 120, right: 40)) -> MKMapRect {
-            var rect = MKMapRect.null
-            
-            for annotation in annotations {
-                let annotationPoint = MKMapPoint.init(annotation.coordinate)
-                let pointRect = MKMapRect.init(x: annotationPoint.x, y: annotationPoint.y, width: 0, height: 0)
-                
-                if rect.isNull {
-                    rect = pointRect
-                }
-                else {
-                    rect = rect.union(pointRect)
-                }
-            }
-            
-            return parent.mapView.mapRectThatFits(rect, edgePadding: edgePadding)
-        }
-        
         func startLocationManager() {
             locationManager.delegate = self
             
@@ -394,7 +398,7 @@ struct MapView: UIViewRepresentable {
             if UIDevice.current.orientation == .unknown {
                 if let statusBarOrientation = statusBarOrientation {
                     // ======================================================================
-                    // FIXME: stop using raw values, as it can be brittle
+                    // FIXME: stop using raw values (too brittle)
                     // I tried using the enum values, but my iPad returns statusBarOrientation = .landscapeRight when it's supposed to be .landscapeLeft 🤔
                     // Other weird thing:
                     // UIInterfaceOrientation.landscapeLeft.rawValue =   4
@@ -415,23 +419,19 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
         func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-            lastHeadingAccuracy = newHeading.headingAccuracy
-            print("heading accuracy: \(newHeading.headingAccuracy)")
-
             if newHeading.headingAccuracy < 0 { return }
-
-            let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
-            userHeading = heading
-            print(userHeading)
             
-            updateHeadingRotation()
+            lastHeadingAccuracy = newHeading.headingAccuracy
+            lastHeading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
+            
+            updateHeadingUI()
         }
         
-        func updateHeadingRotation() {
-            if let heading = userHeading,
-                let headingImageView = headingImageView {
+        // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
+        func updateHeadingUI() {
+            if let heading = lastHeading,
+                let headingImageView = headingView {
 
                 headingImageView.isHidden = false
                 
@@ -457,10 +457,10 @@ struct MapView: UIViewRepresentable {
                     let rotation = CGFloat((heading-self.parent.mapView.camera.heading)/180 * Double.pi)
                     let rotateTransform = CGAffineTransform(rotationAngle: rotation)
                     
-                    self.arrow.path = self.arrowPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy! : 90.0)
+                    self.headingArcLayer.path = self.headingPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy! : 90.0)
                     
                     if let headingAccuracy = self.lastHeadingAccuracy {
-                        self.arrow.isHidden = (headingAccuracy >= 90)
+                        self.headingArcLayer.isHidden = (headingAccuracy >= 90)
                     }
                     
                     var scaleTransform = CGAffineTransform.identity
@@ -479,23 +479,19 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        var headingImageView: UIImageView?
-        var arrow: CAShapeLayer!
-        var userHeading: CLLocationDirection?
+        var headingView: UIView?
+        var headingArcLayer: CAShapeLayer!
         
         func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
-            if headingImageView == nil {
-                let image = UIImage(named: "heading")
-                headingImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-                headingImageView!.frame = CGRect(x: (annotationView.frame.size.width - image!.size.width)/2, y: (annotationView.frame.size.height - image!.size.height)/2, width: image!.size.width, height: image!.size.height)
-                
-//                headingImageView?.backgroundColor = .red
+            if headingView == nil {
+                headingView = HeadingView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+                headingView!.frame = CGRect(x: (annotationView.frame.size.width - 32)/2, y: (annotationView.frame.size.height - 32)/2, width: 32, height: 32)
                 
                 // This arrow overlays the dot and is rotated with the user’s heading.
-                if arrow == nil {
-                    arrow = CAShapeLayer()
-                    arrow.frame = CGRect(x: 0, y: 0, width: headingImageView!.frame.size.width, height: headingImageView!.frame.size.height)
-                    arrow.path = arrowPath(size: headingImageView!.bounds.size, angleInDegrees: (lastHeadingAccuracy != nil) ? lastHeadingAccuracy! : 90.0)
+                if headingArcLayer == nil {
+                    headingArcLayer = CAShapeLayer()
+                    headingArcLayer.frame = CGRect(x: 0, y: 0, width: headingView!.frame.size.width, height: headingView!.frame.size.height)
+                    headingArcLayer.path = headingPath(size: headingView!.bounds.size, angleInDegrees: (lastHeadingAccuracy != nil) ? lastHeadingAccuracy! : 90.0)
                     
 //                    arrow.position = CGPoint(x: headingImageView!.frame.midX, y: headingImageView!.frame.midY)
 //                    arrow.fillColor = UIColor.white.cgColor
@@ -513,28 +509,28 @@ struct MapView: UIViewRepresentable {
                         UIColor(Color.green).withAlphaComponent(0.0).cgColor
                     ]
                     
-                    gradientLayer.frame = headingImageView!.bounds
-                    gradientLayer.mask = arrow
+                    gradientLayer.frame = headingView!.bounds
+                    gradientLayer.mask = headingArcLayer
                     
                     if let headingAccuracy = lastHeadingAccuracy {
-                        arrow.isHidden = (headingAccuracy >= 90)
+                        headingArcLayer.isHidden = (headingAccuracy >= 90)
                     }
                     
-                    headingImageView!.layer.addSublayer(gradientLayer)
+                    headingView!.layer.addSublayer(gradientLayer)
                    
 //                    headingImageView!.layer.addSublayer(arrow)
                 }
 
                 
-                annotationView.insertSubview(headingImageView!, at: 0)
-                headingImageView!.isHidden = true
+                annotationView.insertSubview(headingView!, at: 0)
+                headingView!.isHidden = true
              }
         }
         
         // Calculate the vector path for an arrow, for use in a shape layer.
-        private func arrowPath(size: CGSize, angleInDegrees: Double) -> CGPath {
+        private func headingPath(size: CGSize, angleInDegrees: Double) -> CGPath {
             
-            var bezierPath = UIBezierPath(
+            let bezierPath = UIBezierPath(
                 arcCenter: CGPoint(x: size.width/2, y: size.height/2),
                 radius: size.height/2,
                 startAngle: CGFloat(-90-angleInDegrees) * CGFloat(Double.pi) / 180,
@@ -544,37 +540,8 @@ struct MapView: UIViewRepresentable {
             
             bezierPath.addLine(to: CGPoint(x: size.width/2, y: size.height/2))
             
-            
             return bezierPath.cgPath
-            
-            
-////            let angleInDegrees: Double = 90
-//            let halfAngleInRadian = angleInDegrees/2 * Double.pi / 180
-//
-//            let topLeft = CGPoint(
-//                x: (1.0-sin(halfAngleInRadian))/2*Double(size.width),
-//                y: (1.0-cos(halfAngleInRadian))/2*Double(size.height)
-//            )
-//
-//            let center = CGPoint(
-//                x: size.width*0.5,
-//                y: size.height*0.5
-//            )
-//
-//            let topRight = CGPoint(
-//                x: Double(size.width) - (1.0-sin(halfAngleInRadian))/2*Double(size.width),
-//                y: (1.0-cos(halfAngleInRadian))/2*Double(size.height)
-//            )
-//
-//            let bezierPath = UIBezierPath()
-//            bezierPath.move(to: topLeft)
-//            bezierPath.addLine(to: center)
-//            bezierPath.addLine(to: topRight)
-//            bezierPath.close()
-//
-//            return bezierPath.cgPath
         }
-
     }
 }
 

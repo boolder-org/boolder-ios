@@ -14,6 +14,7 @@
 		37158D0B25488AE000A8B696 /* AreaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0A25488AE000A8B696 /* AreaRowView.swift */; };
 		37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0D25488B4100A8B696 /* AreaItemView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
+		37213880258276580030131C /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
@@ -274,6 +275,7 @@
 		37158D0A25488AE000A8B696 /* AreaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaRowView.swift; sourceTree = "<group>"; };
 		37158D0D25488B4100A8B696 /* AreaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaItemView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
+		3721387F258276580030131C /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
@@ -904,6 +906,7 @@
 			isa = PBXGroup;
 			children = (
 				37A8C8192453320D00DC161F /* MapView.swift */,
+				3721387F258276580030131C /* HeadingView.swift */,
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */,
 				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,
@@ -1264,6 +1267,7 @@
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */,
 				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,
+				37213880258276580030131C /* HeadingView.swift in Sources */,
 				37A8C810245326F200DC161F /* Circuit.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
