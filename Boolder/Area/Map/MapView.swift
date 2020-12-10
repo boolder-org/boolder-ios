@@ -477,7 +477,6 @@ struct MapView: UIViewRepresentable {
         }
         
         func headingViewRadiusInMeters() -> CLLocationDistance {
-            // FIXME: rename variables
             let center = CGPoint(x: headingView.superview!.center.x, y:headingView.superview!.center.y)
             let edge = CGPoint(x: headingView.superview!.center.x + (headingView.bounds.size.width/2), y:headingView.superview!.center.y)
             
