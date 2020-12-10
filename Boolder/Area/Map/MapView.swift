@@ -431,16 +431,16 @@ struct MapView: UIViewRepresentable {
         // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
         func updateHeadingUI() {
             if let heading = lastHeading,
-                let headingImageView = headingView {
+                let headingView = headingView {
 
-                headingImageView.isHidden = false
+                headingView.isHidden = false
                 
 //                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi)
 //                headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
                 
                 //print("current location x=\(headingImageView.superview!.center.x) y =\(headingImageView.superview!.center.y)")
-                let userLocationInView = CGPoint(x: headingImageView.superview!.center.x, y:headingImageView.superview!.center.y)
-                let userLocationInViewBound = CGPoint(x: headingImageView.superview!.center.x + 16, y:headingImageView.superview!.center.y)
+                let userLocationInView = CGPoint(x: headingView.superview!.center.x, y:headingView.superview!.center.y)
+                let userLocationInViewBound = CGPoint(x: headingView.superview!.center.x + 16, y:headingView.superview!.center.y)
                 
                 
                 let userLocationCoordinate = parent.mapView.convert(userLocationInView, toCoordinateFrom: parent.mapView)
@@ -457,10 +457,8 @@ struct MapView: UIViewRepresentable {
                     let rotation = CGFloat((heading-self.parent.mapView.camera.heading)/180 * Double.pi)
                     let rotateTransform = CGAffineTransform(rotationAngle: rotation)
                     
-                    self.headingArcLayer.path = self.headingPath(size: headingImageView.bounds.size, angleInDegrees: (self.lastHeadingAccuracy != nil) ? self.lastHeadingAccuracy! : 90.0)
-                    
                     if let headingAccuracy = self.lastHeadingAccuracy {
-                        self.headingArcLayer.isHidden = (headingAccuracy >= 90)
+                        self.headingView.headingAccuracy = headingAccuracy
                     }
                     
                     var scaleTransform = CGAffineTransform.identity
@@ -472,75 +470,24 @@ struct MapView: UIViewRepresentable {
                         scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
                     }
                     
-                    headingImageView.transform = rotateTransform.concatenating(scaleTransform)
-//                    headingImageView.transform = scaleTransform
+                    headingView.transform = rotateTransform.concatenating(scaleTransform)
                 }
-
             }
         }
         
-        var headingView: UIView?
-        var headingArcLayer: CAShapeLayer!
+        var headingView: HeadingView!
         
         func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
             if headingView == nil {
-                headingView = HeadingView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-                headingView!.frame = CGRect(x: (annotationView.frame.size.width - 32)/2, y: (annotationView.frame.size.height - 32)/2, width: 32, height: 32)
+                let size: CGFloat = 32.0
+                headingView = HeadingView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+                headingView.frame = CGRect(x: (annotationView.frame.size.width - size)/2, y: (annotationView.frame.size.height - size)/2, width: size, height: size)
                 
-                // This arrow overlays the dot and is rotated with the user’s heading.
-                if headingArcLayer == nil {
-                    headingArcLayer = CAShapeLayer()
-                    headingArcLayer.frame = CGRect(x: 0, y: 0, width: headingView!.frame.size.width, height: headingView!.frame.size.height)
-                    headingArcLayer.path = headingPath(size: headingView!.bounds.size, angleInDegrees: (lastHeadingAccuracy != nil) ? lastHeadingAccuracy! : 90.0)
-                    
-//                    arrow.position = CGPoint(x: headingImageView!.frame.midX, y: headingImageView!.frame.midY)
-//                    arrow.fillColor = UIColor.white.cgColor
-                    
-                    
-                    let gradientLayer = CAGradientLayer()
-                    gradientLayer.type = .radial
-                    gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
-                    gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-                    
-                    // make sure to use .cgColor
-                    gradientLayer.colors = [
-                        UIColor(Color.green).withAlphaComponent(0.0).cgColor,
-                        UIColor(Color.green).withAlphaComponent(0.8).cgColor,
-                        UIColor(Color.green).withAlphaComponent(0.0).cgColor
-                    ]
-                    
-                    gradientLayer.frame = headingView!.bounds
-                    gradientLayer.mask = headingArcLayer
-                    
-                    if let headingAccuracy = lastHeadingAccuracy {
-                        headingArcLayer.isHidden = (headingAccuracy >= 90)
-                    }
-                    
-                    headingView!.layer.addSublayer(gradientLayer)
-                   
-//                    headingImageView!.layer.addSublayer(arrow)
-                }
-
+                headingView.headingAccuracy = lastHeadingAccuracy ?? 90
                 
                 annotationView.insertSubview(headingView!, at: 0)
-                headingView!.isHidden = true
+                headingView.isHidden = true
              }
-        }
-        
-        // Calculate the vector path for an arrow, for use in a shape layer.
-        private func headingPath(size: CGSize, angleInDegrees: Double) -> CGPath {
-            
-            let bezierPath = UIBezierPath(
-                arcCenter: CGPoint(x: size.width/2, y: size.height/2),
-                radius: size.height/2,
-                startAngle: CGFloat(-90-angleInDegrees) * CGFloat(Double.pi) / 180,
-                endAngle: CGFloat(-90+angleInDegrees) * CGFloat(Double.pi) / 180,
-                clockwise: true
-            )
-            
-            bezierPath.addLine(to: CGPoint(x: size.width/2, y: size.height/2))
-            
-            return bezierPath.cgPath
         }
     }
 }
