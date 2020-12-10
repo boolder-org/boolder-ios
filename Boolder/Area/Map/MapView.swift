@@ -43,8 +43,6 @@ struct MapView: UIViewRepresentable {
         mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: ProblemAnnotationView.ReuseID)
         mapView.register(PoiAnnotationView.self, forAnnotationViewWithReuseIdentifier: PoiAnnotationView.ReuseID)
         
-//        context.coordinator.deviceDidRotate()
-        
         return mapView
     }
     
@@ -318,8 +316,6 @@ struct MapView: UIViewRepresentable {
             self.lastLocation = locations.last
             self.lastLocationAccuracy = lastLocation?.horizontalAccuracy
             
-//            print("gps accuracy : \(lastLocationAccuracy!) m")
-            
             if firstTime {
                 locate()
             }
@@ -378,56 +374,44 @@ struct MapView: UIViewRepresentable {
         
         func startLocationManager() {
             locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            locationManager.headingFilter = ...
             
-            NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate), name: UIDevice.orientationDidChangeNotification, object: nil)
+            updateHeadingOrientation()
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(updateHeadingOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
             
             locationManager.requestWhenInUseAuthorization()
-            
-            deviceDidRotate()
             
             locationManager.startUpdatingHeading()
             locationManager.startUpdatingLocation()
         }
         
-        @objc func deviceDidRotate() {
+        @objc func updateHeadingOrientation() {
             // we do this to avoid default behavior (which is apparently to stay in portrait)
             // more info at https://developer.apple.com/documentation/corelocation/cllocationmanager/1620556-headingorientation
             
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                locationManager.headingOrientation = .landscapeLeft
-            case .landscapeRight:
-                locationManager.headingOrientation = .landscapeRight
-            case .portraitUpsideDown:
-                locationManager.headingOrientation = .portraitUpsideDown
-            case .unknown:
-                locationManager.headingOrientation = CLDeviceOrientation(rawValue: Int32(statusBarOrientation!.rawValue)) ?? .unknown
-            case .portrait:
-                locationManager.headingOrientation = .portrait
-            case .faceUp:
-                locationManager.headingOrientation = .faceUp
-            case .faceDown:
-                locationManager.headingOrientation = .faceDown
-            @unknown default:
-                locationManager.headingOrientation = .portrait
-            }
+            let statusBarOrientation = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.windowScene?.interfaceOrientation // https://stackoverflow.com/a/58441761/230309
             
-            print("\(UIDevice.current.orientation.rawValue)")
-        }
-        
-        // https://stackoverflow.com/a/58082422/230309
-        var statusBarOrientation: UIInterfaceOrientation? {
-            get {
-                guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
-                    #if DEBUG
-                    fatalError("Could not obtain UIInterfaceOrientation from a valid windowScene")
-                    #else
-                    return nil
-                    #endif
+            if UIDevice.current.orientation == .unknown {
+                if let statusBarOrientation = statusBarOrientation {
+                    // ======================================================================
+                    // FIXME: stop using raw values, as it can be brittle
+                    // I tried using the enum values, but my iPad returns statusBarOrientation = .landscapeRight when it's supposed to be .landscapeLeft 🤔
+                    // Other weird thing:
+                    // UIInterfaceOrientation.landscapeLeft.rawValue =   4
+                    // UIInterfaceOrientation.landscapeRight.rawValue =  3
+                    // CLDeviceOrientation.landscapeLeft.rawValue =      3
+                    // CLDeviceOrientation.landscapeRight.rawValue =     4
+                    // => left and right have been switched 🤔
+                    // These 2 "bugs" put together make things work, but it seems fishy
+                    // ======================================================================
+                    locationManager.headingOrientation = CLDeviceOrientation(rawValue: Int32(statusBarOrientation.rawValue)) ?? .unknown
                 }
-                return orientation
+                else {
+                    locationManager.headingOrientation = .portrait
+                }
+            }
+            else {
+                locationManager.headingOrientation = UIDevice.current.orientation.clDeviceOrientation
             }
         }
         
@@ -591,5 +575,22 @@ struct MapView: UIViewRepresentable {
 //            return bezierPath.cgPath
         }
 
+    }
+}
+
+extension UIDeviceOrientation {
+    var clDeviceOrientation: CLDeviceOrientation {
+        get {
+            switch self {
+            case .landscapeLeft:        return .landscapeLeft
+            case .landscapeRight:       return .landscapeRight
+            case .portrait:             return .portrait
+            case .portraitUpsideDown:   return .portraitUpsideDown
+            case .unknown:              return .unknown
+            case .faceUp:               return .faceUp
+            case .faceDown:             return .faceDown
+            @unknown default:           return .unknown
+            }
+        }
     }
 }
