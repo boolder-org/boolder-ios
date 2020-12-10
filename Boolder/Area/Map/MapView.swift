@@ -428,53 +428,6 @@ struct MapView: UIViewRepresentable {
             updateHeadingUI()
         }
         
-        // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
-        func updateHeadingUI() {
-            if let heading = lastHeading,
-                let headingView = headingView {
-
-                headingView.isHidden = false
-                
-//                let rotation = CGFloat((heading-parent.mapView.camera.heading)/180 * Double.pi)
-//                headingImageView.transform = CGAffineTransform(rotationAngle: rotation)
-                
-                //print("current location x=\(headingImageView.superview!.center.x) y =\(headingImageView.superview!.center.y)")
-                let userLocationInView = CGPoint(x: headingView.superview!.center.x, y:headingView.superview!.center.y)
-                let userLocationInViewBound = CGPoint(x: headingView.superview!.center.x + 16, y:headingView.superview!.center.y)
-                
-                
-                let userLocationCoordinate = parent.mapView.convert(userLocationInView, toCoordinateFrom: parent.mapView)
-                let userLocationBoundCoordinate = parent.mapView.convert(userLocationInViewBound, toCoordinateFrom: parent.mapView)
-                
-                let location1 = CLLocation(latitude: userLocationCoordinate.latitude, longitude: userLocationCoordinate.longitude)
-                let location2 = CLLocation(latitude: userLocationBoundCoordinate.latitude, longitude: userLocationBoundCoordinate.longitude)
-                
-                let distance = location1.distance(from: location2)
-                
-                //print("distance = \(distance)")
-                
-                UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState]) {
-                    let rotation = CGFloat((heading-self.parent.mapView.camera.heading)/180 * Double.pi)
-                    let rotateTransform = CGAffineTransform(rotationAngle: rotation)
-                    
-                    if let headingAccuracy = self.lastHeadingAccuracy {
-                        self.headingView.headingAccuracy = headingAccuracy
-                    }
-                    
-                    var scaleTransform = CGAffineTransform.identity
-                    
-                    if let lastLocationAccuracy = self.lastLocationAccuracy {
-                        var scaleFactor = CGFloat(lastLocationAccuracy/distance)*1.5
-                        if scaleFactor < 2.5 { scaleFactor = 2.5 }
-                        if scaleFactor > 15 { scaleFactor = 15 }
-                        scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
-                    }
-                    
-                    headingView.transform = rotateTransform.concatenating(scaleTransform)
-                }
-            }
-        }
-        
         var headingView: HeadingView!
         
         func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
@@ -483,11 +436,58 @@ struct MapView: UIViewRepresentable {
                 headingView = HeadingView(frame: CGRect(x: 0, y: 0, width: size, height: size))
                 headingView.frame = CGRect(x: (annotationView.frame.size.width - size)/2, y: (annotationView.frame.size.height - size)/2, width: size, height: size)
                 
-                headingView.headingAccuracy = lastHeadingAccuracy ?? 90
+                if let lastHeadingAccuracy = lastHeadingAccuracy {
+                    headingView.headingAccuracy = lastHeadingAccuracy
+                }
                 
                 annotationView.insertSubview(headingView!, at: 0)
                 headingView.isHidden = true
              }
+        }
+        
+        // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
+        func updateHeadingUI() {
+            if let heading = lastHeading, let headingView = headingView {
+
+                headingView.isHidden = false
+                
+                UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState]) {
+                    if let headingAccuracy = self.lastHeadingAccuracy {
+                        self.headingView.headingAccuracy = headingAccuracy
+                    }
+                    
+                    let rotation = CGFloat((heading-self.parent.mapView.camera.heading)/180 * Double.pi)
+                    let rotateTransform = CGAffineTransform(rotationAngle: rotation)
+                    
+                    var scaleTransform = CGAffineTransform.identity
+                    
+                    if let lastLocationAccuracy = self.lastLocationAccuracy {
+                        let headingViewRadius = self.headingViewRadiusInMeters()
+                        var scaleFactor = CGFloat(lastLocationAccuracy/headingViewRadius)*1.5
+                        
+                        if scaleFactor < 2.5 { scaleFactor = 2.5 }
+                        if scaleFactor > 15 { scaleFactor = 15 }
+                        
+                        scaleTransform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+                    }
+                    
+                    headingView.transform = rotateTransform.concatenating(scaleTransform)
+                }
+            }
+        }
+        
+        func headingViewRadiusInMeters() -> CLLocationDistance {
+            // FIXME: rename variables
+            let center = CGPoint(x: headingView.superview!.center.x, y:headingView.superview!.center.y)
+            let edge = CGPoint(x: headingView.superview!.center.x + (headingView.bounds.size.width/2), y:headingView.superview!.center.y)
+            
+            let centerCoordinate = parent.mapView.convert(center, toCoordinateFrom: parent.mapView)
+            let edgeCoordinate = parent.mapView.convert(edge, toCoordinateFrom: parent.mapView)
+            
+            let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
+            let edgeLocation = CLLocation(latitude: edgeCoordinate.latitude, longitude: edgeCoordinate.longitude)
+            
+            return centerLocation.distance(from: edgeLocation)
         }
     }
 }
