@@ -203,28 +203,6 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
-        .gesture(
-            DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
-            .onEnded { value in
-                let orderedProblems = dataStore.orderedProblems()
-                let currentProblemIndex = orderedProblems.firstIndex{problem.id == $0.id}
-                
-                // left swipe
-                if value.translation.width < 0 && value.translation.height > -30 && value.translation.height < 30 {
-                    if let currentProblemIndex = currentProblemIndex {
-                        let newProblem = orderedProblems[(currentProblemIndex+1) % orderedProblems.count]
-                        switchToProblem(newProblem)
-                    }
-                }
-                // right swipe
-                else if value.translation.width > 0 && value.translation.height > -30 && value.translation.height < 30 {
-                    if let currentProblemIndex = currentProblemIndex {
-                        let newProblem = orderedProblems[(currentProblemIndex+orderedProblems.count-1) % orderedProblems.count]
-                        switchToProblem(newProblem)
-                    }
-                }
-            }
-        )
         .onAppear {
             // hack to make the animation start after the view is properly loaded
             // I tried doing it synchronously by I couldn't make it work :grimacing:
