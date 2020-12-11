@@ -428,21 +428,17 @@ struct MapView: UIViewRepresentable {
             updateHeadingUI()
         }
         
-        var headingView: HeadingView!
+        var headingView: HeadingView?
         
         func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
             if headingView == nil {
                 let size: CGFloat = 32.0
                 headingView = HeadingView(frame: CGRect(x: 0, y: 0, width: size, height: size))
-                headingView.frame = CGRect(x: (annotationView.frame.size.width - size)/2, y: (annotationView.frame.size.height - size)/2, width: size, height: size)
-                
-                if let lastHeadingAccuracy = lastHeadingAccuracy {
-                    headingView.headingAccuracy = lastHeadingAccuracy
-                }
-                
-                annotationView.insertSubview(headingView!, at: 0)
-                headingView.isHidden = true
+                headingView!.frame = CGRect(x: (annotationView.frame.size.width - size)/2, y: (annotationView.frame.size.height - size)/2, width: size, height: size)
              }
+            
+            annotationView.insertSubview(headingView!, at: 0)
+            headingView?.isHidden = true
         }
         
         // inspired by https://stackoverflow.com/questions/39762732/ios-10-heading-arrow-for-mkuserlocation-dot
@@ -453,7 +449,7 @@ struct MapView: UIViewRepresentable {
                 
                 UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState]) {
                     if let headingAccuracy = self.lastHeadingAccuracy {
-                        self.headingView.headingAccuracy = headingAccuracy
+                        self.headingView?.headingAccuracy = headingAccuracy
                     }
                     
                     let rotation = CGFloat((heading-self.parent.mapView.camera.heading)/180 * Double.pi)
@@ -462,8 +458,11 @@ struct MapView: UIViewRepresentable {
                     var scaleTransform = CGAffineTransform.identity
                     
                     if let lastLocationAccuracy = self.lastLocationAccuracy {
-                        let headingViewRadius = self.headingViewRadiusInMeters()
-                        var scaleFactor = CGFloat(lastLocationAccuracy/headingViewRadius)*1.5
+                        
+                        var scaleFactor: CGFloat = 1.0
+                        if let headingViewRadius = self.headingViewRadiusInMeters() {
+                            scaleFactor = CGFloat(lastLocationAccuracy/headingViewRadius)*1.5
+                        }
                         
                         if scaleFactor < 2.5 { scaleFactor = 2.5 }
                         if scaleFactor > 15 { scaleFactor = 15 }
@@ -476,17 +475,24 @@ struct MapView: UIViewRepresentable {
             }
         }
         
-        func headingViewRadiusInMeters() -> CLLocationDistance {
-            let center = CGPoint(x: headingView.superview!.center.x, y:headingView.superview!.center.y)
-            let edge = CGPoint(x: headingView.superview!.center.x + (headingView.bounds.size.width/2), y:headingView.superview!.center.y)
+        func headingViewRadiusInMeters() -> CLLocationDistance? {
+            if let headingView = headingView {
+                if let superview = headingView.superview {
+                    
+                    let center = CGPoint(x: superview.center.x, y: superview.center.y)
+                    let edge = CGPoint(x: superview.center.x + (headingView.bounds.size.width/2), y: superview.center.y)
+                    
+                    let centerCoordinate = parent.mapView.convert(center, toCoordinateFrom: parent.mapView)
+                    let edgeCoordinate = parent.mapView.convert(edge, toCoordinateFrom: parent.mapView)
+                    
+                    let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
+                    let edgeLocation = CLLocation(latitude: edgeCoordinate.latitude, longitude: edgeCoordinate.longitude)
+                    
+                    return centerLocation.distance(from: edgeLocation)
+                }
+            }
             
-            let centerCoordinate = parent.mapView.convert(center, toCoordinateFrom: parent.mapView)
-            let edgeCoordinate = parent.mapView.convert(edge, toCoordinateFrom: parent.mapView)
-            
-            let centerLocation = CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude)
-            let edgeLocation = CLLocation(latitude: edgeCoordinate.latitude, longitude: edgeCoordinate.longitude)
-            
-            return centerLocation.distance(from: edgeLocation)
+            return nil
         }
     }
 }
