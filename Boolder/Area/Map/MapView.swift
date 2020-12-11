@@ -364,7 +364,10 @@ struct MapView: UIViewRepresentable {
                         )
                     }
                     else {
-                        parent.mapView.setCamera(MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude), fromDistance: 300, pitch: 0, heading: parent.mapView.camera.heading), animated: true)
+                        let accuracy = lastLocationAccuracy ?? 0
+                        let cameraAltitude: CLLocationDistance = max(accuracy*5, 300)
+                        
+                        parent.mapView.setCamera(MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude), fromDistance: cameraAltitude, pitch: 0, heading: parent.mapView.camera.heading), animated: true)
                     }
                 }
                 else {
