@@ -41,8 +41,8 @@ struct ProblemListView: View {
                                 Spacer()
 
                                 if isFavorite(problem: problem) {
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(Color.yellow)
+                                    Image(systemName: "heart.fill")
+                                        .foregroundColor(Color.pink)
                                 }
 
                                 if isTicked(problem: problem) {

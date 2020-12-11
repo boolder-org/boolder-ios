@@ -119,22 +119,22 @@ struct DiscoverView: View {
                     
                         }
                         
-                        Group {
-                            NavigationLink(
-                                destination: EmptyView(),
-                                label: {
-                                    HStack {
-                                        Text("Autres secteurs")
-                                            .font(.body)
-                                            .foregroundColor(Color.green)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                        }
+//                        Group {
+//                            NavigationLink(
+//                                destination: EmptyView(),
+//                                label: {
+//                                    HStack {
+//                                        Text("Autres secteurs")
+//                                            .font(.body)
+//                                            .foregroundColor(Color.green)
+//                                        Spacer()
+//                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+//                                    }
+//                                }
+//                            )
+//                            
+//                            Divider()
+//                        }
                         
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
@@ -173,7 +173,7 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-isatis")
+                                            Image("cover-isatis2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
@@ -192,7 +192,7 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-cul-de-chien")
+                                            Image("cover-cul-de-chien2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
@@ -225,7 +225,7 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-cuvier")
+                                            Image("cover-cuvier2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
@@ -263,7 +263,7 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-isatis")
+                                            Image("cover-isatis2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
