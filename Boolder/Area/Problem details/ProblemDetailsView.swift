@@ -27,8 +27,20 @@ struct ProblemDetailsView: View {
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
     @State private var drawPercentage: CGFloat = .zero
+    
     @State private var presentImagePicker = false
     @State private var capturedPhoto = UIImage()
+    
+    @ObservedObject var locationFetcher = LocationFetcher()
+    
+    var locationText: String {
+        if let location = locationFetcher.location {
+            return String(format: "%.6f", location.coordinate.latitude) + " " + String(format: "%.6f", location.coordinate.longitude) + " (±" + String(format: "%.0f", location.horizontalAccuracy) + "m)"
+        }
+        else {
+            return "Waiting for gps..."
+        }
+    }
     
     var body: some View {
         ScrollView {
@@ -197,16 +209,43 @@ struct ProblemDetailsView: View {
                         
                         Divider()
                         
-                        Image(uiImage: capturedPhoto)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .edgesIgnoringSafeArea(.all)
-                            .fullScreenCover(isPresented: $presentImagePicker) {
-                                ImagePicker(sourceType: .camera, selectedImage: $capturedPhoto)
-                            }
+                        
                     }
                     .padding(.top, 16)
+                    
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Dev mode")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        HStack(alignment: .center) {
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Problem #\(problem.id)")
+                                
+                                // Text(String(format:"%.6f", problem.coordinate.latitude) + " " + String(format:"%.6f", problem.coordinate.longitude))
+                                
+                                Text(locationText)
+                            }
+                            .font(.system(size: 14, design: .monospaced))
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                presentImagePicker = true
+                            }) {
+                                Image(systemName: "camera.circle.fill")
+                                    .font(.title)
+                            }
+                            .fullScreenCover(isPresented: $presentImagePicker) {
+                                ImagePicker(sourceType: .camera, location: locationFetcher.location, problemId: problem.id, selectedImage: $capturedPhoto)
+                            }
+
+                        }
+                    }
+                    .padding(.top, 16)
+                    .foregroundColor(.gray)
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)
@@ -243,12 +282,6 @@ struct ProblemDetailsView: View {
                 }
             )
         }
-        
-        buttons.append(
-            .default(Text("Prendre une photo")) {
-                presentImagePicker = true
-            }
-        )
         
         buttons.append(.cancel())
         

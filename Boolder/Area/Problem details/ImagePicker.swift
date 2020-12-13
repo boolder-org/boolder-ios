@@ -9,10 +9,13 @@
 import UIKit
 import SwiftUI
 import Photos
+import CoreLocation
 
 struct ImagePicker: UIViewControllerRepresentable {
     
     var sourceType: UIImagePickerController.SourceType = .camera
+    var location: CLLocation?
+    var problemId: Int
     
     @Binding var selectedImage: UIImage
     @Environment(\.presentationMode) private var presentationMode
@@ -43,6 +46,8 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        // MARK: UIImagePickerControllerDelegate methods
+        
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -51,30 +56,20 @@ struct ImagePicker: UIViewControllerRepresentable {
                 PHPhotoLibrary.shared().performChanges {
                     let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
                     
-                    let coordinate = CLLocationCoordinate2D(latitude: 48.8841702, longitude: 2.3404837)
-                    let location = CLLocation(coordinate: coordinate, altitude: 138, horizontalAccuracy: 10, verticalAccuracy: 0, timestamp: Date())
+                    if let location = self.parent.location {
                     
-                    request.location = location
+                        // we hide the problem id in the location metadata because Apple doesn't let us add our own custom metadata
+                        let locationWithProblemId = CLLocation(coordinate: location.coordinate, altitude: Double(self.parent.problemId), horizontalAccuracy: location.horizontalAccuracy, verticalAccuracy: location.verticalAccuracy, timestamp: location.timestamp)
+                    
+                        request.location = locationWithProblemId
+                        
+                    }
                 }
                 completionHandler: { success, error in
                     if !success, let error = error {
                         print("error creating asset: \(error)")
                     }
                 }
-                
-//                if let imageURL = info[UIImagePickerController.InfoKey.referenceURL] as? URL {
-//                    print("imageURL")
-//                    print(imageURL)
-//
-//                      let result = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil)
-//                      if let asset = result.firstObject, let location = asset.location {
-//                          let lat = location.coordinate.latitude
-//                          let lon = location.coordinate.longitude
-//                          print("Here's the lat and lon \(lat) + \(lon)")
-//                      }
-//                }
-                
-//                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             }
             
             parent.presentationMode.wrappedValue.dismiss()
