@@ -546,7 +546,12 @@
         "height": null,
         "name": "Prise de Position",
         "bleauInfoId": "1119",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 658
+          }
+        ]
       },
       "id": "problem_1183"
     },
@@ -792,6 +797,11 @@
         "circuitColor": null,
         "tags": [
           "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 661
+          }
         ]
       },
       "id": "problem_1186"
@@ -975,7 +985,12 @@
         "height": null,
         "name": "Rognures d'Ongles",
         "bleauInfoId": "559",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 657
+          }
+        ]
       },
       "id": "problem_1182"
     },
@@ -1018,7 +1033,12 @@
         "height": null,
         "name": "Athènes",
         "bleauInfoId": "",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 665
+          }
+        ]
       },
       "id": "problem_1196"
     },
@@ -1758,7 +1778,12 @@
         "height": null,
         "name": "Olympia",
         "bleauInfoId": "2895",
-        "circuitColor": "blue"
+        "circuitColor": "blue",
+        "lines": [
+          {
+            "id": 664
+          }
+        ]
       },
       "id": "problem_1195"
     },
@@ -1904,7 +1929,12 @@
         "height": null,
         "name": "Sur-Prises",
         "bleauInfoId": "588",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 660
+          }
+        ]
       },
       "id": "problem_1185"
     },
@@ -2064,7 +2094,12 @@
         "height": null,
         "name": "Déviation",
         "bleauInfoId": "",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 656
+          }
+        ]
       },
       "id": "problem_1181"
     },
@@ -4091,7 +4126,12 @@
         "height": null,
         "name": "L'Amoche-Doigt",
         "bleauInfoId": "3060",
-        "circuitColor": "white"
+        "circuitColor": "white",
+        "lines": [
+          {
+            "id": 663
+          }
+        ]
       },
       "id": "problem_1188"
     },
@@ -4171,7 +4211,12 @@
         "height": null,
         "name": "Le Bifteck",
         "bleauInfoId": "2952",
-        "circuitColor": "red"
+        "circuitColor": "red",
+        "lines": [
+          {
+            "id": 655
+          }
+        ]
       },
       "id": "problem_1180"
     },
@@ -4191,7 +4236,12 @@
         "height": null,
         "name": "Elvis",
         "bleauInfoId": "8661",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 659
+          }
+        ]
       },
       "id": "problem_1184"
     },
@@ -5152,7 +5202,12 @@
         "height": null,
         "name": "Prise d'Otage",
         "bleauInfoId": "1004",
-        "circuitColor": null
+        "circuitColor": null,
+        "lines": [
+          {
+            "id": 662
+          }
+        ]
       },
       "id": "problem_1187"
     },
@@ -5212,7 +5267,12 @@
         "height": null,
         "name": "Les Trois Inversées",
         "bleauInfoId": "2953",
-        "circuitColor": "red"
+        "circuitColor": "red",
+        "lines": [
+          {
+            "id": 666
+          }
+        ]
       },
       "id": "problem_1197"
     },
