@@ -20,7 +20,7 @@ struct LineView: View {
     
     private func linePath() -> Path {
         guard problem.line != nil else { return Path() }
-        if problem.line?.coordinates?.count == 0 { return Path() }
+        guard linePoints().count > 0 else { return Path() }
         
         let points = linePoints()
         let controlPoints = CubicCurveAlgorithm().controlPointsFromPoints(dataPoints: points)
