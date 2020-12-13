@@ -32,8 +32,6 @@ class LocationFetcher: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("location")
-        print(locations)
         location = locations.last
     }
 }

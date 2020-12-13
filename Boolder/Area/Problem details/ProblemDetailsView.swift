@@ -222,10 +222,7 @@ struct ProblemDetailsView: View {
                         HStack(alignment: .center) {
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Problem #\(problem.id)")
-                                
-                                // Text(String(format:"%.6f", problem.coordinate.latitude) + " " + String(format:"%.6f", problem.coordinate.longitude))
-                                
+                                Text("Problem #\(String(problem.id))")
                                 Text(locationText)
                             }
                             .font(.system(size: 14, design: .monospaced))
