@@ -7,3 +7,5 @@
 */
 
 NSLocationWhenInUseUsageDescription = "Your location will be displayed on the map to help you find your way around.";
+NSCameraUsageDescription = "You'll be able to take photos of problems.";
+NSPhotoLibraryAddUsageDescription = "To save the problem photos in your photo library.";

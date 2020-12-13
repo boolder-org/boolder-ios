@@ -27,6 +27,8 @@ struct ProblemDetailsView: View {
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
     @State private var drawPercentage: CGFloat = .zero
+    @State private var presentImagePicker = false
+    @State private var capturedPhoto = UIImage()
     
     var body: some View {
         ScrollView {
@@ -194,6 +196,15 @@ struct ProblemDetailsView: View {
                         }
                         
                         Divider()
+                        
+                        Image(uiImage: capturedPhoto)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .edgesIgnoringSafeArea(.all)
+                            .fullScreenCover(isPresented: $presentImagePicker) {
+                                ImagePicker(sourceType: .camera, selectedImage: $capturedPhoto)
+                            }
                     }
                     .padding(.top, 16)
                 }
@@ -232,6 +243,12 @@ struct ProblemDetailsView: View {
                 }
             )
         }
+        
+        buttons.append(
+            .default(Text("Prendre une photo")) {
+                presentImagePicker = true
+            }
+        )
         
         buttons.append(.cancel())
         
