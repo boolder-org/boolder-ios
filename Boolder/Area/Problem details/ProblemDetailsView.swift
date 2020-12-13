@@ -237,6 +237,9 @@ struct ProblemDetailsView: View {
                             }
                             .fullScreenCover(isPresented: $presentImagePicker) {
                                 ImagePicker(sourceType: .camera, location: locationFetcher.location, problemId: problem.id, selectedImage: $capturedPhoto)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(Color.black)
+                                    .edgesIgnoringSafeArea(.all)
                             }
 
                         }
