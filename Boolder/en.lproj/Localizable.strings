@@ -6,6 +6,13 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
+// MARK: Discover view
+"discover.title" = "Where should we climb?";
+"discover.perfect_for_beginners" = "Perfect for beginners";
+"discover.xx_problems_for_beginners" = "%@ problems for beginners";
+"discover.great_variety" = "Great variety between 5 and 8";
+"discover.xx_problems_over_5" = "%@ problems between 5a and 8c+";
+
 // MARK: Area view
 "area.filter" = "Filter";
 "area.filters" = "Filters";

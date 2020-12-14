@@ -143,7 +143,7 @@ struct DiscoverView: View {
                     
                     VStack {
                         VStack(alignment: .leading) {
-                            Text("Idéal pour débuter")
+                            Text("discover.perfect_for_beginners")
                                 .font(.title2).bold()
                                 .padding(.horizontal, 16)
                                 .padding(.top, 16)
@@ -159,7 +159,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("130 voies de niveau débutant")
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(130))
+                                            )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -178,7 +180,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("90 voies de niveau débutant")
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(90))
+                                            )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -197,7 +201,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("70 voies de niveau débutant")
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(70))
+                                            )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -215,7 +221,7 @@ struct DiscoverView: View {
                         
                         
                         VStack(alignment: .leading) {
-                            Text("Grande variété entre 5 et 8")
+                            Text("discover.great_variety")
                                 .font(.title2).bold()
                                 .padding(.horizontal, 16)
                                 .padding(.top, 16)
@@ -230,7 +236,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("400 voies entre 5a et 8c+")
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(400))
+                                            )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -249,7 +257,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("300 voies entre 5a et 8c")
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(300))
+                                            )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -268,7 +278,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text("250 voies entre 5a et 8c")
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(250))
+                                            )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
@@ -286,7 +298,7 @@ struct DiscoverView: View {
                             
                     }
                 }
-                .navigationBarTitle(Text("On grimpe où ?"))
+                .navigationBarTitle(Text("discover.title"))
             }
         }
 //        .navigationViewStyle(StackNavigationViewStyle()) // FIXME: there is a weird bug when using StackNavigationViewStyle() on iPhone: the sheets get dismissed automatically the first time they are presented. Sometimes but not always. It seems to happen only when I try to present the sheet a couple of seconds after the app launch, which seems to indicate that the app is not properly loaded? maybe it's still setting up the navigationview "style"?? Anywa, I figured it's easier to just avoid using StackNavigationViewStyle() for now :)
