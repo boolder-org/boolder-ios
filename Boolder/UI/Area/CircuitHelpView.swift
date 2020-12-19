@@ -63,15 +63,8 @@ struct CircuitHelpView: View {
                         }
                         .padding(.horizontal)
                     }
-                    .frame(maxWidth: .infinity)
-                       .background(Color(UIColor.systemBackground))
-                       .foregroundColor(Color(UIColor.systemGreen))
-                       .cornerRadius(8)
-                       .overlay(
-                           RoundedRectangle(cornerRadius: 8)
-                               .stroke(Color(UIColor.systemGreen), lineWidth: 2)
-                       )
-                        .padding(.vertical, 32)
+                    .buttonStyle(BoolderButtonStyle())
+                    .padding(.vertical, 32)
                 }
             }
             .padding(32)

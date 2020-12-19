@@ -17,6 +17,7 @@
 		37213880258276580030131C /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		37379900258DF9A300711EDA /* OtherAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373798FF258DF9A300711EDA /* OtherAreasView.swift */; };
+		37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* BoolderButtonStyle.swift */; };
 		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
@@ -403,6 +404,7 @@
 		3721387F258276580030131C /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		373798FF258DF9A300711EDA /* OtherAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAreasView.swift; sourceTree = "<group>"; };
+		37379903258E157D00711EDA /* BoolderButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolderButtonStyle.swift; sourceTree = "<group>"; };
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
@@ -832,6 +834,16 @@
 			path = Stores;
 			sourceTree = "<group>";
 		};
+		37379902258E155A00711EDA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				37158D0425487F1700A8B696 /* Discover */,
+				37F12D852456D4FC0036E3E3 /* Area */,
+				37379903258E157D00711EDA /* BoolderButtonStyle.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		3766A68E253EDDD800AC3477 /* area-4 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1217,8 +1229,7 @@
 				37A8C62B2453263300DC161F /* SceneDelegate.swift */,
 				37254DED2555945100264034 /* Stores */,
 				37A8C808245326F200DC161F /* Models */,
-				37158D0425487F1700A8B696 /* Discover */,
-				37F12D852456D4FC0036E3E3 /* Area */,
+				37379902258E155A00711EDA /* UI */,
 				37A8C63D2453269100DC161F /* Data */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6372453263400DC161F /* Info.plist */,
@@ -1764,6 +1775,7 @@
 				37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */,
 				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
+				37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
