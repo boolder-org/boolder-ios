@@ -31,7 +31,7 @@ struct ProblemDetailsView: View {
     @State private var presentImagePicker = false
     @State private var capturedPhoto = UIImage()
     
-    @ObservedObject var locationFetcher = LocationFetcher()
+    @StateObject var locationFetcher = LocationFetcher()
     
     var locationText: String {
         if let location = locationFetcher.location {
