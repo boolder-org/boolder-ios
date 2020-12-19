@@ -283,9 +283,37 @@ struct ProblemDetailsView: View {
             )
         }
         
+        if let url = mailToURL {
+            buttons.append(
+                .default(Text("Signaler un problème")) {
+                    UIApplication.shared.open(url)
+                }
+            )
+        }
+        
         buttons.append(.cancel())
         
         return buttons
+    }
+    
+    var mailToURL: URL? {
+        let recipient = "hello@boolder.com"
+        let subject = "Feedback".stringByAddingPercentEncodingForRFC3986() ?? ""
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        
+        let body = [
+            "",
+            "",
+            "------",
+            "Problem #\(String(problem.id)) - \(problem.nameWithFallback())",
+            "Boolder \(appVersion ?? "") (\(buildNumber ?? ""))",
+            "iOS \(UIDevice.current.systemVersion)",
+        ]
+        .map{$0.stringByAddingPercentEncodingForRFC3986() ?? ""}
+        .joined(separator: "%0D%0A")
+        
+        return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
     }
     
     func shareProblemDescription() -> String {

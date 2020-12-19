@@ -102,3 +102,4 @@
 "problem.action.center_on_map" = "Centrer sur la carte";
 "problem.action.share" = "Partager";
 "problem.action.share.description" = "« %@ » à %@";
+"problem.action.report" = "Signaler un problème";
