@@ -214,6 +214,7 @@ struct ProblemDetailsView: View {
                     .padding(.top, 16)
                     
                     
+                    #if DEVELOPMENT
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Dev mode")
                             .font(.title)
@@ -246,6 +247,7 @@ struct ProblemDetailsView: View {
                     }
                     .padding(.top, 16)
                     .foregroundColor(.gray)
+                    #endif
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)

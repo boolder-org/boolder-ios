@@ -18,6 +18,390 @@
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		37379900258DF9A300711EDA /* OtherAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373798FF258DF9A300711EDA /* OtherAreasView.swift */; };
 		37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* BoolderButtonStyle.swift */; };
+		37379909258E619400711EDA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePicker.swift */; };
+		3737990A258E619400711EDA /* AreaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0A25488AE000A8B696 /* AreaRowView.swift */; };
+		3737990B258E619400711EDA /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E825864A43003A545B /* LocationFetcher.swift */; };
+		3737990C258E619400711EDA /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
+		3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
+		3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
+		3737990F258E619400711EDA /* Steepness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C809245326F200DC161F /* Steepness.swift */; };
+		37379910258E619400711EDA /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
+		37379911258E619400711EDA /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
+		37379912258E619400711EDA /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* FiltersView.swift */; };
+		37379913258E619400711EDA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4833F2559A73A00DBD526 /* LineView.swift */; };
+		37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
+		37379915258E619400711EDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
+		37379916258E619400711EDA /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
+		37379917258E619400711EDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
+		37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
+		37379919258E619400711EDA /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
+		3737991A258E619400711EDA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
+		3737991B258E619400711EDA /* AreaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0D25488B4100A8B696 /* AreaItemView.swift */; };
+		3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
+		3737991D258E619400711EDA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
+		3737991E258E619400711EDA /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
+		3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
+		37379920258E619400711EDA /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* DataStore.swift */; };
+		37379921258E619400711EDA /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* AreaView.swift */; };
+		37379922258E619400711EDA /* BoolderButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* BoolderButtonStyle.swift */; };
+		37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
+		37379924258E619400711EDA /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
+		37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
+		37379926258E619400711EDA /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80A245326F200DC161F /* Grade.swift */; };
+		37379927258E619400711EDA /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
+		37379928258E619400711EDA /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
+		37379929258E619400711EDA /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
+		3737992A258E619400711EDA /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
+		3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
+		3737992C258E619400711EDA /* OtherAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373798FF258DF9A300711EDA /* OtherAreasView.swift */; };
+		3737992D258E619400711EDA /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
+		3737992E258E619400711EDA /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
+		3737992F258E619400711EDA /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
+		37379930258E619400711EDA /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
+		37379931258E619400711EDA /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80C245326F200DC161F /* Line.swift */; };
+		37379932258E619400711EDA /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
+		37379935258E619400711EDA /* topo-598.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0A25868BBA003A545B /* topo-598.jpg */; };
+		37379936258E619400711EDA /* topo-428.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675997255199D2009C880C /* topo-428.jpg */; };
+		37379937258E619400711EDA /* topo-558.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675985255199D2009C880C /* topo-558.jpg */; };
+		37379938258E619400711EDA /* topo-431.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A11255199D2009C880C /* topo-431.jpg */; };
+		37379939258E619400711EDA /* topo-575.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1F25868BBA003A545B /* topo-575.jpg */; };
+		3737993A258E619400711EDA /* topo-505.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A698253EDDFE00AC3477 /* topo-505.jpg */; };
+		3737993B258E619400711EDA /* topo-583.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A7025868BBA003A545B /* topo-583.jpg */; };
+		3737993C258E619400711EDA /* topo-387.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A27255199D2009C880C /* topo-387.jpg */; };
+		3737993D258E619400711EDA /* topo-511.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759AE255199D2009C880C /* topo-511.jpg */; };
+		3737993E258E619400711EDA /* topo-286.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A00255199D2009C880C /* topo-286.jpg */; };
+		3737993F258E619400711EDA /* topo-618.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5E25868BBA003A545B /* topo-618.jpg */; };
+		37379940258E619400711EDA /* topo-576.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1725868BBA003A545B /* topo-576.jpg */; };
+		37379941258E619400711EDA /* topo-413.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767598F255199D2009C880C /* topo-413.jpg */; };
+		37379942258E619400711EDA /* topo-645.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3425868BBA003A545B /* topo-645.jpg */; };
+		37379943258E619400711EDA /* topo-574.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1E25868BBA003A545B /* topo-574.jpg */; };
+		37379944258E619400711EDA /* topo-636.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A7325868BBA003A545B /* topo-636.jpg */; };
+		37379945258E619400711EDA /* topo-572.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0825868BBA003A545B /* topo-572.jpg */; };
+		37379946258E619400711EDA /* topo-523.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A02255199D2009C880C /* topo-523.jpg */; };
+		37379947258E619400711EDA /* topo-281.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759DF255199D2009C880C /* topo-281.jpg */; };
+		37379948258E619400711EDA /* topo-399.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767599A255199D2009C880C /* topo-399.jpg */; };
+		37379949258E619400711EDA /* topo-591.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5C25868BBA003A545B /* topo-591.jpg */; };
+		3737994A258E619400711EDA /* area-4-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37F20A6C255F362F002BD5F1 /* area-4-data.geojson */; };
+		3737994B258E619400711EDA /* topo-465.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759AD255199D2009C880C /* topo-465.jpg */; };
+		3737994C258E619400711EDA /* topo-609.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6A25868BBA003A545B /* topo-609.jpg */; };
+		3737994D258E619400711EDA /* topo-318.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F8255199D2009C880C /* topo-318.jpg */; };
+		3737994E258E619400711EDA /* topo-534.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F2255199D2009C880C /* topo-534.jpg */; };
+		3737994F258E619400711EDA /* topo-601.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1225868BBA003A545B /* topo-601.jpg */; };
+		37379950258E619400711EDA /* topo-562.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1825868BBA003A545B /* topo-562.jpg */; };
+		37379951258E619400711EDA /* topo-284.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759EF255199D2009C880C /* topo-284.jpg */; };
+		37379952258E619400711EDA /* topo-587.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5125868BBA003A545B /* topo-587.jpg */; };
+		37379953258E619400711EDA /* topo-668.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4525868BBA003A545B /* topo-668.jpg */; };
+		37379954258E619400711EDA /* topo-522.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759FD255199D2009C880C /* topo-522.jpg */; };
+		37379955258E619400711EDA /* topo-625.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5825868BBA003A545B /* topo-625.jpg */; };
+		37379956258E619400711EDA /* topo-564.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0025868BBA003A545B /* topo-564.jpg */; };
+		37379957258E619400711EDA /* topo-491.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A1253EDDFE00AC3477 /* topo-491.jpg */; };
+		37379958258E619400711EDA /* topo-595.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6525868BBA003A545B /* topo-595.jpg */; };
+		37379959258E619400711EDA /* topo-658.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2325868BBA003A545B /* topo-658.jpg */; };
+		3737995A258E619400711EDA /* topo-449.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C2255199D2009C880C /* topo-449.jpg */; };
+		3737995B258E619400711EDA /* topo-495.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A9253EDDFE00AC3477 /* topo-495.jpg */; };
+		3737995C258E619400711EDA /* topo-406.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767598B255199D2009C880C /* topo-406.jpg */; };
+		3737995D258E619400711EDA /* topo-368.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A1D255199D2009C880C /* topo-368.jpg */; };
+		3737995E258E619400711EDA /* topo-321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759CE255199D2009C880C /* topo-321.jpg */; };
+		3737995F258E619400711EDA /* topo-314.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A1255199D2009C880C /* topo-314.jpg */; };
+		37379960258E619400711EDA /* topo-519.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E2255199D2009C880C /* topo-519.jpg */; };
+		37379961258E619400711EDA /* topo-656.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4425868BBA003A545B /* topo-656.jpg */; };
+		37379962258E619400711EDA /* topo-275.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A8255199D2009C880C /* topo-275.jpg */; };
+		37379963258E619400711EDA /* topo-409.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A32255199D2009C880C /* topo-409.jpg */; };
+		37379964258E619400711EDA /* topo-445.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E5255199D2009C880C /* topo-445.jpg */; };
+		37379965258E619400711EDA /* topo-682.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4925868BBA003A545B /* topo-682.jpg */; };
+		37379966258E619400711EDA /* topo-602.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1C25868BBA003A545B /* topo-602.jpg */; };
+		37379967258E619400711EDA /* topo-429.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767599F255199D2009C880C /* topo-429.jpg */; };
+		37379968258E619400711EDA /* topo-607.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C99FC25868BBA003A545B /* topo-607.jpg */; };
+		37379969258E619400711EDA /* topo-486.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A5253EDDFE00AC3477 /* topo-486.jpg */; };
+		3737996A258E619400711EDA /* topo-580.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6725868BBA003A545B /* topo-580.jpg */; };
+		3737996B258E619400711EDA /* topo-393.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A26255199D2009C880C /* topo-393.jpg */; };
+		3737996C258E619400711EDA /* topo-403.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675992255199D2009C880C /* topo-403.jpg */; };
+		3737996D258E619400711EDA /* topo-542.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A28255199D2009C880C /* topo-542.jpg */; };
+		3737996E258E619400711EDA /* topo-350.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A23255199D2009C880C /* topo-350.jpg */; };
+		3737996F258E619400711EDA /* topo-527.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D2255199D2009C880C /* topo-527.jpg */; };
+		37379970258E619400711EDA /* topo-650.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3825868BBA003A545B /* topo-650.jpg */; };
+		37379971258E619400711EDA /* topo-606.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0325868BBA003A545B /* topo-606.jpg */; };
+		37379972258E619400711EDA /* topo-535.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759EE255199D2009C880C /* topo-535.jpg */; };
+		37379973258E619400711EDA /* topo-582.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6F25868BBA003A545B /* topo-582.jpg */; };
+		37379974258E619400711EDA /* topo-603.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2025868BBA003A545B /* topo-603.jpg */; };
+		37379975258E619400711EDA /* topo-498.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A697253EDDFE00AC3477 /* topo-498.jpg */; };
+		37379976258E619400711EDA /* topo-596.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6E25868BBA003A545B /* topo-596.jpg */; };
+		37379977258E619400711EDA /* area-4-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 370FD7A5254F0E80003C3910 /* area-4-topo-lines.json */; };
+		37379978258E619400711EDA /* topo-461.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759BE255199D2009C880C /* topo-461.jpg */; };
+		37379979258E619400711EDA /* topo-521.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759ED255199D2009C880C /* topo-521.jpg */; };
+		3737997A258E619400711EDA /* topo-557.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A2A255199D2009C880C /* topo-557.jpg */; };
+		3737997B258E619400711EDA /* topo-438.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675987255199D2009C880C /* topo-438.jpg */; };
+		3737997C258E619400711EDA /* topo-586.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5225868BBA003A545B /* topo-586.jpg */; };
+		3737997D258E619400711EDA /* topo-410.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675988255199D2009C880C /* topo-410.jpg */; };
+		3737997E258E619400711EDA /* topo-485.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A2253EDDFE00AC3477 /* topo-485.jpg */; };
+		3737997F258E619400711EDA /* topo-313.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C0255199D2009C880C /* topo-313.jpg */; };
+		37379980258E619400711EDA /* topo-614.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1A25868BBA003A545B /* topo-614.jpg */; };
+		37379981258E619400711EDA /* topo-665.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2625868BBA003A545B /* topo-665.jpg */; };
+		37379982258E619400711EDA /* topo-367.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767599E255199D2009C880C /* topo-367.jpg */; };
+		37379983258E619400711EDA /* topo-310.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759CB255199D2009C880C /* topo-310.jpg */; };
+		37379984258E619400711EDA /* topo-536.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759FC255199D2009C880C /* topo-536.jpg */; };
+		37379985258E619400711EDA /* topo-615.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1125868BBA003A545B /* topo-615.jpg */; };
+		37379986258E619400711EDA /* topo-616.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1D25868BBA003A545B /* topo-616.jpg */; };
+		37379987258E619400711EDA /* topo-345.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A2D255199D2009C880C /* topo-345.jpg */; };
+		37379988258E619400711EDA /* topo-608.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6125868BBA003A545B /* topo-608.jpg */; };
+		37379989258E619400711EDA /* topo-546.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A1A255199D2009C880C /* topo-546.jpg */; };
+		3737998A258E619400711EDA /* topo-419.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A10255199D2009C880C /* topo-419.jpg */; };
+		3737998B258E619400711EDA /* topo-460.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B6255199D2009C880C /* topo-460.jpg */; };
+		3737998C258E619400711EDA /* topo-466.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A0255199D2009C880C /* topo-466.jpg */; };
+		3737998D258E619400711EDA /* topo-423.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A2E255199D2009C880C /* topo-423.jpg */; };
+		3737998E258E619400711EDA /* topo-327.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759EB255199D2009C880C /* topo-327.jpg */; };
+		3737998F258E619400711EDA /* topo-424.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A07255199D2009C880C /* topo-424.jpg */; };
+		37379990258E619400711EDA /* topo-291.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F1255199D2009C880C /* topo-291.jpg */; };
+		37379991258E619400711EDA /* topo-563.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1325868BBA003A545B /* topo-563.jpg */; };
+		37379992258E619400711EDA /* topo-319.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A05255199D2009C880C /* topo-319.jpg */; };
+		37379993258E619400711EDA /* topo-346.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3B255199D2009C880C /* topo-346.jpg */; };
+		37379994258E619400711EDA /* topo-447.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759CD255199D2009C880C /* topo-447.jpg */; };
+		37379995258E619400711EDA /* topo-643.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4125868BBA003A545B /* topo-643.jpg */; };
+		37379996258E619400711EDA /* topo-581.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6425868BBA003A545B /* topo-581.jpg */; };
+		37379997258E619400711EDA /* topo-379.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A31255199D2009C880C /* topo-379.jpg */; };
+		37379998258E619400711EDA /* topo-640.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4625868BBA003A545B /* topo-640.jpg */; };
+		37379999258E619400711EDA /* topo-619.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5925868BBA003A545B /* topo-619.jpg */; };
+		3737999A258E619400711EDA /* topo-493.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A3253EDDFE00AC3477 /* topo-493.jpg */; };
+		3737999B258E619400711EDA /* topo-627.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5625868BBA003A545B /* topo-627.jpg */; };
+		3737999C258E619400711EDA /* topo-676.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2B25868BBA003A545B /* topo-676.jpg */; };
+		3737999D258E619400711EDA /* topo-474.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B5255199D2009C880C /* topo-474.jpg */; };
+		3737999E258E619400711EDA /* topo-386.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A2B255199D2009C880C /* topo-386.jpg */; };
+		3737999F258E619400711EDA /* topo-589.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1625868BBA003A545B /* topo-589.jpg */; };
+		373799A0258E619400711EDA /* topo-518.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759DE255199D2009C880C /* topo-518.jpg */; };
+		373799A1258E619400711EDA /* topo-359.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675990255199D2009C880C /* topo-359.jpg */; };
+		373799A2258E619400711EDA /* topo-525.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E4255199D2009C880C /* topo-525.jpg */; };
+		373799A3258E619400711EDA /* topo-380.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A0F255199D2009C880C /* topo-380.jpg */; };
+		373799A4258E619400711EDA /* topo-588.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1525868BBA003A545B /* topo-588.jpg */; };
+		373799A5258E619400711EDA /* topo-309.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D0255199D2009C880C /* topo-309.jpg */; };
+		373799A6258E619400711EDA /* topo-517.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C7255199D2009C880C /* topo-517.jpg */; };
+		373799A7258E619400711EDA /* topo-494.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6AA253EDDFE00AC3477 /* topo-494.jpg */; };
+		373799A8258E619400711EDA /* topo-567.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0C25868BBA003A545B /* topo-567.jpg */; };
+		373799A9258E619400711EDA /* topo-633.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5525868BBA003A545B /* topo-633.jpg */; };
+		373799AA258E619400711EDA /* topo-292.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A01255199D2009C880C /* topo-292.jpg */; };
+		373799AB258E619400711EDA /* topo-639.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0D25868BBA003A545B /* topo-639.jpg */; };
+		373799AC258E619400711EDA /* topo-497.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A8253EDDFE00AC3477 /* topo-497.jpg */; };
+		373799AD258E619400711EDA /* topo-667.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2825868BBA003A545B /* topo-667.jpg */; };
+		373799AE258E619400711EDA /* topo-293.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759FE255199D2009C880C /* topo-293.jpg */; };
+		373799AF258E619400711EDA /* topo-463.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C4255199D2009C880C /* topo-463.jpg */; };
+		373799B0258E619400711EDA /* topo-674.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3125868BBA003A545B /* topo-674.jpg */; };
+		373799B1258E619400711EDA /* topo-340.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A1F255199D2009C880C /* topo-340.jpg */; };
+		373799B2258E619400711EDA /* topo-290.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F0255199D2009C880C /* topo-290.jpg */; };
+		373799B3258E619400711EDA /* topo-430.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A08255199D2009C880C /* topo-430.jpg */; };
+		373799B4258E619400711EDA /* topo-442.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F9255199D2009C880C /* topo-442.jpg */; };
+		373799B5258E619400711EDA /* topo-551.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A0E255199D2009C880C /* topo-551.jpg */; };
+		373799B6258E619400711EDA /* topo-647.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3E25868BBA003A545B /* topo-647.jpg */; };
+		373799B7258E619400711EDA /* topo-499.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A695253EDDFE00AC3477 /* topo-499.jpg */; };
+		373799B8258E619400711EDA /* topo-671.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2525868BBA003A545B /* topo-671.jpg */; };
+		373799B9258E619400711EDA /* topo-506.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A696253EDDFE00AC3477 /* topo-506.jpg */; };
+		373799BA258E619400711EDA /* topo-272.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759BA255199D2009C880C /* topo-272.jpg */; };
+		373799BB258E619400711EDA /* topo-532.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D7255199D2009C880C /* topo-532.jpg */; };
+		373799BC258E619400711EDA /* topo-330.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759FA255199D2009C880C /* topo-330.jpg */; };
+		373799BD258E619400711EDA /* topo-677.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2E25868BBA003A545B /* topo-677.jpg */; };
+		373799BE258E619400711EDA /* topo-283.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D4255199D2009C880C /* topo-283.jpg */; };
+		373799BF258E619400711EDA /* topo-569.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6D25868BBA003A545B /* topo-569.jpg */; };
+		373799C0258E619400711EDA /* topo-276.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B1255199D2009C880C /* topo-276.jpg */; };
+		373799C1258E619400711EDA /* topo-355.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A14255199D2009C880C /* topo-355.jpg */; };
+		373799C2258E619400711EDA /* topo-504.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A699253EDDFE00AC3477 /* topo-504.jpg */; };
+		373799C3258E619400711EDA /* topo-489.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69F253EDDFE00AC3477 /* topo-489.jpg */; };
+		373799C4258E619400711EDA /* topo-620.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6325868BBA003A545B /* topo-620.jpg */; };
+		373799C5258E619400711EDA /* topo-388.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675984255199D2009C880C /* topo-388.jpg */; };
+		373799C6258E619400711EDA /* topo-552.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A19255199D2009C880C /* topo-552.jpg */; };
+		373799C7258E619400711EDA /* topo-512.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A4255199D2009C880C /* topo-512.jpg */; };
+		373799C8258E619400711EDA /* topo-672.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2A25868BBA003A545B /* topo-672.jpg */; };
+		373799C9258E619400711EDA /* topo-612.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0225868BBA003A545B /* topo-612.jpg */; };
+		373799CA258E619400711EDA /* topo-637.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6C25868BBA003A545B /* topo-637.jpg */; };
+		373799CB258E619400711EDA /* topo-280.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E1255199D2009C880C /* topo-280.jpg */; };
+		373799CC258E619400711EDA /* topo-666.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2925868BBA003A545B /* topo-666.jpg */; };
+		373799CD258E619400711EDA /* topo-622.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A7425868BBA003A545B /* topo-622.jpg */; };
+		373799CE258E619400711EDA /* topo-651.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3525868BBA003A545B /* topo-651.jpg */; };
+		373799CF258E619400711EDA /* topo-632.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4E25868BBA003A545B /* topo-632.jpg */; };
+		373799D0258E619400711EDA /* topo-398.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767599D255199D2009C880C /* topo-398.jpg */; };
+		373799D1258E619400711EDA /* topo-370.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675995255199D2009C880C /* topo-370.jpg */; };
+		373799D2258E619400711EDA /* topo-426.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A1E255199D2009C880C /* topo-426.jpg */; };
+		373799D3258E619400711EDA /* topo-684.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3D25868BBA003A545B /* topo-684.jpg */; };
+		373799D4258E619400711EDA /* topo-529.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759BD255199D2009C880C /* topo-529.jpg */; };
+		373799D5258E619400711EDA /* topo-641.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4B25868BBA003A545B /* topo-641.jpg */; };
+		373799D6258E619400711EDA /* topo-670.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2225868BBA003A545B /* topo-670.jpg */; };
+		373799D7258E619400711EDA /* topo-516.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C9255199D2009C880C /* topo-516.jpg */; };
+		373799D8258E619400711EDA /* topo-513.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A7255199D2009C880C /* topo-513.jpg */; };
+		373799D9258E619400711EDA /* topo-664.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2125868BBA003A545B /* topo-664.jpg */; };
+		373799DA258E619400711EDA /* topo-322.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759DB255199D2009C880C /* topo-322.jpg */; };
+		373799DB258E619400711EDA /* topo-472.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A2255199D2009C880C /* topo-472.jpg */; };
+		373799DC258E619400711EDA /* topo-301.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759AB255199D2009C880C /* topo-301.jpg */; };
+		373799DD258E619400711EDA /* topo-425.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A13255199D2009C880C /* topo-425.jpg */; };
+		373799DE258E619400711EDA /* topo-662.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2C25868BBA003A545B /* topo-662.jpg */; };
+		373799DF258E619400711EDA /* topo-344.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A24255199D2009C880C /* topo-344.jpg */; };
+		373799E0258E619400711EDA /* topo-514.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B9255199D2009C880C /* topo-514.jpg */; };
+		373799E1258E619400711EDA /* topo-570.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0125868BBA003A545B /* topo-570.jpg */; };
+		373799E2258E619400711EDA /* topo-389.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675986255199D2009C880C /* topo-389.jpg */; };
+		373799E3258E619400711EDA /* topo-320.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D9255199D2009C880C /* topo-320.jpg */; };
+		373799E4258E619400711EDA /* topo-680.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4225868BBA003A545B /* topo-680.jpg */; };
+		373799E5258E619400711EDA /* topo-679.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3625868BBA003A545B /* topo-679.jpg */; };
+		373799E6258E619400711EDA /* topo-353.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A34255199D2009C880C /* topo-353.jpg */; };
+		373799E7258E619400711EDA /* topo-468.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F7255199D2009C880C /* topo-468.jpg */; };
+		373799E8258E619400711EDA /* topo-269.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D3255199D2009C880C /* topo-269.jpg */; };
+		373799E9258E619400711EDA /* topo-273.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759BC255199D2009C880C /* topo-273.jpg */; };
+		373799EA258E619400711EDA /* topo-642.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4325868BBA003A545B /* topo-642.jpg */; };
+		373799EB258E619400711EDA /* topo-593.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5025868BBA003A545B /* topo-593.jpg */; };
+		373799EC258E619400711EDA /* topo-362.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675989255199D2009C880C /* topo-362.jpg */; };
+		373799ED258E619400711EDA /* area-2-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37A9CE92255C3855001AE1CF /* area-2-data.geojson */; };
+		373799EE258E619400711EDA /* topo-475.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C1255199D2009C880C /* topo-475.jpg */; };
+		373799EF258E619400711EDA /* topo-654.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4725868BBA003A545B /* topo-654.jpg */; };
+		373799F0258E619400711EDA /* area-5-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 378C99FA25868BB9003A545B /* area-5-data.geojson */; };
+		373799F1258E619400711EDA /* topo-316.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B3255199D2009C880C /* topo-316.jpg */; };
+		373799F2258E619400711EDA /* topo-549.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767599C255199D2009C880C /* topo-549.jpg */; };
+		373799F3258E619400711EDA /* topo-590.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5B25868BBA003A545B /* topo-590.jpg */; };
+		373799F4258E619400711EDA /* topo-628.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1B25868BBA003A545B /* topo-628.jpg */; };
+		373799F5258E619400711EDA /* topo-288.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759AF255199D2009C880C /* topo-288.jpg */; };
+		373799F6258E619400711EDA /* topo-341.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A15255199D2009C880C /* topo-341.jpg */; };
+		373799F7258E619400711EDA /* topo-652.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3A25868BBA003A545B /* topo-652.jpg */; };
+		373799F8258E619400711EDA /* topo-274.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A5255199D2009C880C /* topo-274.jpg */; };
+		373799F9258E619400711EDA /* topo-311.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C5255199D2009C880C /* topo-311.jpg */; };
+		373799FA258E619400711EDA /* topo-659.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2425868BBA003A545B /* topo-659.jpg */; };
+		373799FB258E619400711EDA /* topo-358.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675996255199D2009C880C /* topo-358.jpg */; };
+		373799FC258E619400711EDA /* topo-437.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A2F255199D2009C880C /* topo-437.jpg */; };
+		373799FD258E619400711EDA /* topo-390.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A36255199D2009C880C /* topo-390.jpg */; };
+		373799FE258E619400711EDA /* topo-611.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0F25868BBA003A545B /* topo-611.jpg */; };
+		373799FF258E619400711EDA /* topo-306.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B7255199D2009C880C /* topo-306.jpg */; };
+		37379A00258E619400711EDA /* topo-644.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3925868BBA003A545B /* topo-644.jpg */; };
+		37379A01258E619400711EDA /* topo-396.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A17255199D2009C880C /* topo-396.jpg */; };
+		37379A02258E619400711EDA /* topo-631.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5725868BBA003A545B /* topo-631.jpg */; };
+		37379A03258E619400711EDA /* topo-422.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A25255199D2009C880C /* topo-422.jpg */; };
+		37379A04258E619400711EDA /* topo-457.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A03255199D2009C880C /* topo-457.jpg */; };
+		37379A05258E619400711EDA /* topo-441.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759EA255199D2009C880C /* topo-441.jpg */; };
+		37379A06258E619400711EDA /* topo-685.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3C25868BBA003A545B /* topo-685.jpg */; };
+		37379A07258E619400711EDA /* topo-630.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6025868BBA003A545B /* topo-630.jpg */; };
+		37379A08258E619400711EDA /* topo-579.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5425868BBA003A545B /* topo-579.jpg */; };
+		37379A09258E619400711EDA /* topo-315.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759AA255199D2009C880C /* topo-315.jpg */; };
+		37379A0A258E619400711EDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
+		37379A0B258E619400711EDA /* topo-507.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A6255199D2009C880C /* topo-507.jpg */; };
+		37379A0C258E619400711EDA /* topo-436.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A22255199D2009C880C /* topo-436.jpg */; };
+		37379A0D258E619400711EDA /* topo-416.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675994255199D2009C880C /* topo-416.jpg */; };
+		37379A0E258E619400711EDA /* topo-592.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5325868BBA003A545B /* topo-592.jpg */; };
+		37379A0F258E619400711EDA /* topo-331.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A04255199D2009C880C /* topo-331.jpg */; };
+		37379A10258E619400711EDA /* topo-526.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D6255199D2009C880C /* topo-526.jpg */; };
+		37379A11258E619400711EDA /* topo-648.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3325868BBA003A545B /* topo-648.jpg */; };
+		37379A12258E619400711EDA /* topo-530.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759DD255199D2009C880C /* topo-530.jpg */; };
+		37379A13258E619400711EDA /* topo-545.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A0D255199D2009C880C /* topo-545.jpg */; };
+		37379A14258E619400711EDA /* topo-655.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4A25868BBA003A545B /* topo-655.jpg */; };
+		37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6322453263400DC161F /* Preview Assets.xcassets */; };
+		37379A16258E619400711EDA /* topo-649.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2F25868BBA003A545B /* topo-649.jpg */; };
+		37379A17258E619400711EDA /* topo-605.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0E25868BBA003A545B /* topo-605.jpg */; };
+		37379A18258E619400711EDA /* topo-634.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6225868BBA003A545B /* topo-634.jpg */; };
+		37379A19258E619400711EDA /* topo-538.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B0255199D2009C880C /* topo-538.jpg */; };
+		37379A1A258E619400711EDA /* topo-304.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759CC255199D2009C880C /* topo-304.jpg */; };
+		37379A1B258E619400711EDA /* topo-635.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6925868BBA003A545B /* topo-635.jpg */; };
+		37379A1C258E619400711EDA /* topo-568.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A7225868BBA003A545B /* topo-568.jpg */; };
+		37379A1D258E619400711EDA /* topo-492.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A6253EDDFE00AC3477 /* topo-492.jpg */; };
+		37379A1E258E619400711EDA /* topo-369.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A16255199D2009C880C /* topo-369.jpg */; };
+		37379A1F258E619400711EDA /* topo-626.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4D25868BBA003A545B /* topo-626.jpg */; };
+		37379A20258E619400711EDA /* topo-524.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759DC255199D2009C880C /* topo-524.jpg */; };
+		37379A21258E619400711EDA /* topo-657.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4025868BBA003A545B /* topo-657.jpg */; };
+		37379A22258E619400711EDA /* topo-392.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A2C255199D2009C880C /* topo-392.jpg */; };
+		37379A23258E619400711EDA /* topo-600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1925868BBA003A545B /* topo-600.jpg */; };
+		37379A24258E619400711EDA /* topo-594.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6625868BBA003A545B /* topo-594.jpg */; };
+		37379A25258E619400711EDA /* topo-496.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A7253EDDFE00AC3477 /* topo-496.jpg */; };
+		37379A26258E619400711EDA /* topo-363.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675980255199D2009C880C /* topo-363.jpg */; };
+		37379A27258E619400711EDA /* topo-597.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A7125868BBA003A545B /* topo-597.jpg */; };
+		37379A28258E619400711EDA /* topo-448.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B4255199D2009C880C /* topo-448.jpg */; };
+		37379A29258E619400711EDA /* topo-307.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759BF255199D2009C880C /* topo-307.jpg */; };
+		37379A2A258E619400711EDA /* topo-584.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5A25868BBA003A545B /* topo-584.jpg */; };
+		37379A2B258E619400711EDA /* topo-332.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F5255199D2009C880C /* topo-332.jpg */; };
+		37379A2C258E619400711EDA /* topo-295.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E0255199D2009C880C /* topo-295.jpg */; };
+		37379A2D258E619400711EDA /* topo-400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675998255199D2009C880C /* topo-400.jpg */; };
+		37379A2E258E619400711EDA /* topo-501.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69B253EDDFE00AC3477 /* topo-501.jpg */; };
+		37379A2F258E619400711EDA /* topo-305.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C3255199D2009C880C /* topo-305.jpg */; };
+		37379A30258E619400711EDA /* topo-351.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A30255199D2009C880C /* topo-351.jpg */; };
+		37379A31258E619400711EDA /* topo-334.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D8255199D2009C880C /* topo-334.jpg */; };
+		37379A32258E619400711EDA /* topo-333.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E9255199D2009C880C /* topo-333.jpg */; };
+		37379A33258E619400711EDA /* topo-303.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759AC255199D2009C880C /* topo-303.jpg */; };
+		37379A34258E619400711EDA /* topo-566.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0725868BBA003A545B /* topo-566.jpg */; };
+		37379A35258E619400711EDA /* topo-395.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A0B255199D2009C880C /* topo-395.jpg */; };
+		37379A36258E619400711EDA /* topo-405.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675981255199D2009C880C /* topo-405.jpg */; };
+		37379A37258E619400711EDA /* topo-646.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3B25868BBA003A545B /* topo-646.jpg */; };
+		37379A38258E619400711EDA /* topo-335.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759CF255199D2009C880C /* topo-335.jpg */; };
+		37379A39258E619400711EDA /* topo-528.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B8255199D2009C880C /* topo-528.jpg */; };
+		37379A3A258E619400711EDA /* topo-439.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675983255199D2009C880C /* topo-439.jpg */; };
+		37379A3B258E619400711EDA /* topo-297.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D5255199D2009C880C /* topo-297.jpg */; };
+		37379A3C258E619400711EDA /* topo-469.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E8255199D2009C880C /* topo-469.jpg */; };
+		37379A3D258E619400711EDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C62F2453263400DC161F /* Assets.xcassets */; };
+		37379A3E258E619400711EDA /* topo-454.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F6255199D2009C880C /* topo-454.jpg */; };
+		37379A3F258E619400711EDA /* topo-556.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A29255199D2009C880C /* topo-556.jpg */; };
+		37379A40258E619400711EDA /* topo-508.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F4255199D2009C880C /* topo-508.jpg */; };
+		37379A41258E619400711EDA /* topo-271.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C6255199D2009C880C /* topo-271.jpg */; };
+		37379A42258E619400711EDA /* topo-500.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69A253EDDFE00AC3477 /* topo-500.jpg */; };
+		37379A43258E619400711EDA /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37A483392558AC3900DBD526 /* area-1-data.geojson */; };
+		37379A44258E619400711EDA /* topo-302.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759B2255199D2009C880C /* topo-302.jpg */; };
+		37379A45258E619400711EDA /* topo-520.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759F3255199D2009C880C /* topo-520.jpg */; };
+		37379A46258E619400711EDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37A6572724BDC00500273A9A /* Localizable.strings */; };
+		37379A47258E619400711EDA /* topo-673.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2725868BBA003A545B /* topo-673.jpg */; };
+		37379A48258E619400711EDA /* topo-653.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3F25868BBA003A545B /* topo-653.jpg */; };
+		37379A49258E619400711EDA /* topo-660.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3225868BBA003A545B /* topo-660.jpg */; };
+		37379A4A258E619400711EDA /* topo-384.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A35255199D2009C880C /* topo-384.jpg */; };
+		37379A4B258E619400711EDA /* topo-412.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767598A255199D2009C880C /* topo-412.jpg */; };
+		37379A4C258E619400711EDA /* topo-554.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A38255199D2009C880C /* topo-554.jpg */; };
+		37379A4D258E619400711EDA /* topo-621.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6825868BBA003A545B /* topo-621.jpg */; };
+		37379A4E258E619400711EDA /* topo-533.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759D1255199D2009C880C /* topo-533.jpg */; };
+		37379A4F258E619400711EDA /* topo-476.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759CA255199D2009C880C /* topo-476.jpg */; };
+		37379A50258E619400711EDA /* area-5-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 378C99F925868BB9003A545B /* area-5-topo-lines.json */; };
+		37379A51258E619400711EDA /* topo-356.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A09255199D2009C880C /* topo-356.jpg */; };
+		37379A52258E619400711EDA /* topo-385.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A39255199D2009C880C /* topo-385.jpg */; };
+		37379A53258E619400711EDA /* topo-550.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A0C255199D2009C880C /* topo-550.jpg */; };
+		37379A54258E619400711EDA /* topo-509.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759EC255199D2009C880C /* topo-509.jpg */; };
+		37379A55258E619400711EDA /* topo-349.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767598D255199D2009C880C /* topo-349.jpg */; };
+		37379A56258E619400711EDA /* topo-675.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3025868BBA003A545B /* topo-675.jpg */; };
+		37379A57258E619400711EDA /* topo-342.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A06255199D2009C880C /* topo-342.jpg */; };
+		37379A58258E619400711EDA /* topo-503.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69D253EDDFE00AC3477 /* topo-503.jpg */; };
+		37379A59258E619400711EDA /* topo-624.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5F25868BBA003A545B /* topo-624.jpg */; };
+		37379A5A258E619400711EDA /* topo-352.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A3A255199D2009C880C /* topo-352.jpg */; };
+		37379A5B258E619400711EDA /* topo-287.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759FF255199D2009C880C /* topo-287.jpg */; };
+		37379A5C258E619400711EDA /* topo-487.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A4253EDDFE00AC3477 /* topo-487.jpg */; };
+		37379A5D258E619400711EDA /* topo-541.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A37255199D2009C880C /* topo-541.jpg */; };
+		37379A5E258E619400711EDA /* topo-585.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A5D25868BBA003A545B /* topo-585.jpg */; };
+		37379A5F258E619400711EDA /* topo-490.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A6A0253EDDFE00AC3477 /* topo-490.jpg */; };
+		37379A60258E619400711EDA /* topo-381.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A0A255199D2009C880C /* topo-381.jpg */; };
+		37379A61258E619400711EDA /* topo-365.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675991255199D2009C880C /* topo-365.jpg */; };
+		37379A62258E619400711EDA /* topo-432.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A21255199D2009C880C /* topo-432.jpg */; };
+		37379A63258E619400711EDA /* topo-343.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A12255199D2009C880C /* topo-343.jpg */; };
+		37379A64258E619400711EDA /* topo-571.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C99FE25868BBA003A545B /* topo-571.jpg */; };
+		37379A65258E619400711EDA /* topo-336.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759DA255199D2009C880C /* topo-336.jpg */; };
+		37379A66258E619400711EDA /* topo-578.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4F25868BBA003A545B /* topo-578.jpg */; };
+		37379A67258E619400711EDA /* topo-678.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A3725868BBA003A545B /* topo-678.jpg */; };
+		37379A68258E619400711EDA /* topo-328.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A3255199D2009C880C /* topo-328.jpg */; };
+		37379A69258E619400711EDA /* topo-604.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0525868BBA003A545B /* topo-604.jpg */; };
+		37379A6A258E619400711EDA /* topo-414.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675999255199D2009C880C /* topo-414.jpg */; };
+		37379A6B258E619400711EDA /* topo-502.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69E253EDDFE00AC3477 /* topo-502.jpg */; };
+		37379A6C258E619400711EDA /* topo-278.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759FB255199D2009C880C /* topo-278.jpg */; };
+		37379A6D258E619400711EDA /* topo-364.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675993255199D2009C880C /* topo-364.jpg */; };
+		37379A6E258E619400711EDA /* topo-347.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A33255199D2009C880C /* topo-347.jpg */; };
+		37379A6F258E619400711EDA /* topo-623.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A6B25868BBA003A545B /* topo-623.jpg */; };
+		37379A70258E619400711EDA /* topo-573.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0B25868BBA003A545B /* topo-573.jpg */; };
+		37379A71258E619400711EDA /* topo-329.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759A9255199D2009C880C /* topo-329.jpg */; };
+		37379A72258E619400711EDA /* topo-383.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A1B255199D2009C880C /* topo-383.jpg */; };
+		37379A73258E619400711EDA /* topo-488.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3766A69C253EDDFE00AC3477 /* topo-488.jpg */; };
+		37379A74258E619400711EDA /* topo-337.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E7255199D2009C880C /* topo-337.jpg */; };
+		37379A75258E619400711EDA /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 37BC54B025586758002F0BB5 /* area-1-topo-lines.json */; };
+		37379A76258E619400711EDA /* topo-599.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0925868BBA003A545B /* topo-599.jpg */; };
+		37379A77258E619400711EDA /* topo-411.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675982255199D2009C880C /* topo-411.jpg */; };
+		37379A78258E619400711EDA /* topo-361.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767598E255199D2009C880C /* topo-361.jpg */; };
+		37379A79258E619400711EDA /* topo-683.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4825868BBA003A545B /* topo-683.jpg */; };
+		37379A7A258E619400711EDA /* topo-638.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0625868BBA003A545B /* topo-638.jpg */; };
+		37379A7B258E619400711EDA /* topo-629.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1025868BBA003A545B /* topo-629.jpg */; };
+		37379A7C258E619400711EDA /* topo-577.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A1425868BBA003A545B /* topo-577.jpg */; };
+		37379A7D258E619400711EDA /* topo-515.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759BB255199D2009C880C /* topo-515.jpg */; };
+		37379A7E258E619400711EDA /* topo-348.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767598C255199D2009C880C /* topo-348.jpg */; };
+		37379A7F258E619400711EDA /* topo-354.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A20255199D2009C880C /* topo-354.jpg */; };
+		37379A80258E619400711EDA /* topo-548.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767599B255199D2009C880C /* topo-548.jpg */; };
+		37379A81258E619400711EDA /* topo-265.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759C8255199D2009C880C /* topo-265.jpg */; };
+		37379A82258E619400711EDA /* topo-613.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C99FD25868BBA003A545B /* topo-613.jpg */; };
+		37379A83258E619400711EDA /* topo-531.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E3255199D2009C880C /* topo-531.jpg */; };
+		37379A84258E619400711EDA /* topo-663.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A2D25868BBA003A545B /* topo-663.jpg */; };
+		37379A85258E619400711EDA /* topo-451.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 376759E6255199D2009C880C /* topo-451.jpg */; };
+		37379A86258E619400711EDA /* topo-669.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A4C25868BBA003A545B /* topo-669.jpg */; };
+		37379A87258E619400711EDA /* topo-547.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A18255199D2009C880C /* topo-547.jpg */; };
+		37379A88258E619400711EDA /* topo-397.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37675A1C255199D2009C880C /* topo-397.jpg */; };
+		37379A89258E619400711EDA /* topo-565.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C99FF25868BBA003A545B /* topo-565.jpg */; };
+		37379A8A258E619400711EDA /* topo-610.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378C9A0425868BBA003A545B /* topo-610.jpg */; };
 		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
 		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
@@ -405,6 +789,8 @@
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		373798FF258DF9A300711EDA /* OtherAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAreasView.swift; sourceTree = "<group>"; };
 		37379903258E157D00711EDA /* BoolderButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolderButtonStyle.swift; sourceTree = "<group>"; };
+		37379A8E258E619400711EDA /* Boolder dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boolder dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37379A8F258E619400711EDA /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Dev-Info.plist"; path = "/Users/nicolas/Documents/iPhone/Apps/Boolder/Dev-Info.plist"; sourceTree = "<absolute>"; };
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
 		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
@@ -785,6 +1171,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		37379933258E619400711EDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37A8C6232453263300DC161F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1218,6 +1611,7 @@
 			isa = PBXGroup;
 			children = (
 				37A8C6262453263300DC161F /* Boolder.app */,
+				37379A8E258E619400711EDA /* Boolder dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1233,6 +1627,7 @@
 				37A8C63D2453269100DC161F /* Data */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6372453263400DC161F /* Info.plist */,
+				37379A8F258E619400711EDA /* Dev-Info.plist */,
 				37F9358D250578D000B1CAB2 /* InfoPlist.strings */,
 				37A6572724BDC00500273A9A /* Localizable.strings */,
 				37A8C6312453263400DC161F /* Preview Content */,
@@ -1342,6 +1737,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		37379907258E619400711EDA /* Boolder dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37379A8B258E619400711EDA /* Build configuration list for PBXNativeTarget "Boolder dev" */;
+			buildPhases = (
+				37379908258E619400711EDA /* Sources */,
+				37379933258E619400711EDA /* Frameworks */,
+				37379934258E619400711EDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Boolder dev";
+			productName = Boolder;
+			productReference = 37379A8E258E619400711EDA /* Boolder dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		37A8C6252453263300DC161F /* Boolder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37A8C63A2453263400DC161F /* Build configuration list for PBXNativeTarget "Boolder" */;
@@ -1389,11 +1801,361 @@
 			projectRoot = "";
 			targets = (
 				37A8C6252453263300DC161F /* Boolder */,
+				37379907258E619400711EDA /* Boolder dev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		37379934258E619400711EDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37379935258E619400711EDA /* topo-598.jpg in Resources */,
+				37379936258E619400711EDA /* topo-428.jpg in Resources */,
+				37379937258E619400711EDA /* topo-558.jpg in Resources */,
+				37379938258E619400711EDA /* topo-431.jpg in Resources */,
+				37379939258E619400711EDA /* topo-575.jpg in Resources */,
+				3737993A258E619400711EDA /* topo-505.jpg in Resources */,
+				3737993B258E619400711EDA /* topo-583.jpg in Resources */,
+				3737993C258E619400711EDA /* topo-387.jpg in Resources */,
+				3737993D258E619400711EDA /* topo-511.jpg in Resources */,
+				3737993E258E619400711EDA /* topo-286.jpg in Resources */,
+				3737993F258E619400711EDA /* topo-618.jpg in Resources */,
+				37379940258E619400711EDA /* topo-576.jpg in Resources */,
+				37379941258E619400711EDA /* topo-413.jpg in Resources */,
+				37379942258E619400711EDA /* topo-645.jpg in Resources */,
+				37379943258E619400711EDA /* topo-574.jpg in Resources */,
+				37379944258E619400711EDA /* topo-636.jpg in Resources */,
+				37379945258E619400711EDA /* topo-572.jpg in Resources */,
+				37379946258E619400711EDA /* topo-523.jpg in Resources */,
+				37379947258E619400711EDA /* topo-281.jpg in Resources */,
+				37379948258E619400711EDA /* topo-399.jpg in Resources */,
+				37379949258E619400711EDA /* topo-591.jpg in Resources */,
+				3737994A258E619400711EDA /* area-4-data.geojson in Resources */,
+				3737994B258E619400711EDA /* topo-465.jpg in Resources */,
+				3737994C258E619400711EDA /* topo-609.jpg in Resources */,
+				3737994D258E619400711EDA /* topo-318.jpg in Resources */,
+				3737994E258E619400711EDA /* topo-534.jpg in Resources */,
+				3737994F258E619400711EDA /* topo-601.jpg in Resources */,
+				37379950258E619400711EDA /* topo-562.jpg in Resources */,
+				37379951258E619400711EDA /* topo-284.jpg in Resources */,
+				37379952258E619400711EDA /* topo-587.jpg in Resources */,
+				37379953258E619400711EDA /* topo-668.jpg in Resources */,
+				37379954258E619400711EDA /* topo-522.jpg in Resources */,
+				37379955258E619400711EDA /* topo-625.jpg in Resources */,
+				37379956258E619400711EDA /* topo-564.jpg in Resources */,
+				37379957258E619400711EDA /* topo-491.jpg in Resources */,
+				37379958258E619400711EDA /* topo-595.jpg in Resources */,
+				37379959258E619400711EDA /* topo-658.jpg in Resources */,
+				3737995A258E619400711EDA /* topo-449.jpg in Resources */,
+				3737995B258E619400711EDA /* topo-495.jpg in Resources */,
+				3737995C258E619400711EDA /* topo-406.jpg in Resources */,
+				3737995D258E619400711EDA /* topo-368.jpg in Resources */,
+				3737995E258E619400711EDA /* topo-321.jpg in Resources */,
+				3737995F258E619400711EDA /* topo-314.jpg in Resources */,
+				37379960258E619400711EDA /* topo-519.jpg in Resources */,
+				37379961258E619400711EDA /* topo-656.jpg in Resources */,
+				37379962258E619400711EDA /* topo-275.jpg in Resources */,
+				37379963258E619400711EDA /* topo-409.jpg in Resources */,
+				37379964258E619400711EDA /* topo-445.jpg in Resources */,
+				37379965258E619400711EDA /* topo-682.jpg in Resources */,
+				37379966258E619400711EDA /* topo-602.jpg in Resources */,
+				37379967258E619400711EDA /* topo-429.jpg in Resources */,
+				37379968258E619400711EDA /* topo-607.jpg in Resources */,
+				37379969258E619400711EDA /* topo-486.jpg in Resources */,
+				3737996A258E619400711EDA /* topo-580.jpg in Resources */,
+				3737996B258E619400711EDA /* topo-393.jpg in Resources */,
+				3737996C258E619400711EDA /* topo-403.jpg in Resources */,
+				3737996D258E619400711EDA /* topo-542.jpg in Resources */,
+				3737996E258E619400711EDA /* topo-350.jpg in Resources */,
+				3737996F258E619400711EDA /* topo-527.jpg in Resources */,
+				37379970258E619400711EDA /* topo-650.jpg in Resources */,
+				37379971258E619400711EDA /* topo-606.jpg in Resources */,
+				37379972258E619400711EDA /* topo-535.jpg in Resources */,
+				37379973258E619400711EDA /* topo-582.jpg in Resources */,
+				37379974258E619400711EDA /* topo-603.jpg in Resources */,
+				37379975258E619400711EDA /* topo-498.jpg in Resources */,
+				37379976258E619400711EDA /* topo-596.jpg in Resources */,
+				37379977258E619400711EDA /* area-4-topo-lines.json in Resources */,
+				37379978258E619400711EDA /* topo-461.jpg in Resources */,
+				37379979258E619400711EDA /* topo-521.jpg in Resources */,
+				3737997A258E619400711EDA /* topo-557.jpg in Resources */,
+				3737997B258E619400711EDA /* topo-438.jpg in Resources */,
+				3737997C258E619400711EDA /* topo-586.jpg in Resources */,
+				3737997D258E619400711EDA /* topo-410.jpg in Resources */,
+				3737997E258E619400711EDA /* topo-485.jpg in Resources */,
+				3737997F258E619400711EDA /* topo-313.jpg in Resources */,
+				37379980258E619400711EDA /* topo-614.jpg in Resources */,
+				37379981258E619400711EDA /* topo-665.jpg in Resources */,
+				37379982258E619400711EDA /* topo-367.jpg in Resources */,
+				37379983258E619400711EDA /* topo-310.jpg in Resources */,
+				37379984258E619400711EDA /* topo-536.jpg in Resources */,
+				37379985258E619400711EDA /* topo-615.jpg in Resources */,
+				37379986258E619400711EDA /* topo-616.jpg in Resources */,
+				37379987258E619400711EDA /* topo-345.jpg in Resources */,
+				37379988258E619400711EDA /* topo-608.jpg in Resources */,
+				37379989258E619400711EDA /* topo-546.jpg in Resources */,
+				3737998A258E619400711EDA /* topo-419.jpg in Resources */,
+				3737998B258E619400711EDA /* topo-460.jpg in Resources */,
+				3737998C258E619400711EDA /* topo-466.jpg in Resources */,
+				3737998D258E619400711EDA /* topo-423.jpg in Resources */,
+				3737998E258E619400711EDA /* topo-327.jpg in Resources */,
+				3737998F258E619400711EDA /* topo-424.jpg in Resources */,
+				37379990258E619400711EDA /* topo-291.jpg in Resources */,
+				37379991258E619400711EDA /* topo-563.jpg in Resources */,
+				37379992258E619400711EDA /* topo-319.jpg in Resources */,
+				37379993258E619400711EDA /* topo-346.jpg in Resources */,
+				37379994258E619400711EDA /* topo-447.jpg in Resources */,
+				37379995258E619400711EDA /* topo-643.jpg in Resources */,
+				37379996258E619400711EDA /* topo-581.jpg in Resources */,
+				37379997258E619400711EDA /* topo-379.jpg in Resources */,
+				37379998258E619400711EDA /* topo-640.jpg in Resources */,
+				37379999258E619400711EDA /* topo-619.jpg in Resources */,
+				3737999A258E619400711EDA /* topo-493.jpg in Resources */,
+				3737999B258E619400711EDA /* topo-627.jpg in Resources */,
+				3737999C258E619400711EDA /* topo-676.jpg in Resources */,
+				3737999D258E619400711EDA /* topo-474.jpg in Resources */,
+				3737999E258E619400711EDA /* topo-386.jpg in Resources */,
+				3737999F258E619400711EDA /* topo-589.jpg in Resources */,
+				373799A0258E619400711EDA /* topo-518.jpg in Resources */,
+				373799A1258E619400711EDA /* topo-359.jpg in Resources */,
+				373799A2258E619400711EDA /* topo-525.jpg in Resources */,
+				373799A3258E619400711EDA /* topo-380.jpg in Resources */,
+				373799A4258E619400711EDA /* topo-588.jpg in Resources */,
+				373799A5258E619400711EDA /* topo-309.jpg in Resources */,
+				373799A6258E619400711EDA /* topo-517.jpg in Resources */,
+				373799A7258E619400711EDA /* topo-494.jpg in Resources */,
+				373799A8258E619400711EDA /* topo-567.jpg in Resources */,
+				373799A9258E619400711EDA /* topo-633.jpg in Resources */,
+				373799AA258E619400711EDA /* topo-292.jpg in Resources */,
+				373799AB258E619400711EDA /* topo-639.jpg in Resources */,
+				373799AC258E619400711EDA /* topo-497.jpg in Resources */,
+				373799AD258E619400711EDA /* topo-667.jpg in Resources */,
+				373799AE258E619400711EDA /* topo-293.jpg in Resources */,
+				373799AF258E619400711EDA /* topo-463.jpg in Resources */,
+				373799B0258E619400711EDA /* topo-674.jpg in Resources */,
+				373799B1258E619400711EDA /* topo-340.jpg in Resources */,
+				373799B2258E619400711EDA /* topo-290.jpg in Resources */,
+				373799B3258E619400711EDA /* topo-430.jpg in Resources */,
+				373799B4258E619400711EDA /* topo-442.jpg in Resources */,
+				373799B5258E619400711EDA /* topo-551.jpg in Resources */,
+				373799B6258E619400711EDA /* topo-647.jpg in Resources */,
+				373799B7258E619400711EDA /* topo-499.jpg in Resources */,
+				373799B8258E619400711EDA /* topo-671.jpg in Resources */,
+				373799B9258E619400711EDA /* topo-506.jpg in Resources */,
+				373799BA258E619400711EDA /* topo-272.jpg in Resources */,
+				373799BB258E619400711EDA /* topo-532.jpg in Resources */,
+				373799BC258E619400711EDA /* topo-330.jpg in Resources */,
+				373799BD258E619400711EDA /* topo-677.jpg in Resources */,
+				373799BE258E619400711EDA /* topo-283.jpg in Resources */,
+				373799BF258E619400711EDA /* topo-569.jpg in Resources */,
+				373799C0258E619400711EDA /* topo-276.jpg in Resources */,
+				373799C1258E619400711EDA /* topo-355.jpg in Resources */,
+				373799C2258E619400711EDA /* topo-504.jpg in Resources */,
+				373799C3258E619400711EDA /* topo-489.jpg in Resources */,
+				373799C4258E619400711EDA /* topo-620.jpg in Resources */,
+				373799C5258E619400711EDA /* topo-388.jpg in Resources */,
+				373799C6258E619400711EDA /* topo-552.jpg in Resources */,
+				373799C7258E619400711EDA /* topo-512.jpg in Resources */,
+				373799C8258E619400711EDA /* topo-672.jpg in Resources */,
+				373799C9258E619400711EDA /* topo-612.jpg in Resources */,
+				373799CA258E619400711EDA /* topo-637.jpg in Resources */,
+				373799CB258E619400711EDA /* topo-280.jpg in Resources */,
+				373799CC258E619400711EDA /* topo-666.jpg in Resources */,
+				373799CD258E619400711EDA /* topo-622.jpg in Resources */,
+				373799CE258E619400711EDA /* topo-651.jpg in Resources */,
+				373799CF258E619400711EDA /* topo-632.jpg in Resources */,
+				373799D0258E619400711EDA /* topo-398.jpg in Resources */,
+				373799D1258E619400711EDA /* topo-370.jpg in Resources */,
+				373799D2258E619400711EDA /* topo-426.jpg in Resources */,
+				373799D3258E619400711EDA /* topo-684.jpg in Resources */,
+				373799D4258E619400711EDA /* topo-529.jpg in Resources */,
+				373799D5258E619400711EDA /* topo-641.jpg in Resources */,
+				373799D6258E619400711EDA /* topo-670.jpg in Resources */,
+				373799D7258E619400711EDA /* topo-516.jpg in Resources */,
+				373799D8258E619400711EDA /* topo-513.jpg in Resources */,
+				373799D9258E619400711EDA /* topo-664.jpg in Resources */,
+				373799DA258E619400711EDA /* topo-322.jpg in Resources */,
+				373799DB258E619400711EDA /* topo-472.jpg in Resources */,
+				373799DC258E619400711EDA /* topo-301.jpg in Resources */,
+				373799DD258E619400711EDA /* topo-425.jpg in Resources */,
+				373799DE258E619400711EDA /* topo-662.jpg in Resources */,
+				373799DF258E619400711EDA /* topo-344.jpg in Resources */,
+				373799E0258E619400711EDA /* topo-514.jpg in Resources */,
+				373799E1258E619400711EDA /* topo-570.jpg in Resources */,
+				373799E2258E619400711EDA /* topo-389.jpg in Resources */,
+				373799E3258E619400711EDA /* topo-320.jpg in Resources */,
+				373799E4258E619400711EDA /* topo-680.jpg in Resources */,
+				373799E5258E619400711EDA /* topo-679.jpg in Resources */,
+				373799E6258E619400711EDA /* topo-353.jpg in Resources */,
+				373799E7258E619400711EDA /* topo-468.jpg in Resources */,
+				373799E8258E619400711EDA /* topo-269.jpg in Resources */,
+				373799E9258E619400711EDA /* topo-273.jpg in Resources */,
+				373799EA258E619400711EDA /* topo-642.jpg in Resources */,
+				373799EB258E619400711EDA /* topo-593.jpg in Resources */,
+				373799EC258E619400711EDA /* topo-362.jpg in Resources */,
+				373799ED258E619400711EDA /* area-2-data.geojson in Resources */,
+				373799EE258E619400711EDA /* topo-475.jpg in Resources */,
+				373799EF258E619400711EDA /* topo-654.jpg in Resources */,
+				373799F0258E619400711EDA /* area-5-data.geojson in Resources */,
+				373799F1258E619400711EDA /* topo-316.jpg in Resources */,
+				373799F2258E619400711EDA /* topo-549.jpg in Resources */,
+				373799F3258E619400711EDA /* topo-590.jpg in Resources */,
+				373799F4258E619400711EDA /* topo-628.jpg in Resources */,
+				373799F5258E619400711EDA /* topo-288.jpg in Resources */,
+				373799F6258E619400711EDA /* topo-341.jpg in Resources */,
+				373799F7258E619400711EDA /* topo-652.jpg in Resources */,
+				373799F8258E619400711EDA /* topo-274.jpg in Resources */,
+				373799F9258E619400711EDA /* topo-311.jpg in Resources */,
+				373799FA258E619400711EDA /* topo-659.jpg in Resources */,
+				373799FB258E619400711EDA /* topo-358.jpg in Resources */,
+				373799FC258E619400711EDA /* topo-437.jpg in Resources */,
+				373799FD258E619400711EDA /* topo-390.jpg in Resources */,
+				373799FE258E619400711EDA /* topo-611.jpg in Resources */,
+				373799FF258E619400711EDA /* topo-306.jpg in Resources */,
+				37379A00258E619400711EDA /* topo-644.jpg in Resources */,
+				37379A01258E619400711EDA /* topo-396.jpg in Resources */,
+				37379A02258E619400711EDA /* topo-631.jpg in Resources */,
+				37379A03258E619400711EDA /* topo-422.jpg in Resources */,
+				37379A04258E619400711EDA /* topo-457.jpg in Resources */,
+				37379A05258E619400711EDA /* topo-441.jpg in Resources */,
+				37379A06258E619400711EDA /* topo-685.jpg in Resources */,
+				37379A07258E619400711EDA /* topo-630.jpg in Resources */,
+				37379A08258E619400711EDA /* topo-579.jpg in Resources */,
+				37379A09258E619400711EDA /* topo-315.jpg in Resources */,
+				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
+				37379A0B258E619400711EDA /* topo-507.jpg in Resources */,
+				37379A0C258E619400711EDA /* topo-436.jpg in Resources */,
+				37379A0D258E619400711EDA /* topo-416.jpg in Resources */,
+				37379A0E258E619400711EDA /* topo-592.jpg in Resources */,
+				37379A0F258E619400711EDA /* topo-331.jpg in Resources */,
+				37379A10258E619400711EDA /* topo-526.jpg in Resources */,
+				37379A11258E619400711EDA /* topo-648.jpg in Resources */,
+				37379A12258E619400711EDA /* topo-530.jpg in Resources */,
+				37379A13258E619400711EDA /* topo-545.jpg in Resources */,
+				37379A14258E619400711EDA /* topo-655.jpg in Resources */,
+				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
+				37379A16258E619400711EDA /* topo-649.jpg in Resources */,
+				37379A17258E619400711EDA /* topo-605.jpg in Resources */,
+				37379A18258E619400711EDA /* topo-634.jpg in Resources */,
+				37379A19258E619400711EDA /* topo-538.jpg in Resources */,
+				37379A1A258E619400711EDA /* topo-304.jpg in Resources */,
+				37379A1B258E619400711EDA /* topo-635.jpg in Resources */,
+				37379A1C258E619400711EDA /* topo-568.jpg in Resources */,
+				37379A1D258E619400711EDA /* topo-492.jpg in Resources */,
+				37379A1E258E619400711EDA /* topo-369.jpg in Resources */,
+				37379A1F258E619400711EDA /* topo-626.jpg in Resources */,
+				37379A20258E619400711EDA /* topo-524.jpg in Resources */,
+				37379A21258E619400711EDA /* topo-657.jpg in Resources */,
+				37379A22258E619400711EDA /* topo-392.jpg in Resources */,
+				37379A23258E619400711EDA /* topo-600.jpg in Resources */,
+				37379A24258E619400711EDA /* topo-594.jpg in Resources */,
+				37379A25258E619400711EDA /* topo-496.jpg in Resources */,
+				37379A26258E619400711EDA /* topo-363.jpg in Resources */,
+				37379A27258E619400711EDA /* topo-597.jpg in Resources */,
+				37379A28258E619400711EDA /* topo-448.jpg in Resources */,
+				37379A29258E619400711EDA /* topo-307.jpg in Resources */,
+				37379A2A258E619400711EDA /* topo-584.jpg in Resources */,
+				37379A2B258E619400711EDA /* topo-332.jpg in Resources */,
+				37379A2C258E619400711EDA /* topo-295.jpg in Resources */,
+				37379A2D258E619400711EDA /* topo-400.jpg in Resources */,
+				37379A2E258E619400711EDA /* topo-501.jpg in Resources */,
+				37379A2F258E619400711EDA /* topo-305.jpg in Resources */,
+				37379A30258E619400711EDA /* topo-351.jpg in Resources */,
+				37379A31258E619400711EDA /* topo-334.jpg in Resources */,
+				37379A32258E619400711EDA /* topo-333.jpg in Resources */,
+				37379A33258E619400711EDA /* topo-303.jpg in Resources */,
+				37379A34258E619400711EDA /* topo-566.jpg in Resources */,
+				37379A35258E619400711EDA /* topo-395.jpg in Resources */,
+				37379A36258E619400711EDA /* topo-405.jpg in Resources */,
+				37379A37258E619400711EDA /* topo-646.jpg in Resources */,
+				37379A38258E619400711EDA /* topo-335.jpg in Resources */,
+				37379A39258E619400711EDA /* topo-528.jpg in Resources */,
+				37379A3A258E619400711EDA /* topo-439.jpg in Resources */,
+				37379A3B258E619400711EDA /* topo-297.jpg in Resources */,
+				37379A3C258E619400711EDA /* topo-469.jpg in Resources */,
+				37379A3D258E619400711EDA /* Assets.xcassets in Resources */,
+				37379A3E258E619400711EDA /* topo-454.jpg in Resources */,
+				37379A3F258E619400711EDA /* topo-556.jpg in Resources */,
+				37379A40258E619400711EDA /* topo-508.jpg in Resources */,
+				37379A41258E619400711EDA /* topo-271.jpg in Resources */,
+				37379A42258E619400711EDA /* topo-500.jpg in Resources */,
+				37379A43258E619400711EDA /* area-1-data.geojson in Resources */,
+				37379A44258E619400711EDA /* topo-302.jpg in Resources */,
+				37379A45258E619400711EDA /* topo-520.jpg in Resources */,
+				37379A46258E619400711EDA /* Localizable.strings in Resources */,
+				37379A47258E619400711EDA /* topo-673.jpg in Resources */,
+				37379A48258E619400711EDA /* topo-653.jpg in Resources */,
+				37379A49258E619400711EDA /* topo-660.jpg in Resources */,
+				37379A4A258E619400711EDA /* topo-384.jpg in Resources */,
+				37379A4B258E619400711EDA /* topo-412.jpg in Resources */,
+				37379A4C258E619400711EDA /* topo-554.jpg in Resources */,
+				37379A4D258E619400711EDA /* topo-621.jpg in Resources */,
+				37379A4E258E619400711EDA /* topo-533.jpg in Resources */,
+				37379A4F258E619400711EDA /* topo-476.jpg in Resources */,
+				37379A50258E619400711EDA /* area-5-topo-lines.json in Resources */,
+				37379A51258E619400711EDA /* topo-356.jpg in Resources */,
+				37379A52258E619400711EDA /* topo-385.jpg in Resources */,
+				37379A53258E619400711EDA /* topo-550.jpg in Resources */,
+				37379A54258E619400711EDA /* topo-509.jpg in Resources */,
+				37379A55258E619400711EDA /* topo-349.jpg in Resources */,
+				37379A56258E619400711EDA /* topo-675.jpg in Resources */,
+				37379A57258E619400711EDA /* topo-342.jpg in Resources */,
+				37379A58258E619400711EDA /* topo-503.jpg in Resources */,
+				37379A59258E619400711EDA /* topo-624.jpg in Resources */,
+				37379A5A258E619400711EDA /* topo-352.jpg in Resources */,
+				37379A5B258E619400711EDA /* topo-287.jpg in Resources */,
+				37379A5C258E619400711EDA /* topo-487.jpg in Resources */,
+				37379A5D258E619400711EDA /* topo-541.jpg in Resources */,
+				37379A5E258E619400711EDA /* topo-585.jpg in Resources */,
+				37379A5F258E619400711EDA /* topo-490.jpg in Resources */,
+				37379A60258E619400711EDA /* topo-381.jpg in Resources */,
+				37379A61258E619400711EDA /* topo-365.jpg in Resources */,
+				37379A62258E619400711EDA /* topo-432.jpg in Resources */,
+				37379A63258E619400711EDA /* topo-343.jpg in Resources */,
+				37379A64258E619400711EDA /* topo-571.jpg in Resources */,
+				37379A65258E619400711EDA /* topo-336.jpg in Resources */,
+				37379A66258E619400711EDA /* topo-578.jpg in Resources */,
+				37379A67258E619400711EDA /* topo-678.jpg in Resources */,
+				37379A68258E619400711EDA /* topo-328.jpg in Resources */,
+				37379A69258E619400711EDA /* topo-604.jpg in Resources */,
+				37379A6A258E619400711EDA /* topo-414.jpg in Resources */,
+				37379A6B258E619400711EDA /* topo-502.jpg in Resources */,
+				37379A6C258E619400711EDA /* topo-278.jpg in Resources */,
+				37379A6D258E619400711EDA /* topo-364.jpg in Resources */,
+				37379A6E258E619400711EDA /* topo-347.jpg in Resources */,
+				37379A6F258E619400711EDA /* topo-623.jpg in Resources */,
+				37379A70258E619400711EDA /* topo-573.jpg in Resources */,
+				37379A71258E619400711EDA /* topo-329.jpg in Resources */,
+				37379A72258E619400711EDA /* topo-383.jpg in Resources */,
+				37379A73258E619400711EDA /* topo-488.jpg in Resources */,
+				37379A74258E619400711EDA /* topo-337.jpg in Resources */,
+				37379A75258E619400711EDA /* area-1-topo-lines.json in Resources */,
+				37379A76258E619400711EDA /* topo-599.jpg in Resources */,
+				37379A77258E619400711EDA /* topo-411.jpg in Resources */,
+				37379A78258E619400711EDA /* topo-361.jpg in Resources */,
+				37379A79258E619400711EDA /* topo-683.jpg in Resources */,
+				37379A7A258E619400711EDA /* topo-638.jpg in Resources */,
+				37379A7B258E619400711EDA /* topo-629.jpg in Resources */,
+				37379A7C258E619400711EDA /* topo-577.jpg in Resources */,
+				37379A7D258E619400711EDA /* topo-515.jpg in Resources */,
+				37379A7E258E619400711EDA /* topo-348.jpg in Resources */,
+				37379A7F258E619400711EDA /* topo-354.jpg in Resources */,
+				37379A80258E619400711EDA /* topo-548.jpg in Resources */,
+				37379A81258E619400711EDA /* topo-265.jpg in Resources */,
+				37379A82258E619400711EDA /* topo-613.jpg in Resources */,
+				37379A83258E619400711EDA /* topo-531.jpg in Resources */,
+				37379A84258E619400711EDA /* topo-663.jpg in Resources */,
+				37379A85258E619400711EDA /* topo-451.jpg in Resources */,
+				37379A86258E619400711EDA /* topo-669.jpg in Resources */,
+				37379A87258E619400711EDA /* topo-547.jpg in Resources */,
+				37379A88258E619400711EDA /* topo-397.jpg in Resources */,
+				37379A89258E619400711EDA /* topo-565.jpg in Resources */,
+				37379A8A258E619400711EDA /* topo-610.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37A8C6242453263300DC161F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1746,6 +2508,55 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		37379908258E619400711EDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37379909258E619400711EDA /* ImagePicker.swift in Sources */,
+				3737990A258E619400711EDA /* AreaRowView.swift in Sources */,
+				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
+				3737990C258E619400711EDA /* FabFiltersView.swift in Sources */,
+				3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */,
+				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
+				3737990F258E619400711EDA /* Steepness.swift in Sources */,
+				37379910258E619400711EDA /* CircuitFilterView.swift in Sources */,
+				37379911258E619400711EDA /* GeoStore.swift in Sources */,
+				37379912258E619400711EDA /* FiltersView.swift in Sources */,
+				37379913258E619400711EDA /* LineView.swift in Sources */,
+				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
+				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
+				37379916258E619400711EDA /* PoiAnnotationView.swift in Sources */,
+				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
+				37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */,
+				37379919258E619400711EDA /* Poi.swift in Sources */,
+				3737991A258E619400711EDA /* CircleView.swift in Sources */,
+				3737991B258E619400711EDA /* AreaItemView.swift in Sources */,
+				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
+				3737991D258E619400711EDA /* MapView.swift in Sources */,
+				3737991E258E619400711EDA /* TopoStore.swift in Sources */,
+				3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */,
+				37379920258E619400711EDA /* DataStore.swift in Sources */,
+				37379921258E619400711EDA /* AreaView.swift in Sources */,
+				37379922258E619400711EDA /* BoolderButtonStyle.swift in Sources */,
+				37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */,
+				37379924258E619400711EDA /* GradeRange.swift in Sources */,
+				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
+				37379926258E619400711EDA /* Grade.swift in Sources */,
+				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
+				37379928258E619400711EDA /* CircuitOverlay.swift in Sources */,
+				37379929258E619400711EDA /* Problem.swift in Sources */,
+				3737992A258E619400711EDA /* Filters.swift in Sources */,
+				3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */,
+				3737992C258E619400711EDA /* OtherAreasView.swift in Sources */,
+				3737992D258E619400711EDA /* ProblemListView.swift in Sources */,
+				3737992E258E619400711EDA /* HeadingView.swift in Sources */,
+				3737992F258E619400711EDA /* Circuit.swift in Sources */,
+				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
+				37379931258E619400711EDA /* Line.swift in Sources */,
+				37379932258E619400711EDA /* PoiAnnotation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37A8C6222453263300DC161F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1819,6 +2630,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		37379A8C258E619400711EDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
+				DEVELOPMENT_TEAM = 8Y46BCZUL9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Dev-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		37379A8D258E619400711EDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
+				DEVELOPMENT_TEAM = 8Y46BCZUL9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Dev-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		37A8C6382453263400DC161F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1984,6 +2841,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		37379A8B258E619400711EDA /* Build configuration list for PBXNativeTarget "Boolder dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37379A8C258E619400711EDA /* Debug */,
+				37379A8D258E619400711EDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		37A8C6212453263300DC161F /* Build configuration list for PBXProject "Boolder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
