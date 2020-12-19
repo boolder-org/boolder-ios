@@ -22,8 +22,6 @@ class LocationFetcher: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        start()
     }
 
     func start() {

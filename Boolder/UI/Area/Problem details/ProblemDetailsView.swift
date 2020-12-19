@@ -262,6 +262,12 @@ struct ProblemDetailsView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 animate { drawPercentage = 1.0 }
             }
+            
+            #if DEVELOPMENT
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                locationFetcher.start()
+            }
+            #endif
         }
     }
     
