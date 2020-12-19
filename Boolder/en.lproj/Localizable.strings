@@ -7,11 +7,18 @@
 */
 
 // MARK: Discover view
-"discover.title" = "Where should we climb?";
+"discover.title" = "Bouldering areas";
 "discover.perfect_for_beginners" = "Perfect for beginners";
 "discover.xx_problems_for_beginners" = "%@ problems for beginners";
 "discover.great_variety" = "Great variety between 5 and 8";
 "discover.xx_problems_over_5" = "%@ problems between 5a and 8c+";
+"discover.other_areas" = "Other areas";
+
+// MARK: Other areas
+"other_areas.title" = "Other areas";
+"other_areas.p1" = "We're working on adding new areas in Fontainebleau";
+"other_areas.p2" = "Feel free to drop us a line to share your suggestions for the next areas.";
+"other_areas.contact_button" = "Send us an email";
 
 // MARK: Area view
 "area.filter" = "Filter";

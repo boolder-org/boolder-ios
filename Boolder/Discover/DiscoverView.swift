@@ -119,22 +119,22 @@ struct DiscoverView: View {
                     
                         }
                         
-//                        Group {
-//                            NavigationLink(
-//                                destination: EmptyView(),
-//                                label: {
-//                                    HStack {
-//                                        Text("Autres secteurs")
-//                                            .font(.body)
-//                                            .foregroundColor(Color.green)
-//                                        Spacer()
-//                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-//                                    }
-//                                }
-//                            )
-//                            
-//                            Divider()
-//                        }
+                        Group {
+                            NavigationLink(
+                                destination: OtherAreasView(),
+                                label: {
+                                    HStack {
+                                        Text("discover.other_areas")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                        }
                         
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
