@@ -25,6 +25,8 @@ struct AreaView: View {
     @State private var centerOnProblem: Problem? = nil
     @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
     
+    @State private var areaResourcesDownloaded = false
+    
     var body: some View {
         ZStack {
             ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
@@ -46,7 +48,8 @@ struct AreaView: View {
                         problem: $selectedProblem,
                         centerOnProblem: $centerOnProblem,
                         centerOnProblemCount: $centerOnProblemCount,
-                        showList: $showList
+                        showList: $showList,
+                        areaResourcesDownloaded: $areaResourcesDownloaded
                     )
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
@@ -109,6 +112,26 @@ struct AreaView: View {
                     .padding(.leading)
             }
         )
+        .onAppear{
+            dataStore.topoStore.requestResources(onSuccess: {
+                areaResourcesDownloaded = true
+                
+            }, onFailure: { error in
+                print("On-demand resource error")
+                
+                // FIXME: implement UI
+                switch error.code {
+                case NSBundleOnDemandResourceOutOfSpaceError:
+                    print("You don't have enough space available to download this resource.")
+                case NSBundleOnDemandResourceExceededMaximumSizeError:
+                    print("The bundle resource was too big.")
+                case NSBundleOnDemandResourceInvalidTagError:
+                    print("The requested tag does not exist.")
+                default:
+                    print(error.description)
+                }
+            })
+        }
 //        .onAppear {
 //        #if DEBUG
 //            // delete all favorites

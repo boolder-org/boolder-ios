@@ -28,7 +28,7 @@ struct ProblemDetailsView: View {
     @State private var presentPoiActionSheet = false
     @State private var drawPercentage: CGFloat = .zero
     
-    @State private var topoImageDownloaded = false
+    @Binding var areaResourcesDownloaded: Bool
     
     @State private var presentImagePicker = false
     @State private var capturedPhoto = UIImage()
@@ -44,33 +44,12 @@ struct ProblemDetailsView: View {
         }
     }
     
-    func requestTopoImage() {
-        dataStore.topoStore.requestResources(onSuccess: {
-            topoImageDownloaded = true
-            
-        }, onFailure: { error in
-            print("On-demand resource error")
-            
-            // FIXME: implement UI
-            switch error.code {
-            case NSBundleOnDemandResourceOutOfSpaceError:
-                print("You don't have enough space available to download this resource.")
-            case NSBundleOnDemandResourceExceededMaximumSizeError:
-                print("The bundle resource was too big.")
-            case NSBundleOnDemandResourceInvalidTagError:
-                print("The requested tag does not exist.")
-            default:
-                print(error.description)
-            }
-        })
-    }
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 ZStack(alignment: .topLeading) {
                     
-                    if topoImageDownloaded {
+                    if areaResourcesDownloaded {
                         Image(uiImage: problem.mainTopoPhoto())
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -299,8 +278,6 @@ struct ProblemDetailsView: View {
                 locationFetcher.start()
             }
             #endif
-            
-            requestTopoImage()
         }
     }
     
@@ -479,7 +456,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.problems.first!), centerOnProblem: .constant(nil), centerOnProblemCount: .constant(0), showList: .constant(true))
+        ProblemDetailsView(problem: .constant(dataStore.problems.first!), centerOnProblem: .constant(nil), centerOnProblemCount: .constant(0), showList: .constant(true), areaResourcesDownloaded: .constant(false))
             .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
     }
