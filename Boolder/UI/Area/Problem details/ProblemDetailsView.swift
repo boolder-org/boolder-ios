@@ -60,6 +60,8 @@ struct ProblemDetailsView: View {
                             .aspectRatio(contentMode: .fit)
                     }
                     
+                    ProgressView(value: dataStore.topoStore.downloadProgress)
+                    
                     LineView(problem: $problem, drawPercentage: $drawPercentage)
                     
                     GeometryReader { geo in
