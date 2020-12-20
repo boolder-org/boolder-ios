@@ -293,7 +293,7 @@ struct ProblemDetailsView: View {
         
         if let url = mailToURL {
             buttons.append(
-                .default(Text("Signaler un problème")) {
+                .default(Text("problem.action.report")) {
                     UIApplication.shared.open(url)
                 }
             )
