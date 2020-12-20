@@ -28,6 +28,8 @@ struct ProblemDetailsView: View {
     @State private var presentPoiActionSheet = false
     @State private var drawPercentage: CGFloat = .zero
     
+    @State private var topoImageDownloaded = false
+    
     @State private var presentImagePicker = false
     @State private var capturedPhoto = UIImage()
     
@@ -42,13 +44,42 @@ struct ProblemDetailsView: View {
         }
     }
     
+    func requestTopoImage() {
+        dataStore.topoStore.requestResources(onSuccess: {
+            topoImageDownloaded = true
+            
+        }, onFailure: { error in
+            print("On-demand resource error")
+            
+            // FIXME: implement UI
+            switch error.code {
+            case NSBundleOnDemandResourceOutOfSpaceError:
+                print("You don't have enough space available to download this resource.")
+            case NSBundleOnDemandResourceExceededMaximumSizeError:
+                print("The bundle resource was too big.")
+            case NSBundleOnDemandResourceInvalidTagError:
+                print("The requested tag does not exist.")
+            default:
+                print(error.description)
+            }
+        })
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 ZStack(alignment: .topLeading) {
-                    Image(uiImage: problem.mainTopoPhoto())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    
+                    if topoImageDownloaded {
+                        Image(uiImage: problem.mainTopoPhoto())
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    else {
+                        Image(uiImage: UIImage(named: "placeholder.png")!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
                     
                     LineView(problem: $problem, drawPercentage: $drawPercentage)
                     
@@ -268,6 +299,8 @@ struct ProblemDetailsView: View {
                 locationFetcher.start()
             }
             #endif
+            
+            requestTopoImage()
         }
     }
     
