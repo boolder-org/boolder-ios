@@ -43,7 +43,7 @@ class TopoStore : ObservableObject {
     // MARK: On Demand Resources
     
     var odrRequest: NSBundleResourceRequest?
-    private var observers = [NSKeyValueObservation]() // we keep a reference as long as possible to avoid premature purging
+    private var observer: NSKeyValueObservation?
     @Published var downloadProgress: Double = 0
     
     
@@ -52,10 +52,9 @@ class TopoStore : ObservableObject {
         odrRequest = NSBundleResourceRequest(tags: [areaTag])
         guard let request = odrRequest else { return }
         
-        let observer = request.progress.observe(\.fractionCompleted, options: .new) { progress, change in
+        observer = request.progress.observe(\.fractionCompleted, options: .new) { progress, change in
             self.downloadProgress = progress.fractionCompleted
         }
-        observers.append(observer)
         
         request.beginAccessingResources { (error: Error?) in
             if let error = error {
