@@ -12,21 +12,17 @@ struct ImageLoadingView: View {
     @Binding var progress: Double
     
     var body: some View {
-        ZStack(alignment: .center) {
-            GeometryReader { geo in
-                    Color(white: 0.9, opacity: 1)
-                
-                VStack {
+        GeometryReader { geo in
+            VStack {
+                Spacer()
+                Text("problem.image.loading").foregroundColor(.gray)
+                HStack {
                     Spacer()
-                    Text("problem.image.loading").foregroundColor(.gray)
-                    HStack {
-                        Spacer()
-                        ProgressView(value: progress)
-                            .frame(width: geo.size.width/2, alignment: .center)
-                        Spacer()
-                    }
+                    ProgressView(value: progress)
+                        .frame(width: geo.size.width/2, alignment: .center)
                     Spacer()
                 }
+                Spacer()
             }
         }
     }
