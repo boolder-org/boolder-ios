@@ -54,7 +54,9 @@ struct ProblemDetailsView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                         
-                        LineView(problem: $problem, drawPercentage: $drawPercentage)
+                        if problem.isPhotoPresent() {
+                            LineView(problem: $problem, drawPercentage: $drawPercentage)
+                        }
                         
                         GeometryReader { geo in
                             ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
