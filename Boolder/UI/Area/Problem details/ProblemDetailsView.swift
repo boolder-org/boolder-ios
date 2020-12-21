@@ -19,77 +19,21 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
+    
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
-    @Binding var showList: Bool
+    @Binding var showList: Bool // for the "center on map" feature
+    
+    @Binding var areaResourcesDownloaded: Bool
     
     @State var presentMoreActionsheet = false
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
-    @State private var drawPercentage: CGFloat = .zero // FIXME: rename
-    
-    @Binding var areaResourcesDownloaded: Bool
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ZStack(alignment: .center) {
-                    
-                    if areaResourcesDownloaded {
-                        if let topoPhoto = problem.mainTopoPhoto {
-                            Image(uiImage: topoPhoto)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                            
-                            LineView(problem: $problem, drawPercentage: $drawPercentage)
-                        }
-                        else {
-                            Image("nophoto")
-                                .font(.system(size: 60))
-                                .foregroundColor(Color.gray)
-                        }
-                        
-                        GeometryReader { geo in
-                            ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                                if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                    Button(action: {
-                                        switchToProblem(secondaryProblem)
-                                    }) {
-                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
-                                    }
-                                    .offset(lineStart)
-                                }
-                            }
-                            
-                            if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                    .offset(lineStart)
-                            }
-                        }
-                    }
-                    else {
-                        ImageLoadingView(progress: $dataStore.topoStore.downloadProgress)
-                            .aspectRatio(4/3, contentMode: .fill)
-                    }
-                    
-                    HStack {
-                        VStack {
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "chevron.down.circle.fill")
-                                    .font(.system(size: 30))
-                                    .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
-                                    .padding(16)
-                                    .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
-                            }
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-                }
-                .aspectRatio(4/3, contentMode: .fit)
-                .background(Color(white: 0.9, opacity: 1))
+                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded)
                 
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
@@ -223,7 +167,6 @@ struct ProblemDetailsView: View {
                     }
                     .padding(.top, 16)
                     
-                    
                     #if DEVELOPMENT
                     GeolocatePhotoView(problemId: problem.id)
                     #endif
@@ -233,14 +176,6 @@ struct ProblemDetailsView: View {
                 .layoutPriority(1) // without this the imageview prevents the title from going multiline
                 
                 Spacer()
-            }
-        }
-        .onAppear {
-            // hack to make the animation start after the view is properly loaded
-            // I tried doing it synchronously by I couldn't make it work :grimacing:
-            // I also tried to use a lower value for the delay but it doesn't work (no animation at all)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                animate { drawPercentage = 1.0 }
             }
         }
     }
@@ -300,32 +235,6 @@ struct ProblemDetailsView: View {
     
     func shareProblemDescription() -> String {
         return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.areas[dataStore.areaId]!)
-    }
-    
-    func animate(action: () -> Void) {
-        withAnimation(Animation.easeInOut(duration: 0.5)) {
-            action()
-        }
-    }
-    
-    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
-            
-        return CGSize(
-            width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
-            height: (CGFloat(lineFirstPoint.y) * size.height) - 14
-        )
-    }
-    
-    func switchToProblem(_ newProblem: Problem) {
-        drawPercentage = 0.0
-        problem = newProblem
-
-        // doing it async to be sure that the line is reset to zero
-        // (there's probably a cleaner way to do it)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            animate { drawPercentage = 1.0 }
-        }
     }
         
     func isFavorite() -> Bool {
