@@ -47,10 +47,9 @@ struct ProblemDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-//                GeometryReader { geo in
                 ZStack(alignment: .topLeading) {
                     
-                    if false { // areaResourcesDownloaded {
+                    if areaResourcesDownloaded {
                         Image(uiImage: problem.mainTopoPhoto())
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -77,6 +76,7 @@ struct ProblemDetailsView: View {
                     }
                     else {
                         ImageLoadingView(progress: $dataStore.topoStore.downloadProgress)
+                            .aspectRatio(4/3, contentMode: .fill)
                     }
                     
                     Button(action: {
@@ -89,8 +89,6 @@ struct ProblemDetailsView: View {
                             .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
                     }
                 }
-//                .frame(width: geo.size.width, height: geo.size.width * 3/4, alignment: .center)
-//                }
                 
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {

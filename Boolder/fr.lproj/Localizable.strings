@@ -103,3 +103,4 @@
 "problem.action.share" = "Partager";
 "problem.action.share.description" = "« %@ » à %@";
 "problem.action.report" = "Signaler un problème";
+"problem.image.loading" = "Chargement...";

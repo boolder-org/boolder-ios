@@ -14,17 +14,11 @@ struct ImageLoadingView: View {
     var body: some View {
         ZStack(alignment: .center) {
             GeometryReader { geo in
+                    Color(white: 0.9, opacity: 1)
                 
                 VStack {
                     Spacer()
-                    Color(white: 0.9, opacity: 1).frame(width: geo.size.width, height: geo.size.width * 3/4, alignment: .center)
-                    Spacer()
-                }
-                
-                
-                VStack {
-                    Spacer()
-                    Text("Chargement...").foregroundColor(.gray)
+                    Text("problem.image.loading").foregroundColor(.gray)
                     HStack {
                         Spacer()
                         ProgressView(value: progress)
@@ -35,8 +29,6 @@ struct ImageLoadingView: View {
                 }
             }
         }
-        
-        
     }
 }
 
