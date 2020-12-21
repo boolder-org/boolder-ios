@@ -26,7 +26,7 @@ struct ProblemDetailsView: View {
     @State var presentMoreActionsheet = false
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
-    @State private var drawPercentage: CGFloat = .zero
+    @State private var drawPercentage: CGFloat = .zero // FIXME: rename
     
     @Binding var areaResourcesDownloaded: Bool
     
@@ -47,39 +47,36 @@ struct ProblemDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
+//                GeometryReader { geo in
                 ZStack(alignment: .topLeading) {
                     
-                    if areaResourcesDownloaded {
+                    if false { // areaResourcesDownloaded {
                         Image(uiImage: problem.mainTopoPhoto())
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                    }
-                    else {
-                        Image(uiImage: UIImage(named: "placeholder.png")!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    }
-                    
-                    ProgressView(value: dataStore.topoStore.downloadProgress)
-                    
-                    LineView(problem: $problem, drawPercentage: $drawPercentage)
-                    
-                    GeometryReader { geo in
-                        ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                            if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                Button(action: {
-                                    switchToProblem(secondaryProblem)
-                                }) {
-                                    ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                        
+                        LineView(problem: $problem, drawPercentage: $drawPercentage)
+                        
+                        GeometryReader { geo in
+                            ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
+                                if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
+                                    Button(action: {
+                                        switchToProblem(secondaryProblem)
+                                    }) {
+                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                    }
+                                    .offset(lineStart)
                                 }
-                                .offset(lineStart)
+                            }
+                            
+                            if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                    .offset(lineStart)
                             }
                         }
-                        
-                        if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                            ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                .offset(lineStart)
-                        }
+                    }
+                    else {
+                        ImageLoadingView(progress: $dataStore.topoStore.downloadProgress)
                     }
                     
                     Button(action: {
@@ -92,6 +89,8 @@ struct ProblemDetailsView: View {
                             .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
                     }
                 }
+//                .frame(width: geo.size.width, height: geo.size.width * 3/4, alignment: .center)
+//                }
                 
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
