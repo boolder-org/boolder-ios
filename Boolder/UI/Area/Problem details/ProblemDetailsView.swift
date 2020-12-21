@@ -91,6 +91,7 @@ struct ProblemDetailsView: View {
                             .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
                     }
                 }
+                .aspectRatio(4/3, contentMode: .fit)
                 
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
@@ -262,6 +263,7 @@ struct ProblemDetailsView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)
+                .layoutPriority(1) // without this the imageview prevents the title from going multiline
                 
                 Spacer()
             }
