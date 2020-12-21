@@ -30,20 +30,6 @@ struct ProblemDetailsView: View {
     
     @Binding var areaResourcesDownloaded: Bool
     
-    @State private var presentImagePicker = false
-    @State private var capturedPhoto = UIImage()
-    
-    @StateObject var locationFetcher = LocationFetcher()
-    
-    var locationText: String {
-        if let location = locationFetcher.location {
-            return String(format: "%.6f", location.coordinate.latitude) + " " + String(format: "%.6f", location.coordinate.longitude) + " (±" + String(format: "%.0f", location.horizontalAccuracy) + "m)"
-        }
-        else {
-            return "Waiting for gps..."
-        }
-    }
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -239,38 +225,7 @@ struct ProblemDetailsView: View {
                     
                     
                     #if DEVELOPMENT
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Dev mode")
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                        HStack(alignment: .center) {
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Problem #\(String(problem.id))")
-                                Text(locationText)
-                            }
-                            .font(.system(size: 14, design: .monospaced))
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                presentImagePicker = true
-                            }) {
-                                Image(systemName: "camera.circle.fill")
-                                    .font(.title)
-                            }
-                            .fullScreenCover(isPresented: $presentImagePicker) {
-                                ImagePicker(sourceType: .camera, location: locationFetcher.location, problemId: problem.id, selectedImage: $capturedPhoto)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color.black)
-                                    .edgesIgnoringSafeArea(.all)
-                            }
-
-                        }
-                    }
-                    .padding(.top, 16)
-                    .foregroundColor(.gray)
+                    GeolocatePhotoView(problemId: problem.id)
                     #endif
                 }
                 .padding(.horizontal)
@@ -287,12 +242,6 @@ struct ProblemDetailsView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 animate { drawPercentage = 1.0 }
             }
-            
-            #if DEVELOPMENT
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                locationFetcher.start()
-            }
-            #endif
         }
     }
     
