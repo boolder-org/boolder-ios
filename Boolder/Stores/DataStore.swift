@@ -63,7 +63,7 @@ class DataStore : ObservableObject {
             if(filters.circuit == nil || problem.circuitColor == filters.circuit) {
                 if isGradeOk(problem)  {
                     if isSteepnessOk(problem) {
-                        if filters.photoPresent == false || problem.isPhotoPresent() {
+                        if filters.photoPresent == false || (problem.mainTopoPhoto != nil) {
                             if isHeightOk(problem) {
                                 if filters.favorite == false || problem.isFavorite()  {
                                     if filters.ticked == false || problem.isTicked()  {

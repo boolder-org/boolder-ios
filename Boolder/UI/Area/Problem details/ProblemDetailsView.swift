@@ -50,12 +50,17 @@ struct ProblemDetailsView: View {
                 ZStack(alignment: .center) {
                     
                     if areaResourcesDownloaded {
-                        Image(uiImage: problem.mainTopoPhoto())
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        
-                        if problem.isPhotoPresent() {
+                        if let topoPhoto = problem.mainTopoPhoto {
+                            Image(uiImage: topoPhoto)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            
                             LineView(problem: $problem, drawPercentage: $drawPercentage)
+                        }
+                        else {
+                            Image("nophoto")
+                                .font(.system(size: 60))
+                                .foregroundColor(Color.gray)
                         }
                         
                         GeometryReader { geo in

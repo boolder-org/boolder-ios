@@ -113,17 +113,8 @@ class Problem : Identifiable {
         return firstPoint
     }
     
-    func isPhotoPresent() -> Bool {
-        line?.photo() != nil
-    }
-    
-    func mainTopoPhoto() -> UIImage {
-        if let topoPhoto = line?.photo() {
-            return topoPhoto
-        }
-        else {
-            return UIImage(named: "placeholder.png")!
-        }
+    var mainTopoPhoto: UIImage? {
+        line?.photo()
     }
     
     func circuitNumberComparableValue() -> Double {
