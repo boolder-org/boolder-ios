@@ -47,7 +47,7 @@ struct ProblemDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                ZStack(alignment: .topLeading) {
+                ZStack(alignment: .center) {
                     
                     if areaResourcesDownloaded {
                         Image(uiImage: problem.mainTopoPhoto())
@@ -81,17 +81,24 @@ struct ProblemDetailsView: View {
                             .aspectRatio(4/3, contentMode: .fill)
                     }
                     
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "chevron.down.circle.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
-                            .padding(16)
-                            .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
+                    HStack {
+                        VStack {
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Image(systemName: "chevron.down.circle.fill")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
+                                    .padding(16)
+                                    .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
+                            }
+                            Spacer()
+                        }
+                        Spacer()
                     }
                 }
                 .aspectRatio(4/3, contentMode: .fit)
+                .background(Color(white: 0.9, opacity: 1))
                 
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
