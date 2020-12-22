@@ -11,6 +11,7 @@ import CoreData
 
 struct AreaView: View {
     @EnvironmentObject var dataStore: DataStore
+    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -113,7 +114,7 @@ struct AreaView: View {
             }
         )
         .onAppear{
-            dataStore.topoStore.requestResources(onSuccess: {
+            odrManager.requestResources(tag: "area-\(dataStore.areaId)", onSuccess: {
                 areaResourcesDownloaded = true
                 
             }, onFailure: { error in

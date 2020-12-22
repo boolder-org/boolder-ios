@@ -107,6 +107,8 @@
 		37B452282591414800241091 /* GeolocatePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4521F259140B100241091 /* GeolocatePhotoView.swift */; };
 		37B45231259144D300241091 /* TopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B45230259144D300241091 /* TopoView.swift */; };
 		37B452362591450200241091 /* TopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B45230259144D300241091 /* TopoView.swift */; };
+		37B4524F25923B5A00241091 /* ODRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4524E25923B5A00241091 /* ODRManager.swift */; };
+		37B4525025923B5A00241091 /* ODRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4524E25923B5A00241091 /* ODRManager.swift */; };
 		37BC54B225586758002F0BB5 /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 37BC54B025586758002F0BB5 /* area-1-topo-lines.json */; };
 		37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
 		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
@@ -171,6 +173,7 @@
 		37A9CE92255C3855001AE1CF /* area-2-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-2-data.geojson"; sourceTree = "<group>"; };
 		37B4521F259140B100241091 /* GeolocatePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocatePhotoView.swift; sourceTree = "<group>"; };
 		37B45230259144D300241091 /* TopoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoView.swift; sourceTree = "<group>"; };
+		37B4524E25923B5A00241091 /* ODRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODRManager.swift; sourceTree = "<group>"; };
 		37BC54B025586758002F0BB5 /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
 		37BCA981246704EB00D56252 /* BoulderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderOverlay.swift; sourceTree = "<group>"; };
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
@@ -239,6 +242,7 @@
 				37A8C806245326DB00DC161F /* DataStore.swift */,
 				37A276282457424500F53D80 /* GeoStore.swift */,
 				3701845A2466BD0800C6530C /* TopoStore.swift */,
+				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -563,6 +567,7 @@
 				37379920258E619400711EDA /* DataStore.swift in Sources */,
 				37379921258E619400711EDA /* AreaView.swift in Sources */,
 				37379922258E619400711EDA /* BoolderButtonStyle.swift in Sources */,
+				37B4525025923B5A00241091 /* ODRManager.swift in Sources */,
 				37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */,
 				37379924258E619400711EDA /* GradeRange.swift in Sources */,
 				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
@@ -615,6 +620,7 @@
 				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */,
+				37B4524F25923B5A00241091 /* ODRManager.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,

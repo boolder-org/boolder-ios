@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TopoView: View {
     @EnvironmentObject var dataStore: DataStore
+    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
@@ -52,7 +53,7 @@ struct TopoView: View {
                 }
             }
             else {
-                ImageLoadingView(progress: $dataStore.topoStore.downloadProgress)
+                ImageLoadingView(progress: $odrManager.downloadProgress)
                     .aspectRatio(4/3, contentMode: .fill)
             }
             

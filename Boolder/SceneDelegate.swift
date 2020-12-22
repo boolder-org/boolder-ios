@@ -24,12 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Get the DataStore
         let dataStore = (UIApplication.shared.delegate as! AppDelegate).dataStore
+        
+        // Get the ODRManager
+        let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        
         let contentView = DiscoverView()
             .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
+            .environmentObject(odrManager)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

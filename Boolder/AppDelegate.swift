@@ -81,5 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var dataStore: DataStore = {
        DataStore()
     }()
+    
+    lazy var odrManager: ODRManager = {
+       ODRManager()
+    }()
 }
 
