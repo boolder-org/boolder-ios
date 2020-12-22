@@ -55,6 +55,7 @@ struct AreaView: View {
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
                         .environmentObject(dataStore)
+                        .environmentObject(odrManager)
                         .environment(\.managedObjectContext, managedObjectContext)
                         .accentColor(Color.green)
                 }
