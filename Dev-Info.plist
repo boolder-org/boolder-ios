@@ -28,11 +28,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>You'll be able to take photos of problems.</string>
+	<string>You&apos;ll be able to take photos of problems.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location will be displayed on the map to help you find your way around.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To save the problem photos in your photo library.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
