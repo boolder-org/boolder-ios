@@ -16,77 +16,121 @@ struct GeolocatePhotoView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var presentImagePicker = false
-    @State private var capturedPhoto: UIImage? = nil
+    @Binding var capturedPhoto: UIImage?
+    
+    @Binding var mapModeSelectedProblems: [Problem]
+    @Binding var recordMode: Bool
     
     @StateObject var locationFetcher = LocationFetcher()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("GPS")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            Text(locationText)
-                .font(.system(size: 14, design: .monospaced))
-            
-            Text("Photo")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            Button(action: {
-                presentImagePicker = true
-            }) {
+        NavigationView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("GPS")
+                    .font(.title)
+                    .fontWeight(.bold)
                 
-                if let photo = capturedPhoto {
-                    Image(uiImage: photo)
-                        .resizable()
-                        .aspectRatio(4/3, contentMode: .fit)
-                }
-                else {
-                    ZStack {
-                        Color.init(white: 0.9)
+                Text(locationText)
+                    .font(.system(size: 14, design: .monospaced))
+                
+                Text("Photo")
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                Button(action: {
+                    presentImagePicker = true
+                }) {
+                    
+                    if let photo = capturedPhoto {
+                        Image(uiImage: photo)
+                            .resizable()
                             .aspectRatio(4/3, contentMode: .fit)
-                        
-                        Image(systemName: "camera")
-                            .font(.system(size: 60))
-                            .foregroundColor(Color.gray)
+                    }
+                    else {
+                        ZStack {
+                            Color.init(white: 0.9)
+                                .aspectRatio(4/3, contentMode: .fit)
+                            
+                            Image(systemName: "camera")
+                                .font(.system(size: 60))
+                                .foregroundColor(Color.gray)
+                        }
                     }
                 }
-            }
-            .fullScreenCover(isPresented: $presentImagePicker) {
-                ImagePicker(sourceType: .camera, location: locationFetcher.location, problemId: 0, selectedImage: $capturedPhoto)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.black)
-                    .edgesIgnoringSafeArea(.all)
-            }
-            
-            Text("Problems")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            Button(action: {
-                save()
+                .fullScreenCover(isPresented: $presentImagePicker) {
+                    ImagePicker(sourceType: .camera, location: locationFetcher.location, problemId: 0, selectedImage: $capturedPhoto)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black)
+                        .edgesIgnoringSafeArea(.all)
+                }
                 
-            }) {
-                HStack(alignment: .center, spacing: 16) {
-                    Spacer()
-                    Text("Save")
+                Text("Problems")
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                if mapModeSelectedProblems.count > 0 {
+                    VStack {
+                        HStack {
+                            ForEach(mapModeSelectedProblems) { problem in
+                                ProblemCircleView(problem: problem)
+                            }
+                            
+                            Spacer()
+                        }
+                        Button(action : {
+                            mapModeSelectedProblems = []
+                        }) {
+                            HStack {
+                                Text("Reset")
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                else {
+                    Button(action : {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Text("Choose")
+                            Spacer()
+                        }
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .navigationBarTitle(Text("Topo photo"), displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(action: {
+                    mapModeSelectedProblems = []
+                    recordMode = false
+                    capturedPhoto = nil
+                    
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Cancel")
+                        .font(.body)
+                        .padding(.vertical)
+                        .padding(.trailing)
+                },
+                trailing: Button(action: {
+                    save()
+                }) {
+                    Text("OK")
+                        .font(.body)
                         .fontWeight(.bold)
                         .padding(.vertical)
-                        .fixedSize(horizontal: true, vertical: true)
-                    Spacer()
+                        .padding(.leading)
                 }
-                .padding(.horizontal)
-            }
-            .buttonStyle(BoolderButtonStyle())
-            .padding(.vertical, 32)
-            
-            Spacer()
-        }
-        .padding()
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                locationFetcher.start()
+            )
+            .onAppear {
+                recordMode = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    locationFetcher.start()
+                }
             }
         }
     }
@@ -106,6 +150,10 @@ struct GeolocatePhotoView: View {
                     saveImage(photo, fileName: fileName)
                 }
                 
+                mapModeSelectedProblems = []
+                recordMode = false
+                capturedPhoto = nil
+                
                 presentationMode.wrappedValue.dismiss()
             }
             catch {
@@ -115,7 +163,7 @@ struct GeolocatePhotoView: View {
     }
     
     func lineRecord() -> LineRecord {
-        LineRecord(problem_ids: [48, 32])
+        LineRecord(problem_ids: mapModeSelectedProblems.map{$0.id})
     }
     
     // inspired by https://dev.to/nemecek_f/ios-saving-files-into-user-s-icloud-drive-using-filemanager-4kpm
@@ -172,6 +220,6 @@ struct GeolocatePhotoView: View {
 
 struct GeolocatePhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        GeolocatePhotoView()
+        GeolocatePhotoView(capturedPhoto: .constant(nil), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
     }
 }

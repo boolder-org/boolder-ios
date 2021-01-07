@@ -22,7 +22,8 @@ struct MapView: UIViewRepresentable {
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
     
-    @State var mapModeSelectedProblems: [Problem]
+    @Binding var mapModeSelectedProblems: [Problem]
+    @Binding var recordMode: Bool
     
     var mapView = MKMapView() // FIXME: put in makeUIView() ?
     
@@ -293,16 +294,20 @@ struct MapView: UIViewRepresentable {
                     parent.selectedPoi = annotation.poi
                     parent.presentPoiActionSheet = true
                     
-                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
                 }
                 
                 if let annotation = annotation as? ProblemAnnotation {
-                    parent.selectedProblem = annotation.problem
-                    parent.presentProblemDetails = true
                     
-                    parent.mapModeSelectedProblems.append(annotation.problem)
+                    if parent.recordMode {
+                        parent.mapModeSelectedProblems.append(annotation.problem) // FIXME: only in map mode
+                    }
+                    else {
+                        parent.selectedProblem = annotation.problem
+                        parent.presentProblemDetails = true
+                    }
                     
-                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
                 }
             }
         }

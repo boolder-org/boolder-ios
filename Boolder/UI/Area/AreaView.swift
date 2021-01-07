@@ -23,6 +23,10 @@ struct AreaView: View {
     @State private var presentPoiActionSheet = false
     @State private var presentPhotoCaptureSheet = false
     
+    @State var mapModeSelectedProblems: [Problem] = [] // FIXME: rename to "record mode", and replace by a set
+    @State var recordMode = false
+    @State private var capturedPhoto: UIImage? = nil
+    
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
     @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
@@ -41,7 +45,9 @@ struct AreaView: View {
                 presentPoiActionSheet: $presentPoiActionSheet,
                 centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                 centerOnProblem: $centerOnProblem,
-                centerOnProblemCount: $centerOnProblemCount
+                centerOnProblemCount: $centerOnProblemCount,
+                mapModeSelectedProblems: $mapModeSelectedProblems,
+                recordMode: $recordMode
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
@@ -71,7 +77,8 @@ struct AreaView: View {
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentPhotoCaptureSheet) {
-                            GeolocatePhotoView()
+                            GeolocatePhotoView(capturedPhoto: $capturedPhoto, mapModeSelectedProblems: $mapModeSelectedProblems, recordMode: $recordMode)
+                                .accentColor(Color.green)
                         }
                 )
             
@@ -115,6 +122,12 @@ struct AreaView: View {
                 VStack {
                     Spacer()
                     
+                    VStack {
+                        ForEach(mapModeSelectedProblems) { problem in
+                            ProblemCircleView(problem: problem)
+                        }
+                    }
+                    
                     Button(action: {
                         presentPhotoCaptureSheet = true
                     }) {
@@ -122,7 +135,7 @@ struct AreaView: View {
                             .padding(12)
                     }
                     .accentColor(Color(.label))
-                    .background(Color(UIColor.systemBackground))
+                    .background(recordMode ? Color.red : Color(UIColor.systemBackground))
                     .clipShape(Circle())
                     .overlay(
                         Circle().stroke(Color.gray, lineWidth: 0.25)
