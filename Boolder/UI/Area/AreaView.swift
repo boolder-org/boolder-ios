@@ -21,6 +21,7 @@ struct AreaView: View {
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
+    @State private var presentPhotoCaptureSheet = false
     
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
@@ -67,6 +68,12 @@ struct AreaView: View {
                         presentPoiActionSheet: $presentPoiActionSheet
                     )
                 )
+                .background(
+                    EmptyView()
+                        .sheet(isPresented: $presentPhotoCaptureSheet) {
+                            GeolocatePhotoView()
+                        }
+                )
             
             VStack {
                 Spacer()
@@ -102,6 +109,33 @@ struct AreaView: View {
                 .padding(.bottom, 28)
                 .zIndex(10)
             }
+            
+            #if DEVELOPMENT
+            HStack {
+                VStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        presentPhotoCaptureSheet = true
+                    }) {
+                        Image(systemName: "camera")
+                            .padding(12)
+                    }
+                    .accentColor(Color(.label))
+                    .background(Color(UIColor.systemBackground))
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.gray, lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding()
+                }
+                
+                Spacer()
+            }
+            .padding(.bottom, 28)
+            .zIndex(10)
+            #endif
         }
         .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
         .navigationBarItems(

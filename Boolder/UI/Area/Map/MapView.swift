@@ -22,6 +22,8 @@ struct MapView: UIViewRepresentable {
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
     
+    @State var mapModeSelectedProblems: [Problem]
+    
     var mapView = MKMapView() // FIXME: put in makeUIView() ?
     
     func makeUIView(context: Context) -> MKMapView {
@@ -297,6 +299,8 @@ struct MapView: UIViewRepresentable {
                 if let annotation = annotation as? ProblemAnnotation {
                     parent.selectedProblem = annotation.problem
                     parent.presentProblemDetails = true
+                    
+                    parent.mapModeSelectedProblems.append(annotation.problem)
                     
                     mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
                 }

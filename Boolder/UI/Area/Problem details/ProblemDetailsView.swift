@@ -166,10 +166,6 @@ struct ProblemDetailsView: View {
                         
                     }
                     .padding(.top, 16)
-                    
-                    #if DEVELOPMENT
-                    GeolocatePhotoView(problemId: problem.id)
-                    #endif
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)
