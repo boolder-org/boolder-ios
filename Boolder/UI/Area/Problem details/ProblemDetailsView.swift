@@ -30,6 +30,8 @@ struct ProblemDetailsView: View {
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
     
+    @State var presentProblemRecord = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -174,6 +176,13 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
+        .background(
+            EmptyView()
+                .sheet(isPresented: $presentProblemRecord) {
+                    ProblemRecordView(problem: problem)
+                        .accentColor(Color.green)
+                }
+        )
     }
     
     private func buttonsForMoreActionSheet() -> [Alert.Button] {
@@ -203,6 +212,14 @@ struct ProblemDetailsView: View {
                 }
             )
         }
+        
+        #if DEVELOPMENT
+        buttons.append(
+            .default(Text("Edit problem")) {
+                presentProblemRecord = true
+            }
+        )
+        #endif
         
         buttons.append(.cancel())
         

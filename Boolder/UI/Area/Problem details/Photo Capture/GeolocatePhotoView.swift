@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LineRecord: Codable {
     var problem_ids: [Int]
+    // FIXME: add GPS info
 }
 
 struct GeolocatePhotoView: View {
