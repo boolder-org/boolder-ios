@@ -131,11 +131,12 @@ struct AreaView: View {
                     Button(action: {
                         presentPhotoCaptureSheet = true
                     }) {
-                        Image(systemName: "camera")
+                        Image(systemName: recordMode ? "camera.fill" : "camera")
                             .padding(12)
                     }
                     .accentColor(Color(.label))
-                    .background(recordMode ? Color.red : Color(UIColor.systemBackground))
+                    .foregroundColor(recordMode ? Color.white : Color(.label))
+                    .background(recordMode ? Color.green : Color(UIColor.systemBackground))
                     .clipShape(Circle())
                     .overlay(
                         Circle().stroke(Color.gray, lineWidth: 0.25)

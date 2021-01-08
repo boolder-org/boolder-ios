@@ -50,11 +50,13 @@ struct GeolocatePhotoView: View {
                         ZStack {
                             Color.init(white: 0.9)
                                 .aspectRatio(4/3, contentMode: .fit)
+                                .frame(maxWidth: .infinity)
                             
                             Image(systemName: "camera")
                                 .font(.system(size: 60))
                                 .foregroundColor(Color.gray)
                         }
+                        
                     }
                 }
                 .fullScreenCover(isPresented: $presentImagePicker) {
@@ -101,7 +103,7 @@ struct GeolocatePhotoView: View {
                 Spacer()
             }
             .padding()
-            .navigationBarTitle(Text("Topo photo"), displayMode: .inline)
+            .navigationBarTitle(Text("New Topo"), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
                     mapModeSelectedProblems = []
@@ -135,30 +137,52 @@ struct GeolocatePhotoView: View {
         }
     }
     
-    fileprivate func save() {
-        if let driveURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") {
+    private var baseURL: URL {
+        FileManager.default.url(forUbiquityContainerIdentifier: nil)! // FIXME: do not force unwrap
+            .appendingPathComponent("Documents")
+    }
+    
+    private var recordSessionsURL: URL {
+        let url = baseURL.appendingPathComponent("map-records").appendingPathComponent("topos")
+
+        if !FileManager.default.fileExists(atPath: url.absoluteString) {
             do {
-                let fileName = "test3"
-                
-                let fileURL = driveURL.appendingPathComponent(fileName + ".json")
-                
-                let jsonEncoder = JSONEncoder()
-                let jsonData = try jsonEncoder.encode(lineRecord())
-                try jsonData.write(to: fileURL, options: [.atomicWrite])
-                
-                if let photo = capturedPhoto {
-                    saveImage(photo, fileName: fileName)
-                }
-                
-                mapModeSelectedProblems = []
-                recordMode = false
-                capturedPhoto = nil
-                
-                presentationMode.wrappedValue.dismiss()
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error);
             }
-            catch {
-                print(error.localizedDescription)
+        }
+
+        return url
+    }
+    
+    fileprivate func save() {
+        do {
+            let f = DateFormatter()
+//            f.timeZone = TimeZone(abbreviation: "UTC")
+            f.dateFormat = "yyyy-MM-dd_HH.mm.ss"
+            let fileName = f.string(from: Date())
+            
+            // FIXME: raise if file name already exists
+            
+            let fileURL = recordSessionsURL.appendingPathComponent(fileName + ".json")
+            
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try jsonEncoder.encode(lineRecord())
+            try jsonData.write(to: fileURL, options: [.atomicWrite])
+            
+            if let photo = capturedPhoto {
+                saveImage(photo, fileName: fileName)
             }
+            
+            mapModeSelectedProblems = []
+            recordMode = false
+            capturedPhoto = nil
+            
+            presentationMode.wrappedValue.dismiss()
+        }
+        catch {
+            print(error.localizedDescription)
         }
     }
     
@@ -168,10 +192,8 @@ struct GeolocatePhotoView: View {
     
     // inspired by https://dev.to/nemecek_f/ios-saving-files-into-user-s-icloud-drive-using-filemanager-4kpm
     func saveImage(_ image: UIImage, fileName: String) {
-
-        let temporaryFolder:URL = (FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents"))! // FIXME: do not force unwrap
         
-        let temporaryFileURL:URL = temporaryFolder.appendingPathComponent(fileName + ".jpg")
+        let temporaryFileURL:URL = recordSessionsURL.appendingPathComponent(fileName + ".jpg")
 
         // save the image to chosen path
         let jpeg = image.jpegData(compressionQuality: 1.0)! // set JPG quality here (1.0 is best)
