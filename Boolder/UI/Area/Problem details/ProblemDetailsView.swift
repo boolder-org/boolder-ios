@@ -63,7 +63,7 @@ struct ProblemDetailsView: View {
                                     Image(Steepness(problem.steepness).imageName)
                                         .font(.body)
                                         .frame(minWidth: 16)
-                                    Text(Steepness(problem.steepness).name)
+                                    Text(Steepness(problem.steepness).localizedName)
                                         .font(.body)
                                     Text(problem.readableDescription() ?? "")
                                         .font(.caption)

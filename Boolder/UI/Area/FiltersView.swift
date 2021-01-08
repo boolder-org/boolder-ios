@@ -120,7 +120,7 @@ struct FiltersView: View {
         }
         
         let visibleAndSelected = filters.steepness.intersection(userVisibleSteepnessTypes).sorted()
-        let string = visibleAndSelected.map{ Steepness($0).name.lowercased() }.joined(separator: ", ")
+        let string = visibleAndSelected.map{ Steepness($0).localizedName.lowercased() }.joined(separator: ", ")
         return String(string.prefix(1).capitalized + string.dropFirst())
     }
 }
@@ -152,7 +152,7 @@ struct SteepnessFilterView: View {
                         Image(Steepness(steepness).imageName)
                             .foregroundColor(Color(.label))
                             .frame(minWidth: 20)
-                        Text(Steepness(steepness).name)
+                        Text(Steepness(steepness).localizedName)
                             .foregroundColor(Color(.label))
                         Spacer()
                         

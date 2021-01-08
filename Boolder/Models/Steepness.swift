@@ -8,6 +8,8 @@
 
 import Foundation
 
+// FIXME: refactor using strings as raw value to simplify code (=> must implement comparable protocol somehow)
+// FIXME: use only 1 enum, remove SteepnessType
 class Steepness  {
     enum SteepnessType: CaseIterable, Comparable {
         case wall
@@ -45,6 +47,23 @@ class Steepness  {
     }
     
     var name: String {
+        switch type {
+        case .wall:
+            return "wall"
+        case .slab:
+            return "slab"
+        case .overhang:
+            return "overhang"
+        case .roof:
+            return "roof"
+        case .traverse:
+            return "traverse"
+        case .other:
+            return "other"
+        }
+    }
+    
+    var localizedName: String {
         switch type {
         case .wall:
             return NSLocalizedString("steepness.wall", comment: "")

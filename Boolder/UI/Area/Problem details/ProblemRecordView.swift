@@ -8,17 +8,6 @@
 
 import SwiftUI
 
-enum Difficulty: String, CaseIterable {
-    case easy
-    case medium
-    case hard
-}
-
-struct ProblemRecord: Codable {
-//    var steepness: Steepness.SteepnessType
-    var height: Int
-}
-
 struct ProblemRecordView: View {
     @Environment(\.presentationMode) private var presentationMode
     
@@ -37,7 +26,7 @@ struct ProblemRecordView: View {
                     HStack {
                         Picker(selection: $selectedSteepness, label: Text("Steepness")) {
                             ForEach(Steepness.SteepnessType.allCases, id: \.self) { value in
-                                Text(Steepness(value).name) // FIXME: use english name
+                                Text(Steepness(value).name)
                                     .tag(value)
                             }
                         }
@@ -108,7 +97,14 @@ struct ProblemRecordView: View {
     }
     
     func save() {
-        let record = ProblemRecord(height: Int(selectedHeight))
+        let record = ProblemRecord(
+            problemId: problem.id,
+            steepness: Steepness(selectedSteepness).name,
+            height: Int(selectedHeight),
+            landingDifficulty: selectedLandingDifficulty.rawValue,
+            descentDifficulty: selectedDescentDifficulty.rawValue,
+            comments: comments
+        )
         let jsonData = try! JSONEncoder().encode(record)
         let filename = store.timestamp() + ".json"
         
@@ -118,6 +114,21 @@ struct ProblemRecordView: View {
     }
     
     let store = MapMakerStore()
+}
+
+enum Difficulty: String, CaseIterable {
+    case easy
+    case medium
+    case hard
+}
+
+struct ProblemRecord: Codable {
+    var problemId: Int
+    var steepness: String
+    var height: Int
+    var landingDifficulty: String
+    var descentDifficulty: String
+    var comments: String
 }
 
 struct ProblemRecordView_Previews: PreviewProvider {
