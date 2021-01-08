@@ -14,6 +14,11 @@ enum Difficulty: String, CaseIterable {
     case hard
 }
 
+struct ProblemRecord: Codable {
+//    var steepness: Steepness.SteepnessType
+    var height: Int
+}
+
 struct ProblemRecordView: View {
     @Environment(\.presentationMode) private var presentationMode
     
@@ -82,9 +87,8 @@ struct ProblemRecordView: View {
                         .padding(.trailing)
                 },
                 trailing: Button(action: {
-                    // TODO: save json
-                    // TODO: create tick
-                    
+                    save()
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("OK")
                         .font(.body)
@@ -102,6 +106,18 @@ struct ProblemRecordView: View {
             }
         }
     }
+    
+    func save() {
+        let record = ProblemRecord(height: Int(selectedHeight))
+        let jsonData = try! JSONEncoder().encode(record)
+        let filename = store.timestamp() + ".json"
+        
+        store.save(data: jsonData, directory: "problems", filename: filename)
+        
+        // TODO: create tick
+    }
+    
+    let store = MapMakerStore()
 }
 
 struct ProblemRecordView_Previews: PreviewProvider {
