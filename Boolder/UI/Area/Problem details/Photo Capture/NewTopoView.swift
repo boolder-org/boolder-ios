@@ -14,6 +14,7 @@ struct NewTopoView: View {
     
     @State private var presentImagePicker = false
     @Binding var capturedPhoto: UIImage?
+    @State private var comments = ""
     
     @Binding var mapModeSelectedProblems: [Problem]
     @Binding var recordMode: Bool
@@ -22,90 +23,98 @@ struct NewTopoView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("GPS")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                VStack(alignment: .leading) {
-                    Text(locationText)
-                        .font(.system(size: 14, design: .monospaced))
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("GPS")
+                        .font(.title)
+                        .fontWeight(.bold)
                     
-                    Text(headingText)
-                        .font(.system(size: 14, design: .monospaced))
-                }
-                
-                Text("Photo")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                Button(action: {
-                    presentImagePicker = true
-                    locationFetcher.stop()
-                }) {
-                    
-                    if let photo = capturedPhoto {
-                        Image(uiImage: photo)
-                            .resizable()
-                            .aspectRatio(4/3, contentMode: .fit)
-                    }
-                    else {
-                        ZStack {
-                            Color.init(white: 0.9)
-                                .aspectRatio(4/3, contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                            
-                            Image(systemName: "camera")
-                                .font(.system(size: 60))
-                                .foregroundColor(Color.gray)
-                        }
+                    VStack(alignment: .leading) {
+                        Text(locationText)
+                            .font(.system(size: 14, design: .monospaced))
                         
+                        Text(headingText)
+                            .font(.system(size: 14, design: .monospaced))
                     }
-                }
-                .fullScreenCover(isPresented: $presentImagePicker) {
-                    ImagePicker(sourceType: .camera, selectedImage: $capturedPhoto)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.black)
-                        .edgesIgnoringSafeArea(.all)
-                }
-                
-                Text("Problems")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                if mapModeSelectedProblems.count > 0 {
-                    VStack {
-                        HStack {
-                            ForEach(mapModeSelectedProblems) { problem in
-                                ProblemCircleView(problem: problem)
+                    
+                    Text("Photo")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    Button(action: {
+                        presentImagePicker = true
+                        locationFetcher.stop()
+                    }) {
+                        
+                        if let photo = capturedPhoto {
+                            Image(uiImage: photo)
+                                .resizable()
+                                .aspectRatio(4/3, contentMode: .fit)
+                        }
+                        else {
+                            ZStack {
+                                Color.init(white: 0.9)
+                                    .aspectRatio(4/3, contentMode: .fit)
+                                    .frame(maxWidth: .infinity)
+                                
+                                Image(systemName: "camera")
+                                    .font(.system(size: 60))
+                                    .foregroundColor(Color.gray)
                             }
                             
-                            Spacer()
                         }
+                    }
+                    .fullScreenCover(isPresented: $presentImagePicker) {
+                        ImagePicker(sourceType: .camera, selectedImage: $capturedPhoto)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color.black)
+                            .edgesIgnoringSafeArea(.all)
+                    }
+                    
+                    Text("Problems")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    if mapModeSelectedProblems.count > 0 {
+                        VStack {
+                            HStack {
+                                ForEach(mapModeSelectedProblems) { problem in
+                                    ProblemCircleView(problem: problem)
+                                }
+                                
+                                Spacer()
+                            }
+                            Button(action : {
+                                mapModeSelectedProblems = []
+                            }) {
+                                HStack {
+                                    Text("Reset")
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }
+                    else {
                         Button(action : {
-                            mapModeSelectedProblems = []
+                            presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack {
-                                Text("Reset")
+                                Text("Choose")
                                 Spacer()
                             }
                         }
                     }
+                    
+                    Text("Comments")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    TextEditor(text: $comments)
+                        .background(Color.init(white: 0.9))
+                        .frame(height: 80)
                 }
-                else {
-                    Button(action : {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Text("Choose")
-                            Spacer()
-                        }
-                    }
-                }
-                
-                Spacer()
+                .padding()
             }
-            .padding()
             .navigationBarTitle(Text("New Topo"), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -139,6 +148,7 @@ struct NewTopoView: View {
                 }
             )
             .onAppear {
+                UITextView.appearance().backgroundColor = .clear
                 recordMode = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -153,7 +163,7 @@ struct NewTopoView: View {
             return String(format: "%.6f", location.coordinate.latitude) + " " + String(format: "%.6f", location.coordinate.longitude) + " (±" + String(format: "%.0f", location.horizontalAccuracy) + "m)"
         }
         else {
-            return "Waiting for gps..."
+            return "Waiting..."
         }
     }
     
@@ -162,7 +172,7 @@ struct NewTopoView: View {
             return String(format: "%.1f", heading.trueHeading) + "° (±" + String(format: "%.0f", heading.headingAccuracy) + ")"
         }
         else {
-            return "Waiting for gps..."
+            return "Waiting..."
         }
     }
 
@@ -178,6 +188,7 @@ struct NewTopoView: View {
         var heading: Double
         var headingAccuracy: Double
         var problem_ids: [Int]
+        var comments: String
     }
     
     fileprivate func save(photo: UIImage, location: CLLocation, heading: CLHeading) {
@@ -192,7 +203,8 @@ struct NewTopoView: View {
                 verticalAccuracy: location.verticalAccuracy,
                 heading: heading.trueHeading,
                 headingAccuracy: heading.headingAccuracy,
-                problem_ids: mapModeSelectedProblems.map{$0.id}
+                problem_ids: mapModeSelectedProblems.map{$0.id},
+                comments: comments
             )
             
             store.save(
