@@ -30,6 +30,15 @@ class LocationFetcher: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.last
+        let newLocation = locations.last
+        
+        if let oldLocation = location, let newLocation = newLocation {
+            if newLocation.horizontalAccuracy <= oldLocation.horizontalAccuracy {
+                location = newLocation
+            }
+        }
+        else {
+            location = newLocation
+        }
     }
 }

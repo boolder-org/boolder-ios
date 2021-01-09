@@ -51,18 +51,6 @@ struct ImagePicker: UIViewControllerRepresentable {
             
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 parent.selectedImage = image
-                
-//                if let data = image.jpegData(compressionQuality: 1.0) {
-//                    let filename = getDocumentsDirectory().appendingPathComponent("test.jpg")
-//
-//                    do {
-//                        try data.write(to: filename)
-//                        print("image saved")
-//                    }
-//                    catch {
-//                        print(error.localizedDescription)
-//                    }
-//                }
             }
             
             parent.presentationMode.wrappedValue.dismiss()

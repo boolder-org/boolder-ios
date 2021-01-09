@@ -77,7 +77,7 @@ struct AreaView: View {
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentPhotoCaptureSheet) {
-                            GeolocatePhotoView(capturedPhoto: $capturedPhoto, mapModeSelectedProblems: $mapModeSelectedProblems, recordMode: $recordMode)
+                            NewTopoView(capturedPhoto: $capturedPhoto, mapModeSelectedProblems: $mapModeSelectedProblems, recordMode: $recordMode)
                                 .accentColor(Color.green)
                         }
                 )

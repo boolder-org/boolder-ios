@@ -1,5 +1,5 @@
 //
-//  GeolocatePhotoView.swift
+//  NewTopoView.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 21/12/2020.
@@ -7,8 +7,9 @@
 //
 
 import SwiftUI
+import CoreLocation
 
-struct GeolocatePhotoView: View {
+struct NewTopoView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var presentImagePicker = false
@@ -114,15 +115,17 @@ struct GeolocatePhotoView: View {
                         .padding(.trailing)
                 },
                 trailing: Button(action: {
-                    save()
-                    
-                    mapModeSelectedProblems = []
-                    recordMode = false
-                    capturedPhoto = nil
-                    
-                    presentationMode.wrappedValue.dismiss()
+                    if let photo = capturedPhoto, let location = locationFetcher.location {
+                        save(photo: photo, location: location)
+                        
+                        mapModeSelectedProblems = []
+                        recordMode = false
+                        capturedPhoto = nil
+                        
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }) {
-                    Text("OK")
+                    Text("Save")
                         .font(.body)
                         .fontWeight(.bold)
                         .padding(.vertical)
@@ -138,38 +141,6 @@ struct GeolocatePhotoView: View {
             }
         }
     }
-
-    let store = MapMakerStore()
-    
-    fileprivate func save() {
-        do {
-            let timestamp = store.timestamp()
-            
-            let topoRecord = TopoRecord(
-                latitude: locationFetcher.location?.coordinate.latitude ?? 0,
-                longitude: locationFetcher.location?.coordinate.longitude ?? 0,
-                horizontalAccuracy: locationFetcher.location?.horizontalAccuracy ?? 0,
-                problem_ids: mapModeSelectedProblems.map{$0.id}
-            )
-            
-            store.save(
-                data: try JSONEncoder().encode(topoRecord),
-                directory: "topos",
-                filename: timestamp + ".json"
-            )
-            
-            if let photo = capturedPhoto {
-                store.save(
-                    data: photo.jpegData(compressionQuality: 1.0)!,
-                    directory: "topos",
-                    filename: timestamp + ".jpg"
-                )
-            }
-        }
-        catch {
-            print(error)
-        }
-    }
     
     var locationText: String {
         if let location = locationFetcher.location {
@@ -179,17 +150,52 @@ struct GeolocatePhotoView: View {
             return "Waiting for gps..."
         }
     }
+
+    let store = MapMakerStore()
+    
+    // FIXME: add heading
+    struct TopoRecord: Codable {
+        var latitude: Double
+        var longitude: Double
+        var altitude: Double
+        var horizontalAccuracy: Double
+        var verticalAccuracy: Double
+        var problem_ids: [Int]
+    }
+    
+    fileprivate func save(photo: UIImage, location: CLLocation) {
+        do {
+            let timestamp = store.timestamp()
+            
+            let topoRecord = TopoRecord(
+                latitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude,
+                altitude: location.altitude,
+                horizontalAccuracy: location.horizontalAccuracy,
+                verticalAccuracy: location.verticalAccuracy,
+                problem_ids: mapModeSelectedProblems.map{$0.id}
+            )
+            
+            store.save(
+                data: try JSONEncoder().encode(topoRecord),
+                directory: "topos",
+                filename: timestamp + ".json"
+            )
+            
+            store.save(
+                data: photo.jpegData(compressionQuality: 1.0)!,
+                directory: "topos",
+                filename: timestamp + ".jpg"
+            )
+        }
+        catch {
+            print(error)
+        }
+    }
 }
 
-struct TopoRecord: Codable {
-    var latitude: Double
-    var longitude: Double
-    var horizontalAccuracy: Double
-    var problem_ids: [Int]
-}
-
-struct GeolocatePhotoView_Previews: PreviewProvider {
+struct NewTopoView_Previews: PreviewProvider {
     static var previews: some View {
-        GeolocatePhotoView(capturedPhoto: .constant(nil), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
+        NewTopoView(capturedPhoto: .constant(nil), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
     }
 }
