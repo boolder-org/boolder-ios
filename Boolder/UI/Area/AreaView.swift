@@ -23,6 +23,7 @@ struct AreaView: View {
     @State private var presentPoiActionSheet = false
     @State private var presentPhotoCaptureSheet = false
     
+    // FIXME: rename
     @State var mapModeSelectedProblems: [Problem] = [] // FIXME: rename to "record mode", and replace by a set
     @State var recordMode = false
     @State private var capturedPhoto: UIImage? = nil

@@ -27,8 +27,13 @@ struct NewTopoView: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text(locationText)
-                    .font(.system(size: 14, design: .monospaced))
+                VStack(alignment: .leading) {
+                    Text(locationText)
+                        .font(.system(size: 14, design: .monospaced))
+                    
+                    Text(headingText)
+                        .font(.system(size: 14, design: .monospaced))
+                }
                 
                 Text("Photo")
                     .font(.title)
@@ -36,6 +41,7 @@ struct NewTopoView: View {
                 
                 Button(action: {
                     presentImagePicker = true
+                    locationFetcher.stop()
                 }) {
                     
                     if let photo = capturedPhoto {
@@ -57,7 +63,7 @@ struct NewTopoView: View {
                     }
                 }
                 .fullScreenCover(isPresented: $presentImagePicker) {
-                    ImagePicker(sourceType: .camera, location: locationFetcher.location, problemId: 0, selectedImage: $capturedPhoto)
+                    ImagePicker(sourceType: .camera, selectedImage: $capturedPhoto)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.black)
                         .edgesIgnoringSafeArea(.all)
@@ -115,8 +121,8 @@ struct NewTopoView: View {
                         .padding(.trailing)
                 },
                 trailing: Button(action: {
-                    if let photo = capturedPhoto, let location = locationFetcher.location {
-                        save(photo: photo, location: location)
+                    if let photo = capturedPhoto, let location = locationFetcher.location, let heading = locationFetcher.heading {
+                        save(photo: photo, location: location, heading: heading)
                         
                         mapModeSelectedProblems = []
                         recordMode = false
@@ -150,6 +156,15 @@ struct NewTopoView: View {
             return "Waiting for gps..."
         }
     }
+    
+    var headingText: String {
+        if let heading = locationFetcher.heading {
+            return String(format: "%.1f", heading.trueHeading) + "° (±" + String(format: "%.0f", heading.headingAccuracy) + ")"
+        }
+        else {
+            return "Waiting for gps..."
+        }
+    }
 
     let store = MapMakerStore()
     
@@ -160,10 +175,12 @@ struct NewTopoView: View {
         var altitude: Double
         var horizontalAccuracy: Double
         var verticalAccuracy: Double
+        var heading: Double
+        var headingAccuracy: Double
         var problem_ids: [Int]
     }
     
-    fileprivate func save(photo: UIImage, location: CLLocation) {
+    fileprivate func save(photo: UIImage, location: CLLocation, heading: CLHeading) {
         do {
             let timestamp = store.timestamp()
             
@@ -173,6 +190,8 @@ struct NewTopoView: View {
                 altitude: location.altitude,
                 horizontalAccuracy: location.horizontalAccuracy,
                 verticalAccuracy: location.verticalAccuracy,
+                heading: heading.trueHeading,
+                headingAccuracy: heading.headingAccuracy,
                 problem_ids: mapModeSelectedProblems.map{$0.id}
             )
             

@@ -13,8 +13,6 @@ import CoreLocation
 struct ImagePicker: UIViewControllerRepresentable {
     
     var sourceType: UIImagePickerController.SourceType = .camera
-    var location: CLLocation? // FIXME: remove
-    var problemId: Int  // FIXME: remove
     
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) private var presentationMode
