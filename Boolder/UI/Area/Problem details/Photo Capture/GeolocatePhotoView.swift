@@ -8,11 +8,6 @@
 
 import SwiftUI
 
-struct LineRecord: Codable {
-    var problem_ids: [Int]
-    // FIXME: add GPS info
-}
-
 struct GeolocatePhotoView: View {
     @Environment(\.presentationMode) private var presentationMode
     
@@ -120,6 +115,12 @@ struct GeolocatePhotoView: View {
                 },
                 trailing: Button(action: {
                     save()
+                    
+                    mapModeSelectedProblems = []
+                    recordMode = false
+                    capturedPhoto = nil
+                    
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("OK")
                         .font(.body)
@@ -137,97 +138,36 @@ struct GeolocatePhotoView: View {
             }
         }
     }
-    
-    private var baseURL: URL {
-        FileManager.default.url(forUbiquityContainerIdentifier: nil)! // FIXME: do not force unwrap
-            .appendingPathComponent("Documents")
-    }
-    
-    private var recordSessionsURL: URL {
-        let url = baseURL.appendingPathComponent("map-records").appendingPathComponent("topos")
 
-        if !FileManager.default.fileExists(atPath: url.absoluteString) {
-            do {
-                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                print(error);
-            }
-        }
-
-        return url
-    }
+    let store = MapMakerStore()
     
     fileprivate func save() {
         do {
-            let f = DateFormatter()
-//            f.timeZone = TimeZone(abbreviation: "UTC")
-            f.dateFormat = "yyyy-MM-dd_HH.mm.ss"
-            let fileName = f.string(from: Date())
+            let timestamp = store.timestamp()
             
-            // FIXME: raise if file name already exists
+            let topoRecord = TopoRecord(
+                latitude: locationFetcher.location?.coordinate.latitude ?? 0,
+                longitude: locationFetcher.location?.coordinate.longitude ?? 0,
+                horizontalAccuracy: locationFetcher.location?.horizontalAccuracy ?? 0,
+                problem_ids: mapModeSelectedProblems.map{$0.id}
+            )
             
-            let fileURL = recordSessionsURL.appendingPathComponent(fileName + ".json")
-            
-            let jsonEncoder = JSONEncoder()
-            let jsonData = try jsonEncoder.encode(lineRecord())
-            try jsonData.write(to: fileURL, options: [.atomicWrite])
+            store.save(
+                data: try JSONEncoder().encode(topoRecord),
+                directory: "topos",
+                filename: timestamp + ".json"
+            )
             
             if let photo = capturedPhoto {
-                saveImage(photo, fileName: fileName)
+                store.save(
+                    data: photo.jpegData(compressionQuality: 1.0)!,
+                    directory: "topos",
+                    filename: timestamp + ".jpg"
+                )
             }
-            
-            mapModeSelectedProblems = []
-            recordMode = false
-            capturedPhoto = nil
-            
-            presentationMode.wrappedValue.dismiss()
         }
         catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func lineRecord() -> LineRecord {
-        LineRecord(problem_ids: mapModeSelectedProblems.map{$0.id})
-    }
-    
-    // inspired by https://dev.to/nemecek_f/ios-saving-files-into-user-s-icloud-drive-using-filemanager-4kpm
-    func saveImage(_ image: UIImage, fileName: String) {
-        
-        let temporaryFileURL:URL = recordSessionsURL.appendingPathComponent(fileName + ".jpg")
-
-        // save the image to chosen path
-        let jpeg = image.jpegData(compressionQuality: 1.0)! // set JPG quality here (1.0 is best)
-        let src = CGImageSourceCreateWithData(jpeg as CFData, nil)!
-        let uti = CGImageSourceGetType(src)!
-        let cfPath = CFURLCreateWithFileSystemPath(nil, temporaryFileURL.path as CFString, CFURLPathStyle.cfurlposixPathStyle, false)
-        let dest = CGImageDestinationCreateWithURL(cfPath!, uti, 1, nil)
-        
-        if let gpsLocation = locationFetcher.location {
-
-        // create GPS metadata from current location
-        let gpsMeta = gpsLocation.exifMetadata()
-        let tiffProperties = [
-            kCGImagePropertyTIFFMake as String: "Camera vendor test",
-            kCGImagePropertyTIFFModel as String: "Camera model test"
-            // --(insert other properties here if required)--
-        ] as CFDictionary
-
-        let properties = [
-            kCGImagePropertyTIFFDictionary as String: tiffProperties,
-            kCGImagePropertyGPSDictionary: gpsMeta as Any
-            // --(insert other dictionaries here if required)--
-        ] as CFDictionary
-
-        CGImageDestinationAddImageFromSource(dest!, src, 0, properties)
-        if (CGImageDestinationFinalize(dest!)) {
-            print("Saved image with metadata!")
-        } else {
-            print("Error saving image with metadata")
-        }
-        }
-        else {
-            print("no location")
+            print(error)
         }
     }
     
@@ -239,6 +179,13 @@ struct GeolocatePhotoView: View {
             return "Waiting for gps..."
         }
     }
+}
+
+struct TopoRecord: Codable {
+    var latitude: Double
+    var longitude: Double
+    var horizontalAccuracy: Double
+    var problem_ids: [Int]
 }
 
 struct GeolocatePhotoView_Previews: PreviewProvider {

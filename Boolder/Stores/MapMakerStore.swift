@@ -14,6 +14,7 @@ class MapMakerStore {
         let fileURL = directoryURL(directory: directory).appendingPathComponent(filename)
         
         do {
+            // FIXME: throw error if file already exists
             try data.write(to: fileURL, options: [.atomicWrite])
         }
         catch {

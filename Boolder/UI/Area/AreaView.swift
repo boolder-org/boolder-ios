@@ -118,37 +118,39 @@ struct AreaView: View {
             }
             
             #if DEVELOPMENT
-            HStack {
-                VStack {
-                    Spacer()
-                    
+            if !showList {
+                HStack {
                     VStack {
-                        ForEach(mapModeSelectedProblems) { problem in
-                            ProblemCircleView(problem: problem)
+                        Spacer()
+                        
+                        VStack {
+                            ForEach(mapModeSelectedProblems) { problem in
+                                ProblemCircleView(problem: problem)
+                            }
                         }
+                        
+                        Button(action: {
+                            presentPhotoCaptureSheet = true
+                        }) {
+                            Image(systemName: recordMode ? "camera.fill" : "camera")
+                                .padding(12)
+                        }
+                        .accentColor(Color(.label))
+                        .foregroundColor(recordMode ? Color.white : Color(.label))
+                        .background(recordMode ? Color.green : Color(UIColor.systemBackground))
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding()
                     }
                     
-                    Button(action: {
-                        presentPhotoCaptureSheet = true
-                    }) {
-                        Image(systemName: recordMode ? "camera.fill" : "camera")
-                            .padding(12)
-                    }
-                    .accentColor(Color(.label))
-                    .foregroundColor(recordMode ? Color.white : Color(.label))
-                    .background(recordMode ? Color.green : Color(UIColor.systemBackground))
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(Color.gray, lineWidth: 0.25)
-                    )
-                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                    .padding()
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding(.bottom, 28)
+                .zIndex(10)
             }
-            .padding(.bottom, 28)
-            .zIndex(10)
             #endif
         }
         .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)

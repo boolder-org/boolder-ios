@@ -65,7 +65,7 @@ struct ProblemRecordView: View {
                     TextEditor(text: $comments)
                 }
             }
-            .navigationBarTitle(Text("Edit"), displayMode: .inline)
+            .navigationBarTitle(Text(problem.nameWithFallback()), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()
@@ -79,7 +79,7 @@ struct ProblemRecordView: View {
                     save()
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("OK")
+                    Text("Save")
                         .font(.body)
                         .fontWeight(.bold)
                         .padding(.vertical)
