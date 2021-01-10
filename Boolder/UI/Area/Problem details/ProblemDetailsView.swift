@@ -30,7 +30,7 @@ struct ProblemDetailsView: View {
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
     
-    @State var presentProblemRecord = false
+    @State var presentEditProblem = false
     
     var body: some View {
         ScrollView {
@@ -178,7 +178,7 @@ struct ProblemDetailsView: View {
         }
         .background(
             EmptyView()
-                .sheet(isPresented: $presentProblemRecord) {
+                .sheet(isPresented: $presentEditProblem) {
                     EditProblemView(problem: problem)
                         .accentColor(Color.green)
                 }
@@ -215,8 +215,8 @@ struct ProblemDetailsView: View {
         
         #if DEVELOPMENT
         buttons.append(
-            .default(Text("Edit problem")) {
-                presentProblemRecord = true
+            .default(Text("Edit")) {
+                presentEditProblem = true
             }
         )
         #endif
