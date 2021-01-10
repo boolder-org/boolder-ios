@@ -60,10 +60,10 @@ struct ProblemDetailsView: View {
                             
                             if problem.steepness != .other {
                                 HStack(alignment: .firstTextBaseline) {
-                                    Image(Steepness(problem.steepness).imageName)
+                                    Image(problem.steepness.imageName)
                                         .font(.body)
                                         .frame(minWidth: 16)
-                                    Text(Steepness(problem.steepness).localizedName)
+                                    Text(problem.steepness.localizedName)
                                         .font(.body)
                                     Text(problem.readableDescription() ?? "")
                                         .font(.caption)

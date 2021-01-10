@@ -17,7 +17,7 @@ class Problem : Identifiable {
     var name: String? = nil
     var bleauInfoId: String? = nil
     var height: Int? = nil
-    var steepness: Steepness.SteepnessType = .other
+    var steepness: Steepness = .other
     var id: Int!
     var lineId: Int?
     var tags: [String]?

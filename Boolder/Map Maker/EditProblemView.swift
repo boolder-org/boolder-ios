@@ -14,7 +14,7 @@ struct EditProblemView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @State private var selectedSteepness = Steepness.SteepnessType.other
+    @State private var selectedSteepness = Steepness.other
     @State private var selectedLandingDifficulty = Difficulty.easy
     @State private var selectedDescentDifficulty = Difficulty.easy
     @State private var selectedHeight: Double = 0
@@ -28,9 +28,9 @@ struct EditProblemView: View {
                 Section {
                     HStack {
                         Picker(selection: $selectedSteepness, label: Text("Steepness")) {
-                            ForEach(Steepness.SteepnessType.allCases, id: \.self) { value in
-                                Text(Steepness(value).name)
-                                    .tag(value)
+                            ForEach(Steepness.allCases, id: \.self) { steepness in
+                                Text(steepness.rawValue)
+                                    .tag(steepness)
                             }
                         }
                     }
@@ -104,7 +104,7 @@ struct EditProblemView: View {
     func save() {
         let record = ProblemJson(
             problemId: problem.id,
-            steepness: Steepness(selectedSteepness).name,
+            steepness: selectedSteepness.rawValue,
             height: Int(selectedHeight),
             landingDifficulty: selectedLandingDifficulty.rawValue,
             descentDifficulty: selectedDescentDifficulty.rawValue,

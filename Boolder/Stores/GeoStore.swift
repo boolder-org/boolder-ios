@@ -148,7 +148,7 @@ class GeoStore {
                     }
                     
                     if let steepness = properties.steepness {
-                        problem.steepness = Steepness(string: steepness).type
+                        problem.steepness = Steepness(rawValue: steepness) ?? .other
                     }
                     
                     if let gradeString = properties.grade {
