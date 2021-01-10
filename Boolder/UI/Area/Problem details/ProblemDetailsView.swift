@@ -216,7 +216,7 @@ struct ProblemDetailsView: View {
         
         #if DEVELOPMENT
         buttons.append(
-            .default(Text("Edit")) {
+            .default(Text("Edit (dev only)")) {
                 presentEditProblem = true
             }
         )

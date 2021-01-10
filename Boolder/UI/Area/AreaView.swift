@@ -74,6 +74,7 @@ struct AreaView: View {
                     EmptyView()
                         .sheet(isPresented: $presentPhotoCaptureSheet) {
                             NewTopoView(topoEntry: newTopoEntry)
+                                .environment(\.managedObjectContext, managedObjectContext)
                                 .accentColor(Color.green)
                         }
                 )

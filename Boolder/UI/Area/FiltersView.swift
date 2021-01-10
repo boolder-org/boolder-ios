@@ -88,6 +88,16 @@ struct FiltersView: View {
                         .disabled(dataStore.ticks().count == 0)
                     }
                 }
+                
+                #if DEVELOPMENT
+                Section(header: Text("Dev only")) {
+                    HStack {
+                        Toggle(isOn: $filters.mapMakerModeEnabled) {
+                            Text("Hide mapped problems")
+                        }
+                    }
+                }
+                #endif
             }
             .navigationBarTitle("filters.title", displayMode: .inline)
             .navigationBarItems(

@@ -12,6 +12,9 @@ import CoreLocation
 struct NewTopoView: View {
     @Environment(\.presentationMode) private var presentationMode
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
+    
     @State private var presentImagePicker = false
     @ObservedObject var topoEntry: TopoEntry
     
@@ -223,9 +226,29 @@ struct NewTopoView: View {
                 directory: "topos",
                 filename: timestamp + ".jpg"
             )
+            
+            // we piggy-back on the existing favorite mechanism to keep track of what's done / what's left to do
+            for problem in topoEntry.problems {
+                createFavorite(problem)
+            }
         }
         catch {
             print(error)
+        }
+    }
+    
+    // MARK: CoreData
+    
+    func createFavorite(_ problem: Problem) {
+        let favorite = Favorite(context: managedObjectContext)
+        favorite.id = UUID()
+        favorite.problemId = Int64(problem.id)
+        favorite.createdAt = Date()
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
         }
     }
 }

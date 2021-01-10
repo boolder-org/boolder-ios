@@ -120,6 +120,7 @@ struct EditProblemView: View {
         
         store.save(data: jsonData, directory: "problems", filename: filename)
         
+        // we piggy-back on the existing tick mechanism to keep track of what's done / what's left to do
         createTick()
     }
     

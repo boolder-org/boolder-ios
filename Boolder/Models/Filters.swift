@@ -17,6 +17,7 @@ struct Filters {
     var favorite = false
     var ticked = false
     var risky = true
+    var mapMakerModeEnabled = false
     
     func filtersCount() -> Int {
         let initialValues = Filters()
@@ -29,6 +30,7 @@ struct Filters {
         if favorite != initialValues.favorite { count += 1 }
         if ticked != initialValues.ticked { count += 1 }
         if risky != initialValues.risky { count += 1 }
+        if mapMakerModeEnabled != initialValues.mapMakerModeEnabled { count += 1 }
         
         return count
     }

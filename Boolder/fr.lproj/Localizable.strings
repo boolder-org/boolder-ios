@@ -61,7 +61,7 @@
 "filters.type" = "Type";
 "filters.all" = "Tous";
 "filters.favorite" = "Favori";
-"filters.ticked" = "Déjà fait";
+"filters.ticked" = "Réussi";
 "filters.reset" = "Réinitialiser";
 "filters.grade.range.beginner" = "Débutant";
 "filters.grade.range.intermediate" = "Intermédiaire";
