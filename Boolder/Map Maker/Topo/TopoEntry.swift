@@ -11,19 +11,19 @@ import CoreLocation
 import SwiftUI
 
 class TopoEntry: ObservableObject {
-    @Published var capturedPhoto: UIImage? = nil
+    @Published var photo: UIImage? = nil
     @Published var location: CLLocation? = nil
     @Published var heading: CLHeading? = nil
     @Published var comments: String = ""
-    @Published var mapModeSelectedProblems = [Problem]()
-    @Published var recordMode = false
+    @Published var problems = [Problem]()
+    @Published var pickerModeEnabled = false
     
     func reset() {
-        capturedPhoto = nil
+        photo = nil
         location = nil
         heading = nil
         comments = ""
-        mapModeSelectedProblems = []
-        recordMode = false
+        problems = []
+        pickerModeEnabled = false
     }
 }

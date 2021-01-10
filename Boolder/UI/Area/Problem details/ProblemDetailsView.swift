@@ -179,7 +179,7 @@ struct ProblemDetailsView: View {
         .background(
             EmptyView()
                 .sheet(isPresented: $presentProblemRecord) {
-                    ProblemRecordView(problem: problem)
+                    EditProblemView(problem: problem)
                         .accentColor(Color.green)
                 }
         )

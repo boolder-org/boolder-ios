@@ -44,7 +44,7 @@ struct NewTopoView: View {
                         topoEntry.heading = locationFetcher.heading
                     }) {
                         
-                        if let photo = topoEntry.capturedPhoto {
+                        if let photo = topoEntry.photo {
                             Image(uiImage: photo)
                                 .resizable()
                                 .aspectRatio(4/3, contentMode: .fit)
@@ -63,7 +63,7 @@ struct NewTopoView: View {
                         }
                     }
                     .fullScreenCover(isPresented: $presentImagePicker) {
-                        ImagePicker(sourceType: .camera, selectedImage: $topoEntry.capturedPhoto)
+                        ImagePicker(sourceType: .camera, selectedImage: $topoEntry.photo)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.black)
                             .edgesIgnoringSafeArea(.all)
@@ -73,17 +73,17 @@ struct NewTopoView: View {
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    if topoEntry.mapModeSelectedProblems.count > 0 {
+                    if topoEntry.problems.count > 0 {
                         VStack {
                             HStack {
-                                ForEach(topoEntry.mapModeSelectedProblems) { problem in
+                                ForEach(topoEntry.problems) { problem in
                                     ProblemCircleView(problem: problem)
                                 }
                                 
                                 Spacer()
                             }
                             Button(action : {
-                                topoEntry.mapModeSelectedProblems = []
+                                topoEntry.problems = []
                             }) {
                                 HStack {
                                     Text("Reset")
@@ -130,7 +130,7 @@ struct NewTopoView: View {
                         .padding(.trailing)
                 },
                 trailing: Button(action: {
-                    if let photo = topoEntry.capturedPhoto, let location = topoEntry.location, let heading = topoEntry.heading {
+                    if let photo = topoEntry.photo, let location = topoEntry.location, let heading = topoEntry.heading {
                         save(photo: photo, location: location, heading: heading)
                         
                         topoEntry.reset()
@@ -147,7 +147,7 @@ struct NewTopoView: View {
             )
             .onAppear {
                 UITextView.appearance().backgroundColor = .clear
-                topoEntry.recordMode = true
+                topoEntry.pickerModeEnabled = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     locationFetcher.start()
@@ -204,12 +204,15 @@ struct NewTopoView: View {
                 verticalAccuracy: location.verticalAccuracy,
                 heading: heading.trueHeading,
                 headingAccuracy: heading.headingAccuracy,
-                problem_ids: topoEntry.mapModeSelectedProblems.map{$0.id},
+                problem_ids: topoEntry.problems.map{$0.id},
                 comments: topoEntry.comments
             )
             
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = .prettyPrinted
+            
             store.save(
-                data: try JSONEncoder().encode(topoRecord),
+                data: try jsonEncoder.encode(topoRecord),
                 directory: "topos",
                 filename: timestamp + ".json"
             )

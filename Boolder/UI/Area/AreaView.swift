@@ -23,8 +23,6 @@ struct AreaView: View {
     @State private var presentPoiActionSheet = false
     @State private var presentPhotoCaptureSheet = false
     
-    @StateObject private var newTopoEntry = TopoEntry()
-    
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
     @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
@@ -44,8 +42,8 @@ struct AreaView: View {
                 centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                 centerOnProblem: $centerOnProblem,
                 centerOnProblemCount: $centerOnProblemCount,
-                mapModeSelectedProblems: $newTopoEntry.mapModeSelectedProblems,
-                recordMode: $newTopoEntry.recordMode
+                mapModeSelectedProblems: $newTopoEntry.problems,
+                recordMode: $newTopoEntry.pickerModeEnabled
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
@@ -122,7 +120,7 @@ struct AreaView: View {
                         Spacer()
                         
                         VStack {
-                            ForEach(newTopoEntry.mapModeSelectedProblems) { problem in
+                            ForEach(newTopoEntry.problems) { problem in
                                 ProblemCircleView(problem: problem)
                             }
                         }
@@ -130,12 +128,12 @@ struct AreaView: View {
                         Button(action: {
                             presentPhotoCaptureSheet = true
                         }) {
-                            Image(systemName: newTopoEntry.recordMode ? "camera.fill" : "camera")
+                            Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
                                 .padding(12)
                         }
                         .accentColor(Color(.label))
-                        .foregroundColor(newTopoEntry.recordMode ? Color.white : Color(.label))
-                        .background(newTopoEntry.recordMode ? Color.green : Color(UIColor.systemBackground))
+                        .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : Color(.label))
+                        .background(newTopoEntry.pickerModeEnabled ? Color.green : Color(UIColor.systemBackground))
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)
@@ -198,6 +196,11 @@ struct AreaView: View {
 //        #endif
 //        }
     }
+    
+    // this view model lives here to be able to use the map as a problem picker (for NewTopoView)
+    // it works but it's not super clean
+    // TODO: create a dedicated picker screen to move this logic away from the main map
+    @StateObject private var newTopoEntry = TopoEntry()
 }
 
 struct AreaView_Previews: PreviewProvider {

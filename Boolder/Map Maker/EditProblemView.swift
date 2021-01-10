@@ -9,7 +9,7 @@
 import SwiftUI
 
 // FIXME: rename
-struct ProblemRecordView: View {
+struct EditProblemView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var selectedSteepness = Steepness.SteepnessType.other
@@ -98,7 +98,7 @@ struct ProblemRecordView: View {
     }
     
     func save() {
-        let record = ProblemRecord(
+        let record = ProblemJson(
             problemId: problem.id,
             steepness: Steepness(selectedSteepness).name,
             height: Int(selectedHeight),
@@ -106,7 +106,11 @@ struct ProblemRecordView: View {
             descentDifficulty: selectedDescentDifficulty.rawValue,
             comments: comments
         )
-        let jsonData = try! JSONEncoder().encode(record)
+        
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        
+        let jsonData = try! jsonEncoder.encode(record)
         let filename = store.timestamp() + ".json"
         
         store.save(data: jsonData, directory: "problems", filename: filename)
@@ -123,7 +127,7 @@ enum Difficulty: String, CaseIterable {
     case hard
 }
 
-struct ProblemRecord: Codable {
+struct ProblemJson: Codable {
     var problemId: Int
     var steepness: String
     var height: Int
@@ -134,6 +138,6 @@ struct ProblemRecord: Codable {
 
 struct ProblemRecordView_Previews: PreviewProvider {
     static var previews: some View {
-        ProblemRecordView(problem: Problem())
+        EditProblemView(problem: Problem())
     }
 }
