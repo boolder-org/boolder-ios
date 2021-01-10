@@ -13,6 +13,7 @@ struct DiscoverView: View {
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
     
     @State var presentArea = false
+    @State private var presentSettings = false
     
     var body: some View {
         NavigationView {
@@ -295,7 +296,33 @@ struct DiscoverView: View {
                                 }
                             }
                         }
+                        
+                        #if DEVELOPMENT
+                        VStack(alignment: .leading) {
+                            Divider()
                             
+                            NavigationLink(
+                                destination: SettingsView(),
+                                isActive: $presentSettings,
+                                label: {
+                                    HStack {
+                                        Text("Settings (dev only)")
+                                            .font(.body)
+                                            .foregroundColor(Color.green)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                }
+                            )
+
+                            
+                            Divider()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.horizontal)
+                        .padding(.vertical, 16)
+                        #endif
                     }
                 }
                 .navigationBarTitle(Text("discover.title"))

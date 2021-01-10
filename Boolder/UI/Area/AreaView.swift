@@ -181,21 +181,6 @@ struct AreaView: View {
                 }
             })
         }
-//        .onAppear {
-//        #if DEBUG
-//            // delete all favorites
-//            let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
-//            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
-//            do { try managedObjectContext.execute(DelAllReqVar) }
-//            catch { print(error) }
-//
-//            // delete all ticks
-//            let ReqVar2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Tick")
-//            let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: ReqVar2)
-//            do { try managedObjectContext.execute(DelAllReqVar2) }
-//            catch { print(error) }
-//        #endif
-//        }
     }
     
     // this view model lives here to be able to use the map as a problem picker (for NewTopoView)
