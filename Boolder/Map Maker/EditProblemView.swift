@@ -12,6 +12,9 @@ import SwiftUI
 struct EditProblemView: View {
     @Environment(\.presentationMode) private var presentationMode
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
+    
     @State private var selectedSteepness = Steepness.SteepnessType.other
     @State private var selectedLandingDifficulty = Difficulty.easy
     @State private var selectedDescentDifficulty = Difficulty.easy
@@ -97,6 +100,8 @@ struct EditProblemView: View {
         }
     }
     
+    let store = MapMakerStore()
+    
     func save() {
         let record = ProblemJson(
             problemId: problem.id,
@@ -115,10 +120,23 @@ struct EditProblemView: View {
         
         store.save(data: jsonData, directory: "problems", filename: filename)
         
-        // TODO: create tick
+        createTick()
     }
     
-    let store = MapMakerStore()
+   // MARK: CoreData
+    
+    func createTick() {
+        let tick = Tick(context: managedObjectContext)
+        tick.id = UUID()
+        tick.problemId = Int64(problem.id)
+        tick.createdAt = Date()
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
+        }
+    }
 }
 
 enum Difficulty: String, CaseIterable {
@@ -134,6 +152,7 @@ struct ProblemJson: Codable {
     var landingDifficulty: String
     var descentDifficulty: String
     var comments: String
+    // TODO: add version number
 }
 
 struct ProblemRecordView_Previews: PreviewProvider {

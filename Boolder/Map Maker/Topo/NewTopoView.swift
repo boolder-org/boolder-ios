@@ -190,6 +190,7 @@ struct NewTopoView: View {
         var headingAccuracy: Double
         var problem_ids: [Int]
         var comments: String
+        // TODO: add version number
     }
     
     fileprivate func save(photo: UIImage, location: CLLocation, heading: CLHeading) {

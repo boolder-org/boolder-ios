@@ -180,6 +180,7 @@ struct ProblemDetailsView: View {
             EmptyView()
                 .sheet(isPresented: $presentEditProblem) {
                     EditProblemView(problem: problem)
+                        .environment(\.managedObjectContext, managedObjectContext)
                         .accentColor(Color.green)
                 }
         )
