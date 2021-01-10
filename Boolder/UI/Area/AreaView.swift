@@ -24,9 +24,13 @@ struct AreaView: View {
     @State private var presentPhotoCaptureSheet = false
     
     // FIXME: rename
+    // FIXME: move to a view whose responsibility is to pick problems for NewTopoView
     @State var mapModeSelectedProblems: [Problem] = [] // FIXME: rename to "record mode", and replace by a set
     @State var recordMode = false
     @State private var capturedPhoto: UIImage? = nil
+    @State private var newTopoLocation: CLLocation? = nil
+    @State private var newTopoHeading: CLHeading? = nil
+    @State private var newTopoComments = ""
     
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
@@ -78,7 +82,14 @@ struct AreaView: View {
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentPhotoCaptureSheet) {
-                            NewTopoView(capturedPhoto: $capturedPhoto, mapModeSelectedProblems: $mapModeSelectedProblems, recordMode: $recordMode)
+                            NewTopoView(
+                                capturedPhoto: $capturedPhoto,
+                                location: $newTopoLocation,
+                                heading: $newTopoHeading,
+                                comments: $newTopoComments,
+                                mapModeSelectedProblems: $mapModeSelectedProblems,
+                                recordMode: $recordMode
+                            )
                                 .accentColor(Color.green)
                         }
                 )

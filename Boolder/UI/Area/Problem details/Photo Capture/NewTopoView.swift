@@ -14,7 +14,9 @@ struct NewTopoView: View {
     
     @State private var presentImagePicker = false
     @Binding var capturedPhoto: UIImage?
-    @State private var comments = ""
+    @Binding var location: CLLocation?
+    @Binding var heading: CLHeading?
+    @Binding var comments: String
     
     @Binding var mapModeSelectedProblems: [Problem]
     @Binding var recordMode: Bool
@@ -44,6 +46,8 @@ struct NewTopoView: View {
                     Button(action: {
                         presentImagePicker = true
                         locationFetcher.stop()
+                        location = locationFetcher.location
+                        heading = locationFetcher.heading
                     }) {
                         
                         if let photo = capturedPhoto {
@@ -125,6 +129,9 @@ struct NewTopoView: View {
                     mapModeSelectedProblems = []
                     recordMode = false
                     capturedPhoto = nil
+                    location = nil
+                    heading = nil
+                    comments = ""
                     
                     presentationMode.wrappedValue.dismiss()
                 }) {
@@ -134,9 +141,12 @@ struct NewTopoView: View {
                         .padding(.trailing)
                 },
                 trailing: Button(action: {
-                    if let photo = capturedPhoto, let location = locationFetcher.location, let heading = locationFetcher.heading {
-                        save(photo: photo, location: location, heading: heading)
+                    if let photo = capturedPhoto, let savedLocation = location, let savedHeading = heading {
+                        save(photo: photo, location: savedLocation, heading: savedHeading)
                         
+                        location = nil
+                        heading = nil
+                        comments = ""
                         mapModeSelectedProblems = []
                         recordMode = false
                         capturedPhoto = nil
@@ -163,8 +173,10 @@ struct NewTopoView: View {
     }
     
     var locationText: String {
-        if let location = locationFetcher.location {
-            return String(format: "%.6f", location.coordinate.latitude) + " " + String(format: "%.6f", location.coordinate.longitude) + " (±" + String(format: "%.0f", location.horizontalAccuracy) + "m)"
+        let displayedLocation = location ?? locationFetcher.location
+        
+        if let displayedLocation = displayedLocation {
+            return String(format: "%.6f", displayedLocation.coordinate.latitude) + " " + String(format: "%.6f", displayedLocation.coordinate.longitude) + " (±" + String(format: "%.0f", displayedLocation.horizontalAccuracy) + "m)"
         }
         else {
             return "Waiting..."
@@ -172,8 +184,10 @@ struct NewTopoView: View {
     }
     
     var headingText: String {
-        if let heading = locationFetcher.heading {
-            return String(format: "%.1f", heading.trueHeading) + "° (±" + String(format: "%.0f", heading.headingAccuracy) + ")"
+        let displayedHeading = heading ?? locationFetcher.heading
+        
+        if let displayedHeading = displayedHeading {
+            return String(format: "%.1f", displayedHeading.trueHeading) + "° (±" + String(format: "%.0f", displayedHeading.headingAccuracy) + "°)"
         }
         else {
             return "Waiting..."
@@ -231,6 +245,6 @@ struct NewTopoView: View {
 
 struct NewTopoView_Previews: PreviewProvider {
     static var previews: some View {
-        NewTopoView(capturedPhoto: .constant(nil), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
+        NewTopoView(capturedPhoto: .constant(nil), location: .constant(nil), heading: .constant(nil), comments: .constant(""), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
     }
 }
