@@ -110,8 +110,12 @@ struct NewTopoView: View {
                         .fontWeight(.bold)
                     
                     TextEditor(text: $comments)
-                        .background(Color.init(white: 0.9))
                         .frame(height: 80)
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.init(white: 0.9), lineWidth: 1)
+                        )
                 }
                 .padding()
             }
