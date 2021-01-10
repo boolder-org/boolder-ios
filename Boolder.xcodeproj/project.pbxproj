@@ -257,7 +257,6 @@
 				37A276282457424500F53D80 /* GeoStore.swift */,
 				3701845A2466BD0800C6530C /* TopoStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
-				37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -365,6 +364,7 @@
 		37B45223259140C700241091 /* Map Maker */ = {
 			isa = PBXGroup;
 			children = (
+				37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */,
 				37F5640825AB13E000271346 /* Topo */,
 				37B2C27F25A8627D003A7C64 /* EditProblemView.swift */,
 			);
