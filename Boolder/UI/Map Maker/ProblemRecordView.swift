@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// FIXME: rename
 struct ProblemRecordView: View {
     @Environment(\.presentationMode) private var presentationMode
     

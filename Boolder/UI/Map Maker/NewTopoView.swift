@@ -13,13 +13,7 @@ struct NewTopoView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var presentImagePicker = false
-    @Binding var capturedPhoto: UIImage?
-    @Binding var location: CLLocation?
-    @Binding var heading: CLHeading?
-    @Binding var comments: String
-    
-    @Binding var mapModeSelectedProblems: [Problem]
-    @Binding var recordMode: Bool
+    @ObservedObject var topoEntry: TopoEntry
     
     @StateObject var locationFetcher = LocationFetcher()
     
@@ -46,11 +40,11 @@ struct NewTopoView: View {
                     Button(action: {
                         presentImagePicker = true
                         locationFetcher.stop()
-                        location = locationFetcher.location
-                        heading = locationFetcher.heading
+                        topoEntry.location = locationFetcher.location
+                        topoEntry.heading = locationFetcher.heading
                     }) {
                         
-                        if let photo = capturedPhoto {
+                        if let photo = topoEntry.capturedPhoto {
                             Image(uiImage: photo)
                                 .resizable()
                                 .aspectRatio(4/3, contentMode: .fit)
@@ -69,7 +63,7 @@ struct NewTopoView: View {
                         }
                     }
                     .fullScreenCover(isPresented: $presentImagePicker) {
-                        ImagePicker(sourceType: .camera, selectedImage: $capturedPhoto)
+                        ImagePicker(sourceType: .camera, selectedImage: $topoEntry.capturedPhoto)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.black)
                             .edgesIgnoringSafeArea(.all)
@@ -79,17 +73,17 @@ struct NewTopoView: View {
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    if mapModeSelectedProblems.count > 0 {
+                    if topoEntry.mapModeSelectedProblems.count > 0 {
                         VStack {
                             HStack {
-                                ForEach(mapModeSelectedProblems) { problem in
+                                ForEach(topoEntry.mapModeSelectedProblems) { problem in
                                     ProblemCircleView(problem: problem)
                                 }
                                 
                                 Spacer()
                             }
                             Button(action : {
-                                mapModeSelectedProblems = []
+                                topoEntry.mapModeSelectedProblems = []
                             }) {
                                 HStack {
                                     Text("Reset")
@@ -113,7 +107,7 @@ struct NewTopoView: View {
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    TextEditor(text: $comments)
+                    TextEditor(text: $topoEntry.comments)
                         .frame(height: 80)
                         .cornerRadius(8)
                         .overlay(
@@ -126,12 +120,7 @@ struct NewTopoView: View {
             .navigationBarTitle(Text("New Topo"), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    mapModeSelectedProblems = []
-                    recordMode = false
-                    capturedPhoto = nil
-                    location = nil
-                    heading = nil
-                    comments = ""
+                    topoEntry.reset()
                     
                     presentationMode.wrappedValue.dismiss()
                 }) {
@@ -141,15 +130,10 @@ struct NewTopoView: View {
                         .padding(.trailing)
                 },
                 trailing: Button(action: {
-                    if let photo = capturedPhoto, let savedLocation = location, let savedHeading = heading {
-                        save(photo: photo, location: savedLocation, heading: savedHeading)
+                    if let photo = topoEntry.capturedPhoto, let location = topoEntry.location, let heading = topoEntry.heading {
+                        save(photo: photo, location: location, heading: heading)
                         
-                        location = nil
-                        heading = nil
-                        comments = ""
-                        mapModeSelectedProblems = []
-                        recordMode = false
-                        capturedPhoto = nil
+                        topoEntry.reset()
                         
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -163,7 +147,7 @@ struct NewTopoView: View {
             )
             .onAppear {
                 UITextView.appearance().backgroundColor = .clear
-                recordMode = true
+                topoEntry.recordMode = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     locationFetcher.start()
@@ -173,7 +157,7 @@ struct NewTopoView: View {
     }
     
     var locationText: String {
-        let displayedLocation = location ?? locationFetcher.location
+        let displayedLocation = topoEntry.location ?? locationFetcher.location
         
         if let displayedLocation = displayedLocation {
             return String(format: "%.6f", displayedLocation.coordinate.latitude) + " " + String(format: "%.6f", displayedLocation.coordinate.longitude) + " (±" + String(format: "%.0f", displayedLocation.horizontalAccuracy) + "m)"
@@ -184,7 +168,7 @@ struct NewTopoView: View {
     }
     
     var headingText: String {
-        let displayedHeading = heading ?? locationFetcher.heading
+        let displayedHeading = topoEntry.heading ?? locationFetcher.heading
         
         if let displayedHeading = displayedHeading {
             return String(format: "%.1f", displayedHeading.trueHeading) + "° (±" + String(format: "%.0f", displayedHeading.headingAccuracy) + "°)"
@@ -196,8 +180,7 @@ struct NewTopoView: View {
 
     let store = MapMakerStore()
     
-    // FIXME: add heading
-    struct TopoRecord: Codable {
+    struct TopoJson: Codable {
         var latitude: Double
         var longitude: Double
         var altitude: Double
@@ -213,7 +196,7 @@ struct NewTopoView: View {
         do {
             let timestamp = store.timestamp()
             
-            let topoRecord = TopoRecord(
+            let topoRecord = TopoJson(
                 latitude: location.coordinate.latitude,
                 longitude: location.coordinate.longitude,
                 altitude: location.altitude,
@@ -221,8 +204,8 @@ struct NewTopoView: View {
                 verticalAccuracy: location.verticalAccuracy,
                 heading: heading.trueHeading,
                 headingAccuracy: heading.headingAccuracy,
-                problem_ids: mapModeSelectedProblems.map{$0.id},
-                comments: comments
+                problem_ids: topoEntry.mapModeSelectedProblems.map{$0.id},
+                comments: topoEntry.comments
             )
             
             store.save(
@@ -243,8 +226,8 @@ struct NewTopoView: View {
     }
 }
 
-struct NewTopoView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewTopoView(capturedPhoto: .constant(nil), location: .constant(nil), heading: .constant(nil), comments: .constant(""), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
-    }
-}
+//struct NewTopoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NewTopoView(capturedPhoto: .constant(nil), location: .constant(nil), heading: .constant(nil), comments: .constant(""), mapModeSelectedProblems: .constant([]), recordMode: .constant(true))
+//    }
+//}

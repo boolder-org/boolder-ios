@@ -23,14 +23,7 @@ struct AreaView: View {
     @State private var presentPoiActionSheet = false
     @State private var presentPhotoCaptureSheet = false
     
-    // FIXME: rename
-    // FIXME: move to a view whose responsibility is to pick problems for NewTopoView
-    @State var mapModeSelectedProblems: [Problem] = [] // FIXME: rename to "record mode", and replace by a set
-    @State var recordMode = false
-    @State private var capturedPhoto: UIImage? = nil
-    @State private var newTopoLocation: CLLocation? = nil
-    @State private var newTopoHeading: CLHeading? = nil
-    @State private var newTopoComments = ""
+    @StateObject private var newTopoEntry = TopoEntry()
     
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
@@ -51,8 +44,8 @@ struct AreaView: View {
                 centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                 centerOnProblem: $centerOnProblem,
                 centerOnProblemCount: $centerOnProblemCount,
-                mapModeSelectedProblems: $mapModeSelectedProblems,
-                recordMode: $recordMode
+                mapModeSelectedProblems: $newTopoEntry.mapModeSelectedProblems,
+                recordMode: $newTopoEntry.recordMode
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
@@ -82,14 +75,7 @@ struct AreaView: View {
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentPhotoCaptureSheet) {
-                            NewTopoView(
-                                capturedPhoto: $capturedPhoto,
-                                location: $newTopoLocation,
-                                heading: $newTopoHeading,
-                                comments: $newTopoComments,
-                                mapModeSelectedProblems: $mapModeSelectedProblems,
-                                recordMode: $recordMode
-                            )
+                            NewTopoView(topoEntry: newTopoEntry)
                                 .accentColor(Color.green)
                         }
                 )
@@ -136,7 +122,7 @@ struct AreaView: View {
                         Spacer()
                         
                         VStack {
-                            ForEach(mapModeSelectedProblems) { problem in
+                            ForEach(newTopoEntry.mapModeSelectedProblems) { problem in
                                 ProblemCircleView(problem: problem)
                             }
                         }
@@ -144,12 +130,12 @@ struct AreaView: View {
                         Button(action: {
                             presentPhotoCaptureSheet = true
                         }) {
-                            Image(systemName: recordMode ? "camera.fill" : "camera")
+                            Image(systemName: newTopoEntry.recordMode ? "camera.fill" : "camera")
                                 .padding(12)
                         }
                         .accentColor(Color(.label))
-                        .foregroundColor(recordMode ? Color.white : Color(.label))
-                        .background(recordMode ? Color.green : Color(UIColor.systemBackground))
+                        .foregroundColor(newTopoEntry.recordMode ? Color.white : Color(.label))
+                        .background(newTopoEntry.recordMode ? Color.green : Color(UIColor.systemBackground))
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)

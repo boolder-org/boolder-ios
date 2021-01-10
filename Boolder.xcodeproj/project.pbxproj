@@ -123,6 +123,8 @@
 		37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
 		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
 		37F20A6D255F362F002BD5F1 /* area-4-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37F20A6C255F362F002BD5F1 /* area-4-data.geojson */; };
+		37F563F625AB09F400271346 /* TopoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F563F525AB09F400271346 /* TopoEntry.swift */; };
+		37F563F725AB09F400271346 /* TopoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F563F525AB09F400271346 /* TopoEntry.swift */; };
 		37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
 		37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
 /* End PBXBuildFile section */
@@ -191,6 +193,7 @@
 		37E42EE0245DB52F00EEBA96 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
 		37F20A6C255F362F002BD5F1 /* area-4-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-4-data.geojson"; sourceTree = "<group>"; };
+		37F563F525AB09F400271346 /* TopoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoEntry.swift; sourceTree = "<group>"; };
 		37F9358C250578D000B1CAB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37F9358E250578D700B1CAB2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37FD85A22460A4F90054982F /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 			children = (
 				37158D0425487F1700A8B696 /* Discover */,
 				37F12D852456D4FC0036E3E3 /* Area */,
+				37B45223259140C700241091 /* Map Maker */,
 				37379903258E157D00711EDA /* BoolderButtonStyle.swift */,
 			);
 			path = UI;
@@ -354,14 +358,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		37B45223259140C700241091 /* Photo Capture */ = {
+		37B45223259140C700241091 /* Map Maker */ = {
 			isa = PBXGroup;
 			children = (
 				37B4521F259140B100241091 /* NewTopoView.swift */,
+				37F563F525AB09F400271346 /* TopoEntry.swift */,
 				378C99E5258569F8003A545B /* ImagePicker.swift */,
 				378C99E825864A43003A545B /* LocationFetcher.swift */,
+				37B2C27F25A8627D003A7C64 /* ProblemRecordView.swift */,
 			);
-			path = "Photo Capture";
+			path = "Map Maker";
 			sourceTree = "<group>";
 		};
 		37B4522B259144B000241091 /* Topo */ = {
@@ -422,8 +428,6 @@
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
 				37B4522B259144B000241091 /* Topo */,
-				37B45223259140C700241091 /* Photo Capture */,
-				37B2C27F25A8627D003A7C64 /* ProblemRecordView.swift */,
 			);
 			path = "Problem details";
 			sourceTree = "<group>";
@@ -589,6 +593,7 @@
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				3737992A258E619400711EDA /* Filters.swift in Sources */,
 				3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */,
+				37F563F725AB09F400271346 /* TopoEntry.swift in Sources */,
 				3737992C258E619400711EDA /* OtherAreasView.swift in Sources */,
 				3737992D258E619400711EDA /* ProblemListView.swift in Sources */,
 				3737992E258E619400711EDA /* HeadingView.swift in Sources */,
@@ -644,6 +649,7 @@
 				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */,
+				37F563F625AB09F400271346 /* TopoEntry.swift in Sources */,
 				37379900258DF9A300711EDA /* OtherAreasView.swift in Sources */,
 				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,
 				37213880258276580030131C /* HeadingView.swift in Sources */,
