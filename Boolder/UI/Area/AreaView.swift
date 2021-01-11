@@ -42,8 +42,8 @@ struct AreaView: View {
                 centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                 centerOnProblem: $centerOnProblem,
                 centerOnProblemCount: $centerOnProblemCount,
-                mapModeSelectedProblems: $newTopoEntry.problems,
-                recordMode: $newTopoEntry.pickerModeEnabled
+                pickedProblems: $newTopoEntry.problems,
+                pickerModeEnabled: $newTopoEntry.pickerModeEnabled
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
