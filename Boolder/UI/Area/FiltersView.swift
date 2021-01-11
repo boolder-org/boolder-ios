@@ -15,8 +15,8 @@ struct FiltersView: View {
     @EnvironmentObject var dataStore: DataStore
     
     @State private var presentSteepnessFilter = false
+    @State private var showMoreFilters = UserDefaults.standard.bool(forKey: "ShowMoreFilters")
     @Binding var presentFilters: Bool
-    
     @Binding var filters: Filters
     
     var body: some View {
@@ -45,55 +45,72 @@ struct FiltersView: View {
                     }
                 }
                 
-                Section(header: Text("filters.advanced_filters")) {
-                    NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters, filters: $filters), isActive: $presentSteepnessFilter) {
+                if showMoreFilters {
+                    Section(header: Text("filters.advanced_filters")) {
+                        NavigationLink(destination: SteepnessFilterView(presentFilters: $presentFilters, filters: $filters), isActive: $presentSteepnessFilter) {
+                            HStack {
+                                Text("filters.type")
+                                Spacer()
+                                Text(labelForSteepness())
+                                    .foregroundColor(Color.gray)
+                            }
+                        }
+                        
+                        NavigationLink(destination: CircuitFilterView(filters: $filters)) {
+                            HStack {
+                                if let circuit = filters.circuit {
+                                    Text("filters.circuit")
+                                    Spacer()
+                                    Text("\(circuit.shortName())").foregroundColor(Color(.systemGray))
+                                } else
+                                {
+                                    Text("filters.circuit")
+                                }
+                            }
+                        }
+                        
                         HStack {
-                            Text("filters.type")
-                            Spacer()
-                            Text(labelForSteepness())
-                                .foregroundColor(Color.gray)
+                            Toggle(isOn: $filters.favorite) {
+                                Text("filters.favorite")
+                                    .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
+                            }
+                            .disabled(dataStore.favorites().count == 0)
+                        }
+                        
+                        HStack {
+                            Toggle(isOn: $filters.ticked) {
+                                Text("filters.ticked")
+                                    .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
+                            }
+                            .disabled(dataStore.ticks().count == 0)
                         }
                     }
                     
-                    NavigationLink(destination: CircuitFilterView(filters: $filters)) {
+                    #if DEVELOPMENT
+                    Section(header: Text("Dev only")) {
                         HStack {
-                            if let circuit = filters.circuit {
-                                Text("filters.circuit")
-                                Spacer()
-                                Text("\(circuit.shortName())").foregroundColor(Color(.systemGray))
-                            } else
-                            {
-                                Text("filters.circuit")
+                            Toggle(isOn: $filters.mapMakerModeEnabled) {
+                                Text("Hide mapped problems")
                             }
                         }
                     }
-                    
-                    HStack {
-                        Toggle(isOn: $filters.favorite) {
-                            Text("filters.favorite")
-                                .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
-                        }
-                        .disabled(dataStore.favorites().count == 0)
-                    }
-                    
-                    HStack {
-                        Toggle(isOn: $filters.ticked) {
-                            Text("filters.ticked")
-                                .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
-                        }
-                        .disabled(dataStore.ticks().count == 0)
-                    }
+                    #endif
                 }
                 
-                #if DEVELOPMENT
-                Section(header: Text("Dev only")) {
+                Section {
                     HStack {
-                        Toggle(isOn: $filters.mapMakerModeEnabled) {
-                            Text("Hide mapped problems")
+                        Button(action: {
+                            showMoreFilters.toggle()
+                            UserDefaults.standard.set(showMoreFilters, forKey: "ShowMoreFilters")
+                        }) {
+                            HStack {
+                                Spacer()
+                                showMoreFilters ? Text("filters.show_less_filters") : Text("filters.show_more_filters")
+                                Spacer()
+                            }
                         }
                     }
                 }
-                #endif
             }
             .navigationBarTitle("filters.title", displayMode: .inline)
             .navigationBarItems(

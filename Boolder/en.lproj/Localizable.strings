@@ -60,6 +60,8 @@
 "filters.advanced_filters" = "Advanced Filters";
 "filters.type" = "Type";
 "filters.all" = "All";
+"filters.show_more_filters" = "More filters";
+"filters.show_less_filters" = "Less filters";
 "filters.favorite" = "Favorite";
 "filters.ticked" = "Already done";
 "filters.reset" = "Reset";
