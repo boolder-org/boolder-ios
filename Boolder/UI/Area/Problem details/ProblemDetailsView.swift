@@ -30,6 +30,8 @@ struct ProblemDetailsView: View {
     @State var presentSaveActionsheet = false
     @State private var presentPoiActionSheet = false
     
+    @State var presentEditProblem = false
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -58,10 +60,10 @@ struct ProblemDetailsView: View {
                             
                             if problem.steepness != .other {
                                 HStack(alignment: .firstTextBaseline) {
-                                    Image(Steepness(problem.steepness).imageName)
+                                    Image(problem.steepness.imageName)
                                         .font(.body)
                                         .frame(minWidth: 16)
-                                    Text(Steepness(problem.steepness).name)
+                                    Text(problem.steepness.localizedName)
                                         .font(.body)
                                     Text(problem.readableDescription() ?? "")
                                         .font(.caption)
@@ -166,10 +168,6 @@ struct ProblemDetailsView: View {
                         
                     }
                     .padding(.top, 16)
-                    
-                    #if DEVELOPMENT
-//                    GeolocatePhotoView(problemId: problem.id)
-                    #endif
                 }
                 .padding(.horizontal)
                 .padding(.top, 0)
@@ -178,6 +176,14 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
+        .background(
+            EmptyView()
+                .sheet(isPresented: $presentEditProblem) {
+                    EditProblemView(problem: problem)
+                        .environment(\.managedObjectContext, managedObjectContext)
+                        .accentColor(Color.green)
+                }
+        )
     }
     
     private func buttonsForMoreActionSheet() -> [Alert.Button] {
@@ -207,6 +213,14 @@ struct ProblemDetailsView: View {
                 }
             )
         }
+        
+        #if DEVELOPMENT
+        buttons.append(
+            .default(Text("Edit (dev only)")) {
+                presentEditProblem = true
+            }
+        )
+        #endif
         
         buttons.append(.cancel())
         

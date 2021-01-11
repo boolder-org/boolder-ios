@@ -68,7 +68,9 @@ class DataStore : ObservableObject {
                                 if filters.favorite == false || problem.isFavorite()  {
                                     if filters.ticked == false || problem.isTicked()  {
                                         if filters.risky == true || !problem.isRisky()  {
-                                            return true
+                                            if isMapMakerModeOk(problem) {
+                                                return true
+                                            }
                                         }
                                     }
                                 }
@@ -79,6 +81,10 @@ class DataStore : ObservableObject {
             }
             return false
         }
+    }
+    
+    private func isMapMakerModeOk(_ problem: Problem) -> Bool {
+        filters.mapMakerModeEnabled == false || (!problem.isFavorite() || !problem.isTicked())
     }
     
     private func isHeightOk(_ problem: Problem) -> Bool {

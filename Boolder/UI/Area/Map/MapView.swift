@@ -14,6 +14,7 @@ import CoreLocation
 
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
+    
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     @Binding var selectedPoi: Poi?
@@ -21,6 +22,9 @@ struct MapView: UIViewRepresentable {
     @Binding var centerOnCurrentLocationCount: Int
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
+    
+    @Binding var pickedProblems: [Problem]
+    @Binding var pickerModeEnabled: Bool
     
     var mapView = MKMapView() // FIXME: put in makeUIView() ?
     
@@ -291,14 +295,20 @@ struct MapView: UIViewRepresentable {
                     parent.selectedPoi = annotation.poi
                     parent.presentPoiActionSheet = true
                     
-                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
                 }
                 
                 if let annotation = annotation as? ProblemAnnotation {
-                    parent.selectedProblem = annotation.problem
-                    parent.presentProblemDetails = true
                     
-                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: true)
+                    if parent.pickerModeEnabled {
+                        parent.pickedProblems.append(annotation.problem) // FIXME: only in map mode
+                    }
+                    else {
+                        parent.selectedProblem = annotation.problem
+                        parent.presentProblemDetails = true
+                    }
+                    
+                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
                 }
             }
         }

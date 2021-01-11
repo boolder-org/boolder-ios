@@ -8,44 +8,16 @@
 
 import Foundation
 
-class Steepness  {
-    enum SteepnessType: CaseIterable, Comparable {
-        case wall
-        case slab
-        case overhang
-        case roof
-        case traverse
-        case other
-    }
+enum Steepness: String, CaseIterable  {    
+    case wall
+    case slab
+    case overhang
+    case roof
+    case traverse
+    case other
     
-    let type: SteepnessType
-    
-    init(_ type: SteepnessType) {
-        self.type = type
-    }
-    
-    init(string: String) {
-        switch string {
-        case "wall":
-            self.type = .wall
-        case "slab":
-            self.type = .slab
-        case "overhang":
-            self.type = .overhang
-        case "roof":
-            self.type = .roof
-        case "traverse":
-            self.type = .traverse
-        case "other":
-            self.type = .other
-        default:
-            // FIXME: add warning
-            self.type = .other
-        }
-    }
-    
-    var name: String {
-        switch type {
+    var localizedName: String {
+        switch self {
         case .wall:
             return NSLocalizedString("steepness.wall", comment: "")
         case .slab:
@@ -62,7 +34,7 @@ class Steepness  {
     }
     
     var imageName: String {
-        switch type {
+        switch self {
         case .wall:
             return "steepness.wall"
         case .slab:

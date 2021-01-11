@@ -8,4 +8,3 @@
 
 NSLocationWhenInUseUsageDescription = "Votre position s'affichera sur la carte pour vous aider à vous repérer.";
 NSCameraUsageDescription = "Vous pourrez prendre des photos des voies."; // FIXME: improve copy
-NSPhotoLibraryAddUsageDescription = "To save the problem photos in your photo library."; // FIXME: improve copy

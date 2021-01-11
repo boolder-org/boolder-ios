@@ -21,6 +21,7 @@ struct AreaView: View {
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
+    @State private var presentNewTopoSheet = false
     
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
@@ -40,7 +41,9 @@ struct AreaView: View {
                 presentPoiActionSheet: $presentPoiActionSheet,
                 centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                 centerOnProblem: $centerOnProblem,
-                centerOnProblemCount: $centerOnProblemCount
+                centerOnProblemCount: $centerOnProblemCount,
+                pickedProblems: $newTopoEntry.problems,
+                pickerModeEnabled: $newTopoEntry.pickerModeEnabled
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
@@ -66,6 +69,14 @@ struct AreaView: View {
                         navigationMode: true,
                         presentPoiActionSheet: $presentPoiActionSheet
                     )
+                )
+                .background(
+                    EmptyView()
+                        .sheet(isPresented: $presentNewTopoSheet) {
+                            NewTopoView(topoEntry: newTopoEntry)
+                                .environment(\.managedObjectContext, managedObjectContext)
+                                .accentColor(Color.green)
+                        }
                 )
             
             VStack {
@@ -102,6 +113,42 @@ struct AreaView: View {
                 .padding(.bottom, 28)
                 .zIndex(10)
             }
+            
+            #if DEVELOPMENT
+            if !showList {
+                HStack {
+                    VStack {
+                        Spacer()
+                        
+                        VStack {
+                            ForEach(newTopoEntry.problems) { problem in
+                                ProblemCircleView(problem: problem)
+                            }
+                        }
+                        
+                        Button(action: {
+                            presentNewTopoSheet = true
+                        }) {
+                            Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
+                                .padding(12)
+                        }
+                        .accentColor(Color(.label))
+                        .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : Color(.label))
+                        .background(newTopoEntry.pickerModeEnabled ? Color.green : Color(UIColor.systemBackground))
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding()
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 28)
+                .zIndex(10)
+            }
+            #endif
         }
         .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
         .navigationBarItems(
@@ -134,22 +181,12 @@ struct AreaView: View {
                 }
             })
         }
-//        .onAppear {
-//        #if DEBUG
-//            // delete all favorites
-//            let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
-//            let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
-//            do { try managedObjectContext.execute(DelAllReqVar) }
-//            catch { print(error) }
-//
-//            // delete all ticks
-//            let ReqVar2 = NSFetchRequest<NSFetchRequestResult>(entityName: "Tick")
-//            let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: ReqVar2)
-//            do { try managedObjectContext.execute(DelAllReqVar2) }
-//            catch { print(error) }
-//        #endif
-//        }
     }
+    
+    // this view model lives here to be able to use the map as a problem picker (for NewTopoView)
+    // it works but it's not super clean
+    // TODO: create a dedicated picker screen to move this logic away from the main map
+    @StateObject private var newTopoEntry = TopoEntry()
 }
 
 struct AreaView_Previews: PreviewProvider {

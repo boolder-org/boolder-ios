@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-let userVisibleSteepnessTypes: [Steepness.SteepnessType] = [.wall, .slab, .overhang, .traverse]
+let userVisibleSteepnessTypes: [Steepness] = [.wall, .slab, .overhang, .traverse]
 
 struct FiltersView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -88,6 +88,16 @@ struct FiltersView: View {
                         .disabled(dataStore.ticks().count == 0)
                     }
                 }
+                
+                #if DEVELOPMENT
+                Section(header: Text("Dev only")) {
+                    HStack {
+                        Toggle(isOn: $filters.mapMakerModeEnabled) {
+                            Text("Hide mapped problems")
+                        }
+                    }
+                }
+                #endif
             }
             .navigationBarTitle("filters.title", displayMode: .inline)
             .navigationBarItems(
@@ -119,8 +129,8 @@ struct FiltersView: View {
             return NSLocalizedString("filters.all", comment: "")
         }
         
-        let visibleAndSelected = filters.steepness.intersection(userVisibleSteepnessTypes).sorted()
-        let string = visibleAndSelected.map{ Steepness($0).name.lowercased() }.joined(separator: ", ")
+        let visibleAndSelected = filters.steepness.intersection(userVisibleSteepnessTypes)
+        let string = visibleAndSelected.map{ $0.localizedName.lowercased() }.joined(separator: ", ")
         return String(string.prefix(1).capitalized + string.dropFirst())
     }
 }
@@ -149,10 +159,10 @@ struct SteepnessFilterView: View {
                     steepnessTapped(steepness)
                 }) {
                     HStack {
-                        Image(Steepness(steepness).imageName)
+                        Image(steepness.imageName)
                             .foregroundColor(Color(.label))
                             .frame(minWidth: 20)
-                        Text(Steepness(steepness).name)
+                        Text(steepness.localizedName)
                             .foregroundColor(Color(.label))
                         Spacer()
                         
@@ -178,7 +188,7 @@ struct SteepnessFilterView: View {
         )
     }
     
-    private func steepnessTapped(_ steepness: Steepness.SteepnessType) {
+    private func steepnessTapped(_ steepness: Steepness) {
         // toggle value for this steepness
         if filters.steepness.contains(steepness) {
             filters.steepness.remove(steepness)

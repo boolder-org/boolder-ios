@@ -17,6 +17,10 @@ class LocationFetcher: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var location: CLLocation? {
         willSet { objectWillChange.send() }
     }
+    
+    @Published var heading: CLHeading? {
+        willSet { objectWillChange.send() }
+    }
 
     override init() {
         super.init()
@@ -27,9 +31,28 @@ class LocationFetcher: NSObject, ObservableObject, CLLocationManagerDelegate {
     func start() {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        manager.startUpdatingHeading()
+    }
+    
+    func stop() {
+        manager.stopUpdatingLocation()
+        manager.stopUpdatingHeading()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.last
+        let newLocation = locations.last
+        
+        if let oldLocation = location, let newLocation = newLocation {
+            if newLocation.horizontalAccuracy <= oldLocation.horizontalAccuracy {
+                location = newLocation
+            }
+        }
+        else {
+            location = newLocation
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        heading = newHeading
     }
 }

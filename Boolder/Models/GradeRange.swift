@@ -13,6 +13,7 @@ enum GradeRange: CaseIterable, Comparable {
     case intermediate
     case advanced
     
+    // FIXME: rename localizedName
     var name: String {
         switch self {
         case .beginner:
