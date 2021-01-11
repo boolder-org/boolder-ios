@@ -9,13 +9,11 @@
 import Foundation
 
 class MapMakerStore {
-    
     func save(data: Data, directory: String, filename: String) {
         let fileURL = directoryURL(directory: directory).appendingPathComponent(filename)
         
         do {
-            // FIXME: throw error if file already exists
-            try data.write(to: fileURL, options: [.atomicWrite])
+            try data.write(to: fileURL, options: [.withoutOverwriting])
         }
         catch {
             print(error)
