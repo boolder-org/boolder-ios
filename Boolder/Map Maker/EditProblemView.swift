@@ -1,5 +1,5 @@
 //
-//  ProblemRecordView.swift
+//  EditProblemView.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 08/01/2021.
@@ -47,18 +47,18 @@ struct EditProblemView: View {
                     
                     HStack {
                         Picker(selection: $selectedLandingDifficulty, label: Text("Landing")) {
-                            ForEach(Difficulty.allCases, id: \.self) { value in
-                                Text(value.rawValue)
-                                    .tag(value)
+                            ForEach(Difficulty.allCases, id: \.self) { difficulty in
+                                Text(difficulty.rawValue)
+                                    .tag(difficulty)
                             }
                         }
                     }
                     
                     HStack {
                         Picker(selection: $selectedDescentDifficulty, label: Text("Descent")) {
-                            ForEach(Difficulty.allCases, id: \.self) { value in
-                                Text(value.rawValue)
-                                    .tag(value)
+                            ForEach(Difficulty.allCases, id: \.self) { difficulty in
+                                Text(difficulty.rawValue)
+                                    .tag(difficulty)
                             }
                         }
                     }
