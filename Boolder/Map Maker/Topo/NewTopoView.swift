@@ -11,13 +11,11 @@ import CoreLocation
 
 struct NewTopoView: View {
     @Environment(\.presentationMode) private var presentationMode
-    
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @State private var presentImagePicker = false
     @ObservedObject var topoEntry: TopoEntry
-    
     @StateObject var locationFetcher = LocationFetcher()
     
     var body: some View {
@@ -124,7 +122,6 @@ struct NewTopoView: View {
             .navigationBarItems(
                 leading: Button(action: {
                     topoEntry.reset()
-                    
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Cancel")
@@ -135,9 +132,7 @@ struct NewTopoView: View {
                 trailing: Button(action: {
                     if let photo = topoEntry.photo, let location = topoEntry.location, let heading = topoEntry.heading {
                         save(photo: photo, location: location, heading: heading)
-                        
                         topoEntry.reset()
-                        
                         presentationMode.wrappedValue.dismiss()
                     }
                 }) {

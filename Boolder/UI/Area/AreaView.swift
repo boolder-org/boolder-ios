@@ -21,7 +21,7 @@ struct AreaView: View {
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
-    @State private var presentPhotoCaptureSheet = false
+    @State private var presentNewTopoSheet = false
     
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
@@ -72,7 +72,7 @@ struct AreaView: View {
                 )
                 .background(
                     EmptyView()
-                        .sheet(isPresented: $presentPhotoCaptureSheet) {
+                        .sheet(isPresented: $presentNewTopoSheet) {
                             NewTopoView(topoEntry: newTopoEntry)
                                 .environment(\.managedObjectContext, managedObjectContext)
                                 .accentColor(Color.green)
@@ -127,7 +127,7 @@ struct AreaView: View {
                         }
                         
                         Button(action: {
-                            presentPhotoCaptureSheet = true
+                            presentNewTopoSheet = true
                         }) {
                             Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
                                 .padding(12)

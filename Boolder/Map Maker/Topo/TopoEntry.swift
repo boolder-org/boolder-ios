@@ -1,5 +1,5 @@
 //
-//  TopoRecord.swift
+//  TopoEntry.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 10/01/2021.
