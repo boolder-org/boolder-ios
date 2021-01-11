@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SwiftUI
 import CoreLocation
 
 class HeadingView: UIView {
@@ -43,9 +42,9 @@ class HeadingView: UIView {
             gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
             
             gradientLayer.colors = [
-                UIColor(Color.green).withAlphaComponent(0.0).cgColor,
-                UIColor(Color.green).withAlphaComponent(0.8).cgColor,
-                UIColor(Color.green).withAlphaComponent(0.0).cgColor
+                UIColor(named: "AccentColor")!.withAlphaComponent(0.0).cgColor,
+                UIColor(named: "AccentColor")!.withAlphaComponent(0.8).cgColor,
+                UIColor(named: "AccentColor")!.withAlphaComponent(0.0).cgColor
             ]
             
             gradientLayer.frame = bounds

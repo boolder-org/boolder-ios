@@ -80,7 +80,7 @@ struct ProblemDetailsView: View {
 
                             if isTicked() {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color(UIColor(named: "AccentColor")!))
                             }
                         }
                         
@@ -152,7 +152,7 @@ struct ProblemDetailsView: View {
                                 Image(systemName: "ellipsis.circle")
                                 Text("problem.action.more")
                                     .font(.body)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color(UIColor(named: "AccentColor")!))
                                 Spacer()
                             }
                         }

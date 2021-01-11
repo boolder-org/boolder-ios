@@ -36,7 +36,6 @@ struct DiscoverView: View {
                                     HStack {
                                         Text("Cul de Chien")
                                             .font(.body)
-                                            .foregroundColor(Color.green)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                     }
@@ -59,7 +58,6 @@ struct DiscoverView: View {
                                     HStack {
                                         Text("Cuvier")
                                             .font(.body)
-                                            .foregroundColor(Color.green)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                     }
@@ -81,7 +79,6 @@ struct DiscoverView: View {
                                     HStack {
                                         Text("Franchard Isatis")
                                             .font(.body)
-                                            .foregroundColor(Color.green)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                     }
@@ -103,7 +100,6 @@ struct DiscoverView: View {
                                     HStack {
                                         Text("Rocher Canon")
                                             .font(.body)
-                                            .foregroundColor(Color.green)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                     }
@@ -127,7 +123,6 @@ struct DiscoverView: View {
                                     HStack {
                                         Text("discover.other_areas")
                                             .font(.body)
-                                            .foregroundColor(Color.green)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                     }
@@ -308,7 +303,6 @@ struct DiscoverView: View {
                                     HStack {
                                         Text("Settings (dev only)")
                                             .font(.body)
-                                            .foregroundColor(Color.green)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                     }

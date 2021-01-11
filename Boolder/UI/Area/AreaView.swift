@@ -132,7 +132,7 @@ struct AreaView: View {
                         }
                         .accentColor(Color(.label))
                         .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : Color(.label))
-                        .background(newTopoEntry.pickerModeEnabled ? Color.green : Color(UIColor.systemBackground))
+                        .background(newTopoEntry.pickerModeEnabled ? Color(UIColor(named: "AccentColor")!) : Color(UIColor.systemBackground))
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)
