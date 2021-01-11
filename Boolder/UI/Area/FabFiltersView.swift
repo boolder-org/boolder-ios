@@ -54,7 +54,6 @@ struct FabFiltersView: View {
                         // remove these lines as soon as it's fixed
                         .environmentObject(dataStore)
                         .environment(\.managedObjectContext, managedObjectContext)
-                        .accentColor(Color.green)
                 }
             }
         }

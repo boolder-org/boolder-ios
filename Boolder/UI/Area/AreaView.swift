@@ -60,7 +60,6 @@ struct AreaView: View {
                         .environmentObject(dataStore)
                         .environmentObject(odrManager)
                         .environment(\.managedObjectContext, managedObjectContext)
-                        .accentColor(Color.green)
                 }
                 .background(
                     PoiActionSheet(
@@ -75,7 +74,6 @@ struct AreaView: View {
                         .sheet(isPresented: $presentNewTopoSheet) {
                             NewTopoView(topoEntry: newTopoEntry)
                                 .environment(\.managedObjectContext, managedObjectContext)
-                                .accentColor(Color.green)
                         }
                 )
             

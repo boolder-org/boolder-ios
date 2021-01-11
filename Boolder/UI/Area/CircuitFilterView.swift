@@ -62,7 +62,6 @@ struct CircuitFilterView: View {
                     // FIXME: use accent color on all views by default (even for modals)
                     // read this blog post: https://medium.com/swlh/swiftui-and-the-missing-environment-object-1a4bf8913ba7
                     .environmentObject(dataStore)
-                    .accentColor(Color.green)
             }
         )
     }
