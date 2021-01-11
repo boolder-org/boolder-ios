@@ -350,11 +350,11 @@
 			isa = PBXGroup;
 			children = (
 				37BCA98524670DC000D56252 /* Problem.swift */,
-				37A8C80C245326F200DC161F /* Line.swift */,
 				37A8C80B245326F200DC161F /* Circuit.swift */,
 				37A8C809245326F200DC161F /* Steepness.swift */,
 				37A8C80A245326F200DC161F /* Grade.swift */,
 				37254DE825557F9700264034 /* GradeRange.swift */,
+				37A8C80C245326F200DC161F /* Line.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
 			);
