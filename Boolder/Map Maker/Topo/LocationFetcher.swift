@@ -35,7 +35,6 @@ class LocationFetcher: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func stop() {
-        manager.requestWhenInUseAuthorization()
         manager.stopUpdatingLocation()
         manager.stopUpdatingHeading()
     }
