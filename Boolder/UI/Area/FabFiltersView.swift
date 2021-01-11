@@ -32,7 +32,7 @@ struct FabFiltersView: View {
                         else
                         {
                             RoundedRectangle(cornerRadius: 6)
-                            .fill(Color(UIColor(named: "AccentColor")!))
+                            .fill(Color.appGreen)
                                 .frame(width: 20, height: 20)
                                 .overlay(Text(String(dataStore.filters.filtersCount()))
                                 .font(.headline)

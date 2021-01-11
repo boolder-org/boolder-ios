@@ -47,7 +47,7 @@ struct ProblemListView: View {
 
                                 if isTicked(problem: problem) {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color(UIColor(named: "AccentColor")!))
+                                        .foregroundColor(Color.appGreen)
                                 }
 
                                 Text(problem.grade.string)

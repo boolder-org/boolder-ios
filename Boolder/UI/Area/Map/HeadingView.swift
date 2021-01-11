@@ -42,9 +42,9 @@ class HeadingView: UIView {
             gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
             
             gradientLayer.colors = [
-                UIColor(named: "AccentColor")!.withAlphaComponent(0.0).cgColor,
-                UIColor(named: "AccentColor")!.withAlphaComponent(0.8).cgColor,
-                UIColor(named: "AccentColor")!.withAlphaComponent(0.0).cgColor
+                UIColor.appGreen.withAlphaComponent(0.0).cgColor,
+                UIColor.appGreen.withAlphaComponent(0.8).cgColor,
+                UIColor.appGreen.withAlphaComponent(0.0).cgColor
             ]
             
             gradientLayer.frame = bounds
