@@ -25,7 +25,6 @@ struct CircuitFilterView: View {
                         }
                         else {
                             filters.circuit = circuit.color
-                            filters.gradeRange = nil
                         }
                         
                         presentationMode.wrappedValue.dismiss()

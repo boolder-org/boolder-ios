@@ -31,7 +31,6 @@ struct FiltersView: View {
                             }
                             else {
                                 filters.gradeRange = range
-                                filters.circuit = nil
                             }
                         }) {
                             HStack {
@@ -44,22 +43,6 @@ struct FiltersView: View {
                             }
                         }
                     }
-                    
-                    NavigationLink(destination: CircuitFilterView(filters: $filters)) {
-                        HStack {
-                            
-                            if let circuit = filters.circuit {
-                                Image(systemName: "largecircle.fill.circle").font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(Color.green)
-                                Text("filters.circuit")
-                                Spacer()
-                                Text("\(circuit.shortName())").foregroundColor(Color(.systemGray)).font(.caption)
-                            } else
-                            {
-                                Image(systemName: "circle").font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(Color.green)
-                                Text("filters.circuit")
-                            }
-                        }
-                    }
                 }
                 
                 Section(header: Text("filters.advanced_filters")) {
@@ -69,6 +52,19 @@ struct FiltersView: View {
                             Spacer()
                             Text(labelForSteepness())
                                 .foregroundColor(Color.gray)
+                        }
+                    }
+                    
+                    NavigationLink(destination: CircuitFilterView(filters: $filters)) {
+                        HStack {
+                            if let circuit = filters.circuit {
+                                Text("filters.circuit")
+                                Spacer()
+                                Text("\(circuit.shortName())").foregroundColor(Color(.systemGray))
+                            } else
+                            {
+                                Text("filters.circuit")
+                            }
                         }
                     }
                     
@@ -126,7 +122,7 @@ struct FiltersView: View {
     
     private func labelForSteepness() -> String {
         if filters.steepness == Filters().steepness {
-            return NSLocalizedString("filters.all", comment: "")
+            return ""
         }
         
         let visibleAndSelected = filters.steepness.intersection(userVisibleSteepnessTypes)
