@@ -35,27 +35,28 @@ struct ProblemDetailsView: View {
     @State var showImageViewer: Bool = false
     @State var image = Image("topo-265")
     
-    @GestureState var scale: CGFloat = 1.0
+    @State var scale: CGFloat = 1.0
+    
+    var opactityForScale: Double {
+        if scale <= 1 {
+            return 0
+        }
+        
+        else if scale > 1 && scale < 2 {
+            return Double(scale - 1.0)
+        }
+        else {
+            return 1
+        }
+    }
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded)
-//                    .pinchToZoom()
+                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded, scale: $scale)
                     .zIndex(10)
                 
-//                    .onTapGesture {
-//                        image = Image(uiImage: problem.mainTopoPhoto!)
-//                        showImageViewer = true
-//                    }
-//                    .scaleEffect(scale)
-//                        .gesture(MagnificationGesture()
-//                            .updating($scale, body: { (value, scale, trans) in
-//                                scale = value.magnitude
-//                            })
-//                                 )
-                
-                
+                ZStack {
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
                     
@@ -191,12 +192,14 @@ struct ProblemDetailsView: View {
                 .padding(.horizontal)
                 .padding(.top, 0)
                 .layoutPriority(1) // without this the imageview prevents the title from going multiline
+                    
+                    Color(UIColor.systemBackground)
+                        .opacity(opactityForScale)
+                }
                 
                 Spacer()
             }
         }
-//        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .overlay(ImageViewer(image: self.$image, viewerShown: self.$showImageViewer))
         .background(
             EmptyView()
                 .sheet(isPresented: $presentEditProblem) {

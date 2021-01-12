@@ -20,7 +20,7 @@ struct TopoView: View {
 //    @State var showImageViewer: Bool = false
 //    @State var image = Image("topo-265")
     
-    @State var scale: CGFloat = 1.0
+    @Binding var scale: CGFloat
     @State var anchor: UnitPoint = .center
     @State var offset: CGSize = .zero
     @State var isPinching: Bool = false
@@ -99,8 +99,6 @@ struct TopoView: View {
                 }
             }
             
-            
-            // FIXME: move to ProblemDetailsView
             HStack {
                 VStack {
                     Button(action: {
@@ -163,6 +161,6 @@ struct TopoView_Previews: PreviewProvider {
     static let dataStore = DataStore()
     
     static var previews: some View {
-        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true))
+        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
     }
 }
