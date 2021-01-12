@@ -17,45 +17,78 @@ struct TopoView: View {
     @State private var drawPercentage: CGFloat = .zero // FIXME: rename
     @Binding var areaResourcesDownloaded: Bool
     
+//    @State var showImageViewer: Bool = false
+//    @State var image = Image("topo-265")
+    
+    @State var scale: CGFloat = 1.0
+    @State var anchor: UnitPoint = .center
+    @State var offset: CGSize = .zero
+    @State var isPinching: Bool = false
+    
     var body: some View {
         ZStack(alignment: .center) {
             
-            if areaResourcesDownloaded {
-                if let topoPhoto = problem.mainTopoPhoto {
-                    Image(uiImage: topoPhoto)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+            Group {
+                if areaResourcesDownloaded {
+                    if let topoPhoto = problem.mainTopoPhoto {
+                        
+                        Group {
+                            Image(uiImage: topoPhoto)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                            
+                            //                    ImageViewer(image: self.$image, viewerShown: self.$showImageViewer)
+                            
+                            LineView(problem: $problem, drawPercentage: $drawPercentage)
+                            
+                            GeometryReader { geo in
+                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                        .offset(lineStart)
+                                        .animation(nil)
+                                }
+                            }
+                        }
+                        .scaleEffect(scale, anchor: anchor)
+                        .offset(offset)
+                        .animation(isPinching ? .none : .spring())
+                        .overlay(PinchZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching))
+                    }
+                    else {
+                        Image("nophoto")
+                            .font(.system(size: 60))
+                            .foregroundColor(Color.gray)
+                    }
                     
-                    LineView(problem: $problem, drawPercentage: $drawPercentage)
+//                    if !isPinching {
+                    
+                    GeometryReader { geo in
+                        ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
+                            if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
+                                Button(action: {
+                                    switchToProblem(secondaryProblem)
+                                }) {
+                                    ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                }
+                                .offset(lineStart)
+                                .opacity(isPinching ? 0 : 1)
+                                .animation(.easeIn(duration: 0.5))
+//                                .transition(.opacity)
+//                                .transition(
+//                                    AnyTransition.opacity.animation(.easeInOut(duration: 2.0))
+//                                )
+                            }
+//                        }
+                        
+                    }
+                    }
                 }
                 else {
-                    Image("nophoto")
-                        .font(.system(size: 60))
-                        .foregroundColor(Color.gray)
-                }
-                
-                GeometryReader { geo in
-                    ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                        if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                            Button(action: {
-                                switchToProblem(secondaryProblem)
-                            }) {
-                                ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
-                            }
-                            .offset(lineStart)
-                        }
-                    }
-                    
-                    if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                        ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                            .offset(lineStart)
-                    }
+                    ImageLoadingView(progress: $odrManager.downloadProgress)
+                        .aspectRatio(4/3, contentMode: .fill)
                 }
             }
-            else {
-                ImageLoadingView(progress: $odrManager.downloadProgress)
-                    .aspectRatio(4/3, contentMode: .fill)
-            }
+            
             
             // FIXME: move to ProblemDetailsView
             HStack {
@@ -86,12 +119,6 @@ struct TopoView: View {
         }
     }
     
-    func animate(action: () -> Void) {
-        withAnimation(Animation.easeInOut(duration: 0.5)) {
-            action()
-        }
-    }
-    
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
             
@@ -109,6 +136,12 @@ struct TopoView: View {
         // (there's probably a cleaner way to do it)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             animate { drawPercentage = 1.0 }
+        }
+    }
+    
+    func animate(action: () -> Void) {
+        withAnimation(Animation.easeInOut(duration: 0.5)) {
+            action()
         }
     }
 }

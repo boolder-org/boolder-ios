@@ -32,10 +32,29 @@ struct ProblemDetailsView: View {
     
     @State var presentEditProblem = false
     
+    @State var showImageViewer: Bool = false
+    @State var image = Image("topo-265")
+    
+    @GestureState var scale: CGFloat = 1.0
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded)
+//                    .pinchToZoom()
+                    .zIndex(10)
+                
+//                    .onTapGesture {
+//                        image = Image(uiImage: problem.mainTopoPhoto!)
+//                        showImageViewer = true
+//                    }
+//                    .scaleEffect(scale)
+//                        .gesture(MagnificationGesture()
+//                            .updating($scale, body: { (value, scale, trans) in
+//                                scale = value.magnitude
+//                            })
+//                                 )
+                
                 
                 VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
@@ -176,6 +195,8 @@ struct ProblemDetailsView: View {
                 Spacer()
             }
         }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .overlay(ImageViewer(image: self.$image, viewerShown: self.$showImageViewer))
         .background(
             EmptyView()
                 .sheet(isPresented: $presentEditProblem) {
