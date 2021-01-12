@@ -47,12 +47,30 @@ struct TopoView: View {
                                         .offset(lineStart)
                                         .animation(nil)
                                 }
+                                
+                                ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
+                                    if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
+//                                        Button(action: {
+//                                            switchToProblem(secondaryProblem)
+//                                        }) {
+                                            ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+//                                        }
+                                        .offset(lineStart)
+                                        .opacity(isPinching ? 0 : 1)
+                                        .animation(.easeIn(duration: 0.5))
+                                    }
+                                    
+                                }
                             }
                         }
                         .scaleEffect(scale, anchor: anchor)
                         .offset(offset)
                         .animation(isPinching ? .none : .spring())
-                        .overlay(PinchZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching))
+                        .overlay(
+                            PinchZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching)
+                //                .background(Color.red.opacity(0.5))
+                        )
+                        
                     }
                     else {
                         Image("nophoto")
@@ -60,7 +78,6 @@ struct TopoView: View {
                             .foregroundColor(Color.gray)
                     }
                     
-//                    if !isPinching {
                     
                     GeometryReader { geo in
                         ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
@@ -68,19 +85,12 @@ struct TopoView: View {
                                 Button(action: {
                                     switchToProblem(secondaryProblem)
                                 }) {
-                                    ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                    Circle().frame(width: 28, height: 28).foregroundColor(.clear)
                                 }
                                 .offset(lineStart)
-                                .opacity(isPinching ? 0 : 1)
-                                .animation(.easeIn(duration: 0.5))
-//                                .transition(.opacity)
-//                                .transition(
-//                                    AnyTransition.opacity.animation(.easeInOut(duration: 2.0))
-//                                )
                             }
-//                        }
-                        
-                    }
+                            
+                        }
                     }
                 }
                 else {
@@ -106,6 +116,8 @@ struct TopoView: View {
                 }
                 Spacer()
             }
+            .opacity(isPinching ? 0 : 1)
+            .animation(.easeIn(duration: 0.5))
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(white: 0.9, opacity: 1))
@@ -135,7 +147,8 @@ struct TopoView: View {
         // doing it async to be sure that the line is reset to zero
         // (there's probably a cleaner way to do it)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            animate { drawPercentage = 1.0 }
+//            animate { drawPercentage = 1.0 }
+            drawPercentage = 1.0
         }
     }
     
