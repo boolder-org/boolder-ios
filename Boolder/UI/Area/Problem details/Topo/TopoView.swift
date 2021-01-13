@@ -14,7 +14,7 @@ struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
-    @State private var drawPercentage: CGFloat = .zero // FIXME: rename
+    @State private var lineDrawPercentage: CGFloat = .zero // FIXME: rename
     @Binding var areaResourcesDownloaded: Bool
     
     @Binding var scale: CGFloat
@@ -34,7 +34,7 @@ struct TopoView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                             
-                            LineView(problem: $problem, drawPercentage: $drawPercentage, pinchToZoomScale: $scale)
+                            LineView(problem: $problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $scale)
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
@@ -120,7 +120,7 @@ struct TopoView: View {
             // I tried doing it synchronously by I couldn't make it work :grimacing:
             // I also tried to use a lower value for the delay but it doesn't work (no animation at all)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                animate { drawPercentage = 1.0 }
+                animate { lineDrawPercentage = 1.0 }
             }
         }
     }
@@ -135,13 +135,13 @@ struct TopoView: View {
     }
     
     func switchToProblem(_ newProblem: Problem) {
-        drawPercentage = 0.0
+        lineDrawPercentage = 0.0
         problem = newProblem
 
         // doing it async to be sure that the line is reset to zero
         // (there's probably a cleaner way to do it)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            animate { drawPercentage = 1.0 }
+            animate { lineDrawPercentage = 1.0 }
         }
     }
     
