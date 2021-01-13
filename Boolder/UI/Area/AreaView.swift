@@ -98,8 +98,8 @@ struct AreaView: View {
                             .padding(12)
                             .offset(x: -1, y: 0)
                         }
-                        .accentColor(Color(.label))
-                        .background(Color(UIColor.systemBackground))
+                        .accentColor(.primary)
+                        .background(Color.systemBackground)
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)
@@ -130,9 +130,9 @@ struct AreaView: View {
                             Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
                                 .padding(12)
                         }
-                        .accentColor(Color(.label))
-                        .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : Color(.label))
-                        .background(newTopoEntry.pickerModeEnabled ? Color.appGreen : Color(UIColor.systemBackground))
+                        .accentColor(.primary)
+                        .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : .primary)
+                        .background(newTopoEntry.pickerModeEnabled ? Color.appGreen : Color.systemBackground)
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)

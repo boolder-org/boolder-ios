@@ -38,7 +38,7 @@ struct FabFiltersView: View {
                                 .font(.headline)
                                 .padding(.horizontal, 4)
                                 )
-                                .foregroundColor(Color(.systemBackground))
+                                .foregroundColor(.systemBackground)
                         }
                         Text(dataStore.filters.filtersCount() == 1 ? "area.filter" : "area.filters")
                             .fixedSize(horizontal: true, vertical: true)
@@ -57,9 +57,9 @@ struct FabFiltersView: View {
                 }
             }
         }
-        .accentColor(Color(.label))
+        .accentColor(.primary)
         .padding(.horizontal, 16)
-        .background(Color(UIColor.systemBackground))
+        .background(Color.systemBackground)
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)

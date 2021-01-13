@@ -55,7 +55,7 @@ struct ProblemDetailsView: View {
                                     Text(problem.nameWithFallback())
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .foregroundColor(Color(.label))
+                                        .foregroundColor(.primary)
                                         .lineLimit(2)
                                     
                                     Spacer()
@@ -184,7 +184,7 @@ struct ProblemDetailsView: View {
                     .padding(.top, 0)
                     .layoutPriority(1) // without this the imageview prevents the title from going multiline
                     
-                    Color(UIColor.systemBackground)
+                    Color.systemBackground
                         .opacity(overlayOpacity)
                 }
                 

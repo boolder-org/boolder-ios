@@ -15,4 +15,5 @@ extension UIColor {
 
 extension Color {
     static let appGreen = Color(UIColor.appGreen)
+    static let systemBackground = Color(UIColor.systemBackground)
 }

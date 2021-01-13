@@ -37,7 +37,7 @@ struct FiltersView: View {
                                 Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
                                     .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
                                 
-                                Text(range.name).foregroundColor(Color(.label))
+                                Text(range.name).foregroundColor(.primary)
                                 Spacer()
                                 Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
                             }
@@ -72,7 +72,7 @@ struct FiltersView: View {
                         HStack {
                             Toggle(isOn: $filters.favorite) {
                                 Text("filters.favorite")
-                                    .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : Color(.label))
+                                    .foregroundColor(dataStore.favorites().count == 0 ? Color(.systemGray) : .primary)
                             }
                             .disabled(dataStore.favorites().count == 0)
                         }
@@ -80,7 +80,7 @@ struct FiltersView: View {
                         HStack {
                             Toggle(isOn: $filters.ticked) {
                                 Text("filters.ticked")
-                                    .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : Color(.label))
+                                    .foregroundColor(dataStore.ticks().count == 0 ? Color(.systemGray) : .primary)
                             }
                             .disabled(dataStore.ticks().count == 0)
                         }
@@ -173,10 +173,10 @@ struct SteepnessFilterView: View {
                 }) {
                     HStack {
                         Image(steepness.imageName)
-                            .foregroundColor(Color(.label))
+                            .foregroundColor(.primary)
                             .frame(minWidth: 20)
                         Text(steepness.localizedName)
-                            .foregroundColor(Color(.label))
+                            .foregroundColor(.primary)
                         Spacer()
                         
                         if filters.steepness.contains(steepness) {

@@ -12,7 +12,7 @@ struct BoolderButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
             .frame(maxWidth: .infinity)
-            .background(Color(UIColor.systemBackground))
+            .background(Color.systemBackground)
             .foregroundColor(Color(UIColor.systemGreen))
             .opacity(configuration.isPressed ? 0.7 : 1)
             .cornerRadius(8)
