@@ -32,169 +32,153 @@ struct ProblemDetailsView: View {
     
     @State var presentEditProblem = false
     
-    @State var showImageViewer: Bool = false
-    @State var image = Image("topo-265")
-    
-    @State var scale: CGFloat = 1.0
-    
-    var opactityForScale: Double {
-        if scale <= 1 {
-            return 0
-        }
-        
-        else if scale > 1 && scale < 2 {
-            return Double(scale - 1.0)
-        }
-        else {
-            return 1
-        }
-    }
+    @State var pinchToZoomScale: CGFloat = 1.0
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded, scale: $scale)
+                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded, scale: $pinchToZoomScale)
                     .zIndex(10)
                 
                 ZStack {
-                VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
-                    
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack {
+                                    Text(problem.nameWithFallback())
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color(.label))
+                                        .lineLimit(2)
+                                    
+                                    Spacer()
+                                    
+                                    Text(problem.grade.string)
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                }
+                            }
+                            
                             HStack {
-                                Text(problem.nameWithFallback())
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color(.label))
-                                    .lineLimit(2)
+                                
+                                if problem.steepness != .other {
+                                    HStack(alignment: .firstTextBaseline) {
+                                        Image(problem.steepness.imageName)
+                                            .font(.body)
+                                            .frame(minWidth: 16)
+                                        Text(problem.steepness.localizedName)
+                                            .font(.body)
+                                        Text(problem.readableDescription() ?? "")
+                                            .font(.caption)
+                                            .foregroundColor(Color.gray)
+                                    }
+                                }
                                 
                                 Spacer()
                                 
-                                Text(problem.grade.string)
-                                    .font(.title)
-                                    .fontWeight(.bold)
+                                if isFavorite() {
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(Color.yellow)
+                                }
+                                
+                                if isTicked() {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(Color.appGreen)
+                                }
                             }
-                        }
-                        
-                        HStack {
                             
-                            if problem.steepness != .other {
-                                HStack(alignment: .firstTextBaseline) {
-                                    Image(problem.steepness.imageName)
+                            if problem.isRisky() {
+                                
+                                HStack {
+                                    Image(systemName: "exclamationmark.shield.fill")
                                         .font(.body)
+                                        .foregroundColor(Color.red)
                                         .frame(minWidth: 16)
-                                    Text(problem.steepness.localizedName)
+                                    Text("problem.risky.long")
                                         .font(.body)
-                                    Text(problem.readableDescription() ?? "")
-                                        .font(.caption)
-                                        .foregroundColor(Color.gray)
+                                        .foregroundColor(Color.red)
                                 }
                             }
-                            
-                            Spacer()
-                            
-                            if isFavorite() {
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(Color.yellow)
-                            }
-
-                            if isTicked() {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(Color.appGreen)
-                            }
                         }
                         
-                        if problem.isRisky() {
+                        VStack {
+                            Divider()
                             
-                            HStack {
-                                Image(systemName: "exclamationmark.shield.fill")
-                                    .font(.body)
-                                    .foregroundColor(Color.red)
-                                    .frame(minWidth: 16)
-                                Text("problem.risky.long")
-                                    .font(.body)
-                                    .foregroundColor(Color.red)
+                            Button(action:{
+                                presentSaveActionsheet = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "star")
+                                    Text("problem.action.save").font(.body)
+                                    Spacer()
                                 }
-                        }
-                    }
-                    
-                    VStack {
-                        Divider()
-                        
-                        Button(action:{
-                            presentSaveActionsheet = true
-                        }) {
-                            HStack {
-                                Image(systemName: "star")
-                                Text("problem.action.save").font(.body)
-                                Spacer()
                             }
-                        }
-                        .actionSheet(isPresented: $presentSaveActionsheet) {
-                            ActionSheet(title: Text("problem.action.save"), buttons: [
-                                .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
-                                    toggleFavorite()
-                                },
-                                .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
-                                    toggleTick()
-                                },
-                                .cancel()
-                            ])
-                        }
-                        
-                        Divider()
-                        
-                        Button(action:{
-                            presentPoiActionSheet = true
-                        }) {
-                            HStack {
-                                Image(systemName: "square.and.arrow.up")
-                                Text("problem.action.share").font(.body)
-                                Spacer()
+                            .actionSheet(isPresented: $presentSaveActionsheet) {
+                                ActionSheet(title: Text("problem.action.save"), buttons: [
+                                    .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+                                        toggleFavorite()
+                                    },
+                                    .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+                                        toggleTick()
+                                    },
+                                    .cancel()
+                                ])
                             }
-                        }
-                        .background(
-                            PoiActionSheet(
-                                description: shareProblemDescription(),
-                                location: problem.coordinate,
-                                navigationMode: false,
-                                presentPoiActionSheet: $presentPoiActionSheet
+                            
+                            Divider()
+                            
+                            Button(action:{
+                                presentPoiActionSheet = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "square.and.arrow.up")
+                                    Text("problem.action.share").font(.body)
+                                    Spacer()
+                                }
+                            }
+                            .background(
+                                PoiActionSheet(
+                                    description: shareProblemDescription(),
+                                    location: problem.coordinate,
+                                    navigationMode: false,
+                                    presentPoiActionSheet: $presentPoiActionSheet
+                                )
                             )
-                        )
-                        
-                        Divider()
-                        
-                        Button(action: {
-                            presentMoreActionsheet = true
-                        })
-                        {
-                            HStack {
-                                Image(systemName: "ellipsis.circle")
-                                Text("problem.action.more")
-                                    .font(.body)
-                                    .foregroundColor(Color.appGreen)
-                                Spacer()
+                            
+                            Divider()
+                            
+                            Button(action: {
+                                presentMoreActionsheet = true
+                            })
+                            {
+                                HStack {
+                                    Image(systemName: "ellipsis.circle")
+                                    Text("problem.action.more")
+                                        .font(.body)
+                                        .foregroundColor(Color.appGreen)
+                                    Spacer()
+                                }
                             }
+                            .actionSheet(isPresented: $presentMoreActionsheet) {
+                                ActionSheet(
+                                    title: Text("problem.action.more"),
+                                    buttons: buttonsForMoreActionSheet()
+                                )
+                            }
+                            
+                            Divider()
+                            
+                            
                         }
-                        .actionSheet(isPresented: $presentMoreActionsheet) {
-                            ActionSheet(
-                                title: Text("problem.action.more"),
-                                buttons: buttonsForMoreActionSheet()
-                            )
-                        }
-                        
-                        Divider()
-                        
-                        
+                        .padding(.top, 16)
                     }
-                    .padding(.top, 16)
-                }
-                .padding(.horizontal)
-                .padding(.top, 0)
-                .layoutPriority(1) // without this the imageview prevents the title from going multiline
+                    .padding(.horizontal)
+                    .padding(.top, 0)
+                    .layoutPriority(1) // without this the imageview prevents the title from going multiline
                     
                     Color(UIColor.systemBackground)
-                        .opacity(opactityForScale)
+                        .opacity(overlayOpacity)
                 }
                 
                 Spacer()
@@ -207,6 +191,19 @@ struct ProblemDetailsView: View {
                         .environment(\.managedObjectContext, managedObjectContext)
                 }
         )
+    }
+    
+    var overlayOpacity: Double {
+        if pinchToZoomScale <= 1 {
+            return 0
+        }
+        
+        else if pinchToZoomScale > 1 && pinchToZoomScale < 2 {
+            return Double(pinchToZoomScale - 1.0)
+        }
+        else {
+            return 1
+        }
     }
     
     private func buttonsForMoreActionSheet() -> [Alert.Button] {

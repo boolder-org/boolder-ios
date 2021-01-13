@@ -17,9 +17,6 @@ struct TopoView: View {
     @State private var drawPercentage: CGFloat = .zero // FIXME: rename
     @Binding var areaResourcesDownloaded: Bool
     
-//    @State var showImageViewer: Bool = false
-//    @State var image = Image("topo-265")
-    
     @Binding var scale: CGFloat
     @State var anchor: UnitPoint = .center
     @State var offset: CGSize = .zero
