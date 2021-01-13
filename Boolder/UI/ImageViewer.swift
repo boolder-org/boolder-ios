@@ -238,6 +238,8 @@ struct PinchZoom: UIViewRepresentable {
 
     class Coordinator: NSObject, PinchZoomViewDelgate {
         var pinchZoom: PinchZoom
+        
+        let animation = Animation.spring(response: 0.55, dampingFraction: 0.725)
 
         init(_ pinchZoom: PinchZoom) {
             self.pinchZoom = pinchZoom
@@ -248,15 +250,31 @@ struct PinchZoom: UIViewRepresentable {
         }
 
         func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeScale scale: CGFloat) {
+            if pinchZoom.isPinching {
+                pinchZoom.scale = scale
+            }
+            else {
+            withAnimation(animation) {
             pinchZoom.scale = scale
+            }
+            }
         }
 
         func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeAnchor anchor: UnitPoint) {
-            pinchZoom.anchor = anchor
+//            withAnimation(.spring()) {
+                pinchZoom.anchor = anchor
+//            }
         }
 
         func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeOffset offset: CGSize) {
+            if pinchZoom.isPinching {
+                pinchZoom.offset = offset
+            }
+            else {
+                withAnimation(animation) {
             pinchZoom.offset = offset
+            }
+            }
         }
     }
 }

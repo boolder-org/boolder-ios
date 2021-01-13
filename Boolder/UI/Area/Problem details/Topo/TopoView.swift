@@ -65,10 +65,9 @@ struct TopoView: View {
                         }
                         .scaleEffect(scale, anchor: anchor)
                         .offset(offset)
-                        .animation(isPinching ? .none : .spring())
+//                        .animation(isPinching ? .none : .spring())
                         .overlay(
                             PinchZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching)
-                //                .background(Color.red.opacity(0.5))
                         )
                         
                     }
@@ -145,8 +144,7 @@ struct TopoView: View {
         // doing it async to be sure that the line is reset to zero
         // (there's probably a cleaner way to do it)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//            animate { drawPercentage = 1.0 }
-            drawPercentage = 1.0
+            animate { drawPercentage = 1.0 }
         }
     }
     
