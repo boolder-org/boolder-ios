@@ -33,12 +33,18 @@ struct ProblemDetailsView: View {
     @State var presentEditProblem = false
     
     @StateObject var pinchToZoomState = PinchToZoomState()
+    let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded, pinchToZoomState: pinchToZoomState)
-                    .zIndex(10)
+                TopoView(
+                    problem: $problem,
+                    areaResourcesDownloaded: $areaResourcesDownloaded,
+                    pinchToZoomState: pinchToZoomState,
+                    pinchToZoomPadding: pinchToZoomPadding
+                )
+                .zIndex(10)
                 
                 ZStack {
                     VStack(alignment: .leading, spacing: 8) {
@@ -101,6 +107,7 @@ struct ProblemDetailsView: View {
                                 }
                             }
                         }
+                        .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
                         
                         VStack {
                             Divider()

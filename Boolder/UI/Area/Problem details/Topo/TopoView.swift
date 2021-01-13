@@ -18,6 +18,7 @@ struct TopoView: View {
     @Binding var areaResourcesDownloaded: Bool
     
     @ObservedObject var pinchToZoomState: PinchToZoomState
+    let pinchToZoomPadding: CGFloat // hack to increase the area registering pinch gesture
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -52,7 +53,10 @@ struct TopoView: View {
                         }
                         .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
                         .offset(pinchToZoomState.offset)
-                        .overlay(PinchToZoom(state: pinchToZoomState))
+                        .overlay(
+                            PinchToZoom(state: pinchToZoomState)
+                                .padding(.bottom, -pinchToZoomPadding) // careful when changing this, it may hide tappable areas
+                        )
                         
                     }
                     else {
