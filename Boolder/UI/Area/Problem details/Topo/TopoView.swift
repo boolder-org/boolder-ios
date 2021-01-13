@@ -14,13 +14,10 @@ struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
-    @State private var lineDrawPercentage: CGFloat = .zero // FIXME: rename
+    @State private var lineDrawPercentage: CGFloat = .zero
     @Binding var areaResourcesDownloaded: Bool
     
-    @Binding var scale: CGFloat
-    @State var anchor: UnitPoint = .center
-    @State var offset: CGSize = .zero
-    @State var isPinching: Bool = false
+    @ObservedObject var pinchToZoomState: PinchToZoomState
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -34,12 +31,12 @@ struct TopoView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                             
-                            LineView(problem: $problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $scale)
+                            LineView(problem: $problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $pinchToZoomState.scale)
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .scaleEffect(1/scale)
+                                        .scaleEffect(1/pinchToZoomState.scale)
                                         .offset(lineStart)
 //                                        .animation(nil)
                                 }
@@ -52,18 +49,18 @@ struct TopoView: View {
                                             ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
 //                                        }
                                         .offset(lineStart)
-                                        .opacity(isPinching ? 0 : 1)
+                                                .opacity(pinchToZoomState.isPinching ? 0 : 1)
                                         .animation(.easeIn(duration: 0.5))
                                     }
                                     
                                 }
                             }
                         }
-                        .scaleEffect(scale, anchor: anchor)
-                        .offset(offset)
+                        .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
+                        .offset(pinchToZoomState.offset)
 //                        .animation(isPinching ? .none : .spring())
                         .overlay(
-                            PinchToZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching)
+                            PinchToZoom(state: pinchToZoomState)
                         )
                         
                     }
@@ -110,7 +107,7 @@ struct TopoView: View {
                 }
                 Spacer()
             }
-            .opacity(isPinching ? 0 : 1)
+            .opacity(pinchToZoomState.isPinching ? 0 : 1)
             .animation(.easeIn(duration: 0.5))
         }
         .aspectRatio(4/3, contentMode: .fit)
@@ -152,10 +149,10 @@ struct TopoView: View {
     }
 }
 
-struct TopoView_Previews: PreviewProvider {
-    static let dataStore = DataStore()
-    
-    static var previews: some View {
-        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
-    }
-}
+//struct TopoView_Previews: PreviewProvider {
+//    static let dataStore = DataStore()
+//    
+//    static var previews: some View {
+//        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
+//    }
+//}

@@ -32,12 +32,12 @@ struct ProblemDetailsView: View {
     
     @State var presentEditProblem = false
     
-    @State var pinchToZoomScale: CGFloat = 1.0
+    @StateObject var pinchToZoomState = PinchToZoomState()
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded, scale: $pinchToZoomScale)
+                TopoView(problem: $problem, areaResourcesDownloaded: $areaResourcesDownloaded, pinchToZoomState: pinchToZoomState)
                     .zIndex(10)
                 
                 ZStack {
@@ -194,12 +194,12 @@ struct ProblemDetailsView: View {
     }
     
     var overlayOpacity: Double {
-        if pinchToZoomScale <= 1 {
+        if pinchToZoomState.scale <= 1 {
             return 0
         }
         
-        else if pinchToZoomScale > 1 && pinchToZoomScale < 2 {
-            return Double(pinchToZoomScale - 1.0)
+        else if pinchToZoomState.scale > 1 && pinchToZoomState.scale < 2 {
+            return Double(pinchToZoomState.scale - 1.0)
         }
         else {
             return 1

@@ -11,11 +11,7 @@ import UIKit
 
 // inspired by https://github.com/Jake-Short/swiftui-image-viewer
 struct PinchToZoom: UIViewRepresentable {
-
-    @Binding var scale: CGFloat
-    @Binding var anchor: UnitPoint
-    @Binding var offset: CGSize
-    @Binding var isPinching: Bool
+    @ObservedObject var state: PinchToZoomState
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -39,7 +35,7 @@ struct PinchToZoom: UIViewRepresentable {
         let animation = Animation.spring(response: 0.55, dampingFraction: 0.725)
         
         func animate(stuff: () -> ()) {
-            if(!parent.isPinching) {
+            if(!parent.state.isPinching) {
                 withAnimation(animation) {
                     stuff()
                 }
@@ -50,27 +46,34 @@ struct PinchToZoom: UIViewRepresentable {
         }
 
         func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangePinching isPinching: Bool) {
-            parent.isPinching = isPinching
+            parent.state.isPinching = isPinching
         }
 
         func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeScale scale: CGFloat) {
             animate {
-                parent.scale = scale
+                parent.state.scale = scale
             }
         }
 
         func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeAnchor anchor: UnitPoint) {
             animate {
-                parent.anchor = anchor
+                parent.state.anchor = anchor
             }
         }
         
         func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeOffset offset: CGSize) {
             animate {
-                parent.offset = offset
+                parent.state.offset = offset
             }
         }
     }
+}
+
+class PinchToZoomState: ObservableObject {
+    @Published var scale: CGFloat = 1
+    @Published var anchor: UnitPoint = .center
+    @Published var offset: CGSize = .zero
+    @Published var isPinching: Bool = false
 }
 
 class PinchToZoomView: UIView {
@@ -159,3 +162,4 @@ protocol PinchToZoomViewDelgate: AnyObject {
     func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeAnchor anchor: UnitPoint)
     func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeOffset offset: CGSize)
 }
+
