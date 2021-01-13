@@ -124,6 +124,8 @@
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
 		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
 		37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3794555E25AB6DC9009C47A4 /* SettingsView.swift */; };
+		37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE480D25AF9AB60052428E /* TestColorView.swift */; };
+		37DE481125AF9AC80052428E /* TestColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE480D25AF9AB60052428E /* TestColorView.swift */; };
 		37E260C624674466003BC672 /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
 		37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
@@ -197,6 +199,7 @@
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
 		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
+		37DE480D25AF9AB60052428E /* TestColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorView.swift; sourceTree = "<group>"; };
 		37E260C524674466003BC672 /* Poi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poi.swift; sourceTree = "<group>"; };
 		37E260C724674612003BC672 /* PoiRouteOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRouteOverlay.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 				37F12D852456D4FC0036E3E3 /* Area */,
 				37379903258E157D00711EDA /* BoolderButtonStyle.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
+				37DE480D25AF9AB60052428E /* TestColorView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -577,6 +581,7 @@
 				37379909258E619400711EDA /* ImagePicker.swift in Sources */,
 				3737990A258E619400711EDA /* AreaRowView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
+				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990C258E619400711EDA /* FabFiltersView.swift in Sources */,
 				3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
@@ -636,6 +641,7 @@
 				378C99E6258569F8003A545B /* ImagePicker.swift in Sources */,
 				37158D0B25488AE000A8B696 /* AreaRowView.swift in Sources */,
 				378C99E925864A43003A545B /* LocationFetcher.swift in Sources */,
+				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,

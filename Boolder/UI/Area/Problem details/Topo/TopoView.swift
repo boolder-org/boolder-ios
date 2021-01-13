@@ -62,7 +62,7 @@ struct TopoView: View {
                     else {
                         Image("nophoto")
                             .font(.system(size: 60))
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(Color("ImageBackground"))
                     }
                     
                     // We do this on top of the PinchToZoom view to be able to intercept taps on secondary problems
@@ -106,7 +106,7 @@ struct TopoView: View {
             .animation(.easeIn(duration: 0.5))
         }
         .aspectRatio(4/3, contentMode: .fit)
-        .background(Color(white: 0.9, opacity: 1))
+        .background(Color("ImageBackground"))
         .onAppear {
             // hack to make the animation start after the view is properly loaded
             // I tried doing it synchronously by I couldn't make it work :grimacing:
