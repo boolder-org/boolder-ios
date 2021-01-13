@@ -12,17 +12,22 @@ struct LineView: View {
     @Binding var problem: Problem
     @Binding var drawPercentage: CGFloat
     
+    @Binding var pinchToZoomScale: CGFloat
+    
     var body: some View {
-        ResizablePath(path: linePath())
+        ResizablePath(path: linePath)
             .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk
-            .stroke(Color(problem.circuitUIColorForPhotoOverlay), style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+            .stroke(
+                Color(problem.circuitUIColorForPhotoOverlay),
+                style: StrokeStyle(lineWidth: 4/pinchToZoomScale, lineCap: .round, lineJoin: .round)
+            )
     }
     
-    private func linePath() -> Path {
+    private var linePath: Path {
         guard problem.line != nil else { return Path() }
-        guard linePoints().count > 0 else { return Path() }
+        guard linePoints.count > 0 else { return Path() }
         
-        let points = linePoints()
+        let points = linePoints
         let controlPoints = CubicCurveAlgorithm().controlPointsFromPoints(dataPoints: points)
         
         return Path { path in
@@ -39,7 +44,7 @@ struct LineView: View {
         }
     }
     
-    private func linePoints() -> [CGPoint] {
+    private var linePoints: [CGPoint] {
         if let line = problem.line?.coordinates {
             return line.map{CGPoint(x: $0.x, y: $0.y)}
         }
@@ -53,7 +58,7 @@ struct LineView_Previews: PreviewProvider {
     static let dataStore = DataStore()
     
     static var previews: some View {
-        LineView(problem: .constant(dataStore.problems.first!), drawPercentage: .constant(0))
+        LineView(problem: .constant(dataStore.problems.first!), drawPercentage: .constant(0), pinchToZoomScale: .constant(1))
     }
 }
 
