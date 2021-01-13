@@ -15,7 +15,7 @@ struct ImageLoadingView: View {
         GeometryReader { geo in
             VStack {
                 Spacer()
-                Text("problem.image.loading").foregroundColor(Color("ImageBackground"))
+                Text("problem.image.loading").foregroundColor(.gray)
                 HStack {
                     Spacer()
                     ProgressView(value: progress)

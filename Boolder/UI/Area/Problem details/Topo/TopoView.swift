@@ -62,7 +62,7 @@ struct TopoView: View {
                     else {
                         Image("nophoto")
                             .font(.system(size: 60))
-                            .foregroundColor(Color("ImageBackground"))
+                            .foregroundColor(Color.gray)
                     }
                     
                     // We do this on top of the PinchToZoom view to be able to intercept taps on secondary problems
