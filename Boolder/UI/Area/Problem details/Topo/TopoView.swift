@@ -34,7 +34,7 @@ struct TopoView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                             
-                            LineView(problem: $problem, drawPercentage: $drawPercentage, scale: $scale)
+                            LineView(problem: $problem, drawPercentage: $drawPercentage, pinchToZoomScale: $scale)
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
