@@ -39,13 +39,14 @@ struct TopoView: View {
                             
                             //                    ImageViewer(image: self.$image, viewerShown: self.$showImageViewer)
                             
-                            LineView(problem: $problem, drawPercentage: $drawPercentage)
+                            LineView(problem: $problem, drawPercentage: $drawPercentage, scale: $scale)
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                        .scaleEffect(1/scale)
                                         .offset(lineStart)
-                                        .animation(nil)
+//                                        .animation(nil)
                                 }
                                 
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
