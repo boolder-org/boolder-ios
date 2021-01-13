@@ -38,30 +38,21 @@ struct TopoView: View {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
                                         .scaleEffect(1/pinchToZoomState.scale)
                                         .offset(lineStart)
-//                                        .animation(nil)
                                 }
                                 
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-//                                        Button(action: {
-//                                            switchToProblem(secondaryProblem)
-//                                        }) {
-                                            ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
-//                                        }
-                                        .offset(lineStart)
-                                                .opacity(pinchToZoomState.isPinching ? 0 : 1)
-                                        .animation(.easeIn(duration: 0.5))
+                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                            .offset(lineStart)
+                                            .opacity(pinchToZoomState.isPinching ? 0 : 1)
+                                            .animation(.easeIn(duration: 0.5))
                                     }
-                                    
                                 }
                             }
                         }
                         .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
                         .offset(pinchToZoomState.offset)
-//                        .animation(isPinching ? .none : .spring())
-                        .overlay(
-                            PinchToZoom(state: pinchToZoomState)
-                        )
+                        .overlay(PinchToZoom(state: pinchToZoomState))
                         
                     }
                     else {
@@ -70,7 +61,7 @@ struct TopoView: View {
                             .foregroundColor(Color.gray)
                     }
                     
-                    
+                    // We do this on top of the PinchToZoom view to be able to intercept taps on secondary problems
                     GeometryReader { geo in
                         ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                             if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
@@ -82,7 +73,6 @@ struct TopoView: View {
                                 }
                                 .offset(lineStart)
                             }
-                            
                         }
                     }
                 }
@@ -124,7 +114,7 @@ struct TopoView: View {
     
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
-            
+        
         return CGSize(
             width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
             height: (CGFloat(lineFirstPoint.y) * size.height) - 14
@@ -134,7 +124,7 @@ struct TopoView: View {
     func switchToProblem(_ newProblem: Problem) {
         lineDrawPercentage = 0.0
         problem = newProblem
-
+        
         // doing it async to be sure that the line is reset to zero
         // (there's probably a cleaner way to do it)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
