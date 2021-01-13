@@ -37,8 +37,6 @@ struct TopoView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                             
-                            //                    ImageViewer(image: self.$image, viewerShown: self.$showImageViewer)
-                            
                             LineView(problem: $problem, drawPercentage: $drawPercentage, scale: $scale)
                             
                             GeometryReader { geo in
@@ -68,7 +66,7 @@ struct TopoView: View {
                         .offset(offset)
 //                        .animation(isPinching ? .none : .spring())
                         .overlay(
-                            PinchZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching)
+                            PinchToZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching)
                         )
                         
                     }
@@ -85,6 +83,7 @@ struct TopoView: View {
                                 Button(action: {
                                     switchToProblem(secondaryProblem)
                                 }) {
+                                    // FIXME: use constant for size
                                     Circle().frame(width: 28, height: 28).foregroundColor(.clear)
                                 }
                                 .offset(lineStart)
