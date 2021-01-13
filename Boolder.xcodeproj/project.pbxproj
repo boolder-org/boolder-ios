@@ -274,7 +274,6 @@
 				37F12D852456D4FC0036E3E3 /* Area */,
 				37379903258E157D00711EDA /* BoolderButtonStyle.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
-				371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -386,6 +385,7 @@
 				37883A3D2590AB2800BCA364 /* ImageLoadingView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+				371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";

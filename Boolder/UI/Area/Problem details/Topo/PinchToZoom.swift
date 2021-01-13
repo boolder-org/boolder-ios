@@ -21,25 +21,25 @@ struct PinchToZoom: UIViewRepresentable {
         Coordinator(self)
     }
 
-    func makeUIView(context: Context) -> PinchZoomView {
-        let pinchZoomView = PinchZoomView()
-        pinchZoomView.delegate = context.coordinator
-        return pinchZoomView
+    func makeUIView(context: Context) -> PinchToZoomView {
+        let pinchToZoomView = PinchToZoomView()
+        pinchToZoomView.delegate = context.coordinator
+        return pinchToZoomView
     }
 
-    func updateUIView(_ pageControl: PinchZoomView, context: Context) { }
+    func updateUIView(_ pageControl: PinchToZoomView, context: Context) { }
 
-    class Coordinator: NSObject, PinchZoomViewDelgate {
-        var pinchZoom: PinchToZoom
-        
-        let animation = Animation.spring(response: 0.55, dampingFraction: 0.725)
+    class Coordinator: NSObject, PinchToZoomViewDelgate {
+        var parent: PinchToZoom
 
-        init(_ pinchZoom: PinchToZoom) {
-            self.pinchZoom = pinchZoom
+        init(_ pinchToZoom: PinchToZoom) {
+            self.parent = pinchToZoom
         }
         
+        let animation = Animation.spring(response: 0.55, dampingFraction: 0.725)
+        
         func animate(stuff: () -> ()) {
-            if(!pinchZoom.isPinching) {
+            if(!parent.isPinching) {
                 withAnimation(animation) {
                     stuff()
                 }
@@ -49,55 +49,55 @@ struct PinchToZoom: UIViewRepresentable {
             }
         }
 
-        func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangePinching isPinching: Bool) {
-            pinchZoom.isPinching = isPinching
+        func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangePinching isPinching: Bool) {
+            parent.isPinching = isPinching
         }
 
-        func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeScale scale: CGFloat) {
+        func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeScale scale: CGFloat) {
             animate {
-                pinchZoom.scale = scale
+                parent.scale = scale
             }
         }
 
-        func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeAnchor anchor: UnitPoint) {
+        func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeAnchor anchor: UnitPoint) {
             animate {
-                pinchZoom.anchor = anchor
+                parent.anchor = anchor
             }
         }
         
-        func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeOffset offset: CGSize) {
+        func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeOffset offset: CGSize) {
             animate {
-                pinchZoom.offset = offset
+                parent.offset = offset
             }
         }
     }
 }
 
-class PinchZoomView: UIView {
+class PinchToZoomView: UIView {
 
-    weak var delegate: PinchZoomViewDelgate?
+    weak var delegate: PinchToZoomViewDelgate?
 
     private(set) var scale: CGFloat = 0 {
         didSet {
-            delegate?.pinchZoomView(self, didChangeScale: scale)
+            delegate?.pinchToZoomView(self, didChangeScale: scale)
         }
     }
 
     private(set) var anchor: UnitPoint = .center {
         didSet {
-            delegate?.pinchZoomView(self, didChangeAnchor: anchor)
+            delegate?.pinchToZoomView(self, didChangeAnchor: anchor)
         }
     }
 
     private(set) var offset: CGSize = .zero {
         didSet {
-            delegate?.pinchZoomView(self, didChangeOffset: offset)
+            delegate?.pinchToZoomView(self, didChangeOffset: offset)
         }
     }
 
     private(set) var isPinching: Bool = false {
         didSet {
-            delegate?.pinchZoomView(self, didChangePinching: isPinching)
+            delegate?.pinchToZoomView(self, didChangePinching: isPinching)
         }
     }
 
@@ -153,9 +153,9 @@ class PinchZoomView: UIView {
 
 }
 
-protocol PinchZoomViewDelgate: AnyObject {
-    func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangePinching isPinching: Bool)
-    func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeScale scale: CGFloat)
-    func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeAnchor anchor: UnitPoint)
-    func pinchZoomView(_ pinchZoomView: PinchZoomView, didChangeOffset offset: CGSize)
+protocol PinchToZoomViewDelgate: AnyObject {
+    func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangePinching isPinching: Bool)
+    func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeScale scale: CGFloat)
+    func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeAnchor anchor: UnitPoint)
+    func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeOffset offset: CGSize)
 }
