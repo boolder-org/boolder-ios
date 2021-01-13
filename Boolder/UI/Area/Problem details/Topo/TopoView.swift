@@ -68,8 +68,9 @@ struct TopoView: View {
                                 Button(action: {
                                     switchToProblem(secondaryProblem)
                                 }) {
-                                    // FIXME: use constant for size
-                                    Circle().frame(width: 28, height: 28).foregroundColor(.clear)
+                                    Circle()
+                                        .frame(width: CircleView.defaultHeight, height: CircleView.defaultHeight)
+                                        .foregroundColor(.clear)
                                 }
                                 .offset(lineStart)
                             }

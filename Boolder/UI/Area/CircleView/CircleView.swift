@@ -9,20 +9,13 @@
 import SwiftUI
 
 struct CircleView: View {
+    static var defaultHeight: CGFloat = 28
+    
     var number: String
     var color: UIColor
     var showStroke = true
-    var height: CGFloat = 28
+    var height: CGFloat = Self.defaultHeight
     var scaleEffect: CGFloat = 1.0
-    
-    func readableColor() -> UIColor {
-        if color == Circuit.CircuitColor.white.uicolor {
-            return .black
-        }
-        else {
-            return .systemBackground
-        }
-    }
     
     var body: some View {
         ZStack {
@@ -43,6 +36,15 @@ struct CircleView: View {
         }
         .scaleEffect(scaleEffect)
         .frame(width: height, height: height)
+    }
+    
+    func readableColor() -> UIColor {
+        if color == Circuit.CircuitColor.white.uicolor {
+            return .black
+        }
+        else {
+            return .systemBackground
+        }
     }
 }
 
