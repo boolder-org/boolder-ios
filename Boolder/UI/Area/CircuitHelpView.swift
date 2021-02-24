@@ -124,19 +124,6 @@ struct CircuitLevelMatrix: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                RowLabelView(grade: "9")
-                
-                HStack() {
-                    CircuitCellView()
-                    CircuitCellView()
-                    CircuitCellView()
-                    CircuitCellView()
-                    CircuitCellView(noSpacer: true)
-                }
-            }
-            .frame(height: circuitSize)
-            
-            HStack {
                 RowLabelView(grade: "8")
                 
                 HStack() {
