@@ -84,7 +84,7 @@ class DataStore : ObservableObject {
     }
     
     private func isMapMakerModeOk(_ problem: Problem) -> Bool {
-        filters.mapMakerModeEnabled == false || (!problem.isFavorite() || !problem.isTicked())
+        filters.mapMakerModeEnabled == false || !problem.isFavorite()
     }
     
     private func isHeightOk(_ problem: Problem) -> Bool {
