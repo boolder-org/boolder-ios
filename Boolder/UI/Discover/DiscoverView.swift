@@ -156,7 +156,7 @@ struct DiscoverView: View {
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(130))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(117))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
@@ -233,7 +233,7 @@ struct DiscoverView: View {
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(400))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(420))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
@@ -248,19 +248,19 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-rocher-canon")
+                                            Image("cover-isatis2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(300))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(393))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-                                            dataStore.areaId = 1
+                                            dataStore.areaId = 5
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
@@ -269,19 +269,19 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-isatis2")
+                                            Image("cover-rocher-canon")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(250))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(272))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-                                            dataStore.areaId = 5
+                                            dataStore.areaId = 1
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
