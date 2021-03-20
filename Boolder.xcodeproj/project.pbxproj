@@ -17,6 +17,8 @@
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
 		37213880258276580030131C /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
+		3729A79325FB91BE0051DE85 /* area-6-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 3729A79225FB91BE0051DE85 /* area-6-data.geojson */; };
+		3729A79425FB91BE0051DE85 /* area-6-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 3729A79225FB91BE0051DE85 /* area-6-data.geojson */; };
 		37379900258DF9A300711EDA /* OtherAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373798FF258DF9A300711EDA /* OtherAreasView.swift */; };
 		37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* BoolderButtonStyle.swift */; };
 		37379909258E619400711EDA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePicker.swift */; };
@@ -126,6 +128,8 @@
 		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
 		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
+		37C83A5C26068FE10096C1DF /* area-7-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37C83A5B26068FE10096C1DF /* area-7-data.geojson */; };
+		37C83A5D26068FE10096C1DF /* area-7-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 37C83A5B26068FE10096C1DF /* area-7-data.geojson */; };
 		37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3794555E25AB6DC9009C47A4 /* SettingsView.swift */; };
 		37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE480D25AF9AB60052428E /* TestColorView.swift */; };
 		37DE481125AF9AC80052428E /* TestColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE480D25AF9AB60052428E /* TestColorView.swift */; };
@@ -149,6 +153,7 @@
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
 		3721387F258276580030131C /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
+		3729A79225FB91BE0051DE85 /* area-6-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-6-data.geojson"; sourceTree = "<group>"; };
 		373798FF258DF9A300711EDA /* OtherAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAreasView.swift; sourceTree = "<group>"; };
 		37379903258E157D00711EDA /* BoolderButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolderButtonStyle.swift; sourceTree = "<group>"; };
 		37379A8E258E619400711EDA /* Boolder dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boolder dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +208,7 @@
 		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
 		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
+		37C83A5B26068FE10096C1DF /* area-7-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-7-data.geojson"; sourceTree = "<group>"; };
 		37DE480D25AF9AB60052428E /* TestColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorView.swift; sourceTree = "<group>"; };
 		37E260C524674466003BC672 /* Poi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poi.swift; sourceTree = "<group>"; };
 		37E260C724674612003BC672 /* PoiRouteOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRouteOverlay.swift; sourceTree = "<group>"; };
@@ -274,6 +280,14 @@
 			path = Stores;
 			sourceTree = "<group>";
 		};
+		3729A79125FB91AF0051DE85 /* area-6 */ = {
+			isa = PBXGroup;
+			children = (
+				3729A79225FB91BE0051DE85 /* area-6-data.geojson */,
+			);
+			path = "area-6";
+			sourceTree = "<group>";
+		};
 		37379902258E155A00711EDA /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +337,8 @@
 				37379902258E155A00711EDA /* UI */,
 				37B45223259140C700241091 /* Map Maker */,
 				37A8C63D2453269100DC161F /* Data */,
+				3729A79125FB91AF0051DE85 /* area-6 */,
+				37C83A5A26068FCB0096C1DF /* area-7 */,
 				37A8C62F2453263400DC161F /* Assets.xcassets */,
 				37A8C6372453263400DC161F /* Info.plist */,
 				37379A8F258E619400711EDA /* Dev-Info.plist */,
@@ -396,6 +412,14 @@
 				371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */,
 			);
 			path = Topo;
+			sourceTree = "<group>";
+		};
+		37C83A5A26068FCB0096C1DF /* area-7 */ = {
+			isa = PBXGroup;
+			children = (
+				37C83A5B26068FE10096C1DF /* area-7-data.geojson */,
+			);
+			path = "area-7";
 			sourceTree = "<group>";
 		};
 		37D1287A256411F7002BA5E0 /* area-5 */ = {
@@ -508,6 +532,8 @@
 					"area-2",
 					"area-4",
 					"area-5",
+					"area-6",
+					"area-7",
 				);
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1200;
@@ -543,6 +569,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C83A5D26068FE10096C1DF /* area-7-data.geojson in Resources */,
 				37889ED625F8207200F53A47 /* area-4-data.geojson in Resources */,
 				37889ECE25F8206000F53A47 /* area-2-topo-lines.json in Resources */,
 				37889ECC25F8206000F53A47 /* area-2-data.geojson in Resources */,
@@ -554,6 +581,7 @@
 				37889EE025F8208300F53A47 /* area-5-data.geojson in Resources */,
 				37379A43258E619400711EDA /* area-1-data.geojson in Resources */,
 				37379A46258E619400711EDA /* Localizable.strings in Resources */,
+				3729A79425FB91BE0051DE85 /* area-6-data.geojson in Resources */,
 				37379A75258E619400711EDA /* area-1-topo-lines.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +590,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C83A5C26068FE10096C1DF /* area-7-data.geojson in Resources */,
 				37889ED525F8207200F53A47 /* area-4-data.geojson in Resources */,
 				37889ECD25F8206000F53A47 /* area-2-topo-lines.json in Resources */,
 				37889ECB25F8206000F53A47 /* area-2-data.geojson in Resources */,
@@ -573,6 +602,7 @@
 				37889EDF25F8208300F53A47 /* area-5-data.geojson in Resources */,
 				37A4833A2558AC3900DBD526 /* area-1-data.geojson in Resources */,
 				37A6572524BDC00500273A9A /* Localizable.strings in Resources */,
+				3729A79325FB91BE0051DE85 /* area-6-data.geojson in Resources */,
 				37BC54B225586758002F0BB5 /* area-1-topo-lines.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,7 +761,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -741,7 +771,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -758,7 +788,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -768,7 +798,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";

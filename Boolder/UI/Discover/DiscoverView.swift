@@ -26,6 +26,26 @@ struct DiscoverView: View {
                             .font(.title2).bold()
                         
                         Group {
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Apremont")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 7
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
                         
                             Divider()
                             
@@ -71,6 +91,30 @@ struct DiscoverView: View {
                             )
                             
                             Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Cuvier Est")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 6
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                        }
+                        
+                        Group {
                             
                             NavigationLink(
                                 destination: AreaView(),
