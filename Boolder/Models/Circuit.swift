@@ -13,8 +13,10 @@ class Circuit {
         case whiteForKids
         case yellow
         case orange
+        case green
         case blue
         case skyBlue
+        case salmon
         case red
         case black
         case white
@@ -34,10 +36,14 @@ class Circuit {
                 return #colorLiteral(red: 1, green: 0.8, blue: 0.007843137255, alpha: 1)
             case .orange:
                 return #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
+            case .green:
+                return #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             case .blue:
                 return #colorLiteral(red: 0.003921568627, green: 0.4784313725, blue: 1, alpha: 1)
             case .skyBlue:
                 return #colorLiteral(red: 0.3529411765, green: 0.7803921569, blue: 0.9803921569, alpha: 1)
+            case .salmon:
+                return #colorLiteral(red: 0.9921568627, green: 0.6862745098, blue: 0.5411764706, alpha: 1)
             case .red:
                 return #colorLiteral(red: 1, green: 0.231372549, blue: 0.1843137255, alpha: 1)
             case .black:
@@ -64,10 +70,14 @@ class Circuit {
                 return NSLocalizedString("circuit.short_name.yellow", comment: "")
             case .orange:
                 return NSLocalizedString("circuit.short_name.orange", comment: "")
+            case .green:
+                return NSLocalizedString("circuit.short_name.green", comment: "")
             case .blue:
                 return NSLocalizedString("circuit.short_name.blue", comment: "")
             case .skyBlue:
                 return NSLocalizedString("circuit.short_name.skyblue", comment: "")
+            case .salmon:
+                return NSLocalizedString("circuit.short_name.salmon", comment: "")
             case .red:
                 return NSLocalizedString("circuit.short_name.red", comment: "")
             case .white:
@@ -87,10 +97,14 @@ class Circuit {
                 return NSLocalizedString("circuit.long_name.yellow", comment: "")
             case .orange:
                 return NSLocalizedString("circuit.long_name.orange", comment: "")
+            case .green:
+                return NSLocalizedString("circuit.long_name.green", comment: "")
             case .blue:
                 return NSLocalizedString("circuit.long_name.blue", comment: "")
             case .skyBlue:
                 return NSLocalizedString("circuit.long_name.skyblue", comment: "")
+            case .salmon:
+                return NSLocalizedString("circuit.long_name.salmon", comment: "")
             case .red:
                 return NSLocalizedString("circuit.long_name.red", comment: "")
             case .white:
@@ -119,10 +133,14 @@ class Circuit {
             return CircuitColor.yellow
         case "orange":
             return CircuitColor.orange
+        case "green":
+            return CircuitColor.green
         case "blue":
             return CircuitColor.blue
         case "skyblue":
             return CircuitColor.skyBlue
+        case "salmon":
+            return CircuitColor.salmon
         case "red":
             return CircuitColor.red
         case "black":

@@ -29,8 +29,10 @@
 // MARK: Circuit
 "circuit.long_name.yellow" = "Circuit Jaune";
 "circuit.long_name.orange" = "Circuit Orange";
+"circuit.long_name.green" = "Circuit Vert";
 "circuit.long_name.blue" = "Circuit Bleu";
 "circuit.long_name.skyblue" = "Circuit Bleu ciel";
+"circuit.long_name.salmon" = "Circuit Saumon";
 "circuit.long_name.red" = "Circuit Rouge";
 "circuit.long_name.white" = "Circuit Blanc";
 "circuit.long_name.black" = "Circuit Noir";
@@ -39,8 +41,10 @@
 
 "circuit.short_name.yellow" = "Jaune";
 "circuit.short_name.orange" = "Orange";
+"circuit.short_name.green" = "Vert";
 "circuit.short_name.blue" = "Bleu";
 "circuit.short_name.skyblue" = "Bleu ciel";
+"circuit.short_name.salmon" = "Saumon";
 "circuit.short_name.red" = "Rouge";
 "circuit.short_name.white" = "Blanc";
 "circuit.short_name.black" = "Noir";
