@@ -41,8 +41,12 @@ class DataStore : ObservableObject {
         2: "Cul de Chien",
         4: "Cuvier",
         5: "Franchard Isatis",
-        6: "Cuvier Est",
-        7: "Apremont"
+        6: "Cuvier Est (Bellevue)",
+        7: "Apremont",
+        8: "Rocher Fin",
+        9: "Éléphant",
+        10: "95.2",
+        11: "Franchard Cuisinière"
     ]
 
     init() {

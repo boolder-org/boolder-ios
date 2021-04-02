@@ -33,6 +33,27 @@ struct DiscoverView: View {
                                 isActive: $presentArea,
                                 label: {
                                     HStack {
+                                        Text("95.2")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 10
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
                                         Text("Apremont")
                                             .font(.body)
                                         Spacer()
@@ -46,6 +67,10 @@ struct DiscoverView: View {
                                     }
                                 }
                             )
+                            
+                        }
+                        
+                        Group {
                         
                             Divider()
                             
@@ -97,7 +122,7 @@ struct DiscoverView: View {
                                 isActive: $presentArea,
                                 label: {
                                     HStack {
-                                        Text("Cuvier Est")
+                                        Text("Cuvier Est (Bellevue)")
                                             .font(.body)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
@@ -121,6 +146,27 @@ struct DiscoverView: View {
                                 isActive: $presentArea,
                                 label: {
                                     HStack {
+                                        Text("Éléphant")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 9
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
                                         Text("Franchard Isatis")
                                             .font(.body)
                                         Spacer()
@@ -129,6 +175,27 @@ struct DiscoverView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         dataStore.areaId = 5
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Franchard Cuisinière")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 11
                                         dataStore.filters = Filters()
                                         presentArea = true
                                     }
