@@ -14,13 +14,13 @@ struct EditProblemView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @State private var selectedSteepness = Steepness.other
+    let problem: Problem
+    
+    @State var selectedSteepness: Steepness
+    @State var selectedHeight: Double
     @State private var selectedLandingDifficulty = Difficulty.easy
     @State private var selectedDescentDifficulty = Difficulty.easy
-    @State private var selectedHeight: Double = 0
     @State private var comments = ""
-    
-    let problem: Problem
     
     var body: some View {
         NavigationView {
@@ -89,13 +89,6 @@ struct EditProblemView: View {
                         .padding(.leading)
                 }
             )
-            .onAppear {
-                selectedSteepness = problem.steepness
-                
-                if let height = problem.height {
-                    selectedHeight = Double(height)
-                }
-            }
         }
     }
     
@@ -157,6 +150,6 @@ struct ProblemJson: Codable {
 
 struct ProblemRecordView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProblemView(problem: Problem())
+        EditProblemView(problem: Problem(), selectedSteepness: Steepness.other, selectedHeight: 0)
     }
 }

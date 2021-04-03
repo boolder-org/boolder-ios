@@ -194,7 +194,7 @@ struct ProblemDetailsView: View {
         .background(
             EmptyView()
                 .sheet(isPresented: $presentEditProblem) {
-                    EditProblemView(problem: problem)
+                    EditProblemView(problem: problem, selectedSteepness: problem.steepness, selectedHeight: Double(problem.height ?? 0))
                         .environment(\.managedObjectContext, managedObjectContext)
                 }
         )
