@@ -58,10 +58,10 @@ struct FiltersView: View {
                         
                         NavigationLink(destination: CircuitFilterView(filters: $filters)) {
                             HStack {
-                                if let circuit = filters.circuit {
+                                if let circuitId = filters.circuitId, let circuit = dataStore.circuit(withId: circuitId) {
                                     Text("filters.circuit")
                                     Spacer()
-                                    Text("\(circuit.shortName())").foregroundColor(Color(.systemGray))
+                                    Text("\(circuit.color.shortName())").foregroundColor(Color(.systemGray))
                                 } else
                                 {
                                     Text("filters.circuit")

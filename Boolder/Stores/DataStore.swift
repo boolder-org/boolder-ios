@@ -71,7 +71,7 @@ class DataStore : ObservableObject {
     
     private func filteredProblems() -> [Problem] {
         return geoStore.problems.filter { problem in
-            if(filters.circuit == nil || problem.circuitColor == filters.circuit) {
+            if(filters.circuitId == nil || problem.circuitId == filters.circuitId) {
                 if isGradeOk(problem)  {
                     if isSteepnessOk(problem) {
                         if filters.photoPresent == false || (problem.mainTopoPhoto != nil) {
@@ -127,8 +127,8 @@ class DataStore : ObservableObject {
     }
     
     private func circuitOverlay() -> CircuitOverlay? {
-        if let circuitColor = filters.circuit {
-            if let circuit = circuit(withColor: circuitColor) {
+        if let circuitId = filters.circuitId {
+            if let circuit = circuit(withId: circuitId) {
                 return circuit.overlay
             }
         }
@@ -136,8 +136,8 @@ class DataStore : ObservableObject {
         return nil
     }
     
-    private func circuit(withColor color: Circuit.CircuitColor) -> Circuit? {
-        geoStore.circuits.first { $0.color == color }
+    func circuit(withId id: Int) -> Circuit? {
+        geoStore.circuits.first { $0.id == id }
     }
     
     private func createGroupedProblems() {
@@ -170,7 +170,7 @@ class DataStore : ObservableObject {
     
     private func setBelongsToCircuit() {
         for problem in problems {
-            problem.belongsToCircuit = (filters.circuit == problem.circuitColor)
+            problem.belongsToCircuit = (filters.circuitId != nil && filters.circuitId == problem.circuitId)
         }
     }
     

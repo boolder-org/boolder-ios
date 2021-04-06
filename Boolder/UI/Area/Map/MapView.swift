@@ -89,8 +89,8 @@ struct MapView: UIViewRepresentable {
         
         // zoom to new region if needed
         
-        let changedCircuit = context.coordinator.lastCircuit != dataStore.filters.circuit && dataStore.filters.circuit != nil
-        context.coordinator.lastCircuit = dataStore.filters.circuit
+        let changedCircuit = context.coordinator.lastCircuitId != dataStore.filters.circuitId && dataStore.filters.circuitId != nil
+        context.coordinator.lastCircuitId = dataStore.filters.circuitId
         
         let changedArea = context.coordinator.lastArea != dataStore.areaId
         context.coordinator.lastArea = dataStore.areaId
@@ -134,7 +134,7 @@ struct MapView: UIViewRepresentable {
         }
         
         var parent: MapView
-        var lastCircuit: Circuit.CircuitColor? = nil
+        var lastCircuitId: Int? = nil
         var lastArea: Int? = nil
         var lastCenterOnCurrentLocationCount = 0
         var lastCenterOnProblemCount = 0

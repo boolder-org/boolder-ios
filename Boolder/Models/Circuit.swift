@@ -37,7 +37,7 @@ class Circuit {
             case .orange:
                 return #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
             case .green:
-                return #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                return #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
             case .blue:
                 return #colorLiteral(red: 0.003921568627, green: 0.4784313725, blue: 1, alpha: 1)
             case .skyBlue:
@@ -119,11 +119,13 @@ class Circuit {
         }
     }
     
-    init(color: CircuitColor, overlay: CircuitOverlay) {
+    init(id: Int, color: CircuitColor, overlay: CircuitOverlay) {
+        self.id = id
         self.color = color
         self.overlay = overlay
     }
     
+    let id: Int
     let color: CircuitColor
     let overlay: CircuitOverlay
     

@@ -18,13 +18,13 @@ struct CircuitFilterView: View {
     var body: some View {
         Form {
             Section {
-                ForEach(dataStore.geoStore.circuits, id: \.color) { (circuit: Circuit) in
+                ForEach(dataStore.geoStore.circuits, id: \.id) { (circuit: Circuit) in
                     Button(action: {
-                        if filters.circuit == circuit.color {
-                            filters.circuit = nil
+                        if filters.circuitId == circuit.id {
+                            filters.circuitId = nil
                         }
                         else {
-                            filters.circuit = circuit.color
+                            filters.circuitId = circuit.id
                         }
                         
                         presentationMode.wrappedValue.dismiss()
@@ -37,7 +37,7 @@ struct CircuitFilterView: View {
                             
                             Spacer()
                             
-                            if filters.circuit == circuit.color {
+                            if filters.circuitId == circuit.id {
                                 Image(systemName: "checkmark").font(Font.body.weight(.bold))
                             }
                         }

@@ -80,7 +80,7 @@ class GeoStore {
                 let decoder = JSONDecoder()
                 if let dictionary = try? decoder.decode([String: String].self, from: properties) {
                     let overlay = CircuitOverlay(points: polyline.points(), count: polyline.pointCount)
-                    let circuit = Circuit(color: Circuit.circuitColorFromString(dictionary["color"]), overlay: overlay)
+                    let circuit = Circuit(id: id, color: Circuit.circuitColorFromString(dictionary["color"]), overlay: overlay)
                     overlay.strokeColor = circuit.color.uicolor
                     circuits.append(circuit)
                 }
@@ -165,6 +165,7 @@ class GeoStore {
                     
                     problem.tags = properties.tags
                     
+                    problem.circuitId = properties.circuitId
                     problem.circuitColor = Circuit.circuitColorFromString(properties.circuitColor)
                     
                     problem.id = id
@@ -183,6 +184,7 @@ class GeoStore {
     }
     
     struct ProblemProperties: Decodable {
+        let circuitId: Int?
         let circuitColor: String?
         let circuitNumber: String?
         let grade: String?

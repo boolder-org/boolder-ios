@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class Problem : Identifiable {
+    var circuitId: Int?
     var circuitColor: Circuit.CircuitColor?
     var circuitNumber: String = ""
     var belongsToCircuit: Bool = false
