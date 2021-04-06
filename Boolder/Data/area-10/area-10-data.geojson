@@ -16,6 +16,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Fausse Fosse",
+        "bleauInfoId": "3702",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -39,6 +40,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3785",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -62,6 +64,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Jeté Michaud / Jump",
+        "bleauInfoId": "16",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -85,6 +88,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13619",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -108,6 +112,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Vodka Martini",
+        "bleauInfoId": "2223",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -131,6 +136,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13610",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -154,6 +160,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Saut de la Peur",
+        "bleauInfoId": "3682",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -177,6 +184,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Porte Étroite",
+        "bleauInfoId": "303042",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -200,6 +208,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "3768",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -223,6 +232,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Bien Précieux",
+        "bleauInfoId": "3685",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -246,6 +256,7 @@
         "steepness": "other",
         "height": null,
         "name": "Sans Escalier",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -269,6 +280,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Triplette",
+        "bleauInfoId": "1433",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -292,6 +304,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Étroiture",
+        "bleauInfoId": "238868",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -315,6 +328,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Sauvé du Sable",
+        "bleauInfoId": "3697",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -338,6 +352,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Mise à Table",
+        "bleauInfoId": "3695",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -361,6 +376,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Facilité",
+        "bleauInfoId": "3672",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -384,6 +400,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13624",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -407,6 +424,7 @@
         "steepness": "other",
         "height": null,
         "name": "Karr",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -430,6 +448,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Pubis Infernal",
+        "bleauInfoId": "3796",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -453,6 +472,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Hommage",
+        "bleauInfoId": "305207",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -476,6 +496,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Effet Loupe",
+        "bleauInfoId": "190110",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -499,6 +520,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Haltérophilie",
+        "bleauInfoId": "3756",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -522,6 +544,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "3790",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -545,6 +568,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Reposoir",
+        "bleauInfoId": "3679",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -568,6 +592,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3765",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -591,6 +616,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Déviation",
+        "bleauInfoId": "78348",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -614,6 +640,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13613",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -637,6 +664,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Grattons Bonheur",
+        "bleauInfoId": "3676",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -660,6 +688,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Pince Oreille",
+        "bleauInfoId": "222738",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -683,6 +712,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Les Pieds dans la Lune (droite)",
+        "bleauInfoId": "300216",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -706,6 +736,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13598",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -729,6 +760,7 @@
         "steepness": "other",
         "height": null,
         "name": "Jeu d'Arête",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -752,6 +784,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Sans l'Arête",
+        "bleauInfoId": "3769",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -775,6 +808,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Carie Dentaire",
+        "bleauInfoId": "3692",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -798,6 +832,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13609",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -821,6 +856,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Symbiose",
+        "bleauInfoId": "1648",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -844,6 +880,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Fissure du Kilo de Beurre",
+        "bleauInfoId": "3745",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -867,6 +904,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13594",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -890,6 +928,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Malapprise",
+        "bleauInfoId": "39095",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -913,6 +952,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Coup de Force",
+        "bleauInfoId": "3690",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -936,6 +976,7 @@
         "steepness": "other",
         "height": null,
         "name": "Pierre Précieuse / Le Yaniro",
+        "bleauInfoId": "14",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -959,6 +1000,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3787",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -982,6 +1024,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Congélateur",
+        "bleauInfoId": "1765",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1005,6 +1048,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Dernière Cartouche",
+        "bleauInfoId": "253056",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -1028,6 +1072,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Rheingold",
+        "bleauInfoId": "9537",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1051,6 +1096,7 @@
         "steepness": "other",
         "height": null,
         "name": "Zyno",
+        "bleauInfoId": "2125",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1074,6 +1120,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Lutte Finale",
+        "bleauInfoId": "77285",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -1097,6 +1144,7 @@
         "steepness": "other",
         "height": null,
         "name": "Louvre",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1120,6 +1168,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Bob l'Éponge (droite assis)",
+        "bleauInfoId": "303162",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1143,6 +1192,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Mur de la Fosse aux Ours",
+        "bleauInfoId": "2",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -1166,6 +1216,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Bouboules",
+        "bleauInfoId": "23486",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1189,6 +1240,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3784",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -1212,6 +1264,7 @@
         "steepness": "other",
         "height": null,
         "name": "Grise Mine",
+        "bleauInfoId": "40633",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -1235,6 +1288,7 @@
         "steepness": "other",
         "height": null,
         "name": "Tim Tim",
+        "bleauInfoId": "22386",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1258,6 +1312,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13597",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -1281,6 +1336,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Coup Tordu",
+        "bleauInfoId": "13543",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -1304,6 +1360,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Verrues Plantaires",
+        "bleauInfoId": "13580",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -1327,6 +1384,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3780",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -1350,6 +1408,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Vacherie",
+        "bleauInfoId": "3749",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -1373,6 +1432,7 @@
         "steepness": "wall",
         "height": null,
         "name": "This is Sparta!",
+        "bleauInfoId": "15416",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1396,6 +1456,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Ouvreurs de l'Inutile",
+        "bleauInfoId": "14776",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1419,6 +1480,7 @@
         "steepness": "other",
         "height": null,
         "name": "Fondue",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1442,6 +1504,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Tarte aux Poils / La Croupe est Pleine",
+        "bleauInfoId": "7",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1465,6 +1528,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Cordon Bleu",
+        "bleauInfoId": "3664",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -1488,6 +1552,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Télépathie (assis)",
+        "bleauInfoId": "2124",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1511,6 +1576,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3774",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -1534,6 +1600,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Topaz",
+        "bleauInfoId": "3720",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -1557,6 +1624,7 @@
         "steepness": "slab",
         "height": null,
         "name": "File à Gauche",
+        "bleauInfoId": "238577",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -1580,6 +1648,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13602",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -1603,6 +1672,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Boyau Rouge",
+        "bleauInfoId": "3696",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -1626,6 +1696,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3801",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -1649,6 +1720,7 @@
         "steepness": "other",
         "height": null,
         "name": "P'tite Mousse (assis)",
+        "bleauInfoId": "17670",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1672,6 +1744,7 @@
         "steepness": "other",
         "height": null,
         "name": "Jeu de Cubes",
+        "bleauInfoId": "59095",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -1695,6 +1768,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Bleu Azur",
+        "bleauInfoId": "3688",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -1718,6 +1792,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
+        "bleauInfoId": "13625",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -1741,6 +1816,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Sortie de Virages",
+        "bleauInfoId": "3671",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -1764,6 +1840,7 @@
         "steepness": "other",
         "height": null,
         "name": "P'tite Mousse",
+        "bleauInfoId": "2256",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1787,6 +1864,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Quartz (droite)",
+        "bleauInfoId": "21399",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1810,6 +1888,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Rio Bravo",
+        "bleauInfoId": "12464",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1833,6 +1912,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Sablière",
+        "bleauInfoId": "275950",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -1856,6 +1936,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13622",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -1879,6 +1960,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Pincée de Poudre",
+        "bleauInfoId": "3726",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -1902,6 +1984,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Gros Câlin",
+        "bleauInfoId": "257789",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -1925,6 +2008,7 @@
         "steepness": "other",
         "height": null,
         "name": "Mumbo Jumbo",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1948,6 +2032,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Ange Naïf",
+        "bleauInfoId": "29",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1971,6 +2056,7 @@
         "steepness": "other",
         "height": null,
         "name": "Mister Proper",
+        "bleauInfoId": "3",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -1994,6 +2080,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Bijou Fantasie",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2017,6 +2104,7 @@
         "steepness": "other",
         "height": null,
         "name": "Amiens",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2040,6 +2128,7 @@
         "steepness": "other",
         "height": null,
         "name": "Fil Retors",
+        "bleauInfoId": "3724",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2063,6 +2152,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Coquette",
+        "bleauInfoId": "32176",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2086,6 +2176,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Contractuelle",
+        "bleauInfoId": "212902",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -2109,6 +2200,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Sueur du Vide",
+        "bleauInfoId": "186196",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -2132,6 +2224,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Ange Naïf (droite)",
+        "bleauInfoId": "949",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2155,6 +2248,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Diesel Power (direct)",
+        "bleauInfoId": "23490",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2178,6 +2272,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "La Rigolade",
+        "bleauInfoId": "64161",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -2201,6 +2296,7 @@
         "steepness": "other",
         "height": null,
         "name": "Illusion",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2224,6 +2320,7 @@
         "steepness": "other",
         "height": null,
         "name": "Gaz",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2247,6 +2344,7 @@
         "steepness": "other",
         "height": null,
         "name": "Arras",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2270,6 +2368,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "3799",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -2293,6 +2392,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Captain Hook",
+        "bleauInfoId": "1718",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2316,6 +2416,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Poinçonneur",
+        "bleauInfoId": "3715",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2339,6 +2440,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Dent Gâtée",
+        "bleauInfoId": "3693",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2362,6 +2464,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Ectoplasme",
+        "bleauInfoId": "3699",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -2385,6 +2488,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Test de Turing",
+        "bleauInfoId": "8",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2408,6 +2512,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3783",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -2431,6 +2536,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "3772",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -2454,6 +2560,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Télépathie (gauche)",
+        "bleauInfoId": "21464",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2477,6 +2584,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Dalle Courage",
+        "bleauInfoId": "3714",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2500,6 +2608,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Prise de Masse",
+        "bleauInfoId": "275477",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -2523,6 +2632,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13605",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -2546,6 +2656,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Formule des Chefs",
+        "bleauInfoId": "3669",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -2569,6 +2680,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Plomb dans L'Aile",
+        "bleauInfoId": "100276",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -2592,6 +2704,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13626",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -2615,6 +2728,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Présence Hostile",
+        "bleauInfoId": "3753",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2638,6 +2752,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2661,6 +2776,7 @@
         "steepness": "other",
         "height": null,
         "name": "Rodez",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2684,6 +2800,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Trafiquant d'Armes",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2707,6 +2824,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Miss KGB",
+        "bleauInfoId": "19",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2730,6 +2848,7 @@
         "steepness": "other",
         "height": null,
         "name": "L'Incognito",
+        "bleauInfoId": "3668",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -2753,6 +2872,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Champagne",
+        "bleauInfoId": "3718",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2776,6 +2896,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3776",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -2799,6 +2920,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3786",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -2822,6 +2944,7 @@
         "steepness": "other",
         "height": null,
         "name": "Méta",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2845,6 +2968,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'Amarrée Basse",
+        "bleauInfoId": "13548",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -2868,6 +2992,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Rudeboy",
+        "bleauInfoId": "2126",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2891,6 +3016,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Coince et Danse",
+        "bleauInfoId": "9538",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -2914,6 +3040,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Grand Prix",
+        "bleauInfoId": "3743",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -2937,6 +3064,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13604",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -2960,6 +3088,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Œil Bleu",
+        "bleauInfoId": "3681",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -2983,6 +3112,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "L'Ange Naïf (sans convention)",
+        "bleauInfoId": "301249",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3006,6 +3136,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "13595",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -3029,6 +3160,7 @@
         "steepness": "other",
         "height": null,
         "name": "L'Amante Est Fait Mère",
+        "bleauInfoId": "302513",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3052,6 +3184,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
+        "bleauInfoId": "3794",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3075,6 +3208,7 @@
         "steepness": "other",
         "height": null,
         "name": "L'Arête au Mur",
+        "bleauInfoId": "187305",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3098,6 +3232,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3797",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3121,6 +3256,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Conciliabule",
+        "bleauInfoId": "85272",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3144,6 +3280,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Mendoza",
+        "bleauInfoId": "278878",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -3167,6 +3304,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13618",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -3190,6 +3328,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Jeu Complet",
+        "bleauInfoId": "207639",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -3213,6 +3352,7 @@
         "steepness": "other",
         "height": null,
         "name": "Tentation",
+        "bleauInfoId": "1747",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3236,6 +3376,7 @@
         "steepness": "other",
         "height": null,
         "name": "28 blanc (assis)",
+        "bleauInfoId": "24008",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3259,6 +3400,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13612",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -3282,6 +3424,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Message in a Bottle",
+        "bleauInfoId": "3789",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3305,6 +3448,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3781",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3328,6 +3472,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Absynthe",
+        "bleauInfoId": "26",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3351,6 +3496,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13615",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -3374,6 +3520,7 @@
         "steepness": "other",
         "height": null,
         "name": "Gouda",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3397,6 +3544,7 @@
         "steepness": "other",
         "height": null,
         "name": "Mur d'Emmenthal",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3420,6 +3568,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Boulet Rouge",
+        "bleauInfoId": "3754",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -3443,6 +3592,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Manchuria",
+        "bleauInfoId": "3775",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3466,6 +3616,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Dalle Cirée",
+        "bleauInfoId": "13544",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3489,6 +3640,7 @@
         "steepness": "other",
         "height": null,
         "name": "Mephisto",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3512,6 +3664,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Manchuria Express",
+        "bleauInfoId": "21466",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3535,6 +3688,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Beau Geste",
+        "bleauInfoId": "222664",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3558,6 +3712,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Senticosus",
+        "bleauInfoId": "21465",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3581,6 +3736,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Lustre",
+        "bleauInfoId": "218335",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3604,6 +3760,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Poincenot",
+        "bleauInfoId": "3764",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3627,6 +3784,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Petit Chagrin",
+        "bleauInfoId": "95807",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3650,6 +3808,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Étrave de Droite / 95.C",
+        "bleauInfoId": "996",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3673,6 +3832,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Retour aux Sources",
+        "bleauInfoId": "5",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3696,6 +3856,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Modénature",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3719,6 +3880,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "3792",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3742,6 +3904,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Télépathie",
+        "bleauInfoId": "301507",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3765,6 +3928,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Recette de Gratins",
+        "bleauInfoId": "268161",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -3788,6 +3952,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13608",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -3811,6 +3976,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Les Toulousaines",
+        "bleauInfoId": "300797",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3834,6 +4000,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Kilo de Beurre",
+        "bleauInfoId": "3763",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3857,6 +4024,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Retour aux Sources (droite)",
+        "bleauInfoId": "24593",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3880,6 +4048,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3778",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -3903,6 +4072,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13623",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -3926,6 +4096,7 @@
         "steepness": "other",
         "height": null,
         "name": "Chénas",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3949,6 +4120,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Ritz (assis)",
+        "bleauInfoId": "301184",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -3972,6 +4144,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Sable Émouvant",
+        "bleauInfoId": "3684",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -3995,6 +4168,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Spectre",
+        "bleauInfoId": "3762",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -4018,6 +4192,7 @@
         "steepness": "other",
         "height": null,
         "name": "Pince-Toi",
+        "bleauInfoId": "9526",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4041,6 +4216,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13606",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -4064,6 +4240,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Rasta Man",
+        "bleauInfoId": "305063",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -4087,6 +4264,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Prise de Base",
+        "bleauInfoId": "182351",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4110,6 +4288,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Indestructible",
+        "bleauInfoId": "8456",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4133,6 +4312,7 @@
         "steepness": "other",
         "height": null,
         "name": "Partie Giza",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4156,6 +4336,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Dévers et des Pas Durs",
+        "bleauInfoId": "305064",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4179,6 +4360,7 @@
         "steepness": "other",
         "height": null,
         "name": "Edam",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4202,6 +4384,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Duel dans la Lune",
+        "bleauInfoId": "1548",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4225,6 +4408,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13631",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -4248,6 +4432,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13627",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -4271,6 +4456,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Symbiose (droite)",
+        "bleauInfoId": "303565",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4294,6 +4480,7 @@
         "steepness": "other",
         "height": null,
         "name": "Marée Haute",
+        "bleauInfoId": "3741",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -4317,6 +4504,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Rouge Gorge",
+        "bleauInfoId": "261013",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4340,6 +4528,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Victor Hugo",
+        "bleauInfoId": "3704",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -4363,6 +4552,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Fleur Bleue",
+        "bleauInfoId": "3663",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -4386,6 +4576,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Traversée Haute",
+        "bleauInfoId": "13549",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4409,6 +4600,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Fil à Plomb",
+        "bleauInfoId": "108497",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -4432,6 +4624,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Peines de Frissons",
+        "bleauInfoId": "121536",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4455,6 +4648,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Au Gres du Ventre",
+        "bleauInfoId": "148741",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4478,6 +4672,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Sens Dessus Dessous",
+        "bleauInfoId": "24",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4501,6 +4696,7 @@
         "steepness": "other",
         "height": null,
         "name": "Énergie Collective",
+        "bleauInfoId": "21413",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4524,6 +4720,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "3771",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -4547,6 +4744,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "3782",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -4570,6 +4768,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Professeur Penel",
+        "bleauInfoId": "1596",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4593,6 +4792,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Pompeux",
+        "bleauInfoId": "23487",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4616,6 +4816,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13607",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -4639,6 +4840,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'Humour est Amour",
+        "bleauInfoId": "3691",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -4662,6 +4864,7 @@
         "steepness": "other",
         "height": null,
         "name": "Absentéiste",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4685,6 +4888,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Futurs Barbares",
+        "bleauInfoId": "30",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4708,6 +4912,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Médaillon",
+        "bleauInfoId": "20",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4731,6 +4936,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3791",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -4754,6 +4960,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Smarty",
+        "bleauInfoId": "1652",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4777,6 +4984,7 @@
         "steepness": "other",
         "height": null,
         "name": "Cocaine",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4800,6 +5008,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13621",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -4823,6 +5032,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Redoutable",
+        "bleauInfoId": "3674",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -4846,6 +5056,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "13603",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -4869,6 +5080,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Grosse Fissure",
+        "bleauInfoId": "3761",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -4892,6 +5104,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Bleu Céleste",
+        "bleauInfoId": "3700",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -4915,6 +5128,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Ligne Rouge",
+        "bleauInfoId": "3694",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -4938,6 +5152,7 @@
         "steepness": "other",
         "height": null,
         "name": "U.S.I. F.S.G.T.",
+        "bleauInfoId": "4",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -4961,6 +5176,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Pas Dur",
+        "bleauInfoId": "137436",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -4984,6 +5200,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13593",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -5007,6 +5224,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Jeu d'Échecs",
+        "bleauInfoId": "253731",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5030,6 +5248,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Bloc à Bertrand",
+        "bleauInfoId": "10",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5053,6 +5272,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Nouveau Départ",
+        "bleauInfoId": "3670",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -5076,6 +5296,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Diesel Power",
+        "bleauInfoId": "24357",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5099,6 +5320,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Chant des Oiseaux",
+        "bleauInfoId": "13347",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5122,6 +5344,7 @@
         "steepness": "other",
         "height": null,
         "name": "Tipe Semou",
+        "bleauInfoId": "23078",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5145,6 +5368,7 @@
         "steepness": "other",
         "height": null,
         "name": "Tentation (assis)",
+        "bleauInfoId": "13798",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5168,6 +5392,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Sortie de Service",
+        "bleauInfoId": "3722",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5191,6 +5416,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Couteau",
+        "bleauInfoId": "3706",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5214,6 +5440,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le P'tit Toit / Le Tourniquet",
+        "bleauInfoId": "25",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5237,6 +5464,7 @@
         "steepness": "other",
         "height": null,
         "name": "Futurs Barbares (gauche)",
+        "bleauInfoId": "301248",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5260,6 +5488,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Doigts de Fée",
+        "bleauInfoId": "185261",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5283,6 +5512,7 @@
         "steepness": "other",
         "height": null,
         "name": "Fragile",
+        "bleauInfoId": "3751",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5306,6 +5536,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Rampe",
+        "bleauInfoId": "3711",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5329,6 +5560,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Soubassement",
+        "bleauInfoId": "13550",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5352,6 +5584,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Fausse Danse",
+        "bleauInfoId": "12",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5375,6 +5608,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13616",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -5398,6 +5632,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Chagrin d'Humour",
+        "bleauInfoId": "114527",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5421,6 +5656,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3777",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -5444,6 +5680,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13629",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -5467,6 +5704,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Prise en Main",
+        "bleauInfoId": "35761",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5490,6 +5728,7 @@
         "steepness": "other",
         "height": null,
         "name": "Nouveau Départ",
+        "bleauInfoId": "246851",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5513,6 +5752,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "13600",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -5536,6 +5776,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Chef / Ligne Bleue",
+        "bleauInfoId": "3661",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -5559,6 +5800,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Jeu de Dalle",
+        "bleauInfoId": "3770",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -5582,6 +5824,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Sable Mouvant",
+        "bleauInfoId": "57406",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5605,6 +5848,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Zyno (gauche)",
+        "bleauInfoId": "303040",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5628,6 +5872,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Dalle Vient en Grimpant",
+        "bleauInfoId": "13563",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5651,6 +5896,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Première Danse",
+        "bleauInfoId": "3752",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5674,6 +5920,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Chute de Tension",
+        "bleauInfoId": "38842",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5697,6 +5944,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Croisée",
+        "bleauInfoId": "3667",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -5720,6 +5968,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3767",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -5743,6 +5992,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13588",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -5766,6 +6016,7 @@
         "steepness": "other",
         "height": null,
         "name": "Crumble",
+        "bleauInfoId": "2136",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5789,6 +6040,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Prises en Compte",
+        "bleauInfoId": "118091",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5812,6 +6064,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "3795",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -5835,6 +6088,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Sang Bleu",
+        "bleauInfoId": "3665",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -5858,6 +6112,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Lolita",
+        "bleauInfoId": "3734",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -5881,6 +6136,7 @@
         "steepness": "other",
         "height": null,
         "name": "Cellulite Fatale",
+        "bleauInfoId": "222041",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -5904,6 +6160,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13617",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -5927,6 +6184,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Tir Groupé",
+        "bleauInfoId": "1651",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5950,6 +6208,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Saint Bio / Bob l'Éponge (assis)",
+        "bleauInfoId": "22070",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5973,6 +6232,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Les Pieds dans la Lune",
+        "bleauInfoId": "13",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -5996,6 +6256,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13601",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -6019,6 +6280,7 @@
         "steepness": "other",
         "height": null,
         "name": "Bière",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6042,6 +6304,7 @@
         "steepness": "other",
         "height": null,
         "name": "Grosse Patate",
+        "bleauInfoId": "3717",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6065,6 +6328,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Chasse-Pied",
+        "bleauInfoId": "3680",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -6088,6 +6352,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Extraction Divine",
+        "bleauInfoId": "300164",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6111,6 +6376,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Fabriquée",
+        "bleauInfoId": "3760",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6134,6 +6400,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Gros Problème",
+        "bleauInfoId": "3703",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -6157,6 +6424,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13596",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -6180,6 +6448,7 @@
         "steepness": "other",
         "height": null,
         "name": "Looney Tunes",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6203,6 +6472,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Parapluie",
+        "bleauInfoId": "303688",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6226,6 +6496,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Finale du Chant des Oiseaux",
+        "bleauInfoId": "301860",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6249,6 +6520,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "3793",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -6272,6 +6544,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "La Traversée de Symbiose",
+        "bleauInfoId": "1649",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6295,6 +6568,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Danse avec les Loups",
+        "bleauInfoId": "17",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6318,6 +6592,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Miroir",
+        "bleauInfoId": "3723",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6341,6 +6616,7 @@
         "steepness": "traverse",
         "height": null,
         "name": null,
+        "bleauInfoId": "13590",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -6364,6 +6640,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Extraction Divine (assis)",
+        "bleauInfoId": "300163",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6387,6 +6664,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13630",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -6410,6 +6688,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Pas Chasseur",
+        "bleauInfoId": "61946",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -6433,6 +6712,7 @@
         "steepness": "overhang",
         "height": null,
         "name": null,
+        "bleauInfoId": "3800",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -6456,6 +6736,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "L'École du Gratton d'Argent",
+        "bleauInfoId": "24671",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6479,6 +6760,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Le Bouche Trou",
+        "bleauInfoId": "3755",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6502,6 +6784,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Bigdil",
+        "bleauInfoId": "9585",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6525,6 +6808,7 @@
         "steepness": "other",
         "height": null,
         "name": "Snap",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6548,6 +6832,7 @@
         "steepness": "other",
         "height": null,
         "name": "Herbe des Pampas",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6571,6 +6856,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Promenade",
+        "bleauInfoId": "3708",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6594,6 +6880,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Smarty (assis)",
+        "bleauInfoId": "19301",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6617,6 +6904,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "La Standard",
+        "bleauInfoId": "3678",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -6640,6 +6928,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Arête Minute",
+        "bleauInfoId": "216983",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6663,6 +6952,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Troisième Angle",
+        "bleauInfoId": "95268",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -6686,6 +6976,7 @@
         "steepness": "other",
         "height": null,
         "name": "Fay",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6709,6 +7000,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Fissure Notre Dame",
+        "bleauInfoId": "3705",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -6732,6 +7024,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Les Sabots d'Hélène",
+        "bleauInfoId": "6",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6755,6 +7048,7 @@
         "steepness": "other",
         "height": null,
         "name": "Café Latte",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6778,6 +7072,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Le Plat Gratinée",
+        "bleauInfoId": "40183",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -6801,6 +7096,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Futurs Barbares (direct)",
+        "bleauInfoId": "1403",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6824,6 +7120,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13620",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -6847,6 +7144,7 @@
         "steepness": "other",
         "height": null,
         "name": "Bob l'Éponge",
+        "bleauInfoId": "12716",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6870,6 +7168,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13599",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -6893,6 +7192,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Croque Monsieur",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6916,6 +7216,7 @@
         "steepness": "traverse",
         "height": null,
         "name": "Le Pied dans le Plat",
+        "bleauInfoId": "22835",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -6939,6 +7240,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "Zone Bleue",
+        "bleauInfoId": "3701",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -6962,6 +7264,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Jeu de Pieds",
+        "bleauInfoId": "81920",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -6985,6 +7288,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Message in a Bottle (avec l'arête)",
+        "bleauInfoId": "300206",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7008,6 +7312,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "13614",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -7031,6 +7336,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Savante",
+        "bleauInfoId": "3683",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -7054,6 +7360,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Fissure",
+        "bleauInfoId": "3802",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -7077,6 +7384,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Protubérances",
+        "bleauInfoId": "12465",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7100,6 +7408,7 @@
         "steepness": "roof",
         "height": null,
         "name": "Symbiose (gauche)",
+        "bleauInfoId": "1578",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7123,6 +7432,7 @@
         "steepness": "wall",
         "height": null,
         "name": "La Pincée Salée",
+        "bleauInfoId": "131253",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -7146,6 +7456,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "3788",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -7169,6 +7480,7 @@
         "steepness": "other",
         "height": null,
         "name": "Emprise",
+        "bleauInfoId": "201922",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -7192,6 +7504,7 @@
         "steepness": "wall",
         "height": null,
         "name": "Le Quinze de France",
+        "bleauInfoId": "8455",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -7215,6 +7528,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Dalle à Puck",
+        "bleauInfoId": "3677",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -7238,6 +7552,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Calme Plat",
+        "bleauInfoId": "13546",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -7261,6 +7576,7 @@
         "steepness": "slab",
         "height": null,
         "name": "La Prise en Charge",
+        "bleauInfoId": "260782",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -7284,6 +7600,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Préférence à Oleg",
+        "bleauInfoId": "3687",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -7307,6 +7624,7 @@
         "steepness": "other",
         "height": null,
         "name": "Jafesse Connexion Airline",
+        "bleauInfoId": "2289",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7330,6 +7648,7 @@
         "steepness": "other",
         "height": null,
         "name": "La Fêle Action",
+        "bleauInfoId": "245367",
         "circuitColor": "orange",
         "circuitId": 45,
         "tags": [
@@ -7353,6 +7672,7 @@
         "steepness": "other",
         "height": null,
         "name": "Monza",
+        "bleauInfoId": "",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7376,6 +7696,7 @@
         "steepness": "other",
         "height": null,
         "name": "Le Quartz",
+        "bleauInfoId": "21398",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7399,6 +7720,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Grattons Saveurs",
+        "bleauInfoId": "87888",
         "circuitColor": "red",
         "circuitId": 39,
         "tags": [
@@ -7422,6 +7744,7 @@
         "steepness": "wall",
         "height": null,
         "name": "L'Impérial",
+        "bleauInfoId": "12558",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7445,6 +7768,7 @@
         "steepness": "overhang",
         "height": null,
         "name": "La Ritz",
+        "bleauInfoId": "15",
         "circuitColor": null,
         "circuitId": null,
         "tags": [
@@ -7468,6 +7792,7 @@
         "steepness": "slab",
         "height": null,
         "name": "Petite Merveille",
+        "bleauInfoId": "3686",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -7491,6 +7816,7 @@
         "steepness": "other",
         "height": null,
         "name": null,
+        "bleauInfoId": "13589",
         "circuitColor": "orange",
         "circuitId": 37,
         "tags": [
@@ -7514,6 +7840,7 @@
         "steepness": "wall",
         "height": null,
         "name": null,
+        "bleauInfoId": "3779",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
@@ -7537,6 +7864,7 @@
         "steepness": "other",
         "height": null,
         "name": "Fil Rouge",
+        "bleauInfoId": "3666",
         "circuitColor": "blue",
         "circuitId": 38,
         "tags": [
@@ -7560,6 +7888,7 @@
         "steepness": "slab",
         "height": null,
         "name": null,
+        "bleauInfoId": "3766",
         "circuitColor": "white",
         "circuitId": 40,
         "tags": [
