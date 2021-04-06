@@ -24,7 +24,7 @@ class ProblemAnnotationView: MKAnnotationView {
         willSet {
             if let annotation = newValue as? ProblemAnnotation {
                 if(annotation.problem.isFavorite()) {
-                    displayPriority = .required
+                    displayPriority = .defaultHigh
                 }
                 else if(annotation.problem.isTicked()) {
                     displayPriority = .defaultHigh
