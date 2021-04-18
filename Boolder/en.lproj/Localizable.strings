@@ -28,6 +28,7 @@
 
 // MARK: Circuit
 "circuit.long_name.yellow" = "Yellow circuit";
+"circuit.long_name.purple" = "Purple circuit";
 "circuit.long_name.orange" = "Orange circuit";
 "circuit.long_name.green" = "Green circuit";
 "circuit.long_name.blue" = "Blue circuit";
@@ -40,6 +41,7 @@
 "circuit.long_name.off_circuit" = "Other";
 
 "circuit.short_name.yellow" = "Yellow";
+"circuit.short_name.purple" = "Purple";
 "circuit.short_name.orange" = "Orange";
 "circuit.short_name.green" = "Green";
 "circuit.short_name.blue" = "Blue";

@@ -68,6 +68,27 @@ struct DiscoverView: View {
                                 }
                             )
                             
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Canche aux Merciers")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 13
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
                         }
                         
                         Group {
@@ -196,6 +217,27 @@ struct DiscoverView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         dataStore.areaId = 11
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Roche aux Sabots")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 12
                                         dataStore.filters = Filters()
                                         presentArea = true
                                     }

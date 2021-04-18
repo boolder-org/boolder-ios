@@ -12,6 +12,7 @@ class Circuit {
     enum CircuitColor: Int, Comparable {
         case whiteForKids
         case yellow
+        case purple
         case orange
         case green
         case blue
@@ -34,6 +35,8 @@ class Circuit {
                 return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             case .yellow:
                 return #colorLiteral(red: 1, green: 0.8, blue: 0.007843137255, alpha: 1)
+            case .purple:
+                return #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
             case .orange:
                 return #colorLiteral(red: 1, green: 0.5843137255, blue: 0, alpha: 1)
             case .green:
@@ -68,6 +71,8 @@ class Circuit {
             switch self {
             case .yellow:
                 return NSLocalizedString("circuit.short_name.yellow", comment: "")
+            case .purple:
+                return NSLocalizedString("circuit.short_name.purple", comment: "")
             case .orange:
                 return NSLocalizedString("circuit.short_name.orange", comment: "")
             case .green:
@@ -95,6 +100,8 @@ class Circuit {
             switch self {
             case .yellow:
                 return NSLocalizedString("circuit.long_name.yellow", comment: "")
+            case .purple:
+                return NSLocalizedString("circuit.long_name.purple", comment: "")
             case .orange:
                 return NSLocalizedString("circuit.long_name.orange", comment: "")
             case .green:
@@ -133,6 +140,8 @@ class Circuit {
         switch string {
         case "yellow":
             return CircuitColor.yellow
+        case "purple":
+            return CircuitColor.purple
         case "orange":
             return CircuitColor.orange
         case "green":
