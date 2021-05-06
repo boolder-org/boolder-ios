@@ -201,6 +201,9 @@ struct DiscoverView: View {
                                     }
                                 }
                             )
+                        }
+                        
+                        Group {
                             
                             Divider()
                             
@@ -217,6 +220,30 @@ struct DiscoverView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         dataStore.areaId = 11
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                        }
+                        
+                        Group {
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Gorge aux Châts")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 15
                                         dataStore.filters = Filters()
                                         presentArea = true
                                     }
@@ -259,6 +286,27 @@ struct DiscoverView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         dataStore.areaId = 1
+                                        dataStore.filters = Filters()
+                                        presentArea = true
+                                    }
+                                }
+                            )
+                            
+                            Divider()
+                            
+                            NavigationLink(
+                                destination: AreaView(),
+                                isActive: $presentArea,
+                                label: {
+                                    HStack {
+                                        Text("Rocher du Potala")
+                                            .font(.body)
+                                        Spacer()
+                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        dataStore.areaId = 14
                                         dataStore.filters = Filters()
                                         presentArea = true
                                     }

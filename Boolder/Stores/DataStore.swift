@@ -48,7 +48,9 @@ class DataStore : ObservableObject {
         10: "95.2",
         11: "Franchard Cuisinière",
         12: "Roche aux Sabots",
-        13: "Canche aux Merciers"
+        13: "Canche aux Merciers",
+        14: "Rocher du Potala",
+        15: "Gorge aux Châts",
     ]
 
     init() {
