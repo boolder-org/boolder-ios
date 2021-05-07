@@ -275,7 +275,7 @@ struct ProblemDetailsView: View {
     }
     
     func shareProblemDescription() -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.areas[dataStore.areaId]!)
+        return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.area(withId: dataStore.areaId)!.name)
     }
         
     func isFavorite() -> Bool {

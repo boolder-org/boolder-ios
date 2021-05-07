@@ -37,24 +37,30 @@ class DataStore : ObservableObject {
     @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
     let areas = [
-        1: "Rocher Canon",
-        2: "Cul de Chien",
-        4: "Cuvier",
-        5: "Franchard Isatis",
-        6: "Cuvier Est (Bellevue)",
-        7: "Apremont",
-        8: "Rocher Fin",
-        9: "Éléphant",
-        10: "95.2",
-        11: "Franchard Cuisinière",
-        12: "Roche aux Sabots",
-        13: "Canche aux Merciers",
-        14: "Rocher du Potala",
-        15: "Gorge aux Châts",
+        Area(id: 1,  name: "Rocher Canon", published: true),
+        Area(id: 2,  name: "Cul de Chien", published: true),
+        Area(id: 4,  name: "Cuvier", published: true),
+        Area(id: 5,  name: "Franchard Isatis", published: true),
+        Area(id: 6,  name: "Cuvier Est (Bellevue)", published: false),
+        Area(id: 7,  name: "Apremont", published: true),
+        Area(id: 8,  name: "Rocher Fin", published: false),
+        Area(id: 9,  name: "Éléphant", published: true),
+        Area(id: 10, name: "95.2", published: true),
+        Area(id: 11, name: "Franchard Cuisinière", published: true),
+        Area(id: 12, name: "Roche aux Sabots", published: true),
+        Area(id: 13, name: "Canche aux Merciers", published: true),
+        Area(id: 14, name: "Rocher du Potala", published: true),
+        Area(id: 15, name: "Gorge aux Châts", published: true),
     ]
 
     init() {
         refresh()
+    }
+    
+    func area(withId id: Int) -> Area? {
+        areas.first(where:  { area in
+            area.id == id
+        })
     }
     
     func refresh() {

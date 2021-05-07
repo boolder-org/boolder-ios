@@ -148,7 +148,7 @@ struct AreaView: View {
             }
             #endif
         }
-        .navigationBarTitle(Text(dataStore.areas[dataStore.areaId]!), displayMode: .inline)
+        .navigationBarTitle(Text(dataStore.area(withId: dataStore.areaId)!.name), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
                 showList.toggle()

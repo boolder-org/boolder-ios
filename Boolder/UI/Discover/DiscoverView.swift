@@ -13,7 +13,7 @@ struct DiscoverView: View {
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
     
     @State var presentArea = false
-    @State var presentAllAreas = false
+    @State private var presentAllAreas = false
     @State private var presentSettings = false
     
     var body: some View {

@@ -15,63 +15,7 @@ struct AllAreasView: View {
     
     @State var presentArea = false
     
-    
-    
-    let areas = [
-        Area(id: 1,  name: "Rocher Canon", published: true),
-        Area(id: 2,  name: "Cul de Chien", published: true),
-        Area(id: 4,  name: "Cuvier", published: true),
-        Area(id: 5,  name: "Franchard Isatis", published: true),
-        Area(id: 6,  name: "Cuvier Est (Bellevue)", published: false),
-        Area(id: 7,  name: "Apremont", published: true),
-        Area(id: 8,  name: "Rocher Fin", published: false),
-        Area(id: 9,  name: "Éléphant", published: true),
-        Area(id: 10, name: "95.2", published: true),
-        Area(id: 11, name: "Franchard Cuisinière", published: true),
-        Area(id: 12, name: "Roche aux Sabots", published: true),
-        Area(id: 13, name: "Canche aux Merciers", published: true),
-        Area(id: 14, name: "Rocher du Potala", published: true),
-        Area(id: 15, name: "Gorge aux Châts", published: true),
-    ]
-    
-    var areasDisplayed: [Area] {
-        let published = areas.filter { $0.published }
-        
-        var displayed = published
-        
-        #if DEVELOPMENT
-        displayed = areas
-        #endif
-        
-        return displayed.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-            
-        }
-    }
-    
     var body: some View {
-//        List {
-//            ForEach(areas) { area in
-//                NavigationLink(
-//                    destination: AreaView(),
-//                    isActive: $presentArea,
-//                    label: {
-//                        HStack {
-//                            Text(area.name)
-//                                .font(.body)
-//                            Spacer()
-//                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-//                        }
-//                        .contentShape(Rectangle())
-//                        .onTapGesture {
-//                            dataStore.areaId = area.id
-//                            dataStore.filters = Filters()
-////                            presentArea = true
-//                        }
-//                    }
-//                )
-//            }
-//        }
         ScrollView {
             LazyVStack {
                 VStack(alignment: .leading) {
@@ -99,9 +43,6 @@ struct AllAreasView: View {
 
                         Divider()
                     }
-                    
-
-
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.vertical, 8)
@@ -109,6 +50,21 @@ struct AllAreasView: View {
             }
         }
         .navigationBarTitle(Text("all_areas.title"), displayMode: .inline)
+    }
+    
+    var areasDisplayed: [Area] {
+        let published = dataStore.areas.filter { $0.published }
+        
+        var displayed = published
+        
+        #if DEVELOPMENT
+        displayed = dataStore.areas
+        #endif
+        
+        return displayed.sorted {
+            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
+            
+        }
     }
 }
 
