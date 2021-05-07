@@ -12,13 +12,10 @@
 "discover.xx_problems_for_beginners" = "%@ voies de niveau débutant";
 "discover.great_variety" = "Grande variété entre 5 et 8";
 "discover.xx_problems_over_5" = "%@ voies entre 5a et 8c+";
-"discover.other_areas" = "Autres secteurs";
+"discover.all_areas" = "Voir tous les secteurs";
 
-// MARK: Other areas
-"other_areas.title" = "Autres secteurs";
-"other_areas.p1" = "Nous travaillons pour rajouter d'autres secteurs dans les environs de Fontainebleau.";
-"other_areas.p2" = "N'hésitez pas à nous contacter pour nous partager vos idées, remarques, suggestions pour les prochains secteurs.";
-"other_areas.contact_button" = "Contacter l'équipe Boolder";
+// MARK: All Areas view
+"all_areas.title" = "Secteurs";
 
 // MARK: Area view
 "area.filter" = "Filtre";

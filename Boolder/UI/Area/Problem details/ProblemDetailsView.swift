@@ -365,6 +365,17 @@ struct ProblemDetailsView: View {
     }
 }
 
+// https://useyourloaf.com/blog/how-to-percent-encode-a-url-string/
+extension String {
+  func stringByAddingPercentEncodingForRFC3986() -> String? {
+    let unreserved = "-._~/?"
+    let allowed = NSMutableCharacterSet.alphanumeric()
+    allowed.addCharacters(in: unreserved)
+    return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
+  }
+}
+
+
 struct ProblemDetailsView_Previews: PreviewProvider {
     static let dataStore = DataStore()
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

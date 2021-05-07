@@ -13,6 +13,7 @@ struct DiscoverView: View {
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
     
     @State var presentArea = false
+    @State var presentAllAreas = false
     @State private var presentSettings = false
     
     var body: some View {
@@ -22,317 +23,26 @@ struct DiscoverView: View {
                     
                     VStack(alignment: .leading) {
                         
-                        Text("Fontainebleau")
-                            .font(.title2).bold()
+                        Divider()
                         
-                        Group {
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("95.2")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 10
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
+                        NavigationLink(
+                            destination: AllAreasView(),
+                            isActive: $presentAllAreas,
+                            label: {
+                                HStack {
+                                    Text("discover.all_areas")
+                                        .font(.body)
+                                    Spacer()
+                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                 }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Apremont")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 7
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    presentAllAreas = true
                                 }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Canche aux Merciers")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 13
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                        }
+                            }
+                        )
                         
-                        Group {
-                        
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Cul de Chien")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 2
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Cuvier")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 4
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Cuvier Est (Bellevue)")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 6
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                        }
-                        
-                        Group {
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Éléphant")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 9
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Franchard Isatis")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 5
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                        }
-                        
-                        Group {
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Franchard Cuisinière")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 11
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                        }
-                        
-                        Group {
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Gorge aux Châts")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 15
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Roche aux Sabots")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 12
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Rocher Canon")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 1
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                            
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    HStack {
-                                        Text("Rocher du Potala")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        dataStore.areaId = 14
-                                        dataStore.filters = Filters()
-                                        presentArea = true
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                    
-                        }
-                        
-                        Group {
-                            NavigationLink(
-                                destination: OtherAreasView(),
-                                label: {
-                                    HStack {
-                                        Text("discover.other_areas")
-                                            .font(.body)
-                                        Spacer()
-                                        Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                }
-                            )
-                            
-                            Divider()
-                        }
-                        
+                        Divider()
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.horizontal)
