@@ -233,7 +233,19 @@ struct DiscoverView: View {
                 .navigationBarTitle(Text("discover.title"))
             }
         }
-//        .navigationViewStyle(StackNavigationViewStyle()) // FIXME: there is a weird bug when using StackNavigationViewStyle() on iPhone: the sheets get dismissed automatically the first time they are presented. Sometimes but not always. It seems to happen only when I try to present the sheet a couple of seconds after the app launch, which seems to indicate that the app is not properly loaded? maybe it's still setting up the navigationview "style"?? Anywa, I figured it's easier to just avoid using StackNavigationViewStyle() for now :)
+        .phoneOnlyStackNavigationView()
+    }
+}
+
+// FIXME: there is a weird bug when using StackNavigationViewStyle() on iPhone: the sheets get dismissed automatically the first time they are presented. Sometimes but not always. It seems to happen only when I try to present the sheet a couple of seconds after the app launch, which seems to indicate that the app is not properly loaded? maybe it's still setting up the navigationview "style"?? Anywa, I figured it's easier to just avoid using StackNavigationViewStyle() for now :)
+// PLOT TWIST: https://stackoverflow.com/questions/62083810/swiftui-navigation-bar-items-going-haywire-when-swipe-back-fails
+extension View {
+    func phoneOnlyStackNavigationView() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return AnyView(self.navigationViewStyle(StackNavigationViewStyle()))
+        } else {
+            return AnyView(self)
+        }
     }
 }
 
