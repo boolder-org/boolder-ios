@@ -10,12 +10,9 @@
 "discover.title" = "On grimpe où ?";
 "discover.perfect_for_beginners" = "Idéal pour débuter";
 "discover.xx_problems_for_beginners" = "%@ voies de niveau débutant";
-"discover.great_variety" = "Grande variété entre 5 et 8";
-"discover.xx_problems_over_5" = "%@ voies entre 5a et 8c+";
-"discover.all_areas" = "Voir tous les secteurs";
-
-// MARK: All Areas view
-"all_areas.title" = "Secteurs";
+"discover.great_variety" = "Grande variété entre 4 et 8";
+"discover.xx_problems_over_4" = "%@ voies entre 4a et 8c+";
+"discover.all_areas" = "Tous les secteurs";
 
 // MARK: Area view
 "area.filter" = "Filtre";

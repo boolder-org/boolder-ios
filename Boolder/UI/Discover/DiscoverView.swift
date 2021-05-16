@@ -21,33 +21,6 @@ struct DiscoverView: View {
             ScrollView {
                 LazyVStack {
                     
-                    VStack(alignment: .leading) {
-                        
-                        Divider()
-                        
-                        NavigationLink(
-                            destination: AllAreasView(),
-                            isActive: $presentAllAreas,
-                            label: {
-                                HStack {
-                                    Text("discover.all_areas")
-                                        .font(.body)
-                                    Spacer()
-                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                }
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    presentAllAreas = true
-                                }
-                            }
-                        )
-                        
-                        Divider()
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    
                     VStack {
                         VStack(alignment: .leading) {
                             Text("discover.perfect_for_beginners")
@@ -61,7 +34,28 @@ struct DiscoverView: View {
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                     
                                         VStack(alignment: .leading) {
-                                            Image("cover-rocher-canon")
+                                            Image("cover-area-13")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(125))
+                                            )
+                                                .font(.subheadline)
+                                                .foregroundColor(Color(.systemGray2))
+                                        }
+                                        .padding(.leading, 16)
+                                        .onTapGesture {
+                                            dataStore.areaId = 13
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-1")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
@@ -72,17 +66,17 @@ struct DiscoverView: View {
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
-                                        .padding(.leading, 16)
                                         .onTapGesture {
                                             dataStore.areaId = 1
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
                                     }
+                                    .padding(.leading, 16)
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-isatis2")
+                                            Image("cover-area-14")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
@@ -94,7 +88,7 @@ struct DiscoverView: View {
                                                 .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
-                                            dataStore.areaId = 5
+                                            dataStore.areaId = 14
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
@@ -103,19 +97,40 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-cul-de-chien2")
+                                            Image("cover-area-2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(70))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(86))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 2
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-5")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(83))
+                                            )
+                                                .font(.subheadline)
+                                                .foregroundColor(Color(.systemGray2))
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 5
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
@@ -138,13 +153,13 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-cuvier2")
+                                            Image("cover-area-4")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(420))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(420))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
@@ -159,13 +174,13 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-isatis2")
+                                            Image("cover-area-5")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(393))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(393))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
@@ -180,13 +195,55 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-rocher-canon")
+                                            Image("cover-area-11")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
                                             Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_5", comment: ""), String(272))
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(371))
+                                            )
+                                                .font(.subheadline)
+                                                .foregroundColor(Color(.systemGray2))
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 11
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-7")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(283))
+                                            )
+                                                .font(.subheadline)
+                                                .foregroundColor(Color(.systemGray2))
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 7
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-1")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                            Text(
+                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(272))
                                             )
                                                 .font(.subheadline)
                                                 .foregroundColor(Color(.systemGray2))
@@ -203,7 +260,53 @@ struct DiscoverView: View {
                             }
                         }
                         
-                        #if DEVELOPMENT
+                        VStack(alignment: .leading) {
+                            
+                            Text("discover.all_areas")
+                                .font(.title2).bold()
+                                .padding(.top, 16)
+                                .padding(.bottom, 8)
+                            
+                            Divider()
+
+                            ForEach(areasDisplayed) { area in
+                                NavigationLink(
+                                    destination: AreaView(),
+                                    isActive: $presentArea,
+                                    label: {
+                                        HStack {
+                                            Text(area.name)
+                                                .font(.body)
+                                                .foregroundColor(Color.appGreen)
+                                            Spacer()
+                                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                        }
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
+                                            dataStore.areaId = area.id
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                )
+
+                                Divider()
+                            }
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal)
+                    }
+                    
+                    #if DEVELOPMENT
+                    
+                    VStack(alignment: .leading) {
+                        Text("DEV MODE")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        
                         VStack(alignment: .leading) {
                             Divider()
                             
@@ -212,7 +315,7 @@ struct DiscoverView: View {
                                 isActive: $presentSettings,
                                 label: {
                                     HStack {
-                                        Text("Settings (dev only)")
+                                        Text("Settings")
                                             .font(.body)
                                         Spacer()
                                         Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
@@ -220,20 +323,34 @@ struct DiscoverView: View {
                                     .contentShape(Rectangle())
                                 }
                             )
-
+                            
                             
                             Divider()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.horizontal)
-                        .padding(.vertical, 16)
-                        #endif
                     }
+                    #endif
                 }
                 .navigationBarTitle(Text("discover.title"))
             }
         }
         .phoneOnlyStackNavigationView()
+    }
+    
+    var areasDisplayed: [Area] {
+        let published = dataStore.areas.filter { $0.published }
+        
+        var displayed = published
+        
+        #if DEVELOPMENT
+        displayed = dataStore.areas
+        #endif
+        
+        return displayed.sorted {
+            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
+            
+        }
     }
 }
 

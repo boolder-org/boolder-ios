@@ -10,12 +10,9 @@
 "discover.title" = "Bouldering areas";
 "discover.perfect_for_beginners" = "Perfect for beginners";
 "discover.xx_problems_for_beginners" = "%@ problems for beginners";
-"discover.great_variety" = "Great variety between 5 and 8";
-"discover.xx_problems_over_5" = "%@ problems between 5a and 8c+";
-"discover.all_areas" = "See all areas";
-
-// MARK: All Areas view
-"all_areas.title" = "All areas";
+"discover.great_variety" = "Great variety between 4 and 8";
+"discover.xx_problems_over_4" = "%@ problems between 4a and 8c+";
+"discover.all_areas" = "All areas";
 
 // MARK: Area view
 "area.filter" = "Filter";
