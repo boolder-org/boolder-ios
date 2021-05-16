@@ -1362,6 +1362,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.61201493567,
+          48.41026526462
+        ]
+      },
+      "properties": {
+        "grade": "3a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Brie",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4221
+          }
+        ]
+      },
+      "id": "problem_2619"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.6115519121,
           48.41029273407
         ]
@@ -7206,35 +7235,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.61340429822,
-          48.41031060176
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Remise d'Échecs",
-        "bleauInfoId": "17397",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4167
-          }
-        ]
-      },
-      "id": "problem_2815"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.61118166705,
           48.4103733933
         ]
@@ -10073,6 +10073,35 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.61340429822,
+          48.41031060176
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Remise d'Échecs",
+        "bleauInfoId": "17397",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4167
+          }
+        ]
+      },
+      "id": "problem_2815"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.61138627526,
           48.410035059
         ]
@@ -10642,35 +10671,6 @@
         ]
       },
       "id": "problem_2536"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.61201493567,
-          48.41026526462
-        ]
-      },
-      "properties": {
-        "grade": "3a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Brie",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4221
-          }
-        ]
-      },
-      "id": "problem_2619"
     },
     {
       "type": "Feature",
@@ -17941,63 +17941,6 @@
         "coordinates": [
           [
             [
-              2.61140552753,
-              48.40989694685
-            ],
-            [
-              2.61141941823,
-              48.40988503688
-            ],
-            [
-              2.61141594556,
-              48.40987773722
-            ],
-            [
-              2.61140494875,
-              48.40987466369
-            ],
-            [
-              2.61139279437,
-              48.4098738953
-            ],
-            [
-              2.61138064,
-              48.40987812142
-            ],
-            [
-              2.6113748522,
-              48.40988503688
-            ],
-            [
-              2.6113748522,
-              48.40989310492
-            ],
-            [
-              2.61138237634,
-              48.40989925199
-            ],
-            [
-              2.61139337315,
-              48.40990040458
-            ],
-            [
-              2.61140552753,
-              48.40989694685
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1130"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
               2.61327039142,
               48.40997384663
             ],
@@ -18136,6 +18079,63 @@
       "properties": {
       },
       "id": "boulder_1129"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.61140552753,
+              48.40989694685
+            ],
+            [
+              2.61141941823,
+              48.40988503688
+            ],
+            [
+              2.61141594556,
+              48.40987773722
+            ],
+            [
+              2.61140494875,
+              48.40987466369
+            ],
+            [
+              2.61139279437,
+              48.4098738953
+            ],
+            [
+              2.61138064,
+              48.40987812142
+            ],
+            [
+              2.6113748522,
+              48.40988503688
+            ],
+            [
+              2.6113748522,
+              48.40989310492
+            ],
+            [
+              2.61138237634,
+              48.40989925199
+            ],
+            [
+              2.61139337315,
+              48.40990040458
+            ],
+            [
+              2.61140552753,
+              48.40989694685
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1130"
     },
     {
       "type": "Feature",
