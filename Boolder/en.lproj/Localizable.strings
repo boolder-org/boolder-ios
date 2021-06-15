@@ -9,9 +9,8 @@
 // MARK: Discover view
 "discover.title" = "Bouldering areas";
 "discover.perfect_for_beginners" = "Perfect for beginners";
-"discover.xx_problems_for_beginners" = "%@ problems for beginners";
-"discover.great_variety" = "Great variety between 4 and 8";
-"discover.xx_problems_over_4" = "%@ problems between 4a and 8c+";
+"discover.train_station_closeby" = "Accessible by train+bicycle";
+"discover.dry_fast" = "Dries fast";
 "discover.all_areas" = "All areas";
 
 // MARK: Area view

@@ -9,9 +9,8 @@
 // MARK: Discover view
 "discover.title" = "On grimpe où ?";
 "discover.perfect_for_beginners" = "Idéal pour débuter";
-"discover.xx_problems_for_beginners" = "%@ voies de niveau débutant";
-"discover.great_variety" = "Grande variété entre 4 et 8";
-"discover.xx_problems_over_4" = "%@ voies entre 4a et 8c+";
+"discover.train_station_closeby" = "Accessible en train+vélo";
+"discover.dry_fast" = "Sèche vite";
 "discover.all_areas" = "Tous les secteurs";
 
 // MARK: Area view

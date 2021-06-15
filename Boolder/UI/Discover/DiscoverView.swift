@@ -39,11 +39,6 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(125))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .padding(.leading, 16)
                                         .onTapGesture {
@@ -60,11 +55,6 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(117))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 1
@@ -81,11 +71,6 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(90))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 14
@@ -102,11 +87,6 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(86))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 2
@@ -123,133 +103,9 @@ struct DiscoverView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 255, height: 155)
                                                 .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_for_beginners", comment: ""), String(83))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 5
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    .padding(.trailing, 16)
-                                }
-                            }
-                        }
-                        
-                        
-                        VStack(alignment: .leading) {
-                            Text("discover.great_variety")
-                                .font(.title2).bold()
-                                .padding(.horizontal, 16)
-                                .padding(.top, 16)
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .top, spacing: 0) {
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
-                                            Image("cover-area-4")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(420))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 4
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
-                                            Image("cover-area-5")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(393))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 5
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
-                                            Image("cover-area-11")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(371))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 11
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
-                                            Image("cover-area-7")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(283))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 7
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
-                                            Image("cover-area-1")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
-                                            Text(
-                                                String.localizedStringWithFormat(NSLocalizedString("discover.xx_problems_over_4", comment: ""), String(272))
-                                            )
-                                                .font(.subheadline)
-                                                .foregroundColor(Color(.systemGray2))
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 1
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
@@ -278,6 +134,9 @@ struct DiscoverView: View {
                                             Text(area.name)
                                                 .font(.body)
                                                 .foregroundColor(Color.appGreen)
+                                            Text("(\(String(area.problemsCount)))")
+                                                .font(.callout)
+                                                .foregroundColor(Color(.tertiaryLabel))
                                             Spacer()
                                             Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                         }
@@ -296,6 +155,144 @@ struct DiscoverView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.vertical, 8)
                         .padding(.horizontal)
+                        
+                        VStack(alignment: .leading) {
+                            Text("discover.train_station_closeby")
+                                .font(.title2).bold()
+                                .padding(.horizontal, 16)
+                                .padding(.top, 16)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-1")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 1
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-4")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 4
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-7")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 7
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    .padding(.trailing, 16)
+                                }
+                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("discover.dry_fast")
+                                .font(.title2).bold()
+                                .padding(.horizontal, 16)
+                                .padding(.top, 16)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-10")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 10
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-15")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 15
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-2")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 2
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-7")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 255, height: 155)
+                                                .cornerRadius(16)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 7
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    .padding(.trailing, 16)
+                                }
+                            }
+                        }
                     }
                     
                     #if DEVELOPMENT

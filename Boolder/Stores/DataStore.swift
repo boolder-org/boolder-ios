@@ -37,20 +37,20 @@ class DataStore : ObservableObject {
     @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
     let areas = [
-        Area(id: 1,  name: "Rocher Canon", published: true),
-        Area(id: 2,  name: "Cul de Chien", published: true),
-        Area(id: 4,  name: "Cuvier", published: true),
-        Area(id: 5,  name: "Franchard Isatis", published: true),
-        Area(id: 6,  name: "Cuvier Est (Bellevue)", published: false),
-        Area(id: 7,  name: "Apremont", published: true),
-        Area(id: 8,  name: "Rocher Fin", published: false),
-        Area(id: 9,  name: "Éléphant", published: true),
-        Area(id: 10, name: "95.2", published: true),
-        Area(id: 11, name: "Franchard Cuisinière", published: true),
-        Area(id: 12, name: "Roche aux Sabots", published: true),
-        Area(id: 13, name: "Canche aux Merciers", published: true),
-        Area(id: 14, name: "Rocher du Potala", published: true),
-        Area(id: 15, name: "Gorge aux Châts", published: true),
+        Area(id: 1,  name: "Rocher Canon",          problemsCount: 389, published: true),
+        Area(id: 2,  name: "Cul de Chien",          problemsCount: 244, published: true),
+        Area(id: 4,  name: "Cuvier",                problemsCount: 502, published: true),
+        Area(id: 5,  name: "Franchard Isatis",      problemsCount: 476, published: true),
+        Area(id: 6,  name: "Cuvier Est (Bellevue)", problemsCount: 107, published: false),
+        Area(id: 7,  name: "Apremont",              problemsCount: 385, published: true),
+        Area(id: 8,  name: "Rocher Fin",            problemsCount: 1, published: false),
+        Area(id: 9,  name: "Éléphant",              problemsCount: 256, published: true),
+        Area(id: 10, name: "95.2",                  problemsCount: 327, published: true),
+        Area(id: 11, name: "Franchard Cuisinière",  problemsCount: 443, published: true),
+        Area(id: 12, name: "Roche aux Sabots",      problemsCount: 230, published: true),
+        Area(id: 13, name: "Canche aux Merciers",   problemsCount: 330, published: true),
+        Area(id: 14, name: "Rocher du Potala",      problemsCount: 317, published: true),
+        Area(id: 15, name: "Gorge aux Châts",       problemsCount: 207, published: true),
     ]
 
     init() {

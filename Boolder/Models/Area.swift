@@ -11,5 +11,6 @@ import Foundation
 struct Area: Identifiable {
     let id: Int
     let name: String
+    let problemsCount: Int
     let published: Bool
 }
