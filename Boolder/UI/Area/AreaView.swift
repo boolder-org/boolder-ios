@@ -65,7 +65,7 @@ struct AreaView: View {
                     PoiActionSheet(
                         description: (selectedPoi?.description ?? ""),
                         location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
-                        navigationMode: true,
+                        navigationMode: false,
                         presentPoiActionSheet: $presentPoiActionSheet
                     )
                 )
