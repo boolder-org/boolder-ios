@@ -13,6 +13,64 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.64406149905,
+          48.44592968465
+        ]
+      },
+      "properties": {
+        "grade": "7b+",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Les Petits Anges",
+        "bleauInfoId": "328",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4884
+          }
+        ]
+      },
+      "id": "problem_1746"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.64359004498,
+          48.44606352743
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "La Fissure de Droite",
+        "bleauInfoId": "19775",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4883
+          }
+        ]
+      },
+      "id": "problem_1668"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.64348521492,
           48.44606727553
         ]
@@ -60,30 +118,6 @@
         ]
       },
       "id": "problem_1680"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.64359004498,
-          48.44606352743
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "La Fissure de Droite",
-        "bleauInfoId": "19775",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ]
-      },
-      "id": "problem_1668"
     },
     {
       "type": "Feature",
@@ -818,7 +852,7 @@
         "grade": "6c+",
         "circuitNumber": "",
         "steepness": "wall",
-        "height": 6,
+        "height": 7,
         "name": "Le Carré d'As",
         "bleauInfoId": "4142",
         "circuitColor": null,
@@ -1848,30 +1882,6 @@
         ]
       },
       "id": "problem_1685"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.64406149905,
-          48.44592968465
-        ]
-      },
-      "properties": {
-        "grade": "7b+",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Les Petits Anges",
-        "bleauInfoId": "328",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ]
-      },
-      "id": "problem_1746"
     },
     {
       "type": "Feature",

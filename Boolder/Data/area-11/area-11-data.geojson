@@ -1618,6 +1618,286 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.60926472226,
+          48.41003990057
+        ]
+      },
+      "properties": {
+        "grade": "6b+",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Excalibur (droite)",
+        "bleauInfoId": "9657",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4759
+          }
+        ]
+      },
+      "id": "problem_2864"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60931341018,
+          48.40933429268
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Rastatouille",
+        "bleauInfoId": "469",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "risky"
+        ]
+      },
+      "id": "problem_2872"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60952289951,
+          48.40944138813
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Blocage Mental",
+        "bleauInfoId": "3263",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4754
+          }
+        ]
+      },
+      "id": "problem_2875"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60949567264,
+          48.40945498042
+        ]
+      },
+      "properties": {
+        "grade": "5b+",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Tartiflette",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4756
+          }
+        ]
+      },
+      "id": "problem_2877"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60924542693,
+          48.41006811091
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "La Traversée d'Excalibur",
+        "bleauInfoId": "2192",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4760
+          }
+        ]
+      },
+      "id": "problem_2865"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60928621579,
+          48.40999434246
+        ]
+      },
+      "properties": {
+        "grade": "7b+",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Plus Fort que le Crabe",
+        "bleauInfoId": "2304",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4764
+          }
+        ]
+      },
+      "id": "problem_2869"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60927107237,
+          48.41001331167
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Descente aux Enfers",
+        "bleauInfoId": "3259",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4761
+          }
+        ]
+      },
+      "id": "problem_2866"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60927853257,
+          48.40934728769
+        ]
+      },
+      "properties": {
+        "grade": "6c+",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "La Charognerie",
+        "bleauInfoId": "3266",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_2871"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60953505033,
+          48.40943152998
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Moondance",
+        "bleauInfoId": "3262",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4753
+          }
+        ]
+      },
+      "id": "problem_2874"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60950467325,
+          48.40945109691
+        ]
+      },
+      "properties": {
+        "grade": "6a+",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Le Pommeau Rédempteur",
+        "bleauInfoId": "3264",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4755
+          }
+        ]
+      },
+      "id": "problem_2876"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.61244417728,
           48.40990904951
         ]
@@ -2850,6 +3130,383 @@
         ]
       },
       "id": "problem_2649"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60954720117,
+          48.40942062626
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": 5,
+        "name": "Le Merluchet",
+        "bleauInfoId": "3261",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4752
+          }
+        ]
+      },
+      "id": "problem_2873"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60996745493,
+          48.40973103236
+        ]
+      },
+      "properties": {
+        "grade": "2c",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Dans la Patisserie",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4745
+          }
+        ]
+      },
+      "id": "problem_2880"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60927571302,
+          48.40999385624
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": 4,
+        "name": "Beatle Juice",
+        "bleauInfoId": "476",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4763
+          }
+        ]
+      },
+      "id": "problem_2868"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60948577195,
+          48.40945781837
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Little Big Gueule",
+        "bleauInfoId": "3265",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4757
+          }
+        ]
+      },
+      "id": "problem_2878"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60993459846,
+          48.40976816484
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Gateau de Noël",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4748
+          }
+        ]
+      },
+      "id": "problem_2883"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60927717874,
+          48.40996905041
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": 3,
+        "name": "Santa Barbara",
+        "bleauInfoId": "3260",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4765
+          }
+        ]
+      },
+      "id": "problem_2870"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60925886039,
+          48.41003568523
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Excalibur",
+        "bleauInfoId": "478",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4758
+          }
+        ]
+      },
+      "id": "problem_2863"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60990881219,
+          48.40977865583
+        ]
+      },
+      "properties": {
+        "grade": "6b+",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": 3,
+        "name": "Tranche de Lard",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4749
+          }
+        ]
+      },
+      "id": "problem_2884"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60995310633,
+          48.40974649265
+        ]
+      },
+      "properties": {
+        "grade": "3b",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": 3,
+        "name": "Sans Sucre",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4746
+          }
+        ]
+      },
+      "id": "problem_2881"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60993667778,
+          48.40982572739
+        ]
+      },
+      "properties": {
+        "grade": "7b",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": 2,
+        "name": "Aplatcadabras",
+        "bleauInfoId": "1677",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4751
+          }
+        ]
+      },
+      "id": "problem_2879"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60927131687,
+          48.410007637
+        ]
+      },
+      "properties": {
+        "grade": "7b",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": 3,
+        "name": "L'Homme à la Dent Creuse",
+        "bleauInfoId": "2302",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 4762
+          }
+        ]
+      },
+      "id": "problem_2867"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60988884862,
+          48.40977202994
+        ]
+      },
+      "properties": {
+        "grade": "3a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Farine",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4750
+          }
+        ]
+      },
+      "id": "problem_2885"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60994146092,
+          48.40975891619
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Cerise",
+        "bleauInfoId": "",
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4747
+          }
+        ]
+      },
+      "id": "problem_2882"
     },
     {
       "type": "Feature",
@@ -12115,663 +12772,6 @@
         ]
       },
       "id": "problem_2684"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60926472226,
-          48.41003990057
-        ]
-      },
-      "properties": {
-        "grade": "6b+",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Excalibur (droite)",
-        "bleauInfoId": "9657",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4759
-          }
-        ]
-      },
-      "id": "problem_2864"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60931341018,
-          48.40933429268
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "Rastatouille",
-        "bleauInfoId": "469",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "risky"
-        ]
-      },
-      "id": "problem_2872"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60954720117,
-          48.40942062626
-        ]
-      },
-      "properties": {
-        "grade": "6c",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": 5,
-        "name": "Le Merluchet",
-        "bleauInfoId": "3261",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4752
-          }
-        ]
-      },
-      "id": "problem_2873"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60996745493,
-          48.40973103236
-        ]
-      },
-      "properties": {
-        "grade": "2c",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Dans la Patisserie",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4745
-          }
-        ]
-      },
-      "id": "problem_2880"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60952289951,
-          48.40944138813
-        ]
-      },
-      "properties": {
-        "grade": "6b",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Blocage Mental",
-        "bleauInfoId": "3263",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4754
-          }
-        ]
-      },
-      "id": "problem_2875"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60927571302,
-          48.40999385624
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": 4,
-        "name": "Beatle Juice",
-        "bleauInfoId": "476",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4763
-          }
-        ]
-      },
-      "id": "problem_2868"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60948577195,
-          48.40945781837
-        ]
-      },
-      "properties": {
-        "grade": "6c",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": 4,
-        "name": "Little Big Gueule",
-        "bleauInfoId": "3265",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4757
-          }
-        ]
-      },
-      "id": "problem_2878"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60993459846,
-          48.40976816484
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Gateau de Noël",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4748
-          }
-        ]
-      },
-      "id": "problem_2883"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60949567264,
-          48.40945498042
-        ]
-      },
-      "properties": {
-        "grade": "5b+",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Tartiflette",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4756
-          }
-        ]
-      },
-      "id": "problem_2877"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60924542693,
-          48.41006811091
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "La Traversée d'Excalibur",
-        "bleauInfoId": "2192",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4760
-          }
-        ]
-      },
-      "id": "problem_2865"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60927717874,
-          48.40996905041
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": 3,
-        "name": "Santa Barbara",
-        "bleauInfoId": "3260",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4765
-          }
-        ]
-      },
-      "id": "problem_2870"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60925886039,
-          48.41003568523
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": 4,
-        "name": "Excalibur",
-        "bleauInfoId": "478",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4758
-          }
-        ]
-      },
-      "id": "problem_2863"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60990881219,
-          48.40977865583
-        ]
-      },
-      "properties": {
-        "grade": "6b+",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": 3,
-        "name": "Tranche de Lard",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4749
-          }
-        ]
-      },
-      "id": "problem_2884"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60928621579,
-          48.40999434246
-        ]
-      },
-      "properties": {
-        "grade": "7b+",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Plus Fort que le Crabe",
-        "bleauInfoId": "2304",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4764
-          }
-        ]
-      },
-      "id": "problem_2869"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60995310633,
-          48.40974649265
-        ]
-      },
-      "properties": {
-        "grade": "3b",
-        "circuitNumber": "",
-        "steepness": "slab",
-        "height": 3,
-        "name": "Sans Sucre",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4746
-          }
-        ]
-      },
-      "id": "problem_2881"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60927107237,
-          48.41001331167
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "Descente aux Enfers",
-        "bleauInfoId": "3259",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4761
-          }
-        ]
-      },
-      "id": "problem_2866"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60927853257,
-          48.40934728769
-        ]
-      },
-      "properties": {
-        "grade": "6c+",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "La Charognerie",
-        "bleauInfoId": "3266",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ]
-      },
-      "id": "problem_2871"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60993667778,
-          48.40982572739
-        ]
-      },
-      "properties": {
-        "grade": "7b",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": 2,
-        "name": "Aplatcadabras",
-        "bleauInfoId": "1677",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4751
-          }
-        ]
-      },
-      "id": "problem_2879"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60953505033,
-          48.40943152998
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Moondance",
-        "bleauInfoId": "3262",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4753
-          }
-        ]
-      },
-      "id": "problem_2874"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60927131687,
-          48.410007637
-        ]
-      },
-      "properties": {
-        "grade": "7b",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": 3,
-        "name": "L'Homme à la Dent Creuse",
-        "bleauInfoId": "2302",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 4762
-          }
-        ]
-      },
-      "id": "problem_2867"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60988884862,
-          48.40977202994
-        ]
-      },
-      "properties": {
-        "grade": "3a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Farine",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4750
-          }
-        ]
-      },
-      "id": "problem_2885"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60994146092,
-          48.40975891619
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Cerise",
-        "bleauInfoId": "",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4747
-          }
-        ]
-      },
-      "id": "problem_2882"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60950467325,
-          48.40945109691
-        ]
-      },
-      "properties": {
-        "grade": "6a+",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Le Pommeau Rédempteur",
-        "bleauInfoId": "3264",
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4755
-          }
-        ]
-      },
-      "id": "problem_2876"
     },
     {
       "type": "Feature",
@@ -22765,6 +22765,476 @@
         "coordinates": [
           [
             [
+              2.60928230763,
+              48.41002222874
+            ],
+            [
+              2.60927351482,
+              48.41001898616
+            ],
+            [
+              2.60927058389,
+              48.41001250102
+            ],
+            [
+              2.60927156087,
+              48.40999953075
+            ],
+            [
+              2.60927546879,
+              48.40999401837
+            ],
+            [
+              2.60927693426,
+              48.40998753323
+            ],
+            [
+              2.60927693426,
+              48.40996224116
+            ],
+            [
+              2.60928084216,
+              48.40995640452
+            ],
+            [
+              2.60928963496,
+              48.40995348622
+            ],
+            [
+              2.60929891627,
+              48.40995348622
+            ],
+            [
+              2.60930868605,
+              48.40995510749
+            ],
+            [
+              2.60931650188,
+              48.4099619169
+            ],
+            [
+              2.60932627166,
+              48.40997391443
+            ],
+            [
+              2.60933017958,
+              48.40999434262
+            ],
+            [
+              2.60932480621,
+              48.41000763717
+            ],
+            [
+              2.60931064001,
+              48.41001866191
+            ],
+            [
+              2.60930184721,
+              48.41002190448
+            ],
+            [
+              2.60929158893,
+              48.41002287725
+            ],
+            [
+              2.60928230763,
+              48.41002222874
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1249"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.60946799552,
+              48.40943332253
+            ],
+            [
+              2.60949949768,
+              48.40941032016
+            ],
+            [
+              2.60951299859,
+              48.40940255314
+            ],
+            [
+              2.60952829964,
+              48.40939687723
+            ],
+            [
+              2.60953730025,
+              48.40939926708
+            ],
+            [
+              2.60954765096,
+              48.4094097227
+            ],
+            [
+              2.60954945109,
+              48.40941599607
+            ],
+            [
+              2.60954630088,
+              48.40942256817
+            ],
+            [
+              2.60952064913,
+              48.4094434794
+            ],
+            [
+              2.60949589743,
+              48.40945542868
+            ],
+            [
+              2.60948734684,
+              48.40945781852
+            ],
+            [
+              2.60947789619,
+              48.40945841598
+            ],
+            [
+              2.60946799552,
+              48.4094566236
+            ],
+            [
+              2.60946214512,
+              48.40945154516
+            ],
+            [
+              2.60946214512,
+              48.40944527179
+            ],
+            [
+              2.60946799552,
+              48.40943332253
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1246"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.60926569899,
+              48.41008351326
+            ],
+            [
+              2.60925690618,
+              48.41008091921
+            ],
+            [
+              2.60924909036,
+              48.41007670388
+            ],
+            [
+              2.60924567093,
+              48.410070543
+            ],
+            [
+              2.60924518245,
+              48.41006405786
+            ],
+            [
+              2.60924957884,
+              48.41004460245
+            ],
+            [
+              2.60925299826,
+              48.41003876583
+            ],
+            [
+              2.6092608141,
+              48.4100345505
+            ],
+            [
+              2.60928035368,
+              48.41003519901
+            ],
+            [
+              2.60928865799,
+              48.41003941434
+            ],
+            [
+              2.6092974508,
+              48.41005141185
+            ],
+            [
+              2.60930477813,
+              48.41007151577
+            ],
+            [
+              2.60930526663,
+              48.41007800091
+            ],
+            [
+              2.60929842777,
+              48.410083189
+            ],
+            [
+              2.60928865799,
+              48.41008481029
+            ],
+            [
+              2.60926569899,
+              48.41008351326
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1247"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.60994333231,
+              48.40984229211
+            ],
+            [
+              2.60993667778,
+              48.40982627955
+            ],
+            [
+              2.60993834141,
+              48.40982075797
+            ],
+            [
+              2.60995206637,
+              48.40979977599
+            ],
+            [
+              2.6099599686,
+              48.40979839561
+            ],
+            [
+              2.60996787085,
+              48.40980060423
+            ],
+            [
+              2.60997951626,
+              48.40981661679
+            ],
+            [
+              2.60998367533,
+              48.40982876425
+            ],
+            [
+              2.60998409124,
+              48.40984063562
+            ],
+            [
+              2.60998117988,
+              48.40984643327
+            ],
+            [
+              2.60997410946,
+              48.40985029837
+            ],
+            [
+              2.60995664134,
+              48.40985223093
+            ],
+            [
+              2.60994998683,
+              48.40984891799
+            ],
+            [
+              2.60994333231,
+              48.40984229211
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1244"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.60926953195,
+              48.40934549529
+            ],
+            [
+              2.60926188142,
+              48.40933384473
+            ],
+            [
+              2.60926098136,
+              48.40932816881
+            ],
+            [
+              2.60926098136,
+              48.4093215967
+            ],
+            [
+              2.60926683177,
+              48.40931024486
+            ],
+            [
+              2.60927268217,
+              48.40930546515
+            ],
+            [
+              2.60928078272,
+              48.40930277655
+            ],
+            [
+              2.60930778457,
+              48.40930158163
+            ],
+            [
+              2.60931453503,
+              48.40930576387
+            ],
+            [
+              2.60932083546,
+              48.40932368783
+            ],
+            [
+              2.60931318493,
+              48.40933474092
+            ],
+            [
+              2.60930013404,
+              48.40934400163
+            ],
+            [
+              2.60929113343,
+              48.40934639149
+            ],
+            [
+              2.60928213281,
+              48.40934788515
+            ],
+            [
+              2.60926953195,
+              48.40934549529
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1245"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.60995747316,
+              48.40974179943
+            ],
+            [
+              2.60993834141,
+              48.4097619532
+            ],
+            [
+              2.60992794372,
+              48.40977796577
+            ],
+            [
+              2.6099208733,
+              48.40978127872
+            ],
+            [
+              2.60991213924,
+              48.40977989833
+            ],
+            [
+              2.60988136208,
+              48.40976940733
+            ],
+            [
+              2.60987969845,
+              48.40976388575
+            ],
+            [
+              2.6098821939,
+              48.40975864026
+            ],
+            [
+              2.60991713013,
+              48.40971281113
+            ],
+            [
+              2.60993251871,
+              48.40969983541
+            ],
+            [
+              2.6099487391,
+              48.40969569423
+            ],
+            [
+              2.60995664134,
+              48.40969541814
+            ],
+            [
+              2.6099649595,
+              48.40969652246
+            ],
+            [
+              2.6099707822,
+              48.40970038757
+            ],
+            [
+              2.60997494127,
+              48.40970563308
+            ],
+            [
+              2.60997660491,
+              48.40971143074
+            ],
+            [
+              2.60997327765,
+              48.40972274998
+            ],
+            [
+              2.60995747316,
+              48.40974179943
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_1248"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
               2.61191249167,
               48.4104310421
             ],
@@ -23389,476 +23859,6 @@
       "properties": {
       },
       "id": "boulder_1221"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.60928230763,
-              48.41002222874
-            ],
-            [
-              2.60927351482,
-              48.41001898616
-            ],
-            [
-              2.60927058389,
-              48.41001250102
-            ],
-            [
-              2.60927156087,
-              48.40999953075
-            ],
-            [
-              2.60927546879,
-              48.40999401837
-            ],
-            [
-              2.60927693426,
-              48.40998753323
-            ],
-            [
-              2.60927693426,
-              48.40996224116
-            ],
-            [
-              2.60928084216,
-              48.40995640452
-            ],
-            [
-              2.60928963496,
-              48.40995348622
-            ],
-            [
-              2.60929891627,
-              48.40995348622
-            ],
-            [
-              2.60930868605,
-              48.40995510749
-            ],
-            [
-              2.60931650188,
-              48.4099619169
-            ],
-            [
-              2.60932627166,
-              48.40997391443
-            ],
-            [
-              2.60933017958,
-              48.40999434262
-            ],
-            [
-              2.60932480621,
-              48.41000763717
-            ],
-            [
-              2.60931064001,
-              48.41001866191
-            ],
-            [
-              2.60930184721,
-              48.41002190448
-            ],
-            [
-              2.60929158893,
-              48.41002287725
-            ],
-            [
-              2.60928230763,
-              48.41002222874
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1249"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.60946799552,
-              48.40943332253
-            ],
-            [
-              2.60949949768,
-              48.40941032016
-            ],
-            [
-              2.60951299859,
-              48.40940255314
-            ],
-            [
-              2.60952829964,
-              48.40939687723
-            ],
-            [
-              2.60953730025,
-              48.40939926708
-            ],
-            [
-              2.60954765096,
-              48.4094097227
-            ],
-            [
-              2.60954945109,
-              48.40941599607
-            ],
-            [
-              2.60954630088,
-              48.40942256817
-            ],
-            [
-              2.60952064913,
-              48.4094434794
-            ],
-            [
-              2.60949589743,
-              48.40945542868
-            ],
-            [
-              2.60948734684,
-              48.40945781852
-            ],
-            [
-              2.60947789619,
-              48.40945841598
-            ],
-            [
-              2.60946799552,
-              48.4094566236
-            ],
-            [
-              2.60946214512,
-              48.40945154516
-            ],
-            [
-              2.60946214512,
-              48.40944527179
-            ],
-            [
-              2.60946799552,
-              48.40943332253
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1246"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.60926569899,
-              48.41008351326
-            ],
-            [
-              2.60925690618,
-              48.41008091921
-            ],
-            [
-              2.60924909036,
-              48.41007670388
-            ],
-            [
-              2.60924567093,
-              48.410070543
-            ],
-            [
-              2.60924518245,
-              48.41006405786
-            ],
-            [
-              2.60924957884,
-              48.41004460245
-            ],
-            [
-              2.60925299826,
-              48.41003876583
-            ],
-            [
-              2.6092608141,
-              48.4100345505
-            ],
-            [
-              2.60928035368,
-              48.41003519901
-            ],
-            [
-              2.60928865799,
-              48.41003941434
-            ],
-            [
-              2.6092974508,
-              48.41005141185
-            ],
-            [
-              2.60930477813,
-              48.41007151577
-            ],
-            [
-              2.60930526663,
-              48.41007800091
-            ],
-            [
-              2.60929842777,
-              48.410083189
-            ],
-            [
-              2.60928865799,
-              48.41008481029
-            ],
-            [
-              2.60926569899,
-              48.41008351326
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1247"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.60994333231,
-              48.40984229211
-            ],
-            [
-              2.60993667778,
-              48.40982627955
-            ],
-            [
-              2.60993834141,
-              48.40982075797
-            ],
-            [
-              2.60995206637,
-              48.40979977599
-            ],
-            [
-              2.6099599686,
-              48.40979839561
-            ],
-            [
-              2.60996787085,
-              48.40980060423
-            ],
-            [
-              2.60997951626,
-              48.40981661679
-            ],
-            [
-              2.60998367533,
-              48.40982876425
-            ],
-            [
-              2.60998409124,
-              48.40984063562
-            ],
-            [
-              2.60998117988,
-              48.40984643327
-            ],
-            [
-              2.60997410946,
-              48.40985029837
-            ],
-            [
-              2.60995664134,
-              48.40985223093
-            ],
-            [
-              2.60994998683,
-              48.40984891799
-            ],
-            [
-              2.60994333231,
-              48.40984229211
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1244"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.60926953195,
-              48.40934549529
-            ],
-            [
-              2.60926188142,
-              48.40933384473
-            ],
-            [
-              2.60926098136,
-              48.40932816881
-            ],
-            [
-              2.60926098136,
-              48.4093215967
-            ],
-            [
-              2.60926683177,
-              48.40931024486
-            ],
-            [
-              2.60927268217,
-              48.40930546515
-            ],
-            [
-              2.60928078272,
-              48.40930277655
-            ],
-            [
-              2.60930778457,
-              48.40930158163
-            ],
-            [
-              2.60931453503,
-              48.40930576387
-            ],
-            [
-              2.60932083546,
-              48.40932368783
-            ],
-            [
-              2.60931318493,
-              48.40933474092
-            ],
-            [
-              2.60930013404,
-              48.40934400163
-            ],
-            [
-              2.60929113343,
-              48.40934639149
-            ],
-            [
-              2.60928213281,
-              48.40934788515
-            ],
-            [
-              2.60926953195,
-              48.40934549529
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1245"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.60995747316,
-              48.40974179943
-            ],
-            [
-              2.60993834141,
-              48.4097619532
-            ],
-            [
-              2.60992794372,
-              48.40977796577
-            ],
-            [
-              2.6099208733,
-              48.40978127872
-            ],
-            [
-              2.60991213924,
-              48.40977989833
-            ],
-            [
-              2.60988136208,
-              48.40976940733
-            ],
-            [
-              2.60987969845,
-              48.40976388575
-            ],
-            [
-              2.6098821939,
-              48.40975864026
-            ],
-            [
-              2.60991713013,
-              48.40971281113
-            ],
-            [
-              2.60993251871,
-              48.40969983541
-            ],
-            [
-              2.6099487391,
-              48.40969569423
-            ],
-            [
-              2.60995664134,
-              48.40969541814
-            ],
-            [
-              2.6099649595,
-              48.40969652246
-            ],
-            [
-              2.6099707822,
-              48.40970038757
-            ],
-            [
-              2.60997494127,
-              48.40970563308
-            ],
-            [
-              2.60997660491,
-              48.40971143074
-            ],
-            [
-              2.60997327765,
-              48.40972274998
-            ],
-            [
-              2.60995747316,
-              48.40974179943
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_1248"
     },
     {
       "type": "Feature",

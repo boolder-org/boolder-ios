@@ -15935,35 +15935,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.60124955293,
-          48.40953010873
-        ]
-      },
-      "properties": {
-        "grade": "1a",
-        "circuitNumber": "13",
-        "steepness": "wall",
-        "height": 3,
-        "name": null,
-        "bleauInfoId": "",
-        "circuitColor": "blue",
-        "circuitId": 21,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4914
-          }
-        ]
-      },
-      "id": "problem_4342"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.60135860174,
           48.40973269058
         ]
@@ -16451,6 +16422,35 @@
         ]
       },
       "id": "problem_4396"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60124955293,
+          48.40953010873
+        ]
+      },
+      "properties": {
+        "grade": "4c",
+        "circuitNumber": "13",
+        "steepness": "wall",
+        "height": 3,
+        "name": null,
+        "bleauInfoId": "",
+        "circuitColor": "blue",
+        "circuitId": 21,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4914
+          }
+        ]
+      },
+      "id": "problem_4342"
     },
     {
       "type": "Feature",
