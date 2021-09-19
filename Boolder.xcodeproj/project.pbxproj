@@ -150,6 +150,8 @@
 		37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C27F25A8627D003A7C64 /* EditProblemView.swift */; };
 		37B2C28E25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */; };
 		37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */; };
+		37B2DEFA26F7CE2300406DC6 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37379A8F258E619400711EDA /* Dev-Info.plist */; };
+		37B2DEFB26F7CE2400406DC6 /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37379A8F258E619400711EDA /* Dev-Info.plist */; };
 		37B45220259140B100241091 /* NewTopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4521F259140B100241091 /* NewTopoView.swift */; };
 		37B452282591414800241091 /* NewTopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4521F259140B100241091 /* NewTopoView.swift */; };
 		37B45231259144D300241091 /* TopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B45230259144D300241091 /* TopoView.swift */; };
@@ -706,6 +708,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3796409F26F3EA7F00FDE10D /* area-11-topo-lines.json in Resources */,
+				37B2DEFB26F7CE2400406DC6 /* Dev-Info.plist in Resources */,
 				3789F315265120A4003BC082 /* area-15-data.geojson in Resources */,
 				3789F30726512091003BC082 /* area-13-data.geojson in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -743,6 +746,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3796409E26F3EA7F00FDE10D /* area-11-topo-lines.json in Resources */,
+				37B2DEFA26F7CE2300406DC6 /* Dev-Info.plist in Resources */,
 				3789F314265120A4003BC082 /* area-15-data.geojson in Resources */,
 				3789F30626512091003BC082 /* area-13-data.geojson in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
