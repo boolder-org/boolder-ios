@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import CoreLocation
 
 struct AreaView: View {
     @EnvironmentObject var dataStore: DataStore
