@@ -53,6 +53,7 @@ class DataStore : ObservableObject {
         Area(id: 15, name: "Gorge aux Châts",       problemsCount: 207, published: true),
         Area(id: 16, name: "91.1",                  problemsCount: 260, published: false),
         Area(id: 17, name: "Rocher Guichot",        problemsCount: 121, published: false),
+        Area(id: 18, name: "Diplodocus",            problemsCount: 107, published: false),
     ]
 
     init() {
