@@ -43,7 +43,7 @@ class DataStore : ObservableObject {
         Area(id: 5,  name: "Franchard Isatis",      problemsCount: 571, published: true),
         Area(id: 6,  name: "Cuvier Bellevue",       problemsCount: 107, published: true),
         Area(id: 7,  name: "Apremont",              problemsCount: 385, published: true),
-        Area(id: 8,  name: "Rocher Fin",            problemsCount: 1, published: false),
+        Area(id: 8,  name: "Rocher Fin",            problemsCount: 1,   published: false),
         Area(id: 9,  name: "Éléphant",              problemsCount: 256, published: true),
         Area(id: 10, name: "95.2",                  problemsCount: 327, published: true),
         Area(id: 11, name: "Franchard Cuisinière",  problemsCount: 443, published: true),
@@ -52,8 +52,8 @@ class DataStore : ObservableObject {
         Area(id: 14, name: "Rocher du Potala",      problemsCount: 317, published: true),
         Area(id: 15, name: "Gorge aux Châts",       problemsCount: 207, published: true),
         Area(id: 16, name: "91.1",                  problemsCount: 260, published: false),
-        Area(id: 17, name: "Rocher Guichot",        problemsCount: 121, published: false),
-        Area(id: 18, name: "Diplodocus",            problemsCount: 107, published: false),
+        Area(id: 17, name: "Rocher Guichot",        problemsCount: 123, published: true),
+        Area(id: 18, name: "Diplodocus",            problemsCount: 107, published: true),
     ]
 
     init() {
