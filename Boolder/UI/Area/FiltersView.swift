@@ -22,7 +22,7 @@ struct FiltersView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("filters.level").padding(.top, 16)) {
+                Section(header: Text("filters.level")) {
                     
                     ForEach(GradeRange.allCases, id: \.self) { range in
                         Button(action: {
@@ -131,8 +131,6 @@ struct FiltersView: View {
                         .padding(.leading, 32)
                 }
             )
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
