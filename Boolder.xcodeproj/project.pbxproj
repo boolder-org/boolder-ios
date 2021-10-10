@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		031F2692270A57CD00B61B4B /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 031F2691270A57CD00B61B4B /* area-8-data.geojson */; };
-		031F2693270A57CD00B61B4B /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 031F2691270A57CD00B61B4B /* area-8-data.geojson */; };
 		034ABBD72708B8E900CEBB6E /* area-17-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD62708B8E900CEBB6E /* area-17-data.geojson */; };
 		034ABBD82708B8E900CEBB6E /* area-17-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD62708B8E900CEBB6E /* area-17-data.geojson */; };
 		034ABBDA2708B8F200CEBB6E /* area-18-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD92708B8F200CEBB6E /* area-18-data.geojson */; };
 		034ABBDB2708B8F200CEBB6E /* area-18-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD92708B8F200CEBB6E /* area-18-data.geojson */; };
+		0361B0D8271389B600EC0CBB /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0361B0D7271389B600EC0CBB /* area-8-data.geojson */; };
+		0361B0D9271389B600EC0CBB /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0361B0D7271389B600EC0CBB /* area-8-data.geojson */; };
 		0361E0D42708C58000A88128 /* area-17-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D32708C58000A88128 /* area-17-topo-lines.json */; };
 		0361E0D52708C58000A88128 /* area-17-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D32708C58000A88128 /* area-17-topo-lines.json */; };
 		0361E0D72708C58800A88128 /* area-18-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D62708C58800A88128 /* area-18-topo-lines.json */; };
@@ -192,10 +192,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		031F2691270A57CD00B61B4B /* area-8-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-8-data.geojson"; sourceTree = "<group>"; };
 		034ABBD62708B8E900CEBB6E /* area-17-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-17-data.geojson"; sourceTree = "<group>"; };
 		034ABBD92708B8F200CEBB6E /* area-18-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-18-data.geojson"; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0361B0D7271389B600EC0CBB /* area-8-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-8-data.geojson"; sourceTree = "<group>"; };
 		0361E0D32708C58000A88128 /* area-17-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-17-topo-lines.json"; sourceTree = "<group>"; };
 		0361E0D62708C58800A88128 /* area-18-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-18-topo-lines.json"; sourceTree = "<group>"; };
 		0371127626FFE47E00874CEA /* area-16-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-16-data.geojson"; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 		37BA67242608A80000C4B00A /* area-8 */ = {
 			isa = PBXGroup;
 			children = (
-				031F2691270A57CD00B61B4B /* area-8-data.geojson */,
+				0361B0D7271389B600EC0CBB /* area-8-data.geojson */,
 			);
 			path = "area-8";
 			sourceTree = "<group>";
@@ -813,13 +813,13 @@
 				3796409026F3E60B00FDE10D /* area-5-data.geojson in Resources */,
 				3789F30526512091003BC082 /* area-13-topo-lines.json in Resources */,
 				3789F2CF26512046003BC082 /* area-4-topo-lines.json in Resources */,
+				0361B0D9271389B600EC0CBB /* area-8-data.geojson in Resources */,
 				3789F2BF2651202F003BC082 /* area-1-topo-lines.json in Resources */,
 				3789F2FF26512087003BC082 /* area-12-topo-lines.json in Resources */,
 				3789F2DD2651205C003BC082 /* area-7-data.geojson in Resources */,
 				3796409326F3E61900FDE10D /* area-6-data.geojson in Resources */,
 				3789F317265120A4003BC082 /* area-15-topo-lines.json in Resources */,
 				37379A46258E619400711EDA /* Localizable.strings in Resources */,
-				031F2693270A57CD00B61B4B /* area-8-data.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,13 +858,13 @@
 				3796408F26F3E60B00FDE10D /* area-5-data.geojson in Resources */,
 				3789F30426512091003BC082 /* area-13-topo-lines.json in Resources */,
 				3789F2CE26512046003BC082 /* area-4-topo-lines.json in Resources */,
+				0361B0D8271389B600EC0CBB /* area-8-data.geojson in Resources */,
 				3789F2BE2651202F003BC082 /* area-1-topo-lines.json in Resources */,
 				3789F2FE26512087003BC082 /* area-12-topo-lines.json in Resources */,
 				3789F2DC2651205C003BC082 /* area-7-data.geojson in Resources */,
 				3796409226F3E61900FDE10D /* area-6-data.geojson in Resources */,
 				3789F316265120A4003BC082 /* area-15-topo-lines.json in Resources */,
 				37A6572524BDC00500273A9A /* Localizable.strings in Resources */,
-				031F2692270A57CD00B61B4B /* area-8-data.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,7 +1022,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -1049,7 +1049,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -1193,7 +1193,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
@@ -1216,7 +1216,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
