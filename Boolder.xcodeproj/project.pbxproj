@@ -11,14 +11,16 @@
 		034ABBD82708B8E900CEBB6E /* area-17-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD62708B8E900CEBB6E /* area-17-data.geojson */; };
 		034ABBDA2708B8F200CEBB6E /* area-18-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD92708B8F200CEBB6E /* area-18-data.geojson */; };
 		034ABBDB2708B8F200CEBB6E /* area-18-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD92708B8F200CEBB6E /* area-18-data.geojson */; };
-		0361B0D8271389B600EC0CBB /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0361B0D7271389B600EC0CBB /* area-8-data.geojson */; };
-		0361B0D9271389B600EC0CBB /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0361B0D7271389B600EC0CBB /* area-8-data.geojson */; };
 		0361E0D42708C58000A88128 /* area-17-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D32708C58000A88128 /* area-17-topo-lines.json */; };
 		0361E0D52708C58000A88128 /* area-17-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D32708C58000A88128 /* area-17-topo-lines.json */; };
 		0361E0D72708C58800A88128 /* area-18-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D62708C58800A88128 /* area-18-topo-lines.json */; };
 		0361E0D82708C58800A88128 /* area-18-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0361E0D62708C58800A88128 /* area-18-topo-lines.json */; };
 		0371127726FFE47E00874CEA /* area-16-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0371127626FFE47E00874CEA /* area-16-data.geojson */; };
 		0371127826FFE47E00874CEA /* area-16-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0371127626FFE47E00874CEA /* area-16-data.geojson */; };
+		0378F177272300E700371829 /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0378F175272300E700371829 /* area-8-data.geojson */; };
+		0378F178272300E700371829 /* area-8-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0378F175272300E700371829 /* area-8-data.geojson */; };
+		0378F179272300E700371829 /* area-8-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0378F176272300E700371829 /* area-8-topo-lines.json */; };
+		0378F17A272300E700371829 /* area-8-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0378F176272300E700371829 /* area-8-topo-lines.json */; };
 		0397FD88270B40EB00F76530 /* area-19-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0397FD87270B40EB00F76530 /* area-19-data.geojson */; };
 		0397FD89270B40EB00F76530 /* area-19-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0397FD87270B40EB00F76530 /* area-19-data.geojson */; };
 		03F163D72710B17B00D1BCF3 /* area-20-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F163D62710B17B00D1BCF3 /* area-20-data.geojson */; };
@@ -195,10 +197,11 @@
 		034ABBD62708B8E900CEBB6E /* area-17-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-17-data.geojson"; sourceTree = "<group>"; };
 		034ABBD92708B8F200CEBB6E /* area-18-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-18-data.geojson"; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
-		0361B0D7271389B600EC0CBB /* area-8-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-8-data.geojson"; sourceTree = "<group>"; };
 		0361E0D32708C58000A88128 /* area-17-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-17-topo-lines.json"; sourceTree = "<group>"; };
 		0361E0D62708C58800A88128 /* area-18-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-18-topo-lines.json"; sourceTree = "<group>"; };
 		0371127626FFE47E00874CEA /* area-16-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-16-data.geojson"; sourceTree = "<group>"; };
+		0378F175272300E700371829 /* area-8-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-8-data.geojson"; sourceTree = "<group>"; };
+		0378F176272300E700371829 /* area-8-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-8-topo-lines.json"; sourceTree = "<group>"; };
 		0397FD87270B40EB00F76530 /* area-19-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-19-data.geojson"; sourceTree = "<group>"; };
 		03F163D62710B17B00D1BCF3 /* area-20-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-20-data.geojson"; sourceTree = "<group>"; };
 		3701845A2466BD0800C6530C /* TopoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoStore.swift; sourceTree = "<group>"; };
@@ -599,7 +602,8 @@
 		37BA67242608A80000C4B00A /* area-8 */ = {
 			isa = PBXGroup;
 			children = (
-				0361B0D7271389B600EC0CBB /* area-8-data.geojson */,
+				0378F175272300E700371829 /* area-8-data.geojson */,
+				0378F176272300E700371829 /* area-8-topo-lines.json */,
 			);
 			path = "area-8";
 			sourceTree = "<group>";
@@ -804,6 +808,7 @@
 				0371127826FFE47E00874CEA /* area-16-data.geojson in Resources */,
 				3796409926F3E7F900FDE10D /* area-6-topo-lines.json in Resources */,
 				3789F2FD26512087003BC082 /* area-12-data.geojson in Resources */,
+				0378F17A272300E700371829 /* area-8-topo-lines.json in Resources */,
 				3789F2C52651203C003BC082 /* area-2-data.geojson in Resources */,
 				3789F2C72651203C003BC082 /* area-2-topo-lines.json in Resources */,
 				3789F2EF26512075003BC082 /* area-10-topo-lines.json in Resources */,
@@ -813,7 +818,7 @@
 				3796409026F3E60B00FDE10D /* area-5-data.geojson in Resources */,
 				3789F30526512091003BC082 /* area-13-topo-lines.json in Resources */,
 				3789F2CF26512046003BC082 /* area-4-topo-lines.json in Resources */,
-				0361B0D9271389B600EC0CBB /* area-8-data.geojson in Resources */,
+				0378F178272300E700371829 /* area-8-data.geojson in Resources */,
 				3789F2BF2651202F003BC082 /* area-1-topo-lines.json in Resources */,
 				3789F2FF26512087003BC082 /* area-12-topo-lines.json in Resources */,
 				3789F2DD2651205C003BC082 /* area-7-data.geojson in Resources */,
@@ -849,6 +854,7 @@
 				0371127726FFE47E00874CEA /* area-16-data.geojson in Resources */,
 				3796409826F3E7F900FDE10D /* area-6-topo-lines.json in Resources */,
 				3789F2FC26512087003BC082 /* area-12-data.geojson in Resources */,
+				0378F179272300E700371829 /* area-8-topo-lines.json in Resources */,
 				3789F2C42651203C003BC082 /* area-2-data.geojson in Resources */,
 				3789F2C62651203C003BC082 /* area-2-topo-lines.json in Resources */,
 				3789F2EE26512075003BC082 /* area-10-topo-lines.json in Resources */,
@@ -858,7 +864,7 @@
 				3796408F26F3E60B00FDE10D /* area-5-data.geojson in Resources */,
 				3789F30426512091003BC082 /* area-13-topo-lines.json in Resources */,
 				3789F2CE26512046003BC082 /* area-4-topo-lines.json in Resources */,
-				0361B0D8271389B600EC0CBB /* area-8-data.geojson in Resources */,
+				0378F177272300E700371829 /* area-8-data.geojson in Resources */,
 				3789F2BE2651202F003BC082 /* area-1-topo-lines.json in Resources */,
 				3789F2FE26512087003BC082 /* area-12-topo-lines.json in Resources */,
 				3789F2DC2651205C003BC082 /* area-7-data.geojson in Resources */,
@@ -1022,7 +1028,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -1032,7 +1038,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -1049,7 +1055,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -1059,7 +1065,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -1193,7 +1199,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
@@ -1202,7 +1208,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
@@ -1216,7 +1222,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
@@ -1225,7 +1231,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
