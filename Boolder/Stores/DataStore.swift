@@ -33,6 +33,7 @@ class DataStore : ObservableObject {
     @Published var overlays = [MKOverlay]()
     @Published var problems = [Problem]()
     @Published var pois = [Poi]()
+    @Published var sortedProblems = [Problem]()
     @Published var groupedProblems = Dictionary<Circuit.CircuitColor, [Problem]>()
     @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
@@ -156,7 +157,7 @@ class DataStore : ObservableObject {
     }
     
     private func createGroupedProblems() {
-        var sortedProblems = problems
+        sortedProblems = problems
         sortedProblems.sort { (lhs, rhs) -> Bool in
             if lhs.circuitNumber == rhs.circuitNumber {
                 return lhs.grade < rhs.grade
@@ -171,16 +172,6 @@ class DataStore : ObservableObject {
         })
         
         groupedProblemsKeys = groupedProblems.keys.sorted()
-    }
-    
-    func orderedProblems() -> [Problem] {
-        var result: [Problem] = []
-        
-        for key in groupedProblemsKeys {
-            result.append(contentsOf: groupedProblems[key]!)
-        }
-        
-        return result
     }
     
     private func setBelongsToCircuit() {

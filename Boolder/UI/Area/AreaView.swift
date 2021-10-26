@@ -32,7 +32,7 @@ struct AreaView: View {
     
     var body: some View {
         ZStack {
-            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
+            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, showList: $showList)
                 .zIndex(showList ? 1 : 0)
             
             MapView(
