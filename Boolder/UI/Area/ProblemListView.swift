@@ -29,10 +29,10 @@ struct ProblemListView: View {
             HStack {
                                     Image(systemName: "magnifyingglass")
 
-                                    TextField("Nom de voie", text: $searchText, onEditingChanged: { isEditing in
+                                    TextField("Nom de la voie", text: $searchText, onEditingChanged: { isEditing in
                                         self.showCancelButton = true
                                     }, onCommit: {
-                                        print("onCommit")
+//                                        print("onCommit")
                                     })
                                     .focused($searchIsFocused)
                                     .submitLabel(.done)
@@ -51,7 +51,7 @@ struct ProblemListView: View {
                                 .background(Color(.quaternaryLabel))
                                 .cornerRadius(10.0)
         
-            .listRowBackground(Color.red)
+            .listRowBackground(Color.clear)
             .listRowSeparator(Visibility.hidden)
             .padding(0)
             
@@ -126,8 +126,12 @@ struct ProblemListView: View {
         if searchText.isEmpty {
             return dataStore.sortedProblems
         } else {
-            return (dataStore.sortedProblems).filter { $0.nameWithFallback().folding(options: .diacriticInsensitive, locale: .current).contains(searchText.folding(options: .diacriticInsensitive, locale: .current)) }
+            return (dataStore.sortedProblems).filter { cleanString($0.nameWithFallback()).contains(cleanString(searchText)) }
         }
+    }
+    
+    func cleanString(_ str: String) -> String {
+        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
 
     
@@ -141,6 +145,12 @@ struct ProblemListView: View {
         ticks.contains { (tick: Tick) -> Bool in
             return Int(tick.problemId) == problem.id
         }
+    }
+}
+
+extension String {
+    var alphanumeric: String {
+        return self.components(separatedBy: CharacterSet.alphanumerics.inverted).joined().lowercased()
     }
 }
 

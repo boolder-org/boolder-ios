@@ -48,6 +48,7 @@ struct AreaView: View {
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
+                .opacity(showList ? 0 : 1)
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(
                         problem: $selectedProblem,
