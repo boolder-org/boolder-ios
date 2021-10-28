@@ -16,10 +16,10 @@ struct ProblemListView: View {
     @Binding var showList: Bool
     
     @State private var searchText: String = ""
-    @State private var showCancelButton: Bool = false
+    @State private var showSearchCancelButton: Bool = false
     
     @available(iOS 15.0, *)
-    @FocusState private var searchIsFocused: Bool
+    @FocusState private var searchFieldIsFocused: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
@@ -33,16 +33,16 @@ struct ProblemListView: View {
                     Image(systemName: "magnifyingglass")
                     
                     TextField("Nom de la voie", text: $searchText, onEditingChanged: { isEditing in
-                        self.showCancelButton = true
+                        self.showSearchCancelButton = true
                     })
-                        .focused($searchIsFocused)
+                        .focused($searchFieldIsFocused)
                         .submitLabel(.done)
                         .foregroundColor(.primary)
                         .disableAutocorrection(true)
                     
                     Button(action: {
                         self.searchText = ""
-                        self.searchIsFocused = false
+                        self.searchFieldIsFocused = false
                     }) {
                         Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
                     }
@@ -73,7 +73,7 @@ struct ProblemListView: View {
                             presentProblemDetails = true
                             
                             if #available(iOS 15, *) {
-                                searchIsFocused = false
+                                searchFieldIsFocused = false
                             }
                         }) {
                             HStack {
@@ -106,7 +106,7 @@ struct ProblemListView: View {
         .animation(.easeInOut(duration: 0))
         .onChange(of: showList) { value in
             if #available(iOS 15, *) {
-                searchIsFocused = false
+                searchFieldIsFocused = false
             }
         }
     }
