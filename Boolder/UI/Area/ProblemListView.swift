@@ -17,6 +17,8 @@ struct ProblemListView: View {
     
     @State private var searchText: String = ""
     @State private var showCancelButton: Bool = false
+    
+    @available(iOS 15.0, *)
     @FocusState private var searchIsFocused: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -26,6 +28,7 @@ struct ProblemListView: View {
     var body: some View {
         List {
             
+            if #available(iOS 15, *) {
             HStack {
                                     Image(systemName: "magnifyingglass")
 
@@ -54,6 +57,7 @@ struct ProblemListView: View {
             .listRowBackground(Color.clear)
             .listRowSeparator(Visibility.hidden)
             .padding(0)
+            }
             
             
             ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
@@ -69,7 +73,10 @@ struct ProblemListView: View {
                         Button(action: {
                             selectedProblem = problem
                             presentProblemDetails = true
-                            searchIsFocused = false
+                            
+                            if #available(iOS 15, *) {
+                                searchIsFocused = false
+                            }
                         }) {
                             HStack {
                                 ProblemCircleView(problem: problem)
@@ -100,7 +107,9 @@ struct ProblemListView: View {
         .listStyle(GroupedListStyle())
         .animation(.easeInOut(duration: 0))
         .onChange(of: showList) { value in
-            searchIsFocused = false
+            if #available(iOS 15, *) {
+                searchIsFocused = false
+            }
         }
     }
     
