@@ -34,8 +34,6 @@ class DataStore : ObservableObject {
     @Published var problems = [Problem]()
     @Published var pois = [Poi]()
     @Published var sortedProblems = [Problem]()
-    @Published var groupedProblems = Dictionary<Circuit.CircuitColor, [Problem]>()
-    @Published var groupedProblemsKeys = [Circuit.CircuitColor]()
     
     let areas = [
         Area(id: 1,  name: "Rocher Canon",          problemsCount: 389, published: true),
@@ -80,7 +78,7 @@ class DataStore : ObservableObject {
         
         problems = filteredProblems()
         setBelongsToCircuit()
-        createGroupedProblems()
+        createSortedProblems()
         
         pois = geoStore.pois
     }
@@ -156,7 +154,7 @@ class DataStore : ObservableObject {
         geoStore.circuits.first { $0.id == id }
     }
     
-    private func createGroupedProblems() {
+    private func createSortedProblems() {
         sortedProblems = problems
         sortedProblems.sort { (lhs, rhs) -> Bool in
             if lhs.circuitNumber == rhs.circuitNumber {
@@ -166,12 +164,6 @@ class DataStore : ObservableObject {
                 return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
             }
         }
-        
-        groupedProblems = Dictionary(grouping: sortedProblems, by: { (problem: Problem) in
-            problem.circuitColor ?? Circuit.CircuitColor.offCircuit
-        })
-        
-        groupedProblemsKeys = groupedProblems.keys.sorted()
     }
     
     private func setBelongsToCircuit() {

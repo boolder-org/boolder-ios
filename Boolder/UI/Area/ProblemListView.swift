@@ -29,34 +29,32 @@ struct ProblemListView: View {
         List {
             
             if #available(iOS 15, *) {
-            HStack {
-                                    Image(systemName: "magnifyingglass")
-
-                                    TextField("Nom de la voie", text: $searchText, onEditingChanged: { isEditing in
-                                        self.showCancelButton = true
-                                    }, onCommit: {
-//                                        print("onCommit")
-                                    })
-                                    .focused($searchIsFocused)
-                                    .submitLabel(.done)
-                                    .foregroundColor(.primary)
-                                    .disableAutocorrection(true)
-
-                                    Button(action: {
-                                        self.searchText = ""
-                                        self.searchIsFocused = false
-                                    }) {
-                                        Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                                    }
-                                }
-                                .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                                .foregroundColor(.secondary)
-                                .background(Color(.quaternaryLabel))
-                                .cornerRadius(10.0)
-        
-            .listRowBackground(Color.clear)
-            .listRowSeparator(Visibility.hidden)
-            .padding(0)
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    
+                    TextField("Nom de la voie", text: $searchText, onEditingChanged: { isEditing in
+                        self.showCancelButton = true
+                    })
+                        .focused($searchIsFocused)
+                        .submitLabel(.done)
+                        .foregroundColor(.primary)
+                        .disableAutocorrection(true)
+                    
+                    Button(action: {
+                        self.searchText = ""
+                        self.searchIsFocused = false
+                    }) {
+                        Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                    }
+                }
+                .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                .foregroundColor(.secondary)
+                .background(Color(.quaternaryLabel))
+                .cornerRadius(10.0)
+                
+                .listRowBackground(Color.clear)
+                .listRowSeparator(Visibility.hidden)
+                .padding(0)
             }
             
             
@@ -65,7 +63,7 @@ struct ProblemListView: View {
                 // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
                 Section(
                     header: Text(circuitColor.longName()).font(.title2).bold().foregroundColor(.primary).padding(.bottom, 8).textCase(.none),
-                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == dataStore.groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
+                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
                     ) {
                         ForEach(groupedProblems[circuitColor]!) { (problem: Problem) in
 
@@ -112,14 +110,6 @@ struct ProblemListView: View {
             }
         }
     }
-    
-//    func searchResults(_ circuitColor: Circuit.CircuitColor) -> [Problem] {
-//        if searchText.isEmpty {
-//            return dataStore.groupedProblems[circuitColor]!
-//        } else {
-//            return (dataStore.groupedProblems[circuitColor]!).filter { $0.nameWithFallback().folding(options: .diacriticInsensitive, locale: .current).contains(searchText.folding(options: .diacriticInsensitive, locale: .current)) }
-//        }
-//    }
     
     var groupedProblems : Dictionary<Circuit.CircuitColor, [Problem]> {
         Dictionary(grouping: sortedProblems, by: { (problem: Problem) in
