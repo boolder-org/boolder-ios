@@ -112,7 +112,7 @@ struct ProblemListView: View {
     }
     
     var groupedProblems : Dictionary<Circuit.CircuitColor, [Problem]> {
-        Dictionary(grouping: sortedProblems, by: { (problem: Problem) in
+        Dictionary(grouping: filteredProblems, by: { (problem: Problem) in
             problem.circuitColor ?? Circuit.CircuitColor.offCircuit
         })
     }
@@ -121,7 +121,7 @@ struct ProblemListView: View {
         groupedProblems.keys.sorted()
     }
     
-    var sortedProblems : [Problem] {
+    var filteredProblems : [Problem] {
         if searchText.isEmpty {
             return dataStore.sortedProblems
         } else {
@@ -132,7 +132,6 @@ struct ProblemListView: View {
     func cleanString(_ str: String) -> String {
         str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
-
     
     func isFavorite(problem: Problem) -> Bool {
         favorites.contains { (favorite: Favorite) -> Bool in
