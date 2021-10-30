@@ -17,9 +17,7 @@ struct ProblemListView: View {
     
     @State private var searchText: String = ""
     @State private var showSearchCancelButton: Bool = false
-    
-    @available(iOS 15.0, *)
-    @FocusState private var searchFieldIsFocused: Bool
+    @available(iOS 15.0, *) @FocusState private var searchFieldIsFocused: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
@@ -32,7 +30,7 @@ struct ProblemListView: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                     
-                    TextField("Nom de la voie", text: $searchText, onEditingChanged: { isEditing in
+                    TextField(NSLocalizedString("problem.name", comment: ""), text: $searchText, onEditingChanged: { isEditing in
                         self.showSearchCancelButton = true
                     })
                         .focused($searchFieldIsFocused)
