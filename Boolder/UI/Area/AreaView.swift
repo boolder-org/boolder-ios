@@ -32,7 +32,7 @@ struct AreaView: View {
     
     var body: some View {
         ZStack {
-            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
+            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, showList: $showList)
                 .zIndex(showList ? 1 : 0)
             
             MapView(
@@ -48,6 +48,7 @@ struct AreaView: View {
             )
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(showList ? 0 : 1)
+                .opacity(showList ? 0 : 1)
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(
                         problem: $selectedProblem,

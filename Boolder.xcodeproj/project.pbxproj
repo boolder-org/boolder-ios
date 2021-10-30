@@ -339,6 +339,13 @@
 			path = "area-17";
 			sourceTree = "<group>";
 		};
+		03817A33272B336F003C21D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0397FD86270B40CA00F76530 /* area-19 */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +493,7 @@
 				37AEBCF425A5CEA200E0E04F /* Boolder dev.entitlements */,
 				37A8C6282453263300DC161F /* Boolder */,
 				37A8C6272453263300DC161F /* Products */,
+				03817A33272B336F003C21D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -704,6 +712,8 @@
 			dependencies = (
 			);
 			name = "Boolder dev";
+			packageProductDependencies = (
+			);
 			productName = Boolder;
 			productReference = 37379A8E258E619400711EDA /* Boolder dev.app */;
 			productType = "com.apple.product-type.application";
@@ -721,6 +731,8 @@
 			dependencies = (
 			);
 			name = Boolder;
+			packageProductDependencies = (
+			);
 			productName = Boolder;
 			productReference = 37A8C6262453263300DC161F /* Boolder.app */;
 			productType = "com.apple.product-type.application";
@@ -771,6 +783,8 @@
 				fr,
 			);
 			mainGroup = 37A8C61D2453263300DC161F;
+			packageReferences = (
+			);
 			productRefGroup = 37A8C6272453263300DC161F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
