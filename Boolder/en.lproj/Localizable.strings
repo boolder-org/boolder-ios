@@ -88,9 +88,6 @@
 "steepness.traverse" = "Traverse";
 "steepness.other" = "Other";
 
-// MARK: Problem list
-"problem.name" = "Problem name";
-
 // MARK: Problem details
 "problem.no_name" = "No name";
 "problem.sit_start" = "sit start";

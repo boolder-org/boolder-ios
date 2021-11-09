@@ -91,12 +91,6 @@ struct ProblemListView: View {
     }
 }
 
-extension String {
-    var alphanumeric: String {
-        return self.components(separatedBy: CharacterSet.alphanumerics.inverted).joined().lowercased()
-    }
-}
-
 struct ProblemListView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
