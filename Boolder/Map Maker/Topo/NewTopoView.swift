@@ -63,14 +63,12 @@ struct NewTopoView: View {
                             
                         }
                     }
-                    #if DEVELOPMENT
                     .fullScreenCover(isPresented: $presentImagePicker) {
                         ImagePickerView(sourceType: .camera, selectedImage: $topoEntry.photo)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.black)
                             .edgesIgnoringSafeArea(.all)
                     }
-                    #endif
                     
                     Text("Problems")
                         .font(.title)

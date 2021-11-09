@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03254828273991C900E9E6A6 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePickerView.swift */; };
 		034ABBD72708B8E900CEBB6E /* area-17-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD62708B8E900CEBB6E /* area-17-data.geojson */; };
 		034ABBD82708B8E900CEBB6E /* area-17-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD62708B8E900CEBB6E /* area-17-data.geojson */; };
 		034ABBDA2708B8F200CEBB6E /* area-18-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034ABBD92708B8F200CEBB6E /* area-18-data.geojson */; };
@@ -991,6 +992,7 @@
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */,
 				37B4524F25923B5A00241091 /* ODRManager.swift in Sources */,
+				03254828273991C900E9E6A6 /* ImagePickerView.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				375397C625AC6C4C00430BF4 /* Extensions.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,

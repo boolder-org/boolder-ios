@@ -13,49 +13,13 @@ struct ProblemListView: View {
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     
-    @Binding var showList: Bool
-    
-    @State private var searchText: String = ""
-    @State private var showSearchCancelButton: Bool = false
-    @available(iOS 15.0, *) @FocusState private var searchFieldIsFocused: Bool
-    
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     var body: some View {
         List {
-            
-            if #available(iOS 15, *) {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                    
-                    TextField(NSLocalizedString("problem.name", comment: ""), text: $searchText, onEditingChanged: { isEditing in
-                        self.showSearchCancelButton = true
-                    })
-                        .focused($searchFieldIsFocused)
-                        .submitLabel(.done)
-                        .foregroundColor(.primary)
-                        .disableAutocorrection(true)
-                    
-                    Button(action: {
-                        self.searchText = ""
-                        self.searchFieldIsFocused = false
-                    }) {
-                        Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                    }
-                }
-                .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                .foregroundColor(.secondary)
-                .background(Color(.quaternaryLabel))
-                .cornerRadius(10.0)
-                
-                .listRowBackground(Color.clear)
-                .listRowSeparator(Visibility.hidden)
-                .padding(0)
-            }
-            
-            
+ 
             ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
                 // FIXME: simplify the code by using a tableview footer when/if it becomes possible
                 // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
@@ -69,10 +33,6 @@ struct ProblemListView: View {
                         Button(action: {
                             selectedProblem = problem
                             presentProblemDetails = true
-                            
-                            if #available(iOS 15, *) {
-                                searchFieldIsFocused = false
-                            }
                         }) {
                             HStack {
                                 ProblemCircleView(problem: problem)
@@ -102,29 +62,16 @@ struct ProblemListView: View {
         }
         .listStyle(GroupedListStyle())
         .animation(.easeInOut(duration: 0))
-        .onChange(of: showList) { value in
-            if #available(iOS 15, *) {
-                searchFieldIsFocused = false
-            }
-        }
     }
     
     var groupedProblems : Dictionary<Circuit.CircuitColor, [Problem]> {
-        Dictionary(grouping: filteredProblems, by: { (problem: Problem) in
+        Dictionary(grouping: dataStore.sortedProblems, by: { (problem: Problem) in
             problem.circuitColor ?? Circuit.CircuitColor.offCircuit
         })
     }
     
     var groupedProblemsKeys : [Circuit.CircuitColor] {
         groupedProblems.keys.sorted()
-    }
-    
-    var filteredProblems : [Problem] {
-        if searchText.isEmpty {
-            return dataStore.sortedProblems
-        } else {
-            return (dataStore.sortedProblems).filter { cleanString($0.nameWithFallback()).contains(cleanString(searchText)) }
-        }
     }
     
     func cleanString(_ str: String) -> String {
@@ -155,7 +102,7 @@ struct ProblemListView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(selectedProblem: .constant(Problem()), presentProblemDetails: .constant(false), showList: .constant(true))
+            ProblemListView(selectedProblem: .constant(Problem()), presentProblemDetails: .constant(false))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
