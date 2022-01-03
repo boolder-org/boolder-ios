@@ -74,10 +74,6 @@ struct ProblemListView: View {
         groupedProblems.keys.sorted()
     }
     
-    func cleanString(_ str: String) -> String {
-        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
-    }
-    
     func isFavorite(problem: Problem) -> Bool {
         favorites.contains { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == problem.id
