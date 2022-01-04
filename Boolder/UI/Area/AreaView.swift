@@ -17,7 +17,6 @@ struct AreaView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @State private var showList = false
     @State private var presentList = false
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
@@ -46,14 +45,11 @@ struct AreaView: View {
                 pickerModeEnabled: $newTopoEntry.pickerModeEnabled
             )
                 .edgesIgnoringSafeArea(.bottom)
-                .zIndex(showList ? 0 : 1)
-                .opacity(showList ? 0 : 1)
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(
                         problem: $selectedProblem,
                         centerOnProblem: $centerOnProblem,
                         centerOnProblemCount: $centerOnProblemCount,
-                        showList: $showList,
                         areaResourcesDownloaded: $areaResourcesDownloaded
                     )
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
@@ -92,33 +88,32 @@ struct AreaView: View {
             }
             .zIndex(10)
             
-            if !showList {
-                HStack {
+            HStack {
+                Spacer()
+                
+                VStack {
                     Spacer()
                     
-                    VStack {
-                        Spacer()
-                        
-                        Button(action: {
-                            centerOnCurrentLocationCount += 1
-                        }) {
-                            Image(systemName: "location")
+                    Button(action: {
+                        centerOnCurrentLocationCount += 1
+                    }) {
+                        Image(systemName: "location")
                             .padding(12)
                             .offset(x: -1, y: 0)
-                        }
-                        .accentColor(.primary)
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding()
                     }
+                    .accentColor(.primary)
+                    .background(Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.gray, lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding()
                 }
-                .padding(.bottom, 28)
-                .zIndex(10)
             }
+            .padding(.bottom, 28)
+            .zIndex(10)
+            
             
             #if DEVELOPMENT
             if !showList {
@@ -159,11 +154,9 @@ struct AreaView: View {
         .navigationBarTitle(Text(dataStore.area(withId: dataStore.areaId)!.name), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
-//                showList.toggle()
                 presentList = true
             }) {
                 Text("area.list")
-//                    .font(.body)
                     .padding(.vertical)
                     .padding(.leading)
             }
