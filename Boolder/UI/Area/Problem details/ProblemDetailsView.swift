@@ -216,14 +216,14 @@ struct ProblemDetailsView: View {
     private func buttonsForMoreActionSheet() -> [Alert.Button] {
         var buttons = [Alert.Button]()
         
-        buttons.append(
-            .default(Text("problem.action.center_on_map")) {
-                presentationMode.wrappedValue.dismiss()
-                showList = false
-                centerOnProblem = problem
-                centerOnProblemCount += 1 // triggers a map refresh
-            }
-        )
+//        buttons.append(
+//            .default(Text("problem.action.center_on_map")) {
+//                presentationMode.wrappedValue.dismiss()
+//                showList = false
+//                centerOnProblem = problem
+//                centerOnProblemCount += 1 // triggers a map refresh
+//            }
+//        )
         
         if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
             buttons.append(

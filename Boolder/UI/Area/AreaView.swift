@@ -18,6 +18,7 @@ struct AreaView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showList = false
+    @State private var presentList = false
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
@@ -32,8 +33,6 @@ struct AreaView: View {
     
     var body: some View {
         ZStack {
-            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
-                .zIndex(showList ? 1 : 0)
             
             MapView(
                 selectedProblem: $selectedProblem,
@@ -75,6 +74,13 @@ struct AreaView: View {
                     EmptyView()
                         .sheet(isPresented: $presentNewTopoSheet) {
                             NewTopoView(topoEntry: newTopoEntry)
+                                .environment(\.managedObjectContext, managedObjectContext)
+                        }
+                )
+                .background(
+                    EmptyView()
+                        .sheet(isPresented: $presentList) {
+                            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount)
                                 .environment(\.managedObjectContext, managedObjectContext)
                         }
                 )
@@ -153,10 +159,11 @@ struct AreaView: View {
         .navigationBarTitle(Text(dataStore.area(withId: dataStore.areaId)!.name), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
-                showList.toggle()
+//                showList.toggle()
+                presentList = true
             }) {
-                Text(showList ? "area.map" : "area.list")
-                    .font(.body)
+                Text("Liste")
+//                    .font(.body)
                     .padding(.vertical)
                     .padding(.leading)
             }
