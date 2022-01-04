@@ -114,39 +114,37 @@ struct AreaView: View {
             
             
             #if DEVELOPMENT
-            if !showList {
-                HStack {
+            HStack {
+                VStack {
+                    Spacer()
+                    
                     VStack {
-                        Spacer()
-                        
-                        VStack {
-                            ForEach(newTopoEntry.problems) { problem in
-                                ProblemCircleView(problem: problem)
-                            }
+                        ForEach(newTopoEntry.problems) { problem in
+                            ProblemCircleView(problem: problem)
                         }
-                        
-                        Button(action: {
-                            presentNewTopoSheet = true
-                        }) {
-                            Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
-                                .padding(12)
-                        }
-                        .accentColor(.primary)
-                        .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : .primary)
-                        .background(newTopoEntry.pickerModeEnabled ? Color.appGreen : Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding()
                     }
                     
-                    Spacer()
+                    Button(action: {
+                        presentNewTopoSheet = true
+                    }) {
+                        Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
+                            .padding(12)
+                    }
+                    .accentColor(.primary)
+                    .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : .primary)
+                    .background(newTopoEntry.pickerModeEnabled ? Color.appGreen : Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.gray, lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding()
                 }
-                .padding(.bottom, 28)
-                .zIndex(10)
+                
+                Spacer()
             }
+            .padding(.bottom, 28)
+            .zIndex(10)
             #endif
         }
         .navigationBarTitle(Text(dataStore.area(withId: dataStore.areaId)!.name), displayMode: .inline)
