@@ -39,12 +39,10 @@ struct SettingsView: View {
         .navigationBarTitle(Text("Settings"), displayMode: .inline)
     }
     
+    // BE VERY CAREFUL WHEN CHANGING THIS PIECE OF CODE, IT MAY DELETE DATA IN PRODUCTION
     private func deleteFavoritesAndTicks() {
         #if DEVELOPMENT
-        #else
-        return
-        #endif
-
+        
         // delete all favorites
         let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "Favorite")
         let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
@@ -56,6 +54,8 @@ struct SettingsView: View {
         let DelAllReqVar2 = NSBatchDeleteRequest(fetchRequest: ReqVar2)
         do { try managedObjectContext.execute(DelAllReqVar2) }
         catch { print(error) }
+        
+        #endif
     }
 }
 

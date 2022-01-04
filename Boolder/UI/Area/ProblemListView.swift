@@ -71,7 +71,7 @@ struct ProblemListView: View {
                 }
             )
             .listStyle(.insetGrouped)
-            .animation(.easeInOut(duration: 0))
+            .animation(.easeInOut(duration: 0), value: searchText)
         }
     }
     
