@@ -20,9 +20,6 @@ struct ProblemDetailsView: View {
     
     @Binding var problem: Problem
     
-    @Binding var centerOnProblem: Problem?
-    @Binding var centerOnProblemCount: Int
-    
     @Binding var areaResourcesDownloaded: Bool
     
     @State var presentMoreActionsheet = false
@@ -371,7 +368,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.problems.first!), centerOnProblem: .constant(nil), centerOnProblemCount: .constant(0), areaResourcesDownloaded: .constant(false))
+        ProblemDetailsView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(false))
             .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
     }

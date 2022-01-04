@@ -48,8 +48,6 @@ struct AreaView: View {
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(
                         problem: $selectedProblem,
-                        centerOnProblem: $centerOnProblem,
-                        centerOnProblemCount: $centerOnProblemCount,
                         areaResourcesDownloaded: $areaResourcesDownloaded
                     )
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
