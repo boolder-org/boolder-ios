@@ -10,68 +10,98 @@ import SwiftUI
 
 struct ProblemListView: View {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: Problem
-    @Binding var presentProblemDetails: Bool
+    @Binding var centerOnProblem: Problem?
+    @Binding var centerOnProblemCount: Int
+    
+    @State private var searchText = ""
     
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     var body: some View {
-        List {
- 
-            ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
-                // FIXME: simplify the code by using a tableview footer when/if it becomes possible
-                // NB: we want a footer view (or bottom inset?) to be able to show the FabFilters with no background when user scrolls to the bottom of the list
-                Section(
-                    header: Text(circuitColor.longName()).font(.title2).bold().foregroundColor(.primary).padding(.bottom, 8).textCase(.none),
-                    footer: Rectangle().fill(Color.clear).frame(width: 1, height: (circuitColor == groupedProblemsKeys.last) ? 120 : 0, alignment: .center)
-                    ) {
+        NavigationView {
+            List {
+                ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
+                    Section {
                         ForEach(groupedProblems[circuitColor]!) { (problem: Problem) in
-
-
-                        Button(action: {
-                            selectedProblem = problem
-                            presentProblemDetails = true
-                        }) {
-                            HStack {
-                                ProblemCircleView(problem: problem)
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
                                 
-                                Text(problem.nameWithFallback())
-                                    .foregroundColor(.primary)
-
-                                Spacer()
-
-                                if isFavorite(problem: problem) {
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(Color.yellow)
+                                centerOnProblem = problem
+                                centerOnProblemCount += 1 // triggers a map refresh
+                            }) {
+                                HStack {
+                                    ProblemCircleView(problem: problem)
+                                    
+                                    Text(problem.nameWithFallback())
+                                        .foregroundColor(.primary)
+                                    
+                                    Spacer()
+                                    
+                                    if isFavorite(problem: problem) {
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(Color.yellow)
+                                    }
+                                    
+                                    if isTicked(problem: problem) {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(Color.appGreen)
+                                    }
+                                    
+                                    Text(problem.grade.string)
                                 }
-
-                                if isTicked(problem: problem) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.appGreen)
-                                }
-
-                                Text(problem.grade.string)
                             }
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                     }
                 }
             }
+            .modify {
+                if #available(iOS 15, *) {
+                    $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("problem_list.search_prompt"))
+                }
+                else {
+                    $0 // no search bar on iOS14
+                }
+            }
+            .navigationBarTitle(Text("problem_list.title"), displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("OK")
+                        .bold()
+                        .padding(.vertical)
+                        .padding(.leading, 32)
+                }
+            )
+            .listStyle(.insetGrouped)
+            .animation(.easeInOut(duration: 0), value: searchText)
         }
-        .listStyle(GroupedListStyle())
-        .animation(.easeInOut(duration: 0))
     }
     
     var groupedProblems : Dictionary<Circuit.CircuitColor, [Problem]> {
-        Dictionary(grouping: dataStore.sortedProblems, by: { (problem: Problem) in
+        Dictionary(grouping: sortedProblems, by: { (problem: Problem) in
             problem.circuitColor ?? Circuit.CircuitColor.offCircuit
         })
     }
     
     var groupedProblemsKeys : [Circuit.CircuitColor] {
         groupedProblems.keys.sorted()
+    }
+    
+    var sortedProblems : [Problem] {
+        if searchText.isEmpty {
+            return dataStore.sortedProblems
+        } else {
+            return (dataStore.sortedProblems).filter { cleanString($0.nameWithFallback()).contains(cleanString(searchText)) }
+        }
+    }
+    
+    func cleanString(_ str: String) -> String {
+        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
     
     func isFavorite(problem: Problem) -> Bool {
@@ -87,12 +117,26 @@ struct ProblemListView: View {
     }
 }
 
+extension String {
+    var alphanumeric: String {
+        return self.components(separatedBy: CharacterSet.alphanumerics.inverted).joined().lowercased()
+    }
+}
+
+// Hack to use if #available within a view modifier
+// https://blog.overdesigned.net/posts/2020-09-23-swiftui-availability/
+extension View {
+    func modify<T: View>(@ViewBuilder _ modifier: (Self) -> T) -> some View {
+        return modifier(self)
+    }
+}
+
 struct ProblemListView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(selectedProblem: .constant(Problem()), presentProblemDetails: .constant(false))
+            ProblemListView(centerOnProblem: .constant(Problem()), centerOnProblemCount: .constant(1))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())

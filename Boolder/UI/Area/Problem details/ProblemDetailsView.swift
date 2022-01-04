@@ -20,10 +20,6 @@ struct ProblemDetailsView: View {
     
     @Binding var problem: Problem
     
-    @Binding var centerOnProblem: Problem?
-    @Binding var centerOnProblemCount: Int
-    @Binding var showList: Bool // for the "center on map" feature
-    
     @Binding var areaResourcesDownloaded: Bool
     
     @State var presentMoreActionsheet = false
@@ -216,15 +212,6 @@ struct ProblemDetailsView: View {
     private func buttonsForMoreActionSheet() -> [Alert.Button] {
         var buttons = [Alert.Button]()
         
-        buttons.append(
-            .default(Text("problem.action.center_on_map")) {
-                presentationMode.wrappedValue.dismiss()
-                showList = false
-                centerOnProblem = problem
-                centerOnProblemCount += 1 // triggers a map refresh
-            }
-        )
-        
         if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
             buttons.append(
                 .default(Text("problem.action.see_on_bleau_info")) {
@@ -381,7 +368,7 @@ struct ProblemDetailsView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.problems.first!), centerOnProblem: .constant(nil), centerOnProblemCount: .constant(0), showList: .constant(true), areaResourcesDownloaded: .constant(false))
+        ProblemDetailsView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(false))
             .environment(\.managedObjectContext, context)
             .environmentObject(dataStore)
     }

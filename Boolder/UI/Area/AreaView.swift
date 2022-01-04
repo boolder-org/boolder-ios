@@ -17,7 +17,7 @@ struct AreaView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @State private var showList = false
+    @State private var presentList = false
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
     @State private var selectedPoi: Poi? = nil
@@ -32,8 +32,6 @@ struct AreaView: View {
     
     var body: some View {
         ZStack {
-            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
-                .zIndex(showList ? 1 : 0)
             
             MapView(
                 selectedProblem: $selectedProblem,
@@ -47,14 +45,9 @@ struct AreaView: View {
                 pickerModeEnabled: $newTopoEntry.pickerModeEnabled
             )
                 .edgesIgnoringSafeArea(.bottom)
-                .zIndex(showList ? 0 : 1)
-                .opacity(showList ? 0 : 1)
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(
                         problem: $selectedProblem,
-                        centerOnProblem: $centerOnProblem,
-                        centerOnProblemCount: $centerOnProblemCount,
-                        showList: $showList,
                         areaResourcesDownloaded: $areaResourcesDownloaded
                     )
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
@@ -78,6 +71,13 @@ struct AreaView: View {
                                 .environment(\.managedObjectContext, managedObjectContext)
                         }
                 )
+                .background(
+                    EmptyView()
+                        .sheet(isPresented: $presentList) {
+                            ProblemListView(centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount)
+                                .environment(\.managedObjectContext, managedObjectContext)
+                        }
+                )
             
             VStack {
                 Spacer()
@@ -86,77 +86,73 @@ struct AreaView: View {
             }
             .zIndex(10)
             
-            if !showList {
-                HStack {
+            HStack {
+                Spacer()
+                
+                VStack {
                     Spacer()
                     
-                    VStack {
-                        Spacer()
-                        
-                        Button(action: {
-                            centerOnCurrentLocationCount += 1
-                        }) {
-                            Image(systemName: "location")
+                    Button(action: {
+                        centerOnCurrentLocationCount += 1
+                    }) {
+                        Image(systemName: "location")
                             .padding(12)
                             .offset(x: -1, y: 0)
-                        }
-                        .accentColor(.primary)
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding()
                     }
+                    .accentColor(.primary)
+                    .background(Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.gray, lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding()
                 }
-                .padding(.bottom, 28)
-                .zIndex(10)
             }
+            .padding(.bottom, 28)
+            .zIndex(10)
+            
             
             #if DEVELOPMENT
-            if !showList {
-                HStack {
+            HStack {
+                VStack {
+                    Spacer()
+                    
                     VStack {
-                        Spacer()
-                        
-                        VStack {
-                            ForEach(newTopoEntry.problems) { problem in
-                                ProblemCircleView(problem: problem)
-                            }
+                        ForEach(newTopoEntry.problems) { problem in
+                            ProblemCircleView(problem: problem)
                         }
-                        
-                        Button(action: {
-                            presentNewTopoSheet = true
-                        }) {
-                            Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
-                                .padding(12)
-                        }
-                        .accentColor(.primary)
-                        .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : .primary)
-                        .background(newTopoEntry.pickerModeEnabled ? Color.appGreen : Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding()
                     }
                     
-                    Spacer()
+                    Button(action: {
+                        presentNewTopoSheet = true
+                    }) {
+                        Image(systemName: newTopoEntry.pickerModeEnabled ? "camera.fill" : "camera")
+                            .padding(12)
+                    }
+                    .accentColor(.primary)
+                    .foregroundColor(newTopoEntry.pickerModeEnabled ? Color.white : .primary)
+                    .background(newTopoEntry.pickerModeEnabled ? Color.appGreen : Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.gray, lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding()
                 }
-                .padding(.bottom, 28)
-                .zIndex(10)
+                
+                Spacer()
             }
+            .padding(.bottom, 28)
+            .zIndex(10)
             #endif
         }
         .navigationBarTitle(Text(dataStore.area(withId: dataStore.areaId)!.name), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
-                showList.toggle()
+                presentList = true
             }) {
-                Text(showList ? "area.map" : "area.list")
-                    .font(.body)
+                Text("area.list")
                     .padding(.vertical)
                     .padding(.leading)
             }
