@@ -58,7 +58,14 @@ struct ProblemListView: View {
                     }
                 }
             }
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("problem_list.search_prompt"))
+            .modify {
+                if #available(iOS 15, *) {
+                    $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("problem_list.search_prompt"))
+                }
+                else {
+                    $0 // no search bar on iOS14
+                }
+            }
             .navigationBarTitle(Text("problem_list.title"), displayMode: .inline)
             .navigationBarItems(
                 trailing: Button(action: {
@@ -113,6 +120,14 @@ struct ProblemListView: View {
 extension String {
     var alphanumeric: String {
         return self.components(separatedBy: CharacterSet.alphanumerics.inverted).joined().lowercased()
+    }
+}
+
+// Hack to use if #available within a view modifier
+// https://blog.overdesigned.net/posts/2020-09-23-swiftui-availability/
+extension View {
+    func modify<T: View>(@ViewBuilder _ modifier: (Self) -> T) -> some View {
+        return modifier(self)
     }
 }
 
