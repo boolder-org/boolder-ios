@@ -16,7 +16,6 @@
 // MARK: Area view
 "area.filter" = "Filtre";
 "area.filters" = "Filtres";
-"area.map" = "Carte";
 "area.list" = "Liste";
 
 // MARK: Circuit
@@ -105,3 +104,7 @@
 "problem.action.share.description" = "« %@ » à %@";
 "problem.action.report" = "Signaler un problème";
 "problem.image.loading" = "Chargement...";
+
+// MARK: Problem list
+"problem_list.title" = "Voies";
+"problem_list.search_prompt" = "Nom de voie";

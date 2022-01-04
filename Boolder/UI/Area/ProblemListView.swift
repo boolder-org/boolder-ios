@@ -10,8 +10,6 @@ import SwiftUI
 
 struct ProblemListView: View {
     @EnvironmentObject var dataStore: DataStore
-    @Binding var selectedProblem: Problem
-    @Binding var presentProblemDetails: Bool
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
     
@@ -24,68 +22,56 @@ struct ProblemListView: View {
     
     var body: some View {
         NavigationView {
-        List {
- 
-            ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
-                Section(
-//                    header: Text(circuitColor.longName())
-                    ) {
+            List {
+                ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
+                    Section {
                         ForEach(groupedProblems[circuitColor]!) { (problem: Problem) in
-
-
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                            
-                            centerOnProblem = problem
-                            centerOnProblemCount += 1 // triggers a map refresh
-
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//                                selectedProblem = problem
-//                                presentProblemDetails = true
-//                            }
-                        }) {
-                            HStack {
-                                ProblemCircleView(problem: problem)
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
                                 
-                                Text(problem.nameWithFallback())
-                                    .foregroundColor(.primary)
-
-                                Spacer()
-
-                                if isFavorite(problem: problem) {
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(Color.yellow)
+                                centerOnProblem = problem
+                                centerOnProblemCount += 1 // triggers a map refresh
+                            }) {
+                                HStack {
+                                    ProblemCircleView(problem: problem)
+                                    
+                                    Text(problem.nameWithFallback())
+                                        .foregroundColor(.primary)
+                                    
+                                    Spacer()
+                                    
+                                    if isFavorite(problem: problem) {
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(Color.yellow)
+                                    }
+                                    
+                                    if isTicked(problem: problem) {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(Color.appGreen)
+                                    }
+                                    
+                                    Text(problem.grade.string)
                                 }
-
-                                if isTicked(problem: problem) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.appGreen)
-                                }
-
-                                Text(problem.grade.string)
                             }
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                     }
                 }
-//                .headerProminence(.increased)
             }
-        }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Nom de voie"))
-        .navigationBarTitle(Text("Voies"), displayMode: .inline)
-        .navigationBarItems(
-            trailing: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("OK")
-                    .bold()
-                    .padding(.vertical)
-                    .padding(.leading, 32)
-            }
-        )
-        .listStyle(.insetGrouped)
-//        .listStyle(GroupedListStyle())
-        .animation(.easeInOut(duration: 0))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("problem_list.search_prompt"))
+            .navigationBarTitle(Text("problem_list.title"), displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("OK")
+                        .bold()
+                        .padding(.vertical)
+                        .padding(.leading, 32)
+                }
+            )
+            .listStyle(.insetGrouped)
+            .animation(.easeInOut(duration: 0))
         }
     }
     
@@ -110,8 +96,6 @@ struct ProblemListView: View {
     func cleanString(_ str: String) -> String {
         str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
-
-
     
     func isFavorite(problem: Problem) -> Bool {
         favorites.contains { (favorite: Favorite) -> Bool in
@@ -132,13 +116,12 @@ extension String {
     }
 }
 
-
 struct ProblemListView_Previews: PreviewProvider {
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(selectedProblem: .constant(Problem()), presentProblemDetails: .constant(false), centerOnProblem: .constant(Problem()), centerOnProblemCount: .constant(1))
+            ProblemListView(centerOnProblem: .constant(Problem()), centerOnProblemCount: .constant(1))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())

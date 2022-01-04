@@ -80,7 +80,7 @@ struct AreaView: View {
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentList) {
-                            ProblemListView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount)
+                            ProblemListView(centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount)
                                 .environment(\.managedObjectContext, managedObjectContext)
                         }
                 )
@@ -162,7 +162,7 @@ struct AreaView: View {
 //                showList.toggle()
                 presentList = true
             }) {
-                Text("Liste")
+                Text("area.list")
 //                    .font(.body)
                     .padding(.vertical)
                     .padding(.leading)
