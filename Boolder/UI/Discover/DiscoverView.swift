@@ -37,8 +37,8 @@ struct DiscoverView: View {
                                             Image("cover-area-13")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
+                                                .frame(width: 200, height: 120)
+                                                .cornerRadius(8)
                                         }
                                         .padding(.leading, 16)
                                         .onTapGesture {
@@ -50,27 +50,11 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-area-1")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 1
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
                                             Image("cover-area-14")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
+                                                .frame(width: 200, height: 120)
+                                                .cornerRadius(8)
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 14
@@ -85,8 +69,8 @@ struct DiscoverView: View {
                                             Image("cover-area-2")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
+                                                .frame(width: 200, height: 120)
+                                                .cornerRadius(8)
                                         }
                                         .onTapGesture {
                                             dataStore.areaId = 2
@@ -98,14 +82,30 @@ struct DiscoverView: View {
                                     
                                     NavigationLink(destination: AreaView(), isActive: $presentArea) {
                                         VStack(alignment: .leading) {
-                                            Image("cover-area-5")
+                                            Image("cover-area-18")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 255, height: 155)
-                                                .cornerRadius(16)
+                                                .frame(width: 200, height: 120)
+                                                .cornerRadius(8)
                                         }
                                         .onTapGesture {
-                                            dataStore.areaId = 5
+                                            dataStore.areaId = 18
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                    .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                        VStack(alignment: .leading) {
+                                            Image("cover-area-19")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 200, height: 120)
+                                                .cornerRadius(8)
+                                        }
+                                        .onTapGesture {
+                                            dataStore.areaId = 19
                                             dataStore.filters = Filters()
                                             presentArea = true
                                         }
