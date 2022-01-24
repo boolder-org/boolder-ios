@@ -158,6 +158,60 @@ struct DiscoverView: View {
                         
                     }
                     
+//                    ZStack {
+//                        Color.appGreen
+//                            .aspectRatio(contentMode: .fill)
+//                            .frame(height: 120)
+//                            .cornerRadius(8)
+//                            .padding(16)
+//
+//                        Text("Envie d'aider Boolder ?")
+//                            .foregroundColor(.systemBackground)
+//                    }
+                    
+//                    VStack(alignment: .leading) {
+//                        Text("Soutenir Boolder")
+//                            .font(.title2).bold()
+//                            .padding(.horizontal, 16)
+//                            .padding(.top, 16)
+//                            .padding(.bottom, 8)
+//                        
+//                        Text("Boolder est gratuit et repose sur le travail de passionnés bénévoles. Un petit coup de pouce est toujours apprécié !")
+//                            .foregroundColor(.gray)
+//                            .font(.caption)
+//                            .padding(.horizontal, 16)
+//                        
+//                        Button(action: {
+//                            
+//                        }) {
+//                            HStack(alignment: .center, spacing: 16) {
+//                                Spacer()
+//                                
+//                                Image(systemName: "star")
+//                                    .font(Font.body.weight(.bold))
+//                                
+//                                Text("Noter sur l'App Store")
+//                                    .fontWeight(.bold)
+//                                    .padding(.vertical)
+//                                    .fixedSize(horizontal: true, vertical: true)
+//                                
+//                                Spacer()
+//                            }
+//                            .padding(.horizontal)
+//                        }
+//                        .buttonStyle(BoolderButtonStyle())
+//                        .padding(.horizontal, 16)
+//                        .padding(.vertical, 8)
+//                        
+////                        HStack {
+////                            Spacer()
+////                            Text("Non merci")
+////                                .foregroundColor(.appGreen)
+////                            Spacer()
+////                        }
+////                        .padding(.horizontal, 16)
+//                    }
+                    
                     #if DEVELOPMENT
                     
                     VStack(alignment: .leading) {
