@@ -36,7 +36,7 @@ class DataStore : ObservableObject {
     @Published var sortedProblems = [Problem]()
     
     let areas = [
-        Area(id: 1,  name: "Rocher Canon",          problemsCount: 389, published: true),
+        Area(id: 1,  name: "Rocher Canon",          problemsCount: 443, published: true),
         Area(id: 2,  name: "Cul de Chien",          problemsCount: 244, published: true),
         Area(id: 4,  name: "Cuvier",                problemsCount: 502, published: true),
         Area(id: 5,  name: "Franchard Isatis",      problemsCount: 571, published: true),
@@ -64,6 +64,7 @@ class DataStore : ObservableObject {
         Area(id: 27, name: "Jean des Vignes",       problemsCount: 70,  published: false),
         Area(id: 28, name: "La Ségognole",          problemsCount: 147, published: false),
         Area(id: 29, name: "Beauvais Nainville",    problemsCount: 379, published: false),
+        Area(id: 30, name: "J.A. Martin",           problemsCount: 434, published: false),
     ]
 
     init() {
