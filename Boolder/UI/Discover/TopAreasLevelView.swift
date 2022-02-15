@@ -125,6 +125,16 @@ struct TopAreasLevelView: View {
                         Text("top_areas.level.description.intermediate")
                             .font(.body)
                             .foregroundColor(gray)
+                        
+                        HStack(alignment: .top) {
+                            Image(systemName: "exclamationmark.triangle.fill").font(.body)
+                            Text("top_areas.level.intermediate.warning").font(.body)
+                            Spacer()
+                        }
+                            .foregroundColor(Color.orange.opacity(0.8))
+                            .padding()
+                            .background(Color.yellow.opacity(0.2))
+                            .cornerRadius(8)
                     }
                     
                     if(level == 2) {

@@ -27,6 +27,7 @@
 "top_areas.level.description.beginner" = "Ces secteurs offrent de nombreuses voies de niveau 2 et 3, avec des blocs peu hauts et une bonne réception au sol.";
 "top_areas.level.description.intermediate" = "Ces secteurs offrent de nombreuses voies dans les niveaux 4 et 5.";
 "top_areas.level.description.advanced" = "Ces secteurs offrent de nombreuses voies de niveau 6 et plus.";
+"top_areas.level.intermediate.warning" = "Attention : les cotations à Fontainebleau sont plus sévères qu'ailleurs. Un 5a à Fontainebleau équivaut environ à un 6a en salle.";
 "top_areas.level.read_guide" = "Lire le guide pour bien débuter";
 "top_areas.level.beginners_guide_url" = "http://www.boolder.com/fr/articles/beginners-guide";
 "top_areas.groups.title" = "En groupe";
