@@ -7,12 +7,16 @@
 */
 
 // MARK: Discover view
-"discover.title" = "Fontainebleau";
+"discover.title" = "Découvrir";
 "discover.all_areas" = "Tous les secteurs";
 "discover.top_areas.level" = "Par niveau";
 "discover.top_areas.train" = "Accessible en train + vélo";
 "discover.top_areas.dry_fast" = "Sèche vite";
 "discover.top_areas.groups" = "En groupe";
+"discover.support" = "Soutenir Boolder";
+"discover.rate" = "Noter l'appli";
+"discover.feedback" = "Idées d'amélioration";
+"discover.form_url" = "https://forms.gle/oQVnKU2kUCNP1bZz8";
 
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";

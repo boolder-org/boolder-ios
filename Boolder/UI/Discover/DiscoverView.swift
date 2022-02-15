@@ -7,10 +7,12 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct DiscoverView: View {
     @EnvironmentObject var dataStore: DataStore
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
+    @Environment(\.openURL) var openURL
     
     @State var presentArea = false
     @State private var presentAllAreas = false
@@ -150,64 +152,56 @@ struct DiscoverView: View {
                         
                     }
                     
-//                    ZStack {
-//                        Color.appGreen
-//                            .aspectRatio(contentMode: .fill)
-//                            .frame(height: 120)
-//                            .cornerRadius(8)
-//                            .padding(16)
-//
-//                        Text("Envie d'aider Boolder ?")
-//                            .foregroundColor(.systemBackground)
-//                    }
+                    VStack(alignment: .leading) {
+                        Text("discover.support")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        
+                        VStack(alignment: .leading) {
+                            Divider()
+                            
+                            Button(action: {
+                                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                                    SKStoreReviewController.requestReview(in: scene)
+                                }
+                            }, label: {
+                                HStack {
+                                    Image(systemName: "star")
+                                    Text("discover.rate")
+                                    Spacer()
+                                }
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            })
+
+                            Divider()
+                            
+                            Button(action: {
+                                openURL(URL(string: NSLocalizedString("discover.form_url", comment: ""))!)
+                            }, label: {
+                                HStack {
+                                    Image(systemName: "text.bubble")
+                                    Text("discover.feedback")
+                                    Spacer()
+                                }
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            })
+
+                            Divider()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.horizontal)
+                    }
                     
-//                    VStack(alignment: .leading) {
-//                        Text("Soutenir Boolder")
-//                            .font(.title2).bold()
-//                            .padding(.horizontal, 16)
-//                            .padding(.top, 16)
-//                            .padding(.bottom, 8)
-//                        
-//                        Text("Boolder est gratuit et repose sur le travail de passionnés bénévoles. Un petit coup de pouce est toujours apprécié !")
-//                            .foregroundColor(.gray)
-//                            .font(.caption)
-//                            .padding(.horizontal, 16)
-//                        
-//                        Button(action: {
-//                            
-//                        }) {
-//                            HStack(alignment: .center, spacing: 16) {
-//                                Spacer()
-//                                
-//                                Image(systemName: "star")
-//                                    .font(Font.body.weight(.bold))
-//                                
-//                                Text("Noter sur l'App Store")
-//                                    .fontWeight(.bold)
-//                                    .padding(.vertical)
-//                                    .fixedSize(horizontal: true, vertical: true)
-//                                
-//                                Spacer()
-//                            }
-//                            .padding(.horizontal)
-//                        }
-//                        .buttonStyle(BoolderButtonStyle())
-//                        .padding(.horizontal, 16)
-//                        .padding(.vertical, 8)
-//                        
-////                        HStack {
-////                            Spacer()
-////                            Text("Non merci")
-////                                .foregroundColor(.appGreen)
-////                            Spacer()
-////                        }
-////                        .padding(.horizontal, 16)
-//                    }
+
                     
                     #if DEVELOPMENT
                     
                     VStack(alignment: .leading) {
-                        Text("DEV MODE")
+                        Text("DEV")
                             .font(.title2).bold()
                             .padding(.top, 16)
                             .padding(.bottom, 8)
