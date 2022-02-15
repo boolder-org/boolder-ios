@@ -16,6 +16,11 @@ struct DiscoverView: View {
     @State private var presentAllAreas = false
     @State private var presentSettings = false
     
+    let blue =      Gradient(colors: [Color(red: 191/255, green: 219/255, blue: 254/255), Color(red: 171/255, green: 199/255, blue: 234/255)])
+    let green =     Gradient(colors: [Color(red: 167/255, green: 243/255, blue: 208/255), Color(red: 147/255, green: 223/255, blue: 188/255)])
+    let pink =      Gradient(colors: [Color(red: 251/255, green: 207/255, blue: 232/255), Color(red: 231/255, green: 187/255, blue: 212/255)])
+    let yellow =    Gradient(colors: [Color(red: 253/255, green: 230/255, blue: 138/255), Color(red: 233/255, green: 210/255, blue: 118/255)])
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -23,91 +28,77 @@ struct DiscoverView: View {
                     
                     VStack {
                         VStack(alignment: .leading) {
-                            Text("discover.perfect_for_beginners")
-                                .font(.title2).bold()
-                                .padding(.horizontal, 16)
-                                .padding(.top, 16)
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(alignment: .top, spacing: 0) {
                                     
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                    NavigationLink(destination: TopAreasLevelView()) {
                                     
                                         VStack(alignment: .leading) {
-                                            Image("cover-area-13")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 200, height: 120)
-                                                .cornerRadius(8)
-                                        }
-                                        .padding(.leading, 16)
-                                        .onTapGesture {
-                                            dataStore.areaId = 13
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                    
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
-                                        VStack(alignment: .leading) {
-                                            Image("cover-area-14")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 200, height: 120)
-                                                .cornerRadius(8)
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 14
-                                            dataStore.filters = Filters()
-                                            presentArea = true
+                                            HStack {
+                                                Image(systemName: "chart.bar")
+                                                Text("Par niveau")
+                                                    .textCase(.uppercase)
+                                            }
+                                            .padding()
+                                            .font(.headline.weight(.bold))
+                                            .foregroundColor(Color(.systemBackground))
+                                            .frame(width: 200, height: 120)
+                                            .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
+                                            .cornerRadius(8)
                                         }
                                     }
                                     .padding(.leading, 16)
                                     
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                    NavigationLink(destination: TopAreasGroups()) {
+                                    
                                         VStack(alignment: .leading) {
-                                            Image("cover-area-2")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 200, height: 120)
-                                                .cornerRadius(8)
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 2
-                                            dataStore.filters = Filters()
-                                            presentArea = true
+                                            HStack {
+                                                Image(systemName: "person.3")
+                                                Text("En groupe")
+                                                    .textCase(.uppercase)
+                                            }
+                                            .padding()
+                                            .font(.headline.weight(.bold))
+                                            .foregroundColor(Color(.systemBackground))
+                                            .frame(width: 200, height: 120)
+                                            .background(LinearGradient(gradient: green, startPoint: .top, endPoint: .bottom))
+                                            .cornerRadius(8)
                                         }
                                     }
                                     .padding(.leading, 16)
                                     
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                    NavigationLink(destination: TopAreasTrain()) {
+                                    
                                         VStack(alignment: .leading) {
-                                            Image("cover-area-18")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 200, height: 120)
-                                                .cornerRadius(8)
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 18
-                                            dataStore.filters = Filters()
-                                            presentArea = true
+                                            HStack {
+                                                Text("Accessible en train + vélo")
+                                                    .textCase(.uppercase)
+                                            }
+                                            .padding()
+                                            .font(.headline.weight(.bold))
+                                            .foregroundColor(Color(.systemBackground))
+                                            .frame(width: 200, height: 120)
+                                            .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
+                                            .cornerRadius(8)
                                         }
                                     }
                                     .padding(.leading, 16)
                                     
-                                    NavigationLink(destination: AreaView(), isActive: $presentArea) {
+                                    NavigationLink(destination: TopAreasDryFast()) {
+                                    
                                         VStack(alignment: .leading) {
-                                            Image("cover-area-19")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 200, height: 120)
-                                                .cornerRadius(8)
-                                        }
-                                        .onTapGesture {
-                                            dataStore.areaId = 19
-                                            dataStore.filters = Filters()
-                                            presentArea = true
+                                            HStack {
+                                                Image(systemName: "sun.max")
+                                                Text("Sèche vite")
+                                                    .textCase(.uppercase)
+                                            }
+                                            .padding()
+                                            .font(.headline.weight(.bold))
+                                            .foregroundColor(Color(.systemBackground))
+                                            .frame(width: 200, height: 120)
+                                            .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
+                                            .cornerRadius(8)
                                         }
                                     }
                                     .padding(.leading, 16)
@@ -115,6 +106,7 @@ struct DiscoverView: View {
                                 }
                             }
                         }
+                        .padding(.top)
                         
                         VStack(alignment: .leading) {
                             
