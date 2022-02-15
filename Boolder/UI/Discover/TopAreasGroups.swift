@@ -49,7 +49,7 @@ struct TopAreasGroups: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.vertical, 8)
                 
-                Text("Ces secteurs offrent de nombreuses voies dans tous les niveaux de 2 à 7.")
+                Text("top_areas.groups.description")
                     .font(.body)
                     .foregroundColor(gray)
                 
@@ -57,7 +57,7 @@ struct TopAreasGroups: View {
             .padding(.horizontal)
             .padding(.top)
         }
-        .navigationTitle("En groupe")
+        .navigationTitle("top_areas.groups.title")
         .navigationBarTitleDisplayMode(.inline)
         
     }

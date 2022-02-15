@@ -22,10 +22,10 @@ struct TopAreasLevelView: View {
             VStack(alignment: .leading) {
                 
                 VStack {
-                    Picker("Niveau", selection: $level) {
-                        Text("Débutant").tag(0)
-                        Text("Intermédiaire").tag(1)
-                        Text("Avancé").tag(2)
+                    Picker("top_areas.level.level", selection: $level) {
+                        Text("top_areas.level.beginner").tag(0)
+                        Text("top_areas.level.intermediate").tag(1)
+                        Text("top_areas.level.advanced").tag(2)
                     }
                     .pickerStyle(.segmented)
                     
@@ -67,7 +67,7 @@ struct TopAreasLevelView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.vertical, 8)
                         
-                        Text("Ces secteurs offrent de nombreuses voies de niveau 2 et 3, avec des blocs peu hauts et une bonne réception au sol.")
+                        Text("top_areas.level.description.beginner")
                             .font(.body)
                             .foregroundColor(gray)
                         
@@ -78,7 +78,7 @@ struct TopAreasLevelView: View {
                             HStack {
                                 Spacer()
                                 Image(systemName: "book")
-                                Text("Lire le guide pour bien débuter")
+                                Text("top_areas.level.read_guide")
                                 Spacer()
                             }
                         }
@@ -122,7 +122,7 @@ struct TopAreasLevelView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.vertical, 8)
                         
-                        Text("Ces secteurs offrent de nombreuses voies dans les niveaux 4 et 5.")
+                        Text("top_areas.level.description.intermediate")
                             .font(.body)
                             .foregroundColor(gray)
                     }
@@ -160,7 +160,7 @@ struct TopAreasLevelView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.vertical, 8)
                         
-                        Text("Ces secteurs offrent de nombreuses voies de niveau 6 et plus.")
+                        Text("top_areas.level.description.advanced")
                             .font(.body)
                             .foregroundColor(gray)
                     }
@@ -168,7 +168,7 @@ struct TopAreasLevelView: View {
             }
             .padding(.horizontal)
         }
-        .navigationTitle("Par niveau")
+        .navigationTitle("top_areas.level.title")
         .navigationBarTitleDisplayMode(.inline)
     }
     

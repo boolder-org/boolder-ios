@@ -7,11 +7,32 @@
 */
 
 // MARK: Discover view
-"discover.title" = "On grimpe où ?";
-"discover.perfect_for_beginners" = "Idéal pour débuter";
-"discover.train_station_closeby" = "Accessible en train+vélo";
-"discover.dry_fast" = "Sèche vite après la pluie";
+"discover.title" = "Fontainebleau";
 "discover.all_areas" = "Tous les secteurs";
+"discover.top_areas.level" = "Par niveau";
+"discover.top_areas.train" = "Accessible en train + vélo";
+"discover.top_areas.dry_fast" = "Sèche vite";
+"discover.top_areas.groups" = "En groupe";
+
+// MARK: Top areas
+"top_areas.level.title" = "Par niveau";
+"top_areas.level.level" = "Niveau";
+"top_areas.level.beginner" = "Débutant";
+"top_areas.level.intermediate" = "Intermédiaire";
+"top_areas.level.advanced" = "Avancé";
+"top_areas.level.description.beginner" = "Ces secteurs offrent de nombreuses voies de niveau 2 et 3, avec des blocs peu hauts et une bonne réception au sol.";
+"top_areas.level.description.intermediate" = "Ces secteurs offrent de nombreuses voies dans les niveaux 4 et 5.";
+"top_areas.level.description.advanced" = "Ces secteurs offrent de nombreuses voies de niveau 6 et plus.";
+"top_areas.level.read_guide" = "Lire le guide pour bien débuter";
+"top_areas.level.beginners_guide_url" = "http://www.boolder.com/fr/articles/beginners-guide";
+"top_areas.groups.title" = "En groupe";
+"top_areas.groups.description" = "Ces secteurs offrent de nombreuses voies dans tous les niveaux de 2 à 7.";
+"top_areas.train.title" = "Train + vélo";
+"top_areas.train.description" = "Ces secteurs sont accessibles en vélo depuis la gare de Bois-le-Roi.";
+"top_areas.dry_fast.title" = "Sèche vite";
+"top_areas.dry_fast.description" = "Ces secteurs sèchent plus vite que la moyenne grâce à leur exposition au soleil ou au vent.";
+"top_areas.dry_fast.warning" = "Ne grimpez pas si la roche est encore humide, vous risquez de l'abîmer.";
+"top_areas.dry_fast.useful_link" = "Lien utile :";
 
 // MARK: Area view
 "area.filter" = "Filtre";

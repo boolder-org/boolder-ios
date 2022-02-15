@@ -50,13 +50,13 @@ struct TopAreasDryFast: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.vertical, 8)
                 
-                Text("Ces secteurs sèchent plus vite que la moyenne, grâce à leur exposition au soleil ou au vent.")
+                Text("top_areas.dry_fast.description")
                     .font(.body)
                     .foregroundColor(gray)
                     
                 HStack(alignment: .top) {
                     Image(systemName: "exclamationmark.triangle.fill").font(.body)
-                    Text("Ne grimpez pas si la roche est encore humide, vous risquez de l'abîmer.").font(.body)
+                    Text("top_areas.dry_fast.warning").font(.body)
                     Spacer()
                 }
                     .foregroundColor(Color.orange.opacity(0.8))
@@ -65,7 +65,7 @@ struct TopAreasDryFast: View {
                     .cornerRadius(8)
                 
                 HStack(alignment: .top, spacing: 4) {
-                    Text("Lien utile :")
+                    Text("top_areas.dry_fast.useful_link")
                         .foregroundColor(gray)
                     
                     Button(action: {
@@ -80,7 +80,7 @@ struct TopAreasDryFast: View {
             .padding(.horizontal)
             .padding(.top)
         }
-        .navigationTitle("Sèche vite")
+        .navigationTitle("top_areas.dry_fast.title")
         .navigationBarTitleDisplayMode(.inline)
         
     }

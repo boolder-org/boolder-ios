@@ -125,14 +125,14 @@ struct TopAreasTrain: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                 .padding(.vertical, 8)
                 
-                Text("Ces secteurs sont accessibles en vélo depuis la gare de Bois-le-Roi.")
+                Text("top_areas.train.description")
                     .font(.body)
                     .foregroundColor(gray)
             }
             .padding(.horizontal)
             .padding(.top)
         }
-        .navigationTitle("Train + Vélo")
+        .navigationTitle("top_areas.train.title")
         .navigationBarTitleDisplayMode(.inline)
         
     }

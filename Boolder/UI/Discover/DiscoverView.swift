@@ -37,7 +37,7 @@ struct DiscoverView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
                                                 Image(systemName: "chart.bar")
-                                                Text("Par niveau")
+                                                Text("discover.top_areas.level")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()
@@ -55,7 +55,7 @@ struct DiscoverView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
                                                 Image(systemName: "person.3")
-                                                Text("En groupe")
+                                                Text("discover.top_areas.groups")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()
@@ -72,7 +72,7 @@ struct DiscoverView: View {
                                     
                                         VStack(alignment: .leading) {
                                             HStack {
-                                                Text("Accessible en train + vélo")
+                                                Text("discover.top_areas.train")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()
@@ -90,7 +90,7 @@ struct DiscoverView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
                                                 Image(systemName: "sun.max")
-                                                Text("Sèche vite")
+                                                Text("discover.top_areas.dry_fast")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()
