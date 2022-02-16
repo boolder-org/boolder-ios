@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DropShadow: ViewModifier {
-    let visible: Bool
+    var visible: Bool = true
     
     func body(content: Content) -> some View {
         content
