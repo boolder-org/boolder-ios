@@ -179,7 +179,7 @@ struct DiscoverView: View {
                             Divider()
                             
                             Button(action: {
-                                openURL(URL(string: NSLocalizedString("discover.form_url", comment: ""))!)
+                                openURL(feedbackURL)
                             }, label: {
                                 HStack {
                                     Image(systemName: "text.bubble")
@@ -251,6 +251,13 @@ struct DiscoverView: View {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
             
         }
+    }
+    
+    var feedbackURL: URL {
+        if(NSLocale.websiteLocale == "en") {
+            return URL(string: "https://forms.gle/jnnUWyg9tcXtDjZj9")!
+        }
+        return URL(string: "https://forms.gle/oQVnKU2kUCNP1bZz8")!
     }
 }
 

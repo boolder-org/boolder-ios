@@ -73,7 +73,7 @@ struct TopAreasLevelView: View {
                         
                         
                         Button(action: {
-                            openURL(URL(string: NSLocalizedString("top_areas.level.beginners_guide_url", comment: ""))!)
+                            openURL(guideURL)
                         }) {
                             HStack {
                                 Spacer()
@@ -198,6 +198,10 @@ struct TopAreasLevelView: View {
         [14,12,1,11,4,5,23,7,10,15,13].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
+    }
+    
+    var guideURL: URL {
+        URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!
     }
 }
 

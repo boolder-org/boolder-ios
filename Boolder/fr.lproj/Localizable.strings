@@ -16,7 +16,6 @@
 "discover.support" = "Soutenir Boolder";
 "discover.rate" = "Noter l'appli";
 "discover.feedback" = "Idées d'amélioration";
-"discover.form_url" = "https://forms.gle/oQVnKU2kUCNP1bZz8";
 
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";
@@ -29,7 +28,6 @@
 "top_areas.level.description.advanced" = "Ces secteurs offrent de nombreuses voies de niveau 6 et plus.";
 "top_areas.level.intermediate.warning" = "Attention : les cotations à Fontainebleau sont plus sévères qu'ailleurs. Un 5a à Fontainebleau équivaut environ à un 6a en salle.";
 "top_areas.level.read_guide" = "Lire le guide pour bien débuter";
-"top_areas.level.beginners_guide_url" = "http://www.boolder.com/fr/articles/beginners-guide";
 "top_areas.groups.title" = "En groupe";
 "top_areas.groups.description" = "Ces secteurs offrent de nombreuses voies dans tous les niveaux de 2 à 7.";
 "top_areas.train.title" = "Train + vélo";
