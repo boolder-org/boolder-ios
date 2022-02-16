@@ -14,7 +14,7 @@ struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
-    @State private var lineDrawPercentage: CGFloat = .zero
+    @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
     
     @ObservedObject var pinchToZoomState: PinchToZoomState
@@ -126,6 +126,7 @@ struct TopoView: View {
         )
     }
     
+    // FIXME: this code is duplicated from ProblemsDetailsView.swift => make it DRY
     func switchToProblem(_ newProblem: Problem) {
         lineDrawPercentage = 0.0
         problem = newProblem

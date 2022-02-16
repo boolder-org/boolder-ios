@@ -17,6 +17,7 @@ class Problem : Identifiable {
     var grade = Grade.min
     var name: String? = nil
     var bleauInfoId: String? = nil
+    var parentId: Int? = nil
     var height: Int? = nil
     var steepness: Steepness = .other
     var id: Int!
@@ -102,7 +103,23 @@ class Problem : Identifiable {
         guard line != nil else { return [] }
         
         return dataStore.problems.filter { problem in
-            (line?.topoId == problem.line?.topoId) && (id != problem.id)
+            (line?.topoId == problem.line?.topoId)
+            && (id != problem.id) // don't show itself
+            && (problem.parentId == nil) && (problem.id != parentId) // don't show variants
+        }
+    }
+    
+    // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
+    var variants: [Problem] {
+        if let parentId = parentId {
+            return dataStore.problems.filter { problem in
+                ((problem.id == parentId) || (problem.parentId == id)) && problem.id != id
+            }
+        }
+        else {
+            return dataStore.problems.filter { problem in
+                problem.parentId == id
+            }
         }
     }
     

@@ -19,15 +19,13 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
-    
     @Binding var areaResourcesDownloaded: Bool
     
-    @State var presentMoreActionsheet = false
-    @State var presentSaveActionsheet = false
-    @State private var presentPoiActionSheet = false
+    @State private var presentSaveActionsheet = false
+    @State private var presentSharesheet = false
+    @State private var presentEditProblem = false
     
-    @State var presentEditProblem = false
-    
+    @State private var lineDrawPercentage: CGFloat = .zero
     @StateObject var pinchToZoomState = PinchToZoomState()
     let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
     
@@ -36,155 +34,18 @@ struct ProblemDetailsView: View {
             VStack(alignment: .leading) {
                 TopoView(
                     problem: $problem,
+                    lineDrawPercentage: $lineDrawPercentage,
                     areaResourcesDownloaded: $areaResourcesDownloaded,
                     pinchToZoomState: pinchToZoomState,
                     pinchToZoomPadding: pinchToZoomPadding
                 )
-                .zIndex(10)
+                    .zIndex(10)
                 
-                ZStack {
-                    VStack(alignment: .leading, spacing: 8) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                HStack {
-                                    Text(problem.nameWithFallback())
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.primary)
-                                        .lineLimit(2)
-                                    
-                                    Spacer()
-                                    
-                                    Text(problem.grade.string)
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                }
-                            }
-                            
-                            HStack {
-                                
-                                if problem.steepness != .other {
-                                    HStack(alignment: .firstTextBaseline) {
-                                        Image(problem.steepness.imageName)
-                                            .font(.body)
-                                            .frame(minWidth: 16)
-                                        Text(problem.steepness.localizedName)
-                                            .font(.body)
-                                        Text(problem.readableDescription() ?? "")
-                                            .font(.caption)
-                                            .foregroundColor(Color.gray)
-                                    }
-                                }
-                                
-                                Spacer()
-                                
-                                if isFavorite() {
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(Color.yellow)
-                                }
-                                
-                                if isTicked() {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.appGreen)
-                                }
-                            }
-                            
-                            if problem.isRisky() {
-                                
-                                HStack {
-                                    Image(systemName: "exclamationmark.shield.fill")
-                                        .font(.body)
-                                        .foregroundColor(Color.red)
-                                        .frame(minWidth: 16)
-                                    Text("problem.risky.long")
-                                        .font(.body)
-                                        .foregroundColor(Color.red)
-                                }
-                            }
-                        }
-                        .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
-                        
-                        VStack {
-                            Divider()
-                            
-                            Button(action:{
-                                presentSaveActionsheet = true
-                            }) {
-                                HStack {
-                                    Image(systemName: "star")
-                                    Text("problem.action.save").font(.body)
-                                    Spacer()
-                                }
-                            }
-                            .actionSheet(isPresented: $presentSaveActionsheet) {
-                                ActionSheet(title: Text("problem.action.save"), buttons: [
-                                    .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
-                                        toggleFavorite()
-                                    },
-                                    .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
-                                        toggleTick()
-                                    },
-                                    .cancel()
-                                ])
-                            }
-                            
-                            Divider()
-                            
-                            Button(action:{
-                                presentPoiActionSheet = true
-                            }) {
-                                HStack {
-                                    Image(systemName: "square.and.arrow.up")
-                                    Text("problem.action.share").font(.body)
-                                    Spacer()
-                                }
-                            }
-                            .background(
-                                PoiActionSheet(
-                                    description: shareProblemDescription(),
-                                    location: problem.coordinate,
-                                    navigationMode: false,
-                                    presentPoiActionSheet: $presentPoiActionSheet
-                                )
-                            )
-                            
-                            Divider()
-                            
-                            Button(action: {
-                                presentMoreActionsheet = true
-                            })
-                            {
-                                HStack {
-                                    Image(systemName: "ellipsis.circle")
-                                    Text("problem.action.more")
-                                        .font(.body)
-                                        .foregroundColor(Color.appGreen)
-                                    Spacer()
-                                }
-                            }
-                            .actionSheet(isPresented: $presentMoreActionsheet) {
-                                ActionSheet(
-                                    title: Text("problem.action.more"),
-                                    buttons: buttonsForMoreActionSheet()
-                                )
-                            }
-                            
-                            Divider()
-                            
-                            
-                        }
-                        .padding(.top, 16)
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 0)
-                    .layoutPriority(1) // without this the imageview prevents the title from going multiline
-                    
-                    Color.systemBackground
-                        .opacity(overlayOpacity)
-                }
+                infos
                 
-                Spacer()
+                actionButtons
+                
+                variants
             }
         }
         .background(
@@ -196,49 +57,201 @@ struct ProblemDetailsView: View {
         )
     }
     
-    var overlayOpacity: Double {
-        if pinchToZoomState.scale <= 1 {
-            return 0
+    
+    var infos: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 8) {
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Text(problem.nameWithFallback())
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .lineLimit(2)
+                        
+                        Spacer()
+                        
+                        Text(problem.grade.string)
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
+                }
+                
+                HStack {
+                    
+                    if problem.steepness != .other {
+                        HStack(alignment: .firstTextBaseline) {
+                            Image(problem.steepness.imageName)
+                                .font(.body)
+                                .frame(minWidth: 16)
+                            Text(problem.steepness.localizedName)
+                                .font(.body)
+                            Text(problem.readableDescription() ?? "")
+                                .font(.caption)
+                                .foregroundColor(Color.gray)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    if isFavorite() {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                    }
+                    
+                    if isTicked() {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(Color.appGreen)
+                    }
+                }
+                
+                //                            if problem.isRisky() {
+                //
+                //                                HStack {
+                //                                    Image(systemName: "exclamationmark.shield.fill")
+                //                                        .font(.body)
+                //                                        .foregroundColor(Color.red)
+                //                                        .frame(minWidth: 16)
+                //                                    Text("problem.risky.long")
+                //                                        .font(.body)
+                //                                        .foregroundColor(Color.red)
+                //                                }
+                //                            }
+            }
+            .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
         }
-        
-        else if pinchToZoomState.scale > 1 && pinchToZoomState.scale < 2 {
-            return Double(pinchToZoomState.scale - 1.0)
-        }
-        else {
-            return 1
+        .padding(.top, 0)
+        .padding(.horizontal)
+        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+    }
+    
+    var actionButtons: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(alignment: .center, spacing: 16) {
+                
+                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                    Button(action: {
+                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                    }) {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "info.circle")
+                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
+                    }
+                    .buttonStyle(Pill(fill: true))
+                }
+                
+                Button(action: {
+                    presentSaveActionsheet = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "bookmark")
+                        Text("problem.action.save").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(Pill())
+                .actionSheet(isPresented: $presentSaveActionsheet) {
+                    ActionSheet(title: Text("problem.action.save"), buttons: [
+                        .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+                            toggleFavorite()
+                        },
+                        .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+                            toggleTick()
+                        },
+                        .cancel()
+                    ])
+                }
+                
+                Button(action: {
+                    presentSharesheet = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(Pill())
+                .sheet(isPresented: $presentSharesheet,
+                       content: {
+                    ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
+                )
+                
+                Button(action: {
+                    if let url = mailToURL {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "text.bubble")
+                        Text("problem.action.report").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(Pill())
+                
+                #if DEVELOPMENT
+                
+                Button(action: {
+                    presentEditProblem = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "pencil")
+                        Text("problem.action.edit").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(Pill())
+                
+                #endif
+            }
+            .padding(.horizontal)
+            .padding(.vertical)
         }
     }
     
-    private func buttonsForMoreActionSheet() -> [Alert.Button] {
-        var buttons = [Alert.Button]()
-        
-        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-            buttons.append(
-                .default(Text("problem.action.see_on_bleau_info")) {
-                    openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+    var variants: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if(problem.variants.count > 0) {
+                
+                Divider()
+                
+                ForEach(problem.variants) { variant in
+                    
+                    Button(action: {
+                        switchToProblem(variant)
+                        
+                    }, label: {
+                        HStack {
+                            Text(variant.nameWithFallback())
+                                .lineLimit(2)
+                            Spacer()
+                            Text(variant.grade.string)
+                        }
+                        .foregroundColor(.primary)
+                        .padding(.horizontal)
+                        .frame(height: 44)
+                    })
+                    
+                    Divider()
                 }
-            )
-        }
-        
-        if let url = mailToURL {
-            buttons.append(
-                .default(Text("problem.action.report")) {
-                    UIApplication.shared.open(url)
-                }
-            )
-        }
-        
-        #if DEVELOPMENT
-        buttons.append(
-            .default(Text("Edit (dev only)")) {
-                presentEditProblem = true
             }
-        )
-        #endif
-        
-        buttons.append(.cancel())
-        
-        return buttons
+            
+            Spacer()
+        }
+        .padding(.top, 8)
+    }
+    
+    var boolderURL: URL {
+        URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/p/\(String(problem.id))")!
     }
     
     var mailToURL: URL? {
@@ -255,16 +268,31 @@ struct ProblemDetailsView: View {
             "Boolder \(appVersion ?? "") (\(buildNumber ?? ""))",
             "iOS \(UIDevice.current.systemVersion)",
         ]
-        .map{$0.stringByAddingPercentEncodingForRFC3986() ?? ""}
-        .joined(separator: "%0D%0A")
+            .map{$0.stringByAddingPercentEncodingForRFC3986() ?? ""}
+            .joined(separator: "%0D%0A")
         
         return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
     }
     
-    func shareProblemDescription() -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.area(withId: dataStore.areaId)!.name)
-    }
+    // FIXME: this code is duplicated from TopoView.swift => make it DRY
+    
+    func switchToProblem(_ newProblem: Problem) {
+        lineDrawPercentage = 0.0
+        problem = newProblem
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            animate { lineDrawPercentage = 1.0 }
+        }
+    }
+    
+    func animate(action: () -> Void) {
+        withAnimation(Animation.easeInOut(duration: 0.5)) {
+            action()
+        }
+    }
+    
+    // MARK: Ticks and favorites
+    
     func isFavorite() -> Bool {
         favorite() != nil
     }
@@ -354,12 +382,12 @@ struct ProblemDetailsView: View {
 
 // https://useyourloaf.com/blog/how-to-percent-encode-a-url-string/
 extension String {
-  func stringByAddingPercentEncodingForRFC3986() -> String? {
-    let unreserved = "-._~/?"
-    let allowed = NSMutableCharacterSet.alphanumeric()
-    allowed.addCharacters(in: unreserved)
-    return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
-  }
+    func stringByAddingPercentEncodingForRFC3986() -> String? {
+        let unreserved = "-._~/?"
+        let allowed = NSMutableCharacterSet.alphanumeric()
+        allowed.addCharacters(in: unreserved)
+        return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
+    }
 }
 
 

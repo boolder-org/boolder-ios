@@ -1,5 +1,5 @@
 //
-//  BoolderButtonStyle.swift
+//  LargeButton.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 19/12/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct BoolderButtonStyle: ButtonStyle {
+struct LargeButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
             .frame(maxWidth: .infinity)
