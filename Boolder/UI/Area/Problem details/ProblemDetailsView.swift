@@ -182,49 +182,36 @@ struct ProblemDetailsView: View {
                     .padding(.vertical)
                 }
                 
-                VStack(alignment: .leading, spacing: 4) {
+                if(problem.variants.count > 0) {
                     
-                    Divider()
-                    
-                    HStack {
-                        ProblemCircleView(problem: problem)
+                    VStack(alignment: .leading, spacing: 4) {
                         
-                        Text("Le Crabe (assis)")
-                        //                            .foregroundColor(Color.appGreen)
-                            .lineLimit(2)
+                        Divider()
                         
-                        Spacer()
-                        
-                        Text("5c")
-                        //                            .font(.callout)
+                        ForEach(problem.variants) { variant in
+                            
+                            Button(action: {
+                                switchToProblem(variant)
+                                
+                            }, label: {
+                                HStack {
+                                    Text(variant.nameWithFallback())
+                                        .lineLimit(2)
+                                    Spacer()
+                                    Text(variant.grade.string)
+                                }
+                                .foregroundColor(.primary)
+                                .padding(.horizontal)
+                                .frame(height: 44)
+                            })
+                            
+                            Divider()
+                        }
                     }
-                    .padding(.horizontal)
-                    .padding(.vertical, 4)
-                    //                    .padding(.top, 8)
+                    .padding(.top, 8)
                     
-                    Divider()
-                    
-                    HStack {
-                        ProblemCircleView(problem: problem)
-                        
-                        Text("Le Crabe (direct)")
-                        //                            .foregroundColor(Color.appGreen)
-                            .lineLimit(2)
-                        
-                        Spacer()
-                        
-                        Text("5b")
-                        //                            .font(.callout)
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical, 4)
-                    
-                    Divider()
+                    Spacer()
                 }
-                .padding(.top, 8)
-                .opacity(0)
-                
-                Spacer()
             }
         }
         .background(
@@ -259,6 +246,25 @@ struct ProblemDetailsView: View {
         
         return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
     }
+    
+    // FIXME: this code is duplicated from TopoView.swift => make it DRY
+    
+    func switchToProblem(_ newProblem: Problem) {
+        lineDrawPercentage = 0.0
+        problem = newProblem
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            animate { lineDrawPercentage = 1.0 }
+        }
+    }
+    
+    func animate(action: () -> Void) {
+        withAnimation(Animation.easeInOut(duration: 0.5)) {
+            action()
+        }
+    }
+    
+    // MARK: Ticks and favorites
     
     func isFavorite() -> Bool {
         favorite() != nil

@@ -126,6 +126,7 @@ struct TopoView: View {
         )
     }
     
+    // FIXME: this code is duplicated from ProblemsDetailsView.swift => make it DRY
     func switchToProblem(_ newProblem: Problem) {
         lineDrawPercentage = 0.0
         problem = newProblem
