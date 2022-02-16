@@ -39,147 +39,73 @@ struct ProblemDetailsView: View {
                     pinchToZoomState: pinchToZoomState,
                     pinchToZoomPadding: pinchToZoomPadding
                 )
-                .zIndex(10)
+                    .zIndex(10)
                 
-//                VStack {
+                VStack(alignment: .leading, spacing: 8) {
                     VStack(alignment: .leading, spacing: 8) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                HStack {
-                                    Text(problem.nameWithFallback())
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.primary)
-                                        .lineLimit(2)
-                                    
-                                    Spacer()
-                                    
-                                    Text(problem.grade.string)
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                }
-                            }
-                            
+                        
+                        VStack(alignment: .leading, spacing: 4) {
                             HStack {
-                                
-                                if problem.steepness != .other {
-                                    HStack(alignment: .firstTextBaseline) {
-                                        Image(problem.steepness.imageName)
-                                            .font(.body)
-                                            .frame(minWidth: 16)
-                                        Text(problem.steepness.localizedName)
-                                            .font(.body)
-                                        Text(problem.readableDescription() ?? "")
-                                            .font(.caption)
-                                            .foregroundColor(Color.gray)
-                                    }
-                                }
+                                Text(problem.nameWithFallback())
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.primary)
+                                    .lineLimit(2)
                                 
                                 Spacer()
                                 
-                                if isFavorite() {
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(Color.yellow)
-                                }
-                                
-                                if isTicked() {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundColor(Color.appGreen)
+                                Text(problem.grade.string)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                            }
+                        }
+                        
+                        HStack {
+                            
+                            if problem.steepness != .other {
+                                HStack(alignment: .firstTextBaseline) {
+                                    Image(problem.steepness.imageName)
+                                        .font(.body)
+                                        .frame(minWidth: 16)
+                                    Text(problem.steepness.localizedName)
+                                        .font(.body)
+                                    Text(problem.readableDescription() ?? "")
+                                        .font(.caption)
+                                        .foregroundColor(Color.gray)
                                 }
                             }
                             
-//                            if problem.isRisky() {
-//
-//                                HStack {
-//                                    Image(systemName: "exclamationmark.shield.fill")
-//                                        .font(.body)
-//                                        .foregroundColor(Color.red)
-//                                        .frame(minWidth: 16)
-//                                    Text("problem.risky.long")
-//                                        .font(.body)
-//                                        .foregroundColor(Color.red)
-//                                }
-//                            }
+                            Spacer()
+                            
+                            if isFavorite() {
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color.yellow)
+                            }
+                            
+                            if isTicked() {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(Color.appGreen)
+                            }
                         }
-                        .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
                         
-//                        VStack {
-//                            Divider()
-//
-//                            Button(action:{
-//                                presentSaveActionsheet = true
-//                            }) {
-//                                HStack {
-//                                    Image(systemName: "star")
-//                                    Text("problem.action.save").font(.body)
-//                                    Spacer()
-//                                }
-//                            }
-//                            .actionSheet(isPresented: $presentSaveActionsheet) {
-//                                ActionSheet(title: Text("problem.action.save"), buttons: [
-//                                    .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
-//                                        toggleFavorite()
-//                                    },
-//                                    .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
-//                                        toggleTick()
-//                                    },
-//                                    .cancel()
-//                                ])
-//                            }
-//
-//                            Divider()
-//
-//                            Button(action:{
-//                                presentPoiActionSheet = true
-//                            }) {
-//                                HStack {
-//                                    Image(systemName: "square.and.arrow.up")
-//                                    Text("problem.action.share").font(.body)
-//                                    Spacer()
-//                                }
-//                            }
-//                            .background(
-//                                PoiActionSheet(
-//                                    description: shareProblemDescription(),
-//                                    location: problem.coordinate,
-//                                    navigationMode: false,
-//                                    presentPoiActionSheet: $presentPoiActionSheet
-//                                )
-//                            )
-//
-//                            Divider()
-//
-//                            Button(action: {
-//                                presentMoreActionsheet = true
-//                            })
-//                            {
-//                                HStack {
-//                                    Image(systemName: "ellipsis.circle")
-//                                    Text("problem.action.more")
-//                                        .font(.body)
-//                                        .foregroundColor(Color.appGreen)
-//                                    Spacer()
-//                                }
-//                            }
-//                            .actionSheet(isPresented: $presentMoreActionsheet) {
-//                                ActionSheet(
-//                                    title: Text("problem.action.more"),
-//                                    buttons: buttonsForMoreActionSheet()
-//                                )
-//                            }
-//
-//                            Divider()
-//
-//
-//                        }
-//                        .padding(.top, 16)
-                        
-                        
+                        //                            if problem.isRisky() {
+                        //
+                        //                                HStack {
+                        //                                    Image(systemName: "exclamationmark.shield.fill")
+                        //                                        .font(.body)
+                        //                                        .foregroundColor(Color.red)
+                        //                                        .frame(minWidth: 16)
+                        //                                    Text("problem.risky.long")
+                        //                                        .font(.body)
+                        //                                        .foregroundColor(Color.red)
+                        //                                }
+                        //                            }
                     }
-                    .padding(.top, 0)
-                    .padding(.horizontal)
-                    .layoutPriority(1) // without this the imageview prevents the title from going multiline
+                    .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
+                }
+                .padding(.top, 0)
+                .padding(.horizontal)
+                .layoutPriority(1) // without this the imageview prevents the title from going multiline
                 
                 
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -251,68 +177,44 @@ struct ProblemDetailsView: View {
                             .padding(.horizontal, 16)
                         }
                         .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
-                        
-                        //                            Spacer()
-                        
                     }
                     .padding(.horizontal)
                     .padding(.vertical)
                 }
-//                .padding(.top, 16)
-                    
-//                    Color.systemBackground
-//                        .opacity(overlayOpacity)
-//                }
-                
-//                HStack {
-//                    Text("Variantes")
-//                        .font(.title3)
-//                        .foregroundColor(.primary)
-//                        .lineLimit(2)
-//
-//                    Spacer()
-//
-////                        Text(problem.grade.string)
-////                            .font(.title)
-////                            .fontWeight(.bold)
-//                }
-//                .padding(.horizontal)
-//                .padding(.bottom, 8)
-                
                 
                 VStack(alignment: .leading, spacing: 4) {
                     
                     Divider()
-
+                    
                     HStack {
                         ProblemCircleView(problem: problem)
                         
                         Text("Le Crabe (assis)")
-//                            .foregroundColor(Color.appGreen)
+                        //                            .foregroundColor(Color.appGreen)
                             .lineLimit(2)
                         
                         Spacer()
                         
                         Text("5c")
-//                            .font(.callout)
+                        //                            .font(.callout)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 4)
-//                    .padding(.top, 8)
+                    //                    .padding(.top, 8)
                     
                     Divider()
-
+                    
                     HStack {
                         ProblemCircleView(problem: problem)
                         
                         Text("Le Crabe (direct)")
-//                            .foregroundColor(Color.appGreen)
+                        //                            .foregroundColor(Color.appGreen)
                             .lineLimit(2)
                         
                         Spacer()
                         
                         Text("5b")
-//                            .font(.callout)
+                        //                            .font(.callout)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 4)
@@ -320,13 +222,13 @@ struct ProblemDetailsView: View {
                     Divider()
                 }
                 .padding(.top, 8)
-//                .background(Color.systemBackground)
-//                .cornerRadius(8)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .stroke(Color(UIColor.quaternaryLabel), lineWidth: 1)
-//                )
-//                .padding(.horizontal)
+                //                .background(Color.systemBackground)
+                //                .cornerRadius(8)
+                //                .overlay(
+                //                    RoundedRectangle(cornerRadius: 8)
+                //                        .stroke(Color(UIColor.quaternaryLabel), lineWidth: 1)
+                //                )
+                //                .padding(.horizontal)
                 .opacity(0)
                 
                 Spacer()
@@ -373,13 +275,13 @@ struct ProblemDetailsView: View {
             )
         }
         
-        #if DEVELOPMENT
+#if DEVELOPMENT
         buttons.append(
             .default(Text("Edit (dev only)")) {
                 presentEditProblem = true
             }
         )
-        #endif
+#endif
         
         buttons.append(.cancel())
         
@@ -404,8 +306,8 @@ struct ProblemDetailsView: View {
             "Boolder \(appVersion ?? "") (\(buildNumber ?? ""))",
             "iOS \(UIDevice.current.systemVersion)",
         ]
-        .map{$0.stringByAddingPercentEncodingForRFC3986() ?? ""}
-        .joined(separator: "%0D%0A")
+            .map{$0.stringByAddingPercentEncodingForRFC3986() ?? ""}
+            .joined(separator: "%0D%0A")
         
         return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
     }
@@ -413,7 +315,7 @@ struct ProblemDetailsView: View {
     func shareProblemDescription() -> String {
         return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.area(withId: dataStore.areaId)!.name)
     }
-        
+    
     func isFavorite() -> Bool {
         favorite() != nil
     }
@@ -503,12 +405,12 @@ struct ProblemDetailsView: View {
 
 // https://useyourloaf.com/blog/how-to-percent-encode-a-url-string/
 extension String {
-  func stringByAddingPercentEncodingForRFC3986() -> String? {
-    let unreserved = "-._~/?"
-    let allowed = NSMutableCharacterSet.alphanumeric()
-    allowed.addCharacters(in: unreserved)
-    return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
-  }
+    func stringByAddingPercentEncodingForRFC3986() -> String? {
+        let unreserved = "-._~/?"
+        let allowed = NSMutableCharacterSet.alphanumeric()
+        allowed.addCharacters(in: unreserved)
+        return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
+    }
 }
 
 
