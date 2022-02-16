@@ -41,177 +41,11 @@ struct ProblemDetailsView: View {
                 )
                     .zIndex(10)
                 
-                VStack(alignment: .leading, spacing: 8) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack {
-                                Text(problem.nameWithFallback())
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.primary)
-                                    .lineLimit(2)
-                                
-                                Spacer()
-                                
-                                Text(problem.grade.string)
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                            }
-                        }
-                        
-                        HStack {
-                            
-                            if problem.steepness != .other {
-                                HStack(alignment: .firstTextBaseline) {
-                                    Image(problem.steepness.imageName)
-                                        .font(.body)
-                                        .frame(minWidth: 16)
-                                    Text(problem.steepness.localizedName)
-                                        .font(.body)
-                                    Text(problem.readableDescription() ?? "")
-                                        .font(.caption)
-                                        .foregroundColor(Color.gray)
-                                }
-                            }
-                            
-                            Spacer()
-                            
-                            if isFavorite() {
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(Color.yellow)
-                            }
-                            
-                            if isTicked() {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(Color.appGreen)
-                            }
-                        }
-                        
-                        //                            if problem.isRisky() {
-                        //
-                        //                                HStack {
-                        //                                    Image(systemName: "exclamationmark.shield.fill")
-                        //                                        .font(.body)
-                        //                                        .foregroundColor(Color.red)
-                        //                                        .frame(minWidth: 16)
-                        //                                    Text("problem.risky.long")
-                        //                                        .font(.body)
-                        //                                        .foregroundColor(Color.red)
-                        //                                }
-                        //                            }
-                    }
-                    .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
-                }
-                .padding(.top, 0)
-                .padding(.horizontal)
-                .layoutPriority(1) // without this the imageview prevents the title from going multiline
+                infos
                 
+                actionButtons
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .center, spacing: 16) {
-                        
-                        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-                            Button(action: {
-                                openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-                            }) {
-                                HStack(alignment: .center, spacing: 8) {
-                                    Image(systemName: "info.circle")
-                                    Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
-                                }
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                            }
-                            .buttonStyle(BoolderSecondaryButtonStyle(fill: true))
-                        }
-                        
-                        Button(action: {
-                            presentSaveActionsheet = true
-                        }) {
-                            HStack(alignment: .center, spacing: 8) {
-                                Image(systemName: "bookmark")
-                                Text("problem.action.save").fixedSize(horizontal: true, vertical: true)
-                            }
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                        }
-                        .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
-                        .actionSheet(isPresented: $presentSaveActionsheet) {
-                            ActionSheet(title: Text("problem.action.save"), buttons: [
-                                .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
-                                    toggleFavorite()
-                                },
-                                .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
-                                    toggleTick()
-                                },
-                                .cancel()
-                            ])
-                        }
-                        
-                        Button(action: {
-                            presentSharesheet = true
-                        }) {
-                            HStack(alignment: .center, spacing: 8) {
-                                Image(systemName: "square.and.arrow.up")
-                                Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
-                            }
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                        }
-                        .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
-                        .sheet(isPresented: $presentSharesheet,
-                               content: {
-                            ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
-                        )
-                        
-                        Button(action: {
-                            if let url = mailToURL {
-                                UIApplication.shared.open(url)
-                            }
-                        }) {
-                            HStack(alignment: .center, spacing: 8) {
-                                Image(systemName: "text.bubble")
-                                Text("problem.action.report").fixedSize(horizontal: true, vertical: true)
-                            }
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                        }
-                        .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical)
-                }
-                
-                if(problem.variants.count > 0) {
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        
-                        Divider()
-                        
-                        ForEach(problem.variants) { variant in
-                            
-                            Button(action: {
-                                switchToProblem(variant)
-                                
-                            }, label: {
-                                HStack {
-                                    Text(variant.nameWithFallback())
-                                        .lineLimit(2)
-                                    Spacer()
-                                    Text(variant.grade.string)
-                                }
-                                .foregroundColor(.primary)
-                                .padding(.horizontal)
-                                .frame(height: 44)
-                            })
-                            
-                            Divider()
-                        }
-                    }
-                    .padding(.top, 8)
-                    
-                    Spacer()
-                }
+                variants
             }
         }
         .background(
@@ -221,6 +55,183 @@ struct ProblemDetailsView: View {
                         .environment(\.managedObjectContext, managedObjectContext)
                 }
         )
+    }
+    
+    
+    var infos: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 8) {
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Text(problem.nameWithFallback())
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .lineLimit(2)
+                        
+                        Spacer()
+                        
+                        Text(problem.grade.string)
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
+                }
+                
+                HStack {
+                    
+                    if problem.steepness != .other {
+                        HStack(alignment: .firstTextBaseline) {
+                            Image(problem.steepness.imageName)
+                                .font(.body)
+                                .frame(minWidth: 16)
+                            Text(problem.steepness.localizedName)
+                                .font(.body)
+                            Text(problem.readableDescription() ?? "")
+                                .font(.caption)
+                                .foregroundColor(Color.gray)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    if isFavorite() {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
+                    }
+                    
+                    if isTicked() {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(Color.appGreen)
+                    }
+                }
+                
+                //                            if problem.isRisky() {
+                //
+                //                                HStack {
+                //                                    Image(systemName: "exclamationmark.shield.fill")
+                //                                        .font(.body)
+                //                                        .foregroundColor(Color.red)
+                //                                        .frame(minWidth: 16)
+                //                                    Text("problem.risky.long")
+                //                                        .font(.body)
+                //                                        .foregroundColor(Color.red)
+                //                                }
+                //                            }
+            }
+            .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
+        }
+        .padding(.top, 0)
+        .padding(.horizontal)
+        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+    }
+    
+    var actionButtons: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(alignment: .center, spacing: 16) {
+                
+                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                    Button(action: {
+                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                    }) {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "info.circle")
+                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 16)
+                    }
+                    .buttonStyle(BoolderSecondaryButtonStyle(fill: true))
+                }
+                
+                Button(action: {
+                    presentSaveActionsheet = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "bookmark")
+                        Text("problem.action.save").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                .actionSheet(isPresented: $presentSaveActionsheet) {
+                    ActionSheet(title: Text("problem.action.save"), buttons: [
+                        .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+                            toggleFavorite()
+                        },
+                        .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+                            toggleTick()
+                        },
+                        .cancel()
+                    ])
+                }
+                
+                Button(action: {
+                    presentSharesheet = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                .sheet(isPresented: $presentSharesheet,
+                       content: {
+                    ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
+                )
+                
+                Button(action: {
+                    if let url = mailToURL {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "text.bubble")
+                        Text("problem.action.report").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+            }
+            .padding(.horizontal)
+            .padding(.vertical)
+        }
+    }
+    
+    var variants: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if(problem.variants.count > 0) {
+                
+                Divider()
+                
+                ForEach(problem.variants) { variant in
+                    
+                    Button(action: {
+                        switchToProblem(variant)
+                        
+                    }, label: {
+                        HStack {
+                            Text(variant.nameWithFallback())
+                                .lineLimit(2)
+                            Spacer()
+                            Text(variant.grade.string)
+                        }
+                        .foregroundColor(.primary)
+                        .padding(.horizontal)
+                        .frame(height: 44)
+                    })
+                    
+                    Divider()
+                }
+            }
+            
+            Spacer()
+        }
+        .padding(.top, 8)
     }
     
     var boolderURL: URL {
