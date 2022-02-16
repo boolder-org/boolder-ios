@@ -22,9 +22,8 @@ struct ProblemDetailsView: View {
     
     @Binding var areaResourcesDownloaded: Bool
     
-    @State var presentMoreActionsheet = false
     @State var presentSaveActionsheet = false
-    @State private var presentPoiActionSheet = false
+    @State private var presentSharesheet = false
     
     @State var presentEditProblem = false
     
@@ -42,7 +41,7 @@ struct ProblemDetailsView: View {
                 )
                 .zIndex(10)
                 
-                ZStack {
+//                VStack {
                     VStack(alignment: .leading, spacing: 8) {
                         VStack(alignment: .leading, spacing: 8) {
                             
@@ -90,99 +89,245 @@ struct ProblemDetailsView: View {
                                 }
                             }
                             
-                            if problem.isRisky() {
-                                
-                                HStack {
-                                    Image(systemName: "exclamationmark.shield.fill")
-                                        .font(.body)
-                                        .foregroundColor(Color.red)
-                                        .frame(minWidth: 16)
-                                    Text("problem.risky.long")
-                                        .font(.body)
-                                        .foregroundColor(Color.red)
-                                }
-                            }
+//                            if problem.isRisky() {
+//
+//                                HStack {
+//                                    Image(systemName: "exclamationmark.shield.fill")
+//                                        .font(.body)
+//                                        .foregroundColor(Color.red)
+//                                        .frame(minWidth: 16)
+//                                    Text("problem.risky.long")
+//                                        .font(.body)
+//                                        .foregroundColor(Color.red)
+//                                }
+//                            }
                         }
                         .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
                         
-                        VStack {
-                            Divider()
-                            
-                            Button(action:{
-                                presentSaveActionsheet = true
-                            }) {
-                                HStack {
-                                    Image(systemName: "star")
-                                    Text("problem.action.save").font(.body)
-                                    Spacer()
-                                }
-                            }
-                            .actionSheet(isPresented: $presentSaveActionsheet) {
-                                ActionSheet(title: Text("problem.action.save"), buttons: [
-                                    .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
-                                        toggleFavorite()
-                                    },
-                                    .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
-                                        toggleTick()
-                                    },
-                                    .cancel()
-                                ])
-                            }
-                            
-                            Divider()
-                            
-                            Button(action:{
-                                presentPoiActionSheet = true
-                            }) {
-                                HStack {
-                                    Image(systemName: "square.and.arrow.up")
-                                    Text("problem.action.share").font(.body)
-                                    Spacer()
-                                }
-                            }
-                            .background(
-                                PoiActionSheet(
-                                    description: shareProblemDescription(),
-                                    location: problem.coordinate,
-                                    navigationMode: false,
-                                    presentPoiActionSheet: $presentPoiActionSheet
-                                )
-                            )
-                            
-                            Divider()
-                            
+//                        VStack {
+//                            Divider()
+//
+//                            Button(action:{
+//                                presentSaveActionsheet = true
+//                            }) {
+//                                HStack {
+//                                    Image(systemName: "star")
+//                                    Text("problem.action.save").font(.body)
+//                                    Spacer()
+//                                }
+//                            }
+//                            .actionSheet(isPresented: $presentSaveActionsheet) {
+//                                ActionSheet(title: Text("problem.action.save"), buttons: [
+//                                    .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+//                                        toggleFavorite()
+//                                    },
+//                                    .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+//                                        toggleTick()
+//                                    },
+//                                    .cancel()
+//                                ])
+//                            }
+//
+//                            Divider()
+//
+//                            Button(action:{
+//                                presentPoiActionSheet = true
+//                            }) {
+//                                HStack {
+//                                    Image(systemName: "square.and.arrow.up")
+//                                    Text("problem.action.share").font(.body)
+//                                    Spacer()
+//                                }
+//                            }
+//                            .background(
+//                                PoiActionSheet(
+//                                    description: shareProblemDescription(),
+//                                    location: problem.coordinate,
+//                                    navigationMode: false,
+//                                    presentPoiActionSheet: $presentPoiActionSheet
+//                                )
+//                            )
+//
+//                            Divider()
+//
+//                            Button(action: {
+//                                presentMoreActionsheet = true
+//                            })
+//                            {
+//                                HStack {
+//                                    Image(systemName: "ellipsis.circle")
+//                                    Text("problem.action.more")
+//                                        .font(.body)
+//                                        .foregroundColor(Color.appGreen)
+//                                    Spacer()
+//                                }
+//                            }
+//                            .actionSheet(isPresented: $presentMoreActionsheet) {
+//                                ActionSheet(
+//                                    title: Text("problem.action.more"),
+//                                    buttons: buttonsForMoreActionSheet()
+//                                )
+//                            }
+//
+//                            Divider()
+//
+//
+//                        }
+//                        .padding(.top, 16)
+                        
+                        
+                    }
+                    .padding(.top, 0)
+                    .padding(.horizontal)
+                    .layoutPriority(1) // without this the imageview prevents the title from going multiline
+                
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .center, spacing: 16) {
+                        
+                        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
                             Button(action: {
-                                presentMoreActionsheet = true
-                            })
-                            {
-                                HStack {
-                                    Image(systemName: "ellipsis.circle")
-                                    Text("problem.action.more")
-                                        .font(.body)
-                                        .foregroundColor(Color.appGreen)
-                                    Spacer()
+                                openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                            }) {
+                                HStack(alignment: .center, spacing: 8) {
+                                    Image(systemName: "info.circle")
+                                    Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
                                 }
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 16)
                             }
-                            .actionSheet(isPresented: $presentMoreActionsheet) {
-                                ActionSheet(
-                                    title: Text("problem.action.more"),
-                                    buttons: buttonsForMoreActionSheet()
-                                )
-                            }
-                            
-                            Divider()
-                            
-                            
+                            .buttonStyle(BoolderSecondaryButtonStyle(fill: true))
                         }
-                        .padding(.top, 16)
+                        
+                        Button(action: {
+                            presentSaveActionsheet = true
+                        }) {
+                            HStack(alignment: .center, spacing: 8) {
+                                Image(systemName: "bookmark")
+                                Text("problem.action.save").fixedSize(horizontal: true, vertical: true)
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                        }
+                        .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                        .actionSheet(isPresented: $presentSaveActionsheet) {
+                            ActionSheet(title: Text("problem.action.save"), buttons: [
+                                .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+                                    toggleFavorite()
+                                },
+                                .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+                                    toggleTick()
+                                },
+                                .cancel()
+                            ])
+                        }
+                        
+                        Button(action: {
+                            presentSharesheet = true
+                        }) {
+                            HStack(alignment: .center, spacing: 8) {
+                                Image(systemName: "square.and.arrow.up")
+                                Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                        }
+                        .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                        .sheet(isPresented: $presentSharesheet,
+                               content: {
+                            ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
+                        )
+                        
+                        Button(action: {
+                            if let url = mailToURL {
+                                UIApplication.shared.open(url)
+                            }
+                        }) {
+                            HStack(alignment: .center, spacing: 8) {
+                                Image(systemName: "text.bubble")
+                                Text("problem.action.report").fixedSize(horizontal: true, vertical: true)
+                            }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                        }
+                        .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                        
+                        //                            Spacer()
+                        
                     }
                     .padding(.horizontal)
-                    .padding(.top, 0)
-                    .layoutPriority(1) // without this the imageview prevents the title from going multiline
-                    
-                    Color.systemBackground
-                        .opacity(overlayOpacity)
+                    .padding(.vertical)
                 }
+//                .padding(.top, 16)
+                    
+//                    Color.systemBackground
+//                        .opacity(overlayOpacity)
+//                }
+                
+//                HStack {
+//                    Text("Variantes")
+//                        .font(.title3)
+//                        .foregroundColor(.primary)
+//                        .lineLimit(2)
+//
+//                    Spacer()
+//
+////                        Text(problem.grade.string)
+////                            .font(.title)
+////                            .fontWeight(.bold)
+//                }
+//                .padding(.horizontal)
+//                .padding(.bottom, 8)
+                
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    
+                    Divider()
+
+                    HStack {
+                        ProblemCircleView(problem: problem)
+                        
+                        Text("Le Crabe (assis)")
+//                            .foregroundColor(Color.appGreen)
+                            .lineLimit(2)
+                        
+                        Spacer()
+                        
+                        Text("5c")
+//                            .font(.callout)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+//                    .padding(.top, 8)
+                    
+                    Divider()
+
+                    HStack {
+                        ProblemCircleView(problem: problem)
+                        
+                        Text("Le Crabe (direct)")
+//                            .foregroundColor(Color.appGreen)
+                            .lineLimit(2)
+                        
+                        Spacer()
+                        
+                        Text("5b")
+//                            .font(.callout)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
+                    
+                    Divider()
+                }
+                .padding(.top, 8)
+//                .background(Color.systemBackground)
+//                .cornerRadius(8)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color(UIColor.quaternaryLabel), lineWidth: 1)
+//                )
+//                .padding(.horizontal)
+                .opacity(0)
                 
                 Spacer()
             }
@@ -239,6 +384,10 @@ struct ProblemDetailsView: View {
         buttons.append(.cancel())
         
         return buttons
+    }
+    
+    var boolderURL: URL {
+        URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/p/\(String(problem.id))")!
     }
     
     var mailToURL: URL? {

@@ -16,7 +16,7 @@
 "discover.support" = "Support Boolder";
 "discover.rate" = "Rate the app";
 "discover.feedback" = "Send feedback";
-"discover.form_url" = "https://forms.gle/jnnUWyg9tcXtDjZj9";
+"discover.form_url" = "https://forms.gle/jnnUWyg9tcXtDjZj9"; // FIXME
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";
@@ -29,7 +29,7 @@
 "top_areas.level.description.advanced" = "These problems offer lots of problems graded 6 and above.";
 "top_areas.level.intermediate.warning" = "Careful : Fontainebleau grades are more severe. A 5a in Fontainebleau is roughly equivalent to a 6a indoor.";
 "top_areas.level.read_guide" = "Read the beginner's guide";
-"top_areas.level.beginners_guide_url" = "http://www.boolder.com/en/articles/beginners-guide";
+"top_areas.level.beginners_guide_url" = "http://www.boolder.com/en/articles/beginners-guide"; // FIXME
 "top_areas.groups.title" = "For groups";
 "top_areas.groups.description" = "These areas offer lots of problems in all grades from 2 to 7.";
 "top_areas.train.title" = "Train + bike";
@@ -119,16 +119,13 @@
 "problem.height_desc" = "height %@ m";
 "problem.risky.long" = "Dangerous if you fall";
 "problem.action.save" = "Save";
+"problem.action.share" = "Share";
+"problem.action.report" = "Report";
 "problem.action.favorite.add" = "Add to favorites";
 "problem.action.favorite.remove" = "Remove from favorites";
 "problem.action.tick" = "Tick";
 "problem.action.untick" = "Untick";
-"problem.action.more" = "More";
-"problem.action.see_on_bleau_info" = "See on bleau.info";
-"problem.action.center_on_map" = "Center on map";
-"problem.action.share" = "Share";
 "problem.action.share.description" = "“%@” at %@";
-"problem.action.report" = "Report an issue";
 "problem.image.loading" = "Loading...";
 
 // MARK: Problem list
