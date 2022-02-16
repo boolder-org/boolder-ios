@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Pill: ButtonStyle {
-    let fill: Bool
+    var fill: Bool = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label

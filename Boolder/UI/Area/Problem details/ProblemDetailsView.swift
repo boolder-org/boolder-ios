@@ -154,7 +154,7 @@ struct ProblemDetailsView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                .buttonStyle(Pill(fill: false))
+                .buttonStyle(Pill())
                 .actionSheet(isPresented: $presentSaveActionsheet) {
                     ActionSheet(title: Text("problem.action.save"), buttons: [
                         .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
@@ -177,7 +177,7 @@ struct ProblemDetailsView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                .buttonStyle(Pill(fill: false))
+                .buttonStyle(Pill())
                 .sheet(isPresented: $presentSharesheet,
                        content: {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
@@ -195,7 +195,23 @@ struct ProblemDetailsView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                .buttonStyle(Pill(fill: false))
+                .buttonStyle(Pill())
+                
+                #if DEVELOPMENT
+                
+                Button(action: {
+                    presentEditProblem = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "pencil")
+                        Text("problem.action.edit").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                .buttonStyle(Pill())
+                
+                #endif
             }
             .padding(.horizontal)
             .padding(.vertical)

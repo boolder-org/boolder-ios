@@ -121,6 +121,7 @@
 "problem.action.save" = "Enregistrer";
 "problem.action.share" = "Partager";
 "problem.action.report" = "Signaler";
+"problem.action.edit" = "Éditer";
 "problem.action.favorite.add" = "Ajouter en favori";
 "problem.action.favorite.remove" = "Retirer des favoris";
 "problem.action.tick" = "Marquer comme réussi";
