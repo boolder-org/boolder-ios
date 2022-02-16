@@ -19,13 +19,11 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
-    
     @Binding var areaResourcesDownloaded: Bool
     
-    @State var presentSaveActionsheet = false
+    @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
-    
-    @State var presentEditProblem = false
+    @State private var presentEditProblem = false
     
     @StateObject var pinchToZoomState = PinchToZoomState()
     let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
@@ -222,13 +220,6 @@ struct ProblemDetailsView: View {
                     Divider()
                 }
                 .padding(.top, 8)
-                //                .background(Color.systemBackground)
-                //                .cornerRadius(8)
-                //                .overlay(
-                //                    RoundedRectangle(cornerRadius: 8)
-                //                        .stroke(Color(UIColor.quaternaryLabel), lineWidth: 1)
-                //                )
-                //                .padding(.horizontal)
                 .opacity(0)
                 
                 Spacer()
@@ -241,51 +232,6 @@ struct ProblemDetailsView: View {
                         .environment(\.managedObjectContext, managedObjectContext)
                 }
         )
-    }
-    
-    var overlayOpacity: Double {
-        if pinchToZoomState.scale <= 1 {
-            return 0
-        }
-        
-        else if pinchToZoomState.scale > 1 && pinchToZoomState.scale < 2 {
-            return Double(pinchToZoomState.scale - 1.0)
-        }
-        else {
-            return 1
-        }
-    }
-    
-    private func buttonsForMoreActionSheet() -> [Alert.Button] {
-        var buttons = [Alert.Button]()
-        
-        if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-            buttons.append(
-                .default(Text("problem.action.see_on_bleau_info")) {
-                    openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-                }
-            )
-        }
-        
-        if let url = mailToURL {
-            buttons.append(
-                .default(Text("problem.action.report")) {
-                    UIApplication.shared.open(url)
-                }
-            )
-        }
-        
-#if DEVELOPMENT
-        buttons.append(
-            .default(Text("Edit (dev only)")) {
-                presentEditProblem = true
-            }
-        )
-#endif
-        
-        buttons.append(.cancel())
-        
-        return buttons
     }
     
     var boolderURL: URL {
@@ -310,10 +256,6 @@ struct ProblemDetailsView: View {
             .joined(separator: "%0D%0A")
         
         return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
-    }
-    
-    func shareProblemDescription() -> String {
-        return String.localizedStringWithFormat(NSLocalizedString("problem.action.share.description", comment: ""), problem.nameForDirections(), dataStore.area(withId: dataStore.areaId)!.name)
     }
     
     func isFavorite() -> Bool {
