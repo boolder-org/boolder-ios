@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Pill.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 03/02/2022.
@@ -8,12 +8,11 @@
 
 import SwiftUI
 
-struct BoolderSecondaryButtonStyle: ButtonStyle {
+struct Pill: ButtonStyle {
     let fill: Bool
     
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
-//            .frame(maxWidth: .infinity)
             .background(fill ? Color(UIColor.systemGreen) : Color.systemBackground)
             .foregroundColor(fill ? Color(UIColor.systemBackground) : Color(UIColor.systemGreen))
             .opacity(configuration.isPressed ? 0.7 : 1)

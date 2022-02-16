@@ -141,7 +141,7 @@ struct ProblemDetailsView: View {
                         .padding(.vertical, 8)
                         .padding(.horizontal, 16)
                     }
-                    .buttonStyle(BoolderSecondaryButtonStyle(fill: true))
+                    .buttonStyle(Pill(fill: true))
                 }
                 
                 Button(action: {
@@ -154,7 +154,7 @@ struct ProblemDetailsView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                .buttonStyle(Pill(fill: false))
                 .actionSheet(isPresented: $presentSaveActionsheet) {
                     ActionSheet(title: Text("problem.action.save"), buttons: [
                         .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
@@ -177,7 +177,7 @@ struct ProblemDetailsView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                .buttonStyle(Pill(fill: false))
                 .sheet(isPresented: $presentSharesheet,
                        content: {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
@@ -195,7 +195,7 @@ struct ProblemDetailsView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                .buttonStyle(BoolderSecondaryButtonStyle(fill: false))
+                .buttonStyle(Pill(fill: false))
             }
             .padding(.horizontal)
             .padding(.vertical)

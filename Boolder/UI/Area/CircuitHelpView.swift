@@ -63,7 +63,7 @@ struct CircuitHelpView: View {
                         }
                         .padding(.horizontal)
                     }
-                    .buttonStyle(BoolderButtonStyle())
+                    .buttonStyle(LargeButton())
                     .padding(.vertical, 32)
                 }
             }

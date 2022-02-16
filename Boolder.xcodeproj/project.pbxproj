@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		030AC19D27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift */; };
-		030AC19E27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift */; };
+		030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* Pill.swift */; };
+		030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* Pill.swift */; };
 		030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */; };
 		030AC1A127B1257200AF85E7 /* TopAreasLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */; };
 		030AC1A327BAF43800AF85E7 /* TopAreasGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */; };
@@ -85,7 +85,7 @@
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
 		37213880258276580030131C /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
-		37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* BoolderButtonStyle.swift */; };
+		37379904258E157D00711EDA /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* LargeButton.swift */; };
 		37379909258E619400711EDA /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePickerView.swift */; };
 		3737990A258E619400711EDA /* AreaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0A25488AE000A8B696 /* AreaRowView.swift */; };
 		3737990B258E619400711EDA /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E825864A43003A545B /* LocationFetcher.swift */; };
@@ -111,7 +111,7 @@
 		3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
 		37379920258E619400711EDA /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* DataStore.swift */; };
 		37379921258E619400711EDA /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* AreaView.swift */; };
-		37379922258E619400711EDA /* BoolderButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* BoolderButtonStyle.swift */; };
+		37379922258E619400711EDA /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* LargeButton.swift */; };
 		37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
 		37379924258E619400711EDA /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
@@ -234,7 +234,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		030AC19C27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolderSecondaryButtonStyle.swift; sourceTree = "<group>"; };
+		030AC19C27ABCF5300AF85E7 /* Pill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pill.swift; sourceTree = "<group>"; };
 		030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasLevelView.swift; sourceTree = "<group>"; };
 		030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasGroups.swift; sourceTree = "<group>"; };
 		030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasTrain.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
 		3721387F258276580030131C /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
-		37379903258E157D00711EDA /* BoolderButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolderButtonStyle.swift; sourceTree = "<group>"; };
+		37379903258E157D00711EDA /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		37379A8E258E619400711EDA /* Boolder dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boolder dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		375397C525AC6C4C00430BF4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
@@ -619,8 +619,8 @@
 			children = (
 				37158D0425487F1700A8B696 /* Discover */,
 				37F12D852456D4FC0036E3E3 /* Area */,
-				37379903258E157D00711EDA /* BoolderButtonStyle.swift */,
-				030AC19C27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift */,
+				37379903258E157D00711EDA /* LargeButton.swift */,
+				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
 				030AC1B127BD590000AF85E7 /* DropShadow.swift */,
 				37DE480D25AF9AB60052428E /* TestColorView.swift */,
@@ -1123,7 +1123,7 @@
 				37379920258E619400711EDA /* DataStore.swift in Sources */,
 				37379921258E619400711EDA /* AreaView.swift in Sources */,
 				37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */,
-				37379922258E619400711EDA /* BoolderButtonStyle.swift in Sources */,
+				37379922258E619400711EDA /* LargeButton.swift in Sources */,
 				37B4525025923B5A00241091 /* ODRManager.swift in Sources */,
 				37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */,
 				375397C925AC6CEF00430BF4 /* Extensions.swift in Sources */,
@@ -1139,7 +1139,7 @@
 				3737992A258E619400711EDA /* Filters.swift in Sources */,
 				3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */,
 				37F563F725AB09F400271346 /* TopoEntry.swift in Sources */,
-				030AC19E27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift in Sources */,
+				030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				3737992D258E619400711EDA /* ProblemListView.swift in Sources */,
 				3737992E258E619400711EDA /* HeadingView.swift in Sources */,
 				37B452362591450200241091 /* TopoView.swift in Sources */,
@@ -1190,7 +1190,7 @@
 				37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */,
 				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
 				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
-				37379904258E157D00711EDA /* BoolderButtonStyle.swift in Sources */,
+				37379904258E157D00711EDA /* LargeButton.swift in Sources */,
 				37B4524F25923B5A00241091 /* ODRManager.swift in Sources */,
 				03254828273991C900E9E6A6 /* ImagePickerView.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
@@ -1206,7 +1206,7 @@
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */,
 				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,
-				030AC19D27ABCF5300AF85E7 /* BoolderSecondaryButtonStyle.swift in Sources */,
+				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				37213880258276580030131C /* HeadingView.swift in Sources */,
 				038A2DD9273985D6006E42E9 /* LocationFetcher.swift in Sources */,
 				038A2DDA273985DA006E42E9 /* EditProblemView.swift in Sources */,
