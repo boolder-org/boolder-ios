@@ -25,6 +25,7 @@ struct ProblemDetailsView: View {
     @State private var presentSharesheet = false
     @State private var presentEditProblem = false
     
+    @State private var lineDrawPercentage: CGFloat = .zero
     @StateObject var pinchToZoomState = PinchToZoomState()
     let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
     
@@ -33,6 +34,7 @@ struct ProblemDetailsView: View {
             VStack(alignment: .leading) {
                 TopoView(
                     problem: $problem,
+                    lineDrawPercentage: $lineDrawPercentage,
                     areaResourcesDownloaded: $areaResourcesDownloaded,
                     pinchToZoomState: pinchToZoomState,
                     pinchToZoomPadding: pinchToZoomPadding

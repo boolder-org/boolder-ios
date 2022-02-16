@@ -14,6 +14,7 @@ struct CircleView: View {
     var number: String
     var color: UIColor
     var showStroke = true
+    var showShadow = false
     var height: CGFloat = Self.defaultHeight
     var scaleEffect: CGFloat = 1.0
     
@@ -21,6 +22,7 @@ struct CircleView: View {
         ZStack {
             Circle()
                 .fill(Color(color))
+                .modifier(DropShadow(visible: showShadow))
             Text(number)
                 .font(.headline)
                 .foregroundColor(Color(readableColor()))

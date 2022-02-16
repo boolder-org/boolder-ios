@@ -21,6 +21,7 @@ struct LineView: View {
                 Color(problem.circuitUIColorForPhotoOverlay),
                 style: StrokeStyle(lineWidth: 4/pinchToZoomScale, lineCap: .round, lineJoin: .round)
             )
+            .modifier(DropShadow(visible: true))
     }
     
     private var linePath: Path {

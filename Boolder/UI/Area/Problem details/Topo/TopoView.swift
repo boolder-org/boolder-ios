@@ -14,7 +14,7 @@ struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
-    @State private var lineDrawPercentage: CGFloat = .zero
+    @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
     
     @ObservedObject var pinchToZoomState: PinchToZoomState
