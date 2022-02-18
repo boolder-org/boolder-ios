@@ -12,6 +12,8 @@ struct ProblemListView: View {
     @EnvironmentObject var dataStore: DataStore
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
+    @Binding var selectedProblem: Problem
+    @Binding var presentProblemDetails: Bool
     
     @State private var searchText = ""
     
@@ -22,42 +24,55 @@ struct ProblemListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
-                    Section {
-                        ForEach(groupedProblems[circuitColor]!) { (problem: Problem) in
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                                
-                                centerOnProblem = problem
-                                centerOnProblemCount += 1 // triggers a map refresh
-                            }) {
-                                HStack {
-                                    ProblemCircleView(problem: problem)
+            ScrollViewReader { proxy in
+                List {
+                    ForEach(groupedProblemsKeys, id: \.self) { (circuitColor: Circuit.CircuitColor) in
+                        Section {
+                            ForEach(groupedProblems[circuitColor]!) { (problem: Problem) in
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
                                     
-                                    Text(problem.nameWithFallback())
-                                        .foregroundColor(.primary)
+                                    centerOnProblem = problem
+                                    centerOnProblemCount += 1 // triggers a map refresh
                                     
-                                    Spacer()
-                                    
-                                    if isFavorite(problem: problem) {
-                                        Image(systemName: "star.fill")
-                                            .foregroundColor(Color.yellow)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        selectedProblem = problem
+                                        presentProblemDetails = true
+                                    }
+                                }) {
+                                    HStack {
+                                        ProblemCircleView(problem: problem)
+                                        
+                                        Text(problem.nameWithFallback())
+                                            .foregroundColor(.primary)
+                                        
+                                        Spacer()
+                                        
+                                        if isFavorite(problem: problem) {
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(Color.yellow)
+                                        }
+                                        
+                                        if isTicked(problem: problem) {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .foregroundColor(Color.appGreen)
+                                        }
+                                        
+                                        Text(problem.grade.string)
                                     }
                                     
-                                    if isTicked(problem: problem) {
-                                        Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(Color.appGreen)
-                                    }
-                                    
-                                    Text(problem.grade.string)
                                 }
+                                .id("problem-\(problem.id ?? 0)")
+                                .foregroundColor(.primary)
                             }
-                            .foregroundColor(.primary)
                         }
                     }
                 }
+                .onAppear {
+                    proxy.scrollTo("problem-\(selectedProblem.id ?? 0)", anchor: .top)
+                }
             }
+            
             .modify {
                 if #available(iOS 15, *) {
                     $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("problem_list.search_prompt"))
@@ -136,7 +151,7 @@ struct ProblemListView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
-            ProblemListView(centerOnProblem: .constant(Problem()), centerOnProblemCount: .constant(1))
+            ProblemListView(centerOnProblem: .constant(Problem()), centerOnProblemCount: .constant(1), selectedProblem: .constant(Problem()), presentProblemDetails: .constant(true))
                 .navigationBarTitle("Rocher Canon", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())

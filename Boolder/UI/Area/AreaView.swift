@@ -74,7 +74,7 @@ struct AreaView: View {
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentList) {
-                            ProblemListView(centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount)
+                            ProblemListView(centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount, selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                                 .environment(\.managedObjectContext, managedObjectContext)
                         }
                 )
