@@ -26,7 +26,7 @@
 "top_areas.level.description.beginner" = "These areas offer lots of problems graded 2 and 3, with low boulders and good landings.";
 "top_areas.level.description.intermediate" = "These areas offer lots of problems graded 4 and 5.";
 "top_areas.level.description.advanced" = "These problems offer lots of problems graded 6 and above.";
-"top_areas.level.intermediate.warning" = "Careful : Fontainebleau grades are more severe. A 5a in Fontainebleau is roughly equivalent to a 6a indoor.";
+"top_areas.level.intermediate.warning" = "Careful : Fontainebleau grades are more severe. A 5a in Fontainebleau is roughly equivalent to a 6a elsewhere.";
 "top_areas.level.read_guide" = "Read the beginner's guide";
 "top_areas.groups.title" = "For groups";
 "top_areas.groups.description" = "These areas offer lots of problems in all grades from 2 to 7.";
