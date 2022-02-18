@@ -17,7 +17,7 @@ struct GradeRangePickerView: View {
     var body: some View {
         Form {
             Section {
-                Picker("Grade min", selection: $gradeMin) {
+                Picker("filters.grade.range_picker.grade_min", selection: $gradeMin) {
                     ForEach(Grade.visibleGrades, id: \.self) {
                         Text($0)
                     }
@@ -29,7 +29,7 @@ struct GradeRangePickerView: View {
             }
             
             Section {
-                Picker("Grade max", selection: $gradeMax) {
+                Picker("filters.grade.range_picker.grade_max", selection: $gradeMax) {
                     ForEach(Grade.visibleGrades, id: \.self) {
                         Text($0)
                     }
@@ -40,7 +40,7 @@ struct GradeRangePickerView: View {
                 save()
             }
         }
-        .navigationTitle("Niveau")
+        .navigationTitle("filters.grade.range_picker.level")
         .onAppear {
             save()
         }

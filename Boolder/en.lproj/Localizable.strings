@@ -90,9 +90,10 @@
 "filters.grade.range.beginner" = "Beginner";
 "filters.grade.range.intermediate" = "Intermediate";
 "filters.grade.range.advanced" = "Experienced";
-"filters.grade.range.description.beginner" = "Level 1, 2, 3";
-"filters.grade.range.description.intermediate" = "Level 4, 5";
-"filters.grade.range.description.advanced" = "Level 6, 7, 8";
+"filters.grade.range.custom" = "Custom";
+"filters.grade.range_picker.level" = "Level";
+"filters.grade.range_picker.grade_min" = "Grade min";
+"filters.grade.range_picker.grade_max" = "Grade max";
 
 // MARK: Circuit help
 "circuit_help.title" = "Circuits";

@@ -17,8 +17,7 @@ struct GradeRange : Equatable, Hashable {
     static let advanced =       GradeRange(min: Grade("6a"), max: Grade("8c+"))
 
     
-    // FIXME: rename localizedName
-    var name: String {
+    var localizedName: String {
         if self == Self.beginner {
             return NSLocalizedString("filters.grade.range.beginner", comment: "")
         }
@@ -29,23 +28,12 @@ struct GradeRange : Equatable, Hashable {
             return NSLocalizedString("filters.grade.range.advanced", comment: "")
         }
         else {
-            return "Personnalisé"
+            return NSLocalizedString("filters.grade.range.custom", comment: "")
         }
     }
     
     var description: String {
-        if self == Self.beginner {
-            return NSLocalizedString("filters.grade.range.description.beginner", comment: "")
-        }
-        else if self == Self.intermediate {
-            return NSLocalizedString("filters.grade.range.description.intermediate", comment: "")
-        }
-        else if self == Self.advanced {
-            return NSLocalizedString("filters.grade.range.description.advanced", comment: "")
-        }
-        else {
-            return "De \(min.string) à \(max.string)"
-        }
+       "\(min.string) → \(max.advanced(by: -1).string)"
     }
     
     var isCustom: Bool {

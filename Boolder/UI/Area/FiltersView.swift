@@ -37,7 +37,7 @@ struct FiltersView: View {
                                 Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
                                     .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
                                 
-                                Text(range.name).foregroundColor(.primary)
+                                Text(range.localizedName).foregroundColor(.primary)
                                 Spacer()
                                 Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
                             }
@@ -53,12 +53,11 @@ struct FiltersView: View {
                             Image(systemName: (filters.gradeRange?.isCustom ?? false) ? "largecircle.fill.circle" : "circle")
                                 .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
                             
-                            Text("Personnalisé").foregroundColor(.primary)
+                            Text("filters.grade.range.custom").foregroundColor(.primary)
                             Spacer()
-                            Text(desc).foregroundColor(Color(.systemGray)).font(.caption)
+                            Text(customRangeDescription).foregroundColor(Color(.systemGray)).font(.caption)
                         }
                     }
-
                 }
                 
                 if showMoreFilters {
@@ -151,7 +150,7 @@ struct FiltersView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    var desc: String {
+    var customRangeDescription: String {
         if let range = filters.gradeRange {
             if range.isCustom {
                 return range.description

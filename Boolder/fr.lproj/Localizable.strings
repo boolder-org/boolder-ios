@@ -90,9 +90,10 @@
 "filters.grade.range.beginner" = "Débutant";
 "filters.grade.range.intermediate" = "Intermédiaire";
 "filters.grade.range.advanced" = "Expérimenté";
-"filters.grade.range.description.beginner" = "Niveau 1, 2, 3";
-"filters.grade.range.description.intermediate" = "Niveau 4, 5";
-"filters.grade.range.description.advanced" = "Niveau 6, 7, 8";
+"filters.grade.range.custom" = "Personnalisé";
+"filters.grade.range_picker.level" = "Niveau";
+"filters.grade.range_picker.grade_min" = "Cotation min";
+"filters.grade.range_picker.grade_max" = "Cotation max";
 
 // MARK: Circuit help
 "circuit_help.title" = "Circuits";
