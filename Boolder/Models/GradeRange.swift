@@ -37,7 +37,7 @@ struct GradeRange : Equatable, Hashable {
     }
     
     var isCustom: Bool {
-        self != .beginner && self != .intermediate && self != .advanced && !(min == Grade.min && max == Grade.max)
+        self != .beginner && self != .intermediate && self != .advanced
     }
     
     func contains(_ grade: Grade) -> Bool {

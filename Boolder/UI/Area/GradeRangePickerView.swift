@@ -54,7 +54,8 @@ struct GradeRangePickerView: View {
             )
         )
     }
-    
+
+    // inspired by: https://www.hackingwithswift.com/books/ios-swiftui/selecting-and-editing-map-annotations
     init(gradeRange: GradeRange, onSave: @escaping (GradeRange) -> Void) {
         self.gradeRange = gradeRange
         self.onSave = onSave
