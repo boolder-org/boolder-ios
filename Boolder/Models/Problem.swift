@@ -113,7 +113,7 @@ class Problem : Identifiable {
     var variants: [Problem] {
         if let parentId = parentId {
             return dataStore.problems.filter { problem in
-                ((problem.id == parentId) || (problem.parentId == id)) && problem.id != id
+                ((problem.id == parentId) || (problem.parentId == parentId)) && problem.id != id
             }
         }
         else {
