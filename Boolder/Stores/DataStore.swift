@@ -135,7 +135,7 @@ class DataStore : ObservableObject {
     
     private func isGradeOk(_ problem: Problem) -> Bool {
         if let range = filters.gradeRange {
-            return range.grades.contains(problem.grade)
+            return range.contains(problem.grade)
         }
         else {
             return true

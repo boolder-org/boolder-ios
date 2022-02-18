@@ -24,7 +24,7 @@ struct FiltersView: View {
             Form {
                 Section(header: Text("filters.level")) {
                     
-                    ForEach(GradeRange.allCases, id: \.self) { range in
+                    ForEach([GradeRange.beginner, GradeRange.intermediate, GradeRange.advanced], id: \.self) { range in
                         Button(action: {
                             if filters.gradeRange == range {
                                 filters.gradeRange = nil
@@ -43,6 +43,22 @@ struct FiltersView: View {
                             }
                         }
                     }
+                    
+                    NavigationLink(destination:
+                        GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a")), onSave: { range in
+                            filters.gradeRange = range
+                        })
+                    ) {
+                        HStack {
+                            Image(systemName: (filters.gradeRange?.isCustom ?? false) ? "largecircle.fill.circle" : "circle")
+                                .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+                            
+                            Text("Personnalisé").foregroundColor(.primary)
+                            Spacer()
+                            Text(desc).foregroundColor(Color(.systemGray)).font(.caption)
+                        }
+                    }
+
                 }
                 
                 if showMoreFilters {
@@ -133,6 +149,16 @@ struct FiltersView: View {
             )
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    var desc: String {
+        if let range = filters.gradeRange {
+            if range.isCustom {
+                return range.description
+            }
+        }
+        
+        return ""
     }
     
     private func labelForSteepness() -> String {
