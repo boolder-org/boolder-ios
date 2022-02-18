@@ -69,7 +69,8 @@ struct ProblemListView: View {
                     }
                 }
                 .onAppear {
-                    proxy.scrollTo("problem-\(selectedProblem.id ?? 0)", anchor: .top)
+                    // FIXME: reactivate scroll, but only when user picked a problem in the list (not on the map)
+//                    proxy.scrollTo("problem-\(selectedProblem.id ?? 0)", anchor: .top)
                 }
             }
             
