@@ -14,7 +14,7 @@ struct GradeRange : Equatable, Hashable {
     
     static let beginner =       GradeRange(min: Grade("1a"), max: Grade("3c+"))
     static let intermediate =   GradeRange(min: Grade("4a"), max: Grade("5c+"))
-    static let advanced =       GradeRange(min: Grade("6a"), max: Grade("9c+"))
+    static let advanced =       GradeRange(min: Grade("6a"), max: Grade("8c+"))
 
     
     // FIXME: rename localizedName

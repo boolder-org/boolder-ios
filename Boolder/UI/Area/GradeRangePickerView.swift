@@ -22,7 +22,8 @@ struct GradeRangePickerView: View {
                         Text($0)
                     }
                 }
-                .onChange(of: gradeMin) { a in
+                .onChange(of: gradeMin) { _ in
+                    gradeMax = max(Grade(gradeMax), Grade(gradeMin)).string
                     save()
                 }
             }
@@ -34,7 +35,8 @@ struct GradeRangePickerView: View {
                     }
                 }
             }
-            .onChange(of: gradeMax) { a in
+            .onChange(of: gradeMax) { _ in
+                gradeMin = min(Grade(gradeMax), Grade(gradeMin)).string
                 save()
             }
         }
@@ -45,7 +47,12 @@ struct GradeRangePickerView: View {
     }
     
     func save() -> Void {
-        onSave(GradeRange(min: Grade(gradeMin), max: Grade(gradeMax)))
+        onSave(
+            GradeRange(
+                min: Grade(gradeMin),
+                max: Grade(gradeMax).advanced(by: 1) // eg. if gradeMax is "4c" we store "4c+"
+            )
+        )
     }
     
     init(gradeRange: GradeRange, onSave: @escaping (GradeRange) -> Void) {
@@ -53,7 +60,7 @@ struct GradeRangePickerView: View {
         self.onSave = onSave
 
         _gradeMin = State(initialValue: gradeRange.min.string)
-        _gradeMax = State(initialValue: gradeRange.max.string)
+        _gradeMax = State(initialValue: gradeRange.max.advanced(by: -1).string) // eg. if max is "4c+" we display "4c"
     }
 }
 

@@ -45,7 +45,7 @@ struct FiltersView: View {
                     }
                     
                     NavigationLink(destination:
-                        GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a")), onSave: { range in
+                        GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in
                             filters.gradeRange = range
                         })
                     ) {
