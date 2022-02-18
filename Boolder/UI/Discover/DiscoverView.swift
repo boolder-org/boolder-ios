@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import StoreKit
 
 struct DiscoverView: View {
     @EnvironmentObject var dataStore: DataStore
@@ -163,9 +162,10 @@ struct DiscoverView: View {
                             Divider()
                             
                             Button(action: {
-                                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-                                    SKStoreReviewController.requestReview(in: scene)
-                                }
+                                let appID = "1506614493"
+                                let urlStr = "https://itunes.apple.com/app/id\(appID)?action=write-review"
+                                guard let url = URL(string: urlStr) else { return }
+                                openURL(url)
                             }, label: {
                                 HStack {
                                     Image(systemName: "star")
