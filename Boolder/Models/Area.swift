@@ -12,5 +12,7 @@ struct Area: Identifiable {
     let id: Int
     let name: String
     let problemsCount: Int
+    let latitude: Double
+    let longitude: Double
     let published: Bool
 }
