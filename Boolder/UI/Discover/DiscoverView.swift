@@ -104,7 +104,7 @@ struct DiscoverView: View {
                                     }
                                     .padding(.leading, 16)
                                     
-                                    NavigationLink(destination: AllAreasMap()) {
+                                    NavigationLink(destination: AllAreasView()) {
                                     
                                         VStack(alignment: .leading) {
                                             HStack {
