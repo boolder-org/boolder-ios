@@ -109,7 +109,7 @@ struct DiscoverView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
                                                 Image(systemName: "map")
-                                                Text("Carte")
+                                                Text("discover.all_areas.map")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()

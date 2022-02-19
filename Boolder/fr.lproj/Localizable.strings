@@ -13,6 +13,7 @@
 "discover.top_areas.train" = "Accessible en train + vélo";
 "discover.top_areas.dry_fast" = "Sèche vite";
 "discover.top_areas.groups" = "En groupe";
+"discover.all_areas.map" = "Carte";
 "discover.support" = "Soutenir Boolder";
 "discover.rate" = "Noter l'appli";
 "discover.feedback" = "Idées d'amélioration";
@@ -36,6 +37,7 @@
 "top_areas.dry_fast.description" = "Ces secteurs sèchent plus vite que la moyenne grâce à leur exposition au soleil ou au vent.";
 "top_areas.dry_fast.warning" = "Ne grimpez pas si la roche est encore humide, vous risquez de l'abîmer.";
 "top_areas.dry_fast.useful_link" = "Lien utile :";
+"all_areas.map.title" = "Tous les secteurs";
 
 // MARK: Area view
 "area.filter" = "Filtre";

@@ -16,7 +16,7 @@ struct AllAreasView: View {
         AllAreasMapView(selectedArea: $selectedArea, presentArea: $presentArea)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .edgesIgnoringSafeArea([.bottom, .horizontal])
-            .navigationTitle("Carte")
+            .navigationTitle("all_areas.map.title")
             .navigationBarTitleDisplayMode(.inline)
             .background(
                 NavigationLink(
