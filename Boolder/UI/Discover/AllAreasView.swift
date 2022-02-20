@@ -11,13 +11,20 @@ import SwiftUI
 struct AllAreasView: View {
     @State private var selectedArea: Area?
     @State private var presentArea = false
+    @State private var loading = false
     
     var body: some View {
-        AllAreasMapView(selectedArea: $selectedArea, presentArea: $presentArea)
+        AllAreasMapView(selectedArea: $selectedArea, presentArea: $presentArea, loading: $loading)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .edgesIgnoringSafeArea([.bottom, .horizontal])
             .navigationTitle("all_areas.map.title")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                trailing: ProgressView().progressViewStyle(CircularProgressViewStyle()).opacity(loading ? 1 : 0)
+            )
+            .onAppear {
+                loading = false
+            }
             .background(
                 NavigationLink(
                     destination: AreaView(),

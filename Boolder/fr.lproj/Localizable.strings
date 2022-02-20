@@ -38,6 +38,7 @@
 "top_areas.dry_fast.warning" = "Ne grimpez pas si la roche est encore humide, vous risquez de l'abîmer.";
 "top_areas.dry_fast.useful_link" = "Lien utile :";
 "all_areas.map.title" = "Tous les secteurs";
+"all_areas.map.problems" = "%@ voies";
 
 // MARK: Area view
 "area.filter" = "Filtre";

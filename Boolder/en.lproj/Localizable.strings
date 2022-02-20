@@ -38,6 +38,7 @@
 "top_areas.dry_fast.warning" = "Don't climb if the rock is still wet, you may damage it.";
 "top_areas.dry_fast.useful_link" = "Useful link:";
 "all_areas.map.title" = "All areas";
+"all_areas.map.problems" = "%@ problems";
 
 // MARK: Area view
 "area.filter" = "Filter";

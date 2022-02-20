@@ -22,6 +22,7 @@ struct AllAreasMapView: UIViewRepresentable {
     
     @Binding var selectedArea: Area?
     @Binding var presentArea: Bool
+    @Binding var loading: Bool
     
     var mapView = MKMapView() // FIXME: put in makeUIView() ?
     
@@ -42,24 +43,16 @@ struct AllAreasMapView: UIViewRepresentable {
         mapView.isPitchEnabled = false
         
         let annotations: [AreaAnnotation] =  dataStore.areas.filter{$0.published}.map { area in
-            let annotation = AreaAnnotation(id: area.id, title: area.name)
+            let annotation = AreaAnnotation(id: area.id, title: area.name,
+                                            subtitle: String.localizedStringWithFormat(NSLocalizedString("all_areas.map.problems", comment: ""), String(area.problemsCount))
+            )
             annotation.coordinate = CLLocationCoordinate2D(latitude: area.latitude, longitude: area.longitude)
             return annotation
         }
         
         mapView.layoutMargins = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
         
-//        mapView.addAnnotations(annotations)
         mapView.showAnnotations(annotations, animated: true)
-
-//
-//        let london = MKPointAnnotation()
-//        london.title = "London"
-//        london.coordinate = CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275)
-//        mapView.addAnnotation(london)
-        
-//        mapView.register(ProblemAnnotationView.self, forAnnotationViewWithReuseIdentifier: ProblemAnnotationView.ReuseID)
-//        mapView.register(PoiAnnotationView.self, forAnnotationViewWithReuseIdentifier: PoiAnnotationView.ReuseID)
         
         return mapView
     }
@@ -96,6 +89,11 @@ struct AllAreasMapView: UIViewRepresentable {
                 let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "areaAnnotation")
                 annotationView.markerTintColor = annotation.tintColor
                 annotationView.clusteringIdentifier = "cluster"
+                annotationView.canShowCallout = true
+                
+                let rightButton = UIButton(type: .detailDisclosure)
+                rightButton.setImage( UIImage(systemName: "chevron.right.circle"), for: .normal)
+                annotationView.rightCalloutAccessoryView = rightButton
 
                 return annotationView
             }
@@ -103,21 +101,22 @@ struct AllAreasMapView: UIViewRepresentable {
             return nil
         }
         
-        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if let annotation = view.annotation {
                 if let areaAnnotation = annotation as? AreaAnnotation {
-                    let area = parent.dataStore.area(withId: areaAnnotation.id)!
-                    parent.dataStore.areaId = area.id
-                    parent.dataStore.filters = Filters()
-
-                    parent.selectedArea = area
-                    parent.presentArea = true
+                    parent.loading = true
                     
-                    mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        let area = self.parent.dataStore.area(withId: areaAnnotation.id)!
+                        self.parent.dataStore.areaId = area.id
+                        self.parent.dataStore.filters = Filters()
+                        
+                        self.parent.selectedArea = area
+                        self.parent.presentArea = true
+                    }
                 }
             }
         }
-        
     }
 }
 
@@ -126,11 +125,13 @@ class AreaAnnotation: NSObject, MKAnnotation {
     @objc dynamic var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     internal var title: String?
+    internal var subtitle: String?
     let id: Int
     var tintColor = UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 1.0)
     
-    init(id: Int, title: String) {
+    init(id: Int, title: String, subtitle: String) {
         self.id = id
         self.title = title
+        self.subtitle = subtitle
     }
 }
