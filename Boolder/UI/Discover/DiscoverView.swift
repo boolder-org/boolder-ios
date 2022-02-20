@@ -103,6 +103,24 @@ struct DiscoverView: View {
                                         }
                                     }
                                     .padding(.leading, 16)
+                                    
+                                    NavigationLink(destination: AllAreasView()) {
+                                    
+                                        VStack(alignment: .leading) {
+                                            HStack {
+                                                Image(systemName: "map")
+                                                Text("discover.all_areas.map")
+                                                    .textCase(.uppercase)
+                                            }
+                                            .padding()
+                                            .font(.headline.weight(.bold))
+                                            .foregroundColor(Color(.systemBackground))
+                                            .frame(width: 200, height: 120)
+                                            .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
+                                            .cornerRadius(8)
+                                        }
+                                    }
+                                    .padding(.leading, 16)
                                     .padding(.trailing, 16)
                                 }
                             }

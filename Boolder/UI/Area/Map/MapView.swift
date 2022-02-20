@@ -10,8 +10,6 @@ import MapKit
 import SwiftUI
 import CoreLocation
 
-// heavily inspired from https://www.hackingwithswift.com/books/ios-swiftui/advanced-mkmapview-with-swiftui
-
 struct MapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     
