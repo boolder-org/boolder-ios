@@ -51,8 +51,6 @@ struct AllAreasMapView: UIViewRepresentable {
     
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-
-        
     }
 
     func makeCoordinator() -> Coordinator {
@@ -62,13 +60,11 @@ struct AllAreasMapView: UIViewRepresentable {
     // MARK: Coordinator
     
     class Coordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
-        
         var parent: AllAreasMapView
         
         init(_ parent: AllAreasMapView) {
             self.parent = parent
         }
-
         
         // MARK: MKMapViewDelegate methods
         
@@ -79,8 +75,10 @@ struct AllAreasMapView: UIViewRepresentable {
 
             if let annotation = annotation as? AreaAnnotation {
                 let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "areaAnnotation")
+                
                 annotationView.markerTintColor = annotation.tintColor
                 annotationView.clusteringIdentifier = "cluster"
+                
                 annotationView.canShowCallout = true
                 
                 let rightButton = UIButton(type: .detailDisclosure)
@@ -98,6 +96,7 @@ struct AllAreasMapView: UIViewRepresentable {
                 if let areaAnnotation = annotation as? AreaAnnotation {
                     parent.loading = true
                     
+                    // qucik hack to display loading spinner right away
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         let area = self.parent.dataStore.area(withId: areaAnnotation.id)!
                         self.parent.dataStore.areaId = area.id
