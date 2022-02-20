@@ -1,17 +1,9 @@
 //
-//  AllAreasMap.swift
+//  AllAreasMapView.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 18/02/2022.
 //  Copyright © 2022 Nicolas Mondollot. All rights reserved.
-//
-
-//
-//  MapView.swift
-//  Boolder
-//
-//  Created by Nicolas Mondollot on 24/04/2020.
-//  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
 import MapKit
