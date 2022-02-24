@@ -1233,6 +1233,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.64387299561,
+          48.44605590619
+        ]
+      },
+      "properties": {
+        "grade": "5c+",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Oméga 3",
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4831
+          }
+        ]
+      },
+      "id": "problem_1700"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.64406887011,
           48.44591519339
         ]
@@ -1317,36 +1347,6 @@
         ]
       },
       "id": "problem_1749"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.64387299561,
-          48.44605590619
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Oméga 3",
-        "bleauInfoId": "",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4831
-          }
-        ]
-      },
-      "id": "problem_1700"
     },
     {
       "type": "Feature",

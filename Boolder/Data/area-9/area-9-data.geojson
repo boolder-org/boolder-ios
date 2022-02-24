@@ -455,30 +455,6 @@
     },
     {
       "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": "2b",
-        "circuitNumber": "48",
-        "steepness": "other",
-        "height": null,
-        "name": "Notre-Dame",
-        "bleauInfoId": "7780",
-        "parentId": null,
-        "circuitColor": "blue",
-        "circuitId": 35,
-        "tags": [
-          "risky"
-        ],
-        "lines": [
-          {
-            "id": 2969
-          }
-        ]
-      },
-      "id": "problem_2332"
-    },
-    {
-      "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -766,6 +742,36 @@
         ]
       },
       "id": "problem_2397"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.59257307161,
+          48.29382113312
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "circuitNumber": "48",
+        "steepness": "other",
+        "height": null,
+        "name": "Notre-Dame",
+        "bleauInfoId": "7780",
+        "parentId": null,
+        "circuitColor": "blue",
+        "circuitId": 35,
+        "tags": [
+          "risky"
+        ],
+        "lines": [
+          {
+            "id": 2969
+          }
+        ]
+      },
+      "id": "problem_2332"
     },
     {
       "type": "Feature",
@@ -3273,6 +3279,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.59338337524,
+          48.29381230031
+        ]
+      },
+      "properties": {
+        "grade": "4c",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 2839
+          }
+        ]
+      },
+      "id": "problem_2310"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.59460505081,
           48.29399280847
         ]
@@ -3627,36 +3663,6 @@
         ]
       },
       "id": "problem_2301"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.59338337524,
-          48.29381230031
-        ]
-      },
-      "properties": {
-        "grade": "4c",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": null,
-        "bleauInfoId": "",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 2839
-          }
-        ]
-      },
-      "id": "problem_2310"
     },
     {
       "type": "Feature",
@@ -16631,6 +16637,10 @@
           [
             2.59272386023,
             48.2938259959
+          ],
+          [
+            2.59257307161,
+            48.29382113312
           ],
           [
             2.59264690363,

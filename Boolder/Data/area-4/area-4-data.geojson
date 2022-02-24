@@ -1596,6 +1596,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.638931237,
+          48.44715466998
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Le Corbillard",
+        "bleauInfoId": "8376",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1316
+          }
+        ]
+      },
+      "id": "problem_1085"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.63894096,
           48.44663649352
         ]
@@ -1975,36 +2005,6 @@
         ]
       },
       "id": "problem_951"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.638931237,
-          48.44715466998
-        ]
-      },
-      "properties": {
-        "grade": "",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Le Corbillard",
-        "bleauInfoId": "8376",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1316
-          }
-        ]
-      },
-      "id": "problem_1085"
     },
     {
       "type": "Feature",

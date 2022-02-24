@@ -365,7 +365,13 @@
     },
     {
       "type": "Feature",
-      "geometry": null,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52480799147,
+          48.36414096843
+        ]
+      },
       "properties": {
         "grade": "6b",
         "circuitNumber": "",

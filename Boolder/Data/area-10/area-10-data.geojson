@@ -1268,36 +1268,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52913735798,
-          48.38601353947
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Le Quartz (droite)",
-        "bleauInfoId": "21399",
-        "parentId": 2961,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 2180
-          }
-        ]
-      },
-      "id": "problem_2962"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.53027126177,
           48.38512678913
         ]
@@ -1412,6 +1382,36 @@
         ]
       },
       "id": "problem_3210"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52913735798,
+          48.38601353947
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Le Quartz (droite)",
+        "bleauInfoId": "21399",
+        "parentId": 2961,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 2180
+          }
+        ]
+      },
+      "id": "problem_2962"
     },
     {
       "type": "Feature",
@@ -4853,36 +4853,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.5272413714,
-          48.3857253056
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "Retour aux Sources",
-        "bleauInfoId": "5",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 2480
-          }
-        ]
-      },
-      "id": "problem_2902"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.53029506637,
           48.38516998587
         ]
@@ -7080,6 +7050,36 @@
         ]
       },
       "id": "problem_2984"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5272413714,
+          48.3857253056
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Retour aux Sources",
+        "bleauInfoId": "5",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 2480
+          }
+        ]
+      },
+      "id": "problem_2902"
     },
     {
       "type": "Feature",

@@ -666,6 +666,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.60008001998,
+          48.40976727038
+        ]
+      },
+      "properties": {
+        "grade": "4c",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Le Duradoigt",
+        "bleauInfoId": "284268",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 4925
+          }
+        ]
+      },
+      "id": "problem_4408"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.60367309658,
           48.40877441104
         ]
@@ -750,30 +780,6 @@
         ]
       },
       "id": "problem_1370"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": "4c",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Le Duradoigt",
-        "bleauInfoId": "284268",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 4925
-          }
-        ]
-      },
-      "id": "problem_4408"
     },
     {
       "type": "Feature",
@@ -4779,36 +4785,6 @@
         ]
       },
       "id": "problem_1564"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.60017415492,
-          48.40973141094
-        ]
-      },
-      "properties": {
-        "grade": "3c",
-        "circuitNumber": "19",
-        "steepness": "wall",
-        "height": 3,
-        "name": "Davy Jones",
-        "bleauInfoId": "2911",
-        "parentId": null,
-        "circuitColor": "orange",
-        "circuitId": 20,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1609
-          }
-        ]
-      },
-      "id": "problem_1337"
     },
     {
       "type": "Feature",
@@ -15741,6 +15717,96 @@
         ]
       },
       "id": "problem_1478"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.60017415492,
+          48.40973141094
+        ]
+      },
+      "properties": {
+        "grade": "3c",
+        "circuitNumber": "19",
+        "steepness": "wall",
+        "height": 3,
+        "name": "Petite Perle",
+        "bleauInfoId": "2911",
+        "parentId": null,
+        "circuitColor": "orange",
+        "circuitId": 20,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1609
+          }
+        ]
+      },
+      "id": "problem_1337"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.59967690054,
+          48.4098517846
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Zip Zut (direct)",
+        "bleauInfoId": "300724",
+        "parentId": 7716,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7192
+          }
+        ]
+      },
+      "id": "problem_7717"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.59967718694,
+          48.40985102416
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Zip Zut",
+        "bleauInfoId": "3028",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7191
+          }
+        ]
+      },
+      "id": "problem_7716"
     },
     {
       "type": "Feature",

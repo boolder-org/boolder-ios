@@ -493,6 +493,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.53429758131,
+          48.36708366715
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "La Jalousie (assis)",
+        "bleauInfoId": "1318",
+        "parentId": 3964,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 3310
+          }
+        ]
+      },
+      "id": "problem_4305"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.53433567815,
           48.36706783658
         ]
@@ -517,30 +547,6 @@
         ]
       },
       "id": "problem_3980"
-    },
-    {
-      "type": "Feature",
-      "geometry": null,
-      "properties": {
-        "grade": "7c",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "La Jalousie (assis)",
-        "bleauInfoId": "1318",
-        "parentId": 3964,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 3310
-          }
-        ]
-      },
-      "id": "problem_4305"
     },
     {
       "type": "Feature",
@@ -8249,6 +8255,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.53532053888,
+          48.36844893449
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "La Putain du Diable (assis)",
+        "bleauInfoId": "305363",
+        "parentId": 4095,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 3430
+          }
+        ]
+      },
+      "id": "problem_4096"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.53303601307,
           48.36723104744
         ]
@@ -8423,36 +8459,6 @@
         ]
       },
       "id": "problem_4081"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.53532053888,
-          48.36844893449
-        ]
-      },
-      "properties": {
-        "grade": "7c",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "La Putain du Diable (assis)",
-        "bleauInfoId": "305363",
-        "parentId": 4095,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 3430
-          }
-        ]
-      },
-      "id": "problem_4096"
     },
     {
       "type": "Feature",
