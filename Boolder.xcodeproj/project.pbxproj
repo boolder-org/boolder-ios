@@ -59,8 +59,10 @@
 		038A2DD9273985D6006E42E9 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E825864A43003A545B /* LocationFetcher.swift */; };
 		038A2DDA273985DA006E42E9 /* EditProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C27F25A8627D003A7C64 /* EditProblemView.swift */; };
 		038A2DDB273985E9006E42E9 /* MapMakerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */; };
-		039D9E6B27AAB29B00724B40 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039D9E6A27AAB29B00724B40 /* area-1-data.geojson */; };
-		039D9E6C27AAB29B00724B40 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039D9E6A27AAB29B00724B40 /* area-1-data.geojson */; };
+		039C034F27C7C4D00089EEC3 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039C034E27C7C4D00089EEC3 /* area-1-data.geojson */; };
+		039C035027C7C4D00089EEC3 /* area-1-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039C034E27C7C4D00089EEC3 /* area-1-data.geojson */; };
+		039C035227C7C81A0089EEC3 /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C035127C7C81A0089EEC3 /* area-1-topo-lines.json */; };
+		039C035327C7C81A0089EEC3 /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C035127C7C81A0089EEC3 /* area-1-topo-lines.json */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504B27C0348C003E5B2A /* AllAreasMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */; };
@@ -264,7 +266,8 @@
 		0361E0D62708C58800A88128 /* area-18-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-18-topo-lines.json"; sourceTree = "<group>"; };
 		0378F175272300E700371829 /* area-8-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-8-data.geojson"; sourceTree = "<group>"; };
 		0378F176272300E700371829 /* area-8-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-8-topo-lines.json"; sourceTree = "<group>"; };
-		039D9E6A27AAB29B00724B40 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
+		039C034E27C7C4D00089EEC3 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
+		039C035127C7C81A0089EEC3 /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasMapView.swift; sourceTree = "<group>"; };
 		03DE504D27C18444003E5B2A /* AllAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasView.swift; sourceTree = "<group>"; };
@@ -734,7 +737,8 @@
 		37A8C63E245326B300DC161F /* area-1 */ = {
 			isa = PBXGroup;
 			children = (
-				039D9E6A27AAB29B00724B40 /* area-1-data.geojson */,
+				039C034E27C7C4D00089EEC3 /* area-1-data.geojson */,
+				039C035127C7C81A0089EEC3 /* area-1-topo-lines.json */,
 			);
 			path = "area-1";
 			sourceTree = "<group>";
@@ -990,8 +994,8 @@
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
 				03F163D82710B17B00D1BCF3 /* area-20-data.geojson in Resources */,
 				035F60A8272D484200954D31 /* area-19-data.geojson in Resources */,
+				039C035027C7C4D00089EEC3 /* area-1-data.geojson in Resources */,
 				0348CDB8279AC7F90058066F /* area-28-data.geojson in Resources */,
-				039D9E6C27AAB29B00724B40 /* area-1-data.geojson in Resources */,
 				03F6796A278455F4003ACF89 /* area-22-data.geojson in Resources */,
 				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
 				3789F2E526512068003BC082 /* area-9-data.geojson in Resources */,
@@ -1032,6 +1036,7 @@
 				03F6797027845DF8003ACF89 /* area-21-topo-lines.json in Resources */,
 				3796409326F3E61900FDE10D /* area-6-data.geojson in Resources */,
 				3789F317265120A4003BC082 /* area-15-topo-lines.json in Resources */,
+				039C035327C7C81A0089EEC3 /* area-1-topo-lines.json in Resources */,
 				035F60AA272D484200954D31 /* area-19-topo-lines.json in Resources */,
 				37379A46258E619400711EDA /* Localizable.strings in Resources */,
 			);
@@ -1049,8 +1054,8 @@
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				03F163D72710B17B00D1BCF3 /* area-20-data.geojson in Resources */,
 				035F60A7272D484200954D31 /* area-19-data.geojson in Resources */,
+				039C034F27C7C4D00089EEC3 /* area-1-data.geojson in Resources */,
 				0348CDB7279AC7F90058066F /* area-28-data.geojson in Resources */,
-				039D9E6B27AAB29B00724B40 /* area-1-data.geojson in Resources */,
 				03F67969278455F4003ACF89 /* area-22-data.geojson in Resources */,
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				3789F2E426512068003BC082 /* area-9-data.geojson in Resources */,
@@ -1091,6 +1096,7 @@
 				03F6796F27845DF8003ACF89 /* area-21-topo-lines.json in Resources */,
 				3796409226F3E61900FDE10D /* area-6-data.geojson in Resources */,
 				3789F316265120A4003BC082 /* area-15-topo-lines.json in Resources */,
+				039C035227C7C81A0089EEC3 /* area-1-topo-lines.json in Resources */,
 				035F60A9272D484200954D31 /* area-19-topo-lines.json in Resources */,
 				37A6572524BDC00500273A9A /* Localizable.strings in Resources */,
 			);
