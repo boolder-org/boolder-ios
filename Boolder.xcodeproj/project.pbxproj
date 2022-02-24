@@ -95,6 +95,10 @@
 		039C03A727C7CCB30089EEC3 /* area-29-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039C03A527C7CCB30089EEC3 /* area-29-data.geojson */; };
 		039C03A927C7CCC90089EEC3 /* area-30-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039C03A827C7CCC90089EEC3 /* area-30-data.geojson */; };
 		039C03AA27C7CCC90089EEC3 /* area-30-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039C03A827C7CCC90089EEC3 /* area-30-data.geojson */; };
+		039C03AC27C7D3840089EEC3 /* area-23-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C03AB27C7D3840089EEC3 /* area-23-topo-lines.json */; };
+		039C03AD27C7D3840089EEC3 /* area-23-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C03AB27C7D3840089EEC3 /* area-23-topo-lines.json */; };
+		039C03AF27C7D4660089EEC3 /* area-24-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C03AE27C7D4660089EEC3 /* area-24-topo-lines.json */; };
+		039C03B027C7D4660089EEC3 /* area-24-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C03AE27C7D4660089EEC3 /* area-24-topo-lines.json */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504B27C0348C003E5B2A /* AllAreasMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */; };
@@ -284,6 +288,8 @@
 		039C03A227C7CC9C0089EEC3 /* area-28-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-28-data.geojson"; sourceTree = "<group>"; };
 		039C03A527C7CCB30089EEC3 /* area-29-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-29-data.geojson"; sourceTree = "<group>"; };
 		039C03A827C7CCC90089EEC3 /* area-30-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-30-data.geojson"; sourceTree = "<group>"; };
+		039C03AB27C7D3840089EEC3 /* area-23-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-23-topo-lines.json"; sourceTree = "<group>"; };
+		039C03AE27C7D4660089EEC3 /* area-24-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-24-topo-lines.json"; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasMapView.swift; sourceTree = "<group>"; };
 		03DE504D27C18444003E5B2A /* AllAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasView.swift; sourceTree = "<group>"; };
@@ -405,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				039C039627C7CC3C0089EEC3 /* area-24-data.geojson */,
+				039C03AE27C7D4660089EEC3 /* area-24-topo-lines.json */,
 			);
 			path = "area-24";
 			sourceTree = "<group>";
@@ -496,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				039C039327C7CC290089EEC3 /* area-23-data.geojson */,
+				039C03AB27C7D3840089EEC3 /* area-23-topo-lines.json */,
 			);
 			path = "area-23";
 			sourceTree = "<group>";
@@ -988,6 +996,7 @@
 			files = (
 				039C038327C7CBA40089EEC3 /* area-17-data.geojson in Resources */,
 				3796409F26F3EA7F00FDE10D /* area-11-topo-lines.json in Resources */,
+				039C03B027C7D4660089EEC3 /* area-24-topo-lines.json in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
 				039C038627C7CBBD0089EEC3 /* area-18-data.geojson in Resources */,
 				039C035027C7C4D00089EEC3 /* area-1-data.geojson in Resources */,
@@ -1025,6 +1034,7 @@
 				03F6797327845E01003ACF89 /* area-22-topo-lines.json in Resources */,
 				039C03A127C7CC800089EEC3 /* area-27-data.geojson in Resources */,
 				3789F2FF26512087003BC082 /* area-12-topo-lines.json in Resources */,
+				039C03AD27C7D3840089EEC3 /* area-23-topo-lines.json in Resources */,
 				039C03AA27C7CCC90089EEC3 /* area-30-data.geojson in Resources */,
 				039C039B27C7CC500089EEC3 /* area-25-data.geojson in Resources */,
 				039C036527C7CAA20089EEC3 /* area-8-data.geojson in Resources */,
@@ -1048,6 +1058,7 @@
 			files = (
 				039C038227C7CBA40089EEC3 /* area-17-data.geojson in Resources */,
 				3796409E26F3EA7F00FDE10D /* area-11-topo-lines.json in Resources */,
+				039C03AF27C7D4660089EEC3 /* area-24-topo-lines.json in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				039C038527C7CBBD0089EEC3 /* area-18-data.geojson in Resources */,
 				039C034F27C7C4D00089EEC3 /* area-1-data.geojson in Resources */,
@@ -1085,6 +1096,7 @@
 				03F6797227845E01003ACF89 /* area-22-topo-lines.json in Resources */,
 				039C03A027C7CC800089EEC3 /* area-27-data.geojson in Resources */,
 				3789F2FE26512087003BC082 /* area-12-topo-lines.json in Resources */,
+				039C03AC27C7D3840089EEC3 /* area-23-topo-lines.json in Resources */,
 				039C03A927C7CCC90089EEC3 /* area-30-data.geojson in Resources */,
 				039C039A27C7CC500089EEC3 /* area-25-data.geojson in Resources */,
 				039C036427C7CAA20089EEC3 /* area-8-data.geojson in Resources */,
