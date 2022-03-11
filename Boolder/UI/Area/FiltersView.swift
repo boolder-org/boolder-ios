@@ -103,9 +103,20 @@ struct FiltersView: View {
                     
                     #if DEVELOPMENT
                     Section(header: Text("Dev only")) {
+                        
                         HStack {
                             Toggle(isOn: $filters.mapMakerModeEnabled) {
                                 Text("Hide mapped problems")
+                            }
+                        }
+                        HStack {
+                            Toggle(isOn: $filters.photoMissing) {
+                                Text("Missing photo")
+                            }
+                        }
+                        HStack {
+                            Toggle(isOn: $filters.lineMissing) {
+                                Text("Missing line")
                             }
                         }
                     }

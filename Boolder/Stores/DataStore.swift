@@ -98,13 +98,15 @@ class DataStore : ObservableObject {
             if(filters.circuitId == nil || problem.circuitId == filters.circuitId) {
                 if isGradeOk(problem)  {
                     if isSteepnessOk(problem) {
-                        if filters.photoPresent == false || (problem.mainTopoPhoto != nil) {
-                            if isHeightOk(problem) {
-                                if filters.favorite == false || problem.isFavorite()  {
-                                    if filters.ticked == false || problem.isTicked()  {
-                                        if filters.risky == true || !problem.isRisky()  {
-                                            if isMapMakerModeOk(problem) {
-                                                return true
+                        if filters.photoMissing == false || (problem.mainTopoPhoto == nil) {
+                            if filters.lineMissing == false || (problem.mainTopoPhoto != nil && problem.lineFirstPoint() == nil) {
+                                if isHeightOk(problem) {
+                                    if filters.favorite == false || problem.isFavorite()  {
+                                        if filters.ticked == false || problem.isTicked()  {
+                                            if filters.risky == true || !problem.isRisky()  {
+                                                if isMapMakerModeOk(problem) {
+                                                    return true
+                                                }
                                             }
                                         }
                                     }
