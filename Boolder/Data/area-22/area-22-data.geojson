@@ -758,36 +758,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52351511811,
-          48.38531870204
-        ]
-      },
-      "properties": {
-        "grade": "3b",
-        "circuitNumber": "",
-        "steepness": "slab",
-        "height": null,
-        "name": "La Petite Souris",
-        "bleauInfoId": "20251",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5911
-          }
-        ]
-      },
-      "id": "problem_5475"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52343003365,
           48.38544747652
         ]
@@ -812,6 +782,36 @@
         ]
       },
       "id": "problem_5465"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52351511811,
+          48.38531870204
+        ]
+      },
+      "properties": {
+        "grade": "3b",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Petite Souris",
+        "bleauInfoId": "20251",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5911
+          }
+        ]
+      },
+      "id": "problem_5475"
     },
     {
       "type": "Feature",
@@ -873,6 +873,96 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.52346608759,
+          48.38544605328
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": 5,
+        "name": "Velociraptor",
+        "bleauInfoId": "20200",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5888
+          }
+        ]
+      },
+      "id": "problem_5469"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.523414654,
+          48.38544429515
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Le Petit Velociraptor",
+        "bleauInfoId": "20267",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5892
+          }
+        ]
+      },
+      "id": "problem_5464"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52307677184,
+          48.3865866496
+        ]
+      },
+      "properties": {
+        "grade": "7b",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Yoguignol",
+        "bleauInfoId": "20197",
+        "parentId": 5444,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5867
+          }
+        ]
+      },
+      "id": "problem_5445"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.52370133188,
           48.38525589386
         ]
@@ -922,36 +1012,6 @@
         ]
       },
       "id": "problem_5442"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52307677184,
-          48.3865866496
-        ]
-      },
-      "properties": {
-        "grade": "7b",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Yoguignol",
-        "bleauInfoId": "20197",
-        "parentId": 5444,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5867
-          }
-        ]
-      },
-      "id": "problem_5445"
     },
     {
       "type": "Feature",
@@ -1424,36 +1484,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52346608759,
-          48.38544605328
-        ]
-      },
-      "properties": {
-        "grade": "7c",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": 5,
-        "name": "Velociraptor",
-        "bleauInfoId": "20200",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5888
-          }
-        ]
-      },
-      "id": "problem_5469"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52344598058,
           48.38544764396
         ]
@@ -1599,36 +1629,6 @@
         ]
       },
       "id": "problem_5444"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.523414654,
-          48.38544429515
-        ]
-      },
-      "properties": {
-        "grade": "6c",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": null,
-        "name": "Le Petit Velociraptor",
-        "bleauInfoId": "20267",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5892
-          }
-        ]
-      },
-      "id": "problem_5464"
     },
     {
       "type": "Feature",

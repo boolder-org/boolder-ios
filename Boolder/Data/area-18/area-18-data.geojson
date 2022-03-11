@@ -2218,36 +2218,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.53194449468,
-          48.37140592759
-        ]
-      },
-      "properties": {
-        "grade": "4a",
-        "circuitNumber": "16",
-        "steepness": "wall",
-        "height": 4,
-        "name": "La Fissure des Boulangers",
-        "bleauInfoId": "6175",
-        "parentId": null,
-        "circuitColor": "blue",
-        "circuitId": 71,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5062
-          }
-        ]
-      },
-      "id": "problem_4880"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.53226328085,
           48.37145798144
         ]
@@ -3202,6 +3172,36 @@
         ]
       },
       "id": "problem_4897"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.53194449468,
+          48.37140592759
+        ]
+      },
+      "properties": {
+        "grade": "4a",
+        "circuitNumber": "16",
+        "steepness": "wall",
+        "height": 4,
+        "name": "La Fissure des Boulangers",
+        "bleauInfoId": "6175",
+        "parentId": null,
+        "circuitColor": "blue",
+        "circuitId": 71,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5062
+          }
+        ]
+      },
+      "id": "problem_4880"
     },
     {
       "type": "Feature",

@@ -193,36 +193,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.56275706838,
-          48.39081487111
-        ]
-      },
-      "properties": {
-        "grade": "3a+",
-        "circuitNumber": "35",
-        "steepness": "other",
-        "height": null,
-        "name": "Le Gruyère",
-        "bleauInfoId": "3429",
-        "parentId": null,
-        "circuitColor": "orange",
-        "circuitId": 77,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6002
-          }
-        ]
-      },
-      "id": "problem_5731"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.56274093538,
           48.39075744906
         ]
@@ -247,6 +217,36 @@
         ]
       },
       "id": "problem_5742"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.56275706838,
+          48.39081487111
+        ]
+      },
+      "properties": {
+        "grade": "3a+",
+        "circuitNumber": "35",
+        "steepness": "other",
+        "height": null,
+        "name": "Le Gruyère",
+        "bleauInfoId": "3429",
+        "parentId": null,
+        "circuitColor": "orange",
+        "circuitId": 77,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6002
+          }
+        ]
+      },
+      "id": "problem_5731"
     },
     {
       "type": "Feature",
@@ -337,36 +337,6 @@
         ]
       },
       "id": "problem_5606"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.56279360608,
-          48.39094133834
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Mur du Rouge",
-        "bleauInfoId": "",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6020
-          }
-        ]
-      },
-      "id": "problem_5725"
     },
     {
       "type": "Feature",
@@ -2355,8 +2325,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.56277157887,
-          48.39093614039
+          2.56280242427,
+          48.39094315349
         ]
       },
       "properties": {
@@ -3007,36 +2977,6 @@
         ]
       },
       "id": "problem_5525"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.5627732014,
-          48.39080844326
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "Jo Dalton",
-        "bleauInfoId": "116",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6000
-          }
-        ]
-      },
-      "id": "problem_5741"
     },
     {
       "type": "Feature",
@@ -4113,66 +4053,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.5615704985,
-          48.39102950459
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": 3,
-        "name": "La Mer de la Tranquillité",
-        "bleauInfoId": "11432",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 6081
-          }
-        ]
-      },
-      "id": "problem_5672"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.56274112795,
-          48.39092886045
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "7",
-        "steepness": "slab",
-        "height": null,
-        "name": "Silver Lago",
-        "bleauInfoId": "3474",
-        "parentId": null,
-        "circuitColor": "red",
-        "circuitId": 79,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6022
-          }
-        ]
-      },
-      "id": "problem_5720"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.56222462705,
           48.39012093411
         ]
@@ -4377,36 +4257,6 @@
         ]
       },
       "id": "problem_5618"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.56189686853,
-          48.39122530466
-        ]
-      },
-      "properties": {
-        "grade": "5b+",
-        "circuitNumber": "1",
-        "steepness": "wall",
-        "height": 4,
-        "name": "Pas Fin de Fan",
-        "bleauInfoId": "3468",
-        "parentId": null,
-        "circuitColor": "red",
-        "circuitId": 79,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6051
-          }
-        ]
-      },
-      "id": "problem_5687"
     },
     {
       "type": "Feature",
@@ -4941,36 +4791,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.56253587887,
-          48.3909470542
-        ]
-      },
-      "properties": {
-        "grade": "7b",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "La Bombe Humaine",
-        "bleauInfoId": "11920",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 6031
-          }
-        ]
-      },
-      "id": "problem_5715"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.5626028368,
           48.39076623377
         ]
@@ -5380,6 +5200,96 @@
         ]
       },
       "id": "problem_5713"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.56189686853,
+          48.39122530466
+        ]
+      },
+      "properties": {
+        "grade": "5b+",
+        "circuitNumber": "1",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Pas Fin de Fan",
+        "bleauInfoId": "3468",
+        "parentId": null,
+        "circuitColor": "red",
+        "circuitId": 79,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6051
+          }
+        ]
+      },
+      "id": "problem_5687"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5615704985,
+          48.39102950459
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": 3,
+        "name": "La Mer de la Tranquillité",
+        "bleauInfoId": "11432",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 6081
+          }
+        ]
+      },
+      "id": "problem_5672"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5627713028,
+          48.39093598488
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "7",
+        "steepness": "slab",
+        "height": null,
+        "name": "Silver Lago",
+        "bleauInfoId": "3474",
+        "parentId": null,
+        "circuitColor": "red",
+        "circuitId": 79,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6022
+          }
+        ]
+      },
+      "id": "problem_5720"
     },
     {
       "type": "Feature",
@@ -7002,6 +6912,151 @@
         ]
       },
       "id": "problem_5511"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.56253587887,
+          48.3909470542
+        ]
+      },
+      "properties": {
+        "grade": "7b",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "La Bombe Humaine",
+        "bleauInfoId": "11920",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 6031
+          }
+        ]
+      },
+      "id": "problem_5715"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5627732014,
+          48.39080844326
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Jo Dalton",
+        "bleauInfoId": "116",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6000
+          }
+        ]
+      },
+      "id": "problem_5741"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.56275666861,
+          48.39093241356
+        ]
+      },
+      "properties": {
+        "grade": "6a+",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": null,
+        "name": "Little Shakespeare",
+        "bleauInfoId": "3476",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7399
+          }
+        ]
+      },
+      "id": "problem_7909"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.56278432872,
+          48.39093875886
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Bruits de Couloir",
+        "bleauInfoId": "110",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_7907"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.56271995587,
+          48.39097148657
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Casi Modo",
+        "bleauInfoId": "3472",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7398
+          }
+        ]
+      },
+      "id": "problem_7908"
     },
     {
       "type": "Feature",
@@ -20946,12 +21001,12 @@
             48.39097327946
           ],
           [
-            2.56277157887,
-            48.39093614039
+            2.56280242427,
+            48.39094315349
           ],
           [
-            2.56274112795,
-            48.39092886045
+            2.5627713028,
+            48.39093598488
           ],
           [
             2.56268738377,

@@ -461,36 +461,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52470743809,
-          48.37646790066
-        ]
-      },
-      "properties": {
-        "grade": "7c",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Eclipse",
-        "bleauInfoId": "178",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1965
-          }
-        ]
-      },
-      "id": "problem_719"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52490416135,
           48.37730590583
         ]
@@ -911,6 +881,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.52470743809,
+          48.37646790066
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Eclipse",
+        "bleauInfoId": "178",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1965
+          }
+        ]
+      },
+      "id": "problem_719"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.52646705119,
           48.3789271206
         ]
@@ -1110,7 +1110,7 @@
         ],
         "lines": [
           {
-            "id": 4708
+            "id": 7305
           }
         ]
       },
@@ -2736,36 +2736,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52474842585,
-          48.37648659351
-        ]
-      },
-      "properties": {
-        "grade": "7c",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Nouvelle Vague",
-        "bleauInfoId": "179",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1972
-          }
-        ]
-      },
-      "id": "problem_725"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52316340737,
           48.37643960386
         ]
@@ -2820,6 +2790,36 @@
         ]
       },
       "id": "problem_266"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52474842585,
+          48.37648659351
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Nouvelle Vague",
+        "bleauInfoId": "179",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1972
+          }
+        ]
+      },
+      "id": "problem_725"
     },
     {
       "type": "Feature",
@@ -3481,6 +3481,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.52472529171,
+          48.37647078175
+        ]
+      },
+      "properties": {
+        "grade": "7b+",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Arabesque / L'Autre Toit",
+        "bleauInfoId": "177",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1967
+          }
+        ]
+      },
+      "id": "problem_720"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.52545698806,
           48.37712223965
         ]
@@ -3625,36 +3655,6 @@
         ]
       },
       "id": "problem_321"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52473199736,
-          48.37647306436
-        ]
-      },
-      "properties": {
-        "grade": "8a",
-        "circuitNumber": null,
-        "steepness": "roof",
-        "height": null,
-        "name": "La Totalité de l'Autre Toit",
-        "bleauInfoId": "181",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 2122
-          }
-        ]
-      },
-      "id": "problem_722"
     },
     {
       "type": "Feature",
@@ -4019,17 +4019,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52472529171,
-          48.37647078175
+          2.52473199736,
+          48.37647306436
         ]
       },
       "properties": {
-        "grade": "7b+",
-        "circuitNumber": "",
+        "grade": "8a",
+        "circuitNumber": null,
         "steepness": "roof",
         "height": null,
-        "name": "Arabesque / L'Autre Toit",
-        "bleauInfoId": "177",
+        "name": "La Totalité de l'Autre Toit",
+        "bleauInfoId": "181",
         "parentId": null,
         "circuitColor": null,
         "circuitId": null,
@@ -4038,41 +4038,11 @@
         ],
         "lines": [
           {
-            "id": 1967
+            "id": 2122
           }
         ]
       },
-      "id": "problem_720"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52271631716,
-          48.37614329807
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": 5,
-        "name": "Le Toit du Cul de Chien",
-        "bleauInfoId": "173",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "risky"
-        ],
-        "lines": [
-          {
-            "id": 1914
-          }
-        ]
-      },
-      "id": "problem_690"
+      "id": "problem_722"
     },
     {
       "type": "Feature",
@@ -4316,36 +4286,6 @@
         ]
       },
       "id": "problem_682"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52474490536,
-          48.37648035792
-        ]
-      },
-      "properties": {
-        "grade": "8b",
-        "circuitNumber": null,
-        "steepness": "roof",
-        "height": null,
-        "name": "Mad Maxx",
-        "bleauInfoId": "1172",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1973
-          }
-        ]
-      },
-      "id": "problem_723"
     },
     {
       "type": "Feature",
@@ -5125,6 +5065,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.52473962485,
+          48.37647646058
+        ]
+      },
+      "properties": {
+        "grade": "7c+",
+        "circuitNumber": null,
+        "steepness": "roof",
+        "height": null,
+        "name": "The Maxx",
+        "bleauInfoId": "183",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 2121
+          }
+        ]
+      },
+      "id": "problem_724"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.5253455301,
           48.3768541436
         ]
@@ -5565,36 +5535,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52474817439,
-          48.37650006694
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Le Retour de la Chenille",
-        "bleauInfoId": "954",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1970
-          }
-        ]
-      },
-      "id": "problem_727"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52509214237,
           48.37694895347
         ]
@@ -5829,36 +5769,6 @@
         ]
       },
       "id": "problem_340"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52473962485,
-          48.37647646058
-        ]
-      },
-      "properties": {
-        "grade": "7c+",
-        "circuitNumber": null,
-        "steepness": "roof",
-        "height": null,
-        "name": "The Maxx",
-        "bleauInfoId": "183",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 2121
-          }
-        ]
-      },
-      "id": "problem_724"
     },
     {
       "type": "Feature",
@@ -6455,36 +6365,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52487298067,
-          48.37734086939
-        ]
-      },
-      "properties": {
-        "grade": "5a",
-        "circuitNumber": null,
-        "steepness": "wall",
-        "height": null,
-        "name": "L'Orage",
-        "bleauInfoId": "23919",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 2012
-          }
-        ]
-      },
-      "id": "problem_739"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52409463731,
           48.37544601026
         ]
@@ -6564,36 +6444,6 @@
         ]
       },
       "id": "problem_368"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52474834203,
-          48.3764931632
-        ]
-      },
-      "properties": {
-        "grade": "8a",
-        "circuitNumber": null,
-        "steepness": "roof",
-        "height": null,
-        "name": "Lame de Fond",
-        "bleauInfoId": "182",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 1971
-          }
-        ]
-      },
-      "id": "problem_726"
     },
     {
       "type": "Feature",
@@ -6714,6 +6564,66 @@
         ]
       },
       "id": "problem_303"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52474834203,
+          48.3764931632
+        ]
+      },
+      "properties": {
+        "grade": "8a",
+        "circuitNumber": null,
+        "steepness": "roof",
+        "height": null,
+        "name": "Lame de Fond",
+        "bleauInfoId": "182",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1971
+          }
+        ]
+      },
+      "id": "problem_726"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52487298067,
+          48.37734086939
+        ]
+      },
+      "properties": {
+        "grade": "5a",
+        "circuitNumber": null,
+        "steepness": "wall",
+        "height": null,
+        "name": "L'Orage",
+        "bleauInfoId": "23919",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 2012
+          }
+        ]
+      },
+      "id": "problem_739"
     },
     {
       "type": "Feature",
@@ -7280,6 +7190,96 @@
         ]
       },
       "id": "problem_688"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52271631716,
+          48.37614329807
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": 5,
+        "name": "Le Toit du Cul de Chien",
+        "bleauInfoId": "173",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "risky"
+        ],
+        "lines": [
+          {
+            "id": 1914
+          }
+        ]
+      },
+      "id": "problem_690"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52474817439,
+          48.37650006694
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Le Retour de la Chenille",
+        "bleauInfoId": "954",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1970
+          }
+        ]
+      },
+      "id": "problem_727"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52474490536,
+          48.37648035792
+        ]
+      },
+      "properties": {
+        "grade": "8b",
+        "circuitNumber": null,
+        "steepness": "roof",
+        "height": null,
+        "name": "Mad Maxx",
+        "bleauInfoId": "1172",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 1973
+          }
+        ]
+      },
+      "id": "problem_723"
     },
     {
       "type": "Feature",

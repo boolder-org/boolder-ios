@@ -2686,36 +2686,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.68492408064,
-          48.44018809053
-        ]
-      },
-      "properties": {
-        "grade": "8a",
-        "circuitNumber": "",
-        "steepness": "slab",
-        "height": null,
-        "name": "Vague Patatras",
-        "bleauInfoId": "2339",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6277
-          }
-        ]
-      },
-      "id": "problem_6156"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.68388237771,
           48.43905883794
         ]
@@ -3340,6 +3310,36 @@
         ]
       },
       "id": "problem_6209"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.68492408064,
+          48.44018809053
+        ]
+      },
+      "properties": {
+        "grade": "8a",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "Vague Patatras",
+        "bleauInfoId": "2339",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6277
+          }
+        ]
+      },
+      "id": "problem_6156"
     },
     {
       "type": "Feature",
@@ -5588,6 +5588,30 @@
         ]
       },
       "id": "problem_6181"
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "grade": "7b",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Le Petit Pouce Hait",
+        "bleauInfoId": "303112",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7402
+          }
+        ]
+      },
+      "id": "problem_7912"
     },
     {
       "type": "Feature",

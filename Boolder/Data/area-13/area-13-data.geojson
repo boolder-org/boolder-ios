@@ -1173,6 +1173,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.54968817292,
+          48.39199219367
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "circuitNumber": "4",
+        "steepness": "overhang",
+        "height": null,
+        "name": "L'Autoroute du Sud",
+        "bleauInfoId": "3624",
+        "parentId": null,
+        "circuitColor": "red",
+        "circuitId": 52,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 3867
+          }
+        ]
+      },
+      "id": "problem_3458"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.548053849,
           48.39246595587
         ]
@@ -1287,31 +1317,6 @@
         ]
       },
       "id": "problem_3614"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.54752354522,
-          48.39278209573
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Quel Talon!",
-        "bleauInfoId": "8993",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ]
-      },
-      "id": "problem_3731"
     },
     {
       "type": "Feature",
@@ -1642,36 +1647,6 @@
         ]
       },
       "id": "problem_3702"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.54968817292,
-          48.39199219367
-        ]
-      },
-      "properties": {
-        "grade": "5c",
-        "circuitNumber": "4",
-        "steepness": "overhang",
-        "height": null,
-        "name": "L'Autoroute du Sud",
-        "bleauInfoId": "3624",
-        "parentId": null,
-        "circuitColor": "red",
-        "circuitId": 52,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 3867
-          }
-        ]
-      },
-      "id": "problem_3458"
     },
     {
       "type": "Feature",
@@ -2363,36 +2338,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.5478458207,
-          48.39245512595
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Bave était Toit",
-        "bleauInfoId": "11926",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 3745
-          }
-        ]
-      },
-      "id": "problem_3694"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.54876267955,
           48.39212130548
         ]
@@ -2447,6 +2392,66 @@
         ]
       },
       "id": "problem_3624"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5478458207,
+          48.39245512595
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Bave était Toit",
+        "bleauInfoId": "11926",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 3745
+          }
+        ]
+      },
+      "id": "problem_3694"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54766543924,
+          48.39219141021
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Narine Droite",
+        "bleauInfoId": "8737",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 3733
+          }
+        ]
+      },
+      "id": "problem_3671"
     },
     {
       "type": "Feature",
@@ -2687,36 +2692,6 @@
         ]
       },
       "id": "problem_3636"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.54768656164,
-          48.39216781113
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Narine Droite",
-        "bleauInfoId": "8737",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 3733
-          }
-        ]
-      },
-      "id": "problem_3671"
     },
     {
       "type": "Feature",
@@ -2988,6 +2963,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.54800843778,
+          48.39247975882
+        ]
+      },
+      "properties": {
+        "grade": "7b+",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "La Longue Marche",
+        "bleauInfoId": "155",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 3756
+          }
+        ]
+      },
+      "id": "problem_3708"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.54742432787,
           48.39186690392
         ]
@@ -3078,36 +3083,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.54800843778,
-          48.39247975882
-        ]
-      },
-      "properties": {
-        "grade": "7b+",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "La Longue Marche",
-        "bleauInfoId": "155",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 3756
-          }
-        ]
-      },
-      "id": "problem_3708"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.54783111002,
           48.39187284989
         ]
@@ -3132,6 +3107,36 @@
         ]
       },
       "id": "problem_3571"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54766743822,
+          48.39218971121
+        ]
+      },
+      "properties": {
+        "grade": "6a+",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Les Fesses",
+        "bleauInfoId": "11924",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 3734
+          }
+        ]
+      },
+      "id": "problem_3672"
     },
     {
       "type": "Feature",
@@ -3222,36 +3227,6 @@
         ]
       },
       "id": "problem_3776"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.54768856062,
-          48.39216611213
-        ]
-      },
-      "properties": {
-        "grade": "6a+",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": null,
-        "name": "Les Fesses",
-        "bleauInfoId": "11924",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 3734
-          }
-        ]
-      },
-      "id": "problem_3672"
     },
     {
       "type": "Feature",
@@ -5583,36 +5558,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.54684389577,
-          48.39248995188
-        ]
-      },
-      "properties": {
-        "grade": "6b",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Chouchou Chéri",
-        "bleauInfoId": "3640",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 3668
-          }
-        ]
-      },
-      "id": "problem_3763"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.54774572414,
           48.39183228992
         ]
@@ -6328,36 +6273,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.54761108964,
-          48.39188622818
-        ]
-      },
-      "properties": {
-        "grade": "6c",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Mardi Gras",
-        "bleauInfoId": "300252",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 3649
-          }
-        ]
-      },
-      "id": "problem_3650"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.54825388205,
           48.3923869605
         ]
@@ -6838,6 +6753,66 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.54684389577,
+          48.39248995188
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Chouchou Chéri",
+        "bleauInfoId": "3640",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 3668
+          }
+        ]
+      },
+      "id": "problem_3763"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54761108964,
+          48.39188622818
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Mardi Gras",
+        "bleauInfoId": "300252",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 3649
+          }
+        ]
+      },
+      "id": "problem_3650"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.54815218651,
           48.39247869716
         ]
@@ -7283,36 +7258,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.54816114099,
-          48.39194759894
-        ]
-      },
-      "properties": {
-        "grade": "6b",
-        "circuitNumber": "32",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Glycolyse",
-        "bleauInfoId": "3657",
-        "parentId": null,
-        "circuitColor": "red",
-        "circuitId": 52,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 3573
-          }
-        ]
-      },
-      "id": "problem_3599"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.54810517647,
           48.39252881239
         ]
@@ -7457,36 +7402,6 @@
         ]
       },
       "id": "problem_3485"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.54684005836,
-          48.39249175678
-        ]
-      },
-      "properties": {
-        "grade": "7a+",
-        "circuitNumber": "",
-        "steepness": "traverse",
-        "height": null,
-        "name": "La Baleine",
-        "bleauInfoId": "1763",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 3667
-          }
-        ]
-      },
-      "id": "problem_3764"
     },
     {
       "type": "Feature",
@@ -8123,6 +8038,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.54816114099,
+          48.39194759894
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "32",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Glycolyse",
+        "bleauInfoId": "3657",
+        "parentId": null,
+        "circuitColor": "red",
+        "circuitId": 52,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 3573
+          }
+        ]
+      },
+      "id": "problem_3599"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.54848237738,
           48.39215262768
         ]
@@ -8650,36 +8595,6 @@
         ]
       },
       "id": "problem_3743"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.547684803,
-          48.39216568743
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Narine Gauche",
-        "bleauInfoId": "305857",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 3735
-          }
-        ]
-      },
-      "id": "problem_3673"
     },
     {
       "type": "Feature",
@@ -9875,6 +9790,156 @@
         ]
       },
       "id": "problem_7658"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54684005836,
+          48.39249175678
+        ]
+      },
+      "properties": {
+        "grade": "7a+",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "La Baleine",
+        "bleauInfoId": "1763",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 3667
+          }
+        ]
+      },
+      "id": "problem_3764"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54752354522,
+          48.39278209573
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Quel Talon!",
+        "bleauInfoId": "8993",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7359
+          }
+        ]
+      },
+      "id": "problem_3731"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5476633754,
+          48.39218997049
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Le Nez (rallongé)",
+        "bleauInfoId": "304867",
+        "parentId": 7799,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7362
+          }
+        ]
+      },
+      "id": "problem_7800"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54766605786,
+          48.3921881336
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "Le Petit Nez",
+        "bleauInfoId": "1607",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7360
+          }
+        ]
+      },
+      "id": "problem_7798"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.54762079533,
+          48.39222737278
+        ]
+      },
+      "properties": {
+        "grade": "6b+",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Le Nez",
+        "bleauInfoId": "11057",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7361
+          }
+        ]
+      },
+      "id": "problem_7799"
     },
     {
       "type": "Feature",

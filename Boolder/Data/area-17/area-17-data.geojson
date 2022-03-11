@@ -92,7 +92,7 @@
         ],
         "lines": [
           {
-            "id": 5246
+            "id": 7395
           }
         ]
       },
@@ -1202,36 +1202,6 @@
         ]
       },
       "id": "problem_4726"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52533080931,
-          48.36415414827
-        ]
-      },
-      "properties": {
-        "grade": "8a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Jour de Rêve (assis)",
-        "bleauInfoId": "20743",
-        "parentId": 4727,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 5156
-          }
-        ]
-      },
-      "id": "problem_4728"
     },
     {
       "type": "Feature",
@@ -2786,36 +2756,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52532694383,
-          48.36415764102
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Jour de Rêve",
-        "bleauInfoId": "1461",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5155
-          }
-        ]
-      },
-      "id": "problem_4727"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52509980816,
           48.36457420168
         ]
@@ -3680,6 +3620,126 @@
         ]
       },
       "id": "problem_4711"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52532694383,
+          48.36415764102
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Jour de Rêve",
+        "bleauInfoId": "1461",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5155
+          }
+        ]
+      },
+      "id": "problem_4727"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52533080931,
+          48.36415414827
+        ]
+      },
+      "properties": {
+        "grade": "8a",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Jour de Rêve (assis)",
+        "bleauInfoId": "20743",
+        "parentId": 4727,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 5156
+          }
+        ]
+      },
+      "id": "problem_4728"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52589708177,
+          48.36397569177
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "Dulcinée (direct)",
+        "bleauInfoId": "300208",
+        "parentId": 4672,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7397
+          }
+        ]
+      },
+      "id": "problem_7906"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52486074327,
+          48.36407114271
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Coin de Paradis",
+        "bleauInfoId": "890",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7396
+          }
+        ]
+      },
+      "id": "problem_7905"
     },
     {
       "type": "Feature",

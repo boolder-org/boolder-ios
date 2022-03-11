@@ -1618,6 +1618,216 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.43863110211,
+          48.29451543085
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "23",
+        "steepness": "traverse",
+        "height": null,
+        "name": "La Traversée du Culot",
+        "bleauInfoId": "8187",
+        "parentId": null,
+        "circuitColor": "black",
+        "circuitId": 84,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6509
+          }
+        ]
+      },
+      "id": "problem_5927"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.4402529743,
+          48.29498709822
+        ]
+      },
+      "properties": {
+        "grade": "5b",
+        "circuitNumber": "34",
+        "steepness": "slab",
+        "height": 4,
+        "name": "La Directissime des Minets",
+        "bleauInfoId": "8198",
+        "parentId": null,
+        "circuitColor": "black",
+        "circuitId": 84,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6599
+          }
+        ]
+      },
+      "id": "problem_5943"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.44029387765,
+          48.29497661473
+        ]
+      },
+      "properties": {
+        "grade": "5b+",
+        "circuitNumber": "33",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Directe des Minets",
+        "bleauInfoId": "8197",
+        "parentId": null,
+        "circuitColor": "black",
+        "circuitId": 84,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6601
+          }
+        ]
+      },
+      "id": "problem_5941"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.44029622492,
+          48.2949808526
+        ]
+      },
+      "properties": {
+        "grade": "6a+",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Super Minets",
+        "bleauInfoId": "300161",
+        "parentId": 5941,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6603
+          }
+        ]
+      },
+      "id": "problem_5942"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.44185375033,
+          48.29497929109
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "La Traversée de Magic Bus (gauche)",
+        "bleauInfoId": "303010",
+        "parentId": 7910,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7401
+          }
+        ]
+      },
+      "id": "problem_7911"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.44179490937,
+          48.29497371464
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "",
+        "steepness": "traverse",
+        "height": null,
+        "name": "La Traversée de Magic Bus",
+        "bleauInfoId": "21902",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7400
+          }
+        ]
+      },
+      "id": "problem_7910"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.43756787787,
+          48.29388327374
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "circuitNumber": "48",
+        "steepness": "slab",
+        "height": 3,
+        "name": null,
+        "bleauInfoId": "12232",
+        "parentId": null,
+        "circuitColor": "orange",
+        "circuitId": 81,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6450
+          }
+        ]
+      },
+      "id": "problem_5878"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.43888715872,
           48.29474629278
         ]
@@ -1672,36 +1882,6 @@
         ]
       },
       "id": "problem_5834"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.43756787787,
-          48.29388327374
-        ]
-      },
-      "properties": {
-        "grade": "2a",
-        "circuitNumber": "48",
-        "steepness": "slab",
-        "height": 3,
-        "name": null,
-        "bleauInfoId": "12232",
-        "parentId": null,
-        "circuitColor": "orange",
-        "circuitId": 81,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6450
-          }
-        ]
-      },
-      "id": "problem_5878"
     },
     {
       "type": "Feature",
@@ -3468,36 +3648,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.44029622492,
-          48.2949808526
-        ]
-      },
-      "properties": {
-        "grade": "6a+",
-        "circuitNumber": "",
-        "steepness": "slab",
-        "height": null,
-        "name": "La Super Minets",
-        "bleauInfoId": "300161",
-        "parentId": 5941,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6603
-          }
-        ]
-      },
-      "id": "problem_5942"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.43694993061,
           48.29343818227
         ]
@@ -4420,36 +4570,6 @@
         ]
       },
       "id": "problem_5801"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.44029387765,
-          48.29497661473
-        ]
-      },
-      "properties": {
-        "grade": "5b+",
-        "circuitNumber": "33",
-        "steepness": "slab",
-        "height": null,
-        "name": "La Directe des Minets",
-        "bleauInfoId": "8197",
-        "parentId": null,
-        "circuitColor": "black",
-        "circuitId": 84,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6601
-          }
-        ]
-      },
-      "id": "problem_5941"
     },
     {
       "type": "Feature",
@@ -5441,36 +5561,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.44027141448,
-          48.29498263707
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "",
-        "steepness": "slab",
-        "height": null,
-        "name": "La Super Directissime des Minets",
-        "bleauInfoId": "17101",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6600
-          }
-        ]
-      },
-      "id": "problem_5944"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.43923047922,
           48.29485410837
         ]
@@ -5940,36 +6030,6 @@
         ]
       },
       "id": "problem_5764"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.43863110211,
-          48.29451543085
-        ]
-      },
-      "properties": {
-        "grade": "6b",
-        "circuitNumber": "23",
-        "steepness": "traverse",
-        "height": null,
-        "name": "La Traversée du Culot",
-        "bleauInfoId": "8187",
-        "parentId": null,
-        "circuitColor": "black",
-        "circuitId": 84,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6509
-          }
-        ]
-      },
-      "id": "problem_5927"
     },
     {
       "type": "Feature",
@@ -6574,6 +6634,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.44027141448,
+          48.29498263707
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "circuitNumber": "",
+        "steepness": "slab",
+        "height": null,
+        "name": "La Super Directissime des Minets",
+        "bleauInfoId": "17101",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6600
+          }
+        ]
+      },
+      "id": "problem_5944"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.43437899631,
           48.29264122809
         ]
@@ -6988,36 +7078,6 @@
         ]
       },
       "id": "problem_5759"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.4402529743,
-          48.29498709822
-        ]
-      },
-      "properties": {
-        "grade": "5b",
-        "circuitNumber": "34",
-        "steepness": "slab",
-        "height": 4,
-        "name": "La Directissime des Minets",
-        "bleauInfoId": "8198",
-        "parentId": null,
-        "circuitColor": "black",
-        "circuitId": 84,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6599
-          }
-        ]
-      },
-      "id": "problem_5943"
     },
     {
       "type": "Feature",
@@ -8400,36 +8460,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.43766374666,
-          48.29402034034
-        ]
-      },
-      "properties": {
-        "grade": "6b",
-        "circuitNumber": "",
-        "steepness": "other",
-        "height": null,
-        "name": "Johanna",
-        "bleauInfoId": "11937",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 6453
-          }
-        ]
-      },
-      "id": "problem_5886"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.43639923926,
           48.29309848594
         ]
@@ -8744,6 +8774,36 @@
         ]
       },
       "id": "problem_5752"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.43766374666,
+          48.29402034034
+        ]
+      },
+      "properties": {
+        "grade": "6b",
+        "circuitNumber": "",
+        "steepness": "other",
+        "height": null,
+        "name": "Johanna",
+        "bleauInfoId": "11937",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 6453
+          }
+        ]
+      },
+      "id": "problem_5886"
     },
     {
       "type": "Feature",

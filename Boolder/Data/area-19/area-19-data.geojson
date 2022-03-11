@@ -793,6 +793,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.52740156547,
+          48.38246600679
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "circuitNumber": "15",
+        "steepness": "traverse",
+        "height": 1,
+        "name": null,
+        "bleauInfoId": "3818",
+        "parentId": null,
+        "circuitColor": "yellow",
+        "circuitId": 72,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 5541
+          }
+        ]
+      },
+      "id": "problem_5165"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.5270958921,
           48.38253954267
         ]
@@ -847,6 +877,36 @@
         ]
       },
       "id": "problem_5204"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5272079148,
+          48.38263958153
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "wall",
+        "height": 4,
+        "name": "Snoopy",
+        "bleauInfoId": "20422",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 5532
+          }
+        ]
+      },
+      "id": "problem_5197"
     },
     {
       "type": "Feature",
@@ -970,36 +1030,6 @@
         ]
       },
       "id": "problem_5188"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.5272079148,
-          48.38263958153
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "wall",
-        "height": 4,
-        "name": "Snoopy",
-        "bleauInfoId": "20422",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 5532
-          }
-        ]
-      },
-      "id": "problem_5197"
     },
     {
       "type": "Feature",
@@ -1636,36 +1666,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52740156547,
-          48.38246600679
-        ]
-      },
-      "properties": {
-        "grade": "2b",
-        "circuitNumber": "15",
-        "steepness": "traverse",
-        "height": 1,
-        "name": null,
-        "bleauInfoId": "3818",
-        "parentId": null,
-        "circuitColor": "yellow",
-        "circuitId": 72,
-        "tags": [
-
-        ],
-        "lines": [
-          {
-            "id": 5541
-          }
-        ]
-      },
-      "id": "problem_5165"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52789541346,
           48.38297679671
         ]
@@ -1865,36 +1865,6 @@
         ]
       },
       "id": "problem_5215"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52783690239,
-          48.38300842478
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "overhang",
-        "height": 3,
-        "name": "Le Gueulard",
-        "bleauInfoId": "20337",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 5560
-          }
-        ]
-      },
-      "id": "problem_5149"
     },
     {
       "type": "Feature",
@@ -2525,6 +2495,36 @@
         ]
       },
       "id": "problem_5168"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52783690239,
+          48.38300842478
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": 3,
+        "name": "Le Gueulard",
+        "bleauInfoId": "20337",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 5560
+          }
+        ]
+      },
+      "id": "problem_5149"
     },
     {
       "type": "Feature",
