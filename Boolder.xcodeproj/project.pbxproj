@@ -112,6 +112,8 @@
 		032338DD27E67910000128B7 /* area-35-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 032338DC27E67910000128B7 /* area-35-data.geojson */; };
 		032338DE27E67910000128B7 /* area-35-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 032338DC27E67910000128B7 /* area-35-data.geojson */; };
 		03254828273991C900E9E6A6 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePickerView.swift */; };
+		0340436227F4645E005645D9 /* area-40-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0340436127F4645E005645D9 /* area-40-data.geojson */; };
+		0340436327F4645E005645D9 /* area-40-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0340436127F4645E005645D9 /* area-40-data.geojson */; };
 		034865AD27EBD1D80080E7B1 /* area-38-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034865AC27EBD1D80080E7B1 /* area-38-data.geojson */; };
 		034865AE27EBD1D80080E7B1 /* area-38-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034865AC27EBD1D80080E7B1 /* area-38-data.geojson */; };
 		034865B027EBD1DF0080E7B1 /* area-39-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 034865AF27EBD1DF0080E7B1 /* area-39-data.geojson */; };
@@ -316,6 +318,7 @@
 		03186F1027DB51C600431DCB /* area-24-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-24-topo-lines.json"; sourceTree = "<group>"; };
 		032338D927E67908000128B7 /* area-34-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-34-data.geojson"; sourceTree = "<group>"; };
 		032338DC27E67910000128B7 /* area-35-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-35-data.geojson"; sourceTree = "<group>"; };
+		0340436127F4645E005645D9 /* area-40-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-40-data.geojson"; sourceTree = "<group>"; };
 		034865AC27EBD1D80080E7B1 /* area-38-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-38-data.geojson"; sourceTree = "<group>"; };
 		034865AF27EBD1DF0080E7B1 /* area-39-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-39-data.geojson"; sourceTree = "<group>"; };
 		0351941727E3330A00DD5E79 /* area-32-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-32-data.geojson"; sourceTree = "<group>"; };
@@ -481,6 +484,14 @@
 				039C039C27C7CC690089EEC3 /* area-26-data.geojson */,
 			);
 			path = "area-26";
+			sourceTree = "<group>";
+		};
+		0340436027F46443005645D9 /* area-40 */ = {
+			isa = PBXGroup;
+			children = (
+				0340436127F4645E005645D9 /* area-40-data.geojson */,
+			);
+			path = "area-40";
 			sourceTree = "<group>";
 		};
 		0342CE412703716500B5C0C5 /* area-18 */ = {
@@ -846,6 +857,7 @@
 				03EDAC1B27EA7D57003D315E /* area-37 */,
 				034865AA27EBD1490080E7B1 /* area-38 */,
 				034865AB27EBD1560080E7B1 /* area-39 */,
+				0340436027F46443005645D9 /* area-40 */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1069,6 +1081,7 @@
 					"area-38",
 					"area-39",
 					"area-4",
+					"area-40",
 					"area-5",
 					"area-6",
 					"area-7",
@@ -1117,6 +1130,7 @@
 				03186EAC27DB4F1900431DCB /* area-6-data.geojson in Resources */,
 				03186ED627DB501800431DCB /* area-13-data.geojson in Resources */,
 				03186EE827DB509A00431DCB /* area-16-topo-lines.json in Resources */,
+				0340436327F4645E005645D9 /* area-40-data.geojson in Resources */,
 				03186E9927DB4E2500431DCB /* area-4-topo-lines.json in Resources */,
 				03186F0227DB513500431DCB /* area-21-topo-lines.json in Resources */,
 				037FF86627E50D21009FAAB3 /* area-33-data.geojson in Resources */,
@@ -1188,6 +1202,7 @@
 				03186EAB27DB4F1900431DCB /* area-6-data.geojson in Resources */,
 				03186ED527DB501800431DCB /* area-13-data.geojson in Resources */,
 				03186EE727DB509A00431DCB /* area-16-topo-lines.json in Resources */,
+				0340436227F4645E005645D9 /* area-40-data.geojson in Resources */,
 				03186E9827DB4E2500431DCB /* area-4-topo-lines.json in Resources */,
 				03186F0127DB513500431DCB /* area-21-topo-lines.json in Resources */,
 				037FF86527E50D21009FAAB3 /* area-33-data.geojson in Resources */,
