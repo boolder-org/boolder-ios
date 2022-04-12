@@ -147,6 +147,8 @@
 		039C03AA27C7CCC90089EEC3 /* area-30-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 039C03A827C7CCC90089EEC3 /* area-30-data.geojson */; };
 		03A312F827F5B06B004B2974 /* area-41-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03A312F727F5B06B004B2974 /* area-41-data.geojson */; };
 		03A312F927F5B06B004B2974 /* area-41-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03A312F727F5B06B004B2974 /* area-41-data.geojson */; };
+		03A9FF9A28061EE300F0B550 /* area-43-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03A9FF9928061EE300F0B550 /* area-43-data.geojson */; };
+		03A9FF9B28061EE300F0B550 /* area-43-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03A9FF9928061EE300F0B550 /* area-43-data.geojson */; };
 		03D4F72427E3B25F006F08FE /* area-28-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D4F72327E3B25F006F08FE /* area-28-data.geojson */; };
 		03D4F72527E3B25F006F08FE /* area-28-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D4F72327E3B25F006F08FE /* area-28-data.geojson */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
@@ -338,6 +340,7 @@
 		039C03A527C7CCB30089EEC3 /* area-29-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-29-data.geojson"; sourceTree = "<group>"; };
 		039C03A827C7CCC90089EEC3 /* area-30-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-30-data.geojson"; sourceTree = "<group>"; };
 		03A312F727F5B06B004B2974 /* area-41-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-41-data.geojson"; sourceTree = "<group>"; };
+		03A9FF9928061EE300F0B550 /* area-43-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-43-data.geojson"; sourceTree = "<group>"; };
 		03D4F72327E3B25F006F08FE /* area-28-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-28-data.geojson"; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasMapView.swift; sourceTree = "<group>"; };
@@ -605,6 +608,14 @@
 				03A312F727F5B06B004B2974 /* area-41-data.geojson */,
 			);
 			path = "area-41";
+			sourceTree = "<group>";
+		};
+		03A9FF9828061E5200F0B550 /* area-43 */ = {
+			isa = PBXGroup;
+			children = (
+				03A9FF9928061EE300F0B550 /* area-43-data.geojson */,
+			);
+			path = "area-43";
 			sourceTree = "<group>";
 		};
 		03EDAC1A27EA7D4C003D315E /* area-36 */ = {
@@ -882,6 +893,7 @@
 				0340436027F46443005645D9 /* area-40 */,
 				03A312F627F5B05C004B2974 /* area-41 */,
 				031BAD352801E1B500DE861D /* area-42 */,
+				03A9FF9828061E5200F0B550 /* area-43 */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1108,6 +1120,7 @@
 					"area-40",
 					"area-41",
 					"area-42",
+					"area-43",
 					"area-5",
 					"area-6",
 					"area-7",
@@ -1213,6 +1226,7 @@
 				03186EB827DB4F5F00431DCB /* area-8-data.geojson in Resources */,
 				03186E9327DB4BA400431DCB /* area-2-data.geojson in Resources */,
 				37379A46258E619400711EDA /* Localizable.strings in Resources */,
+				03A9FF9B28061EE300F0B550 /* area-43-data.geojson in Resources */,
 				03186EEA27DB509A00431DCB /* area-16-data.geojson in Resources */,
 				03186EC627DB4FAE00431DCB /* area-10-data.geojson in Resources */,
 				03186EB227DB4F3A00431DCB /* area-7-data.geojson in Resources */,
@@ -1287,6 +1301,7 @@
 				03186EB727DB4F5F00431DCB /* area-8-data.geojson in Resources */,
 				03186E9227DB4BA400431DCB /* area-2-data.geojson in Resources */,
 				37A6572524BDC00500273A9A /* Localizable.strings in Resources */,
+				03A9FF9A28061EE300F0B550 /* area-43-data.geojson in Resources */,
 				03186EE927DB509A00431DCB /* area-16-data.geojson in Resources */,
 				03186EC527DB4FAE00431DCB /* area-10-data.geojson in Resources */,
 				03186EB127DB4F3A00431DCB /* area-7-data.geojson in Resources */,
