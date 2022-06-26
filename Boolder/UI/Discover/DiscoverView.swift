@@ -27,7 +27,7 @@ struct DiscoverView: View {
         NavigationView {
             GeometryReader { geo in
             ScrollView {
-                LazyVStack {
+                VStack {
                     
                     VStack(alignment: .leading) {
                         
@@ -120,7 +120,7 @@ struct DiscoverView: View {
                         .padding(.horizontal)
                         .padding(.top)
                         
-                        Text("Populaires")
+                        Text("Populaire")
                             .font(.title2).bold()
                             .padding(.top, 16)
                             .padding(.bottom, 8)
@@ -145,7 +145,7 @@ struct DiscoverView: View {
                                                 .padding(4)
                                                 .font(.headline.weight(.bold))
                                                 .foregroundColor(Color(.systemBackground))
-                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .background(
                                                     ZStack {
                                                         Image("area-cover-1").resizable()
@@ -168,7 +168,7 @@ struct DiscoverView: View {
                                                 .padding(4)
                                                 .font(.headline.weight(.bold))
                                                 .foregroundColor(Color(.systemBackground))
-                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .background(
                                                     ZStack {
                                                         Image("area-cover-4").resizable()
@@ -191,7 +191,7 @@ struct DiscoverView: View {
                                                 .padding(4)
                                                 .font(.headline.weight(.bold))
                                                 .foregroundColor(Color(.systemBackground))
-                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .background(
                                                     ZStack {
                                                         Image("area-cover-7").resizable()
@@ -214,7 +214,7 @@ struct DiscoverView: View {
                                                 .padding(4)
                                                 .font(.headline.weight(.bold))
                                                 .foregroundColor(Color(.systemBackground))
-                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .background(
                                                     ZStack {
                                                         Image("area-cover-2").resizable()
