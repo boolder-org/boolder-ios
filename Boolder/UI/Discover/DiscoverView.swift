@@ -17,17 +17,24 @@ struct DiscoverView: View {
 //    @State private var presentAllAreas = false
     @State private var presentSettings = false
     
+    @State private var searchText = ""
+    
     let blue =      Gradient(colors: [Color(red: 191/255, green: 219/255, blue: 254/255), Color(red: 171/255, green: 199/255, blue: 234/255)])
     let green =     Gradient(colors: [Color(red: 167/255, green: 243/255, blue: 208/255), Color(red: 147/255, green: 223/255, blue: 188/255)])
     let pink =      Gradient(colors: [Color(red: 251/255, green: 207/255, blue: 232/255), Color(red: 231/255, green: 187/255, blue: 212/255)])
     let yellow =    Gradient(colors: [Color(red: 253/255, green: 230/255, blue: 138/255), Color(red: 233/255, green: 210/255, blue: 118/255)])
     let shadow =    Gradient(colors: [Color.black.opacity(0.2), Color.black.opacity(0.1)])
     
+    
     var body: some View {
         NavigationView {
+            
             GeometryReader { geo in
             ScrollView {
+                
                 VStack {
+                    
+                    if searchText.isEmpty {
                     
                     VStack(alignment: .leading) {
                         
@@ -39,6 +46,7 @@ struct DiscoverView: View {
 //                                .padding(.bottom, 8)
 //                        }
 //                        .padding(.horizontal)
+                        
                         
                         VStack {
                             HStack {
@@ -79,43 +87,43 @@ struct DiscoverView: View {
                                 }
                             }
                             
-                            HStack {
-                                
-                                NavigationLink(destination: TopAreasDryFast()) {
-                                
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Image(systemName: "sun.max")
-                                            Text("discover.top_areas.dry_fast")
-                                                .textCase(.uppercase)
-                                        }
-                                        .padding()
-                                        .font(.subheadline.weight(.bold))
-                                        .foregroundColor(Color(.systemBackground))
-                                        .frame(height: 80)
-                                        .frame(maxWidth: .infinity)
-                                        .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
-                                        .cornerRadius(8)
-                                    }
-                                }
-                                
-                                NavigationLink(destination: TopAreasTrain()) {
-                                
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text("discover.top_areas.train")
-                                                .textCase(.uppercase)
-                                        }
-                                        .padding()
-                                        .font(.subheadline.weight(.bold))
-                                        .foregroundColor(Color(.systemBackground))
-                                        .frame(height: 80)
-                                        .frame(maxWidth: .infinity)
-                                        .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
-                                        .cornerRadius(8)
-                                    }
-                                }
-                            }
+//                            HStack {
+//                                
+//                                NavigationLink(destination: TopAreasDryFast()) {
+//                                
+//                                    VStack(alignment: .leading) {
+//                                        HStack {
+//                                            Image(systemName: "sun.max")
+//                                            Text("discover.top_areas.dry_fast")
+//                                                .textCase(.uppercase)
+//                                        }
+//                                        .padding()
+//                                        .font(.subheadline.weight(.bold))
+//                                        .foregroundColor(Color(.systemBackground))
+//                                        .frame(height: 80)
+//                                        .frame(maxWidth: .infinity)
+//                                        .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
+//                                        .cornerRadius(8)
+//                                    }
+//                                }
+//                                
+//                                NavigationLink(destination: TopAreasTrain()) {
+//                                
+//                                    VStack(alignment: .leading) {
+//                                        HStack {
+//                                            Text("discover.top_areas.train")
+//                                                .textCase(.uppercase)
+//                                        }
+//                                        .padding()
+//                                        .font(.subheadline.weight(.bold))
+//                                        .foregroundColor(Color(.systemBackground))
+//                                        .frame(height: 80)
+//                                        .frame(maxWidth: .infinity)
+//                                        .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
+//                                        .cornerRadius(8)
+//                                    }
+//                                }
+//                            }
                         }
                         .padding(.horizontal)
                         .padding(.top)
@@ -235,8 +243,16 @@ struct DiscoverView: View {
                         
                         VStack(alignment: .leading) {
                             
-                            Text("discover.all_areas")
-                                .font(.title2).bold()
+                            HStack {
+                                Text("discover.all_areas")
+                                    .font(.title2).bold()
+                                
+                                Spacer()
+                                
+                                NavigationLink(destination: AllAreasView()) {
+                                    Text("Carte")
+                                }
+                            }
                                 .padding(.top, 16)
                                 .padding(.bottom, 8)
                             
@@ -268,10 +284,13 @@ struct DiscoverView: View {
 
                                 Divider()
                             }
+                            
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.vertical, 8)
                         .padding(.horizontal)
+                        
+                        
                         
                     }
                     
@@ -355,8 +374,55 @@ struct DiscoverView: View {
                         .padding(.horizontal)
                     }
                     #endif
+                        
+                    }
+                    else {
+                        VStack(alignment: .leading) {
+                            
+                            Divider()
+
+                            ForEach(searchResults) { area in
+                                NavigationLink(
+                                    destination: AreaView(),
+                                    isActive: $presentArea,
+                                    label: {
+                                        HStack {
+                                            Text(area.name)
+                                                .font(.body)
+                                                .foregroundColor(Color.appGreen)
+                                            Text("(\(String(area.problemsCount)))")
+                                                .font(.callout)
+                                                .foregroundColor(Color(.tertiaryLabel))
+                                            Spacer()
+                                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                        }
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
+                                            dataStore.areaId = area.id
+                                            dataStore.filters = Filters()
+                                            presentArea = true
+                                        }
+                                    }
+                                )
+
+                                Divider()
+                            }
+                            
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal)
+                    }
                 }
                 .navigationBarTitle(Text("Fontainebleau"))
+                .modify {
+                    if #available(iOS 15, *) {
+                        $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Secteur"))
+                    }
+                    else {
+                        $0 // no search bar on iOS14
+                    }
+                }
             }
             }
         }
@@ -374,8 +440,15 @@ struct DiscoverView: View {
         
         return displayed.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-            
         }
+    }
+    
+    var searchResults: [Area] {
+        areasDisplayed.filter { cleanString($0.name).contains(cleanString(searchText)) }
+    }
+    
+    func cleanString(_ str: String) -> String {
+        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
     
     var feedbackURL: URL {
