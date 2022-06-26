@@ -152,7 +152,7 @@ struct AreaView: View {
             trailing: Button(action: {
                 presentList = true
             }) {
-                Text("area.list")
+                Image(systemName: "magnifyingglass")
                     .padding(.vertical)
                     .padding(.leading)
             }

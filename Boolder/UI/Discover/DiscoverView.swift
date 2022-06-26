@@ -14,118 +14,224 @@ struct DiscoverView: View {
     @Environment(\.openURL) var openURL
     
     @State var presentArea = false
-    @State private var presentAllAreas = false
+//    @State private var presentAllAreas = false
     @State private var presentSettings = false
     
     let blue =      Gradient(colors: [Color(red: 191/255, green: 219/255, blue: 254/255), Color(red: 171/255, green: 199/255, blue: 234/255)])
     let green =     Gradient(colors: [Color(red: 167/255, green: 243/255, blue: 208/255), Color(red: 147/255, green: 223/255, blue: 188/255)])
     let pink =      Gradient(colors: [Color(red: 251/255, green: 207/255, blue: 232/255), Color(red: 231/255, green: 187/255, blue: 212/255)])
     let yellow =    Gradient(colors: [Color(red: 253/255, green: 230/255, blue: 138/255), Color(red: 233/255, green: 210/255, blue: 118/255)])
+    let shadow =    Gradient(colors: [Color.black.opacity(0.2), Color.black.opacity(0.1)])
     
     var body: some View {
         NavigationView {
+            GeometryReader { geo in
             ScrollView {
                 LazyVStack {
                     
-                    VStack {
-                        VStack(alignment: .leading) {
+                    VStack(alignment: .leading) {
+                        
+//                        VStack(alignment: .leading) {
+//
+//                            Text("Découvrir")
+//                                .font(.title2).bold()
+//                                .padding(.top, 16)
+//                                .padding(.bottom, 8)
+//                        }
+//                        .padding(.horizontal)
+                        
+                        VStack {
+                            HStack {
+                                NavigationLink(destination: TopAreasLevelView()) {
+                                
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Image(systemName: "chart.bar")
+                                            Text("discover.top_areas.level")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color(.systemBackground))
+                                        .frame(height: 80)
+                                        .frame(maxWidth: .infinity)
+                                        .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
+                                        .cornerRadius(8)
+                                    }
+                                }
+                                
+                                NavigationLink(destination: TopAreasGroups()) {
+                                
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Image(systemName: "person.3")
+                                            Text("discover.top_areas.groups")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color(.systemBackground))
+                                        .frame(height: 80)
+                                        .frame(maxWidth: .infinity)
+                                        .background(LinearGradient(gradient: green, startPoint: .top, endPoint: .bottom))
+                                        .cornerRadius(8)
+                                    }
+                                }
+                            }
                             
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .top, spacing: 0) {
-                                    
-                                    NavigationLink(destination: TopAreasLevelView()) {
-                                    
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "chart.bar")
-                                                Text("discover.top_areas.level")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.headline.weight(.bold))
-                                            .foregroundColor(Color(.systemBackground))
-                                            .frame(width: 200, height: 120)
-                                            .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
-                                            .cornerRadius(8)
+                            HStack {
+                                
+                                NavigationLink(destination: TopAreasDryFast()) {
+                                
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Image(systemName: "sun.max")
+                                            Text("discover.top_areas.dry_fast")
+                                                .textCase(.uppercase)
                                         }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color(.systemBackground))
+                                        .frame(height: 80)
+                                        .frame(maxWidth: .infinity)
+                                        .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
+                                        .cornerRadius(8)
                                     }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: TopAreasGroups()) {
-                                    
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "person.3")
-                                                Text("discover.top_areas.groups")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.headline.weight(.bold))
-                                            .foregroundColor(Color(.systemBackground))
-                                            .frame(width: 200, height: 120)
-                                            .background(LinearGradient(gradient: green, startPoint: .top, endPoint: .bottom))
-                                            .cornerRadius(8)
+                                }
+                                
+                                NavigationLink(destination: TopAreasTrain()) {
+                                
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text("discover.top_areas.train")
+                                                .textCase(.uppercase)
                                         }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color(.systemBackground))
+                                        .frame(height: 80)
+                                        .frame(maxWidth: .infinity)
+                                        .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
+                                        .cornerRadius(8)
                                     }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: TopAreasTrain()) {
-                                    
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Text("discover.top_areas.train")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.headline.weight(.bold))
-                                            .foregroundColor(Color(.systemBackground))
-                                            .frame(width: 200, height: 120)
-                                            .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: TopAreasDryFast()) {
-                                    
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "sun.max")
-                                                Text("discover.top_areas.dry_fast")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.headline.weight(.bold))
-                                            .foregroundColor(Color(.systemBackground))
-                                            .frame(width: 200, height: 120)
-                                            .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    
-                                    NavigationLink(destination: AllAreasView()) {
-                                    
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "map")
-                                                Text("discover.all_areas.map")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.headline.weight(.bold))
-                                            .foregroundColor(Color(.systemBackground))
-                                            .frame(width: 200, height: 120)
-                                            .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                    .padding(.leading, 16)
-                                    .padding(.trailing, 16)
                                 }
                             }
                         }
+                        .padding(.horizontal)
                         .padding(.top)
+                        
+                        Text("Populaires")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        
+                        
+                        
+                        VStack {
+                            VStack(alignment: .leading) {
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top, spacing: 0) {
+                                        
+                                        NavigationLink(destination: TopAreasLevelView()) {
+                                            
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("Rocher Canon")
+                                                        .textCase(.uppercase)
+                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
+                                                }
+                                                .padding(4)
+                                                .font(.headline.weight(.bold))
+                                                .foregroundColor(Color(.systemBackground))
+                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .background(
+                                                    ZStack {
+                                                        Image("area-cover-1").resizable()
+                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
+                                                    }
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+                                        .padding(.leading, 16)
+                                        
+                                        NavigationLink(destination: TopAreasLevelView()) {
+                                            
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("Cuvier")
+                                                        .textCase(.uppercase)
+                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
+                                                }
+                                                .padding(4)
+                                                .font(.headline.weight(.bold))
+                                                .foregroundColor(Color(.systemBackground))
+                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .background(
+                                                    ZStack {
+                                                        Image("area-cover-4").resizable()
+                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
+                                                    }
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+                                        .padding(.leading, 8)
+                                        
+                                        NavigationLink(destination: TopAreasLevelView()) {
+                                            
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("Apremont")
+                                                        .textCase(.uppercase)
+                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
+                                                }
+                                                .padding(4)
+                                                .font(.headline.weight(.bold))
+                                                .foregroundColor(Color(.systemBackground))
+                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .background(
+                                                    ZStack {
+                                                        Image("area-cover-7").resizable()
+                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
+                                                    }
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+                                        .padding(.leading, 8)
+                                        
+                                        NavigationLink(destination: TopAreasLevelView()) {
+                                            
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("Cul de Chien")
+                                                        .textCase(.uppercase)
+                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
+                                                }
+                                                .padding(4)
+                                                .font(.headline.weight(.bold))
+                                                .foregroundColor(Color(.systemBackground))
+                                                .frame(width: (geo.size.width-16*2-8)/2, height: (geo.size.width-16*2-8)/2*9/16)
+                                                .background(
+                                                    ZStack {
+                                                        Image("area-cover-2").resizable()
+                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
+                                                    }
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+                                        .padding(.leading, 8)
+                                        .padding(.trailing, 16)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
                         
                         VStack(alignment: .leading) {
                             
@@ -250,7 +356,8 @@ struct DiscoverView: View {
                     }
                     #endif
                 }
-                .navigationBarTitle(Text("discover.title"))
+                .navigationBarTitle(Text("Fontainebleau"))
+            }
             }
         }
         .phoneOnlyStackNavigationView()
