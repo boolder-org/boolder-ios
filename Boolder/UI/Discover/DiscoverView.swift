@@ -19,11 +19,10 @@ struct DiscoverView: View {
     
     @State private var searchText = ""
     
-    let blue =      Gradient(colors: [Color.blue.opacity(0.5), Color.blue.opacity(0.7)])
-    let green =     Gradient(colors: [Color.green.opacity(0.5), Color.green.opacity(0.7)])
-    let pink =      Gradient(colors: [Color.red.opacity(0.3), Color.red.opacity(0.5)])
-    let yellow =    Gradient(colors: [Color.yellow.opacity(0.5), Color.yellow.opacity(0.7)])
-    let shadow =    Gradient(colors: [Color.black.opacity(0.2), Color.black.opacity(0.1)])
+    let blue =      Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)])
+    let green =     Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)])
+    let pink =      Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)])
+    let yellow =    Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)])
     
     
     var body: some View {
@@ -37,17 +36,7 @@ struct DiscoverView: View {
                     if searchText.isEmpty {
                     
                     VStack(alignment: .leading) {
-                        
-//                        VStack(alignment: .leading) {
-//
-//                            Text("Découvrir")
-//                                .font(.title2).bold()
-//                                .padding(.top, 16)
-//                                .padding(.bottom, 8)
-//                        }
-//                        .padding(.horizontal)
-                        
-                        
+
                         VStack {
                             HStack {
                                 NavigationLink(destination: TopAreasLevelView()) {
@@ -151,25 +140,8 @@ struct DiscoverView: View {
                                                 destination: AreaView(),
                                                 isActive: $presentArea,
                                                 label: {
-                                                    VStack(alignment: .leading) {
-                                                        HStack {
-                                                            Text(area.name)
-                                                                .textCase(.uppercase)
-                                                                .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
-                                                        }
-                                                        .padding(8)
-                                                        .font(.headline.weight(.bold))
-                                                        .foregroundColor(Color(.systemBackground))
-                                                        .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                        .background(
-                                                            ZStack {
-                                                                Image("area-cover-\(area.id)").resizable()
-                                                                LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
-                                                            }
-                                                        )
-                                                        .cornerRadius(8)
-                                                        .padding(.leading, 8)
-                                                    }
+                                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                    .padding(.leading, 8)
                                                     .contentShape(Rectangle())
                                                     .onTapGesture {
                                                         dataStore.areaId = area.id

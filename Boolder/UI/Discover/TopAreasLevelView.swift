@@ -18,6 +18,7 @@ struct TopAreasLevelView: View {
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
+        GeometryReader { geo in
         ScrollView {
             VStack(alignment: .leading) {
                 
@@ -36,147 +37,126 @@ struct TopAreasLevelView: View {
                     
                     if(level == 0) {
 
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 32) {
                             
-                            Divider()
+                            Text("top_areas.level.description.beginner")
+                                .font(.body)
+                                .foregroundColor(gray)
                             
-                            ForEach(beginnerAreas) { area in
-                                NavigationLink(
-                                    destination: AreaView(),
-                                    isActive: $presentArea,
-                                    label: {
-                                        HStack {
-                                            Text(area.name)
-                                                .font(.body)
-                                                .foregroundColor(Color.appGreen)
-                                            Spacer()
-                                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                        }
-                                        .contentShape(Rectangle())
-                                        .onTapGesture {
-                                            dataStore.areaId = area.id
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                )
+                            LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                 
-                                Divider()
+                                ForEach(beginnerAreas) { area in
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea,
+                                        label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .contentShape(Rectangle())
+                                                .onTapGesture {
+                                                    dataStore.areaId = area.id
+                                                    dataStore.filters = Filters()
+                                                    presentArea = true
+                                                }
+                                        }
+                                    )
+                                }
                             }
+                            
+                            Button(action: {
+                                openURL(guideURL)
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "book")
+                                    Text("top_areas.level.read_guide")
+                                    Spacer()
+                                }
+                            }
+                            .padding()
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(8)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        .padding(.vertical, 8)
-                        
-                        Text("top_areas.level.description.beginner")
-                            .font(.body)
-                            .foregroundColor(gray)
-                        
-                        
-                        Button(action: {
-                            openURL(guideURL)
-                        }) {
-                            HStack {
-                                Spacer()
-                                Image(systemName: "book")
-                                Text("top_areas.level.read_guide")
-                                Spacer()
-                            }
-                        }
-                        .foregroundColor(Color.gray)
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
-                        .padding(.top)
+
                     }
                     
                     if(level == 1) {
 
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 32) {
                             
-                            Divider()
+                            Text("top_areas.level.description.intermediate")
+                                .font(.body)
+                                .foregroundColor(gray)
                             
-                            ForEach(intermediateAreas) { area in
-                                NavigationLink(
-                                    destination: AreaView(),
-                                    isActive: $presentArea,
-                                    label: {
-                                        HStack {
-                                            Text(area.name)
-                                                .font(.body)
-                                                .foregroundColor(Color.appGreen)
-                                            Spacer()
-                                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                        }
-                                        .contentShape(Rectangle())
-                                        .onTapGesture {
-                                            dataStore.areaId = area.id
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                )
+                            LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                 
-                                Divider()
+                                ForEach(intermediateAreas) { area in
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea,
+                                        label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .contentShape(Rectangle())
+                                                .onTapGesture {
+                                                    dataStore.areaId = area.id
+                                                    dataStore.filters = Filters()
+                                                    presentArea = true
+                                                }
+                                        }
+                                    )
+                                    
+                                }
                             }
+                            
+                            HStack(alignment: .top) {
+                                Image(systemName: "exclamationmark.triangle.fill").font(.body)
+                                Text("top_areas.level.intermediate.warning").font(.body)
+                                Spacer()
+                            }
+                                .foregroundColor(Color.orange.opacity(0.8))
+                                .padding()
+                                .background(Color.yellow.opacity(0.2))
+                                .cornerRadius(8)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        .padding(.vertical, 8)
                         
-                        Text("top_areas.level.description.intermediate")
-                            .font(.body)
-                            .foregroundColor(gray)
                         
-                        HStack(alignment: .top) {
-                            Image(systemName: "exclamationmark.triangle.fill").font(.body)
-                            Text("top_areas.level.intermediate.warning").font(.body)
-                            Spacer()
-                        }
-                            .foregroundColor(Color.orange.opacity(0.8))
-                            .padding()
-                            .background(Color.yellow.opacity(0.2))
-                            .cornerRadius(8)
+                        
                     }
                     
                     if(level == 2) {
                         
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 32) {
                             
-                            Divider()
+                            Text("top_areas.level.description.advanced")
+                                .font(.body)
+                                .foregroundColor(gray)
                             
-                            ForEach(advancedAreas) { area in
-                                NavigationLink(
-                                    destination: AreaView(),
-                                    isActive: $presentArea,
-                                    label: {
-                                        HStack {
-                                            Text(area.name)
-                                                .font(.body)
-                                                .foregroundColor(Color.appGreen)
-                                            Spacer()
-                                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                        }
-                                        .contentShape(Rectangle())
-                                        .onTapGesture {
-                                            dataStore.areaId = area.id
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                    }
-                                )
+                            LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                 
-                                Divider()
+                                ForEach(advancedAreas) { area in
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea,
+                                        label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .contentShape(Rectangle())
+                                                .onTapGesture {
+                                                    dataStore.areaId = area.id
+                                                    dataStore.filters = Filters()
+                                                    presentArea = true
+                                                }
+                                        }
+                                    )
+                                }
                             }
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        .padding(.vertical, 8)
-                        
-                        Text("top_areas.level.description.advanced")
-                            .font(.body)
-                            .foregroundColor(gray)
                     }
                 }
             }
             .padding(.horizontal)
+        }
         }
         .navigationTitle("top_areas.level.title")
         .navigationBarTitleDisplayMode(.inline)
