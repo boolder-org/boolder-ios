@@ -49,7 +49,7 @@ struct DiscoverView: View {
                                         }
                                         .padding()
                                         .font(.subheadline.weight(.bold))
-                                        .foregroundColor(Color(.systemBackground))
+                                        .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
                                         .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
@@ -67,7 +67,7 @@ struct DiscoverView: View {
                                         }
                                         .padding()
                                         .font(.subheadline.weight(.bold))
-                                        .foregroundColor(Color(.systemBackground))
+                                        .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
                                         .background(LinearGradient(gradient: green, startPoint: .top, endPoint: .bottom))
@@ -88,7 +88,7 @@ struct DiscoverView: View {
                                         }
                                         .padding()
                                         .font(.subheadline.weight(.bold))
-                                        .foregroundColor(Color(.systemBackground))
+                                        .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
                                         .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
@@ -105,7 +105,7 @@ struct DiscoverView: View {
                                         }
                                         .padding()
                                         .font(.subheadline.weight(.bold))
-                                        .foregroundColor(Color(.systemBackground))
+                                        .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
                                         .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))

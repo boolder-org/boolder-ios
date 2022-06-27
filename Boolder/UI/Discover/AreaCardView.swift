@@ -24,7 +24,7 @@ struct AreaCardView: View {
             }
             .padding(8)
             .font(.headline.weight(.bold))
-            .foregroundColor(Color(.systemBackground))
+            .foregroundColor(Color.white)
             .frame(width: width, height: height)
             .background(
                 ZStack {
