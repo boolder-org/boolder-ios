@@ -16,41 +16,41 @@ struct TopAreasTrain: View {
     
     var body: some View {
         GeometryReader { geo in
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                
-                VStack(alignment: .leading, spacing: 32) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
                     
-                    Text("top_areas.train.description")
-                        .font(.body)
-                        .foregroundColor(gray)
-                    
-                    LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
+                    VStack(alignment: .leading, spacing: 32) {
                         
-                        ForEach(areas) { area in
+                        Text("top_areas.train.description")
+                            .font(.body)
+                            .foregroundColor(gray)
+                        
+                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                             
-                            NavigationLink(
-                                destination: AreaView(),
-                                isActive: $presentArea,
-                                label: {
-                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                        .contentShape(Rectangle())
-                                        .onTapGesture {
-                                            dataStore.areaId = 1
-                                            dataStore.filters = Filters()
-                                            presentArea = true
-                                        }
-                                }
-                            )
+                            ForEach(areas) { area in
+                                
+                                NavigationLink(
+                                    destination: AreaView(),
+                                    isActive: $presentArea,
+                                    label: {
+                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 1
+                                                dataStore.filters = Filters()
+                                                presentArea = true
+                                            }
+                                    }
+                                )
+                            }
                         }
                     }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(.vertical, 8)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.vertical, 8)
+                .padding(.horizontal)
+                .padding(.top)
             }
-            .padding(.horizontal)
-            .padding(.top)
-        }
         }
         .navigationTitle("top_areas.train.title")
         .navigationBarTitleDisplayMode(.inline)
