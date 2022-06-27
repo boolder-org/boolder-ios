@@ -117,13 +117,11 @@ struct DiscoverView: View {
                         .padding(.horizontal)
                         .padding(.top)
                         
-                        Text("Populaire")
+                        Text("discover.popular")
                             .font(.title2).bold()
                             .padding(.top, 16)
                             .padding(.bottom, 8)
                             .padding(.horizontal)
-                        
-                        
                         
                         VStack {
                             VStack(alignment: .leading) {
@@ -171,7 +169,7 @@ struct DiscoverView: View {
                                 Spacer()
                                 
                                 NavigationLink(destination: AllAreasView()) {
-                                    Text("Carte")
+                                    Text("discover.all_areas.map")
                                 }
                             }
                                 .padding(.top, 16)
@@ -338,7 +336,7 @@ struct DiscoverView: View {
                 .navigationBarTitle(Text("Fontainebleau"))
                 .modify {
                     if #available(iOS 15, *) {
-                        $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Secteur"))
+                        $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("discover.search_prompt"))
                     }
                     else {
                         $0 // no search bar on iOS14

@@ -9,11 +9,13 @@
 // MARK: Discover view
 "discover.title" = "Découvrir";
 "discover.all_areas" = "Tous les secteurs";
+"discover.popular" = "Populaire";
 "discover.top_areas.level" = "Par niveau";
 "discover.top_areas.train" = "Accessible en train + vélo";
 "discover.top_areas.dry_fast" = "Sèche vite";
 "discover.top_areas.groups" = "En groupe";
 "discover.all_areas.map" = "Carte";
+"discover.search_prompt" = "Secteur";
 "discover.support" = "Soutenir Boolder";
 "discover.rate" = "Noter l'appli";
 "discover.feedback" = "Idées d'amélioration";
