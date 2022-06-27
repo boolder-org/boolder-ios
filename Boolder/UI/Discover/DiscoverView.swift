@@ -19,10 +19,10 @@ struct DiscoverView: View {
     
     @State private var searchText = ""
     
-    let blue =      Gradient(colors: [Color(red: 191/255, green: 219/255, blue: 254/255), Color(red: 171/255, green: 199/255, blue: 234/255)])
-    let green =     Gradient(colors: [Color(red: 167/255, green: 243/255, blue: 208/255), Color(red: 147/255, green: 223/255, blue: 188/255)])
-    let pink =      Gradient(colors: [Color(red: 251/255, green: 207/255, blue: 232/255), Color(red: 231/255, green: 187/255, blue: 212/255)])
-    let yellow =    Gradient(colors: [Color(red: 253/255, green: 230/255, blue: 138/255), Color(red: 233/255, green: 210/255, blue: 118/255)])
+    let blue =      Gradient(colors: [Color.blue.opacity(0.5), Color.blue.opacity(0.7)])
+    let green =     Gradient(colors: [Color.green.opacity(0.5), Color.green.opacity(0.7)])
+    let pink =      Gradient(colors: [Color.red.opacity(0.3), Color.red.opacity(0.5)])
+    let yellow =    Gradient(colors: [Color.yellow.opacity(0.5), Color.yellow.opacity(0.7)])
     let shadow =    Gradient(colors: [Color.black.opacity(0.2), Color.black.opacity(0.1)])
     
     
@@ -61,7 +61,7 @@ struct DiscoverView: View {
                                         .padding()
                                         .font(.subheadline.weight(.bold))
                                         .foregroundColor(Color(.systemBackground))
-                                        .frame(height: 80)
+                                        .frame(height: 70)
                                         .frame(maxWidth: .infinity)
                                         .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
                                         .cornerRadius(8)
@@ -79,7 +79,7 @@ struct DiscoverView: View {
                                         .padding()
                                         .font(.subheadline.weight(.bold))
                                         .foregroundColor(Color(.systemBackground))
-                                        .frame(height: 80)
+                                        .frame(height: 70)
                                         .frame(maxWidth: .infinity)
                                         .background(LinearGradient(gradient: green, startPoint: .top, endPoint: .bottom))
                                         .cornerRadius(8)
@@ -87,43 +87,43 @@ struct DiscoverView: View {
                                 }
                             }
                             
-//                            HStack {
-//                                
-//                                NavigationLink(destination: TopAreasDryFast()) {
-//                                
-//                                    VStack(alignment: .leading) {
-//                                        HStack {
-//                                            Image(systemName: "sun.max")
-//                                            Text("discover.top_areas.dry_fast")
-//                                                .textCase(.uppercase)
-//                                        }
-//                                        .padding()
-//                                        .font(.subheadline.weight(.bold))
-//                                        .foregroundColor(Color(.systemBackground))
-//                                        .frame(height: 80)
-//                                        .frame(maxWidth: .infinity)
-//                                        .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
-//                                        .cornerRadius(8)
-//                                    }
-//                                }
-//                                
-//                                NavigationLink(destination: TopAreasTrain()) {
-//                                
-//                                    VStack(alignment: .leading) {
-//                                        HStack {
-//                                            Text("discover.top_areas.train")
-//                                                .textCase(.uppercase)
-//                                        }
-//                                        .padding()
-//                                        .font(.subheadline.weight(.bold))
-//                                        .foregroundColor(Color(.systemBackground))
-//                                        .frame(height: 80)
-//                                        .frame(maxWidth: .infinity)
-//                                        .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
-//                                        .cornerRadius(8)
-//                                    }
-//                                }
-//                            }
+                            HStack {
+                                
+                                NavigationLink(destination: TopAreasDryFast()) {
+                                
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Image(systemName: "sun.max")
+                                            Text("discover.top_areas.dry_fast")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color(.systemBackground))
+                                        .frame(height: 70)
+                                        .frame(maxWidth: .infinity)
+                                        .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
+                                        .cornerRadius(8)
+                                    }
+                                }
+                                
+                                NavigationLink(destination: TopAreasTrain()) {
+                                
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text("discover.top_areas.train")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color(.systemBackground))
+                                        .frame(height: 70)
+                                        .frame(maxWidth: .infinity)
+                                        .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
+                                        .cornerRadius(8)
+                                    }
+                                }
+                            }
                         }
                         .padding(.horizontal)
                         .padding(.top)
@@ -142,98 +142,47 @@ struct DiscoverView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(alignment: .top, spacing: 0) {
                                         
-                                        NavigationLink(destination: TopAreasLevelView()) {
-                                            
-                                            VStack(alignment: .leading) {
-                                                HStack {
-                                                    Text("Rocher Canon")
-                                                        .textCase(.uppercase)
-                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
-                                                }
-                                                .padding(4)
-                                                .font(.headline.weight(.bold))
-                                                .foregroundColor(Color(.systemBackground))
-                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .background(
-                                                    ZStack {
-                                                        Image("area-cover-1").resizable()
-                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
-                                                    }
-                                                )
-                                                .cornerRadius(8)
-                                            }
-                                        }
-                                        .padding(.leading, 16)
+                                        Color.white.opacity(0)
+                                            .frame(width: 0, height: 1)
+                                            .padding(.leading, 8)
                                         
-                                        NavigationLink(destination: TopAreasLevelView()) {
-                                            
-                                            VStack(alignment: .leading) {
-                                                HStack {
-                                                    Text("Cuvier")
-                                                        .textCase(.uppercase)
-                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
-                                                }
-                                                .padding(4)
-                                                .font(.headline.weight(.bold))
-                                                .foregroundColor(Color(.systemBackground))
-                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .background(
-                                                    ZStack {
-                                                        Image("area-cover-4").resizable()
-                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
+                                        ForEach(popularAreas) { area in
+                                            NavigationLink(
+                                                destination: AreaView(),
+                                                isActive: $presentArea,
+                                                label: {
+                                                    VStack(alignment: .leading) {
+                                                        HStack {
+                                                            Text(area.name)
+                                                                .textCase(.uppercase)
+                                                                .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
+                                                        }
+                                                        .padding(8)
+                                                        .font(.headline.weight(.bold))
+                                                        .foregroundColor(Color(.systemBackground))
+                                                        .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                        .background(
+                                                            ZStack {
+                                                                Image("area-cover-\(area.id)").resizable()
+                                                                LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
+                                                            }
+                                                        )
+                                                        .cornerRadius(8)
+                                                        .padding(.leading, 8)
                                                     }
-                                                )
-                                                .cornerRadius(8)
-                                            }
+                                                    .contentShape(Rectangle())
+                                                    .onTapGesture {
+                                                        dataStore.areaId = area.id
+                                                        dataStore.filters = Filters()
+                                                        presentArea = true
+                                                    }
+                                                }
+                                            )
                                         }
-                                        .padding(.leading, 8)
                                         
-                                        NavigationLink(destination: TopAreasLevelView()) {
-                                            
-                                            VStack(alignment: .leading) {
-                                                HStack {
-                                                    Text("Apremont")
-                                                        .textCase(.uppercase)
-                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
-                                                }
-                                                .padding(4)
-                                                .font(.headline.weight(.bold))
-                                                .foregroundColor(Color(.systemBackground))
-                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .background(
-                                                    ZStack {
-                                                        Image("area-cover-7").resizable()
-                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
-                                                    }
-                                                )
-                                                .cornerRadius(8)
-                                            }
-                                        }
-                                        .padding(.leading, 8)
-                                        
-                                        NavigationLink(destination: TopAreasLevelView()) {
-                                            
-                                            VStack(alignment: .leading) {
-                                                HStack {
-                                                    Text("Cul de Chien")
-                                                        .textCase(.uppercase)
-                                                        .shadow(color: .black.opacity(0.8), radius: 20, x: 0, y: 0)
-                                                }
-                                                .padding(4)
-                                                .font(.headline.weight(.bold))
-                                                .foregroundColor(Color(.systemBackground))
-                                                .frame(width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .background(
-                                                    ZStack {
-                                                        Image("area-cover-2").resizable()
-                                                        LinearGradient(gradient: shadow, startPoint: .top, endPoint: .bottom)
-                                                    }
-                                                )
-                                                .cornerRadius(8)
-                                            }
-                                        }
-                                        .padding(.leading, 8)
-                                        .padding(.trailing, 16)
+                                        Color.white.opacity(0)
+                                            .frame(width: 0, height: 1)
+                                            .padding(.trailing, 16)
                                     }
                                 }
                             }
@@ -449,6 +398,10 @@ struct DiscoverView: View {
     
     func cleanString(_ str: String) -> String {
         str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
+    }
+    
+    var popularAreas: [Area] {
+        [4,5,2,1,7,9,10,11,12].map{dataStore.area(withId:$0)!}
     }
     
     var feedbackURL: URL {
