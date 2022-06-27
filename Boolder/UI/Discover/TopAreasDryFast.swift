@@ -16,69 +16,65 @@ struct TopAreasDryFast: View {
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                
-                VStack(alignment: .leading) {
+        GeometryReader { geo in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
                     
-                    Divider()
-                    
-                    ForEach(areas) { area in
-                        NavigationLink(
-                            destination: AreaView(),
-                            isActive: $presentArea,
-                            label: {
-                                HStack {
-                                    Text(area.name)
-                                        .font(.body)
-                                        .foregroundColor(Color.appGreen)
-                                    Spacer()
-                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                }
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    dataStore.areaId = area.id
-                                    dataStore.filters = Filters()
-                                    presentArea = true
-                                }
-                            }
-                        )
+                    VStack(alignment: .leading, spacing: 32) {
                         
-                        Divider()
+                        Text("top_areas.dry_fast.description")
+                            .font(.body)
+                            .foregroundColor(gray)
+                        
+                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
+                            
+                            ForEach(areas) { area in
+                                NavigationLink(
+                                    destination: AreaView(),
+                                    isActive: $presentArea,
+                                    label: {
+                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = area.id
+                                                dataStore.filters = Filters()
+                                                presentArea = true
+                                            }
+                                    }
+                                )
+                                
+                            }
+                        }
                     }
-                }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.vertical, 8)
-                
-                Text("top_areas.dry_fast.description")
-                    .font(.body)
-                    .foregroundColor(gray)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(.vertical, 8)
                     
-                HStack(alignment: .top) {
-                    Image(systemName: "exclamationmark.triangle.fill").font(.body)
-                    Text("top_areas.dry_fast.warning").font(.body)
-                    Spacer()
-                }
+                    HStack(alignment: .top) {
+                        Image(systemName: "exclamationmark.triangle.fill").font(.body)
+                        Text("top_areas.dry_fast.warning").font(.body)
+                        Spacer()
+                    }
                     .foregroundColor(Color.orange.opacity(0.8))
                     .padding()
                     .background(Color.yellow.opacity(0.2))
                     .cornerRadius(8)
-                
-                HStack(alignment: .top, spacing: 4) {
-                    Text("top_areas.dry_fast.useful_link")
-                        .foregroundColor(gray)
                     
-                    Button(action: {
-                        openURL(URL(string: "https://www.facebook.com/people/Bleau-Meteo/100055389702633/")!)
-                    }) {
-                        Text("Bleau Météo")
-                            .foregroundColor(Color.appGreen)
+                    HStack(alignment: .top, spacing: 4) {
+                        Text("top_areas.dry_fast.useful_link")
+                            .foregroundColor(gray)
+                        
+                        Button(action: {
+                            openURL(URL(string: "https://www.facebook.com/people/Bleau-Meteo/100055389702633/")!)
+                        }) {
+                            Text("Bleau Météo")
+                                .foregroundColor(Color.appGreen)
+                        }
                     }
+                    
                 }
-                
+                .padding(.horizontal)
+                .padding(.top)
             }
-            .padding(.horizontal)
-            .padding(.top)
         }
         .navigationTitle("top_areas.dry_fast.title")
         .navigationBarTitleDisplayMode(.inline)

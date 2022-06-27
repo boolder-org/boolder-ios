@@ -15,126 +15,52 @@ struct TopAreasTrain: View {
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                
-                VStack(alignment: .leading) {
+        GeometryReader { geo in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
                     
-                    Divider()
-                    
-                    NavigationLink(
-                        destination: AreaView(),
-                        isActive: $presentArea,
-                        label: {
-                            HStack {
-                                Text("Rocher Canon")
-                                    .font(.body)
-                                    .foregroundColor(Color.appGreen)
-                                Text("(15 min)")
-                                    .font(.callout)
-                                    .foregroundColor(Color(.tertiaryLabel))
-                                Spacer()
-                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                dataStore.areaId = 1
-                                dataStore.filters = Filters()
-                                presentArea = true
-                            }
-                        }
-                    )
-                    
-                    Divider()
-                    
-                    NavigationLink(
-                        destination: AreaView(),
-                        isActive: $presentArea,
-                        label: {
-                            HStack {
-                                Text("Rocher Saint Germain")
-                                    .font(.body)
-                                    .foregroundColor(Color.appGreen)
-                                Text("(20 min)")
-                                    .font(.callout)
-                                    .foregroundColor(Color(.tertiaryLabel))
-                                Spacer()
-                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                dataStore.areaId = 24
-                                dataStore.filters = Filters()
-                                presentArea = true
+                    VStack(alignment: .leading, spacing: 32) {
+                        
+                        Text("top_areas.train.description")
+                            .font(.body)
+                            .foregroundColor(gray)
+                        
+                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
+                            
+                            ForEach(areas) { area in
+                                
+                                NavigationLink(
+                                    destination: AreaView(),
+                                    isActive: $presentArea,
+                                    label: {
+                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 1
+                                                dataStore.filters = Filters()
+                                                presentArea = true
+                                            }
+                                    }
+                                )
                             }
                         }
-                    )
-                    
-                    Divider()
-                    
-                    NavigationLink(
-                        destination: AreaView(),
-                        isActive: $presentArea,
-                        label: {
-                            HStack {
-                                Text("Cuvier")
-                                    .font(.body)
-                                    .foregroundColor(Color.appGreen)
-                                Text("(30 min)")
-                                    .font(.callout)
-                                    .foregroundColor(Color(.tertiaryLabel))
-                                Spacer()
-                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                dataStore.areaId = 4
-                                dataStore.filters = Filters()
-                                presentArea = true
-                            }
-                        }
-                    )
-                    
-                    Divider()
-                    
-                    NavigationLink(
-                        destination: AreaView(),
-                        isActive: $presentArea,
-                        label: {
-                            HStack {
-                                Text("Apremont")
-                                    .font(.body)
-                                    .foregroundColor(Color.appGreen)
-                                Text("(35 min)")
-                                    .font(.callout)
-                                    .foregroundColor(Color(.tertiaryLabel))
-                                Spacer()
-                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                dataStore.areaId = 7
-                                dataStore.filters = Filters()
-                                presentArea = true
-                            }
-                        }
-                    )
-                    
-                    Divider()
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                    .padding(.vertical, 8)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.vertical, 8)
-                
-                Text("top_areas.train.description")
-                    .font(.body)
-                    .foregroundColor(gray)
+                .padding(.horizontal)
+                .padding(.top)
             }
-            .padding(.horizontal)
-            .padding(.top)
         }
         .navigationTitle("top_areas.train.title")
         .navigationBarTitleDisplayMode(.inline)
         
+    }
+    
+    var areas: [Area] {
+        [1,4,7,24].map{dataStore.area(withId:$0)!}.sorted {
+            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
+        }
     }
 }
 

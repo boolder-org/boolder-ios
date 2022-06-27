@@ -9,11 +9,13 @@
 // MARK: Discover view
 "discover.title" = "Découvrir";
 "discover.all_areas" = "Tous les secteurs";
+"discover.popular" = "Populaire";
 "discover.top_areas.level" = "Par niveau";
 "discover.top_areas.train" = "Accessible en train + vélo";
 "discover.top_areas.dry_fast" = "Sèche vite";
 "discover.top_areas.groups" = "En groupe";
 "discover.all_areas.map" = "Carte";
+"discover.search_prompt" = "Secteur";
 "discover.support" = "Soutenir Boolder";
 "discover.rate" = "Noter l'appli";
 "discover.feedback" = "Idées d'amélioration";
@@ -32,7 +34,7 @@
 "top_areas.groups.title" = "En groupe";
 "top_areas.groups.description" = "Ces secteurs offrent de nombreuses voies dans tous les niveaux de 2 à 7.";
 "top_areas.train.title" = "Train + vélo";
-"top_areas.train.description" = "Ces secteurs sont accessibles en vélo depuis la gare de Bois-le-Roi.";
+"top_areas.train.description" = "Secteurs à moins de 30 min en vélo depuis la gare de Bois-le-Roi.";
 "top_areas.dry_fast.title" = "Sèche vite";
 "top_areas.dry_fast.description" = "Ces secteurs sèchent plus vite que la moyenne grâce à leur exposition au soleil ou au vent.";
 "top_areas.dry_fast.warning" = "Ne grimpez pas si la roche est encore humide, vous risquez de l'abîmer.";

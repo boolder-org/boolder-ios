@@ -9,11 +9,13 @@
 // MARK: Discover view
 "discover.title" = "Discover";
 "discover.all_areas" = "All areas";
+"discover.popular" = "Popular";
 "discover.top_areas.level" = "For your level";
 "discover.top_areas.train" = "Accessible by train + bike";
 "discover.top_areas.dry_fast" = "Dries fast";
 "discover.top_areas.groups" = "For groups";
 "discover.all_areas.map" = "Map";
+"discover.search_prompt" = "Area";
 "discover.support" = "Support Boolder";
 "discover.rate" = "Rate the app";
 "discover.feedback" = "Send feedback";
@@ -32,7 +34,7 @@
 "top_areas.groups.title" = "For groups";
 "top_areas.groups.description" = "These areas offer lots of problems in all grades from 2 to 7.";
 "top_areas.train.title" = "Train + bike";
-"top_areas.train.description" = "You can bike to these areas from Bois-le-Roi train station.";
+"top_areas.train.description" = "Areas less than 30 min away from Bois-le-Roi train station by bike.";
 "top_areas.dry_fast.title" = "Dries fast";
 "top_areas.dry_fast.description" = "These areas dry faster than most areas thanks to the sun&wind exposure";
 "top_areas.dry_fast.warning" = "Don't climb if the rock is still wet, you may damage it.";
