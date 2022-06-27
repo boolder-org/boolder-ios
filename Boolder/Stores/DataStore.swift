@@ -41,7 +41,7 @@ class DataStore : ObservableObject {
         Area(id: 4,  name: "Cuvier",                            problemsCount: 529, latitude: 48.44647203423,      longitude: 2.63799547881,       published: true),
         Area(id: 5,  name: "Franchard Isatis",                  problemsCount: 578, latitude: 48.41019265965,      longitude: 2.59939312398,       published: true),
         Area(id: 6,  name: "Cuvier Est",                        problemsCount: 123, latitude: 48.44577104156,      longitude: 2.64364420831,       published: true),
-        Area(id: 7,  name: "Apremont",                          problemsCount: 385, latitude: 48.43522293535,      longitude: 2.62890814662,       published: true),
+        Area(id: 7,  name: "Apremont",                          problemsCount: 488, latitude: 48.43522293535,      longitude: 2.62890814662,       published: true),
         Area(id: 8,  name: "Rocher Fin",                        problemsCount: 242, latitude: 48.37663469685,      longitude: 2.53519176364,       published: true),
         Area(id: 9,  name: "Éléphant",                          problemsCount: 270, latitude: 48.29379752069,      longitude: 2.59503185213,       published: true),
         Area(id: 10, name: "95.2",                              problemsCount: 332, latitude: 48.38611195852,      longitude: 2.52903341711,       published: true),
@@ -64,10 +64,10 @@ class DataStore : ObservableObject {
         Area(id: 27, name: "Jean des Vignes",                   problemsCount: 71,  latitude: 48.38402069871,      longitude: 2.52459167898,       published: true),
         Area(id: 28, name: "La Ségognole",                      problemsCount: 147, latitude: 48.38038216187,      longitude: 2.50413246386,       published: true),
         Area(id: 29, name: "Beauvais Nainville",                problemsCount: 379, latitude: 48.50298942153,      longitude: 2.4803325507,        published: true),
-        Area(id: 30, name: "J.A. Martin",                       problemsCount: 434, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 30, name: "J.A. Martin",                       problemsCount: 434, latitude: 48.36021275846,      longitude: 2.5355189985,        published: true),
         Area(id: 31, name: "Franchard Cuisinière Crêtes Sud",   problemsCount: 77,  latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 32, name: "Petit Bois",                        problemsCount: 240, latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 33, name: "Rocher des Demoiselles",            problemsCount: 236, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 32, name: "Petit Bois",                        problemsCount: 240, latitude: 48.26406260299,      longitude: 2.67102151975,       published: true),
+        Area(id: 33, name: "Rocher des Demoiselles",            problemsCount: 236, latitude: 48.37944955757,      longitude: 2.6727890861,        published: true),
         Area(id: 34, name: "Franchard Sablons",                 problemsCount: 162, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 35, name: "Rocher de la Cathédrale",           problemsCount: 70,  latitude: 48.36369858932,      longitude: 2.53304599643,       published: true),
         Area(id: 36, name: "Franchard Hautes Plaines",          problemsCount: 178, latitude: 0,                   longitude: 0,                   published: false),
@@ -75,8 +75,8 @@ class DataStore : ObservableObject {
         Area(id: 38, name: "Franchard Sablons Carriers",        problemsCount: 45,  latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 39, name: "Franchard Raymond",                 problemsCount: 90,  latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 40, name: "Cuvier Merveille",                  problemsCount: 43,  latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 41, name: "Maunoury",                          problemsCount: 275, latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 42, name: "Dame Jouanne",                      problemsCount: 509, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 41, name: "Maunoury",                          problemsCount: 273, latitude: 48.30189852446,      longitude: 2.60815858305,       published: true),
+        Area(id: 42, name: "Dame Jouanne",                      problemsCount: 509, latitude: 48.30218043052,      longitude: 2.60225235879,       published: true),
         Area(id: 43, name: "Cuvier Ouest",                      problemsCount: 132, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 44, name: "Cuvier Nord (+Est)",                problemsCount: 223, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 45, name: "Cuvier Bellevue",                   problemsCount: 211, latitude: 0,                   longitude: 0,                   published: false),
@@ -84,7 +84,7 @@ class DataStore : ObservableObject {
         Area(id: 47, name: "Rocher Canon Ouest",                problemsCount: 89,  latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 48, name: "Apremont Butte aux Dames",          problemsCount: 300, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 49, name: "Apremont Solitude",                 problemsCount: 105, latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 50, name: "Rocher d'Avon",                     problemsCount: 0,   latitude: 0,                   longitude: 0,                   published: false)
+        Area(id: 50, name: "Rocher d'Avon",                     problemsCount: 0,   latitude: 0,                   longitude: 0,                   published: false),
     ]
 
     init() {

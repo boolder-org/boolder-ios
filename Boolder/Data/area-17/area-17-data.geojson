@@ -253,31 +253,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52511437949,
-          48.36567863458
-        ]
-      },
-      "properties": {
-        "grade": "7a",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Guichot Business",
-        "bleauInfoId": "1152",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ]
-      },
-      "id": "problem_4787"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52479056967,
           48.36414500547
         ]
@@ -1298,31 +1273,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.52511957644,
-          48.36567796623
-        ]
-      },
-      "properties": {
-        "grade": "7b",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Achoppement Libre",
-        "bleauInfoId": "1153",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ]
-      },
-      "id": "problem_4789"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.52509362339,
           48.36454708169
         ]
@@ -1413,6 +1363,66 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          2.52419031029,
+          48.3657782005
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": 4,
+        "name": "Guichot Business",
+        "bleauInfoId": "1152",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7495
+          }
+        ]
+      },
+      "id": "problem_4787"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.524196094,
+          48.36577974096
+        ]
+      },
+      "properties": {
+        "grade": "7b",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Achoppement Libre",
+        "bleauInfoId": "1153",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7497
+          }
+        ]
+      },
+      "id": "problem_4789"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           2.52512516572,
           48.36458601532
         ]
@@ -1467,31 +1477,6 @@
         ]
       },
       "id": "problem_4695"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          2.52511689406,
-          48.3656750706
-        ]
-      },
-      "properties": {
-        "grade": "6c+",
-        "circuitNumber": "",
-        "steepness": "roof",
-        "height": null,
-        "name": "Conduite Forcée",
-        "bleauInfoId": "13030",
-        "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "tags": [
-
-        ]
-      },
-      "id": "problem_4788"
     },
     {
       "type": "Feature",
@@ -3650,6 +3635,246 @@
         ]
       },
       "id": "problem_4727"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52423008887,
+          48.36579268171
+        ]
+      },
+      "properties": {
+        "grade": "7b+",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Coup d'Achoppement",
+        "bleauInfoId": "300598",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7505
+          }
+        ]
+      },
+      "id": "problem_8629"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5242289154,
+          48.3657940182
+        ]
+      },
+      "properties": {
+        "grade": "7a",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Coup de Conduite",
+        "bleauInfoId": "300600",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7503
+          }
+        ]
+      },
+      "id": "problem_8627"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5241932085,
+          48.36577708933
+        ]
+      },
+      "properties": {
+        "grade": "6b+",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Guichot Business (debout)",
+        "bleauInfoId": "300214",
+        "parentId": 4787,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7501
+          }
+        ]
+      },
+      "id": "problem_8625"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.5242324358,
+          48.36579334995
+        ]
+      },
+      "properties": {
+        "grade": "7b+",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Coup Fourré",
+        "bleauInfoId": "21472",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7504
+          }
+        ]
+      },
+      "id": "problem_8628"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52419941111,
+          48.36577875994
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Achoppement Libre (debout)",
+        "bleauInfoId": "300215",
+        "parentId": 4789,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7502
+          }
+        ]
+      },
+      "id": "problem_8626"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52418677843,
+          48.36577705465
+        ]
+      },
+      "properties": {
+        "grade": "6c+",
+        "circuitNumber": "",
+        "steepness": "roof",
+        "height": null,
+        "name": "Conduite Forcée",
+        "bleauInfoId": "13030",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+
+        ],
+        "lines": [
+          {
+            "id": 7496
+          }
+        ]
+      },
+      "id": "problem_4788"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52423008887,
+          48.36579713667
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Coup de Force",
+        "bleauInfoId": "21423",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7499
+          }
+        ]
+      },
+      "id": "problem_8623"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.52423159761,
+          48.36579479782
+        ]
+      },
+      "properties": {
+        "grade": "7c",
+        "circuitNumber": "",
+        "steepness": "overhang",
+        "height": null,
+        "name": "Coup de Faiblesse",
+        "bleauInfoId": "21424",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "tags": [
+          "sit_start"
+        ],
+        "lines": [
+          {
+            "id": 7500
+          }
+        ]
+      },
+      "id": "problem_8624"
     },
     {
       "type": "Feature",
@@ -6566,68 +6791,68 @@
         "coordinates": [
           [
             [
-              2.52512879603,
-              48.365689104
+              2.52420957729,
+              48.3657843237
             ],
             [
-              2.52509660952,
-              48.36566549263
+              2.52416642793,
+              48.365770433
             ],
             [
-              2.52508185737,
-              48.36564009926
+              2.52413844156,
+              48.36575055425
             ],
             [
-              2.52508856289,
-              48.36563252579
+              2.52414039272,
+              48.36574186382
             ],
             [
-              2.52510130338,
-              48.36562851631
+              2.52414994808,
+              48.3657349775
             ],
             [
-              2.52512745492,
-              48.36562272484
+              2.52417093559,
+              48.36572310367
             ],
             [
-              2.52515360646,
-              48.36562005185
+              2.52419368005,
+              48.36571412161
             ],
             [
-              2.52516299419,
-              48.36562851631
+              2.52420715421,
+              48.36571963617
             ],
             [
-              2.52516634695,
-              48.36564990021
+              2.52422231095,
+              48.36573863174
             ],
             [
-              2.52518579297,
-              48.36567351158
+              2.52425364599,
+              48.36575569077
             ],
             [
-              2.52519048683,
-              48.36568331253
+              2.52426352049,
+              48.36576361194
             ],
             [
-              2.52518914573,
-              48.36569311347
+              2.52426779875,
+              48.36577303388
             ],
             [
-              2.5251810991,
-              48.36570113243
+              2.52426485497,
+              48.36578247093
             ],
             [
-              2.52515427701,
-              48.36570781488
+              2.52424374764,
+              48.36579533772
             ],
             [
-              2.52514086597,
-              48.36570647839
+              2.52423055855,
+              48.36579743345
             ],
             [
-              2.52512879603,
-              48.365689104
+              2.52420957729,
+              48.3657843237
             ]
           ]
         ]
@@ -6635,6 +6860,112 @@
       "properties": {
       },
       "id": "boulder_2027"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.52541739562,
+              48.36406641871
+            ],
+            [
+              2.52539203807,
+              48.36406559689
+            ],
+            [
+              2.52538894569,
+              48.36405737863
+            ],
+            [
+              2.52539141959,
+              48.36404957128
+            ],
+            [
+              2.5253994598,
+              48.36404299666
+            ],
+            [
+              2.52541182933,
+              48.36404258575
+            ],
+            [
+              2.52543594994,
+              48.3640471058
+            ],
+            [
+              2.52544027928,
+              48.36405491315
+            ],
+            [
+              2.52543718689,
+              48.36406313141
+            ],
+            [
+              2.52541739562,
+              48.36406641871
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_2036"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.52586670308,
+              48.36379508552
+            ],
+            [
+              2.52584134553,
+              48.36379549643
+            ],
+            [
+              2.52582959447,
+              48.36379097636
+            ],
+            [
+              2.52582773904,
+              48.36378275806
+            ],
+            [
+              2.52585804441,
+              48.36376632144
+            ],
+            [
+              2.52588030958,
+              48.3637597468
+            ],
+            [
+              2.52589206065,
+              48.36376097954
+            ],
+            [
+              2.52590195627,
+              48.36377659433
+            ],
+            [
+              2.52589453455,
+              48.36378357989
+            ],
+            [
+              2.52586670308,
+              48.36379508552
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_2035"
     },
     {
       "type": "Feature",
@@ -6870,59 +7201,6 @@
       "properties": {
       },
       "id": "boulder_2028"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.52541739562,
-              48.36406641871
-            ],
-            [
-              2.52539203807,
-              48.36406559689
-            ],
-            [
-              2.52538894569,
-              48.36405737863
-            ],
-            [
-              2.52539141959,
-              48.36404957128
-            ],
-            [
-              2.5253994598,
-              48.36404299666
-            ],
-            [
-              2.52541182933,
-              48.36404258575
-            ],
-            [
-              2.52543594994,
-              48.3640471058
-            ],
-            [
-              2.52544027928,
-              48.36405491315
-            ],
-            [
-              2.52543718689,
-              48.36406313141
-            ],
-            [
-              2.52541739562,
-              48.36406641871
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_2036"
     },
     {
       "type": "Feature",
@@ -7252,59 +7530,6 @@
       "properties": {
       },
       "id": "boulder_2037"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              2.52586670308,
-              48.36379508552
-            ],
-            [
-              2.52584134553,
-              48.36379549643
-            ],
-            [
-              2.52582959447,
-              48.36379097636
-            ],
-            [
-              2.52582773904,
-              48.36378275806
-            ],
-            [
-              2.52585804441,
-              48.36376632144
-            ],
-            [
-              2.52588030958,
-              48.3637597468
-            ],
-            [
-              2.52589206065,
-              48.36376097954
-            ],
-            [
-              2.52590195627,
-              48.36377659433
-            ],
-            [
-              2.52589453455,
-              48.36378357989
-            ],
-            [
-              2.52586670308,
-              48.36379508552
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_2035"
     },
     {
       "type": "Feature",
