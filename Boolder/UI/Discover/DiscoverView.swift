@@ -14,16 +14,8 @@ struct DiscoverView: View {
     @Environment(\.openURL) var openURL
     
     @State var presentArea = false
-//    @State private var presentAllAreas = false
     @State private var presentSettings = false
-    
     @State private var searchText = ""
-    
-    let blue =      Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)])
-    let green =     Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)])
-    let pink =      Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)])
-    let yellow =    Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)])
-    
     
     var body: some View {
         NavigationView {
@@ -52,7 +44,12 @@ struct DiscoverView: View {
                                         .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
-                                        .background(LinearGradient(gradient: blue, startPoint: .top, endPoint: .bottom))
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
                                         .cornerRadius(8)
                                     }
                                 }
@@ -70,7 +67,12 @@ struct DiscoverView: View {
                                         .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
-                                        .background(LinearGradient(gradient: green, startPoint: .top, endPoint: .bottom))
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
                                         .cornerRadius(8)
                                     }
                                 }
@@ -91,7 +93,12 @@ struct DiscoverView: View {
                                         .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
-                                        .background(LinearGradient(gradient: yellow, startPoint: .top, endPoint: .bottom))
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
                                         .cornerRadius(8)
                                     }
                                 }
@@ -108,7 +115,12 @@ struct DiscoverView: View {
                                         .foregroundColor(Color.white)
                                         .frame(height: 70)
                                         .frame(maxWidth: .infinity)
-                                        .background(LinearGradient(gradient: pink, startPoint: .top, endPoint: .bottom))
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
                                         .cornerRadius(8)
                                     }
                                 }
