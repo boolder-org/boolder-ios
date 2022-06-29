@@ -36,7 +36,7 @@ struct TopAreasTrain: View {
                                         AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                             .contentShape(Rectangle())
                                             .onTapGesture {
-                                                dataStore.areaId = 1
+                                                dataStore.areaId = area.id
                                                 dataStore.filters = Filters()
                                                 presentArea = true
                                             }
