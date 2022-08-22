@@ -84,8 +84,16 @@ class DataStore : ObservableObject {
         Area(id: 47, name: "Rocher Canon Ouest",                problemsCount: 89,  latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 48, name: "Apremont Butte aux Dames",          problemsCount: 300, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 49, name: "Apremont Solitude",                 problemsCount: 105, latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 50, name: "Rocher d'Avon",                     problemsCount: 0,   latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 50, name: "Rocher d'Avon",                     problemsCount: 218, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 51, name: "Restant du Long Rocher",            problemsCount: 277, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 52, name: "Rocher de Bouligny",                problemsCount: 148, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 53, name: "Mont Ussy",                         problemsCount: 159, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 54, name: "Rocher du Général",                 problemsCount: 114, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 55, name: "Justice de Chambergeot",            problemsCount: 111, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 56, name: "Grande Montagne",                   problemsCount: 115, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 57, name: "Rocher du Télégraphe",              problemsCount: 166, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 58, name: "Pignon Poteau",                     problemsCount: 83,  latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 59, name: "Gros Sablons",                      problemsCount: 259, latitude: 0,                   longitude: 0,                   published: false),
     ]
 
     init() {
