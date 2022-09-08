@@ -94,6 +94,13 @@ class DataStore : ObservableObject {
         Area(id: 57, name: "Rocher du Télégraphe",              problemsCount: 166, latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 58, name: "Pignon Poteau",                     problemsCount: 83,  latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 59, name: "Gros Sablons",                      problemsCount: 259, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 60, name: "Corne-Biche",                       problemsCount: 206, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 61, name: "Rocher de la Reine",                problemsCount: 245, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 62, name: "Apremont Envers",                   problemsCount: 239, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 63, name: "Apremont Désert",                   problemsCount: 283, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 64, name: "Cuvier Rempart",                    problemsCount: 533, latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 66, name: "Cuvier Petit Rempart",              problemsCount: 99,  latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 67, name: "Cuvier Reconnaissance",             problemsCount: 132, latitude: 0,                   longitude: 0,                   published: false),
     ]
 
     init() {
