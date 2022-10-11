@@ -76,6 +76,7 @@ struct ProblemDetailsView: View {
                             .font(.title)
                             .fontWeight(.bold)
                     }
+                    .padding(.top, 8)
                 }
                 
                 HStack {
