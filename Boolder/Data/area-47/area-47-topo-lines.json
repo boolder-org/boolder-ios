@@ -1,0 +1,686 @@
+{
+  "lines": [
+    {
+      "id": 7534,
+      "topoId": 3953,
+      "coordinates": [
+        {
+          "x": 0.31,
+          "y": 0.8133
+        },
+        {
+          "x": 0.3767,
+          "y": 0.6489
+        },
+        {
+          "x": 0.495,
+          "y": 0.4933
+        },
+        {
+          "x": 0.6,
+          "y": 0.3289
+        },
+        {
+          "x": 0.6583,
+          "y": 0.2156
+        },
+        {
+          "x": 0.6533,
+          "y": 0.0667
+        }
+      ]
+    },
+    {
+      "id": 7535,
+      "topoId": 3953,
+      "coordinates": [
+        {
+          "x": 0.31,
+          "y": 0.8133
+        },
+        {
+          "x": 0.3767,
+          "y": 0.6489
+        },
+        {
+          "x": 0.495,
+          "y": 0.4933
+        },
+        {
+          "x": 0.6,
+          "y": 0.3289
+        },
+        {
+          "x": 0.6583,
+          "y": 0.2156
+        },
+        {
+          "x": 0.6533,
+          "y": 0.0667
+        }
+      ]
+    },
+    {
+      "id": 7536,
+      "topoId": 3953,
+      "coordinates": null
+    },
+    {
+      "id": 7540,
+      "topoId": 3954,
+      "coordinates": null
+    },
+    {
+      "id": 7541,
+      "topoId": 3954,
+      "coordinates": [
+        {
+          "x": 0.4717,
+          "y": 0.8044
+        },
+        {
+          "x": 0.42,
+          "y": 0.6622
+        },
+        {
+          "x": 0.3367,
+          "y": 0.5289
+        },
+        {
+          "x": 0.28,
+          "y": 0.3956
+        },
+        {
+          "x": 0.3317,
+          "y": 0.22
+        },
+        {
+          "x": 0.3583,
+          "y": 0.1422
+        }
+      ]
+    },
+    {
+      "id": 7542,
+      "topoId": 3955,
+      "coordinates": null
+    },
+    {
+      "id": 7543,
+      "topoId": 3958,
+      "coordinates": [
+        {
+          "x": 0.665,
+          "y": 0.7911
+        },
+        {
+          "x": 0.59,
+          "y": 0.6156
+        },
+        {
+          "x": 0.595,
+          "y": 0.4667
+        },
+        {
+          "x": 0.6633,
+          "y": 0.1778
+        }
+      ]
+    },
+    {
+      "id": 7544,
+      "topoId": 3958,
+      "coordinates": [
+        {
+          "x": 0.785,
+          "y": 0.8244
+        },
+        {
+          "x": 0.8233,
+          "y": 0.58
+        },
+        {
+          "x": 0.875,
+          "y": 0.3711
+        },
+        {
+          "x": 0.8367,
+          "y": 0.2244
+        }
+      ]
+    },
+    {
+      "id": 7545,
+      "topoId": 3958,
+      "coordinates": [
+        {
+          "x": 0.3817,
+          "y": 0.8133
+        },
+        {
+          "x": 0.3883,
+          "y": 0.5844
+        },
+        {
+          "x": 0.4383,
+          "y": 0.4022
+        },
+        {
+          "x": 0.505,
+          "y": 0.2556
+        }
+      ]
+    },
+    {
+      "id": 7548,
+      "topoId": 3959,
+      "coordinates": [
+        {
+          "x": 0.5667,
+          "y": 0.9156
+        },
+        {
+          "x": 0.585,
+          "y": 0.5911
+        },
+        {
+          "x": 0.61,
+          "y": 0.2889
+        },
+        {
+          "x": 0.585,
+          "y": 0.1067
+        }
+      ]
+    },
+    {
+      "id": 7549,
+      "topoId": 3960,
+      "coordinates": null
+    },
+    {
+      "id": 7550,
+      "topoId": 3960,
+      "coordinates": null
+    },
+    {
+      "id": 7551,
+      "topoId": 3960,
+      "coordinates": null
+    },
+    {
+      "id": 7552,
+      "topoId": 3960,
+      "coordinates": null
+    },
+    {
+      "id": 7553,
+      "topoId": 3964,
+      "coordinates": null
+    },
+    {
+      "id": 7554,
+      "topoId": 3965,
+      "coordinates": null
+    },
+    {
+      "id": 7555,
+      "topoId": 3966,
+      "coordinates": null
+    },
+    {
+      "id": 7556,
+      "topoId": 3966,
+      "coordinates": null
+    },
+    {
+      "id": 7557,
+      "topoId": 3967,
+      "coordinates": null
+    },
+    {
+      "id": 7562,
+      "topoId": 3969,
+      "coordinates": [
+        {
+          "x": 0.2867,
+          "y": 0.84
+        },
+        {
+          "x": 0.265,
+          "y": 0.6622
+        },
+        {
+          "x": 0.29,
+          "y": 0.5267
+        },
+        {
+          "x": 0.3617,
+          "y": 0.1778
+        }
+      ]
+    },
+    {
+      "id": 7563,
+      "topoId": 3969,
+      "coordinates": null
+    },
+    {
+      "id": 7564,
+      "topoId": 3969,
+      "coordinates": [
+        {
+          "x": 0.2867,
+          "y": 0.84
+        },
+        {
+          "x": 0.265,
+          "y": 0.6622
+        },
+        {
+          "x": 0.29,
+          "y": 0.5267
+        },
+        {
+          "x": 0.3617,
+          "y": 0.1778
+        }
+      ]
+    },
+    {
+      "id": 7565,
+      "topoId": 3970,
+      "coordinates": null
+    },
+    {
+      "id": 7567,
+      "topoId": 3968,
+      "coordinates": null
+    },
+    {
+      "id": 7568,
+      "topoId": 3967,
+      "coordinates": null
+    },
+    {
+      "id": 7569,
+      "topoId": 3967,
+      "coordinates": null
+    },
+    {
+      "id": 7570,
+      "topoId": 3971,
+      "coordinates": null
+    },
+    {
+      "id": 7571,
+      "topoId": 3972,
+      "coordinates": null
+    },
+    {
+      "id": 7572,
+      "topoId": 3972,
+      "coordinates": null
+    },
+    {
+      "id": 7573,
+      "topoId": 3972,
+      "coordinates": null
+    },
+    {
+      "id": 7576,
+      "topoId": 3972,
+      "coordinates": null
+    },
+    {
+      "id": 7577,
+      "topoId": 3974,
+      "coordinates": null
+    },
+    {
+      "id": 7578,
+      "topoId": 3974,
+      "coordinates": null
+    },
+    {
+      "id": 7580,
+      "topoId": 3976,
+      "coordinates": null
+    },
+    {
+      "id": 7581,
+      "topoId": 3977,
+      "coordinates": null
+    },
+    {
+      "id": 7582,
+      "topoId": 3977,
+      "coordinates": null
+    },
+    {
+      "id": 7583,
+      "topoId": 3978,
+      "coordinates": null
+    },
+    {
+      "id": 7584,
+      "topoId": 3978,
+      "coordinates": null
+    },
+    {
+      "id": 7585,
+      "topoId": 3979,
+      "coordinates": null
+    },
+    {
+      "id": 7586,
+      "topoId": 3980,
+      "coordinates": null
+    },
+    {
+      "id": 7587,
+      "topoId": 3980,
+      "coordinates": null
+    },
+    {
+      "id": 7588,
+      "topoId": 3980,
+      "coordinates": null
+    },
+    {
+      "id": 7589,
+      "topoId": 3980,
+      "coordinates": null
+    },
+    {
+      "id": 7590,
+      "topoId": 3980,
+      "coordinates": null
+    },
+    {
+      "id": 7591,
+      "topoId": 3981,
+      "coordinates": null
+    },
+    {
+      "id": 7592,
+      "topoId": 3981,
+      "coordinates": null
+    },
+    {
+      "id": 7593,
+      "topoId": 3981,
+      "coordinates": null
+    },
+    {
+      "id": 7594,
+      "topoId": 3981,
+      "coordinates": null
+    },
+    {
+      "id": 7595,
+      "topoId": 3981,
+      "coordinates": null
+    },
+    {
+      "id": 7596,
+      "topoId": 3981,
+      "coordinates": null
+    },
+    {
+      "id": 7597,
+      "topoId": 3982,
+      "coordinates": null
+    },
+    {
+      "id": 7598,
+      "topoId": 3982,
+      "coordinates": null
+    },
+    {
+      "id": 7599,
+      "topoId": 3982,
+      "coordinates": null
+    },
+    {
+      "id": 7600,
+      "topoId": 3982,
+      "coordinates": null
+    },
+    {
+      "id": 7601,
+      "topoId": 3982,
+      "coordinates": null
+    },
+    {
+      "id": 7602,
+      "topoId": 3982,
+      "coordinates": null
+    },
+    {
+      "id": 7603,
+      "topoId": 3984,
+      "coordinates": null
+    },
+    {
+      "id": 7604,
+      "topoId": 3986,
+      "coordinates": null
+    },
+    {
+      "id": 7605,
+      "topoId": 3987,
+      "coordinates": null
+    },
+    {
+      "id": 7606,
+      "topoId": 3988,
+      "coordinates": null
+    },
+    {
+      "id": 7607,
+      "topoId": 3989,
+      "coordinates": null
+    },
+    {
+      "id": 7609,
+      "topoId": 3991,
+      "coordinates": null
+    },
+    {
+      "id": 7610,
+      "topoId": 3992,
+      "coordinates": null
+    },
+    {
+      "id": 7611,
+      "topoId": 3993,
+      "coordinates": null
+    },
+    {
+      "id": 7612,
+      "topoId": 3994,
+      "coordinates": null
+    },
+    {
+      "id": 7613,
+      "topoId": 3994,
+      "coordinates": null
+    },
+    {
+      "id": 7614,
+      "topoId": 3995,
+      "coordinates": null
+    },
+    {
+      "id": 7615,
+      "topoId": 3995,
+      "coordinates": null
+    },
+    {
+      "id": 7616,
+      "topoId": 3995,
+      "coordinates": null
+    },
+    {
+      "id": 7617,
+      "topoId": 3996,
+      "coordinates": null
+    },
+    {
+      "id": 7618,
+      "topoId": 3996,
+      "coordinates": null
+    },
+    {
+      "id": 7619,
+      "topoId": 3996,
+      "coordinates": null
+    },
+    {
+      "id": 7620,
+      "topoId": 3996,
+      "coordinates": null
+    },
+    {
+      "id": 7621,
+      "topoId": 3998,
+      "coordinates": null
+    },
+    {
+      "id": 7622,
+      "topoId": 3998,
+      "coordinates": null
+    },
+    {
+      "id": 7623,
+      "topoId": 3998,
+      "coordinates": null
+    },
+    {
+      "id": 7624,
+      "topoId": 4001,
+      "coordinates": null
+    },
+    {
+      "id": 7625,
+      "topoId": 4001,
+      "coordinates": null
+    },
+    {
+      "id": 7626,
+      "topoId": 4001,
+      "coordinates": null
+    },
+    {
+      "id": 7627,
+      "topoId": 4001,
+      "coordinates": null
+    },
+    {
+      "id": 7628,
+      "topoId": 4001,
+      "coordinates": null
+    },
+    {
+      "id": 7629,
+      "topoId": 4001,
+      "coordinates": null
+    },
+    {
+      "id": 7630,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7631,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7632,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7633,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7634,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7635,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7636,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7637,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7638,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7639,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7640,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7641,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7642,
+      "topoId": 4005,
+      "coordinates": null
+    },
+    {
+      "id": 7643,
+      "topoId": 3956,
+      "coordinates": null
+    },
+    {
+      "id": 7644,
+      "topoId": 3956,
+      "coordinates": null
+    },
+    {
+      "id": 7645,
+      "topoId": 3956,
+      "coordinates": null
+    },
+    {
+      "id": 7646,
+      "topoId": 3956,
+      "coordinates": null
+    },
+    {
+      "id": 7647,
+      "topoId": 3957,
+      "coordinates": null
+    },
+    {
+      "id": 7648,
+      "topoId": 3957,
+      "coordinates": null
+    }
+  ]
+}

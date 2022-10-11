@@ -8647,36 +8647,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.4802755338,
-          48.50251373396
-        ]
-      },
-      "properties": {
-        "grade": "6a",
-        "circuitNumber": "1",
-        "steepness": "traverse",
-        "height": null,
-        "name": "Le Sémaphore",
-        "bleauInfoId": "22629",
-        "parentId": null,
-        "circuitColor": "black",
-        "circuitId": 101,
-        "tags": [
-          "sit_start"
-        ],
-        "lines": [
-          {
-            "id": 8349
-          }
-        ]
-      },
-      "id": "problem_6849"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           2.47629194465,
           48.50195458344
         ]
@@ -45184,10 +45154,6 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-            2.4802755338,
-            48.50251373396
-          ],
           [
             2.47993047969,
             48.50227254657
