@@ -383,7 +383,7 @@ struct DiscoverView: View {
     }
     
     var popularAreas: [Area] {
-        [4,5,2,1,7,9,10,11,12].map{dataStore.area(withId:$0)!}
+        [5,4,2,1,7,9,10,11,12].map{dataStore.area(withId:$0)!}
     }
     
     var feedbackURL: URL {
