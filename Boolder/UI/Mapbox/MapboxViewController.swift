@@ -182,6 +182,29 @@ class MapboxViewController: UIViewController {
     @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: mapView)
 
+        let zoomExpression = Expression(.lt) {
+            Expression(.zoom)
+            15
+        }
+        
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: zoomExpression)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let areaFeature = queriedfeatures.first?.feature
+                    {
+                        print(areaFeature.properties)
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
