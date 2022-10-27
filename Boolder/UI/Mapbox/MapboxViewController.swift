@@ -58,13 +58,18 @@ class MapboxViewController: UIViewController {
             var problemsLayer = CircleLayer(id: "problems")
             problemsLayer.source = "problems"
             problemsLayer.sourceLayer = "problems-ayes3a"
-//            problemsLayer.filter =
             problemsLayer.minZoom = 15
+            problemsLayer.filter = Expression(.match) {
+                ["geometry-type"]
+                ["Point"]
+                true
+                false
+            }
             
             let stops: [Double: Double] = [
               15: 2.0,
               18: 4.0,
-              22: 16
+              22: 16 // FIXME: use different size for off circuit?
             ]
             
             // Set some style properties
@@ -75,7 +80,6 @@ class MapboxViewController: UIViewController {
                     stops
                 }
             )
-            
             
             problemsLayer.circleColor = .expression(
                 Exp(.match) {
@@ -104,14 +108,67 @@ class MapboxViewController: UIViewController {
                 }
             )
             
-            
-            
-            
-            
-            
+            let stopsB: [Double: Double] = [
+                14.5: 0.0,
+                15:   1.0,
+            ]
+            problemsLayer.circleOpacity = .expression(
+                Exp(.interpolate) {
+                    ["linear"]
+                    ["zoom"]
+                    stopsB
+                }
+            )
             
             // Add the circle layer to the map.
             try! self.mapView.mapboxMap.style.addLayer(problemsLayer)
+            
+            
+            var problemsTextsLayer = SymbolLayer(id: "problems-texts")
+            problemsTextsLayer.source = "problems"
+            problemsTextsLayer.sourceLayer = "problems-ayes3a"
+            problemsTextsLayer.minZoom = 19
+            problemsTextsLayer.filter = Expression(.match) {
+                ["geometry-type"]
+                ["Point"]
+                true
+                false
+            }
+            
+            problemsTextsLayer.textAllowOverlap = .constant(true)
+            problemsTextsLayer.textField = .expression(
+                Expression(.toString) {
+                    ["get", "circuitNumber"]
+                }
+            )
+            
+            let stopsC: [Double: Double] = [
+                19: 10,
+                22: 20,
+            ]
+            problemsTextsLayer.textSize = .expression(
+                Exp(.interpolate) {
+                    ["linear"]
+                    ["zoom"]
+                    stopsC
+                }
+            )
+            
+            problemsTextsLayer.textColor = .expression(
+                Expression(.switchCase) {
+                    Expression(.match) {
+                        ["get", "circuitColor"]
+                        ["", "white"]
+                        true
+                        false
+                    }
+                    UIColor.black // use less dark
+                    UIColor.white
+                }
+            )
+            
+            
+            try! self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
         }
         
         self.view.addSubview(mapView)
