@@ -10,7 +10,7 @@ import MapKit
 import SwiftUI
 import CoreLocation
 
-struct MapView: UIViewRepresentable {
+struct OldMapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     
     @Binding var selectedProblem: Problem
@@ -131,7 +131,7 @@ struct MapView: UIViewRepresentable {
             case zoomedOut
         }
         
-        var parent: MapView
+        var parent: OldMapView
         var lastCircuitId: Int? = nil
         var lastArea: Int? = nil
         var lastCenterOnCurrentLocationCount = 0
@@ -191,7 +191,7 @@ struct MapView: UIViewRepresentable {
             UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState], animations: animations, completion: nil)
         }
         
-        init(_ parent: MapView) {
+        init(_ parent: OldMapView) {
             self.parent = parent
         }
         

@@ -33,17 +33,7 @@ struct AreaView: View {
     var body: some View {
         ZStack {
             
-            MapView(
-                selectedProblem: $selectedProblem,
-                presentProblemDetails: $presentProblemDetails,
-                selectedPoi: $selectedPoi,
-                presentPoiActionSheet: $presentPoiActionSheet,
-                centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
-                centerOnProblem: $centerOnProblem,
-                centerOnProblemCount: $centerOnProblemCount,
-                pickedProblems: $newTopoEntry.problems,
-                pickerModeEnabled: $newTopoEntry.pickerModeEnabled
-            )
+            MapboxView()
                 .edgesIgnoringSafeArea(.bottom)
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(

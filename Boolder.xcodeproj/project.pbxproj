@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -225,6 +225,12 @@
 		039C035327C7C81A0089EEC3 /* area-1-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 039C035127C7C81A0089EEC3 /* area-1-topo-lines.json */; };
 		03A9FF9A28061EE300F0B550 /* area-43-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03A9FF9928061EE300F0B550 /* area-43-data.geojson */; };
 		03A9FF9B28061EE300F0B550 /* area-43-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03A9FF9928061EE300F0B550 /* area-43-data.geojson */; };
+		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
+		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
+		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
+		03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
+		03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104EB290ACDC6007A94D7 /* MapboxView.swift */; };
+		03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104EB290ACDC6007A94D7 /* MapboxView.swift */; };
 		03C6F44C28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44D28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44F28C9CB700012E804 /* area-64-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44E28C9CB700012E804 /* area-64-data.geojson */; };
@@ -292,7 +298,7 @@
 		3737991A258E619400711EDA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
 		3737991B258E619400711EDA /* AreaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0D25488B4100A8B696 /* AreaItemView.swift */; };
 		3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
-		3737991D258E619400711EDA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
+		3737991D258E619400711EDA /* OldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* OldMapView.swift */; };
 		3737991E258E619400711EDA /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
 		3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
 		37379920258E619400711EDA /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* DataStore.swift */; };
@@ -344,7 +350,7 @@
 		37A8C812245326F200DC161F /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
 		37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
 		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
-		37A8C81A2453320D00DC161F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* MapView.swift */; };
+		37A8C81A2453320D00DC161F /* OldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* OldMapView.swift */; };
 		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
 		37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C27F25A8627D003A7C64 /* EditProblemView.swift */; };
 		37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */; };
@@ -479,6 +485,8 @@
 		039C034E27C7C4D00089EEC3 /* area-1-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-1-data.geojson"; sourceTree = "<group>"; };
 		039C035127C7C81A0089EEC3 /* area-1-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-1-topo-lines.json"; sourceTree = "<group>"; };
 		03A9FF9928061EE300F0B550 /* area-43-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-43-data.geojson"; sourceTree = "<group>"; };
+		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
+		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C6F44B28C9CB670012E804 /* area-63-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-63-data.geojson"; sourceTree = "<group>"; };
 		03C6F44E28C9CB700012E804 /* area-64-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-64-data.geojson"; sourceTree = "<group>"; };
 		03C6F45128C9CB790012E804 /* area-66-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-66-data.geojson"; sourceTree = "<group>"; };
@@ -538,7 +546,7 @@
 		37A8C80D245326F200DC161F /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		37A8C8142453272900DC161F /* ProblemAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotationView.swift; sourceTree = "<group>"; };
 		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
-		37A8C8192453320D00DC161F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		37A8C8192453320D00DC161F /* OldMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldMapView.swift; sourceTree = "<group>"; };
 		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
 		37AEBCF425A5CEA200E0E04F /* Boolder dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Boolder dev.entitlements"; sourceTree = "<group>"; };
 		37B2C27F25A8627D003A7C64 /* EditProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProblemView.swift; sourceTree = "<group>"; };
@@ -567,6 +575,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +583,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +934,15 @@
 			path = "area-43";
 			sourceTree = "<group>";
 		};
+		03C104E7290ACBEE007A94D7 /* Mapbox */ = {
+			isa = PBXGroup;
+			children = (
+				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
+				03C104EB290ACDC6007A94D7 /* MapboxView.swift */,
+			);
+			path = Mapbox;
+			sourceTree = "<group>";
+		};
 		03C6F44728C9CB2D0012E804 /* area-63 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1158,6 +1177,7 @@
 			isa = PBXGroup;
 			children = (
 				37158D0425487F1700A8B696 /* Discover */,
+				03C104E7290ACBEE007A94D7 /* Mapbox */,
 				37F12D852456D4FC0036E3E3 /* Area */,
 				37379903258E157D00711EDA /* LargeButton.swift */,
 				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
@@ -1384,7 +1404,7 @@
 		37D7B16A245B091100B522A6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				37A8C8192453320D00DC161F /* MapView.swift */,
+				37A8C8192453320D00DC161F /* OldMapView.swift */,
 				3721387F258276580030131C /* HeadingView.swift */,
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */,
@@ -1453,6 +1473,7 @@
 			);
 			name = "Boolder dev";
 			packageProductDependencies = (
+				03C104E5290ACBC9007A94D7 /* MapboxMaps */,
 			);
 			productName = Boolder;
 			productReference = 37379A8E258E619400711EDA /* Boolder dev.app */;
@@ -1472,6 +1493,7 @@
 			);
 			name = Boolder;
 			packageProductDependencies = (
+				03C104E3290ACB85007A94D7 /* MapboxMaps */,
 			);
 			productName = Boolder;
 			productReference = 37A8C6262453263300DC161F /* Boolder.app */;
@@ -1573,6 +1595,7 @@
 			);
 			mainGroup = 37A8C61D2453263300DC161F;
 			packageReferences = (
+				03C104E2290ACB85007A94D7 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 			);
 			productRefGroup = 37A8C6272453263300DC161F /* Products */;
 			projectDirPath = "";
@@ -1860,12 +1883,13 @@
 				37379916258E619400711EDA /* PoiAnnotationView.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
+				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
 				3737991B258E619400711EDA /* AreaItemView.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
-				3737991D258E619400711EDA /* MapView.swift in Sources */,
+				3737991D258E619400711EDA /* OldMapView.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A127B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
 				3737991E258E619400711EDA /* TopoStore.swift in Sources */,
@@ -1882,6 +1906,7 @@
 				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				030AC1A427BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
+				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
 				37379928258E619400711EDA /* CircuitOverlay.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
@@ -1931,6 +1956,7 @@
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
+				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
@@ -1939,7 +1965,7 @@
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
-				37A8C81A2453320D00DC161F /* MapView.swift in Sources */,
+				37A8C81A2453320D00DC161F /* OldMapView.swift in Sources */,
 				3701845B2466BD0800C6530C /* TopoStore.swift in Sources */,
 				37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */,
 				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
@@ -1953,6 +1979,7 @@
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				030AC1A327BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
+				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,
 				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,
 				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
@@ -2251,6 +2278,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03C104E2290ACB85007A94D7 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03C104E3290ACB85007A94D7 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C104E2290ACB85007A94D7 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+		03C104E5290ACBC9007A94D7 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C104E2290ACB85007A94D7 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		37043E272458D5A0002782AB /* UserStore.xcdatamodeld */ = {

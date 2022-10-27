@@ -27,6 +27,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MBXAccessToken</key>
+	<string>pk.eyJ1Ijoibm1vbmRvbGxvdCIsImEiOiJjbDlyNHo2OGMwZjNyM3ZsNzk5d2M1NDVlIn0.HUjcpmT5EZyhuR_VjN6eog</string>
 	<key>NSCameraUsageDescription</key>
 	<string>You'll be able to take photos of problems.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
