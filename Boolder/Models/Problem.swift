@@ -30,13 +30,11 @@ class Problem : Identifiable {
     
     static func loadProblem(id: String) -> Problem {
         do {
-            //
-            let databaseURL = Bundle.main.url(forResource: "boolder", withExtension: "db")!
-            let db = try! Connection(databaseURL.path, readonly: true)
+            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteStore.db
             
             let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
             
-            let id = Expression<Int>("id")
+//            let id = Expression<Int>("id")
             let name = Expression<String>("name") // FIXME: use optional?
             let grade = Expression<String>("grade")
             let steepness = Expression<String>("steepness")
@@ -50,6 +48,7 @@ class Problem : Identifiable {
                 // print(p)
                 
                 let problem = Problem()
+                problem.id = Int(id)
                 problem.name = p[name]
                 problem.grade = Grade(p[grade])
                 problem.steepness = Steepness(rawValue: p[steepness]) ?? .other
@@ -139,23 +138,43 @@ class Problem : Identifiable {
     }
     
     var line: Line? {
-        if let lineId = lineId {
-            return dataStore.topoStore.lineCollection.line(withId: lineId)
+//        if let lineId = lineId {
+//            return dataStore.topoStore.lineCollection.line(withId: lineId)
+//        }
+//        else
+//        {
+//            return nil
+//        }
+        
+        print("lines")
+        
+        let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id!)'"))
+        
+        let id = Expression<Int>("id")
+        let topoId = Expression<Int>("topo_id")
+        let coordinates = Expression<String>("coordinates")
+        
+        if let l = try! sqliteStore.db.pluck(lines) {
+            print(l[id])
+            print(l[topoId])
+            print(l[coordinates])
+            
+            return Line(id: l[id], topoId: l[topoId], coordinates: [])
         }
-        else
-        {
-            return nil
-        }
+        
+        return nil
     }
     
     var otherProblemsOnSameTopo: [Problem] {
         guard line != nil else { return [] }
         
-        return dataStore.problems.filter { problem in
-            (line?.topoId == problem.line?.topoId)
-            && (id != problem.id) // don't show itself
-            && (problem.parentId == nil) && (problem.id != parentId) // don't show variants
-        }
+//        return dataStore.problems.filter { problem in
+//            (line?.topoId == problem.line?.topoId)
+//            && (id != problem.id) // don't show itself
+//            && (problem.parentId == nil) && (problem.id != parentId) // don't show variants
+//        }
+        
+        return []
     }
     
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
@@ -201,6 +220,10 @@ class Problem : Identifiable {
     
     var dataStore: DataStore {
         (UIApplication.shared.delegate as! AppDelegate).dataStore
+    }
+    
+    var sqliteStore: SqliteStore {
+        (UIApplication.shared.delegate as! AppDelegate).sqliteStore
     }
     
     func isFavorite() -> Bool {
