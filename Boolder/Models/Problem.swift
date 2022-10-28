@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 
+import SQLite
+
 class Problem : Identifiable {
     var circuitId: Int?
     var circuitColor: Circuit.CircuitColor?
@@ -25,6 +27,39 @@ class Problem : Identifiable {
     var tags: [String]?
     var annotation: ProblemAnnotation!
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    
+    static func loadProblem(id: String) -> Problem {
+        do {
+            //
+            let databaseURL = Bundle.main.url(forResource: "boolder", withExtension: "db")!
+            let db = try! Connection(databaseURL.path, readonly: true)
+            
+            let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
+            
+            let id = Expression<Int>("id")
+            let name = Expression<String>("name")
+            let grade = Expression<String>("grade")
+            
+            if let p = try! db.pluck(problems) {
+//                print(p)
+                
+                let problem = Problem()
+                problem.name = p[Expression(literal: "\"name\"")]
+                problem.grade = Grade(p[Expression(literal: "\"grade\"")])
+//                    problem.steepness = Steepness(rawValue: p[Expression(literal: "\"steepness\"")]) ?? .other
+//                    problem.circuitNumber = p[Expression(literal: "\"circuit_number\"")]
+//                    problem.circuitColor = Circuit.circuitColorFromString(p[Expression(literal: "\"circuit_color\"")])
+//                    problem.circuitId = Int(p[Expression(literal: "\"circuit_id\"")])
+//                    problem.bleauInfoId = p[Expression(literal: "\"bleau_info_id\"")]
+//                    problem.parentId = Int(p[Expression(literal: "\"parent_id\"")])
+                
+
+                    return problem
+            }
+            
+            return Problem() // FIXME: handle errors
+        }
+    }
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
