@@ -11,7 +11,8 @@ import MapboxMaps
 
 class MapboxViewController: UIViewController {
     
-    internal var mapView: MapView!
+    var mapView: MapView!
+    var delegate: MapBoxViewDelegate!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -222,10 +223,12 @@ class MapboxViewController: UIViewController {
 //                   case let .number(magnitude) = problemFeature.properties?["mag"]
                 {
                     
-                    print(problemFeature.properties)
+//                    print(problemFeature.properties)
+//
+//                    print(id)
+//                    print(point)
                     
-                    print(id)
-                    print(point)
+                    self.delegate?.selectProblem(id: Int(id))
 
 //                    let earthquakeId = Int(earthquakeIdDouble).description
 //
@@ -249,4 +252,11 @@ class MapboxViewController: UIViewController {
             }
         }
     }
+}
+
+
+protocol MapBoxViewDelegate {
+
+    // Define expected delegate functions
+    func selectProblem(id: Int)
 }

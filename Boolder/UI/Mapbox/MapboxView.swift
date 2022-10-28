@@ -12,9 +12,31 @@ import MapboxMaps
 struct MapboxView: UIViewControllerRepresentable {
      
     func makeUIViewController(context: Context) -> MapboxViewController {
-           return MapboxViewController()
-       }
+        let vc = MapboxViewController()
+        vc.delegate = context.coordinator
+        return vc
+    }
       
     func updateUIViewController(_ uiViewController: MapboxViewController, context: Context) {
     }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    // MARK: Coordinator
+    
+    class Coordinator: MapBoxViewDelegate {
+        var parent: MapboxView
+        
+        init(_ parent: MapboxView) {
+            self.parent = parent
+        }
+        
+        func selectProblem(id: Int) {
+            print("selected problem \(id)")
+        }
+
+    }
+
 }
