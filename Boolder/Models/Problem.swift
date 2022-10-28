@@ -160,16 +160,17 @@ class Problem : Identifiable {
     
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
     var variants: [Problem] {
-        if let parentId = parentId {
-            return dataStore.problems.filter { problem in
-                ((problem.id == parentId) || (problem.parentId == parentId)) && problem.id != id
-            }
-        }
-        else {
-            return dataStore.problems.filter { problem in
-                problem.parentId == id
-            }
-        }
+//        if let parentId = parentId {
+//            return dataStore.problems.filter { problem in
+//                ((problem.id == parentId) || (problem.parentId == parentId)) && problem.id != id
+//            }
+//        }
+//        else {
+//            return dataStore.problems.filter { problem in
+//                problem.parentId == id
+//            }
+//        }
+        return []
     }
     
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
