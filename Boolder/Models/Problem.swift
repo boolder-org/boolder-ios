@@ -159,11 +159,22 @@ class Problem : Identifiable {
             print(l[topoId])
             print(l[coordinates])
             
-            return Line(id: l[id], topoId: l[topoId], coordinates: [])
+            let jsonString = l[coordinates]
+            let jsonData = jsonString.data(using: .utf8)
+            let coordinates = try! JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData!)
+            
+            return Line(id: l[id], topoId: l[topoId], coordinates: coordinates)
         }
         
         return nil
     }
+    
+//    struct PhotoPercentCoordinate: Decodable {
+//        let x: Double
+//        let y: Double
+//    }
+    
+    
     
     var otherProblemsOnSameTopo: [Problem] {
         guard line != nil else { return [] }
