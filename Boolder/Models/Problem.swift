@@ -37,24 +37,38 @@ class Problem : Identifiable {
             let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
             
             let id = Expression<Int>("id")
-            let name = Expression<String>("name")
+            let name = Expression<String>("name") // FIXME: use optional?
             let grade = Expression<String>("grade")
+            let steepness = Expression<String>("steepness")
+            let circuitNumber = Expression<String?>("circuit_number")
+            let circuitColor = Expression<String?>("circuit_color")
+            let circuitId = Expression<Int?>("circuit_id")
+            let bleauInfoId = Expression<String?>("bleau_info_id")
+            let parentId = Expression<Int?>("parent_id")
             
             if let p = try! db.pluck(problems) {
-//                print(p)
+                // print(p)
                 
                 let problem = Problem()
-                problem.name = p[Expression(literal: "\"name\"")]
-                problem.grade = Grade(p[Expression(literal: "\"grade\"")])
-//                    problem.steepness = Steepness(rawValue: p[Expression(literal: "\"steepness\"")]) ?? .other
-//                    problem.circuitNumber = p[Expression(literal: "\"circuit_number\"")]
-//                    problem.circuitColor = Circuit.circuitColorFromString(p[Expression(literal: "\"circuit_color\"")])
-//                    problem.circuitId = Int(p[Expression(literal: "\"circuit_id\"")])
-//                    problem.bleauInfoId = p[Expression(literal: "\"bleau_info_id\"")]
-//                    problem.parentId = Int(p[Expression(literal: "\"parent_id\"")])
+                problem.name = p[name]
+                problem.grade = Grade(p[grade])
+                problem.steepness = Steepness(rawValue: p[steepness]) ?? .other
+                problem.circuitNumber = p[circuitNumber] ?? ""
+                problem.circuitColor = Circuit.circuitColorFromString(p[circuitColor])
                 
-
-                    return problem
+                if let id = p[circuitId] {
+                    problem.circuitId = id
+                }
+                
+                if let id2 = p[bleauInfoId] {
+                    problem.bleauInfoId = id2
+                }
+                
+                if let id3 = p[parentId] {
+                    problem.parentId = id3
+                }
+                
+                return problem
             }
             
             return Problem() // FIXME: handle errors
