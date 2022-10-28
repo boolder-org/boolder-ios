@@ -9,29 +9,11 @@
 import UIKit
 import CoreData
 
-import SQLite
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        // Wrap everything in a do...catch to handle errors
-        do {
-            let databaseURL = Bundle.main.url(forResource: "boolder", withExtension: "db")!
-
-            let db = try Connection(databaseURL.path)
-            
-            for row in try db.prepare("SELECT * FROM problems") {
-                    print("id: \(row[0]!), name: \(row[1])")
-                }
-            
-        } catch {
-            print (error)
-        }
-        
-        
         return true
     }
 
@@ -102,6 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var odrManager: ODRManager = {
        ODRManager()
+    }()
+    
+    lazy var sqliteStore: SqliteStore = {
+        SqliteStore()
     }()
 }
 

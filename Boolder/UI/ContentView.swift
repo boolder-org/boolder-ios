@@ -9,10 +9,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
+    @State private var presentProblemDetails = false
+    @State private var areaResourcesDownloaded = false
+    
     var body: some View {
         TabView {
-            MapboxView()
+            MapboxView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails)
                 .edgesIgnoringSafeArea(.top)
+                .sheet(isPresented: $presentProblemDetails) {
+                    ProblemDetailsView(
+                        problem: $selectedProblem,
+                        areaResourcesDownloaded: $areaResourcesDownloaded
+                    )
+                }
                 .tabItem {
                     Label("Carte", systemImage: "map")
                 }
