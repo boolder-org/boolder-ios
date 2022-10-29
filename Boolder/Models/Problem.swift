@@ -11,7 +11,16 @@ import MapKit
 
 import SQLite
 
-class Problem : Identifiable {
+class Problem : Identifiable, CustomStringConvertible, Hashable {
+    
+    static func == (lhs: Problem, rhs: Problem) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    
     var areaId: Int!
     var circuitId: Int?
     var circuitColor: Circuit.CircuitColor?
@@ -29,7 +38,11 @@ class Problem : Identifiable {
     var annotation: ProblemAnnotation!
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
-    static func loadProblem(id: String) -> Problem {
+    var description: String {
+        return "Problem \(id!)"
+    }
+    
+    static func loadProblem(id: Int) -> Problem {
         do {
             let db = (UIApplication.shared.delegate as! AppDelegate).sqliteStore.db
             
@@ -150,7 +163,7 @@ class Problem : Identifiable {
 //            return nil
 //        }
         
-        print("lines")
+//        print("lines")
         
         let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id!)'"))
         
@@ -188,18 +201,41 @@ class Problem : Identifiable {
     
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
     var variants: [Problem] {
-//        if let parentId = parentId {
-//            return dataStore.problems.filter { problem in
-//                ((problem.id == parentId) || (problem.parentId == parentId)) && problem.id != id
-//            }
-//        }
-//        else {
-//            return dataStore.problems.filter { problem in
-//                problem.parentId == id
-//            }
-//        }
-        return []
+        if let parent = parent {
+//            print(parent)
+            return Array(
+                Set([parent]).union(
+                Set(parent.children).subtracting(Set([self]))
+                )
+                )
+        }
+        else {
+//            print(children)
+            return children
+        }
     }
+    
+    var parent: Problem? {
+        guard let parentId = parentId else { return nil }
+        
+        return Self.loadProblem(id: parentId)
+    }
+    
+    var children: [Problem] {
+        // FIXME: clean code
+        let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id!)'"))
+//        print(problems)
+        let id = Expression<Int>("id")
+        
+//        for p in try! sqliteStore.db.prepare(problems) {
+//            print(p)
+//        }
+        
+        return try! sqliteStore.db.prepare(problems).map { problem in
+            Self.loadProblem(id: problem[id])
+        }
+    }
+    
     
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }

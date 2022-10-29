@@ -237,8 +237,8 @@
 		03C104F8290C0688007A94D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F6290C0688007A94D7 /* ContentView.swift */; };
 		03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
-		03C10503290C6762007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10502290C6762007A94D7 /* boolder.db */; };
-		03C10504290C6762007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10502290C6762007A94D7 /* boolder.db */; };
+		03C10506290D1A4A007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10505290D1A49007A94D7 /* boolder.db */; };
+		03C10507290D1A4A007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10505290D1A49007A94D7 /* boolder.db */; };
 		03C6F44C28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44D28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44F28C9CB700012E804 /* area-64-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44E28C9CB700012E804 /* area-64-data.geojson */; };
@@ -497,7 +497,7 @@
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
-		03C10502290C6762007A94D7 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03C10505290D1A49007A94D7 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03C6F44B28C9CB670012E804 /* area-63-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-63-data.geojson"; sourceTree = "<group>"; };
 		03C6F44E28C9CB700012E804 /* area-64-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-64-data.geojson"; sourceTree = "<group>"; };
 		03C6F45128C9CB790012E804 /* area-66-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-66-data.geojson"; sourceTree = "<group>"; };
@@ -1169,7 +1169,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03C10502290C6762007A94D7 /* boolder.db */,
+				03C10505290D1A49007A94D7 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37A8C806245326DB00DC161F /* DataStore.swift */,
 				37A276282457424500F53D80 /* GeoStore.swift */,
@@ -1642,7 +1642,7 @@
 				03DE0F772851270300549219 /* area-35-topo-lines.json in Resources */,
 				034E809628B3C76E001DA3F8 /* area-53-data.geojson in Resources */,
 				03725CC628C0835300287E14 /* area-60-data.geojson in Resources */,
-				03C10504290C6762007A94D7 /* boolder.db in Resources */,
+				03C10507290D1A4A007A94D7 /* boolder.db in Resources */,
 				0325CE7728F59D9300EDA132 /* area-38-data.geojson in Resources */,
 				0325CE3928F5477700EDA132 /* area-6-topo-lines.json in Resources */,
 				03186ED627DB501800431DCB /* area-13-data.geojson in Resources */,
@@ -1767,7 +1767,7 @@
 				03DE0F762851270300549219 /* area-35-topo-lines.json in Resources */,
 				034E809528B3C76E001DA3F8 /* area-53-data.geojson in Resources */,
 				03725CC528C0835300287E14 /* area-60-data.geojson in Resources */,
-				03C10503290C6762007A94D7 /* boolder.db in Resources */,
+				03C10506290D1A4A007A94D7 /* boolder.db in Resources */,
 				0325CE7628F59D9300EDA132 /* area-38-data.geojson in Resources */,
 				0325CE3828F5477700EDA132 /* area-6-topo-lines.json in Resources */,
 				03186ED527DB501800431DCB /* area-13-data.geojson in Resources */,
