@@ -172,12 +172,67 @@ class MapboxViewController: UIViewController {
             
             try! self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
             
+//            applyFilter()
+            
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
         self.view.addSubview(mapView)
+    }
+    
+    func applyFilter() {
+        do {
+          
+          try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
+            // Update layer properties
+              layer.filter = Expression(.match) {
+                  Exp(.get) { "grade" }
+                  ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+",]
+                  true
+                  false
+              }
+          }
+            
+            try mapView.mapboxMap.style.updateLayer(withId: "problems-texts", type: SymbolLayer.self) { layer in
+              // Update layer properties
+                layer.filter = Expression(.match) {
+                    Exp(.get) { "grade" }
+                    ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+",]
+                    true
+                    false
+                }
+            }
+        } catch {
+          print("Ran into an error updating the layer: \(error)")
+        }
+    }
+    
+    func removeFilter() {
+        do {
+        try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
+          // Update layer properties
+            layer.filter = Expression(.match) {
+                Exp(.get) { "grade" }
+                ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+","4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+",]
+                true
+                false
+            }
+        }
+          
+          try mapView.mapboxMap.style.updateLayer(withId: "problems-texts", type: SymbolLayer.self) { layer in
+            // Update layer properties
+              layer.filter = Expression(.match) {
+                  Exp(.get) { "grade" }
+                  ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+","4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+",]
+                  true
+                  false
+              }
+          }
+      } catch {
+        print("Ran into an error updating the layer: \(error)")
+      }
     }
     
     
@@ -211,7 +266,7 @@ class MapboxViewController: UIViewController {
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
-                print("tap on problems layer")
+//                print("tap on problems layer")
 
             guard let self = self else { return }
 

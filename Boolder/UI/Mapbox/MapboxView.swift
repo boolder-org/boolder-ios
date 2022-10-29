@@ -10,10 +10,13 @@ import SwiftUI
 import MapboxMaps
 
 struct MapboxView: UIViewControllerRepresentable {
+//    typealias UIViewControllerType = MapboxViewController
 //    @EnvironmentObject var sqliteStore: SqliteStore
     
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
+    
+    @Binding var applyFilters: Bool
      
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
@@ -22,6 +25,14 @@ struct MapboxView: UIViewControllerRepresentable {
     }
       
     func updateUIViewController(_ uiViewController: MapboxViewController, context: Context) {
+        print("update UI")
+        
+        if(applyFilters) {
+            uiViewController.applyFilter()
+        }
+        else {
+            uiViewController.removeFilter()
+        }
     }
     
     func makeCoordinator() -> Coordinator {
