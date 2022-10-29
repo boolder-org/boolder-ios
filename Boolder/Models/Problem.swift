@@ -50,7 +50,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
             
 //            let id = Expression<Int>("id")
             let areaId = Expression<Int>("area_id")
-            let name = Expression<String>("name") // FIXME: use optional?
+            let name = Expression<String?>("name") // FIXME: use optional?
             let grade = Expression<String>("grade")
             let steepness = Expression<String>("steepness")
             let circuitNumber = Expression<String?>("circuit_number")
