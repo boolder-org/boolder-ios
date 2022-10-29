@@ -12,6 +12,7 @@ import MapKit
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataStore: DataStore
+    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.openURL) var openURL
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -48,6 +49,26 @@ struct ProblemDetailsView: View {
                 variants
             }
         }
+        .onAppear{
+            odrManager.requestResources(tag: "area-\(problem.areaId!)", onSuccess: {
+                areaResourcesDownloaded = true
+                
+            }, onFailure: { error in
+                print("On-demand resource error")
+                
+                // FIXME: implement UI, log errors
+                switch error.code {
+                case NSBundleOnDemandResourceOutOfSpaceError:
+                    print("You don't have enough space available to download this resource.")
+                case NSBundleOnDemandResourceExceededMaximumSizeError:
+                    print("The bundle resource was too big.")
+                case NSBundleOnDemandResourceInvalidTagError:
+                    print("The requested tag does not exist.")
+                default:
+                    print(error.description)
+                }
+            })
+        }
         .background(
             EmptyView()
                 .sheet(isPresented: $presentEditProblem) {
@@ -56,6 +77,7 @@ struct ProblemDetailsView: View {
                 }
         )
     }
+    
     
     
     var infos: some View {

@@ -12,6 +12,7 @@ import MapKit
 import SQLite
 
 class Problem : Identifiable {
+    var areaId: Int!
     var circuitId: Int?
     var circuitColor: Circuit.CircuitColor?
     var circuitNumber: String = ""
@@ -35,6 +36,7 @@ class Problem : Identifiable {
             let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
             
 //            let id = Expression<Int>("id")
+            let areaId = Expression<Int>("area_id")
             let name = Expression<String>("name") // FIXME: use optional?
             let grade = Expression<String>("grade")
             let steepness = Expression<String>("steepness")
@@ -48,6 +50,7 @@ class Problem : Identifiable {
                 // print(p)
                 
                 let problem = Problem()
+                problem.areaId = p[areaId]
                 problem.id = Int(id)
                 problem.name = p[name]
                 problem.grade = Grade(p[grade])
