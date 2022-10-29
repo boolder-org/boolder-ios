@@ -137,6 +137,7 @@ class Problem : Identifiable {
         return false
     }
     
+    // FIXME: this code is called many times => perf issue?
     var line: Line? {
 //        if let lineId = lineId {
 //            return dataStore.topoStore.lineCollection.line(withId: lineId)
@@ -155,9 +156,9 @@ class Problem : Identifiable {
         let coordinates = Expression<String>("coordinates")
         
         if let l = try! sqliteStore.db.pluck(lines) {
-            print(l[id])
-            print(l[topoId])
-            print(l[coordinates])
+//            print(l[id])
+//            print(l[topoId])
+//            print(l[coordinates])
             
             let jsonString = l[coordinates]
             let jsonData = jsonString.data(using: .utf8)
@@ -168,12 +169,6 @@ class Problem : Identifiable {
         
         return nil
     }
-    
-//    struct PhotoPercentCoordinate: Decodable {
-//        let x: Double
-//        let y: Double
-//    }
-    
     
     
     var otherProblemsOnSameTopo: [Problem] {
