@@ -67,19 +67,27 @@ class MapboxViewController: UIViewController {
                 false
             }
             
-            let stops: [Double: Double] = [
-              15: 2.0,
-              18: 4.0,
-              22: 16 // FIXME: use different size for off circuit?
-            ]
-            
             // Set some style properties
             problemsLayer.circleRadius = .expression(
+                
                 Exp(.interpolate) {
                     ["linear"]
                     ["zoom"]
-                    stops
+                    15
+                    2
+                    18
+                    4
+                    22
+                    Exp(.switchCase) {
+                        Exp(.boolean) {
+                            Exp(.has) { "circuitColor" }
+                            false
+                        }
+                        16
+                        10
+                    }
                 }
+                
             )
             
             problemsLayer.circleColor = .expression(
