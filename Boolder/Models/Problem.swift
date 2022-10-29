@@ -171,6 +171,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         let topoId = Expression<Int>("topo_id")
         let coordinates = Expression<String>("coordinates")
         
+        // TODO: handle multiple lines
         if let l = try! sqliteStore.db.pluck(lines) {
 //            print(l[id])
 //            print(l[topoId])
@@ -190,13 +191,19 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     var otherProblemsOnSameTopo: [Problem] {
         guard line != nil else { return [] }
         
-//        return dataStore.problems.filter { problem in
-//            (line?.topoId == problem.line?.topoId)
-//            && (id != problem.id) // don't show itself
-//            && (problem.parentId == nil) && (problem.id != parentId) // don't show variants
-//        }
+        let lines = Table("lines").filter(Expression(literal: "topo_id = '\(line!.topoId)'"))
         
-        return []
+        let problemId = Expression<Int>("problem_id")
+        
+        let problemsOnSameTopo = try! sqliteStore.db.prepare(lines).map { l in
+            Self.loadProblem(id: l[problemId])
+        }
+        
+        return problemsOnSameTopo.filter { p in
+            p.id != id // don't show itself
+            && (p.parentId == nil) // don't show anyone's children
+            && (p.id != parentId) // don't show problem's parent
+        }
     }
     
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
@@ -205,8 +212,8 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
 //            print(parent)
             return Array(
                 Set([parent]).union(
-                Set(parent.children).subtracting(Set([self]))
-                )
+                    Set(parent.children).subtracting(Set([self]))
+                    )
                 )
         }
         else {
