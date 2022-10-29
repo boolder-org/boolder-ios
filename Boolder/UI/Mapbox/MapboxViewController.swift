@@ -78,14 +78,7 @@ class MapboxViewController: UIViewController {
                     18
                     4
                     22
-                    Exp(.switchCase) {
-                        Exp(.boolean) {
-                            Exp(.has) { "circuitColor" }
-                            false
-                        }
-                        16
-                        10
-                    }
+                    16
                 }
                 
             )
@@ -217,6 +210,8 @@ class MapboxViewController: UIViewController {
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
+                
+                print("tap on problems layer")
 
             guard let self = self else { return }
 
