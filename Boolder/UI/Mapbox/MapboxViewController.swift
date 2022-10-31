@@ -42,6 +42,7 @@ class MapboxViewController: UIViewController {
             // In this case, the tileset is owned by the "mapbox" account
             // and "mapbox-terrain-v2" is the tileset ID
             source.url = "mapbox://nmondollot.4xsv235p"
+            source.promoteId = .string("id")
             // Add the vector source to the style
             try! self.mapView.mapboxMap.style.addSource(source, id: sourceIdentifier)
             
