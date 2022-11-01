@@ -92,7 +92,7 @@ struct TopoView: View {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        Image(systemName: "chevron.down.circle.fill")
+                        Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 30))
                             .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
                             .padding(16)

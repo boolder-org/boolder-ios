@@ -239,6 +239,14 @@
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C10506290D1A4A007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10505290D1A49007A94D7 /* boolder.db */; };
 		03C10507290D1A4A007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10505290D1A49007A94D7 /* boolder.db */; };
+		03C1050A2911B3E8007A94D7 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105092911B3E8007A94D7 /* InstantSearchSwiftUI */; };
+		03C1050C2911B3F5007A94D7 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050B2911B3F5007A94D7 /* InstantSearchSwiftUI */; };
+		03C1050E2911B4CB007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050D2911B4CB007A94D7 /* InstantSearch */; };
+		03C105102911B4CE007A94D7 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050F2911B4CE007A94D7 /* InstantSearchCore */; };
+		03C105122911B4D0007A94D7 /* InstantSearchInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105112911B4D0007A94D7 /* InstantSearchInsights */; };
+		03C105142911B506007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105132911B506007A94D7 /* InstantSearch */; };
+		03C105162911B509007A94D7 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105152911B509007A94D7 /* InstantSearchCore */; };
+		03C105182911B50B007A94D7 /* InstantSearchInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105172911B50B007A94D7 /* InstantSearchInsights */; };
 		03C6F44C28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44D28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44F28C9CB700012E804 /* area-64-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44E28C9CB700012E804 /* area-64-data.geojson */; };
@@ -275,6 +283,8 @@
 		03EDAC2127EA7D71003D315E /* area-37-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03EDAC1F27EA7D71003D315E /* area-37-data.geojson */; };
 		03F249B228219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
 		03F249B328219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
+		03F4AF512911B77500E4B1BE /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F4AF502911B77500E4B1BE /* AlgoliaView.swift */; };
+		03F4AF522911B77500E4B1BE /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F4AF502911B77500E4B1BE /* AlgoliaView.swift */; };
 		3701845B2466BD0800C6530C /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		371584DD25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */; };
@@ -516,6 +526,7 @@
 		03DE504D27C18444003E5B2A /* AllAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasView.swift; sourceTree = "<group>"; };
 		03EDAC1F27EA7D71003D315E /* area-37-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-37-data.geojson"; sourceTree = "<group>"; };
 		03F249B128219D7400F7E6CC /* area-45-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-45-data.geojson"; sourceTree = "<group>"; };
+		03F4AF502911B77500E4B1BE /* AlgoliaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaView.swift; sourceTree = "<group>"; };
 		3701845A2466BD0800C6530C /* TopoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoStore.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
@@ -586,8 +597,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C1050E2911B4CB007A94D7 /* InstantSearch in Frameworks */,
+				03C1050C2911B3F5007A94D7 /* InstantSearchSwiftUI in Frameworks */,
+				03C105102911B4CE007A94D7 /* InstantSearchCore in Frameworks */,
 				03C104F5290BFBD8007A94D7 /* SQLite in Frameworks */,
 				03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */,
+				03C105122911B4D0007A94D7 /* InstantSearchInsights in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,8 +610,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C105142911B506007A94D7 /* InstantSearch in Frameworks */,
+				03C1050A2911B3E8007A94D7 /* InstantSearchSwiftUI in Frameworks */,
+				03C105162911B509007A94D7 /* InstantSearchCore in Frameworks */,
 				03C104F3290BFBCE007A94D7 /* SQLite in Frameworks */,
 				03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */,
+				03C105182911B50B007A94D7 /* InstantSearchInsights in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,6 +1211,7 @@
 			isa = PBXGroup;
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
+				03F4AF502911B77500E4B1BE /* AlgoliaView.swift */,
 				37158D0425487F1700A8B696 /* Discover */,
 				03C104E7290ACBEE007A94D7 /* Mapbox */,
 				37F12D852456D4FC0036E3E3 /* Area */,
@@ -1491,6 +1511,10 @@
 			packageProductDependencies = (
 				03C104E5290ACBC9007A94D7 /* MapboxMaps */,
 				03C104F4290BFBD8007A94D7 /* SQLite */,
+				03C1050B2911B3F5007A94D7 /* InstantSearchSwiftUI */,
+				03C1050D2911B4CB007A94D7 /* InstantSearch */,
+				03C1050F2911B4CE007A94D7 /* InstantSearchCore */,
+				03C105112911B4D0007A94D7 /* InstantSearchInsights */,
 			);
 			productName = Boolder;
 			productReference = 37379A8E258E619400711EDA /* Boolder dev.app */;
@@ -1512,6 +1536,10 @@
 			packageProductDependencies = (
 				03C104E3290ACB85007A94D7 /* MapboxMaps */,
 				03C104F2290BFBCE007A94D7 /* SQLite */,
+				03C105092911B3E8007A94D7 /* InstantSearchSwiftUI */,
+				03C105132911B506007A94D7 /* InstantSearch */,
+				03C105152911B509007A94D7 /* InstantSearchCore */,
+				03C105172911B50B007A94D7 /* InstantSearchInsights */,
 			);
 			productName = Boolder;
 			productReference = 37A8C6262453263300DC161F /* Boolder.app */;
@@ -1615,6 +1643,7 @@
 			packageReferences = (
 				03C104E2290ACB85007A94D7 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				03C104F1290BFBCE007A94D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */,
 			);
 			productRefGroup = 37A8C6272453263300DC161F /* Products */;
 			projectDirPath = "";
@@ -1928,6 +1957,7 @@
 				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				030AC1A427BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
+				03F4AF522911B77500E4B1BE /* AlgoliaView.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
 				37379928258E619400711EDA /* CircuitOverlay.swift in Sources */,
@@ -2003,6 +2033,7 @@
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				030AC1A327BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
+				03F4AF512911B77500E4B1BE /* AlgoliaView.swift in Sources */,
 				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,
 				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,
@@ -2321,6 +2352,14 @@
 				minimumVersion = 0.9.2;
 			};
 		};
+		03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/instantsearch-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2343,6 +2382,46 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 03C104F1290BFBCE007A94D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
 			productName = SQLite;
+		};
+		03C105092911B3E8007A94D7 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchSwiftUI;
+		};
+		03C1050B2911B3F5007A94D7 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchSwiftUI;
+		};
+		03C1050D2911B4CB007A94D7 /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearch;
+		};
+		03C1050F2911B4CE007A94D7 /* InstantSearchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchCore;
+		};
+		03C105112911B4D0007A94D7 /* InstantSearchInsights */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchInsights;
+		};
+		03C105132911B506007A94D7 /* InstantSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearch;
+		};
+		03C105152911B509007A94D7 /* InstantSearchCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchCore;
+		};
+		03C105172911B50B007A94D7 /* InstantSearchInsights */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchInsights;
 		};
 /* End XCSwiftPackageProductDependency section */
 
