@@ -37,7 +37,6 @@ class MapboxViewController: UIViewController {
 
     private let tokyoCoord = CLLocationCoordinate2D(latitude: 48.3777465, longitude: 2.5303744)
     private let tokyoZoom: CGFloat = 12
-    private let tileRegionId = "trois-pignons-region"
     
     deinit {
         OfflineSwitch.shared.isMapboxStackConnected = true
@@ -89,69 +88,67 @@ class MapboxViewController: UIViewController {
         // - - - - - - - -
 
         // 2. Create an offline region with tiles for the outdoors style
-        let outdoorsOptions = TilesetDescriptorOptions(styleURI: styleURI,
-                                                       zoomRange: 0...16) // TODO: choose smaller range to limit download size
-
-        let outdoorsDescriptor = offlineManager.createTilesetDescriptor(for: outdoorsOptions)
-
-        let troisPignons = LineString(Ring(coordinates: [
-            LocationCoordinate2D(latitude: 48.40140017969, longitude: 2.49835959435),
-            LocationCoordinate2D(latitude: 48.37763243669, longitude: 2.50136366844),
-            LocationCoordinate2D(latitude: 48.35710459296, longitude: 2.52943030357),
-            LocationCoordinate2D(latitude: 48.35699052627, longitude: 2.54779807091),
-            LocationCoordinate2D(latitude: 48.39228197451, longitude: 2.56659499168),
-            LocationCoordinate2D(latitude: 48.40043144798, longitude: 2.55483618736),
-            LocationCoordinate2D(latitude: 48.40533190133, longitude: 2.50539771080),
-            LocationCoordinate2D(latitude: 48.40140017969, longitude: 2.49835959435),
-        ]))
         
-        // Load the tile region
-        let tileRegionLoadOptions = TileRegionLoadOptions(
-            geometry: .lineString(troisPignons),
-            descriptors: [outdoorsDescriptor],
-            metadata: ["tag": "my-outdoors-tile-region"],
-            acceptExpired: true)!
+        let dataStore = (UIApplication.shared.delegate as! AppDelegate).dataStore
+        dataStore.areas.filter { $0.published }.forEach { area in
+            
+            print("area: \(area.id)")
+            
+            let outdoorsOptions = TilesetDescriptorOptions(styleURI: styleURI,
+                                                           zoomRange: 0...16) // TODO: choose smaller range to limit download size
+            
+            let outdoorsDescriptor = offlineManager.createTilesetDescriptor(for: outdoorsOptions)
+            
 
-        // Use the the default TileStore to load this region. You can create
-        // custom TileStores are are unique for a particular file path, i.e.
-        // there is only ever one TileStore per unique path.
-        dispatchGroup.enter()
-        let tileRegionDownload = tileStore.loadTileRegion(forId: tileRegionId,
-                                                          loadOptions: tileRegionLoadOptions) { [weak self] (progress) in
-            // These closures do not get called from the main thread. In this case
-            // we're updating the UI, so it's important to dispatch to the main
-            // queue.
-            DispatchQueue.main.async {
-
-
-                print("\(progress)")
-            }
-        } completion: { [weak self] result in
-            DispatchQueue.main.async {
-                defer {
-                    dispatchGroup.leave()
+            
+            // Load the tile region
+            let tileRegionLoadOptions = TileRegionLoadOptions(
+                geometry: .point(Point(LocationCoordinate2D(latitude: area.latitude, longitude: area.longitude))),
+                descriptors: [outdoorsDescriptor],
+                metadata: ["tag": "my-outdoors-tile-region"],
+                acceptExpired: true)!
+            
+            // Use the the default TileStore to load this region. You can create
+            // custom TileStores are are unique for a particular file path, i.e.
+            // there is only ever one TileStore per unique path.
+            dispatchGroup.enter()
+            let tileRegionDownload = tileStore.loadTileRegion(forId: "area-\(area.id)",
+                                                              loadOptions: tileRegionLoadOptions) { [weak self] (progress) in
+                // These closures do not get called from the main thread. In this case
+                // we're updating the UI, so it's important to dispatch to the main
+                // queue.
+                DispatchQueue.main.async {
+                    
+                    
+                    print("\(progress)")
                 }
-
-                switch result {
-                case let .success(tileRegion):
-                    print("tileRegion = \(tileRegion)")
-
-                case let .failure(error):
-                    print("tileRegion download Error = \(error)")
-                    downloadError = true
+            } completion: { [weak self] result in
+                DispatchQueue.main.async {
+                    defer {
+                        dispatchGroup.leave()
+                    }
+                    
+                    switch result {
+                    case let .success(tileRegion):
+                        print("tileRegion = \(tileRegion)")
+                        
+                    case let .failure(error):
+                        print("tileRegion download Error = \(error)")
+                        downloadError = true
+                    }
                 }
             }
+            
+            // Wait for both downloads before moving to the next state
+            dispatchGroup.notify(queue: .main) {
+                self.downloads = []
+                OfflineSwitch.shared.isMapboxStackConnected = false
+                print("download finished")
+                print("disable mapbox HTTP calls")
+            }
+            
+            downloads = [stylePackDownload, tileRegionDownload]
         }
-
-        // Wait for both downloads before moving to the next state
-        dispatchGroup.notify(queue: .main) {
-            self.downloads = []
-            OfflineSwitch.shared.isMapboxStackConnected = false
-            print("download finished")
-            print("disable mapbox HTTP calls")
-        }
-
-        downloads = [stylePackDownload, tileRegionDownload]
     }
     
     private func cancelDownloads() {
@@ -168,7 +165,9 @@ class MapboxViewController: UIViewController {
         // Note this will not remove the downloaded tile packs, instead, it will
         // just mark the tileset as not a part of a tile region. The tiles still
         // exists in a predictive cache in the TileStore.
-        tileStore?.removeTileRegion(forId: tileRegionId)
+        
+        // FIXME: implement logic
+//        tileStore?.removeTileRegion(forId: tileRegionId)
 
         // Set the disk quota to zero, so that tile regions are fully evicted
         // when removed. The TileStore is also used when `ResourceOptions.isLoadTilePacksFromNetwork`
