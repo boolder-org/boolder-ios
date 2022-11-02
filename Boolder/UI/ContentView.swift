@@ -62,17 +62,17 @@ struct ContentView: View {
             .tabItem {
                 Label("Carte", systemImage: "map")
             }
-            
-            NavigationView {
-                AlgoliaView(searchBoxController: ContentView.algoliaController.searchBoxController,
-                            hitsController: ContentView.algoliaController.hitsController)
-            }
-//            .onAppear {
-//                ContentView.algoliaController.searcher.search()
-//                }
-            .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
-            }
+//            
+//            NavigationView {
+//                AlgoliaView(searchBoxController: ContentView.algoliaController.searchBoxController,
+//                            hitsController: ContentView.algoliaController.hitsController)
+//            }
+////            .onAppear {
+////                ContentView.algoliaController.searcher.search()
+////                }
+//            .tabItem {
+//                Label("Search", systemImage: "magnifyingglass")
+//            }
             
             DiscoverView()
                 .tabItem {
