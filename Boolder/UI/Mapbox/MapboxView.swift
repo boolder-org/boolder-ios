@@ -28,7 +28,6 @@ struct MapboxView: UIViewControllerRepresentable {
         print("update UI")
         
         if(applyFilters) {
-            uiViewController.downloadTileRegions()
             uiViewController.applyFilter()
         }
         else {
