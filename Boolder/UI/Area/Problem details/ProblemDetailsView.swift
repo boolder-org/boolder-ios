@@ -110,9 +110,11 @@ struct ProblemDetailsView: View {
                                 .frame(minWidth: 16)
                             Text(problem.steepness.localizedName)
                                 .font(.body)
-                            Text(problem.readableDescription() ?? "")
-                                .font(.caption)
-                                .foregroundColor(Color.gray)
+                            if(problem.sitStart) {
+                                Text("problem.sit_start")
+                                    .font(.caption)
+                                    .foregroundColor(Color.gray)
+                            }
                         }
                     }
                     

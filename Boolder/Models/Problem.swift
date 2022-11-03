@@ -32,6 +32,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     var parentId: Int? = nil
     var height: Int? = nil
     var steepness: Steepness = .other
+    var sitStart: Bool = false
     var id: Int!
     var lineId: Int?
     var tags: [String]?
@@ -61,6 +62,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
             let parentId = Expression<Int?>("parent_id")
             let latitude = Expression<Double?>("latitude")
             let longitude = Expression<Double?>("longitude")
+            let sitStart = Expression<Int>("sit_start")
             
             if let p = try! db.pluck(problems) {
                 // print(p)
@@ -74,6 +76,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
                 problem.circuitNumber = p[circuitNumber] ?? ""
                 problem.circuitColor = Circuit.circuitColorFromString(p[circuitColor])
                 problem.coordinate = CLLocationCoordinate2D(latitude: p[latitude] ?? 0, longitude: p[longitude] ?? 0)
+                problem.sitStart = p[sitStart] == 1
                 
                 if let id = p[circuitId] {
                     problem.circuitId = id
