@@ -13,6 +13,8 @@ import InstantSearch
 struct ProblemItem: Codable, Hashable {
     let objectID: String
     let name: String
+    let grade: String
+    let area_name: String
 }
 
 struct AreaItem: Codable, Hashable {
@@ -93,7 +95,15 @@ struct AlgoliaView: View {
                 if(problemHitsController.hits.count > 0) {
                     Section(header: Text("Problems")) {
                         ForEach(problemHitsController.hits, id: \.self) { hit in
-                            Text(hit?.name ?? "")
+                            if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id) {
+                                HStack {
+                                    ProblemCircleView(problem: problem)
+                                    Text(hit?.name ?? "")
+                                    Text(hit?.grade ?? "").foregroundColor(.gray).padding(.leading, 2)
+                                    Spacer()
+                                    Text(hit?.area_name ?? "").foregroundColor(.gray).font(.caption)
+                                }
+                            }
                         }
                     }
                 }
@@ -117,10 +127,10 @@ struct AlgoliaView: View {
 //        .animation(.easeInOut(duration: 0), value: searchBoxController.query)
         .modify {
               if #available(iOS 15, *) {
-                  $0.searchable(text: $searchBoxController.query)
+                  $0.searchable(text: $searchBoxController.query).disableAutocorrection(true)
               }
               else {
-                  $0
+                  $0 // FIXME: show a searchbar on iOS 14
               }
           }
         

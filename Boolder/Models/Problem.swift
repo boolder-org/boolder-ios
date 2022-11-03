@@ -42,6 +42,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         return "Problem \(id!)"
     }
     
+    // FIXME: make return optional (the id we get might not exist: eg. problem deleted)
     static func loadProblem(id: Int) -> Problem {
         do {
             let db = (UIApplication.shared.delegate as! AppDelegate).sqliteStore.db
