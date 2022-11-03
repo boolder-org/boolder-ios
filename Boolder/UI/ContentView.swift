@@ -76,7 +76,12 @@ struct ContentView: View {
             
             DiscoverView()
                 .tabItem {
-                    Label("Discover", systemImage: "list.dash")
+                    Label("Discover", systemImage: "sparkles")
+                }
+            
+            AccountView()
+                .tabItem {
+                    Label("Account", systemImage: "person.fill")
                 }
         }
     }

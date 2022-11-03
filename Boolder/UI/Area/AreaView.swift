@@ -157,26 +157,26 @@ struct AreaView: View {
                     .padding(.leading)
             }
         )
-        .onAppear{
-            odrManager.requestResources(tag: "area-\(dataStore.areaId)", onSuccess: {
-                areaResourcesDownloaded = true
-                
-            }, onFailure: { error in
-                print("On-demand resource error")
-                
-                // FIXME: implement UI, log errors
-                switch error.code {
-                case NSBundleOnDemandResourceOutOfSpaceError:
-                    print("You don't have enough space available to download this resource.")
-                case NSBundleOnDemandResourceExceededMaximumSizeError:
-                    print("The bundle resource was too big.")
-                case NSBundleOnDemandResourceInvalidTagError:
-                    print("The requested tag does not exist.")
-                default:
-                    print(error.description)
-                }
-            })
-        }
+//        .onAppear{
+//            odrManager.requestResources(tag: "area-\(dataStore.areaId)", onSuccess: {
+//                areaResourcesDownloaded = true
+//                
+//            }, onFailure: { error in
+//                print("On-demand resource error")
+//                
+//                // FIXME: implement UI, log errors
+//                switch error.code {
+//                case NSBundleOnDemandResourceOutOfSpaceError:
+//                    print("You don't have enough space available to download this resource.")
+//                case NSBundleOnDemandResourceExceededMaximumSizeError:
+//                    print("The bundle resource was too big.")
+//                case NSBundleOnDemandResourceInvalidTagError:
+//                    print("The requested tag does not exist.")
+//                default:
+//                    print(error.description)
+//                }
+//            })
+//        }
     }
     
     // this view model lives here to be able to use the map as a problem picker (for NewTopoView)

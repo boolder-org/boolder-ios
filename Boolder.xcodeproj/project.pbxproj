@@ -257,6 +257,8 @@
 		03C6F45628C9CB800012E804 /* area-67-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F45428C9CB800012E804 /* area-67-data.geojson */; };
 		03D650802839231D00779197 /* area-48-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D6507F2839231D00779197 /* area-48-data.geojson */; };
 		03D650812839231D00779197 /* area-48-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D6507F2839231D00779197 /* area-48-data.geojson */; };
+		03DB8CA52912CDD600EFA944 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CA42912CDD600EFA944 /* AccountView.swift */; };
+		03DB8CA62912CDD600EFA944 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CA42912CDD600EFA944 /* AccountView.swift */; };
 		03DE0F552851109F00549219 /* area-25-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F542851109F00549219 /* area-25-data.geojson */; };
 		03DE0F562851109F00549219 /* area-25-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F542851109F00549219 /* area-25-data.geojson */; };
 		03DE0F582851124400549219 /* area-25-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F572851124400549219 /* area-25-topo-lines.json */; };
@@ -513,6 +515,7 @@
 		03C6F45128C9CB790012E804 /* area-66-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-66-data.geojson"; sourceTree = "<group>"; };
 		03C6F45428C9CB800012E804 /* area-67-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-67-data.geojson"; sourceTree = "<group>"; };
 		03D6507F2839231D00779197 /* area-48-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-48-data.geojson"; sourceTree = "<group>"; };
+		03DB8CA42912CDD600EFA944 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		03DE0F542851109F00549219 /* area-25-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-25-data.geojson"; sourceTree = "<group>"; };
 		03DE0F572851124400549219 /* area-25-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-25-topo-lines.json"; sourceTree = "<group>"; };
 		03DE0F5A2851149000549219 /* area-26-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "area-26-data.geojson"; path = "../../../../../Web/boolder/export/app/area-26/area-26-data.geojson"; sourceTree = "<group>"; };
@@ -1211,6 +1214,7 @@
 			isa = PBXGroup;
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
+				03DB8CA42912CDD600EFA944 /* AccountView.swift */,
 				03F4AF502911B77500E4B1BE /* AlgoliaView.swift */,
 				37158D0425487F1700A8B696 /* Discover */,
 				03C104E7290ACBEE007A94D7 /* Mapbox */,
@@ -1917,6 +1921,7 @@
 				3737990A258E619400711EDA /* AreaRowView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
+				03DB8CA62912CDD600EFA944 /* AccountView.swift in Sources */,
 				3737990C258E619400711EDA /* FabFiltersView.swift in Sources */,
 				3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
@@ -1993,6 +1998,7 @@
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				038A2DD7273985A4006E42E9 /* NewTopoView.swift in Sources */,
+				03DB8CA52912CDD600EFA944 /* AccountView.swift in Sources */,
 				37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */,
 				038A2DDB273985E9006E42E9 /* MapMakerStore.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
