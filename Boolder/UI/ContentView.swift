@@ -14,8 +14,6 @@ struct ContentView: View {
     @State private var presentProblemDetails = false
     @State private var applyFilters = false
     
-    static let algoliaController = AlgoliaController()
-    
     var body: some View {
         TabView {
             
@@ -24,18 +22,29 @@ struct ContentView: View {
                     .edgesIgnoringSafeArea(.top)
                 VStack {
                     Spacer()
-                    Button(action: {
-                        applyFilters.toggle()
-                        //                        print("button")
-                        //                        print(applyFilters)
-                    }) {
-                        HStack {
-                            Image(systemName: "slider.horizontal.3")
-                            
-                            Text("Filtres")
-                                .fixedSize(horizontal: true, vertical: true)
+                    HStack {
+                        Button(action: {
+                            applyFilters.toggle()
+                        }) {
+                            HStack {
+                                Image(systemName: "slider.horizontal.3")
+                                
+                                Text("Filtres")
+                                    .fixedSize(horizontal: true, vertical: true)
+                            }
+                            .padding(.vertical, 12)
                         }
-                        .padding(.vertical, 12)
+                        Button(action: {
+                            
+                        }) {
+                            HStack {
+//                                Image(systemName: "slider.horizontal.3")
+                                
+                                Text("Search")
+                                    .fixedSize(horizontal: true, vertical: true)
+                            }
+                            .padding(.vertical, 12)
+                        }
                     }
                     .padding(.bottom, 24)
                 }
@@ -58,17 +67,7 @@ struct ContentView: View {
             .tabItem {
                 Label("Carte", systemImage: "map")
             }
-//            
-//            NavigationView {
-//                AlgoliaView(searchBoxController: ContentView.algoliaController.searchBoxController,
-//                            hitsController: ContentView.algoliaController.hitsController)
-//            }
-////            .onAppear {
-////                ContentView.algoliaController.searcher.search()
-////                }
-//            .tabItem {
-//                Label("Search", systemImage: "magnifyingglass")
-//            }
+
             
             DiscoverView()
                 .tabItem {

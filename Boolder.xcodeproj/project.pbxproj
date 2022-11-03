@@ -239,14 +239,8 @@
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C10506290D1A4A007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10505290D1A49007A94D7 /* boolder.db */; };
 		03C10507290D1A4A007A94D7 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03C10505290D1A49007A94D7 /* boolder.db */; };
-		03C1050A2911B3E8007A94D7 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105092911B3E8007A94D7 /* InstantSearchSwiftUI */; };
-		03C1050C2911B3F5007A94D7 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050B2911B3F5007A94D7 /* InstantSearchSwiftUI */; };
 		03C1050E2911B4CB007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050D2911B4CB007A94D7 /* InstantSearch */; };
-		03C105102911B4CE007A94D7 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050F2911B4CE007A94D7 /* InstantSearchCore */; };
-		03C105122911B4D0007A94D7 /* InstantSearchInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105112911B4D0007A94D7 /* InstantSearchInsights */; };
 		03C105142911B506007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105132911B506007A94D7 /* InstantSearch */; };
-		03C105162911B509007A94D7 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105152911B509007A94D7 /* InstantSearchCore */; };
-		03C105182911B50B007A94D7 /* InstantSearchInsights in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105172911B50B007A94D7 /* InstantSearchInsights */; };
 		03C6F44C28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44D28C9CB670012E804 /* area-63-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44B28C9CB670012E804 /* area-63-data.geojson */; };
 		03C6F44F28C9CB700012E804 /* area-64-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F44E28C9CB700012E804 /* area-64-data.geojson */; };
@@ -257,6 +251,12 @@
 		03C6F45628C9CB800012E804 /* area-67-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F45428C9CB800012E804 /* area-67-data.geojson */; };
 		03D650802839231D00779197 /* area-48-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D6507F2839231D00779197 /* area-48-data.geojson */; };
 		03D650812839231D00779197 /* area-48-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D6507F2839231D00779197 /* area-48-data.geojson */; };
+		03DB8CA92913D1C500EFA944 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */; };
+		03DB8CAA2913D1C500EFA944 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */; };
+		03DB8CAC2913D22A00EFA944 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */; };
+		03DB8CAD2913D22A00EFA944 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */; };
+		03DB8CAF2913D25900EFA944 /* InstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAE2913D25900EFA944 /* InstantSearch.swift */; };
+		03DB8CB02913D25900EFA944 /* InstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAE2913D25900EFA944 /* InstantSearch.swift */; };
 		03DE0F552851109F00549219 /* area-25-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F542851109F00549219 /* area-25-data.geojson */; };
 		03DE0F562851109F00549219 /* area-25-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F542851109F00549219 /* area-25-data.geojson */; };
 		03DE0F582851124400549219 /* area-25-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F572851124400549219 /* area-25-topo-lines.json */; };
@@ -283,8 +283,6 @@
 		03EDAC2127EA7D71003D315E /* area-37-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03EDAC1F27EA7D71003D315E /* area-37-data.geojson */; };
 		03F249B228219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
 		03F249B328219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
-		03F4AF512911B77500E4B1BE /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F4AF502911B77500E4B1BE /* AlgoliaView.swift */; };
-		03F4AF522911B77500E4B1BE /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F4AF502911B77500E4B1BE /* AlgoliaView.swift */; };
 		3701845B2466BD0800C6530C /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		371584DD25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */; };
@@ -513,6 +511,9 @@
 		03C6F45128C9CB790012E804 /* area-66-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-66-data.geojson"; sourceTree = "<group>"; };
 		03C6F45428C9CB800012E804 /* area-67-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-67-data.geojson"; sourceTree = "<group>"; };
 		03D6507F2839231D00779197 /* area-48-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-48-data.geojson"; sourceTree = "<group>"; };
+		03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		03DB8CAE2913D25900EFA944 /* InstantSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantSearch.swift; sourceTree = "<group>"; };
 		03DE0F542851109F00549219 /* area-25-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-25-data.geojson"; sourceTree = "<group>"; };
 		03DE0F572851124400549219 /* area-25-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-25-topo-lines.json"; sourceTree = "<group>"; };
 		03DE0F5A2851149000549219 /* area-26-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "area-26-data.geojson"; path = "../../../../../Web/boolder/export/app/area-26/area-26-data.geojson"; sourceTree = "<group>"; };
@@ -526,7 +527,6 @@
 		03DE504D27C18444003E5B2A /* AllAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasView.swift; sourceTree = "<group>"; };
 		03EDAC1F27EA7D71003D315E /* area-37-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-37-data.geojson"; sourceTree = "<group>"; };
 		03F249B128219D7400F7E6CC /* area-45-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-45-data.geojson"; sourceTree = "<group>"; };
-		03F4AF502911B77500E4B1BE /* AlgoliaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaView.swift; sourceTree = "<group>"; };
 		3701845A2466BD0800C6530C /* TopoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoStore.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
@@ -598,11 +598,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C1050E2911B4CB007A94D7 /* InstantSearch in Frameworks */,
-				03C1050C2911B3F5007A94D7 /* InstantSearchSwiftUI in Frameworks */,
-				03C105102911B4CE007A94D7 /* InstantSearchCore in Frameworks */,
 				03C104F5290BFBD8007A94D7 /* SQLite in Frameworks */,
 				03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */,
-				03C105122911B4D0007A94D7 /* InstantSearchInsights in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,11 +608,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C105142911B506007A94D7 /* InstantSearch in Frameworks */,
-				03C1050A2911B3E8007A94D7 /* InstantSearchSwiftUI in Frameworks */,
-				03C105162911B509007A94D7 /* InstantSearchCore in Frameworks */,
 				03C104F3290BFBCE007A94D7 /* SQLite in Frameworks */,
 				03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */,
-				03C105182911B50B007A94D7 /* InstantSearchInsights in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1018,16 @@
 			path = "area-49";
 			sourceTree = "<group>";
 		};
+		03DB8CA72913D1A100EFA944 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */,
+				03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */,
+				03DB8CAE2913D25900EFA944 /* InstantSearch.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		03EDAC1A27EA7D4C003D315E /* area-36 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1211,7 +1215,7 @@
 			isa = PBXGroup;
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
-				03F4AF502911B77500E4B1BE /* AlgoliaView.swift */,
+				03DB8CA72913D1A100EFA944 /* Search */,
 				37158D0425487F1700A8B696 /* Discover */,
 				03C104E7290ACBEE007A94D7 /* Mapbox */,
 				37F12D852456D4FC0036E3E3 /* Area */,
@@ -1511,10 +1515,7 @@
 			packageProductDependencies = (
 				03C104E5290ACBC9007A94D7 /* MapboxMaps */,
 				03C104F4290BFBD8007A94D7 /* SQLite */,
-				03C1050B2911B3F5007A94D7 /* InstantSearchSwiftUI */,
 				03C1050D2911B4CB007A94D7 /* InstantSearch */,
-				03C1050F2911B4CE007A94D7 /* InstantSearchCore */,
-				03C105112911B4D0007A94D7 /* InstantSearchInsights */,
 			);
 			productName = Boolder;
 			productReference = 37379A8E258E619400711EDA /* Boolder dev.app */;
@@ -1536,10 +1537,7 @@
 			packageProductDependencies = (
 				03C104E3290ACB85007A94D7 /* MapboxMaps */,
 				03C104F2290BFBCE007A94D7 /* SQLite */,
-				03C105092911B3E8007A94D7 /* InstantSearchSwiftUI */,
 				03C105132911B506007A94D7 /* InstantSearch */,
-				03C105152911B509007A94D7 /* InstantSearchCore */,
-				03C105172911B50B007A94D7 /* InstantSearchInsights */,
 			);
 			productName = Boolder;
 			productReference = 37A8C6262453263300DC161F /* Boolder.app */;
@@ -1923,6 +1921,7 @@
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				37379910258E619400711EDA /* CircuitFilterView.swift in Sources */,
 				03DE504C27C0348C003E5B2A /* AllAreasMapView.swift in Sources */,
+				03DB8CAA2913D1C500EFA944 /* SearchResultsController.swift in Sources */,
 				37379911258E619400711EDA /* GeoStore.swift in Sources */,
 				030AC1AA27BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A412590AB9E00BCA364 /* ImageLoadingView.swift in Sources */,
@@ -1939,6 +1938,7 @@
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
 				3737991B258E619400711EDA /* AreaItemView.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
+				03DB8CB02913D25900EFA944 /* InstantSearch.swift in Sources */,
 				3737991D258E619400711EDA /* OldMapView.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A127B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
@@ -1957,12 +1957,12 @@
 				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				030AC1A427BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
-				03F4AF522911B77500E4B1BE /* AlgoliaView.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
 				37379928258E619400711EDA /* CircuitOverlay.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
+				03DB8CAD2913D22A00EFA944 /* SearchViewController.swift in Sources */,
 				3737992A258E619400711EDA /* Filters.swift in Sources */,
 				3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */,
 				37F563F725AB09F400271346 /* TopoEntry.swift in Sources */,
@@ -1999,6 +1999,7 @@
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
 				03DE504B27C0348C003E5B2A /* AllAreasMapView.swift in Sources */,
+				03DB8CA92913D1C500EFA944 /* SearchResultsController.swift in Sources */,
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */,
@@ -2015,6 +2016,7 @@
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */,
+				03DB8CAF2913D25900EFA944 /* InstantSearch.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
@@ -2033,12 +2035,12 @@
 				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				030AC1A327BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
-				03F4AF512911B77500E4B1BE /* AlgoliaView.swift in Sources */,
 				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,
 				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,
 				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
 				030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */,
+				03DB8CAC2913D22A00EFA944 /* SearchViewController.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */,
 				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,
@@ -2383,45 +2385,15 @@
 			package = 03C104F1290BFBCE007A94D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
 			productName = SQLite;
 		};
-		03C105092911B3E8007A94D7 /* InstantSearchSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchSwiftUI;
-		};
-		03C1050B2911B3F5007A94D7 /* InstantSearchSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchSwiftUI;
-		};
 		03C1050D2911B4CB007A94D7 /* InstantSearch */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
 			productName = InstantSearch;
 		};
-		03C1050F2911B4CE007A94D7 /* InstantSearchCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchCore;
-		};
-		03C105112911B4D0007A94D7 /* InstantSearchInsights */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchInsights;
-		};
 		03C105132911B506007A94D7 /* InstantSearch */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
 			productName = InstantSearch;
-		};
-		03C105152911B509007A94D7 /* InstantSearchCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchCore;
-		};
-		03C105172911B50B007A94D7 /* InstantSearchInsights */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 03C105082911B3E8007A94D7 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
-			productName = InstantSearchInsights;
 		};
 /* End XCSwiftPackageProductDependency section */
 
