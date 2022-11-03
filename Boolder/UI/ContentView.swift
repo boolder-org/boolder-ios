@@ -15,6 +15,9 @@ struct ContentView: View {
     @State private var presentSearch = false
     @State private var applyFilters = false
     
+    // TODO: move somewhere else
+    static let algoliaController = AlgoliaController()
+
     var body: some View {
         TabView {
             
@@ -53,7 +56,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $presentSearch) {
                 NavigationView {
-                    SearchView()
+                    AlgoliaView(searchBoxController: ContentView.algoliaController.searchBoxController,
+                                hitsController: ContentView.algoliaController.hitsController)
+
                 }
                 
             }
