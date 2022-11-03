@@ -78,8 +78,8 @@ struct AlgoliaView: View {
     
     @State private var isEditing = false
     
-//    @Binding var centerOnProblem: Problem?
-//    @Binding var centerOnProblemCount: Int
+    @Binding var centerOnProblem: Problem?
+    @Binding var centerOnProblemCount: Int
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     
@@ -106,8 +106,8 @@ struct AlgoliaView: View {
                                 Button {
                                     presentationMode.wrappedValue.dismiss()
                                     
-//                                    centerOnProblem = problem
-//                                    centerOnProblemCount += 1 // triggers a map refresh
+                                    centerOnProblem = problem
+                                    centerOnProblemCount += 1 // triggers a map refresh
                                     
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                         selectedProblem = problem

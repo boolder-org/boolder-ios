@@ -59,6 +59,8 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
             let circuitId = Expression<Int?>("circuit_id")
             let bleauInfoId = Expression<String?>("bleau_info_id")
             let parentId = Expression<Int?>("parent_id")
+            let latitude = Expression<Double?>("latitude")
+            let longitude = Expression<Double?>("longitude")
             
             if let p = try! db.pluck(problems) {
                 // print(p)
@@ -71,6 +73,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
                 problem.steepness = Steepness(rawValue: p[steepness]) ?? .other
                 problem.circuitNumber = p[circuitNumber] ?? ""
                 problem.circuitColor = Circuit.circuitColorFromString(p[circuitColor])
+                problem.coordinate = CLLocationCoordinate2D(latitude: p[latitude] ?? 0, longitude: p[longitude] ?? 0)
                 
                 if let id = p[circuitId] {
                     problem.circuitId = id
@@ -83,6 +86,8 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
                 if let id3 = p[parentId] {
                     problem.parentId = id3
                 }
+                
+                
                 
                 return problem
             }

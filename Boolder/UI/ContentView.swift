@@ -13,6 +13,9 @@ struct ContentView: View {
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
     @State private var presentSearch = false
+    @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
+    @State private var centerOnProblem: Problem? = nil
+    @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var applyFilters = false
     
     // TODO: move somewhere else
@@ -22,7 +25,7 @@ struct ContentView: View {
         TabView {
             
             ZStack {
-                MapboxView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, applyFilters: $applyFilters)
+                MapboxView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount, applyFilters: $applyFilters)
                     .edgesIgnoringSafeArea(.top)
                 VStack {
                     Spacer()
@@ -60,6 +63,8 @@ struct ContentView: View {
                         searchBoxController: ContentView.algoliaController.searchBoxController,
                         problemHitsController: ContentView.algoliaController.problemHitsController,
                         areaHitsController:ContentView.algoliaController.areaHitsController,
+                        centerOnProblem: $centerOnProblem,
+                        centerOnProblemCount: $centerOnProblemCount,
                         selectedProblem: $selectedProblem,
                         presentProblemDetails: $presentProblemDetails
                     )

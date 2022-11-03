@@ -15,6 +15,8 @@ struct MapboxView: UIViewControllerRepresentable {
     
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
+    @Binding var centerOnProblem: Problem?
+    @Binding var centerOnProblemCount: Int
     
     @Binding var applyFilters: Bool
      
@@ -24,14 +26,25 @@ struct MapboxView: UIViewControllerRepresentable {
         return vc
     }
       
-    func updateUIViewController(_ uiViewController: MapboxViewController, context: Context) {
+    func updateUIViewController(_ vc: MapboxViewController, context: Context) {
         print("update UI")
         
+        
         if(applyFilters) {
-            uiViewController.applyFilter()
+            vc.applyFilter()
         }
         else {
-            uiViewController.removeFilter()
+            vc.removeFilter()
+        }
+        
+        // zoom on problem
+        if centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
+            if let problem = centerOnProblem {
+                let cameraOptions = CameraOptions(center: problem.coordinate, padding: UIEdgeInsets(top: 0, left: 0, bottom: vc.view.bounds.height/2, right: 0), zoom: 20)
+                vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+                
+                context.coordinator.lastCenterOnProblemCount = centerOnProblemCount
+            }
         }
     }
     
@@ -43,6 +56,8 @@ struct MapboxView: UIViewControllerRepresentable {
     
     class Coordinator: MapBoxViewDelegate {
         var parent: MapboxView
+        
+        var lastCenterOnProblemCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent
