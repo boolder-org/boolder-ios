@@ -10,21 +10,11 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @EnvironmentObject var odrManager: ODRManager
-    @EnvironmentObject var dataStore: DataStore
-    
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
     @State private var applyFilters = false
     
     static let algoliaController = AlgoliaController()
-    
-    // FIXME: move somewhere
-    private var allAreasTags: Set<String> {
-        // FIXME: don't use dataStore
-        let array = dataStore.areas.filter { $0.published }.map{ "area-\($0.id)" }
-        return Set(array)
-    }
     
     var body: some View {
         TabView {
