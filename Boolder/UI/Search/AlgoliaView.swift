@@ -95,13 +95,13 @@ struct AlgoliaView: View {
                 if(problemHitsController.hits.count > 0) {
                     Section(header: Text("Problems")) {
                         ForEach(problemHitsController.hits, id: \.self) { hit in
-                            if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id) {
+                            if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id), let hit = hit {
                                 HStack {
                                     ProblemCircleView(problem: problem)
-                                    Text(hit?.name ?? "")
-                                    Text(hit?.grade ?? "").foregroundColor(.gray).padding(.leading, 2)
+                                    Text(hit.name)
+                                    Text(hit.grade).foregroundColor(.gray).padding(.leading, 2)
                                     Spacer()
-                                    Text(hit?.area_name ?? "").foregroundColor(.gray).font(.caption)
+                                    Text(hit.area_name).foregroundColor(.gray).font(.caption)
                                 }
                             }
                         }
