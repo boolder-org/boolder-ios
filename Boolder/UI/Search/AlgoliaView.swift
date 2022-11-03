@@ -10,11 +10,11 @@ import SwiftUI
 import InstantSearchSwiftUI
 import InstantSearch
 
-struct ProblemItem: Codable {
+struct ProblemItem: Codable, Hashable {
   let name: String
 }
 
-struct AreaItem: Codable {
+struct AreaItem: Codable, Hashable {
   let name: String
 }
 
@@ -76,23 +76,33 @@ struct AlgoliaView: View {
                       isEditing: $isEditing,
                       onSubmit: searchBoxController.submit)
             
-            HitsList(areaHitsController) { (hit, _) in
-              VStack(alignment: .leading, spacing: 10) {
-                Text(hit?.name ?? "")
-                  .padding(.all, 10)
-                Divider()
-              }
-            } noResults: {
-              Text("No Results")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            List {
+                Section(header: Text("Areas")) {
+                    ForEach(areaHitsController.hits, id: \.self) { hit in
+                        Text(hit?.name ?? "")
+                    }
+                }
+                Section(header: Text("Problems")) {
+                    ForEach(problemHitsController.hits, id: \.self) { hit in
+                        Text(hit?.name ?? "")
+                    }
+                }
+//                .headerProminence(.increased)
             }
-            HitsList(problemHitsController) { (hit, _) in
-              VStack(alignment: .leading, spacing: 10) {
-                Text(hit?.name ?? "")
-                  .padding(.all, 10)
-                Divider()
-              }
-            }
+            .listStyle(.grouped)
+            
+//            ScrollView(showsIndicators: false) {
+//              LazyVStack {
+//                ForEach(areaHitsController.hits, id: \.self) { hit in
+//                    VStack(alignment: .leading, spacing: 10) {
+//                        Text(hit?.name ?? "")
+//                        .padding(.all, 10)
+//                      Divider()
+//                    }
+//                }
+//              }
+//            }.id(areaHitsController.scrollID)
+            
           }
           .navigationBarTitle("Search")
 //        .modify {
