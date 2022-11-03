@@ -25,10 +25,10 @@ class AlgoliaController {
   let searchBoxInteractor: SearchBoxInteractor
   let searchBoxController: SearchBoxObservableController
 
-  let hitsInteractor: HitsInteractor<ProblemItem>
-  let hitsController: HitsObservableController<ProblemItem>
-//    let areaHitsInteractor: HitsInteractor<AreaItem>
-//    let areaHitsController: HitsObservableController<AreaItem>
+  let problemHitsInteractor: HitsInteractor<ProblemItem>
+  let problemHitsController: HitsObservableController<ProblemItem>
+    let areaHitsInteractor: HitsInteractor<AreaItem>
+    let areaHitsController: HitsObservableController<AreaItem>
   
   init() {
     self.searcher = MultiSearcher(appID: "XNJHVMTGMF",
@@ -40,10 +40,10 @@ class AlgoliaController {
     self.searchBoxInteractor = .init()
     self.searchBoxController = .init()
       
-    self.hitsInteractor = .init()
-    self.hitsController = .init()
-//      self.areaHitsInteractor = .init()
-//      self.areaHitsController = .init()
+    self.problemHitsInteractor = .init()
+    self.problemHitsController = .init()
+      self.areaHitsInteractor = .init()
+      self.areaHitsController = .init()
     setupConnections()
   }
   
@@ -51,21 +51,22 @@ class AlgoliaController {
     searchBoxInteractor.connectSearcher(searcher)
     searchBoxInteractor.connectController(searchBoxController)
       
-      let hs = searcher.addHitsSearcher(indexName: "Problem")
-      hitsInteractor.connectSearcher(hs)
-//    hitsInteractor.connectSearcher(searcher)
-    hitsInteractor.connectController(hitsController)
+      let problemHitsSearcher = searcher.addHitsSearcher(indexName: "Problem")
+      problemHitsInteractor.connectSearcher(problemHitsSearcher)
+    problemHitsInteractor.connectController(problemHitsController)
       
-//      areaHitsInteractor.connectSearcher(searcher)
-//      areaHitsInteractor.connectController(areaHitsController)
+      let areaHitsSearcher = searcher.addHitsSearcher(indexName: "Area")
+      areaHitsInteractor.connectSearcher(areaHitsSearcher)
+    areaHitsInteractor.connectController(areaHitsController)
+      
   }
       
 }
 
 struct AlgoliaView: View {
     @ObservedObject var searchBoxController: SearchBoxObservableController
-     @ObservedObject var hitsController: HitsObservableController<ProblemItem>
-//    @ObservedObject var areaHitsController: HitsObservableController<AreaItem>
+     @ObservedObject var problemHitsController: HitsObservableController<ProblemItem>
+    @ObservedObject var areaHitsController: HitsObservableController<AreaItem>
     @State private var isEditing = false
     
     
@@ -74,7 +75,8 @@ struct AlgoliaView: View {
             SearchBar(text: $searchBoxController.query,
                       isEditing: $isEditing,
                       onSubmit: searchBoxController.submit)
-            HitsList(hitsController) { (hit, _) in
+            
+            HitsList(areaHitsController) { (hit, _) in
               VStack(alignment: .leading, spacing: 10) {
                 Text(hit?.name ?? "")
                   .padding(.all, 10)
@@ -83,6 +85,13 @@ struct AlgoliaView: View {
             } noResults: {
               Text("No Results")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            HitsList(problemHitsController) { (hit, _) in
+              VStack(alignment: .leading, spacing: 10) {
+                Text(hit?.name ?? "")
+                  .padding(.all, 10)
+                Divider()
+              }
             }
           }
           .navigationBarTitle("Search")
