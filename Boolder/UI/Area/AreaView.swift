@@ -47,8 +47,7 @@ struct AreaView: View {
 //                .edgesIgnoringSafeArea(.bottom)
                 .sheet(isPresented: $presentProblemDetails) {
                     ProblemDetailsView(
-                        problem: $selectedProblem,
-                        areaResourcesDownloaded: $areaResourcesDownloaded
+                        problem: $selectedProblem
                     )
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed

@@ -24,6 +24,7 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             Group {
+//                if true {
                 if areaResourcesDownloaded {
                     if let topoPhoto = problem.mainTopoPhoto {
                         

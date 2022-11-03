@@ -10,13 +10,22 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @EnvironmentObject var odrManager: ODRManager
+    @EnvironmentObject var dataStore: DataStore
+    let offlineModeActivated = UserDefaults.standard.bool(forKey: "OfflineModeActivated") // FIXME: react to change of value?
+    
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
-    @State private var areaResourcesDownloaded = false
     @State private var applyFilters = false
     
     static let algoliaController = AlgoliaController()
     
+    // FIXME: move somewhere
+    private var allAreasTags: Set<String> {
+        // FIXME: don't use dataStore
+        let array = dataStore.areas.filter { $0.published }.map{ "area-\($0.id)" }
+        return Set(array)
+    }
     
     var body: some View {
         TabView {
@@ -43,11 +52,32 @@ struct ContentView: View {
                 }
                 .zIndex(10)
             }
+            // FIXME: make code DRY
+            .onAppear {
+                if offlineModeActivated {
+                    odrManager.requestResources(tags: allAreasTags, onSuccess: {
+                        print("done")
+                    }, onFailure: { error in
+                        print("On-demand resource error")
+                        
+                        // FIXME: implement UI, log errors
+                        switch error.code {
+                        case NSBundleOnDemandResourceOutOfSpaceError:
+                            print("You don't have enough space available to download this resource.")
+                        case NSBundleOnDemandResourceExceededMaximumSizeError:
+                            print("The bundle resource was too big.")
+                        case NSBundleOnDemandResourceInvalidTagError:
+                            print("The requested tag does not exist.")
+                        default:
+                            print(error.description)
+                        }
+                    })
+                }
+            }
             
             .sheet(isPresented: $presentProblemDetails) {
                 ProblemDetailsView(
-                    problem: $selectedProblem,
-                    areaResourcesDownloaded: $areaResourcesDownloaded
+                    problem: $selectedProblem
                 )
                 .modify {
                     if #available(iOS 16, *) {
@@ -84,6 +114,8 @@ struct ContentView: View {
                     Label("Account", systemImage: "person.fill")
                 }
         }
+        
+        
     }
 }
 

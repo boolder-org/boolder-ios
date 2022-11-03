@@ -132,7 +132,7 @@
 "problem.action.tick" = "Tick";
 "problem.action.untick" = "Untick";
 "problem.action.share.description" = "“%@” at %@";
-"problem.image.loading" = "Loading...";
+"problem.image.loading" = "Loading area...";
 
 // MARK: Problem list
 "problem_list.title" = "Problems";

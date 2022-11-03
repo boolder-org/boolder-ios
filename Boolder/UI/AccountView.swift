@@ -12,16 +12,18 @@ enum DownloadState {
     case initial
     case downloading
     case done
+    case error(code: Int, localizedDescription: String)
 }
 
 struct AccountView: View {
-    @State private var offlineModeActivated = false // UserDefaults.standard.bool(forKey: "OfflineModeActivated") // TODO: use constant
+    @State private var offlineModeActivated = UserDefaults.standard.bool(forKey: "OfflineModeActivated") // TODO: use constant
     @EnvironmentObject var odrManager: ODRManager
     @EnvironmentObject var dataStore: DataStore
     
     @State private var downloadState: DownloadState = .initial
     
     private var allAreasTags: Set<String> {
+        // FIXME: don't use dataStore
         let array = dataStore.areas.filter { $0.published }.map{ "area-\($0.id)" }
         return Set(array)
 //        return Set(["area-1", "area-2", "area-13", "area-25", "area-26", "area-27"])
@@ -34,6 +36,8 @@ struct AccountView: View {
             
         }, onFailure: { error in
             print("On-demand resource error")
+            
+            downloadState = .error(code: error.code, localizedDescription: error.localizedDescription)
             
             // FIXME: implement UI, log errors
             switch error.code {
@@ -51,9 +55,9 @@ struct AccountView: View {
         downloadState = .downloading
     }
     
-    func toposAlreadyRequested() -> Bool {
-        
-    }
+//    func toposAlreadyRequested() -> Bool {
+//
+//    }
     
     private var downloadLabel: String {
         switch downloadState {
@@ -63,6 +67,8 @@ struct AccountView: View {
             return "\(Int(odrManager.downloadProgress*100))%"
         case .done:
             return "100%"
+        case .error(code: let code, localizedDescription: let localizedDescription):
+            return "Erreur"
         }
     }
     

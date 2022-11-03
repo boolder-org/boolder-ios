@@ -132,7 +132,7 @@
 "problem.action.tick" = "Marquer comme réussi";
 "problem.action.untick" = "Marquer comme non réussi";
 "problem.action.share.description" = "« %@ » à %@";
-"problem.image.loading" = "Chargement...";
+"problem.image.loading" = "Chargement du secteur...";
 
 // MARK: Problem list
 "problem_list.title" = "Voies";
