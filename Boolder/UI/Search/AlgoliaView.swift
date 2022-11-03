@@ -75,7 +75,13 @@ struct AlgoliaView: View {
     @ObservedObject var searchBoxController: SearchBoxObservableController
      @ObservedObject var problemHitsController: HitsObservableController<ProblemItem>
     @ObservedObject var areaHitsController: HitsObservableController<AreaItem>
+    
     @State private var isEditing = false
+    
+//    @Binding var centerOnProblem: Problem?
+//    @Binding var centerOnProblemCount: Int
+    @Binding var selectedProblem: Problem
+    @Binding var presentProblemDetails: Bool
     
     
     var body: some View {
@@ -96,13 +102,28 @@ struct AlgoliaView: View {
                     Section(header: Text("Problems")) {
                         ForEach(problemHitsController.hits, id: \.self) { hit in
                             if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id), let hit = hit {
-                                HStack {
-                                    ProblemCircleView(problem: problem)
-                                    Text(hit.name)
-                                    Text(hit.grade).foregroundColor(.gray).padding(.leading, 2)
-                                    Spacer()
-                                    Text(hit.area_name).foregroundColor(.gray).font(.caption)
+                                
+                                Button {
+                                    presentationMode.wrappedValue.dismiss()
+                                    
+//                                    centerOnProblem = problem
+//                                    centerOnProblemCount += 1 // triggers a map refresh
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        selectedProblem = problem
+                                        presentProblemDetails = true
+                                    }
+                                } label: {
+                                    HStack {
+                                        ProblemCircleView(problem: problem)
+                                        Text(hit.name).foregroundColor(.primary)
+                                        Text(hit.grade).foregroundColor(.gray).padding(.leading, 2)
+                                        Spacer()
+                                        Text(hit.area_name).foregroundColor(.gray).font(.caption)
+                                    }
                                 }
+
+                                
                             }
                         }
                     }

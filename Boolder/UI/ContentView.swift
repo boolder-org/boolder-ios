@@ -56,9 +56,13 @@ struct ContentView: View {
             }
             .sheet(isPresented: $presentSearch) {
                 NavigationView {
-                    AlgoliaView(searchBoxController: ContentView.algoliaController.searchBoxController,
-                                problemHitsController: ContentView.algoliaController.problemHitsController, areaHitsController:ContentView.algoliaController.areaHitsController )
-
+                    AlgoliaView(
+                        searchBoxController: ContentView.algoliaController.searchBoxController,
+                        problemHitsController: ContentView.algoliaController.problemHitsController,
+                        areaHitsController:ContentView.algoliaController.areaHitsController,
+                        selectedProblem: $selectedProblem,
+                        presentProblemDetails: $presentProblemDetails
+                    )
                 }
                 .onAppear() {
                     ContentView.algoliaController.searcher.search()
