@@ -60,6 +60,9 @@ struct ContentView: View {
                                 problemHitsController: ContentView.algoliaController.problemHitsController, areaHitsController:ContentView.algoliaController.areaHitsController )
 
                 }
+                .onAppear() {
+                    ContentView.algoliaController.searcher.search()
+                }
                 
             }
             .sheet(isPresented: $presentProblemDetails) {

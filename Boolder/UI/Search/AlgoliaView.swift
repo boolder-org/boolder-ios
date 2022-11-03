@@ -68,6 +68,8 @@ class AlgoliaController {
 }
 
 struct AlgoliaView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var searchBoxController: SearchBoxObservableController
      @ObservedObject var problemHitsController: HitsObservableController<ProblemItem>
     @ObservedObject var areaHitsController: HitsObservableController<AreaItem>
@@ -100,7 +102,19 @@ struct AlgoliaView: View {
             .listStyle(.grouped)
             
           }
-          .navigationBarTitle("Search")
+        .navigationBarTitle(Text("Search"), displayMode: .inline)
+        .navigationBarItems(
+            trailing: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("OK")
+                    .bold()
+                    .padding(.vertical)
+                    .padding(.leading, 32)
+            }
+        )
+        .listStyle(.insetGrouped)
+//        .animation(.easeInOut(duration: 0), value: searchBoxController.query)
         .modify {
               if #available(iOS 15, *) {
                   $0.searchable(text: $searchBoxController.query)
@@ -109,6 +123,7 @@ struct AlgoliaView: View {
                   $0
               }
           }
+        
     }
 }
 
