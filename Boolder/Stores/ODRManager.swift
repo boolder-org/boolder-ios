@@ -17,8 +17,6 @@ class ODRManager : ObservableObject {
     var cancellable: Cancellable?
     @Published var downloadProgress: Double = 0
     
-    
-    
     func requestResources(tags: Set<String>, onSuccess: @escaping () -> Void, onFailure: @escaping (NSError) -> Void) {
         odrRequest = NSBundleResourceRequest(tags: tags)
         guard let request = odrRequest else { return }

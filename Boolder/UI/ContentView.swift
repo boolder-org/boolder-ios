@@ -12,7 +12,6 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var odrManager: ODRManager
     @EnvironmentObject var dataStore: DataStore
-    let offlineModeActivated = UserDefaults.standard.bool(forKey: "OfflineModeActivated") // FIXME: react to change of value?
     
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
@@ -52,29 +51,6 @@ struct ContentView: View {
                 }
                 .zIndex(10)
             }
-            // FIXME: make code DRY
-            .onAppear {
-                if offlineModeActivated {
-                    odrManager.requestResources(tags: allAreasTags, onSuccess: {
-                        print("done")
-                    }, onFailure: { error in
-                        print("On-demand resource error")
-                        
-                        // FIXME: implement UI, log errors
-                        switch error.code {
-                        case NSBundleOnDemandResourceOutOfSpaceError:
-                            print("You don't have enough space available to download this resource.")
-                        case NSBundleOnDemandResourceExceededMaximumSizeError:
-                            print("The bundle resource was too big.")
-                        case NSBundleOnDemandResourceInvalidTagError:
-                            print("The requested tag does not exist.")
-                        default:
-                            print(error.description)
-                        }
-                    })
-                }
-            }
-            
             .sheet(isPresented: $presentProblemDetails) {
                 ProblemDetailsView(
                     problem: $selectedProblem
@@ -107,11 +83,6 @@ struct ContentView: View {
             DiscoverView()
                 .tabItem {
                     Label("Discover", systemImage: "sparkles")
-                }
-            
-            AccountView()
-                .tabItem {
-                    Label("Account", systemImage: "person.fill")
                 }
         }
         
