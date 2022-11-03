@@ -51,6 +51,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.addSubview(searchController.view)
+        
         configureUI()
         
         let actorsSearcher = searcher.addHitsSearcher(indexName: .areas)

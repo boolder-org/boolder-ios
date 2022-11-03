@@ -12,6 +12,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
     @State private var presentProblemDetails = false
+    @State private var presentSearch = false
     @State private var applyFilters = false
     
     var body: some View {
@@ -35,7 +36,7 @@ struct ContentView: View {
                             .padding(.vertical, 12)
                         }
                         Button(action: {
-                            
+                            presentSearch = true
                         }) {
                             HStack {
 //                                Image(systemName: "slider.horizontal.3")
@@ -49,6 +50,12 @@ struct ContentView: View {
                     .padding(.bottom, 24)
                 }
                 .zIndex(10)
+            }
+            .sheet(isPresented: $presentSearch) {
+                NavigationView {
+                    SearchView()
+                }
+                
             }
             .sheet(isPresented: $presentProblemDetails) {
                 ProblemDetailsView(
