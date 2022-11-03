@@ -11,10 +11,12 @@ import InstantSearchSwiftUI
 import InstantSearch
 
 struct ProblemItem: Codable, Hashable {
-  let name: String
+    let objectID: String
+    let name: String
 }
 
 struct AreaItem: Codable, Hashable {
+    let objectID: String
   let name: String
 }
 
@@ -33,6 +35,8 @@ class AlgoliaController {
   init() {
     self.searcher = MultiSearcher(appID: "XNJHVMTGMF",
                                  apiKey: "765db6917d5c17449984f7c0067ae04c")
+      
+      
 //      self.searcher.shouldTriggerSearchForQuery = {
 //        return $0.query.query != ""
 //      }
@@ -72,47 +76,39 @@ struct AlgoliaView: View {
     
     var body: some View {
         VStack(spacing: 7) {
-            SearchBar(text: $searchBoxController.query,
-                      isEditing: $isEditing,
-                      onSubmit: searchBoxController.submit)
+//            SearchBar(text: $searchBoxController.query,
+//                      isEditing: $isEditing,
+//                      onSubmit: searchBoxController.submit)
             
             List {
-                Section(header: Text("Areas")) {
-                    ForEach(areaHitsController.hits, id: \.self) { hit in
-                        Text(hit?.name ?? "")
+                if(areaHitsController.hits.count > 0) {
+                    Section(header: Text("Areas")) {
+                        ForEach(areaHitsController.hits, id: \.self) { hit in
+                            Text(hit?.name ?? "")
+                        }
                     }
                 }
-                Section(header: Text("Problems")) {
-                    ForEach(problemHitsController.hits, id: \.self) { hit in
-                        Text(hit?.name ?? "")
+                if(problemHitsController.hits.count > 0) {
+                    Section(header: Text("Problems")) {
+                        ForEach(problemHitsController.hits, id: \.self) { hit in
+                            Text(hit?.name ?? "")
+                        }
                     }
                 }
 //                .headerProminence(.increased)
             }
             .listStyle(.grouped)
             
-//            ScrollView(showsIndicators: false) {
-//              LazyVStack {
-//                ForEach(areaHitsController.hits, id: \.self) { hit in
-//                    VStack(alignment: .leading, spacing: 10) {
-//                        Text(hit?.name ?? "")
-//                        .padding(.all, 10)
-//                      Divider()
-//                    }
-//                }
-//              }
-//            }.id(areaHitsController.scrollID)
-            
           }
           .navigationBarTitle("Search")
-//        .modify {
-//              if #available(iOS 15, *) {
-//                  $0.searchable(text: $searchBoxController.query)
-//              }
-//              else {
-//                  $0
-//              }
-//          }
+        .modify {
+              if #available(iOS 15, *) {
+                  $0.searchable(text: $searchBoxController.query)
+              }
+              else {
+                  $0
+              }
+          }
     }
 }
 
