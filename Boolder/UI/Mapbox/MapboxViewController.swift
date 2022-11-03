@@ -331,6 +331,12 @@ class MapboxViewController: UIViewController {
                     
                     self.delegate?.selectProblem(id: Int(id)) // FIXME: make sure we cast to Int before running the rest of the code
                     
+//                    let cameraOptions = CameraOptions(
+//                        center: point.coordinates,
+//                        padding: UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
+//                    )
+//                    self.mapView.camera.fly(to: cameraOptions, duration: 0.2)
+                    
                     self.setProblemAsSelected(problemFeatureId: String(Int(id)))
 
 
