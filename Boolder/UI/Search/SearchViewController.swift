@@ -10,8 +10,6 @@ import Foundation
 import InstantSearch
 import UIKit
 
-
-
 struct Movie: Codable {
     let name: String
 }
@@ -20,11 +18,12 @@ struct Actor: Codable {
     let name: String
 }
 
+// Inspired by https://github.com/algolia/instantsearch-ios/tree/master/Examples/MultiIndex
 class SearchViewController: UIViewController {
     
     let searchController: UISearchController
     
-    let queryInputConnector: QueryInputConnector
+    let queryInputConnector: SearchBoxConnector
     let textFieldController: TextFieldController
     
     let searcher: MultiSearcher

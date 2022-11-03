@@ -9,6 +9,7 @@
 import Foundation
 import AlgoliaSearchClient
 
+// Inspired by https://github.com/algolia/instantsearch-ios/tree/master/Examples/MultiIndex
 extension SearchClient {
     static let instantSearch = Self(appID: "XNJHVMTGMF", apiKey: "765db6917d5c17449984f7c0067ae04c")
 }
