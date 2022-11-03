@@ -37,11 +37,18 @@ struct MapboxView: UIViewControllerRepresentable {
             vc.removeFilter()
         }
         
-        // zoom on problem
+        // center on problem
         if centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
             if let problem = centerOnProblem {
-                let cameraOptions = CameraOptions(center: problem.coordinate, padding: UIEdgeInsets(top: 0, left: 0, bottom: vc.view.bounds.height/2, right: 0), zoom: 20)
+                
+                let cameraOptions = CameraOptions(
+                    center: problem.coordinate,
+                    padding: UIEdgeInsets(top: 0, left: 0, bottom: vc.view.bounds.height/2, right: 0),
+                    zoom: 20
+                )
                 vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+                
+                vc.setProblemAsSelected(problemFeatureId: String(problem.id))
                 
                 context.coordinator.lastCenterOnProblemCount = centerOnProblemCount
             }

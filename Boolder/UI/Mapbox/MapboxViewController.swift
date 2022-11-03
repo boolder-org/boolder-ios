@@ -119,11 +119,11 @@ class MapboxViewController: UIViewController {
                         Exp(.featureState) { "selected" }
                         false
                     }
-                    2.0
+                    3.0
                     0.0
                 }
             )
-            problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.white))
+            problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
             
             let stopsB: [Double: Double] = [
                 14.5: 0.0,
@@ -250,6 +250,32 @@ class MapboxViewController: UIViewController {
       }
     }
     
+    func setProblemAsSelected(problemFeatureId: String) {
+        
+        
+        self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                               sourceLayerId: "problems-ayes3a",
+                                               featureId: problemFeatureId,
+                                               state: ["selected": true])
+        
+        
+
+        if problemFeatureId != self.previouslyTappedProblemId {
+            unselectPreviousProblem()
+        }
+        
+        self.previouslyTappedProblemId = problemFeatureId
+    }
+    
+    func unselectPreviousProblem() {
+        if(self.previouslyTappedProblemId != "") {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                   sourceLayerId: "problems-ayes3a",
+                                                   featureId: self.previouslyTappedProblemId,
+                                                   state: ["selected": false])
+        }
+    }
+    
     
     @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: mapView)
@@ -305,25 +331,7 @@ class MapboxViewController: UIViewController {
                     
                     self.delegate?.selectProblem(id: Int(id)) // FIXME: make sure we cast to Int before running the rest of the code
                     
-                    let problemFeatureId = String(Int(id))
-                    
-                    self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-                                                           sourceLayerId: "problems-ayes3a",
-                                                           featureId: problemFeatureId,
-                                                           state: ["selected": true])
-                    
-                    
-
-                    if self.previouslyTappedProblemId != ""
-                        && problemFeatureId != self.previouslyTappedProblemId {
-                        // Reset a previously tapped earthquake to be "unselected".
-                        self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-                                                               sourceLayerId: "problems-ayes3a",
-                                                               featureId: self.previouslyTappedProblemId,
-                                                               state: ["selected": false])
-                    }
-                    
-                    self.previouslyTappedProblemId = problemFeatureId
+                    self.setProblemAsSelected(problemFeatureId: String(Int(id)))
 
 
 //                    let earthquakeId = Int(earthquakeIdDouble).description
@@ -342,6 +350,9 @@ class MapboxViewController: UIViewController {
 //
 //                    // Center the selected earthquake on the screen
 //                    self.mapView.camera.fly(to: CameraOptions(center: point.coordinates, zoom: 10))
+                }
+                else {
+                    self.unselectPreviousProblem()
                 }
             case .failure(let error):
                 print("An error occurred: \(error.localizedDescription)")
