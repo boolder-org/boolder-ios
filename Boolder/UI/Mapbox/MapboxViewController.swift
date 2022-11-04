@@ -295,16 +295,16 @@ class MapboxViewController: UIViewController {
                 case .success(let queriedfeatures):
 
                     if let feature = queriedfeatures.first?.feature,
-                       case .number(let southWestLon) = feature.properties?["southWestLon"],
-                       case .number(let southWestLat) = feature.properties?["southWestLat"],
-                       case .number(let northEastLon) = feature.properties?["northEastLon"],
-                       case .number(let northEastLat) = feature.properties?["northEastLat"]
+                       case .string(let southWestLon) = feature.properties?["southWestLon"],
+                       case .string(let southWestLat) = feature.properties?["southWestLat"],
+                       case .string(let northEastLon) = feature.properties?["northEastLon"],
+                       case .string(let northEastLat) = feature.properties?["northEastLat"]
                     {
 //                        print(areaFeature.properties)
 
                         // Define bounding box
-                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: southWestLat, longitude: southWestLon),
-                                                      northeast: CLLocationCoordinate2D(latitude: northEastLat, longitude: northEastLon))
+                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
+                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
 
                         // Center the camera on the bounds
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
