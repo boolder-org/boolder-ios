@@ -280,23 +280,72 @@ class MapboxViewController: UIViewController {
     @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: mapView)
 
-        let zoomExpression = Expression(.lt) {
+        let zoomExpressionForAreas = Expression(.lt) {
             Expression(.zoom)
             15
+        }
+
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: zoomExpressionForAreas)) { [weak self] result in
+
+                guard let self = self else { return }
+
+                switch result {
+                case .success(let queriedfeatures):
+
+                    if let feature = queriedfeatures.first?.feature,
+                       case .number(let southWestLon) = feature.properties?["southWestLon"],
+                       case .number(let southWestLat) = feature.properties?["southWestLat"],
+                       case .number(let northEastLon) = feature.properties?["northEastLon"],
+                       case .number(let northEastLat) = feature.properties?["northEastLat"]
+                    {
+//                        print(areaFeature.properties)
+
+                        // Define bounding box
+                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: southWestLat, longitude: southWestLon),
+                                                      northeast: CLLocationCoordinate2D(latitude: northEastLat, longitude: northEastLon))
+
+                        // Center the camera on the bounds
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
+                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        let zoomExpressionForClusters = Expression(.lte) {
+            Expression(.zoom)
+            12
         }
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
-            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: zoomExpression)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
+                
+//                print("tap cluster")
                 
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
                     
-                    if let areaFeature = queriedfeatures.first?.feature
+                    if let feature = queriedfeatures.first?.feature,
+                       case .string(let southWestLon) = feature.properties?["southWestLon"],
+                       case .string(let southWestLat) = feature.properties?["southWestLat"],
+                       case .string(let northEastLon) = feature.properties?["northEastLon"],
+                       case .string(let northEastLat) = feature.properties?["northEastLat"]
                     {
-                        print(areaFeature.properties)
+//                        print(areaFeature.properties)
+
+                        // Define bounding box
+                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
+                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
+                        
+                        // Center the camera on the bounds
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
+                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
