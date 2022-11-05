@@ -101,20 +101,20 @@ class GeoStore {
         for geometry in feature.geometry {
             if let point = geometry as? MKPointAnnotation, let properties = feature.properties {
                 
-                let decoder = JSONDecoder()
-                if let dictionary = try? decoder.decode([String: String].self, from: properties) {
-                    
-                    let annotation = PoiAnnotation()
-                    annotation.coordinate = point.coordinate
-                    annotation.title = dictionary["title"]
-                    annotation.subtitle = dictionary["subtitle"]
-                    
-                    let poi = Poi(title: dictionary["title"], subtitle: dictionary["subtitle"], description: dictionary["description"], coordinate: point.coordinate, annotation: annotation)
-                    
-                    annotation.poi = poi
-                    
-                    pois.append(poi)
-                }
+//                let decoder = JSONDecoder()
+//                if let dictionary = try? decoder.decode([String: String].self, from: properties) {
+//                    
+//                    let annotation = PoiAnnotation()
+//                    annotation.coordinate = point.coordinate
+//                    annotation.title = dictionary["title"]
+//                    annotation.subtitle = dictionary["subtitle"]
+//                    
+//                    let poi = Poi(title: dictionary["title"], subtitle: dictionary["subtitle"], description: dictionary["description"], coordinate: point.coordinate, annotation: annotation)
+//                    
+//                    annotation.poi = poi
+//                    
+//                    pois.append(poi)
+//                }
             }
         }
     }

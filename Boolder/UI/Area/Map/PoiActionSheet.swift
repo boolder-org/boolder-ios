@@ -10,10 +10,12 @@ import MapKit
 import SwiftUI
 
 struct PoiActionSheet: View {
-    let description: String
-    var location: CLLocationCoordinate2D
+    let name: String
+    let location: CLLocationCoordinate2D
+    let googleUrl: URL?
     let navigationMode: Bool
     
+    @Environment(\.openURL) var openURL
     @Binding var presentPoiActionSheet: Bool
     @State private var presentShareSheet = false
     
@@ -21,7 +23,7 @@ struct PoiActionSheet: View {
         EmptyView()
             .actionSheet(isPresented: $presentPoiActionSheet) {
                 ActionSheet(
-                    title: Text(description),
+                    title: Text(name),
                     buttons: buttons()
                 )
         }
@@ -29,7 +31,7 @@ struct PoiActionSheet: View {
             EmptyView()
                 .sheet(isPresented: $presentShareSheet) {
                     ShareSheet(activityItems: [
-                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), description, round(location.latitude), round(location.longitude))
+                        String.localizedStringWithFormat(NSLocalizedString("poi.gps_coordinates_for_poi", comment: ""), name, round(location.latitude), round(location.longitude))
                     ])
                 }
         )
@@ -42,7 +44,17 @@ struct PoiActionSheet: View {
     private func buttons() -> [Alert.Button] {
         var buttons = [Alert.Button]()
         
-        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+        if let googleUrl = googleUrl {
+            buttons.append(
+                .default(Text(
+                    String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Google Maps")
+                )) {
+                    openURL(googleUrl)
+                }
+            )
+        }
+        // Fallback to classic google url if we don't have a direct link
+        else if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
             buttons.append(
                 .default(Text(
                     String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Google Maps")
@@ -52,6 +64,7 @@ struct PoiActionSheet: View {
                 }
             )
         }
+        
         
         if UIApplication.shared.canOpenURL(URL(string: "waze://")!) && navigationMode {
             buttons.append(
@@ -69,7 +82,7 @@ struct PoiActionSheet: View {
                 String.localizedStringWithFormat(NSLocalizedString("poi.see_in", comment: ""), "Apple Maps")
             )) {
                 let destination = MKMapItem(placemark: MKPlacemark(coordinate: location))
-                destination.name = description
+                destination.name = name
 
                 if navigationMode {
                     MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])

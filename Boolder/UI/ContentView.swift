@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import CoreLocation
 
 struct ContentView: View {
     @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
     @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
+    @State private var selectedPoi: Poi? = nil
+    @State private var presentPoiActionSheet = false
     @State private var applyFilters = false
     
     // TODO: move somewhere else
@@ -25,8 +27,25 @@ struct ContentView: View {
         TabView {
             
             ZStack {
-                MapboxView(selectedProblem: $selectedProblem, presentProblemDetails: $presentProblemDetails, centerOnProblem: $centerOnProblem, centerOnProblemCount: $centerOnProblemCount, applyFilters: $applyFilters)
+                MapboxView(
+                    selectedProblem: $selectedProblem,
+                    presentProblemDetails: $presentProblemDetails,
+                    centerOnProblem: $centerOnProblem,
+                    centerOnProblemCount: $centerOnProblemCount,
+                    selectedPoi: $selectedPoi,
+                    presentPoiActionSheet: $presentPoiActionSheet,
+                    applyFilters: $applyFilters
+                )
                     .edgesIgnoringSafeArea(.top)
+                    .background(
+                        PoiActionSheet(
+                            name: (selectedPoi?.name ?? ""),
+                            location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+                            googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
+                            navigationMode: false,
+                            presentPoiActionSheet: $presentPoiActionSheet
+                        )
+                    )
                 VStack {
                     Spacer()
                     HStack {

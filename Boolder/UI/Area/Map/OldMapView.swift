@@ -73,7 +73,7 @@ struct OldMapView: UIViewRepresentable {
             mapView.removeAnnotations(mapView.annotations)
             mapView.removeOverlays(mapView.overlays)
             mapView.addAnnotations(self.dataStore.problems.map{$0.annotation})
-            mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
+//            mapView.addAnnotations(self.dataStore.pois.compactMap{$0.annotation})
             mapView.addOverlays(self.dataStore.overlays)
         }
         
@@ -93,12 +93,12 @@ struct OldMapView: UIViewRepresentable {
         let changedArea = context.coordinator.lastArea != dataStore.areaId
         context.coordinator.lastArea = dataStore.areaId
         
-        if changedCircuit || changedArea {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                let rect = context.coordinator.rectThatFits(self.dataStore.problems.map{$0.annotation}+self.dataStore.pois.map{$0.annotation})
-                mapView.setVisibleMapRect(rect, animated: false)
-            }
-        }
+//        if changedCircuit || changedArea {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                let rect = context.coordinator.rectThatFits(self.dataStore.problems.map{$0.annotation}+self.dataStore.pois.map{$0.annotation})
+//                mapView.setVisibleMapRect(rect, animated: false)
+//            }
+//        }
         
         // zoom on current location
         
@@ -290,7 +290,7 @@ struct OldMapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
             if let annotation = view.annotation {
                 if let annotation = annotation as? PoiAnnotation {
-                    parent.selectedPoi = annotation.poi
+//                    parent.selectedPoi = annotation.poi
                     parent.presentPoiActionSheet = true
                     
                     mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)

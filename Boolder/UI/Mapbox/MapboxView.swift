@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 import MapboxMaps
 
 struct MapboxView: UIViewControllerRepresentable {
@@ -17,6 +18,8 @@ struct MapboxView: UIViewControllerRepresentable {
     @Binding var presentProblemDetails: Bool
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
+    @Binding var selectedPoi: Poi?
+    @Binding var presentPoiActionSheet: Bool
     
     @Binding var applyFilters: Bool
      
@@ -77,6 +80,13 @@ struct MapboxView: UIViewControllerRepresentable {
             
             parent.selectedProblem = problem
             parent.presentProblemDetails = true
+        }
+        
+        func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {
+            
+            let poi = Poi(name: name, coordinate: location, googleUrl: googleUrl)
+            parent.selectedPoi = poi
+            parent.presentPoiActionSheet = true
         }
 
     }

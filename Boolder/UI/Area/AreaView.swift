@@ -55,14 +55,14 @@ struct AreaView: View {
                         .environmentObject(odrManager)
                         .environment(\.managedObjectContext, managedObjectContext)
                 }
-                .background(
-                    PoiActionSheet(
-                        description: (selectedPoi?.description ?? ""),
-                        location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
-                        navigationMode: false,
-                        presentPoiActionSheet: $presentPoiActionSheet
-                    )
-                )
+//                .background(
+//                    PoiActionSheet(
+//                        name: (selectedPoi?.description ?? ""),
+//                        location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+//                        navigationMode: false,
+//                        presentPoiActionSheet: $presentPoiActionSheet
+//                    )
+//                )
                 .background(
                     EmptyView()
                         .sheet(isPresented: $presentNewTopoSheet) {

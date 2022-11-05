@@ -8,6 +8,7 @@
 
 import UIKit
 import MapboxMaps
+import CoreLocation
 
 class MapboxViewController: UIViewController {
     
@@ -352,6 +353,34 @@ class MapboxViewController: UIViewController {
                 }
             }
         
+        
+        let zoomExpressionForPois = Expression(.gte) {
+            Expression(.zoom)
+            12
+        }
+        
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["pois"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.feature,
+                       case .string(let name) = feature.properties?["name"],
+                       case .string(let googleUrl) = feature.properties?["googleUrl"],
+                       case .point(let point) = feature.geometry
+                    {
+                        self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
@@ -363,21 +392,10 @@ class MapboxViewController: UIViewController {
             switch result {
             case .success(let queriedfeatures):
 
-                // Extract the earthquake feature from the queried features
-                if let problemFeature = queriedfeatures.first?.feature,
-//                   case .number(let problemIdDouble) = problemFeature.identifier,
-                   case .number(let id) = problemFeature.properties?["id"],
-                   case .point(let point) = problemFeature.geometry
-//                   case let .number(magnitude) = problemFeature.properties?["mag"]
+                if let feature = queriedfeatures.first?.feature,
+                   case .number(let id) = feature.properties?["id"],
+                   case .point(let point) = feature.geometry
                 {
-                    
-//                    print(problemFeature.properties)
-//
-//                    print(id)
-//                    print(point)
-                    
-//                    print(String(id))
-                    
                     self.delegate?.selectProblem(id: Int(id)) // FIXME: make sure we cast to Int before running the rest of the code
                     
 //                    let cameraOptions = CameraOptions(
@@ -388,23 +406,6 @@ class MapboxViewController: UIViewController {
                     
                     self.setProblemAsSelected(problemFeatureId: String(Int(id)))
 
-
-//                    let earthquakeId = Int(earthquakeIdDouble).description
-//
-//                    // Set the description of the earthquake from the `properties` object
-//                    self.setDescription(magnitude: magnitude, timeStamp: timestamp, location: place)
-//
-//                    // Set the earthquake to be "selected"
-//                    self.setSelectedState(earthquakeId: earthquakeId)
-//
-//                    // Reset a previously tapped earthquake to be "unselected".
-//                    self.resetPreviouslySelectedStateIfNeeded(currentTappedEarthquakeId: earthquakeId)
-//
-//                    // Store the currently tapped earthquake so it can be reset when another earthquake is tapped.
-//                    self.previouslyTappedEarthquakeId = earthquakeId
-//
-//                    // Center the selected earthquake on the screen
-//                    self.mapView.camera.fly(to: CameraOptions(center: point.coordinates, zoom: 10))
                 }
                 else {
                     self.unselectPreviousProblem()
@@ -416,8 +417,12 @@ class MapboxViewController: UIViewController {
     }
 }
 
+import CoreLocation
+
 protocol MapBoxViewDelegate {
 
     // Define expected delegate functions
     func selectProblem(id: Int)
+    
+    func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
 }

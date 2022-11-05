@@ -79,7 +79,7 @@
 "poi.see_in" = "Voir dans %@";
 "poi.share_gps_coordinates" = "Partager les coordonnées GPS";
 "poi.cancel" = "Annuler";
-"poi.gps_coordinates_for_poi" = "Voici les coordonnées GPS pour %@ : %@,%@";
+"poi.gps_coordinates_for_poi" = "%@ : %@,%@";
 
 // MARK: Filters
 "filters.title" = "Filtres";
