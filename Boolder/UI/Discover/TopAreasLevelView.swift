@@ -162,19 +162,19 @@ struct TopAreasLevelView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    var beginnerAreas: [Area] {
+    var beginnerAreas: [OldArea] {
         [19, 14, 18, 13, 2, 51].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
-    var intermediateAreas: [Area] {
+    var intermediateAreas: [OldArea] {
         [10, 2, 4, 11, 5, 14, 29, 32, 30, 1].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
-    var advancedAreas: [Area] {
+    var advancedAreas: [OldArea] {
         [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }

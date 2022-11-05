@@ -12,7 +12,7 @@ import SwiftUI
 struct AllAreasMapView: UIViewRepresentable {
     @EnvironmentObject var dataStore: DataStore
     
-    @Binding var selectedArea: Area?
+    @Binding var selectedArea: OldArea?
     @Binding var presentArea: Bool
     @Binding var loading: Bool
     

@@ -81,7 +81,7 @@ struct TopAreasDryFast: View {
         
     }
     
-    var areas: [Area] {
+    var areas: [OldArea] {
         [16, 10, 2, 15, 7].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }

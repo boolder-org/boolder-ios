@@ -57,7 +57,7 @@ struct TopAreasGroups: View {
         
     }
     
-    var areas: [Area] {
+    var areas: [OldArea] {
         [10, 13, 4, 11, 5, 29, 30, 1].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }

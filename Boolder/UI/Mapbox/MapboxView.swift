@@ -18,6 +18,8 @@ struct MapboxView: UIViewControllerRepresentable {
     @Binding var presentProblemDetails: Bool
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
+    @Binding var centerOnArea: AreaItem?
+    @Binding var centerOnAreaCount: Int
     @Binding var selectedPoi: Poi?
     @Binding var presentPoiActionSheet: Bool
     
@@ -56,6 +58,20 @@ struct MapboxView: UIViewControllerRepresentable {
                 context.coordinator.lastCenterOnProblemCount = centerOnProblemCount
             }
         }
+        
+        // center on area
+        if centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
+            if let area = centerOnArea {
+                
+                let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(area.bounds.south_west.lat), longitude: Double(area.bounds.south_west.lng)),
+                                              northeast: CLLocationCoordinate2D(latitude: Double(area.bounds.north_east.lat), longitude: Double(area.bounds.north_east.lng)))
+                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
+                vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+                
+                
+                context.coordinator.lastCenterOnAreaCount = centerOnAreaCount
+            }
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -68,6 +84,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var parent: MapboxView
         
         var lastCenterOnProblemCount = 0
+        var lastCenterOnAreaCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent

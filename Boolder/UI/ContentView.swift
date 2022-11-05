@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
     @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
+    @State private var centerOnArea: AreaItem? = nil
+    @State private var centerOnAreaCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
     @State private var applyFilters = false
@@ -32,6 +34,8 @@ struct ContentView: View {
                     presentProblemDetails: $presentProblemDetails,
                     centerOnProblem: $centerOnProblem,
                     centerOnProblemCount: $centerOnProblemCount,
+                    centerOnArea: $centerOnArea,
+                    centerOnAreaCount: $centerOnAreaCount,
                     selectedPoi: $selectedPoi,
                     presentPoiActionSheet: $presentPoiActionSheet,
                     applyFilters: $applyFilters
@@ -84,6 +88,8 @@ struct ContentView: View {
                         areaHitsController:ContentView.algoliaController.areaHitsController,
                         centerOnProblem: $centerOnProblem,
                         centerOnProblemCount: $centerOnProblemCount,
+                        centerOnArea: $centerOnArea,
+                        centerOnAreaCount: $centerOnAreaCount,
                         selectedProblem: $selectedProblem,
                         presentProblemDetails: $presentProblemDetails
                     )

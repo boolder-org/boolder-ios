@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AllAreasView: View {
-    @State private var selectedArea: Area?
+    @State private var selectedArea: OldArea?
     @State private var presentArea = false
     @State private var loading = false
     

@@ -19,7 +19,19 @@ struct ProblemItem: Codable, Hashable {
 
 struct AreaItem: Codable, Hashable {
     let objectID: String
-  let name: String
+    let name: String
+    let bounds : Bounds
+    
+    struct Bounds: Codable, Hashable {
+        let south_west: AlgoliaPoint
+        let north_east: AlgoliaPoint
+        
+        struct AlgoliaPoint: Codable, Hashable {
+            let lat: Double
+            let lng: Double
+        }
+    }
+    
 }
 
 class AlgoliaController {
@@ -80,6 +92,8 @@ struct AlgoliaView: View {
     
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
+    @Binding var centerOnArea: AreaItem?
+    @Binding var centerOnAreaCount: Int
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     
@@ -93,8 +107,24 @@ struct AlgoliaView: View {
             List {
                 if(areaHitsController.hits.count > 0) {
                     Section(header: Text("Areas")) {
-                        ForEach(areaHitsController.hits, id: \.self) { hit in
-                            Text(hit?.name ?? "")
+                        ForEach(areaHitsController.hits, id: \.self) { (hit: AreaItem?) in
+//                            let _ = print(hit)
+                            if let id = Int(hit?.objectID ?? "") {
+                                
+                                Button {
+                                    presentationMode.wrappedValue.dismiss()
+                                    
+                                    if let hit = hit {
+                                        centerOnArea = hit
+                                        centerOnAreaCount += 1
+                                    }
+                                    
+                                } label: {
+                                    HStack {
+                                        Text(hit?.name ?? "").foregroundColor(.primary)
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -148,7 +178,8 @@ struct AlgoliaView: View {
 //        .animation(.easeInOut(duration: 0), value: searchBoxController.query)
         .modify {
               if #available(iOS 15, *) {
-                  $0.searchable(text: $searchBoxController.query).disableAutocorrection(true)
+                  $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Nom de voie ou secteur"))
+                      .disableAutocorrection(true)
               }
               else {
                   $0 // FIXME: show a searchbar on iOS 14

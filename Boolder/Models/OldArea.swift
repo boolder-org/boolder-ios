@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Area: Identifiable {
+struct OldArea: Identifiable {
     let id: Int
     let name: String
     let problemsCount: Int

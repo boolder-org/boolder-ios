@@ -360,7 +360,7 @@ struct DiscoverView: View {
         .phoneOnlyStackNavigationView()
     }
     
-    var areasDisplayed: [Area] {
+    var areasDisplayed: [OldArea] {
         let published = dataStore.areas.filter { $0.published }
         
         var displayed = published
@@ -374,7 +374,7 @@ struct DiscoverView: View {
         }
     }
     
-    var searchResults: [Area] {
+    var searchResults: [OldArea] {
         areasDisplayed.filter { cleanString($0.name).contains(cleanString(searchText)) }
     }
     
@@ -382,7 +382,7 @@ struct DiscoverView: View {
         str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
     
-    var popularAreas: [Area] {
+    var popularAreas: [OldArea] {
         [5,4,2,1,7,9,10,11,12].map{dataStore.area(withId:$0)!}
     }
     

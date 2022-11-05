@@ -86,13 +86,13 @@ struct TopAreasTrain: View {
         
     }
     
-    var areasFromBoisLeRoi: [Area] {
+    var areasFromBoisLeRoi: [OldArea] {
         [1,4,7,24].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
-    var areasFromAvon: [Area] {
+    var areasFromAvon: [OldArea] {
         [50].map{dataStore.area(withId:$0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
