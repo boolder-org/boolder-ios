@@ -55,6 +55,8 @@ class AlgoliaController {
 //        return $0.query.query != ""
 //      }
       
+      
+      
     self.searchBoxInteractor = .init()
     self.searchBoxController = .init()
       
@@ -97,70 +99,18 @@ struct AlgoliaView: View {
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     
-    
     var body: some View {
         VStack(spacing: 7) {
 //            SearchBar(text: $searchBoxController.query,
 //                      isEditing: $isEditing,
 //                      onSubmit: searchBoxController.submit)
             
-            List {
-                if(areaHitsController.hits.count > 0) {
-                    Section(header: Text("Areas")) {
-                        ForEach(areaHitsController.hits, id: \.self) { (hit: AreaItem?) in
-//                            let _ = print(hit)
-                            if let id = Int(hit?.objectID ?? "") {
-                                
-                                Button {
-                                    presentationMode.wrappedValue.dismiss()
-                                    
-                                    if let hit = hit {
-                                        centerOnArea = hit
-                                        centerOnAreaCount += 1
-                                    }
-                                    
-                                } label: {
-                                    HStack {
-                                        Text(hit?.name ?? "").foregroundColor(.primary)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                if(problemHitsController.hits.count > 0) {
-                    Section(header: Text("Problems")) {
-                        ForEach(problemHitsController.hits, id: \.self) { hit in
-                            if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id), let hit = hit {
-                                
-                                Button {
-                                    presentationMode.wrappedValue.dismiss()
-                                    
-                                    centerOnProblem = problem
-                                    centerOnProblemCount += 1 // triggers a map refresh
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                        selectedProblem = problem
-                                        presentProblemDetails = true
-                                    }
-                                } label: {
-                                    HStack {
-                                        ProblemCircleView(problem: problem)
-                                        Text(hit.name).foregroundColor(.primary)
-                                        Text(hit.grade).foregroundColor(.gray).padding(.leading, 2)
-                                        Spacer()
-                                        Text(hit.area_name).foregroundColor(.gray).font(.caption)
-                                    }
-                                }
-
-                                
-                            }
-                        }
-                    }
-                }
-//                .headerProminence(.increased)
+            if searchBoxController.query.count > 0 {
+                Results()
             }
-            .listStyle(.grouped)
+            else {
+                Text("Suggestions")
+            }
             
           }
         .navigationBarTitle(Text("Search"), displayMode: .inline)
@@ -186,6 +136,66 @@ struct AlgoliaView: View {
               }
           }
         
+    }
+    
+    private func Results() -> some View {
+        List {
+            if(areaHitsController.hits.count > 0) {
+                Section(header: Text("Areas")) {
+                    ForEach(areaHitsController.hits, id: \.self) { (hit: AreaItem?) in
+//                            let _ = print(hit)
+                        if let id = Int(hit?.objectID ?? "") {
+                            
+                            Button {
+                                presentationMode.wrappedValue.dismiss()
+                                
+                                if let hit = hit {
+                                    centerOnArea = hit
+                                    centerOnAreaCount += 1
+                                }
+                                
+                            } label: {
+                                HStack {
+                                    Text(hit?.name ?? "").foregroundColor(.primary)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(problemHitsController.hits.count > 0) {
+                Section(header: Text("Problems")) {
+                    ForEach(problemHitsController.hits, id: \.self) { hit in
+                        if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id), let hit = hit {
+                            
+                            Button {
+                                presentationMode.wrappedValue.dismiss()
+                                
+                                centerOnProblem = problem
+                                centerOnProblemCount += 1 // triggers a map refresh
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    selectedProblem = problem
+                                    presentProblemDetails = true
+                                }
+                            } label: {
+                                HStack {
+                                    ProblemCircleView(problem: problem)
+                                    Text(hit.name).foregroundColor(.primary)
+                                    Text(hit.grade).foregroundColor(.gray).padding(.leading, 2)
+                                    Spacer()
+                                    Text(hit.area_name).foregroundColor(.gray).font(.caption)
+                                }
+                            }
+
+                            
+                        }
+                    }
+                }
+            }
+//                .headerProminence(.increased)
+        }
+        .listStyle(.grouped)
     }
 }
 
