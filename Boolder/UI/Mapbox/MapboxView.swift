@@ -66,7 +66,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(area.bounds.south_west.lat), longitude: Double(area.bounds.south_west.lng)),
                                               northeast: CLLocationCoordinate2D(latitude: Double(area.bounds.north_east.lat), longitude: Double(area.bounds.north_east.lng)))
                 let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
-                vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                 
                 
                 context.coordinator.lastCenterOnAreaCount = centerOnAreaCount
