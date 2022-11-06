@@ -146,6 +146,17 @@ class MapboxViewController: UIViewController {
                 }
             )
             
+            problemsLayer.circleSortKey = .expression(
+                Exp(.switchCase) {
+                    Exp(.boolean) {
+                        Exp(.has) { "circuitId" }
+                        false
+                    }
+                    2
+                    1
+                }
+            )
+            
             // Add the circle layer to the map.
             try! self.mapView.mapboxMap.style.addLayer(problemsLayer)
             
