@@ -88,23 +88,23 @@ struct TopoView: View {
                 }
             }
             
-            HStack {
-                VStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
-                            .padding(16)
-                            .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
-                    }
-                    Spacer()
-                }
-                Spacer()
-            }
-            .opacity(pinchToZoomState.isPinching ? 0 : 1)
-            .animation(.easeIn(duration: 0.5))
+//            HStack {
+//                VStack {
+//                    Button(action: {
+//                        presentationMode.wrappedValue.dismiss()
+//                    }) {
+//                        Image(systemName: "xmark.circle.fill")
+//                            .font(.system(size: 30))
+//                            .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
+//                            .padding(16)
+//                            .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
+//                    }
+//                    Spacer()
+//                }
+//                Spacer()
+//            }
+//            .opacity(pinchToZoomState.isPinching ? 0 : 1)
+//            .animation(.easeIn(duration: 0.5))
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color("ImageBackground"))
