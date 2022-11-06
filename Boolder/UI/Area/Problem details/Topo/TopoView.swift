@@ -17,8 +17,8 @@ struct TopoView: View {
     @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
     
-    @ObservedObject var pinchToZoomState: PinchToZoomState
-    let pinchToZoomPadding: CGFloat // hack to increase the area registering pinch gesture
+//    @ObservedObject var pinchToZoomState: PinchToZoomState
+//    let pinchToZoomPadding: CGFloat // hack to increase the area registering pinch gesture
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -33,12 +33,11 @@ struct TopoView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                             
-                            LineView(problem: $problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $pinchToZoomState.scale)
+                            LineView(problem: $problem, drawPercentage: $lineDrawPercentage)
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .scaleEffect(1/pinchToZoomState.scale)
                                         .offset(lineStart)
                                 }
                                 
@@ -46,18 +45,17 @@ struct TopoView: View {
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
                                             .offset(lineStart)
-                                            .opacity(pinchToZoomState.isPinching ? 0 : 1)
                                             .animation(.easeIn(duration: 0.5))
                                     }
                                 }
                             }
                         }
-                        .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
-                        .offset(pinchToZoomState.offset)
-                        .overlay(
-                            PinchToZoom(state: pinchToZoomState)
-                                .padding(.bottom, -pinchToZoomPadding) // careful when changing this, it may hide tappable areas
-                        )
+//                        .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
+//                        .offset(pinchToZoomState.offset)
+//                        .overlay(
+//                            PinchToZoom(state: pinchToZoomState)
+//                                .padding(.bottom, -pinchToZoomPadding) // careful when changing this, it may hide tappable areas
+//                        )
                         
                     }
                     else {
@@ -88,21 +86,38 @@ struct TopoView: View {
                 }
             }
             
-//            HStack {
-//                VStack {
-//                    Button(action: {
-//                        presentationMode.wrappedValue.dismiss()
-//                    }) {
-//                        Image(systemName: "xmark.circle.fill")
-//                            .font(.system(size: 30))
-//                            .foregroundColor(Color(UIColor.init(white: 1.0, alpha: 0.8)))
-//                            .padding(16)
-//                            .shadow(color: Color.gray, radius: 8, x: 0, y: 0)
-//                    }
-//                    Spacer()
-//                }
-//                Spacer()
-//            }
+            HStack {
+                Spacer()
+                
+                VStack {
+                    if(problem.variants.count > 0) {
+                        Menu {
+                            ForEach(problem.variants) { variant in
+                                Button {
+                                    switchToProblem(variant)
+                                } label: {
+                                    Text("\(variant.nameWithFallback()) \(variant.grade.string)")
+                                }
+                            }
+                        } label: {
+                            Text(numberOfVariantsForProblem(problem))
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 8)
+                                .background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+//                                .opacity(0.7)
+                                .cornerRadius(16)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 16)
+//                                        .stroke(Color(UIColor.systemGreen), lineWidth: 1)
+//                                )
+                                .padding(8)
+                        }
+                    }
+                    Spacer()
+                }
+                
+            }
 //            .opacity(pinchToZoomState.isPinching ? 0 : 1)
 //            .animation(.easeIn(duration: 0.5))
         }
@@ -115,6 +130,17 @@ struct TopoView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 animate { lineDrawPercentage = 1.0 }
             }
+        }
+    }
+    
+    // TODO: use the proper i18n method for plural
+    func numberOfVariantsForProblem(_ p: Problem) -> String {
+        let count = problem.variants.count
+        if count >= 2 {
+            return String(format: NSLocalizedString("problem.variants.other", comment: ""), count)
+        }
+        else {
+            return NSLocalizedString("problem.variants.one", comment: "")
         }
     }
     

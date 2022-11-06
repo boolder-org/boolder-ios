@@ -27,8 +27,8 @@ struct ProblemDetailsView: View {
     @State private var presentEditProblem = false
     
     @State private var lineDrawPercentage: CGFloat = .zero
-    @StateObject var pinchToZoomState = PinchToZoomState()
-    let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
+//    @StateObject var pinchToZoomState = PinchToZoomState()
+//    let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
     
     var body: some View {
         ScrollView {
@@ -36,9 +36,7 @@ struct ProblemDetailsView: View {
                 TopoView(
                     problem: $problem,
                     lineDrawPercentage: $lineDrawPercentage,
-                    areaResourcesDownloaded: $areaResourcesDownloaded,
-                    pinchToZoomState: pinchToZoomState,
-                    pinchToZoomPadding: pinchToZoomPadding
+                    areaResourcesDownloaded: $areaResourcesDownloaded
                 )
                     .zIndex(10)
                 
@@ -46,6 +44,7 @@ struct ProblemDetailsView: View {
                 
                 actionButtons
                 
+                // FIXME: show variants on older iOS versions
 //                variants
             }
         }
@@ -112,12 +111,13 @@ struct ProblemDetailsView: View {
                                 .frame(minWidth: 16)
                             Text(problem.steepness.localizedName)
                                 .font(.body)
-                            if(problem.sitStart) {
-                                Text("problem.sit_start")
-                                    .font(.caption)
-                                    .foregroundColor(Color.gray)
-                            }
                         }
+                    }
+                    
+                    if(problem.sitStart) {
+                        Text("problem.sit_start")
+                            .font(.caption)
+                            .foregroundColor(Color.gray)
                     }
                     
                     Spacer()

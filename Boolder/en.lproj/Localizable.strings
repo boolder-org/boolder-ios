@@ -133,6 +133,8 @@
 "problem.action.untick" = "Untick";
 "problem.action.share.description" = "“%@” at %@";
 "problem.image.loading" = "Loading area...";
+"problem.variants.one" = "1 variant";
+"problem.variants.other" = "%d variants";
 
 // MARK: Problem list
 "problem_list.title" = "Problems";

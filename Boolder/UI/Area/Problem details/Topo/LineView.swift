@@ -12,14 +12,14 @@ struct LineView: View {
     @Binding var problem: Problem
     @Binding var drawPercentage: CGFloat
     
-    @Binding var pinchToZoomScale: CGFloat
+//    @Binding var pinchToZoomScale: CGFloat
     
     var body: some View {
         ResizablePath(path: linePath)
             .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk
             .stroke(
                 Color(problem.circuitUIColorForPhotoOverlay),
-                style: StrokeStyle(lineWidth: 4/pinchToZoomScale, lineCap: .round, lineJoin: .round)
+                style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round)
             )
             .modifier(DropShadow())
     }
@@ -59,7 +59,7 @@ struct LineView_Previews: PreviewProvider {
     static let dataStore = DataStore()
     
     static var previews: some View {
-        LineView(problem: .constant(dataStore.problems.first!), drawPercentage: .constant(0), pinchToZoomScale: .constant(1))
+        LineView(problem: .constant(dataStore.problems.first!), drawPercentage: .constant(0))
     }
 }
 
