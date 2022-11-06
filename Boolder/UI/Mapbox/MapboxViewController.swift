@@ -372,10 +372,10 @@ class MapboxViewController: UIViewController {
             }
         
         
-        let zoomExpressionForPois = Expression(.gte) {
-            Expression(.zoom)
-            12
-        }
+//        let zoomExpressionForPois = Expression(.gte) {
+//            Expression(.zoom)
+//            12
+//        }
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
@@ -398,7 +398,7 @@ class MapboxViewController: UIViewController {
                 }
             }
         
-        
+
         mapView.mapboxMap.queryRenderedFeatures(
             in: CGRect(x: tapPoint.x-12, y: tapPoint.y-12, width: 24, height: 24),
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
@@ -406,6 +406,8 @@ class MapboxViewController: UIViewController {
 //                print("tap on problems layer")
 
             guard let self = self else { return }
+            
+                if self.mapView.mapboxMap.cameraState.zoom < 18 { return }
 
             switch result {
             case .success(let queriedfeatures):
