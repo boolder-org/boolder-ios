@@ -134,17 +134,17 @@ class MapboxViewController: UIViewController {
             )
             problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
             
-            let stopsB: [Double: Double] = [
-                14.5: 0.0,
-                15:   1.0,
-            ]
-            problemsLayer.circleOpacity = .expression(
-                Exp(.interpolate) {
-                    ["linear"]
-                    ["zoom"]
-                    stopsB
-                }
-            )
+ 
+//            problemsLayer.circleOpacity = .expression(
+//                Exp(.interpolate) {
+//                    ["linear"]
+//                    ["zoom"]
+//                    14.5
+//                    0
+//                    15
+//                    1.0
+//                }
+//            )
             
             problemsLayer.circleSortKey = .expression(
                 Exp(.switchCase) {
@@ -179,15 +179,14 @@ class MapboxViewController: UIViewController {
                 }
             )
             
-            let stopsC: [Double: Double] = [
-                19: 10,
-                22: 20,
-            ]
             problemsTextsLayer.textSize = .expression(
                 Exp(.interpolate) {
                     ["linear"]
                     ["zoom"]
-                    stopsC
+                    19
+                    10
+                    22
+                    20
                 }
             )
             
@@ -419,9 +418,9 @@ class MapboxViewController: UIViewController {
                     
 //                    let cameraOptions = CameraOptions(
 //                        center: point.coordinates,
-//                        padding: UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/2, right: 0)
+//                        padding: UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/3, right: 0)
 //                    )
-//                    self.mapView.camera.fly(to: cameraOptions, duration: 0.2)
+//                    self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     
                     self.setProblemAsSelected(problemFeatureId: String(Int(id)))
 
