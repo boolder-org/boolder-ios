@@ -29,7 +29,7 @@ class MapboxViewController: UIViewController {
         let myMapInitOptions = MapInitOptions(
             resourceOptions: myResourceOptions,
             cameraOptions: cameraOptions,
-            styleURI: StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2/draft")
+            styleURI: StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")
 
         )
         
@@ -45,7 +45,7 @@ class MapboxViewController: UIViewController {
             // In this case, the tileset is owned by the "mapbox" account
             // and "mapbox-terrain-v2" is the tileset ID
             source.url = "mapbox://nmondollot.4xsv235p"
-            source.promoteId = .string("id")
+            source.promoteId = .string("id") // needed to make FeatureState work
             // Add the vector source to the style
             try! self.mapView.mapboxMap.style.addSource(source, id: sourceIdentifier)
             
@@ -82,7 +82,15 @@ class MapboxViewController: UIViewController {
                     18
                     4
                     22
-                    16
+                    Exp(.switchCase) {
+                        Exp(.boolean) {
+                            Exp(.has) { "circuitColor" }
+                            false
+                        }
+                        16
+                        10
+                    }
+
                 }
                 
             )
@@ -382,7 +390,7 @@ class MapboxViewController: UIViewController {
         
         
         mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint,
+            in: CGRect(x: tapPoint.x-12, y: tapPoint.y-12, width: 24, height: 24),
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
 //                print("tap on problems layer")
