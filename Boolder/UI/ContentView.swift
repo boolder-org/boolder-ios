@@ -105,7 +105,7 @@ struct ContentView: View {
                 )
                 .modify {
                     if #available(iOS 16, *) {
-                        $0.presentationDetents([.medium, .large]).presentationDragIndicator(.hidden) // TODO: use heights?
+                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                     }
                     else {
                         $0

@@ -32,7 +32,7 @@ struct ProblemDetailsView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 TopoView(
                     problem: $problem,
                     lineDrawPercentage: $lineDrawPercentage,
@@ -46,7 +46,7 @@ struct ProblemDetailsView: View {
                 
                 actionButtons
                 
-                variants
+//                variants
             }
         }
         .onAppear{
@@ -81,8 +81,8 @@ struct ProblemDetailsView: View {
     
     
     var infos: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 4) {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
@@ -90,7 +90,9 @@ struct ProblemDetailsView: View {
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
-                            .lineLimit(2)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                            .minimumScaleFactor(0.5)
                         
                         Spacer()
                         
@@ -98,7 +100,7 @@ struct ProblemDetailsView: View {
                             .font(.title)
                             .fontWeight(.bold)
                     }
-                    .padding(.top, 8)
+                    .padding(.top, 4)
                 }
                 
                 HStack {
@@ -144,11 +146,14 @@ struct ProblemDetailsView: View {
                 //                                }
                 //                            }
             }
-            .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
+//            .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
         }
+//        .background(Color.red)
         .padding(.top, 0)
         .padding(.horizontal)
-        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+//        .background(Color.green)
+//        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+        
     }
     
     var actionButtons: some View {
@@ -239,7 +244,7 @@ struct ProblemDetailsView: View {
                 #endif
             }
             .padding(.horizontal)
-            .padding(.vertical)
+            .padding(.vertical, 4)
         }
     }
     
