@@ -400,7 +400,7 @@ class MapboxViewController: UIViewController {
         
 
         mapView.mapboxMap.queryRenderedFeatures(
-            in: CGRect(x: tapPoint.x-12, y: tapPoint.y-12, width: 24, height: 24),
+            with: CGRect(x: tapPoint.x-12, y: tapPoint.y-12, width: 24, height: 24),
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
 //                print("tap on problems layer")
@@ -417,14 +417,16 @@ class MapboxViewController: UIViewController {
                    case .point(let point) = feature.geometry
                 {
                     self.delegate?.selectProblem(id: Int(id)) // FIXME: make sure we cast to Int before running the rest of the code
-                    
-//                    let cameraOptions = CameraOptions(
-//                        center: point.coordinates,
-//                        padding: UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/3, right: 0)
-//                    )
-//                    self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
-                    
                     self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                    
+                    if tapPoint.y >= self.mapView.bounds.height/2 {
+                        
+                        let cameraOptions = CameraOptions(
+                            center: point.coordinates,
+                            padding: UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/3, right: 0)
+                        )
+                        self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
+                    }
 
                 }
                 else {
