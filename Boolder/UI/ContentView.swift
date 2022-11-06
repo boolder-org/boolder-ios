@@ -50,9 +50,10 @@ struct ContentView: View {
                             presentPoiActionSheet: $presentPoiActionSheet
                         )
                     )
+                
                 VStack {
                     Spacer()
-                    HStack {
+                    HStack(spacing: 16) {
                         Button(action: {
                             applyFilters.toggle()
                         }) {
@@ -76,7 +77,15 @@ struct ContentView: View {
                             .padding(.vertical, 12)
                         }
                     }
+                    
+                    .accentColor(.primary)
+                    .padding(.horizontal, 16)
+                    .background(Color.systemBackground)
+                    .cornerRadius(10)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                     .padding(.bottom, 24)
+//                    .padding()
                 }
                 .zIndex(10)
             }
