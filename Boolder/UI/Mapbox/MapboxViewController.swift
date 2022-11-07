@@ -44,10 +44,10 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
-        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 36)
+        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
 //        mapView.ornaments.options.attributionButton.margins = CGPoint(x: 88, y: 6)
 //        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
-//        mapView.ornaments.options.logo.margins = CGPoint(x: 40, y: 8)
+        mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
         
         // Wait for the map to load its style before adding data.
         mapView.mapboxMap.onNext(event: .mapLoaded) { [self] _ in
