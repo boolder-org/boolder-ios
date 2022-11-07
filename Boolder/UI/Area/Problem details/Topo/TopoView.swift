@@ -90,7 +90,7 @@ struct TopoView: View {
                 Spacer()
                 
                 VStack {
-                    Spacer()
+                    
                     if(problem.variants.count > 0) {
                         Menu {
                             ForEach(problem.variants) { variant in
@@ -115,6 +115,8 @@ struct TopoView: View {
                                 .padding(8)
                         }
                     }
+                    
+                    Spacer()
                 }
                 
             }
