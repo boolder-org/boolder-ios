@@ -36,6 +36,19 @@ class MapboxViewController: UIViewController {
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        let configuration = Puck2DConfiguration.makeDefault(showBearing: true)
+        mapView.location.options.puckType = .puck2D(configuration)
+        
+        mapView.gestures.options.pitchEnabled = false
+//        mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
+//        mapView.ornaments.options.scaleBar.visibility = .adaptive
+        
+        mapView.ornaments.options.attributionButton.position = .bottomLeading
+        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 36)
+//        mapView.ornaments.options.attributionButton.margins = CGPoint(x: 88, y: 6)
+//        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
+//        mapView.ornaments.options.logo.margins = CGPoint(x: 40, y: 8)
+        
         // Wait for the map to load its style before adding data.
         mapView.mapboxMap.onNext(event: .mapLoaded) { [self] _ in
             

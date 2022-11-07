@@ -65,17 +65,6 @@ struct ContentView: View {
                             }
                             .padding(.vertical, 12)
                         }
-                        Button(action: {
-                            presentSearch = true
-                        }) {
-                            HStack {
-//                                Image(systemName: "slider.horizontal.3")
-                                
-                                Text("Search")
-                                    .fixedSize(horizontal: true, vertical: true)
-                            }
-                            .padding(.vertical, 12)
-                        }
                     }
                     
                     .accentColor(.primary)
@@ -84,9 +73,51 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
                     .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                    .padding(.bottom, 24)
+                    .padding(.bottom)
 //                    .padding()
                 }
+                .zIndex(10)
+                
+                HStack {
+                    Spacer()
+                    
+                    VStack {
+                        Spacer()
+                        
+                        Button(action: {
+//                            centerOnCurrentLocationCount += 1
+                        }) {
+                            Image(systemName: "location")
+                                .padding(12)
+                                .offset(x: -1, y: 0)
+                        }
+                        .accentColor(.primary)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                        
+                        Button(action: {
+                            presentSearch = true
+                        }) {
+                            Image(systemName: "magnifyingglass")
+                                .padding(12)
+                                .offset(x: -1, y: 0)
+                        }
+                        .accentColor(.primary)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                }
+                .padding(.bottom)
                 .zIndex(10)
             }
             .sheet(isPresented: $presentSearch) {
