@@ -20,6 +20,7 @@ struct MapboxView: UIViewControllerRepresentable {
     @Binding var centerOnProblemCount: Int
     @Binding var centerOnArea: AreaItem?
     @Binding var centerOnAreaCount: Int
+    @Binding var centerOnCurrentLocationCount: Int
     @Binding var selectedPoi: Poi?
     @Binding var presentPoiActionSheet: Bool
     
@@ -72,6 +73,20 @@ struct MapboxView: UIViewControllerRepresentable {
                 context.coordinator.lastCenterOnAreaCount = centerOnAreaCount
             }
         }
+        
+        // zoom on current location
+        if centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
+            if let location = vc.mapView.location.latestLocation {
+                let cameraOptions = CameraOptions(
+                    center: location.coordinate,
+                    padding: .zero,
+                    zoom: 16
+                )
+                vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+            }
+            
+            context.coordinator.lastCenterOnCurrentLocationCount = centerOnCurrentLocationCount
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -85,6 +100,7 @@ struct MapboxView: UIViewControllerRepresentable {
         
         var lastCenterOnProblemCount = 0
         var lastCenterOnAreaCount = 0
+        var lastCenterOnCurrentLocationCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent
@@ -105,7 +121,7 @@ struct MapboxView: UIViewControllerRepresentable {
             parent.selectedPoi = poi
             parent.presentPoiActionSheet = true
         }
-
+        
     }
 
 }

@@ -36,6 +36,7 @@ struct ContentView: View {
                     centerOnProblemCount: $centerOnProblemCount,
                     centerOnArea: $centerOnArea,
                     centerOnAreaCount: $centerOnAreaCount,
+                    centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                     selectedPoi: $selectedPoi,
                     presentPoiActionSheet: $presentPoiActionSheet,
                     applyFilters: $applyFilters
@@ -85,7 +86,7 @@ struct ContentView: View {
                         Spacer()
                         
                         Button(action: {
-//                            centerOnCurrentLocationCount += 1
+                            centerOnCurrentLocationCount += 1
                         }) {
                             Image(systemName: "location")
                                 .padding(12)
