@@ -107,17 +107,21 @@ struct ProblemDetailsView: View {
                     if problem.steepness != .other {
                         HStack(alignment: .firstTextBaseline) {
                             Image(problem.steepness.imageName)
-                                .font(.body)
                                 .frame(minWidth: 16)
                             Text(problem.steepness.localizedName)
-                                .font(.body)
+                                
                         }
+                        .font(.body)
+                        .foregroundColor(Color(UIColor(.black).lighter(0.3)))
                     }
                     
                     if(problem.sitStart) {
+                        if problem.steepness != .other {
+                            Text("•")
+                        }
                         Text("problem.sit_start")
-                            .font(.caption)
-                            .foregroundColor(Color.gray)
+                            .font(.body)
+                            .foregroundColor(Color(UIColor(.black).lighter(0.3)))
                     }
                     
                     Spacer()
