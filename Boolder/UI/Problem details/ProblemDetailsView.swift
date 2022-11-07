@@ -11,7 +11,6 @@ import MapKit
 
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var dataStore: DataStore
     @EnvironmentObject var odrManager: ODRManager
     @Environment(\.openURL) var openURL
     
@@ -427,14 +426,12 @@ extension String {
 }
 
 
-struct ProblemDetailsView_Previews: PreviewProvider {
-    static let dataStore = DataStore()
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    static var previews: some View {
-        ProblemDetailsView(problem: .constant(dataStore.problems.first!))
-            .environment(\.managedObjectContext, context)
-            .environmentObject(dataStore)
-    }
-}
+//struct ProblemDetailsView_Previews: PreviewProvider {
+//    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    
+//    static var previews: some View {
+//        ProblemDetailsView(problem: .constant(dataStore.problems.first!))
+//            .environment(\.managedObjectContext, context)
+//    }
+//}
 

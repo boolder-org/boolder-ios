@@ -55,13 +55,11 @@ struct LineView: View {
     }
 }
 
-struct LineView_Previews: PreviewProvider {
-    static let dataStore = DataStore()
-    
-    static var previews: some View {
-        LineView(problem: .constant(dataStore.problems.first!), drawPercentage: .constant(0))
-    }
-}
+//struct LineView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LineView(problem: .constant(dataStore.problems.first!), drawPercentage: .constant(0))
+//    }
+//}
 
 struct ResizablePath: Shape {
     let path: Path

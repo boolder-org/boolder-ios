@@ -126,15 +126,13 @@ class Circuit {
         }
     }
     
-    init(id: Int, color: CircuitColor, overlay: CircuitOverlay) {
+    init(id: Int, color: CircuitColor) {
         self.id = id
         self.color = color
-        self.overlay = overlay
     }
     
     let id: Int
     let color: CircuitColor
-    let overlay: CircuitOverlay
     
     static func circuitColorFromString(_ string: String?) -> CircuitColor {
         switch string {

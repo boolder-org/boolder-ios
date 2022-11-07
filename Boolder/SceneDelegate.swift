@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         // Get stores
-        let dataStore = (UIApplication.shared.delegate as! AppDelegate).dataStore
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         let sqliteStore = (UIApplication.shared.delegate as! AppDelegate).sqliteStore
 
@@ -31,7 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        
         let contentView = ContentView()
             .environment(\.managedObjectContext, context)
-            .environmentObject(dataStore)
             .environmentObject(odrManager)
             .environmentObject(sqliteStore)
 

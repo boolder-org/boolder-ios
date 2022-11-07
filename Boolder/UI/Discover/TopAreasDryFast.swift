@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TopAreasDryFast: View {
-    @EnvironmentObject var dataStore: DataStore
     @Environment(\.openURL) var openURL
     
     @Binding var tabSelection: Int

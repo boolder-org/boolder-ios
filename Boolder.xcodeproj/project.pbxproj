@@ -255,14 +255,6 @@
 		03C6F45628C9CB800012E804 /* area-67-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03C6F45428C9CB800012E804 /* area-67-data.geojson */; };
 		03D650802839231D00779197 /* area-48-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D6507F2839231D00779197 /* area-48-data.geojson */; };
 		03D650812839231D00779197 /* area-48-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03D6507F2839231D00779197 /* area-48-data.geojson */; };
-		03DB8CA92913D1C500EFA944 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */; };
-		03DB8CAA2913D1C500EFA944 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */; };
-		03DB8CAC2913D22A00EFA944 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */; };
-		03DB8CAD2913D22A00EFA944 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */; };
-		03DB8CAF2913D25900EFA944 /* InstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAE2913D25900EFA944 /* InstantSearch.swift */; };
-		03DB8CB02913D25900EFA944 /* InstantSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CAE2913D25900EFA944 /* InstantSearch.swift */; };
-		03DB8CB22913D50800EFA944 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CB12913D50800EFA944 /* SearchView.swift */; };
-		03DB8CB32913D50800EFA944 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CB12913D50800EFA944 /* SearchView.swift */; };
 		03DB8CB52913E7B600EFA944 /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CB42913E7B600EFA944 /* AlgoliaView.swift */; };
 		03DB8CB62913E7B600EFA944 /* AlgoliaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DB8CB42913E7B600EFA944 /* AlgoliaView.swift */; };
 		03DB8CB82913E7C100EFA944 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CB72913E7C100EFA944 /* InstantSearchCore */; };
@@ -291,54 +283,32 @@
 		03EDAC2127EA7D71003D315E /* area-37-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03EDAC1F27EA7D71003D315E /* area-37-data.geojson */; };
 		03F249B228219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
 		03F249B328219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
-		3701845B2466BD0800C6530C /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
-		371584DD25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */; };
-		371584DE25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
-		37213880258276580030131C /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		37379904258E157D00711EDA /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* LargeButton.swift */; };
 		37379909258E619400711EDA /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePickerView.swift */; };
 		3737990B258E619400711EDA /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E825864A43003A545B /* LocationFetcher.swift */; };
-		3737990C258E619400711EDA /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
-		3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
 		3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
 		3737990F258E619400711EDA /* Steepness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C809245326F200DC161F /* Steepness.swift */; };
-		37379910258E619400711EDA /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
-		37379911258E619400711EDA /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
-		37379912258E619400711EDA /* OldFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* OldFiltersView.swift */; };
 		37379913258E619400711EDA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4833F2559A73A00DBD526 /* LineView.swift */; };
 		37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37379915258E619400711EDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
-		37379916258E619400711EDA /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
 		37379917258E619400711EDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
-		37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37379919258E619400711EDA /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
 		3737991A258E619400711EDA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
 		3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
-		3737991D258E619400711EDA /* OldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* OldMapView.swift */; };
-		3737991E258E619400711EDA /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
-		3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
-		37379920258E619400711EDA /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* DataStore.swift */; };
-		37379921258E619400711EDA /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* AreaView.swift */; };
 		37379922258E619400711EDA /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* LargeButton.swift */; };
 		37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
 		37379924258E619400711EDA /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
-		37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
 		37379926258E619400711EDA /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80A245326F200DC161F /* Grade.swift */; };
 		37379927258E619400711EDA /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
-		37379928258E619400711EDA /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
 		37379929258E619400711EDA /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
 		3737992A258E619400711EDA /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
-		3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
-		3737992D258E619400711EDA /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
-		3737992E258E619400711EDA /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		3737992F258E619400711EDA /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
 		37379930258E619400711EDA /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37379931258E619400711EDA /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80C245326F200DC161F /* Line.swift */; };
-		37379932258E619400711EDA /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
 		37379A0A258E619400711EDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
 		37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6322453263400DC161F /* Preview Assets.xcassets */; };
 		37379A3D258E619400711EDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C62F2453263400DC161F /* Assets.xcassets */; };
@@ -346,32 +316,21 @@
 		37379A9A258F4C3000711EDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C62F2453263400DC161F /* Assets.xcassets */; };
 		375397C625AC6C4C00430BF4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375397C525AC6C4C00430BF4 /* Extensions.swift */; };
 		375397C925AC6CEF00430BF4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375397C525AC6C4C00430BF4 /* Extensions.swift */; };
-		375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375666DA245F3CDF007170C7 /* PoiAnnotation.swift */; };
-		37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B83245437A000C5CD82 /* ProblemListView.swift */; };
 		37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
-		3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */; };
 		37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37883A3D2590AB2800BCA364 /* ImageLoadingView.swift */; };
 		37883A412590AB9E00BCA364 /* ImageLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37883A3D2590AB2800BCA364 /* ImageLoadingView.swift */; };
 		3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
 		3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3794555E25AB6DC9009C47A4 /* SettingsView.swift */; };
-		37A276292457424500F53D80 /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
-		37A2762B2457633E00F53D80 /* OldFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* OldFiltersView.swift */; };
 		37A483402559A73A00DBD526 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4833F2559A73A00DBD526 /* LineView.swift */; };
 		37A6572524BDC00500273A9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37A6572724BDC00500273A9A /* Localizable.strings */; };
 		37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
 		37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62B2453263300DC161F /* SceneDelegate.swift */; };
-		37A8C62E2453263300DC161F /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C62D2453263300DC161F /* AreaView.swift */; };
 		37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6322453263400DC161F /* Preview Assets.xcassets */; };
-		37A8C807245326DB00DC161F /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C806245326DB00DC161F /* DataStore.swift */; };
 		37A8C80E245326F200DC161F /* Steepness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C809245326F200DC161F /* Steepness.swift */; };
 		37A8C80F245326F200DC161F /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80A245326F200DC161F /* Grade.swift */; };
 		37A8C810245326F200DC161F /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
 		37A8C811245326F200DC161F /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80C245326F200DC161F /* Line.swift */; };
 		37A8C812245326F200DC161F /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
-		37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8142453272900DC161F /* ProblemAnnotationView.swift */; };
-		37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8152453272900DC161F /* CircuitOverlay.swift */; };
-		37A8C81A2453320D00DC161F /* OldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* OldMapView.swift */; };
-		37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
 		37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C27F25A8627D003A7C64 /* EditProblemView.swift */; };
 		37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */; };
 		37B452282591414800241091 /* NewTopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4521F259140B100241091 /* NewTopoView.swift */; };
@@ -379,19 +338,12 @@
 		37B452362591450200241091 /* TopoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B45230259144D300241091 /* TopoView.swift */; };
 		37B4524F25923B5A00241091 /* ODRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4524E25923B5A00241091 /* ODRManager.swift */; };
 		37B4525025923B5A00241091 /* ODRManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4524E25923B5A00241091 /* ODRManager.swift */; };
-		37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA981246704EB00D56252 /* BoulderOverlay.swift */; };
-		37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37BCA98624670DC000D56252 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
-		37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFFB512461B10400837F64 /* CircuitHelpView.swift */; };
 		37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3794555E25AB6DC9009C47A4 /* SettingsView.swift */; };
-		37D108B32643ED63005F1B19 /* OldArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D108B22643ED63005F1B19 /* OldArea.swift */; };
-		37D108B42643ED63005F1B19 /* OldArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D108B22643ED63005F1B19 /* OldArea.swift */; };
 		37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE480D25AF9AB60052428E /* TestColorView.swift */; };
 		37DE481125AF9AC80052428E /* TestColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DE480D25AF9AB60052428E /* TestColorView.swift */; };
 		37E260C624674466003BC672 /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
-		37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
 		37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
-		37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
 		37F563F725AB09F400271346 /* TopoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F563F525AB09F400271346 /* TopoEntry.swift */; };
 		37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
 		37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* PoiActionSheet.swift */; };
@@ -517,10 +469,6 @@
 		03C6F45128C9CB790012E804 /* area-66-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-66-data.geojson"; sourceTree = "<group>"; };
 		03C6F45428C9CB800012E804 /* area-67-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-67-data.geojson"; sourceTree = "<group>"; };
 		03D6507F2839231D00779197 /* area-48-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-48-data.geojson"; sourceTree = "<group>"; };
-		03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
-		03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		03DB8CAE2913D25900EFA944 /* InstantSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantSearch.swift; sourceTree = "<group>"; };
-		03DB8CB12913D50800EFA944 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		03DB8CB42913E7B600EFA944 /* AlgoliaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaView.swift; sourceTree = "<group>"; };
 		03DE0F542851109F00549219 /* area-25-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-25-data.geojson"; sourceTree = "<group>"; };
 		03DE0F572851124400549219 /* area-25-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-25-topo-lines.json"; sourceTree = "<group>"; };
@@ -533,63 +481,43 @@
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03EDAC1F27EA7D71003D315E /* area-37-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-37-data.geojson"; sourceTree = "<group>"; };
 		03F249B128219D7400F7E6CC /* area-45-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-45-data.geojson"; sourceTree = "<group>"; };
-		3701845A2466BD0800C6530C /* TopoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoStore.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
-		371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
-		3721387F258276580030131C /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		37379903258E157D00711EDA /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		37379A8E258E619400711EDA /* Boolder dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Boolder dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		375397C525AC6C4C00430BF4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		375666DA245F3CDF007170C7 /* PoiAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotation.swift; sourceTree = "<group>"; };
-		37638B83245437A000C5CD82 /* ProblemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListView.swift; sourceTree = "<group>"; };
 		37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDetailsView.swift; sourceTree = "<group>"; };
-		3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiAnnotationView.swift; sourceTree = "<group>"; };
 		37883A3D2590AB2800BCA364 /* ImageLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingView.swift; sourceTree = "<group>"; };
 		378C99E5258569F8003A545B /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		378C99E825864A43003A545B /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
 		3794555E25AB6DC9009C47A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		37A276282457424500F53D80 /* GeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoStore.swift; sourceTree = "<group>"; };
-		37A2762A2457633E00F53D80 /* OldFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldFiltersView.swift; sourceTree = "<group>"; };
 		37A4833F2559A73A00DBD526 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		37A6572624BDC00500273A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A6572924BDC07000273A9A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A8C6262453263300DC161F /* Boolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A8C6292453263300DC161F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37A8C62B2453263300DC161F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		37A8C62D2453263300DC161F /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		37A8C62F2453263400DC161F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37A8C6322453263400DC161F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		37A8C6372453263400DC161F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37A8C806245326DB00DC161F /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		37A8C809245326F200DC161F /* Steepness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Steepness.swift; sourceTree = "<group>"; };
 		37A8C80A245326F200DC161F /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		37A8C80B245326F200DC161F /* Circuit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circuit.swift; sourceTree = "<group>"; };
 		37A8C80C245326F200DC161F /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		37A8C80D245326F200DC161F /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
-		37A8C8142453272900DC161F /* ProblemAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemAnnotationView.swift; sourceTree = "<group>"; };
-		37A8C8152453272900DC161F /* CircuitOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitOverlay.swift; sourceTree = "<group>"; };
-		37A8C8192453320D00DC161F /* OldMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldMapView.swift; sourceTree = "<group>"; };
-		37A8C81B24534D5200DC161F /* FabFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabFiltersView.swift; sourceTree = "<group>"; };
 		37AEBCF425A5CEA200E0E04F /* Boolder dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Boolder dev.entitlements"; sourceTree = "<group>"; };
 		37B2C27F25A8627D003A7C64 /* EditProblemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProblemView.swift; sourceTree = "<group>"; };
 		37B2C28D25A8ABF7003A7C64 /* MapMakerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMakerStore.swift; sourceTree = "<group>"; };
 		37B4521F259140B100241091 /* NewTopoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTopoView.swift; sourceTree = "<group>"; };
 		37B45230259144D300241091 /* TopoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoView.swift; sourceTree = "<group>"; };
 		37B4524E25923B5A00241091 /* ODRManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODRManager.swift; sourceTree = "<group>"; };
-		37BCA981246704EB00D56252 /* BoulderOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderOverlay.swift; sourceTree = "<group>"; };
-		37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemAnnotation.swift; sourceTree = "<group>"; };
 		37BCA98524670DC000D56252 /* Problem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
-		37BFFB512461B10400837F64 /* CircuitHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitHelpView.swift; sourceTree = "<group>"; };
-		37D108B22643ED63005F1B19 /* OldArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldArea.swift; sourceTree = "<group>"; };
 		37DE480D25AF9AB60052428E /* TestColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestColorView.swift; sourceTree = "<group>"; };
 		37E260C524674466003BC672 /* Poi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poi.swift; sourceTree = "<group>"; };
-		37E260C724674612003BC672 /* PoiRouteOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRouteOverlay.swift; sourceTree = "<group>"; };
 		37E42EE0245DB52F00EEBA96 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		37F12D882456D5520036E3E3 /* CircuitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitFilterView.swift; sourceTree = "<group>"; };
 		37F563F525AB09F400271346 /* TopoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoEntry.swift; sourceTree = "<group>"; };
 		37F9358C250578D000B1CAB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37F9358E250578D700B1CAB2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1029,10 +957,6 @@
 		03DB8CA72913D1A100EFA944 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				03DB8CB12913D50800EFA944 /* SearchView.swift */,
-				03DB8CA82913D1C500EFA944 /* SearchResultsController.swift */,
-				03DB8CAB2913D22A00EFA944 /* SearchViewController.swift */,
-				03DB8CAE2913D25900EFA944 /* InstantSearch.swift */,
 				03DB8CB42913E7B600EFA944 /* AlgoliaView.swift */,
 			);
 			path = Search;
@@ -1200,9 +1124,6 @@
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				033F70D929195578000DD3F4 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
-				37A8C806245326DB00DC161F /* DataStore.swift */,
-				37A276282457424500F53D80 /* GeoStore.swift */,
-				3701845A2466BD0800C6530C /* TopoStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
 			path = Stores;
@@ -1221,10 +1142,13 @@
 			isa = PBXGroup;
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
+				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
+				033F70D329191755000DD3F4 /* FiltersView.swift */,
+				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
+				37F12D862456D50E0036E3E3 /* Problem details */,
 				03C104E7290ACBEE007A94D7 /* Mapbox */,
 				03DB8CA72913D1A100EFA944 /* Search */,
 				37158D0425487F1700A8B696 /* Discover */,
-				37F12D852456D4FC0036E3E3 /* Area */,
 				37379903258E157D00711EDA /* LargeButton.swift */,
 				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
@@ -1385,7 +1309,6 @@
 				37A8C80C245326F200DC161F /* Line.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
-				37D108B22643ED63005F1B19 /* OldArea.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1407,7 +1330,6 @@
 				37883A3D2590AB2800BCA364 /* ImageLoadingView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
-				371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";
@@ -1448,46 +1370,12 @@
 			path = "area-5";
 			sourceTree = "<group>";
 		};
-		37D7B16A245B091100B522A6 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				37A8C8192453320D00DC161F /* OldMapView.swift */,
-				3721387F258276580030131C /* HeadingView.swift */,
-				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
-				37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */,
-				37A8C8142453272900DC161F /* ProblemAnnotationView.swift */,
-				37A8C8152453272900DC161F /* CircuitOverlay.swift */,
-				37BCA981246704EB00D56252 /* BoulderOverlay.swift */,
-				375666DA245F3CDF007170C7 /* PoiAnnotation.swift */,
-				3770CABE245F5BB2008B791D /* PoiAnnotationView.swift */,
-				37E260C724674612003BC672 /* PoiRouteOverlay.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		37F12D852456D4FC0036E3E3 /* Area */ = {
-			isa = PBXGroup;
-			children = (
-				37A8C62D2453263300DC161F /* AreaView.swift */,
-				37D7B16A245B091100B522A6 /* Map */,
-				37638B83245437A000C5CD82 /* ProblemListView.swift */,
-				37254DE525557BAD00264034 /* CircleView */,
-				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
-				033F70D329191755000DD3F4 /* FiltersView.swift */,
-				37A2762A2457633E00F53D80 /* OldFiltersView.swift */,
-				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
-				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
-				37BFFB512461B10400837F64 /* CircuitHelpView.swift */,
-				37F12D862456D50E0036E3E3 /* Problem details */,
-			);
-			path = Area;
-			sourceTree = "<group>";
-		};
 		37F12D862456D50E0036E3E3 /* Problem details */ = {
 			isa = PBXGroup;
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
 				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
+				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
 			);
 			path = "Problem details";
@@ -1927,38 +1815,23 @@
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
-				3737990C258E619400711EDA /* FabFiltersView.swift in Sources */,
-				3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
-				37379910258E619400711EDA /* CircuitFilterView.swift in Sources */,
-				03DB8CAA2913D1C500EFA944 /* SearchResultsController.swift in Sources */,
-				37379911258E619400711EDA /* GeoStore.swift in Sources */,
 				37883A412590AB9E00BCA364 /* ImageLoadingView.swift in Sources */,
-				37379912258E619400711EDA /* OldFiltersView.swift in Sources */,
 				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
-				37379916258E619400711EDA /* PoiAnnotationView.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
-				37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
-				03DB8CB02913D25900EFA944 /* InstantSearch.swift in Sources */,
 				033F70DD291959FB000DD3F4 /* TopAreasGroups.swift in Sources */,
-				03DB8CB32913D50800EFA944 /* SearchView.swift in Sources */,
-				3737991D258E619400711EDA /* OldMapView.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
-				3737991E258E619400711EDA /* TopoStore.swift in Sources */,
-				3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */,
-				37379920258E619400711EDA /* DataStore.swift in Sources */,
 				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
 				03DB8CB62913E7B600EFA944 /* AlgoliaView.swift in Sources */,
-				37379921258E619400711EDA /* AreaView.swift in Sources */,
 				37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */,
 				37379922258E619400711EDA /* LargeButton.swift in Sources */,
 				37B4525025923B5A00241091 /* ODRManager.swift in Sources */,
@@ -1967,33 +1840,24 @@
 				37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */,
 				03C104F8290C0688007A94D7 /* ContentView.swift in Sources */,
 				37379924258E619400711EDA /* GradeRange.swift in Sources */,
-				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
 				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
-				37379928258E619400711EDA /* CircuitOverlay.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
-				03DB8CAD2913D22A00EFA944 /* SearchViewController.swift in Sources */,
 				033F70D82919535A000DD3F4 /* Area.swift in Sources */,
 				3737992A258E619400711EDA /* Filters.swift in Sources */,
-				3737992B258E619400711EDA /* CircuitHelpView.swift in Sources */,
 				37F563F725AB09F400271346 /* TopoEntry.swift in Sources */,
 				030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
-				3737992D258E619400711EDA /* ProblemListView.swift in Sources */,
 				03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */,
-				3737992E258E619400711EDA /* HeadingView.swift in Sources */,
 				37B452362591450200241091 /* TopoView.swift in Sources */,
 				37B452282591414800241091 /* NewTopoView.swift in Sources */,
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
-				371584DE25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */,
 				37379931258E619400711EDA /* Line.swift in Sources */,
 				0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
-				37D108B42643ED63005F1B19 /* OldArea.swift in Sources */,
-				37379932258E619400711EDA /* PoiAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2003,40 +1867,25 @@
 			files = (
 				033F70D429191755000DD3F4 /* FiltersView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
-				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				038A2DD7273985A4006E42E9 /* NewTopoView.swift in Sources */,
-				37E260C824674612003BC672 /* PoiRouteOverlay.swift in Sources */,
 				038A2DDB273985E9006E42E9 /* MapMakerStore.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
-				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
-				03DB8CA92913D1C500EFA944 /* SearchResultsController.swift in Sources */,
-				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */,
-				37A2762B2457633E00F53D80 /* OldFiltersView.swift in Sources */,
 				37A483402559A73A00DBD526 /* LineView.swift in Sources */,
 				038A2DD8273985A7006E42E9 /* TopoEntry.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
-				3770CABF245F5BB2008B791D /* PoiAnnotationView.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
-				37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
-				03DB8CAF2913D25900EFA944 /* InstantSearch.swift in Sources */,
-				03DB8CB22913D50800EFA944 /* SearchView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
-				37A8C81A2453320D00DC161F /* OldMapView.swift in Sources */,
-				3701845B2466BD0800C6530C /* TopoStore.swift in Sources */,
-				37BCA982246704EB00D56252 /* BoulderOverlay.swift in Sources */,
 				03DB8CB52913E7B600EFA944 /* AlgoliaView.swift in Sources */,
-				37A8C807245326DB00DC161F /* DataStore.swift in Sources */,
-				37A8C62E2453263300DC161F /* AreaView.swift in Sources */,
 				37379904258E157D00711EDA /* LargeButton.swift in Sources */,
 				37B4524F25923B5A00241091 /* ODRManager.swift in Sources */,
 				03254828273991C900E9E6A6 /* ImagePickerView.swift in Sources */,
@@ -2044,33 +1893,24 @@
 				375397C625AC6C4C00430BF4 /* Extensions.swift in Sources */,
 				03C104F7290C0688007A94D7 /* ContentView.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
-				37A8C8172453272900DC161F /* ProblemAnnotationView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				030AC1A327BAF43800AF85E7 /* TopAreasGroups.swift in Sources */,
 				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				37FD85A32460A4F90054982F /* PoiActionSheet.swift in Sources */,
-				37A8C8182453272900DC161F /* CircuitOverlay.swift in Sources */,
 				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
 				030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */,
-				03DB8CAC2913D22A00EFA944 /* SearchViewController.swift in Sources */,
 				033F70D72919535A000DD3F4 /* Area.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
-				37BFFB522461B10400837F64 /* CircuitHelpView.swift in Sources */,
-				37638B84245437A000C5CD82 /* ProblemListView.swift in Sources */,
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
-				37213880258276580030131C /* HeadingView.swift in Sources */,
 				03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */,
 				038A2DD9273985D6006E42E9 /* LocationFetcher.swift in Sources */,
 				038A2DDA273985DA006E42E9 /* EditProblemView.swift in Sources */,
 				37B45231259144D300241091 /* TopoView.swift in Sources */,
 				37A8C810245326F200DC161F /* Circuit.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
-				371584DD25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
-				37D108B32643ED63005F1B19 /* OldArea.swift in Sources */,
-				375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */,
 				030AC1A627BAF77500AF85E7 /* TopAreasTrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

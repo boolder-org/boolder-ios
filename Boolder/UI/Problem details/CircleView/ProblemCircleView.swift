@@ -21,9 +21,9 @@ struct ProblemCircleView: View {
         )
     }
 }
-
-struct ProblemCircleView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProblemCircleView(problem: DataStore().problems.first!)
-    }
-}
+//
+//struct ProblemCircleView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProblemCircleView(problem: DataStore().problems.first!)
+//    }
+//}

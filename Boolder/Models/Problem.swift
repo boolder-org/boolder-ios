@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+import CoreData
 import SQLite
 
 class Problem : Identifiable, CustomStringConvertible, Hashable {
@@ -36,7 +37,6 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     var id: Int!
     var lineId: Int?
     var tags: [String]?
-    var annotation: ProblemAnnotation!
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     var description: String {
@@ -279,10 +279,6 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         }
     }
     
-    var dataStore: DataStore {
-        (UIApplication.shared.delegate as! AppDelegate).dataStore
-    }
-    
     var sqliteStore: SqliteStore {
         (UIApplication.shared.delegate as! AppDelegate).sqliteStore
     }
@@ -292,7 +288,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     }
     
     func favorite() -> Favorite? {
-        dataStore.favorites().first { (favorite: Favorite) -> Bool in
+        favorites().first { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == id
         }
     }
@@ -302,9 +298,36 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     }
     
     func tick() -> Tick? {
-        dataStore.ticks().first { (tick: Tick) -> Bool in
+        ticks().first { (tick: Tick) -> Bool in
             return Int(tick.problemId) == id
         }
     }
+    
+    func favorites() -> [Favorite] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        request.sortDescriptors = []
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch favorites: \(error)")
+        }
+    }
+    
+    func ticks() -> [Tick] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let request: NSFetchRequest<Tick> = Tick.fetchRequest()
+        request.sortDescriptors = []
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            fatalError("Failed to fetch ticks: \(error)")
+        }
+    }
+
     
 }

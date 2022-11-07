@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TopoView: View {
-    @EnvironmentObject var dataStore: DataStore
     @EnvironmentObject var odrManager: ODRManager
     @Environment(\.presentationMode) var presentationMode
     

@@ -70,3 +70,12 @@ extension NSLocale {
         return "fr"
     }
 }
+
+// Hack to use if #available within a view modifier
+// https://blog.overdesigned.net/posts/2020-09-23-swiftui-availability/
+extension View {
+    func modify<T: View>(@ViewBuilder _ modifier: (Self) -> T) -> some View {
+        return modifier(self)
+    }
+}
+

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TopAreasLevelView: View {
-    @EnvironmentObject var dataStore: DataStore
     @Environment(\.openURL) var openURL
     
     @State private var level = 0

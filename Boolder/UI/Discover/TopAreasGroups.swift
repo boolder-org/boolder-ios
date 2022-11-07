@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TopAreasGroups: View {
-    @EnvironmentObject var dataStore: DataStore
     
     @Binding var tabSelection: Int
     @Binding var centerOnArea: Area?
