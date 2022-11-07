@@ -22,8 +22,8 @@ class MapboxViewController: UIViewController {
         let myResourceOptions = ResourceOptions(accessToken: "pk.eyJ1Ijoibm1vbmRvbGxvdCIsImEiOiJjbDlyNHo2OGMwZjNyM3ZsNzk5d2M1NDVlIn0.HUjcpmT5EZyhuR_VjN6eog")
 
         let cameraOptions = CameraOptions(
-            center: CLLocationCoordinate2D(latitude: 48.394842, longitude: 2.6318405),
-            zoom: 10
+            center: CLLocationCoordinate2D(latitude: 48.3925623, longitude: 2.5968216),
+            zoom: 10.2
         )
         
         let myMapInitOptions = MapInitOptions(
