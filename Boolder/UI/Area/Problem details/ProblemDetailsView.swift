@@ -102,7 +102,7 @@ struct ProblemDetailsView: View {
                     .padding(.top, 4)
                 }
                 
-                HStack {
+                HStack(alignment: .firstTextBaseline) {
                     
                     if problem.steepness != .other {
                         HStack(alignment: .firstTextBaseline) {
@@ -118,6 +118,8 @@ struct ProblemDetailsView: View {
                     if(problem.sitStart) {
                         if problem.steepness != .other {
                             Text("•")
+                                .font(.body)
+                                .foregroundColor(Color(UIColor(.black).lighter(0.3)))
                         }
                         Text("problem.sit_start")
                             .font(.body)
