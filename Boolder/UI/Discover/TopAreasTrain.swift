@@ -11,7 +11,10 @@ import SwiftUI
 struct TopAreasTrain: View {
     @EnvironmentObject var dataStore: DataStore
     
-    @State var presentArea = false
+    @Binding var tabSelection: Int
+    @Binding var centerOnArea: Area?
+    @Binding var centerOnAreaCount: Int
+    
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
@@ -29,19 +32,16 @@ struct TopAreasTrain: View {
                             
                             ForEach(areasFromBoisLeRoi) { area in
                                 
-                                NavigationLink(
-                                    destination: AreaView(),
-                                    isActive: $presentArea,
-                                    label: {
-                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                dataStore.areaId = area.id
-                                                dataStore.filters = Filters()
-                                                presentArea = true
-                                            }
-                                    }
-                                )
+                                Button {
+                                    tabSelection = 1
+                                    centerOnArea = area
+                                    centerOnAreaCount += 1
+                                } label: {
+                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                        .contentShape(Rectangle())
+                                }
+
+                                    
                             }
                         }
                     }
@@ -58,19 +58,15 @@ struct TopAreasTrain: View {
                             
                             ForEach(areasFromAvon) { area in
                                 
-                                NavigationLink(
-                                    destination: AreaView(),
-                                    isActive: $presentArea,
-                                    label: {
-                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                dataStore.areaId = area.id
-                                                dataStore.filters = Filters()
-                                                presentArea = true
-                                            }
-                                    }
-                                )
+                                Button {
+                                    tabSelection = 1
+                                    centerOnArea = area
+                                    centerOnAreaCount += 1
+                                } label: {
+                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                        .contentShape(Rectangle())
+                                }
+                                    
                             }
                         }
                     }
@@ -86,21 +82,21 @@ struct TopAreasTrain: View {
         
     }
     
-    var areasFromBoisLeRoi: [OldArea] {
-        [1,4,7,24].map{dataStore.area(withId:$0)!}.sorted {
+    var areasFromBoisLeRoi: [Area] {
+        [1,4,7,24].map{Area.loadArea(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
-    var areasFromAvon: [OldArea] {
-        [50].map{dataStore.area(withId:$0)!}.sorted {
+    var areasFromAvon: [Area] {
+        [50].map{Area.loadArea(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
 }
 
-struct TopAreasTrain_Previews: PreviewProvider {
-    static var previews: some View {
-        TopAreasTrain()
-    }
-}
+//struct TopAreasTrain_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TopAreasTrain()
+//    }
+//}

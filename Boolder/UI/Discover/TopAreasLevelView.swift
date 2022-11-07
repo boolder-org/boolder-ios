@@ -12,8 +12,11 @@ struct TopAreasLevelView: View {
     @EnvironmentObject var dataStore: DataStore
     @Environment(\.openURL) var openURL
     
-    @State var presentArea = false
     @State private var level = 0
+    
+    @Binding var tabSelection: Int
+    @Binding var centerOnArea: Area?
+    @Binding var centerOnAreaCount: Int
     
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
@@ -46,19 +49,16 @@ struct TopAreasLevelView: View {
                                 LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                     
                                     ForEach(beginnerAreas) { area in
-                                        NavigationLink(
-                                            destination: AreaView(),
-                                            isActive: $presentArea,
-                                            label: {
-                                                AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                    .contentShape(Rectangle())
-                                                    .onTapGesture {
-                                                        dataStore.areaId = area.id
-                                                        dataStore.filters = Filters()
-                                                        presentArea = true
-                                                    }
-                                            }
-                                        )
+                                        Button {
+                                            tabSelection = 1
+                                            centerOnArea = area
+                                            centerOnAreaCount += 1
+                                        } label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .contentShape(Rectangle())
+                                        }
+
+                                            
                                     }
                                 }
                                 
@@ -91,20 +91,15 @@ struct TopAreasLevelView: View {
                                 LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                     
                                     ForEach(intermediateAreas) { area in
-                                        NavigationLink(
-                                            destination: AreaView(),
-                                            isActive: $presentArea,
-                                            label: {
-                                                AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                    .contentShape(Rectangle())
-                                                    .onTapGesture {
-                                                        dataStore.areaId = area.id
-                                                        dataStore.filters = Filters()
-                                                        presentArea = true
-                                                    }
-                                            }
-                                        )
                                         
+                                        Button {
+                                            tabSelection = 1
+                                            centerOnArea = area
+                                            centerOnAreaCount += 1
+                                        } label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .contentShape(Rectangle())
+                                        }
                                     }
                                 }
                                 
@@ -135,19 +130,17 @@ struct TopAreasLevelView: View {
                                 LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                     
                                     ForEach(advancedAreas) { area in
-                                        NavigationLink(
-                                            destination: AreaView(),
-                                            isActive: $presentArea,
-                                            label: {
-                                                AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                    .contentShape(Rectangle())
-                                                    .onTapGesture {
-                                                        dataStore.areaId = area.id
-                                                        dataStore.filters = Filters()
-                                                        presentArea = true
-                                                    }
-                                            }
-                                        )
+                                        
+                                        Button {
+                                            tabSelection = 1
+                                            centerOnArea = area
+                                            centerOnAreaCount += 1
+                                        } label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .contentShape(Rectangle())
+                                        }
+
+                                            
                                     }
                                 }
                             }
@@ -162,20 +155,20 @@ struct TopAreasLevelView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    var beginnerAreas: [OldArea] {
-        [19, 14, 18, 13, 2, 51].map{dataStore.area(withId:$0)!}.sorted {
+    var beginnerAreas: [Area] {
+        [19, 14, 18, 13, 2, 51].map{Area.loadArea(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
-    var intermediateAreas: [OldArea] {
-        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1].map{dataStore.area(withId:$0)!}.sorted {
+    var intermediateAreas: [Area] {
+        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1].map{Area.loadArea(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
-    var advancedAreas: [OldArea] {
-        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69].map{dataStore.area(withId:$0)!}.sorted {
+    var advancedAreas: [Area] {
+        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69].map{Area.loadArea(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
@@ -185,8 +178,8 @@ struct TopAreasLevelView: View {
     }
 }
 
-struct TopAreasLevelView_Previews: PreviewProvider {
-    static var previews: some View {
-        TopAreasLevelView()
-    }
-}
+//struct TopAreasLevelView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TopAreasLevelView()
+//    }
+//}

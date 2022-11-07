@@ -32,105 +32,105 @@ struct DiscoverView: View {
                             
                             VStack(alignment: .leading) {
                                 
-//                                VStack {
-//                                    HStack {
-//                                        NavigationLink(destination: TopAreasLevelView()) {
-//
-//                                            VStack(alignment: .leading) {
-//                                                HStack {
-//                                                    Image(systemName: "chart.bar")
-//                                                    Text("discover.top_areas.level")
-//                                                        .textCase(.uppercase)
-//                                                }
-//                                                .padding()
-//                                                .font(.subheadline.weight(.bold))
-//                                                .foregroundColor(Color.white)
-//                                                .frame(height: 70)
-//                                                .frame(maxWidth: .infinity)
-//                                                .background(
-//                                                    LinearGradient(gradient:
-//                                                                    Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)]),
-//                                                                   startPoint: .top,
-//                                                                   endPoint: .bottom)
-//                                                )
-//                                                .cornerRadius(8)
-//                                            }
-//                                        }
-//
-//                                        NavigationLink(destination: TopAreasGroups()) {
-//
-//                                            VStack(alignment: .leading) {
-//                                                HStack {
-//                                                    Image(systemName: "person.3")
-//                                                    Text("discover.top_areas.groups")
-//                                                        .textCase(.uppercase)
-//                                                }
-//                                                .padding()
-//                                                .font(.subheadline.weight(.bold))
-//                                                .foregroundColor(Color.white)
-//                                                .frame(height: 70)
-//                                                .frame(maxWidth: .infinity)
-//                                                .background(
-//                                                    LinearGradient(gradient:
-//                                                                    Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
-//                                                                   startPoint: .top,
-//                                                                   endPoint: .bottom)
-//                                                )
-//                                                .cornerRadius(8)
-//                                            }
-//                                        }
-//                                    }
-//
-//                                    HStack {
-//
-//                                        NavigationLink(destination: TopAreasDryFast()) {
-//
-//                                            VStack(alignment: .leading) {
-//                                                HStack {
-//                                                    Image(systemName: "sun.max")
-//                                                    Text("discover.top_areas.dry_fast")
-//                                                        .textCase(.uppercase)
-//                                                }
-//                                                .padding()
-//                                                .font(.subheadline.weight(.bold))
-//                                                .foregroundColor(Color.white)
-//                                                .frame(height: 70)
-//                                                .frame(maxWidth: .infinity)
-//                                                .background(
-//                                                    LinearGradient(gradient:
-//                                                                    Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)]),
-//                                                                   startPoint: .top,
-//                                                                   endPoint: .bottom)
-//                                                )
-//                                                .cornerRadius(8)
-//                                            }
-//                                        }
-//
-//                                        NavigationLink(destination: TopAreasTrain()) {
-//
-//                                            VStack(alignment: .leading) {
-//                                                HStack {
-//                                                    Text("discover.top_areas.train")
-//                                                        .textCase(.uppercase)
-//                                                }
-//                                                .padding()
-//                                                .font(.subheadline.weight(.bold))
-//                                                .foregroundColor(Color.white)
-//                                                .frame(height: 70)
-//                                                .frame(maxWidth: .infinity)
-//                                                .background(
-//                                                    LinearGradient(gradient:
-//                                                                    Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)]),
-//                                                                   startPoint: .top,
-//                                                                   endPoint: .bottom)
-//                                                )
-//                                                .cornerRadius(8)
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                                .padding(.horizontal)
-//                                .padding(.top)
+                                VStack {
+                                    HStack {
+                                        NavigationLink(destination: TopAreasLevelView(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Image(systemName: "chart.bar")
+                                                    Text("discover.top_areas.level")
+                                                        .textCase(.uppercase)
+                                                }
+                                                .padding()
+                                                .font(.subheadline.weight(.bold))
+                                                .foregroundColor(Color.white)
+                                                .frame(height: 70)
+                                                .frame(maxWidth: .infinity)
+                                                .background(
+                                                    LinearGradient(gradient:
+                                                                    Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)]),
+                                                                   startPoint: .top,
+                                                                   endPoint: .bottom)
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+
+                                        NavigationLink(destination: TopAreasGroups(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Image(systemName: "person.3")
+                                                    Text("discover.top_areas.groups")
+                                                        .textCase(.uppercase)
+                                                }
+                                                .padding()
+                                                .font(.subheadline.weight(.bold))
+                                                .foregroundColor(Color.white)
+                                                .frame(height: 70)
+                                                .frame(maxWidth: .infinity)
+                                                .background(
+                                                    LinearGradient(gradient:
+                                                                    Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
+                                                                   startPoint: .top,
+                                                                   endPoint: .bottom)
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+                                    }
+
+                                    HStack {
+
+                                        NavigationLink(destination: TopAreasDryFast(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Image(systemName: "sun.max")
+                                                    Text("discover.top_areas.dry_fast")
+                                                        .textCase(.uppercase)
+                                                }
+                                                .padding()
+                                                .font(.subheadline.weight(.bold))
+                                                .foregroundColor(Color.white)
+                                                .frame(height: 70)
+                                                .frame(maxWidth: .infinity)
+                                                .background(
+                                                    LinearGradient(gradient:
+                                                                    Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)]),
+                                                                   startPoint: .top,
+                                                                   endPoint: .bottom)
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+
+                                        NavigationLink(destination: TopAreasTrain(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+
+                                            VStack(alignment: .leading) {
+                                                HStack {
+                                                    Text("discover.top_areas.train")
+                                                        .textCase(.uppercase)
+                                                }
+                                                .padding()
+                                                .font(.subheadline.weight(.bold))
+                                                .foregroundColor(Color.white)
+                                                .frame(height: 70)
+                                                .frame(maxWidth: .infinity)
+                                                .background(
+                                                    LinearGradient(gradient:
+                                                                    Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)]),
+                                                                   startPoint: .top,
+                                                                   endPoint: .bottom)
+                                                )
+                                                .cornerRadius(8)
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal)
+                                .padding(.top)
                                 
                                 Text("discover.popular")
                                     .font(.title2).bold()
@@ -149,20 +149,15 @@ struct DiscoverView: View {
                                                     .padding(.leading, 8)
                                                 
                                                 ForEach(popularAreas) { (area: Area) in
-                                                    NavigationLink(
-                                                        destination: AreaView(),
-                                                        isActive: $presentArea,
-                                                        label: {
-                                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                                .padding(.leading, 8)
-                                                                .contentShape(Rectangle())
-                                                                .onTapGesture {
-                                                                    tabSelection = 1
-                                                                    centerOnArea = area
-                                                                    centerOnAreaCount += 1
-                                                                }
-                                                        }
-                                                    )
+                                                    Button {
+                                                        tabSelection = 1
+                                                        centerOnArea = area
+                                                        centerOnAreaCount += 1
+                                                    } label: {
+                                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                            .padding(.leading, 8)
+                                                            .contentShape(Rectangle())
+                                                    }
                                                 }
                                                 
                                                 Color.white.opacity(0)

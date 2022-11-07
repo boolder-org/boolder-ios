@@ -12,7 +12,10 @@ struct TopAreasDryFast: View {
     @EnvironmentObject var dataStore: DataStore
     @Environment(\.openURL) var openURL
     
-    @State var presentArea = false
+    @Binding var tabSelection: Int
+    @Binding var centerOnArea: Area?
+    @Binding var centerOnAreaCount: Int
+    
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
@@ -29,20 +32,16 @@ struct TopAreasDryFast: View {
                         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                             
                             ForEach(areas) { area in
-                                NavigationLink(
-                                    destination: AreaView(),
-                                    isActive: $presentArea,
-                                    label: {
-                                        AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                dataStore.areaId = area.id
-                                                dataStore.filters = Filters()
-                                                presentArea = true
-                                            }
-                                    }
-                                )
-                                
+                                Button {
+                                    tabSelection = 1
+                                    centerOnArea = area
+                                    centerOnAreaCount += 1
+                                } label: {
+                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                        .contentShape(Rectangle())
+                                }
+
+  
                             }
                         }
                     }
@@ -81,15 +80,15 @@ struct TopAreasDryFast: View {
         
     }
     
-    var areas: [OldArea] {
-        [16, 10, 2, 15, 7].map{dataStore.area(withId:$0)!}.sorted {
+    var areas: [Area] {
+        [16, 10, 2, 15, 7].map{Area.loadArea(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
 }
 
-struct TopAreasDryFast_Previews: PreviewProvider {
-    static var previews: some View {
-        TopAreasDryFast()
-    }
-}
+//struct TopAreasDryFast_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TopAreasDryFast()
+//    }
+//}

@@ -156,6 +156,10 @@
 		033F70D82919535A000DD3F4 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D62919535A000DD3F4 /* Area.swift */; };
 		033F70DA29195578000DD3F4 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 033F70D929195578000DD3F4 /* boolder.db */; };
 		033F70DB29195578000DD3F4 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 033F70D929195578000DD3F4 /* boolder.db */; };
+		033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */; };
+		033F70DD291959FB000DD3F4 /* TopAreasGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */; };
+		033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */; };
+		033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */; };
 		0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F9502869C42C00BBAC38 /* area-30-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0343F94E2869C42B00BBAC38 /* area-30-topo-lines.json */; };
@@ -283,8 +287,6 @@
 		03DE0F772851270300549219 /* area-35-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 03DE0F732851270300549219 /* area-35-topo-lines.json */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
-		03DE504B27C0348C003E5B2A /* AllAreasMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */; };
-		03DE504E27C18444003E5B2A /* AllAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504D27C18444003E5B2A /* AllAreasView.swift */; };
 		03EDAC2027EA7D71003D315E /* area-37-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03EDAC1F27EA7D71003D315E /* area-37-data.geojson */; };
 		03EDAC2127EA7D71003D315E /* area-37-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03EDAC1F27EA7D71003D315E /* area-37-data.geojson */; };
 		03F249B228219D7400F7E6CC /* area-45-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 03F249B128219D7400F7E6CC /* area-45-data.geojson */; };
@@ -294,14 +296,11 @@
 		371584DD25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */; };
 		371584DE25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
-		37158D0B25488AE000A8B696 /* AreaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0A25488AE000A8B696 /* AreaRowView.swift */; };
-		37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0D25488B4100A8B696 /* AreaItemView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
 		37213880258276580030131C /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3721387F258276580030131C /* HeadingView.swift */; };
 		37254DE925557F9700264034 /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		37379904258E157D00711EDA /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37379903258E157D00711EDA /* LargeButton.swift */; };
 		37379909258E619400711EDA /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E5258569F8003A545B /* ImagePickerView.swift */; };
-		3737990A258E619400711EDA /* AreaRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0A25488AE000A8B696 /* AreaRowView.swift */; };
 		3737990B258E619400711EDA /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C99E825864A43003A545B /* LocationFetcher.swift */; };
 		3737990C258E619400711EDA /* FabFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C81B24534D5200DC161F /* FabFiltersView.swift */; };
 		3737990D258E619400711EDA /* PoiRouteOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C724674612003BC672 /* PoiRouteOverlay.swift */; };
@@ -318,7 +317,6 @@
 		37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98324670C9D00D56252 /* ProblemAnnotation.swift */; };
 		37379919258E619400711EDA /* Poi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E260C524674466003BC672 /* Poi.swift */; };
 		3737991A258E619400711EDA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
-		3737991B258E619400711EDA /* AreaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0D25488B4100A8B696 /* AreaItemView.swift */; };
 		3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */; };
 		3737991D258E619400711EDA /* OldMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C8192453320D00DC161F /* OldMapView.swift */; };
 		3737991E258E619400711EDA /* TopoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3701845A2466BD0800C6530C /* TopoStore.swift */; };
@@ -533,16 +531,12 @@
 		03DE0F722851270200549219 /* area-35-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-35-data.geojson"; sourceTree = "<group>"; };
 		03DE0F732851270300549219 /* area-35-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-35-topo-lines.json"; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
-		03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasMapView.swift; sourceTree = "<group>"; };
-		03DE504D27C18444003E5B2A /* AllAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAreasView.swift; sourceTree = "<group>"; };
 		03EDAC1F27EA7D71003D315E /* area-37-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-37-data.geojson"; sourceTree = "<group>"; };
 		03F249B128219D7400F7E6CC /* area-45-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-45-data.geojson"; sourceTree = "<group>"; };
 		3701845A2466BD0800C6530C /* TopoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoStore.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		371584DC25ADF0BB00AB3207 /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
-		37158D0A25488AE000A8B696 /* AreaRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaRowView.swift; sourceTree = "<group>"; };
-		37158D0D25488B4100A8B696 /* AreaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaItemView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
 		3721387F258276580030131C /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
@@ -1164,14 +1158,10 @@
 			children = (
 				37158D0525487F4F00A8B696 /* DiscoverView.swift */,
 				3794555E25AB6DC9009C47A4 /* SettingsView.swift */,
-				37158D0A25488AE000A8B696 /* AreaRowView.swift */,
-				37158D0D25488B4100A8B696 /* AreaItemView.swift */,
 				030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */,
 				030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */,
 				030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */,
 				030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */,
-				03DE504D27C18444003E5B2A /* AllAreasView.swift */,
-				03DE504A27C0348C003E5B2A /* AllAreasMapView.swift */,
 				0343F94B2869A29F00BBAC38 /* AreaCardView.swift */,
 			);
 			path = Discover;
@@ -1935,7 +1925,6 @@
 			files = (
 				033F70D529191755000DD3F4 /* FiltersView.swift in Sources */,
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
-				3737990A258E619400711EDA /* AreaRowView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990C258E619400711EDA /* FabFiltersView.swift in Sources */,
@@ -1947,6 +1936,7 @@
 				37379911258E619400711EDA /* GeoStore.swift in Sources */,
 				37883A412590AB9E00BCA364 /* ImageLoadingView.swift in Sources */,
 				37379912258E619400711EDA /* OldFiltersView.swift in Sources */,
+				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
@@ -1957,15 +1947,16 @@
 				37379918258E619400711EDA /* ProblemAnnotation.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
-				3737991B258E619400711EDA /* AreaItemView.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				03DB8CB02913D25900EFA944 /* InstantSearch.swift in Sources */,
+				033F70DD291959FB000DD3F4 /* TopAreasGroups.swift in Sources */,
 				03DB8CB32913D50800EFA944 /* SearchView.swift in Sources */,
 				3737991D258E619400711EDA /* OldMapView.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				3737991E258E619400711EDA /* TopoStore.swift in Sources */,
 				3737991F258E619400711EDA /* BoulderOverlay.swift in Sources */,
 				37379920258E619400711EDA /* DataStore.swift in Sources */,
+				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
 				03DB8CB62913E7B600EFA944 /* AlgoliaView.swift in Sources */,
 				37379921258E619400711EDA /* AreaView.swift in Sources */,
 				37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */,
@@ -1979,6 +1970,7 @@
 				37379925258E619400711EDA /* ProblemAnnotationView.swift in Sources */,
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
+				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
 				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
 				37379928258E619400711EDA /* CircuitOverlay.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
@@ -2010,7 +2002,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				033F70D429191755000DD3F4 /* FiltersView.swift in Sources */,
-				37158D0B25488AE000A8B696 /* AreaRowView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
 				038A2DD7273985A4006E42E9 /* NewTopoView.swift in Sources */,
@@ -2019,7 +2010,6 @@
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				37F12D892456D5520036E3E3 /* CircuitFilterView.swift in Sources */,
-				03DE504B27C0348C003E5B2A /* AllAreasMapView.swift in Sources */,
 				03DB8CA92913D1C500EFA944 /* SearchResultsController.swift in Sources */,
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
@@ -2036,7 +2026,6 @@
 				37BCA98424670C9D00D56252 /* ProblemAnnotation.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
-				37158D0E25488B4100A8B696 /* AreaItemView.swift in Sources */,
 				03DB8CAF2913D25900EFA944 /* InstantSearch.swift in Sources */,
 				03DB8CB22913D50800EFA944 /* SearchView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
@@ -2080,7 +2069,6 @@
 				371584DD25ADF0BB00AB3207 /* PinchToZoom.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
-				03DE504E27C18444003E5B2A /* AllAreasView.swift in Sources */,
 				37D108B32643ED63005F1B19 /* OldArea.swift in Sources */,
 				375666DB245F3CDF007170C7 /* PoiAnnotation.swift in Sources */,
 				030AC1A627BAF77500AF85E7 /* TopAreasTrain.swift in Sources */,
