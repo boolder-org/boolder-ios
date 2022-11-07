@@ -15,7 +15,6 @@ struct DiscoverView: View {
     
     @State var presentArea = false
     @State private var presentSettings = false
-    @State private var searchText = ""
     
     var body: some View {
         NavigationView {
@@ -24,8 +23,6 @@ struct DiscoverView: View {
                 ScrollView {
                     
                     VStack {
-                        
-                        if searchText.isEmpty {
                             
                             VStack(alignment: .leading) {
                                 
@@ -171,58 +168,6 @@ struct DiscoverView: View {
                                 }
                                 
                                 
-                                
-                                VStack(alignment: .leading) {
-                                    
-                                    HStack {
-                                        Text("discover.all_areas")
-                                            .font(.title2).bold()
-                                        
-                                        Spacer()
-                                        
-                                        NavigationLink(destination: AllAreasView()) {
-                                            Text("discover.all_areas.map")
-                                        }
-                                    }
-                                    .padding(.top, 16)
-                                    .padding(.bottom, 8)
-                                    
-                                    Divider()
-                                    
-                                    ForEach(areasDisplayed) { area in
-                                        NavigationLink(
-                                            destination: AreaView(),
-                                            isActive: $presentArea,
-                                            label: {
-                                                HStack {
-                                                    Text(area.name)
-                                                        .font(.body)
-                                                        .foregroundColor(Color.appGreen)
-                                                    Text("(\(String(area.problemsCount)))")
-                                                        .font(.callout)
-                                                        .foregroundColor(Color(.tertiaryLabel))
-                                                    Spacer()
-                                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                                }
-                                                .contentShape(Rectangle())
-                                                .onTapGesture {
-                                                    dataStore.areaId = area.id
-                                                    dataStore.filters = Filters()
-                                                    presentArea = true
-                                                }
-                                            }
-                                        )
-                                        
-                                        Divider()
-                                    }
-                                    
-                                }
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal)
-                                
-                                
-                                
                             }
                             
                             VStack(alignment: .leading) {
@@ -306,80 +251,13 @@ struct DiscoverView: View {
                             }
 #endif
                             
-                        }
-                        else {
-                            VStack(alignment: .leading) {
-                                
-                                Divider()
-                                
-                                ForEach(searchResults) { area in
-                                    NavigationLink(
-                                        destination: AreaView(),
-                                        isActive: $presentArea,
-                                        label: {
-                                            HStack {
-                                                Text(area.name)
-                                                    .font(.body)
-                                                    .foregroundColor(Color.appGreen)
-                                                Text("(\(String(area.problemsCount)))")
-                                                    .font(.callout)
-                                                    .foregroundColor(Color(.tertiaryLabel))
-                                                Spacer()
-                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                            }
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                dataStore.areaId = area.id
-                                                dataStore.filters = Filters()
-                                                presentArea = true
-                                            }
-                                        }
-                                    )
-                                    
-                                    Divider()
-                                }
-                                
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal)
-                        }
+                        
                     }
-                    .navigationBarTitle(Text("Fontainebleau"))
-                    .modify {
-                        if #available(iOS 15, *) {
-                            $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("discover.search_prompt"))
-                        }
-                        else {
-                            $0 // no search bar on iOS14
-                        }
-                    }
+                    .navigationBarTitle(Text("Découvrir"))
                 }
             }
         }
         .phoneOnlyStackNavigationView()
-    }
-    
-    var areasDisplayed: [OldArea] {
-        let published = dataStore.areas.filter { $0.published }
-        
-        var displayed = published
-        
-#if DEVELOPMENT
-        displayed = dataStore.areas
-#endif
-        
-        return displayed.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
-    }
-    
-    var searchResults: [OldArea] {
-        areasDisplayed.filter { cleanString($0.name).contains(cleanString(searchText)) }
-    }
-    
-    func cleanString(_ str: String) -> String {
-        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current).alphanumeric
     }
     
     var popularAreas: [OldArea] {

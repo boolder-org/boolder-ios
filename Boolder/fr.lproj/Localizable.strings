@@ -9,7 +9,7 @@
 // MARK: Discover view
 "discover.title" = "Découvrir";
 "discover.all_areas" = "Tous les secteurs";
-"discover.popular" = "Populaires";
+"discover.popular" = "Secteurs populaires";
 "discover.top_areas.level" = "Par niveau";
 "discover.top_areas.train" = "Accessible en train + vélo";
 "discover.top_areas.dry_fast" = "Sèche vite";
