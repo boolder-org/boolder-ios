@@ -20,7 +20,9 @@ struct ContentView: View {
     @State private var centerOnAreaCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
-    @State private var applyFilters = false
+    @State private var presentFilters = false
+    @State var filters: Filters = Filters()
+    @State private var filtersRefreshCount = 0
     
     // TODO: move somewhere else
     static let algoliaController = AlgoliaController()
@@ -39,7 +41,8 @@ struct ContentView: View {
                     centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
                     selectedPoi: $selectedPoi,
                     presentPoiActionSheet: $presentPoiActionSheet,
-                    applyFilters: $applyFilters
+                    filters: $filters,
+                    refreshFiltersCount: $filtersRefreshCount
                 )
                     .edgesIgnoringSafeArea(.top)
                     .background(
@@ -52,32 +55,32 @@ struct ContentView: View {
                         )
                     )
                 
-                VStack {
-                    Spacer()
-                    HStack(spacing: 16) {
-                        Button(action: {
-                            applyFilters.toggle()
-                        }) {
-                            HStack {
-                                Image(systemName: "slider.horizontal.3")
-                                
-                                Text("Filtres")
-                                    .fixedSize(horizontal: true, vertical: true)
-                            }
-                            .padding(.vertical, 12)
-                        }
-                    }
-                    
-                    .accentColor(.primary)
-                    .padding(.horizontal, 16)
-                    .background(Color.systemBackground)
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
-                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                    .padding(.bottom)
-//                    .padding()
-                }
-                .zIndex(10)
+//                VStack {
+//                    Spacer()
+//                    HStack(spacing: 16) {
+//                        Button(action: {
+//                            applyFilters.toggle()
+//                        }) {
+//                            HStack {
+//                                Image(systemName: "slider.horizontal.3")
+//
+//                                Text("Filtres")
+//                                    .fixedSize(horizontal: true, vertical: true)
+//                            }
+//                            .padding(.vertical, 12)
+//                        }
+//                    }
+//
+//                    .accentColor(.primary)
+//                    .padding(.horizontal, 16)
+//                    .background(Color.systemBackground)
+//                    .cornerRadius(10)
+//                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
+//                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                    .padding(.bottom)
+////                    .padding()
+//                }
+//                .zIndex(10)
                 
                 HStack {
                     Spacer()
@@ -106,7 +109,24 @@ struct ContentView: View {
                         }) {
                             Image(systemName: "magnifyingglass")
                                 .padding(12)
-                                .offset(x: -1, y: 0)
+//                                .offset(x: -1, y: 0)
+                        }
+                        .accentColor(.primary)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                        
+                        Button(action: {
+                            presentFilters = true
+//                            applyFilters.toggle()
+                        }) {
+                            Image(systemName: "slider.horizontal.3")
+                                .padding(12)
+//                                .offset(x: -1, y: 0)
                         }
                         .accentColor(.primary)
                         .background(Color.systemBackground)
@@ -152,7 +172,19 @@ struct ContentView: View {
                         $0
                     }
                 }
-                
+            }
+            .sheet(isPresented: $presentFilters, onDismiss: {
+                filtersRefreshCount += 1
+            }) {
+                FiltersView(presentFilters: $presentFilters, filters: $filters)
+                .modify {
+                    if #available(iOS 16, *) {
+                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                    }
+                    else {
+                        $0
+                    }
+                }
             }
             .tabItem {
                 Label("Carte", systemImage: "map")

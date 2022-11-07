@@ -49,7 +49,7 @@ struct FabFiltersView: View {
                 .sheet(isPresented: $presentFilters, onDismiss: {
                     dataStore.filters = filters
                 }) {
-                    FiltersView(presentFilters: $presentFilters, filters: $filters)
+                    OldFiltersView(presentFilters: $presentFilters, filters: $filters)
                         // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views
                         // remove these lines as soon as it's fixed
                         .environmentObject(dataStore)

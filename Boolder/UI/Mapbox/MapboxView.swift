@@ -23,8 +23,9 @@ struct MapboxView: UIViewControllerRepresentable {
     @Binding var centerOnCurrentLocationCount: Int
     @Binding var selectedPoi: Poi?
     @Binding var presentPoiActionSheet: Bool
+    @Binding var filters: Filters
+    @Binding var refreshFiltersCount: Int
     
-    @Binding var applyFilters: Bool
      
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
@@ -36,11 +37,9 @@ struct MapboxView: UIViewControllerRepresentable {
         print("update UI")
         
         
-        if(applyFilters) {
-            vc.applyFilter()
-        }
-        else {
-            vc.removeFilter()
+        if(refreshFiltersCount > context.coordinator.lastRefreshFiltersCount) {
+            vc.applyFilters(filters)
+            context.coordinator.lastRefreshFiltersCount = refreshFiltersCount
         }
         
         // center on problem
@@ -101,6 +100,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnProblemCount = 0
         var lastCenterOnAreaCount = 0
         var lastCenterOnCurrentLocationCount = 0
+        var lastRefreshFiltersCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent

@@ -154,6 +154,8 @@
 		0325CEA728F5A3AD00EDA132 /* area-69-data.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 0325CEA428F5A3AC00EDA132 /* area-69-data.geojson */; };
 		0325CEA828F5A3AD00EDA132 /* area-69-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0325CEA528F5A3AD00EDA132 /* area-69-topo-lines.json */; };
 		0325CEA928F5A3AD00EDA132 /* area-69-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0325CEA528F5A3AD00EDA132 /* area-69-topo-lines.json */; };
+		033F70D429191755000DD3F4 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D329191755000DD3F4 /* FiltersView.swift */; };
+		033F70D529191755000DD3F4 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D329191755000DD3F4 /* FiltersView.swift */; };
 		0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F9502869C42C00BBAC38 /* area-30-topo-lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 0343F94E2869C42B00BBAC38 /* area-30-topo-lines.json */; };
@@ -311,7 +313,7 @@
 		3737990F258E619400711EDA /* Steepness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C809245326F200DC161F /* Steepness.swift */; };
 		37379910258E619400711EDA /* CircuitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F12D882456D5520036E3E3 /* CircuitFilterView.swift */; };
 		37379911258E619400711EDA /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
-		37379912258E619400711EDA /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* FiltersView.swift */; };
+		37379912258E619400711EDA /* OldFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* OldFiltersView.swift */; };
 		37379913258E619400711EDA /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4833F2559A73A00DBD526 /* LineView.swift */; };
 		37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37379915258E619400711EDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
@@ -359,7 +361,7 @@
 		3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
 		3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3794555E25AB6DC9009C47A4 /* SettingsView.swift */; };
 		37A276292457424500F53D80 /* GeoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A276282457424500F53D80 /* GeoStore.swift */; };
-		37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* FiltersView.swift */; };
+		37A2762B2457633E00F53D80 /* OldFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A2762A2457633E00F53D80 /* OldFiltersView.swift */; };
 		37A483402559A73A00DBD526 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A4833F2559A73A00DBD526 /* LineView.swift */; };
 		37A6572524BDC00500273A9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37A6572724BDC00500273A9A /* Localizable.strings */; };
 		37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C6292453263300DC161F /* AppDelegate.swift */; };
@@ -475,6 +477,7 @@
 		0325CE9F28F5A24C00EDA132 /* area-68-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-68-topo-lines.json"; sourceTree = "<group>"; };
 		0325CEA428F5A3AC00EDA132 /* area-69-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-69-data.geojson"; sourceTree = "<group>"; };
 		0325CEA528F5A3AD00EDA132 /* area-69-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-69-topo-lines.json"; sourceTree = "<group>"; };
+		033F70D329191755000DD3F4 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
 		0343F94E2869C42B00BBAC38 /* area-30-topo-lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "area-30-topo-lines.json"; sourceTree = "<group>"; };
 		0343F94F2869C42B00BBAC38 /* area-30-data.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "area-30-data.geojson"; sourceTree = "<group>"; };
@@ -559,7 +562,7 @@
 		3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicCurveAlgorithm.swift; sourceTree = "<group>"; };
 		3794555E25AB6DC9009C47A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		37A276282457424500F53D80 /* GeoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoStore.swift; sourceTree = "<group>"; };
-		37A2762A2457633E00F53D80 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		37A2762A2457633E00F53D80 /* OldFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldFiltersView.swift; sourceTree = "<group>"; };
 		37A4833F2559A73A00DBD526 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		37A6572624BDC00500273A9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37A6572924BDC07000273A9A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1482,7 +1485,8 @@
 				37638B83245437A000C5CD82 /* ProblemListView.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37A8C81B24534D5200DC161F /* FabFiltersView.swift */,
-				37A2762A2457633E00F53D80 /* FiltersView.swift */,
+				033F70D329191755000DD3F4 /* FiltersView.swift */,
+				37A2762A2457633E00F53D80 /* OldFiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				37F12D882456D5520036E3E3 /* CircuitFilterView.swift */,
 				37BFFB512461B10400837F64 /* CircuitHelpView.swift */,
@@ -1931,6 +1935,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				033F70D529191755000DD3F4 /* FiltersView.swift in Sources */,
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
 				3737990A258E619400711EDA /* AreaRowView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
@@ -1945,7 +1950,7 @@
 				37379911258E619400711EDA /* GeoStore.swift in Sources */,
 				030AC1AA27BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A412590AB9E00BCA364 /* ImageLoadingView.swift in Sources */,
-				37379912258E619400711EDA /* FiltersView.swift in Sources */,
+				37379912258E619400711EDA /* OldFiltersView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
@@ -2011,6 +2016,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				033F70D429191755000DD3F4 /* FiltersView.swift in Sources */,
 				37158D0B25488AE000A8B696 /* AreaRowView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				37A8C81C24534D5200DC161F /* FabFiltersView.swift in Sources */,
@@ -2025,7 +2031,7 @@
 				37A276292457424500F53D80 /* GeoStore.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */,
-				37A2762B2457633E00F53D80 /* FiltersView.swift in Sources */,
+				37A2762B2457633E00F53D80 /* OldFiltersView.swift in Sources */,
 				37A483402559A73A00DBD526 /* LineView.swift in Sources */,
 				038A2DD8273985A7006E42E9 /* TopoEntry.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,

@@ -229,30 +229,35 @@ class MapboxViewController: UIViewController {
         self.view.addSubview(mapView)
     }
     
-    func applyFilter() {
+    func applyFilters(_ filters: Filters) {
         do {
-          
-          try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
-            // Update layer properties
-              layer.filter = Expression(.match) {
-                  Exp(.get) { "grade" }
-                  ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+",]
-                  true
-                  false
-              }
-          }
+            let gradeMin = filters.gradeRange?.min ?? Grade.min
+            let gradeMax = filters.gradeRange?.max ?? Grade.max
             
-            try mapView.mapboxMap.style.updateLayer(withId: "problems-texts", type: SymbolLayer.self) { layer in
-              // Update layer properties
+            let gradesArray = (gradeMin...gradeMax).map{ $0.string }
+            
+            
+            try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
+                // Update layer properties
                 layer.filter = Expression(.match) {
                     Exp(.get) { "grade" }
-                    ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+",]
+                    gradesArray
+                    true
+                    false
+                }
+            }
+            
+            try mapView.mapboxMap.style.updateLayer(withId: "problems-texts", type: SymbolLayer.self) { layer in
+                // Update layer properties
+                layer.filter = Expression(.match) {
+                    Exp(.get) { "grade" }
+                    gradesArray
                     true
                     false
                 }
             }
         } catch {
-          print("Ran into an error updating the layer: \(error)")
+            print("Ran into an error updating the layer: \(error)")
         }
     }
     
