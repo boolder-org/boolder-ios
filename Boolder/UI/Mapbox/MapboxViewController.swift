@@ -40,7 +40,7 @@ class MapboxViewController: UIViewController {
         mapView.location.options.puckType = .puck2D(configuration)
         
         mapView.gestures.options.pitchEnabled = false
-//        mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
+        mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
