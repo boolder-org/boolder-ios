@@ -17,6 +17,7 @@ struct ProblemItem: Codable, Hashable {
     let area_name: String
 }
 
+// TODO: rename to something like AlgoliaArea
 struct AreaItem: Codable, Hashable {
     let objectID: String
     let name: String
@@ -94,7 +95,7 @@ struct AlgoliaView: View {
     
     @Binding var centerOnProblem: Problem?
     @Binding var centerOnProblemCount: Int
-    @Binding var centerOnArea: AreaItem?
+    @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
@@ -149,10 +150,8 @@ struct AlgoliaView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                if let hit = hit {
-                                    centerOnArea = hit
+                                    centerOnArea = Area.loadArea(id: id)
                                     centerOnAreaCount += 1
-                                }
                                 
                             } label: {
                                 HStack {

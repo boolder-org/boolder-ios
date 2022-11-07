@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AreaCardView: View {
-    let area: OldArea
+    let area: Area
     let width: CGFloat
     let height: CGFloat
     

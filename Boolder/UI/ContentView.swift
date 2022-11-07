@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var centerOnProblem: Problem? = nil
     @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
-    @State private var centerOnArea: AreaItem? = nil
+    @State private var centerOnArea: Area? = nil
     @State private var centerOnAreaCount = 0 // to be able to trigger a map refresh anytime we want
     @State private var selectedPoi: Poi? = nil
     @State private var presentPoiActionSheet = false
@@ -24,11 +24,13 @@ struct ContentView: View {
     @State var filters: Filters = Filters()
     @State private var filtersRefreshCount = 0
     
+    @State private var tabSelection = 1
+    
     // TODO: move somewhere else
     static let algoliaController = AlgoliaController()
 
     var body: some View {
-        TabView {
+        TabView(selection: $tabSelection) {
             
             ZStack {
                 MapboxView(
@@ -189,12 +191,14 @@ struct ContentView: View {
             .tabItem {
                 Label("Carte", systemImage: "map")
             }
+            .tag(1)
 
             
-            DiscoverView()
+            DiscoverView(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)
                 .tabItem {
                     Label("Discover", systemImage: "sparkles")
                 }
+                .tag(2)
         }
         
         
