@@ -122,20 +122,20 @@ struct ContentView: View {
                         
                         Button(action: {
                             presentFilters = true
-//                            applyFilters.toggle()
                         }) {
                             Image(systemName: "slider.horizontal.3")
                                 .padding(12)
-//                                .offset(x: -1, y: 0)
+                            // .offset(x: -1, y: 0)
                         }
-                        .accentColor(.primary)
-                        .background(Color.systemBackground)
+                        .accentColor(filters.filtersCount() >= 1 ? .systemBackground : .primary)
+                        .background(filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)
                         )
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                         .padding(.horizontal)
+                        
                     }
                 }
                 .padding(.bottom)
