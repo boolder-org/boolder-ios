@@ -30,7 +30,7 @@
 	<key>MBXAccessToken</key>
 	<string>pk.eyJ1Ijoibm1vbmRvbGxvdCIsImEiOiJjbDlyNHo2OGMwZjNyM3ZsNzk5d2M1NDVlIn0.HUjcpmT5EZyhuR_VjN6eog</string>
 	<key>NSCameraUsageDescription</key>
-	<string>You'll be able to take photos of problems.</string>
+	<string>You&apos;ll be able to take photos of problems.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location will be displayed on the map to help you find your way around.</string>
 	<key>UIApplicationSceneManifest</key>
@@ -70,5 +70,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>LocationAccuracyAuthorizationDescription</key>
+		<string>Please enable precise location. The map works best only when precise location data is available.</string>
+	</dict>
 </dict>
 </plist>

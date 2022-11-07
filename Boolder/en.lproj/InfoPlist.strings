@@ -7,4 +7,5 @@
 */
 
 NSLocationWhenInUseUsageDescription = "Your location will be displayed on the map to help you find your way around.";
+LocationAccuracyAuthorizationDescription = "Please enable precise location. The map works best only when precise location data is available.";
 NSCameraUsageDescription = "You'll be able to take photos of problems.";
