@@ -214,21 +214,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		03C104E7290ACBEE007A94D7 /* Mapbox */ = {
+		03C104E7290ACBEE007A94D7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
 				03C104EB290ACDC6007A94D7 /* MapboxView.swift */,
-			);
-			path = Mapbox;
-			sourceTree = "<group>";
-		};
-		03DB8CA72913D1A100EFA944 /* Search */ = {
-			isa = PBXGroup;
-			children = (
+				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
+				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
+				033F70D329191755000DD3F4 /* FiltersView.swift */,
+				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				03DB8CB42913E7B600EFA944 /* AlgoliaView.swift */,
 			);
-			path = Search;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		37158D0425487F1700A8B696 /* Discover */ = {
@@ -269,12 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
-				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
-				033F70D329191755000DD3F4 /* FiltersView.swift */,
-				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
+				03C104E7290ACBEE007A94D7 /* Map */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
-				03C104E7290ACBEE007A94D7 /* Mapbox */,
-				03DB8CA72913D1A100EFA944 /* Search */,
 				37158D0425487F1700A8B696 /* Discover */,
 				37379903258E157D00711EDA /* LargeButton.swift */,
 				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
@@ -371,10 +363,10 @@
 		37F12D862456D50E0036E3E3 /* Problem details */ = {
 			isa = PBXGroup;
 			children = (
-				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
-				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
+				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
+				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
 			);
 			path = "Problem details";
 			sourceTree = "<group>";
