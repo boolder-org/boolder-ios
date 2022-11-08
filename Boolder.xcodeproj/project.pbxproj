@@ -207,6 +207,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033F70E4291AA1B1000DD3F4 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				37379903258E157D00711EDA /* LargeButton.swift */,
+				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
+				375397C525AC6C4C00430BF4 /* Extensions.swift */,
+				030AC1B127BD590000AF85E7 /* DropShadow.swift */,
+				37DE480D25AF9AB60052428E /* TestColorView.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		03817A33272B336F003C21D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +235,7 @@
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				03DB8CB42913E7B600EFA944 /* SearchView.swift */,
+				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -266,13 +279,8 @@
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
 				03C104E7290ACBEE007A94D7 /* Map */,
-				37F12D862456D50E0036E3E3 /* Problem details */,
 				37158D0425487F1700A8B696 /* Discover */,
-				37379903258E157D00711EDA /* LargeButton.swift */,
-				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
-				375397C525AC6C4C00430BF4 /* Extensions.swift */,
-				030AC1B127BD590000AF85E7 /* DropShadow.swift */,
-				37DE480D25AF9AB60052428E /* TestColorView.swift */,
+				033F70E4291AA1B1000DD3F4 /* Misc */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -363,9 +371,9 @@
 		37F12D862456D50E0036E3E3 /* Problem details */ = {
 			isa = PBXGroup;
 			children = (
+				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
-				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
 				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
 			);
 			path = "Problem details";
