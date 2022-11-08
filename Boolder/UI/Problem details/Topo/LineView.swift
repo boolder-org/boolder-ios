@@ -12,8 +12,6 @@ struct LineView: View {
     @Binding var problem: Problem
     @Binding var drawPercentage: CGFloat
     
-//    @Binding var pinchToZoomScale: CGFloat
-    
     var body: some View {
         ResizablePath(path: linePath)
             .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk

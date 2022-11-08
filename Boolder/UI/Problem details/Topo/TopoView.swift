@@ -16,14 +16,10 @@ struct TopoView: View {
     @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
     
-//    @ObservedObject var pinchToZoomState: PinchToZoomState
-//    let pinchToZoomPadding: CGFloat // hack to increase the area registering pinch gesture
-    
     var body: some View {
         ZStack(alignment: .center) {
             
             Group {
-//                if true {
                 if areaResourcesDownloaded {
                     if let topoPhoto = problem.mainTopoPhoto {
                         
@@ -49,13 +45,6 @@ struct TopoView: View {
                                 }
                             }
                         }
-//                        .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
-//                        .offset(pinchToZoomState.offset)
-//                        .overlay(
-//                            PinchToZoom(state: pinchToZoomState)
-//                                .padding(.bottom, -pinchToZoomPadding) // careful when changing this, it may hide tappable areas
-//                        )
-                        
                     }
                     else {
                         Image("nophoto")
@@ -105,12 +94,7 @@ struct TopoView: View {
                                 .padding(.horizontal, 8)
                                 .background(Color.gray.opacity(0.8))
                                 .foregroundColor(Color(UIColor.systemBackground))
-//                                .opacity(0.7)
                                 .cornerRadius(16)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 16)
-//                                        .stroke(Color(UIColor.systemGreen), lineWidth: 1)
-//                                )
                                 .padding(8)
                         }
                     }
@@ -119,8 +103,6 @@ struct TopoView: View {
                 }
                 
             }
-//            .opacity(pinchToZoomState.isPinching ? 0 : 1)
-//            .animation(.easeIn(duration: 0.5))
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color("ImageBackground"))

@@ -145,7 +145,7 @@ struct ContentView: View {
             }
             .sheet(isPresented: $presentSearch) {
                 NavigationView {
-                    AlgoliaView(
+                    SearchView(
                         searchBoxController: ContentView.algoliaController.searchBoxController,
                         problemHitsController: ContentView.algoliaController.problemHitsController,
                         areaHitsController:ContentView.algoliaController.areaHitsController,

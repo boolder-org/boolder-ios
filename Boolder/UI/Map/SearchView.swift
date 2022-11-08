@@ -84,7 +84,7 @@ class AlgoliaController {
       
 }
 
-struct AlgoliaView: View {
+struct SearchView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var searchBoxController: SearchBoxObservableController

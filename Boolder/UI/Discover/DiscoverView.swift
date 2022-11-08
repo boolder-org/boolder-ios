@@ -19,8 +19,6 @@ struct DiscoverView: View {
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     
-    
-    
     var body: some View {
         NavigationView {
             

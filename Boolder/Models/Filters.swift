@@ -11,29 +11,17 @@ import SwiftUI
 struct Filters {
     var gradeRange: GradeRange? = nil
     var steepness: Set<Steepness> = Set()
-    var heightMax = Int.max
-    var photoMissing = false
-    var lineMissing = false
-    var circuitId: Int? = nil
-    var favorite = false
-    var ticked = false
-    var risky = true
-    var mapMakerModeEnabled = false
+//    var favorite = false
+//    var ticked = false
     
     func filtersCount() -> Int {
         let initialValues = Filters()
         var count = 0
         
         if gradeRange != initialValues.gradeRange { count += 1 }
-        if circuitId != initialValues.circuitId { count += 1 }
         if steepness != initialValues.steepness { count += 1 }
-        if heightMax != initialValues.heightMax { count += 1 }
-        if photoMissing != initialValues.photoMissing { count += 1 }
-        if lineMissing != initialValues.lineMissing { count += 1 }
-        if favorite != initialValues.favorite { count += 1 }
-        if ticked != initialValues.ticked { count += 1 }
-        if risky != initialValues.risky { count += 1 }
-        if mapMakerModeEnabled != initialValues.mapMakerModeEnabled { count += 1 }
+//        if favorite != initialValues.favorite { count += 1 }
+//        if ticked != initialValues.ticked { count += 1 }
         
         return count
     }

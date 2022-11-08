@@ -26,17 +26,14 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     var circuitId: Int?
     var circuitColor: Circuit.CircuitColor?
     var circuitNumber: String = ""
-    var belongsToCircuit: Bool = false
     var grade = Grade.min
     var name: String? = nil
     var bleauInfoId: String? = nil
     var parentId: Int? = nil
-    var height: Int? = nil
     var steepness: Steepness = .other
     var sitStart: Bool = false
     var id: Int!
     var lineId: Int?
-    var tags: [String]?
     var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     var description: String {
@@ -119,47 +116,6 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         else {
             return name ?? NSLocalizedString("problem.no_name", comment: "")
         }
-    }
-    
-    func nameForDirections() -> String {
-        if let circuitColor = circuitColor {
-            if circuitNumber != "" {
-                return circuitColor.shortName() + " " + circuitNumber
-            }
-        }
-        
-        return name ?? NSLocalizedString("problem.no_name", comment: "")
-    }
-    
-    func readableDescription() -> String? {
-        var strings = Set<String>()
-        
-        if let tags = tags {
-            strings.formUnion(tags)
-            strings.remove("risky") // FIXME: use enum
-        }
-        
-//        if let height = height {
-//            strings.insert(
-//                String.localizedStringWithFormat(NSLocalizedString("problem.height_desc", comment: ""), height.description)
-//            )
-//        }
-        
-        return strings.map { (string: String) in
-            switch string {
-            case "sit_start":
-                return NSLocalizedString("problem.sit_start", comment: "")
-            default:
-                return string
-            }
-        }.joined(separator: ", ")
-    }
-    
-    func isRisky() -> Bool {
-        if let tags = tags {
-            return tags.contains("risky") // FIXME: use enum
-        }
-        return false
     }
     
     // FIXME: this code is called many times => perf issue?
@@ -265,20 +221,6 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         line?.photo()
     }
     
-    func circuitNumberComparableValue() -> Double {
-        if let int = Int(circuitNumber) {
-            return Double(int)
-        }
-        else {
-            if let int = Int(circuitNumber.dropLast()) {
-                return 0.5 + Double(int)
-            }
-            else {
-                return 0
-            }
-        }
-    }
-    
     var sqliteStore: SqliteStore {
         (UIApplication.shared.delegate as! AppDelegate).sqliteStore
     }
@@ -328,6 +270,4 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
             fatalError("Failed to fetch ticks: \(error)")
         }
     }
-
-    
 }

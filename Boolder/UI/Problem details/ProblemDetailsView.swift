@@ -25,8 +25,6 @@ struct ProblemDetailsView: View {
     @State private var presentSharesheet = false
     
     @State private var lineDrawPercentage: CGFloat = .zero
-//    @StateObject var pinchToZoomState = PinchToZoomState()
-//    let pinchToZoomPadding: CGFloat = 64 // safeguard for the pinch gesture hack (cf TopoView)
     
     var body: some View {
         ScrollView {
@@ -129,26 +127,10 @@ struct ProblemDetailsView: View {
                             .foregroundColor(Color.appGreen)
                     }
                 }
-                
-                //                            if problem.isRisky() {
-                //
-                //                                HStack {
-                //                                    Image(systemName: "exclamationmark.shield.fill")
-                //                                        .font(.body)
-                //                                        .foregroundColor(Color.red)
-                //                                        .frame(minWidth: 16)
-                //                                    Text("problem.risky.long")
-                //                                        .font(.body)
-                //                                        .foregroundColor(Color.red)
-                //                                }
-                //                            }
             }
-//            .frame(minHeight: pinchToZoomPadding) // careful when changing this, it may hide tappable areas
         }
-//        .background(Color.red)
         .padding(.top, 0)
         .padding(.horizontal)
-//        .background(Color.green)
 //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
         
     }
