@@ -23,7 +23,6 @@ struct ProblemDetailsView: View {
     
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
-    @State private var presentEditProblem = false
     
     @State private var lineDrawPercentage: CGFloat = .zero
 //    @StateObject var pinchToZoomState = PinchToZoomState()
@@ -67,13 +66,6 @@ struct ProblemDetailsView: View {
                 }
             })
         }
-        .background(
-            EmptyView()
-                .sheet(isPresented: $presentEditProblem) {
-                    EditProblemView(problem: problem, selectedSteepness: problem.steepness, selectedHeight: Double(problem.height ?? 0))
-                        .environment(\.managedObjectContext, managedObjectContext)
-                }
-        )
     }
     
     
@@ -231,22 +223,6 @@ struct ProblemDetailsView: View {
                     .padding(.horizontal, 16)
                 }
                 .buttonStyle(Pill())
-                
-                #if DEVELOPMENT
-                
-                Button(action: {
-                    presentEditProblem = true
-                }) {
-                    HStack(alignment: .center, spacing: 8) {
-                        Image(systemName: "pencil")
-                        Text("problem.action.edit").fixedSize(horizontal: true, vertical: true)
-                    }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                }
-                .buttonStyle(Pill())
-                
-                #endif
             }
             .padding(.horizontal)
             .padding(.vertical, 4)
@@ -428,7 +404,7 @@ extension String {
 
 //struct ProblemDetailsView_Previews: PreviewProvider {
 //    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    
+//
 //    static var previews: some View {
 //        ProblemDetailsView(problem: .constant(dataStore.problems.first!))
 //            .environment(\.managedObjectContext, context)
