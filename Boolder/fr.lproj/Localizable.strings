@@ -6,6 +6,12 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
+// MARK: Search
+"search.title" = "Recherche";
+"search.areas" = "Secteurs";
+"search.problems" = "Voies";
+"search.placeholder" = "Nom de voie ou secteur";
+
 // MARK: Discover view
 "discover.title" = "Découvrir";
 "discover.all_areas" = "Tous les secteurs";
@@ -42,11 +48,6 @@
 "top_areas.dry_fast.useful_link" = "Lien utile :";
 "all_areas.map.title" = "Tous les secteurs";
 "all_areas.map.problems" = "%@ voies";
-
-// MARK: Area view
-"area.filter" = "Filtre";
-"area.filters" = "Filtres";
-"area.list" = "Liste";
 
 // MARK: Circuit
 "circuit.long_name.yellow" = "Circuit Jaune";
@@ -96,19 +97,10 @@
 "filters.grade.range.beginner" = "Débutant";
 "filters.grade.range.intermediate" = "Intermédiaire";
 "filters.grade.range.advanced" = "Expérimenté";
-"filters.grade.range.custom" = "Personnalisé";
+"filters.grade.range.custom" = "Niveau personnalisé";
 "filters.grade.range_picker.level" = "Niveau";
 "filters.grade.range_picker.grade_min" = "Cotation min";
 "filters.grade.range_picker.grade_max" = "Cotation max";
-
-// MARK: Circuit help
-"circuit_help.title" = "Circuits";
-"circuit_help.circuits.p1" = "Les circuits sont très pratiques pour découvrir un secteur.";
-"circuit_help.circuits.p2" = "Ils regroupent des voies de niveau relativement homogène.";
-"circuit_help.circuits.p3" = "N'hésitez pas à regarder le détail de chaque circuit pour en savoir plus sur les niveaux précis de chaque voie.";
-"circuit_help.numbers.title" = "Mieux qu'un GPS";
-"circuit_help.numbers.p1" = "Le numéro de chaque voie est peint directement sur la roche, ce qui permet de se repérer facilement.";
-"circuit_help.got_it" = "J'ai bien compris !";
 
 // MARK: Steepness
 "steepness.wall" = "Mur vertical";
@@ -121,8 +113,6 @@
 // MARK: Problem details
 "problem.no_name" = "Sans nom";
 "problem.sit_start" = "départ assis";
-"problem.height_desc" = "hauteur %@ m";
-"problem.risky.long" = "Dangereux en cas de chute";
 "problem.action.save" = "Enregistrer";
 "problem.action.share" = "Partager";
 "problem.action.report" = "Signaler";
@@ -135,7 +125,3 @@
 "problem.image.loading" = "Chargement du secteur...";
 "problem.variants.one" = "1 variante";
 "problem.variants.other" = "%d variantes";
-
-// MARK: Problem list
-"problem_list.title" = "Voies";
-"problem_list.search_prompt" = "Nom de voie";

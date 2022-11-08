@@ -6,6 +6,12 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
+// MARK: Search
+"search.title" = "Search";
+"search.areas" = "Areas";
+"search.problems" = "Problems";
+"search.placeholder" = "Problem or area name";
+
 // MARK: Discover view
 "discover.title" = "Discover";
 "discover.all_areas" = "All areas";
@@ -43,10 +49,6 @@
 "all_areas.map.title" = "All areas";
 "all_areas.map.problems" = "%@ problems";
 
-// MARK: Area view
-"area.filter" = "Filter";
-"area.filters" = "Filters";
-"area.list" = "List";
 
 // MARK: Circuit
 "circuit.long_name.yellow" = "Yellow circuit";
@@ -96,19 +98,10 @@
 "filters.grade.range.beginner" = "Beginner";
 "filters.grade.range.intermediate" = "Intermediate";
 "filters.grade.range.advanced" = "Experienced";
-"filters.grade.range.custom" = "Custom";
+"filters.grade.range.custom" = "Custom level";
 "filters.grade.range_picker.level" = "Level";
 "filters.grade.range_picker.grade_min" = "Grade min";
 "filters.grade.range_picker.grade_max" = "Grade max";
-
-// MARK: Circuit help
-"circuit_help.title" = "Circuits";
-"circuit_help.circuits.p1" = "Circuits are very helpful to discover an area.";
-"circuit_help.circuits.p2" = "They are composed of problems with relatively homogeneous levels.";
-"circuit_help.circuits.p3" = "Feel free to have a look at the problems of each circuit to know more about the required level.";
-"circuit_help.numbers.title" = "Better than a GPS";
-"circuit_help.numbers.p1" = "Each problem's number is painted directly on the boulder, which is very handy to locate yourself.";
-"circuit_help.got_it" = "Got it!";
 
 // MARK: Steepness
 "steepness.wall" = "Wall";
@@ -121,8 +114,6 @@
 // MARK: Problem details
 "problem.no_name" = "No name";
 "problem.sit_start" = "sit start";
-"problem.height_desc" = "height %@ m";
-"problem.risky.long" = "Dangerous if you fall";
 "problem.action.save" = "Save";
 "problem.action.share" = "Share";
 "problem.action.report" = "Report";
@@ -135,7 +126,3 @@
 "problem.image.loading" = "Loading area...";
 "problem.variants.one" = "1 variant";
 "problem.variants.other" = "%d variants";
-
-// MARK: Problem list
-"problem_list.title" = "Problems";
-"problem_list.search_prompt" = "Problem name";

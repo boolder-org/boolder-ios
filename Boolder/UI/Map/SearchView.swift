@@ -114,7 +114,7 @@ struct SearchView: View {
             }
             
           }
-        .navigationBarTitle(Text("Search"), displayMode: .inline)
+        .navigationBarTitle(Text("search.title"), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
@@ -129,7 +129,7 @@ struct SearchView: View {
 //        .animation(.easeInOut(duration: 0), value: searchBoxController.query)
         .modify {
               if #available(iOS 15, *) {
-                  $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Nom de voie ou secteur"))
+                  $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("search.placeholder"))
                       .disableAutocorrection(true)
               }
               else {
