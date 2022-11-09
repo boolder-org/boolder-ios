@@ -143,25 +143,6 @@ struct ContentView: View {
                 .padding(.bottom)
                 .zIndex(10)
             }
-            .sheet(isPresented: $presentSearch) {
-                NavigationView {
-                    SearchView(
-                        searchBoxController: ContentView.algoliaController.searchBoxController,
-                        problemHitsController: ContentView.algoliaController.problemHitsController,
-                        areaHitsController:ContentView.algoliaController.areaHitsController,
-                        centerOnProblem: $centerOnProblem,
-                        centerOnProblemCount: $centerOnProblemCount,
-                        centerOnArea: $centerOnArea,
-                        centerOnAreaCount: $centerOnAreaCount,
-                        selectedProblem: $selectedProblem,
-                        presentProblemDetails: $presentProblemDetails
-                    )
-                }
-                .onAppear() {
-                    ContentView.algoliaController.searcher.search()
-                }
-                
-            }
             .sheet(isPresented: $presentProblemDetails) {
                 ProblemDetailsView(
                     problem: $selectedProblem
@@ -175,19 +156,45 @@ struct ContentView: View {
                     }
                 }
             }
-            .sheet(isPresented: $presentFilters, onDismiss: {
-                filtersRefreshCount += 1
-            }) {
-                FiltersView(presentFilters: $presentFilters, filters: $filters)
-                .modify {
-                    if #available(iOS 16, *) {
-                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+            // temporary hack to make multi sheets work on iOS14
+            .background(
+                EmptyView()
+                    .sheet(isPresented: $presentSearch) {
+                        NavigationView {
+                            SearchView(
+                                searchBoxController: ContentView.algoliaController.searchBoxController,
+                                problemHitsController: ContentView.algoliaController.problemHitsController,
+                                areaHitsController:ContentView.algoliaController.areaHitsController,
+                                centerOnProblem: $centerOnProblem,
+                                centerOnProblemCount: $centerOnProblemCount,
+                                centerOnArea: $centerOnArea,
+                                centerOnAreaCount: $centerOnAreaCount,
+                                selectedProblem: $selectedProblem,
+                                presentProblemDetails: $presentProblemDetails
+                            )
+                        }
+                        .onAppear() {
+                            ContentView.algoliaController.searcher.search()
+                        }
                     }
-                    else {
-                        $0
+            )
+            // temporary hack to make multi sheets work on iOS14
+            .background(
+                EmptyView()
+                    .sheet(isPresented: $presentFilters, onDismiss: {
+                        filtersRefreshCount += 1
+                    }) {
+                        FiltersView(presentFilters: $presentFilters, filters: $filters)
+                            .modify {
+                                if #available(iOS 16, *) {
+                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                                }
+                                else {
+                                    $0
+                                }
+                            }
                     }
-                }
-            }
+            )
             .tabItem {
                 Label("Carte", systemImage: "map")
             }
