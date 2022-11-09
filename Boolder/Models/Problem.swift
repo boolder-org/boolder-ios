@@ -35,7 +35,7 @@ struct Problem : Identifiable {
             let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
             
             let areaId = Expression<Int>("area_id")
-            let name = Expression<String?>("name") // FIXME: use optional?
+            let name = Expression<String?>("name")
             let grade = Expression<String>("grade")
             let steepness = Expression<String>("steepness")
             let circuitNumber = Expression<String?>("circuit_number")
@@ -43,8 +43,8 @@ struct Problem : Identifiable {
             let circuitId = Expression<Int?>("circuit_id")
             let bleauInfoId = Expression<String?>("bleau_info_id")
             let parentId = Expression<Int?>("parent_id")
-            let latitude = Expression<Double?>("latitude")
-            let longitude = Expression<Double?>("longitude")
+            let latitude = Expression<Double>("latitude")
+            let longitude = Expression<Double>("longitude")
             let sitStart = Expression<Int>("sit_start")
             
             if let p = try db.pluck(problems) {
@@ -52,7 +52,7 @@ struct Problem : Identifiable {
                     id: id,
                     name: p[name],
                     grade: Grade(p[grade]),
-                    coordinate: CLLocationCoordinate2D(latitude: p[latitude] ?? 0, longitude: p[longitude] ?? 0),
+                    coordinate: CLLocationCoordinate2D(latitude: p[latitude], longitude: p[longitude]),
                     steepness: Steepness(rawValue: p[steepness]) ?? .other,
                     sitStart: p[sitStart] == 1,
                     areaId: p[areaId],
