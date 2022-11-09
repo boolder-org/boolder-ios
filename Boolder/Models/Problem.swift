@@ -6,7 +6,8 @@
 //  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
-import MapKit
+import UIKit
+import CoreLocation
 import CoreData
 import SQLite
 

@@ -6,8 +6,6 @@
 //  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
-import SwiftUI
-
 struct Filters {
     var gradeRange: GradeRange? = nil
     var steepness: Set<Steepness> = Set()
