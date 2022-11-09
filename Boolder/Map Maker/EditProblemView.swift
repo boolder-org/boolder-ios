@@ -68,7 +68,7 @@ struct EditProblemView: View {
                     TextEditor(text: $comments)
                 }
             }
-            .navigationBarTitle(Text(problem.nameWithFallback()), displayMode: .inline)
+            .navigationBarTitle(Text(problem.nameWithFallback), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()

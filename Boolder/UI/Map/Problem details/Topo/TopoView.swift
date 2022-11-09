@@ -85,7 +85,7 @@ struct TopoView: View {
                                 Button {
                                     switchToProblem(variant)
                                 } label: {
-                                    Text("\(variant.nameWithFallback()) \(variant.grade.string)")
+                                    Text("\(variant.nameWithFallback) \(variant.grade.string)")
                                 }
                             }
                         } label: {

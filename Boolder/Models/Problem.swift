@@ -80,7 +80,7 @@ struct Problem : Identifiable {
         circuitColor?.uicolorForPhotoOverlay() ?? UIColor.gray
     }
     
-    func nameWithFallback() -> String {
+    var nameWithFallback: String {
         if let circuitColor = circuitColor {
             if circuitNumber != "" {
                 return name ?? (circuitColor.shortName() + " " + circuitNumber)
