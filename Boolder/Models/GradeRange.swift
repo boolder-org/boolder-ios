@@ -16,7 +16,6 @@ struct GradeRange : Equatable, Hashable {
     static let intermediate =   GradeRange(min: Grade("4a"), max: Grade("5c+"))
     static let advanced =       GradeRange(min: Grade("6a"), max: Grade("8c+"))
 
-    
     var localizedName: String {
         if self == Self.beginner {
             return NSLocalizedString("filters.grade.range.beginner", comment: "")

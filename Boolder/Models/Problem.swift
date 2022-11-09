@@ -14,7 +14,7 @@ struct Problem : Identifiable {
     let id: Int
     let name: String?
     let grade: Grade
-    var coordinate: CLLocationCoordinate2D
+    let coordinate: CLLocationCoordinate2D
     let steepness: Steepness
     let sitStart: Bool
     let areaId: Int

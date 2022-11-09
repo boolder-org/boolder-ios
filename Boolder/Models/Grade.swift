@@ -6,7 +6,7 @@
 //  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
-struct Grade: Comparable, Hashable, CustomStringConvertible, Strideable {
+struct Grade: Hashable, CustomStringConvertible {
     let string: String
     
     static let grades = ["1a", "1a+", "1b", "1b+", "1c", "1c+", "2a", "2a+", "2b", "2b+", "2c", "2c+", "3a", "3a+", "3b", "3b+", "3c", "3c+", "4a", "4a+", "4b", "4b+", "4c", "4c+", "5a", "5a+", "5b", "5b+", "5c", "5c+", "6a", "6a+", "6b", "6b+", "6c", "6c+", "7a", "7a+", "7b", "7b+", "7c", "7c+", "8a", "8a+", "8b", "8b+", "8c", "8c+", "9a", "9a+", "9b", "9b+", "9c", "9c+"]
@@ -36,13 +36,12 @@ struct Grade: Comparable, Hashable, CustomStringConvertible, Strideable {
         Int(String(string.first!))!
     }
     
-    // MARK: CustomStringConvertible protocol
-    
     var description: String {
         return string
     }
-    
-    // MARK: Comparable protocol
+}
+
+extension Grade: Comparable {
     
     func index() -> Int {
         Self.grades.firstIndex(of: string)!
@@ -55,9 +54,9 @@ struct Grade: Comparable, Hashable, CustomStringConvertible, Strideable {
     static func == (lhs: Grade, rhs: Grade) -> Bool {
         return lhs.string == rhs.string
     }
-    
-    // MARK: Strideable protocol
-    
+}
+
+extension Grade: Strideable {
     public func distance(to other: Grade) -> Grade.Stride {
         return Stride(other.index()) - Stride(index())
     }
