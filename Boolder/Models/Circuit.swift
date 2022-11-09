@@ -8,7 +8,15 @@
 
 import UIKit
 
-class Circuit {
+struct Circuit {
+    let id: Int
+    let color: CircuitColor
+    
+    init(id: Int, color: CircuitColor) {
+        self.id = id
+        self.color = color
+    }
+    
     enum CircuitColor: Int, Comparable {
         case whiteForKids
         case yellow
@@ -23,10 +31,31 @@ class Circuit {
         case white
         case offCircuit
         
-        static
-        func < (lhs:Self, rhs:Self) -> Bool
-        {
-            return lhs.rawValue < rhs.rawValue
+        static func colorFromString(_ string: String?) -> CircuitColor {
+            switch string {
+            case "yellow":
+                return .yellow
+            case "purple":
+                return .purple
+            case "orange":
+                return .orange
+            case "green":
+                return .green
+            case "blue":
+                return .blue
+            case "skyblue":
+                return .skyBlue
+            case "salmon":
+                return .salmon
+            case "red":
+                return .red
+            case "black":
+                return .black
+            case "white":
+                return .white
+            default:
+                return .offCircuit
+            }
         }
         
         var uicolor: UIColor {
@@ -58,7 +87,7 @@ class Circuit {
             }
         }
         
-        func uicolorForPhotoOverlay() -> UIColor {
+        var uicolorForPhotoOverlay: UIColor {
             if self == .offCircuit {
                 return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             }
@@ -67,7 +96,7 @@ class Circuit {
             }
         }
         
-        func shortName() -> String {
+        var shortName: String {
             switch self {
             case .yellow:
                 return NSLocalizedString("circuit.short_name.yellow", comment: "")
@@ -96,7 +125,7 @@ class Circuit {
             }
         }
         
-        func longName() -> String {
+        var longName: String {
             switch self {
             case .yellow:
                 return NSLocalizedString("circuit.long_name.yellow", comment: "")
@@ -124,40 +153,11 @@ class Circuit {
                 return NSLocalizedString("circuit.long_name.off_circuit", comment: "")
             }
         }
-    }
-    
-    init(id: Int, color: CircuitColor) {
-        self.id = id
-        self.color = color
-    }
-    
-    let id: Int
-    let color: CircuitColor
-    
-    static func circuitColorFromString(_ string: String?) -> CircuitColor {
-        switch string {
-        case "yellow":
-            return CircuitColor.yellow
-        case "purple":
-            return CircuitColor.purple
-        case "orange":
-            return CircuitColor.orange
-        case "green":
-            return CircuitColor.green
-        case "blue":
-            return CircuitColor.blue
-        case "skyblue":
-            return CircuitColor.skyBlue
-        case "salmon":
-            return CircuitColor.salmon
-        case "red":
-            return CircuitColor.red
-        case "black":
-            return CircuitColor.black
-        case "white":
-            return CircuitColor.white
-        default:
-            return CircuitColor.offCircuit
+        
+        static
+        func < (lhs:Self, rhs:Self) -> Bool
+        {
+            return lhs.rawValue < rhs.rawValue
         }
     }
 }

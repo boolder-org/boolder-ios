@@ -55,7 +55,7 @@ struct Problem : Identifiable {
                     sitStart: p[sitStart] == 1,
                     areaId: p[areaId],
                     circuitId: p[circuitId],
-                    circuitColor: Circuit.circuitColorFromString(p[circuitColor]),
+                    circuitColor: Circuit.CircuitColor.colorFromString(p[circuitColor]),
                     circuitNumber: p[circuitNumber] ?? "",
                     bleauInfoId: p[bleauInfoId],
                     parentId: p[parentId]
@@ -75,13 +75,13 @@ struct Problem : Identifiable {
     }
     
     var circuitUIColorForPhotoOverlay: UIColor {
-        circuitColor?.uicolorForPhotoOverlay() ?? UIColor.gray
+        circuitColor?.uicolorForPhotoOverlay ?? UIColor.gray
     }
     
     var nameWithFallback: String {
         if let circuitColor = circuitColor {
             if circuitNumber != "" {
-                return name ?? (circuitColor.shortName() + " " + circuitNumber)
+                return name ?? (circuitColor.shortName + " " + circuitNumber)
             }
             else {
                 return name ?? NSLocalizedString("problem.no_name", comment: "")

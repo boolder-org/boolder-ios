@@ -23,7 +23,7 @@ struct Area : Identifiable {
             
             let areas = Table("areas").filter(Expression(literal: "id = '\(id)'"))
             
-            let name = Expression<String>("name") // FIXME: use optional?
+            let name = Expression<String>("name")
             let southWestLat = Expression<Double>("south_west_lat")
             let southWestLon = Expression<Double>("south_west_lon")
             let northEastLat = Expression<Double>("north_east_lat")
