@@ -11,6 +11,7 @@
 "search.areas" = "Areas";
 "search.problems" = "Problems";
 "search.placeholder" = "Problem or area name";
+"search.no_results" = "No results";
 
 // MARK: Discover view
 "discover.title" = "Discover";

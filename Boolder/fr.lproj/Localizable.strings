@@ -11,6 +11,7 @@
 "search.areas" = "Secteurs";
 "search.problems" = "Voies";
 "search.placeholder" = "Nom de voie ou secteur";
+"search.no_results" = "Pas de résultats";
 
 // MARK: Discover view
 "discover.title" = "Découvrir";

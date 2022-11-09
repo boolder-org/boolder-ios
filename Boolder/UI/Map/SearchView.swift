@@ -102,15 +102,30 @@ struct SearchView: View {
     
     var body: some View {
         VStack(spacing: 7) {
-//            SearchBar(text: $searchBoxController.query,
-//                      isEditing: $isEditing,
-//                      onSubmit: searchBoxController.submit)
+            if #available(iOS 15, *) { }
+            else {
+                SearchBar(text: $searchBoxController.query,
+                          isEditing: $isEditing,
+                          onSubmit: searchBoxController.submit)
+                .padding(.horizontal)
+                .padding(.top)
+            }
             
-            if searchBoxController.query.count > 0 {
-                Results()
+            if searchBoxController.query.count == 0 {
+//                VStack {
+//                    Text("Recherchez un nom de secteur")
+//                    Text("ou un nom de voie")
+//                }
+//                .foregroundColor(.gray)
+                Spacer()
+            }
+            else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
+                Spacer()
+                Text("search.no_results").foregroundColor(.gray)
+                Spacer()
             }
             else {
-                Text("Suggestions")
+                Results()
             }
             
           }
@@ -142,7 +157,7 @@ struct SearchView: View {
     private func Results() -> some View {
         List {
             if(areaHitsController.hits.count > 0) {
-                Section(header: Text("Areas")) {
+                Section(header: Text("search.areas")) {
                     ForEach(areaHitsController.hits, id: \.self) { (hit: AreaItem?) in
 //                            let _ = print(hit)
                         if let id = Int(hit?.objectID ?? "") {
@@ -163,7 +178,7 @@ struct SearchView: View {
                 }
             }
             if(problemHitsController.hits.count > 0) {
-                Section(header: Text("Problems")) {
+                Section(header: Text("search.problems")) {
                     ForEach(problemHitsController.hits, id: \.self) { hit in
                         if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id), let hit = hit {
                             
