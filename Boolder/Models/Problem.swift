@@ -94,18 +94,8 @@ struct Problem : Identifiable {
         }
     }
     
-    // FIXME: this code is called many times => perf issue?
+    // TODO: handle multiple lines
     var line: Line? {
-        //        if let lineId = lineId {
-        //            return dataStore.topoStore.lineCollection.line(withId: lineId)
-        //        }
-        //        else
-        //        {
-        //            return nil
-        //        }
-        
-        //        print("lines")
-        
         let db = SqliteStore.shared.db
         
         let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id)'"))
@@ -114,47 +104,52 @@ struct Problem : Identifiable {
         let topoId = Expression<Int>("topo_id")
         let coordinates = Expression<String>("coordinates")
         
-        // TODO: handle multiple lines
-        if let l = try! db.pluck(lines) {
-            //            print(l[id])
-            //            print(l[topoId])
-            //            print(l[coordinates])
+        do {
+            if let l = try db.pluck(lines) {
+                let jsonString = l[coordinates]
+                let jsonData = jsonString.data(using: .utf8)
+                let coordinates = try! JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData!)
+                
+                return Line(id: l[id], topoId: l[topoId], coordinates: coordinates)
+            }
             
-            let jsonString = l[coordinates]
-            let jsonData = jsonString.data(using: .utf8)
-            let coordinates = try! JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData!)
-            
-            return Line(id: l[id], topoId: l[topoId], coordinates: coordinates)
+            return nil
         }
-        
-        return nil
+        catch {
+            print (error)
+            return nil
+        }
     }
     
-    
     var otherProblemsOnSameTopo: [Problem] {
-        guard line != nil else { return [] }
+        guard let l = line else { return [] }
         
         let db = SqliteStore.shared.db
         
-        let lines = Table("lines").filter(Expression(literal: "topo_id = '\(line!.topoId)'"))
+        let lines = Table("lines").filter(Expression(literal: "topo_id = '\(l.topoId)'"))
         
         let problemId = Expression<Int>("problem_id")
         
-        let problemsOnSameTopo = try! db.prepare(lines).map { l in
-            Self.loadProblem(id: l[problemId])
+        do {
+            let problemsOnSameTopo = try db.prepare(lines).map { l in
+                Self.loadProblem(id: l[problemId])
+            }
+            
+            return problemsOnSameTopo.compactMap{$0}.filter { p in
+                p.id != id // don't show itself
+                && (p.parentId == nil) // don't show anyone's children
+                && (p.id != parentId) // don't show problem's parent
+            }
         }
-        
-        return problemsOnSameTopo.compactMap{$0}.filter { p in
-            p.id != id // don't show itself
-            && (p.parentId == nil) // don't show anyone's children
-            && (p.id != parentId) // don't show problem's parent
+        catch {
+            print (error)
+            return []
         }
     }
     
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
     var variants: [Problem] {
         if let parent = parent {
-            //            print(parent)
             return Array(
                 Set([parent]).union(
                     Set(parent.children).subtracting(Set([self]))
@@ -162,7 +157,6 @@ struct Problem : Identifiable {
             )
         }
         else {
-            //            print(children)
             return children
         }
     }
@@ -176,22 +170,21 @@ struct Problem : Identifiable {
     var children: [Problem] {
         let db = SqliteStore.shared.db
         
-        // FIXME: clean code
         let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id)'"))
-        //        print(problems)
         let id = Expression<Int>("id")
         
-        //        for p in try! sqliteStore.db.prepare(problems) {
-        //            print(p)
-        //        }
-        
-        return try! db.prepare(problems).map { problem in
-            Self.loadProblem(id: problem[id])
-        }.compactMap{$0}
+        do {
+            return try db.prepare(problems).map { problem in
+                Self.loadProblem(id: problem[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
     }
     
-    
-    // FIXME: move to Line
+    // TODO: move to Line
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         guard let coordinates = line.coordinates else { return nil }
