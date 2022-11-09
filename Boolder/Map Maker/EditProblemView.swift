@@ -148,8 +148,8 @@ struct ProblemJson: Codable {
     // TODO: add version number
 }
 
-struct ProblemRecordView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProblemView(problem: Problem(), selectedSteepness: Steepness.other, selectedHeight: 0)
-    }
-}
+//struct ProblemRecordView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditProblemView(problem: Problem(), selectedSteepness: Steepness.other, selectedHeight: 0)
+//    }
+//}

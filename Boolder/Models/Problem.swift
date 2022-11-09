@@ -12,42 +12,28 @@ import MapKit
 import CoreData
 import SQLite
 
-class Problem : Identifiable, CustomStringConvertible, Hashable {
+struct Problem : Identifiable {
+    let id: Int
+    let name: String?
+    let grade: Grade
+    var coordinate: CLLocationCoordinate2D
+    let steepness: Steepness
+    let sitStart: Bool
+    let areaId: Int
+    let circuitId: Int?
+    let circuitColor: Circuit.CircuitColor?
+    let circuitNumber: String
+    let bleauInfoId: String?
+    let parentId: Int?
     
-    static func == (lhs: Problem, rhs: Problem) -> Bool {
-        lhs.id == rhs.id
-    }
+    static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, parentId: nil)
     
-    func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-    
-    var areaId: Int!
-    var circuitId: Int?
-    var circuitColor: Circuit.CircuitColor?
-    var circuitNumber: String = ""
-    var grade = Grade.min
-    var name: String? = nil
-    var bleauInfoId: String? = nil
-    var parentId: Int? = nil
-    var steepness: Steepness = .other
-    var sitStart: Bool = false
-    var id: Int!
-    var lineId: Int?
-    var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
-    
-    var description: String {
-        return "Problem \(id!)"
-    }
-    
-    // FIXME: make return optional (the id we get might not exist: eg. problem deleted)
-    static func loadProblem(id: Int) -> Problem {
+    static func loadProblem(id: Int) -> Problem? {
         do {
             let db = SqliteStore.shared.db
             
             let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
             
-//            let id = Expression<Int>("id")
             let areaId = Expression<Int>("area_id")
             let name = Expression<String?>("name") // FIXME: use optional?
             let grade = Expression<String>("grade")
@@ -61,38 +47,28 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
             let longitude = Expression<Double?>("longitude")
             let sitStart = Expression<Int>("sit_start")
             
-            if let p = try! db.pluck(problems) {
-                // print(p)
-                
-                let problem = Problem()
-                problem.areaId = p[areaId]
-                problem.id = Int(id)
-                problem.name = p[name]
-                problem.grade = Grade(p[grade])
-                problem.steepness = Steepness(rawValue: p[steepness]) ?? .other
-                problem.circuitNumber = p[circuitNumber] ?? ""
-                problem.circuitColor = Circuit.circuitColorFromString(p[circuitColor])
-                problem.coordinate = CLLocationCoordinate2D(latitude: p[latitude] ?? 0, longitude: p[longitude] ?? 0)
-                problem.sitStart = p[sitStart] == 1
-                
-                if let id = p[circuitId] {
-                    problem.circuitId = id
-                }
-                
-                if let id2 = p[bleauInfoId] {
-                    problem.bleauInfoId = id2
-                }
-                
-                if let id3 = p[parentId] {
-                    problem.parentId = id3
-                }
-                
-                
-                
-                return problem
+            if let p = try db.pluck(problems) {
+                return Problem(
+                    id: id,
+                    name: p[name],
+                    grade: Grade(p[grade]),
+                    coordinate: CLLocationCoordinate2D(latitude: p[latitude] ?? 0, longitude: p[longitude] ?? 0),
+                    steepness: Steepness(rawValue: p[steepness]) ?? .other,
+                    sitStart: p[sitStart] == 1,
+                    areaId: p[areaId],
+                    circuitId: p[circuitId],
+                    circuitColor: Circuit.circuitColorFromString(p[circuitColor]),
+                    circuitNumber: p[circuitNumber] ?? "",
+                    bleauInfoId: p[bleauInfoId],
+                    parentId: p[parentId]
+                )
             }
             
-            return Problem() // FIXME: handle errors
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
         }
     }
     
@@ -120,19 +96,19 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     
     // FIXME: this code is called many times => perf issue?
     var line: Line? {
-//        if let lineId = lineId {
-//            return dataStore.topoStore.lineCollection.line(withId: lineId)
-//        }
-//        else
-//        {
-//            return nil
-//        }
+        //        if let lineId = lineId {
+        //            return dataStore.topoStore.lineCollection.line(withId: lineId)
+        //        }
+        //        else
+        //        {
+        //            return nil
+        //        }
         
-//        print("lines")
+        //        print("lines")
         
         let db = SqliteStore.shared.db
         
-        let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id!)'"))
+        let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id)'"))
         
         let id = Expression<Int>("id")
         let topoId = Expression<Int>("topo_id")
@@ -140,9 +116,9 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         
         // TODO: handle multiple lines
         if let l = try! db.pluck(lines) {
-//            print(l[id])
-//            print(l[topoId])
-//            print(l[coordinates])
+            //            print(l[id])
+            //            print(l[topoId])
+            //            print(l[coordinates])
             
             let jsonString = l[coordinates]
             let jsonData = jsonString.data(using: .utf8)
@@ -168,7 +144,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
             Self.loadProblem(id: l[problemId])
         }
         
-        return problemsOnSameTopo.filter { p in
+        return problemsOnSameTopo.compactMap{$0}.filter { p in
             p.id != id // don't show itself
             && (p.parentId == nil) // don't show anyone's children
             && (p.id != parentId) // don't show problem's parent
@@ -178,15 +154,15 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
     var variants: [Problem] {
         if let parent = parent {
-//            print(parent)
+            //            print(parent)
             return Array(
                 Set([parent]).union(
                     Set(parent.children).subtracting(Set([self]))
-                    )
                 )
+            )
         }
         else {
-//            print(children)
+            //            print(children)
             return children
         }
     }
@@ -201,20 +177,21 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         let db = SqliteStore.shared.db
         
         // FIXME: clean code
-        let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id!)'"))
-//        print(problems)
+        let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id)'"))
+        //        print(problems)
         let id = Expression<Int>("id")
         
-//        for p in try! sqliteStore.db.prepare(problems) {
-//            print(p)
-//        }
+        //        for p in try! sqliteStore.db.prepare(problems) {
+        //            print(p)
+        //        }
         
         return try! db.prepare(problems).map { problem in
             Self.loadProblem(id: problem[id])
-        }
+        }.compactMap{$0}
     }
     
     
+    // FIXME: move to Line
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         guard let coordinates = line.coordinates else { return nil }
@@ -271,5 +248,21 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         } catch {
             fatalError("Failed to fetch ticks: \(error)")
         }
+    }
+}
+
+extension Problem: CustomStringConvertible {
+    var description: String {
+        return "Problem \(id)"
+    }
+}
+
+extension Problem : Hashable {
+    static func == (lhs: Problem, rhs: Problem) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

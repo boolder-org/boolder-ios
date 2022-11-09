@@ -45,7 +45,7 @@ struct ProblemDetailsView: View {
             }
         }
         .onAppear{
-            odrManager.requestResources(tags: Set(["area-\(problem.areaId!)"]), onSuccess: {
+            odrManager.requestResources(tags: Set(["area-\(problem.areaId)"]), onSuccess: {
                 areaResourcesDownloaded = true
                 
             }, onFailure: { error in

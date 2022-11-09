@@ -106,10 +106,10 @@ struct MapboxView: UIViewControllerRepresentable {
         func selectProblem(id: Int) {
             print("selected problem \(id)")
             
-            let problem = Problem.loadProblem(id: id)
-            
-            parent.selectedProblem = problem
-            parent.presentProblemDetails = true
+            if let problem = Problem.loadProblem(id: id) {   
+                parent.selectedProblem = problem
+                parent.presentProblemDetails = true
+            }
         }
         
         func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {

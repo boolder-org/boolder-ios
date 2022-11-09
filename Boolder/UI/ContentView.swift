@@ -10,7 +10,7 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    @State private var selectedProblem: Problem = Problem() // FIXME: use nil as default
+    @State private var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @State private var presentProblemDetails = false
     @State private var presentSearch = false
     @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
