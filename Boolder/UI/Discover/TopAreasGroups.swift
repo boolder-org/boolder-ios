@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TopAreasGroups: View {
-    
     @Binding var tabSelection: Int
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
@@ -38,9 +37,6 @@ struct TopAreasGroups: View {
                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                         .contentShape(Rectangle())
                                 }
-
- 
-                                    
                             }
                         }
                     }
@@ -54,7 +50,6 @@ struct TopAreasGroups: View {
         }
         .navigationTitle("top_areas.groups.title")
         .navigationBarTitleDisplayMode(.inline)
-        
     }
     
     var areas: [Area] {

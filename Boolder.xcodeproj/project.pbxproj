@@ -267,8 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				031F36A7291C499A00BD0C2B /* boolder.db */,
+				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
 			path = Stores;

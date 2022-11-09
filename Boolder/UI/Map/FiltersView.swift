@@ -17,7 +17,6 @@ struct FiltersView: View {
         NavigationView {
             Form {
                 Section {
-                    
                     ForEach([GradeRange.beginner, GradeRange.intermediate, GradeRange.advanced], id: \.self) { range in
                         Button(action: {
                             if filters.gradeRange == range {
@@ -39,9 +38,9 @@ struct FiltersView: View {
                     }
                     
                     NavigationLink(destination:
-                        GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in
-                            filters.gradeRange = range
-                        })
+                                    GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in
+                        filters.gradeRange = range
+                    })
                     ) {
                         HStack {
                             Image(systemName: (filters.gradeRange?.isCustom ?? false) ? "largecircle.fill.circle" : "circle")

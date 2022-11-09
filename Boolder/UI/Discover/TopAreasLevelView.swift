@@ -56,8 +56,8 @@ struct TopAreasLevelView: View {
                                             AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .contentShape(Rectangle())
                                         }
-
-                                            
+                                        
+                                        
                                     }
                                 }
                                 
@@ -138,8 +138,8 @@ struct TopAreasLevelView: View {
                                             AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .contentShape(Rectangle())
                                         }
-
-                                            
+                                        
+                                        
                                     }
                                 }
                             }

@@ -32,63 +32,59 @@ struct AreaItem: Codable, Hashable {
             let lng: Double
         }
     }
-    
 }
 
 class AlgoliaController {
-  
-  let searcher: MultiSearcher
-
-  let searchBoxInteractor: SearchBoxInteractor
-  let searchBoxController: SearchBoxObservableController
-
-  let problemHitsInteractor: HitsInteractor<ProblemItem>
-  let problemHitsController: HitsObservableController<ProblemItem>
+    let searcher: MultiSearcher
+    
+    let searchBoxInteractor: SearchBoxInteractor
+    let searchBoxController: SearchBoxObservableController
+    
+    let problemHitsInteractor: HitsInteractor<ProblemItem>
+    let problemHitsController: HitsObservableController<ProblemItem>
     let areaHitsInteractor: HitsInteractor<AreaItem>
     let areaHitsController: HitsObservableController<AreaItem>
-  
-  init() {
-    self.searcher = MultiSearcher(appID: "XNJHVMTGMF",
-                                 apiKey: "765db6917d5c17449984f7c0067ae04c")
-      
-      
-//      self.searcher.shouldTriggerSearchForQuery = {
-//        return $0.query.query != ""
-//      }
-      
-      
-      
-    self.searchBoxInteractor = .init()
-    self.searchBoxController = .init()
-      
-    self.problemHitsInteractor = .init()
-    self.problemHitsController = .init()
-      self.areaHitsInteractor = .init()
-      self.areaHitsController = .init()
-    setupConnections()
-  }
-  
-  func setupConnections() {
-    searchBoxInteractor.connectSearcher(searcher)
-    searchBoxInteractor.connectController(searchBoxController)
-      
-      let problemHitsSearcher = searcher.addHitsSearcher(indexName: "Problem")
-      problemHitsInteractor.connectSearcher(problemHitsSearcher)
-    problemHitsInteractor.connectController(problemHitsController)
-      
-      let areaHitsSearcher = searcher.addHitsSearcher(indexName: "Area")
-      areaHitsInteractor.connectSearcher(areaHitsSearcher)
-    areaHitsInteractor.connectController(areaHitsController)
-      
-  }
-      
+    
+    init() {
+        self.searcher = MultiSearcher(appID: "XNJHVMTGMF",
+                                      apiKey: "765db6917d5c17449984f7c0067ae04c")
+        
+        
+        //      self.searcher.shouldTriggerSearchForQuery = {
+        //        return $0.query.query != ""
+        //      }
+        
+        
+        
+        self.searchBoxInteractor = .init()
+        self.searchBoxController = .init()
+        
+        self.problemHitsInteractor = .init()
+        self.problemHitsController = .init()
+        self.areaHitsInteractor = .init()
+        self.areaHitsController = .init()
+        setupConnections()
+    }
+    
+    func setupConnections() {
+        searchBoxInteractor.connectSearcher(searcher)
+        searchBoxInteractor.connectController(searchBoxController)
+        
+        let problemHitsSearcher = searcher.addHitsSearcher(indexName: "Problem")
+        problemHitsInteractor.connectSearcher(problemHitsSearcher)
+        problemHitsInteractor.connectController(problemHitsController)
+        
+        let areaHitsSearcher = searcher.addHitsSearcher(indexName: "Area")
+        areaHitsInteractor.connectSearcher(areaHitsSearcher)
+        areaHitsInteractor.connectController(areaHitsController)
+    }
 }
 
 struct SearchView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var searchBoxController: SearchBoxObservableController
-     @ObservedObject var problemHitsController: HitsObservableController<ProblemItem>
+    @ObservedObject var problemHitsController: HitsObservableController<ProblemItem>
     @ObservedObject var areaHitsController: HitsObservableController<AreaItem>
     
     @State private var isEditing = false
@@ -113,11 +109,11 @@ struct SearchView: View {
             }
             
             if searchBoxController.query.count == 0 {
-//                VStack {
-//                    Text("Recherchez un nom de secteur")
-//                    Text("ou un nom de voie")
-//                }
-//                .foregroundColor(.gray)
+                //                VStack {
+                //                    Text("Recherchez un nom de secteur")
+                //                    Text("ou un nom de voie")
+                //                }
+                //                .foregroundColor(.gray)
                 Spacer()
             }
             else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
@@ -128,8 +124,7 @@ struct SearchView: View {
             else {
                 Results()
             }
-            
-          }
+        }
         .navigationBarTitle(Text("search.title"), displayMode: .inline)
         .navigationBarItems(
             trailing: Button(action: {
@@ -142,17 +137,16 @@ struct SearchView: View {
             }
         )
         .listStyle(.insetGrouped)
-//        .animation(.easeInOut(duration: 0), value: searchBoxController.query)
+        //        .animation(.easeInOut(duration: 0), value: searchBoxController.query)
         .modify {
-              if #available(iOS 15, *) {
-                  $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("search.placeholder"))
-                      .disableAutocorrection(true)
-              }
-              else {
-                  $0 // FIXME: show a searchbar on iOS 14
-              }
-          }
-        
+            if #available(iOS 15, *) {
+                $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("search.placeholder"))
+                    .disableAutocorrection(true)
+            }
+            else {
+                $0 // FIXME: show a searchbar on iOS 14
+            }
+        }
     }
     
     private func Results() -> some View {
@@ -160,14 +154,14 @@ struct SearchView: View {
             if(areaHitsController.hits.count > 0) {
                 Section(header: Text("search.areas")) {
                     ForEach(areaHitsController.hits, id: \.self) { (hit: AreaItem?) in
-//                            let _ = print(hit)
+                        //                            let _ = print(hit)
                         if let id = Int(hit?.objectID ?? "") {
                             
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                    centerOnArea = Area.load(id: id)
-                                    centerOnAreaCount += 1
+                                centerOnArea = Area.load(id: id)
+                                centerOnAreaCount += 1
                                 
                             } label: {
                                 HStack {
@@ -208,13 +202,13 @@ struct SearchView: View {
                                     Text(hit.area_name).foregroundColor(.gray).font(.caption)
                                 }
                             }
-
+                            
                             
                         }
                     }
                 }
             }
-//                .headerProminence(.increased)
+            //                .headerProminence(.increased)
         }
         .listStyle(.grouped)
     }

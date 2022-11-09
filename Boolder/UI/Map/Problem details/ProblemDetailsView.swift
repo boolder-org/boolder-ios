@@ -34,14 +34,11 @@ struct ProblemDetailsView: View {
                     lineDrawPercentage: $lineDrawPercentage,
                     areaResourcesDownloaded: $areaResourcesDownloaded
                 )
-                    .zIndex(10)
+                .zIndex(10)
                 
                 infos
                 
                 actionButtons
-                
-                // FIXME: show variants on older iOS versions
-//                variants
             }
         }
         .onAppear{
@@ -65,8 +62,6 @@ struct ProblemDetailsView: View {
             })
         }
     }
-    
-    
     
     var infos: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -98,7 +93,7 @@ struct ProblemDetailsView: View {
                             Image(problem.steepness.imageName)
                                 .frame(minWidth: 16)
                             Text(problem.steepness.localizedName)
-                                
+                            
                         }
                         .font(.body)
                         .foregroundColor(Color(UIColor(.black).lighter(0.3)))
@@ -131,7 +126,7 @@ struct ProblemDetailsView: View {
         }
         .padding(.top, 0)
         .padding(.horizontal)
-//        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
         
     }
     

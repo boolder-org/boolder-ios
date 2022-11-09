@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TopAreasTrain: View {
-    
     @Binding var tabSelection: Int
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
@@ -28,9 +27,7 @@ struct TopAreasTrain: View {
                             .foregroundColor(gray)
                         
                         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
-                            
                             ForEach(areasFromBoisLeRoi) { area in
-                                
                                 Button {
                                     tabSelection = 1
                                     centerOnArea = area
@@ -39,8 +36,6 @@ struct TopAreasTrain: View {
                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                         .contentShape(Rectangle())
                                 }
-
-                                    
                             }
                         }
                     }
@@ -65,7 +60,7 @@ struct TopAreasTrain: View {
                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                         .contentShape(Rectangle())
                                 }
-                                    
+                                
                             }
                         }
                     }

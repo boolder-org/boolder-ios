@@ -23,17 +23,13 @@ struct MapboxView: UIViewControllerRepresentable {
     @Binding var filters: Filters
     @Binding var refreshFiltersCount: Int
     
-     
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
         vc.delegate = context.coordinator
         return vc
     }
-      
+    
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        print("update UI")
-        
-        
         if(refreshFiltersCount > context.coordinator.lastRefreshFiltersCount) {
             vc.applyFilters(filters)
             context.coordinator.lastRefreshFiltersCount = refreshFiltersCount
@@ -104,21 +100,16 @@ struct MapboxView: UIViewControllerRepresentable {
         }
         
         func selectProblem(id: Int) {
-            print("selected problem \(id)")
-            
-            if let problem = Problem.load(id: id) {   
+            if let problem = Problem.load(id: id) {
                 parent.selectedProblem = problem
                 parent.presentProblemDetails = true
             }
         }
         
         func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {
-            
             let poi = Poi(name: name, coordinate: location, googleUrl: googleUrl)
             parent.selectedPoi = poi
             parent.presentPoiActionSheet = true
         }
-        
     }
-
 }

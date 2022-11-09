@@ -28,7 +28,7 @@ struct ContentView: View {
     
     // TODO: move somewhere else
     static let algoliaController = AlgoliaController()
-
+    
     var body: some View {
         TabView(selection: $tabSelection) {
             
@@ -46,43 +46,16 @@ struct ContentView: View {
                     filters: $filters,
                     refreshFiltersCount: $filtersRefreshCount
                 )
-                    .edgesIgnoringSafeArea(.top)
-                    .background(
-                        PoiActionSheet(
-                            name: (selectedPoi?.name ?? ""),
-                            location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
-                            googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
-                            navigationMode: false,
-                            presentPoiActionSheet: $presentPoiActionSheet
-                        )
+                .edgesIgnoringSafeArea(.top)
+                .background(
+                    PoiActionSheet(
+                        name: (selectedPoi?.name ?? ""),
+                        location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+                        googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
+                        navigationMode: false,
+                        presentPoiActionSheet: $presentPoiActionSheet
                     )
-                
-//                VStack {
-//                    Spacer()
-//                    HStack(spacing: 16) {
-//                        Button(action: {
-//                            applyFilters.toggle()
-//                        }) {
-//                            HStack {
-//                                Image(systemName: "slider.horizontal.3")
-//
-//                                Text("Filtres")
-//                                    .fixedSize(horizontal: true, vertical: true)
-//                            }
-//                            .padding(.vertical, 12)
-//                        }
-//                    }
-//
-//                    .accentColor(.primary)
-//                    .padding(.horizontal, 16)
-//                    .background(Color.systemBackground)
-//                    .cornerRadius(10)
-//                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 0.25))
-//                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                    .padding(.bottom)
-////                    .padding()
-//                }
-//                .zIndex(10)
+                )
                 
                 HStack {
                     Spacer()
@@ -111,7 +84,6 @@ struct ContentView: View {
                         }) {
                             Image(systemName: "magnifyingglass")
                                 .padding(12)
-//                                .offset(x: -1, y: 0)
                         }
                         .accentColor(.primary)
                         .background(Color.systemBackground)
@@ -127,7 +99,6 @@ struct ContentView: View {
                         }) {
                             Image(systemName: "slider.horizontal.3")
                                 .padding(12)
-                            // .offset(x: -1, y: 0)
                         }
                         .accentColor(filters.filtersCount() >= 1 ? .systemBackground : .primary)
                         .background(filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
@@ -199,7 +170,6 @@ struct ContentView: View {
                 Label("tabs.map", systemImage: "map")
             }
             .tag(1)
-
             
             DiscoverView(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)
                 .tabItem {
@@ -207,8 +177,6 @@ struct ContentView: View {
                 }
                 .tag(2)
         }
-        
-        
     }
 }
 

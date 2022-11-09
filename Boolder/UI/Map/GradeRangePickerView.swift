@@ -66,12 +66,12 @@ struct GradeRangePickerView: View {
             )
         )
     }
-
+    
     // inspired by: https://www.hackingwithswift.com/books/ios-swiftui/selecting-and-editing-map-annotations
     init(gradeRange: GradeRange, onSave: @escaping (GradeRange) -> Void) {
         self.gradeRange = gradeRange
         self.onSave = onSave
-
+        
         _gradeMin = State(initialValue: gradeRange.min.string)
         _gradeMax = State(initialValue: gradeRange.max.advanced(by: -1).string) // eg. if max is "4c+" we display "4c"
     }
