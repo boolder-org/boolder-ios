@@ -58,7 +58,7 @@ struct TopAreasGroups: View {
     }
     
     var areas: [Area] {
-        [10, 13, 4, 11, 5, 29, 30, 1].map{Area.loadArea(id: $0)!}.sorted {
+        [10, 13, 4, 11, 5, 29, 30, 1].map{Area.load(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }

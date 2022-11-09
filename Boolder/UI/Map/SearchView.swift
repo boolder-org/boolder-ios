@@ -166,7 +166,7 @@ struct SearchView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                    centerOnArea = Area.loadArea(id: id)
+                                    centerOnArea = Area.load(id: id)
                                     centerOnAreaCount += 1
                                 
                             } label: {
@@ -181,7 +181,7 @@ struct SearchView: View {
             if(problemHitsController.hits.count > 0) {
                 Section(header: Text("search.problems")) {
                     ForEach(problemHitsController.hits, id: \.self) { hit in
-                        if let id = Int(hit?.objectID ?? ""), let problem = Problem.loadProblem(id: id), let hit = hit {
+                        if let id = Int(hit?.objectID ?? ""), let problem = Problem.load(id: id), let hit = hit {
                             
                             Button {
                                 presentationMode.wrappedValue.dismiss()

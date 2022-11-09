@@ -106,7 +106,7 @@ struct MapboxView: UIViewControllerRepresentable {
         func selectProblem(id: Int) {
             print("selected problem \(id)")
             
-            if let problem = Problem.loadProblem(id: id) {   
+            if let problem = Problem.load(id: id) {   
                 parent.selectedProblem = problem
                 parent.presentProblemDetails = true
             }

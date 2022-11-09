@@ -155,19 +155,19 @@ struct TopAreasLevelView: View {
     }
     
     var beginnerAreas: [Area] {
-        [19, 14, 18, 13, 2, 51].map{Area.loadArea(id: $0)!}.sorted {
+        [19, 14, 18, 13, 2, 51].map{Area.load(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
     var intermediateAreas: [Area] {
-        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1].map{Area.loadArea(id: $0)!}.sorted {
+        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1].map{Area.load(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
     var advancedAreas: [Area] {
-        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69].map{Area.loadArea(id: $0)!}.sorted {
+        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69].map{Area.load(id: $0)!}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }

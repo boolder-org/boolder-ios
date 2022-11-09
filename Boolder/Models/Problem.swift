@@ -6,9 +6,7 @@
 //  Copyright © 2020 Nicolas Mondollot. All rights reserved.
 //
 
-import UIKit
 import MapKit
-
 import CoreData
 import SQLite
 
@@ -28,7 +26,7 @@ struct Problem : Identifiable {
     
     static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, parentId: nil)
     
-    static func loadProblem(id: Int) -> Problem? {
+    static func load(id: Int) -> Problem? {
         do {
             let db = SqliteStore.shared.db
             
@@ -132,7 +130,7 @@ struct Problem : Identifiable {
         
         do {
             let problemsOnSameTopo = try db.prepare(lines).map { l in
-                Self.loadProblem(id: l[problemId])
+                Self.load(id: l[problemId])
             }
             
             return problemsOnSameTopo.compactMap{$0}.filter { p in
@@ -164,7 +162,7 @@ struct Problem : Identifiable {
     var parent: Problem? {
         guard let parentId = parentId else { return nil }
         
-        return Self.loadProblem(id: parentId)
+        return Self.load(id: parentId)
     }
     
     var children: [Problem] {
@@ -175,7 +173,7 @@ struct Problem : Identifiable {
         
         do {
             return try db.prepare(problems).map { problem in
-                Self.loadProblem(id: problem[id])
+                Self.load(id: problem[id])
             }.compactMap{$0}
         }
         catch {
