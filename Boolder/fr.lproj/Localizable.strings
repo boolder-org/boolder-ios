@@ -6,6 +6,9 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
+"tabs.map" = "Carte";
+"tabs.discover" = "Découvrir";
+
 // MARK: Search
 "search.title" = "Recherche";
 "search.areas" = "Secteurs";

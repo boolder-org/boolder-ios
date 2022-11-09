@@ -6,6 +6,10 @@
   Copyright © 2020 Nicolas Mondollot. All rights reserved.
 */
 
+"tabs.map" = "Map";
+"tabs.discover" = "Discover";
+
+
 // MARK: Search
 "search.title" = "Search";
 "search.areas" = "Areas";

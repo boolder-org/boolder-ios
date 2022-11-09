@@ -196,14 +196,14 @@ struct ContentView: View {
                     }
             )
             .tabItem {
-                Label("Carte", systemImage: "map")
+                Label("tabs.map", systemImage: "map")
             }
             .tag(1)
 
             
             DiscoverView(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)
                 .tabItem {
-                    Label("Discover", systemImage: "sparkles")
+                    Label("tabs.discover", systemImage: "sparkles")
                 }
                 .tag(2)
         }

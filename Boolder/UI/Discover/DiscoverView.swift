@@ -251,7 +251,7 @@ struct DiscoverView: View {
                             
                         
                     }
-                    .navigationBarTitle(Text("Découvrir"))
+                    .navigationBarTitle(Text("discover.title"))
                 }
             }
         }
