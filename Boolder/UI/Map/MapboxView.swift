@@ -11,9 +11,6 @@ import CoreLocation
 import MapboxMaps
 
 struct MapboxView: UIViewControllerRepresentable {
-//    typealias UIViewControllerType = MapboxViewController
-//    @EnvironmentObject var sqliteStore: SqliteStore
-    
     @Binding var selectedProblem: Problem
     @Binding var presentProblemDetails: Bool
     @Binding var centerOnProblem: Problem?

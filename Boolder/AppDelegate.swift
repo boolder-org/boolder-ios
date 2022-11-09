@@ -81,9 +81,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var odrManager: ODRManager = {
        ODRManager()
     }()
-    
-    lazy var sqliteStore: SqliteStore = {
-        SqliteStore()
-    }()
 }
 

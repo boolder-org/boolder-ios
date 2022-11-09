@@ -9,10 +9,12 @@
 import Foundation
 import SQLite
 
-class SqliteStore : ObservableObject {
-    var db: Connection
+class SqliteStore {
+    static let shared = SqliteStore()
     
-    init() {
+    let db: Connection
+    
+    private init() {
         let databaseURL = Bundle.main.url(forResource: "boolder", withExtension: "db")!
         db = try! Connection(databaseURL.path) // FIXME: catch errors
     }

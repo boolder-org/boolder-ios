@@ -20,7 +20,7 @@ struct Area : Identifiable {
     // FIXME: make return optional (the id we get might not exist: eg. area deleted)
     static func loadArea(id: Int) -> Area? {
         do {
-            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteStore.db
+            let db = SqliteStore.shared.db
             
             let areas = Table("areas").filter(Expression(literal: "id = '\(id)'"))
             

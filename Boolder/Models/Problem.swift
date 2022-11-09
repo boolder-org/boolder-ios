@@ -43,7 +43,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     // FIXME: make return optional (the id we get might not exist: eg. problem deleted)
     static func loadProblem(id: Int) -> Problem {
         do {
-            let db = (UIApplication.shared.delegate as! AppDelegate).sqliteStore.db
+            let db = SqliteStore.shared.db
             
             let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
             
@@ -130,6 +130,8 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         
 //        print("lines")
         
+        let db = SqliteStore.shared.db
+        
         let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id!)'"))
         
         let id = Expression<Int>("id")
@@ -137,7 +139,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
         let coordinates = Expression<String>("coordinates")
         
         // TODO: handle multiple lines
-        if let l = try! sqliteStore.db.pluck(lines) {
+        if let l = try! db.pluck(lines) {
 //            print(l[id])
 //            print(l[topoId])
 //            print(l[coordinates])
@@ -156,11 +158,13 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     var otherProblemsOnSameTopo: [Problem] {
         guard line != nil else { return [] }
         
+        let db = SqliteStore.shared.db
+        
         let lines = Table("lines").filter(Expression(literal: "topo_id = '\(line!.topoId)'"))
         
         let problemId = Expression<Int>("problem_id")
         
-        let problemsOnSameTopo = try! sqliteStore.db.prepare(lines).map { l in
+        let problemsOnSameTopo = try! db.prepare(lines).map { l in
             Self.loadProblem(id: l[problemId])
         }
         
@@ -194,6 +198,8 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     }
     
     var children: [Problem] {
+        let db = SqliteStore.shared.db
+        
         // FIXME: clean code
         let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id!)'"))
 //        print(problems)
@@ -203,7 +209,7 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
 //            print(p)
 //        }
         
-        return try! sqliteStore.db.prepare(problems).map { problem in
+        return try! db.prepare(problems).map { problem in
             Self.loadProblem(id: problem[id])
         }
     }
@@ -219,10 +225,6 @@ class Problem : Identifiable, CustomStringConvertible, Hashable {
     
     var mainTopoPhoto: UIImage? {
         line?.photo()
-    }
-    
-    var sqliteStore: SqliteStore {
-        (UIApplication.shared.delegate as! AppDelegate).sqliteStore
     }
     
     func isFavorite() -> Bool {
