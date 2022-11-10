@@ -37,7 +37,7 @@ struct TopoView: View {
                                     TopoFullScreenView(image: topoPhoto, problem: problem)
                                 }
                             
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage)
+                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {

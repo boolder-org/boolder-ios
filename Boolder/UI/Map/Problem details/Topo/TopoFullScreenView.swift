@@ -14,13 +14,11 @@ struct TopoFullScreenView: View {
     let image: UIImage
     let problem: Problem
     
-    @State var scale: CGFloat = 1.0
-    @State var anchor: UnitPoint = .center
-    @State var offset: CGSize = .zero
-    @State var isPinching: Bool = false
+    @StateObject var pinchToZoomState = PinchToZoomState()
     
-    @State private var currentAmount = 1.0
-    @State private var previousAmount = 1.0
+    // drag gesture (to dismiss the sheet)
+    @State var dragOffset: CGSize = CGSize.zero
+    @State var dragOffsetPredicted: CGSize = CGSize.zero
     
     var body: some View {
         VStack {
@@ -52,11 +50,12 @@ struct TopoFullScreenView: View {
                                         .aspectRatio(contentMode: .fit)
                                         .overlay(
                                             ZStack {
-                                                LineView(problem: problem, drawPercentage: .constant(1))
+                                                LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
                                                 
                                                 GeometryReader { geo in
                                                     if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                                         ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                                            .scaleEffect(1/pinchToZoomState.scale)
                                                             .offset(lineStart)
                                                     }
                                                 }
@@ -65,37 +64,29 @@ struct TopoFullScreenView: View {
                                 }
                                 Spacer()
                             }
-//                                .scaleEffect(previousAmount*currentAmount, anchor: anchor)
-//                                .offset(offset)
-//                                .gesture(
-//                                    MagnificationGesture()
-//                                        .onChanged { amount in
-//                                            print("amount: \(amount)")
-//                                            currentAmount = amount
-//                                        }
-//                                        .onEnded { amount in
-//                                            previousAmount *= currentAmount
-//                                            print("final amount: \(previousAmount)")
-//                                            currentAmount = 1
-//                                        }
-//                                )
-//                                .simultaneousGesture(
-//                                    DragGesture()
-//                                        .onChanged { gesture in
-//                                            offset = gesture.translation
-//                                        }
-////                                        .onEnded { _ in
-////                                            if abs(offset.width) > 100 {
-////                                                // remove the card
-////                                            } else {
-////                                                offset = .zero
-////                                            }
-////                                        }
-//                                )
-                                            
-                                .scaleEffect(scale, anchor: anchor)
-                                .offset(offset)
-                                .overlay(PinchZoom(scale: $scale, anchor: $anchor, offset: $offset, isPinching: $isPinching))
+                            .offset(x: self.dragOffset.width, y: self.dragOffset.height) // drag gesture
+                            .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
+                            .offset(pinchToZoomState.offset)
+                            .overlay(PinchToZoom(state: pinchToZoomState))
+                            .gesture(DragGesture()
+                                .onChanged { value in
+                                    self.dragOffset = value.translation
+                                    self.dragOffsetPredicted = value.predictedEndTranslation
+                                }
+                                .onEnded { value in
+                                    if(self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3) {
+                                        withAnimation(.spring()) {
+                                            self.dragOffset = self.dragOffsetPredicted
+                                        }
+                                        presentationMode.wrappedValue.dismiss()
+                                        
+                                        return
+                                    }
+                                    withAnimation(.interactiveSpring()) {
+                                        self.dragOffset = .zero
+                                    }
+                                }
+                            )
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
