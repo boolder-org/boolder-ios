@@ -70,6 +70,13 @@ struct MapboxView: UIViewControllerRepresentable {
             
             context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
         }
+        
+        // select problem
+        if mapState.selectProblemCount > context.coordinator.lastSelectProblemCount {
+            vc.setProblemAsSelected(problemFeatureId: String(mapState.selectedProblem.id))
+            
+            context.coordinator.lastSelectProblemCount = mapState.selectProblemCount
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -85,6 +92,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnAreaCount = 0
         var lastCenterOnCurrentLocationCount = 0
         var lastFiltersRefreshCount = 0
+        var lastSelectProblemCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent

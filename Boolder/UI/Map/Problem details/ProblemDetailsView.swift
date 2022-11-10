@@ -19,6 +19,8 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
+    @ObservedObject var mapState: MapState
+    
     @State private var areaResourcesDownloaded = false
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
@@ -29,6 +31,7 @@ struct ProblemDetailsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 TopoView(
                     problem: $problem,
+                    mapState: mapState,
                     lineDrawPercentage: $lineDrawPercentage,
                     areaResourcesDownloaded: $areaResourcesDownloaded
                 )
@@ -262,10 +265,9 @@ struct ProblemDetailsView: View {
     }
     
     // FIXME: this code is duplicated from TopoView.swift => make it DRY
-    
     func switchToProblem(_ newProblem: Problem) {
         lineDrawPercentage = 0.0
-        problem = newProblem
+        mapState.selectProblem(newProblem)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             animate { lineDrawPercentage = 1.0 }

@@ -89,7 +89,8 @@ struct ContentView: View {
             }
             .sheet(isPresented: $mapState.presentProblemDetails) {
                 ProblemDetailsView(
-                    problem: $mapState.selectedProblem
+                    problem: $mapState.selectedProblem,
+                    mapState: mapState
                 )
                 .modify {
                     if #available(iOS 16, *) {

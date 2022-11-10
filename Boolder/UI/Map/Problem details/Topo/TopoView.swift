@@ -14,6 +14,7 @@ struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
+    @ObservedObject var mapState: MapState
     @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
     
@@ -111,7 +112,6 @@ struct TopoView: View {
                     
                     Spacer()
                 }
-                
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
@@ -150,10 +150,8 @@ struct TopoView: View {
     // FIXME: this code is duplicated from ProblemsDetailsView.swift => make it DRY
     func switchToProblem(_ newProblem: Problem) {
         lineDrawPercentage = 0.0
-        problem = newProblem
+        mapState.selectProblem(newProblem)
         
-        // doing it async to be sure that the line is reset to zero
-        // (there's probably a cleaner way to do it)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             animate { lineDrawPercentage = 1.0 }
         }

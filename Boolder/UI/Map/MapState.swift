@@ -10,6 +10,7 @@ import SwiftUI
 
 @MainActor class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+    @Published private(set) var selectProblemCount = 0 // to update the map UI without redrawing everything
     @Published var presentProblemDetails = false
     @Published var selectedPoi: Poi? = nil
     @Published var presentPoiActionSheet = false
@@ -21,6 +22,7 @@ import SwiftUI
     @Published private(set) var centerOnProblemCount = 0 // to update the map UI without redrawing everything
     @Published private(set) var centerOnArea: Area? = nil
     @Published private(set) var centerOnAreaCount = 0 // to update the map UI without redrawing everything
+    
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
@@ -38,5 +40,10 @@ import SwiftUI
     
     func filtersRefresh() {
         filtersRefreshCount += 1
+    }
+    
+    func selectProblem(_ problem: Problem) {
+        selectedProblem = problem
+        selectProblemCount += 1
     }
 }
