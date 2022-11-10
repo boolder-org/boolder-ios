@@ -12,6 +12,7 @@ struct TopoFullScreenView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let image: UIImage
+    let problem: Problem
     
     @State var scale: CGFloat = 1.0
     @State var anchor: UnitPoint = .center
@@ -19,7 +20,7 @@ struct TopoFullScreenView: View {
     @State var isPinching: Bool = false
     
     @State private var currentAmount = 1.0
-        @State private var previousAmount = 1.0
+    @State private var previousAmount = 1.0
     
     var body: some View {
         VStack {
@@ -43,9 +44,23 @@ struct TopoFullScreenView: View {
                     
                     VStack {
                         ZStack {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                            Group {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .overlay(
+                                        ZStack {
+                                            LineView(problem: problem, drawPercentage: .constant(1))
+                                            
+                                            GeometryReader { geo in
+                                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                                        .offset(lineStart)
+                                                }
+                                            }
+                                        }
+                                    )
+                            }
 //                                .scaleEffect(previousAmount*currentAmount, anchor: anchor)
 //                                .offset(offset)
 //                                .gesture(
@@ -87,6 +102,16 @@ struct TopoFullScreenView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    // FIXME: make this DRY
+    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
+        guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
+        
+        return CGSize(
+            width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
+            height: (CGFloat(lineFirstPoint.y) * size.height) - 14
+        )
     }
 }
 

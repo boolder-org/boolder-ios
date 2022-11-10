@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LineView: View {
-    @Binding var problem: Problem
+    let problem: Problem
     @Binding var drawPercentage: CGFloat
     
     var body: some View {

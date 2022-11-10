@@ -34,10 +34,10 @@ struct TopoView: View {
                                     presentTopoFullScreenView = true
                                 }
                                 .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                    TopoFullScreenView(image: topoPhoto)
+                                    TopoFullScreenView(image: topoPhoto, problem: problem)
                                 }
                             
-                            LineView(problem: $problem, drawPercentage: $lineDrawPercentage)
+                            LineView(problem: problem, drawPercentage: $lineDrawPercentage)
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
