@@ -22,79 +22,78 @@ struct TopoFullScreenView: View {
     
     var body: some View {
         VStack {
-            if(true) {
-                ZStack {
-                    VStack {
-                        HStack {
-                            Spacer()
-                            
-                            Button(action: { presentationMode.wrappedValue.dismiss() }) {
-                                Image(systemName: "xmark")
-                                    .foregroundColor(Color(UIColor.white))
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                            }
-                        }
-                        
+            ZStack {
+                VStack {
+                    HStack {
                         Spacer()
+                        
+                        Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                            Image(systemName: "xmark")
+                                .foregroundColor(Color(UIColor.white))
+                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                        }
                     }
-                    .padding()
-                    .zIndex(2)
                     
-                    VStack {
-                        ZStack {
-                            VStack {
-                                Spacer()
-                                Group {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .overlay(
-                                            ZStack {
-                                                LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
-                                                
-                                                GeometryReader { geo in
-                                                    if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                                        ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                                            .scaleEffect(1/pinchToZoomState.scale)
-                                                            .offset(lineStart)
-                                                    }
+                    Spacer()
+                }
+                .padding()
+                .zIndex(2)
+                
+                VStack {
+                    ZStack {
+                        VStack {
+                            Spacer()
+                            Group {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .overlay(
+                                        ZStack {
+                                            LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
+                                            
+                                            GeometryReader { geo in
+                                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                                        .scaleEffect(1/pinchToZoomState.scale)
+                                                        .offset(lineStart)
                                                 }
                                             }
-                                        )
-                                }
-                                Spacer()
-                            }
-                            .offset(x: self.dragOffset.width, y: self.dragOffset.height) // drag gesture
-                            .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
-                            .offset(pinchToZoomState.offset)
-                            .overlay(PinchToZoom(state: pinchToZoomState))
-                            .gesture(DragGesture()
-                                .onChanged { value in
-                                    self.dragOffset = value.translation
-                                    self.dragOffsetPredicted = value.predictedEndTranslation
-                                }
-                                .onEnded { value in
-                                    if(self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3) {
-                                        withAnimation(.spring()) {
-                                            self.dragOffset = self.dragOffsetPredicted
                                         }
-                                        presentationMode.wrappedValue.dismiss()
-                                        
-                                        return
-                                    }
-                                    withAnimation(.interactiveSpring()) {
-                                        self.dragOffset = .zero
-                                    }
-                                }
-                            )
+                                    )
+                            }
+                            Spacer()
                         }
+                        .offset(x: self.dragOffset.width, y: self.dragOffset.height) // drag gesture
+                        .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
+                        .offset(pinchToZoomState.offset)
+                        .overlay(PinchToZoom(state: pinchToZoomState))
+                        .gesture(DragGesture()
+                            .onChanged { value in
+                                self.dragOffset = value.translation
+                                self.dragOffsetPredicted = value.predictedEndTranslation
+                            }
+                            .onEnded { value in
+                                if(self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3) {
+                                    withAnimation(.spring()) {
+                                        self.dragOffset = self.dragOffsetPredicted
+                                    }
+                                    presentationMode.wrappedValue.dismiss()
+                                    
+                                    return
+                                }
+                                withAnimation(.interactiveSpring()) {
+                                    self.dragOffset = .zero
+                                }
+                            }
+                        )
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.black).edgesIgnoringSafeArea(.all)
-                    .zIndex(1)
                 }
-                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black)
+                .edgesIgnoringSafeArea(.all)
+                .zIndex(1)
             }
+            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

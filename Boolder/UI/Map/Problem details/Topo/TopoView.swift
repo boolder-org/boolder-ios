@@ -137,6 +137,7 @@ struct TopoView: View {
         }
     }
     
+    // FIXME: make this DRY
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
         
