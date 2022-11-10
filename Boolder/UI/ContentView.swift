@@ -41,7 +41,7 @@ struct ContentView: View {
                         Spacer()
                         
                         Button(action: {
-                            mapState.centerOnCurrentLocationCount += 1
+                            mapState.centerOnCurrentLocation()
                         }) {
                             Image(systemName: "location")
                                 .padding(12)
@@ -125,7 +125,8 @@ struct ContentView: View {
             .background(
                 EmptyView()
                     .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                        mapState.filtersRefreshCount += 1
+                        mapState.filtersRefresh()
+                        // TODO: update $mapState.filters only on dismiss
                     }) {
                         FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
                             .modify {

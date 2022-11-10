@@ -105,8 +105,7 @@ struct SearchView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                mapState.centerOnProblem = problem
-                                mapState.centerOnProblemCount += 1 // triggers a map refresh
+                                mapState.centerOnProblem(problem)
                                 
                                 var wait = 0.1
                                 if #available(iOS 15, *) { }

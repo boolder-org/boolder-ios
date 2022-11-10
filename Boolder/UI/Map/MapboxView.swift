@@ -20,6 +20,7 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
+        // refresh filters
         if(mapState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
             vc.applyFilters(mapState.filters)
             context.coordinator.lastFiltersRefreshCount = mapState.filtersRefreshCount
