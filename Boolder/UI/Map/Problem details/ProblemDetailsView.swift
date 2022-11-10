@@ -20,13 +20,9 @@ struct ProblemDetailsView: View {
     
     @Binding var problem: Problem
     @State private var areaResourcesDownloaded = false
-    
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
-    
     @State private var lineDrawPercentage: CGFloat = .zero
-    
-    
     
     var body: some View {
         ScrollView {

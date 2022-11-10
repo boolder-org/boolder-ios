@@ -15,24 +15,21 @@ struct ContentView: View {
     @State private var presentSearch = false
     @State private var tabSelection = Tab.map
     
-    // TODO: move somewhere else
-    static let algoliaController = AlgoliaController()
-    
     var body: some View {
         TabView(selection: $tabSelection) {
             
             ZStack {
                 MapboxView(mapState: mapState)
-                .edgesIgnoringSafeArea(.top)
-                .background(
-                    PoiActionSheet(
-                        name: (mapState.selectedPoi?.name ?? ""),
-                        location: (mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
-                        googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
-                        navigationMode: false,
-                        presentPoiActionSheet: $mapState.presentPoiActionSheet
+                    .edgesIgnoringSafeArea(.top)
+                    .background(
+                        PoiActionSheet(
+                            name: (mapState.selectedPoi?.name ?? ""),
+                            location: (mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+                            googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
+                            navigationMode: false,
+                            presentPoiActionSheet: $mapState.presentPoiActionSheet
+                        )
                     )
-                )
                 
                 HStack {
                     Spacer()
@@ -108,17 +105,7 @@ struct ContentView: View {
             .background(
                 EmptyView()
                     .sheet(isPresented: $presentSearch) {
-                        NavigationView {
-                            SearchView(
-                                searchBoxController: ContentView.algoliaController.searchBoxController,
-                                problemHitsController: ContentView.algoliaController.problemHitsController,
-                                areaHitsController: ContentView.algoliaController.areaHitsController,
-                                mapState: mapState
-                            )
-                        }
-                        .onAppear() {
-                            ContentView.algoliaController.searcher.search()
-                        }
+                        SearchView(mapState: mapState)
                     }
             )
             // temporary hack to make multi sheets work on iOS14
@@ -150,7 +137,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.discover)
         }
-//        .overlay(ImageViewer(image: $appState.image, viewerShown: $appState.showImageViewer))
+        //        .overlay(ImageViewer(image: $appState.image, viewerShown: $appState.showImageViewer))
     }
     
     enum Tab {
