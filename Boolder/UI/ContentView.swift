@@ -11,24 +11,26 @@ import CoreLocation
 //import ImageViewer
 
 struct ContentView: View {
-    @StateObject private var appState = AppState()
+    @StateObject private var mapState = MapState()
+    @State private var presentSearch = false
+    @State private var tabSelection = 1
     
     // TODO: move somewhere else
     static let algoliaController = AlgoliaController()
     
     var body: some View {
-        TabView(selection: $appState.tabSelection) {
+        TabView(selection: $tabSelection) {
             
             ZStack {
-                MapboxView(appState: appState)
+                MapboxView(appState: mapState)
                 .edgesIgnoringSafeArea(.top)
                 .background(
                     PoiActionSheet(
-                        name: (appState.selectedPoi?.name ?? ""),
-                        location: (appState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
-                        googleUrl: URL(string: appState.selectedPoi?.googleUrl ?? ""),
+                        name: (mapState.selectedPoi?.name ?? ""),
+                        location: (mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+                        googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
                         navigationMode: false,
-                        presentPoiActionSheet: $appState.presentPoiActionSheet
+                        presentPoiActionSheet: $mapState.presentPoiActionSheet
                     )
                 )
                 
@@ -39,7 +41,7 @@ struct ContentView: View {
                         Spacer()
                         
                         Button(action: {
-                            appState.centerOnCurrentLocationCount += 1
+                            mapState.centerOnCurrentLocationCount += 1
                         }) {
                             Image(systemName: "location")
                                 .padding(12)
@@ -55,7 +57,7 @@ struct ContentView: View {
                         .padding(.horizontal)
                         
                         Button(action: {
-                            appState.presentSearch = true
+                            presentSearch = true
                         }) {
                             Image(systemName: "magnifyingglass")
                                 .padding(12)
@@ -70,13 +72,13 @@ struct ContentView: View {
                         .padding(.horizontal)
                         
                         Button(action: {
-                            appState.presentFilters = true
+                            mapState.presentFilters = true
                         }) {
                             Image(systemName: "slider.horizontal.3")
                                 .padding(12)
                         }
-                        .accentColor(appState.filters.filtersCount() >= 1 ? .systemBackground : .primary)
-                        .background(appState.filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
+                        .accentColor(mapState.filters.filtersCount() >= 1 ? .systemBackground : .primary)
+                        .background(mapState.filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)
@@ -89,9 +91,9 @@ struct ContentView: View {
                 .padding(.bottom)
                 .zIndex(10)
             }
-            .sheet(isPresented: $appState.presentProblemDetails) {
+            .sheet(isPresented: $mapState.presentProblemDetails) {
                 ProblemDetailsView(
-                    problem: $appState.selectedProblem
+                    problem: $mapState.selectedProblem
                 )
                 .modify {
                     if #available(iOS 16, *) {
@@ -105,13 +107,13 @@ struct ContentView: View {
             // temporary hack to make multi sheets work on iOS14
             .background(
                 EmptyView()
-                    .sheet(isPresented: $appState.presentSearch) {
+                    .sheet(isPresented: $presentSearch) {
                         NavigationView {
                             SearchView(
                                 searchBoxController: ContentView.algoliaController.searchBoxController,
                                 problemHitsController: ContentView.algoliaController.problemHitsController,
                                 areaHitsController: ContentView.algoliaController.areaHitsController,
-                                appState: appState
+                                mapState: mapState
                             )
                         }
                         .onAppear() {
@@ -122,10 +124,10 @@ struct ContentView: View {
             // temporary hack to make multi sheets work on iOS14
             .background(
                 EmptyView()
-                    .sheet(isPresented: $appState.presentFilters, onDismiss: {
-                        appState.filtersRefreshCount += 1
+                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                        mapState.filtersRefreshCount += 1
                     }) {
-                        FiltersView(presentFilters: $appState.presentFilters, filters: $appState.filters)
+                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
                             .modify {
                                 if #available(iOS 16, *) {
                                     $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
@@ -141,7 +143,7 @@ struct ContentView: View {
             }
             .tag(1)
             
-            DiscoverView(tabSelection: $appState.tabSelection, centerOnArea: $appState.centerOnArea, centerOnAreaCount: $appState.centerOnAreaCount)
+            DiscoverView(tabSelection: $tabSelection, centerOnArea: $mapState.centerOnArea, centerOnAreaCount: $mapState.centerOnAreaCount)
                 .tabItem {
                     Label("tabs.discover", systemImage: "sparkles")
                 }

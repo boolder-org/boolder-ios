@@ -11,7 +11,7 @@ import CoreLocation
 import MapboxMaps
 
 struct MapboxView: UIViewControllerRepresentable {
-    let appState: AppState
+    let appState: MapState
     
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
