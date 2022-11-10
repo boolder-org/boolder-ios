@@ -27,6 +27,8 @@
 		031F36B7291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
 		031F36B9291D271300BD0C2B /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B8291D271300BD0C2B /* PinchToZoomView.swift */; };
 		031F36BA291D271300BD0C2B /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B8291D271300BD0C2B /* PinchToZoomView.swift */; };
+		031F36BC291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */; };
+		031F36BD291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */; };
 		033F70D429191755000DD3F4 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D329191755000DD3F4 /* FiltersView.swift */; };
 		033F70D529191755000DD3F4 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D329191755000DD3F4 /* FiltersView.swift */; };
 		033F70D72919535A000DD3F4 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D62919535A000DD3F4 /* Area.swift */; };
@@ -138,6 +140,7 @@
 		031F36B2291D01B700BD0C2B /* AlgoliaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaController.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
 		031F36B8291D271300BD0C2B /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
+		031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaErrorController.swift; sourceTree = "<group>"; };
 		033F70D329191755000DD3F4 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		033F70D62919535A000DD3F4 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				03DB8CB42913E7B600EFA944 /* SearchView.swift */,
 				031F36B2291D01B700BD0C2B /* AlgoliaController.swift */,
+				031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
 			path = Map;
@@ -633,6 +637,7 @@
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
+				031F36BD291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */,
 				37379927258E619400711EDA /* PoiActionSheet.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
@@ -669,6 +674,7 @@
 				031F36B0291CE56100BD0C2B /* MapState.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
+				031F36BC291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,

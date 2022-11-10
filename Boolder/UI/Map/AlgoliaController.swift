@@ -6,6 +6,7 @@
 //  Copyright © 2022 Nicolas Mondollot. All rights reserved.
 //
 
+import Foundation
 import InstantSearchSwiftUI
 import InstantSearch
 
@@ -44,6 +45,8 @@ class AlgoliaController {
     let areaHitsInteractor: HitsInteractor<AreaItem>
     let areaHitsController: HitsObservableController<AreaItem>
     
+    let errorController: AlgoliaErrorController
+    
     init() {
         self.searcher = MultiSearcher(appID: "XNJHVMTGMF",
                                       apiKey: "765db6917d5c17449984f7c0067ae04c")
@@ -60,7 +63,24 @@ class AlgoliaController {
         self.problemHitsController = .init()
         self.areaHitsInteractor = .init()
         self.areaHitsController = .init()
+        
+        self.errorController = AlgoliaErrorController()
+        
         setupConnections()
+        
+        searcher.onError.subscribe(with: self.errorController) { (errorController, error) in
+            if let _ = error as? MultiSearcher.RequestError {
+                DispatchQueue.main.async {
+                    errorController.requestError = true
+                }
+            }
+        }
+        
+        searcher.onSearch.subscribe(with: self.errorController) { (errorController, error) in
+            DispatchQueue.main.async {
+                errorController.requestError = false
+            }
+        }
     }
     
     func setupConnections() {

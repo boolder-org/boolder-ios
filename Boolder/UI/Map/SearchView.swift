@@ -16,6 +16,7 @@ struct SearchView: View {
     @ObservedObject var searchBoxController = Self.algoliaController.searchBoxController
     @ObservedObject var problemHitsController = Self.algoliaController.problemHitsController
     @ObservedObject var areaHitsController = Self.algoliaController.areaHitsController
+    @ObservedObject var errorController = Self.algoliaController.errorController
     
     @State private var isEditing = false
     
@@ -34,7 +35,12 @@ struct SearchView: View {
                     .padding(.top)
                 }
                 
-                if searchBoxController.query.count == 0 {
+                if errorController.requestError {
+                    Spacer()
+                    Text("search.request_error").foregroundColor(.gray)
+                    Spacer()
+                }
+                else if searchBoxController.query.count == 0 {
                     //                VStack {
                     //                    Text("Recherchez un nom de secteur")
                     //                    Text("ou un nom de voie")
@@ -62,6 +68,7 @@ struct SearchView: View {
                         .padding(.leading, 32)
                 }
             )
+            
             .modify {
                 if #available(iOS 15, *) {
                     $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("search.placeholder"))

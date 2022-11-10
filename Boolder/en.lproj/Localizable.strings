@@ -16,6 +16,7 @@
 "search.problems" = "Problems";
 "search.placeholder" = "Problem or area name";
 "search.no_results" = "No results";
+"search.request_error" = "Connection issue";
 
 // MARK: Discover view
 "discover.title" = "Discover";
