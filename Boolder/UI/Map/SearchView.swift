@@ -41,12 +41,23 @@ struct SearchView: View {
                     Spacer()
                 }
                 else if searchBoxController.query.count == 0 {
-                    //                VStack {
-                    //                    Text("Recherchez un nom de secteur")
-                    //                    Text("ou un nom de voie")
-                    //                }
-                    //                .foregroundColor(.gray)
-                    Spacer()
+                    VStack {
+                        VStack(spacing: 16) {
+                            Text("search.examples")
+                            
+                            ForEach(["Cul de Chien", "La Marie-Rose", "Apremont"], id: \.self) { query in
+                                Button {
+                                    searchBoxController.query = query
+                                } label: {
+                                    Text(query).foregroundColor(.appGreen)
+                                }
+                            }
+                        }
+                        .padding(.top, 100)
+
+                        Spacer()
+                    }
+                    .foregroundColor(.gray)
                 }
                 else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
                     Spacer()

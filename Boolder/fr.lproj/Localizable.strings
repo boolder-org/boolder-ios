@@ -16,6 +16,7 @@
 "search.placeholder" = "Nom de voie ou secteur";
 "search.no_results" = "Pas de résultats";
 "search.request_error" = "Problème de connexion";
+"search.examples" = "Exemples de recherche :";
 
 // MARK: Discover view
 "discover.title" = "Découvrir";
