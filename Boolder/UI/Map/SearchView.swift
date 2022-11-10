@@ -23,7 +23,7 @@ struct SearchView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 7) {
+            VStack {
                 if #available(iOS 15, *) { }
                 else {
                     SearchBar(text: $searchBoxController.query,

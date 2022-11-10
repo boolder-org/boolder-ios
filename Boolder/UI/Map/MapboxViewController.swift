@@ -340,11 +340,6 @@ class MapboxViewController: UIViewController {
                 }
             }
         
-        let zoomExpressionForClusters = Expression(.lte) {
-            Expression(.zoom)
-            12
-        }
-        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
