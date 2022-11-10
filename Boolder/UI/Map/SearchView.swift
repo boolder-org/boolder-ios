@@ -72,9 +72,6 @@ struct SearchView: View {
                 }
             }
         }
-        .onAppear() {
-            Self.algoliaController.searcher.search()
-        }
     }
     
     private func Results() -> some View {
