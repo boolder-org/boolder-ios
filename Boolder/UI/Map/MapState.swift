@@ -39,7 +39,4 @@ import SwiftUI
     func filtersRefresh() {
         filtersRefreshCount += 1
     }
-    
-//    @Published var showImageViewer: Bool = true
-//    @Published var image = Image("yellow-circuit-start")
 }

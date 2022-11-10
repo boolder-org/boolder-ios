@@ -17,7 +17,7 @@ struct TopoView: View {
     @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
     
-    
+    @State private var presentTopoFullScreenView = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -30,9 +30,12 @@ struct TopoView: View {
                             Image(uiImage: topoPhoto)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-//                                .onTapGesture {
-//                                    showImageViewer = true
-//                                }
+                                .onTapGesture {
+                                    presentTopoFullScreenView = true
+                                }
+                                .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                    TopoFullScreenView(image: topoPhoto)
+                                }
                             
                             LineView(problem: $problem, drawPercentage: $lineDrawPercentage)
                             

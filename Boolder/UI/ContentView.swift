@@ -8,7 +8,6 @@
 
 import SwiftUI
 import CoreLocation
-//import ImageViewer
 
 struct ContentView: View {
     @StateObject private var mapState = MapState()
@@ -137,7 +136,6 @@ struct ContentView: View {
                 }
                 .tag(Tab.discover)
         }
-        //        .overlay(ImageViewer(image: $appState.image, viewerShown: $appState.showImageViewer))
     }
     
     enum Tab {
