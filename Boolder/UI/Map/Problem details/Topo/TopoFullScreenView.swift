@@ -44,22 +44,26 @@ struct TopoFullScreenView: View {
                     
                     VStack {
                         ZStack {
-                            Group {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .overlay(
-                                        ZStack {
-                                            LineView(problem: problem, drawPercentage: .constant(1))
-                                            
-                                            GeometryReader { geo in
-                                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                                        .offset(lineStart)
+                            VStack {
+                                Spacer()
+                                Group {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .overlay(
+                                            ZStack {
+                                                LineView(problem: problem, drawPercentage: .constant(1))
+                                                
+                                                GeometryReader { geo in
+                                                    if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                                        ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                                            .offset(lineStart)
+                                                    }
                                                 }
                                             }
-                                        }
-                                    )
+                                        )
+                                }
+                                Spacer()
                             }
 //                                .scaleEffect(previousAmount*currentAmount, anchor: anchor)
 //                                .offset(offset)
