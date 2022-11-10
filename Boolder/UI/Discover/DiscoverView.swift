@@ -255,7 +255,7 @@ struct DiscoverView: View {
     }
     
     var popularAreas: [Area] {
-        [5,4,2,1,7,9,10,11,12].map{Area.load(id: $0)!}
+        [5,4,2,1,7,9,10,11,12].map{Area.load(id: $0)}.compactMap{$0}
     }
     
     var feedbackURL: URL {

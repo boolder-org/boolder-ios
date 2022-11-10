@@ -44,7 +44,7 @@ struct Grade: Hashable, CustomStringConvertible {
 extension Grade: Comparable {
     
     func index() -> Int {
-        Self.grades.firstIndex(of: string)!
+        Self.grades.firstIndex(of: string)! // FIXME: don't force unwrap
     }
     
     static func < (lhs: Grade, rhs: Grade) -> Bool {

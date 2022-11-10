@@ -76,7 +76,7 @@ struct TopAreasDryFast: View {
     }
     
     var areas: [Area] {
-        [16, 10, 2, 15, 7].map{Area.load(id: $0)!}.sorted {
+        [16, 10, 2, 15, 7].map{Area.load(id: $0)}.compactMap{$0}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
