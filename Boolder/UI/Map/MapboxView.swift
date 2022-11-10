@@ -20,6 +20,7 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
+        
         // refresh filters
         if(mapState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
             vc.applyFilters(mapState.filters)
@@ -52,12 +53,11 @@ struct MapboxView: UIViewControllerRepresentable {
                 let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1)
                 
-                
                 context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
             }
         }
         
-        // zoom on current location
+        // center on current location
         if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
             if let location = vc.mapView.location.latestLocation {
                 let cameraOptions = CameraOptions(

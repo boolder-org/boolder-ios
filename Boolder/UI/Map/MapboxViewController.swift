@@ -13,7 +13,7 @@ import CoreLocation
 class MapboxViewController: UIViewController {
     
     var mapView: MapView!
-    var delegate: MapBoxViewDelegate!
+    var delegate: MapBoxViewDelegate?
     private var previouslyTappedProblemId: String = ""
     
     override public func viewDidLoad() {
@@ -44,180 +44,166 @@ class MapboxViewController: UIViewController {
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
         mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
-        //        mapView.ornaments.options.attributionButton.margins = CGPoint(x: 88, y: 6)
-        //        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
         mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
         
         // Wait for the map to load its style before adding data.
         mapView.mapboxMap.onNext(event: .mapLoaded) { [self] _ in
-            
-            // Specify a unique string as the source ID (SOURCE_ID)
-            let sourceIdentifier = "problems"
-            var source = VectorSource()
-            // In this case, the tileset is owned by the "mapbox" account
-            // and "mapbox-terrain-v2" is the tileset ID
-            source.url = "mapbox://nmondollot.4xsv235p"
-            source.promoteId = .string("id") // needed to make FeatureState work
-            // Add the vector source to the style
-            try! self.mapView.mapboxMap.style.addSource(source, id: sourceIdentifier)
-            
-            //            // Define bounding box
-            //            let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: 48.2868427, longitude: 2.4806787),
-            //                                          northeast: CLLocationCoordinate2D(latitude: 48.473906, longitude: 2.7698927))
-            //
-            //            // Center the camera on the bounds
-            //            let cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: .zero, bearing: 0, pitch: 0)
-            //            mapView.mapboxMap.setCamera(to: cameraOptions)
-            
-            
-            // Specify a unique string as the layer ID ("LAYER_ID")
-            // and set the source to some source ID (SOURCE_ID).
-            var problemsLayer = CircleLayer(id: "problems")
-            problemsLayer.source = "problems"
-            problemsLayer.sourceLayer = "problems-ayes3a"
-            problemsLayer.minZoom = 15
-            problemsLayer.filter = Expression(.match) {
-                ["geometry-type"]
-                ["Point"]
-                true
-                false
-            }
-            
-            // Set some style properties
-            problemsLayer.circleRadius = .expression(
-                
-                Exp(.interpolate) {
-                    ["linear"]
-                    ["zoom"]
-                    15
-                    2
-                    18
-                    4
-                    22
-                    Exp(.switchCase) {
-                        Exp(.boolean) {
-                            Exp(.has) { "circuitColor" }
-                            false
-                        }
-                        16
-                        10
-                    }
-                }
-            )
-            
-            problemsLayer.circleColor = .expression(
-                Exp(.match) {
-                    Exp(.get) { "circuitColor" }
-                    "yellow"
-                    Circuit.CircuitColor.yellow.uicolor
-                    "purple"
-                    Circuit.CircuitColor.purple.uicolor
-                    "orange"
-                    Circuit.CircuitColor.orange.uicolor
-                    "green"
-                    Circuit.CircuitColor.green.uicolor
-                    "blue"
-                    Circuit.CircuitColor.blue.uicolor
-                    "skyblue"
-                    Circuit.CircuitColor.skyBlue.uicolor
-                    "salmon"
-                    Circuit.CircuitColor.salmon.uicolor
-                    "red"
-                    Circuit.CircuitColor.red.uicolor
-                    "black"
-                    Circuit.CircuitColor.black.uicolor
-                    "white"
-                    Circuit.CircuitColor.white.uicolor
-                    Circuit.CircuitColor.offCircuit.uicolor
-                }
-            )
-            
-            problemsLayer.circleStrokeWidth = .expression(
-                Exp(.switchCase) {
-                    Exp(.boolean) {
-                        Exp(.featureState) { "selected" }
-                        false
-                    }
-                    3.0
-                    0.0
-                }
-            )
-            problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
-            
-            //            problemsLayer.circleOpacity = .expression(
-            //                Exp(.interpolate) {
-            //                    ["linear"]
-            //                    ["zoom"]
-            //                    14.5
-            //                    0
-            //                    15
-            //                    1.0
-            //                }
-            //            )
-            
-            problemsLayer.circleSortKey = .expression(
-                Exp(.switchCase) {
-                    Exp(.boolean) {
-                        Exp(.has) { "circuitId" }
-                        false
-                    }
-                    2
-                    1
-                }
-            )
-            
-            // Add the circle layer to the map.
-            try! self.mapView.mapboxMap.style.addLayer(problemsLayer)
-            
-            var problemsTextsLayer = SymbolLayer(id: "problems-texts")
-            problemsTextsLayer.source = "problems"
-            problemsTextsLayer.sourceLayer = "problems-ayes3a"
-            problemsTextsLayer.minZoom = 19
-            problemsTextsLayer.filter = Expression(.match) {
-                ["geometry-type"]
-                ["Point"]
-                true
-                false
-            }
-            
-            problemsTextsLayer.textAllowOverlap = .constant(true)
-            problemsTextsLayer.textField = .expression(
-                Expression(.toString) {
-                    ["get", "circuitNumber"]
-                }
-            )
-            
-            problemsTextsLayer.textSize = .expression(
-                Exp(.interpolate) {
-                    ["linear"]
-                    ["zoom"]
-                    19
-                    10
-                    22
-                    20
-                }
-            )
-            
-            problemsTextsLayer.textColor = .expression(
-                Expression(.switchCase) {
-                    Expression(.match) {
-                        ["get", "circuitColor"]
-                        ["", "white"]
-                        true
-                        false
-                    }
-                    UIColor.black // use less dark
-                    UIColor.white
-                }
-            )
-            
-            try! self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            self.addSources()
+            self.addLayers()
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
         self.view.addSubview(mapView)
+    }
+    
+    let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
+    
+    func addSources() {
+        var source = VectorSource()
+        source.url = "mapbox://nmondollot.4xsv235p"
+        source.promoteId = .string("id") // needed to make Feature-State work
+
+        do {
+            try self.mapView.mapboxMap.style.addSource(source, id: "problems")
+        }
+        catch {
+            print("Ran into an error adding the sources: \(error)")
+        }
+    }
+    
+    func addLayers() {
+        var problemsLayer = CircleLayer(id: "problems")
+        problemsLayer.source = "problems"
+        problemsLayer.sourceLayer = problemsSourceLayerId
+        problemsLayer.minZoom = 15
+        problemsLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Point"] // don't display boulders (stored in the tileset as LineStrings)
+            true
+            false
+        }
+        
+        problemsLayer.circleRadius = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                2
+                18
+                4
+                22
+                Exp(.switchCase) {
+                    Exp(.boolean) {
+                        Exp(.has) { "circuitColor" }
+                        false
+                    }
+                    16
+                    10
+                }
+            }
+        )
+        
+        problemsLayer.circleColor = .expression(
+            Exp(.match) {
+                Exp(.get) { "circuitColor" }
+                "yellow"
+                Circuit.CircuitColor.yellow.uicolor
+                "purple"
+                Circuit.CircuitColor.purple.uicolor
+                "orange"
+                Circuit.CircuitColor.orange.uicolor
+                "green"
+                Circuit.CircuitColor.green.uicolor
+                "blue"
+                Circuit.CircuitColor.blue.uicolor
+                "skyblue"
+                Circuit.CircuitColor.skyBlue.uicolor
+                "salmon"
+                Circuit.CircuitColor.salmon.uicolor
+                "red"
+                Circuit.CircuitColor.red.uicolor
+                "black"
+                Circuit.CircuitColor.black.uicolor
+                "white"
+                Circuit.CircuitColor.white.uicolor
+                Circuit.CircuitColor.offCircuit.uicolor
+            }
+        )
+        
+        problemsLayer.circleStrokeWidth = .expression(
+            Exp(.switchCase) {
+                Exp(.boolean) {
+                    Exp(.featureState) { "selected" }
+                    false
+                }
+                3.0
+                0.0
+            }
+        )
+        problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
+        
+        problemsLayer.circleSortKey = .expression(
+            Exp(.switchCase) {
+                Exp(.boolean) {
+                    Exp(.has) { "circuitId" }
+                    false
+                }
+                2
+                1
+            }
+        )
+        
+        var problemsTextsLayer = SymbolLayer(id: "problems-texts")
+        problemsTextsLayer.source = "problems"
+        problemsTextsLayer.sourceLayer = problemsSourceLayerId
+        problemsTextsLayer.minZoom = 19
+        problemsTextsLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Point"]
+            true
+            false
+        }
+        
+        problemsTextsLayer.textAllowOverlap = .constant(true)
+        problemsTextsLayer.textField = .expression(
+            Expression(.toString) {
+                ["get", "circuitNumber"]
+            }
+        )
+        
+        problemsTextsLayer.textSize = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                19
+                10
+                22
+                20
+            }
+        )
+        
+        problemsTextsLayer.textColor = .expression(
+            Expression(.switchCase) {
+                Expression(.match) {
+                    ["get", "circuitColor"]
+                    ["", "white"]
+                    true
+                    false
+                }
+                UIColor.black // TODO: less dark
+                UIColor.white
+            }
+        )
+        
+        do {
+            try self.mapView.mapboxMap.style.addLayer(problemsLayer)
+            try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+        }
+        catch {
+            print("Ran into an error adding the layers: \(error)")
+        }
     }
     
     func applyFilters(_ filters: Filters) {
@@ -227,63 +213,27 @@ class MapboxViewController: UIViewController {
             
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
-            try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
-                // Update layer properties
-                layer.filter = Expression(.match) {
-                    Exp(.get) { "grade" }
-                    gradesArray
-                    true
-                    false
+            try ["problems", "problems-texts"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                    layer.filter = Expression(.match) {
+                        Exp(.get) { "grade" }
+                        gradesArray
+                        true
+                        false
+                    }
                 }
             }
-            
-            try mapView.mapboxMap.style.updateLayer(withId: "problems-texts", type: SymbolLayer.self) { layer in
-                // Update layer properties
-                layer.filter = Expression(.match) {
-                    Exp(.get) { "grade" }
-                    gradesArray
-                    true
-                    false
-                }
-            }
-        } catch {
-            print("Ran into an error updating the layer: \(error)")
-        }
-    }
-    
-    func removeFilter() {
-        do {
-            try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
-                // Update layer properties
-                layer.filter = Expression(.match) {
-                    Exp(.get) { "grade" }
-                    ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+","4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+",]
-                    true
-                    false
-                }
-            }
-            
-            try mapView.mapboxMap.style.updateLayer(withId: "problems-texts", type: SymbolLayer.self) { layer in
-                // Update layer properties
-                layer.filter = Expression(.match) {
-                    Exp(.get) { "grade" }
-                    ["1a","1a+","1b","1b+","1c","1c+","2a","2a+","2b","2b+","2c","2c+","3a","3a+","3b","3b+","3c","3c+","4a","4a+","4b","4b+","4c","4c+","5a","5a+","5b","5b+","5c","5c+","6a","6a+","6b","6b+","6c","6c+","7a","7a+","7b","7b+","7c","7c+","8a","8a+","8b","8b+","8c","8c+","9a","9a+","9b","9b+","9c","9c+",]
-                    true
-                    false
-                }
-            }
+ 
         } catch {
             print("Ran into an error updating the layer: \(error)")
         }
     }
     
     func setProblemAsSelected(problemFeatureId: String) {
-        
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-                                               sourceLayerId: "problems-ayes3a",
+                                               sourceLayerId: problemsSourceLayerId,
                                                featureId: problemFeatureId,
                                                state: ["selected": true])
-        
         
         if problemFeatureId != self.previouslyTappedProblemId {
             unselectPreviousProblem()
@@ -295,7 +245,7 @@ class MapboxViewController: UIViewController {
     func unselectPreviousProblem() {
         if(self.previouslyTappedProblemId != "") {
             self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-                                                   sourceLayerId: "problems-ayes3a",
+                                                   sourceLayerId: problemsSourceLayerId,
                                                    featureId: self.previouslyTappedProblemId,
                                                    state: ["selected": false])
         }
