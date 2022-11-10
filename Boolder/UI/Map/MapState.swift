@@ -14,8 +14,8 @@ import SwiftUI
     @Published var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
     @Published var centerOnProblem: Problem? = nil
     @Published var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
-    @Published var centerOnArea: Area? = nil
-    @Published var centerOnAreaCount = 0 // to be able to trigger a map refresh anytime we want
+    @Published private(set) var centerOnArea: Area? = nil
+    @Published private(set) var centerOnAreaCount = 0 // to be able to trigger a map refresh anytime we want
     @Published var selectedPoi: Poi? = nil
     @Published var presentPoiActionSheet = false
     @Published var presentFilters = false

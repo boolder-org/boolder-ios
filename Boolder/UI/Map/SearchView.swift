@@ -85,9 +85,9 @@ struct SearchView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                mapState.centerOnArea = Area.load(id: id)
-                                mapState.centerOnAreaCount += 1
-                                
+                                if let area = Area.load(id: id) {
+                                    mapState.centerOnArea(area)
+                                }                                
                             } label: {
                                 HStack {
                                     Text(hit?.name ?? "").foregroundColor(.primary)
