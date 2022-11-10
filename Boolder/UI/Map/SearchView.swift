@@ -67,6 +67,9 @@ struct SearchView: View {
                     $0.searchable(text: $searchBoxController.query, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("search.placeholder"))
                         .disableAutocorrection(true)
                 }
+                else {
+                    $0
+                }
             }
         }
         .onAppear() {
