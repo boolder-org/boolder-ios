@@ -107,7 +107,7 @@ struct Problem : Identifiable {
             if let l = try db.pluck(lines) {
                 let jsonString = l[coordinates]
                 let jsonData = jsonString.data(using: .utf8)
-                let coordinates = try! JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData!)
+                let coordinates = try JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData!)
                 
                 return Line(id: l[id], topoId: l[topoId], coordinates: coordinates)
             }

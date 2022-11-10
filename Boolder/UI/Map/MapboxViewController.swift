@@ -275,13 +275,9 @@ class MapboxViewController: UIViewController {
                        case .string(let northEastLon) = feature.properties?["northEastLon"],
                        case .string(let northEastLat) = feature.properties?["northEastLat"]
                     {
-                        //                        print(areaFeature.properties)
-                        
-                        // Define bounding box
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        // Center the camera on the bounds
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
@@ -294,8 +290,6 @@ class MapboxViewController: UIViewController {
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
                 
-                //                print("tap cluster")
-                
                 guard let self = self else { return }
                 
                 switch result {
@@ -307,13 +301,9 @@ class MapboxViewController: UIViewController {
                        case .string(let northEastLon) = feature.properties?["northEastLon"],
                        case .string(let northEastLat) = feature.properties?["northEastLat"]
                     {
-                        //                        print(areaFeature.properties)
-                        
-                        // Define bounding box
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        // Center the camera on the bounds
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
@@ -321,11 +311,6 @@ class MapboxViewController: UIViewController {
                     print("An error occurred: \(error.localizedDescription)")
                 }
             }
-        
-        //        let zoomExpressionForPois = Expression(.gte) {
-        //            Expression(.zoom)
-        //            12
-        //        }
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
@@ -352,8 +337,6 @@ class MapboxViewController: UIViewController {
             with: CGRect(x: tapPoint.x-12, y: tapPoint.y-12, width: 24, height: 24),
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
-                //                print("tap on problems layer")
-                
                 guard let self = self else { return }
                 
                 if self.mapView.mapboxMap.cameraState.zoom < 18 { return }
@@ -365,7 +348,7 @@ class MapboxViewController: UIViewController {
                        case .number(let id) = feature.properties?["id"],
                        case .point(let point) = feature.geometry
                     {
-                        self.delegate?.selectProblem(id: Int(id)) // FIXME: make sure we cast to Int before running the rest of the code
+                        self.delegate?.selectProblem(id: Int(id))
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
                         if tapPoint.y >= self.mapView.bounds.height/2 {
@@ -376,7 +359,6 @@ class MapboxViewController: UIViewController {
                             )
                             self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
                         }
-                        
                     }
                     else {
                         self.unselectPreviousProblem()
