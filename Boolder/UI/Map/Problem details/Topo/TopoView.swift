@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+//import ImageViewer
 
 struct TopoView: View {
     @EnvironmentObject var odrManager: ODRManager
@@ -15,6 +16,8 @@ struct TopoView: View {
     @Binding var problem: Problem
     @Binding var lineDrawPercentage: CGFloat
     @Binding var areaResourcesDownloaded: Bool
+    
+    
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -27,6 +30,9 @@ struct TopoView: View {
                             Image(uiImage: topoPhoto)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
+//                                .onTapGesture {
+//                                    showImageViewer = true
+//                                }
                             
                             LineView(problem: $problem, drawPercentage: $lineDrawPercentage)
                             
@@ -52,7 +58,8 @@ struct TopoView: View {
                             .foregroundColor(Color.gray)
                     }
                     
-                    // We do this on top of the PinchToZoom view to be able to intercept taps on secondary problems
+                    // We did this on top of the previous view to be able to intercept taps on secondary problems, back when there was a PinchToZoom view
+                    // TODO: put this in the same view
                     GeometryReader { geo in
                         ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                             if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {

@@ -11,17 +11,7 @@ import CoreLocation
 import MapboxMaps
 
 struct MapboxView: UIViewControllerRepresentable {
-    @Binding var selectedProblem: Problem
-    @Binding var presentProblemDetails: Bool
-    @Binding var centerOnProblem: Problem?
-    @Binding var centerOnProblemCount: Int
-    @Binding var centerOnArea: Area?
-    @Binding var centerOnAreaCount: Int
-    @Binding var centerOnCurrentLocationCount: Int
-    @Binding var selectedPoi: Poi?
-    @Binding var presentPoiActionSheet: Bool
-    @Binding var filters: Filters
-    @Binding var refreshFiltersCount: Int
+    let appState: AppState
     
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
@@ -30,14 +20,14 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        if(refreshFiltersCount > context.coordinator.lastRefreshFiltersCount) {
-            vc.applyFilters(filters)
-            context.coordinator.lastRefreshFiltersCount = refreshFiltersCount
+        if(appState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
+            vc.applyFilters(appState.filters)
+            context.coordinator.lastFiltersRefreshCount = appState.filtersRefreshCount
         }
         
         // center on problem
-        if centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
-            if let problem = centerOnProblem {
+        if appState.centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
+            if let problem = appState.centerOnProblem {
                 
                 let cameraOptions = CameraOptions(
                     center: problem.coordinate,
@@ -48,13 +38,13 @@ struct MapboxView: UIViewControllerRepresentable {
                 
                 vc.setProblemAsSelected(problemFeatureId: String(problem.id))
                 
-                context.coordinator.lastCenterOnProblemCount = centerOnProblemCount
+                context.coordinator.lastCenterOnProblemCount = appState.centerOnProblemCount
             }
         }
         
         // center on area
-        if centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
-            if let area = centerOnArea {
+        if appState.centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
+            if let area = appState.centerOnArea {
                 
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
@@ -62,12 +52,12 @@ struct MapboxView: UIViewControllerRepresentable {
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1)
                 
                 
-                context.coordinator.lastCenterOnAreaCount = centerOnAreaCount
+                context.coordinator.lastCenterOnAreaCount = appState.centerOnAreaCount
             }
         }
         
         // zoom on current location
-        if centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
+        if appState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
             if let location = vc.mapView.location.latestLocation {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
@@ -77,7 +67,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 vc.mapView.camera.fly(to: cameraOptions, duration: 2)
             }
             
-            context.coordinator.lastCenterOnCurrentLocationCount = centerOnCurrentLocationCount
+            context.coordinator.lastCenterOnCurrentLocationCount = appState.centerOnCurrentLocationCount
         }
     }
     
@@ -93,23 +83,23 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnProblemCount = 0
         var lastCenterOnAreaCount = 0
         var lastCenterOnCurrentLocationCount = 0
-        var lastRefreshFiltersCount = 0
+        var lastFiltersRefreshCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent
         }
         
-        func selectProblem(id: Int) {
+        @MainActor func selectProblem(id: Int) {
             if let problem = Problem.load(id: id) {
-                parent.selectedProblem = problem
-                parent.presentProblemDetails = true
+                parent.appState.selectedProblem = problem
+                parent.appState.presentProblemDetails = true
             }
         }
         
-        func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {
+        @MainActor func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {
             let poi = Poi(name: name, coordinate: location, googleUrl: googleUrl)
-            parent.selectedPoi = poi
-            parent.presentPoiActionSheet = true
+            parent.appState.selectedPoi = poi
+            parent.appState.presentPoiActionSheet = true
         }
     }
 }

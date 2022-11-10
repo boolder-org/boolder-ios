@@ -89,12 +89,7 @@ struct SearchView: View {
     
     @State private var isEditing = false
     
-    @Binding var centerOnProblem: Problem?
-    @Binding var centerOnProblemCount: Int
-    @Binding var centerOnArea: Area?
-    @Binding var centerOnAreaCount: Int
-    @Binding var selectedProblem: Problem
-    @Binding var presentProblemDetails: Bool
+    let appState: AppState
     
     var body: some View {
         VStack(spacing: 7) {
@@ -160,8 +155,8 @@ struct SearchView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                centerOnArea = Area.load(id: id)
-                                centerOnAreaCount += 1
+                                appState.centerOnArea = Area.load(id: id)
+                                appState.centerOnAreaCount += 1
                                 
                             } label: {
                                 HStack {
@@ -180,8 +175,8 @@ struct SearchView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                centerOnProblem = problem
-                                centerOnProblemCount += 1 // triggers a map refresh
+                                appState.centerOnProblem = problem
+                                appState.centerOnProblemCount += 1 // triggers a map refresh
                                 
                                 var wait = 0.1
                                 if #available(iOS 15, *) { }
@@ -190,8 +185,8 @@ struct SearchView: View {
                                 }
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + wait) {
-                                    selectedProblem = problem
-                                    presentProblemDetails = true
+                                    appState.selectedProblem = problem
+                                    appState.presentProblemDetails = true
                                 }
                             } label: {
                                 HStack {

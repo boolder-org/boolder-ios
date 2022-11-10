@@ -8,52 +8,27 @@
 
 import SwiftUI
 import CoreLocation
+//import ImageViewer
 
 struct ContentView: View {
-    @State private var selectedProblem: Problem = Problem.empty // TODO: use nil instead
-    @State private var presentProblemDetails = false
-    @State private var presentSearch = false
-    @State private var centerOnCurrentLocationCount = 0 // to be able to trigger a map refresh anytime we want
-    @State private var centerOnProblem: Problem? = nil
-    @State private var centerOnProblemCount = 0 // to be able to trigger a map refresh anytime we want
-    @State private var centerOnArea: Area? = nil
-    @State private var centerOnAreaCount = 0 // to be able to trigger a map refresh anytime we want
-    @State private var selectedPoi: Poi? = nil
-    @State private var presentPoiActionSheet = false
-    @State private var presentFilters = false
-    @State var filters: Filters = Filters()
-    @State private var filtersRefreshCount = 0
-    
-    @State private var tabSelection = 1
+    @StateObject private var appState = AppState()
     
     // TODO: move somewhere else
     static let algoliaController = AlgoliaController()
     
     var body: some View {
-        TabView(selection: $tabSelection) {
+        TabView(selection: $appState.tabSelection) {
             
             ZStack {
-                MapboxView(
-                    selectedProblem: $selectedProblem,
-                    presentProblemDetails: $presentProblemDetails,
-                    centerOnProblem: $centerOnProblem,
-                    centerOnProblemCount: $centerOnProblemCount,
-                    centerOnArea: $centerOnArea,
-                    centerOnAreaCount: $centerOnAreaCount,
-                    centerOnCurrentLocationCount: $centerOnCurrentLocationCount,
-                    selectedPoi: $selectedPoi,
-                    presentPoiActionSheet: $presentPoiActionSheet,
-                    filters: $filters,
-                    refreshFiltersCount: $filtersRefreshCount
-                )
+                MapboxView(appState: appState)
                 .edgesIgnoringSafeArea(.top)
                 .background(
                     PoiActionSheet(
-                        name: (selectedPoi?.name ?? ""),
-                        location: (selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
-                        googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
+                        name: (appState.selectedPoi?.name ?? ""),
+                        location: (appState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
+                        googleUrl: URL(string: appState.selectedPoi?.googleUrl ?? ""),
                         navigationMode: false,
-                        presentPoiActionSheet: $presentPoiActionSheet
+                        presentPoiActionSheet: $appState.presentPoiActionSheet
                     )
                 )
                 
@@ -64,7 +39,7 @@ struct ContentView: View {
                         Spacer()
                         
                         Button(action: {
-                            centerOnCurrentLocationCount += 1
+                            appState.centerOnCurrentLocationCount += 1
                         }) {
                             Image(systemName: "location")
                                 .padding(12)
@@ -80,7 +55,7 @@ struct ContentView: View {
                         .padding(.horizontal)
                         
                         Button(action: {
-                            presentSearch = true
+                            appState.presentSearch = true
                         }) {
                             Image(systemName: "magnifyingglass")
                                 .padding(12)
@@ -95,13 +70,13 @@ struct ContentView: View {
                         .padding(.horizontal)
                         
                         Button(action: {
-                            presentFilters = true
+                            appState.presentFilters = true
                         }) {
                             Image(systemName: "slider.horizontal.3")
                                 .padding(12)
                         }
-                        .accentColor(filters.filtersCount() >= 1 ? .systemBackground : .primary)
-                        .background(filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
+                        .accentColor(appState.filters.filtersCount() >= 1 ? .systemBackground : .primary)
+                        .background(appState.filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.gray, lineWidth: 0.25)
@@ -114,9 +89,9 @@ struct ContentView: View {
                 .padding(.bottom)
                 .zIndex(10)
             }
-            .sheet(isPresented: $presentProblemDetails) {
+            .sheet(isPresented: $appState.presentProblemDetails) {
                 ProblemDetailsView(
-                    problem: $selectedProblem
+                    problem: $appState.selectedProblem
                 )
                 .modify {
                     if #available(iOS 16, *) {
@@ -130,18 +105,13 @@ struct ContentView: View {
             // temporary hack to make multi sheets work on iOS14
             .background(
                 EmptyView()
-                    .sheet(isPresented: $presentSearch) {
+                    .sheet(isPresented: $appState.presentSearch) {
                         NavigationView {
                             SearchView(
                                 searchBoxController: ContentView.algoliaController.searchBoxController,
                                 problemHitsController: ContentView.algoliaController.problemHitsController,
-                                areaHitsController:ContentView.algoliaController.areaHitsController,
-                                centerOnProblem: $centerOnProblem,
-                                centerOnProblemCount: $centerOnProblemCount,
-                                centerOnArea: $centerOnArea,
-                                centerOnAreaCount: $centerOnAreaCount,
-                                selectedProblem: $selectedProblem,
-                                presentProblemDetails: $presentProblemDetails
+                                areaHitsController: ContentView.algoliaController.areaHitsController,
+                                appState: appState
                             )
                         }
                         .onAppear() {
@@ -152,10 +122,10 @@ struct ContentView: View {
             // temporary hack to make multi sheets work on iOS14
             .background(
                 EmptyView()
-                    .sheet(isPresented: $presentFilters, onDismiss: {
-                        filtersRefreshCount += 1
+                    .sheet(isPresented: $appState.presentFilters, onDismiss: {
+                        appState.filtersRefreshCount += 1
                     }) {
-                        FiltersView(presentFilters: $presentFilters, filters: $filters)
+                        FiltersView(presentFilters: $appState.presentFilters, filters: $appState.filters)
                             .modify {
                                 if #available(iOS 16, *) {
                                     $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
@@ -171,12 +141,13 @@ struct ContentView: View {
             }
             .tag(1)
             
-            DiscoverView(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)
+            DiscoverView(tabSelection: $appState.tabSelection, centerOnArea: $appState.centerOnArea, centerOnAreaCount: $appState.centerOnAreaCount)
                 .tabItem {
                     Label("tabs.discover", systemImage: "sparkles")
                 }
                 .tag(2)
         }
+//        .overlay(ImageViewer(image: $appState.image, viewerShown: $appState.showImageViewer))
     }
 }
 

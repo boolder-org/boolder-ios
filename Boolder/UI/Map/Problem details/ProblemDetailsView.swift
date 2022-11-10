@@ -26,6 +26,8 @@ struct ProblemDetailsView: View {
     
     @State private var lineDrawPercentage: CGFloat = .zero
     
+    
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
@@ -41,6 +43,7 @@ struct ProblemDetailsView: View {
                 actionButtons
             }
         }
+        
         .onAppear{
             odrManager.requestResources(tags: Set(["area-\(problem.areaId)"]), onSuccess: {
                 areaResourcesDownloaded = true
