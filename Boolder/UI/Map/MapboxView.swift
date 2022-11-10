@@ -11,7 +11,7 @@ import CoreLocation
 import MapboxMaps
 
 struct MapboxView: UIViewControllerRepresentable {
-    let appState: MapState
+    let mapState: MapState
     
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
@@ -20,14 +20,14 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        if(appState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
-            vc.applyFilters(appState.filters)
-            context.coordinator.lastFiltersRefreshCount = appState.filtersRefreshCount
+        if(mapState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
+            vc.applyFilters(mapState.filters)
+            context.coordinator.lastFiltersRefreshCount = mapState.filtersRefreshCount
         }
         
         // center on problem
-        if appState.centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
-            if let problem = appState.centerOnProblem {
+        if mapState.centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
+            if let problem = mapState.centerOnProblem {
                 
                 let cameraOptions = CameraOptions(
                     center: problem.coordinate,
@@ -38,13 +38,13 @@ struct MapboxView: UIViewControllerRepresentable {
                 
                 vc.setProblemAsSelected(problemFeatureId: String(problem.id))
                 
-                context.coordinator.lastCenterOnProblemCount = appState.centerOnProblemCount
+                context.coordinator.lastCenterOnProblemCount = mapState.centerOnProblemCount
             }
         }
         
         // center on area
-        if appState.centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
-            if let area = appState.centerOnArea {
+        if mapState.centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
+            if let area = mapState.centerOnArea {
                 
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
@@ -52,12 +52,12 @@ struct MapboxView: UIViewControllerRepresentable {
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1)
                 
                 
-                context.coordinator.lastCenterOnAreaCount = appState.centerOnAreaCount
+                context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
             }
         }
         
         // zoom on current location
-        if appState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
+        if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
             if let location = vc.mapView.location.latestLocation {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
@@ -67,7 +67,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 vc.mapView.camera.fly(to: cameraOptions, duration: 2)
             }
             
-            context.coordinator.lastCenterOnCurrentLocationCount = appState.centerOnCurrentLocationCount
+            context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
         }
     }
     
@@ -91,15 +91,15 @@ struct MapboxView: UIViewControllerRepresentable {
         
         @MainActor func selectProblem(id: Int) {
             if let problem = Problem.load(id: id) {
-                parent.appState.selectedProblem = problem
-                parent.appState.presentProblemDetails = true
+                parent.mapState.selectedProblem = problem
+                parent.mapState.presentProblemDetails = true
             }
         }
         
         @MainActor func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {
             let poi = Poi(name: name, coordinate: location, googleUrl: googleUrl)
-            parent.appState.selectedPoi = poi
-            parent.appState.presentPoiActionSheet = true
+            parent.mapState.selectedPoi = poi
+            parent.mapState.presentPoiActionSheet = true
         }
     }
 }

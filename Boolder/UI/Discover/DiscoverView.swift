@@ -16,8 +16,7 @@ struct DiscoverView: View {
     @State private var presentSettings = false
     
     @Binding var tabSelection: ContentView.Tab
-    @Binding var centerOnArea: Area?
-    @Binding var centerOnAreaCount: Int
+    let mapState: MapState
     
     var body: some View {
         NavigationView {
@@ -29,7 +28,7 @@ struct DiscoverView: View {
                             
                             VStack {
                                 HStack {
-                                    NavigationLink(destination: TopAreasLevelView(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+                                    NavigationLink(destination: TopAreasLevelView(tabSelection: $tabSelection, mapState: mapState)) {
                                         
                                         VStack(alignment: .leading) {
                                             HStack {
@@ -52,7 +51,7 @@ struct DiscoverView: View {
                                         }
                                     }
                                     
-                                    NavigationLink(destination: TopAreasGroups(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+                                    NavigationLink(destination: TopAreasGroups(tabSelection: $tabSelection, mapState: mapState)) {
                                         
                                         VStack(alignment: .leading) {
                                             HStack {
@@ -78,7 +77,7 @@ struct DiscoverView: View {
                                 
                                 HStack {
                                     
-                                    NavigationLink(destination: TopAreasDryFast(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+                                    NavigationLink(destination: TopAreasDryFast(tabSelection: $tabSelection, mapState: mapState)) {
                                         
                                         VStack(alignment: .leading) {
                                             HStack {
@@ -101,7 +100,7 @@ struct DiscoverView: View {
                                         }
                                     }
                                     
-                                    NavigationLink(destination: TopAreasTrain(tabSelection: $tabSelection, centerOnArea: $centerOnArea, centerOnAreaCount: $centerOnAreaCount)) {
+                                    NavigationLink(destination: TopAreasTrain(tabSelection: $tabSelection, mapState: mapState)) {
                                         
                                         VStack(alignment: .leading) {
                                             HStack {
@@ -146,8 +145,7 @@ struct DiscoverView: View {
                                             ForEach(popularAreas) { (area: Area) in
                                                 Button {
                                                     tabSelection = .map
-                                                    centerOnArea = area
-                                                    centerOnAreaCount += 1
+                                                    mapState.centerOnArea(area)
                                                 } label: {
                                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                         .padding(.leading, 8)

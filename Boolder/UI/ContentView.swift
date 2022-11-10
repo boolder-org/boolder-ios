@@ -22,7 +22,7 @@ struct ContentView: View {
         TabView(selection: $tabSelection) {
             
             ZStack {
-                MapboxView(appState: mapState)
+                MapboxView(mapState: mapState)
                 .edgesIgnoringSafeArea(.top)
                 .background(
                     PoiActionSheet(
@@ -143,7 +143,7 @@ struct ContentView: View {
             }
             .tag(Tab.map)
             
-            DiscoverView(tabSelection: $tabSelection, centerOnArea: $mapState.centerOnArea, centerOnAreaCount: $mapState.centerOnAreaCount)
+            DiscoverView(tabSelection: $tabSelection, mapState: mapState)
                 .tabItem {
                     Label("tabs.discover", systemImage: "sparkles")
                 }

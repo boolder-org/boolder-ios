@@ -10,8 +10,7 @@ import SwiftUI
 
 struct TopAreasGroups: View {
     @Binding var tabSelection: ContentView.Tab
-    @Binding var centerOnArea: Area?
-    @Binding var centerOnAreaCount: Int
+    let mapState: MapState
     
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
@@ -31,8 +30,7 @@ struct TopAreasGroups: View {
                             ForEach(areas) { area in
                                 Button {
                                     tabSelection = .map
-                                    centerOnArea = area
-                                    centerOnAreaCount += 1
+                                    mapState.centerOnArea(area)
                                 } label: {
                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                         .contentShape(Rectangle())

@@ -22,6 +22,11 @@ import SwiftUI
     @Published var filters: Filters = Filters()
     @Published var filtersRefreshCount = 0
     
+    func centerOnArea(_ area: Area) {
+        centerOnArea = area
+        centerOnAreaCount += 1
+    }
+    
 //    @Published var showImageViewer: Bool = true
 //    @Published var image = Image("yellow-circuit-start")
 }
