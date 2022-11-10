@@ -251,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				37158D0525487F4F00A8B696 /* DiscoverView.swift */,
-				3794555E25AB6DC9009C47A4 /* SettingsView.swift */,
 				030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */,
 				030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */,
 				030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */,
@@ -288,6 +287,7 @@
 				031F36AF291CE56100BD0C2B /* MapState.swift */,
 				03C104E7290ACBEE007A94D7 /* Map */,
 				37158D0425487F1700A8B696 /* Discover */,
+				3794555E25AB6DC9009C47A4 /* SettingsView.swift */,
 				033F70E4291AA1B1000DD3F4 /* Misc */,
 			);
 			path = UI;

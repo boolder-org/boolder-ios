@@ -11,7 +11,7 @@ import SwiftUI
 struct TopAreasDryFast: View {
     @Environment(\.openURL) var openURL
     
-    @Binding var tabSelection: Int
+    @Binding var tabSelection: ContentView.Tab
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     
@@ -32,7 +32,7 @@ struct TopAreasDryFast: View {
                             
                             ForEach(areas) { area in
                                 Button {
-                                    tabSelection = 1
+                                    tabSelection = .map
                                     centerOnArea = area
                                     centerOnAreaCount += 1
                                 } label: {

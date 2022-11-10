@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopAreasTrain: View {
-    @Binding var tabSelection: Int
+    @Binding var tabSelection: ContentView.Tab
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     
@@ -29,7 +29,7 @@ struct TopAreasTrain: View {
                         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                             ForEach(areasFromBoisLeRoi) { area in
                                 Button {
-                                    tabSelection = 1
+                                    tabSelection = .map
                                     centerOnArea = area
                                     centerOnAreaCount += 1
                                 } label: {
@@ -53,7 +53,7 @@ struct TopAreasTrain: View {
                             ForEach(areasFromAvon) { area in
                                 
                                 Button {
-                                    tabSelection = 1
+                                    tabSelection = .map
                                     centerOnArea = area
                                     centerOnAreaCount += 1
                                 } label: {

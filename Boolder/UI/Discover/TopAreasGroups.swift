@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopAreasGroups: View {
-    @Binding var tabSelection: Int
+    @Binding var tabSelection: ContentView.Tab
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     
@@ -30,7 +30,7 @@ struct TopAreasGroups: View {
                             
                             ForEach(areas) { area in
                                 Button {
-                                    tabSelection = 1
+                                    tabSelection = .map
                                     centerOnArea = area
                                     centerOnAreaCount += 1
                                 } label: {

@@ -15,7 +15,7 @@ struct DiscoverView: View {
     @State var presentArea = false
     @State private var presentSettings = false
     
-    @Binding var tabSelection: Int
+    @Binding var tabSelection: ContentView.Tab
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     
@@ -145,7 +145,7 @@ struct DiscoverView: View {
                                             
                                             ForEach(popularAreas) { (area: Area) in
                                                 Button {
-                                                    tabSelection = 1
+                                                    tabSelection = .map
                                                     centerOnArea = area
                                                     centerOnAreaCount += 1
                                                 } label: {

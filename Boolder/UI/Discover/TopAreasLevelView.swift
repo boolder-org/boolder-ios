@@ -13,7 +13,7 @@ struct TopAreasLevelView: View {
     
     @State private var level = 0
     
-    @Binding var tabSelection: Int
+    @Binding var tabSelection: ContentView.Tab
     @Binding var centerOnArea: Area?
     @Binding var centerOnAreaCount: Int
     
@@ -49,7 +49,7 @@ struct TopAreasLevelView: View {
                                     
                                     ForEach(beginnerAreas) { area in
                                         Button {
-                                            tabSelection = 1
+                                            tabSelection = .map
                                             centerOnArea = area
                                             centerOnAreaCount += 1
                                         } label: {
@@ -92,7 +92,7 @@ struct TopAreasLevelView: View {
                                     ForEach(intermediateAreas) { area in
                                         
                                         Button {
-                                            tabSelection = 1
+                                            tabSelection = .map
                                             centerOnArea = area
                                             centerOnAreaCount += 1
                                         } label: {
@@ -131,7 +131,7 @@ struct TopAreasLevelView: View {
                                     ForEach(advancedAreas) { area in
                                         
                                         Button {
-                                            tabSelection = 1
+                                            tabSelection = .map
                                             centerOnArea = area
                                             centerOnAreaCount += 1
                                         } label: {

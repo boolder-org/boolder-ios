@@ -13,7 +13,7 @@ import CoreLocation
 struct ContentView: View {
     @StateObject private var mapState = MapState()
     @State private var presentSearch = false
-    @State private var tabSelection = 1
+    @State private var tabSelection = Tab.map
     
     // TODO: move somewhere else
     static let algoliaController = AlgoliaController()
@@ -141,15 +141,20 @@ struct ContentView: View {
             .tabItem {
                 Label("tabs.map", systemImage: "map")
             }
-            .tag(1)
+            .tag(Tab.map)
             
             DiscoverView(tabSelection: $tabSelection, centerOnArea: $mapState.centerOnArea, centerOnAreaCount: $mapState.centerOnAreaCount)
                 .tabItem {
                     Label("tabs.discover", systemImage: "sparkles")
                 }
-                .tag(2)
+                .tag(Tab.discover)
         }
 //        .overlay(ImageViewer(image: $appState.image, viewerShown: $appState.showImageViewer))
+    }
+    
+    enum Tab {
+        case map
+        case discover
     }
 }
 
