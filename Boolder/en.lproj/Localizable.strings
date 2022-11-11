@@ -122,6 +122,7 @@
 "problem.no_name" = "No name";
 "problem.sit_start" = "sit start";
 "problem.action.save" = "Save";
+"problem.action.saved" = "Saved";
 "problem.action.share" = "Share";
 "problem.action.report" = "Report";
 "problem.action.edit" = "Edit";

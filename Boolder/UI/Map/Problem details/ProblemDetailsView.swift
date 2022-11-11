@@ -114,14 +114,13 @@ struct ProblemDetailsView: View {
                     
                     Spacer()
                     
-                    if isFavorite() {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                    }
-                    
                     if isTicked() {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(Color.appGreen)
+                    }
+                    else if isFavorite() {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color.yellow)
                     }
                 }
             }
@@ -154,23 +153,16 @@ struct ProblemDetailsView: View {
                     presentSaveActionsheet = true
                 }) {
                     HStack(alignment: .center, spacing: 8) {
-                        Image(systemName: "bookmark")
-                        Text("problem.action.save").fixedSize(horizontal: true, vertical: true)
+                        Image(systemName: (isFavorite() || isTicked()) ? "bookmark.fill" : "bookmark")
+                        Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
+                            .fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
                 .buttonStyle(Pill())
                 .actionSheet(isPresented: $presentSaveActionsheet) {
-                    ActionSheet(title: Text("problem.action.save"), buttons: [
-                        .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
-                            toggleFavorite()
-                        },
-                        .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
-                            toggleTick()
-                        },
-                        .cancel()
-                    ])
+                    ActionSheet(title: Text("problem.action.save"), buttons: saveButtons)
                 }
                 
                 Button(action: {
@@ -206,6 +198,28 @@ struct ProblemDetailsView: View {
             .padding(.horizontal)
             .padding(.vertical, 4)
         }
+    }
+    
+    var saveButtons: [ActionSheet.Button] {
+        var buttons = [ActionSheet.Button]()
+        
+        if(!isTicked()) {
+            buttons.append(
+                .default(Text(isFavorite() ? "problem.action.favorite.remove" : "problem.action.favorite.add")) {
+                    toggleFavorite()
+                }
+            )
+        }
+        
+        buttons.append(
+            .default(Text(isTicked() ? "problem.action.untick" : "problem.action.tick")) {
+                toggleTick()
+            }
+        )
+        
+        buttons.append(.cancel())
+        
+        return buttons
     }
     
     var variants: some View {

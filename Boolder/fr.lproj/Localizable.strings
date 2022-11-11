@@ -120,6 +120,7 @@
 "problem.no_name" = "Sans nom";
 "problem.sit_start" = "départ assis";
 "problem.action.save" = "Enregistrer";
+"problem.action.saved" = "Enregistré";
 "problem.action.share" = "Partager";
 "problem.action.report" = "Signaler";
 "problem.action.edit" = "Éditer";
