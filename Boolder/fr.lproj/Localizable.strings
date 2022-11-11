@@ -8,6 +8,7 @@
 
 "tabs.map" = "Carte";
 "tabs.discover" = "Découvrir";
+"tabs.ticklist" = "Mes voies";
 
 // MARK: Search
 "search.title" = "Recherche";
@@ -97,7 +98,7 @@
 "filters.all" = "Tous";
 "filters.show_more_filters" = "Plus de filtres";
 "filters.show_less_filters" = "Moins de filtres";
-"filters.favorite" = "Favori";
+"filters.favorite" = "Projet";
 "filters.ticked" = "Réussi";
 "filters.reset" = "Réinitialiser";
 "filters.grade.range.beginner" = "Débutant";
@@ -120,14 +121,20 @@
 "problem.no_name" = "Sans nom";
 "problem.sit_start" = "départ assis";
 "problem.action.save" = "Enregistrer";
+"problem.action.saved" = "Enregistré";
 "problem.action.share" = "Partager";
 "problem.action.report" = "Signaler";
 "problem.action.edit" = "Éditer";
-"problem.action.favorite.add" = "Ajouter en favori";
-"problem.action.favorite.remove" = "Retirer des favoris";
+"problem.action.favorite.add" = "Ajouter en projet";
+"problem.action.favorite.remove" = "Retirer des projets";
 "problem.action.tick" = "Marquer comme réussi";
 "problem.action.untick" = "Marquer comme non réussi";
 "problem.action.share.description" = "« %@ » à %@";
 "problem.image.loading" = "Chargement du secteur...";
 "problem.variants.one" = "1 variante";
 "problem.variants.other" = "%d variantes";
+
+// MARK: Tick List
+"ticklist.title" = "Mes voies";
+"ticklist.empty_state_title" = "Hâte de grimper ?";
+"ticklist.empty_state_body" = "Vos projets et vos voies réussies apparaîtront ici.";

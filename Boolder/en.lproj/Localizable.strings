@@ -8,7 +8,7 @@
 
 "tabs.map" = "Map";
 "tabs.discover" = "Discover";
-
+"tabs.ticklist" = "Tick List";
 
 // MARK: Search
 "search.title" = "Search";
@@ -99,7 +99,7 @@
 "filters.all" = "All";
 "filters.show_more_filters" = "More filters";
 "filters.show_less_filters" = "Less filters";
-"filters.favorite" = "Favorite";
+"filters.favorite" = "Project";
 "filters.ticked" = "Already done";
 "filters.reset" = "Reset";
 "filters.grade.range.beginner" = "Beginner";
@@ -122,14 +122,20 @@
 "problem.no_name" = "No name";
 "problem.sit_start" = "sit start";
 "problem.action.save" = "Save";
+"problem.action.saved" = "Saved";
 "problem.action.share" = "Share";
 "problem.action.report" = "Report";
 "problem.action.edit" = "Edit";
-"problem.action.favorite.add" = "Add to favorites";
-"problem.action.favorite.remove" = "Remove from favorites";
+"problem.action.favorite.add" = "Add to projects";
+"problem.action.favorite.remove" = "Remove from projects";
 "problem.action.tick" = "Tick";
 "problem.action.untick" = "Untick";
 "problem.action.share.description" = "“%@” at %@";
 "problem.image.loading" = "Loading area...";
 "problem.variants.one" = "1 variant";
 "problem.variants.other" = "%d variants";
+
+// MARK: Tick List
+"ticklist.title" = "Tick List";
+"ticklist.empty_state_title" = "Ready to climb?";
+"ticklist.empty_state_body" = "Your projects and sent problems will appear here.";

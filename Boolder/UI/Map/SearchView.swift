@@ -44,6 +44,7 @@ struct SearchView: View {
                     VStack {
                         VStack(spacing: 16) {
                             Text("search.examples")
+                                .foregroundColor(Color.secondary)
                             
                             ForEach(["Cul de Chien", "La Marie-Rose", "Apremont"], id: \.self) { query in
                                 Button {
@@ -57,7 +58,6 @@ struct SearchView: View {
 
                         Spacer()
                     }
-                    .foregroundColor(.gray)
                 }
                 else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
                     Spacer()
@@ -122,18 +122,7 @@ struct SearchView: View {
                             Button {
                                 presentationMode.wrappedValue.dismiss()
                                 
-                                mapState.centerOnProblem(problem)
-                                
-                                var wait = 0.1
-                                if #available(iOS 15, *) { }
-                                else {
-                                    wait = 1.0 // weird bug with iOS 14 https://stackoverflow.com/questions/63293531/swiftui-crash-sheetbridge-abandoned-presentation-detected-when-dismiss-a-she
-                                }
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + wait) {
-                                    mapState.selectedProblem = problem
-                                    mapState.presentProblemDetails = true
-                                }
+                                mapState.selectAndPresentAndCenterOnProblem(problem)
                             } label: {
                                 HStack {
                                     ProblemCircleView(problem: problem)

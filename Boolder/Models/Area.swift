@@ -45,3 +45,19 @@ struct Area : Identifiable {
         }
     }
 }
+
+extension Area : Comparable {
+    static func < (lhs: Area, rhs: Area) -> Bool {
+        lhs.name < rhs.name
+    }
+}
+
+extension Area : Hashable {
+    static func == (lhs: Area, rhs: Area) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

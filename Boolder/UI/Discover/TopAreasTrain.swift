@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopAreasTrain: View {
-    @Binding var tabSelection: ContentView.Tab
+    @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
@@ -28,7 +28,7 @@ struct TopAreasTrain: View {
                         LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                             ForEach(areasFromBoisLeRoi) { area in
                                 Button {
-                                    tabSelection = .map
+                                    appTab = .map
                                     mapState.centerOnArea(area)
                                 } label: {
                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
@@ -51,7 +51,7 @@ struct TopAreasTrain: View {
                             ForEach(areasFromAvon) { area in
                                 
                                 Button {
-                                    tabSelection = .map
+                                    appTab = .map
                                     mapState.centerOnArea(area)
                                 } label: {
                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)

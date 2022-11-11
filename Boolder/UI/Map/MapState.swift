@@ -29,9 +29,29 @@ import SwiftUI
         centerOnAreaCount += 1
     }
     
-    func centerOnProblem(_ problem: Problem) {
+    private func centerOnProblem(_ problem: Problem) {
         centerOnProblem = problem
         centerOnProblemCount += 1
+    }
+    
+    func selectProblem(_ problem: Problem) {
+        selectedProblem = problem
+        selectProblemCount += 1
+    }
+    
+    func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
+        centerOnProblem(problem)
+        
+        var wait = 0.1
+        if #available(iOS 15, *) { }
+        else {
+            wait = 1.0 // weird bug with iOS 14 https://stackoverflow.com/questions/63293531/swiftui-crash-sheetbridge-abandoned-presentation-detected-when-dismiss-a-she
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + wait) { [self] in
+            self.selectProblem(problem)
+            self.presentProblemDetails = true
+        }
     }
     
     func centerOnCurrentLocation() {
@@ -40,10 +60,5 @@ import SwiftUI
     
     func filtersRefresh() {
         filtersRefreshCount += 1
-    }
-    
-    func selectProblem(_ problem: Problem) {
-        selectedProblem = problem
-        selectProblemCount += 1
     }
 }
