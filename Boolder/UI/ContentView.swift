@@ -12,10 +12,10 @@ import CoreLocation
 struct ContentView: View {
     @StateObject private var mapState = MapState()
     @State private var presentSearch = false
-    @State private var tabSelection = Tab.map
+    @State private var appTab = Tab.map
     
     var body: some View {
-        TabView(selection: $tabSelection) {
+        TabView(selection: $appTab) {
             
             ZStack {
                 MapboxView(mapState: mapState)
@@ -131,13 +131,13 @@ struct ContentView: View {
             }
             .tag(Tab.map)
             
-            DiscoverView(tabSelection: $tabSelection, mapState: mapState)
+            DiscoverView(appTab: $appTab, mapState: mapState)
                 .tabItem {
                     Label("tabs.discover", systemImage: "sparkles")
                 }
                 .tag(Tab.discover)
             
-            TickList(tabSelection: $tabSelection, mapState: mapState)
+            TickList(appTab: $appTab, mapState: mapState)
                 .tabItem {
                     Label("tabs.ticklist", systemImage: "bookmark")
                 }

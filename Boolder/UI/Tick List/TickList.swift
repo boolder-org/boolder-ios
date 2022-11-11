@@ -13,7 +13,7 @@ struct TickList: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var tabSelection: ContentView.Tab
+    @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
     var body: some View {
@@ -36,7 +36,7 @@ struct TickList: View {
                             Section(header: Text(area.name)) {
                                 ForEach(groupedProblems[area]!.sorted(by: \.grade)) { problem in
                                     Button {
-                                        tabSelection = .map
+                                        appTab = .map
                                         mapState.selectAndPresentAndCenterOnProblem(problem)
                                     } label: {
                                         HStack {
