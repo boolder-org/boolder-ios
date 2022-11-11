@@ -278,7 +278,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 8, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
                 case .failure(let error):
@@ -304,7 +304,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 8, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
                 case .failure(let error):
