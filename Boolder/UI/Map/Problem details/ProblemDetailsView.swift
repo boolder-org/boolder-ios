@@ -98,18 +98,15 @@ struct ProblemDetailsView: View {
                             
                         }
                         .font(.body)
-                        .foregroundColor(Color(UIColor(.black).lighter(0.3)))
                     }
                     
                     if(problem.sitStart) {
                         if problem.steepness != .other {
                             Text("•")
                                 .font(.body)
-                                .foregroundColor(Color(UIColor(.black).lighter(0.3)))
                         }
                         Text("problem.sit_start")
                             .font(.body)
-                            .foregroundColor(Color(UIColor(.black).lighter(0.3)))
                     }
                     
                     Spacer()

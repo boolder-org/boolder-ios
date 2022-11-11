@@ -44,6 +44,7 @@ struct SearchView: View {
                     VStack {
                         VStack(spacing: 16) {
                             Text("search.examples")
+                                .foregroundColor(Color.secondary)
                             
                             ForEach(["Cul de Chien", "La Marie-Rose", "Apremont"], id: \.self) { query in
                                 Button {
@@ -57,7 +58,6 @@ struct SearchView: View {
 
                         Spacer()
                     }
-                    .foregroundColor(.gray)
                 }
                 else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
                     Spacer()
