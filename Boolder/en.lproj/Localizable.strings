@@ -8,7 +8,7 @@
 
 "tabs.map" = "Map";
 "tabs.discover" = "Discover";
-
+"tabs.ticklist" = "Tick List";
 
 // MARK: Search
 "search.title" = "Search";

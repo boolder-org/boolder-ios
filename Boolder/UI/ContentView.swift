@@ -139,16 +139,16 @@ struct ContentView: View {
             
             TickList(tabSelection: $tabSelection, mapState: mapState)
                 .tabItem {
-                    Label("Mes voies", systemImage: "bookmark")
+                    Label("tabs.ticklist", systemImage: "bookmark")
                 }
-                .tag(Tab.saved)
+                .tag(Tab.ticklist)
         }
     }
     
     enum Tab {
         case map
         case discover
-        case saved
+        case ticklist
     }
 }
 

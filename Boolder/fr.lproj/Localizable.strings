@@ -8,6 +8,7 @@
 
 "tabs.map" = "Carte";
 "tabs.discover" = "Découvrir";
+"tabs.ticklist" = "Mes voies";
 
 // MARK: Search
 "search.title" = "Recherche";
