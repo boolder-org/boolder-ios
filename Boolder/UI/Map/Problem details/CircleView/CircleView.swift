@@ -25,6 +25,7 @@ struct CircleView: View {
                 .modifier(DropShadow(visible: showShadow))
             Text(number)
                 .font(.headline)
+                .fontWeight(.regular)
                 .foregroundColor(Color(readableColor()))
                 .minimumScaleFactor(0.5)
                 .lineLimit(1)
@@ -52,7 +53,7 @@ struct CircleView: View {
 
 struct CircuitNumberView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleView(number: "17", color: .red)
+        CircleView(number: "45", color: .red)
             .previewLayout(.fixed(width: 50, height: 50))
     }
 }
