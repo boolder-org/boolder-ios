@@ -136,12 +136,19 @@ struct ContentView: View {
                     Label("tabs.discover", systemImage: "sparkles")
                 }
                 .tag(Tab.discover)
+            
+            SavedProblemsView(tabSelection: $tabSelection, mapState: mapState)
+                .tabItem {
+                    Label("Mes voies", systemImage: "bookmark")
+                }
+                .tag(Tab.saved)
         }
     }
     
     enum Tab {
         case map
         case discover
+        case saved
     }
 }
 

@@ -29,6 +29,8 @@
 		031F36BA291D271300BD0C2B /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B8291D271300BD0C2B /* PinchToZoomView.swift */; };
 		031F36BC291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */; };
 		031F36BD291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */; };
+		031F36BF291E4E4400BD0C2B /* SavedProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BE291E4E4400BD0C2B /* SavedProblemsView.swift */; };
+		031F36C0291E4E4400BD0C2B /* SavedProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BE291E4E4400BD0C2B /* SavedProblemsView.swift */; };
 		033F70D429191755000DD3F4 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D329191755000DD3F4 /* FiltersView.swift */; };
 		033F70D529191755000DD3F4 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D329191755000DD3F4 /* FiltersView.swift */; };
 		033F70D72919535A000DD3F4 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033F70D62919535A000DD3F4 /* Area.swift */; };
@@ -141,6 +143,7 @@
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
 		031F36B8291D271300BD0C2B /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
 		031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaErrorController.swift; sourceTree = "<group>"; };
+		031F36BE291E4E4400BD0C2B /* SavedProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedProblemsView.swift; sourceTree = "<group>"; };
 		033F70D329191755000DD3F4 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		033F70D62919535A000DD3F4 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				37158D0525487F4F00A8B696 /* DiscoverView.swift */,
+				031F36BE291E4E4400BD0C2B /* SavedProblemsView.swift */,
 				030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */,
 				030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */,
 				030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */,
@@ -621,6 +625,7 @@
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				033F70DD291959FB000DD3F4 /* TopAreasGroups.swift in Sources */,
+				031F36C0291E4E4400BD0C2B /* SavedProblemsView.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
 				03DB8CB62913E7B600EFA944 /* SearchView.swift in Sources */,
@@ -702,6 +707,7 @@
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */,
 				37B45231259144D300241091 /* TopoView.swift in Sources */,
+				031F36BF291E4E4400BD0C2B /* SavedProblemsView.swift in Sources */,
 				37A8C810245326F200DC161F /* Circuit.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,

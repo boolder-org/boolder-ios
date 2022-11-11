@@ -38,8 +38,6 @@ struct MapboxView: UIViewControllerRepresentable {
                 )
                 vc.mapView.camera.fly(to: cameraOptions, duration: 2)
                 
-                vc.setProblemAsSelected(problemFeatureId: String(problem.id))
-                
                 context.coordinator.lastCenterOnProblemCount = mapState.centerOnProblemCount
             }
         }
