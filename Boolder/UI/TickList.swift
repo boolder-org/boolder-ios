@@ -20,9 +20,9 @@ struct TickList: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(groupedFavoriteProblemsKeys, id: \.self) { (area: Area) in
+                    ForEach(groupedProblemsKeys, id: \.self) { (area: Area) in
                         Section(header: Text(area.name)) {
-                            ForEach(groupedFavoriteProblems[area]!.sorted(by: \.grade)) { problem in
+                            ForEach(groupedProblems[area]!.sorted(by: \.grade)) { problem in
                                 Button {
                                     tabSelection = .map
                                     mapState.selectAndPresentAndCenterOnProblem(problem)
@@ -68,19 +68,21 @@ struct TickList: View {
         }
     }
     
-    var groupedFavoriteProblems : Dictionary<Area?, [Problem]> {
-        Dictionary(grouping: favoriteProblems, by: { (problem: Problem) in
+    var groupedProblems : Dictionary<Area?, [Problem]> {
+        Dictionary(grouping: problems, by: { (problem: Problem) in
             Area.load(id: problem.areaId)
         })
     }
     
-    var groupedFavoriteProblemsKeys : [Area] {
-        groupedFavoriteProblems.keys.compactMap{$0}.sorted()
+    var groupedProblemsKeys : [Area] {
+        groupedProblems.keys.compactMap{$0}.sorted()
     }
     
-    var favoriteProblems: [Problem] {
-        favorites.map { f in
-            Problem.load(id: Int(f.problemId))
+    var problems: [Problem] {
+        let problemIds = Set(favorites.map{ $0.problemId }).union(ticks.map{ $0.problemId })
+        
+        return problemIds.map { id in
+            Problem.load(id: Int(id))
         }.compactMap { $0 }
     }
     
