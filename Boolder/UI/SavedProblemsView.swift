@@ -34,14 +34,25 @@ struct SavedProblemsView: View {
                                         
                                         Spacer()
                                         
+                                        if isTicked(problem: problem) {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .foregroundColor(Color.appGreen)
+                                        }
+                                        else if isFavorite(problem: problem) {
+                                            Image(systemName: "star.fill")
+                                                .foregroundColor(Color.yellow)
+                                        }
+                                        
                                         Text(problem.grade.string)
                                     }
                                     .foregroundColor(.primary)
                                 }
                             }
+                            
                         }
                     }
                 }
+                
                 .listStyle(.insetGrouped)
                 .modify {
                     if #available(iOS 15, *) {
@@ -52,6 +63,7 @@ struct SavedProblemsView: View {
                     }
                 }
             }
+     
             .navigationTitle("Mes voies")
         }
     }
@@ -70,6 +82,18 @@ struct SavedProblemsView: View {
         favorites.map { f in
             Problem.load(id: Int(f.problemId))
         }.compactMap { $0 }
+    }
+    
+    func isFavorite(problem: Problem) -> Bool {
+        favorites.contains { (favorite: Favorite) -> Bool in
+            return Int(favorite.problemId) == problem.id
+        }
+    }
+    
+    func isTicked(problem: Problem) -> Bool {
+        ticks.contains { (tick: Tick) -> Bool in
+            return Int(tick.problemId) == problem.id
+        }
     }
 }
 

@@ -265,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				37158D0525487F4F00A8B696 /* DiscoverView.swift */,
-				031F36BE291E4E4400BD0C2B /* SavedProblemsView.swift */,
 				030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */,
 				030AC1A227BAF43800AF85E7 /* TopAreasGroups.swift */,
 				030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */,
@@ -299,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
+				031F36BE291E4E4400BD0C2B /* SavedProblemsView.swift */,
 				03C104E7290ACBEE007A94D7 /* Map */,
 				37158D0425487F1700A8B696 /* Discover */,
 				3794555E25AB6DC9009C47A4 /* SettingsView.swift */,
