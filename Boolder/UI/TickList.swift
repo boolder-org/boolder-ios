@@ -19,47 +19,60 @@ struct TickList: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    ForEach(groupedProblemsKeys, id: \.self) { (area: Area) in
-                        Section(header: Text(area.name)) {
-                            ForEach(groupedProblems[area]!.sorted(by: \.grade)) { problem in
-                                Button {
-                                    tabSelection = .map
-                                    mapState.selectAndPresentAndCenterOnProblem(problem)
-                                } label: {
-                                    HStack {
-                                        ProblemCircleView(problem: problem)
-                                        
-                                        Text(problem.nameWithFallback)
-                                        
-                                        Spacer()
-                                        
-                                        if isTicked(problem: problem) {
-                                            Image(systemName: "checkmark.circle.fill")
-                                                .foregroundColor(Color.appGreen)
+                if problems.count == 0 {
+                    VStack(alignment: .center, spacing: 16) {
+                        Spacer()
+                        Text("ticklist.empty_state_title").font(.title2)
+                        Text("ticklist.empty_state_body").font(.body)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .foregroundColor(Color.secondary)
+                }
+                else {
+                    List {
+                        ForEach(groupedProblemsKeys, id: \.self) { (area: Area) in
+                            Section(header: Text(area.name)) {
+                                ForEach(groupedProblems[area]!.sorted(by: \.grade)) { problem in
+                                    Button {
+                                        tabSelection = .map
+                                        mapState.selectAndPresentAndCenterOnProblem(problem)
+                                    } label: {
+                                        HStack {
+                                            ProblemCircleView(problem: problem)
+                                            
+                                            Text(problem.nameWithFallback)
+                                            
+                                            Spacer()
+                                            
+                                            if isTicked(problem: problem) {
+                                                Image(systemName: "checkmark.circle.fill")
+                                                    .foregroundColor(Color.appGreen)
+                                            }
+                                            else if isFavorite(problem: problem) {
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(Color.yellow)
+                                            }
+                                            
+                                            Text(problem.grade.string)
                                         }
-                                        else if isFavorite(problem: problem) {
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(Color.yellow)
-                                        }
-                                        
-                                        Text(problem.grade.string)
+                                        .foregroundColor(.primary)
                                     }
-                                    .foregroundColor(.primary)
                                 }
+                                
                             }
-                            
                         }
                     }
-                }
-                
-                .listStyle(.insetGrouped)
-                .modify {
-                    if #available(iOS 15, *) {
-                        $0.headerProminence(.increased)
-                    }
-                    else {
-                        $0
+                    
+                    .listStyle(.insetGrouped)
+                    .modify {
+                        if #available(iOS 15, *) {
+                            $0.headerProminence(.increased)
+                        }
+                        else {
+                            $0
+                        }
                     }
                 }
             }

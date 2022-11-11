@@ -135,3 +135,5 @@
 
 // MARK: Tick List
 "ticklist.title" = "Mes voies";
+"ticklist.empty_state_title" = "Hâte de grimper ?";
+"ticklist.empty_state_body" = "Vos projets et vos voies réussies apparaîtront ici.";
