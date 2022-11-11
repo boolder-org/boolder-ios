@@ -32,9 +32,9 @@ struct TickList: View {
                 }
                 else {
                     List {
-                        ForEach(groupedProblemsKeys, id: \.self) { (area: Area) in
+                        ForEach(areas, id: \.self) { (area: Area) in
                             Section(header: Text(area.name)) {
-                                ForEach(groupedProblems[area]!.sorted(by: \.grade)) { problem in
+                                ForEach(problemsGroupedByAreas[area]!.sorted(by: \.grade)) { problem in
                                     Button {
                                         appTab = .map
                                         mapState.selectAndPresentAndCenterOnProblem(problem)
@@ -81,14 +81,14 @@ struct TickList: View {
         }
     }
     
-    var groupedProblems : Dictionary<Area?, [Problem]> {
+    var problemsGroupedByAreas : Dictionary<Area?, [Problem]> {
         Dictionary(grouping: problems, by: { (problem: Problem) in
             Area.load(id: problem.areaId)
         })
     }
     
-    var groupedProblemsKeys : [Area] {
-        groupedProblems.keys.compactMap{$0}.sorted()
+    var areas : [Area] {
+        problemsGroupedByAreas.keys.compactMap{$0}.sorted()
     }
     
     var problems: [Problem] {
