@@ -13,7 +13,6 @@ struct DiscoverView: View {
     @Environment(\.openURL) var openURL
     
     @State var presentArea = false
-    @State private var presentSettings = false
     
     @Binding var tabSelection: ContentView.Tab
     let mapState: MapState
@@ -208,44 +207,6 @@ struct DiscoverView: View {
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                             .padding(.horizontal)
                         }
-                        
-                        
-                        
-#if DEVELOPMENT
-                        
-                        VStack(alignment: .leading) {
-                            Text("DEV")
-                                .font(.title2).bold()
-                                .padding(.top, 16)
-                                .padding(.bottom, 8)
-                                .padding(.horizontal)
-                            
-                            VStack(alignment: .leading) {
-                                Divider()
-                                
-                                NavigationLink(
-                                    destination: SettingsView(),
-                                    isActive: $presentSettings,
-                                    label: {
-                                        HStack {
-                                            Text("Settings")
-                                                .font(.body)
-                                            Spacer()
-                                            Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                        }
-                                        .contentShape(Rectangle())
-                                    }
-                                )
-                                
-                                
-                                Divider()
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                            .padding(.horizontal)
-                        }
-#endif
-                        
-                        
                     }
                     .navigationBarTitle(Text("discover.title"))
                 }
