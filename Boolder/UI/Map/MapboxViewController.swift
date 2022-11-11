@@ -198,7 +198,7 @@ class MapboxViewController: UIViewController {
         )
         
         do {
-            try self.mapView.mapboxMap.style.addLayer(problemsLayer)
+            try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
         }
         catch {
