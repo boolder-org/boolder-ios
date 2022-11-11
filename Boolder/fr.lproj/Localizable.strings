@@ -132,3 +132,6 @@
 "problem.image.loading" = "Chargement du secteur...";
 "problem.variants.one" = "1 variante";
 "problem.variants.other" = "%d variantes";
+
+// MARK: Tick List
+"ticklist.title" = "Mes voies";

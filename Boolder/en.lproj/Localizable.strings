@@ -134,3 +134,6 @@
 "problem.image.loading" = "Loading area...";
 "problem.variants.one" = "1 variant";
 "problem.variants.other" = "%d variants";
+
+// MARK: Tick List
+"ticklist.title" = "Tick List";

@@ -137,7 +137,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.discover)
             
-            SavedProblemsView(tabSelection: $tabSelection, mapState: mapState)
+            TickList(tabSelection: $tabSelection, mapState: mapState)
                 .tabItem {
                     Label("Mes voies", systemImage: "bookmark")
                 }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct SavedProblemsView: View {
+struct TickList: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
@@ -64,7 +64,7 @@ struct SavedProblemsView: View {
                 }
             }
      
-            .navigationTitle("Mes voies")
+            .navigationTitle("ticklist.title")
         }
     }
     
