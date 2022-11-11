@@ -97,7 +97,7 @@
 "filters.all" = "Tous";
 "filters.show_more_filters" = "Plus de filtres";
 "filters.show_less_filters" = "Moins de filtres";
-"filters.favorite" = "Favori";
+"filters.favorite" = "Projet";
 "filters.ticked" = "Réussi";
 "filters.reset" = "Réinitialiser";
 "filters.grade.range.beginner" = "Débutant";
@@ -124,8 +124,8 @@
 "problem.action.share" = "Partager";
 "problem.action.report" = "Signaler";
 "problem.action.edit" = "Éditer";
-"problem.action.favorite.add" = "Ajouter en favori";
-"problem.action.favorite.remove" = "Retirer des favoris";
+"problem.action.favorite.add" = "Ajouter en projet";
+"problem.action.favorite.remove" = "Retirer des projets";
 "problem.action.tick" = "Marquer comme réussi";
 "problem.action.untick" = "Marquer comme non réussi";
 "problem.action.share.description" = "« %@ » à %@";
