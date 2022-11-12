@@ -79,3 +79,10 @@ extension View {
     }
 }
 
+// FIXME: is there a cleaner way?
+// https://stackoverflow.com/a/58988238/230309
+extension UIApplication {
+    func dismissKeyboard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
