@@ -15,6 +15,7 @@
 "search.areas" = "Areas";
 "search.problems" = "Problems";
 "search.placeholder" = "Problem or area name";
+"search.cancel" = "Cancel";
 "search.no_results" = "No results";
 "search.request_error" = "Connection issue";
 "search.examples" = "Query examples:";

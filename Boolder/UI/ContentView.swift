@@ -44,19 +44,18 @@ struct ContentView: View {
                 
                 VStack {
                     HStack {
-                      TextField("Nom de voie ou secteur", text: $searchBoxController.query, onCommit: {
+                      TextField("search.placeholder", text: $searchBoxController.query, onCommit: {
                           searchBoxController.submit()
                         isEditing = false
                       })
-                      .padding(7)
+                      .padding(10)
                       .padding(.horizontal, 25)
-                      .cornerRadius(8)
                       .overlay(
                         HStack {
                           Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 8)
+                            .padding(.leading, 10)
                             .disabled(true)
                           if isEditing && !searchBoxController.query.isEmpty {
                             Button(action: {
@@ -65,7 +64,7 @@ struct ContentView: View {
                                    label: {
                                     Image(systemName: "multiply.circle.fill")
                                       .foregroundColor(.gray)
-                                      .padding(.trailing, 8)
+                                      .padding(.trailing, 10)
                                    })
                           }
                         }
@@ -74,18 +73,20 @@ struct ContentView: View {
                         isEditing = true
                       }
                       .background(Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1))
-                      .cornerRadius(10)
+                      .cornerRadius(12)
                       .transition(.move(edge: .trailing))
                       .animation(.default)
+//                      .border(.gray, width: 2)
+                      .shadow(color: .gray.opacity(isEditing ? 0 : 0.5), radius: 5)
                         
                       if isEditing {
                         Button(action: {
                             dismiss()
                                },
                                label: {
-                                Text("Cancel")
+                                Text("search.cancel")
                                })
-                        .padding(.trailing, 10)
+                        .padding(.horizontal, 4)
                         .transition(.move(edge: .trailing)) // FIXME: better out transition 
                         .animation(.default)
                       }
