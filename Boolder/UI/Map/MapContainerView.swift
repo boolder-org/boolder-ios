@@ -26,6 +26,20 @@ struct MapContainerView: View {
                         presentPoiActionSheet: $mapState.presentPoiActionSheet
                     )
                 )
+                .sheet(isPresented: $mapState.presentProblemDetails) {
+                    ProblemDetailsView(
+                        problem: $mapState.selectedProblem,
+                        mapState: mapState
+                    )
+                    .modify {
+                        if #available(iOS 16, *) {
+                            $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                        }
+                        else {
+                            $0
+                        }
+                    }
+                }
             
             HStack {
                 Spacer()
@@ -69,42 +83,24 @@ struct MapContainerView: View {
             .padding(.bottom)
             .ignoresSafeArea(.keyboard)
             .zIndex(10)
+            .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                mapState.filtersRefresh()
+                // TODO: update $mapState.filters only on dismiss
+            }) {
+                FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
+                    .modify {
+                        if #available(iOS 16, *) {
+                            $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                        }
+                        else {
+                            $0
+                        }
+                    }
+            }
             
             SearchView(mapState: mapState)
                 .zIndex(20)
         }
-        .sheet(isPresented: $mapState.presentProblemDetails) {
-            ProblemDetailsView(
-                problem: $mapState.selectedProblem,
-                mapState: mapState
-            )
-            .modify {
-                if #available(iOS 16, *) {
-                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                }
-                else {
-                    $0
-                }
-            }
-        }
-        // temporary hack to make multi sheets work on iOS14
-        .background(
-            EmptyView()
-                .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                    mapState.filtersRefresh()
-                    // TODO: update $mapState.filters only on dismiss
-                }) {
-                    FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
-                        .modify {
-                            if #available(iOS 16, *) {
-                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                            }
-                            else {
-                                $0
-                            }
-                        }
-                }
-        )
     }
 }
 
