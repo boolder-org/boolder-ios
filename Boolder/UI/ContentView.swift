@@ -71,10 +71,10 @@ struct ContentView: View {
                       .onTapGesture {
                         isEditing = true
                       }
-                      .background(Color("ImageBackground"))
+                      .background(isEditing ? Color("ImageBackground") : Color(.systemBackground))
                       .cornerRadius(12)
-                      .transition(.move(edge: .trailing))
-                      .animation(.default)
+//                      .transition(.move(edge: .trailing))
+//                      .animation(.default)
                       .shadow(color: Color(.secondaryLabel).opacity(isEditing ? 0 : 0.5), radius: 5)
                         
                       if isEditing {
@@ -91,6 +91,7 @@ struct ContentView: View {
                     }
                     .disableAutocorrection(true)
                     .padding(.horizontal)
+                    .padding(.top, 8)
                     
                     VStack(spacing: 0) {
                         if errorController.requestError {
