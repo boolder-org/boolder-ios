@@ -11,7 +11,6 @@ import CoreLocation
 
 struct MapContainerView: View {
     @ObservedObject var mapState: MapState
-    @State private var isEditing: Bool = false
     
     var body: some View {
         ZStack {
@@ -27,8 +26,6 @@ struct MapContainerView: View {
                         presentPoiActionSheet: $mapState.presentPoiActionSheet
                     )
                 )
-            
-            SearchView(mapState: mapState, isEditing: $isEditing)
             
             HStack {
                 Spacer()
@@ -70,8 +67,11 @@ struct MapContainerView: View {
                 }
             }
             .padding(.bottom)
+            .ignoresSafeArea(.keyboard)
             .zIndex(10)
-            .opacity(isEditing ? 0 : 1)
+            
+            SearchView(mapState: mapState)
+                .zIndex(20)
         }
         .sheet(isPresented: $mapState.presentProblemDetails) {
             ProblemDetailsView(

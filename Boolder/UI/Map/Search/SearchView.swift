@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var mapState: MapState
-    @Binding var isEditing: Bool
+    @State private var isEditing = false
 
     static let algoliaController = AlgoliaController()
     @ObservedObject var searchBoxController = Self.algoliaController.searchBoxController
