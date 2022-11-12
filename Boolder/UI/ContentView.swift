@@ -28,6 +28,7 @@ struct ContentView: View {
             ZStack {
                 MapboxView(mapState: mapState)
                     .edgesIgnoringSafeArea(.top)
+                    .ignoresSafeArea(.keyboard)
                     .background(
                         PoiActionSheet(
                             name: (mapState.selectedPoi?.name ?? ""),
