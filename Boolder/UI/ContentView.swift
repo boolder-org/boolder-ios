@@ -73,24 +73,25 @@ struct ContentView: View {
                         }
                       )
                       .onTapGesture {
-                        isEditing = true
+                          withAnimation {
+                              isEditing = true
+                          }
                       }
                       .background(isEditing ? Color("ImageBackground") : Color(.systemBackground))
                       .cornerRadius(12)
-//                      .transition(.move(edge: .trailing))
-//                      .animation(.default)
                       .shadow(color: Color(.secondaryLabel).opacity(isEditing ? 0 : 0.5), radius: 5)
                         
                       if isEditing {
-                        Button(action: {
-                            dismiss()
-                               },
-                               label: {
-                                Text("search.cancel")
-                               })
-                        .padding(.horizontal, 4)
-//                        .transition(.move(edge: .trailing)) // FIXME: better out transition
-//                        .animation(.default)
+                          Button(action: {
+                              withAnimation {
+                                  dismiss()
+                              }
+                          },
+                                 label: {
+                              Text("search.cancel")
+                          })
+                          .padding(.horizontal, 4)
+                          .transition(.move(edge: .trailing).combined(with: .opacity))
                       }
                     }
                     .disableAutocorrection(true)
