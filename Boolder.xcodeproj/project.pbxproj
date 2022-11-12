@@ -259,19 +259,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		038C2EF62920142C006581CD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				038C2EF329201315006581CD /* SearchView.swift */,
+				031F36B2291D01B700BD0C2B /* AlgoliaController.swift */,
+				031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		03C104E7290ACBEE007A94D7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				038C2EF029201152006581CD /* MapContainerView.swift */,
-				038C2EF329201315006581CD /* SearchView.swift */,
 				031F36AF291CE56100BD0C2B /* MapState.swift */,
 				03C104EB290ACDC6007A94D7 /* MapboxView.swift */,
 				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
+				038C2EF62920142C006581CD /* Search */,
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
-				031F36B2291D01B700BD0C2B /* AlgoliaController.swift */,
-				031F36BB291D97B800BD0C2B /* AlgoliaErrorController.swift */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
 			path = Map;
