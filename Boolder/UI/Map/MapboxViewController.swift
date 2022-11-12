@@ -278,7 +278,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 8, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
                 case .failure(let error):
@@ -304,7 +304,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 8, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                     }
                 case .failure(let error):
@@ -351,11 +351,12 @@ class MapboxViewController: UIViewController {
                         self.delegate?.selectProblem(id: Int(id))
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
+                        // if problem is hidden by the bottom sheet
                         if tapPoint.y >= self.mapView.bounds.height/2 {
                             
                             let cameraOptions = CameraOptions(
                                 center: point.coordinates,
-                                padding: UIEdgeInsets(top: 0, left: 0, bottom: self.view.bounds.height/3, right: 0)
+                                padding: UIEdgeInsets(top: 60, left: 0, bottom: self.view.bounds.height/2, right: 0)
                             )
                             self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
                         }
