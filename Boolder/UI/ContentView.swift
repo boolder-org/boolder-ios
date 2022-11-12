@@ -41,6 +41,7 @@ struct ContentView: View {
              
                 Color.systemBackground
                     .edgesIgnoringSafeArea(.top)
+                    .ignoresSafeArea(.keyboard)
                     .opacity(isEditing ? 1 : 0)
                 
                 VStack {
