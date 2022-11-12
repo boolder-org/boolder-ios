@@ -11,7 +11,6 @@ import CoreLocation
 
 struct ContentView: View {
     @StateObject private var mapState = MapState()
-    @State private var presentSearch = false
     @State private var appTab = Tab.map
     
 //    @State private var text: String = ""
@@ -76,6 +75,8 @@ struct ContentView: View {
                       }
                       .background(Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1))
                       .cornerRadius(10)
+                      .transition(.move(edge: .trailing))
+                      .animation(.default)
                         
                       if isEditing {
                         Button(action: {
@@ -85,7 +86,7 @@ struct ContentView: View {
                                 Text("Cancel")
                                })
                         .padding(.trailing, 10)
-                        .transition(.move(edge: .trailing))
+                        .transition(.move(edge: .trailing)) // FIXME: better out transition 
                         .animation(.default)
                       }
                     }
@@ -156,21 +157,6 @@ struct ContentView: View {
                         .padding(.horizontal)
                         
                         Button(action: {
-                            presentSearch = true
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .padding(12)
-                        }
-                        .accentColor(.primary)
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
-                        
-                        Button(action: {
                             mapState.presentFilters = true
                         }) {
                             Image(systemName: "slider.horizontal.3")
@@ -189,6 +175,7 @@ struct ContentView: View {
                 }
                 .padding(.bottom)
                 .zIndex(10)
+                .opacity(isEditing ? 0 : 1)
             }
             .sheet(isPresented: $mapState.presentProblemDetails) {
                 ProblemDetailsView(
@@ -204,13 +191,6 @@ struct ContentView: View {
                     }
                 }
             }
-            // temporary hack to make multi sheets work on iOS14
-            .background(
-                EmptyView()
-                    .sheet(isPresented: $presentSearch) {
-                        SearchView(mapState: mapState)
-                    }
-            )
             // temporary hack to make multi sheets work on iOS14
             .background(
                 EmptyView()
