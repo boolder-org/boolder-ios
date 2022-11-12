@@ -63,7 +63,8 @@ struct ContentView: View {
                                    },
                                    label: {
                                     Image(systemName: "multiply.circle.fill")
-                                      .padding(.trailing, 10)
+                                      .padding(.horizontal, 10)
+                                      .padding(.vertical, 4)
                                    })
                           }
                         }
