@@ -47,6 +47,8 @@
 		038C2EF229201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF429201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
 		038C2EF529201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
+		038C2EF829201A6E006581CD /* FiltersToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF729201A6E006581CD /* FiltersToolbarView.swift */; };
+		038C2EF929201A6E006581CD /* FiltersToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF729201A6E006581CD /* FiltersToolbarView.swift */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
 		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
 		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
@@ -155,6 +157,7 @@
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		038C2EF729201A6E006581CD /* FiltersToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersToolbarView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 				031F36AF291CE56100BD0C2B /* MapState.swift */,
 				03C104EB290ACDC6007A94D7 /* MapboxView.swift */,
 				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
+				038C2EF729201A6E006581CD /* FiltersToolbarView.swift */,
 				038C2EF62920142C006581CD /* Search */,
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
@@ -633,6 +637,7 @@
 			files = (
 				033F70D529191755000DD3F4 /* FiltersView.swift in Sources */,
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
+				038C2EF929201A6E006581CD /* FiltersToolbarView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
@@ -713,6 +718,7 @@
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
+				038C2EF829201A6E006581CD /* FiltersToolbarView.swift in Sources */,
 				37379904258E157D00711EDA /* LargeButton.swift in Sources */,
 				37B4524F25923B5A00241091 /* ODRManager.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
