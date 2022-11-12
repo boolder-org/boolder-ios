@@ -18,7 +18,6 @@ struct SearchView: View {
     @ObservedObject var areaHitsController = Self.algoliaController.areaHitsController
     @ObservedObject var errorController = Self.algoliaController.errorController
     
-    
     var body: some View {
         Group {
             Color.systemBackground
@@ -115,8 +114,6 @@ struct SearchView: View {
                     }
                 }
                 .opacity(isEditing ? 1 : 0)
-                
-//                    Spacer()
             }
         }
     }
