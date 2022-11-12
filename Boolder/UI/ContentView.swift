@@ -88,8 +88,8 @@ struct ContentView: View {
                                 Text("search.cancel")
                                })
                         .padding(.horizontal, 4)
-                        .transition(.move(edge: .trailing)) // FIXME: better out transition 
-                        .animation(.default)
+//                        .transition(.move(edge: .trailing)) // FIXME: better out transition
+//                        .animation(.default)
                       }
                     }
                     .disableAutocorrection(true)
@@ -99,7 +99,7 @@ struct ContentView: View {
                     VStack(spacing: 0) {
                         if errorController.requestError {
                             Spacer()
-                            Text("search.request_error").foregroundColor(.gray)
+                            Text("search.request_error").foregroundColor(Color(.secondaryLabel))
                             Spacer()
                         }
                         else if searchBoxController.query.count == 0 {
@@ -123,7 +123,7 @@ struct ContentView: View {
                         }
                         else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
                             Spacer()
-                            Text("search.no_results").foregroundColor(.gray)
+                            Text("search.no_results").foregroundColor(Color(.secondaryLabel))
                             Spacer()
                         }
                         else {
@@ -154,7 +154,7 @@ struct ContentView: View {
                         .background(Color.systemBackground)
                         .clipShape(Circle())
                         .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
                         )
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                         .padding(.horizontal)
@@ -169,7 +169,7 @@ struct ContentView: View {
                         .background(mapState.filters.filtersCount() >= 1 ? Color.appGreen : .systemBackground)
                         .clipShape(Circle())
                         .overlay(
-                            Circle().stroke(Color.gray, lineWidth: 0.25)
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
                         )
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                         .padding(.horizontal)
@@ -266,9 +266,9 @@ struct ContentView: View {
                                 HStack {
                                     ProblemCircleView(problem: problem)
                                     Text(hit.name).foregroundColor(.primary)
-                                    Text(hit.grade).foregroundColor(.gray).padding(.leading, 2)
+                                    Text(hit.grade).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
                                     Spacer()
-                                    Text(hit.area_name).foregroundColor(.gray).font(.caption)
+                                    Text(hit.area_name).foregroundColor(Color(.secondaryLabel)).font(.caption)
                                 }
                             }
                         }
