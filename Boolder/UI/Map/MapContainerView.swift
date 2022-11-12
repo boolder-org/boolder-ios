@@ -10,6 +10,9 @@ import SwiftUI
 import CoreLocation
 
 struct MapContainerView: View {
+    @EnvironmentObject var odrManager: ODRManager
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @ObservedObject var mapState: MapState
     
     var body: some View {
@@ -31,6 +34,10 @@ struct MapContainerView: View {
                         problem: $mapState.selectedProblem,
                         mapState: mapState
                     )
+                    // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
+                    // remove these lines as soon as it's fixed
+                    .environment(\.managedObjectContext, managedObjectContext)
+                    .environmentObject(odrManager)
                     .modify {
                         if #available(iOS 16, *) {
                             $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
