@@ -72,11 +72,10 @@ struct ContentView: View {
                       .onTapGesture {
                         isEditing = true
                       }
-                      .background(Color(.sRGB, red: 239/255, green: 239/255, blue: 240/255, opacity: 1))
+                      .background(Color("ImageBackground"))
                       .cornerRadius(12)
                       .transition(.move(edge: .trailing))
                       .animation(.default)
-//                      .border(.gray, width: 2)
                       .shadow(color: .gray.opacity(isEditing ? 0 : 0.5), radius: 5)
                         
                       if isEditing {
