@@ -18,7 +18,7 @@
 "search.cancel" = "Cancel";
 "search.no_results" = "No results";
 "search.request_error" = "Connection issue";
-"search.examples" = "Query examples:";
+"search.examples" = "Examples:";
 
 // MARK: Discover view
 "discover.title" = "Discover";

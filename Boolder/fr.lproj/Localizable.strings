@@ -18,7 +18,7 @@
 "search.cancel" = "Annuler";
 "search.no_results" = "Pas de résultats";
 "search.request_error" = "Problème de connexion";
-"search.examples" = "Exemples de recherche :";
+"search.examples" = "Exemples :";
 
 // MARK: Discover view
 "discover.title" = "Découvrir";
