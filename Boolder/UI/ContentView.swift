@@ -54,6 +54,7 @@ struct ContentView: View {
                       .overlay(
                         HStack {
                           Image(systemName: "magnifyingglass")
+                                .foregroundColor(Color(.secondaryLabel))
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 10)
                             .disabled(true)
@@ -63,12 +64,12 @@ struct ContentView: View {
                                    },
                                    label: {
                                     Image(systemName: "multiply.circle.fill")
+                                    .foregroundColor(Color(.secondaryLabel))
                                       .padding(.horizontal, 10)
                                       .padding(.vertical, 4)
                                    })
                           }
                         }
-                            .foregroundColor(Color(.secondaryLabel))
                       )
                       .onTapGesture {
                         isEditing = true
