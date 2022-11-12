@@ -280,10 +280,10 @@
 				03C104EB290ACDC6007A94D7 /* MapboxView.swift */,
 				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
 				038C2EF729201A6E006581CD /* FiltersToolbarView.swift */,
-				038C2EF62920142C006581CD /* Search */,
-				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
+				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
+				038C2EF62920142C006581CD /* Search */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
 			path = Map;
