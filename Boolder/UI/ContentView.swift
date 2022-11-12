@@ -109,7 +109,7 @@ struct ContentView: View {
                                     Text("search.examples")
                                         .foregroundColor(Color.secondary)
                                     
-                                    ForEach(["Cul de Chien", "La Marie-Rose", "Apremont"], id: \.self) { query in
+                                    ForEach(["Isatis", "La Marie-Rose", "Cul de Chien"], id: \.self) { query in
                                         Button {
                                             searchBoxController.query = query
                                         } label: {
