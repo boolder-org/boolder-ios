@@ -15,6 +15,7 @@
 "search.areas" = "Secteurs";
 "search.problems" = "Voies";
 "search.placeholder" = "Nom de voie ou secteur";
+"search.cancel" = "Annuler";
 "search.no_results" = "Pas de résultats";
 "search.request_error" = "Problème de connexion";
 "search.examples" = "Exemples de recherche :";

@@ -33,7 +33,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 
                 let cameraOptions = CameraOptions(
                     center: problem.coordinate,
-                    padding: UIEdgeInsets(top: 0, left: 0, bottom: vc.view.bounds.height/2, right: 0),
+                    padding: UIEdgeInsets(top: 60, left: 0, bottom: vc.view.bounds.height/2, right: 0),
                     zoom: 20
                 )
                 vc.mapView.camera.fly(to: cameraOptions, duration: 2)
@@ -48,7 +48,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 8, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1)
                 
                 context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
@@ -60,7 +60,7 @@ struct MapboxView: UIViewControllerRepresentable {
             if let location = vc.mapView.location.latestLocation {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
-                    padding: .zero,
+                    padding: .init(top: 60, left: 8, bottom: 8, right: 8),
                     zoom: 16
                 )
                 vc.mapView.camera.fly(to: cameraOptions, duration: 2)
