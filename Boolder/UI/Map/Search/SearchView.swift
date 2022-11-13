@@ -31,6 +31,7 @@ struct SearchView: View {
                       searchBoxController.submit()
                     isEditing = false
                   })
+                  .frame(maxWidth: 400)
                   .padding(10)
                   .padding(.horizontal, 25)
                   .overlay(
