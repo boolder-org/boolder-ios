@@ -109,10 +109,10 @@ struct TopoView: View {
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color("ImageBackground"))
         .onChange(of: problem) { _ in
-                    lineDrawPercentage = 0.0
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        animate { lineDrawPercentage = 1.0 }
-                    }
+            lineDrawPercentage = 0.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                animate { lineDrawPercentage = 1.0 }
+            }
         }
         .onAppear {
             // hack to make the animation start after the view is properly loaded
