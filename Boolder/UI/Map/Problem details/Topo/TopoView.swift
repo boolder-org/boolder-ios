@@ -20,7 +20,7 @@ struct TopoView: View {
     
     @State private var presentTopoFullScreenView = false
     
-    let tapSize: CGFloat = 36 // increase to 44? might be tricky when problem circles overlap
+    let tapSize: CGFloat = 44
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -46,13 +46,16 @@ struct TopoView: View {
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
+                                        .contentShape(Rectangle()) // makes the whole frame tappable
                                         .offset(lineStart)
+                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
                                 }
                                 
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
+                                            .contentShape(Rectangle()) // makes the whole frame tappable
                                             .offset(lineStart)
                                             .onTapGesture {
                                                 switchToProblem(secondaryProblem)
@@ -127,7 +130,6 @@ struct TopoView: View {
         }
     }
     
-    // FIXME: make this DRY
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
         
