@@ -20,6 +20,8 @@ struct TopoView: View {
     
     @State private var presentTopoFullScreenView = false
     
+    let tapSize: CGFloat = 36 // increase to 44? might be tricky when problem circles overlap
+    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -43,13 +45,18 @@ struct TopoView: View {
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                        .frame(width: tapSize, height: tapSize, alignment: .center)
                                         .offset(lineStart)
                                 }
                                 
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                            .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .offset(lineStart)
+                                            .onTapGesture {
+                                                switchToProblem(secondaryProblem)
+                                            }
                                             .animation(.easeIn(duration: 0.5))
                                     }
                                 }
@@ -60,23 +67,6 @@ struct TopoView: View {
                         Image("nophoto")
                             .font(.system(size: 60))
                             .foregroundColor(Color.gray)
-                    }
-                    
-                    // We did this on top of the previous view to be able to intercept taps on secondary problems, back when there was a PinchToZoom view
-                    // TODO: put this in the same view
-                    GeometryReader { geo in
-                        ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                            if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                Button(action: {
-                                    switchToProblem(secondaryProblem)
-                                }) {
-                                    Circle()
-                                        .frame(width: CircleView.defaultHeight, height: CircleView.defaultHeight)
-                                        .foregroundColor(.clear)
-                                }
-                                .offset(lineStart)
-                            }
-                        }
                     }
                 }
                 else {
@@ -142,8 +132,8 @@ struct TopoView: View {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
         
         return CGSize(
-            width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
-            height: (CGFloat(lineFirstPoint.y) * size.height) - 14
+            width:  (CGFloat(lineFirstPoint.x) * size.width) - tapSize/2,
+            height: (CGFloat(lineFirstPoint.y) * size.height) - tapSize/2
         )
     }
     
