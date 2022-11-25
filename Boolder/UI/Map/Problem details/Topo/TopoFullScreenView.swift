@@ -63,7 +63,7 @@ struct TopoFullScreenView: View {
                             }
                             Spacer()
                         }
-                        .offset(x: self.dragOffset.width, y: self.dragOffset.height) // drag gesture
+                        .offset(x: 0, y: self.dragOffset.height) // drag gesture
                         .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
                         .offset(pinchToZoomState.offset)
                         .overlay(PinchToZoom(state: pinchToZoomState))
@@ -73,7 +73,8 @@ struct TopoFullScreenView: View {
                                 self.dragOffsetPredicted = value.predictedEndTranslation
                             }
                             .onEnded { value in
-                                if(self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3) {
+                                if(self.dragOffset.height > 200
+                                  || (self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3)) {
                                     withAnimation(.spring()) {
                                         self.dragOffset = self.dragOffsetPredicted
                                     }
@@ -98,7 +99,7 @@ struct TopoFullScreenView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    // FIXME: make this DRY
+    // FIXME: make this DRY with other screens
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
         
