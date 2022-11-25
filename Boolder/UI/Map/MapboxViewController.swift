@@ -365,6 +365,7 @@ class MapboxViewController: UIViewController {
                     }
                     else {
                         self.unselectPreviousProblem()
+                        self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -378,4 +379,5 @@ import CoreLocation
 protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
+    func dismissProblemDetails()
 }

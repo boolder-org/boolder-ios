@@ -108,5 +108,9 @@ struct MapboxView: UIViewControllerRepresentable {
             parent.mapState.selectedPoi = poi
             parent.mapState.presentPoiActionSheet = true
         }
+        
+        @MainActor func dismissProblemDetails() {
+            parent.mapState.presentProblemDetails = false
+        }
     }
 }

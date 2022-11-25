@@ -55,6 +55,7 @@ struct SearchView: View {
                     }
                   )
                   .onTapGesture {
+                      mapState.presentProblemDetails = false
                       withAnimation {
                           isEditing = true
                       }
