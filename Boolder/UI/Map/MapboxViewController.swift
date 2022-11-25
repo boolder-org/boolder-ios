@@ -334,7 +334,7 @@ class MapboxViewController: UIViewController {
             }
         
         mapView.mapboxMap.queryRenderedFeatures(
-            with: CGRect(x: tapPoint.x-12, y: tapPoint.y-12, width: 24, height: 24),
+            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
