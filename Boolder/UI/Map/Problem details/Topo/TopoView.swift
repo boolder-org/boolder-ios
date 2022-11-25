@@ -15,7 +15,7 @@ struct TopoView: View {
     
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
-    @Binding var lineDrawPercentage: CGFloat
+    @State private var lineDrawPercentage: CGFloat = .zero
     @Binding var areaResourcesDownloaded: Bool
     
     @State private var presentTopoFullScreenView = false
@@ -58,7 +58,7 @@ struct TopoView: View {
                                             .contentShape(Rectangle()) // makes the whole frame tappable
                                             .offset(lineStart)
                                             .onTapGesture {
-                                                switchToProblem(secondaryProblem)
+                                                mapState.selectProblem(secondaryProblem)
                                             }
                                     }
                                 }
@@ -86,7 +86,7 @@ struct TopoView: View {
                         Menu {
                             ForEach(problem.variants) { variant in
                                 Button {
-                                    switchToProblem(variant)
+                                    mapState.selectProblem(variant)
                                 } label: {
                                     Text("\(variant.nameWithFallback) \(variant.grade.string)")
                                 }
@@ -108,6 +108,12 @@ struct TopoView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color("ImageBackground"))
+        .onChange(of: problem) { _ in
+                    lineDrawPercentage = 0.0
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        animate { lineDrawPercentage = 1.0 }
+                    }
+        }
         .onAppear {
             // hack to make the animation start after the view is properly loaded
             // I tried doing it synchronously by I couldn't make it work :grimacing:
@@ -139,18 +145,8 @@ struct TopoView: View {
         )
     }
     
-    // FIXME: this code is duplicated from ProblemsDetailsView.swift => make it DRY
-    func switchToProblem(_ newProblem: Problem) {
-        lineDrawPercentage = 0.0
-        mapState.selectProblem(newProblem)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            animate { lineDrawPercentage = 1.0 }
-        }
-    }
-    
     func animate(action: () -> Void) {
-        withAnimation(Animation.easeInOut(duration: 0.5)) {
+        withAnimation(Animation.easeInOut(duration: 0.4)) {
             action()
         }
     }

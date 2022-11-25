@@ -24,7 +24,6 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
-    @State private var lineDrawPercentage: CGFloat = .zero
     
     var body: some View {
         ScrollView {
@@ -32,7 +31,6 @@ struct ProblemDetailsView: View {
                 TopoView(
                     problem: $problem,
                     mapState: mapState,
-                    lineDrawPercentage: $lineDrawPercentage,
                     areaResourcesDownloaded: $areaResourcesDownloaded
                 )
                 .zIndex(10)
@@ -228,7 +226,7 @@ struct ProblemDetailsView: View {
                 ForEach(problem.variants) { variant in
                     
                     Button(action: {
-                        switchToProblem(variant)
+                        mapState.selectProblem(variant)
                         
                     }, label: {
                         HStack {
@@ -273,22 +271,6 @@ struct ProblemDetailsView: View {
             .joined(separator: "%0D%0A")
         
         return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
-    }
-    
-    // FIXME: this code is duplicated from TopoView.swift => make it DRY
-    func switchToProblem(_ newProblem: Problem) {
-        lineDrawPercentage = 0.0
-        mapState.selectProblem(newProblem)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            animate { lineDrawPercentage = 1.0 }
-        }
-    }
-    
-    func animate(action: () -> Void) {
-        withAnimation(Animation.easeInOut(duration: 0.5)) {
-            action()
-        }
     }
     
     // MARK: Ticks and favorites
@@ -377,16 +359,6 @@ struct ProblemDetailsView: View {
         } catch {
             // handle the Core Data error
         }
-    }
-}
-
-// https://useyourloaf.com/blog/how-to-percent-encode-a-url-string/
-extension String {
-    func stringByAddingPercentEncodingForRFC3986() -> String? {
-        let unreserved = "-._~/?"
-        let allowed = NSMutableCharacterSet.alphanumeric()
-        allowed.addCharacters(in: unreserved)
-        return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
     }
 }
 
