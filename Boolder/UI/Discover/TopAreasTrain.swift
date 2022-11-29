@@ -80,7 +80,7 @@ struct TopAreasTrain: View {
     }
     
     var areasFromAvon: [Area] {
-        [50].map{Area.load(id: $0)}.compactMap{$0}.sorted {
+        [53,50,52,33].map{Area.load(id: $0)}.compactMap{$0}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }

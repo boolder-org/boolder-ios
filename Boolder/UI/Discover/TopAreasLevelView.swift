@@ -157,13 +157,13 @@ struct TopAreasLevelView: View {
     }
     
     var intermediateAreas: [Area] {
-        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1].map{Area.load(id: $0)}.compactMap{$0}.sorted {
+        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1, 46, 48].map{Area.load(id: $0)}.compactMap{$0}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
     
     var advancedAreas: [Area] {
-        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69].map{Area.load(id: $0)}.compactMap{$0}.sorted {
+        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69, 48, 61, 64, 46, 62, ].map{Area.load(id: $0)}.compactMap{$0}.sorted {
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
