@@ -47,8 +47,6 @@
 		038C2EF529201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
 		038C2EF829201A6E006581CD /* FiltersToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF729201A6E006581CD /* FiltersToolbarView.swift */; };
 		038C2EF929201A6E006581CD /* FiltersToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF729201A6E006581CD /* FiltersToolbarView.swift */; };
-		03A81F3A29363DDF00D29AB6 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03A81F3929363DDF00D29AB6 /* boolder.db */; };
-		03A81F3B29363DDF00D29AB6 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03A81F3929363DDF00D29AB6 /* boolder.db */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
 		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
 		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
@@ -63,6 +61,8 @@
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C1050E2911B4CB007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050D2911B4CB007A94D7 /* InstantSearch */; };
 		03C105142911B506007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105132911B506007A94D7 /* InstantSearch */; };
+		03D53F592936829B00C4BA3C /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03D53F582936829B00C4BA3C /* boolder.db */; };
+		03D53F5A2936829B00C4BA3C /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03D53F582936829B00C4BA3C /* boolder.db */; };
 		03DB8CB82913E7C100EFA944 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CB72913E7C100EFA944 /* InstantSearchCore */; };
 		03DB8CBA2913E7C400EFA944 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CB92913E7C400EFA944 /* InstantSearchSwiftUI */; };
 		03DB8CBC2913E7CC00EFA944 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CBB2913E7CC00EFA944 /* InstantSearchCore */; };
@@ -163,11 +163,11 @@
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		038C2EF729201A6E006581CD /* FiltersToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersToolbarView.swift; sourceTree = "<group>"; };
-		03A81F3929363DDF00D29AB6 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
+		03D53F582936829B00C4BA3C /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
@@ -335,7 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03A81F3929363DDF00D29AB6 /* boolder.db */,
+				03D53F582936829B00C4BA3C /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
@@ -630,7 +630,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03A81F3B29363DDF00D29AB6 /* boolder.db in Resources */,
+				03D53F5A2936829B00C4BA3C /* boolder.db in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
 				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
 				37379A3D258E619400711EDA /* Assets.xcassets in Resources */,
@@ -642,7 +642,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03A81F3A29363DDF00D29AB6 /* boolder.db in Resources */,
+				03D53F592936829B00C4BA3C /* boolder.db in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				37379A9A258F4C3000711EDA /* Assets.xcassets in Resources */,
