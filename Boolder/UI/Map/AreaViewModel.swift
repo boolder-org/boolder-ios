@@ -40,13 +40,28 @@ import SwiftUI
     var circuits: [Circuit] {
         let db = SqliteStore.shared.db
         
-        let average_grade = Expression<String>("average_grade")
-        let circuits = Table("circuits").order(average_grade.asc).limit(5)
+//        let stmt = try db.prepare("SELECT area_id, email FROM users")
+//        for row in stmt {
+//            for (index, name) in stmt.columnNames.enumerated() {
+//                print ("\(name):\(row[index]!)")
+//                // id: Optional(1), email: Optional("alice@mac.com")
+//            }
+//        }
+        
         let id = Expression<Int>("id")
+        let circuit_id = Expression<Int>("circuit_id")
+        let area_id = Expression<Int>("area_id")
+        let average_grade = Expression<String>("average_grade")
+        let circuits = Table("circuits")
+        let problems = Table("problems")
         let color = Expression<String>("color")
         
+        let query = circuits.select(circuits[id], circuits[color], problems[id].count).join(problems, on: circuits[id] == problems[circuit_id]).group(circuits[id], having: problems[id].count >= 10).filter(problems[area_id] == area.id).order(average_grade.asc)
+        
+//        print(query.asSQL())
+
         do {
-            return try db.prepare(circuits).map { circuit in
+            return try db.prepare(query).map { circuit in
                 Circuit(id: circuit[id], color: Circuit.CircuitColor.colorFromString(circuit[color]))
             }.compactMap{$0}
         }
