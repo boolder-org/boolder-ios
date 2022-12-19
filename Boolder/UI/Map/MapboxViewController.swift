@@ -244,24 +244,13 @@ class MapboxViewController: UIViewController {
                 Circuit.CircuitColor.offCircuit.uicolor
             }
         )
-//        circuitsLayer.visibility = false
-        circuitsLayer.filter = Expression(.match) {
-            Exp(.get) { "id" }
-            [24.0]
-            true
-            false
-        }
+        circuitsLayer.visibility = .constant(.none)
         
         var circuitProblemsLayer = CircleLayer(id: "circuit-problems")
         circuitProblemsLayer.source = "problems"
         circuitProblemsLayer.sourceLayer = problemsSourceLayerId
         circuitProblemsLayer.minZoom = 15
-        circuitProblemsLayer.filter = Expression(.match) {
-            Exp(.get) { "circuitId" }
-            [24.0]
-            true
-            false
-        }
+        circuitProblemsLayer.visibility = .constant(.none)
         
         circuitProblemsLayer.circleRadius = .expression(
             Exp(.interpolate) {
@@ -330,12 +319,7 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.source = "problems"
         circuitProblemsTextsLayer.sourceLayer = problemsSourceLayerId
         circuitProblemsTextsLayer.minZoom = 17
-        circuitProblemsTextsLayer.filter = Expression(.match) {
-            Exp(.get) { "circuitId" }
-            [24.0]
-            true
-            false
-        }
+        circuitProblemsTextsLayer.visibility = .constant(.none)
 
         circuitProblemsTextsLayer.textAllowOverlap = .constant(false)
         circuitProblemsTextsLayer.textField = .expression(
@@ -417,6 +401,7 @@ class MapboxViewController: UIViewController {
                         true
                         false
                     }
+                    layer.visibility = .constant(.visible)
                 }
             }
             
@@ -428,6 +413,7 @@ class MapboxViewController: UIViewController {
                         true
                         false
                     }
+                    layer.visibility = .constant(.visible)
                 }
             }
  
