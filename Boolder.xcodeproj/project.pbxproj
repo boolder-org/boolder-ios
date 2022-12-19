@@ -23,6 +23,8 @@
 		0314FFE32950578400B7E249 /* AreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE12950578400B7E249 /* AreaViewModel.swift */; };
 		0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
 		0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
+		0314FFE82950BCDF00B7E249 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0314FFE72950BCDF00B7E249 /* boolder.db */; };
+		0314FFE92950BCDF00B7E249 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0314FFE72950BCDF00B7E249 /* boolder.db */; };
 		031F36B0291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B3291D01B700BD0C2B /* AlgoliaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B2291D01B700BD0C2B /* AlgoliaController.swift */; };
@@ -67,8 +69,6 @@
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C1050E2911B4CB007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C1050D2911B4CB007A94D7 /* InstantSearch */; };
 		03C105142911B506007A94D7 /* InstantSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 03C105132911B506007A94D7 /* InstantSearch */; };
-		03D53F592936829B00C4BA3C /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03D53F582936829B00C4BA3C /* boolder.db */; };
-		03D53F5A2936829B00C4BA3C /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03D53F582936829B00C4BA3C /* boolder.db */; };
 		03DB8CB82913E7C100EFA944 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CB72913E7C100EFA944 /* InstantSearchCore */; };
 		03DB8CBA2913E7C400EFA944 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CB92913E7C400EFA944 /* InstantSearchSwiftUI */; };
 		03DB8CBC2913E7CC00EFA944 /* InstantSearchCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03DB8CBB2913E7CC00EFA944 /* InstantSearchCore */; };
@@ -158,6 +158,7 @@
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		0314FFE12950578400B7E249 /* AreaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewModel.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
+		0314FFE72950BCDF00B7E249 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B2291D01B700BD0C2B /* AlgoliaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaController.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
@@ -176,7 +177,6 @@
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
-		03D53F582936829B00C4BA3C /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
@@ -303,6 +303,8 @@
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				37FD85A22460A4F90054982F /* PoiActionSheet.swift */,
 				0314FFE42950786F00B7E249 /* AreaToolbarView.swift */,
+				0314FFDE295054C500B7E249 /* AreaView.swift */,
+				0314FFE12950578400B7E249 /* AreaViewModel.swift */,
 				038C2EF62920142C006581CD /* Search */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 			);
@@ -328,8 +330,6 @@
 				030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */,
 				030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */,
 				0343F94B2869A29F00BBAC38 /* AreaCardView.swift */,
-				0314FFDE295054C500B7E249 /* AreaView.swift */,
-				0314FFE12950578400B7E249 /* AreaViewModel.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03D53F582936829B00C4BA3C /* boolder.db */,
+				0314FFE72950BCDF00B7E249 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
@@ -642,7 +642,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D53F5A2936829B00C4BA3C /* boolder.db in Resources */,
+				0314FFE92950BCDF00B7E249 /* boolder.db in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
 				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
 				37379A3D258E619400711EDA /* Assets.xcassets in Resources */,
@@ -654,7 +654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D53F592936829B00C4BA3C /* boolder.db in Resources */,
+				0314FFE82950BCDF00B7E249 /* boolder.db in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				37379A9A258F4C3000711EDA /* Assets.xcassets in Resources */,

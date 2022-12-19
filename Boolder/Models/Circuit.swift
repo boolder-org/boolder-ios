@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Circuit {
+struct Circuit : Identifiable {
     let id: Int
     let color: CircuitColor
     

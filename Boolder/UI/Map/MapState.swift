@@ -59,6 +59,10 @@ import SwiftUI
         DispatchQueue.main.asyncAfter(deadline: .now() + wait) { [self] in
             self.selectProblem(problem)
             self.presentProblemDetails = true
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.selectedArea = Area.load(id: problem.areaId)
+            }
         }
     }
     

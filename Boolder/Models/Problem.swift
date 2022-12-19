@@ -23,9 +23,10 @@ struct Problem : Identifiable {
     let circuitColor: Circuit.CircuitColor?
     let circuitNumber: String
     let bleauInfoId: String?
+    let popularity: Int?
     let parentId: Int?
     
-    static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, parentId: nil)
+    static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, popularity: 0, parentId: nil)
     
     static func load(id: Int) -> Problem? {
         do {
@@ -45,6 +46,7 @@ struct Problem : Identifiable {
             let latitude = Expression<Double>("latitude")
             let longitude = Expression<Double>("longitude")
             let sitStart = Expression<Int>("sit_start")
+            let popularity = Expression<Int?>("popularity")
             
             if let p = try db.pluck(problems) {
                 return Problem(
@@ -59,6 +61,7 @@ struct Problem : Identifiable {
                     circuitColor: Circuit.CircuitColor.colorFromString(p[circuitColor]),
                     circuitNumber: p[circuitNumber] ?? "",
                     bleauInfoId: p[bleauInfoId],
+                    popularity: p[popularity],
                     parentId: p[parentId]
                 )
             }

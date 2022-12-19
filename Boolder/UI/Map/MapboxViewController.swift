@@ -58,6 +58,7 @@ class MapboxViewController: UIViewController {
         }
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+            // TODO: unselect also if the user panned too much
             if(mapView.mapboxMap.cameraState.zoom < 15) {
                 delegate?.unselectArea()
             }
