@@ -49,7 +49,16 @@ import SwiftUI
     
     func goToNextCircuitProblem() {
         if let circuit = selectedCircuit {
-            
+            if !selectedProblem.circuitNumber.isEmpty {
+                if let next = selectedProblem.next {
+                    selectAndPresentAndCenterOnProblem(next)
+                }
+            }
+            else {
+                if let problem = circuit.firstProblem {
+                    selectAndPresentAndCenterOnProblem(problem)
+                }
+            }
         }
     }
     

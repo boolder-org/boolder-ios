@@ -39,7 +39,7 @@ struct CircuitToolbarView: View {
 //                    .background(Color.red)
                 
                 Button {
-                    
+                    mapState.goToNextCircuitProblem()
                 } label: {
                     Text("suivant")
                 }

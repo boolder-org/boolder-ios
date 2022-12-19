@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SQLite
 
 struct Circuit : Identifiable {
     let id: Int
@@ -166,5 +167,24 @@ struct Circuit : Identifiable {
         {
             return lhs.rawValue < rhs.rawValue
         }
+    }
+    
+    var firstProblem: Problem? {
+        let db = SqliteStore.shared.db
+        
+        let id = Expression<Int>("id")
+        let circuitId = Expression<Int>("circuit_id")
+        let circuitnumber = Expression<String>("circuit_number")
+        let problems = Table("problems")
+        
+        let query = problems.filter(circuitId == self.id).filter(circuitnumber == "1")
+        
+//        print(query.asSQL())
+        
+        if let p = try! db.pluck(query) {
+            return Problem.load(id: p[id])
+        }
+        
+        return nil
     }
 }

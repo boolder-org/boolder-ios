@@ -200,6 +200,24 @@ struct Problem : Identifiable {
         line?.photo()
     }
     
+    var next: Problem? {
+        let db = SqliteStore.shared.db
+        
+        let id = Expression<Int>("id")
+        let circuitId = Expression<Int>("circuit_id")
+        let circuitnumber = Expression<String>("circuit_number")
+        let problems = Table("problems")
+        
+        let nextNumber = String(Int(self.circuitNumber)! + 1)
+        let query = problems.filter(circuitId == self.circuitId!).filter(circuitnumber == nextNumber)
+        
+        if let p = try! db.pluck(query) {
+            return Problem.load(id: p[id])
+        }
+        
+        return nil
+    }
+    
     func isFavorite() -> Bool {
         favorite() != nil
     }
