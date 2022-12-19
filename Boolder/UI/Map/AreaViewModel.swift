@@ -56,13 +56,20 @@ import SwiftUI
         let problems = Table("problems")
         let color = Expression<String>("color")
         
-        let query = circuits.select(circuits[id], circuits[color], problems[id].count).join(problems, on: circuits[id] == problems[circuit_id]).group(circuits[id], having: problems[id].count >= 10).filter(problems[area_id] == area.id).order(average_grade.asc)
+        let query = circuits.select(circuits[id], circuits[color], circuits[average_grade], problems[id].count)
+            .join(problems, on: circuits[id] == problems[circuit_id])
+            .group(circuits[id], having: problems[id].count >= 10)
+            .filter(problems[area_id] == area.id)
+            .order(average_grade.asc)
         
 //        print(query.asSQL())
 
         do {
             return try db.prepare(query).map { circuit in
-                Circuit(id: circuit[id], color: Circuit.CircuitColor.colorFromString(circuit[color]))
+                Circuit(
+                    id: circuit[id],
+                    color: Circuit.CircuitColor.colorFromString(circuit[color]),
+                    averageGrade: Grade(circuit[average_grade]))
             }.compactMap{$0}
         }
         catch {

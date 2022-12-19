@@ -26,7 +26,7 @@ struct AreaView: View {
                             CircleView(number: "", color: circuit.color.uicolor)
                             Text(circuit.color.longName)
                             Spacer()
-//                            Text(problem.grade.string)
+                            Text(circuit.averageGrade.string)
                         }
                         .foregroundColor(.primary)
                     }

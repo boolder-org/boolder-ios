@@ -11,10 +11,12 @@ import UIKit
 struct Circuit : Identifiable {
     let id: Int
     let color: CircuitColor
+    let averageGrade: Grade
     
-    init(id: Int, color: CircuitColor) {
+    init(id: Int, color: CircuitColor, averageGrade: Grade) {
         self.id = id
         self.color = color
+        self.averageGrade = averageGrade
     }
     
     enum CircuitColor: Int, Comparable {
