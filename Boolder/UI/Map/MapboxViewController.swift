@@ -422,6 +422,26 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func unselectCircuit() {
+        do {
+            try ["circuits"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
+                    
+                    layer.visibility = .constant(.none)
+                }
+            }
+            
+            try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                    layer.visibility = .constant(.none)
+                }
+            }
+ 
+        } catch {
+            print("Ran into an error updating the layer: \(error)")
+        }
+    }
+    
     func setProblemAsSelected(problemFeatureId: String) {
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                sourceLayerId: problemsSourceLayerId,

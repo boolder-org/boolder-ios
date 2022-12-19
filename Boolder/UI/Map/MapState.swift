@@ -42,6 +42,17 @@ import SwiftUI
         selectCircuitCount += 1
     }
     
+    func unselectCircuit() {
+        selectedCircuit = nil
+        selectCircuitCount += 1
+    }
+    
+    func goToNextCircuitProblem() {
+        if let circuit = selectedCircuit {
+            
+        }
+    }
+    
     private func centerOnProblem(_ problem: Problem) {
         centerOnProblem = problem
         centerOnProblemCount += 1

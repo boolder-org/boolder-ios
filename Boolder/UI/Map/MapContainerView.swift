@@ -29,6 +29,10 @@ struct MapContainerView: View {
             AreaToolbarView(mapState: mapState)
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
+            
+            CircuitToolbarView(mapState: mapState)
+                .zIndex(40)
+                .opacity(mapState.selectedCircuit != nil ? 1 : 0)
         }
     }
     

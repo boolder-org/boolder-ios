@@ -24,7 +24,7 @@ struct AreaView: View {
 //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                     } label: {
                         HStack {
-                            CircleView(number: "", color: circuit.color.uicolor)
+                            CircleView(number: "", color: circuit.color.uicolor, height: 20)
                             Text(circuit.color.longName)
                             Spacer()
                             Text(circuit.averageGrade.string)

@@ -79,6 +79,8 @@ struct MapboxView: UIViewControllerRepresentable {
         // select a circuit
         if mapState.selectCircuitCount > context.coordinator.lastSelectCircuitCount {
             
+//            print("coucou")
+            
             if let circuit = mapState.selectedCircuit {
                 vc.setCircuitAsSelected(circuit: circuit)
                 
@@ -86,6 +88,9 @@ struct MapboxView: UIViewControllerRepresentable {
                                               northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon))
                 let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1)
+            }
+            else {
+                vc.unselectCircuit()
             }
             context.coordinator.lastSelectCircuitCount = mapState.selectCircuitCount
         }
