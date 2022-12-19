@@ -23,7 +23,7 @@ import SwiftUI
         
         let grade = Expression<String>("grade")
         let popularity = Expression<String>("popularity")
-        let problems = Table("problems").filter(Expression(literal: "area_id = '\(area.id)'")).order(popularity.desc)
+        let problems = Table("problems").filter(Expression(literal: "area_id = '\(area.id)'")).order(grade.desc)
         let id = Expression<Int>("id")
         
         do {
@@ -52,11 +52,17 @@ import SwiftUI
         let circuit_id = Expression<Int>("circuit_id")
         let area_id = Expression<Int>("area_id")
         let average_grade = Expression<String>("average_grade")
+        let southWestLat = Expression<Double>("south_west_lat")
+        let southWestLon = Expression<Double>("south_west_lon")
+        let northEastLat = Expression<Double>("north_east_lat")
+        let northEastLon = Expression<Double>("north_east_lon")
         let circuits = Table("circuits")
         let problems = Table("problems")
         let color = Expression<String>("color")
         
-        let query = circuits.select(circuits[id], circuits[color], circuits[average_grade], problems[id].count)
+        let query = circuits.select(circuits[id], circuits[color], circuits[average_grade],
+                                    circuits[southWestLat], circuits[southWestLon], circuits[northEastLat], circuits[northEastLon],
+                                    problems[id].count)
             .join(problems, on: circuits[id] == problems[circuit_id])
             .group(circuits[id], having: problems[id].count >= 10)
             .filter(problems[area_id] == area.id)
@@ -66,10 +72,12 @@ import SwiftUI
 
         do {
             return try db.prepare(query).map { circuit in
-                Circuit(
-                    id: circuit[id],
-                    color: Circuit.CircuitColor.colorFromString(circuit[color]),
-                    averageGrade: Grade(circuit[average_grade]))
+                Circuit(id: circuit[id], color: Circuit.CircuitColor.colorFromString(circuit[color]), averageGrade: Grade(circuit[average_grade]), southWestLat: circuit[southWestLat], southWestLon: circuit[southWestLon], northEastLat: circuit[northEastLat], northEastLon: circuit[northEastLon])
+//                Circuit(
+//                    id: circuit[id],
+//                    color: Circuit.CircuitColor.colorFromString(circuit[color]),
+//                    averageGrade: Grade(circuit[average_grade]),
+//                )
             }.compactMap{$0}
         }
         catch {

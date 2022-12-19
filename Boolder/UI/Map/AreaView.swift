@@ -20,6 +20,7 @@ struct AreaView: View {
                 ForEach(viewModel.circuits) { circuit in
                     Button {
                         presentationMode.wrappedValue.dismiss()
+                        viewModel.mapState.selectAndCenterOnCircuit(circuit)
 //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                     } label: {
                         HStack {

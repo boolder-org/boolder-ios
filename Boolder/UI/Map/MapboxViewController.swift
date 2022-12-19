@@ -70,12 +70,16 @@ class MapboxViewController: UIViewController {
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
     
     func addSources() {
-        var source = VectorSource()
-        source.url = "mapbox://nmondollot.4xsv235p"
-        source.promoteId = .string("id") // needed to make Feature-State work
+        var problems = VectorSource()
+        problems.url = "mapbox://nmondollot.4xsv235p"
+        problems.promoteId = .string("id") // needed to make Feature-State work
+        
+        var circuits = VectorSource()
+        circuits.url = "mapbox://nmondollot.11sumdgh"
 
         do {
-            try self.mapView.mapboxMap.style.addSource(source, id: "problems")
+            try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
+            try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -206,14 +210,179 @@ class MapboxViewController: UIViewController {
             }
         )
         
+        // ===========================
+        
+        var circuitsLayer = LineLayer(id: "circuits")
+        circuitsLayer.source = "circuits"
+        circuitsLayer.sourceLayer = "circuits-9weff8"
+        circuitsLayer.minZoom = 15
+        circuitsLayer.lineWidth = .constant(2)
+        circuitsLayer.lineDasharray = .constant([4,1])
+        circuitsLayer.lineColor = .expression(
+            Exp(.match) {
+                Exp(.get) { "color" }
+                "yellow"
+                Circuit.CircuitColor.yellow.uicolor
+                "purple"
+                Circuit.CircuitColor.purple.uicolor
+                "orange"
+                Circuit.CircuitColor.orange.uicolor
+                "green"
+                Circuit.CircuitColor.green.uicolor
+                "blue"
+                Circuit.CircuitColor.blue.uicolor
+                "skyblue"
+                Circuit.CircuitColor.skyBlue.uicolor
+                "salmon"
+                Circuit.CircuitColor.salmon.uicolor
+                "red"
+                Circuit.CircuitColor.red.uicolor
+                "black"
+                Circuit.CircuitColor.black.uicolor
+                "white"
+                Circuit.CircuitColor.white.uicolor
+                Circuit.CircuitColor.offCircuit.uicolor
+            }
+        )
+//        circuitsLayer.visibility = false
+        circuitsLayer.filter = Expression(.match) {
+            Exp(.get) { "id" }
+            [24.0]
+            true
+            false
+        }
+        
+        var circuitProblemsLayer = CircleLayer(id: "circuit-problems")
+        circuitProblemsLayer.source = "problems"
+        circuitProblemsLayer.sourceLayer = problemsSourceLayerId
+        circuitProblemsLayer.minZoom = 15
+        circuitProblemsLayer.filter = Expression(.match) {
+            Exp(.get) { "circuitId" }
+            [24.0]
+            true
+            false
+        }
+        
+        circuitProblemsLayer.circleRadius = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                2
+                18
+                10
+                22
+                16
+            }
+        )
+        
+        circuitProblemsLayer.circleColor = .expression(
+            Exp(.match) {
+                Exp(.get) { "circuitColor" }
+                "yellow"
+                Circuit.CircuitColor.yellow.uicolor
+                "purple"
+                Circuit.CircuitColor.purple.uicolor
+                "orange"
+                Circuit.CircuitColor.orange.uicolor
+                "green"
+                Circuit.CircuitColor.green.uicolor
+                "blue"
+                Circuit.CircuitColor.blue.uicolor
+                "skyblue"
+                Circuit.CircuitColor.skyBlue.uicolor
+                "salmon"
+                Circuit.CircuitColor.salmon.uicolor
+                "red"
+                Circuit.CircuitColor.red.uicolor
+                "black"
+                Circuit.CircuitColor.black.uicolor
+                "white"
+                Circuit.CircuitColor.white.uicolor
+                Circuit.CircuitColor.offCircuit.uicolor
+            }
+        )
+        
+        circuitProblemsLayer.circleStrokeWidth = .expression(
+            Exp(.switchCase) {
+                Exp(.boolean) {
+                    Exp(.featureState) { "selected" }
+                    false
+                }
+                3.0
+                0.0
+            }
+        )
+        circuitProblemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
+        
+        circuitProblemsLayer.circleSortKey = .expression(
+            Exp(.switchCase) {
+                Exp(.boolean) {
+                    Exp(.has) { "circuitId" }
+                    false
+                }
+                2
+                1
+            }
+        )
+        
+        var circuitProblemsTextsLayer = SymbolLayer(id: "circuit-problems-texts")
+        circuitProblemsTextsLayer.source = "problems"
+        circuitProblemsTextsLayer.sourceLayer = problemsSourceLayerId
+        circuitProblemsTextsLayer.minZoom = 17
+        circuitProblemsTextsLayer.filter = Expression(.match) {
+            Exp(.get) { "circuitId" }
+            [24.0]
+            true
+            false
+        }
+
+        circuitProblemsTextsLayer.textAllowOverlap = .constant(false)
+        circuitProblemsTextsLayer.textField = .expression(
+            Expression(.toString) {
+                ["get", "circuitNumber"]
+            }
+        )
+
+        circuitProblemsTextsLayer.textSize = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                17
+                10
+                19
+                16
+                22
+                20
+            }
+        )
+
+        circuitProblemsTextsLayer.textColor = .expression(
+            Expression(.switchCase) {
+                Expression(.match) {
+                    ["get", "circuitColor"]
+                    ["", "white"]
+                    true
+                    false
+                }
+                UIColor.black // TODO: less dark
+                UIColor.white
+            }
+        )
+        
+        
         do {
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
+            try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
+            try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
         }
         catch {
             print("Ran into an error adding the layers: \(error)")
         }
     }
+
     
     func applyFilters(_ filters: Filters) {
         do {
@@ -227,6 +396,35 @@ class MapboxViewController: UIViewController {
                     layer.filter = Expression(.match) {
                         Exp(.get) { "grade" }
                         gradesArray
+                        true
+                        false
+                    }
+                }
+            }
+ 
+        } catch {
+            print("Ran into an error updating the layer: \(error)")
+        }
+    }
+    
+    func setCircuitAsSelected(circuit: Circuit) {
+        do {
+            try ["circuits"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
+                    layer.filter = Expression(.match) {
+                        Exp(.get) { "id" }
+                        [Double(circuit.id)]
+                        true
+                        false
+                    }
+                }
+            }
+            
+            try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                    layer.filter = Expression(.match) {
+                        Exp(.get) { "circuitId" }
+                        [Double(circuit.id)]
                         true
                         false
                     }

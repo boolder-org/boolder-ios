@@ -21,8 +21,9 @@ struct AreaToolbarView: View {
                     mapState.presentProblemDetails = false
                 } label: {
                     Image(systemName: "chevron.left")
+                        .font(Font.body.weight(.semibold))
                         .foregroundColor(Color(.secondaryLabel))
-                        .padding(.leading, 10)
+                        .padding(.horizontal, 16)
 //                        .disabled(true)
                 }
                 
@@ -50,6 +51,13 @@ struct AreaToolbarView: View {
                 }
                 
                 Spacer()
+                
+                // quick hack to be able to center the text
+                Image(systemName: "chevron.left")
+                    .font(Font.body.weight(.semibold))
+                    .foregroundColor(Color(.secondaryLabel))
+                    .padding(.horizontal, 16)
+                    .opacity(0)
                 
             }
             .background(Color(.systemBackground))

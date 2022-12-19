@@ -75,6 +75,20 @@ struct MapboxView: UIViewControllerRepresentable {
             
             context.coordinator.lastSelectProblemCount = mapState.selectProblemCount
         }
+        
+        // select a circuit
+        if mapState.selectCircuitCount > context.coordinator.lastSelectCircuitCount {
+            
+            if let circuit = mapState.selectedCircuit {
+                vc.setCircuitAsSelected(circuit: circuit)
+                
+                let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+                                              northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon))
+                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                vc.mapView.camera.fly(to: cameraOptions, duration: 1)
+            }
+            context.coordinator.lastSelectCircuitCount = mapState.selectCircuitCount
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -91,6 +105,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnCurrentLocationCount = 0
         var lastFiltersRefreshCount = 0
         var lastSelectProblemCount = 0
+        var lastSelectCircuitCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent

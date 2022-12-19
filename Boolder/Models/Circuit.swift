@@ -12,12 +12,17 @@ struct Circuit : Identifiable {
     let id: Int
     let color: CircuitColor
     let averageGrade: Grade
+    let southWestLat: Double
+    let southWestLon: Double
+    let northEastLat: Double
+    let northEastLon: Double
     
-    init(id: Int, color: CircuitColor, averageGrade: Grade) {
-        self.id = id
-        self.color = color
-        self.averageGrade = averageGrade
-    }
+//    init(id: Int, color: CircuitColor, averageGrade: Grade) {
+//        self.id = id
+//        self.color = color
+//        self.averageGrade = averageGrade
+//        self.
+//    }
     
     enum CircuitColor: Int, Comparable {
         case whiteForKids

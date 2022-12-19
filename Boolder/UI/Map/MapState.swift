@@ -24,6 +24,8 @@ import SwiftUI
     @Published private(set) var centerOnAreaCount = 0 // to update the map UI without redrawing everything
     
     @Published var selectedArea: Area? = nil
+    @Published var selectedCircuit: Circuit? = nil
+    @Published private(set) var selectCircuitCount = 0
     
     
     func centerOnArea(_ area: Area) {
@@ -33,6 +35,11 @@ import SwiftUI
     
     func selectArea(_ area: Area) {
         selectedArea = area
+    }
+    
+    func selectAndCenterOnCircuit(_ circuit: Circuit) {
+        selectedCircuit = circuit
+        selectCircuitCount += 1
     }
     
     private func centerOnProblem(_ problem: Problem) {
