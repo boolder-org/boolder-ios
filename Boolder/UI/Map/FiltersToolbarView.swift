@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FiltersToolbarView: View {
     @ObservedObject var mapState: MapState
+    @State private var presentAreaView = false
     
     var body: some View {
         HStack {
@@ -17,6 +18,29 @@ struct FiltersToolbarView: View {
             
             VStack {
                 Spacer()
+                
+//                if let area = mapState.selectedArea {
+//                    Button(action: {
+//                        presentAreaView = true
+//                    }) {
+//                        Image(systemName: "info")
+//                            .padding(12)
+//                    }
+//                    .accentColor(.primary)
+//                    .background(Color.systemBackground)
+//                    .clipShape(Circle())
+//                    .overlay(
+//                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                    )
+//                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                    .padding(.horizontal)
+//                    
+//                    .sheet(isPresented: $presentAreaView) {
+//                        NavigationView {
+//                            AreaView(viewModel: AreaViewModel(area: area))
+//                        }
+//                    }
+//                }
                 
                 Button(action: {
                     mapState.centerOnCurrentLocation()

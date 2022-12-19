@@ -24,6 +24,11 @@ struct MapContainerView: View {
             
             SearchView(mapState: mapState)
                 .zIndex(20)
+                .opacity(mapState.selectedArea != nil ? 0 : 1)
+            
+            AreaToolbarView(mapState: mapState)
+                .zIndex(30)
+                .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
     }
     

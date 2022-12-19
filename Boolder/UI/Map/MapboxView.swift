@@ -98,9 +98,19 @@ struct MapboxView: UIViewControllerRepresentable {
         
         @MainActor func selectProblem(id: Int) {
             if let problem = Problem.load(id: id) {
-                parent.mapState.selectedProblem = problem
+                parent.mapState.selectProblem(problem)
                 parent.mapState.presentProblemDetails = true
             }
+        }
+        
+        @MainActor func selectArea(id: Int) {
+            if let area = Area.load(id: id) {
+                parent.mapState.selectedArea = area
+            }
+        }
+        
+        @MainActor func unselectArea() {
+            parent.mapState.selectedArea = nil
         }
         
         @MainActor func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {

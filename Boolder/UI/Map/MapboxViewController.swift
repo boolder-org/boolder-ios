@@ -57,6 +57,12 @@ class MapboxViewController: UIViewController {
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
+        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+            if(mapView.mapboxMap.cameraState.zoom < 15) {
+                delegate?.unselectArea()
+            }
+        }
+        
         self.view.addSubview(mapView)
     }
     
@@ -272,6 +278,7 @@ class MapboxViewController: UIViewController {
                 case .success(let queriedfeatures):
                     
                     if let feature = queriedfeatures.first?.feature,
+                       case .number(let id) = feature.properties?["areaId"],
                        case .string(let southWestLon) = feature.properties?["southWestLon"],
                        case .string(let southWestLat) = feature.properties?["southWestLat"],
                        case .string(let northEastLon) = feature.properties?["northEastLon"],
@@ -282,6 +289,11 @@ class MapboxViewController: UIViewController {
                         
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                        
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self.delegate?.selectArea(id: Int(id))
+                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -379,5 +391,7 @@ import CoreLocation
 protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
+    func selectArea(id: Int)
+    func unselectArea()
     func dismissProblemDetails()
 }

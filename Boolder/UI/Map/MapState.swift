@@ -23,10 +23,16 @@ import SwiftUI
     @Published private(set) var centerOnArea: Area? = nil
     @Published private(set) var centerOnAreaCount = 0 // to update the map UI without redrawing everything
     
+    @Published var selectedArea: Area? = nil
+    
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
         centerOnAreaCount += 1
+    }
+    
+    func selectArea(_ area: Area) {
+        selectedArea = area
     }
     
     private func centerOnProblem(_ problem: Problem) {
@@ -37,6 +43,8 @@ import SwiftUI
     func selectProblem(_ problem: Problem) {
         selectedProblem = problem
         selectProblemCount += 1
+        
+        selectedArea = Area.load(id: problem.areaId)
     }
     
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {

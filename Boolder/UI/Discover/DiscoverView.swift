@@ -142,14 +142,22 @@ struct DiscoverView: View {
                                                 .padding(.leading, 8)
                                             
                                             ForEach(popularAreas) { (area: Area) in
-                                                Button {
-                                                    appTab = .map
-                                                    mapState.centerOnArea(area)
+//                                                Button {
+//                                                    appTab = .map
+//                                                    mapState.centerOnArea(area)
+//                                                } label: {
+//                                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+//                                                        .padding(.leading, 8)
+//                                                        .contentShape(Rectangle())
+//                                                }
+                                                NavigationLink {
+                                                    AreaView(viewModel: AreaViewModel(area: area))
                                                 } label: {
                                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                         .padding(.leading, 8)
                                                         .contentShape(Rectangle())
                                                 }
+
                                             }
                                             
                                             Color.white.opacity(0)
