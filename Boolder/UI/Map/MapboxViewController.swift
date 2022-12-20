@@ -64,8 +64,16 @@ class MapboxViewController: UIViewController {
                 Expression(.zoom)
                 14.5
             }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+
+//            var debugView = UIView(frame: rect)
+//            debugView.backgroundColor = .red
+//            mapView.addSubview(debugView)
+            
             mapView.mapboxMap.queryRenderedFeatures(
-                with: mapView.center,
+                with: rect,
                 options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
 
                     guard let self = self else { return }
