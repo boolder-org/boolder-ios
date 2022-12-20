@@ -49,7 +49,8 @@ import SwiftUI
     
     func goToNextCircuitProblem() {
         if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty {
+            // TODO: use a separate property to store the selected problem within the circuit (to be able to come back to it easily)
+            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
                 if let next = selectedProblem.next {
                     selectAndPresentAndCenterOnProblem(next)
                 }

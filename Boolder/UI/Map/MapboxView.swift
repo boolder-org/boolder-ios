@@ -36,7 +36,8 @@ struct MapboxView: UIViewControllerRepresentable {
                     padding: UIEdgeInsets(top: 60, left: 0, bottom: vc.view.bounds.height/2, right: 0),
                     zoom: 20
                 )
-                vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+                // FIXME: quick fix to make the circuit mode work => change the duration logic for other cases
+                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                 
                 context.coordinator.lastCenterOnProblemCount = mapState.centerOnProblemCount
             }
