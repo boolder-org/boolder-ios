@@ -58,6 +58,35 @@ class MapboxViewController: UIViewController {
         }
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+            
+            
+            let zoom = Expression(.gt) {
+                Expression(.zoom)
+                14.5
+            }
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: mapView.center,
+                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
+
+                    guard let self = self else { return }
+
+                    switch result {
+                    case .success(let queriedfeatures):
+
+                        if let feature = queriedfeatures.first?.feature,
+                           case .number(let id) = feature.properties?["areaId"]
+                        {
+                            print("inside area \(id)")
+                         
+                            // FIXME: trigger only when id is different than previous one
+                            delegate?.selectArea(id: Int(id))
+                        }
+                    case .failure(let error):
+                        break
+                    }
+                }
+            
+            
             // TODO: unselect also if the user panned too much
             if(mapView.mapboxMap.cameraState.zoom < 15) {
                 delegate?.unselectArea()
@@ -496,9 +525,9 @@ class MapboxViewController: UIViewController {
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
                         
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            self.delegate?.selectArea(id: Int(id))
-                        }
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//                            self.delegate?.selectArea(id: Int(id))
+//                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")

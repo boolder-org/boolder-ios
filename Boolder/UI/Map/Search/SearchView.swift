@@ -132,9 +132,9 @@ struct SearchView: View {
                                 
                                 if let area = Area.load(id: id) {
                                     mapState.centerOnArea(area)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                        mapState.selectArea(area)
-                                    }
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//                                        mapState.selectArea(area)
+//                                    }
                                 }
                             } label: {
                                 HStack {
