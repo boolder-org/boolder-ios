@@ -50,7 +50,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                 
                 vc.flyinToSomething = true
                 print("flyin 1 \(vc.flyinToSomething)")
@@ -70,7 +70,7 @@ struct MapboxView: UIViewControllerRepresentable {
             if let location = vc.mapView.location.latestLocation {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
-                    padding: .init(top: 60, left: 8, bottom: 8, right: 8),
+                    padding: .init(top: 160, left: 20, bottom: 80, right: 20),
                     zoom: 16
                 )
                 vc.flyinToSomething = true
@@ -97,7 +97,7 @@ struct MapboxView: UIViewControllerRepresentable {
                 
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon))
-                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                 vc.flyinToSomething = true
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1) { _ in vc.flyinToSomething = false }
             }
@@ -143,6 +143,10 @@ struct MapboxView: UIViewControllerRepresentable {
         
         @MainActor func unselectArea() {
             parent.mapState.selectedArea = nil
+        }
+        
+        @MainActor func unselectCircuit() {
+            parent.mapState.unselectCircuit()
         }
         
         @MainActor func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {

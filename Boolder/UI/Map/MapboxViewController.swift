@@ -65,6 +65,7 @@ class MapboxViewController: UIViewController {
                 print("zoom below 15")
                 
                 delegate?.unselectArea()
+                delegate?.unselectCircuit()
                 //         TODO: unselect circuit?
                 
             }
@@ -399,7 +400,7 @@ class MapboxViewController: UIViewController {
         var circuitProblemsTextsLayer = SymbolLayer(id: "circuit-problems-texts")
         circuitProblemsTextsLayer.source = "problems"
         circuitProblemsTextsLayer.sourceLayer = problemsSourceLayerId
-        circuitProblemsTextsLayer.minZoom = 17
+        circuitProblemsTextsLayer.minZoom = 16
         circuitProblemsTextsLayer.visibility = .constant(.none)
 
         circuitProblemsTextsLayer.textAllowOverlap = .constant(false)
@@ -413,6 +414,8 @@ class MapboxViewController: UIViewController {
             Exp(.interpolate) {
                 ["linear"]
                 ["zoom"]
+                16
+                8
                 17
                 10
                 19
@@ -573,7 +576,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                         self.flyinToSomething = true
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
                         
@@ -605,7 +608,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                         self.flyinToSomething = true
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
                     }
@@ -634,6 +637,8 @@ class MapboxViewController: UIViewController {
                     print("An error occurred: \(error.localizedDescription)")
                 }
             }
+        
+        // TODO: make circuit problems clickable at zoom 16
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
@@ -681,5 +686,6 @@ protocol MapBoxViewDelegate {
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func unselectArea()
+    func unselectCircuit()
     func dismissProblemDetails()
 }
