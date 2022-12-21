@@ -16,58 +16,58 @@ class MapboxViewController: UIViewController {
     var delegate: MapBoxViewDelegate?
     private var previouslyTappedProblemId: String = ""
     
+    var flyinToSomething = false
+    
     let queue = DispatchQueue.main
     
     func inferAreaFromMap() {
-        print("camera changed (zoom = \(mapView.mapboxMap.cameraState.zoom)")
-        
-        let zoom = Expression(.gt) {
-            Expression(.zoom)
-            14.5
-        }
-        
-        let width = mapView.frame.width/4
-        let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
-
-//            var debugView = UIView(frame: rect)
-//            debugView.backgroundColor = .red
-//            mapView.addSubview(debugView)
-        
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: rect,
-            options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
-                
-                print("query")
-
-                guard let self = self else { return }
-
-                switch result {
-                case .success(let queriedfeatures):
-
-                    if let feature = queriedfeatures.first?.feature,
-                       case .number(let id) = feature.properties?["areaId"]
-                    {
-                        print("inside area \(id)")
-                     
-                        // FIXME: trigger only when id is different than previous one
-                        self.delegate?.selectArea(id: Int(id))
+        if(!flyinToSomething) {
+            print("camera changed (zoom = \(mapView.mapboxMap.cameraState.zoom)")
+            
+            let zoom = Expression(.gt) {
+                Expression(.zoom)
+                14.5
+            }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            
+            //            var debugView = UIView(frame: rect)
+            //            debugView.backgroundColor = .red
+            //            mapView.addSubview(debugView)
+            
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: rect,
+                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
+                    
+                    print("query")
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let queriedfeatures):
+                        
+                        if let feature = queriedfeatures.first?.feature,
+                           case .number(let id) = feature.properties?["areaId"]
+                        {
+                            print("inside area \(id)")
+                            
+                            // FIXME: trigger only when id is different than previous one
+                            self.delegate?.selectArea(id: Int(id))
+                        }
+                    case .failure(let error):
+                        break
                     }
-                case .failure(let error):
-                    break
                 }
+            
+            
+            if(mapView.mapboxMap.cameraState.zoom < 15) {
+                print("zoom below 15")
+                
+                delegate?.unselectArea()
+                //         TODO: unselect circuit?
+                
             }
-        
-        
-        if(mapView.mapboxMap.cameraState.zoom < 15) {
-            print("zoom below 15")
-            if let selectedAt = delegate?.selectedAreaAt {
-                // dirty hack to avoid unselecting area when we're flying to it from a low zoom (happens when we tap on an area or do a search)
-                if(selectedAt.advanced(by: .milliseconds(500)) <= DispatchTime.now()) {
-                    delegate?.unselectArea()
-                    //         TODO: unselect circuit?
-                }
-            }
-
         }
     }
 
@@ -574,7 +574,8 @@ class MapboxViewController: UIViewController {
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
-                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                        self.flyinToSomething = true
+                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
                         
                         
 //                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -605,7 +606,8 @@ class MapboxViewController: UIViewController {
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
-                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                        self.flyinToSomething = true
+                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -678,7 +680,6 @@ protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
-    var selectedAreaAt: DispatchTime? { get }
     func unselectArea()
     func dismissProblemDetails()
 }

@@ -37,7 +37,8 @@ struct MapboxView: UIViewControllerRepresentable {
                     zoom: 20
                 )
                 // FIXME: quick fix to make the circuit mode work => change the duration logic for other cases
-                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                vc.flyinToSomething = true
+                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
                 
                 context.coordinator.lastCenterOnProblemCount = mapState.centerOnProblemCount
             }
@@ -50,7 +51,15 @@ struct MapboxView: UIViewControllerRepresentable {
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
                 let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
-                vc.mapView.camera.fly(to: cameraOptions, duration: 1)
+                
+                vc.flyinToSomething = true
+                print("flyin 1 \(vc.flyinToSomething)")
+                vc.mapView.camera.fly(to: cameraOptions, duration: 1) { _ in
+                    print("flyin 2 \(vc.flyinToSomething)")
+                    vc.flyinToSomething = false
+                    print("flyin 3 \(vc.flyinToSomething)")
+                    
+                }
                 
                 context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
             }
@@ -64,7 +73,8 @@ struct MapboxView: UIViewControllerRepresentable {
                     padding: .init(top: 60, left: 8, bottom: 8, right: 8),
                     zoom: 16
                 )
-                vc.mapView.camera.fly(to: cameraOptions, duration: 2)
+                vc.flyinToSomething = true
+                vc.mapView.camera.fly(to: cameraOptions, duration: 2)  { _ in vc.flyinToSomething = false }
             }
             
             context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
@@ -88,7 +98,8 @@ struct MapboxView: UIViewControllerRepresentable {
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon))
                 let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 60, left: 8, bottom: 8, right: 8), bearing: 0, pitch: 0)
-                vc.mapView.camera.fly(to: cameraOptions, duration: 1)
+                vc.flyinToSomething = true
+                vc.mapView.camera.fly(to: cameraOptions, duration: 1) { _ in vc.flyinToSomething = false }
             }
             else {
                 vc.unselectCircuit()
@@ -115,10 +126,6 @@ struct MapboxView: UIViewControllerRepresentable {
         
         init(_ parent: MapboxView) {
             self.parent = parent
-        }
-        
-        @MainActor public var selectedAreaAt: DispatchTime? {
-            parent.mapState.selectedAreaAt
         }
         
         @MainActor func selectProblem(id: Int) {

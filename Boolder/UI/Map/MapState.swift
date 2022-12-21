@@ -23,13 +23,7 @@ import SwiftUI
     @Published private(set) var centerOnArea: Area? = nil
     @Published private(set) var centerOnAreaCount = 0 // to update the map UI without redrawing everything
     
-    var selectedAreaAt: DispatchTime? = nil
-    
-    @Published var selectedArea: Area? = nil {
-        didSet {
-            selectedAreaAt = DispatchTime.now()
-        }
-    }
+    @Published var selectedArea: Area? = nil
     @Published var selectedCircuit: Circuit? = nil
     @Published private(set) var selectCircuitCount = 0
     
