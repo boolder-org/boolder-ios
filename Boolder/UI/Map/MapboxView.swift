@@ -117,6 +117,10 @@ struct MapboxView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        @MainActor public var selectedAreaAt: DispatchTime? {
+            parent.mapState.selectedAreaAt
+        }
+        
         @MainActor func selectProblem(id: Int) {
             if let problem = Problem.load(id: id) {
                 parent.mapState.selectProblem(problem)
