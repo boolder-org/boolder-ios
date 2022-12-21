@@ -20,7 +20,7 @@ struct AreaToolbarView: View {
                     mapState.selectedArea = nil
                     mapState.presentProblemDetails = false
                 } label: {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: "xmark")
                         .font(Font.body.weight(.semibold))
                         .foregroundColor(Color(.secondaryLabel))
                         .padding(.horizontal, 16)
