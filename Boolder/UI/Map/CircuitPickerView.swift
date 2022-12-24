@@ -14,37 +14,40 @@ struct CircuitPickerView: View {
     let viewModel: AreaViewModel
     
     var body: some View {
-        List {
-            Section {
-                ForEach(viewModel.circuits) { circuit in
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                        viewModel.mapState.selectAndCenterOnCircuit(circuit)
-//                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
-                    } label: {
-                        HStack {
-                            CircleView(number: "", color: circuit.color.uicolor, height: 20)
-                            Text(circuit.color.longName)
-                            Spacer()
-                            Text(circuit.averageGrade.string)
+        NavigationView {
+            List {
+                Section {
+                    ForEach(viewModel.circuits) { circuit in
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                            viewModel.mapState.selectAndCenterOnCircuit(circuit)
+                            //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
+                        } label: {
+                            HStack {
+                                CircleView(number: "", color: circuit.color.uicolor, height: 20)
+                                Text(circuit.color.longName)
+                                Spacer()
+                                Text(circuit.averageGrade.string)
+                            }
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                     }
                 }
+                
             }
-            
+            .navigationTitle("Circuit")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading: Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                    viewModel.mapState.unselectCircuit()
+                }) {
+                    Text("Effacer")
+                        .padding(.vertical)
+                        .font(.body)
+                }
+            )
         }
-        .navigationTitle(viewModel.area.name)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(
-            leading: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Fermer")
-                    .padding(.vertical)
-                    .font(.body)
-            }
-        )
     }
 }
 

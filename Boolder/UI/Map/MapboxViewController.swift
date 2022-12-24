@@ -65,8 +65,7 @@ class MapboxViewController: UIViewController {
                 print("zoom below 15")
                 
                 delegate?.unselectArea()
-                delegate?.unselectCircuit()
-                //         TODO: unselect circuit?
+//                delegate?.unselectCircuit()
                 
             }
         }

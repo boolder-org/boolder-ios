@@ -96,15 +96,18 @@ struct AreaToolbarView: View {
                         }
                 }
                 
+                // TODO: hide if there is no circuit in the selected area
+                
                 Button(action: {
+                    mapState.presentProblemDetails = false
                     mapState.presentCircuitPicker = true
                     
                 }) {
                     HStack {
                         Label("Circuit", systemImage: "chevron.down")
-                        if let circuit = mapState.selectedCircuit, circuitBelongsToArea {
-                            CircleView(number: "", color: circuit.color.uicolor, height: 16)
-                        }
+//                        if let circuit = mapState.selectedCircuit, circuitBelongsToArea {
+//                            CircleView(number: "", color: circuit.color.uicolor, height: 16)
+//                        }
                     }
                 }
                 .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
@@ -120,6 +123,14 @@ struct AreaToolbarView: View {
                             }
                         }
                 }
+                
+//                if mapState.selectedCircuit != nil {
+//                    Button {
+//                        mapState.goToNextCircuitProblem()
+//                    } label: {
+//                        Text("suivant")
+//                    }
+//                }
                 
                 Spacer()
             }
