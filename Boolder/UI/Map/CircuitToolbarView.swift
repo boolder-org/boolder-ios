@@ -18,7 +18,7 @@ struct CircuitToolbarView: View {
                 Button {
                     mapState.unselectCircuit()
                 } label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: "chevron.left")
                         .font(Font.body.weight(.semibold))
                         .foregroundColor(Color(.secondaryLabel))
                         .padding(.horizontal, 16)

@@ -102,7 +102,7 @@
 "filters.show_less_filters" = "Less filters";
 "filters.favorite" = "Project";
 "filters.ticked" = "Already done";
-"filters.reset" = "Reset";
+"filters.clear" = "Clear";
 "filters.grade.range.beginner" = "Beginner";
 "filters.grade.range.intermediate" = "Intermediate";
 "filters.grade.range.advanced" = "Experienced";

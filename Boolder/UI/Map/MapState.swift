@@ -27,6 +27,8 @@ import SwiftUI
     @Published var selectedCircuit: Circuit? = nil
     @Published private(set) var selectCircuitCount = 0
     
+    @Published var presentCircuitPicker = false
+    
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area

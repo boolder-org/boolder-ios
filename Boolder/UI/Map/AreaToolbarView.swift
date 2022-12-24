@@ -20,7 +20,7 @@ struct AreaToolbarView: View {
                     mapState.selectedArea = nil
                     mapState.presentProblemDetails = false
                 } label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: "chevron.left")
                         .font(Font.body.weight(.semibold))
                         .foregroundColor(Color(.secondaryLabel))
                         .padding(.horizontal, 16)
@@ -30,6 +30,8 @@ struct AreaToolbarView: View {
                 Spacer()
                 
                 Text(mapState.selectedArea?.name ?? "")
+                    .lineLimit(1)
+                    .truncationMode(.middle)
 //                    .frame(maxWidth: 400)
                     .padding(.vertical, 10)
 //                    .padding(.horizontal, 25)
@@ -71,8 +73,73 @@ struct AreaToolbarView: View {
                 }
             }
             
+            HStack {
+                
+                Button(action: {
+                    mapState.presentFilters = true
+                }) {
+                    
+                    Label("Niveau", systemImage: "chevron.down")
+                }
+                .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                    mapState.filtersRefresh()
+                    // TODO: update $mapState.filters only on dismiss
+                }) {
+                    FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
+                        .modify {
+                            if #available(iOS 16, *) {
+                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                            }
+                            else {
+                                $0
+                            }
+                        }
+                }
+                
+                Button(action: {
+                    mapState.presentCircuitPicker = true
+                    
+                }) {
+                    HStack {
+                        Label("Circuit", systemImage: "chevron.down")
+                        if let circuit = mapState.selectedCircuit, circuitBelongsToArea {
+                            CircleView(number: "", color: circuit.color.uicolor, height: 16)
+                        }
+                    }
+                }
+                .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
+                    
+                }) {
+                    CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                        .modify {
+                            if #available(iOS 16, *) {
+                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                            }
+                            else {
+                                $0
+                            }
+                        }
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            
             Spacer()
         }
+    }
+    
+    var circuitBelongsToArea : Bool {
+        guard let area = mapState.selectedArea else { return false }
+        
+        let areaViewModel = AreaViewModel(area: area, mapState: mapState)
+        
+        if let circuit = mapState.selectedCircuit {
+            return areaViewModel.circuits.contains(where: { $0.id == circuit.id })
+        }
+        
+        return false
     }
 }
 

@@ -60,7 +60,7 @@ struct FiltersView: View {
                     filters = Filters()
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("filters.reset")
+                    Text("filters.clear")
                         .padding(.vertical)
                         .font(.body)
                 },
