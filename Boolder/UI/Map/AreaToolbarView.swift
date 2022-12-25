@@ -31,7 +31,7 @@ struct AreaToolbarView: View {
                 
                 Text(mapState.selectedArea?.name ?? "")
                     .lineLimit(1)
-                    .truncationMode(.middle)
+                    .truncationMode(.head)
 //                    .frame(maxWidth: 400)
                     .padding(.vertical, 10)
 //                    .padding(.horizontal, 25)
