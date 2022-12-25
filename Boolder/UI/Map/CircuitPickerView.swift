@@ -35,7 +35,7 @@ struct CircuitPickerView: View {
                 }
                 
             }
-            .navigationTitle("Circuit")
+            .navigationTitle("Circuits")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {

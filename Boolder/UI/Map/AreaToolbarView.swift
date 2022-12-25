@@ -79,7 +79,7 @@ struct AreaToolbarView: View {
                     mapState.presentFilters = true
                 }) {
                     
-                    Label("Niveau", systemImage: "chevron.down")
+                    Label("Niveaux", systemImage: "chevron.down")
                 }
                 .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                     mapState.filtersRefresh()
@@ -104,7 +104,7 @@ struct AreaToolbarView: View {
                     
                 }) {
                     HStack {
-                        Label("Circuit", systemImage: "chevron.down")
+                        Label("Circuits", systemImage: "chevron.down")
 //                        if let circuit = mapState.selectedCircuit, circuitBelongsToArea {
 //                            CircleView(number: "", color: circuit.color.uicolor, height: 16)
 //                        }
