@@ -94,6 +94,20 @@ struct MapboxView: UIViewControllerRepresentable {
             
             if let circuit = mapState.selectedCircuit {
                 vc.setCircuitAsSelected(circuit: circuit)
+            }
+            else {
+                vc.unselectCircuit()
+            }
+            context.coordinator.lastSelectCircuitCount = mapState.selectCircuitCount
+        }
+        
+        // center on circuit
+        if mapState.centerOnCircuitCount > context.coordinator.lastCenterOnCircuitCount {
+            
+//            print("coucou")
+            
+            if let circuit = mapState.selectedCircuit {
+//                vc.setCircuitAsSelected(circuit: circuit)
                 
                 let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
                                               northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon))
@@ -104,7 +118,7 @@ struct MapboxView: UIViewControllerRepresentable {
             else {
                 vc.unselectCircuit()
             }
-            context.coordinator.lastSelectCircuitCount = mapState.selectCircuitCount
+            context.coordinator.lastCenterOnCircuitCount = mapState.centerOnCircuitCount
         }
     }
     
@@ -123,6 +137,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastFiltersRefreshCount = 0
         var lastSelectProblemCount = 0
         var lastSelectCircuitCount = 0
+        var lastCenterOnCircuitCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent

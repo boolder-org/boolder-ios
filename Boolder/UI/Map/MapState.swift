@@ -26,6 +26,7 @@ import SwiftUI
     @Published var selectedArea: Area? = nil
     @Published var selectedCircuit: Circuit? = nil
     @Published private(set) var selectCircuitCount = 0
+    @Published private(set) var centerOnCircuitCount = 0
     
     @Published var presentCircuitPicker = false
     
@@ -40,6 +41,12 @@ import SwiftUI
     }
     
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
+        selectedCircuit = circuit
+        selectCircuitCount += 1
+        centerOnCircuitCount += 1
+    }
+    
+    func selectCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
         selectCircuitCount += 1
     }

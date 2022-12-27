@@ -22,6 +22,24 @@ struct MapContainerView: View {
             FiltersToolbarView(mapState: mapState)
                 .zIndex(10)
             
+            if let circuitId = mapState.selectedProblem.circuitId, mapState.presentProblemDetails {
+                HStack {
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            mapState.selectCircuit(Circuit.load(id: circuitId)!)
+                            mapState.goToNextCircuitProblem()
+                        }, label: {
+                            Text("suivant")
+                        })
+                    }
+                    .offset(CGSize(width: 0, height: -40))
+                    Spacer()
+                }
+            }
+            
             SearchView(mapState: mapState)
                 .zIndex(20)
                 .opacity(mapState.selectedArea != nil ? 0 : 1)

@@ -25,6 +25,31 @@ struct Circuit : Identifiable {
 //        self.
 //    }
     
+    static func load(id: Int) -> Circuit? {
+        do {
+            let db = SqliteStore.shared.db
+            
+            let problems = Table("circuits").filter(Expression(literal: "id = '\(id)'"))
+            
+            let average_grade = Expression<String>("average_grade")
+            let southWestLat = Expression<Double>("south_west_lat")
+            let southWestLon = Expression<Double>("south_west_lon")
+            let northEastLat = Expression<Double>("north_east_lat")
+            let northEastLon = Expression<Double>("north_east_lon")
+            let color = Expression<String>("color")
+            
+            if let p = try db.pluck(problems) {
+                return Circuit(id: id, color: Circuit.CircuitColor.colorFromString(p[color]), averageGrade: Grade(p[average_grade]), southWestLat: p[southWestLat], southWestLon: p[southWestLon], northEastLat: p[northEastLat], northEastLon: p[northEastLon])
+            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
+        }
+    }
+    
     enum CircuitColor: Int, Comparable {
         case whiteForKids
         case yellow
