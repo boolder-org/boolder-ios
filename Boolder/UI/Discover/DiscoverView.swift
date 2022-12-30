@@ -151,7 +151,7 @@ struct DiscoverView: View {
 //                                                        .contentShape(Rectangle())
 //                                                }
                                                 NavigationLink {
-                                                    AreaView(viewModel: AreaViewModel(area: area, mapState: mapState))
+                                                    AreaView(viewModel: AreaViewModel(area: area, mapState: mapState), appTab: $appTab)
                                                 } label: {
                                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                         .padding(.leading, 8)

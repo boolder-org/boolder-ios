@@ -13,6 +13,7 @@ struct CircuitView: View {
     
     let circuit: Circuit
     let mapState: MapState
+    @Binding var appTab: ContentView.Tab
     
     var body: some View {
         List {
@@ -41,6 +42,7 @@ struct CircuitView: View {
                     Button {
                         //                presentationMode.wrappedValue.dismiss()
                         mapState.presentAreaView = false
+                        appTab = .map
                         mapState.selectAndPresentAndCenterOnProblem(problem)
                     } label: {
                         HStack {

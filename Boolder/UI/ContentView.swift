@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $appTab) {
             
-            MapContainerView(mapState: mapState)
+            MapContainerView(mapState: mapState, appTab: $appTab)
                 .tabItem {
                     Label("tabs.map", systemImage: "map")
                 }

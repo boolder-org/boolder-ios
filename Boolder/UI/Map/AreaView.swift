@@ -13,6 +13,7 @@ struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let viewModel: AreaViewModel
+    @Binding var appTab: ContentView.Tab
     
     var body: some View {
         List {
@@ -41,7 +42,7 @@ struct AreaView: View {
                 }
                 
                 NavigationLink {
-                    AreaProblemsView(viewModel: viewModel)
+                    AreaProblemsView(viewModel: viewModel, appTab: $appTab)
                 } label: {
                     HStack {
                         Text("Voies")
@@ -53,7 +54,7 @@ struct AreaView: View {
             Section {
                 ForEach(viewModel.circuits) { circuit in
                     NavigationLink {
-                        CircuitView(circuit: circuit, mapState: viewModel.mapState)
+                        CircuitView(circuit: circuit, mapState: viewModel.mapState, appTab: $appTab)
                     } label: {
                         HStack {
                             CircleView(number: "", color: circuit.color.uicolor, height: 20)
@@ -78,6 +79,7 @@ struct AreaView: View {
             leading: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
+                // FIXME: don't use button when screen is pushed inside a navigationview
                 Text("Fermer")
                     .padding(.vertical)
                     .font(.body)

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AreaToolbarView: View {
     @ObservedObject var mapState: MapState
+    @Binding var appTab: ContentView.Tab
     
     var body: some View {
         VStack {
@@ -70,7 +71,7 @@ struct AreaToolbarView: View {
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
-                        AreaView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                        AreaView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState), appTab: $appTab)
                     }
                 }
 

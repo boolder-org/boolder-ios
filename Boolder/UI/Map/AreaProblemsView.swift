@@ -12,6 +12,7 @@ struct AreaProblemsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let viewModel: AreaViewModel
+    @Binding var appTab: ContentView.Tab
     
     @State private var searchText = ""
     
@@ -20,8 +21,9 @@ struct AreaProblemsView: View {
             Section {
                 ForEach(filteredProblems) { problem in
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+//                        presentationMode.wrappedValue.dismiss()
                         viewModel.mapState.presentAreaView = false
+                        appTab = .map
                         viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                     } label: {
                         HStack {
