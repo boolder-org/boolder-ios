@@ -49,9 +49,11 @@ import SwiftUI
 //        }
         
         let id = Expression<Int>("id")
-        let circuit_id = Expression<Int>("circuit_id")
-        let area_id = Expression<Int>("area_id")
-        let average_grade = Expression<String>("average_grade")
+        let circuitId = Expression<Int>("circuit_id")
+        let areaId = Expression<Int>("area_id")
+        let averageGrade = Expression<String>("average_grade")
+        let beginnerFriendly = Expression<Int>("beginner_friendly")
+        let dangerous = Expression<Int>("dangerous")
         let southWestLat = Expression<Double>("south_west_lat")
         let southWestLon = Expression<Double>("south_west_lon")
         let northEastLat = Expression<Double>("north_east_lat")
@@ -60,19 +62,25 @@ import SwiftUI
         let problems = Table("problems")
         let color = Expression<String>("color")
         
-        let query = circuits.select(circuits[id], circuits[color], circuits[average_grade],
+        let query = circuits.select(circuits[id], circuits[color], circuits[averageGrade], circuits[beginnerFriendly], circuits[dangerous],
                                     circuits[southWestLat], circuits[southWestLon], circuits[northEastLat], circuits[northEastLon],
                                     problems[id].count)
-            .join(problems, on: circuits[id] == problems[circuit_id])
+            .join(problems, on: circuits[id] == problems[circuitId])
             .group(circuits[id], having: problems[id].count >= 10)
-            .filter(problems[area_id] == area.id)
-            .order(average_grade.asc)
+            .filter(problems[areaId] == area.id)
+            .order(averageGrade.asc)
         
 //        print(query.asSQL())
 
         do {
             return try db.prepare(query).map { circuit in
-                Circuit(id: circuit[id], color: Circuit.CircuitColor.colorFromString(circuit[color]), averageGrade: Grade(circuit[average_grade]), southWestLat: circuit[southWestLat], southWestLon: circuit[southWestLon], northEastLat: circuit[northEastLat], northEastLon: circuit[northEastLon])
+                Circuit(
+                    id: circuit[id],
+                    color: Circuit.CircuitColor.colorFromString(circuit[color]),
+                    averageGrade: Grade(circuit[averageGrade]),
+                    beginnerFriendly: circuit[beginnerFriendly] == 1,
+                    dangerous: circuit[dangerous] == 1,
+                    southWestLat: circuit[southWestLat], southWestLon: circuit[southWestLon], northEastLat: circuit[northEastLat], northEastLon: circuit[northEastLon])
 //                Circuit(
 //                    id: circuit[id],
 //                    color: Circuit.CircuitColor.colorFromString(circuit[color]),

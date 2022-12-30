@@ -28,6 +28,7 @@ import SwiftUI
     @Published private(set) var selectCircuitCount = 0
     @Published private(set) var centerOnCircuitCount = 0
     
+    @Published var presentAreaView = false
     @Published var presentCircuitPicker = false
     
     

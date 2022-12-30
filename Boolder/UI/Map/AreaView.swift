@@ -18,10 +18,8 @@ struct AreaView: View {
         List {
             Section {
                 ForEach(viewModel.circuits) { circuit in
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                        viewModel.mapState.selectAndCenterOnCircuit(circuit)
-//                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
+                    NavigationLink {
+                        CircuitView(circuit: circuit, mapState: viewModel.mapState)
                     } label: {
                         HStack {
                             CircleView(number: "", color: circuit.color.uicolor, height: 20)
@@ -64,7 +62,6 @@ struct AreaView: View {
             }
         )
     }
-    
     
 }
 

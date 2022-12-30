@@ -13,6 +13,8 @@ struct Circuit : Identifiable {
     let id: Int
     let color: CircuitColor
     let averageGrade: Grade
+    let beginnerFriendly: Bool
+    let dangerous: Bool
     let southWestLat: Double
     let southWestLon: Double
     let northEastLat: Double
@@ -31,7 +33,9 @@ struct Circuit : Identifiable {
             
             let problems = Table("circuits").filter(Expression(literal: "id = '\(id)'"))
             
-            let average_grade = Expression<String>("average_grade")
+            let averageGrade = Expression<String>("average_grade")
+            let beginnerFriendly = Expression<Int>("beginner_friendly")
+            let dangerous = Expression<Int>("dangerous")
             let southWestLat = Expression<Double>("south_west_lat")
             let southWestLon = Expression<Double>("south_west_lon")
             let northEastLat = Expression<Double>("north_east_lat")
@@ -39,7 +43,14 @@ struct Circuit : Identifiable {
             let color = Expression<String>("color")
             
             if let p = try db.pluck(problems) {
-                return Circuit(id: id, color: Circuit.CircuitColor.colorFromString(p[color]), averageGrade: Grade(p[average_grade]), southWestLat: p[southWestLat], southWestLon: p[southWestLon], northEastLat: p[northEastLat], northEastLon: p[northEastLon])
+                return Circuit(
+                    id: id,
+                    color: Circuit.CircuitColor.colorFromString(p[color]),
+                    averageGrade: Grade(p[averageGrade]),
+                    beginnerFriendly: p[beginnerFriendly] == 1,
+                    dangerous: p[dangerous] == 1,
+                    southWestLat: p[southWestLat], southWestLon: p[southWestLon], northEastLat: p[northEastLat], northEastLon: p[northEastLon]
+                )
             }
             
             return nil
@@ -192,6 +203,27 @@ struct Circuit : Identifiable {
         {
             return lhs.rawValue < rhs.rawValue
         }
+    }
+    
+    var problems: [Problem] {
+        let db = SqliteStore.shared.db
+        
+        let circuitNumber = Expression<String>("circuitNumber")
+        
+        let problems = Table("problems").filter(Expression(literal: "circuit_id = '\(self.id)'")).order(circuitNumber.asc)
+        let id = Expression<Int>("id")
+        
+        do {
+            return try db.prepare(problems).map { problem in
+                Problem.load(id: problem[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+        
+        return []
     }
     
     var firstProblem: Problem? {

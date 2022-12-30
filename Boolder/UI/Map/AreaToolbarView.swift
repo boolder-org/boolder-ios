@@ -11,8 +11,6 @@ import SwiftUI
 struct AreaToolbarView: View {
     @ObservedObject var mapState: MapState
     
-    @State private var presentAreaView = false
-    
     var body: some View {
         VStack {
             HStack {
@@ -38,13 +36,13 @@ struct AreaToolbarView: View {
                     //                    .padding(.horizontal, 25)
                         .onTapGesture {
                             mapState.presentProblemDetails = false
-                            presentAreaView = true
+                            mapState.presentAreaView = true
                         }
                     //                    .background(Color.red)
                     
                     Button {
                         mapState.presentProblemDetails = false
-                        presentAreaView = true
+                        mapState.presentAreaView = true
                     } label: {
                         Image(systemName: "info.circle")
                         //                        .background(Color.red)
@@ -68,7 +66,7 @@ struct AreaToolbarView: View {
                 .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                 
                 .padding(.top, 8)
-                .sheet(isPresented: $presentAreaView) {
+                .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
                         AreaView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
                     }
