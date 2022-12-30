@@ -15,19 +15,43 @@ struct CircuitView: View {
     let mapState: MapState
     
     var body: some View {
-        List(circuit.problems) { problem in
-            Button {
-//                presentationMode.wrappedValue.dismiss()
-                mapState.presentAreaView = false
-                mapState.selectAndPresentAndCenterOnProblem(problem)
-            } label: {
-                HStack {
-                    ProblemCircleView(problem: problem)
-                    Text(problem.nameWithFallback)
-                    Spacer()
-                    Text(problem.grade.string)
+        List {
+            if(circuit.beginnerFriendly || circuit.dangerous) {
+                Section {
+                    if(circuit.beginnerFriendly) {
+                        HStack {
+                            Image(systemName: "face.smiling")
+                            Text("Ce circuit convient aux débutants")
+                        }
+                        .foregroundColor(.green)
+                    }
+                    if(circuit.dangerous) {
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle")
+                            Text("Ce circuit est dangereux")
+                        }
+                        .foregroundColor(.red)
+                    }
                 }
-                .foregroundColor(.primary)
+            }
+            
+            
+            Section {
+                ForEach(circuit.problems) { problem in
+                    Button {
+                        //                presentationMode.wrappedValue.dismiss()
+                        mapState.presentAreaView = false
+                        mapState.selectAndPresentAndCenterOnProblem(problem)
+                    } label: {
+                        HStack {
+                            ProblemCircleView(problem: problem)
+                            Text(problem.nameWithFallback)
+                            Spacer()
+                            Text(problem.grade.string)
+                        }
+                        .foregroundColor(.primary)
+                    }
+                }
             }
         }
         .navigationTitle(Text(circuit.color.longName))
