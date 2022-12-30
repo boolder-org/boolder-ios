@@ -39,6 +39,14 @@ struct AreaView: View {
                         }
                     }
                 }
+                
+                NavigationLink {
+                    AreaProblemsView(viewModel: viewModel)
+                } label: {
+                    HStack {
+                        Text("\(viewModel.problemsCount) voies")
+                    }
+                }
             }
             Section {
                 ForEach(viewModel.circuits) { circuit in
@@ -60,27 +68,6 @@ struct AreaView: View {
                         .foregroundColor(.primary)
                     }
                 }
-            }
-            
-            Section {
-                ForEach(viewModel.problems) { problem in
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
-                    } label: {
-                        HStack {
-                            ProblemCircleView(problem: problem)
-                            Text(problem.nameWithFallback)
-                            Spacer()
-                            if(problem.featured) {
-                                Image(systemName: "heart.fill").foregroundColor(.pink)
-                            }
-                            Text(problem.grade.string)
-                        }
-                        .foregroundColor(.primary)
-                    }
-                }
-                
             }
         }
         .navigationTitle(viewModel.area.name)

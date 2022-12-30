@@ -23,7 +23,7 @@ import SwiftUI
         
         let grade = Expression<String>("grade")
         let popularity = Expression<String>("popularity")
-        let problems = Table("problems").filter(Expression(literal: "area_id = '\(area.id)'")).order(grade.desc)
+        let problems = Table("problems").filter(Expression(literal: "area_id = '\(area.id)'")).order(grade.desc, popularity.desc)
         let id = Expression<Int>("id")
         
         do {
@@ -35,6 +35,11 @@ import SwiftUI
             print (error)
             return []
         }
+    }
+    
+    // TODO: improve performance
+    var problemsCount: Int {
+        problems.count
     }
     
     var circuits: [Circuit] {
