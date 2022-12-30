@@ -44,7 +44,9 @@ struct AreaView: View {
                     AreaProblemsView(viewModel: viewModel)
                 } label: {
                     HStack {
-                        Text("\(viewModel.problemsCount) voies")
+                        Text("Voies")
+                        Spacer()
+                        Text("\(viewModel.problemsCount)")
                     }
                 }
             }

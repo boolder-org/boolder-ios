@@ -9,7 +9,7 @@
 import SQLite
 import SwiftUI
 
-@MainActor class AreaViewModel : ObservableObject {
+class AreaViewModel : ObservableObject {
     let area: Area
     let mapState: MapState
     

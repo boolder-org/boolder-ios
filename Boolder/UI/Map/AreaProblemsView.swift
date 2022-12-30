@@ -13,10 +13,12 @@ struct AreaProblemsView: View {
     
     let viewModel: AreaViewModel
     
+    @State private var searchText = ""
+    
     var body: some View {
         List {
             Section {
-                ForEach(viewModel.problems) { problem in
+                ForEach(filteredProblems) { problem in
                     Button {
                         presentationMode.wrappedValue.dismiss()
                         viewModel.mapState.presentAreaView = false
@@ -37,8 +39,31 @@ struct AreaProblemsView: View {
                 
             }
         }
+        .modify {
+            if #available(iOS 16, *) {
+                $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Nom de voie")).autocorrectionDisabled()
+            }
+            else {
+                $0
+            }
+        }
         .navigationTitle("Voies")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    var filteredProblems: [Problem] {
+        if searchText.count > 0 {
+            // TODO: rewrite in SQL to improve performance
+            return viewModel.problems.filter { cleanString($0.name ?? "").contains(cleanString(searchText)) }
+        }
+        else
+        {
+            return viewModel.problems
+        }
+    }
+    
+    func cleanString(_ str: String) -> String {
+        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current) // .alphanumeric
     }
 }
 
