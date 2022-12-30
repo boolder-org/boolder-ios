@@ -216,7 +216,14 @@ struct Circuit : Identifiable {
         do {
             return try db.prepare(problems).map { problem in
                 Problem.load(id: problem[id])
-            }.compactMap{$0}
+            }.compactMap{$0}.sorted(by: { (lhs, rhs) -> Bool in
+                if lhs.circuitNumber == rhs.circuitNumber {
+                    return lhs.grade < rhs.grade
+                }
+                else {
+                    return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+                }
+            })
         }
         catch {
             print (error)

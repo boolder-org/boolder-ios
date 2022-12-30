@@ -96,6 +96,20 @@ struct Problem : Identifiable {
         }
     }
     
+    func circuitNumberComparableValue() -> Double {
+           if let int = Int(circuitNumber) {
+               return Double(int)
+           }
+           else {
+               if let int = Int(circuitNumber.dropLast()) {
+                   return 0.5 + Double(int)
+               }
+               else {
+                   return 0
+               }
+           }
+       }
+    
     // TODO: handle multiple lines
     var line: Line? {
         let db = SqliteStore.shared.db

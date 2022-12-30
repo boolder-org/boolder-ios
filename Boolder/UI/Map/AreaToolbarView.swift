@@ -42,7 +42,9 @@ struct AreaToolbarView: View {
                     
                     Button {
                         mapState.presentProblemDetails = false
-                        mapState.presentAreaView = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            mapState.presentAreaView = true
+                        }
                     } label: {
                         Image(systemName: "info.circle")
                         //                        .background(Color.red)

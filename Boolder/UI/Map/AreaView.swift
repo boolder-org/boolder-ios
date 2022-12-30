@@ -25,6 +25,12 @@ struct AreaView: View {
                             CircleView(number: "", color: circuit.color.uicolor, height: 20)
                             Text(circuit.color.longName)
                             Spacer()
+                            if(circuit.beginnerFriendly) {
+                                Image(systemName: "face.smiling").foregroundColor(.green)
+                            }
+                            if(circuit.dangerous) {
+                                Image(systemName: "exclamationmark.triangle").foregroundColor(.red)
+                            }
                             Text(circuit.averageGrade.string)
                         }
                         .foregroundColor(.primary)
