@@ -17,6 +17,30 @@ struct AreaView: View {
     var body: some View {
         List {
             Section {
+                Text("Bas Cuvier est un secteur mythique, parmi les plus connus de Fontainebleau. La réception téléphonique est très mauvaise dans tout le secteur, pensez à télécharger le topo en mode hors-ligne. Février 2022 : la peinture du circuit orange est presque complètement effacée.")
+            }
+            Section {
+                HStack {
+                    Text("Niveaux")
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 2) {
+                        ForEach(1..<8) { level in
+                            Text(String(level))
+                            //                            .padding(10)
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.systemBackground)
+                                .background(viewModel.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
+                            
+                            //                            .aspectRatio(1, contentMode: .fill)
+                                .cornerRadius(4)
+//                                .padding(.horizontal, 1)
+                        }
+                    }
+                }
+            }
+            Section {
                 ForEach(viewModel.circuits) { circuit in
                     NavigationLink {
                         CircuitView(circuit: circuit, mapState: viewModel.mapState)
@@ -48,6 +72,9 @@ struct AreaView: View {
                             ProblemCircleView(problem: problem)
                             Text(problem.nameWithFallback)
                             Spacer()
+                            if(problem.featured) {
+                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                            }
                             Text(problem.grade.string)
                         }
                         .foregroundColor(.primary)

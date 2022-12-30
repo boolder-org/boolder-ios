@@ -47,6 +47,9 @@ struct CircuitView: View {
                             ProblemCircleView(problem: problem)
                             Text(problem.nameWithFallback)
                             Spacer()
+                            if(problem.featured) {
+                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                            }
                             Text(problem.grade.string)
                         }
                         .foregroundColor(.primary)
