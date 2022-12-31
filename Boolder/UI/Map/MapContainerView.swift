@@ -23,21 +23,51 @@ struct MapContainerView: View {
             FiltersToolbarView(mapState: mapState)
                 .zIndex(10)
             
-            if let circuitId = mapState.selectedProblem.circuitId, mapState.presentProblemDetails {
+            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
                 HStack {
                     Spacer()
                     
-                    HStack {
-                        Spacer()
+                    HStack(spacing: 0) {
                         Button(action: {
-                            mapState.selectCircuit(Circuit.load(id: circuitId)!)
+//                            mapState.selectCircuit(circuit)
+//                            mapState.goToNextCircuitProblem()
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .padding(10)
+//                                .offset(x: -1, y: 0)
+                        }
+                        .font(.body.weight(.semibold))
+                        .accentColor(Color(circuit.color.uicolor))
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal, 10)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            mapState.selectCircuit(circuit)
                             mapState.goToNextCircuitProblem()
-                        }, label: {
-                            Text("suivant")
-                        })
+                        }) {
+                            Image(systemName: "arrow.right")
+                                .padding(10)
+//                                .offset(x: -1, y: 0)
+                        }
+                        .font(.body.weight(.semibold))
+                        .accentColor(Color(circuit.color.uicolor))
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal, 10)
                     }
-                    .offset(CGSize(width: 0, height: -40))
-                    Spacer()
+                    .offset(CGSize(width: 0, height: -44))
+//                    Spacer()
                 }
             }
             
