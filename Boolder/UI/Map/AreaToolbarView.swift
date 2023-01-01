@@ -56,12 +56,45 @@ struct AreaToolbarView: View {
                     
                     Spacer()
                     
-                    // quick hack to be able to center the text
-                    Image(systemName: "chevron.left")
-                        .font(Font.body.weight(.semibold))
-                        .foregroundColor(Color(.secondaryLabel))
-                        .padding(.horizontal, 16)
-                        .opacity(0)
+                    Button(action: {
+                        mapState.presentCircuitPicker = true
+                    }) {
+                        Image("circuit")
+                            .padding(4)
+                    }
+                    .accentColor(mapState.selectedCircuit != nil && circuitBelongsToArea ? .systemBackground : Color.appGreen)
+                    .background(mapState.selectedCircuit != nil && circuitBelongsToArea ? Color.appGreen : .systemBackground)
+                    .cornerRadius(4)
+                    .padding(.horizontal)
+                    .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
+                        
+                    }) {
+                        CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                            .modify {
+                                if #available(iOS 16, *) {
+                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                                }
+                                else {
+                                    $0
+                                }
+                            }
+                    }
+                    
+//                    if let area = mapState.selectedArea {
+//                        Button {
+//                            mapState.presentCircuitPicker = true
+//                        } label: {
+//                            ZStack {
+//                                ForEach(Array(zip(circuits.indices, circuits)), id: \.0) { (index, circuit) in
+//                                    CircleView(number: "", color: circuit.color.uicolor, height: 20)
+//                                        .offset(x: -20 + CGFloat(index*8), y:0)
+//                                }
+//                            }
+//                            .padding(.horizontal)
+//                        }
+//
+//                    }
+
                     
                 }
                 .background(Color(.systemBackground))
@@ -112,6 +145,18 @@ struct AreaToolbarView: View {
         
         return false
     }
+    
+    var circuits : [Circuit] {
+        guard let area = mapState.selectedArea else { return [] }
+        
+        let areaViewModel = AreaViewModel(area: area, mapState: mapState)
+        
+        return areaViewModel.circuits
+    }
+    
+//    var circuitsWithIndex : [Circuit] {
+//        Array(zip(circuits.indices, circuits))
+//    }
 }
 
 //struct AreaToolbarView_Previews: PreviewProvider {
