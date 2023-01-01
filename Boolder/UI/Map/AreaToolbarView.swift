@@ -57,19 +57,20 @@ struct AreaToolbarView: View {
                     Spacer()
                     
                     Button(action: {
-                        mapState.presentCircuitPicker = true
+                        mapState.presentFilters = true
                     }) {
                         Image(systemName: "slider.vertical.3")
                             .padding(4)
                     }
-                    .accentColor(mapState.selectedCircuit != nil && circuitBelongsToArea ? .systemBackground : Color.appGreen)
-                    .background(mapState.selectedCircuit != nil && circuitBelongsToArea ? Color.appGreen : .systemBackground)
+                    .accentColor(filtersActive ? .systemBackground : Color.appGreen)
+                    .background(filtersActive ? Color.appGreen : .systemBackground)
                     .cornerRadius(4)
                     .padding(.horizontal)
-                    .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
-                        
+                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                        mapState.filtersRefresh()
+                        // TODO: update $mapState.filters only on dismiss
                     }) {
-                        CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
                             .modify {
                                 if #available(iOS 16, *) {
                                     $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
@@ -79,6 +80,7 @@ struct AreaToolbarView: View {
                                 }
                             }
                     }
+                    
                     
 //                    if let area = mapState.selectedArea {
 //                        Button {
@@ -132,6 +134,11 @@ struct AreaToolbarView: View {
             
             Spacer()
         }
+    }
+    
+    var filtersActive : Bool {
+        mapState.filters.filtersCount() > 0 ||
+        (mapState.selectedCircuit != nil && circuitBelongsToArea)
     }
     
     var circuitBelongsToArea : Bool {

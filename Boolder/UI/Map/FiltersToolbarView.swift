@@ -81,20 +81,20 @@ struct FiltersToolbarView: View {
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
-        .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-            mapState.filtersRefresh()
-            // TODO: update $mapState.filters only on dismiss
-        }) {
-            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
-                .modify {
-                    if #available(iOS 16, *) {
-                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                    }
-                    else {
-                        $0
-                    }
-                }
-        }
+//        .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+//            mapState.filtersRefresh()
+//            // TODO: update $mapState.filters only on dismiss
+//        }) {
+//            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
+//                .modify {
+//                    if #available(iOS 16, *) {
+//                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+//                    }
+//                    else {
+//                        $0
+//                    }
+//                }
+//        }
     }
 }
 
