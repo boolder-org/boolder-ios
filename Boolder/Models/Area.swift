@@ -12,6 +12,11 @@ import SQLite
 struct Area : Identifiable {
     let id: Int
     let name: String
+    let descriptionFr: String?
+    let descriptionEn: String?
+    let parkingShortName: String?
+    let parkingUrl: String?
+    let parkingDistance: Int?
     let level1: Bool
     let level2: Bool
     let level3: Bool
@@ -31,6 +36,11 @@ struct Area : Identifiable {
             let areas = Table("areas").filter(Expression(literal: "id = '\(id)'"))
             
             let name = Expression<String>("name")
+            let descriptionFr = Expression<String?>("description_fr")
+            let descriptionEn = Expression<String?>("description_en")
+            let parkingShortName = Expression<String?>("parking_short_name")
+            let parkingUrl = Expression<String?>("parking_url")
+            let parkingDistance = Expression<Int?>("parking_distance")
             let level1 = Expression<Int>("level1")
             let level2 = Expression<Int>("level2")
             let level3 = Expression<Int>("level3")
@@ -45,7 +55,7 @@ struct Area : Identifiable {
             
             do {
                 if let a = try db.pluck(areas) {
-                    return Area(id: id, name: a[name],
+                    return Area(id: id, name: a[name], descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn], parkingShortName: a[parkingShortName], parkingUrl: a[parkingUrl], parkingDistance: a[parkingDistance],
                                 level1: a[level1] == 1, level2: a[level2] == 1, level3: a[level3] == 1, level4: a[level4] == 1, level5: a[level5] == 1, level6: a[level6] == 1, level7: a[level7] == 1,
                                 southWestLat: a[southWestLat], southWestLon: a[southWestLon],
                                 northEastLat: a[northEastLat], northEastLon: a[northEastLon])

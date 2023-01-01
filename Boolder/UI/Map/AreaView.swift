@@ -18,7 +18,41 @@ struct AreaView: View {
     var body: some View {
         List {
             Section {
-                Text("Bas Cuvier est un secteur mythique, parmi les plus connus de Fontainebleau. La réception téléphonique est très mauvaise dans tout le secteur, pensez à télécharger le topo en mode hors-ligne. Février 2022 : la peinture du circuit orange est presque complètement effacée.")
+                if NSLocale.websiteLocale == "fr", let descriptionFr = viewModel.area.descriptionFr {
+                    Text(descriptionFr)
+                }
+                else if let descriptionEn = viewModel.area.descriptionEn {
+                    Text(descriptionEn)
+                }
+                
+                if let url = viewModel.area.parkingUrl, let name = viewModel.area.parkingShortName, let distance = viewModel.area.parkingDistance {
+                    
+                    NavigationLink {
+                        List {
+                            HStack {
+                                Text("Parking")
+                                Spacer()
+                                Image(systemName: "p.square.fill")
+                                    .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                    .font(.title2)
+                                Text(name)
+                                
+//                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
+                            }
+                            HStack {
+                                Text("Marche d'approche")
+                                Spacer()
+                                Text("\(Int(round(Double(distance/80)))) min")
+                            }
+                        }
+                        .navigationTitle(Text("Accès"))
+                    } label: {
+                        Text("Accès")
+                    }
+
+                    
+                    
+                }
             }
             Section {
                 HStack {
@@ -61,10 +95,14 @@ struct AreaView: View {
                             Text(circuit.color.longName)
                             Spacer()
                             if(circuit.beginnerFriendly) {
-                                Image(systemName: "face.smiling").foregroundColor(.green)
+                                Image(systemName: "face.smiling")
+                                    .foregroundColor(.green)
+                                    .font(.title3)
                             }
                             if(circuit.dangerous) {
-                                Image(systemName: "exclamationmark.triangle").foregroundColor(.red)
+                                Image(systemName: "exclamationmark.triangle")
+                                    .foregroundColor(.red)
+                                    .font(.title3)
                             }
                             Text(circuit.averageGrade.string)
                         }

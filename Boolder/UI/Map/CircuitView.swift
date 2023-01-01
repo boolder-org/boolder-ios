@@ -21,14 +21,14 @@ struct CircuitView: View {
                 Section {
                     if(circuit.beginnerFriendly) {
                         HStack {
-                            Image(systemName: "face.smiling")
+                            Image(systemName: "face.smiling").font(.title3)
                             Text("Ce circuit convient aux débutants")
                         }
                         .foregroundColor(.green)
                     }
                     if(circuit.dangerous) {
                         HStack {
-                            Image(systemName: "exclamationmark.triangle")
+                            Image(systemName: "exclamationmark.triangle").font(.title3)
                             Text("Ce circuit est dangereux")
                         }
                         .foregroundColor(.red)
