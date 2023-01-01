@@ -59,7 +59,7 @@ struct AreaToolbarView: View {
                     Button(action: {
                         mapState.presentCircuitPicker = true
                     }) {
-                        Image("circuit")
+                        Image(systemName: "slider.vertical.3")
                             .padding(4)
                     }
                     .accentColor(mapState.selectedCircuit != nil && circuitBelongsToArea ? .systemBackground : Color.appGreen)

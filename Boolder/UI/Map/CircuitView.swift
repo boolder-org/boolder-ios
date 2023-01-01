@@ -28,7 +28,7 @@ struct CircuitView: View {
                     }
                     if(circuit.dangerous) {
                         HStack {
-                            Image(systemName: "exclamationmark.triangle").font(.title3)
+                            Image(systemName: "exclamationmark.circle").font(.title3)
                             Text("Ce circuit est dangereux")
                         }
                         .foregroundColor(.red)

@@ -100,7 +100,7 @@ struct AreaView: View {
                                     .font(.title3)
                             }
                             if(circuit.dangerous) {
-                                Image(systemName: "exclamationmark.triangle")
+                                Image(systemName: "exclamationmark.circle")
                                     .foregroundColor(.red)
                                     .font(.title3)
                             }
