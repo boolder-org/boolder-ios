@@ -44,7 +44,7 @@ import SwiftUI
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
         selectCircuitCount += 1
-        centerOnCircuitCount += 1
+//        centerOnCircuitCount += 1
     }
     
     func selectCircuit(_ circuit: Circuit) {

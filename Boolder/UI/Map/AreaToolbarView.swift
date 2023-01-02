@@ -56,47 +56,42 @@ struct AreaToolbarView: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        mapState.presentFilters = true
-                    }) {
-                        Image(systemName: "slider.vertical.3")
-                            .padding(4)
-                    }
-                    .accentColor(filtersActive ? .systemBackground : Color.appGreen)
-                    .background(filtersActive ? Color.appGreen : .systemBackground)
-                    .cornerRadius(4)
-                    .padding(.horizontal)
-                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                        mapState.filtersRefresh()
-                        // TODO: update $mapState.filters only on dismiss
-                    }) {
-                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
-                            .modify {
-                                if #available(iOS 16, *) {
-                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                                }
-                                else {
-                                    $0
-                                }
-                            }
-                    }
-                    
-                    
-//                    if let area = mapState.selectedArea {
-//                        Button {
-//                            mapState.presentCircuitPicker = true
-//                        } label: {
-//                            ZStack {
-//                                ForEach(Array(zip(circuits.indices, circuits)), id: \.0) { (index, circuit) in
-//                                    CircleView(number: "", color: circuit.color.uicolor, height: 20)
-//                                        .offset(x: -20 + CGFloat(index*8), y:0)
+//                    Button(action: {
+//                        mapState.presentFilters = true
+//                    }) {
+//                        Image(systemName: "slider.vertical.3")
+//                            .padding(4)
+//                    }
+//                    .accentColor(filtersActive ? .systemBackground : Color.appGreen)
+//                    .background(filtersActive ? Color.appGreen : .systemBackground)
+//                    .cornerRadius(4)
+//                    .padding(.horizontal)
+//                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+//                        mapState.filtersRefresh()
+//                        // TODO: update $mapState.filters only on dismiss
+//                    }) {
+//                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+//                            .modify {
+//                                if #available(iOS 16, *) {
+//                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+//                                }
+//                                else {
+//                                    $0
 //                                }
 //                            }
-//                            .padding(.horizontal)
-//                        }
-//
 //                    }
+                    
 
+                    Button {
+
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(Font.body.weight(.semibold))
+                            .foregroundColor(Color(.secondaryLabel))
+                            .padding(.horizontal, 16)
+                            .opacity(0)
+                        //                        .disabled(true)
+                    }
                     
                 }
                 .background(Color(.systemBackground))
@@ -132,13 +127,52 @@ struct AreaToolbarView: View {
 //                .padding(.horizontal)
 //            }
             
+            HStack {
+                Button {
+                    mapState.presentCircuitPicker = true
+                } label: {
+                    HStack {
+                        Image("circuit")
+                        Text(circuitFilterActive ? "Circuit" : "Circuits")
+                    }
+                    .font(.callout.weight(.regular))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
+                    .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+                    .cornerRadius(32)
+                }
+                                .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
+                
+                                }) {
+                                    CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                                        .modify {
+                                            if #available(iOS 16, *) {
+                                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                                            }
+                                            else {
+                                                $0
+                                            }
+                                        }
+                                }
+                
+                Spacer()
+
+            }
+            .padding(.top, 8)
+            .padding(.horizontal)
+            .opacity(mapState.presentProblemDetails ? 0 : 1)
+            
             Spacer()
         }
     }
     
+    var circuitFilterActive : Bool {
+        mapState.selectedCircuit != nil && circuitBelongsToArea
+    }
+    
     var filtersActive : Bool {
-        mapState.filters.filtersCount() > 0 ||
-        (mapState.selectedCircuit != nil && circuitBelongsToArea)
+        mapState.filters.filtersCount() > 0 || circuitFilterActive
     }
     
     var circuitBelongsToArea : Bool {
