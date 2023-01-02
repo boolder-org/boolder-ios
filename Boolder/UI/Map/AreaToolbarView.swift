@@ -128,34 +128,36 @@ struct AreaToolbarView: View {
 //            }
             
             HStack {
-                Button {
-                    mapState.presentCircuitPicker = true
-                    mapState.filters = Filters()
-                } label: {
-                    HStack {
-                        Image("circuit")
-                        Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
+                if(circuits.count > 0) {
+                    Button {
+                        mapState.presentCircuitPicker = true
+                        mapState.filters = Filters()
+                    } label: {
+                        HStack {
+                            Image("circuit")
+                            Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
+                        }
+                        .font(.callout.weight(.regular))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
+                        .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+                        .cornerRadius(32)
                     }
-                    .font(.callout.weight(.regular))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
-                    .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
-                    .cornerRadius(32)
-                }
-                                .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
-                
-                                }) {
-                                    CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
-                                        .modify {
-                                            if #available(iOS 16, *) {
-                                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                                            }
-                                            else {
-                                                $0
-                                            }
-                                        }
+                    .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
+                        
+                    }) {
+                        CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                            .modify {
+                                if #available(iOS 16, *) {
+                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                                 }
+                                else {
+                                    $0
+                                }
+                            }
+                    }
+                }
                 
                 Button {
                     mapState.presentFilters = true
