@@ -63,12 +63,9 @@ struct AreaView: View {
                     HStack(spacing: 2) {
                         ForEach(1..<8) { level in
                             Text(String(level))
-                            //                            .padding(10)
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(.systemBackground)
                                 .background(viewModel.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
-                            
-                            //                            .aspectRatio(1, contentMode: .fill)
                                 .cornerRadius(4)
 //                                .padding(.horizontal, 1)
                         }

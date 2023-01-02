@@ -23,36 +23,59 @@ struct FiltersView: View {
     
     var body: some View {
         NavigationView {
-            
-//            VStack {
-                
-//                Picker("Filtres", selection: $segment) {
-//                    Text("Circuit").tag(Segment.circuit)
-//                    Text("Niveau").tag(Segment.level)
-//                }
-//                .pickerStyle(.segmented)
-//                .padding(.horizontal)
-                
+
                 List {
-                    levels
                     
-//                    if segment == .circuit {
-//                        circuits
-//                    }
-//                    else if segment == .level {
-//                        levels
-//                    }
-                }
-//                .toolbar {
-//                    ToolbarItem(placement: .principal) {
-//                        Picker("Filtres", selection: $segment) {
-//                            Text("Circuits").tag(0)
-//                            Text("Niveaux").tag(1)
+                    HStack {
+                        ForEach(1..<8) { level in
+                            VStack {
+                                Text(String(level))
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.systemBackground)
+//                                    .background(viewModel.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
+                                    .background(Color.appGreen)
+                                    .cornerRadius(4)
+
+//                                Button {
+//                                    filters.gradeRange = GradeRange.level(level)
+//                                } label: {
+//                                    Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
+//                                        .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+//                                }
+                                Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
+                                        .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+                                        .onTapGesture {
+                                            filters.gradeRange = GradeRange.level(level).concatenate(with: filters.gradeRange)
+                                        }
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+//                    .background(Color.red)
+                    
+//                    ForEach(1..<9) { level in
+//                        Button {
+//                            if let filterRange = filters.gradeRange {
+//                                filters.gradeRange = GradeRange.level(level).concatenate(with: filterRange)
+//                            }
+//                            else {
+//                                filters.gradeRange = GradeRange.level(level)
+//                            }
+//                        } label: {
+//                            HStack {
+//                                Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
+//                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
+//                                Text("Niveau \(level)").foregroundColor(.primary)
+//                                Spacer()
+//                                Text("\(level*13)").foregroundColor(Color(.systemGray))
+//                            }
 //                        }
-//                        .pickerStyle(.segmented)
+//
 //                    }
-//                }
-                .navigationBarTitle("Niveau", displayMode: .inline)
+
+                }
+
+                .navigationBarTitle("Niveaux", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
                         filters = Filters()
@@ -75,6 +98,16 @@ struct FiltersView: View {
 //            }
         }
 //        .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    func levelActive(_ level: Int) -> Bool {
+        if let filterRange = filters.gradeRange {
+            let levelRange = GradeRange.level(level)
+            return filterRange.contains(levelRange.min) && filterRange.contains(levelRange.max)
+        }
+        else {
+            return false
+        }
     }
     
     var levels: some View {
