@@ -90,4 +90,23 @@ struct GradeRange : Equatable, Hashable {
             return self
         }
     }
+    
+    func remove(_ other: GradeRange?) -> GradeRange {
+        // TODO: handle case when other is larger than self
+        // TODO: handle case when range is not a level
+        if let other = other {
+            if other.min == self.min {
+                return GradeRange(min: other.max.advanced(by: 1), max: self.max)
+            }
+            else if other.max == self.max {
+                return GradeRange(min: self.min, max: other.min.advanced(by: -1))
+            }
+            else {
+                return self
+            }
+        }
+        else {
+            return self
+        }
+    }
 }

@@ -27,7 +27,7 @@ struct FiltersView: View {
                 List {
                     
                     HStack {
-                        ForEach(1..<8) { level in
+                        ForEach(1..<9) { level in
                             VStack {
                                 Text(String(level))
                                     .frame(width: 20, height: 20)
@@ -44,14 +44,20 @@ struct FiltersView: View {
 //                                }
                                 Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
                                         .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-                                        .onTapGesture {
-                                            filters.gradeRange = GradeRange.level(level).concatenate(with: filters.gradeRange)
-                                        }
+                                        
                             }
                             .frame(maxWidth: .infinity)
+                            .onTapGesture {
+                                if levelActive(level), let filterRange = filters.gradeRange {
+                                    filters.gradeRange = filterRange.remove(GradeRange.level(level))
+                                }
+                                else {
+                                    filters.gradeRange = GradeRange.level(level).concatenate(with: filters.gradeRange)
+                                }
+                            }
                         }
                     }
-//                    .background(Color.red)
+                    
                     
 //                    ForEach(1..<9) { level in
 //                        Button {
@@ -102,8 +108,7 @@ struct FiltersView: View {
     
     func levelActive(_ level: Int) -> Bool {
         if let filterRange = filters.gradeRange {
-            let levelRange = GradeRange.level(level)
-            return filterRange.contains(levelRange.min) && filterRange.contains(levelRange.max)
+            return filterRange.contains(GradeRange.level(level))
         }
         else {
             return false
