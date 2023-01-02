@@ -56,7 +56,7 @@ struct FiltersView: View {
                 .navigationBarItems(
                     leading: Button(action: {
                         filters = Filters()
-//                        viewModel.mapState.unselectCircuit()
+                        viewModel.mapState.unselectCircuit()
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("filters.clear")

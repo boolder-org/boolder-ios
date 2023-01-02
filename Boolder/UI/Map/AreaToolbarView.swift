@@ -130,10 +130,11 @@ struct AreaToolbarView: View {
             HStack {
                 Button {
                     mapState.presentCircuitPicker = true
+                    mapState.filters = Filters()
                 } label: {
                     HStack {
                         Image("circuit")
-                        Text(circuitFilterActive ? "Circuit" : "Circuits")
+                        Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
                     }
                     .font(.callout.weight(.regular))
                     .padding(.horizontal, 12)
@@ -158,16 +159,17 @@ struct AreaToolbarView: View {
                 
                 Button {
                     mapState.presentFilters = true
+                    mapState.unselectCircuit()
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")
-                        Text(mapState.filters.filtersCount() > 0 ? "Niveau" : "Niveaux")
+                        Text(mapState.filters.gradeRange?.description ?? "Niveaux")
                     }
                     .font(.callout.weight(.regular))
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
-                    .foregroundColor(mapState.filters.filtersCount() > 0 ? Color(UIColor.systemBackground) : .primary)
-                    .background(mapState.filters.filtersCount() > 0 ? Color.appGreen : Color(UIColor.systemBackground))
+                    .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
+                    .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
                     .cornerRadius(32)
                 }
                         .sheet(isPresented: $mapState.presentFilters, onDismiss: {

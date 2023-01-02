@@ -41,6 +41,7 @@ struct CircuitPickerView: View {
                 leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()
                     viewModel.mapState.unselectCircuit()
+                    viewModel.mapState.filters = Filters()
                 }) {
                     Text("Effacer")
                         .padding(.vertical)
