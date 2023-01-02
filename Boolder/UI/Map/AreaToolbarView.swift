@@ -156,6 +156,35 @@ struct AreaToolbarView: View {
                                         }
                                 }
                 
+                Button {
+                    mapState.presentFilters = true
+                } label: {
+                    HStack {
+                        Image(systemName: "chart.bar")
+                        Text(mapState.filters.filtersCount() > 0 ? "Niveau" : "Niveaux")
+                    }
+                    .font(.callout.weight(.regular))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .foregroundColor(mapState.filters.filtersCount() > 0 ? Color(UIColor.systemBackground) : .primary)
+                    .background(mapState.filters.filtersCount() > 0 ? Color.appGreen : Color(UIColor.systemBackground))
+                    .cornerRadius(32)
+                }
+                        .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                            mapState.filtersRefresh()
+                            // TODO: update $mapState.filters only on dismiss
+                        }) {
+                            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                                .modify {
+                                    if #available(iOS 16, *) {
+                                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                                    }
+                                    else {
+                                        $0
+                                    }
+                                }
+                        }
+                
                 Spacer()
 
             }

@@ -24,22 +24,24 @@ struct FiltersView: View {
     var body: some View {
         NavigationView {
             
-            VStack {
+//            VStack {
                 
-                Picker("Filtres", selection: $segment) {
-                    Text("Circuit").tag(Segment.circuit)
-                    Text("Niveau").tag(Segment.level)
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
+//                Picker("Filtres", selection: $segment) {
+//                    Text("Circuit").tag(Segment.circuit)
+//                    Text("Niveau").tag(Segment.level)
+//                }
+//                .pickerStyle(.segmented)
+//                .padding(.horizontal)
                 
                 List {
-                    if segment == .circuit {
-                        circuits
-                    }
-                    else if segment == .level {
-                        levels
-                    }
+                    levels
+                    
+//                    if segment == .circuit {
+//                        circuits
+//                    }
+//                    else if segment == .level {
+//                        levels
+//                    }
                 }
 //                .toolbar {
 //                    ToolbarItem(placement: .principal) {
@@ -50,11 +52,11 @@ struct FiltersView: View {
 //                        .pickerStyle(.segmented)
 //                    }
 //                }
-                .navigationBarTitle("Filtres", displayMode: .inline)
+                .navigationBarTitle("Niveau", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
                         filters = Filters()
-                        viewModel.mapState.unselectCircuit()
+//                        viewModel.mapState.unselectCircuit()
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("filters.clear")
@@ -70,7 +72,7 @@ struct FiltersView: View {
                             .padding(.leading, 32)
                     }
                 )
-            }
+//            }
         }
 //        .navigationViewStyle(StackNavigationViewStyle())
     }
