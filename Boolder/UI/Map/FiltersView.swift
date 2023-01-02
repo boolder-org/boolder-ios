@@ -86,6 +86,7 @@ struct FiltersView: View {
                     }
                     else {
                         filters.gradeRange = range
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }) {
                     HStack {
