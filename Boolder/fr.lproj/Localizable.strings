@@ -105,6 +105,11 @@
 "filters.grade.range.beginner" = "Débutant";
 "filters.grade.range.intermediate" = "Intermédiaire";
 "filters.grade.range.advanced" = "Expérimenté";
+"filters.grade.range.level4" = "Niveau 4";
+"filters.grade.range.level5" = "Niveau 5";
+"filters.grade.range.level6" = "Niveau 6";
+"filters.grade.range.level7" = "Niveau 7";
+"filters.grade.range.level8" = "Niveau 8";
 "filters.grade.range.custom" = "Niveau personnalisé";
 "filters.grade.range_picker.level" = "Niveau";
 "filters.grade.range_picker.grade_min" = "Cotation min";

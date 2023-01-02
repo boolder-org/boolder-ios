@@ -24,33 +24,7 @@ struct FiltersView: View {
     var body: some View {
         NavigationView {
 
-                List {
-                    
-                    levels
-                    
-                    
-//                    ForEach(1..<9) { level in
-//                        Button {
-//                            if let filterRange = filters.gradeRange {
-//                                filters.gradeRange = GradeRange.level(level).concatenate(with: filterRange)
-//                            }
-//                            else {
-//                                filters.gradeRange = GradeRange.level(level)
-//                            }
-//                        } label: {
-//                            HStack {
-//                                Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
-//                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
-//                                Text("Niveau \(level)").foregroundColor(.primary)
-//                                Spacer()
-//                                Text("\(level*13)").foregroundColor(Color(.systemGray))
-//                            }
-//                        }
-//
-//                    }
-
-                }
-
+                levels
                 .navigationBarTitle("Niveaux", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
@@ -75,51 +49,48 @@ struct FiltersView: View {
         }
 //        .navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    func levelActive(_ level: Int) -> Bool {
-        if let filterRange = filters.gradeRange {
-            return filterRange.contains(GradeRange.level(level))
-        }
-        else {
-            return false
-        }
-    }
+
     
     var levels: some View {
-        Section {
-            ForEach([GradeRange.beginner, GradeRange.intermediate, GradeRange.advanced], id: \.self) { range in
-                Button(action: {
-                    if filters.gradeRange == range {
-                        filters.gradeRange = nil
-                    }
-                    else {
-                        filters.gradeRange = range
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }) {
-                    HStack {
-                        Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
-                            .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
-                        
-                        Text(range.localizedName).foregroundColor(.primary)
-                        Spacer()
-                        Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
+        List {
+            Section {
+                ForEach([GradeRange.beginner, GradeRange.level4, GradeRange.level5, GradeRange.level6, GradeRange.level7], id: \.self) { range in
+                    Button(action: {
+                        if filters.gradeRange == range {
+                            filters.gradeRange = nil
+                        }
+                        else {
+                            filters.gradeRange = range
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
+                                .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
+                            
+                            Text(range.localizedName).foregroundColor(.primary)
+                            Spacer()
+//                            Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
+                        }
                     }
                 }
             }
             
-            NavigationLink(destination:
-                            GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in
-                filters.gradeRange = range
-            })
-            ) {
-                HStack {
-                    Image(systemName: (filters.gradeRange?.isCustom ?? false) ? "largecircle.fill.circle" : "circle")
-                        .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-                    
-                    Text("filters.grade.range.custom").foregroundColor(.primary)
-                    Spacer()
-                    Text(customRangeDescription).foregroundColor(Color(.systemGray)).font(.caption)
+            Section {
+                
+                NavigationLink(destination:
+                                GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in
+                    filters.gradeRange = range
+                })
+                ) {
+                    HStack {
+                        Image(systemName: (filters.gradeRange?.isCustom ?? false) ? "largecircle.fill.circle" : "circle")
+                            .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+                        
+                        Text("filters.grade.range.custom").foregroundColor(.primary)
+                        Spacer()
+                        Text(customRangeDescription).foregroundColor(Color(.systemGray)).font(.caption)
+                    }
                 }
             }
         }
