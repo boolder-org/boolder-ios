@@ -26,37 +26,7 @@ struct FiltersView: View {
 
                 List {
                     
-                    HStack {
-                        ForEach(1..<9) { level in
-                            VStack {
-                                Text(String(level))
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(.systemBackground)
-//                                    .background(viewModel.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
-                                    .background(Color.appGreen)
-                                    .cornerRadius(4)
-
-//                                Button {
-//                                    filters.gradeRange = GradeRange.level(level)
-//                                } label: {
-//                                    Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
-//                                        .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-//                                }
-                                Image(systemName: levelActive(level) ? "largecircle.fill.circle" : "circle")
-                                        .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-                                        
-                            }
-                            .frame(maxWidth: .infinity)
-                            .onTapGesture {
-                                if levelActive(level), let filterRange = filters.gradeRange {
-                                    filters.gradeRange = filterRange.remove(GradeRange.level(level))
-                                }
-                                else {
-                                    filters.gradeRange = GradeRange.level(level).concatenate(with: filters.gradeRange)
-                                }
-                            }
-                        }
-                    }
+                    levels
                     
                     
 //                    ForEach(1..<9) { level in
