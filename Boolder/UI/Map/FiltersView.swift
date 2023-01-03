@@ -71,7 +71,7 @@ struct FiltersView: View {
                             Text(range.description).foregroundColor(.primary)
                             Spacer()
                             if(range == .beginner) {
-                                Text("Débutant").foregroundColor(Color(.systemGray)).font(.caption)
+                                Text("Débutant").foregroundColor(Color(.systemGray))
                             }
                         }
                     }
