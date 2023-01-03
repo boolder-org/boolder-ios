@@ -638,6 +638,44 @@ class MapboxViewController: UIViewController {
             }
         
         // TODO: make circuit problems clickable at zoom 16
+        // TODO: make this DRY
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
+            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                if self.mapView.mapboxMap.cameraState.zoom < 16 { return } // why not use a zoom filter?
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.feature,
+                       case .number(let id) = feature.properties?["id"],
+                       case .point(let point) = feature.geometry
+                    {
+                        self.delegate?.selectProblem(id: Int(id))
+                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                        
+                        // if problem is hidden by the bottom sheet
+                        if tapPoint.y >= self.mapView.bounds.height/2 {
+                            
+                            let cameraOptions = CameraOptions(
+                                center: point.coordinates,
+                                padding: UIEdgeInsets(top: 60, left: 0, bottom: self.view.bounds.height/2, right: 0)
+                            )
+                            self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
+                        }
+                    }
+                    else {
+                        self.unselectPreviousProblem()
+                        self.delegate?.dismissProblemDetails()
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+    
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
