@@ -79,6 +79,7 @@ struct MapContainerView: View {
                         HStack {
                             Button {
                                 mapState.selectAndPresentAndCenterOnProblem(start)
+                                mapState.displayCircuitStartButton = false
                             } label: {
                                 Text("Départ circuit \(circuit.color.shortName)")
                             }
