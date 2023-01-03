@@ -22,7 +22,7 @@ class MapboxViewController: UIViewController {
     
     func inferAreaFromMap() {
         if(!flyinToSomething) {
-            print("camera changed (zoom = \(mapView.mapboxMap.cameraState.zoom)")
+//            print("camera changed (zoom = \(mapView.mapboxMap.cameraState.zoom)")
             
             let zoom = Expression(.gt) {
                 Expression(.zoom)
@@ -40,8 +40,6 @@ class MapboxViewController: UIViewController {
                 with: rect,
                 options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
                     
-                    print("query")
-                    
                     guard let self = self else { return }
                     
                     switch result {
@@ -50,7 +48,7 @@ class MapboxViewController: UIViewController {
                         if let feature = queriedfeatures.first?.feature,
                            case .number(let id) = feature.properties?["areaId"]
                         {
-                            print("inside area \(id)")
+//                            print("inside area \(id)")
                             
                             // FIXME: trigger only when id is different than previous one
                             self.delegate?.selectArea(id: Int(id))
@@ -62,7 +60,7 @@ class MapboxViewController: UIViewController {
             
             
             if(mapView.mapboxMap.cameraState.zoom < 15) {
-                print("zoom below 15")
+//                print("zoom below 15")
                 
                 delegate?.unselectArea()
 //                delegate?.unselectCircuit()
