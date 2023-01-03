@@ -20,6 +20,7 @@ struct CircuitPickerView: View {
                     ForEach(viewModel.circuits) { circuit in
                         Button {
                             presentationMode.wrappedValue.dismiss()
+                            viewModel.mapState.clearFilters()
                             viewModel.mapState.selectAndCenterOnCircuit(circuit)
                             //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                         } label: {
@@ -41,7 +42,7 @@ struct CircuitPickerView: View {
                 leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()
                     viewModel.mapState.unselectCircuit()
-                    viewModel.mapState.filters = Filters()
+                    viewModel.mapState.clearFilters()
                 }) {
                     Text("Effacer")
                         .padding(.vertical)

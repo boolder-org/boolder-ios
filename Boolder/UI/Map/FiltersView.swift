@@ -28,7 +28,7 @@ struct FiltersView: View {
                 .navigationBarTitle("Niveaux", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
-                        filters = Filters()
+                        viewModel.mapState.clearFilters()
                         viewModel.mapState.unselectCircuit()
                         presentationMode.wrappedValue.dismiss()
                     }) {

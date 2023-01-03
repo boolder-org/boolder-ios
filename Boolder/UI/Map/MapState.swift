@@ -108,6 +108,11 @@ import SwiftUI
         centerOnCurrentLocationCount += 1
     }
     
+    func clearFilters() {
+        filters = Filters()
+        filtersRefresh()
+    }
+    
     func filtersRefresh() {
         filtersRefreshCount += 1
     }

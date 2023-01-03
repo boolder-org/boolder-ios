@@ -131,7 +131,7 @@ struct AreaToolbarView: View {
                 if(circuits.count > 0) {
                     Button {
                         mapState.presentCircuitPicker = true
-                        mapState.filters = Filters()
+                        mapState.clearFilters()
                     } label: {
                         HStack {
                             Image("circuit")
@@ -175,8 +175,7 @@ struct AreaToolbarView: View {
                     .cornerRadius(32)
                 }
                         .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                            mapState.filtersRefresh()
-                            // TODO: update $mapState.filters only on dismiss
+                            mapState.filtersRefresh() // FIXME: simplify refresh logic
                         }) {
                             FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
                                 .modify {
