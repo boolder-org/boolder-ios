@@ -18,6 +18,7 @@ struct AreaView: View {
     var body: some View {
         List {
             Section {
+                
                 if NSLocale.websiteLocale == "fr", let descriptionFr = viewModel.area.descriptionFr {
                     Text(descriptionFr)
                 }
@@ -54,6 +55,7 @@ struct AreaView: View {
                     
                 }
             }
+            
             Section {
                 HStack {
                     Text("Niveaux")
@@ -67,7 +69,6 @@ struct AreaView: View {
                                 .foregroundColor(.systemBackground)
                                 .background(viewModel.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
                                 .cornerRadius(4)
-//                                .padding(.horizontal, 1)
                         }
                     }
                 }
@@ -76,36 +77,68 @@ struct AreaView: View {
                     AreaProblemsView(viewModel: viewModel, appTab: $appTab)
                 } label: {
                     HStack {
-                        Text("Voies")
+                        Text("Toutes les voies")
                         Spacer()
                         Text("\(viewModel.problemsCount)")
                     }
                 }
             }
-            Section {
-                ForEach(viewModel.circuits) { circuit in
-                    NavigationLink {
-                        CircuitView(circuit: circuit, mapState: viewModel.mapState, appTab: $appTab)
+            
+            if(viewModel.circuits.count > 0) {
+                Section {
+                    ForEach(viewModel.circuits) { circuit in
+                        NavigationLink {
+                            CircuitView(circuit: circuit, mapState: viewModel.mapState, appTab: $appTab)
+                        } label: {
+                            HStack {
+                                CircleView(number: "", color: circuit.color.uicolor, height: 20)
+                                Text(circuit.color.longName)
+                                Spacer()
+                                if(circuit.beginnerFriendly) {
+                                    Image(systemName: "face.smiling")
+                                        .foregroundColor(.green)
+                                        .font(.title3)
+                                }
+                                if(circuit.dangerous) {
+                                    Image(systemName: "exclamationmark.circle")
+                                        .foregroundColor(.red)
+                                        .font(.title3)
+                                }
+                                Text(circuit.averageGrade.string)
+                            }
+                            .foregroundColor(.primary)
+                        }
+                    }
+                }
+            }
+            
+            Section(header:
+//                        HStack {
+//                Image(systemName: "heart.fill").foregroundColor(.pink)
+                Text("Voies populaires")
+//            }
+            ) {
+                
+                ForEach(viewModel.popularProblems) { problem in
+                    Button {
+//                        presentationMode.wrappedValue.dismiss()
+                        viewModel.mapState.presentAreaView = false
+                        appTab = .map
+                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                     } label: {
                         HStack {
-                            CircleView(number: "", color: circuit.color.uicolor, height: 20)
-                            Text(circuit.color.longName)
+                            ProblemCircleView(problem: problem)
+                            Text(problem.nameWithFallback)
                             Spacer()
-                            if(circuit.beginnerFriendly) {
-                                Image(systemName: "face.smiling")
-                                    .foregroundColor(.green)
-                                    .font(.title3)
+                            if(problem.featured) {
+                                Image(systemName: "heart.fill").foregroundColor(.pink)
                             }
-                            if(circuit.dangerous) {
-                                Image(systemName: "exclamationmark.circle")
-                                    .foregroundColor(.red)
-                                    .font(.title3)
-                            }
-                            Text(circuit.averageGrade.string)
+                            Text(problem.grade.string)
                         }
                         .foregroundColor(.primary)
                     }
                 }
+
             }
         }
         .navigationTitle(viewModel.area.name)

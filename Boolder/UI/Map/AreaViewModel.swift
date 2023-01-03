@@ -37,6 +37,10 @@ class AreaViewModel : ObservableObject {
         }
     }
     
+    var popularProblems: [Problem] {
+        problems.filter{$0.featured}
+    }
+    
     // TODO: improve performance
     var problemsCount: Int {
         problems.count
