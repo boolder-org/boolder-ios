@@ -706,8 +706,8 @@ class MapboxViewController: UIViewController {
                         }
                     }
                     else {
-                        self.unselectPreviousProblem()
-                        self.delegate?.dismissProblemDetails()
+//                        self.unselectPreviousProblem()
+//                        self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
