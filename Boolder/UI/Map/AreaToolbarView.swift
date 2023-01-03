@@ -32,6 +32,9 @@ struct AreaToolbarView: View {
                     Button {
                         if(mapState.presentProblemDetails) {
                             mapState.presentProblemDetails = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid weird race condition
+                                mapState.presentAreaView = true
+                            }
                         }
                         else {
                             mapState.presentAreaView = true
@@ -44,7 +47,6 @@ struct AreaToolbarView: View {
                                 .truncationMode(.head)
                                 
                             Image(systemName: "info.circle")
-                                .disabled(mapState.presentProblemDetails)
                         }
                         .padding(.vertical, 10)
                         
