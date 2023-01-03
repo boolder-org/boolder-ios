@@ -16,6 +16,7 @@ struct DiscoverView: View {
     
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
+    let viewModel: DiscoverViewModel
     
     var body: some View {
         NavigationView {
@@ -125,7 +126,7 @@ struct DiscoverView: View {
                             .padding(.horizontal)
                             .padding(.top)
                             
-                            Text("discover.popular")
+                            Text("Populaires")
                                 .font(.title2).bold()
                                 .padding(.top, 16)
                                 .padding(.bottom, 8)
@@ -169,6 +170,51 @@ struct DiscoverView: View {
                             }
                             
                             
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Tous les secteurs")
+                                .font(.title2).bold()
+                                .padding(.top, 16)
+                                .padding(.bottom, 8)
+                                .padding(.horizontal)
+                            
+                            VStack {
+                                Divider()
+                                
+                                ForEach(viewModel.areas) { areaWithCount in
+                                    
+                                    NavigationLink {
+                                        AreaView(viewModel: AreaViewModel(area: areaWithCount.area, mapState: mapState), appTab: $appTab)
+                                    } label: {
+                                        HStack {
+                                            Text(areaWithCount.area.name).multilineTextAlignment(.leading)
+                                            Text("(\(areaWithCount.problemsCount))").foregroundColor(Color(.systemGray))
+                                            Spacer()
+                                            
+                                            HStack(spacing: 2) {
+                                                ForEach(1..<8) { level in
+                                                    Text(String(level))
+                                                        .font(.caption)
+                                                        .frame(width: 16, height: 16)
+                                                        .foregroundColor(.systemBackground)
+                                                        .background(areaWithCount.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
+                                                        .cornerRadius(4)
+                                                }
+                                            }
+                                            
+                                            Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
+                                            
+                                        }
+                                        .font(.body)
+                                        .foregroundColor(.primary)
+                                        .padding(.horizontal)
+                                    }
+                                    
+                                    
+                                    Divider()
+                                }
+                            }
                         }
                         
                         VStack(alignment: .leading) {

@@ -25,6 +25,8 @@
 		0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
 		0314FFEB2950FF1B00B7E249 /* CircuitToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */; };
 		0314FFEC2950FF1B00B7E249 /* CircuitToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */; };
+		031A4C842964C882002CBF52 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4C832964C882002CBF52 /* DiscoverViewModel.swift */; };
+		031A4C852964C882002CBF52 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4C832964C882002CBF52 /* DiscoverViewModel.swift */; };
 		031F36B0291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B3291D01B700BD0C2B /* AlgoliaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B2291D01B700BD0C2B /* AlgoliaController.swift */; };
@@ -167,6 +169,7 @@
 		0314FFE12950578400B7E249 /* AreaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewModel.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
 		0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitToolbarView.swift; sourceTree = "<group>"; };
+		031A4C832964C882002CBF52 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B2291D01B700BD0C2B /* AlgoliaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaController.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
@@ -346,6 +349,7 @@
 				030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */,
 				030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */,
 				0343F94B2869A29F00BBAC38 /* AreaCardView.swift */,
+				031A4C832964C882002CBF52 /* DiscoverViewModel.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -690,6 +694,7 @@
 				038C2EF929201A6E006581CD /* FiltersToolbarView.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
 				03E500912930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */,
+				031A4C852964C882002CBF52 /* DiscoverViewModel.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
@@ -763,6 +768,7 @@
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
+				031A4C842964C882002CBF52 /* DiscoverViewModel.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */,

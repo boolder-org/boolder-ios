@@ -21,7 +21,7 @@ struct ContentView: View {
                 }
                 .tag(Tab.map)
             
-            DiscoverView(appTab: $appTab, mapState: mapState)
+            DiscoverView(appTab: $appTab, mapState: mapState, viewModel: DiscoverViewModel())
                 .tabItem {
                     Label("tabs.discover", systemImage: "sparkles")
                 }
