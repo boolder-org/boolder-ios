@@ -29,29 +29,26 @@ struct AreaToolbarView: View {
                     
                     Spacer()
                     
-                    Text(mapState.selectedArea?.name ?? "")
-                        .lineLimit(1)
-                        .truncationMode(.head)
-                    //                    .frame(maxWidth: 400)
-                        .padding(.vertical, 10)
-                    //                    .padding(.horizontal, 25)
-                        .onTapGesture {
-                            mapState.presentProblemDetails = false
-                            mapState.presentAreaView = true
-                        }
-                    //                    .background(Color.red)
-                    
                     Button {
-                        mapState.presentProblemDetails = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        if(mapState.presentProblemDetails) {
+                            mapState.presentProblemDetails = false
+                        }
+                        else {
                             mapState.presentAreaView = true
                         }
                     } label: {
-                        Image(systemName: "info.circle")
-                        //                        .background(Color.red)
-                        //                        .foregroundColor(.green)
-                        //                        .padding(.leading, 10)
-                        //                        .disabled(true)
+                        HStack {
+                            Text(mapState.selectedArea?.name ?? "")
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
+                                .truncationMode(.head)
+                                
+                            Image(systemName: "info.circle")
+                                .disabled(mapState.presentProblemDetails)
+                        }
+                        .padding(.vertical, 10)
+                        
+                        
                     }
                     
                     Spacer()
