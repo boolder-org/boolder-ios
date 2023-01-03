@@ -106,31 +106,26 @@ struct MapboxView: UIViewControllerRepresentable {
         // center on circuit
         if mapState.centerOnCircuitCount > context.coordinator.lastCenterOnCircuitCount {
             
-//            print("coucou")
-            
             if let circuit = mapState.selectedCircuit {
                 
                 let viewport = vc.mapView.mapboxMap.coordinateBounds(for: CameraOptions(cameraState: vc.mapView.cameraState))
-                print(viewport.southwest)
-                print(viewport.northeast)
-
-                let southWest = CLLocationCoordinate2D(
-                    latitude: min(viewport.southwest.latitude, circuit.southWestLat),
-                    longitude: min(viewport.southwest.longitude, circuit.southWestLon)
+                
+                let circuitBounds = CoordinateBounds(
+                    southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+                    northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
                 )
                 
-                let northEast = CLLocationCoordinate2D(
-                    latitude: max(viewport.northeast.latitude, circuit.northEastLat),
-                    longitude: max(viewport.northeast.longitude, circuit.northEastLon)
-                )
-                
-                let bounds = CoordinateBounds(southwest: southWest,northeast: northEast)
-                print(bounds.southwest)
-                print(bounds.northeast)
-
-                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 0, left: 0, bottom: 0, right: 0), bearing: 0, pitch: 0)
-                vc.flyinToSomething = true
-                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
+                if !viewport.contains(forArea: circuitBounds, wrappedCoordinates: false) {
+                    let cameraOptions = vc.mapView.mapboxMap.camera(
+                        for: viewport.extend(forArea: circuitBounds),
+                        padding: .init(top: 160, left: 20, bottom: 80, right: 20),
+                        bearing: 0,
+                        pitch: 0
+                    )
+                    
+                    vc.flyinToSomething = true
+                    vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
+                }
             }
             else {
                 vc.unselectCircuit()
