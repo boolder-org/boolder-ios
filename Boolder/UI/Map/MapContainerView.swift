@@ -28,42 +28,48 @@ struct MapContainerView: View {
                     Spacer()
                     
                     HStack(spacing: 0) {
-                        Button(action: {
-//                            mapState.selectCircuit(circuit)
-//                            mapState.goToNextCircuitProblem()
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .padding(10)
-//                                .offset(x: -1, y: 0)
+                        
+                        if(mapState.canGoToPreviousCircuitProblem) {
+                            Button(action: {
+                                mapState.selectCircuit(circuit)
+                                mapState.goToPreviousCircuitProblem()
+                            }) {
+                                Image(systemName: "arrow.left")
+                                    .padding(10)
+                                //                                .offset(x: -1, y: 0)
+                            }
+                            .font(.body.weight(.semibold))
+                            .accentColor(Color(circuit.color.uicolor))
+                            .background(Color.systemBackground)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                            )
+                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            .padding(.horizontal, 10)
                         }
-                        .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolor))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal, 10)
                         
                         Spacer()
                         
-                        Button(action: {
-                            mapState.selectCircuit(circuit)
-                            mapState.goToNextCircuitProblem()
-                        }) {
-                            Image(systemName: "arrow.right")
-                                .padding(10)
+                        if(mapState.canGoToNextCircuitProblem) {
+                            
+                            Button(action: {
+                                mapState.selectCircuit(circuit)
+                                mapState.goToNextCircuitProblem()
+                            }) {
+                                Image(systemName: "arrow.right")
+                                    .padding(10)
+                            }
+                            .font(.body.weight(.semibold))
+                            .accentColor(Color(circuit.color.uicolor))
+                            .background(Color.systemBackground)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                            )
+                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            .padding(.horizontal, 10)
                         }
-                        .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolor))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal, 10)
                     }
                     .offset(CGSize(width: 0, height: -44)) // TODO: make sure it works on all device sizes
 //                    Spacer()

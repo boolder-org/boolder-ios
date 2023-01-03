@@ -667,6 +667,7 @@ class MapboxViewController: UIViewController {
                         }
                     }
                     else {
+                        // TODO: make it more explicit that this works only at a certain zoom level
                         self.unselectPreviousProblem()
                         self.delegate?.dismissProblemDetails()
                     }
