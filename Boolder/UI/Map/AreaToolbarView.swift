@@ -32,7 +32,7 @@ struct AreaToolbarView: View {
                     Button {
                         if(mapState.presentProblemDetails) {
                             mapState.presentProblemDetails = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid weird race condition
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
                                 mapState.presentAreaView = true
                             }
                         }
