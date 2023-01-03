@@ -54,7 +54,6 @@ struct MapContainerView: View {
                         }) {
                             Image(systemName: "arrow.right")
                                 .padding(10)
-//                                .offset(x: -1, y: 0)
                         }
                         .font(.body.weight(.semibold))
                         .accentColor(Color(circuit.color.uicolor))
@@ -66,7 +65,7 @@ struct MapContainerView: View {
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                         .padding(.horizontal, 10)
                     }
-                    .offset(CGSize(width: 0, height: -44))
+                    .offset(CGSize(width: 0, height: -44)) // TODO: make sure it works on all device sizes
 //                    Spacer()
                 }
             }
