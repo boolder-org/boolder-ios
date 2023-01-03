@@ -20,7 +20,7 @@ struct GradeRange : Equatable, Hashable {
     static let level7 =         GradeRange(min: Grade("7a"), max: Grade("7c+"))
     static let level8 =         GradeRange(min: Grade("8a"), max: Grade("8c+"))
 
-    var localizedName: String {
+    var description: String {
         if self == Self.beginner {
             return NSLocalizedString("filters.grade.range.beginner", comment: "")
         }
@@ -40,34 +40,10 @@ struct GradeRange : Equatable, Hashable {
             return NSLocalizedString("filters.grade.range.level8", comment: "")
         }
         else {
-            return NSLocalizedString("filters.grade.range.custom", comment: "")
-        }
-    }
-    
-    var description: String {
-        if self == Self.beginner {
-            return "1 → 3"
-        }
-        else if self == Self.level4 {
-            return "4"
-        }
-        else if self == Self.level5 {
-            return "5"
-        }
-        else if self == Self.level6 {
-            return "6"
-        }
-        else if self == Self.level7 {
-            return "7"
-        }
-        else if self == Self.level8 {
-            return "8"
-        }
-        else {
             return "\(min.string) → \(max.advanced(by: -1).string)"
         }
     }
-    
+        
     var isCustom: Bool {
         self != .beginner && self != .level4 && self != .level5 && self != .level6 && self != .level7 && self != .level8
     }

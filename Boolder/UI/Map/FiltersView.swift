@@ -68,9 +68,11 @@ struct FiltersView: View {
                             Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
                                 .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
                             
-                            Text(range.localizedName).foregroundColor(.primary)
+                            Text(range.description).foregroundColor(.primary)
                             Spacer()
-//                            Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
+                            if(range == .beginner) {
+                                Text("Débutant").foregroundColor(Color(.systemGray)).font(.caption)
+                            }
                         }
                     }
                 }

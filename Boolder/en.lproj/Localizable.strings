@@ -103,9 +103,7 @@
 "filters.favorite" = "Project";
 "filters.ticked" = "Already done";
 "filters.clear" = "Clear";
-"filters.grade.range.beginner" = "Beginner";
-"filters.grade.range.intermediate" = "Intermediate";
-"filters.grade.range.advanced" = "Experienced";
+"filters.grade.range.beginner" = "Level 1 → 3";
 "filters.grade.range.level4" = "Level 4";
 "filters.grade.range.level5" = "Level 5";
 "filters.grade.range.level6" = "Level 6";
