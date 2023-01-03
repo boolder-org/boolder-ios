@@ -31,6 +31,8 @@ import SwiftUI
     @Published var presentAreaView = false
     @Published var presentCircuitPicker = false
     
+    @Published var displayCircuitStartButton = false
+    
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area

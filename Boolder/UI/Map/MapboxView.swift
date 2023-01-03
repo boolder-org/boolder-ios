@@ -185,5 +185,9 @@ struct MapboxView: UIViewControllerRepresentable {
         @MainActor func dismissProblemDetails() {
             parent.mapState.presentProblemDetails = false
         }
+        
+        @MainActor func cameraChanged() {
+            parent.mapState.displayCircuitStartButton = false
+        }
     }
 }

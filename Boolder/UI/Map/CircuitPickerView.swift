@@ -22,6 +22,7 @@ struct CircuitPickerView: View {
                             presentationMode.wrappedValue.dismiss()
                             viewModel.mapState.clearFilters()
                             viewModel.mapState.selectAndCenterOnCircuit(circuit)
+                            viewModel.mapState.displayCircuitStartButton = true
                             //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                         } label: {
                             HStack {

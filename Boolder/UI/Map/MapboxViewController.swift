@@ -131,6 +131,8 @@ class MapboxViewController: UIViewController {
             
             self.inferAreaFromMap()
             
+            self.delegate?.cameraChanged()
+            
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 //                self.inferAreaFromMap()
 //            }
@@ -725,5 +727,6 @@ protocol MapBoxViewDelegate {
     func selectArea(id: Int)
     func unselectArea()
     func unselectCircuit()
+    func cameraChanged()
     func dismissProblemDetails()
 }
