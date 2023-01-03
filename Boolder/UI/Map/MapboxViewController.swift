@@ -402,7 +402,7 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.minZoom = 16
         circuitProblemsTextsLayer.visibility = .constant(.none)
 
-        circuitProblemsTextsLayer.textAllowOverlap = .constant(false)
+        circuitProblemsTextsLayer.textAllowOverlap = .constant(true)
         circuitProblemsTextsLayer.textField = .expression(
             Expression(.toString) {
                 ["get", "circuitNumber"]
@@ -637,15 +637,14 @@ class MapboxViewController: UIViewController {
                 }
             }
         
-        // TODO: make circuit problems clickable at zoom 16
-        // TODO: make this DRY
+        
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
-                if self.mapView.mapboxMap.cameraState.zoom < 16 { return } // why not use a zoom filter?
+                if self.mapView.mapboxMap.cameraState.zoom < 18 { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
@@ -675,15 +674,16 @@ class MapboxViewController: UIViewController {
                     print("An error occurred: \(error.localizedDescription)")
                 }
             }
-    
         
+        // order between problems and circuit problems is important
+        // TODO: make this DRY
         mapView.mapboxMap.queryRenderedFeatures(
-            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
+            with: tapPoint, // use rect or tapPoint ?
+            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
-                if self.mapView.mapboxMap.cameraState.zoom < 18 { return }
+                if self.mapView.mapboxMap.cameraState.zoom < 16 { return } // why not use a zoom filter?
                 
                 switch result {
                 case .success(let queriedfeatures):
