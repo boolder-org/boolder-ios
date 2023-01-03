@@ -131,7 +131,9 @@ class MapboxViewController: UIViewController {
             
             self.inferAreaFromMap()
             
-            self.delegate?.cameraChanged()
+            if(!flyinToSomething) {
+                self.delegate?.cameraChanged()
+            }
             
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 //                self.inferAreaFromMap()
