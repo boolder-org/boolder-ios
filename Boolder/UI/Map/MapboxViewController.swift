@@ -123,7 +123,7 @@ class MapboxViewController: UIViewController {
 //        }
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
-            guard lastExecution == nil || lastExecution!.advanced(by: .milliseconds(500)) <= DispatchTime.now() else {
+            guard lastExecution == nil || lastExecution!.advanced(by: .milliseconds(100)) <= DispatchTime.now() else {
                 return
             }
 
