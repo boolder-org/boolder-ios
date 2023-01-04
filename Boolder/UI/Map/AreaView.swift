@@ -57,6 +57,16 @@ struct AreaView: View {
             }
             
             Section {
+                NavigationLink {
+                    AreaProblemsView(viewModel: viewModel, appTab: $appTab)
+                } label: {
+                    HStack {
+                        Text("Voies")
+                        Spacer()
+                        Text("\(viewModel.problemsCount)")
+                    }
+                }
+                
                 HStack {
                     Text("Niveaux")
                     
@@ -70,16 +80,6 @@ struct AreaView: View {
                                 .background(viewModel.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
                                 .cornerRadius(4)
                         }
-                    }
-                }
-                
-                NavigationLink {
-                    AreaProblemsView(viewModel: viewModel, appTab: $appTab)
-                } label: {
-                    HStack {
-                        Text("Toutes les voies")
-                        Spacer()
-                        Text("\(viewModel.problemsCount)")
                     }
                 }
             }
@@ -112,33 +112,48 @@ struct AreaView: View {
                 }
             }
             
-            Section(header:
-//                        HStack {
-//                Image(systemName: "heart.fill").foregroundColor(.pink)
-                Text("Voies populaires")
-//            }
-            ) {
+            if(viewModel.popularProblems.count > 0) {
                 
-                ForEach(viewModel.popularProblems) { problem in
-                    Button {
-//                        presentationMode.wrappedValue.dismiss()
-                        viewModel.mapState.presentAreaView = false
-                        appTab = .map
-                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
-                    } label: {
-                        HStack {
-                            ProblemCircleView(problem: problem)
-                            Text(problem.nameWithFallback)
-                            Spacer()
-                            if(problem.featured) {
-                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                Section(header:
+                            //                        HStack {
+                        //                Image(systemName: "heart.fill").foregroundColor(.pink)
+                        Text("Populaires")
+                        //            }
+                ) {
+                    
+                    ForEach(viewModel.popularProblems) { problem in
+                        Button {
+                            //                        presentationMode.wrappedValue.dismiss()
+                            viewModel.mapState.presentAreaView = false
+                            appTab = .map
+                            viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
+                        } label: {
+                            HStack {
+                                ProblemCircleView(problem: problem)
+                                Text(problem.nameWithFallback)
+                                Spacer()
+                                if(problem.featured) {
+                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                                }
+                                Text(problem.grade.string)
                             }
-                            Text(problem.grade.string)
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                     }
+                    
                 }
-
+                
+//                Section {
+//                    NavigationLink {
+//                        AreaProblemsView(viewModel: viewModel, appTab: $appTab)
+//                    } label: {
+//                        HStack {
+//                            Text("Toutes les voies")
+//                            Spacer()
+//                            Text("\(viewModel.problemsCount)")
+//                        }
+//                    }
+//                }
             }
         }
         .navigationTitle(viewModel.area.name)
