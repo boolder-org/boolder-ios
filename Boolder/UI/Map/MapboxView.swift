@@ -52,7 +52,7 @@ struct MapboxView: UIViewControllerRepresentable {
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
 
                 
-                var cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                var cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                 cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                 
                 vc.flyinToSomething = true
@@ -69,7 +69,7 @@ struct MapboxView: UIViewControllerRepresentable {
             if let location = vc.mapView.location.latestLocation {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
-                    padding: .init(top: 160, left: 20, bottom: 80, right: 20),
+                    padding: .init(top: 180, left: 20, bottom: 80, right: 20),
                     zoom: 16
                 )
                 vc.flyinToSomething = true
@@ -115,7 +115,7 @@ struct MapboxView: UIViewControllerRepresentable {
 //                if !viewport.contains(forArea: circuitBounds, wrappedCoordinates: false) {
                     var cameraOptions = vc.mapView.mapboxMap.camera(
                         for: circuitBounds,
-                        padding: .init(top: 160, left: 20, bottom: 80, right: 20),
+                        padding: .init(top: 180, left: 20, bottom: 80, right: 20),
                         bearing: 0,
                         pitch: 0
                     )

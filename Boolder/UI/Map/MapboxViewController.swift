@@ -577,7 +577,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                         cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                         
                         self.flyinToSomething = true
@@ -611,7 +611,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                         self.flyinToSomething = true
                         self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
                     }
