@@ -179,7 +179,7 @@ struct DiscoverView: View {
                                 .padding(.horizontal)
                             
                             VStack {
-                                Divider()
+                                Divider() //.padding(.leading)
                                 
                                 ForEach(Area.all) { areaWithCount in
                                     
@@ -187,21 +187,21 @@ struct DiscoverView: View {
                                         AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab)
                                     } label: {
                                         HStack {
-                                            VStack(alignment: .leading) {
+                                            VStack(alignment: .leading, spacing: 6) {
                                                 Text(areaWithCount.area.name)
-                                                    .font(.body.weight(.semibold))
+//                                                    .font(.body.weight(.semibold))
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                                 
-                                                HStack(spacing: 2) {
-                                                    ForEach(1..<8) { level in
-                                                        Text(String(level))
-//                                                            .font(.caption)
-                                                            .frame(width: 20, height: 20)
-                                                            .foregroundColor(.systemBackground)
-                                                            .background(areaWithCount.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
-                                                            .cornerRadius(4)
-                                                    }
-                                                }
+//                                                HStack(spacing: 2) {
+//                                                    ForEach(1..<8) { level in
+//                                                        Text(String(level))
+////                                                            .font(.caption)
+//                                                            .frame(width: 20, height: 20)
+//                                                            .foregroundColor(.systemBackground)
+//                                                            .background(areaWithCount.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.7)) : Color.gray.opacity(0.5))
+//                                                            .cornerRadius(4)
+//                                                    }
+//                                                }
                                             }
 
                                             Spacer()
@@ -215,15 +215,16 @@ struct DiscoverView: View {
                                             
                                         }
                                         .font(.body)
-                                        .frame(minHeight: 32)
+//                                        .frame(minHeight: 32)
                                         .foregroundColor(.primary)
 //                                        .background(Color.red)
                                         .padding(.horizontal)
-                                        .padding(.vertical, 6)
+//                                        .padding(.leading)
+                                        .padding(.vertical, 4)
                                     }
                                     
                                     
-                                    Divider()
+                                    Divider().padding(.leading)
                                 }
                             }
                         }
