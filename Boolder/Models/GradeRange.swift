@@ -14,6 +14,9 @@ struct GradeRange : Equatable, Hashable {
     
     static let beginner =       GradeRange(min: Grade("1a"), max: Grade("3c+"))
 //    static let intermediate =   GradeRange(min: Grade("4a"), max: Grade("5c+"))
+    static let level1 =         GradeRange(min: Grade("1a"), max: Grade("1c+"))
+    static let level2 =         GradeRange(min: Grade("2a"), max: Grade("2c+"))
+    static let level3 =         GradeRange(min: Grade("3a"), max: Grade("3c+"))
     static let level4 =         GradeRange(min: Grade("4a"), max: Grade("4c+"))
     static let level5 =         GradeRange(min: Grade("5a"), max: Grade("5c+"))
     static let level6 =         GradeRange(min: Grade("6a"), max: Grade("6c+"))

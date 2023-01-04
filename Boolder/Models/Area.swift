@@ -108,6 +108,20 @@ struct Area : Identifiable {
             7: level7,
         ]
     }
+    
+    var levelsCount : [AreaView.Level] {
+        [
+            .init(name: "1", count: min(150, problems.filter{GradeRange.level1.contains($0.grade)}.count)),
+            .init(name: "2", count: min(150, problems.filter{GradeRange.level2.contains($0.grade)}.count)),
+            .init(name: "3", count: min(150, problems.filter{GradeRange.level3.contains($0.grade)}.count)),
+            .init(name: "4", count: min(150, problems.filter{GradeRange.level4.contains($0.grade)}.count)),
+            .init(name: "5", count: min(150, problems.filter{GradeRange.level5.contains($0.grade)}.count)),
+            .init(name: "6", count: min(150, problems.filter{GradeRange.level6.contains($0.grade)}.count)),
+            .init(name: "7", count: min(150, problems.filter{GradeRange.level7.contains($0.grade)}.count)),
+            .init(name: "8", count: min(150, problems.filter{GradeRange.level8.contains($0.grade)}.count)),
+        ]
+    }
+    
 
     var problems: [Problem] {
 //        print("problems")

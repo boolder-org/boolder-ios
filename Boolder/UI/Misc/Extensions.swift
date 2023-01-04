@@ -56,6 +56,7 @@ extension UIColor {
 extension Color {
     static let appGreen = Color(UIColor.appGreen)
     static let systemBackground = Color(UIColor.systemBackground)
+    static let levelGreen = Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8))
 }
 
 // Locale to use when redirectign to URLs hosted on boolder.com

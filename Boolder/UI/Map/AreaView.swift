@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+import Charts
 
 struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -20,6 +20,25 @@ struct AreaView: View {
     @State private var circuits = [Circuit]()
     @State private var problemsCount = 0
     @State private var popularProblems = [Problem]()
+    
+    @State private var showChart = false
+    
+    struct Level: Identifiable {
+        var name: String
+        var count: Int
+        var id = UUID()
+    }
+
+    @State private var data: [Level] = [
+        .init(name: "1", count: 0),
+        .init(name: "2", count: 0),
+        .init(name: "3", count: 0),
+        .init(name: "4", count: 0),
+        .init(name: "5", count: 0),
+        .init(name: "6", count: 0),
+        .init(name: "7", count: 0),
+        .init(name: "8", count: 0),
+    ]
     
     var body: some View {
         ZStack {
@@ -74,18 +93,48 @@ struct AreaView: View {
                         }
                     }
                     
-                    HStack {
-                        Text("Niveaux")
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 2) {
-                            ForEach(1..<8) { level in
-                                Text(String(level))
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(.systemBackground)
-                                    .background(area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
-                                    .cornerRadius(4)
+                    VStack {
+                        Button {
+                            showChart.toggle()
+                        } label: {
+                            HStack {
+                                Text("Niveaux")
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                                
+                                HStack(spacing: 2) {
+                                    ForEach(1..<8) { level in
+                                        Text(String(level))
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(.systemBackground)
+                                            .background(area.levels[level]! ? Color.levelGreen : Color.gray.opacity(0.5))
+                                            .cornerRadius(4)
+                                    }
+                                }
+                            }
+                        }
+
+                        if showChart {
+                            if #available(iOS 16.0, *) {
+                                Chart {
+                                    ForEach(data) { shape in
+                                        BarMark(
+                                            x: .value("Level", shape.name),
+                                            y: .value("Problems", shape.count)
+                                        )
+                                    }
+                                }
+                                .chartYScale(domain: 0...150)
+                                .foregroundColor(.levelGreen)
+                                .frame(height: 200)
+                                .padding(.horizontal)
+                                .padding(.vertical)
+                                .clipShape(Rectangle())
+                                .onAppear {
+                                    // TODO: improve perfs
+                                    data = area.levelsCount
+                                }
                             }
                         }
                     }

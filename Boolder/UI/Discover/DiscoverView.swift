@@ -222,7 +222,7 @@ struct DiscoverView: View {
 ////                                                            .font(.caption)
 //                                                            .frame(width: 20, height: 20)
 //                                                            .foregroundColor(.systemBackground)
-//                                                            .background(areaWithCount.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.7)) : Color.gray.opacity(0.5))
+//                                                            .background(areaWithCount.area.levels[level]! ? Color.levelGreen : Color.gray.opacity(0.5))
 //                                                            .cornerRadius(4)
 //                                                    }
 //                                                }
