@@ -178,24 +178,24 @@ struct DiscoverView: View {
                                 
                                 Spacer()
                                 
-                                Menu {
-                                    Button {
-                                        // TODO
-                                    } label: {
-                                        Text("Alphabétique")
-                                    }
-                                    
-                                    Button {
-                                        // TODO
-                                    } label: {
-                                        Text("Nombre de voies")
-                                    }
-
-                                } label: {
-                                    Image(systemName: "line.3.horizontal.decrease.circle")
-                                        .font(.title2)
-                                        .foregroundColor(.primary)
-                                }
+//                                Menu {
+//                                    Button {
+//                                        // TODO
+//                                    } label: {
+//                                        Text("Alphabétique")
+//                                    }
+//                                    
+//                                    Button {
+//                                        // TODO
+//                                    } label: {
+//                                        Text("Nombre de voies")
+//                                    }
+//
+//                                } label: {
+//                                    Image(systemName: "line.3.horizontal.decrease.circle")
+//                                        .font(.title2)
+//                                        .foregroundColor(.primary)
+//                                }
                             }
                             
                             .padding(.top, 24)
