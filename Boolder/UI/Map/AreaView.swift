@@ -104,11 +104,11 @@ struct AreaView: View {
                                 Spacer()
                                 
                                 HStack(spacing: 2) {
-                                    ForEach(1..<8) { level in
-                                        Text(String(level))
+                                    ForEach(area.levelsCount) { level in
+                                        Text(String(level.name))
                                             .frame(width: 20, height: 20)
                                             .foregroundColor(.systemBackground)
-                                            .background(area.levels[level]! ? Color.levelGreen : Color.gray.opacity(0.5))
+                                            .background(level.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
                                             .cornerRadius(4)
                                     }
                                 }
