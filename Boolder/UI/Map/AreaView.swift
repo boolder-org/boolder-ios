@@ -12,21 +12,26 @@ import SwiftUI
 struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let viewModel: AreaViewModel
+    let area: Area
+    let mapState: MapState
     @Binding var appTab: ContentView.Tab
+    
+    @State private var circuits = [Circuit]()
+    @State private var problemsCount = 0
+    @State private var popularProblems = [Problem]()
     
     var body: some View {
         List {
             Section {
                 
-                if NSLocale.websiteLocale == "fr", let descriptionFr = viewModel.area.descriptionFr {
+                if NSLocale.websiteLocale == "fr", let descriptionFr = area.descriptionFr {
                     Text(descriptionFr)
                 }
-                else if let descriptionEn = viewModel.area.descriptionEn {
+                else if let descriptionEn = area.descriptionEn {
                     Text(descriptionEn)
                 }
                 
-                if let url = viewModel.area.parkingUrl, let name = viewModel.area.parkingShortName, let distance = viewModel.area.parkingDistance {
+                if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
                     
                     NavigationLink {
                         List {
@@ -58,12 +63,12 @@ struct AreaView: View {
             
             Section {
                 NavigationLink {
-                    AreaProblemsView(viewModel: viewModel, appTab: $appTab)
+//                    AreaProblemsView(viewModel: viewModel, appTab: $appTab)
                 } label: {
                     HStack {
                         Text("Voies")
                         Spacer()
-                        Text("\(viewModel.problemsCount)")
+                        Text("\(problemsCount)")
                     }
                 }
                 
@@ -77,18 +82,18 @@ struct AreaView: View {
                             Text(String(level))
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(.systemBackground)
-                                .background(viewModel.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
+                                .background(area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
                                 .cornerRadius(4)
                         }
                     }
                 }
             }
             
-            if(viewModel.circuits.count > 0) {
+            if(circuits.count > 0) {
                 Section {
-                    ForEach(viewModel.circuits) { circuit in
+                    ForEach(circuits) { circuit in
                         NavigationLink {
-                            CircuitView(circuit: circuit, mapState: viewModel.mapState, appTab: $appTab)
+                            CircuitView(circuit: circuit, mapState: mapState, appTab: $appTab)
                         } label: {
                             HStack {
                                 CircleView(number: "", color: circuit.color.uicolor, height: 20)
@@ -112,7 +117,7 @@ struct AreaView: View {
                 }
             }
             
-            if(viewModel.popularProblems.count > 0) {
+            if(popularProblems.count > 0) {
                 
                 Section(header:
                             //                        HStack {
@@ -121,12 +126,12 @@ struct AreaView: View {
                         //            }
                 ) {
                     
-                    ForEach(viewModel.popularProblems) { problem in
+                    ForEach(popularProblems) { problem in
                         Button {
                             //                        presentationMode.wrappedValue.dismiss()
-                            viewModel.mapState.presentAreaView = false
+                            mapState.presentAreaView = false
                             appTab = .map
-                            viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
+                            mapState.selectAndPresentAndCenterOnProblem(problem)
                         } label: {
                             HStack {
                                 ProblemCircleView(problem: problem)
@@ -156,7 +161,12 @@ struct AreaView: View {
 //                }
             }
         }
-        .navigationTitle(viewModel.area.name)
+        .onAppear {
+            circuits = area.circuits
+            problemsCount = area.problemsCount
+            popularProblems = area.popularProblems
+        }
+        .navigationTitle(area.name)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(
             leading: Button(action: {

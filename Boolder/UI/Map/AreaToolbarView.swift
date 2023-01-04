@@ -100,7 +100,7 @@ struct AreaToolbarView: View {
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
-                        AreaView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState), appTab: $appTab)
+                        AreaView(area: mapState.selectedArea!, mapState: mapState, appTab: $appTab)
                     }
                 }
 
