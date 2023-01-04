@@ -172,11 +172,35 @@ struct DiscoverView: View {
                         }
                         
                         VStack(alignment: .leading) {
-                            Text("Tous les secteurs")
-                                .font(.title2).bold()
-                                .padding(.top, 16)
-                                .padding(.bottom, 8)
-                                .padding(.horizontal)
+                            HStack {
+                                Text("Tous les secteurs")
+                                    .font(.title2.bold())
+                                
+                                Spacer()
+                                
+                                Menu {
+                                    Button {
+                                        // TODO
+                                    } label: {
+                                        Text("Alphabétique")
+                                    }
+                                    
+                                    Button {
+                                        // TODO
+                                    } label: {
+                                        Text("Nombre de voies")
+                                    }
+
+                                } label: {
+                                    Image(systemName: "line.3.horizontal.decrease.circle")
+                                        .font(.title2)
+                                        .foregroundColor(.primary)
+                                }
+                            }
+                            
+                            .padding(.top, 24)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
                             
                             VStack {
                                 Divider() //.padding(.leading)
