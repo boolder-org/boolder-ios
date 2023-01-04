@@ -131,10 +131,6 @@ struct AreaView: View {
                                 .padding(.horizontal)
                                 .padding(.vertical)
                                 .clipShape(Rectangle())
-                                .onAppear {
-                                    // TODO: improve perfs
-                                    data = area.levelsCount
-                                }
                             }
                         }
                     }
@@ -246,6 +242,8 @@ struct AreaView: View {
             circuits = area.circuits
             problemsCount = area.problemsCount
             popularProblems = area.popularProblems
+            
+            data = area.levelsCount
         }
         .navigationTitle(area.name)
         .navigationBarTitleDisplayMode(.inline)

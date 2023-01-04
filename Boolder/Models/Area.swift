@@ -84,14 +84,14 @@ struct Area : Identifiable {
     
     var levelsCount : [AreaView.Level] {
         [
-            .init(name: "1", count: min(150, problems.filter{GradeRange.level1.contains($0.grade)}.count)),
-            .init(name: "2", count: min(150, problems.filter{GradeRange.level2.contains($0.grade)}.count)),
-            .init(name: "3", count: min(150, problems.filter{GradeRange.level3.contains($0.grade)}.count)),
-            .init(name: "4", count: min(150, problems.filter{GradeRange.level4.contains($0.grade)}.count)),
-            .init(name: "5", count: min(150, problems.filter{GradeRange.level5.contains($0.grade)}.count)),
-            .init(name: "6", count: min(150, problems.filter{GradeRange.level6.contains($0.grade)}.count)),
-            .init(name: "7", count: min(150, problems.filter{GradeRange.level7.contains($0.grade)}.count)),
-            .init(name: "8", count: min(150, problems.filter{GradeRange.level8.contains($0.grade)}.count)),
+            .init(name: "1", count: min(150, problemsCount(level: 1))),
+            .init(name: "2", count: min(150, problemsCount(level: 2))),
+            .init(name: "3", count: min(150, problemsCount(level: 3))),
+            .init(name: "4", count: min(150, problemsCount(level: 4))),
+            .init(name: "5", count: min(150, problemsCount(level: 5))),
+            .init(name: "6", count: min(150, problemsCount(level: 6))),
+            .init(name: "7", count: min(150, problemsCount(level: 7))),
+            .init(name: "8", count: min(150, problemsCount(level: 8))),
         ]
     }
     
@@ -113,6 +113,22 @@ struct Area : Identifiable {
         catch {
             print (error)
             return []
+        }
+    }
+    
+    func problemsCount(level: Int) -> Int {
+        let db = SqliteStore.shared.db
+        
+        let grade = Expression<String>("grade")
+        let problems = Table("problems").filter(Expression(literal: "area_id = '\(id)'")).filter(grade >= "\(level)a").filter(grade < "\(level+1)a")
+        let id = Expression<Int>("id")
+        
+        do {
+            return try db.scalar(problems.count)
+        }
+        catch {
+            print (error)
+            return 0
         }
     }
     
