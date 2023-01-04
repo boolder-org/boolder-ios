@@ -178,7 +178,6 @@ struct AreaView: View {
                     leading: Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        // FIXME: don't use button when screen is pushed inside a navigationview
                         Text("Fermer")
                             .padding(.vertical)
                             .font(.body)
