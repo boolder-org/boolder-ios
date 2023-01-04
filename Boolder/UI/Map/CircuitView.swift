@@ -75,6 +75,8 @@ struct CircuitView: View {
                     mapState.selectArea(area)
                     mapState.selectAndCenterOnCircuit(circuit)
                     mapState.displayCircuitStartButton = true
+
+                    mapState.presentAreaView = false                    
                     appTab = .map
                 } label: {
                     Text("Voir sur la carte")
