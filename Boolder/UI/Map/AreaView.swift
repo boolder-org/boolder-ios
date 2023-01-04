@@ -95,7 +95,7 @@ struct AreaView: View {
                     Section {
                         ForEach(circuits) { circuit in
                             NavigationLink {
-                                CircuitView(circuit: circuit, mapState: mapState, appTab: $appTab)
+                                CircuitView(area: area, circuit: circuit, mapState: mapState, appTab: $appTab)
                             } label: {
                                 HStack {
                                     CircleView(number: "", color: circuit.color.uicolor, height: 20)
@@ -164,11 +164,11 @@ struct AreaView: View {
                 }
                 
                 if(linkToMap) {
+                    // leave room for sticky footer
                     Section(header: Text("")) {
                         EmptyView()
-                        
                     }
-                    .padding(.bottom, 48)
+                    .padding(.bottom, 40)
                 }
                 
                 

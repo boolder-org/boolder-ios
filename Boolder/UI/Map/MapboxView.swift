@@ -105,16 +105,16 @@ struct MapboxView: UIViewControllerRepresentable {
             
             if let circuit = mapState.selectedCircuit {
                 
-                let viewport = vc.mapView.mapboxMap.coordinateBounds(for: CameraOptions(cameraState: vc.mapView.cameraState))
+//                let viewport = vc.mapView.mapboxMap.coordinateBounds(for: CameraOptions(cameraState: vc.mapView.cameraState))
                 
                 let circuitBounds = CoordinateBounds(
                     southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
                     northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
                 )
                 
-                if !viewport.contains(forArea: circuitBounds, wrappedCoordinates: false) {
+//                if !viewport.contains(forArea: circuitBounds, wrappedCoordinates: false) {
                     var cameraOptions = vc.mapView.mapboxMap.camera(
-                        for: viewport.extend(forArea: circuitBounds),
+                        for: circuitBounds,
                         padding: .init(top: 160, left: 20, bottom: 80, right: 20),
                         bearing: 0,
                         pitch: 0
@@ -123,7 +123,7 @@ struct MapboxView: UIViewControllerRepresentable {
                     
                     vc.flyinToSomething = true
                     vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
-                }
+//                }
             }
             else {
                 vc.unselectCircuit()
