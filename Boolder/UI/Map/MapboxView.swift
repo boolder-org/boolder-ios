@@ -52,15 +52,12 @@ struct MapboxView: UIViewControllerRepresentable {
                                               northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
 
                 
-                let cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                var cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 160, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                 
                 vc.flyinToSomething = true
-                print("flyin 1 \(vc.flyinToSomething)")
                 vc.mapView.camera.fly(to: cameraOptions, duration: 1) { _ in
-                    print("flyin 2 \(vc.flyinToSomething)")
                     vc.flyinToSomething = false
-                    print("flyin 3 \(vc.flyinToSomething)")
-                    
                 }
                 
                 context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
@@ -116,12 +113,13 @@ struct MapboxView: UIViewControllerRepresentable {
                 )
                 
                 if !viewport.contains(forArea: circuitBounds, wrappedCoordinates: false) {
-                    let cameraOptions = vc.mapView.mapboxMap.camera(
+                    var cameraOptions = vc.mapView.mapboxMap.camera(
                         for: viewport.extend(forArea: circuitBounds),
                         padding: .init(top: 160, left: 20, bottom: 80, right: 20),
                         bearing: 0,
                         pitch: 0
                     )
+                    cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                     
                     vc.flyinToSomething = true
                     vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
