@@ -15,6 +15,7 @@ struct AreaView: View {
     let area: Area
     let mapState: MapState
     @Binding var appTab: ContentView.Tab
+    let linkToMap: Bool
     
     @State private var circuits = [Circuit]()
     @State private var problemsCount = 0
@@ -137,9 +138,9 @@ struct AreaView: View {
                                 ProblemCircleView(problem: problem)
                                 Text(problem.nameWithFallback)
                                 Spacer()
-                                if(problem.featured) {
-                                    Image(systemName: "heart.fill").foregroundColor(.pink)
-                                }
+//                                if(problem.featured) {
+//                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+//                                }
                                 Text(problem.grade.string)
                             }
                             .foregroundColor(.primary)
@@ -168,16 +169,24 @@ struct AreaView: View {
         }
         .navigationTitle(area.name)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(
-            leading: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                // FIXME: don't use button when screen is pushed inside a navigationview
-                Text("Fermer")
-                    .padding(.vertical)
-                    .font(.body)
+        .modify {
+            if(linkToMap) {
+                $0
             }
-        )
+            else {
+                $0.navigationBarItems(
+                    leading: Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        // FIXME: don't use button when screen is pushed inside a navigationview
+                        Text("Fermer")
+                            .padding(.vertical)
+                            .font(.body)
+                    }
+                )
+            }
+        }
+        
     }
     
 }

@@ -151,7 +151,7 @@ struct DiscoverView: View {
 //                                                        .contentShape(Rectangle())
 //                                                }
                                                 NavigationLink {
-                                                    AreaView(area: area, mapState: mapState, appTab: $appTab)
+                                                    AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                                 } label: {
                                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                         .padding(.leading, 8)
@@ -208,7 +208,7 @@ struct DiscoverView: View {
                                 ForEach(Area.all) { areaWithCount in
                                     
                                     NavigationLink {
-                                        AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab)
+                                        AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                     } label: {
                                         HStack {
                                             VStack(alignment: .leading, spacing: 6) {
