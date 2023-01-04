@@ -67,7 +67,7 @@ struct AreaView: View {
                             Text(String(level))
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(.systemBackground)
-                                .background(viewModel.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
+                                .background(viewModel.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
                                 .cornerRadius(4)
                         }
                     }

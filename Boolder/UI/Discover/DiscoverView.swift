@@ -188,27 +188,39 @@ struct DiscoverView: View {
                                         AreaView(viewModel: AreaViewModel(area: areaWithCount.area, mapState: mapState), appTab: $appTab)
                                     } label: {
                                         HStack {
-                                            Text(areaWithCount.area.name).multilineTextAlignment(.leading)
-                                            Text("(\(areaWithCount.problemsCount))").foregroundColor(Color(.systemGray))
-                                            Spacer()
-                                            
-                                            HStack(spacing: 2) {
-                                                ForEach(1..<8) { level in
-                                                    Text(String(level))
-                                                        .font(.caption)
-                                                        .frame(width: 16, height: 16)
-                                                        .foregroundColor(.systemBackground)
-                                                        .background(areaWithCount.area.levels[level]! ? Color.appGreen : Color.gray.opacity(0.5))
-                                                        .cornerRadius(4)
+                                            VStack(alignment: .leading) {
+                                                Text(areaWithCount.area.name)
+                                                    .font(.body.weight(.semibold))
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                                
+                                                HStack(spacing: 2) {
+                                                    ForEach(1..<8) { level in
+                                                        Text(String(level))
+//                                                            .font(.caption)
+                                                            .frame(width: 20, height: 20)
+                                                            .foregroundColor(.systemBackground)
+                                                            .background(areaWithCount.area.levels[level]! ? Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8)) : Color.gray.opacity(0.5))
+                                                            .cornerRadius(4)
+                                                    }
                                                 }
                                             }
+
+                                            Spacer()
+                                            
+                                            Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+                                            
+
+                                            
                                             
                                             Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
                                             
                                         }
                                         .font(.body)
+                                        .frame(minHeight: 32)
                                         .foregroundColor(.primary)
+//                                        .background(Color.red)
                                         .padding(.horizontal)
+                                        .padding(.vertical, 6)
                                     }
                                     
                                     
@@ -260,6 +272,7 @@ struct DiscoverView: View {
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                             .padding(.horizontal)
+                            .padding(.bottom)
                         }
                     }
                     .navigationBarTitle(Text("discover.title"))
