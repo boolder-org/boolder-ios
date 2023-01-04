@@ -100,6 +100,8 @@ struct AreaView: View {
                             HStack {
                                 Text("Niveaux")
                                     .foregroundColor(.primary)
+//                                Image(systemName: "questionmark.circle")
+//                                    .foregroundColor(.gray)
                                 
                                 Spacer()
                                 
@@ -127,7 +129,7 @@ struct AreaView: View {
                                 }
                                 .chartYScale(domain: 0...150)
                                 .foregroundColor(.levelGreen)
-                                .frame(height: 200)
+                                .frame(height: 150)
                                 .padding(.horizontal)
                                 .padding(.vertical)
                                 .clipShape(Rectangle())
