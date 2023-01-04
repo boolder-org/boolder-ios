@@ -63,7 +63,7 @@ struct AreaView: View {
             
             Section {
                 NavigationLink {
-//                    AreaProblemsView(viewModel: viewModel, appTab: $appTab)
+                    AreaProblemsView(area: area, mapState: mapState, appTab: $appTab)
                 } label: {
                     HStack {
                         Text("Voies")

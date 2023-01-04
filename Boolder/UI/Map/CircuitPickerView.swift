@@ -11,18 +11,21 @@ import SwiftUI
 struct CircuitPickerView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let viewModel: AreaViewModel
+    let area: Area
+    let mapState: MapState
+    
+    @State private var circuits = [Circuit]()
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    ForEach(viewModel.circuits) { circuit in
+                    ForEach(circuits) { circuit in
                         Button {
                             presentationMode.wrappedValue.dismiss()
-                            viewModel.mapState.clearFilters()
-                            viewModel.mapState.selectAndCenterOnCircuit(circuit)
-                            viewModel.mapState.displayCircuitStartButton = true
+                            mapState.clearFilters()
+                            mapState.selectAndCenterOnCircuit(circuit)
+                            mapState.displayCircuitStartButton = true
                             //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                         } label: {
                             HStack {
@@ -37,13 +40,16 @@ struct CircuitPickerView: View {
                 }
                 
             }
+            .onAppear {
+                circuits = area.circuits
+            }
             .navigationTitle("Circuits")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()
-                    viewModel.mapState.unselectCircuit()
-                    viewModel.mapState.clearFilters()
+                    mapState.unselectCircuit()
+                    mapState.clearFilters()
                 }) {
                     Text("Effacer")
                         .padding(.vertical)

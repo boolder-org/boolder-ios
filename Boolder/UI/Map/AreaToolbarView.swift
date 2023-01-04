@@ -146,7 +146,7 @@ struct AreaToolbarView: View {
                     .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
                         
                     }) {
-                        CircuitPickerView(viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                        CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
                             .modify {
                                 if #available(iOS 16, *) {
                                     $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
@@ -176,7 +176,7 @@ struct AreaToolbarView: View {
                         .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                             mapState.filtersRefresh() // FIXME: simplify refresh logic
                         }) {
-                            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
+                            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
                                 .modify {
                                     if #available(iOS 16, *) {
                                         $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
@@ -209,10 +209,8 @@ struct AreaToolbarView: View {
     var circuitBelongsToArea : Bool {
         guard let area = mapState.selectedArea else { return false }
         
-        let areaViewModel = AreaViewModel(area: area, mapState: mapState)
-        
         if let circuit = mapState.selectedCircuit {
-            return areaViewModel.circuits.contains(where: { $0.id == circuit.id })
+            return area.circuits.contains(where: { $0.id == circuit.id })
         }
         
         return false
@@ -221,9 +219,7 @@ struct AreaToolbarView: View {
     var circuits : [Circuit] {
         guard let area = mapState.selectedArea else { return [] }
         
-        let areaViewModel = AreaViewModel(area: area, mapState: mapState)
-        
-        return areaViewModel.circuits
+        return area.circuits
     }
     
 //    var circuitsWithIndex : [Circuit] {

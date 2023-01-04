@@ -11,8 +11,11 @@ import SwiftUI
 struct AreaProblemsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let viewModel: AreaViewModel
+    let area: Area
+    let mapState: MapState
     @Binding var appTab: ContentView.Tab
+    
+    @State private var problems = [Problem]()
     
     @State private var searchText = ""
     
@@ -22,9 +25,9 @@ struct AreaProblemsView: View {
                 ForEach(filteredProblems) { problem in
                     Button {
 //                        presentationMode.wrappedValue.dismiss()
-                        viewModel.mapState.presentAreaView = false
+                        mapState.presentAreaView = false
                         appTab = .map
-                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
+                        mapState.selectAndPresentAndCenterOnProblem(problem)
                     } label: {
                         HStack {
                             ProblemCircleView(problem: problem)
@@ -41,6 +44,9 @@ struct AreaProblemsView: View {
                 
             }
         }
+        .onAppear {
+            problems = area.problems
+        }
         .modify {
             if #available(iOS 16, *) {
                 $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Nom de voie")).autocorrectionDisabled()
@@ -56,11 +62,11 @@ struct AreaProblemsView: View {
     var filteredProblems: [Problem] {
         if searchText.count > 0 {
             // TODO: rewrite in SQL to improve performance
-            return viewModel.problems.filter { cleanString($0.name ?? "").contains(cleanString(searchText)) }
+            return problems.filter { cleanString($0.name ?? "").contains(cleanString(searchText)) }
         }
         else
         {
-            return viewModel.problems
+            return problems
         }
     }
     

@@ -13,7 +13,8 @@ struct FiltersView: View {
     @Binding var presentFilters: Bool
     @Binding var filters: Filters
     
-    let viewModel: AreaViewModel
+    let mapState: MapState
+    
     @State private var segment: Segment = .circuit
     
     enum Segment {
@@ -28,8 +29,8 @@ struct FiltersView: View {
                 .navigationBarTitle("Niveaux", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
-                        viewModel.mapState.clearFilters()
-                        viewModel.mapState.unselectCircuit()
+                        mapState.clearFilters()
+                        mapState.unselectCircuit()
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("filters.clear")
@@ -93,31 +94,6 @@ struct FiltersView: View {
                         Spacer()
                         Text(customRangeDescription).foregroundColor(Color(.systemGray)).font(.caption)
                     }
-                }
-            }
-        }
-    }
-    
-    var circuits: some View {
-        Section {
-//            if viewModel.circuits.count == 0 {
-//                Text("Aucun circuit")
-//            }
-            ForEach(viewModel.circuits) { circuit in
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        viewModel.mapState.selectAndCenterOnCircuit(circuit)
-                    }
-                    //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
-                } label: {
-                    HStack {
-                        CircleView(number: "", color: circuit.color.uicolor, height: 20)
-                        Text(circuit.color.longName)
-                        Spacer()
-                        Text(circuit.averageGrade.string)
-                    }
-                    .foregroundColor(.primary)
                 }
             }
         }

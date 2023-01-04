@@ -19,8 +19,6 @@
 		030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
 		0314FFDF295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
 		0314FFE0295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
-		0314FFE22950578400B7E249 /* AreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE12950578400B7E249 /* AreaViewModel.swift */; };
-		0314FFE32950578400B7E249 /* AreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE12950578400B7E249 /* AreaViewModel.swift */; };
 		0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
 		0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
 		0314FFEB2950FF1B00B7E249 /* CircuitToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */; };
@@ -166,7 +164,6 @@
 		030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
-		0314FFE12950578400B7E249 /* AreaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewModel.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
 		0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitToolbarView.swift; sourceTree = "<group>"; };
 		031A4C832964C882002CBF52 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
@@ -322,7 +319,6 @@
 				03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */,
 				0314FFDE295054C500B7E249 /* AreaView.swift */,
 				039A22A5295F21F90096E137 /* AreaProblemsView.swift */,
-				0314FFE12950578400B7E249 /* AreaViewModel.swift */,
 				039A229F295EE75B0096E137 /* CircuitView.swift */,
 				038C2EF62920142C006581CD /* Search */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
@@ -706,7 +702,6 @@
 				039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
-				0314FFE32950578400B7E249 /* AreaViewModel.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
@@ -781,7 +776,6 @@
 				031F36BC291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
-				0314FFE22950578400B7E249 /* AreaViewModel.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
