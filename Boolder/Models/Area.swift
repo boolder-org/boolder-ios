@@ -70,6 +70,33 @@ struct Area : Identifiable {
         }
     }
     
+    static var all: [AreaWithCount] {
+        let db = SqliteStore.shared.db
+        
+//        let grade = Expression<String>("grade")
+//        let popularity = Expression<String>("popularity")
+        let id = Expression<Int>("id")
+        let areaId = Expression<Int>("area_id")
+        let areas = Table("areas")
+        let problems = Table("problems")
+        let query = Table("areas").select(areas[id], problems[id].count)
+            .join(problems, on: areas[id] == problems[areaId])
+            .group(areas[id])
+            .order(problems[id].count.desc)
+//            .order(grade.desc, popularity.desc)
+        
+        
+        do {
+            return try db.prepare(query).map { area in
+                AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
+            }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     var levels : [Int:Bool] {
         [
             1: level1,
@@ -186,4 +213,13 @@ extension Area : Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+}
+
+struct AreaWithCount : Identifiable {
+    var id: Int {
+        area.id
+    }
+    
+    let area: Area
+    let problemsCount: Int
 }

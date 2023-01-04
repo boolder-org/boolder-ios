@@ -16,7 +16,6 @@ struct DiscoverView: View {
     
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
-    let viewModel: DiscoverViewModel
     
     var body: some View {
         NavigationView {
@@ -152,7 +151,7 @@ struct DiscoverView: View {
 //                                                        .contentShape(Rectangle())
 //                                                }
                                                 NavigationLink {
-//                                                    AreaView(viewModel: AreaViewModel(area: area, mapState: mapState), appTab: $appTab)
+                                                    AreaView(area: area, mapState: mapState, appTab: $appTab)
                                                 } label: {
                                                     AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                         .padding(.leading, 8)
@@ -182,7 +181,7 @@ struct DiscoverView: View {
                             VStack {
                                 Divider()
                                 
-                                ForEach(viewModel.areas) { areaWithCount in
+                                ForEach(Area.all) { areaWithCount in
                                     
                                     NavigationLink {
                                         AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab)
