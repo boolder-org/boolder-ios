@@ -100,7 +100,7 @@ struct AreaView: View {
                             HStack {
                                 Text("Niveaux")
                                     .foregroundColor(.primary)
-//                                Image(systemName: "questionmark.circle")
+//                                Image(systemName: "chevron.down")
 //                                    .foregroundColor(.gray)
                                 
                                 Spacer()
