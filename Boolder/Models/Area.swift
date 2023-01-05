@@ -14,6 +14,9 @@ struct Area : Identifiable {
     let name: String
     let descriptionFr: String?
     let descriptionEn: String?
+    let warningFr: String?
+    let warningEn: String?
+    let tags: [String]
     let parkingShortName: String?
     let parkingUrl: String?
     let parkingDistance: Int?
@@ -31,6 +34,9 @@ struct Area : Identifiable {
             let name = Expression<String>("name")
             let descriptionFr = Expression<String?>("description_fr")
             let descriptionEn = Expression<String?>("description_en")
+            let warningFr = Expression<String?>("warning_fr")
+            let warningEn = Expression<String?>("warning_en")
+            let tags = Expression<String?>("tags")
             let parkingShortName = Expression<String?>("parking_short_name")
             let parkingUrl = Expression<String?>("parking_url")
             let parkingDistance = Expression<Int?>("parking_distance")
@@ -41,7 +47,11 @@ struct Area : Identifiable {
             
             do {
                 if let a = try db.pluck(areas) {
-                    return Area(id: id, name: a[name], descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn], parkingShortName: a[parkingShortName], parkingUrl: a[parkingUrl], parkingDistance: a[parkingDistance],
+                    return Area(id: id, name: a[name],
+                                descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
+                                warningFr: a[warningFr], warningEn: a[warningEn],
+                                tags: a[tags]?.components(separatedBy: ",") ?? [],
+                                parkingShortName: a[parkingShortName], parkingUrl: a[parkingUrl], parkingDistance: a[parkingDistance],
                                 southWestLat: a[southWestLat], southWestLon: a[southWestLon],
                                 northEastLat: a[northEastLat], northEastLon: a[northEastLon])
                 }

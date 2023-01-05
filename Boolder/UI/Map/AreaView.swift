@@ -45,36 +45,64 @@ struct AreaView: View {
             List {
                 Section {
                     
-                    if NSLocale.websiteLocale == "fr", let descriptionFr = area.descriptionFr {
-                        Text(descriptionFr)
+                    if area.tags.count > 0 {
+                        if #available(iOS 16.0, *) {
+                            FlowLayout(alignment: .leading) {
+                                ForEach(area.tags, id: \.self) { tag in
+                                    Text(tag) //.background(Color.blue)
+                                }
+                            }
+                            //.background(Color.red)
+                        } else {
+                            // Fallback on earlier versions
+                        }
                     }
-                    else if let descriptionEn = area.descriptionEn {
-                        Text(descriptionEn)
+                }
+                
+                Section {
+                    
+                    if NSLocale.websiteLocale == "fr", let warningFr = area.warningFr {
+                        VStack(alignment: .leading) {
+                            Text("À savoir :").bold().padding(.bottom, 4)
+                            Text(warningFr)
+                        }
+                    }
+                    else if let warningEn = area.warningEn {
+                        VStack(alignment: .leading) {
+                            Text("À savoir :").bold().padding(.bottom, 4)
+                            Text(warningEn)
+                        }
                     }
                     
                     if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
                         
                         NavigationLink {
                             List {
-                                HStack {
-                                    Text("Parking")
-                                    Spacer()
-                                    Image(systemName: "p.square.fill")
-                                        .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-                                        .font(.title2)
-                                    Text(name)
-                                    
-                                    //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
-                                }
-                                HStack {
-                                    Text("Marche d'approche")
-                                    Spacer()
-                                    Text("\(Int(round(Double(distance/80)))) min")
+                                Section {
+                                    HStack {
+                                        Text("Parking")
+                                        Spacer()
+                                        Image(systemName: "p.square.fill")
+                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                            .font(.title2)
+                                        Text(name)
+                                        
+                                        //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
+                                    }
+                                    HStack {
+                                        Text("Marche d'approche")
+                                        Spacer()
+                                        Text("\(Int(round(Double(distance/80)))) min")
+                                    }
                                 }
                             }
                             .navigationTitle(Text("Accès"))
                         } label: {
-                            Text("Accès")
+                            HStack {
+                                Text("Accès")
+                                Spacer()
+//                                Text("\(Int(round(Double(distance/80)))) min")
+                            }
                         }
                         
                         
