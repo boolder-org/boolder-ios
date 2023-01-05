@@ -633,10 +633,10 @@ class MapboxViewController: UIViewController {
                     
                     if(queriedfeatures.first?.feature.geometry != nil) {
 //                        print("boulders 2")
-                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 18 {
+                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
                             let cameraOptions = CameraOptions(
                                 center: self.mapView.mapboxMap.coordinate(for: tapPoint),
-//                                padding: UIEdgeInsets(top: 60, left: 0, bottom: self.view.bounds.height/2, right: 0),
+                                padding: UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20),
                                 zoom: 19
                             )
                             self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
@@ -676,7 +676,7 @@ class MapboxViewController: UIViewController {
                 
                 guard let self = self else { return }
                 
-                if self.mapView.mapboxMap.cameraState.zoom < 18 { return }
+                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
@@ -716,7 +716,7 @@ class MapboxViewController: UIViewController {
                 
                 guard let self = self else { return }
                 
-                if self.mapView.mapboxMap.cameraState.zoom < 16 { return } // why not use a zoom filter?
+                if self.mapView.mapboxMap.cameraState.zoom < 19 { return } 
                 
                 switch result {
                 case .success(let queriedfeatures):
