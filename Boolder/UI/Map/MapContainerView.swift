@@ -81,7 +81,10 @@ struct MapContainerView: View {
                                 mapState.selectAndPresentAndCenterOnProblem(start)
                                 mapState.displayCircuitStartButton = false
                             } label: {
-                                Text("Départ circuit \(circuit.color.shortName)")
+                                HStack {
+//                                    CircleView(number: "1", color: circuit.color.uicolor, height: 24)
+                                    Text("Départ circuit")
+                                }
                             }
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
