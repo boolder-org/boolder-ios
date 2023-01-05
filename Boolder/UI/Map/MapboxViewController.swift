@@ -621,6 +621,34 @@ class MapboxViewController: UIViewController {
             }
         
         mapView.mapboxMap.queryRenderedFeatures(
+            with: CGRect(x: tapPoint.x-32, y: tapPoint.y-32, width: 64, height: 64),
+            options: RenderedQueryOptions(layerIds: ["boulders"], filter: nil)) { [weak self] result in
+                
+//                print("boulders 1")
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if(queriedfeatures.first?.feature.geometry != nil) {
+//                        print("boulders 2")
+                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 18 {
+                            let cameraOptions = CameraOptions(
+                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
+//                                padding: UIEdgeInsets(top: 60, left: 0, bottom: self.view.bounds.height/2, right: 0),
+                                zoom: 19
+                            )
+                            self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["pois"], filter: nil)) { [weak self] result in
                 
