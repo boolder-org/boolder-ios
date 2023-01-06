@@ -38,9 +38,11 @@ struct TopAreasLevelView: View {
                     
                     if level == 3 {
                         VStack {
+                            
+                            
                             Divider() //.padding(.leading)
                             
-                            ForEach(Area.all.filter{$0.area.beginnerFriendly}) { areaWithCount in
+                            ForEach(Area.forBeginners) { areaWithCount in
                                 
                                 NavigationLink {
                                     AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
@@ -53,7 +55,7 @@ struct TopAreasLevelView: View {
                                         
                                         Spacer()
                                         
-//                                        Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+                                        Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
                                         Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
                                         
                                     }

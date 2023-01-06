@@ -121,6 +121,36 @@ struct Area : Identifiable {
         }
     }
     
+    static var forBeginners : [AreaWithCount] {
+        let db = SqliteStore.shared.db
+        
+//        let grade = Expression<String>("grade")
+//        let popularity = Expression<String>("popularity")
+        let id = Expression<Int>("id")
+        let areaId = Expression<Int>("area_id")
+        let grade = Expression<String>("grade")
+        let areas = Table("areas")
+        let problems = Table("problems")
+        let query = Table("areas").select(areas[id], problems[id].count)
+            .filter(problems[grade] >= "1a").filter(problems[grade] < "4a")
+            .join(problems, on: areas[id] == problems[areaId])
+            .group(areas[id])
+            .order(problems[id].count.desc)
+//            .order(grade.desc, popularity.desc)
+        
+        
+        do {
+            return try db.prepare(query).map { area in
+                AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
+            }
+            .filter{$0.area.beginnerFriendly}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     // FIXME: don't use AreaView
     var levelsCount : [AreaView.Level] {
         [
