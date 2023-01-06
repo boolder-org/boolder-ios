@@ -27,6 +27,29 @@ struct DiscoverView: View {
                             
                             VStack {
                                 HStack {
+                                    NavigationLink(destination: EmptyView()) {
+                                        
+                                        VStack(alignment: .leading) {
+                                            HStack {
+//                                                Image(systemName: "face.smiling")
+                                                Text("Guide pour bien débuter")
+                                                    .textCase(.uppercase)
+                                            }
+                                            .padding()
+                                            .font(.subheadline.weight(.bold))
+                                            .foregroundColor(Color.white)
+                                            .frame(height: 70)
+                                            .frame(maxWidth: .infinity)
+                                            .background(
+                                                LinearGradient(gradient:
+                                                                Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
+                                                               startPoint: .top,
+                                                               endPoint: .bottom)
+                                            )
+                                            .cornerRadius(8)
+                                        }
+                                    }
+                                    
                                     NavigationLink(destination: TopAreasLevelView(appTab: $appTab, mapState: mapState)) {
                                         
                                         VStack(alignment: .leading) {
@@ -50,28 +73,6 @@ struct DiscoverView: View {
                                         }
                                     }
                                     
-                                    NavigationLink(destination: TopAreasGroups(appTab: $appTab, mapState: mapState)) {
-                                        
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "person.3")
-                                                Text("discover.top_areas.groups")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.subheadline.weight(.bold))
-                                            .foregroundColor(Color.white)
-                                            .frame(height: 70)
-                                            .frame(maxWidth: .infinity)
-                                            .background(
-                                                LinearGradient(gradient:
-                                                                Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
-                                                               startPoint: .top,
-                                                               endPoint: .bottom)
-                                            )
-                                            .cornerRadius(8)
-                                        }
-                                    }
                                 }
                                 
                                 HStack {

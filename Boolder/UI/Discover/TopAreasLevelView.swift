@@ -11,7 +11,7 @@ import SwiftUI
 struct TopAreasLevelView: View {
     @Environment(\.openURL) var openURL
     
-    @State private var level = 0
+    @State private var level = 5
     
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
@@ -25,151 +25,71 @@ struct TopAreasLevelView: View {
                     
                     VStack {
                         Picker("top_areas.level.level", selection: $level) {
-                            Text("top_areas.level.beginner").tag(0)
-                            Text("top_areas.level.intermediate").tag(1)
-                            Text("top_areas.level.advanced").tag(2)
+                            ForEach(1..<9) { level in
+                                Text(String(level)).tag(level)
+                            }
                         }
                         .pickerStyle(.segmented)
                         
                     }
+                    .padding(.horizontal)
                     .padding(.vertical)
                     
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack {
+                        Divider() //.padding(.leading)
                         
-                        if(level == 0) {
+                        ForEach(Area.allWithLevel(level).filter{$0.problemsCount >= 5}.prefix(20)) { areaWithCount in
                             
-                            VStack(alignment: .leading, spacing: 32) {
-                                
-                                Text("top_areas.level.description.beginner")
-                                    .font(.body)
-                                    .foregroundColor(gray)
-                                
-                                LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
-                                    
-                                    ForEach(beginnerAreas) { area in
-                                        Button {
-                                            appTab = .map
-                                            mapState.centerOnArea(area)
-                                        } label: {
-                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .contentShape(Rectangle())
-                                        }
+                            NavigationLink {
+                                AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Text(areaWithCount.area.name)
+//                                                    .font(.body.weight(.semibold))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                         
-                                        
+//                                                HStack(spacing: 2) {
+//                                                    ForEach(1..<8) { level in
+//                                                        Text(String(level))
+////                                                            .font(.caption)
+//                                                            .frame(width: 20, height: 20)
+//                                                            .foregroundColor(.systemBackground)
+//                                                            .background(areaWithCount.area.levels[level]! ? Color.levelGreen : Color.gray.opacity(0.5))
+//                                                            .cornerRadius(4)
+//                                                    }
+//                                                }
                                     }
-                                }
-                                
-                                Button(action: {
-                                    openURL(guideURL)
-                                }) {
-                                    HStack {
-                                        Spacer()
-                                        Image(systemName: "book")
-                                        Text("top_areas.level.read_guide")
-                                        Spacer()
-                                    }
-                                }
-                                .padding()
-                                .background(Color.gray.opacity(0.1))
-                                .cornerRadius(8)
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                            
-                        }
-                        
-                        if(level == 1) {
-                            
-                            VStack(alignment: .leading, spacing: 32) {
-                                
-                                Text("top_areas.level.description.intermediate")
-                                    .font(.body)
-                                    .foregroundColor(gray)
-                                
-                                LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
-                                    
-                                    ForEach(intermediateAreas) { area in
-                                        
-                                        Button {
-                                            appTab = .map
-                                            mapState.centerOnArea(area)
-                                        } label: {
-                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .contentShape(Rectangle())
-                                        }
-                                    }
-                                }
-                                
-                                HStack(alignment: .top) {
-                                    Image(systemName: "exclamationmark.triangle.fill").font(.body)
-                                    Text("top_areas.level.intermediate.warning").font(.body)
+
                                     Spacer()
-                                }
-                                .foregroundColor(Color.orange.opacity(0.8))
-                                .padding()
-                                .background(Color.yellow.opacity(0.2))
-                                .cornerRadius(8)
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                            
-                            
-                            
-                        }
-                        
-                        if(level == 2) {
-                            
-                            VStack(alignment: .leading, spacing: 32) {
-                                
-                                Text("top_areas.level.description.advanced")
-                                    .font(.body)
-                                    .foregroundColor(gray)
-                                
-                                LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
                                     
-                                    ForEach(advancedAreas) { area in
-                                        
-                                        Button {
-                                            appTab = .map
-                                            mapState.centerOnArea(area)
-                                        } label: {
-                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .contentShape(Rectangle())
-                                        }
-                                        
-                                        
-                                    }
+                                    Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+                                    
+
+                                    
+                                    
+                                    Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
+                                    
                                 }
+                                .font(.body)
+//                                        .frame(minHeight: 32)
+                                .foregroundColor(.primary)
+//                                        .background(Color.red)
+                                .padding(.horizontal)
+//                                        .padding(.leading)
+                                .padding(.vertical, 4)
                             }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                            
+                            
+                            Divider().padding(.leading)
                         }
                     }
                 }
-                .padding(.horizontal)
+//                .padding(.horizontal)
             }
         }
         .navigationTitle("top_areas.level.title")
         .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    var beginnerAreas: [Area] {
-        [19, 14, 18, 13, 2, 51].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
-    }
-    
-    var intermediateAreas: [Area] {
-        [10, 2, 4, 11, 5, 14, 29, 32, 30, 1, 46, 48].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
-    }
-    
-    var advancedAreas: [Area] {
-        [21, 10, 13, 4, 11, 5, 15, 12, 14, 6, 23, 26, 29, 33, 30, 41, 20, 50, 1, 44, 69, 48, 61, 64, 46, 62, ].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
-    }
-    
-    var guideURL: URL {
-        URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!
     }
 }
 
