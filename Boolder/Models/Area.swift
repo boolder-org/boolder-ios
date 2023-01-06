@@ -168,6 +168,10 @@ struct Area : Identifiable {
     var beginnerFriendly: Bool {
         tags.contains("beginner_friendly")
     }
+    
+    var popular: Bool {
+        tags.contains("popular")
+    }
 
     var problems: [Problem] {
 //        print("problems")

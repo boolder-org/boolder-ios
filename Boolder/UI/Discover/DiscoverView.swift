@@ -142,7 +142,7 @@ struct DiscoverView: View {
                                                 .frame(width: 0, height: 1)
                                                 .padding(.leading, 8)
                                             
-                                            ForEach(popularAreas) { (area: Area) in
+                                            ForEach(Area.all.filter{$0.area.popular}) { areaWithCount in
 //                                                Button {
 //                                                    appTab = .map
 //                                                    mapState.centerOnArea(area)
@@ -152,9 +152,9 @@ struct DiscoverView: View {
 //                                                        .contentShape(Rectangle())
 //                                                }
                                                 NavigationLink {
-                                                    AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                                    AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                                 } label: {
-                                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                    AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                         .padding(.leading, 8)
                                                         .contentShape(Rectangle())
                                                 }
@@ -305,10 +305,6 @@ struct DiscoverView: View {
             }
         }
         .phoneOnlyStackNavigationView()
-    }
-    
-    var popularAreas: [Area] {
-        [5,4,2,1,9,10,11,12].map{Area.load(id: $0)}.compactMap{$0}
     }
     
     var feedbackURL: URL {
