@@ -31,7 +31,7 @@ struct CircuitView: View {
                         if(circuit.dangerous) {
                             HStack {
                                 Image(systemName: "exclamationmark.circle").font(.title3)
-                                Text("Ce circuit est dangereux")
+                                Text("Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile")
                             }
                             .foregroundColor(.red)
                         }
@@ -65,7 +65,7 @@ struct CircuitView: View {
                 Section(header: Text("")) {
                     EmptyView()
                 }
-                .padding(.bottom, 40)
+                .padding(.bottom, 24)
             }
             
             VStack {
