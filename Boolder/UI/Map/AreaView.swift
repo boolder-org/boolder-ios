@@ -110,6 +110,7 @@ struct AreaView: View {
                             
                             if let tagg = area.tags.first {
                                 Text(NSLocalizedString("area.tags.\(tagg)", comment: ""))
+                                    .lineLimit(1)
                                     .font(.callout)
                                     .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
                                     .foregroundColor(Color.green)
@@ -128,11 +129,11 @@ struct AreaView: View {
                                     .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
                             }
                             
-                            if area.warningEn != nil {
-                                Image(systemName: "exclamationmark.circle")
-                                    .foregroundColor(.orange)
-                                    .font(.title3)
-                            }
+//                            if area.warningEn != nil {
+//                                Image(systemName: "exclamationmark.circle")
+//                                    .foregroundColor(.orange)
+//                                    .font(.title3)
+//                            }
                         }
                     }
                 }
