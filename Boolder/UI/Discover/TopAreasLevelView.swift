@@ -22,11 +22,26 @@ struct TopAreasLevelView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     
-                    Text("Idéal pour débuter")
-                        .font(.title2).bold()
+                    NavigationLink {
+                        TopAreasBeginnerView(appTab: $appTab, mapState: mapState)
+                    } label: {
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("Idéal pour débuter")
+                                .font(.title2.weight(.bold))
+                                .foregroundColor(.primary)
+                                
+                            Image(systemName: "chevron.right")
+                                .font(.body.weight(.bold))
+                                .foregroundColor(.gray)
+                            
+                            Spacer()
+                        }
                         .padding(.top, 16)
                         .padding(.bottom, 8)
                         .padding(.horizontal)
+                    }
+
+                    
                     
                     VStack {
                         VStack(alignment: .leading) {

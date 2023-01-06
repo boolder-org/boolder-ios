@@ -84,6 +84,7 @@ struct TopAreasDryFast: View {
                                     .foregroundColor(Color.appGreen)
                             }
                         }
+                        .padding(.vertical)
                     }
                     .padding(.horizontal)
                     
