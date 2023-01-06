@@ -57,6 +57,7 @@ struct AreaView: View {
                                                     .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
                                                     .foregroundColor(Color.green)
                                                     .background(Color.systemBackground)
+                                                    .cornerRadius(32)
                                                     .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
                                             }
                                         }
@@ -107,7 +108,31 @@ struct AreaView: View {
                             Text("Description")
                             Spacer()
                             
-                            //                                Text("\(Int(round(Double(distance/80)))) min")
+                            if let tagg = area.tags.first {
+                                Text(NSLocalizedString("area.tags.\(tagg)", comment: ""))
+                                    .font(.callout)
+                                    .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
+                                    .foregroundColor(Color.green)
+                                    .background(Color.systemBackground)
+                                    .cornerRadius(32)
+                                    .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+                            }
+                            
+                            if area.tags.count > 1 {
+                                Text("+\(area.tags.count-1)")
+                                    .font(.callout)
+                                    .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 8))
+                                    .foregroundColor(Color.green)
+                                    .background(Color.systemBackground)
+                                    .cornerRadius(32)
+                                    .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+                            }
+                            
+                            if area.warningEn != nil {
+                                Image(systemName: "exclamationmark.circle")
+                                    .foregroundColor(.orange)
+                                    .font(.title3)
+                            }
                         }
                     }
                 }
@@ -185,7 +210,7 @@ struct AreaView: View {
                                     }
                                     if(circuit.dangerous) {
                                         Image(systemName: "exclamationmark.circle")
-                                            .foregroundColor(.red)
+                                            .foregroundColor(.orange)
                                             .font(.title3)
                                     }
                                     Text(circuit.averageGrade.string)

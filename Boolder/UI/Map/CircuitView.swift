@@ -33,7 +33,7 @@ struct CircuitView: View {
                                 Image(systemName: "exclamationmark.circle").font(.title3)
                                 Text("Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile")
                             }
-                            .foregroundColor(.red)
+                            .foregroundColor(.orange)
                         }
                     }
                 }
