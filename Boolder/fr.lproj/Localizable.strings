@@ -34,6 +34,13 @@
 "discover.rate" = "Noter l'appli";
 "discover.feedback" = "Idées d'amélioration";
 
+// MARK: Area view
+"area.tags.popular" = "populaire";
+"area.tags.beginner_friendly" = "adapté aux débutants";
+"area.tags.family_friendly" = "idéal en famille";
+"area.tags.dry_fast" = "sèche vite";
+"area.tags.stunning" = "magnifique";
+
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";
 "top_areas.level.level" = "Niveau";

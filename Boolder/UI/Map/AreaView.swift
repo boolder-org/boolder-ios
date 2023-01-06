@@ -45,39 +45,43 @@ struct AreaView: View {
             List {
                 Section {
                     
-                    if area.tags.count > 0 {
-                        if #available(iOS 16.0, *) {
-                            FlowLayout(alignment: .leading) {
-                                ForEach(area.tags, id: \.self) { tag in
-                                    Text(tag) //.background(Color.blue)
+                    NavigationLink {
+                        List {
+                            if area.tags.count > 0 {
+                                if #available(iOS 16.0, *) {
+                                    Section {
+                                        FlowLayout(alignment: .leading) {
+                                            ForEach(area.tags, id: \.self) { tag in
+                                                Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
+                                                    .font(.callout)
+                                                    .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
+                                                    .foregroundColor(Color.green)
+                                                    .background(Color.systemBackground)
+                                                    .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+                                            }
+                                        }
+                                        .padding(.vertical, 4)
+                                        //.background(Color.red)
+                                    }
                                 }
                             }
-                            //.background(Color.red)
-                        } else {
-                            // Fallback on earlier versions
-                        }
-                    }
-                }
-                
-                Section {
-                    
-                    if NSLocale.websiteLocale == "fr", let warningFr = area.warningFr {
-                        VStack(alignment: .leading) {
-                            Text("À savoir :").bold().padding(.bottom, 4)
-                            Text(warningFr)
-                        }
-                    }
-                    else if let warningEn = area.warningEn {
-                        VStack(alignment: .leading) {
-                            Text("À savoir :").bold().padding(.bottom, 4)
-                            Text(warningEn)
-                        }
-                    }
-                    
-                    if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
                         
-                        NavigationLink {
-                            List {
+                            Section {
+                                if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
+                                    VStack(alignment: .leading) {
+                                        Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
+                                    }
+                                }
+                                
+                                if let warningFr = area.warningFr, let warningEn = area.warningEn {
+                                    VStack(alignment: .leading, spacing: 4) {
+//                                        Text("Important :").bold()
+                                        Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
+                                    }
+                                }
+                            }
+                            
+                            if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
                                 Section {
                                     HStack {
                                         Text("Parking")
@@ -96,17 +100,15 @@ struct AreaView: View {
                                     }
                                 }
                             }
-                            .navigationTitle(Text("Accès"))
-                        } label: {
-                            HStack {
-                                Text("Accès")
-                                Spacer()
-//                                Text("\(Int(round(Double(distance/80)))) min")
-                            }
                         }
-                        
-                        
-                        
+                        .navigationTitle(Text("Description"))
+                    } label: {
+                        HStack {
+                            Text("Description")
+                            Spacer()
+                            
+                            //                                Text("\(Int(round(Double(distance/80)))) min")
+                        }
                     }
                 }
                 
@@ -158,7 +160,7 @@ struct AreaView: View {
                                 .chartYScale(domain: 0...150)
                                 .foregroundColor(.levelGreen)
                                 .frame(height: 150)
-                                .padding(.horizontal)
+//                                .padding(.horizontal)
                                 .padding(.vertical)
                                 .clipShape(Rectangle())
                             }
@@ -243,7 +245,7 @@ struct AreaView: View {
                     Section(header: Text("")) {
                         EmptyView()
                     }
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 24)
                 }
                 
                 

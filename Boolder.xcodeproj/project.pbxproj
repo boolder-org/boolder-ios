@@ -23,10 +23,10 @@
 		0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
 		0314FFEB2950FF1B00B7E249 /* CircuitToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */; };
 		0314FFEC2950FF1B00B7E249 /* CircuitToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */; };
-		031A4C8D296733DC002CBF52 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031A4C8C296733DC002CBF52 /* boolder.db */; };
-		031A4C8E296733DC002CBF52 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031A4C8C296733DC002CBF52 /* boolder.db */; };
 		031A4C9629673C90002CBF52 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4C9529673C90002CBF52 /* FlowLayout.swift */; };
 		031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4C9529673C90002CBF52 /* FlowLayout.swift */; };
+		031A4C9C2968072F002CBF52 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031A4C9B2968072F002CBF52 /* boolder.db */; };
+		031A4C9D2968072F002CBF52 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031A4C9B2968072F002CBF52 /* boolder.db */; };
 		031F36B0291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B3291D01B700BD0C2B /* AlgoliaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B2291D01B700BD0C2B /* AlgoliaController.swift */; };
@@ -166,8 +166,8 @@
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
 		0314FFEA2950FF1B00B7E249 /* CircuitToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitToolbarView.swift; sourceTree = "<group>"; };
-		031A4C8C296733DC002CBF52 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		031A4C9529673C90002CBF52 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		031A4C9B2968072F002CBF52 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B2291D01B700BD0C2B /* AlgoliaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaController.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				031A4C8C296733DC002CBF52 /* boolder.db */,
+				031A4C9B2968072F002CBF52 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
@@ -658,7 +658,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				031A4C8E296733DC002CBF52 /* boolder.db in Resources */,
+				031A4C9D2968072F002CBF52 /* boolder.db in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
 				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
 				37379A3D258E619400711EDA /* Assets.xcassets in Resources */,
@@ -670,7 +670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				031A4C8D296733DC002CBF52 /* boolder.db in Resources */,
+				031A4C9C2968072F002CBF52 /* boolder.db in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				37379A9A258F4C3000711EDA /* Assets.xcassets in Resources */,

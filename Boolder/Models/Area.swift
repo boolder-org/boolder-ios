@@ -50,7 +50,7 @@ struct Area : Identifiable {
                     return Area(id: id, name: a[name],
                                 descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
                                 warningFr: a[warningFr], warningEn: a[warningEn],
-                                tags: a[tags]?.components(separatedBy: ",") ?? [],
+                                tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
                                 parkingShortName: a[parkingShortName], parkingUrl: a[parkingUrl], parkingDistance: a[parkingDistance],
                                 southWestLat: a[southWestLat], southWestLon: a[southWestLon],
                                 northEastLat: a[northEastLat], northEastLon: a[northEastLon])
