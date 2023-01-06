@@ -11,119 +11,102 @@ import SwiftUI
 struct TopAreasLevelView: View {
     @Environment(\.openURL) var openURL
     
-    @State private var level = 6
-    
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
-    
-    let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
         GeometryReader { geo in
             ScrollView {
                 VStack(alignment: .leading) {
                     
-                    VStack {
-                        Picker("top_areas.level.level", selection: $level) {
-                            Text("1 → 3").tag(3)
-                            ForEach(4..<9) { level in
-                                Text(String(level)).tag(level)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                        
-                    }
-                    .padding(.horizontal)
-                    .padding(.vertical)
+                    Text("Idéal pour débuter")
+                        .font(.title2).bold()
+                        .padding(.top, 16)
+                        .padding(.bottom, 8)
+                        .padding(.horizontal)
                     
-                    if level == 3 {
+                    VStack {
                         VStack(alignment: .leading) {
-//                            Text("Débutant")
-//                                .font(.title2).bold()
-//                                .padding(.horizontal)
-//                                .padding(.bottom)
                             
-                            Divider() //.padding(.leading)
-                            
-                            ForEach(Area.forBeginners) { areaWithCount in
-                                
-                                NavigationLink {
-                                    AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
-                                } label: {
-                                    HStack {
-                                        VStack(alignment: .leading, spacing: 6) {
-                                            Text(areaWithCount.area.name)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.leading, 8)
+                                    
+                                    ForEach(Area.forBeginners) { areaWithCount in
+                                        NavigationLink {
+                                            AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                        } label: {
+                                            AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .padding(.leading, 8)
+                                                .contentShape(Rectangle())
                                         }
-                                        
-                                        Spacer()
-                                        
-                                        Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
-                                        Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
-                                        
                                     }
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 4)
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.trailing, 16)
                                 }
-                                
-                                
-                                Divider().padding(.leading)
                             }
                         }
                     }
-                    else {
-                        VStack {
-//                            VStack(alignment: .leading, spacing: 4) {
-//                                Text("Secteurs avec voies de **niveau \(String(level))**")
-////                                    .foregroundColor(.gray)
-//                                    .frame(maxWidth: .infinity, alignment: .leading)
-//                            }
-//
-//                                .padding(.horizontal)
-//                                .padding(.bottom)
+                    
+                    Text("Tous les secteurs")
+                        .font(.title2).bold()
+                        .padding(.top, 16)
+                        .padding(.bottom, 8)
+                        .padding(.horizontal)
+                    
+                    VStack {
+                        Divider() //.padding(.leading)
+                        
+                        ForEach(Area.all) { areaWithCount in
                             
-                            Divider() //.padding(.leading)
-                            
-                            ForEach(Area.allWithLevel(level).filter{$0.problemsCount >= 5}.prefix(20)) { areaWithCount in
-                                
-                                NavigationLink {
-                                    AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
-                                } label: {
-                                    HStack {
-                                        VStack(alignment: .leading, spacing: 6) {
-                                            Text(areaWithCount.area.name)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                            
-                                            
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        if level <= 5 && areaWithCount.area.circuits.filter{$0.dangerous && $0.averageGrade < Grade("6a")}.count > 0 {
-                                            Image(systemName: "exclamationmark.circle").font(.title3)
-                                                .foregroundColor(.orange)
-                                        }
-                                        
-                                        Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
-                                        
-                                        Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
+                            NavigationLink {
+                                AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Text(areaWithCount.area.name)
+//                                                    .font(.body.weight(.semibold))
+//                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .multilineTextAlignment(.leading)
+//                                            .background(Color.blue)
                                         
                                     }
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 4)
+
+                                    Spacer()
+                                    
+//                                    Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+//
+
+                                    HStack(spacing: 2) {
+                                        ForEach(areaWithCount.area.levelsCount) { level in
+                                            Text(String(level.name))
+                                                .frame(width: 20, height: 20)
+                                                .foregroundColor(.systemBackground)
+                                                .background(level.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
+                                                .cornerRadius(4)
+                                        }
+                                    }
+                                    
+                                    
+                                    Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
+                                    
                                 }
-                                
-                                
-                                Divider().padding(.leading)
+                                .font(.body)
+                                .foregroundColor(.primary)
+                                .padding(.horizontal)
+                                .padding(.vertical, 4)
                             }
+                            
+                            
+                            Divider().padding(.leading)
                         }
                     }
                 }
-//                .padding(.horizontal)
                 .padding(.bottom)
             }
         }

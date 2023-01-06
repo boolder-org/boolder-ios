@@ -143,14 +143,6 @@ struct DiscoverView: View {
                                                 .padding(.leading, 8)
                                             
                                             ForEach(Area.all.filter{$0.area.popular}) { areaWithCount in
-//                                                Button {
-//                                                    appTab = .map
-//                                                    mapState.centerOnArea(area)
-//                                                } label: {
-//                                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-//                                                        .padding(.leading, 8)
-//                                                        .contentShape(Rectangle())
-//                                                }
                                                 NavigationLink {
                                                     AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                                 } label: {
@@ -179,24 +171,6 @@ struct DiscoverView: View {
                                 
                                 Spacer()
                                 
-//                                Menu {
-//                                    Button {
-//                                        // TODO
-//                                    } label: {
-//                                        Text("Alphabétique")
-//                                    }
-//                                    
-//                                    Button {
-//                                        // TODO
-//                                    } label: {
-//                                        Text("Nombre de voies")
-//                                    }
-//
-//                                } label: {
-//                                    Image(systemName: "line.3.horizontal.decrease.circle")
-//                                        .font(.title2)
-//                                        .foregroundColor(.primary)
-//                                }
                             }
                             
                             .padding(.top, 24)
@@ -206,7 +180,9 @@ struct DiscoverView: View {
                             VStack {
                                 Divider() //.padding(.leading)
                                 
-                                ForEach(Area.all) { areaWithCount in
+                                ForEach(Area.all.sorted{
+                                    $0.area.name.folding(options: .diacriticInsensitive, locale: .current) < $1.area.name.folding(options: .diacriticInsensitive, locale: .current)
+                                }) { areaWithCount in
                                     
                                     NavigationLink {
                                         AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
@@ -240,11 +216,8 @@ struct DiscoverView: View {
                                             
                                         }
                                         .font(.body)
-//                                        .frame(minHeight: 32)
                                         .foregroundColor(.primary)
-//                                        .background(Color.red)
                                         .padding(.horizontal)
-//                                        .padding(.leading)
                                         .padding(.vertical, 4)
                                     }
                                     
