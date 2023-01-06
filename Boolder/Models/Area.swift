@@ -153,6 +153,8 @@ struct Area : Identifiable {
     
     // FIXME: don't use AreaView
     var levelsCount : [AreaView.Level] {
+        print("levelsCount")
+        return
         [
             .init(name: "1", count: min(150, problemsCount(level: 1))),
             .init(name: "2", count: min(150, problemsCount(level: 2))),
@@ -302,4 +304,20 @@ struct AreaWithCount : Identifiable {
     
     let area: Area
     let problemsCount: Int
+}
+
+struct AreaWithLevelsCount : Identifiable {
+    var id: Int {
+        area.id
+    }
+    
+    let area: Area
+    let problemsCount: [LevelCount]
+}
+
+struct LevelCount : Identifiable {
+    let id = UUID()
+    
+    let name: String
+    let count: Int
 }

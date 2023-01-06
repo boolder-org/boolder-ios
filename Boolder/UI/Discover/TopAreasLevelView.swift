@@ -14,6 +14,9 @@ struct TopAreasLevelView: View {
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
+    @State private var areas = [AreaWithLevelsCount]()
+    @State private var areasForBeginners = [AreaWithCount]()
+    
     var body: some View {
         GeometryReader { geo in
             ScrollView {
@@ -35,7 +38,7 @@ struct TopAreasLevelView: View {
                                         .frame(width: 0, height: 1)
                                         .padding(.leading, 8)
                                     
-                                    ForEach(Area.forBeginners) { areaWithCount in
+                                    ForEach(areasForBeginners) { areaWithCount in
                                         NavigationLink {
                                             AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                         } label: {
@@ -62,14 +65,14 @@ struct TopAreasLevelView: View {
                     VStack {
                         Divider() //.padding(.leading)
                         
-                        ForEach(Area.all) { areaWithCount in
+                        ForEach(areas) { areaWithLevelsCount in
                             
                             NavigationLink {
-                                AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                AreaView(area: areaWithLevelsCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
                             } label: {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 6) {
-                                        Text(areaWithCount.area.name)
+                                        Text(areaWithLevelsCount.area.name)
 //                                                    .font(.body.weight(.semibold))
 //                                            .frame(maxWidth: .infinity, alignment: .leading)
                                             .multilineTextAlignment(.leading)
@@ -83,11 +86,11 @@ struct TopAreasLevelView: View {
 //
 
                                     HStack(spacing: 2) {
-                                        ForEach(areaWithCount.area.levelsCount) { level in
-                                            Text(String(level.name))
+                                        ForEach(areaWithLevelsCount.problemsCount) { levelCount in
+                                            Text(String(levelCount.name))
                                                 .frame(width: 20, height: 20)
                                                 .foregroundColor(.systemBackground)
-                                                .background(level.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
+                                                .background(levelCount.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
                                                 .cornerRadius(4)
                                         }
                                     }
@@ -108,6 +111,26 @@ struct TopAreasLevelView: View {
                     }
                 }
                 .padding(.bottom)
+            }
+            .onAppear{
+                areasForBeginners = Area.forBeginners
+                
+                areas = Area.all.map{ areaWithCount in
+                    AreaWithLevelsCount(
+                        area: areaWithCount.area,
+                        problemsCount:
+                            [
+                                .init(name: "1", count: areaWithCount.area.problemsCount(level: 1)),
+                                .init(name: "2", count: areaWithCount.area.problemsCount(level: 2)),
+                                .init(name: "3", count: areaWithCount.area.problemsCount(level: 3)),
+                                .init(name: "4", count: areaWithCount.area.problemsCount(level: 4)),
+                                .init(name: "5", count: areaWithCount.area.problemsCount(level: 5)),
+                                .init(name: "6", count: areaWithCount.area.problemsCount(level: 6)),
+                                .init(name: "7", count: areaWithCount.area.problemsCount(level: 7)),
+                                .init(name: "8", count: areaWithCount.area.problemsCount(level: 8)),
+                            ]
+                    )
+                }
             }
         }
         .navigationTitle("top_areas.level.title")
