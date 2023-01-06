@@ -102,10 +102,10 @@ struct AreaView: View {
                                 }
                             }
                         }
-                        .navigationTitle(Text("Secteur"))
+                        .navigationTitle(Text("Infos secteur"))
                     } label: {
                         HStack {
-                            Text("Secteur")
+                            Text("Infos secteur")
                             Spacer()
                             
                             if let tagg = area.tags.first {

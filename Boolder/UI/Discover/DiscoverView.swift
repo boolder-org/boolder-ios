@@ -32,7 +32,7 @@ struct DiscoverView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
 //                                                Image(systemName: "face.smiling")
-                                                Text("Guide pour bien débuter")
+                                                Text("Le guide pour bien débuter")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()
