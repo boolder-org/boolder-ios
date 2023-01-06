@@ -174,6 +174,10 @@ struct Area : Identifiable {
     var popular: Bool {
         tags.contains("popular")
     }
+    
+    var dryFast: Bool {
+        tags.contains("dry_fast")
+    }
 
     var problems: [Problem] {
 //        print("problems")

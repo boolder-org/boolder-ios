@@ -14,6 +14,9 @@ struct DiscoverView: View {
     
     @State var presentArea = false
     
+    @State private var popularAreas = [AreaWithCount]()
+    @State private var areas = [AreaWithCount]()
+    
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
@@ -142,7 +145,7 @@ struct DiscoverView: View {
                                                 .frame(width: 0, height: 1)
                                                 .padding(.leading, 8)
                                             
-                                            ForEach(Area.all.filter{$0.area.popular}) { areaWithCount in
+                                            ForEach(popularAreas) { areaWithCount in
                                                 NavigationLink {
                                                     AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                                 } label: {
@@ -180,9 +183,7 @@ struct DiscoverView: View {
                             VStack {
                                 Divider() //.padding(.leading)
                                 
-                                ForEach(Area.all.sorted{
-                                    $0.area.name.folding(options: .diacriticInsensitive, locale: .current) < $1.area.name.folding(options: .diacriticInsensitive, locale: .current)
-                                }) { areaWithCount in
+                                ForEach(areas) { areaWithCount in
                                     
                                     NavigationLink {
                                         AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
@@ -274,6 +275,13 @@ struct DiscoverView: View {
                         }
                     }
                     .navigationBarTitle(Text("discover.title"))
+                }
+                .onAppear {
+                    popularAreas = Area.all.filter{$0.area.popular}
+                    
+                    areas = Area.all.sorted{
+                        $0.area.name.folding(options: .diacriticInsensitive, locale: .current) < $1.area.name.folding(options: .diacriticInsensitive, locale: .current)
+                    }
                 }
             }
         }

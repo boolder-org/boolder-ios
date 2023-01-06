@@ -14,6 +14,8 @@ struct TopAreasDryFast: View {
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
+    @State private var areas = [AreaWithCount]()
+    
     let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
@@ -23,19 +25,35 @@ struct TopAreasDryFast: View {
                     
                     VStack(alignment: .leading, spacing: 32) {
                         
-                        Text("top_areas.dry_fast.description")
-                            .font(.body)
-                            .foregroundColor(gray)
+                        VStack {
+                            Text("top_areas.dry_fast.description")
+                                .font(.body)
+                                .foregroundColor(gray)
+                        }
+                        .padding(.horizontal)
                         
-                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
+                        VStack(alignment: .leading) {
                             
-                            ForEach(areas) { area in
-                                Button {
-                                    appTab = .map
-                                    mapState.centerOnArea(area)
-                                } label: {
-                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                        .contentShape(Rectangle())
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.leading, 8)
+                                    
+                                    ForEach(areas) { areaWithCount in
+                                        NavigationLink {
+                                            AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                        } label: {
+                                            AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .padding(.leading, 8)
+                                                .contentShape(Rectangle())
+                                        }
+                                    }
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.trailing, 16)
                                 }
                             }
                         }
@@ -43,42 +61,43 @@ struct TopAreasDryFast: View {
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.vertical, 8)
                     
-                    HStack(alignment: .top) {
-                        Image(systemName: "exclamationmark.triangle.fill").font(.body)
-                        Text("top_areas.dry_fast.warning").font(.body)
-                        Spacer()
-                    }
-                    .foregroundColor(Color.orange.opacity(0.8))
-                    .padding()
-                    .background(Color.yellow.opacity(0.2))
-                    .cornerRadius(8)
-                    
-                    HStack(alignment: .top, spacing: 4) {
-                        Text("top_areas.dry_fast.useful_link")
-                            .foregroundColor(gray)
+                    VStack(alignment: .leading) {
                         
-                        Button(action: {
-                            openURL(URL(string: "https://www.facebook.com/people/Bleau-Meteo/100055389702633/")!)
-                        }) {
-                            Text("Bleau Météo")
-                                .foregroundColor(Color.appGreen)
+                        HStack(alignment: .top) {
+                            Image(systemName: "exclamationmark.triangle.fill").font(.body)
+                            Text("top_areas.dry_fast.warning").font(.body)
+                            Spacer()
+                        }
+                        .foregroundColor(Color.orange.opacity(0.8))
+                        .padding()
+                        .background(Color.yellow.opacity(0.2))
+                        .cornerRadius(8)
+                        
+                        HStack(alignment: .top, spacing: 4) {
+                            Text("top_areas.dry_fast.useful_link")
+                                .foregroundColor(gray)
+                            
+                            Button(action: {
+                                openURL(URL(string: "https://www.facebook.com/people/Bleau-Meteo/100055389702633/")!)
+                            }) {
+                                Text("Bleau Météo")
+                                    .foregroundColor(Color.appGreen)
+                            }
                         }
                     }
+                    .padding(.horizontal)
                     
                 }
-                .padding(.horizontal)
+//                .padding(.horizontal)
                 .padding(.top)
+            }
+            .onAppear{
+                areas = Area.all.filter{$0.area.dryFast}
             }
         }
         .navigationTitle("top_areas.dry_fast.title")
         .navigationBarTitleDisplayMode(.inline)
         
-    }
-    
-    var areas: [Area] {
-        [16, 10, 2, 15, 7].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
     }
 }
 
