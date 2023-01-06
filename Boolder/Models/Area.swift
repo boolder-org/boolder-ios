@@ -135,6 +135,9 @@ struct Area : Identifiable {
         ]
     }
     
+    var beginnerFriendly: Bool {
+        tags.contains("beginner_friendly")
+    }
 
     var problems: [Problem] {
 //        print("problems")
