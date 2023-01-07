@@ -19,11 +19,11 @@ struct TopAreasBeginnerView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 
-                //                    Text("Secteurs pour les débutants")
-                //                        .font(.title2).bold()
-                //                        .padding(.top, 16)
-                //                        .padding(.bottom, 8)
-                //                        .padding(.horizontal)
+                Text("Secteurs avec circuits qui conviennent aux débutants :")
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
+                    .padding(.bottom)
                 
                 VStack {
                     Divider() //.padding(.leading)
@@ -45,8 +45,11 @@ struct TopAreasBeginnerView: View {
                                 
                                 Spacer()
                                 
-                                //                                    Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
-                                //
+                                HStack {
+                                    ForEach(areaWithCount.area.circuits.filter{$0.beginnerFriendly}) { circuit in
+                                        CircleView(number: "", color: circuit.color.uicolor, showStroke: false, height: 16)
+                                    }
+                                }
                                 
                                 Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
                                 

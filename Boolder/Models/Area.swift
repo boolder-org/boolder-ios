@@ -144,6 +144,9 @@ struct Area : Identifiable {
                 AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
             }
             .filter{$0.area.beginnerFriendly}
+            .sorted {
+                $0.area.circuits.filter{$0.beginnerFriendly}.count > $1.area.circuits.filter{$0.beginnerFriendly}.count
+            }
         }
         catch {
             print (error)
