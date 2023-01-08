@@ -86,21 +86,39 @@ struct AreaView: View {
                             if poiRoutes.count > 0 {
                                 
                                 ForEach(poiRoutes) { poiRoute in
-                                    Section {
-                                        HStack {
-                                            Text("Parking")
-                                            Spacer()
-                                            Image(systemName: "p.square.fill")
-                                                .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-                                                .font(.title2)
-                                            Text(poiRoute.poi?.name ?? "")
-
-                                            //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
-                                        }
-                                        HStack {
-                                            Text("Marche d'approche")
-                                            Spacer()
-                                            Text("\(poiRoute.distanceInMinutes) min")
+                                    if let poi = poiRoute.poi {
+                                        Section {
+                                            HStack {
+                                                Text(poi.type.string)
+                                                
+                                                Spacer()
+                                                
+                                                if poi.type == .parking {
+                                                    Image(systemName: "p.square.fill")
+                                                        .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                                        .font(.title2)
+                                                }
+                                                
+                                                
+                                                Text(poi.shortName)
+                                                
+                                                
+                                                //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
+                                            }
+                                            HStack {
+                                                Text(poiRoute.transport == .bike ? "Temps de vélo" : "Temps de marche")
+                                                
+                                                Spacer()
+                                                
+                                                if poiRoute.transport == .bike {
+                                                    Image(systemName: "bicycle")
+                                                }
+                                                else {
+                                                    Image(systemName: "figure.walk")
+                                                }
+                                                
+                                                Text("\(poiRoute.distanceInMinutes) min")
+                                            }
                                         }
                                     }
                                 }
