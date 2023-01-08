@@ -279,6 +279,26 @@ struct Area : Identifiable {
             return []
         }
     }
+    
+    var poiRoutes: [PoiRoute] {
+        let db = SqliteStore.shared.db
+        
+        let poiRoutes = Table("poi_routes")
+        let _id = Expression<Int>("id")
+        let areaId = Expression<Int>("area_id")
+        
+        let query = poiRoutes.filter(areaId == self.id)
+        
+        do {
+            return try db.prepare(query).map { poiRoute in
+                PoiRoute.load(id: poiRoute[_id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
 }
 
 extension Area : Comparable {

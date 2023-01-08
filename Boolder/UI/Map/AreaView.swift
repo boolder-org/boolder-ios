@@ -20,6 +20,7 @@ struct AreaView: View {
     @State private var circuits = [Circuit]()
     @State private var problemsCount = 0
     @State private var popularProblems = [Problem]()
+    @State private var poiRoutes = [PoiRoute]()
     
     @State private var showChart = false
     
@@ -82,25 +83,30 @@ struct AreaView: View {
                                 }
                             }
                             
-//                            if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
-//                                Section {
-//                                    HStack {
-//                                        Text("Parking")
-//                                        Spacer()
-//                                        Image(systemName: "p.square.fill")
-//                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-//                                            .font(.title2)
-//                                        Text(name)
-//                                        
-//                                        //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
-//                                    }
-//                                    HStack {
-//                                        Text("Marche d'approche")
-//                                        Spacer()
-//                                        Text("\(Int(round(Double(distance/80)))) min")
-//                                    }
-//                                }
-//                            }
+                            if poiRoutes.count > 0 {
+                                
+                                ForEach(poiRoutes) { poiRoute in
+                                    Section {
+                                        HStack {
+                                            Text("Parking")
+                                            Spacer()
+                                            Image(systemName: "p.square.fill")
+                                                .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                                .font(.title2)
+                                            Text("poiRoute.name")
+
+                                            //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
+                                        }
+                                        HStack {
+                                            Text("Marche d'approche")
+                                            Spacer()
+                                            Text("\(poiRoute.distanceInMinutes) min")
+                                        }
+                                    }
+                                }
+                            }
+                            
+                           
                         }
                         .navigationTitle(Text("Infos secteur"))
                     } label: {
@@ -300,6 +306,7 @@ struct AreaView: View {
             circuits = area.circuits
             problemsCount = area.problemsCount
             popularProblems = area.popularProblems
+            poiRoutes = area.poiRoutes
             
             data = area.levelsCount
         }

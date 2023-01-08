@@ -30,6 +30,8 @@
 		031A4CA9296B07BE002CBF52 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031A4CA7296B07BE002CBF52 /* boolder.db */; };
 		031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */; };
 		031A4CAC296B0A74002CBF52 /* PoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */; };
+		031A4CAE296B0DF3002CBF52 /* PoiRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */; };
+		031A4CAF296B0DF3002CBF52 /* PoiRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */; };
 		031F36B0291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B3291D01B700BD0C2B /* AlgoliaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B2291D01B700BD0C2B /* AlgoliaController.swift */; };
@@ -171,6 +173,7 @@
 		031A4CA42968D06D002CBF52 /* TopAreasBeginnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasBeginnerView.swift; sourceTree = "<group>"; };
 		031A4CA7296B07BE002CBF52 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
+		031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRoute.swift; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B2291D01B700BD0C2B /* AlgoliaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgoliaController.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
@@ -445,6 +448,7 @@
 				37A8C80C245326F200DC161F /* Line.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
+				031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -705,6 +709,7 @@
 				37379913258E619400711EDA /* LineView.swift in Sources */,
 				038C2EF529201315006581CD /* SearchView.swift in Sources */,
 				039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */,
+				031A4CAF296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
@@ -811,6 +816,7 @@
 				033F70D72919535A000DD3F4 /* Area.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
+				031A4CAE296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
 				031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */,
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				038C2EF429201315006581CD /* SearchView.swift in Sources */,
