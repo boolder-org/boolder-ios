@@ -20,7 +20,7 @@ struct AreaView: View {
     @State private var circuits = [Circuit]()
     @State private var problemsCount = 0
     @State private var popularProblems = [Problem]()
-    @State private var poiRoutes = [PoiRoute]()
+    
     
     @State private var showChart = false
     
@@ -47,90 +47,7 @@ struct AreaView: View {
                 Section {
                     
                     NavigationLink {
-                        List {
-                            if area.tags.count > 0 {
-                                if #available(iOS 16.0, *) {
-                                    Section {
-                                        FlowLayout(alignment: .leading) {
-                                            ForEach(area.tags, id: \.self) { tag in
-                                                Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
-                                                    .font(.callout)
-                                                    .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
-                                                    .foregroundColor(Color.green)
-                                                    .background(Color.systemBackground)
-                                                    .cornerRadius(32)
-                                                    .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
-                                            }
-                                        }
-                                        .padding(.vertical, 4)
-                                        //.background(Color.red)
-                                    }
-                                }
-                            }
-                        
-                            if area.descriptionFr != nil || area.warningFr != nil {
-                                Section {
-                                    if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
-                                        VStack(alignment: .leading) {
-                                            Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
-                                        }
-                                    }
-                                    
-                                    if let warningFr = area.warningFr, let warningEn = area.warningEn {
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            //                                        Text("Important :").bold()
-                                            Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            if poiRoutes.count > 0 {
-                                
-                                ForEach(poiRoutes) { poiRoute in
-                                    if let poi = poiRoute.poi {
-                                        Section {
-                                            Button {
-                                                
-                                            } label: {
-                                                HStack {
-                                                    Text(poi.type.string)
-                                                    
-                                                    Spacer()
-                                                    
-                                                    if poi.type == .parking {
-                                                        Image(systemName: "p.square.fill")
-                                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-                                                            .font(.title2)
-                                                    }
-                                                    
-                                                    Text(poi.shortName)
-                                                }
-                                                .foregroundColor(.primary)
-                                            }
-                                            
-                                            HStack {
-                                                Text(poiRoute.transport == .bike ? "Temps de vélo" : "Temps de marche")
-                                                
-                                                Spacer()
-                                                
-                                                if poiRoute.transport == .bike {
-                                                    Image(systemName: "bicycle")
-                                                }
-                                                else {
-                                                    Image(systemName: "figure.walk")
-                                                }
-                                                
-                                                Text("\(poiRoute.distanceInMinutes) min")
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            
-                           
-                        }
-                        .navigationTitle(Text("Infos secteur"))
+                        AreaDetailsView(area: area, mapState: mapState, appTab: $appTab)
                     } label: {
                         HStack {
                             Text("Infos secteur")
@@ -328,7 +245,6 @@ struct AreaView: View {
             circuits = area.circuits
             problemsCount = area.problemsCount
             popularProblems = area.popularProblems
-            poiRoutes = area.poiRoutes
             
             data = area.levelsCount
         }
