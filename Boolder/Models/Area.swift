@@ -17,9 +17,6 @@ struct Area : Identifiable {
     let warningFr: String?
     let warningEn: String?
     let tags: [String]
-    let parkingShortName: String?
-    let parkingUrl: String?
-    let parkingDistance: Int?
     let southWestLat: Double
     let southWestLon: Double
     let northEastLat: Double
@@ -37,9 +34,6 @@ struct Area : Identifiable {
             let warningFr = Expression<String?>("warning_fr")
             let warningEn = Expression<String?>("warning_en")
             let tags = Expression<String?>("tags")
-            let parkingShortName = Expression<String?>("parking_short_name")
-            let parkingUrl = Expression<String?>("parking_url")
-            let parkingDistance = Expression<Int?>("parking_distance")
             let southWestLat = Expression<Double>("south_west_lat")
             let southWestLon = Expression<Double>("south_west_lon")
             let northEastLat = Expression<Double>("north_east_lat")
@@ -51,7 +45,6 @@ struct Area : Identifiable {
                                 descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
                                 warningFr: a[warningFr], warningEn: a[warningEn],
                                 tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
-                                parkingShortName: a[parkingShortName], parkingUrl: a[parkingUrl], parkingDistance: a[parkingDistance],
                                 southWestLat: a[southWestLat], southWestLon: a[southWestLon],
                                 northEastLat: a[northEastLat], northEastLon: a[northEastLon])
                 }

@@ -125,9 +125,7 @@ struct MapContainerView: View {
             .background(
                 PoiActionSheet(
                     name: (mapState.selectedPoi?.name ?? ""),
-                    location: (mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
                     googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
-                    navigationMode: false,
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )

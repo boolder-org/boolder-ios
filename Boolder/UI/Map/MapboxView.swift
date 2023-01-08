@@ -175,7 +175,7 @@ struct MapboxView: UIViewControllerRepresentable {
         }
         
         @MainActor func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String) {
-            let poi = Poi(name: name, coordinate: location, googleUrl: googleUrl)
+            let poi = Poi(name: name, googleUrl: googleUrl)
             parent.mapState.selectedPoi = poi
             parent.mapState.presentPoiActionSheet = true
         }

@@ -82,25 +82,25 @@ struct AreaView: View {
                                 }
                             }
                             
-                            if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
-                                Section {
-                                    HStack {
-                                        Text("Parking")
-                                        Spacer()
-                                        Image(systemName: "p.square.fill")
-                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-                                            .font(.title2)
-                                        Text(name)
-                                        
-                                        //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
-                                    }
-                                    HStack {
-                                        Text("Marche d'approche")
-                                        Spacer()
-                                        Text("\(Int(round(Double(distance/80)))) min")
-                                    }
-                                }
-                            }
+//                            if let url = area.parkingUrl, let name = area.parkingShortName, let distance = area.parkingDistance {
+//                                Section {
+//                                    HStack {
+//                                        Text("Parking")
+//                                        Spacer()
+//                                        Image(systemName: "p.square.fill")
+//                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+//                                            .font(.title2)
+//                                        Text(name)
+//                                        
+//                                        //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
+//                                    }
+//                                    HStack {
+//                                        Text("Marche d'approche")
+//                                        Spacer()
+//                                        Text("\(Int(round(Double(distance/80)))) min")
+//                                    }
+//                                }
+//                            }
                         }
                         .navigationTitle(Text("Infos secteur"))
                     } label: {

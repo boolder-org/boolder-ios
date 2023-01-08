@@ -9,7 +9,6 @@
 import CoreLocation
 
 struct Poi {
-    let name: String?
-    let coordinate: CLLocationCoordinate2D
+    let name: String
     let googleUrl: String
 }
