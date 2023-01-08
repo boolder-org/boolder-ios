@@ -621,7 +621,7 @@ class MapboxViewController: UIViewController {
             }
         
         mapView.mapboxMap.queryRenderedFeatures(
-            with: CGRect(x: tapPoint.x-32, y: tapPoint.y-32, width: 64, height: 64),
+            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
             options: RenderedQueryOptions(layerIds: ["boulders"], filter: nil)) { [weak self] result in
                 
 //                print("boulders 1")
