@@ -16,8 +16,6 @@ struct TopAreasDryFast: View {
     
     @State private var areas = [AreaWithCount]()
     
-    let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
-    
     var body: some View {
         GeometryReader { geo in
             ScrollView {
@@ -28,7 +26,7 @@ struct TopAreasDryFast: View {
                         VStack {
                             Text("top_areas.dry_fast.description")
                                 .font(.body)
-                                .foregroundColor(gray)
+                                .foregroundColor(.gray)
                         }
                         .padding(.horizontal)
                         
@@ -75,7 +73,7 @@ struct TopAreasDryFast: View {
                         
                         HStack(alignment: .top, spacing: 4) {
                             Text("top_areas.dry_fast.useful_link")
-                                .foregroundColor(gray)
+                                .foregroundColor(.gray)
                             
                             Button(action: {
                                 openURL(URL(string: "https://www.facebook.com/people/Bleau-Meteo/100055389702633/")!)
