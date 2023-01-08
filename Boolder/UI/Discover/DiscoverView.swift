@@ -30,7 +30,9 @@ struct DiscoverView: View {
                             
                             VStack {
                                 HStack {
-                                    NavigationLink(destination: EmptyView()) {
+                                    Button {
+                                        openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!)
+                                    } label: {
                                         
                                         VStack(alignment: .leading) {
                                             HStack {
