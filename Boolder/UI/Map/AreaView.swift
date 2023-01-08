@@ -47,7 +47,7 @@ struct AreaView: View {
                 Section {
                     
                     NavigationLink {
-                        AreaDetailsView(area: area, mapState: mapState, appTab: $appTab)
+                        AreaDetailsView(area: area, mapState: mapState, appTab: $appTab, linkToMap: linkToMap)
                     } label: {
                         HStack {
                             Text("Infos secteur")
