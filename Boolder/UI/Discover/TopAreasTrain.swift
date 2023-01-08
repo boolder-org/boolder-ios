@@ -9,62 +9,129 @@
 import SwiftUI
 
 struct TopAreasTrain: View {
+    @Environment(\.openURL) var openURL
+    
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
-    
-    let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
     
     var body: some View {
         GeometryReader { geo in
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     
-                    VStack(alignment: .leading, spacing: 32) {
+                    VStack(alignment: .leading, spacing: 24) {
                         
-                        Text("top_areas.train.description_boisleroi")
-                            .font(.body)
-                            .foregroundColor(gray)
+                        VStack(alignment: .leading) {
+                            Text("Gare de Bois le Roi")
+                                .font(.title2).bold()
+                                .padding(.bottom, 4)
+                            
+                            Text("Secteurs à moins de 20 min en vélo :")
+                                .font(.body)
+                                .foregroundColor(.gray)
+                        }
+                        .padding(.horizontal)
                         
-                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
-                            ForEach(areasFromBoisLeRoi) { area in
-                                Button {
-                                    appTab = .map
-                                    mapState.centerOnArea(area)
-                                } label: {
-                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                        .contentShape(Rectangle())
+                        VStack(alignment: .leading) {
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.leading, 8)
+                                    
+                                    ForEach(areasFromBoisLeRoi) { area in
+                                        NavigationLink {
+                                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                        } label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .padding(.leading, 8)
+                                                .contentShape(Rectangle())
+                                        }
+                                    }
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.trailing, 16)
                                 }
                             }
                         }
+                        
+                        VStack(alignment: .leading) {
+                            
+                            HStack(alignment: .top, spacing: 4) {
+                                Button(action: {
+                                    openURL(URL(string: "https://www.horaires-de-trains.fr/horaires-Paris_Gare_de_Lyon-Bois_le_Roi.html")!)
+                                }) {
+                                    Text("Horaires")
+                                        .foregroundColor(Color.appGreen)
+                                }
+                            }
+//                            .padding(.vertical)
+                        }
+                        .padding(.horizontal)
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.vertical, 8)
                     
-                    VStack(alignment: .leading, spacing: 32) {
+                    VStack(alignment: .leading, spacing: 24) {
                         
-                        Text("top_areas.train.description_avon")
-                            .font(.body)
-                            .foregroundColor(gray)
-                        
-                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
+                        VStack(alignment: .leading) {
+                            Text("Gare Fontainebleau Avon")
+                                .font(.title2).bold()
+                                .padding(.bottom, 4)
                             
-                            ForEach(areasFromAvon) { area in
-                                
-                                Button {
-                                    appTab = .map
-                                    mapState.centerOnArea(area)
-                                } label: {
-                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                        .contentShape(Rectangle())
+                            Text("Secteurs à moins de 20 min en vélo :")
+                                .font(.body)
+                                .foregroundColor(.gray)
+                        }
+                        .padding(.horizontal)
+                        
+                        VStack(alignment: .leading) {
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .top, spacing: 0) {
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.leading, 8)
+                                    
+                                    ForEach(areasFromAvon) { area in
+                                        NavigationLink {
+                                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                        } label: {
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                .padding(.leading, 8)
+                                                .contentShape(Rectangle())
+                                        }
+                                    }
+                                    
+                                    Color.white.opacity(0)
+                                        .frame(width: 0, height: 1)
+                                        .padding(.trailing, 16)
                                 }
-                                
                             }
                         }
+                        
+                        VStack(alignment: .leading) {
+                            
+                            HStack(alignment: .top, spacing: 4) {
+                                Button(action: {
+                                    openURL(URL(string: "https://www.horaires-de-trains.fr/horaires-Paris_Gare_de_Lyon-Fontainebleau_Avon.html")!)
+                                }) {
+                                    Text("Horaires")
+                                        .foregroundColor(Color.appGreen)
+                                }
+                            }
+//                            .padding(.vertical)
+                        }
+                        .padding(.horizontal)
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.vertical, 8)
                 }
-                .padding(.horizontal)
+//                .padding(.horizontal)
                 .padding(.top)
             }
         }
@@ -74,15 +141,11 @@ struct TopAreasTrain: View {
     }
     
     var areasFromBoisLeRoi: [Area] {
-        [1,4,7,24].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
+        [1,24].map{Area.load(id: $0)}.compactMap{$0}
     }
     
     var areasFromAvon: [Area] {
-        [53,50,52,33].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
+        [50,53,33,52].map{Area.load(id: $0)}.compactMap{$0}
     }
 }
 
