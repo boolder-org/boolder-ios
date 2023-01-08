@@ -68,17 +68,19 @@ struct AreaView: View {
                                 }
                             }
                         
-                            Section {
-                                if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
-                                    VStack(alignment: .leading) {
-                                        Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
+                            if area.descriptionFr != nil || area.warningFr != nil {
+                                Section {
+                                    if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
+                                        VStack(alignment: .leading) {
+                                            Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
+                                        }
                                     }
-                                }
-                                
-                                if let warningFr = area.warningFr, let warningEn = area.warningEn {
-                                    VStack(alignment: .leading, spacing: 4) {
-//                                        Text("Important :").bold()
-                                        Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
+                                    
+                                    if let warningFr = area.warningFr, let warningEn = area.warningEn {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            //                                        Text("Important :").bold()
+                                            Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
+                                        }
                                     }
                                 }
                             }
@@ -88,23 +90,25 @@ struct AreaView: View {
                                 ForEach(poiRoutes) { poiRoute in
                                     if let poi = poiRoute.poi {
                                         Section {
-                                            HStack {
-                                                Text(poi.type.string)
+                                            Button {
                                                 
-                                                Spacer()
-                                                
-                                                if poi.type == .parking {
-                                                    Image(systemName: "p.square.fill")
-                                                        .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-                                                        .font(.title2)
+                                            } label: {
+                                                HStack {
+                                                    Text(poi.type.string)
+                                                    
+                                                    Spacer()
+                                                    
+                                                    if poi.type == .parking {
+                                                        Image(systemName: "p.square.fill")
+                                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                                            .font(.title2)
+                                                    }
+                                                    
+                                                    Text(poi.shortName)
                                                 }
-                                                
-                                                
-                                                Text(poi.shortName)
-                                                
-                                                
-                                                //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
+                                                .foregroundColor(.primary)
                                             }
+                                            
                                             HStack {
                                                 Text(poiRoute.transport == .bike ? "Temps de vélo" : "Temps de marche")
                                                 
