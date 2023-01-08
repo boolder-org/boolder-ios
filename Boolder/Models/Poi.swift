@@ -27,7 +27,7 @@ struct Poi {
             let _id = Expression<Int>("id")
             let poiType = Expression<String>("poi_type")
             let name = Expression<String>("name")
-            let googleUrl = Expression<String>("google_rl")
+            let googleUrl = Expression<String>("google_url")
             
             let query = pois.filter(_id == id)
             

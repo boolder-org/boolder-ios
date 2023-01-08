@@ -47,4 +47,24 @@ struct PoiRoute : Identifiable {
         }
     }
     
+    var poi: Poi? {
+        let db = SqliteStore.shared.db
+        
+        let pois = Table("pois")
+        let _id = Expression<Int>("id")
+        
+        let query = pois.filter(_id == self.poiId)
+        
+        do {
+            if let poi = try db.pluck(query) {
+                return Poi.load(id: poi[_id])
+            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
+        }
+    }
 }

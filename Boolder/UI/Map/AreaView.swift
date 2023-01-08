@@ -93,7 +93,7 @@ struct AreaView: View {
                                             Image(systemName: "p.square.fill")
                                                 .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
                                                 .font(.title2)
-                                            Text("poiRoute.name")
+                                            Text(poiRoute.poi?.name ?? "")
 
                                             //                                Image(systemName: "arrow.up.forward.square").foregroundColor(Color.gray)
                                         }
