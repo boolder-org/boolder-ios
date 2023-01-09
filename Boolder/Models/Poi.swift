@@ -8,8 +8,8 @@
 
 import SQLite
 
-struct Poi {
-    let id: Int?
+struct Poi : Identifiable {
+    let id: Int
     let type: PoiType
     let name: String
     let shortName: String
@@ -59,6 +59,45 @@ struct Poi {
                 print (error)
                 return nil
             }
+        }
+    }
+    
+    static var all: [Poi] {
+        let db = SqliteStore.shared.db
+
+        let id = Expression<Int>("id")
+        
+        let query = Table("pois")
+            .order(id.asc)
+        
+        do {
+            return try db.prepare(query).map { poi in
+                Poi.load(id: poi[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var poiRoutes: [PoiRoute] {
+        let db = SqliteStore.shared.db
+
+        let id = Expression<Int>("id")
+        let poiId = Expression<Int>("poi_id")
+        let distanceInMinutes = Expression<Int>("distance_in_minutes")
+        
+        let query = Table("poi_routes").filter(poiId == self.id).order(distanceInMinutes.asc)
+        
+        do {
+            return try db.prepare(query).map { poiRoute in
+                PoiRoute.load(id: poiRoute[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
         }
     }
 }
