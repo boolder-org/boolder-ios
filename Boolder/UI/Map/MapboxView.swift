@@ -67,17 +67,38 @@ struct MapboxView: UIViewControllerRepresentable {
         // center on current location
         if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
             if let location = vc.mapView.location.latestLocation {
-                let cameraOptions = CameraOptions(
-                    center: location.coordinate,
-                    padding: .init(top: 180, left: 20, bottom: 80, right: 20),
-                    zoom: 19
-                )
-                vc.flyinToSomething = true
-                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in vc.flyinToSomething = false }
                 
-                // FIXME: make sure the fly animation is over
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                    vc.inferAreaFromMap()
+                let fontainebleauBounds = CoordinateBounds(
+                    southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
+                    northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
+                )
+                
+                if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
+                    let cameraOptions = CameraOptions(
+                        center: location.coordinate,
+                        padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+                        zoom: 17
+                    )
+                    
+                    vc.flyinToSomething = true
+                    vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in vc.flyinToSomething = false }
+                    
+                    // FIXME: make sure the fly animation is over
+                    // TODO: do it again when map is done loading?
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        vc.inferAreaFromMap()
+                    }
+                }
+                else {
+                    let cameraOptions = vc.mapView.mapboxMap.camera(
+                        for: fontainebleauBounds.extend(forPoint: location.coordinate),
+                        padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+                        bearing: 0,
+                        pitch: 0
+                    )
+                    
+                    vc.flyinToSomething = true
+                    vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in vc.flyinToSomething = false }
                 }
             }
             
