@@ -55,7 +55,7 @@ struct TopAreasTrain: View {
                                 Image(systemName: "ellipsis.circle")
                                     .foregroundColor(Color.appGreen)
                                     .padding(.leading)
-                                    .padding(.vertical)
+//                                    .padding(.vertical)
                             }
                         }
                        .padding(.horizontal)
