@@ -77,85 +77,118 @@ struct TopAreasLevelView: View {
                         .padding(.bottom, 8)
                         .padding(.horizontal)
                     
-                    VStack {
-                        Divider() //.padding(.leading)
-                        
-                        ForEach(areas) { areaWithLevelsCount in
+                    if areas.isEmpty {
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
+                            Spacer()
+                        }
+                        .frame(minHeight: 200)
+                    }
+                    else {
+                        VStack {
+                            Divider() //.padding(.leading)
                             
-                            NavigationLink {
-                                AreaView(area: areaWithLevelsCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
-                            } label: {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        Text(areaWithLevelsCount.area.name)
-//                                                    .font(.body.weight(.semibold))
-//                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .multilineTextAlignment(.leading)
-//                                            .background(Color.blue)
+                            ForEach(areas) { areaWithLevelsCount in
+                                
+                                NavigationLink {
+                                    AreaView(area: areaWithLevelsCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                } label: {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            Text(areaWithLevelsCount.area.name)
+                                            //                                                    .font(.body.weight(.semibold))
+                                            //                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                                .multilineTextAlignment(.leading)
+                                            //                                            .background(Color.blue)
+                                            
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        //                                    Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+                                        //
+                                        
+                                        HStack(spacing: 2) {
+                                            ForEach(areaWithLevelsCount.problemsCount) { levelCount in
+                                                Text(String(levelCount.name))
+                                                    .frame(width: 20, height: 20)
+                                                    .foregroundColor(.systemBackground)
+                                                    .background(levelCount.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
+                                                    .cornerRadius(4)
+                                            }
+                                        }
+                                        
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .font(.caption.weight(.bold))
+                                            .foregroundColor(.gray.opacity(0.7))
                                         
                                     }
-
-                                    Spacer()
-                                    
-//                                    Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
-//
-
-                                    HStack(spacing: 2) {
-                                        ForEach(areaWithLevelsCount.problemsCount) { levelCount in
-                                            Text(String(levelCount.name))
-                                                .frame(width: 20, height: 20)
-                                                .foregroundColor(.systemBackground)
-                                                .background(levelCount.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
-                                                .cornerRadius(4)
-                                        }
-                                    }
-                                    
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .font(.caption.weight(.bold))
-                                        .foregroundColor(.gray.opacity(0.7))
-                                    
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 4)
                                 }
-                                .font(.body)
-                                .foregroundColor(.primary)
-                                .padding(.horizontal)
-                                .padding(.vertical, 4)
+                                
+                                
+                                Divider().padding(.leading)
                             }
-                            
-                            
-                            Divider().padding(.leading)
                         }
                     }
                 }
                 .padding(.bottom)
             }
-            .onAppear{
-                if areasForBeginners.isEmpty {
-                    areasForBeginners = Area.forBeginners
+            .modify {
+                if #available(iOS 16, *) {
+                    $0.onAppear {
+                        loadAreasForBeginners()
+                    }
+                    .task {
+                        loadAreas()
+                    }
                 }
-                
-                if areas.isEmpty {
-                    areas = Area.all.map{ areaWithCount in
-                        AreaWithLevelsCount(
-                            area: areaWithCount.area,
-                            problemsCount:
-                                [
-                                    .init(name: "1", count: areaWithCount.area.problemsCount(level: 1)),
-                                    .init(name: "2", count: areaWithCount.area.problemsCount(level: 2)),
-                                    .init(name: "3", count: areaWithCount.area.problemsCount(level: 3)),
-                                    .init(name: "4", count: areaWithCount.area.problemsCount(level: 4)),
-                                    .init(name: "5", count: areaWithCount.area.problemsCount(level: 5)),
-                                    .init(name: "6", count: areaWithCount.area.problemsCount(level: 6)),
-                                    .init(name: "7", count: areaWithCount.area.problemsCount(level: 7)),
-                                    .init(name: "8", count: areaWithCount.area.problemsCount(level: 8)),
-                                ]
-                        )
+                else {
+                    $0.onAppear {
+                        loadAreasForBeginners()
+                        loadAreas()
                     }
                 }
             }
         }
         .navigationTitle("top_areas.level.title")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func loadAreasForBeginners() {
+        if areasForBeginners.isEmpty {
+            areasForBeginners = Area.forBeginners
+        }
+    }
+    
+    func loadAreas() {
+        if areas.isEmpty {
+            areas = Area.all.map{ areaWithCount in
+                AreaWithLevelsCount(
+                    area: areaWithCount.area,
+                    problemsCount:
+                        [
+                            .init(name: "1", count: areaWithCount.area.problemsCount(level: 1)),
+                            .init(name: "2", count: areaWithCount.area.problemsCount(level: 2)),
+                            .init(name: "3", count: areaWithCount.area.problemsCount(level: 3)),
+                            .init(name: "4", count: areaWithCount.area.problemsCount(level: 4)),
+                            .init(name: "5", count: areaWithCount.area.problemsCount(level: 5)),
+                            .init(name: "6", count: areaWithCount.area.problemsCount(level: 6)),
+                            .init(name: "7", count: areaWithCount.area.problemsCount(level: 7)),
+                            .init(name: "8", count: areaWithCount.area.problemsCount(level: 8)),
+                        ]
+                )
+            }
+        }
     }
 }
 
