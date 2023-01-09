@@ -130,23 +130,27 @@ struct TopAreasLevelView: View {
                 .padding(.bottom)
             }
             .onAppear{
-                areasForBeginners = Area.forBeginners
+                if areasForBeginners.isEmpty {
+                    areasForBeginners = Area.forBeginners
+                }
                 
-                areas = Area.all.map{ areaWithCount in
-                    AreaWithLevelsCount(
-                        area: areaWithCount.area,
-                        problemsCount:
-                            [
-                                .init(name: "1", count: areaWithCount.area.problemsCount(level: 1)),
-                                .init(name: "2", count: areaWithCount.area.problemsCount(level: 2)),
-                                .init(name: "3", count: areaWithCount.area.problemsCount(level: 3)),
-                                .init(name: "4", count: areaWithCount.area.problemsCount(level: 4)),
-                                .init(name: "5", count: areaWithCount.area.problemsCount(level: 5)),
-                                .init(name: "6", count: areaWithCount.area.problemsCount(level: 6)),
-                                .init(name: "7", count: areaWithCount.area.problemsCount(level: 7)),
-                                .init(name: "8", count: areaWithCount.area.problemsCount(level: 8)),
-                            ]
-                    )
+                if areas.isEmpty {
+                    areas = Area.all.map{ areaWithCount in
+                        AreaWithLevelsCount(
+                            area: areaWithCount.area,
+                            problemsCount:
+                                [
+                                    .init(name: "1", count: areaWithCount.area.problemsCount(level: 1)),
+                                    .init(name: "2", count: areaWithCount.area.problemsCount(level: 2)),
+                                    .init(name: "3", count: areaWithCount.area.problemsCount(level: 3)),
+                                    .init(name: "4", count: areaWithCount.area.problemsCount(level: 4)),
+                                    .init(name: "5", count: areaWithCount.area.problemsCount(level: 5)),
+                                    .init(name: "6", count: areaWithCount.area.problemsCount(level: 6)),
+                                    .init(name: "7", count: areaWithCount.area.problemsCount(level: 7)),
+                                    .init(name: "8", count: areaWithCount.area.problemsCount(level: 8)),
+                                ]
+                        )
+                    }
                 }
             }
         }
