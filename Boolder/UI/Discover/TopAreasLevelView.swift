@@ -32,7 +32,7 @@ struct TopAreasLevelView: View {
                                 
                             Image(systemName: "chevron.right")
                                 .font(.body.weight(.bold))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.gray.opacity(0.7))
                             
                             Spacer()
                         }
@@ -111,7 +111,9 @@ struct TopAreasLevelView: View {
                                     }
                                     
                                     
-                                    Image(systemName: "chevron.right").foregroundColor(Color(.systemGray))
+                                    Image(systemName: "chevron.right")
+                                        .font(.caption.weight(.bold))
+                                        .foregroundColor(.gray.opacity(0.7))
                                     
                                 }
                                 .font(.body)
