@@ -281,10 +281,14 @@ struct DiscoverView: View {
                     .navigationBarTitle(Text("discover.title"))
                 }
                 .onAppear {
-                    popularAreas = Area.all.filter{$0.area.popular}
+                    if popularAreas.isEmpty {
+                        popularAreas = Area.all.filter{$0.area.popular}
+                    }
                     
-                    areas = Area.all.sorted{
-                        $0.area.name.folding(options: .diacriticInsensitive, locale: .current) < $1.area.name.folding(options: .diacriticInsensitive, locale: .current)
+                    if areas.isEmpty {
+                        areas = Area.all.sorted{
+                            $0.area.name.folding(options: .diacriticInsensitive, locale: .current) < $1.area.name.folding(options: .diacriticInsensitive, locale: .current)
+                        }
                     }
                 }
             }
