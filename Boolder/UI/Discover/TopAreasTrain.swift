@@ -21,6 +21,14 @@ struct TopAreasTrain: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     
+                    VStack {
+                        Text("Temps d'accès en vélo depuis la gare :")
+                            .font(.body)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.bottom)
+                    .padding(.horizontal)
+                    
                     ForEach(trainStations) { trainStation in
                        HStack {
                             Text(trainStation.name)
@@ -56,6 +64,8 @@ struct TopAreasTrain: View {
                                             Text("\(poiRoute.distanceInMinutes) min")
                                             
                                             Image(systemName: "chevron.right")
+                                                .font(.caption.weight(.bold))
+                                                .foregroundColor(.gray.opacity(0.7))
                                         }
                                         .foregroundColor(.primary)
                                         .padding(.vertical, 4)
