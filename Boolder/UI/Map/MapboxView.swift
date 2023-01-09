@@ -70,10 +70,15 @@ struct MapboxView: UIViewControllerRepresentable {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
                     padding: .init(top: 180, left: 20, bottom: 80, right: 20),
-                    zoom: 16
+                    zoom: 19
                 )
                 vc.flyinToSomething = true
-                vc.mapView.camera.fly(to: cameraOptions, duration: 2)  { _ in vc.flyinToSomething = false }
+                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in vc.flyinToSomething = false }
+                
+                // FIXME: make sure the fly animation is over
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    vc.inferAreaFromMap()
+                }
             }
             
             context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
