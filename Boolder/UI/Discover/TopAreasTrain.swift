@@ -41,7 +41,7 @@ struct TopAreasTrain: View {
                                     Button {
                                         openURL(url)
                                     } label: {
-                                        Text("Voir sur Google")
+                                        Text("Voir dans Google Maps")
                                     }
                                 }
                                 
