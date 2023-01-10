@@ -689,7 +689,7 @@ class MapboxViewController: UIViewController {
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
                         // if problem is hidden by the bottom sheet
-                        if tapPoint.y >= self.mapView.bounds.height/2 {
+                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
                             
                             let cameraOptions = CameraOptions(
                                 center: point.coordinates,
