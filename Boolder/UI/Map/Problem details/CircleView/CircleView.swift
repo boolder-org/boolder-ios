@@ -46,7 +46,7 @@ struct CircleView: View {
             return .black
         }
         else {
-            return .systemBackground
+            return .white
         }
     }
 }

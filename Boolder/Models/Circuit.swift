@@ -131,6 +131,15 @@ struct Circuit : Identifiable {
             }
         }
         
+        var uicolorForSystemBackground : UIColor {
+            switch self {
+            case .white, .black:
+                return .label
+            default:
+                return uicolor
+            }
+        }
+        
         var uicolorForPhotoOverlay: UIColor {
             if self == .offCircuit {
                 return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)

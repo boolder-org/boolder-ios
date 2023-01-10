@@ -36,7 +36,7 @@ struct MapContainerView: View {
                             //                                .offset(x: -1, y: 0)
                         }
                         .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolor))
+                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
                         .background(Color.systemBackground)
                         .clipShape(Circle())
                         .overlay(
@@ -58,7 +58,7 @@ struct MapContainerView: View {
                                 .padding(10)
                         }
                         .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolor))
+                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
                         .background(Color.systemBackground)
                         .clipShape(Circle())
                         .overlay(
@@ -89,7 +89,7 @@ struct MapContainerView: View {
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
                             .font(.body.weight(.semibold))
-                            .accentColor(Color(circuit.color.uicolor))
+                            .accentColor(Color(circuit.color.uicolorForSystemBackground))
                             .background(Color.systemBackground)
                             .clipShape(RoundedRectangle(cornerRadius: 32))
                             .overlay(
