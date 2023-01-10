@@ -105,6 +105,7 @@ import SwiftUI
         centerOnProblemCount += 1
     }
     
+    // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem) {
         selectedProblem = problem
         selectProblemCount += 1
