@@ -32,6 +32,16 @@ struct CircuitPickerView: View {
                                 CircleView(number: "", color: circuit.color.uicolor, height: 20)
                                 Text(circuit.color.longName)
                                 Spacer()
+                                if(circuit.beginnerFriendly) {
+                                    Image(systemName: "face.smiling")
+                                        .foregroundColor(.green)
+                                        .font(.title3)
+                                }
+                                if(circuit.dangerous) {
+                                    Image(systemName: "exclamationmark.circle")
+                                        .foregroundColor(.orange)
+                                        .font(.title3)
+                                }
                                 Text(circuit.averageGrade.string)
                             }
                             .foregroundColor(.primary)
