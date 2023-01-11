@@ -610,9 +610,7 @@ class MapboxViewController: UIViewController {
                         var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
                         cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                         
-                        self.flyinToSomething = true
-                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
-                        
+                        self.flyTo(cameraOptions)
                         
 //                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                             self.delegate?.selectArea(id: Int(id))
@@ -642,8 +640,8 @@ class MapboxViewController: UIViewController {
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
-                        self.flyinToSomething = true
-                        self.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
+                        
+                        self.flyTo(cameraOptions)
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -669,7 +667,7 @@ class MapboxViewController: UIViewController {
                                 padding: UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20),
                                 zoom: 19
                             )
-                            self.mapView.camera.fly(to: cameraOptions, duration: 0.5)
+                            self.flyTo(cameraOptions)
                         }
                     }
                     
