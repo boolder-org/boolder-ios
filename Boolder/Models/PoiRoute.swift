@@ -19,8 +19,10 @@ struct PoiRoute : Identifiable {
         case walking
         case bike
     }
-    
-    // SQLite
+}
+
+// MARK: SQLite
+extension PoiRoute {
     static let id = Expression<Int>("id")
     static let poiRoutes = Table("poi_routes")
     static let areaId = Expression<Int>("area_id")

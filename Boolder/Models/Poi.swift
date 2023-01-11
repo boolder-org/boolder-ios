@@ -28,7 +28,10 @@ struct Poi : Identifiable {
             }
         }
     }
-    
+}
+
+// MARK: SQLite
+extension Poi {
     static let id = Expression<Int>("id")
     static let poiType = Expression<String>("poi_type")
     static let name = Expression<String>("name")
@@ -74,14 +77,10 @@ struct Poi : Identifiable {
         }
     }
     
-    var poiRoutes: [PoiRoute] {
-        
-        let poiId = Expression<Int>("poi_id") // FIXME: move to PoiRoute
-        let distanceInMinutes = Expression<Int>("distance_in_minutes") // FIXME: move to PoiRoute
-        
+    var poiRoutes: [PoiRoute] {        
         let query = Table("poi_routes")
-            .filter(poiId == self.id)
-            .order(distanceInMinutes.asc)
+            .filter(PoiRoute.poiId == self.id)
+            .order(PoiRoute.distanceInMinutes.asc)
         
         do {
             return try SqliteStore.shared.db.prepare(query).map { poiRoute in
