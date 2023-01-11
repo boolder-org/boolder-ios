@@ -83,7 +83,7 @@ struct MapContainerView: View {
                             } label: {
                                 HStack {
 //                                    CircleView(number: "1", color: circuit.color.uicolor, height: 24)
-                                    Text("Départ circuit")
+                                    Text("map.circuit_start")
                                 }
                             }
                             .padding(.horizontal, 16)

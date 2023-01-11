@@ -50,7 +50,7 @@ struct AreaView: View {
                         AreaDetailsView(area: area, mapState: mapState, appTab: $appTab, linkToMap: linkToMap)
                     } label: {
                         HStack {
-                            Text("Infos secteur")
+                            Text("area.infos")
                             Spacer()
                             
 //                            if let tagg = area.tags.first {
@@ -88,7 +88,7 @@ struct AreaView: View {
                         AreaProblemsView(area: area, mapState: mapState, appTab: $appTab)
                     } label: {
                         HStack {
-                            Text("Voies")
+                            Text("area.problems")
                             Spacer()
                             Text("\(problemsCount)")
                         }
@@ -99,7 +99,7 @@ struct AreaView: View {
                             showChart.toggle()
                         } label: {
                             HStack {
-                                Text("Niveaux")
+                                Text("area.problems")
                                     .foregroundColor(.primary)
 //                                Image(systemName: "chevron.down")
 //                                    .foregroundColor(.gray)
@@ -123,8 +123,8 @@ struct AreaView: View {
                                 Chart {
                                     ForEach(data) { shape in
                                         BarMark(
-                                            x: .value("Level", shape.name),
-                                            y: .value("Problems", shape.count)
+                                            x: .value("area.chart.level", shape.name),
+                                            y: .value("area.chart.problems", shape.count)
                                         )
                                     }
                                 }
@@ -172,7 +172,7 @@ struct AreaView: View {
                     Section(header:
                                 //                        HStack {
                             //                Image(systemName: "heart.fill").foregroundColor(.pink)
-                            Text("Populaires")
+                            Text("area.problems.popular")
                             //            }
                     ) {
                         
@@ -231,7 +231,7 @@ struct AreaView: View {
                         mapState.centerOnArea(area)
                         appTab = .map
                     } label: {
-                        Text("Voir sur la carte")
+                        Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))
                             .padding(.vertical)
                     }
@@ -259,7 +259,7 @@ struct AreaView: View {
                     leading: Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text("Fermer")
+                        Text("area.close")
                             .padding(.vertical)
                             .font(.body)
                     }

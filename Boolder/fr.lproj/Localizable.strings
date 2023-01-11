@@ -10,6 +10,40 @@
 "tabs.discover" = "Découvrir";
 "tabs.ticklist" = "Mes voies";
 
+// MARK: Map
+"map.circuit_start" = "Départ circuit";
+
+// MARK: POI
+"poi.see_in" = "Voir dans %@";
+"poi.share_gps_coordinates" = "Partager les coordonnées GPS";
+"poi.cancel" = "Annuler";
+"poi.gps_coordinates_for_poi" = "%@ : %@,%@";
+
+// MARK: Filters
+"filters.title" = "Filtres";
+"filters.level" = "Niveau";
+"filters.levels" = "Niveaux";
+"filters.circuit" = "Circuit";
+"filters.advanced_filters" = "Filtres avancés";
+"filters.type" = "Type";
+"filters.all" = "Tous";
+"filters.show_more_filters" = "Plus de filtres";
+"filters.show_less_filters" = "Moins de filtres";
+"filters.favorite" = "Projet";
+"filters.ticked" = "Réussi";
+"filters.clear" = "Effacer";
+"filters.beginner" = "Débutant";
+"filters.grade.range.beginner" = "Niveau 1 → 3";
+"filters.grade.range.level4" = "Niveau 4";
+"filters.grade.range.level5" = "Niveau 5";
+"filters.grade.range.level6" = "Niveau 6";
+"filters.grade.range.level7" = "Niveau 7";
+"filters.grade.range.level8" = "Niveau 8";
+"filters.grade.range.custom" = "Niveau personnalisé";
+"filters.grade.range_picker.level" = "Niveau";
+"filters.grade.range_picker.grade_min" = "Cotation min";
+"filters.grade.range_picker.grade_max" = "Cotation max";
+
 // MARK: Search
 "search.title" = "Recherche";
 "search.areas" = "Secteurs";
@@ -39,6 +73,19 @@
 "area.tags.beginner_friendly" = "convient aux débutants";
 "area.tags.family_friendly" = "idéal en famille";
 "area.tags.dry_fast" = "sèche vite";
+"area.infos" = "Infos secteur";
+"area.problems" = "Voies";
+"area.levels" = "Niveaux";
+"area.chart.level" = "Niveau";
+"area.chart.problems" = "Voies";
+"area.problems.popular" = "Populaires";
+"area.see_on_the_map" = "Voir sur la carte";
+"area.close" = "Fermer";
+"area.bike_time" = "Temps en vélo";
+"area.walking_time" = "Temps de marche";
+"area.problems.search_prompt" = "Nom de voie";
+"area.circuit.beginner" = "Ce circuit convient aux débutants";
+"area.circuit.dangerous" = "Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile";
 
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";
@@ -54,8 +101,6 @@
 "top_areas.groups.title" = "En groupe";
 "top_areas.groups.description" = "Ces secteurs offrent de nombreuses voies dans tous les niveaux de 2 à 7.";
 "top_areas.train.title" = "Train + vélo";
-"top_areas.train.description_boisleroi" = "Secteurs à moins de 30 min en vélo depuis la gare de Bois-le-Roi.";
-"top_areas.train.description_avon" = "Secteurs à moins de 20 min en vélo depuis la gare de Fontainebleau Avon.";
 "top_areas.dry_fast.title" = "Sèche vite";
 "top_areas.dry_fast.description" = "Ces secteurs sèchent plus vite que la moyenne grâce à leur exposition au soleil ou au vent.";
 "top_areas.dry_fast.warning" = "Ne grimpez pas si la roche est encore humide, vous risquez de l'abîmer.";
@@ -76,7 +121,6 @@
 "circuit.long_name.black" = "Circuit Noir";
 "circuit.long_name.white_for_kids" = "Circuit Blanc (pour enfants)";
 "circuit.long_name.off_circuit" = "Hors circuit";
-
 "circuit.short_name.yellow" = "Jaune";
 "circuit.short_name.purple" = "Violet";
 "circuit.short_name.orange" = "Orange";
@@ -89,35 +133,6 @@
 "circuit.short_name.black" = "Noir";
 "circuit.short_name.white_for_kids" = "Blanc";
 "circuit.short_name.off_circuit" = "Hors circuit";
-
-// MARK: POI
-"poi.see_in" = "Voir dans %@";
-"poi.share_gps_coordinates" = "Partager les coordonnées GPS";
-"poi.cancel" = "Annuler";
-"poi.gps_coordinates_for_poi" = "%@ : %@,%@";
-
-// MARK: Filters
-"filters.title" = "Filtres";
-"filters.level" = "Niveau";
-"filters.circuit" = "Circuit";
-"filters.advanced_filters" = "Filtres avancés";
-"filters.type" = "Type";
-"filters.all" = "Tous";
-"filters.show_more_filters" = "Plus de filtres";
-"filters.show_less_filters" = "Moins de filtres";
-"filters.favorite" = "Projet";
-"filters.ticked" = "Réussi";
-"filters.clear" = "Effacer";
-"filters.grade.range.beginner" = "Niveau 1 → 3";
-"filters.grade.range.level4" = "Niveau 4";
-"filters.grade.range.level5" = "Niveau 5";
-"filters.grade.range.level6" = "Niveau 6";
-"filters.grade.range.level7" = "Niveau 7";
-"filters.grade.range.level8" = "Niveau 8";
-"filters.grade.range.custom" = "Niveau personnalisé";
-"filters.grade.range_picker.level" = "Niveau";
-"filters.grade.range_picker.grade_min" = "Cotation min";
-"filters.grade.range_picker.grade_max" = "Cotation max";
 
 // MARK: Steepness
 "steepness.wall" = "Mur vertical";

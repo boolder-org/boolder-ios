@@ -93,7 +93,7 @@ struct AreaDetailsView: View {
                                 }
                                 
                                 HStack {
-                                    Text(poiRoute.transport == .bike ? "Temps de vélo" : "Temps de marche")
+                                    Text(poiRoute.transport == .bike ? "area.bike_time" : "area.walking_time")
                                     
                                     Spacer()
                                     
@@ -129,7 +129,7 @@ struct AreaDetailsView: View {
                         mapState.centerOnArea(area)
                         appTab = .map
                     } label: {
-                        Text("Voir sur la carte")
+                        Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))
                             .padding(.vertical)
                     }
@@ -141,7 +141,7 @@ struct AreaDetailsView: View {
         .onAppear {
             poiRoutes = area.poiRoutes
         }
-        .navigationTitle(Text("Infos secteur"))
+        .navigationTitle(Text("area.infos"))
     }
 }
 

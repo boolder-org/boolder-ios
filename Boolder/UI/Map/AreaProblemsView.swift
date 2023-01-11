@@ -49,13 +49,13 @@ struct AreaProblemsView: View {
         }
         .modify {
             if #available(iOS 16, *) {
-                $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Nom de voie")).autocorrectionDisabled()
+                $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("area.problems.search_prompt")).autocorrectionDisabled()
             }
             else {
                 $0
             }
         }
-        .navigationTitle("Voies")
+        .navigationTitle("area.problems")
         .navigationBarTitleDisplayMode(.inline)
     }
     

@@ -24,14 +24,14 @@ struct CircuitView: View {
                         if(circuit.beginnerFriendly) {
                             HStack {
                                 Image(systemName: "face.smiling").font(.title3)
-                                Text("Ce circuit convient aux débutants")
+                                Text("area.circuit.beginner")
                             }
                             .foregroundColor(.green)
                         }
                         if(circuit.dangerous) {
                             HStack {
                                 Image(systemName: "exclamationmark.circle").font(.title3)
-                                Text("Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile")
+                                Text("area.circuit.dangerous")
                             }
                             .foregroundColor(.orange)
                         }
@@ -79,7 +79,7 @@ struct CircuitView: View {
                     mapState.presentAreaView = false                    
                     appTab = .map
                 } label: {
-                    Text("Voir sur la carte")
+                    Text("area.see_on_the_map")
                         .font(.body.weight(.semibold))
                         .padding(.vertical)
                 }

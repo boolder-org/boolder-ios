@@ -61,7 +61,7 @@ struct CircuitPickerView: View {
                     mapState.unselectCircuit()
                     mapState.clearFilters()
                 }) {
-                    Text("Effacer")
+                    Text("filters.clear")
                         .padding(.vertical)
                         .font(.body)
                 }

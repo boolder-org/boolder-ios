@@ -26,7 +26,7 @@ struct FiltersView: View {
         NavigationView {
 
                 levels
-                .navigationBarTitle("Niveaux", displayMode: .inline)
+                .navigationBarTitle("filters.levels", displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
                         mapState.clearFilters()
@@ -72,7 +72,7 @@ struct FiltersView: View {
                             Text(range.description).foregroundColor(.primary)
                             Spacer()
                             if(range == .beginner) {
-                                Text("Débutant").foregroundColor(Color(.systemGray))
+                                Text("filters.beginner").foregroundColor(Color(.systemGray))
                             }
                         }
                     }
