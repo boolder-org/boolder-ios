@@ -21,20 +21,15 @@ struct Area : Identifiable {
     let southWestLon: Double
     let northEastLat: Double
     let northEastLon: Double
-    
-    // FIXME: don't use AreaView
-    var levelsCount : [AreaView.Level] {
-        [
-            .init(name: "1", count: min(150, problemsCount(level: 1))),
-            .init(name: "2", count: min(150, problemsCount(level: 2))),
-            .init(name: "3", count: min(150, problemsCount(level: 3))),
-            .init(name: "4", count: min(150, problemsCount(level: 4))),
-            .init(name: "5", count: min(150, problemsCount(level: 5))),
-            .init(name: "6", count: min(150, problemsCount(level: 6))),
-            .init(name: "7", count: min(150, problemsCount(level: 7))),
-            .init(name: "8", count: min(150, problemsCount(level: 8))),
-        ]
-    }
+    let level1Count: Int
+    let level2Count: Int
+    let level3Count: Int
+    let level4Count: Int
+    let level5Count: Int
+    let level6Count: Int
+    let level7Count: Int
+    let level8Count: Int
+    let problemsCount: Int
     
     var beginnerFriendly: Bool {
         tags.contains("beginner_friendly")
@@ -62,6 +57,15 @@ extension Area {
     static let southWestLon = Expression<Double>("south_west_lon")
     static let northEastLat = Expression<Double>("north_east_lat")
     static let northEastLon = Expression<Double>("north_east_lon")
+    static let level1Count = Expression<Int>("level1_count")
+    static let level2Count = Expression<Int>("level2_count")
+    static let level3Count = Expression<Int>("level3_count")
+    static let level4Count = Expression<Int>("level4_count")
+    static let level5Count = Expression<Int>("level5_count")
+    static let level6Count = Expression<Int>("level6_count")
+    static let level7Count = Expression<Int>("level7_count")
+    static let level8Count = Expression<Int>("level8_count")
+    static let problemsCount = Expression<Int>("problems_count")
     
     static func load(id: Int) -> Area? {
         
@@ -74,7 +78,11 @@ extension Area {
                             warningFr: a[warningFr], warningEn: a[warningEn],
                             tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
                             southWestLat: a[southWestLat], southWestLon: a[southWestLon],
-                            northEastLat: a[northEastLat], northEastLon: a[northEastLon])
+                            northEastLat: a[northEastLat], northEastLon: a[northEastLon],
+                            level1Count: a[level1Count], level2Count: a[level2Count], level3Count: a[level3Count], level4Count: a[level4Count],
+                            level5Count: a[level5Count], level6Count: a[level6Count], level7Count: a[level7Count], level8Count: a[level8Count],
+                            problemsCount: a[problemsCount]
+                )
             }
             
             return nil
@@ -115,7 +123,7 @@ extension Area {
             .filter(problems[Problem.grade] < "4a")
             .join(problems, on: areas[id] == problems[Problem.areaId])
             .group(areas[id])
-            .order(problems[id].count.desc)
+            .order(problems[id].count.desc) // this will not take precedence over the "sort by number of circuits" below, but still useful
         
         do {
             return try SqliteStore.shared.db.prepare(query).map { area in
@@ -123,6 +131,7 @@ extension Area {
             }
             .filter{$0.area.beginnerFriendly}
             .sorted {
+                // this will act as the 1st sorting criteria, before the "sort by number of easy problems" above
                 $0.area.circuits.filter{$0.beginnerFriendly}.count > $1.area.circuits.filter{$0.beginnerFriendly}.count
             }
         }
@@ -153,19 +162,6 @@ extension Area {
             .filter(Problem.areaId == id)
             .filter(Problem.grade >= "\(level)a")
             .filter(Problem.grade < "\(level+1)a")
-        
-        do {
-            return try SqliteStore.shared.db.scalar(problems.count)
-        }
-        catch {
-            print (error)
-            return 0
-        }
-    }
-    
-    var problemsCount: Int {
-        let problems = Table("problems")
-            .filter(Problem.areaId == id)
         
         do {
             return try SqliteStore.shared.db.scalar(problems.count)

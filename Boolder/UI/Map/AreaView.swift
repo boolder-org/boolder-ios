@@ -21,7 +21,7 @@ struct AreaView: View {
     @State private var problemsCount = 0
     @State private var popularProblems = [Problem]()
     @State private var showChart = false
-    @State private var data: [Level] = []
+    @State private var chartData: [Level] = []
     
     // TODO: refactor
     struct Level: Identifiable {
@@ -96,7 +96,16 @@ struct AreaView: View {
             problemsCount = area.problemsCount
             popularProblems = area.popularProblems
             
-            data = area.levelsCount
+            chartData = [
+                .init(name: "1", count: min(150, area.problemsCount(level: 1))),
+                .init(name: "2", count: min(150, area.problemsCount(level: 2))),
+                .init(name: "3", count: min(150, area.problemsCount(level: 3))),
+                .init(name: "4", count: min(150, area.problemsCount(level: 4))),
+                .init(name: "5", count: min(150, area.problemsCount(level: 5))),
+                .init(name: "6", count: min(150, area.problemsCount(level: 6))),
+                .init(name: "7", count: min(150, area.problemsCount(level: 7))),
+                .init(name: "8", count: min(150, area.problemsCount(level: 8))),
+            ]
         }
         .navigationTitle(area.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -161,7 +170,7 @@ struct AreaView: View {
                         Spacer()
                         
                         HStack(spacing: 2) {
-                            ForEach(area.levelsCount) { level in
+                            ForEach(chartData) { level in
                                 Text(String(level.name))
                                     .frame(width: 20, height: 20)
                                     .foregroundColor(.systemBackground)
@@ -175,7 +184,7 @@ struct AreaView: View {
                 if showChart {
                     if #available(iOS 16.0, *) {
                         Chart {
-                            ForEach(data) { shape in
+                            ForEach(chartData) { shape in
                                 BarMark(
                                     x: .value("area.chart.level", shape.name),
                                     y: .value("area.chart.problems", shape.count)
