@@ -22,45 +22,35 @@ struct PoiRoute : Identifiable {
     
     // SQLite
     static let id = Expression<Int>("id")
+    static let poiRoutes = Table("poi_routes")
+    static let areaId = Expression<Int>("area_id")
+    static let poiId = Expression<Int>("poi_id")
+    static let distanceInMinutes = Expression<Int>("distance_in_minutes")
+    static let transport = Expression<String>("transport")
     
     static func load(id: Int) -> PoiRoute? {
+        
+        let query = poiRoutes.filter(self.id == id)
+        
         do {
-            let db = SqliteStore.shared.db
-            
-            let poiRoutes = Table("poi_routes")
-            let _id = Expression<Int>("id")
-            let areaId = Expression<Int>("area_id")
-            let poiId = Expression<Int>("poi_id")
-            let distanceInMinutes = Expression<Int>("distance_in_minutes")
-            let transport = Expression<String>("transport")
-            
-            let query = poiRoutes.filter(_id == id)
-            
-            do {
-                if let p = try db.pluck(query) {
-                    return PoiRoute(id: id, areaId: p[areaId], poiId: p[poiId], distanceInMinutes: p[distanceInMinutes], transport: p[transport] == "bike" ? .bike : .walking)
-                }
-                
-                return nil
+            if let p = try SqliteStore.shared.db.pluck(query) {
+                return PoiRoute(id: id, areaId: p[areaId], poiId: p[poiId], distanceInMinutes: p[distanceInMinutes], transport: p[transport] == "bike" ? .bike : .walking)
             }
-            catch {
-                print (error)
-                return nil
-            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
         }
     }
     
     var poi: Poi? {
-        let db = SqliteStore.shared.db
-        
-        let pois = Table("pois")
-        let _id = Expression<Int>("id")
-        
-        let query = pois.filter(_id == self.poiId)
+        let query = Table("pois").filter(Poi.id == self.poiId)
         
         do {
-            if let poi = try db.pluck(query) {
-                return Poi.load(id: poi[_id])
+            if let poi = try SqliteStore.shared.db.pluck(query) {
+                return Poi.load(id: poi[Poi.id])
             }
             
             return nil

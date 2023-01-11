@@ -116,10 +116,8 @@ struct Problem : Identifiable {
     
     // TODO: handle multiple lines
     var line: Line? {
-        let problemId = Expression<Int>("problem_id") // FIXME: move to Line
-        
         let lines = Table("lines")
-            .filter(problemId == id)
+            .filter(Line.problemId == id)
         
         do {
             if let l = try SqliteStore.shared.db.pluck(lines) {

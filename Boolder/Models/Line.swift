@@ -22,9 +22,12 @@ struct Line: Decodable {
     func photo() -> UIImage? {
         UIImage(named: "topo-\(String(topoId)).jpg")
     }
-    
-    // SQLite
+}
+
+// MARK: SQLite
+extension Line {
     static let id = Expression<Int>("id")
+    static let problemId = Expression<Int>("problem_id")
     static let topoId = Expression<Int>("topo_id")
     static let coordinates = Expression<String>("coordinates")
     

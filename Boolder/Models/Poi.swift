@@ -29,49 +29,42 @@ struct Poi : Identifiable {
         }
     }
     
+    static let id = Expression<Int>("id")
+    static let poiType = Expression<String>("poi_type")
+    static let name = Expression<String>("name")
+    static let shortName = Expression<String>("short_name")
+    static let googleUrl = Expression<String>("google_url")
+    
     static func load(id: Int) -> Poi? {
+        let pois = Table("pois")
+        
+        let query = pois.filter(self.id == id)
+        
         do {
-            let db = SqliteStore.shared.db
-            
-            let pois = Table("pois")
-            let _id = Expression<Int>("id")
-            let poiType = Expression<String>("poi_type")
-            let name = Expression<String>("name")
-            let shortName = Expression<String>("short_name")
-            let googleUrl = Expression<String>("google_url")
-            
-            let query = pois.filter(_id == id)
-            
-            do {
-                if let p = try db.pluck(query) {
-                    return Poi(
-                        id: id,
-                        type: p[poiType] == "train_station" ? .trainStation : .parking,
-                        name: p[name],
-                        shortName: p[shortName],
-                        googleUrl: p[googleUrl]
-                    )
-                }
-                
-                return nil
+            if let p = try SqliteStore.shared.db.pluck(query) {
+                return Poi(
+                    id: id,
+                    type: p[poiType] == "train_station" ? .trainStation : .parking,
+                    name: p[name],
+                    shortName: p[shortName],
+                    googleUrl: p[googleUrl]
+                )
             }
-            catch {
-                print (error)
-                return nil
-            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
         }
     }
     
     static var all: [Poi] {
-        let db = SqliteStore.shared.db
-
-        let id = Expression<Int>("id")
-        
         let query = Table("pois")
             .order(id.asc)
         
         do {
-            return try db.prepare(query).map { poi in
+            return try SqliteStore.shared.db.prepare(query).map { poi in
                 Poi.load(id: poi[id])
             }.compactMap{$0}
         }
@@ -82,17 +75,17 @@ struct Poi : Identifiable {
     }
     
     var poiRoutes: [PoiRoute] {
-        let db = SqliteStore.shared.db
-
-        let id = Expression<Int>("id")
-        let poiId = Expression<Int>("poi_id")
-        let distanceInMinutes = Expression<Int>("distance_in_minutes")
         
-        let query = Table("poi_routes").filter(poiId == self.id).order(distanceInMinutes.asc)
+        let poiId = Expression<Int>("poi_id") // FIXME: move to PoiRoute
+        let distanceInMinutes = Expression<Int>("distance_in_minutes") // FIXME: move to PoiRoute
+        
+        let query = Table("poi_routes")
+            .filter(poiId == self.id)
+            .order(distanceInMinutes.asc)
         
         do {
-            return try db.prepare(query).map { poiRoute in
-                PoiRoute.load(id: poiRoute[id])
+            return try SqliteStore.shared.db.prepare(query).map { poiRoute in
+                PoiRoute.load(id: poiRoute[PoiRoute.id])
             }.compactMap{$0}
         }
         catch {
