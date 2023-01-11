@@ -55,8 +55,15 @@ class MapboxViewController: UIViewController {
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
-        // This is triggered a lot of time per second while the camera is moving => be careful with performance
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+            // Camera movement check is throttled for performance reason (especially during flying animations)
+            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
+            guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
+                return
+            }
+
+            lastCameraCheck = DispatchTime.now()
+            
             self.inferAreaFromMap()
             
             if(!flyinToSomething) {
@@ -66,7 +73,8 @@ class MapboxViewController: UIViewController {
         
         self.view.addSubview(mapView)
     }
-    
+    var lastCameraCheck: DispatchTime?
+
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
     
     func addSources() {
