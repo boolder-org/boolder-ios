@@ -19,7 +19,7 @@ struct TopAreasBeginnerView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 
-                Text("Secteurs avec circuits qui conviennent aux débutants :")
+                Text("discover.top_areas.level.beginner.intro")
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal)
@@ -73,7 +73,7 @@ struct TopAreasBeginnerView: View {
             areasForBeginners = Area.forBeginners
         }
         
-        .navigationTitle("Idéal pour débuter")
+        .navigationTitle("discover.top_areas.level.beginner_friendly")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

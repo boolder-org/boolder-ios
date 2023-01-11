@@ -22,7 +22,7 @@ struct TopAreasTrain: View {
                 VStack(alignment: .leading) {
                     
                     VStack {
-                        Text("Temps d'accès en vélo depuis la gare :")
+                        Text("discover.top_areas.train.intro")
                             .font(.body)
                             .foregroundColor(.gray)
                     }
@@ -41,7 +41,7 @@ struct TopAreasTrain: View {
                                     Button {
                                         openURL(url)
                                     } label: {
-                                        Text("Voir dans Google Maps")
+                                        Text("discover.top_areas.see_in_google_maps")
                                     }
                                 }
                                 

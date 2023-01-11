@@ -57,11 +57,15 @@
 // MARK: Discover view
 "discover.title" = "Discover";
 "discover.all_areas" = "All areas";
-"discover.popular" = "Popular areas";
+"discover.popular" = "Popular";
+"discover.beginners_guide" = "The beginner's guide";
 "discover.top_areas.level" = "For your level";
+"discover.top_areas.level.beginner_friendly" = "Beginner friendly";
+"discover.top_areas.level.beginner.intro" = "Areas with beginner friendly circuits:";
 "discover.top_areas.train" = "Accessible by train + bike";
+"discover.top_areas.train.intro" = "Bike time from the station:";
+"discover.top_areas.see_in_google_maps" = "See in Google Maps";
 "discover.top_areas.dry_fast" = "Dries fast";
-"discover.top_areas.groups" = "For groups";
 "discover.all_areas.map" = "Map";
 "discover.search_prompt" = "Area";
 "discover.support" = "Support Boolder";

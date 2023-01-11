@@ -37,7 +37,7 @@ struct DiscoverView: View {
                                         VStack(alignment: .leading) {
                                             HStack {
 //                                                Image(systemName: "face.smiling")
-                                                Text("Le guide pour bien débuter")
+                                                Text("discover.beginners_guide")
                                                     .textCase(.uppercase)
                                             }
                                             .padding()
@@ -131,7 +131,7 @@ struct DiscoverView: View {
                             .padding(.horizontal)
                             .padding(.top)
                             
-                            Text("Populaires")
+                            Text("discover.popular")
                                 .font(.title2).bold()
                                 .padding(.top, 16)
                                 .padding(.bottom, 8)
@@ -171,7 +171,7 @@ struct DiscoverView: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                Text("Tous les secteurs")
+                                Text("discover.all_areas")
                                     .font(.title2.bold())
                                 
                                 Spacer()

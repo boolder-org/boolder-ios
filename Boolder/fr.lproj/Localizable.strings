@@ -57,11 +57,15 @@
 // MARK: Discover view
 "discover.title" = "Découvrir";
 "discover.all_areas" = "Tous les secteurs";
-"discover.popular" = "Secteurs populaires";
+"discover.popular" = "Populaires";
+"discover.beginners_guide" = "Le guide pour bien débuter";
 "discover.top_areas.level" = "Par niveau";
+"discover.top_areas.level.beginner_friendly" = "Idéal pour débuter";
+"discover.top_areas.level.beginner.intro" = "Secteurs avec circuits qui conviennent aux débutants :";
 "discover.top_areas.train" = "Accessible en train + vélo";
+"discover.top_areas.train.intro" = "Temps d'accès en vélo depuis la gare :";
+"discover.top_areas.see_in_google_maps" = "Voir dans Google Maps";
 "discover.top_areas.dry_fast" = "Sèche vite";
-"discover.top_areas.groups" = "En groupe";
 "discover.all_areas.map" = "Carte";
 "discover.search_prompt" = "Secteur";
 "discover.support" = "Soutenir Boolder";

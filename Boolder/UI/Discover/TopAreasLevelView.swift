@@ -26,7 +26,7 @@ struct TopAreasLevelView: View {
                         TopAreasBeginnerView(appTab: $appTab, mapState: mapState)
                     } label: {
                         HStack(alignment: .firstTextBaseline) {
-                            Text("Idéal pour débuter")
+                            Text("discover.top_areas.level.beginner_friendly")
                                 .font(.title2.weight(.bold))
                                 .foregroundColor(.primary)
                                 
@@ -71,7 +71,7 @@ struct TopAreasLevelView: View {
                         }
                     }
                     
-                    Text("Tous les secteurs")
+                    Text("discover.all_areas")
                         .font(.title2).bold()
                         .padding(.top, 16)
                         .padding(.bottom, 8)
