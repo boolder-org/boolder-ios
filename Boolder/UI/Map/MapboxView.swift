@@ -12,8 +12,8 @@ import MapboxMaps
 
 // Bridge between SwiftUI-world (driven by MapState) and UIKit-world (MapboxViewController)
 // 2 ways to communicate:
-// SwiftUI -> UIKit : updateUIViewController
-// UIKit -> SwiftUI : MapBoxViewDelegate
+// SwiftUI -> UIKit : MapboxView.updateUIViewController
+// UIKit -> SwiftUI : MapBoxViewDelegate protocol
 
 struct MapboxView: UIViewControllerRepresentable {
     let mapState: MapState
