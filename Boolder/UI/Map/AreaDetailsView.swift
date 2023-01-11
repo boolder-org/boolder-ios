@@ -25,22 +25,18 @@ struct AreaDetailsView: View {
                     if #available(iOS 16.0, *) {
                         Section {
                             FlowLayout(alignment: .leading) {
-                                ForEach(area.tags, id: \.self) { tag in
-                                    Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
-                                        .font(.callout)
-                                        .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
-                                        .foregroundColor(Color.green)
-                                        .background(Color.systemBackground)
-                                        .cornerRadius(32)
-                                        .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
-                                }
+                                tags
                             }
                             .padding(.vertical, 4)
-                            //.background(Color.red)
                         }
                     }
                     else {
-                        // FIXME: handle fallback
+                        Section {
+                            VStack(alignment: .leading) {
+                                tags
+                            }
+                            .padding(.vertical, 4)
+                        }
                     }
                 }
                 
@@ -54,7 +50,6 @@ struct AreaDetailsView: View {
                         
                         if let warningFr = area.warningFr, let warningEn = area.warningEn {
                             VStack(alignment: .leading, spacing: 4) {
-                                //                                        Text("Important :").bold()
                                 Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
                             }
                         }
@@ -62,7 +57,6 @@ struct AreaDetailsView: View {
                 }
                 
                 if poiRoutes.count > 0 {
-                    
                     ForEach(poiRoutes) { poiRoute in
                         if let poi = poiRoute.poi {
                             Section {
@@ -83,7 +77,6 @@ struct AreaDetailsView: View {
                                         }
                                         else if poi.type == .trainStation {
                                             Image(systemName: "tram.fill")
-                                            //                                            .foregroundColor(.gray)
                                                 .font(.body)
                                         }
                                         
@@ -142,6 +135,18 @@ struct AreaDetailsView: View {
             poiRoutes = area.poiRoutes
         }
         .navigationTitle(Text("area.infos"))
+    }
+    
+    var tags: some View {
+        ForEach(area.tags, id: \.self) { tag in
+            Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
+                .font(.callout)
+                .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
+                .foregroundColor(Color.green)
+                .background(Color.systemBackground)
+                .cornerRadius(32)
+                .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+        }
     }
 }
 

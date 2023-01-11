@@ -42,7 +42,6 @@ struct CircuitView: View {
                 Section {
                     ForEach(circuit.problems) { problem in
                         Button {
-                            //                presentationMode.wrappedValue.dismiss()
                             mapState.presentAreaView = false
                             appTab = .map
                             mapState.selectAndPresentAndCenterOnProblem(problem)

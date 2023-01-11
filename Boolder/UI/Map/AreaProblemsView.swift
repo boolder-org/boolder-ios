@@ -16,7 +16,6 @@ struct AreaProblemsView: View {
     @Binding var appTab: ContentView.Tab
     
     @State private var problems = [Problem]()
-    
     @State private var searchText = ""
     
     var body: some View {
@@ -24,7 +23,6 @@ struct AreaProblemsView: View {
             Section {
                 ForEach(filteredProblems) { problem in
                     Button {
-//                        presentationMode.wrappedValue.dismiss()
                         mapState.presentAreaView = false
                         appTab = .map
                         mapState.selectAndPresentAndCenterOnProblem(problem)
@@ -61,7 +59,7 @@ struct AreaProblemsView: View {
     
     var filteredProblems: [Problem] {
         if searchText.count > 0 {
-            // TODO: rewrite in SQL to improve performance
+            // TODO: maybe rewrite in SQL to improve performance?
             return problems.filter { cleanString($0.name ?? "").contains(cleanString(searchText)) }
         }
         else
