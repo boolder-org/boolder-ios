@@ -55,6 +55,8 @@
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		03715287296F5123008FD130 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03715286296F5123008FD130 /* boolder.db */; };
 		03715288296F5123008FD130 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03715286296F5123008FD130 /* boolder.db */; };
+		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
+		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		038C2EF129201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF229201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF429201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
@@ -181,6 +183,7 @@
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03715286296F5123008FD130 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 				0314FFE42950786F00B7E249 /* AreaToolbarView.swift */,
 				03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */,
 				0314FFDE295054C500B7E249 /* AreaView.swift */,
+				03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */,
 				031A4CB3296B27D5002CBF52 /* AreaDetailsView.swift */,
 				039A22A5295F21F90096E137 /* AreaProblemsView.swift */,
 				039A229F295EE75B0096E137 /* CircuitView.swift */,
@@ -711,6 +715,7 @@
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
+				0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
 				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
 				37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */,
 				37379922258E619400711EDA /* LargeButton.swift in Sources */,
@@ -767,6 +772,7 @@
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */,
 				37A483402559A73A00DBD526 /* LineView.swift in Sources */,
+				0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				031F36B0291CE56100BD0C2B /* MapState.swift in Sources */,

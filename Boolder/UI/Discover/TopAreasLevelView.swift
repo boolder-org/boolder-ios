@@ -106,15 +106,7 @@ struct TopAreasLevelView: View {
                                         
                                         Spacer()
                                         
-                                        HStack(spacing: 2) {
-                                            ForEach(area.levels) { level in
-                                                Text(String(level.name))
-                                                    .frame(width: 20, height: 20)
-                                                    .foregroundColor(.systemBackground)
-                                                    .background(level.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
-                                                    .cornerRadius(4)
-                                            }
-                                        }
+                                        AreaLevelsBarView(area: area)
                                         
                                         
                                         Image(systemName: "chevron.right")
