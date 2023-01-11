@@ -23,31 +23,30 @@ struct Area : Identifiable {
     let northEastLon: Double
     
     // SQLite
-    static let areasTable = Table("areas") // move
-    static let idExp = Expression<Int>("id")
-    static let nameExp = Expression<String>("name")
-    static let descriptionFrExp = Expression<String?>("description_fr")
-    static let descriptionEnExp = Expression<String?>("description_en")
-    static let warningFrExp = Expression<String?>("warning_fr")
-    static let warningEnExp = Expression<String?>("warning_en")
-    static let tagsExp = Expression<String?>("tags")
-    static let southWestLatExp = Expression<Double>("south_west_lat")
-    static let southWestLonExp = Expression<Double>("south_west_lon")
-    static let northEastLatExp = Expression<Double>("north_east_lat")
-    static let northEastLonExp = Expression<Double>("north_east_lon")
+    static let id = Expression<Int>("id")
+    static let name = Expression<String>("name")
+    static let descriptionFr = Expression<String?>("description_fr")
+    static let descriptionEn = Expression<String?>("description_en")
+    static let warningFr = Expression<String?>("warning_fr")
+    static let warningEn = Expression<String?>("warning_en")
+    static let tags = Expression<String?>("tags")
+    static let southWestLat = Expression<Double>("south_west_lat")
+    static let southWestLon = Expression<Double>("south_west_lon")
+    static let northEastLat = Expression<Double>("north_east_lat")
+    static let northEastLon = Expression<Double>("north_east_lon")
     
     static func load(id: Int) -> Area? {
         do {
-            let query = areasTable.filter(idExp == id)
+            let query = Table("areas").filter(self.id == id)
             
             do {
                 if let a = try SqliteStore.shared.db.pluck(query) {
-                    return Area(id: id, name: a[nameExp],
-                                descriptionFr: a[descriptionFrExp], descriptionEn: a[descriptionEnExp],
-                                warningFr: a[warningFrExp], warningEn: a[warningEnExp],
-                                tags: a[tagsExp]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
-                                southWestLat: a[southWestLatExp], southWestLon: a[southWestLonExp],
-                                northEastLat: a[northEastLatExp], northEastLon: a[northEastLonExp])
+                    return Area(id: id, name: a[name],
+                                descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
+                                warningFr: a[warningFr], warningEn: a[warningEn],
+                                tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
+                                southWestLat: a[southWestLat], southWestLon: a[southWestLon],
+                                northEastLat: a[northEastLat], northEastLon: a[northEastLon])
                 }
                 
                 return nil
