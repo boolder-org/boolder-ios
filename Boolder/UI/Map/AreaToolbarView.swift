@@ -164,7 +164,7 @@ struct AreaToolbarView: View {
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")
-                        Text(mapState.filters.gradeRange?.description ?? "filters.levels")
+                        Text(mapState.filters.gradeRange?.description ?? NSLocalizedString("filters.levels", comment: ""))
                     }
                     .font(.callout.weight(.regular))
                     .padding(.horizontal, 12)

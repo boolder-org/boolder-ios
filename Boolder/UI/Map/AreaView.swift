@@ -99,7 +99,7 @@ struct AreaView: View {
                             showChart.toggle()
                         } label: {
                             HStack {
-                                Text("area.problems")
+                                Text("area.levels")
                                     .foregroundColor(.primary)
 //                                Image(systemName: "chevron.down")
 //                                    .foregroundColor(.gray)
