@@ -165,7 +165,7 @@ struct TopAreasLevelView: View {
     
     func loadAreas() {
         if areas.isEmpty {
-            areas = Area.all2
+            areas = Area.all
         }
     }
 }

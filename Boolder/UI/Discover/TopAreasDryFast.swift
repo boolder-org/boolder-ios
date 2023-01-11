@@ -90,7 +90,7 @@ struct TopAreasDryFast: View {
                 .padding(.top)
             }
             .onAppear{
-                areas = Area.all2.filter{$0.dryFast}
+                areas = Area.all.filter{$0.dryFast}
             }
         }
         .navigationTitle("top_areas.dry_fast.title")
