@@ -653,7 +653,6 @@ class MapboxViewController: UIViewController {
         do {
             try ["circuits"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
-                    
                     layer.visibility = .constant(.none)
                 }
             }
