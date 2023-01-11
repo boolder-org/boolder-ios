@@ -20,29 +20,22 @@ struct Circuit : Identifiable {
     let northEastLat: Double
     let northEastLon: Double
     
-//    init(id: Int, color: CircuitColor, averageGrade: Grade) {
-//        self.id = id
-//        self.color = color
-//        self.averageGrade = averageGrade
-//        self.
-//    }
+    // SQLite
+    static let id = Expression<Int>("id")
+    static let averageGrade = Expression<String>("average_grade")
+    static let beginnerFriendly = Expression<Int>("beginner_friendly")
+    static let dangerous = Expression<Int>("dangerous")
+    static let southWestLat = Expression<Double>("south_west_lat")
+    static let southWestLon = Expression<Double>("south_west_lon")
+    static let northEastLat = Expression<Double>("north_east_lat")
+    static let northEastLon = Expression<Double>("north_east_lon")
+    static let color = Expression<String>("color")
     
     static func load(id: Int) -> Circuit? {
         do {
-            let db = SqliteStore.shared.db
+            let problems = Table("circuits").filter(self.id == id)
             
-            let problems = Table("circuits").filter(Expression(literal: "id = '\(id)'"))
-            
-            let averageGrade = Expression<String>("average_grade")
-            let beginnerFriendly = Expression<Int>("beginner_friendly")
-            let dangerous = Expression<Int>("dangerous")
-            let southWestLat = Expression<Double>("south_west_lat")
-            let southWestLon = Expression<Double>("south_west_lon")
-            let northEastLat = Expression<Double>("north_east_lat")
-            let northEastLon = Expression<Double>("north_east_lon")
-            let color = Expression<String>("color")
-            
-            if let p = try db.pluck(problems) {
+            if let p = try SqliteStore.shared.db.pluck(problems) {
                 return Circuit(
                     id: id,
                     color: Circuit.CircuitColor.colorFromString(p[color]),

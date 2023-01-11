@@ -22,31 +22,32 @@ struct Area : Identifiable {
     let northEastLat: Double
     let northEastLon: Double
     
+    // SQLite
+    static let areasTable = Table("areas") // move
+    static let idExp = Expression<Int>("id")
+    static let nameExp = Expression<String>("name")
+    static let descriptionFrExp = Expression<String?>("description_fr")
+    static let descriptionEnExp = Expression<String?>("description_en")
+    static let warningFrExp = Expression<String?>("warning_fr")
+    static let warningEnExp = Expression<String?>("warning_en")
+    static let tagsExp = Expression<String?>("tags")
+    static let southWestLatExp = Expression<Double>("south_west_lat")
+    static let southWestLonExp = Expression<Double>("south_west_lon")
+    static let northEastLatExp = Expression<Double>("north_east_lat")
+    static let northEastLonExp = Expression<Double>("north_east_lon")
+    
     static func load(id: Int) -> Area? {
         do {
-            let db = SqliteStore.shared.db
-            
-            let areas = Table("areas").filter(Expression(literal: "id = '\(id)'"))
-            
-            let name = Expression<String>("name")
-            let descriptionFr = Expression<String?>("description_fr")
-            let descriptionEn = Expression<String?>("description_en")
-            let warningFr = Expression<String?>("warning_fr")
-            let warningEn = Expression<String?>("warning_en")
-            let tags = Expression<String?>("tags")
-            let southWestLat = Expression<Double>("south_west_lat")
-            let southWestLon = Expression<Double>("south_west_lon")
-            let northEastLat = Expression<Double>("north_east_lat")
-            let northEastLon = Expression<Double>("north_east_lon")
+            let query = areasTable.filter(idExp == id)
             
             do {
-                if let a = try db.pluck(areas) {
-                    return Area(id: id, name: a[name],
-                                descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
-                                warningFr: a[warningFr], warningEn: a[warningEn],
-                                tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
-                                southWestLat: a[southWestLat], southWestLon: a[southWestLon],
-                                northEastLat: a[northEastLat], northEastLon: a[northEastLon])
+                if let a = try SqliteStore.shared.db.pluck(query) {
+                    return Area(id: id, name: a[nameExp],
+                                descriptionFr: a[descriptionFrExp], descriptionEn: a[descriptionEnExp],
+                                warningFr: a[warningFrExp], warningEn: a[warningEnExp],
+                                tags: a[tagsExp]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
+                                southWestLat: a[southWestLatExp], southWestLon: a[southWestLonExp],
+                                northEastLat: a[northEastLatExp], northEastLon: a[northEastLonExp])
                 }
                 
                 return nil
@@ -177,15 +178,13 @@ struct Area : Identifiable {
 
     var problems: [Problem] {
 //        print("problems")
-        let db = SqliteStore.shared.db
-        
         let grade = Expression<String>("grade")
         let popularity = Expression<String>("popularity")
         let problems = Table("problems").filter(Expression(literal: "area_id = '\(id)'")).order(grade.desc, popularity.desc)
         let id = Expression<Int>("id")
         
         do {
-            return try db.prepare(problems).map { problem in
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
                 Problem.load(id: problem[id])
             }.compactMap{$0}
         }
@@ -223,55 +222,21 @@ struct Area : Identifiable {
     }
     
     var circuits: [Circuit] {
-//        print("circuits")
-        let db = SqliteStore.shared.db
-        
-//        let stmt = try db.prepare("SELECT area_id, email FROM users")
-//        for row in stmt {
-//            for (index, name) in stmt.columnNames.enumerated() {
-//                print ("\(name):\(row[index]!)")
-//                // id: Optional(1), email: Optional("alice@mac.com")
-//            }
-//        }
-        
         let id = Expression<Int>("id")
-        let circuitId = Expression<Int>("circuit_id")
-        let areaId = Expression<Int>("area_id")
-        let averageGrade = Expression<String>("average_grade")
-        let beginnerFriendly = Expression<Int>("beginner_friendly")
-        let dangerous = Expression<Int>("dangerous")
-        let southWestLat = Expression<Double>("south_west_lat")
-        let southWestLon = Expression<Double>("south_west_lon")
-        let northEastLat = Expression<Double>("north_east_lat")
-        let northEastLon = Expression<Double>("north_east_lon")
+        let circuitId = Expression<Int>("circuit_id") // FIXME: move to Problem
+        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
         let circuits = Table("circuits")
         let problems = Table("problems")
-        let color = Expression<String>("color")
         
-        let query = circuits.select(circuits[id], circuits[color], circuits[averageGrade], circuits[beginnerFriendly], circuits[dangerous],
-                                    circuits[southWestLat], circuits[southWestLon], circuits[northEastLat], circuits[northEastLon],
-                                    problems[id].count)
+        let query = circuits.select(circuits[Circuit.id], problems[id].count)
             .join(problems, on: circuits[id] == problems[circuitId])
             .group(circuits[id], having: problems[id].count >= 10)
             .filter(problems[areaId] == self.id)
-            .order(averageGrade.asc)
-        
-//        print(query.asSQL())
+            .order(Circuit.averageGrade.asc)
 
         do {
-            return try db.prepare(query).map { circuit in
-                Circuit(
-                    id: circuit[id],
-                    color: Circuit.CircuitColor.colorFromString(circuit[color]),
-                    averageGrade: Grade(circuit[averageGrade]),
-                    beginnerFriendly: circuit[beginnerFriendly] == 1,
-                    dangerous: circuit[dangerous] == 1,
-                    southWestLat: circuit[southWestLat], southWestLon: circuit[southWestLon], northEastLat: circuit[northEastLat], northEastLon: circuit[northEastLon])
-//                Circuit(
-//                    id: circuit[id],
-//                    color: Circuit.CircuitColor.colorFromString(circuit[color]),
-//                    averageGrade: Grade(circuit[average_grade]),
-//                )
+            return try SqliteStore.shared.db.prepare(query).map { circuit in
+                Circuit.load(id: circuit[id])
             }.compactMap{$0}
         }
         catch {
