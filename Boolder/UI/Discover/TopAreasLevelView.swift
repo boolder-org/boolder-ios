@@ -14,7 +14,7 @@ struct TopAreasLevelView: View {
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
-    @State private var areas = [AreaWithLevelsCount]()
+    @State private var areas = [Area]()
     @State private var areasForBeginners = [AreaWithCount]()
     
     var body: some View {
@@ -93,25 +93,25 @@ struct TopAreasLevelView: View {
                         VStack {
                             Divider()
                             
-                            ForEach(areas) { areaWithLevelsCount in
+                            ForEach(areas) { area in
                                 
                                 NavigationLink {
-                                    AreaView(area: areaWithLevelsCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                    AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {
-                                            Text(areaWithLevelsCount.area.name)
+                                            Text(area.name)
                                                 .multilineTextAlignment(.leading)
                                         }
                                         
                                         Spacer()
                                         
                                         HStack(spacing: 2) {
-                                            ForEach(areaWithLevelsCount.problemsCount) { levelCount in
-                                                Text(String(levelCount.name))
+                                            ForEach(area.levels) { level in
+                                                Text(String(level.name))
                                                     .frame(width: 20, height: 20)
                                                     .foregroundColor(.systemBackground)
-                                                    .background(levelCount.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
+                                                    .background(level.count >= 20 ? Color.levelGreen : Color.gray.opacity(0.5))
                                                     .cornerRadius(4)
                                             }
                                         }
@@ -165,22 +165,7 @@ struct TopAreasLevelView: View {
     
     func loadAreas() {
         if areas.isEmpty {
-            areas = Area.all.map{ areaWithCount in
-                AreaWithLevelsCount(
-                    area: areaWithCount.area,
-                    problemsCount:
-                        [
-                            .init(name: "1", count: areaWithCount.area.problemsCount(level: 1)),
-                            .init(name: "2", count: areaWithCount.area.problemsCount(level: 2)),
-                            .init(name: "3", count: areaWithCount.area.problemsCount(level: 3)),
-                            .init(name: "4", count: areaWithCount.area.problemsCount(level: 4)),
-                            .init(name: "5", count: areaWithCount.area.problemsCount(level: 5)),
-                            .init(name: "6", count: areaWithCount.area.problemsCount(level: 6)),
-                            .init(name: "7", count: areaWithCount.area.problemsCount(level: 7)),
-                            .init(name: "8", count: areaWithCount.area.problemsCount(level: 8)),
-                        ]
-                )
-            }
+            areas = Area.all2
         }
     }
 }

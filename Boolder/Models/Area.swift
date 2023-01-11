@@ -114,6 +114,26 @@ extension Area {
         }
     }
     
+    static var all2: [Area] {
+        let areas = Table("areas")
+        let problems = Table("problems")
+        
+        let query = areas.select(areas[id], problems[id].count)
+            .join(problems, on: areas[id] == problems[Problem.areaId])
+            .group(areas[id])
+            .order(problems[id].count.desc)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { area in
+                Area.load(id: area[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     static var forBeginners : [AreaWithCount] {
         let areas = Table("areas")
         let problems = Table("problems")
@@ -155,6 +175,21 @@ extension Area {
             print (error)
             return []
         }
+    }
+    
+    var levels: [LevelCount] {
+        print(id)
+        print("aha")
+        return [
+            .init(name: "1", count: level1Count),
+            .init(name: "2", count: level2Count),
+            .init(name: "3", count: level3Count),
+            .init(name: "4", count: level4Count),
+            .init(name: "5", count: level5Count),
+            .init(name: "6", count: level6Count),
+            .init(name: "7", count: level7Count),
+            .init(name: "8", count: level8Count),
+        ]
     }
     
     func problemsCount(level: Int) -> Int {
@@ -249,7 +284,9 @@ struct AreaWithLevelsCount : Identifiable {
 }
 
 struct LevelCount : Identifiable {
-    let id = UUID()
+    var id: Int {
+        Int(name)!
+    }
     
     let name: String
     let count: Int

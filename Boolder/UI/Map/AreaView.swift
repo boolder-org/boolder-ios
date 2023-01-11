@@ -161,7 +161,7 @@ struct AreaView: View {
                         Spacer()
                         
                         HStack(spacing: 2) {
-                            ForEach(chartData) { level in
+                            ForEach(area.levels) { level in
                                 Text(String(level.name))
                                     .frame(width: 20, height: 20)
                                     .foregroundColor(.systemBackground)
