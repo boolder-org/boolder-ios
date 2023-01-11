@@ -87,7 +87,6 @@ struct TopAreasDryFast: View {
                     .padding(.horizontal)
                     
                 }
-//                .padding(.horizontal)
                 .padding(.top)
             }
             .onAppear{

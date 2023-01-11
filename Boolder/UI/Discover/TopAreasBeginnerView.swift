@@ -26,7 +26,7 @@ struct TopAreasBeginnerView: View {
                     .padding(.bottom)
                 
                 VStack {
-                    Divider() //.padding(.leading)
+                    Divider()
                     
                     ForEach(areasForBeginners) { areaWithCount in
                         
@@ -36,11 +36,7 @@ struct TopAreasBeginnerView: View {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(areaWithCount.area.name)
-                                    //                                                    .font(.body.weight(.semibold))
-                                    //                                            .frame(maxWidth: .infinity, alignment: .leading)
                                         .multilineTextAlignment(.leading)
-                                    //                                            .background(Color.blue)
-                                    
                                 }
                                 
                                 Spacer()
@@ -61,7 +57,6 @@ struct TopAreasBeginnerView: View {
                             .padding(.horizontal)
                             .padding(.vertical, 4)
                         }
-                        
                         
                         Divider().padding(.leading)
                     }

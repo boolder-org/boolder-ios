@@ -44,18 +44,10 @@ struct TopAreasTrain: View {
                                         Text("discover.top_areas.see_in_google_maps")
                                     }
                                 }
-                                
-//                                Button {
-//                                    openURL(URL(string: "https://www.horaires-de-trains.fr/horaires-Paris_Gare_de_Lyon-Bois_le_Roi.html")!)
-//                                } label: {
-//                                    Text("Voir les horaires")
-//                                }
-
                             } label: {
                                 Image(systemName: "ellipsis.circle")
                                     .foregroundColor(Color.appGreen)
                                     .padding(.leading)
-//                                    .padding(.vertical)
                             }
                         }
                        .padding(.horizontal)
@@ -75,7 +67,6 @@ struct TopAreasTrain: View {
                                             
                                             Spacer()
                                             
-//                                            Image(systemName: "bicycle")
                                             Text("\(poiRoute.distanceInMinutes) min")
                                             
                                             Image(systemName: "chevron.right")
@@ -103,7 +94,6 @@ struct TopAreasTrain: View {
         }
         .navigationTitle("top_areas.train.title")
         .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 

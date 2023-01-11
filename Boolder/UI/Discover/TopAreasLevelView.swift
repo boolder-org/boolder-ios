@@ -91,7 +91,7 @@ struct TopAreasLevelView: View {
                     }
                     else {
                         VStack {
-                            Divider() //.padding(.leading)
+                            Divider()
                             
                             ForEach(areas) { areaWithLevelsCount in
                                 
@@ -101,17 +101,10 @@ struct TopAreasLevelView: View {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {
                                             Text(areaWithLevelsCount.area.name)
-                                            //                                                    .font(.body.weight(.semibold))
-                                            //                                            .frame(maxWidth: .infinity, alignment: .leading)
                                                 .multilineTextAlignment(.leading)
-                                            //                                            .background(Color.blue)
-                                            
                                         }
                                         
                                         Spacer()
-                                        
-                                        //                                    Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
-                                        //
                                         
                                         HStack(spacing: 2) {
                                             ForEach(areaWithLevelsCount.problemsCount) { levelCount in
