@@ -22,264 +22,245 @@ struct DiscoverView: View {
     
     var body: some View {
         NavigationView {
-            
             GeometryReader { geo in
                 ScrollView {
-                    VStack {
-                        VStack(alignment: .leading) {
-                            
-                            VStack {
-                                HStack {
-                                    Button {
-                                        openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!)
-                                    } label: {
-                                        
-                                        VStack(alignment: .leading) {
-                                            HStack {
-//                                                Image(systemName: "face.smiling")
-                                                Text("discover.beginners_guide")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.subheadline.weight(.bold))
-                                            .foregroundColor(Color.white)
-                                            .frame(height: 70)
-                                            .frame(maxWidth: .infinity)
-                                            .background(
-                                                LinearGradient(gradient:
-                                                                Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
-                                                               startPoint: .top,
-                                                               endPoint: .bottom)
-                                            )
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                    
-                                    NavigationLink(destination: TopAreasLevelView(appTab: $appTab, mapState: mapState)) {
-                                        
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "chart.bar")
-                                                Text("discover.top_areas.level")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.subheadline.weight(.bold))
-                                            .foregroundColor(Color.white)
-                                            .frame(height: 70)
-                                            .frame(maxWidth: .infinity)
-                                            .background(
-                                                LinearGradient(gradient:
-                                                                Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)]),
-                                                               startPoint: .top,
-                                                               endPoint: .bottom)
-                                            )
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                    
-                                }
-                                
-                                HStack {
-                                    
-                                    NavigationLink(destination: TopAreasDryFast(appTab: $appTab, mapState: mapState)) {
-                                        
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Image(systemName: "sun.max")
-                                                Text("discover.top_areas.dry_fast")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.subheadline.weight(.bold))
-                                            .foregroundColor(Color.white)
-                                            .frame(height: 70)
-                                            .frame(maxWidth: .infinity)
-                                            .background(
-                                                LinearGradient(gradient:
-                                                                Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)]),
-                                                               startPoint: .top,
-                                                               endPoint: .bottom)
-                                            )
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                    
-                                    NavigationLink(destination: TopAreasTrain(appTab: $appTab, mapState: mapState)) {
-                                        
-                                        VStack(alignment: .leading) {
-                                            HStack {
-                                                Text("discover.top_areas.train")
-                                                    .textCase(.uppercase)
-                                            }
-                                            .padding()
-                                            .font(.subheadline.weight(.bold))
-                                            .foregroundColor(Color.white)
-                                            .frame(height: 70)
-                                            .frame(maxWidth: .infinity)
-                                            .background(
-                                                LinearGradient(gradient:
-                                                                Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)]),
-                                                               startPoint: .top,
-                                                               endPoint: .bottom)
-                                            )
-                                            .cornerRadius(8)
-                                        }
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                            .padding(.top)
-                            
-                            Text("discover.popular")
-                                .font(.title2).bold()
-                                .padding(.top, 16)
-                                .padding(.bottom, 8)
-                                .padding(.horizontal)
-                            
-                            VStack {
-                                VStack(alignment: .leading) {
-                                    
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack(alignment: .top, spacing: 0) {
-                                            
-                                            Color.white.opacity(0)
-                                                .frame(width: 0, height: 1)
-                                                .padding(.leading, 8)
-                                            
-                                            ForEach(popularAreas) { areaWithCount in
-                                                NavigationLink {
-                                                    AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
-                                                } label: {
-                                                    AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                        .padding(.leading, 8)
-                                                        .contentShape(Rectangle())
-                                                }
-
-                                            }
-                                            
-                                            Color.white.opacity(0)
-                                                .frame(width: 0, height: 1)
-                                                .padding(.trailing, 16)
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            
-                        }
+                    VStack(alignment: .leading) {
                         
-                        VStack(alignment: .leading) {
+                        VStack {
                             HStack {
-                                Text("discover.all_areas")
-                                    .font(.title2.bold())
+                                Button {
+                                    openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!)
+                                } label: {
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text("discover.beginners_guide")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color.white)
+                                        .frame(height: 70)
+                                        .frame(maxWidth: .infinity)
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.green.opacity(0.4), Color.green.opacity(0.6)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
+                                        .cornerRadius(8)
+                                    }
+                                }
                                 
-                                Spacer()
+                                NavigationLink(destination: TopAreasLevelView(appTab: $appTab, mapState: mapState)) {
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Image(systemName: "chart.bar")
+                                            Text("discover.top_areas.level")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color.white)
+                                        .frame(height: 70)
+                                        .frame(maxWidth: .infinity)
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.blue.opacity(0.4), Color.blue.opacity(0.6)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
+                                        .cornerRadius(8)
+                                    }
+                                }
                                 
                             }
                             
-                            .padding(.top, 24)
+                            HStack {
+                                
+                                NavigationLink(destination: TopAreasDryFast(appTab: $appTab, mapState: mapState)) {
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Image(systemName: "sun.max")
+                                            Text("discover.top_areas.dry_fast")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color.white)
+                                        .frame(height: 70)
+                                        .frame(maxWidth: .infinity)
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.yellow.opacity(0.4), Color.yellow.opacity(0.6)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
+                                        .cornerRadius(8)
+                                    }
+                                }
+                                
+                                NavigationLink(destination: TopAreasTrain(appTab: $appTab, mapState: mapState)) {
+                                    
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text("discover.top_areas.train")
+                                                .textCase(.uppercase)
+                                        }
+                                        .padding()
+                                        .font(.subheadline.weight(.bold))
+                                        .foregroundColor(Color.white)
+                                        .frame(height: 70)
+                                        .frame(maxWidth: .infinity)
+                                        .background(
+                                            LinearGradient(gradient:
+                                                            Gradient(colors: [Color.red.opacity(0.2), Color.red.opacity(0.4)]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                        )
+                                        .cornerRadius(8)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.top)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("discover.popular")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
                             .padding(.bottom, 8)
                             .padding(.horizontal)
-                            
-                            VStack {
-                                Divider() //.padding(.leading)
+                        
+                        VStack {
+                            VStack(alignment: .leading) {
                                 
-                                ForEach(areas) { areaWithCount in
-                                    
-                                    NavigationLink {
-                                        AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
-                                    } label: {
-                                        HStack {
-                                            VStack(alignment: .leading, spacing: 6) {
-                                                Text(areaWithCount.area.name)
-//                                                    .font(.body.weight(.semibold))
-                                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                                
-//                                                HStack(spacing: 2) {
-//                                                    ForEach(1..<8) { level in
-//                                                        Text(String(level))
-////                                                            .font(.caption)
-//                                                            .frame(width: 20, height: 20)
-//                                                            .foregroundColor(.systemBackground)
-//                                                            .background(areaWithCount.area.levels[level]! ? Color.levelGreen : Color.gray.opacity(0.5))
-//                                                            .cornerRadius(4)
-//                                                    }
-//                                                }
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top, spacing: 0) {
+                                        
+                                        Color.white.opacity(0)
+                                            .frame(width: 0, height: 1)
+                                            .padding(.leading, 8)
+                                        
+                                        ForEach(popularAreas) { areaWithCount in
+                                            NavigationLink {
+                                                AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                            } label: {
+                                                AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                    .padding(.leading, 8)
+                                                    .contentShape(Rectangle())
                                             }
-
-                                            Spacer()
-                                            
-                                            Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
-                                            
-
-                                            
-                                            
-                                            Image(systemName: "chevron.right")
-                                                .font(.caption.weight(.bold))
-                                                .foregroundColor(.gray.opacity(0.7))
                                             
                                         }
-                                        .font(.body)
-                                        .foregroundColor(.primary)
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 4)
+                                        
+                                        Color.white.opacity(0)
+                                            .frame(width: 0, height: 1)
+                                            .padding(.trailing, 16)
                                     }
-                                    
-                                    
-                                    Divider().padding(.leading)
                                 }
                             }
                         }
-                        
-                        VStack(alignment: .leading) {
-                            Text("discover.support")
-                                .font(.title2).bold()
-                                .padding(.top, 16)
-                                .padding(.bottom, 8)
-                                .padding(.horizontal)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("discover.all_areas")
+                                .font(.title2.bold())
                             
-                            VStack(alignment: .leading) {
-                                Divider()
+                            Spacer()
+                            
+                        }
+                        
+                        .padding(.top, 24)
+                        .padding(.bottom, 8)
+                        .padding(.horizontal)
+                        
+                        VStack {
+                            Divider()
+                            
+                            ForEach(areas) { areaWithCount in
                                 
-                                Button(action: {
-                                    let appID = "1506614493"
-                                    let urlStr = "https://itunes.apple.com/app/id\(appID)?action=write-review"
-                                    guard let url = URL(string: urlStr) else { return }
-                                    openURL(url)
-                                }, label: {
+                                NavigationLink {
+                                    AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                } label: {
                                     HStack {
-                                        Image(systemName: "star")
-                                        Text("discover.rate")
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            Text(areaWithCount.area.name)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                        }
+                                        
                                         Spacer()
+                                        
+                                        Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .font(.caption.weight(.bold))
+                                            .foregroundColor(.gray.opacity(0.7))
+                                        
                                     }
                                     .font(.body)
                                     .foregroundColor(.primary)
-                                })
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 4)
+                                }
                                 
-                                Divider()
                                 
-                                Button(action: {
-                                    openURL(feedbackURL)
-                                }, label: {
-                                    HStack {
-                                        Image(systemName: "text.bubble")
-                                        Text("discover.feedback")
-                                        Spacer()
-                                    }
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                })
-                                
-                                Divider()
+                                Divider().padding(.leading)
                             }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                            .padding(.horizontal)
-                            .padding(.bottom)
                         }
                     }
-                    .navigationBarTitle(Text("discover.title"))
+                    
+                    VStack(alignment: .leading) {
+                        Text("discover.support")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        
+                        VStack(alignment: .leading) {
+                            Divider()
+                            
+                            Button(action: {
+                                let appID = "1506614493"
+                                let urlStr = "https://itunes.apple.com/app/id\(appID)?action=write-review"
+                                guard let url = URL(string: urlStr) else { return }
+                                openURL(url)
+                            }, label: {
+                                HStack {
+                                    Image(systemName: "star")
+                                    Text("discover.rate")
+                                    Spacer()
+                                }
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            })
+                            
+                            Divider()
+                            
+                            Button(action: {
+                                openURL(feedbackURL)
+                            }, label: {
+                                HStack {
+                                    Image(systemName: "text.bubble")
+                                    Text("discover.feedback")
+                                    Spacer()
+                                }
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            })
+                            
+                            Divider()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                    }
                 }
+                .navigationBarTitle(Text("discover.title"))
                 .onAppear {
                     if popularAreas.isEmpty {
                         popularAreas = Area.all.filter{$0.area.popular}
