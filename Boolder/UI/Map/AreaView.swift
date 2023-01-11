@@ -18,17 +18,9 @@ struct AreaView: View {
     let linkToMap: Bool
     
     @State private var circuits = [Circuit]()
-    @State private var problemsCount = 0
     @State private var popularProblems = [Problem]()
     @State private var showChart = false
     @State private var chartData: [Level] = []
-    
-    // TODO: refactor
-    struct Level: Identifiable {
-        var name: String
-        var count: Int
-        var id = UUID()
-    }
     
     var body: some View {
         ZStack {
@@ -93,18 +85,17 @@ struct AreaView: View {
         }
         .onAppear {
             circuits = area.circuits
-            problemsCount = area.problemsCount
             popularProblems = area.popularProblems
             
             chartData = [
-                .init(name: "1", count: min(150, area.problemsCount(level: 1))),
-                .init(name: "2", count: min(150, area.problemsCount(level: 2))),
-                .init(name: "3", count: min(150, area.problemsCount(level: 3))),
-                .init(name: "4", count: min(150, area.problemsCount(level: 4))),
-                .init(name: "5", count: min(150, area.problemsCount(level: 5))),
-                .init(name: "6", count: min(150, area.problemsCount(level: 6))),
-                .init(name: "7", count: min(150, area.problemsCount(level: 7))),
-                .init(name: "8", count: min(150, area.problemsCount(level: 8))),
+                .init(name: "1", count: min(150, area.level1Count)),
+                .init(name: "2", count: min(150, area.level2Count)),
+                .init(name: "3", count: min(150, area.level3Count)),
+                .init(name: "4", count: min(150, area.level4Count)),
+                .init(name: "5", count: min(150, area.level5Count)),
+                .init(name: "6", count: min(150, area.level6Count)),
+                .init(name: "7", count: min(150, area.level7Count)),
+                .init(name: "8", count: min(150, area.level8Count)),
             ]
         }
         .navigationTitle(area.name)
@@ -155,7 +146,7 @@ struct AreaView: View {
                 HStack {
                     Text("area.problems")
                     Spacer()
-                    Text("\(problemsCount)")
+                    Text("\(area.problemsCount)")
                 }
             }
             
@@ -228,6 +219,12 @@ struct AreaView: View {
                 }
             }
         }
+    }
+    
+    struct Level: Identifiable {
+        var name: String
+        var count: Int
+        var id = UUID()
     }
 }
 
