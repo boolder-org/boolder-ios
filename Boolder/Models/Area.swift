@@ -94,26 +94,7 @@ extension Area {
         
     }
     
-    static var all: [AreaWithCount] {
-        let areas = Table("areas")
-        let problems = Table("problems")
-        
-        let query = areas.select(areas[id], problems[id].count)
-            .join(problems, on: areas[id] == problems[Problem.areaId])
-            .group(areas[id])
-            .order(problems[id].count.desc)
-        
-        do {
-            return try SqliteStore.shared.db.prepare(query).map { area in
-                AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
-            }
-        }
-        catch {
-            print (error)
-            return []
-        }
-    }
-    
+    // TODO: no join needed
     static var all2: [Area] {
         let areas = Table("areas")
         let problems = Table("problems")
@@ -178,9 +159,7 @@ extension Area {
     }
     
     var levels: [LevelCount] {
-        print(id)
-        print("aha")
-        return [
+        [
             .init(name: "1", count: level1Count),
             .init(name: "2", count: level2Count),
             .init(name: "3", count: level3Count),

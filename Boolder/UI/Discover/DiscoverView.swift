@@ -14,7 +14,7 @@ struct DiscoverView: View {
     
     @State var presentArea = false
     
-    @State private var popularAreas = [AreaWithCount]()
+    @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
     
     @Binding var appTab: ContentView.Tab
@@ -146,11 +146,11 @@ struct DiscoverView: View {
                                             .frame(width: 0, height: 1)
                                             .padding(.leading, 8)
                                         
-                                        ForEach(popularAreas) { areaWithCount in
+                                        ForEach(popularAreas) { area in
                                             NavigationLink {
-                                                AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                                AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                             } label: {
-                                                AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                     .padding(.leading, 8)
                                                     .contentShape(Rectangle())
                                             }
@@ -263,7 +263,7 @@ struct DiscoverView: View {
                 .navigationBarTitle(Text("discover.title"))
                 .onAppear {
                     if popularAreas.isEmpty {
-                        popularAreas = Area.all.filter{$0.area.popular}
+                        popularAreas = Area.all2.filter{$0.popular}
                     }
                     
                     if areas.isEmpty {

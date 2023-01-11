@@ -14,7 +14,7 @@ struct TopAreasDryFast: View {
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
-    @State private var areas = [AreaWithCount]()
+    @State private var areas = [Area]()
     
     var body: some View {
         GeometryReader { geo in
@@ -39,11 +39,11 @@ struct TopAreasDryFast: View {
                                         .frame(width: 0, height: 1)
                                         .padding(.leading, 8)
                                     
-                                    ForEach(areas) { areaWithCount in
+                                    ForEach(areas) { area in
                                         NavigationLink {
-                                            AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                         } label: {
-                                            AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .padding(.leading, 8)
                                                 .contentShape(Rectangle())
                                         }
@@ -90,7 +90,7 @@ struct TopAreasDryFast: View {
                 .padding(.top)
             }
             .onAppear{
-                areas = Area.all.filter{$0.area.dryFast}
+                areas = Area.all2.filter{$0.dryFast}
             }
         }
         .navigationTitle("top_areas.dry_fast.title")
