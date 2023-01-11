@@ -14,8 +14,6 @@ class MapboxViewController: UIViewController {
     var mapView: MapView!
     var delegate: MapBoxViewDelegate?
     
-    var flyinToSomething = false
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +55,7 @@ class MapboxViewController: UIViewController {
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
+        // This is triggered a lot of time per second while the camera is moving => be careful with performance
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
             self.inferAreaFromMap()
             
@@ -397,10 +396,9 @@ class MapboxViewController: UIViewController {
                         if let feature = queriedfeatures.first?.feature,
                            case .number(let id) = feature.properties?["areaId"]
                         {
-                            // FIXME: trigger only when id is different than previous one
                             self.delegate?.selectArea(id: Int(id))
                         }
-                    case .failure(let error):
+                    case .failure(_):
                         break
                     }
                 }
@@ -412,7 +410,6 @@ class MapboxViewController: UIViewController {
         }
     }
 
-    
     func applyFilters(_ filters: Filters) {
         do {
             let gradeMin = filters.gradeRange?.min ?? Grade.min
@@ -437,14 +434,11 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnProblem(_ problem: Problem) {
-        let cameraOptions = CameraOptions(
+        flyTo(CameraOptions(
             center: problem.coordinate,
             padding: UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0),
             zoom: 20
-        )
-        // FIXME: quick fix to make the circuit mode work => change the duration logic for other cases
-        flyinToSomething = true
-        mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
+        ))
     }
     
     func centerOnArea(_ area: Area) {
@@ -452,13 +446,10 @@ class MapboxViewController: UIViewController {
                                       northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
 
         
-        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0)
         cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
         
-        flyinToSomething = true
-        mapView.camera.fly(to: cameraOptions, duration: 1) { _ in
-            self.flyinToSomething = false
-        }
+        flyTo(cameraOptions)
     }
     
     func centerOnCurrentLocation() {
@@ -472,29 +463,26 @@ class MapboxViewController: UIViewController {
             if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
-                    padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+                    padding: safePadding,
                     zoom: 17
                 )
                 
-                flyinToSomething = true
-                mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in self.flyinToSomething = false }
+                flyTo(cameraOptions)
                 
-                // FIXME: make sure the fly animation is over
-                // TODO: do it again when map is done loading?
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
                     self.inferAreaFromMap()
+                    // TODO: do it again when map is done loading?
                 }
             }
             else {
                 let cameraOptions = mapView.mapboxMap.camera(
                     for: fontainebleauBounds.extend(forPoint: location.coordinate),
-                    padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+                    padding: safePadding,
                     bearing: 0,
                     pitch: 0
                 )
                 
-                flyinToSomething = true
-                mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in self.flyinToSomething = false }
+                flyTo(cameraOptions)
             }
         }
     }
@@ -507,14 +495,13 @@ class MapboxViewController: UIViewController {
         
         var cameraOptions = mapView.mapboxMap.camera(
             for: circuitBounds,
-            padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+            padding: safePadding,
             bearing: 0,
             pitch: 0
         )
         cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
         
-        flyinToSomething = true
-        mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
+        flyTo(cameraOptions)
     }
     
     func setCircuitAsSelected(circuit: Circuit) {
@@ -790,6 +777,15 @@ class MapboxViewController: UIViewController {
                 }
             }
     }
+    
+    func flyTo(_ cameraOptions: CameraOptions) {
+        flyinToSomething = true
+        mapView.camera.fly(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
+    }
+    
+    var flyinToSomething = false
+    let flyinDuration = 0.5
+    let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20)
 }
 
 import CoreLocation
