@@ -27,33 +27,31 @@ struct Problem : Identifiable {
     let popularity: Int?
     let parentId: Int?
     
+    // FIXME: remove
     static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
     // SQLite
     static let id = Expression<Int>("id")
+    static let areaId = Expression<Int>("area_id")
+    static let name = Expression<String?>("name")
+    static let grade = Expression<String>("grade")
+    static let steepness = Expression<String>("steepness")
+    static let circuitNumber = Expression<String?>("circuit_number")
+    static let circuitColor = Expression<String?>("circuit_color")
+    static let circuitId = Expression<Int?>("circuit_id")
+    static let bleauInfoId = Expression<String?>("bleau_info_id")
+    static let parentId = Expression<Int?>("parent_id")
+    static let latitude = Expression<Double>("latitude")
+    static let longitude = Expression<Double>("longitude")
+    static let sitStart = Expression<Int>("sit_start")
+    static let featured = Expression<Int>("featured")
+    static let popularity = Expression<Int?>("popularity")
     
     static func load(id: Int) -> Problem? {
         do {
-            let db = SqliteStore.shared.db
+            let problems = Table("problems").filter(Problem.id == id)
             
-            let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
-            
-            let areaId = Expression<Int>("area_id")
-            let name = Expression<String?>("name")
-            let grade = Expression<String>("grade")
-            let steepness = Expression<String>("steepness")
-            let circuitNumber = Expression<String?>("circuit_number")
-            let circuitColor = Expression<String?>("circuit_color")
-            let circuitId = Expression<Int?>("circuit_id")
-            let bleauInfoId = Expression<String?>("bleau_info_id")
-            let parentId = Expression<Int?>("parent_id")
-            let latitude = Expression<Double>("latitude")
-            let longitude = Expression<Double>("longitude")
-            let sitStart = Expression<Int>("sit_start")
-            let featured = Expression<Int>("featured")
-            let popularity = Expression<Int?>("popularity")
-            
-            if let p = try db.pluck(problems) {
+            if let p = try SqliteStore.shared.db.pluck(problems) {
                 return Problem(
                     id: id,
                     name: p[name],
@@ -118,21 +116,22 @@ struct Problem : Identifiable {
     
     // TODO: handle multiple lines
     var line: Line? {
-        let db = SqliteStore.shared.db
+        let problemId = Expression<Int>("problem_id") // FIXME: move to Line
         
-        let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id)'"))
+        let lines = Table("lines")
+            .filter(problemId == id)
         
         let id = Expression<Int>("id")
         let topoId = Expression<Int>("topo_id")
         let coordinates = Expression<String>("coordinates")
         
         do {
-            if let l = try db.pluck(lines) {
+            if let l = try SqliteStore.shared.db.pluck(lines) {
                 let jsonString = l[coordinates]
                 if let jsonData = jsonString.data(using: .utf8) {
                     let coordinates = try JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData)
                     
-                    return Line(id: l[id], topoId: l[topoId], coordinates: coordinates)
+                    return Line(id: l[id], topoId: l[topoId], coordinates: coordinates) // FIXME: move to Line.load
                 }
             }
             
@@ -147,14 +146,14 @@ struct Problem : Identifiable {
     var otherProblemsOnSameTopo: [Problem] {
         guard let l = line else { return [] }
         
-        let db = SqliteStore.shared.db
+        let topoId = Expression<Int>("topo_id") // FIXME: move to Line
+        let problemId = Expression<Int>("problem_id") // FIXME: move to Line
         
-        let lines = Table("lines").filter(Expression(literal: "topo_id = '\(l.topoId)'"))
-        
-        let problemId = Expression<Int>("problem_id")
-        
+        let lines = Table("lines")
+            .filter(topoId == l.topoId)
+
         do {
-            let problemsOnSameTopo = try db.prepare(lines).map { l in
+            let problemsOnSameTopo = try SqliteStore.shared.db.prepare(lines).map { l in
                 Self.load(id: l[problemId])
             }
             
@@ -191,14 +190,15 @@ struct Problem : Identifiable {
     }
     
     var children: [Problem] {
-        let db = SqliteStore.shared.db
+        let parentId = Expression<Int>("parent_id") // FIXME: move to Problem
         
-        let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id)'"))
-        let id = Expression<Int>("id")
+        let problems = Table("problems")
+            .filter(parentId == id)
+
         
         do {
-            return try db.prepare(problems).map { problem in
-                Self.load(id: problem[id])
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
+                Self.load(id: problem[Problem.id])
             }.compactMap{$0}
         }
         catch {
@@ -221,36 +221,28 @@ struct Problem : Identifiable {
     }
     
     var next: Problem? {
-        let db = SqliteStore.shared.db
+        let nextNumber = String(Int(self.circuitNumber)! + 1) // FIXME: do'nt force unwrap
         
-        let id = Expression<Int>("id")
-        let circuitId = Expression<Int>("circuit_id")
-        let circuitnumber = Expression<String>("circuit_number")
-        let problems = Table("problems")
+        let query = Table("problems")
+            .filter(Problem.circuitId == self.circuitId!) // FIXME: do'nt force unwrap
+            .filter(Problem.circuitNumber == nextNumber)
         
-        let nextNumber = String(Int(self.circuitNumber)! + 1)
-        let query = problems.filter(circuitId == self.circuitId!).filter(circuitnumber == nextNumber)
-        
-        if let p = try! db.pluck(query) {
-            return Problem.load(id: p[id])
+        if let p = try! SqliteStore.shared.db.pluck(query) {
+            return Problem.load(id: p[Problem.id])
         }
         
         return nil
     }
     
     var previous: Problem? {
-        let db = SqliteStore.shared.db
+        let previousNumber = String(Int(self.circuitNumber)! - 1) // FIXME: do'nt force unwrap
         
-        let id = Expression<Int>("id")
-        let circuitId = Expression<Int>("circuit_id")
-        let circuitnumber = Expression<String>("circuit_number")
-        let problems = Table("problems")
+        let query = Table("problems")
+            .filter(Problem.circuitId == self.circuitId!)  // FIXME: do'nt force unwrap
+            .filter(Problem.circuitNumber == previousNumber)
         
-        let nextNumber = String(Int(self.circuitNumber)! - 1)
-        let query = problems.filter(circuitId == self.circuitId!).filter(circuitnumber == nextNumber)
-        
-        if let p = try! db.pluck(query) {
-            return Problem.load(id: p[id])
+        if let p = try! SqliteStore.shared.db.pluck(query) {
+            return Problem.load(id: p[Problem.id])
         }
         
         return nil

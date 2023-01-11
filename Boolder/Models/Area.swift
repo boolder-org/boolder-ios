@@ -37,7 +37,7 @@ struct Area : Identifiable {
     
     static func load(id: Int) -> Area? {
         do {
-            let query = Table("areas").filter(self.id == id)
+            let query = Table("areas").filter(Area.id == id)
             
             do {
                 if let a = try SqliteStore.shared.db.pluck(query) {
