@@ -436,7 +436,7 @@ class MapboxViewController: UIViewController {
     func centerOnProblem(_ problem: Problem) {
         flyTo(CameraOptions(
             center: problem.coordinate,
-            padding: UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0),
+            padding: safePaddingForBottomSheet,
             zoom: 20
         ))
     }
@@ -607,7 +607,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
                         cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                         
                         self.flyTo(cameraOptions)
@@ -639,7 +639,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
                         
                         self.flyTo(cameraOptions)
                     }
@@ -664,7 +664,7 @@ class MapboxViewController: UIViewController {
                         if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
                             let cameraOptions = CameraOptions(
                                 center: self.mapView.mapboxMap.coordinate(for: tapPoint),
-                                padding: UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20),
+                                padding: self.safePadding,
                                 zoom: 19
                             )
                             self.flyTo(cameraOptions)
@@ -721,7 +721,7 @@ class MapboxViewController: UIViewController {
                             
                             let cameraOptions = CameraOptions(
                                 center: point.coordinates,
-                                padding: UIEdgeInsets(top: 60, left: 0, bottom: self.view.bounds.height/2, right: 0)
+                                padding: self.safePaddingForBottomSheet
                             )
                             self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
                         }
@@ -761,7 +761,7 @@ class MapboxViewController: UIViewController {
                             
                             let cameraOptions = CameraOptions(
                                 center: point.coordinates,
-                                padding: UIEdgeInsets(top: 60, left: 0, bottom: self.view.bounds.height/2, right: 0)
+                                padding: self.safePaddingForBottomSheet
                             )
                             self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
                         }
@@ -784,6 +784,9 @@ class MapboxViewController: UIViewController {
     var flyinToSomething = false
     let flyinDuration = 0.5
     let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20)
+    var safePaddingForBottomSheet : UIEdgeInsets {
+        UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
+    }
 }
 
 import CoreLocation
