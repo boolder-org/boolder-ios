@@ -226,28 +226,32 @@ extension Problem {
     }
     
     var next: Problem? {
-        let nextNumber = String(Int(self.circuitNumber)! + 1) // FIXME: do'nt force unwrap
-        
-        let query = Table("problems")
-            .filter(Problem.circuitId == self.circuitId!) // FIXME: do'nt force unwrap
-            .filter(Problem.circuitNumber == nextNumber)
-        
-        if let p = try! SqliteStore.shared.db.pluck(query) {
-            return Problem.load(id: p[Problem.id])
+        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+            let nextNumber = String(circuitNumberInt + 1)
+            
+            let query = Table("problems")
+                .filter(Problem.circuitId == circuitId)
+                .filter(Problem.circuitNumber == nextNumber)
+            
+            if let p = try! SqliteStore.shared.db.pluck(query) {
+                return Problem.load(id: p[Problem.id])
+            }
         }
         
         return nil
     }
     
     var previous: Problem? {
-        let previousNumber = String(Int(self.circuitNumber)! - 1) // FIXME: do'nt force unwrap
-        
-        let query = Table("problems")
-            .filter(Problem.circuitId == self.circuitId!)  // FIXME: do'nt force unwrap
-            .filter(Problem.circuitNumber == previousNumber)
-        
-        if let p = try! SqliteStore.shared.db.pluck(query) {
-            return Problem.load(id: p[Problem.id])
+        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+            let previousNumber = String(circuitNumberInt - 1)
+            
+            let query = Table("problems")
+                .filter(Problem.circuitId == circuitId)
+                .filter(Problem.circuitNumber == previousNumber)
+            
+            if let p = try! SqliteStore.shared.db.pluck(query) {
+                return Problem.load(id: p[Problem.id])
+            }
         }
         
         return nil
