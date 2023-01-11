@@ -723,7 +723,7 @@ class MapboxViewController: UIViewController {
                                 center: point.coordinates,
                                 padding: self.safePaddingForBottomSheet
                             )
-                            self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
+                            self.easeTo(cameraOptions)
                         }
                     }
                     else {
@@ -757,13 +757,13 @@ class MapboxViewController: UIViewController {
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
                         // if problem is hidden by the bottom sheet
-                        if tapPoint.y >= self.mapView.bounds.height/2 {
+                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
                             
                             let cameraOptions = CameraOptions(
                                 center: point.coordinates,
                                 padding: self.safePaddingForBottomSheet
                             )
-                            self.mapView.camera.ease(to: cameraOptions, duration: 0.5)
+                            self.easeTo(cameraOptions)
                         }
                     }
                     else {
@@ -779,6 +779,11 @@ class MapboxViewController: UIViewController {
     func flyTo(_ cameraOptions: CameraOptions) {
         flyinToSomething = true
         mapView.camera.fly(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
+    }
+    
+    func easeTo(_ cameraOptions: CameraOptions) {
+        flyinToSomething = true
+        mapView.camera.ease(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
     }
     
     var flyinToSomething = false
