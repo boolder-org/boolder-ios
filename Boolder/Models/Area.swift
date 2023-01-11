@@ -22,7 +22,35 @@ struct Area : Identifiable {
     let northEastLat: Double
     let northEastLon: Double
     
-    // SQLite
+    // FIXME: don't use AreaView
+    var levelsCount : [AreaView.Level] {
+        [
+            .init(name: "1", count: min(150, problemsCount(level: 1))),
+            .init(name: "2", count: min(150, problemsCount(level: 2))),
+            .init(name: "3", count: min(150, problemsCount(level: 3))),
+            .init(name: "4", count: min(150, problemsCount(level: 4))),
+            .init(name: "5", count: min(150, problemsCount(level: 5))),
+            .init(name: "6", count: min(150, problemsCount(level: 6))),
+            .init(name: "7", count: min(150, problemsCount(level: 7))),
+            .init(name: "8", count: min(150, problemsCount(level: 8))),
+        ]
+    }
+    
+    var beginnerFriendly: Bool {
+        tags.contains("beginner_friendly")
+    }
+    
+    var popular: Bool {
+        tags.contains("popular")
+    }
+    
+    var dryFast: Bool {
+        tags.contains("dry_fast")
+    }
+}
+
+// MARK: SQLite
+extension Area {
     static let id = Expression<Int>("id")
     static let name = Expression<String>("name")
     static let descriptionFr = Expression<String?>("description_fr")
@@ -59,13 +87,11 @@ struct Area : Identifiable {
     }
     
     static var all: [AreaWithCount] {
-        
-        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
         let areas = Table("areas")
         let problems = Table("problems")
         
         let query = areas.select(areas[id], problems[id].count)
-            .join(problems, on: areas[id] == problems[areaId])
+            .join(problems, on: areas[id] == problems[Problem.areaId])
             .group(areas[id])
             .order(problems[id].count.desc)
         
@@ -81,16 +107,13 @@ struct Area : Identifiable {
     }
     
     static func allWithLevel(_ level: Int) -> [AreaWithCount] {
-        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
-        let grade = Expression<String>("grade") // FIXME: move to Problem
-        
         let areas = Table("areas")
         let problems = Table("problems")
         
         let query = Table("areas").select(areas[id], problems[id].count)
-            .filter(problems[grade] >= "\(level)a")
-            .filter(problems[grade] < "\(level+1)a")
-            .join(problems, on: areas[id] == problems[areaId])
+            .filter(problems[Problem.grade] >= "\(level)a")
+            .filter(problems[Problem.grade] < "\(level+1)a")
+            .join(problems, on: areas[id] == problems[Problem.areaId])
             .group(areas[id])
             .order(problems[id].count.desc)
         
@@ -106,16 +129,13 @@ struct Area : Identifiable {
     }
     
     static var forBeginners : [AreaWithCount] {
-        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
-        let grade = Expression<String>("grade") // FIXME: move to Problem
-        
         let areas = Table("areas")
         let problems = Table("problems")
         
         let query = Table("areas").select(areas[id], problems[id].count)
-            .filter(problems[grade] >= "1a")
-            .filter(problems[grade] < "4a")
-            .join(problems, on: areas[id] == problems[areaId])
+            .filter(problems[Problem.grade] >= "1a")
+            .filter(problems[Problem.grade] < "4a")
+            .join(problems, on: areas[id] == problems[Problem.areaId])
             .group(areas[id])
             .order(problems[id].count.desc)
         
@@ -134,40 +154,10 @@ struct Area : Identifiable {
         }
     }
     
-    // FIXME: don't use AreaView
-    var levelsCount : [AreaView.Level] {
-        [
-            .init(name: "1", count: min(150, problemsCount(level: 1))),
-            .init(name: "2", count: min(150, problemsCount(level: 2))),
-            .init(name: "3", count: min(150, problemsCount(level: 3))),
-            .init(name: "4", count: min(150, problemsCount(level: 4))),
-            .init(name: "5", count: min(150, problemsCount(level: 5))),
-            .init(name: "6", count: min(150, problemsCount(level: 6))),
-            .init(name: "7", count: min(150, problemsCount(level: 7))),
-            .init(name: "8", count: min(150, problemsCount(level: 8))),
-        ]
-    }
-    
-    var beginnerFriendly: Bool {
-        tags.contains("beginner_friendly")
-    }
-    
-    var popular: Bool {
-        tags.contains("popular")
-    }
-    
-    var dryFast: Bool {
-        tags.contains("dry_fast")
-    }
-
     var problems: [Problem] {
-        let grade = Expression<String>("grade") // FIXME: move to Problem
-        let popularity = Expression<String>("popularity") // FIXME: move to Problem
-        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
-        
         let problems = Table("problems")
-            .filter(areaId == id)
-            .order(grade.desc, popularity.desc)
+            .filter(Problem.areaId == id)
+            .order(Problem.grade.desc, Problem.popularity.desc)
         
         do {
             return try SqliteStore.shared.db.prepare(problems).map { problem in
@@ -181,13 +171,10 @@ struct Area : Identifiable {
     }
     
     func problemsCount(level: Int) -> Int {
-        let grade = Expression<String>("grade") // FIXME: move to Problem
-        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
-        
         let problems = Table("problems")
-            .filter(areaId == id)
-            .filter(grade >= "\(level)a")
-            .filter(grade < "\(level+1)a")
+            .filter(Problem.areaId == id)
+            .filter(Problem.grade >= "\(level)a")
+            .filter(Problem.grade < "\(level+1)a")
         
         do {
             return try SqliteStore.shared.db.scalar(problems.count)
@@ -208,16 +195,13 @@ struct Area : Identifiable {
     }
     
     var circuits: [Circuit] {
-        let circuitId = Expression<Int>("circuit_id") // FIXME: move to Problem
-        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
-        
         let circuits = Table("circuits")
         let problems = Table("problems")
         
         let query = circuits.select(circuits[Circuit.id], problems[Problem.id].count)
-            .join(problems, on: circuits[Circuit.id] == problems[circuitId])
+            .join(problems, on: circuits[Circuit.id] == problems[Problem.circuitId])
             .group(circuits[Circuit.id], having: problems[Problem.id].count >= 10)
-            .filter(problems[areaId] == self.id)
+            .filter(problems[Problem.areaId] == self.id)
             .order(Circuit.averageGrade.asc)
 
         do {
@@ -233,9 +217,8 @@ struct Area : Identifiable {
     
     var poiRoutes: [PoiRoute] {
         let poiRoutes = Table("poi_routes")
-        let areaId = Expression<Int>("area_id") // FIXME: Move to PoiRoute
         
-        let query = poiRoutes.filter(areaId == self.id)
+        let query = poiRoutes.filter(PoiRoute.areaId == self.id)
         
         do {
             return try SqliteStore.shared.db.prepare(query).map { poiRoute in
