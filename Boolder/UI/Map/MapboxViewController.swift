@@ -11,65 +11,10 @@ import MapboxMaps
 import CoreLocation
 
 class MapboxViewController: UIViewController {
-    
     var mapView: MapView!
     var delegate: MapBoxViewDelegate?
-    private var previouslyTappedProblemId: String = ""
     
     var flyinToSomething = false
-    
-    let queue = DispatchQueue.main
-    
-    func inferAreaFromMap() {
-        if(!flyinToSomething) {
-//            print("camera changed (zoom = \(mapView.mapboxMap.cameraState.zoom)")
-            
-            let zoom = Expression(.gt) {
-                Expression(.zoom)
-                14.5
-            }
-            
-            let width = mapView.frame.width/4
-            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
-            
-            //            var debugView = UIView(frame: rect)
-            //            debugView.backgroundColor = .red
-            //            mapView.addSubview(debugView)
-            
-            mapView.mapboxMap.queryRenderedFeatures(
-                with: rect,
-                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
-                    
-                    guard let self = self else { return }
-                    
-                    switch result {
-                    case .success(let queriedfeatures):
-                        
-                        if let feature = queriedfeatures.first?.feature,
-                           case .number(let id) = feature.properties?["areaId"]
-                        {
-//                            print("inside area \(id)")
-                            
-                            // FIXME: trigger only when id is different than previous one
-                            self.delegate?.selectArea(id: Int(id))
-                        }
-                    case .failure(let error):
-                        break
-                    }
-                }
-            
-            
-            if(mapView.mapboxMap.cameraState.zoom < 15) {
-//                print("zoom below 15")
-                
-                delegate?.unselectArea()
-//                delegate?.unselectCircuit()
-                
-            }
-        }
-    }
-
-    var lastExecution: DispatchTime?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -112,39 +57,12 @@ class MapboxViewController: UIViewController {
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
-//        mapView.mapboxMap.onEvery(event: .renderFrameFinished) { [self] _ in
-//            print("render finished")
-//        }
-        
-//        mapView.mapboxMap.onEvery(event: .styleDataLoaded) { [self] _ in
-//            print("style data loaded")
-//        }
-        
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
-            guard lastExecution == nil || lastExecution!.advanced(by: .milliseconds(100)) <= DispatchTime.now() else {
-                return
-            }
-
-            lastExecution = DispatchTime.now()
-            
             self.inferAreaFromMap()
             
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
             }
-            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                self.inferAreaFromMap()
-//            }
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                self.inferAreaFromMap()
-//            }
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//                self.inferAreaFromMap()
-//            }
-            
         }
         
         self.view.addSubview(mapView)
@@ -451,6 +369,48 @@ class MapboxViewController: UIViewController {
             print("Ran into an error adding the layers: \(error)")
         }
     }
+    
+    func inferAreaFromMap() {
+        if(!flyinToSomething) {
+            
+            let zoom = Expression(.gt) {
+                Expression(.zoom)
+                14.5
+            }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            
+            //            var debugView = UIView(frame: rect)
+            //            debugView.backgroundColor = .red
+            //            mapView.addSubview(debugView)
+            
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: rect,
+                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let queriedfeatures):
+                        
+                        if let feature = queriedfeatures.first?.feature,
+                           case .number(let id) = feature.properties?["areaId"]
+                        {
+                            // FIXME: trigger only when id is different than previous one
+                            self.delegate?.selectArea(id: Int(id))
+                        }
+                    case .failure(let error):
+                        break
+                    }
+                }
+            
+            
+            if(mapView.mapboxMap.cameraState.zoom < 15) {
+                delegate?.unselectArea()
+            }
+        }
+    }
 
     
     func applyFilters(_ filters: Filters) {
@@ -607,6 +567,8 @@ class MapboxViewController: UIViewController {
             print("Ran into an error updating the layer: \(error)")
         }
     }
+    
+    private var previouslyTappedProblemId: String = ""
     
     func setProblemAsSelected(problemFeatureId: String) {
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
