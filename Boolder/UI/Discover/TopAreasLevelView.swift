@@ -15,7 +15,7 @@ struct TopAreasLevelView: View {
     let mapState: MapState
     
     @State private var areas = [Area]()
-    @State private var areasForBeginners = [AreaWithCount]()
+    @State private var areasForBeginners = [Area]()
     
     var body: some View {
         GeometryReader { geo in
@@ -53,11 +53,11 @@ struct TopAreasLevelView: View {
                                         .frame(width: 0, height: 1)
                                         .padding(.leading, 8)
                                     
-                                    ForEach(areasForBeginners) { areaWithCount in
+                                    ForEach(areasForBeginners) { area in
                                         NavigationLink {
-                                            AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                         } label: {
-                                            AreaCardView(area: areaWithCount.area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .padding(.leading, 8)
                                                 .contentShape(Rectangle())
                                         }

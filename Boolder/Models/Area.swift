@@ -115,7 +115,7 @@ extension Area {
         }
     }
     
-    static var forBeginners : [AreaWithCount] {
+    static var forBeginners : [Area] {
         let areas = Table("areas")
         let problems = Table("problems")
         
@@ -128,12 +128,13 @@ extension Area {
         
         do {
             return try SqliteStore.shared.db.prepare(query).map { area in
-                AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
+                Area.load(id: area[id])
             }
-            .filter{$0.area.beginnerFriendly}
+            .compactMap{$0}
+            .filter{$0.beginnerFriendly}
             .sorted {
                 // this will act as the 1st sorting criteria, before the "sort by number of easy problems" above
-                $0.area.circuits.filter{$0.beginnerFriendly}.count > $1.area.circuits.filter{$0.beginnerFriendly}.count
+                $0.circuits.filter{$0.beginnerFriendly}.count > $1.circuits.filter{$0.beginnerFriendly}.count
             }
         }
         catch {

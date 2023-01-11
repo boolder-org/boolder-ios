@@ -12,7 +12,7 @@ struct TopAreasBeginnerView: View {
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
-    @State private var areasForBeginners = [AreaWithCount]()
+    @State private var areasForBeginners = [Area]()
     
     var body: some View {
         
@@ -28,21 +28,21 @@ struct TopAreasBeginnerView: View {
                 VStack {
                     Divider()
                     
-                    ForEach(areasForBeginners) { areaWithCount in
+                    ForEach(areasForBeginners) { area in
                         
                         NavigationLink {
-                            AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                         } label: {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
-                                    Text(areaWithCount.area.name)
+                                    Text(area.name)
                                         .multilineTextAlignment(.leading)
                                 }
                                 
                                 Spacer()
                                 
                                 HStack {
-                                    ForEach(areaWithCount.area.circuits.filter{$0.beginnerFriendly}) { circuit in
+                                    ForEach(area.circuits.filter{$0.beginnerFriendly}) { circuit in
                                         CircleView(number: "", color: circuit.color.uicolor, showStroke: false, height: 16)
                                     }
                                 }
