@@ -71,7 +71,6 @@ struct AreaView: View {
                     .padding(.bottom, 24)
                 }
             }
-//            .listStyle(.insetGrouped) // crashes on iOS 14
             
             if(linkToMap) {
                 VStack {
