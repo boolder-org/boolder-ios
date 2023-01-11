@@ -49,7 +49,7 @@ struct Problem : Identifiable {
     
     static func load(id: Int) -> Problem? {
         do {
-            let problems = Table("problems").filter(Problem.id == id)
+            let problems = Table("problems").filter(self.id == id)
             
             if let p = try SqliteStore.shared.db.pluck(problems) {
                 return Problem(
@@ -121,18 +121,9 @@ struct Problem : Identifiable {
         let lines = Table("lines")
             .filter(problemId == id)
         
-        let id = Expression<Int>("id")
-        let topoId = Expression<Int>("topo_id")
-        let coordinates = Expression<String>("coordinates")
-        
         do {
             if let l = try SqliteStore.shared.db.pluck(lines) {
-                let jsonString = l[coordinates]
-                if let jsonData = jsonString.data(using: .utf8) {
-                    let coordinates = try JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData)
-                    
-                    return Line(id: l[id], topoId: l[topoId], coordinates: coordinates) // FIXME: move to Line.load
-                }
+                return Line.load(id: l[Line.id])
             }
             
             return nil

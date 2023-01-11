@@ -36,26 +36,26 @@ struct Area : Identifiable {
     static let northEastLon = Expression<Double>("north_east_lon")
     
     static func load(id: Int) -> Area? {
+        
+        let query = Table("areas").filter(self.id == id)
+        
         do {
-            let query = Table("areas").filter(Area.id == id)
+            if let a = try SqliteStore.shared.db.pluck(query) {
+                return Area(id: id, name: a[name],
+                            descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
+                            warningFr: a[warningFr], warningEn: a[warningEn],
+                            tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
+                            southWestLat: a[southWestLat], southWestLon: a[southWestLon],
+                            northEastLat: a[northEastLat], northEastLon: a[northEastLon])
+            }
             
-            do {
-                if let a = try SqliteStore.shared.db.pluck(query) {
-                    return Area(id: id, name: a[name],
-                                descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
-                                warningFr: a[warningFr], warningEn: a[warningEn],
-                                tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
-                                southWestLat: a[southWestLat], southWestLon: a[southWestLon],
-                                northEastLat: a[northEastLat], northEastLon: a[northEastLon])
-                }
-                
-                return nil
-            }
-            catch {
-                print (error)
-                return nil
-            }
+            return nil
         }
+        catch {
+            print (error)
+            return nil
+        }
+        
     }
     
     static var all: [AreaWithCount] {
@@ -81,8 +81,6 @@ struct Area : Identifiable {
     }
     
     static func allWithLevel(_ level: Int) -> [AreaWithCount] {
-        let db = SqliteStore.shared.db
-        
         let areaId = Expression<Int>("area_id") // FIXME: move to Problem
         let grade = Expression<String>("grade") // FIXME: move to Problem
         
