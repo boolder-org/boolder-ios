@@ -10,6 +10,11 @@ import SwiftUI
 import CoreLocation
 import MapboxMaps
 
+// Bridge between SwiftUI-world (driven by MapState) and UIKit-world (MapboxViewController)
+// 2 ways to communicate:
+// SwiftUI -> UIKit : updateUIViewController
+// UIKit -> SwiftUI : MapBoxViewDelegate
+
 struct MapboxView: UIViewControllerRepresentable {
     let mapState: MapState
     

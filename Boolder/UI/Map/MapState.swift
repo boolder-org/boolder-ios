@@ -10,29 +10,28 @@ import SwiftUI
 
 @MainActor class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
-    @Published private(set) var selectProblemCount = 0 // to update the map UI without redrawing everything
-    @Published var presentProblemDetails = false
-    @Published var selectedPoi: Poi? = nil
-    @Published var presentPoiActionSheet = false
-    @Published var filters: Filters = Filters()
-    @Published var presentFilters = false
-    @Published private(set) var filtersRefreshCount = 0
-    @Published private(set) var centerOnCurrentLocationCount = 0 // to update the map UI without redrawing everything
     @Published private(set) var centerOnProblem: Problem? = nil
-    @Published private(set) var centerOnProblemCount = 0 // to update the map UI without redrawing everything
-    @Published private(set) var centerOnArea: Area? = nil
-    @Published private(set) var centerOnAreaCount = 0 // to update the map UI without redrawing everything
-    
     @Published var selectedArea: Area? = nil
+    @Published private(set) var centerOnArea: Area? = nil
     @Published var selectedCircuit: Circuit? = nil
-    @Published private(set) var selectCircuitCount = 0
-    @Published private(set) var centerOnCircuitCount = 0
+    @Published var selectedPoi: Poi? = nil
+    @Published var filters: Filters = Filters()
     
+    @Published var presentProblemDetails = false
+    @Published var presentPoiActionSheet = false
+    @Published var presentFilters = false
     @Published var presentAreaView = false
     @Published var presentCircuitPicker = false
-    
     @Published var displayCircuitStartButton = false
     
+    // TODO: find a better way to trigger map UI refreshes
+    @Published private(set) var selectProblemCount = 0
+    @Published private(set) var centerOnProblemCount = 0
+    @Published private(set) var centerOnAreaCount = 0
+    @Published private(set) var selectCircuitCount = 0
+    @Published private(set) var centerOnCircuitCount = 0
+    @Published private(set) var filtersRefreshCount = 0
+    @Published private(set) var centerOnCurrentLocationCount = 0
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
