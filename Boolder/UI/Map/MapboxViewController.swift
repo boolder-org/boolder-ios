@@ -302,16 +302,13 @@ class MapboxViewController: UIViewController {
     @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: mapView)
         
-        let zoomExpressionForAreas = Expression(.lt) {
-            Expression(.zoom)
-            15
-        }
-        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
-            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: zoomExpressionForAreas)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
+                
+                if self.mapView.mapboxMap.cameraState.zoom >= 15 { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
@@ -331,9 +328,7 @@ class MapboxViewController: UIViewController {
                         
                         self.flyTo(cameraOptions)
                         
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            self.delegate?.selectArea(id: Int(id))
-//                        }
+                        self.delegate?.selectArea(id: Int(id))
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -371,15 +366,12 @@ class MapboxViewController: UIViewController {
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
             options: RenderedQueryOptions(layerIds: ["boulders"], filter: nil)) { [weak self] result in
                 
-//                print("boulders 1")
-                
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
                     
                     if(queriedfeatures.first?.feature.geometry != nil) {
-//                        print("boulders 2")
                         if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
                             let cameraOptions = CameraOptions(
                                 center: self.mapView.mapboxMap.coordinate(for: tapPoint),
@@ -418,7 +410,7 @@ class MapboxViewController: UIViewController {
         
         
         mapView.mapboxMap.queryRenderedFeatures(
-            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
+            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
             options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
@@ -455,10 +447,10 @@ class MapboxViewController: UIViewController {
                 }
             }
         
-        // order between problems and circuit problems is important
+        // Careful: the order between problems and circuit problems is important!
         // TODO: make this DRY
         mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint, // use rect or tapPoint ?
+            with: tapPoint, // tapPoint seems to work better than rect
             options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
@@ -484,10 +476,6 @@ class MapboxViewController: UIViewController {
                             )
                             self.easeTo(cameraOptions)
                         }
-                    }
-                    else {
-//                        self.unselectPreviousProblem()
-//                        self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
