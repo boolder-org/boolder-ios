@@ -30,7 +30,92 @@ struct Problem : Identifiable {
     // FIXME: remove
     static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
-    // SQLite
+    var circuitUIColor: UIColor {
+        circuitColor?.uicolor ?? UIColor.gray
+    }
+    
+    var circuitUIColorForPhotoOverlay: UIColor {
+        circuitColor?.uicolorForPhotoOverlay ?? UIColor.gray
+    }
+    
+    var nameWithFallback: String {
+        if let circuitColor = circuitColor {
+            if circuitNumber != "" {
+                return name ?? (circuitColor.shortName + " " + circuitNumber)
+            }
+            else {
+                return name ?? NSLocalizedString("problem.no_name", comment: "")
+            }
+        }
+        else {
+            return name ?? NSLocalizedString("problem.no_name", comment: "")
+        }
+    }
+    
+    func circuitNumberComparableValue() -> Double {
+        if let int = Int(circuitNumber) {
+            return Double(int)
+        }
+        else {
+            if let int = Int(circuitNumber.dropLast()) {
+                return 0.5 + Double(int)
+            }
+            else {
+                return 0
+            }
+        }
+    }
+    
+    // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
+    var variants: [Problem] {
+        if let parent = parent {
+            return Array(
+                Set([parent]).union(
+                    Set(parent.children).subtracting(Set([self]))
+                )
+            )
+        }
+        else {
+            return children
+        }
+    }
+
+    // TODO: move to Line
+    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        guard let coordinates = line.coordinates else { return nil }
+        guard let firstPoint = coordinates.first else { return nil }
+        
+        return firstPoint
+    }
+    
+    var mainTopoPhoto: UIImage? {
+        line?.photo()
+    }
+    
+    func isFavorite() -> Bool {
+        favorite() != nil
+    }
+    
+    func favorite() -> Favorite? {
+        favorites().first { (favorite: Favorite) -> Bool in
+            return Int(favorite.problemId) == id
+        }
+    }
+    
+    func isTicked() -> Bool {
+        tick() != nil
+    }
+    
+    func tick() -> Tick? {
+        ticks().first { (tick: Tick) -> Bool in
+            return Int(tick.problemId) == id
+        }
+    }
+}
+
+// MARK: SQLite
+extension Problem {
     static let id = Expression<Int>("id")
     static let areaId = Expression<Int>("area_id")
     static let name = Expression<String?>("name")
@@ -78,42 +163,6 @@ struct Problem : Identifiable {
         }
     }
     
-    var circuitUIColor: UIColor {
-        circuitColor?.uicolor ?? UIColor.gray
-    }
-    
-    var circuitUIColorForPhotoOverlay: UIColor {
-        circuitColor?.uicolorForPhotoOverlay ?? UIColor.gray
-    }
-    
-    var nameWithFallback: String {
-        if let circuitColor = circuitColor {
-            if circuitNumber != "" {
-                return name ?? (circuitColor.shortName + " " + circuitNumber)
-            }
-            else {
-                return name ?? NSLocalizedString("problem.no_name", comment: "")
-            }
-        }
-        else {
-            return name ?? NSLocalizedString("problem.no_name", comment: "")
-        }
-    }
-    
-    func circuitNumberComparableValue() -> Double {
-           if let int = Int(circuitNumber) {
-               return Double(int)
-           }
-           else {
-               if let int = Int(circuitNumber.dropLast()) {
-                   return 0.5 + Double(int)
-               }
-               else {
-                   return 0
-               }
-           }
-       }
-    
     // TODO: handle multiple lines
     var line: Line? {
         let lines = Table("lines")
@@ -135,15 +184,12 @@ struct Problem : Identifiable {
     var otherProblemsOnSameTopo: [Problem] {
         guard let l = line else { return [] }
         
-        let topoId = Expression<Int>("topo_id") // FIXME: move to Line
-        let problemId = Expression<Int>("problem_id") // FIXME: move to Line
-        
         let lines = Table("lines")
-            .filter(topoId == l.topoId)
+            .filter(Line.topoId == l.topoId)
 
         do {
             let problemsOnSameTopo = try SqliteStore.shared.db.prepare(lines).map { l in
-                Self.load(id: l[problemId])
+                Self.load(id: l[Line.problemId])
             }
             
             return problemsOnSameTopo.compactMap{$0}.filter { p in
@@ -158,33 +204,10 @@ struct Problem : Identifiable {
         }
     }
     
-    // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
-    var variants: [Problem] {
-        if let parent = parent {
-            return Array(
-                Set([parent]).union(
-                    Set(parent.children).subtracting(Set([self]))
-                )
-            )
-        }
-        else {
-            return children
-        }
-    }
-    
-    var parent: Problem? {
-        guard let parentId = parentId else { return nil }
-        
-        return Self.load(id: parentId)
-    }
-    
     var children: [Problem] {
-        let parentId = Expression<Int>("parent_id") // FIXME: move to Problem
-        
         let problems = Table("problems")
-            .filter(parentId == id)
+            .filter(Problem.parentId == id)
 
-        
         do {
             return try SqliteStore.shared.db.prepare(problems).map { problem in
                 Self.load(id: problem[Problem.id])
@@ -196,17 +219,10 @@ struct Problem : Identifiable {
         }
     }
     
-    // TODO: move to Line
-    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
-        guard let line = line else { return nil }
-        guard let coordinates = line.coordinates else { return nil }
-        guard let firstPoint = coordinates.first else { return nil }
+    var parent: Problem? {
+        guard let parentId = parentId else { return nil }
         
-        return firstPoint
-    }
-    
-    var mainTopoPhoto: UIImage? {
-        line?.photo()
+        return Self.load(id: parentId)
     }
     
     var next: Problem? {
@@ -236,27 +252,10 @@ struct Problem : Identifiable {
         
         return nil
     }
-    
-    func isFavorite() -> Bool {
-        favorite() != nil
-    }
-    
-    func favorite() -> Favorite? {
-        favorites().first { (favorite: Favorite) -> Bool in
-            return Int(favorite.problemId) == id
-        }
-    }
-    
-    func isTicked() -> Bool {
-        tick() != nil
-    }
-    
-    func tick() -> Tick? {
-        ticks().first { (tick: Tick) -> Bool in
-            return Int(tick.problemId) == id
-        }
-    }
-    
+}
+
+// MARK: CoreData
+extension Problem {
     func favorites() -> [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
