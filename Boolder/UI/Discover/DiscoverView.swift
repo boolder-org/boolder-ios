@@ -15,7 +15,7 @@ struct DiscoverView: View {
     @State var presentArea = false
     
     @State private var popularAreas = [AreaWithCount]()
-    @State private var areas = [AreaWithCount]()
+    @State private var areas = [Area]()
     
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
@@ -182,20 +182,20 @@ struct DiscoverView: View {
                         VStack {
                             Divider()
                             
-                            ForEach(areas) { areaWithCount in
+                            ForEach(areas) { area in
                                 
                                 NavigationLink {
-                                    AreaView(area: areaWithCount.area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                    AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {
-                                            Text(areaWithCount.area.name)
+                                            Text(area.name)
                                                 .frame(maxWidth: .infinity, alignment: .leading)
                                         }
                                         
                                         Spacer()
                                         
-                                        Text("\(areaWithCount.problemsCount)").foregroundColor(Color(.systemGray))
+                                        Text("\(area.problemsCount)").foregroundColor(Color(.systemGray))
                                         
                                         Image(systemName: "chevron.right")
                                             .font(.caption.weight(.bold))
@@ -267,8 +267,8 @@ struct DiscoverView: View {
                     }
                     
                     if areas.isEmpty {
-                        areas = Area.all.sorted{
-                            $0.area.name.folding(options: .diacriticInsensitive, locale: .current) < $1.area.name.folding(options: .diacriticInsensitive, locale: .current)
+                        areas = Area.all2.sorted{
+                            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
                         }
                     }
                 }
