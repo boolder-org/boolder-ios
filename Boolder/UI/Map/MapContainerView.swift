@@ -18,11 +18,56 @@ struct MapContainerView: View {
     
     var body: some View {
         ZStack {
-            Mapbox()
+            mapbox
             
-            FiltersToolbarView(mapState: mapState)
+            circuitButtons
+            
+            locateButton
                 .zIndex(10)
             
+            SearchView(mapState: mapState)
+                .zIndex(20)
+                .opacity(mapState.selectedArea != nil ? 0 : 1)
+            
+            AreaToolbarView(mapState: mapState, appTab: $appTab)
+                .zIndex(30)
+                .opacity(mapState.selectedArea != nil ? 1 : 0)
+        }
+    }
+    
+    var mapbox : some View {
+        MapboxView(mapState: mapState)
+            .edgesIgnoringSafeArea(.top)
+            .ignoresSafeArea(.keyboard)
+            .background(
+                PoiActionSheet(
+                    name: (mapState.selectedPoi?.name ?? ""),
+                    googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
+                    presentPoiActionSheet: $mapState.presentPoiActionSheet
+                )
+            )
+            .sheet(isPresented: $mapState.presentProblemDetails) {
+                ProblemDetailsView(
+                    problem: $mapState.selectedProblem,
+                    mapState: mapState
+                )
+                // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
+                // remove these lines as soon as it's fixed
+                .environment(\.managedObjectContext, managedObjectContext)
+                .environmentObject(odrManager)
+                .modify {
+                    if #available(iOS 16, *) {
+                        $0.presentationDetents(undimmed: [.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                    }
+                    else {
+                        $0
+                    }
+                }
+            }
+    }
+    
+    var circuitButtons : some View {
+        Group {
             if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
                 HStack(spacing: 0) {
                     
@@ -33,7 +78,6 @@ struct MapContainerView: View {
                         }) {
                             Image(systemName: "arrow.left")
                                 .padding(10)
-                            //                                .offset(x: -1, y: 0)
                         }
                         .font(.body.weight(.semibold))
                         .accentColor(Color(circuit.color.uicolorForSystemBackground))
@@ -82,7 +126,6 @@ struct MapContainerView: View {
                                 mapState.displayCircuitStartButton = false
                             } label: {
                                 HStack {
-//                                    CircleView(number: "1", color: circuit.color.uicolor, height: 24)
                                     Text("map.circuit_start")
                                 }
                             }
@@ -102,51 +145,36 @@ struct MapContainerView: View {
                     }
                 }
             }
-            
-            
-            SearchView(mapState: mapState)
-                .zIndex(20)
-                .opacity(mapState.selectedArea != nil ? 0 : 1)
-            
-            AreaToolbarView(mapState: mapState, appTab: $appTab)
-                .zIndex(30)
-                .opacity(mapState.selectedArea != nil ? 1 : 0)
-            
-//            CircuitToolbarView(mapState: mapState)
-//                .zIndex(40)
-//                .opacity(mapState.selectedCircuit != nil ? 1 : 0)
         }
     }
     
-    func Mapbox() -> some View {
-        MapboxView(mapState: mapState)
-            .edgesIgnoringSafeArea(.top)
-            .ignoresSafeArea(.keyboard)
-            .background(
-                PoiActionSheet(
-                    name: (mapState.selectedPoi?.name ?? ""),
-                    googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
-                    presentPoiActionSheet: $mapState.presentPoiActionSheet
-                )
-            )
-            .sheet(isPresented: $mapState.presentProblemDetails) {
-                ProblemDetailsView(
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState
-                )
-                // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
-                // remove these lines as soon as it's fixed
-                .environment(\.managedObjectContext, managedObjectContext)
-                .environmentObject(odrManager)
-                .modify {
-                    if #available(iOS 16, *) {
-                        $0.presentationDetents(undimmed: [.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                    }
-                    else {
-                        $0
-                    }
+    var locateButton : some View {
+        HStack {
+            Spacer()
+            
+            VStack {
+                Spacer()
+                
+                Button(action: {
+                    mapState.centerOnCurrentLocation()
+                }) {
+                    Image(systemName: "location")
+                        .padding(12)
+                        .offset(x: -1, y: 0)
                 }
+                .accentColor(.primary)
+                .background(Color.systemBackground)
+                .clipShape(Circle())
+                .overlay(
+                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                )
+                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                .padding(.horizontal)
+                
             }
+        }
+        .padding(.bottom)
+        .ignoresSafeArea(.keyboard)
     }
 }
 
