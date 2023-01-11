@@ -24,7 +24,6 @@ struct AreaToolbarView: View {
                             .font(Font.body.weight(.semibold))
                             .foregroundColor(Color(.secondaryLabel))
                             .padding(.horizontal, 16)
-                        //                        .disabled(true)
                     }
                     
                     Spacer()
@@ -55,42 +54,10 @@ struct AreaToolbarView: View {
                     
                     Spacer()
                     
-//                    Button(action: {
-//                        mapState.presentFilters = true
-//                    }) {
-//                        Image(systemName: "slider.vertical.3")
-//                            .padding(4)
-//                    }
-//                    .accentColor(filtersActive ? .systemBackground : Color.appGreen)
-//                    .background(filtersActive ? Color.appGreen : .systemBackground)
-//                    .cornerRadius(4)
-//                    .padding(.horizontal)
-//                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-//                        mapState.filtersRefresh()
-//                        // TODO: update $mapState.filters only on dismiss
-//                    }) {
-//                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, viewModel: AreaViewModel(area: mapState.selectedArea!, mapState: mapState))
-//                            .modify {
-//                                if #available(iOS 16, *) {
-//                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-//                                }
-//                                else {
-//                                    $0
-//                                }
-//                            }
-//                    }
-                    
-
-                    Button {
-
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(Font.body.weight(.semibold))
-                            .foregroundColor(Color(.secondaryLabel))
-                            .padding(.horizontal, 16)
-                            .opacity(0)
-                        //                        .disabled(true)
-                    }
+                    Color.red
+                        .frame(height: 20)
+                        .frame(maxWidth: 40)
+                        .layoutPriority(-1)
                     
                 }
                 .background(Color(.systemBackground))

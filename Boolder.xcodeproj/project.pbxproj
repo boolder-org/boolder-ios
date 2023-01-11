@@ -111,7 +111,6 @@
 		37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */; };
 		37379924258E619400711EDA /* GradeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37254DE825557F9700264034 /* GradeRange.swift */; };
 		37379926258E619400711EDA /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80A245326F200DC161F /* Grade.swift */; };
-		37379927258E619400711EDA /* OldPoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* OldPoiActionSheet.swift */; };
 		37379929258E619400711EDA /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCA98524670DC000D56252 /* Problem.swift */; };
 		3737992A258E619400711EDA /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
 		3737992F258E619400711EDA /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
@@ -154,7 +153,6 @@
 		37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
 		37F563F725AB09F400271346 /* TopoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F563F525AB09F400271346 /* TopoEntry.swift */; };
 		37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
-		37FD85A32460A4F90054982F /* OldPoiActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD85A22460A4F90054982F /* OldPoiActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,7 +234,6 @@
 		37F563F525AB09F400271346 /* TopoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoEntry.swift; sourceTree = "<group>"; };
 		37F9358C250578D000B1CAB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37F9358E250578D700B1CAB2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		37FD85A22460A4F90054982F /* OldPoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPoiActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,7 +313,6 @@
 				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
-				37FD85A22460A4F90054982F /* OldPoiActionSheet.swift */,
 				0314FFE42950786F00B7E249 /* AreaToolbarView.swift */,
 				03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */,
 				0314FFDE295054C500B7E249 /* AreaView.swift */,
@@ -733,7 +729,6 @@
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
 				031F36BD291D97B900BD0C2B /* AlgoliaErrorController.swift in Sources */,
-				37379927258E619400711EDA /* OldPoiActionSheet.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
 				03E500942930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */,
@@ -800,7 +795,6 @@
 				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				031A4C9629673C90002CBF52 /* FlowLayout.swift in Sources */,
 				039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */,
-				37FD85A32460A4F90054982F /* OldPoiActionSheet.swift in Sources */,
 				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
 				031F36B3291D01B700BD0C2B /* AlgoliaController.swift in Sources */,
 				03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */,
