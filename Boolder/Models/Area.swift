@@ -59,23 +59,18 @@ struct Area : Identifiable {
     }
     
     static var all: [AreaWithCount] {
-        let db = SqliteStore.shared.db
         
-//        let grade = Expression<String>("grade")
-//        let popularity = Expression<String>("popularity")
-        let id = Expression<Int>("id")
-        let areaId = Expression<Int>("area_id")
+        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
         let areas = Table("areas")
         let problems = Table("problems")
-        let query = Table("areas").select(areas[id], problems[id].count)
+        
+        let query = areas.select(areas[id], problems[id].count)
             .join(problems, on: areas[id] == problems[areaId])
             .group(areas[id])
             .order(problems[id].count.desc)
-//            .order(grade.desc, popularity.desc)
-        
         
         do {
-            return try db.prepare(query).map { area in
+            return try SqliteStore.shared.db.prepare(query).map { area in
                 AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
             }
         }
@@ -88,23 +83,21 @@ struct Area : Identifiable {
     static func allWithLevel(_ level: Int) -> [AreaWithCount] {
         let db = SqliteStore.shared.db
         
-//        let grade = Expression<String>("grade")
-//        let popularity = Expression<String>("popularity")
-        let id = Expression<Int>("id")
-        let areaId = Expression<Int>("area_id")
-        let grade = Expression<String>("grade")
+        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
+        let grade = Expression<String>("grade") // FIXME: move to Problem
+        
         let areas = Table("areas")
         let problems = Table("problems")
+        
         let query = Table("areas").select(areas[id], problems[id].count)
-            .filter(problems[grade] >= "\(level)a").filter(problems[grade] < "\(level+1)a")
+            .filter(problems[grade] >= "\(level)a")
+            .filter(problems[grade] < "\(level+1)a")
             .join(problems, on: areas[id] == problems[areaId])
             .group(areas[id])
             .order(problems[id].count.desc)
-//            .order(grade.desc, popularity.desc)
-        
         
         do {
-            return try db.prepare(query).map { area in
+            return try SqliteStore.shared.db.prepare(query).map { area in
                 AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
             }
         }
@@ -115,25 +108,21 @@ struct Area : Identifiable {
     }
     
     static var forBeginners : [AreaWithCount] {
-        let db = SqliteStore.shared.db
+        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
+        let grade = Expression<String>("grade") // FIXME: move to Problem
         
-//        let grade = Expression<String>("grade")
-//        let popularity = Expression<String>("popularity")
-        let id = Expression<Int>("id")
-        let areaId = Expression<Int>("area_id")
-        let grade = Expression<String>("grade")
         let areas = Table("areas")
         let problems = Table("problems")
+        
         let query = Table("areas").select(areas[id], problems[id].count)
-            .filter(problems[grade] >= "1a").filter(problems[grade] < "4a")
+            .filter(problems[grade] >= "1a")
+            .filter(problems[grade] < "4a")
             .join(problems, on: areas[id] == problems[areaId])
             .group(areas[id])
             .order(problems[id].count.desc)
-//            .order(grade.desc, popularity.desc)
-        
         
         do {
-            return try db.prepare(query).map { area in
+            return try SqliteStore.shared.db.prepare(query).map { area in
                 AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
             }
             .filter{$0.area.beginnerFriendly}
@@ -149,8 +138,6 @@ struct Area : Identifiable {
     
     // FIXME: don't use AreaView
     var levelsCount : [AreaView.Level] {
-        print("levelsCount")
-        return
         [
             .init(name: "1", count: min(150, problemsCount(level: 1))),
             .init(name: "2", count: min(150, problemsCount(level: 2))),
@@ -176,15 +163,17 @@ struct Area : Identifiable {
     }
 
     var problems: [Problem] {
-//        print("problems")
-        let grade = Expression<String>("grade")
-        let popularity = Expression<String>("popularity")
-        let problems = Table("problems").filter(Expression(literal: "area_id = '\(id)'")).order(grade.desc, popularity.desc)
-        let id = Expression<Int>("id")
+        let grade = Expression<String>("grade") // FIXME: move to Problem
+        let popularity = Expression<String>("popularity") // FIXME: move to Problem
+        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
+        
+        let problems = Table("problems")
+            .filter(areaId == id)
+            .order(grade.desc, popularity.desc)
         
         do {
             return try SqliteStore.shared.db.prepare(problems).map { problem in
-                Problem.load(id: problem[id])
+                Problem.load(id: problem[Problem.id])
             }.compactMap{$0}
         }
         catch {
@@ -194,14 +183,16 @@ struct Area : Identifiable {
     }
     
     func problemsCount(level: Int) -> Int {
-        let db = SqliteStore.shared.db
+        let grade = Expression<String>("grade") // FIXME: move to Problem
+        let areaId = Expression<Int>("area_id") // FIXME: move to Problem
         
-        let grade = Expression<String>("grade")
-        let problems = Table("problems").filter(Expression(literal: "area_id = '\(id)'")).filter(grade >= "\(level)a").filter(grade < "\(level+1)a")
-        let id = Expression<Int>("id")
+        let problems = Table("problems")
+            .filter(areaId == id)
+            .filter(grade >= "\(level)a")
+            .filter(grade < "\(level+1)a")
         
         do {
-            return try db.scalar(problems.count)
+            return try SqliteStore.shared.db.scalar(problems.count)
         }
         catch {
             print (error)
@@ -210,32 +201,30 @@ struct Area : Identifiable {
     }
     
     var popularProblems: [Problem] {
-//        print("popular problems")
         return problems.filter{$0.featured}
     }
     
     // TODO: improve performance
     var problemsCount: Int {
-//        print("problems count")
         return problems.count
     }
     
     var circuits: [Circuit] {
-        let id = Expression<Int>("id")
         let circuitId = Expression<Int>("circuit_id") // FIXME: move to Problem
         let areaId = Expression<Int>("area_id") // FIXME: move to Problem
+        
         let circuits = Table("circuits")
         let problems = Table("problems")
         
-        let query = circuits.select(circuits[Circuit.id], problems[id].count)
-            .join(problems, on: circuits[id] == problems[circuitId])
-            .group(circuits[id], having: problems[id].count >= 10)
+        let query = circuits.select(circuits[Circuit.id], problems[Problem.id].count)
+            .join(problems, on: circuits[Circuit.id] == problems[circuitId])
+            .group(circuits[Circuit.id], having: problems[Problem.id].count >= 10)
             .filter(problems[areaId] == self.id)
             .order(Circuit.averageGrade.asc)
 
         do {
             return try SqliteStore.shared.db.prepare(query).map { circuit in
-                Circuit.load(id: circuit[id])
+                Circuit.load(id: circuit[Circuit.id])
             }.compactMap{$0}
         }
         catch {
@@ -245,17 +234,14 @@ struct Area : Identifiable {
     }
     
     var poiRoutes: [PoiRoute] {
-        let db = SqliteStore.shared.db
-        
         let poiRoutes = Table("poi_routes")
-        let _id = Expression<Int>("id")
-        let areaId = Expression<Int>("area_id")
+        let areaId = Expression<Int>("area_id") // FIXME: Move to PoiRoute
         
         let query = poiRoutes.filter(areaId == self.id)
         
         do {
-            return try db.prepare(query).map { poiRoute in
-                PoiRoute.load(id: poiRoute[_id])
+            return try SqliteStore.shared.db.prepare(query).map { poiRoute in
+                PoiRoute.load(id: poiRoute[PoiRoute.id])
             }.compactMap{$0}
         }
         catch {

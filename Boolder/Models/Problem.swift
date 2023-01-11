@@ -29,6 +29,9 @@ struct Problem : Identifiable {
     
     static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
+    // SQLite
+    static let id = Expression<Int>("id")
+    
     static func load(id: Int) -> Problem? {
         do {
             let db = SqliteStore.shared.db

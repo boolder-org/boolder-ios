@@ -20,6 +20,9 @@ struct PoiRoute : Identifiable {
         case bike
     }
     
+    // SQLite
+    static let id = Expression<Int>("id")
+    
     static func load(id: Int) -> PoiRoute? {
         do {
             let db = SqliteStore.shared.db
