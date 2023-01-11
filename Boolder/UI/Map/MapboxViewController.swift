@@ -138,6 +138,7 @@ class MapboxViewController: UIViewController {
                 0.0
             }
         )
+        
         problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
         
         problemsLayer.circleSortKey = .expression(
@@ -223,30 +224,9 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        circuitProblemsLayer.circleColor = circuitColorExp(attribute: "circuitColor")
-        
-        circuitProblemsLayer.circleStrokeWidth = .expression(
-            Exp(.switchCase) {
-                Exp(.boolean) {
-                    Exp(.featureState) { "selected" }
-                    false
-                }
-                3.0
-                0.0
-            }
-        )
-        circuitProblemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
-        
-        circuitProblemsLayer.circleSortKey = .expression(
-            Exp(.switchCase) {
-                Exp(.boolean) {
-                    Exp(.has) { "circuitId" }
-                    false
-                }
-                2
-                1
-            }
-        )
+        circuitProblemsLayer.circleColor = problemsLayer.circleColor
+        circuitProblemsLayer.circleStrokeWidth = problemsLayer.circleStrokeWidth
+        circuitProblemsLayer.circleStrokeColor = problemsLayer.circleStrokeColor
         
         var circuitProblemsTextsLayer = SymbolLayer(id: "circuit-problems-texts")
         circuitProblemsTextsLayer.source = "problems"
@@ -276,19 +256,7 @@ class MapboxViewController: UIViewController {
             }
         )
 
-        circuitProblemsTextsLayer.textColor = .expression(
-            Expression(.switchCase) {
-                Expression(.match) {
-                    ["get", "circuitColor"]
-                    ["", "white"]
-                    true
-                    false
-                }
-                UIColor.black // TODO: less dark
-                UIColor.white
-            }
-        )
-        
+        circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
         do {
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
