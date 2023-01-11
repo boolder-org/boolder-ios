@@ -54,7 +54,7 @@ struct AreaToolbarView: View {
                     
                     Spacer()
                     
-                    Color.red
+                    Color.white.opacity(0)
                         .frame(height: 20)
                         .frame(maxWidth: 40)
                         .layoutPriority(-1)
