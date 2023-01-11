@@ -48,8 +48,6 @@ struct AreaToolbarView: View {
                             Image(systemName: "info.circle")
                         }
                         .padding(.vertical, 10)
-                        
-                        
                     }
                     
                     Spacer()
@@ -58,12 +56,10 @@ struct AreaToolbarView: View {
                         .frame(height: 20)
                         .frame(maxWidth: 40)
                         .layoutPriority(-1)
-                    
                 }
                 .background(Color(.systemBackground))
                 .cornerRadius(12)
                 .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
@@ -73,25 +69,6 @@ struct AreaToolbarView: View {
 
             }
             .padding(.horizontal)
-            
-//            if let circuit = mapState.selectedCircuit {
-//                HStack {
-//                    Button {
-//                        mapState.unselectCircuit()
-//                    } label: {
-//                        Label(circuit.color.shortName, systemImage: "xmark")
-//                    }
-//
-//                    Button {
-//                        mapState.goToNextCircuitProblem()
-//                    } label: {
-//                        Label("Suivant", systemImage: "chevron.right")
-//                    }
-//                    .padding(.horizontal)
-//
-//                }
-//                .padding(.horizontal)
-//            }
             
             HStack {
                 if(circuits.count > 0) {
@@ -188,10 +165,6 @@ struct AreaToolbarView: View {
         
         return area.circuits
     }
-    
-//    var circuitsWithIndex : [Circuit] {
-//        Array(zip(circuits.indices, circuits))
-//    }
 }
 
 //struct AreaToolbarView_Previews: PreviewProvider {

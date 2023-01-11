@@ -26,7 +26,6 @@ struct CircuitPickerView: View {
                             mapState.clearFilters()
                             mapState.selectAndCenterOnCircuit(circuit)
                             mapState.displayCircuitStartButton = true
-                            //                        viewModel.mapState.selectAndPresentAndCenterOnProblem(problem)
                         } label: {
                             HStack {
                                 CircleView(number: "", color: circuit.color.uicolor, height: 20)
