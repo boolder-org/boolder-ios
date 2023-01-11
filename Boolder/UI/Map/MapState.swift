@@ -11,9 +11,9 @@ import SwiftUI
 @MainActor class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published private(set) var centerOnProblem: Problem? = nil
-    @Published var selectedArea: Area? = nil
+    @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var centerOnArea: Area? = nil
-    @Published var selectedCircuit: Circuit? = nil
+    @Published private(set) var selectedCircuit: Circuit? = nil
     @Published var selectedPoi: Poi? = nil
     @Published var filters: Filters = Filters()
     
@@ -40,6 +40,10 @@ import SwiftUI
     
     func selectArea(_ area: Area) {
         selectedArea = area
+    }
+    
+    func unselectArea() {
+        selectedArea = nil
     }
     
     func selectAndCenterOnCircuit(_ circuit: Circuit) {

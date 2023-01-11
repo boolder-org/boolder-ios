@@ -193,12 +193,12 @@ struct MapboxView: UIViewControllerRepresentable {
         
         @MainActor func selectArea(id: Int) {
             if let area = Area.load(id: id) {
-                parent.mapState.selectedArea = area
+                parent.mapState.selectArea(area)
             }
         }
         
         @MainActor func unselectArea() {
-            parent.mapState.selectedArea = nil
+            parent.mapState.unselectArea()
         }
         
         @MainActor func unselectCircuit() {

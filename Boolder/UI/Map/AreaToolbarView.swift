@@ -17,7 +17,7 @@ struct AreaToolbarView: View {
             HStack {
                 HStack {
                     Button {
-                        mapState.selectedArea = nil
+                        mapState.unselectArea()
                         mapState.presentProblemDetails = false
                     } label: {
                         Image(systemName: "chevron.left")
