@@ -24,27 +24,19 @@ struct MapboxView: UIViewControllerRepresentable {
         return vc
     }
     
+    // TODO: find a way to make this DRY
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
         
-        // refresh filters
-        if(mapState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
-            vc.applyFilters(mapState.filters)
-            context.coordinator.lastFiltersRefreshCount = mapState.filtersRefreshCount
+        // select problem
+        if mapState.selectProblemCount > context.coordinator.lastSelectProblemCount {
+            vc.setProblemAsSelected(problemFeatureId: String(mapState.selectedProblem.id))
+            context.coordinator.lastSelectProblemCount = mapState.selectProblemCount
         }
         
         // center on problem
         if mapState.centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
             if let problem = mapState.centerOnProblem {
-                
-                let cameraOptions = CameraOptions(
-                    center: problem.coordinate,
-                    padding: UIEdgeInsets(top: 60, left: 0, bottom: vc.view.bounds.height/2, right: 0),
-                    zoom: 20
-                )
-                // FIXME: quick fix to make the circuit mode work => change the duration logic for other cases
-                vc.flyinToSomething = true
-                vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
-                
+                vc.centerOnProblem(problem)
                 context.coordinator.lastCenterOnProblemCount = mapState.centerOnProblemCount
             }
         }
@@ -52,76 +44,19 @@ struct MapboxView: UIViewControllerRepresentable {
         // center on area
         if mapState.centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
             if let area = mapState.centerOnArea {
-                
-                let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
-                                              northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-
-                
-                var cameraOptions = vc.mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
-                cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-                
-                vc.flyinToSomething = true
-                vc.mapView.camera.fly(to: cameraOptions, duration: 1) { _ in
-                    vc.flyinToSomething = false
-                }
-                
+                vc.centerOnArea(area)
                 context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
             }
         }
         
         // center on current location
         if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
-            if let location = vc.mapView.location.latestLocation {
-                
-                let fontainebleauBounds = CoordinateBounds(
-                    southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
-                    northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
-                )
-                
-                if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
-                    let cameraOptions = CameraOptions(
-                        center: location.coordinate,
-                        padding: .init(top: 180, left: 20, bottom: 80, right: 20),
-                        zoom: 17
-                    )
-                    
-                    vc.flyinToSomething = true
-                    vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in vc.flyinToSomething = false }
-                    
-                    // FIXME: make sure the fly animation is over
-                    // TODO: do it again when map is done loading?
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                        vc.inferAreaFromMap()
-                    }
-                }
-                else {
-                    let cameraOptions = vc.mapView.mapboxMap.camera(
-                        for: fontainebleauBounds.extend(forPoint: location.coordinate),
-                        padding: .init(top: 180, left: 20, bottom: 80, right: 20),
-                        bearing: 0,
-                        pitch: 0
-                    )
-                    
-                    vc.flyinToSomething = true
-                    vc.mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in vc.flyinToSomething = false }
-                }
-            }
-            
+            vc.centerOnCurrentLocation()
             context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
-        }
-        
-        // select problem
-        if mapState.selectProblemCount > context.coordinator.lastSelectProblemCount {
-            vc.setProblemAsSelected(problemFeatureId: String(mapState.selectedProblem.id))
-            
-            context.coordinator.lastSelectProblemCount = mapState.selectProblemCount
         }
         
         // select a circuit
         if mapState.selectCircuitCount > context.coordinator.lastSelectCircuitCount {
-            
-//            print("coucou")
-            
             if let circuit = mapState.selectedCircuit {
                 vc.setCircuitAsSelected(circuit: circuit)
             }
@@ -135,31 +70,18 @@ struct MapboxView: UIViewControllerRepresentable {
         if mapState.centerOnCircuitCount > context.coordinator.lastCenterOnCircuitCount {
             
             if let circuit = mapState.selectedCircuit {
-                
-//                let viewport = vc.mapView.mapboxMap.coordinateBounds(for: CameraOptions(cameraState: vc.mapView.cameraState))
-                
-                let circuitBounds = CoordinateBounds(
-                    southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
-                    northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
-                )
-                
-//                if !viewport.contains(forArea: circuitBounds, wrappedCoordinates: false) {
-                    var cameraOptions = vc.mapView.mapboxMap.camera(
-                        for: circuitBounds,
-                        padding: .init(top: 180, left: 20, bottom: 80, right: 20),
-                        bearing: 0,
-                        pitch: 0
-                    )
-                    cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-                    
-                    vc.flyinToSomething = true
-                    vc.mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in vc.flyinToSomething = false }
-//                }
+                vc.centerOnCircuit(circuit)
             }
             else {
                 vc.unselectCircuit()
             }
             context.coordinator.lastCenterOnCircuitCount = mapState.centerOnCircuitCount
+        }
+        
+        // refresh filters
+        if(mapState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
+            vc.applyFilters(mapState.filters)
+            context.coordinator.lastFiltersRefreshCount = mapState.filtersRefreshCount
         }
     }
     

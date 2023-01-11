@@ -476,6 +476,87 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func centerOnProblem(_ problem: Problem) {
+        let cameraOptions = CameraOptions(
+            center: problem.coordinate,
+            padding: UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0),
+            zoom: 20
+        )
+        // FIXME: quick fix to make the circuit mode work => change the duration logic for other cases
+        flyinToSomething = true
+        mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
+    }
+    
+    func centerOnArea(_ area: Area) {
+        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
+                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
+
+        
+        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: .init(top: 180, left: 20, bottom: 80, right: 20), bearing: 0, pitch: 0)
+        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
+        
+        flyinToSomething = true
+        mapView.camera.fly(to: cameraOptions, duration: 1) { _ in
+            self.flyinToSomething = false
+        }
+    }
+    
+    func centerOnCurrentLocation() {
+        if let location = mapView.location.latestLocation {
+            
+            let fontainebleauBounds = CoordinateBounds(
+                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
+                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
+            )
+            
+            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
+                let cameraOptions = CameraOptions(
+                    center: location.coordinate,
+                    padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+                    zoom: 17
+                )
+                
+                flyinToSomething = true
+                mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in self.flyinToSomething = false }
+                
+                // FIXME: make sure the fly animation is over
+                // TODO: do it again when map is done loading?
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    self.inferAreaFromMap()
+                }
+            }
+            else {
+                let cameraOptions = mapView.mapboxMap.camera(
+                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
+                    padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+                    bearing: 0,
+                    pitch: 0
+                )
+                
+                flyinToSomething = true
+                mapView.camera.fly(to: cameraOptions, duration: 0.5)  { _ in self.flyinToSomething = false }
+            }
+        }
+    }
+    
+    func centerOnCircuit(_ circuit: Circuit) {
+        let circuitBounds = CoordinateBounds(
+            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
+        )
+        
+        var cameraOptions = mapView.mapboxMap.camera(
+            for: circuitBounds,
+            padding: .init(top: 180, left: 20, bottom: 80, right: 20),
+            bearing: 0,
+            pitch: 0
+        )
+        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
+        
+        flyinToSomething = true
+        mapView.camera.fly(to: cameraOptions, duration: 0.5) { _ in self.flyinToSomething = false }
+    }
+    
     func setCircuitAsSelected(circuit: Circuit) {
         do {
             try ["circuits"].forEach { layerId in
