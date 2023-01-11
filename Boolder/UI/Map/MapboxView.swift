@@ -94,13 +94,13 @@ struct MapboxView: UIViewControllerRepresentable {
     class Coordinator: MapBoxViewDelegate {
         var parent: MapboxView
         
+        var lastSelectProblemCount = 0
         var lastCenterOnProblemCount = 0
         var lastCenterOnAreaCount = 0
-        var lastCenterOnCurrentLocationCount = 0
-        var lastFiltersRefreshCount = 0
-        var lastSelectProblemCount = 0
         var lastSelectCircuitCount = 0
         var lastCenterOnCircuitCount = 0
+        var lastCenterOnCurrentLocationCount = 0
+        var lastFiltersRefreshCount = 0
         
         init(_ parent: MapboxView) {
             self.parent = parent
