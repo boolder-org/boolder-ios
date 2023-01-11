@@ -106,28 +106,6 @@ extension Area {
         }
     }
     
-    static func allWithLevel(_ level: Int) -> [AreaWithCount] {
-        let areas = Table("areas")
-        let problems = Table("problems")
-        
-        let query = Table("areas").select(areas[id], problems[id].count)
-            .filter(problems[Problem.grade] >= "\(level)a")
-            .filter(problems[Problem.grade] < "\(level+1)a")
-            .join(problems, on: areas[id] == problems[Problem.areaId])
-            .group(areas[id])
-            .order(problems[id].count.desc)
-        
-        do {
-            return try SqliteStore.shared.db.prepare(query).map { area in
-                AreaWithCount(area: Area.load(id: area[id])!, problemsCount: area[problems[id].count])
-            }
-        }
-        catch {
-            print (error)
-            return []
-        }
-    }
-    
     static var forBeginners : [AreaWithCount] {
         let areas = Table("areas")
         let problems = Table("problems")
@@ -185,13 +163,21 @@ extension Area {
         }
     }
     
-    var popularProblems: [Problem] {
-        return problems.filter{$0.featured}
+    var problemsCount: Int {
+        let problems = Table("problems")
+            .filter(Problem.areaId == id)
+        
+        do {
+            return try SqliteStore.shared.db.scalar(problems.count)
+        }
+        catch {
+            print (error)
+            return 0
+        }
     }
     
-    // TODO: improve performance
-    var problemsCount: Int {
-        return problems.count
+    var popularProblems: [Problem] {
+        return problems.filter{$0.featured}
     }
     
     var circuits: [Circuit] {
