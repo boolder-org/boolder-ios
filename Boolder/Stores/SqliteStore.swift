@@ -16,6 +16,6 @@ class SqliteStore {
     
     private init() {
         let databaseURL = Bundle.main.url(forResource: "boolder", withExtension: "db")!
-        db = try! Connection(databaseURL.path) // FIXME: catch errors
+        db = try! Connection(databaseURL.path) // TODO: catch errors
     }
 }

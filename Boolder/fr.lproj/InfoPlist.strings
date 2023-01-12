@@ -8,4 +8,4 @@
 
 NSLocationWhenInUseUsageDescription = "Votre position s'affichera sur la carte pour vous aider à vous repérer.";
 LocationAccuracyAuthorizationDescription = "Songez à activer la position précise, vous aurez une bien meilleure expérience sur la carte.";
-NSCameraUsageDescription = "Vous pourrez prendre des photos des voies."; // FIXME: improve copy
+NSCameraUsageDescription = "Vous pourrez prendre des photos des voies.";

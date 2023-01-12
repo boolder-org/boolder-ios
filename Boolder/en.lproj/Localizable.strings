@@ -10,6 +10,40 @@
 "tabs.discover" = "Discover";
 "tabs.ticklist" = "Tick List";
 
+// MARK: Map
+"map.circuit_start" = "Circuit start";
+
+// MARK: POI
+"poi.see_in" = "See in %@";
+"poi.share_gps_coordinates" = "Share coordinates";
+"poi.cancel" = "Cancel";
+"poi.gps_coordinates_for_poi" = "%@ : %@,%@";
+
+// MARK: Filters
+"filters.title" = "Filters";
+"filters.level" = "Level";
+"filters.levels" = "Levels";
+"filters.circuit" = "Circuit";
+"filters.advanced_filters" = "Advanced Filters";
+"filters.type" = "Type";
+"filters.all" = "All";
+"filters.show_more_filters" = "More filters";
+"filters.show_less_filters" = "Less filters";
+"filters.favorite" = "Project";
+"filters.ticked" = "Already done";
+"filters.clear" = "Clear";
+"filters.beginner" = "Beginner";
+"filters.grade.range.beginner" = "Level 1 → 3";
+"filters.grade.range.level4" = "Level 4";
+"filters.grade.range.level5" = "Level 5";
+"filters.grade.range.level6" = "Level 6";
+"filters.grade.range.level7" = "Level 7";
+"filters.grade.range.level8" = "Level 8";
+"filters.grade.range.custom" = "Custom level";
+"filters.grade.range_picker.level" = "Level";
+"filters.grade.range_picker.grade_min" = "Grade min";
+"filters.grade.range_picker.grade_max" = "Grade max";
+
 // MARK: Search
 "search.title" = "Search";
 "search.areas" = "Areas";
@@ -23,16 +57,39 @@
 // MARK: Discover view
 "discover.title" = "Discover";
 "discover.all_areas" = "All areas";
-"discover.popular" = "Popular areas";
+"discover.popular" = "Popular";
+"discover.beginners_guide" = "Beginner's guide";
 "discover.top_areas.level" = "For your level";
+"discover.top_areas.level.beginner_friendly" = "Beginner friendly";
+"discover.top_areas.level.beginner.intro" = "Areas with beginner friendly circuits:";
 "discover.top_areas.train" = "Accessible by train + bike";
+"discover.top_areas.train.intro" = "Bike time from the station:";
+"discover.top_areas.see_in_google_maps" = "See in Google Maps";
 "discover.top_areas.dry_fast" = "Dries fast";
-"discover.top_areas.groups" = "For groups";
 "discover.all_areas.map" = "Map";
 "discover.search_prompt" = "Area";
 "discover.support" = "Support Boolder";
 "discover.rate" = "Rate the app";
 "discover.feedback" = "Send feedback";
+
+// MARK: Area view
+"area.tags.popular" = "popular";
+"area.tags.beginner_friendly" = "beginner friendly";
+"area.tags.family_friendly" = "family friendly";
+"area.tags.dry_fast" = "dries fast";
+"area.infos" = "Area info";
+"area.problems" = "Problems";
+"area.levels" = "Levels";
+"area.chart.level" = "Level";
+"area.chart.problems" = "Problems";
+"area.problems.popular" = "Popular";
+"area.see_on_the_map" = "See on the map";
+"area.close" = "Close";
+"area.bike_time" = "Bike time";
+"area.walking_time" = "Walking time";
+"area.problems.search_prompt" = "Problem name";
+"area.circuit.beginner" = "This circuit is beginner friendly";
+"area.circuit.dangerous" = "This circuit is dangerous: some boulders are very high and/or with difficult landings";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";
@@ -48,8 +105,6 @@
 "top_areas.groups.title" = "For groups";
 "top_areas.groups.description" = "These areas offer lots of problems in all grades from 2 to 7.";
 "top_areas.train.title" = "Train + bike";
-"top_areas.train.description_boisleroi" = "Areas less than 30 min away from Bois-le-Roi train station by bike.";
-"top_areas.train.description_avon" = "Areas less than 20 min away from Fontainebleau Avon train station by bike.";
 "top_areas.dry_fast.title" = "Dries fast";
 "top_areas.dry_fast.description" = "These areas dry faster than most areas thanks to the sun&wind exposure";
 "top_areas.dry_fast.warning" = "Don't climb if the rock is still wet, you may damage it.";
@@ -84,32 +139,6 @@
 "circuit.short_name.black" = "Black";
 "circuit.short_name.white_for_kids" = "White";
 "circuit.short_name.off_circuit" = "Other";
-
-// MARK: POI
-"poi.see_in" = "See in %@";
-"poi.share_gps_coordinates" = "Share coordinates";
-"poi.cancel" = "Cancel";
-"poi.gps_coordinates_for_poi" = "%@ : %@,%@";
-
-// MARK: Filters
-"filters.title" = "Filters";
-"filters.level" = "Level";
-"filters.circuit" = "Circuit";
-"filters.advanced_filters" = "Advanced Filters";
-"filters.type" = "Type";
-"filters.all" = "All";
-"filters.show_more_filters" = "More filters";
-"filters.show_less_filters" = "Less filters";
-"filters.favorite" = "Project";
-"filters.ticked" = "Already done";
-"filters.reset" = "Reset";
-"filters.grade.range.beginner" = "Beginner";
-"filters.grade.range.intermediate" = "Intermediate";
-"filters.grade.range.advanced" = "Experienced";
-"filters.grade.range.custom" = "Custom level";
-"filters.grade.range_picker.level" = "Level";
-"filters.grade.range_picker.grade_min" = "Grade min";
-"filters.grade.range_picker.grade_max" = "Grade max";
 
 // MARK: Steepness
 "steepness.wall" = "Wall";

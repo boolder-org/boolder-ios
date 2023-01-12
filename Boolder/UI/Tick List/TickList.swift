@@ -22,7 +22,7 @@ struct TickList: View {
                 if problems.count == 0 {
                     VStack(alignment: .center, spacing: 16) {
                         Spacer()
-                        Text("ticklist.empty_state_title").font(.title2)
+//                        Text("ticklist.empty_state_title").font(.title2)
                         Text("ticklist.empty_state_body").font(.body)
                             .multilineTextAlignment(.center)
                         Spacer()

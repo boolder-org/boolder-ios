@@ -42,13 +42,14 @@ struct ProblemDetailsView: View {
         }
         
         .onAppear{
+            // FIXME: doesn't work when user selects a problem in a different area without closing the ProblemDetails sheet (which happens when two areas are really close together)
             odrManager.requestResources(tags: Set(["area-\(problem.areaId)"]), onSuccess: {
                 areaResourcesDownloaded = true
                 
             }, onFailure: { error in
                 print("On-demand resource error")
                 
-                // FIXME: implement UI, log errors
+                // TODO: implement UI, log errors
                 switch error.code {
                 case NSBundleOnDemandResourceOutOfSpaceError:
                     print("You don't have enough space available to download this resource.")

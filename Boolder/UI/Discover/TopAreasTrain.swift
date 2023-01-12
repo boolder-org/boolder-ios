@@ -9,80 +9,91 @@
 import SwiftUI
 
 struct TopAreasTrain: View {
+    @Environment(\.openURL) var openURL
+    
     @Binding var appTab: ContentView.Tab
     let mapState: MapState
     
-    let gray = Color(red: 107/255, green: 114/255, blue: 128/255)
+    @State private var trainStations = [Poi]()
     
     var body: some View {
         GeometryReader { geo in
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading) {
                     
-                    VStack(alignment: .leading, spacing: 32) {
-                        
-                        Text("top_areas.train.description_boisleroi")
+                    VStack {
+                        Text("discover.top_areas.train.intro")
                             .font(.body)
-                            .foregroundColor(gray)
-                        
-                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
-                            ForEach(areasFromBoisLeRoi) { area in
-                                Button {
-                                    appTab = .map
-                                    mapState.centerOnArea(area)
-                                } label: {
-                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                        .contentShape(Rectangle())
-                                }
-                            }
-                        }
+                            .foregroundColor(.gray)
                     }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                    .padding(.vertical, 8)
+                    .padding(.bottom)
+                    .padding(.horizontal)
                     
-                    VStack(alignment: .leading, spacing: 32) {
-                        
-                        Text("top_areas.train.description_avon")
-                            .font(.body)
-                            .foregroundColor(gray)
-                        
-                        LazyVGrid(columns: [GridItem(.flexible()),GridItem(.flexible())], spacing: 8) {
+                    ForEach(trainStations) { trainStation in
+                       HStack {
+                            Text(trainStation.name)
+                                .font(.title2).bold()
                             
-                            ForEach(areasFromAvon) { area in
-                                
-                                Button {
-                                    appTab = .map
-                                    mapState.centerOnArea(area)
-                                } label: {
-                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                        .contentShape(Rectangle())
+                            Spacer()
+
+                            Menu {
+                                if let url = URL(string: trainStation.googleUrl) {
+                                    Button {
+                                        openURL(url)
+                                    } label: {
+                                        Text("discover.top_areas.see_in_google_maps")
+                                    }
                                 }
-                                
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
+                                    .foregroundColor(Color.appGreen)
+                                    .padding(.leading)
                             }
                         }
+                       .padding(.horizontal)
+                        
+                        VStack {
+                            
+                            Divider()
+                            
+                            ForEach(trainStation.poiRoutes.filter{$0.transport == .bike}) { poiRoute in
+                                if let area = Area.load(id: poiRoute.areaId) {
+                                    NavigationLink {
+                                        AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                    } label: {
+                                        HStack {
+                                            
+                                            Text(area.name)
+                                            
+                                            Spacer()
+                                            
+                                            Text("\(poiRoute.distanceInMinutes) min")
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(.caption.weight(.bold))
+                                                .foregroundColor(.gray.opacity(0.7))
+                                        }
+                                        .foregroundColor(.primary)
+                                        .padding(.vertical, 4)
+                                        .padding(.horizontal)
+                                    }
+
+                                    Divider().padding(.leading)
+                                }
+                            }
+                            
+                        }
+                        .padding(.bottom, 32)
                     }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                    .padding(.vertical, 8)
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                .padding(.vertical)
+            }
+            .onAppear {
+                trainStations = Poi.all.filter{$0.type == .trainStation}.filter{$0.poiRoutes.count > 0}
             }
         }
         .navigationTitle("top_areas.train.title")
         .navigationBarTitleDisplayMode(.inline)
-        
-    }
-    
-    var areasFromBoisLeRoi: [Area] {
-        [1,4,7,24].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
-    }
-    
-    var areasFromAvon: [Area] {
-        [53,50,52,33].map{Area.load(id: $0)}.compactMap{$0}.sorted {
-            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-        }
     }
 }
 

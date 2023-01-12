@@ -12,13 +12,13 @@ struct LargeButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
             .frame(maxWidth: .infinity)
-            .background(Color.systemBackground)
-            .foregroundColor(Color(UIColor.systemGreen))
+            .background(Color.appGreen)
+            .foregroundColor(Color.systemBackground)
             .opacity(configuration.isPressed ? 0.7 : 1)
-            .cornerRadius(8)
+            .cornerRadius(32)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(UIColor.systemGreen), lineWidth: 2)
+                RoundedRectangle(cornerRadius: 32)
+                    .stroke(Color.appGreen, lineWidth: 2)
             )
     }
 }

@@ -14,29 +14,35 @@ struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @ObservedObject var mapState: MapState
+    @Binding var appTab: ContentView.Tab
     
     var body: some View {
         ZStack {
-            Mapbox()
+            mapbox
             
-            FiltersToolbarView(mapState: mapState)
+            circuitButtons
+            
+            locateButton
                 .zIndex(10)
             
             SearchView(mapState: mapState)
                 .zIndex(20)
+                .opacity(mapState.selectedArea != nil ? 0 : 1)
+            
+            AreaToolbarView(mapState: mapState, appTab: $appTab)
+                .zIndex(30)
+                .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
     }
     
-    func Mapbox() -> some View {
+    var mapbox : some View {
         MapboxView(mapState: mapState)
             .edgesIgnoringSafeArea(.top)
             .ignoresSafeArea(.keyboard)
             .background(
                 PoiActionSheet(
                     name: (mapState.selectedPoi?.name ?? ""),
-                    location: (mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)),
                     googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
-                    navigationMode: false,
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
@@ -45,7 +51,7 @@ struct MapContainerView: View {
                     problem: $mapState.selectedProblem,
                     mapState: mapState
                 )
-                // FIXME: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
+                // TODO: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
                 // remove these lines as soon as it's fixed
                 .environment(\.managedObjectContext, managedObjectContext)
                 .environmentObject(odrManager)
@@ -58,6 +64,117 @@ struct MapContainerView: View {
                     }
                 }
             }
+    }
+    
+    var circuitButtons : some View {
+        Group {
+            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
+                HStack(spacing: 0) {
+                    
+                    if(mapState.canGoToPreviousCircuitProblem) {
+                        Button(action: {
+                            mapState.selectCircuit(circuit)
+                            mapState.goToPreviousCircuitProblem()
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .padding(10)
+                        }
+                        .font(.body.weight(.semibold))
+                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                    
+                    Spacer()
+                    
+                    if(mapState.canGoToNextCircuitProblem) {
+                        
+                        Button(action: {
+                            mapState.selectCircuit(circuit)
+                            mapState.goToNextCircuitProblem()
+                        }) {
+                            Image(systemName: "arrow.right")
+                                .padding(10)
+                        }
+                        .font(.body.weight(.semibold))
+                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                }
+                .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            }
+            
+            if mapState.displayCircuitStartButton {
+                if let circuit = mapState.selectedCircuit, let start = circuit.firstProblem {
+                    VStack {
+                        Spacer()
+                        
+                        HStack {
+                            Button {
+                                mapState.selectAndPresentAndCenterOnProblem(start)
+                                mapState.displayCircuitStartButton = false
+                            } label: {
+                                HStack {
+                                    Text("map.circuit_start")
+                                }
+                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .font(.body.weight(.semibold))
+                            .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                            .background(Color.systemBackground)
+                            .clipShape(RoundedRectangle(cornerRadius: 32))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                            )
+                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            
+                        }
+                        .padding()
+                    }
+                }
+            }
+        }
+    }
+    
+    var locateButton : some View {
+        HStack {
+            Spacer()
+            
+            VStack {
+                Spacer()
+                
+                Button(action: {
+                    mapState.centerOnCurrentLocation()
+                }) {
+                    Image(systemName: "location")
+                        .padding(12)
+                        .offset(x: -1, y: 0)
+                }
+                .accentColor(.primary)
+                .background(Color.systemBackground)
+                .clipShape(Circle())
+                .overlay(
+                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                )
+                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                .padding(.horizontal)
+                
+            }
+        }
+        .padding(.bottom)
+        .ignoresSafeArea(.keyboard)
     }
 }
 

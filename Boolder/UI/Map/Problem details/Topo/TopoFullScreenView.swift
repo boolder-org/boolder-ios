@@ -99,7 +99,7 @@ struct TopoFullScreenView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    // FIXME: make this DRY with other screens
+    // TODO: make this DRY with other screens
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
         

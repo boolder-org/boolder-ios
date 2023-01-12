@@ -13,35 +13,40 @@ struct FiltersView: View {
     @Binding var presentFilters: Bool
     @Binding var filters: Filters
     
+    let mapState: MapState
+    
     var body: some View {
         NavigationView {
-            Form {
+            
+            List {
                 Section {
-                    ForEach([GradeRange.beginner, GradeRange.intermediate, GradeRange.advanced], id: \.self) { range in
-                        Button(action: {
+                    ForEach([GradeRange.beginner, GradeRange.level4, GradeRange.level5, GradeRange.level6, GradeRange.level7], id: \.self) { range in
+                        Button {
                             if filters.gradeRange == range {
                                 filters.gradeRange = nil
                             }
                             else {
                                 filters.gradeRange = range
+                                presentationMode.wrappedValue.dismiss()
                             }
-                        }) {
+                        } label : {
                             HStack {
                                 Image(systemName: filters.gradeRange == range ? "largecircle.fill.circle" : "circle")
                                     .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
                                 
-                                Text(range.localizedName).foregroundColor(.primary)
+                                Text(range.description).foregroundColor(.primary)
                                 Spacer()
-                                Text(range.description).foregroundColor(Color(.systemGray)).font(.caption)
+                                if(range == .beginner) {
+                                    Text("filters.beginner").foregroundColor(Color(.systemGray))
+                                }
                             }
                         }
                     }
+                }
+                
+                Section {
                     
-                    NavigationLink(destination:
-                                    GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in
-                        filters.gradeRange = range
-                    })
-                    ) {
+                    NavigationLink(destination: GradeRangePickerView(gradeRange: filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")), onSave: { range in filters.gradeRange = range})) {
                         HStack {
                             Image(systemName: (filters.gradeRange?.isCustom ?? false) ? "largecircle.fill.circle" : "circle")
                                 .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
@@ -52,21 +57,21 @@ struct FiltersView: View {
                         }
                     }
                 }
-                
             }
-            .navigationBarTitle("filters.level", displayMode: .inline)
+            .navigationBarTitle("filters.levels", displayMode: .inline)
             .navigationBarItems(
-                leading: Button(action: {
-                    filters = Filters()
+                leading: Button {
+                    mapState.clearFilters()
+                    mapState.unselectCircuit()
                     presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("filters.reset")
+                } label: {
+                    Text("filters.clear")
                         .padding(.vertical)
                         .font(.body)
                 },
-                trailing: Button(action: {
+                trailing: Button {
                     presentationMode.wrappedValue.dismiss()
-                }) {
+                } label: {
                     Text("OK")
                         .bold()
                         .padding(.vertical)
@@ -74,7 +79,6 @@ struct FiltersView: View {
                 }
             )
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     var customRangeDescription: String {

@@ -23,53 +23,12 @@ struct Problem : Identifiable {
     let circuitColor: Circuit.CircuitColor?
     let circuitNumber: String
     let bleauInfoId: String?
+    let featured: Bool
+    let popularity: Int?
     let parentId: Int?
     
-    static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, parentId: nil)
-    
-    static func load(id: Int) -> Problem? {
-        do {
-            let db = SqliteStore.shared.db
-            
-            let problems = Table("problems").filter(Expression(literal: "id = '\(id)'"))
-            
-            let areaId = Expression<Int>("area_id")
-            let name = Expression<String?>("name")
-            let grade = Expression<String>("grade")
-            let steepness = Expression<String>("steepness")
-            let circuitNumber = Expression<String?>("circuit_number")
-            let circuitColor = Expression<String?>("circuit_color")
-            let circuitId = Expression<Int?>("circuit_id")
-            let bleauInfoId = Expression<String?>("bleau_info_id")
-            let parentId = Expression<Int?>("parent_id")
-            let latitude = Expression<Double>("latitude")
-            let longitude = Expression<Double>("longitude")
-            let sitStart = Expression<Int>("sit_start")
-            
-            if let p = try db.pluck(problems) {
-                return Problem(
-                    id: id,
-                    name: p[name],
-                    grade: Grade(p[grade]),
-                    coordinate: CLLocationCoordinate2D(latitude: p[latitude], longitude: p[longitude]),
-                    steepness: Steepness(rawValue: p[steepness]) ?? .other,
-                    sitStart: p[sitStart] == 1,
-                    areaId: p[areaId],
-                    circuitId: p[circuitId],
-                    circuitColor: Circuit.CircuitColor.colorFromString(p[circuitColor]),
-                    circuitNumber: p[circuitNumber] ?? "",
-                    bleauInfoId: p[bleauInfoId],
-                    parentId: p[parentId]
-                )
-            }
-            
-            return nil
-        }
-        catch {
-            print (error)
-            return nil
-        }
-    }
+    // TODO: remove
+    static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -93,57 +52,17 @@ struct Problem : Identifiable {
         }
     }
     
-    // TODO: handle multiple lines
-    var line: Line? {
-        let db = SqliteStore.shared.db
-        
-        let lines = Table("lines").filter(Expression(literal: "problem_id = '\(id)'"))
-        
-        let id = Expression<Int>("id")
-        let topoId = Expression<Int>("topo_id")
-        let coordinates = Expression<String>("coordinates")
-        
-        do {
-            if let l = try db.pluck(lines) {
-                let jsonString = l[coordinates]
-                if let jsonData = jsonString.data(using: .utf8) {
-                    let coordinates = try JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData)
-                    
-                    return Line(id: l[id], topoId: l[topoId], coordinates: coordinates)
-                }
-            }
-            
-            return nil
+    func circuitNumberComparableValue() -> Double {
+        if let int = Int(circuitNumber) {
+            return Double(int)
         }
-        catch {
-            print (error)
-            return nil
-        }
-    }
-    
-    var otherProblemsOnSameTopo: [Problem] {
-        guard let l = line else { return [] }
-        
-        let db = SqliteStore.shared.db
-        
-        let lines = Table("lines").filter(Expression(literal: "topo_id = '\(l.topoId)'"))
-        
-        let problemId = Expression<Int>("problem_id")
-        
-        do {
-            let problemsOnSameTopo = try db.prepare(lines).map { l in
-                Self.load(id: l[problemId])
+        else {
+            if let int = Int(circuitNumber.dropLast()) {
+                return 0.5 + Double(int)
             }
-            
-            return problemsOnSameTopo.compactMap{$0}.filter { p in
-                p.id != id // don't show itself
-                && (p.parentId == nil) // don't show anyone's children
-                && (p.id != parentId) // don't show problem's parent
+            else {
+                return 0
             }
-        }
-        catch {
-            print (error)
-            return []
         }
     }
     
@@ -160,30 +79,7 @@ struct Problem : Identifiable {
             return children
         }
     }
-    
-    var parent: Problem? {
-        guard let parentId = parentId else { return nil }
-        
-        return Self.load(id: parentId)
-    }
-    
-    var children: [Problem] {
-        let db = SqliteStore.shared.db
-        
-        let problems = Table("problems").filter(Expression(literal: "parent_id = '\(id)'"))
-        let id = Expression<Int>("id")
-        
-        do {
-            return try db.prepare(problems).map { problem in
-                Self.load(id: problem[id])
-            }.compactMap{$0}
-        }
-        catch {
-            print (error)
-            return []
-        }
-    }
-    
+
     // TODO: move to Line
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
@@ -216,7 +112,154 @@ struct Problem : Identifiable {
             return Int(tick.problemId) == id
         }
     }
+}
+
+// MARK: SQLite
+extension Problem {
+    static let id = Expression<Int>("id")
+    static let areaId = Expression<Int>("area_id")
+    static let name = Expression<String?>("name")
+    static let grade = Expression<String>("grade")
+    static let steepness = Expression<String>("steepness")
+    static let circuitNumber = Expression<String?>("circuit_number")
+    static let circuitColor = Expression<String?>("circuit_color")
+    static let circuitId = Expression<Int?>("circuit_id")
+    static let bleauInfoId = Expression<String?>("bleau_info_id")
+    static let parentId = Expression<Int?>("parent_id")
+    static let latitude = Expression<Double>("latitude")
+    static let longitude = Expression<Double>("longitude")
+    static let sitStart = Expression<Int>("sit_start")
+    static let featured = Expression<Int>("featured")
+    static let popularity = Expression<Int?>("popularity")
     
+    static func load(id: Int) -> Problem? {
+        do {
+            let problems = Table("problems").filter(self.id == id)
+            
+            if let p = try SqliteStore.shared.db.pluck(problems) {
+                return Problem(
+                    id: id,
+                    name: p[name],
+                    grade: Grade(p[grade]),
+                    coordinate: CLLocationCoordinate2D(latitude: p[latitude], longitude: p[longitude]),
+                    steepness: Steepness(rawValue: p[steepness]) ?? .other,
+                    sitStart: p[sitStart] == 1,
+                    areaId: p[areaId],
+                    circuitId: p[circuitId],
+                    circuitColor: Circuit.CircuitColor.colorFromString(p[circuitColor]),
+                    circuitNumber: p[circuitNumber] ?? "",
+                    bleauInfoId: p[bleauInfoId],
+                    featured: p[featured] == 1,
+                    popularity: p[popularity],
+                    parentId: p[parentId]
+                )
+            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
+        }
+    }
+    
+    // TODO: handle multiple lines
+    var line: Line? {
+        let lines = Table("lines")
+            .filter(Line.problemId == id)
+        
+        do {
+            if let l = try SqliteStore.shared.db.pluck(lines) {
+                return Line.load(id: l[Line.id])
+            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
+        }
+    }
+    
+    var otherProblemsOnSameTopo: [Problem] {
+        guard let l = line else { return [] }
+        
+        let lines = Table("lines")
+            .filter(Line.topoId == l.topoId)
+
+        do {
+            let problemsOnSameTopo = try SqliteStore.shared.db.prepare(lines).map { l in
+                Self.load(id: l[Line.problemId])
+            }
+            
+            return problemsOnSameTopo.compactMap{$0}.filter { p in
+                p.id != id // don't show itself
+                && (p.parentId == nil) // don't show anyone's children
+                && (p.id != parentId) // don't show problem's parent
+            }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var children: [Problem] {
+        let problems = Table("problems")
+            .filter(Problem.parentId == id)
+
+        do {
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
+                Self.load(id: problem[Problem.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var parent: Problem? {
+        guard let parentId = parentId else { return nil }
+        
+        return Self.load(id: parentId)
+    }
+    
+    var next: Problem? {
+        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+            let nextNumber = String(circuitNumberInt + 1)
+            
+            let query = Table("problems")
+                .filter(Problem.circuitId == circuitId)
+                .filter(Problem.circuitNumber == nextNumber)
+            
+            if let p = try! SqliteStore.shared.db.pluck(query) {
+                return Problem.load(id: p[Problem.id])
+            }
+        }
+        
+        return nil
+    }
+    
+    var previous: Problem? {
+        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+            let previousNumber = String(circuitNumberInt - 1)
+            
+            let query = Table("problems")
+                .filter(Problem.circuitId == circuitId)
+                .filter(Problem.circuitNumber == previousNumber)
+            
+            if let p = try! SqliteStore.shared.db.pluck(query) {
+                return Problem.load(id: p[Problem.id])
+            }
+        }
+        
+        return nil
+    }
+}
+
+// MARK: CoreData
+extension Problem {
     func favorites() -> [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         

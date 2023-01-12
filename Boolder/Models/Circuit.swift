@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import SQLite
 
-struct Circuit {
+struct Circuit : Identifiable {
     let id: Int
     let color: CircuitColor
-    
-    init(id: Int, color: CircuitColor) {
-        self.id = id
-        self.color = color
-    }
+    let averageGrade: Grade
+    let beginnerFriendly: Bool
+    let dangerous: Bool
+    let southWestLat: Double
+    let southWestLon: Double
+    let northEastLat: Double
+    let northEastLon: Double
     
     enum CircuitColor: Int, Comparable {
         case whiteForKids
@@ -84,6 +87,15 @@ struct Circuit {
                 return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             case .offCircuit:
                 return #colorLiteral(red: 0.5308170319, green: 0.5417798758, blue: 0.5535028577, alpha: 1)
+            }
+        }
+        
+        var uicolorForSystemBackground : UIColor {
+            switch self {
+            case .white, .black:
+                return .label
+            default:
+                return uicolor
             }
         }
         
@@ -159,5 +171,76 @@ struct Circuit {
         {
             return lhs.rawValue < rhs.rawValue
         }
+    }
+}
+
+// MARK: SQLite
+extension Circuit {
+    static let id = Expression<Int>("id")
+    static let averageGrade = Expression<String>("average_grade")
+    static let beginnerFriendly = Expression<Int>("beginner_friendly")
+    static let dangerous = Expression<Int>("dangerous")
+    static let southWestLat = Expression<Double>("south_west_lat")
+    static let southWestLon = Expression<Double>("south_west_lon")
+    static let northEastLat = Expression<Double>("north_east_lat")
+    static let northEastLon = Expression<Double>("north_east_lon")
+    static let color = Expression<String>("color")
+    
+    static func load(id: Int) -> Circuit? {
+        do {
+            let problems = Table("circuits").filter(self.id == id)
+            
+            if let p = try SqliteStore.shared.db.pluck(problems) {
+                return Circuit(
+                    id: id,
+                    color: Circuit.CircuitColor.colorFromString(p[color]),
+                    averageGrade: Grade(p[averageGrade]),
+                    beginnerFriendly: p[beginnerFriendly] == 1,
+                    dangerous: p[dangerous] == 1,
+                    southWestLat: p[southWestLat], southWestLon: p[southWestLon], northEastLat: p[northEastLat], northEastLon: p[northEastLon]
+                )
+            }
+            
+            return nil
+        }
+        catch {
+            print (error)
+            return nil
+        }
+    }
+    
+    var problems: [Problem] {
+        let problems = Table("problems")
+            .filter(Problem.circuitId == id)
+            .order(Problem.circuitNumber.asc)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
+                Problem.load(id: problem[Problem.id])
+            }.compactMap{$0}.sorted(by: { (lhs, rhs) -> Bool in
+                if lhs.circuitNumber == rhs.circuitNumber {
+                    return lhs.grade < rhs.grade
+                }
+                else {
+                    return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+                }
+            })
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var firstProblem: Problem? {
+        let query = Table("problems")
+            .filter(Problem.circuitId == self.id)
+            .filter(Problem.circuitNumber == "1")
+        
+        if let p = try! SqliteStore.shared.db.pluck(query) {
+            return Problem.load(id: p[Problem.id])
+        }
+        
+        return nil
     }
 }
