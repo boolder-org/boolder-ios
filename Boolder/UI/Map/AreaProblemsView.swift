@@ -59,7 +59,6 @@ struct AreaProblemsView: View {
     
     var filteredProblems: [Problem] {
         if searchText.count > 0 {
-            // TODO: maybe rewrite in SQL to improve performance?
             return problems.filter { cleanString($0.name ?? "").contains(cleanString(searchText)) }
         }
         else

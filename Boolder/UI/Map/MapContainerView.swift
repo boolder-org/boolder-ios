@@ -112,7 +112,7 @@ struct MapContainerView: View {
                         .padding(.horizontal)
                     }
                 }
-                .offset(CGSize(width: 0, height: -44)) // TODO: make sure it works on all device sizes (we assume the sheet is exactly half the screen height, which may break in the future)
+                .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
             }
             
             if mapState.displayCircuitStartButton {

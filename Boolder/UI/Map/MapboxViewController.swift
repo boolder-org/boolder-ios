@@ -447,10 +447,11 @@ class MapboxViewController: UIViewController {
                 }
             }
         
+        // TODO: make this DRY with problems layer
+        // Note: I already tried using the same query for both problems and circuit-problems layer, but taps work better with tapPoint than with a rect => I prefered to keep a tapPoint for circuit-problem
         // Careful: the order between problems and circuit problems is important!
-        // TODO: make this DRY
         mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint, // tapPoint seems to work better than rect
+            with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
@@ -585,7 +586,7 @@ class MapboxViewController: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
                     self.inferAreaFromMap()
-                    // TODO: do it again when map is done loading?
+                    // TODO: what if map is slow to load? we should infer again after it's loaded
                 }
             }
             else {

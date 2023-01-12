@@ -19,7 +19,7 @@ struct Grade: Hashable, CustomStringConvertible {
     init(_ string: String) {
         let lowercased = string.lowercased()
         
-        // TODO: is this a reasonable default?
+        // is this a reasonable default?
         if Self.grades.firstIndex(of: lowercased) == nil {
             self.string = Self.grades.first!
         }
