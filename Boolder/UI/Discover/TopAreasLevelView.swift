@@ -20,76 +20,75 @@ struct TopAreasLevelView: View {
     var body: some View {
         GeometryReader { geo in
             ScrollView {
-                VStack(alignment: .leading) {
-                    
-                    NavigationLink {
-                        TopAreasBeginnerView(appTab: $appTab, mapState: mapState)
-                    } label: {
-                        HStack(alignment: .firstTextBaseline) {
-                            Text("discover.top_areas.level.beginner_friendly")
-                                .font(.title2.weight(.bold))
-                                .foregroundColor(.primary)
-                                
-                            Image(systemName: "chevron.right")
-                                .font(.body.weight(.bold))
-                                .foregroundColor(.gray.opacity(0.7))
-                            
+                if areas.isEmpty {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            ProgressView()
                             Spacer()
                         }
-                        .padding(.top, 16)
-                        .padding(.bottom, 8)
-                        .padding(.horizontal)
+                        Spacer()
                     }
-
-                    
-                    
-                    VStack {
-                        VStack(alignment: .leading) {
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .top, spacing: 0) {
-                                    
-                                    Color.white.opacity(0)
-                                        .frame(width: 0, height: 1)
-                                        .padding(.leading, 8)
-                                    
-                                    ForEach(areasForBeginners) { area in
-                                        NavigationLink {
-                                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
-                                        } label: {
-                                            AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                .padding(.leading, 8)
-                                                .contentShape(Rectangle())
+                    .frame(minHeight: 200)
+                }
+                else {
+                    VStack(alignment: .leading) {
+                        
+                        NavigationLink {
+                            TopAreasBeginnerView(appTab: $appTab, mapState: mapState)
+                        } label: {
+                            HStack(alignment: .firstTextBaseline) {
+                                Text("discover.top_areas.level.beginner_friendly")
+                                    .font(.title2.weight(.bold))
+                                    .foregroundColor(.primary)
+                                
+                                Image(systemName: "chevron.right")
+                                    .font(.body.weight(.bold))
+                                    .foregroundColor(.gray.opacity(0.7))
+                                
+                                Spacer()
+                            }
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        }
+                        
+                        VStack {
+                            VStack(alignment: .leading) {
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top, spacing: 0) {
+                                        
+                                        Color.white.opacity(0)
+                                            .frame(width: 0, height: 1)
+                                            .padding(.leading, 8)
+                                        
+                                        ForEach(areasForBeginners) { area in
+                                            NavigationLink {
+                                                AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                            } label: {
+                                                AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                    .padding(.leading, 8)
+                                                    .contentShape(Rectangle())
+                                            }
                                         }
+                                        
+                                        Color.white.opacity(0)
+                                            .frame(width: 0, height: 1)
+                                            .padding(.trailing, 16)
                                     }
-                                    
-                                    Color.white.opacity(0)
-                                        .frame(width: 0, height: 1)
-                                        .padding(.trailing, 16)
                                 }
                             }
                         }
-                    }
-                    
-                    Text("discover.all_areas")
-                        .font(.title2).bold()
-                        .padding(.top, 16)
-                        .padding(.bottom, 8)
-                        .padding(.horizontal)
-                    
-                    if areas.isEmpty {
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                            Spacer()
-                        }
-                        .frame(minHeight: 200)
-                    }
-                    else {
+                        
+                        Text("discover.all_areas")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        
+                        
                         VStack {
                             Divider()
                             
@@ -108,7 +107,6 @@ struct TopAreasLevelView: View {
                                         
                                         AreaLevelsBarView(area: area)
                                         
-                                        
                                         Image(systemName: "chevron.right")
                                             .font(.caption.weight(.bold))
                                             .foregroundColor(.gray.opacity(0.7))
@@ -124,16 +122,15 @@ struct TopAreasLevelView: View {
                                 Divider().padding(.leading)
                             }
                         }
+                        
                     }
+                    .padding(.bottom)
                 }
-                .padding(.bottom)
             }
             .modify {
                 if #available(iOS 16, *) {
-                    $0.onAppear {
+                    $0.task {
                         loadAreasForBeginners()
-                    }
-                    .task {
                         loadAreas()
                     }
                 }
