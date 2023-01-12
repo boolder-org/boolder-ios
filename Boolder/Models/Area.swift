@@ -107,10 +107,13 @@ extension Area {
         
         do {
             if let a = try SqliteStore.shared.db.pluck(query) {
+                let allowedTags = ["popular", "beginner_friendly", "family_friendly", "dry_fast"]
+                let tags = a[tags]?.components(separatedBy: ",").filter{allowedTags.contains($0)}
+                
                 return Area(id: id, name: a[name],
                             descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
                             warningFr: a[warningFr], warningEn: a[warningEn],
-                            tags: a[tags]?.components(separatedBy: ",") ?? [], // TODO: handle new tags that don't have a translation
+                            tags: tags ?? [],
                             southWestLat: a[southWestLat], southWestLon: a[southWestLon],
                             northEastLat: a[northEastLat], northEastLon: a[northEastLon],
                             level1Count: a[level1Count], level2Count: a[level2Count], level3Count: a[level3Count], level4Count: a[level4Count],
