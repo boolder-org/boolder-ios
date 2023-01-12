@@ -27,7 +27,7 @@ struct Problem : Identifiable {
     let popularity: Int?
     let parentId: Int?
     
-    // FIXME: remove
+    // TODO: remove
     static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
     var circuitUIColor: UIColor {

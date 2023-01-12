@@ -49,7 +49,7 @@ struct ProblemDetailsView: View {
             }, onFailure: { error in
                 print("On-demand resource error")
                 
-                // FIXME: implement UI, log errors
+                // TODO: implement UI, log errors
                 switch error.code {
                 case NSBundleOnDemandResourceOutOfSpaceError:
                     print("You don't have enough space available to download this resource.")

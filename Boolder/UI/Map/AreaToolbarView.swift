@@ -118,7 +118,7 @@ struct AreaToolbarView: View {
                     .cornerRadius(32)
                 }
                         .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                            mapState.filtersRefresh() // FIXME: simplify refresh logic
+                            mapState.filtersRefresh() // TODO: simplify refresh logic
                         }) {
                             FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
                                 .modify {

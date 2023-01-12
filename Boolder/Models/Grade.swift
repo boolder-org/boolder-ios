@@ -19,7 +19,7 @@ struct Grade: Hashable, CustomStringConvertible {
     init(_ string: String) {
         let lowercased = string.lowercased()
         
-        // FIXME: is this a reasonable default?
+        // TODO: is this a reasonable default?
         if Self.grades.firstIndex(of: lowercased) == nil {
             self.string = Self.grades.first!
         }
@@ -44,7 +44,7 @@ struct Grade: Hashable, CustomStringConvertible {
 extension Grade: Comparable {
     
     func index() -> Int {
-        Self.grades.firstIndex(of: string)! // FIXME: don't force unwrap
+        Self.grades.firstIndex(of: string)!
     }
     
     static func < (lhs: Grade, rhs: Grade) -> Bool {
