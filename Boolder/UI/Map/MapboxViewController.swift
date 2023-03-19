@@ -55,17 +55,9 @@ class MapboxViewController: UIViewController {
             self.mapView.addGestureRecognizer(tapGesture)
         }
         
-        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
-            // Camera movement check is throttled for performance reason (especially during flying animations)
-            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
-            guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
-                return
-            }
-
-            lastCameraCheck = DispatchTime.now()
-            
+        mapView.mapboxMap.onEvery(event: .mapIdle) { [self] _ in
             self.inferAreaFromMap()
-            
+
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
             }
@@ -73,7 +65,6 @@ class MapboxViewController: UIViewController {
         
         self.view.addSubview(mapView)
     }
-    var lastCameraCheck: DispatchTime?
 
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
     
