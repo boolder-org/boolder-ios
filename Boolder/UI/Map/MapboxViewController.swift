@@ -57,7 +57,9 @@ class MapboxViewController: UIViewController {
         
         mapView.mapboxMap.onEvery(event: .mapIdle) { [self] _ in
             self.inferAreaFromMap()
-
+        }
+        
+        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
             }
