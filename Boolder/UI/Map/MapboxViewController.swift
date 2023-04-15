@@ -546,6 +546,10 @@ class MapboxViewController: UIViewController {
             return []
         }
     }
+    
+    private var favoritesNotTicked: Set<Int> {
+        Set(favorites.map{ Int($0.problemId) }).subtracting(ticks.map{ Int($0.problemId) })
+    }
 
     func applyFilters(_ filters: Filters) {
         do {
@@ -567,7 +571,7 @@ class MapboxViewController: UIViewController {
                     
                     let favoriteFilter = Exp(.inExpression) {
                         Exp(.get) { "id" }
-                        favorites.map{Double($0.problemId)}
+                        favoritesNotTicked.map{Double($0)}
                     }
                     
                     let tickFilter = Exp(.inExpression) {
