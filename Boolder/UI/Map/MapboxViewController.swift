@@ -552,14 +552,10 @@ class MapboxViewController: UIViewController {
                         favorites.map{Double($0.problemId)}
                     }
                     
-                    if filters.favorite {
-                        layer.filter = Exp(.all) {
-                            gradeFilter
-                            favoriteFilter
-                        }
-                    }
-                    else {
-                        layer.filter = gradeFilter
+                    layer.filter = Exp(.all) {
+                        gradeFilter
+                        filters.favorite ? favoriteFilter : Exp(.literal) { true }
+                        filters.popular ? popularFilter : Exp(.literal) { true }
                     }
                 }
             }
