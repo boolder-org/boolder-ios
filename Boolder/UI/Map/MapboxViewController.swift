@@ -544,6 +544,7 @@ class MapboxViewController: UIViewController {
                     let popularFilter = Exp(.get) { "featured" }
                     
                     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    
                     let fetchRequest = Favorite.fetchRequest()
                     let favorites = try context.fetch(fetchRequest)
                     
@@ -552,10 +553,20 @@ class MapboxViewController: UIViewController {
                         favorites.map{Double($0.problemId)}
                     }
                     
+                    let fetchRequestTicks = Tick.fetchRequest()
+                    let ticks = try context.fetch(fetchRequestTicks)
+                    
+                    let tickFilter = Exp(.inExpression) {
+                        Exp(.get) { "id" }
+                        ticks.map{Double($0.problemId)}
+                    }
+                    
+                    
                     layer.filter = Exp(.all) {
                         gradeFilter
                         filters.favorite ? favoriteFilter : Exp(.literal) { true }
                         filters.popular ? popularFilter : Exp(.literal) { true }
+                        filters.ticked ? tickFilter : Exp(.literal) { true }
                     }
                 }
             }

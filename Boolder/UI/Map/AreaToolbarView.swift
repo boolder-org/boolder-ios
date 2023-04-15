@@ -133,6 +133,9 @@ struct AreaToolbarView: View {
                 
                 Button {
                     mapState.filters.popular.toggle()
+                    mapState.filters.favorite = false
+                    mapState.filters.ticked = false
+                    mapState.unselectCircuit()
                     mapState.filtersRefresh() // TODO: simplify refresh logic
                 } label: {
                     HStack {
@@ -149,6 +152,9 @@ struct AreaToolbarView: View {
                 
                 Button {
                     mapState.filters.favorite.toggle()
+                    mapState.filters.popular = false
+                    mapState.filters.ticked = false
+                    mapState.unselectCircuit()
                     mapState.filtersRefresh() // TODO: simplify refresh logic
                 } label: {
                     HStack {
@@ -160,6 +166,25 @@ struct AreaToolbarView: View {
                     .padding(.vertical, 6)
                     .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
                     .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
+                    .cornerRadius(32)
+                }
+                
+                Button {
+                    mapState.filters.ticked.toggle()
+                    mapState.filters.popular = false
+                    mapState.filters.favorite = false
+                    mapState.unselectCircuit()
+                    mapState.filtersRefresh() // TODO: simplify refresh logic
+                } label: {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+//                        Text("Projet")
+                    }
+                    .font(.callout.weight(.regular))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
+                    .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
                     .cornerRadius(32)
                 }
                 
