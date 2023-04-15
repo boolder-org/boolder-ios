@@ -524,6 +524,28 @@ class MapboxViewController: UIViewController {
             }
         }
     }
+    
+    private var favorites: [Favorite] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = Favorite.fetchRequest()
+            return try context.fetch(fetchRequest)
+        } catch {
+            return []
+        }
+    }
+    
+    private var ticks: [Tick] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = Tick.fetchRequest()
+            return try context.fetch(fetchRequest)
+        } catch {
+            return []
+        }
+    }
 
     func applyFilters(_ filters: Filters) {
         do {
@@ -543,24 +565,15 @@ class MapboxViewController: UIViewController {
                     
                     let popularFilter = Exp(.get) { "featured" }
                     
-                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                    
-                    let fetchRequest = Favorite.fetchRequest()
-                    let favorites = try context.fetch(fetchRequest)
-                    
                     let favoriteFilter = Exp(.inExpression) {
                         Exp(.get) { "id" }
                         favorites.map{Double($0.problemId)}
                     }
                     
-                    let fetchRequestTicks = Tick.fetchRequest()
-                    let ticks = try context.fetch(fetchRequestTicks)
-                    
                     let tickFilter = Exp(.inExpression) {
                         Exp(.get) { "id" }
                         ticks.map{Double($0.problemId)}
                     }
-                    
                     
                     layer.filter = Exp(.all) {
                         gradeFilter

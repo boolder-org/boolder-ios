@@ -136,7 +136,7 @@ struct AreaToolbarView: View {
                     mapState.filters.favorite = false
                     mapState.filters.ticked = false
                     mapState.unselectCircuit()
-                    mapState.filtersRefresh() // TODO: simplify refresh logic
+                    mapState.filtersRefresh() 
                 } label: {
                     HStack {
                         Image(systemName: "heart")
@@ -155,7 +155,7 @@ struct AreaToolbarView: View {
                     mapState.filters.popular = false
                     mapState.filters.ticked = false
                     mapState.unselectCircuit()
-                    mapState.filtersRefresh() // TODO: simplify refresh logic
+                    mapState.filtersRefresh()
                 } label: {
                     HStack {
                         Image(systemName: "star")
@@ -174,7 +174,7 @@ struct AreaToolbarView: View {
                     mapState.filters.popular = false
                     mapState.filters.favorite = false
                     mapState.unselectCircuit()
-                    mapState.filtersRefresh() // TODO: simplify refresh logic
+                    mapState.filtersRefresh()
                 } label: {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
