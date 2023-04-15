@@ -34,7 +34,7 @@ struct TickList: View {
                     List {
                         ForEach(areas, id: \.self) { (area: Area) in
                             Section(header: Text(area.name)) {
-                                ForEach(problemsGroupedByAreas[area]!.sorted(by: \.grade)) { problem in
+                                ForEach(problemsGroupedByAreas[area]!.sorted(by: \.grade).reversed()) { problem in
                                     Button {
                                         appTab = .map
                                         mapState.selectAndPresentAndCenterOnProblem(problem)
