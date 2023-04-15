@@ -70,57 +70,29 @@ struct AreaToolbarView: View {
             }
             .padding(.horizontal)
             
-            HStack {
-                if(circuits.count > 0) {
-                    Button {
-                        mapState.presentCircuitPicker = true
-                        mapState.clearFilters()
-                    } label: {
-                        HStack {
-                            Image("circuit")
-                            Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
-                        }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
-                        .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
-                    }
-                    .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
-                        
-                    }) {
-                        CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
-                            .modify {
-                                if #available(iOS 16, *) {
-                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                                }
-                                else {
-                                    $0
-                                }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .center, spacing: 8) {
+                    if(circuits.count > 0) {
+                        Button {
+                            mapState.presentCircuitPicker = true
+                            mapState.clearFilters()
+                        } label: {
+                            HStack {
+                                Image("circuit")
+                                Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
                             }
-                    }
-                }
-                
-                Button {
-                    mapState.presentFilters = true
-                    mapState.unselectCircuit()
-                } label: {
-                    HStack {
-                        Image(systemName: "chart.bar")
-                        Text(mapState.filters.gradeRange?.description ?? NSLocalizedString("filters.levels", comment: ""))
-                    }
-                    .font(.callout.weight(.regular))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
-                    .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
-                    .cornerRadius(32)
-                }
-                        .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                            mapState.filtersRefresh() // TODO: simplify refresh logic
+                            .font(.callout.weight(.regular))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
+                            .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+                            .cornerRadius(32)
+                        }
+                        .padding(.leading) // because it's the first item in the scrollview
+                        .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
+                            
                         }) {
-                            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
+                            CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
                                 .modify {
                                     if #available(iOS 16, *) {
                                         $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
@@ -130,69 +102,109 @@ struct AreaToolbarView: View {
                                     }
                                 }
                         }
-                
-                Button {
-                    mapState.filters.popular.toggle()
-                    mapState.filters.favorite = false
-                    mapState.filters.ticked = false
-                    mapState.unselectCircuit()
-                    mapState.filtersRefresh() 
-                } label: {
-                    HStack {
-                        Image(systemName: "heart")
-//                        Text("Populaire")
                     }
-                    .font(.callout.weight(.regular))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
-                    .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
-                    .cornerRadius(32)
-                }
-                
-                Button {
-                    mapState.filters.favorite.toggle()
-                    mapState.filters.popular = false
-                    mapState.filters.ticked = false
-                    mapState.unselectCircuit()
-                    mapState.filtersRefresh()
-                } label: {
-                    HStack {
-                        Image(systemName: "star")
-//                        Text("Projet")
+                    
+                    Button {
+                        mapState.presentFilters = true
+                        mapState.unselectCircuit()
+                    } label: {
+                        HStack {
+                            Image(systemName: "chart.bar")
+                            Text(mapState.filters.gradeRange?.description ?? NSLocalizedString("filters.levels", comment: ""))
+                        }
+                        .font(.callout.weight(.regular))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
+                        .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
+                        .cornerRadius(32)
                     }
-                    .font(.callout.weight(.regular))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
-                    .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
-                    .cornerRadius(32)
-                }
-                
-                Button {
-                    mapState.filters.ticked.toggle()
-                    mapState.filters.popular = false
-                    mapState.filters.favorite = false
-                    mapState.unselectCircuit()
-                    mapState.filtersRefresh()
-                } label: {
-                    HStack {
-                        Image(systemName: "checkmark.circle.fill")
-//                        Text("Projet")
+                    // FIXME: find a cleaner way to handle leading padding when there is no circuit
+                    .modify {
+                        if circuits.count == 0 {
+                            $0.padding(.leading)
+                        }
+                        else {
+                            $0
+                        }
                     }
-                    .font(.callout.weight(.regular))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
-                    .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
-                    .cornerRadius(32)
+                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                        mapState.filtersRefresh() // TODO: simplify refresh logic
+                    }) {
+                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
+                            .modify {
+                                if #available(iOS 16, *) {
+                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                                }
+                                else {
+                                    $0
+                                }
+                            }
+                    }
+                    
+                    Button {
+                        mapState.filters.popular.toggle()
+                        mapState.filters.favorite = false
+                        mapState.filters.ticked = false
+                        mapState.unselectCircuit()
+                        mapState.filtersRefresh()
+                    } label: {
+                        HStack {
+                            Image(systemName: "heart")
+                            Text("Populaires")
+                        }
+                        .font(.callout.weight(.regular))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
+                        .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
+                        .cornerRadius(32)
+                    }
+                    
+                    Button {
+                        mapState.filters.favorite.toggle()
+                        mapState.filters.popular = false
+                        mapState.filters.ticked = false
+                        mapState.unselectCircuit()
+                        mapState.filtersRefresh()
+                    } label: {
+                        HStack {
+                            Image(systemName: "star")
+                            Text("Projets")
+                        }
+                        .font(.callout.weight(.regular))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
+                        .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
+                        .cornerRadius(32)
+                    }
+                    
+                    Button {
+                        mapState.filters.ticked.toggle()
+                        mapState.filters.popular = false
+                        mapState.filters.favorite = false
+                        mapState.unselectCircuit()
+                        mapState.filtersRefresh()
+                    } label: {
+                        HStack {
+                            Image(systemName: "checkmark.circle.fill")
+                            Text("Réussies")
+                        }
+                        .font(.callout.weight(.regular))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
+                        .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
+                        .cornerRadius(32)
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
 
             }
             .padding(.top, 8)
-            .padding(.horizontal)
+//            .padding(.horizontal)
             .opacity(mapState.presentProblemDetails ? 0 : 1)
             
             Spacer()
