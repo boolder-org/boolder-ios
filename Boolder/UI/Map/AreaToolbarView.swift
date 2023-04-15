@@ -131,6 +131,38 @@ struct AreaToolbarView: View {
                                 }
                         }
                 
+                Button {
+                    mapState.filters.popular.toggle()
+                    mapState.filtersRefresh() // TODO: simplify refresh logic
+                } label: {
+                    HStack {
+                        Image(systemName: "heart")
+//                        Text("Populaire")
+                    }
+                    .font(.callout.weight(.regular))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
+                    .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
+                    .cornerRadius(32)
+                }
+                
+                Button {
+                    mapState.filters.favorite.toggle()
+                    mapState.filtersRefresh() // TODO: simplify refresh logic
+                } label: {
+                    HStack {
+                        Image(systemName: "star")
+//                        Text("Projet")
+                    }
+                    .font(.callout.weight(.regular))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
+                    .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
+                    .cornerRadius(32)
+                }
+                
                 Spacer()
 
             }

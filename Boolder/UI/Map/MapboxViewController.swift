@@ -534,11 +534,32 @@ class MapboxViewController: UIViewController {
             
             try ["problems", "problems-texts"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
-                    layer.filter = Expression(.match) {
+                    let gradeFilter = Expression(.match) {
                         Exp(.get) { "grade" }
                         gradesArray
                         true
                         false
+                    }
+                    
+                    let popularFilter = Exp(.get) { "featured" }
+                    
+                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    let fetchRequest = Favorite.fetchRequest()
+                    let favorites = try context.fetch(fetchRequest)
+                    
+                    let favoriteFilter = Exp(.inExpression) {
+                        Exp(.get) { "id" }
+                        favorites.map{Double($0.problemId)}
+                    }
+                    
+                    if filters.favorite {
+                        layer.filter = Exp(.all) {
+                            gradeFilter
+                            favoriteFilter
+                        }
+                    }
+                    else {
+                        layer.filter = gradeFilter
                     }
                 }
             }
