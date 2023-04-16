@@ -47,9 +47,9 @@ struct MapContainerView: View {
             }
         }
         .onChange(of: appState.selectedCircuit) { newValue in
-            if let circuit = appState.selectedCircuit {
-//                mapState.selectArea(area)
-                mapState.selectAndCenterOnCircuit(circuit)
+            if let circuitWithArea = appState.selectedCircuit {
+                mapState.selectArea(circuitWithArea.area)
+                mapState.selectAndCenterOnCircuit(circuitWithArea.circuit)
                 mapState.displayCircuitStartButton = true
                 mapState.presentAreaView = false
             }

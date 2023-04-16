@@ -70,7 +70,7 @@ struct CircuitView: View {
                 Spacer()
                 
                 Button {
-                    appState.selectedCircuit = circuit
+                    appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
                     appTab = .map
                 } label: {
                     Text("area.see_on_the_map")
