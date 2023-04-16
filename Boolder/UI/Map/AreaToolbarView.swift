@@ -72,6 +72,8 @@ struct AreaToolbarView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 8) {
+                    Spacer()
+                    
                     if(circuits.count > 0) {
                         Button {
                             mapState.presentCircuitPicker = true
@@ -88,7 +90,6 @@ struct AreaToolbarView: View {
                             .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
                             .cornerRadius(32)
                         }
-                        .padding(.leading) // because it's the first item in the scrollview
                         .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
                             
                         }) {
@@ -118,15 +119,6 @@ struct AreaToolbarView: View {
                         .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
                         .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
                         .cornerRadius(32)
-                    }
-                    // FIXME: find a cleaner way to handle leading padding when there is no circuit
-                    .modify {
-                        if circuits.count == 0 {
-                            $0.padding(.leading)
-                        }
-                        else {
-                            $0
-                        }
                     }
                     .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                         mapState.filtersRefresh() // TODO: simplify refresh logic
@@ -188,7 +180,7 @@ struct AreaToolbarView: View {
                         mapState.filtersRefresh()
                     } label: {
                         HStack {
-                            Image(systemName: "checkmark.circle.fill")
+                            Image(systemName: "checkmark.circle")
                             Text("Réussies")
                         }
                         .font(.callout.weight(.regular))
