@@ -27,6 +27,10 @@
 "filters.popular" = "Popular";
 "filters.favorite" = "Projects";
 "filters.ticked" = "Ticked";
+"filters.no_favorites_alert.title" = "You don't have any projects yet";
+"filters.no_favorites_alert.message" = "Add your first project to use this filter.";
+"filters.no_ticks_alert.title" = "You don't have any ticks yet";
+"filters.no_ticks_alert.message" = "Tick your first problem to use this filter.";
 "filters.clear" = "Clear";
 "filters.beginner" = "Beginner";
 "filters.grade.range.beginner" = "Level 1 → 3";

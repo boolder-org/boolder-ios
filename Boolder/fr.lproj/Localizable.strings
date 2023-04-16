@@ -27,6 +27,10 @@
 "filters.popular" = "Populaires";
 "filters.favorite" = "Projets";
 "filters.ticked" = "Réussies";
+"filters.no_favorites_alert.title" = "Vous n'avez pas encore de projet";
+"filters.no_favorites_alert.message" = "Enregistrez votre premier projet pour utiliser ce filtre.";
+"filters.no_ticks_alert.title" = "Vous n'avez pas encore de voie réussie";
+"filters.no_ticks_alert.message" = "Enregistrez votre première voie réussie pour utiliser ce filtre.";
 "filters.clear" = "Effacer";
 "filters.beginner" = "Débutant";
 "filters.grade.range.beginner" = "Niveau 1 → 3";

@@ -12,6 +12,13 @@ struct AreaToolbarView: View {
     @ObservedObject var mapState: MapState
     @Binding var appTab: ContentView.Tab
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
+    @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
+    
+    @State private var showingAlertFavorite = false
+    @State private var showingAlertTicked = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -154,11 +161,23 @@ struct AreaToolbarView: View {
                     }
                     
                     Button {
-                        let previous = mapState.filters.favorite
-                        mapState.clearFilters()
-                        mapState.unselectCircuit()
-                        mapState.filters.favorite = !previous
-                        mapState.filtersRefresh()
+                        if(favorites.isEmpty) {
+                            if mapState.filters.favorite {
+                                mapState.filters.favorite = false
+                                mapState.filtersRefresh()
+                            }
+                            else {
+                                showingAlertFavorite = true
+                            }
+                        }
+                        else {
+                            let previous = mapState.filters.favorite
+                            mapState.clearFilters()
+                            mapState.unselectCircuit()
+                            mapState.filters.favorite = !previous
+                            mapState.filtersRefresh()
+                        }
+                        
                     } label: {
                         HStack {
                             Image(systemName: "star")
@@ -171,13 +190,27 @@ struct AreaToolbarView: View {
                         .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
                         .cornerRadius(32)
                     }
+                    .alert(isPresented: $showingAlertFavorite) {
+                        Alert(title: Text("filters.no_favorites_alert.title"), message: Text("filters.no_favorites_alert.message"), dismissButton: .default(Text("OK")))
+                    }
                     
                     Button {
-                        let previous = mapState.filters.ticked
-                        mapState.clearFilters()
-                        mapState.unselectCircuit()
-                        mapState.filters.ticked = !previous
-                        mapState.filtersRefresh()
+                        if(ticks.isEmpty) {
+                            if mapState.filters.ticked {
+                                mapState.filters.ticked = false
+                                mapState.filtersRefresh()
+                            }
+                            else {
+                                showingAlertTicked = true
+                            }
+                        }
+                        else {
+                            let previous = mapState.filters.ticked
+                            mapState.clearFilters()
+                            mapState.unselectCircuit()
+                            mapState.filters.ticked = !previous
+                            mapState.filtersRefresh()
+                        }
                     } label: {
                         HStack {
                             Image(systemName: "checkmark.circle")
@@ -190,13 +223,15 @@ struct AreaToolbarView: View {
                         .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
                         .cornerRadius(32)
                     }
+                    .alert(isPresented: $showingAlertTicked) {
+                        Alert(title: Text("filters.no_ticks_alert.title"), message: Text("filters.no_ticks_alert.message"), dismissButton: .default(Text("OK")))
+                    }
                     
                     Spacer()
                 }
 
             }
             .padding(.top, 8)
-//            .padding(.horizontal)
             .opacity(mapState.presentProblemDetails ? 0 : 1)
             
             Spacer()
