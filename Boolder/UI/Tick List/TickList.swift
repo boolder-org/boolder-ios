@@ -9,12 +9,11 @@
 import SwiftUI
 
 struct TickList: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
+    @EnvironmentObject var appState: AppState
     @Binding var appTab: ContentView.Tab
-    let mapState: MapState
     
     @State private var loaded = false
     @State private var areas = [Area]()
@@ -54,7 +53,7 @@ struct TickList: View {
                                 ForEach(problemsGroupedByAreas[area]!) { problem in
                                     Button {
                                         appTab = .map
-                                        mapState.selectAndPresentAndCenterOnProblem(problem)
+                                        appState.selectedProblem = problem
                                     } label: {
                                         HStack {
                                             ProblemCircleView(problem: problem)

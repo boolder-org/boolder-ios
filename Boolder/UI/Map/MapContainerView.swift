@@ -13,7 +13,8 @@ struct MapContainerView: View {
     @EnvironmentObject var odrManager: ODRManager
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @ObservedObject var mapState: MapState
+    @EnvironmentObject var appState: AppState
+    @StateObject private var mapState = MapState()
     @Binding var appTab: ContentView.Tab
     
     var body: some View {
@@ -33,6 +34,12 @@ struct MapContainerView: View {
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
+        .onChange(of: appState.selectedProblem) { newValue in
+            if let problem = appState.selectedProblem {
+                mapState.selectAndPresentAndCenterOnProblem(problem)
+            }
+        }
+
     }
     
     var mapbox : some View {

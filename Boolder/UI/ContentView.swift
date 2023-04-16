@@ -9,30 +9,31 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var mapState = MapState()
+    @StateObject var appState = AppState()
     @State private var appTab = Tab.map
     
     var body: some View {
         TabView(selection: $appTab) {
             
-            MapContainerView(mapState: mapState, appTab: $appTab)
+            MapContainerView(appTab: $appTab)
                 .tabItem {
                     Label("tabs.map", systemImage: "map")
                 }
                 .tag(Tab.map)
             
-            DiscoverView(appTab: $appTab, mapState: mapState)
-                .tabItem {
-                    Label("tabs.discover", systemImage: "sparkles")
-                }
-                .tag(Tab.discover)
+//            DiscoverView(appTab: $appTab, mapState: mapState)
+//                .tabItem {
+//                    Label("tabs.discover", systemImage: "sparkles")
+//                }
+//                .tag(Tab.discover)
             
-            TickList(appTab: $appTab, mapState: mapState)
+            TickList(appTab: $appTab)
                 .tabItem {
                     Label("tabs.ticklist", systemImage: "bookmark")
                 }
                 .tag(Tab.ticklist)
         }
+        .environmentObject(appState)
     }
     
     enum Tab {
