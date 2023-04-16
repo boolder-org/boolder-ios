@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// Careful: the whole app is redrawn when these properties are changed => big hit on performance, use only when there is no other way
 @MainActor class AppState: ObservableObject {
     @Published var tab = Tab.map
     @Published var selectedProblem: Problem?
