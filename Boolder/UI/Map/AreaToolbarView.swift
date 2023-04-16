@@ -81,7 +81,8 @@ struct AreaToolbarView: View {
                 HStack(alignment: .center, spacing: 8) {
                     Spacer()
                     
-                    if(circuits.count > 0) {
+                    // `mapState.selectedArea == nil` is a hack to avoid losing position in the horizontal filters scrollview when zooming in and out
+                    if(circuits.count > 0 || mapState.selectedArea == nil) {
                         Button {
                             mapState.presentCircuitPicker = true
                             mapState.clearFilters()
