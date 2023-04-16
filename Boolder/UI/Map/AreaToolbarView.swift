@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AreaToolbarView: View {
     @ObservedObject var mapState: MapState
-    @Binding var appTab: ContentView.Tab
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
@@ -70,7 +69,7 @@ struct AreaToolbarView: View {
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
-                        AreaView(area: mapState.selectedArea!, appTab: $appTab, linkToMap: false)
+                        AreaView(area: mapState.selectedArea!, linkToMap: false)
                     }
                 }
 

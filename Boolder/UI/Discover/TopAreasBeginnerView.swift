@@ -10,7 +10,6 @@ import SwiftUI
 
 struct TopAreasBeginnerView: View {
     @EnvironmentObject var appState: AppState
-    @Binding var appTab: ContentView.Tab
     
     @State private var areasForBeginners = [Area]()
     
@@ -31,7 +30,7 @@ struct TopAreasBeginnerView: View {
                     ForEach(areasForBeginners) { area in
                         
                         NavigationLink {
-                            AreaView(area: area, appTab: $appTab, linkToMap: true)
+                            AreaView(area: area, linkToMap: true)
                         } label: {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {

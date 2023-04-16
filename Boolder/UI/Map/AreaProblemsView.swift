@@ -13,7 +13,6 @@ struct AreaProblemsView: View {
     
     let area: Area
     @EnvironmentObject var appState: AppState
-    @Binding var appTab: ContentView.Tab
     
     @State private var problems = [Problem]()
     @State private var searchText = ""
@@ -23,7 +22,7 @@ struct AreaProblemsView: View {
             Section {
                 ForEach(filteredProblems) { problem in
                     Button {
-                        appTab = .map
+                        appState.tab = .map
                         appState.selectedProblem = problem
                     } label: {
                         HStack {

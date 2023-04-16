@@ -9,6 +9,7 @@
 import SwiftUI
 
 @MainActor class AppState: ObservableObject {
+    @Published var tab = Tab.map
     @Published var selectedProblem: Problem?
     @Published var selectedArea: Area?
     @Published var selectedCircuit: CircuitWithArea?
@@ -16,5 +17,11 @@ import SwiftUI
     struct CircuitWithArea: Equatable {
         let circuit: Circuit
         let area: Area
+    }
+    
+    enum Tab {
+        case map
+        case discover
+        case ticklist
     }
 }

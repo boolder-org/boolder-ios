@@ -14,7 +14,6 @@ struct AreaView: View {
     
     let area: Area
     @EnvironmentObject var appState: AppState
-    @Binding var appTab: ContentView.Tab
     let linkToMap: Bool
     
     @State private var circuits = [Circuit]()
@@ -39,7 +38,7 @@ struct AreaView: View {
                         ForEach(popularProblems) { problem in
                             Button {
                                 appState.selectedProblem = problem
-                                appTab = .map
+                                appState.tab = .map
                             } label: {
                                 HStack {
                                     ProblemCircleView(problem: problem)
@@ -69,7 +68,7 @@ struct AreaView: View {
                     
                     Button {
                         appState.selectedArea = area
-                        appTab = .map
+                        appState.tab = .map
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))
@@ -120,7 +119,7 @@ struct AreaView: View {
     var infos: some View {
         Section {
             NavigationLink {
-                AreaDetailsView(area: area, appTab: $appTab, linkToMap: linkToMap)
+                AreaDetailsView(area: area, linkToMap: linkToMap)
             } label: {
                 HStack {
                     Text("area.infos")
@@ -139,7 +138,7 @@ struct AreaView: View {
     var problems: some View {
         Section {
             NavigationLink {
-                AreaProblemsView(area: area, appTab: $appTab)
+                AreaProblemsView(area: area)
             } label: {
                 HStack {
                     Text("area.problems")
@@ -187,7 +186,7 @@ struct AreaView: View {
         Section {
             ForEach(circuits) { circuit in
                 NavigationLink {
-                    CircuitView(area: area, circuit: circuit, appTab: $appTab)
+                    CircuitView(area: area, circuit: circuit)
                 } label: {
                     HStack {
                         CircleView(number: "", color: circuit.color.uicolor, height: 20)

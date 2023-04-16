@@ -13,7 +13,6 @@ struct AreaDetailsView: View {
     
     let area: Area
     @EnvironmentObject var appState: AppState
-    @Binding var appTab: ContentView.Tab
     let linkToMap: Bool
     
     @State private var poiRoutes = [PoiRoute]()
@@ -119,7 +118,7 @@ struct AreaDetailsView: View {
                     
                     Button {
                         appState.selectedArea = area
-                        appTab = .map
+                        appState.tab = .map
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))

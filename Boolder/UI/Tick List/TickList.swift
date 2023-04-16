@@ -13,7 +13,6 @@ struct TickList: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @EnvironmentObject var appState: AppState
-    @Binding var appTab: ContentView.Tab
     
     @State private var loaded = false
     @State private var areas = [Area]()
@@ -52,7 +51,7 @@ struct TickList: View {
                             Section(header: Text(area.name)) {
                                 ForEach(problemsGroupedByAreas[area]!) { problem in
                                     Button {
-                                        appTab = .map
+                                        appState.tab = .map
                                         appState.selectedProblem = problem
                                     } label: {
                                         HStack {

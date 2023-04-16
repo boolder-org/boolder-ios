@@ -15,7 +15,6 @@ struct MapContainerView: View {
     
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
-    @Binding var appTab: ContentView.Tab
     
     var body: some View {
         ZStack {
@@ -30,7 +29,7 @@ struct MapContainerView: View {
                 .zIndex(20)
                 .opacity(mapState.selectedArea != nil ? 0 : 1)
             
-            AreaToolbarView(mapState: mapState, appTab: $appTab)
+            AreaToolbarView(mapState: mapState)
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }

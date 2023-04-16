@@ -14,7 +14,6 @@ struct CircuitView: View {
     let area: Area
     let circuit: Circuit
     @EnvironmentObject var appState: AppState
-    @Binding var appTab: ContentView.Tab
     
     var body: some View {
         ZStack {
@@ -42,7 +41,7 @@ struct CircuitView: View {
                 Section {
                     ForEach(circuit.problems) { problem in
                         Button {
-                            appTab = .map
+                            appState.tab = .map
                             appState.selectedProblem = problem
                         } label: {
                             HStack {
@@ -71,7 +70,7 @@ struct CircuitView: View {
                 
                 Button {
                     appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
-                    appTab = .map
+                    appState.tab = .map
                 } label: {
                     Text("area.see_on_the_map")
                         .font(.body.weight(.semibold))
