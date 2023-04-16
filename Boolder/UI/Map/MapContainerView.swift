@@ -37,12 +37,14 @@ struct MapContainerView: View {
             if let problem = appState.selectedProblem {
                 mapState.selectAndPresentAndCenterOnProblem(problem)
                 mapState.presentAreaView = false
+                appState.tab = .map
             }
         }
         .onChange(of: appState.selectedArea) { newValue in
             if let area = appState.selectedArea {
                 mapState.selectArea(area)
                 mapState.centerOnArea(area)
+                appState.tab = .map
             }
         }
         .onChange(of: appState.selectedCircuit) { newValue in
@@ -51,6 +53,7 @@ struct MapContainerView: View {
                 mapState.selectAndCenterOnCircuit(circuitWithArea.circuit)
                 mapState.displayCircuitStartButton = true
                 mapState.presentAreaView = false
+                appState.tab = .map
             }
         }
     }

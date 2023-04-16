@@ -51,7 +51,6 @@ struct TickList: View {
                             Section(header: Text(area.name)) {
                                 ForEach(problemsGroupedByAreas[area]!) { problem in
                                     Button {
-                                        appState.tab = .map
                                         appState.selectedProblem = problem
                                     } label: {
                                         HStack {

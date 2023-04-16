@@ -118,7 +118,6 @@ struct AreaDetailsView: View {
                     
                     Button {
                         appState.selectedArea = area
-                        appState.tab = .map
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))
