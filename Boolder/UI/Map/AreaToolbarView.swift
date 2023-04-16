@@ -143,7 +143,7 @@ struct AreaToolbarView: View {
                     } label: {
                         HStack {
                             Image(systemName: "heart")
-                            Text("Populaires")
+                            Text("filters.popular")
                         }
                         .font(.callout.weight(.regular))
                         .padding(.horizontal, 12)
@@ -162,7 +162,7 @@ struct AreaToolbarView: View {
                     } label: {
                         HStack {
                             Image(systemName: "star")
-                            Text("Projets")
+                            Text("filters.favorite")
                         }
                         .font(.callout.weight(.regular))
                         .padding(.horizontal, 12)
@@ -181,7 +181,7 @@ struct AreaToolbarView: View {
                     } label: {
                         HStack {
                             Image(systemName: "checkmark.circle")
-                            Text("Réussies")
+                            Text("filters.ticked")
                         }
                         .font(.callout.weight(.regular))
                         .padding(.horizontal, 12)

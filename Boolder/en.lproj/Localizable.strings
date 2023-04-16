@@ -24,13 +24,9 @@
 "filters.level" = "Level";
 "filters.levels" = "Levels";
 "filters.circuit" = "Circuit";
-"filters.advanced_filters" = "Advanced Filters";
-"filters.type" = "Type";
-"filters.all" = "All";
-"filters.show_more_filters" = "More filters";
-"filters.show_less_filters" = "Less filters";
-"filters.favorite" = "Project";
-"filters.ticked" = "Already done";
+"filters.popular" = "Popular";
+"filters.favorite" = "Projects";
+"filters.ticked" = "Ticked";
 "filters.clear" = "Clear";
 "filters.beginner" = "Beginner";
 "filters.grade.range.beginner" = "Level 1 → 3";
