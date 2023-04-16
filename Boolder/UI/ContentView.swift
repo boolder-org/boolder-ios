@@ -21,11 +21,11 @@ struct ContentView: View {
                 }
                 .tag(Tab.map)
             
-//            DiscoverView(appTab: $appTab, mapState: mapState)
-//                .tabItem {
-//                    Label("tabs.discover", systemImage: "sparkles")
-//                }
-//                .tag(Tab.discover)
+            DiscoverView(appTab: $appTab)
+                .tabItem {
+                    Label("tabs.discover", systemImage: "sparkles")
+                }
+                .tag(Tab.discover)
             
             TickList(appTab: $appTab)
                 .tabItem {

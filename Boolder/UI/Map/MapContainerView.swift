@@ -37,9 +37,23 @@ struct MapContainerView: View {
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
                 mapState.selectAndPresentAndCenterOnProblem(problem)
+                mapState.presentAreaView = false
             }
         }
-
+        .onChange(of: appState.selectedArea) { newValue in
+            if let area = appState.selectedArea {
+                mapState.selectArea(area)
+                mapState.centerOnArea(area)
+            }
+        }
+        .onChange(of: appState.selectedCircuit) { newValue in
+            if let circuit = appState.selectedCircuit {
+//                mapState.selectArea(area)
+                mapState.selectAndCenterOnCircuit(circuit)
+                mapState.displayCircuitStartButton = true
+                mapState.presentAreaView = false
+            }
+        }
     }
     
     var mapbox : some View {

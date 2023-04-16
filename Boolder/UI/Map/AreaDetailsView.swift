@@ -12,7 +12,7 @@ struct AreaDetailsView: View {
     @Environment(\.openURL) var openURL
     
     let area: Area
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
     @Binding var appTab: ContentView.Tab
     let linkToMap: Bool
     
@@ -118,8 +118,7 @@ struct AreaDetailsView: View {
                     Spacer()
                     
                     Button {
-                        mapState.selectArea(area)
-                        mapState.centerOnArea(area)
+                        appState.selectedArea = area
                         appTab = .map
                     } label: {
                         Text("area.see_on_the_map")

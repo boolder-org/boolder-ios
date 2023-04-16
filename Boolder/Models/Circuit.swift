@@ -9,7 +9,7 @@
 import UIKit
 import SQLite
 
-struct Circuit : Identifiable {
+struct Circuit : Identifiable, Equatable {
     let id: Int
     let color: CircuitColor
     let averageGrade: Grade

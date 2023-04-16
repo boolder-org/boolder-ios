@@ -10,4 +10,6 @@ import SwiftUI
 
 @MainActor class AppState: ObservableObject {
     @Published var selectedProblem: Problem?
+    @Published var selectedArea: Area?
+    @Published var selectedCircuit: Circuit?
 }

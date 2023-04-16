@@ -13,7 +13,7 @@ struct CircuitView: View {
     
     let area: Area
     let circuit: Circuit
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
     @Binding var appTab: ContentView.Tab
     
     var body: some View {
@@ -42,9 +42,8 @@ struct CircuitView: View {
                 Section {
                     ForEach(circuit.problems) { problem in
                         Button {
-                            mapState.presentAreaView = false
                             appTab = .map
-                            mapState.selectAndPresentAndCenterOnProblem(problem)
+                            appState.selectedProblem = problem
                         } label: {
                             HStack {
                                 ProblemCircleView(problem: problem)
@@ -71,11 +70,7 @@ struct CircuitView: View {
                 Spacer()
                 
                 Button {
-                    mapState.selectArea(area)
-                    mapState.selectAndCenterOnCircuit(circuit)
-                    mapState.displayCircuitStartButton = true
-
-                    mapState.presentAreaView = false                    
+                    appState.selectedCircuit = circuit
                     appTab = .map
                 } label: {
                     Text("area.see_on_the_map")
