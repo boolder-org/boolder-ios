@@ -40,7 +40,9 @@ class MapboxViewController: UIViewController {
         mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
         
         mapView.ornaments.options.scaleBar.visibility = .hidden
-        mapView.ornaments.options.compass.margins = CGPoint(x: 16, y: 64)
+        
+        mapView.ornaments.options.compass.position = .bottomLeft
+        mapView.ornaments.options.compass.margins = CGPoint(x: 8, y: 40)
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
         mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
