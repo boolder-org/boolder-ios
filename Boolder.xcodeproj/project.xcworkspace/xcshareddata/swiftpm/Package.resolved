@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/algolia/algoliasearch-client-swift",
       "state" : {
-        "revision" : "6bcb6cf5417b8f423e3170b4993e47513cb40d4d",
-        "version" : "8.17.0"
+        "revision" : "3ae3deec2fedc375047bf789983c3d608c861dcd",
+        "version" : "8.18.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/mapbox-common-ios.git",
       "state" : {
-        "revision" : "d38abed1cfca3843308d478450c3d8b07a797c5a",
-        "version" : "23.4.0-rc.1"
+        "revision" : "49f0c56ce7a113b4474e08837a1985cf1a8590b5",
+        "version" : "23.4.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/mapbox-core-maps-ios.git",
       "state" : {
-        "revision" : "82706a65bf7a51818d943c91f014d17588b0f65e",
-        "version" : "10.12.0-rc.1"
+        "revision" : "e30d14ca30bdd2071262ed997ff8694cea4b2c2c",
+        "version" : "10.12.2"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/mapbox-maps-ios.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "3257f24591c241975a1b3a7f3102e3da0c08c413"
+        "revision" : "678843cd0152c5aa36ec7e2d78de4ea1cae9ebc7",
+        "version" : "10.12.2"
       }
     },
     {
