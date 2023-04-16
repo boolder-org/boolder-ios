@@ -135,10 +135,10 @@ struct AreaToolbarView: View {
                     }
                     
                     Button {
-                        mapState.filters.popular.toggle()
-                        mapState.filters.favorite = false
-                        mapState.filters.ticked = false
+                        let previous = mapState.filters.popular
+                        mapState.clearFilters()
                         mapState.unselectCircuit()
+                        mapState.filters.popular = !previous
                         mapState.filtersRefresh()
                     } label: {
                         HStack {
@@ -154,10 +154,10 @@ struct AreaToolbarView: View {
                     }
                     
                     Button {
-                        mapState.filters.favorite.toggle()
-                        mapState.filters.popular = false
-                        mapState.filters.ticked = false
+                        let previous = mapState.filters.favorite
+                        mapState.clearFilters()
                         mapState.unselectCircuit()
+                        mapState.filters.favorite = !previous
                         mapState.filtersRefresh()
                     } label: {
                         HStack {
@@ -173,10 +173,10 @@ struct AreaToolbarView: View {
                     }
                     
                     Button {
-                        mapState.filters.ticked.toggle()
-                        mapState.filters.popular = false
-                        mapState.filters.favorite = false
+                        let previous = mapState.filters.ticked
+                        mapState.clearFilters()
                         mapState.unselectCircuit()
+                        mapState.filters.ticked = !previous
                         mapState.filtersRefresh()
                     } label: {
                         HStack {
