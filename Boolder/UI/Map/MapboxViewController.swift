@@ -59,7 +59,7 @@ class MapboxViewController: UIViewController {
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
             // Camera movement check is throttled for performance reason (especially during flying animations)
-            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(500)
+            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
             guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
                 return
             }
