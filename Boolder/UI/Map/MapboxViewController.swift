@@ -249,6 +249,15 @@ class MapboxViewController: UIViewController {
         problemsNamesLayer.textIgnorePlacement = .constant(false)
 //        problemsNamesLayer.iconIgnorePlacement = .constant(false)
         
+        problemsNamesLayer.symbolSortKey = .expression(
+            Exp(.product) {
+                Exp(.toNumber) {
+                    Exp(.get) { "popularity" }
+                }
+                -1.0
+            }
+        )
+        
         
         var problemsNamesBoxesLayer = SymbolLayer(id: "problems-names-boxes")
         problemsNamesBoxesLayer.source = "problems"
