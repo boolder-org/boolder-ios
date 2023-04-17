@@ -198,6 +198,65 @@ class MapboxViewController: UIViewController {
         
         // ===========================
         
+        var problemsNamesLayer = SymbolLayer(id: "problems-names")
+        problemsNamesLayer.source = "problems"
+        problemsNamesLayer.sourceLayer = problemsSourceLayerId
+        problemsNamesLayer.minZoom = 15
+        problemsNamesLayer.visibility = .constant(.none)
+        problemsNamesLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Point"]
+            true
+            false
+        }
+        
+        problemsNamesLayer.textAllowOverlap = .constant(false)
+        problemsNamesLayer.textField = .expression(
+            Expression(.toString) {
+                ["get", "name"]
+            }
+        )
+        
+        problemsNamesLayer.textSize = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                8
+                20
+                14
+            }
+        )
+        
+        problemsNamesLayer.textVariableAnchor = .constant([.bottom, .top])
+        problemsNamesLayer.textRadialOffset = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                1
+                20
+                1.5
+            }
+        )
+        problemsNamesLayer.textHaloColor = .constant(.init(.white))
+        problemsNamesLayer.textHaloWidth = .constant(1)
+        
+//        problemsNamesLayer.textColor = .expression(
+//            Expression(.switchCase) {
+//                Expression(.match) {
+//                    ["get", "circuitColor"]
+//                    ["", "white"]
+//                    true
+//                    false
+//                }
+//                UIColor.black // TODO: less dark
+//                UIColor.white
+//            }
+//        )
+        
+        // ===========================
+        
         var circuitsLayer = LineLayer(id: "circuits")
         circuitsLayer.source = "circuits"
         circuitsLayer.sourceLayer = "circuits-9weff8"
@@ -263,6 +322,7 @@ class MapboxViewController: UIViewController {
         do {
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            try self.mapView.mapboxMap.style.addLayer(problemsNamesLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
@@ -364,9 +424,10 @@ class MapboxViewController: UIViewController {
                 }
             }
         
+        // hack to be able to zoom to a level where problems are tappable
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["boulders"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
@@ -413,7 +474,7 @@ class MapboxViewController: UIViewController {
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
-            options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
@@ -560,7 +621,7 @@ class MapboxViewController: UIViewController {
             
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
-            try ["problems", "problems-texts"].forEach { layerId in
+            try ["problems", "problems-texts", "problems-names"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     let gradeFilter = Expression(.match) {
                         Exp(.get) { "grade" }
@@ -583,10 +644,15 @@ class MapboxViewController: UIViewController {
                     
                     layer.filter = Exp(.all) {
                         gradeFilter
-                        filters.favorite ? favoriteFilter : Exp(.literal) { true }
                         filters.popular ? popularFilter : Exp(.literal) { true }
+                        filters.favorite ? favoriteFilter : Exp(.literal) { true }
                         filters.ticked ? tickFilter : Exp(.literal) { true }
                     }
+                }
+                
+                try mapView.mapboxMap.style.updateLayer(withId: "problems-names", type: SymbolLayer.self) { layer in
+                    let visibility = (filters.popular || filters.favorite || filters.ticked) ? Visibility.visible : Visibility.none
+                    layer.visibility = .constant(visibility)
                 }
             }
  
