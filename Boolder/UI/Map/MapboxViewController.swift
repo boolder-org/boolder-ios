@@ -396,6 +396,10 @@ class MapboxViewController: UIViewController {
     @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: mapView)
         
+        // =================================================
+        // Careful: the order of the queries is important
+        // =================================================
+        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: nil)) { [weak self] result in
