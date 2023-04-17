@@ -210,7 +210,6 @@ class MapboxViewController: UIViewController {
             false
         }
         
-        problemsNamesLayer.textAllowOverlap = .constant(false)
         problemsNamesLayer.textField = .expression(
             Expression(.toString) {
                 ["get", "name"]
@@ -228,7 +227,7 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        problemsNamesLayer.textVariableAnchor = .constant([.bottom, .top])
+        problemsNamesLayer.textVariableAnchor = .constant([.bottom, .top, .right, .left])
         problemsNamesLayer.textRadialOffset = .expression(
             Exp(.interpolate) {
                 ["linear"]
@@ -242,18 +241,46 @@ class MapboxViewController: UIViewController {
         problemsNamesLayer.textHaloColor = .constant(.init(.white))
         problemsNamesLayer.textHaloWidth = .constant(1)
         
-//        problemsNamesLayer.textColor = .expression(
-//            Expression(.switchCase) {
-//                Expression(.match) {
-//                    ["get", "circuitColor"]
-//                    ["", "white"]
-//                    true
-//                    false
-//                }
-//                UIColor.black // TODO: less dark
-//                UIColor.white
-//            }
-//        )
+//        problemsNamesLayer.iconImage = .constant(.name("circle-15"))
+//        problemsNamesLayer.iconAllowOverlap = .constant(true)
+        problemsNamesLayer.textAllowOverlap = .constant(false)
+//        problemsNamesLayer.iconOptional = .constant(false)
+        problemsNamesLayer.textOptional = .constant(true)
+        problemsNamesLayer.textIgnorePlacement = .constant(false)
+//        problemsNamesLayer.iconIgnorePlacement = .constant(false)
+        
+        
+        var problemsNamesBoxesLayer = SymbolLayer(id: "problems-names-boxes")
+        problemsNamesBoxesLayer.source = "problems"
+        problemsNamesBoxesLayer.sourceLayer = problemsSourceLayerId
+        problemsNamesBoxesLayer.minZoom = 15
+        problemsNamesBoxesLayer.visibility = .constant(.none)
+        problemsNamesBoxesLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Point"]
+            true
+            false
+        }
+        
+        
+        problemsNamesBoxesLayer.iconImage = .constant(.name("circle-15"))
+        problemsNamesBoxesLayer.iconSize = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                0.2
+                20
+                1
+            }
+        )
+        problemsNamesBoxesLayer.iconAllowOverlap = .constant(true)
+        problemsNamesBoxesLayer.iconOpacity = .constant(0)
+//        problemsNamesBoxesLayer.iconOptional = .constant(false)
+//        problemsNamesBoxesLayer.iconIgnorePlacement = .constant(false)
+        
+        
+        
         
         // ===========================
         
@@ -320,9 +347,14 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
         do {
+            
+            
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            
             try self.mapView.mapboxMap.style.addLayer(problemsNamesLayer)
+            try self.mapView.mapboxMap.style.addLayer(problemsNamesBoxesLayer)
+            
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
@@ -621,7 +653,7 @@ class MapboxViewController: UIViewController {
             
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
-            try ["problems", "problems-texts", "problems-names"].forEach { layerId in
+            try ["problems", "problems-texts", "problems-names", "problems-names-boxes"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     let gradeFilter = Expression(.match) {
                         Exp(.get) { "grade" }
@@ -649,8 +681,10 @@ class MapboxViewController: UIViewController {
                         filters.ticked ? tickFilter : Exp(.literal) { true }
                     }
                 }
-                
-                try mapView.mapboxMap.style.updateLayer(withId: "problems-names", type: SymbolLayer.self) { layer in
+            }
+            
+            try ["problems-names", "problems-names-boxes"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
                     let visibility = (filters.popular || filters.favorite || filters.ticked) ? Visibility.visible : Visibility.none
                     layer.visibility = .constant(visibility)
                 }
