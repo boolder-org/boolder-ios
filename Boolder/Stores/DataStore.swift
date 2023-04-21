@@ -88,6 +88,7 @@ class DataStore : ObservableObject {
         Area(id: 63, name: "Apremont Désert",                     problemsCount: 283,   latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 72, name: "Le Calvaire",                     problemsCount: 195,   latitude: 0,                   longitude: 0,                   published: false),
         Area(id: 73, name: "Mont Aigu",                     problemsCount: 283,   latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 75, name: "Rocher Gréau",                     problemsCount: 102,   latitude: 0,                   longitude: 0,                   published: false),
     ]
 
     init() {
