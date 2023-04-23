@@ -261,20 +261,20 @@ class MapboxViewController: UIViewController {
         )
         
         // (invisible) layer to prevent problem names from overlapping with the problem circles
-        var problemsNamesBoxesLayer = SymbolLayer(id: "problems-names-antioverlap")
-        problemsNamesBoxesLayer.source = "problems"
-        problemsNamesBoxesLayer.sourceLayer = problemsSourceLayerId
-        problemsNamesBoxesLayer.minZoom = 15
-        problemsNamesBoxesLayer.visibility = .constant(.none)
-        problemsNamesBoxesLayer.filter = Expression(.match) {
+        var problemsNamesAntioverlapLayer = SymbolLayer(id: "problems-names-antioverlap")
+        problemsNamesAntioverlapLayer.source = "problems"
+        problemsNamesAntioverlapLayer.sourceLayer = problemsSourceLayerId
+        problemsNamesAntioverlapLayer.minZoom = 15
+        problemsNamesAntioverlapLayer.visibility = .constant(.none)
+        problemsNamesAntioverlapLayer.filter = Expression(.match) {
             ["geometry-type"]
             ["Point"]
             true
             false
         }
         
-        problemsNamesBoxesLayer.iconImage = .constant(.name("circle-15"))
-        problemsNamesBoxesLayer.iconSize = .expression(
+        problemsNamesAntioverlapLayer.iconImage = .constant(.name("circle-15"))
+        problemsNamesAntioverlapLayer.iconSize = .expression(
             Exp(.interpolate) {
                 ["linear"]
                 ["zoom"]
@@ -284,8 +284,8 @@ class MapboxViewController: UIViewController {
                 1
             }
         )
-        problemsNamesBoxesLayer.iconAllowOverlap = .constant(true)
-        problemsNamesBoxesLayer.iconOpacity = .constant(0)
+        problemsNamesAntioverlapLayer.iconAllowOverlap = .constant(true)
+        problemsNamesAntioverlapLayer.iconOpacity = .constant(0)
         
         // ===========================
         
@@ -358,7 +358,7 @@ class MapboxViewController: UIViewController {
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
             
             try self.mapView.mapboxMap.style.addLayer(problemsNamesLayer)
-            try self.mapView.mapboxMap.style.addLayer(problemsNamesBoxesLayer)
+            try self.mapView.mapboxMap.style.addLayer(problemsNamesAntioverlapLayer)
             
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
