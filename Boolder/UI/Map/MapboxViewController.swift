@@ -211,8 +211,14 @@ class MapboxViewController: UIViewController {
         }
         
         problemsNamesLayer.textField = .expression(
-            Expression(.toString) {
-                ["get", "name"]
+            Exp(.concat) {
+                Expression(.toString) {
+                    ["get", "name"]
+                }
+                " "
+                Expression(.toString) {
+                    ["get", "grade"]
+                }
             }
         )
         
