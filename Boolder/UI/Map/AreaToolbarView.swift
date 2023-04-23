@@ -11,7 +11,6 @@ import SwiftUI
 struct AreaToolbarView: View {
     @ObservedObject var mapState: MapState
     
-    @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     

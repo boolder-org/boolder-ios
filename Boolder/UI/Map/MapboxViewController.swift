@@ -241,13 +241,9 @@ class MapboxViewController: UIViewController {
         problemsNamesLayer.textHaloColor = .constant(.init(.white))
         problemsNamesLayer.textHaloWidth = .constant(1)
         
-//        problemsNamesLayer.iconImage = .constant(.name("circle-15"))
-//        problemsNamesLayer.iconAllowOverlap = .constant(true)
         problemsNamesLayer.textAllowOverlap = .constant(false)
-//        problemsNamesLayer.iconOptional = .constant(false)
         problemsNamesLayer.textOptional = .constant(true)
         problemsNamesLayer.textIgnorePlacement = .constant(false)
-//        problemsNamesLayer.iconIgnorePlacement = .constant(false)
         
         problemsNamesLayer.symbolSortKey = .expression(
             Exp(.product) {
@@ -285,11 +281,6 @@ class MapboxViewController: UIViewController {
         )
         problemsNamesBoxesLayer.iconAllowOverlap = .constant(true)
         problemsNamesBoxesLayer.iconOpacity = .constant(0)
-//        problemsNamesBoxesLayer.iconOptional = .constant(false)
-//        problemsNamesBoxesLayer.iconIgnorePlacement = .constant(false)
-        
-        
-        
         
         // ===========================
         
