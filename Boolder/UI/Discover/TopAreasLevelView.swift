@@ -11,8 +11,7 @@ import SwiftUI
 struct TopAreasLevelView: View {
     @Environment(\.openURL) var openURL
     
-    @Binding var appTab: ContentView.Tab
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
     
     @State private var areas = [Area]()
     @State private var areasForBeginners = [Area]()
@@ -36,7 +35,7 @@ struct TopAreasLevelView: View {
                     VStack(alignment: .leading) {
                         
                         NavigationLink {
-                            TopAreasBeginnerView(appTab: $appTab, mapState: mapState)
+                            TopAreasBeginnerView()
                         } label: {
                             HStack(alignment: .firstTextBaseline) {
                                 Text("discover.top_areas.level.beginner_friendly")
@@ -66,7 +65,7 @@ struct TopAreasLevelView: View {
                                         
                                         ForEach(areasForBeginners) { area in
                                             NavigationLink {
-                                                AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                                AreaView(area: area, linkToMap: true)
                                             } label: {
                                                 AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                     .padding(.leading, 8)
@@ -95,7 +94,7 @@ struct TopAreasLevelView: View {
                             ForEach(areas) { area in
                                 
                                 NavigationLink {
-                                    AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                    AreaView(area: area, linkToMap: true)
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {

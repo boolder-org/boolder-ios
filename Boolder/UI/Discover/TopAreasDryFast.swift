@@ -11,8 +11,7 @@ import SwiftUI
 struct TopAreasDryFast: View {
     @Environment(\.openURL) var openURL
     
-    @Binding var appTab: ContentView.Tab
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
     
     @State private var areas = [Area]()
     
@@ -41,7 +40,7 @@ struct TopAreasDryFast: View {
                                     
                                     ForEach(areas) { area in
                                         NavigationLink {
-                                            AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                            AreaView(area: area, linkToMap: true)
                                         } label: {
                                             AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                 .padding(.leading, 8)

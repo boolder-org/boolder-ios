@@ -13,8 +13,8 @@ struct MapContainerView: View {
     @EnvironmentObject var odrManager: ODRManager
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @ObservedObject var mapState: MapState
-    @Binding var appTab: ContentView.Tab
+    @EnvironmentObject var appState: AppState
+    @StateObject private var mapState = MapState()
     
     var body: some View {
         ZStack {
@@ -29,9 +29,29 @@ struct MapContainerView: View {
                 .zIndex(20)
                 .opacity(mapState.selectedArea != nil ? 0 : 1)
             
-            AreaToolbarView(mapState: mapState, appTab: $appTab)
+            AreaToolbarView(mapState: mapState)
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
+        }
+        .onChange(of: appState.selectedProblem) { newValue in
+            if let problem = appState.selectedProblem {
+                mapState.selectAndPresentAndCenterOnProblem(problem)
+                mapState.presentAreaView = false
+            }
+        }
+        .onChange(of: appState.selectedArea) { newValue in
+            if let area = appState.selectedArea {
+                mapState.selectArea(area)
+                mapState.centerOnArea(area)
+            }
+        }
+        .onChange(of: appState.selectedCircuit) { newValue in
+            if let circuitWithArea = appState.selectedCircuit {
+                mapState.selectArea(circuitWithArea.area)
+                mapState.selectAndCenterOnCircuit(circuitWithArea.circuit)
+                mapState.displayCircuitStartButton = true
+                mapState.presentAreaView = false
+            }
         }
     }
     

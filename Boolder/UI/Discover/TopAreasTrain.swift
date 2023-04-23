@@ -11,8 +11,7 @@ import SwiftUI
 struct TopAreasTrain: View {
     @Environment(\.openURL) var openURL
     
-    @Binding var appTab: ContentView.Tab
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
     
     @State private var trainStations = [Poi]()
     
@@ -59,7 +58,7 @@ struct TopAreasTrain: View {
                             ForEach(trainStation.poiRoutes.filter{$0.transport == .bike}) { poiRoute in
                                 if let area = Area.load(id: poiRoute.areaId) {
                                     NavigationLink {
-                                        AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                        AreaView(area: area, linkToMap: true)
                                     } label: {
                                         HStack {
                                             

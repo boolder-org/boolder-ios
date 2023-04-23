@@ -24,13 +24,13 @@
 "filters.level" = "Level";
 "filters.levels" = "Levels";
 "filters.circuit" = "Circuit";
-"filters.advanced_filters" = "Advanced Filters";
-"filters.type" = "Type";
-"filters.all" = "All";
-"filters.show_more_filters" = "More filters";
-"filters.show_less_filters" = "Less filters";
-"filters.favorite" = "Project";
-"filters.ticked" = "Already done";
+"filters.popular" = "Popular";
+"filters.favorite" = "Projects";
+"filters.ticked" = "Ticked";
+"filters.no_favorites_alert.title" = "You don't have any projects yet";
+"filters.no_favorites_alert.message" = "Add your first project to use this filter.";
+"filters.no_ticks_alert.title" = "You don't have any ticks yet";
+"filters.no_ticks_alert.message" = "Tick your first problem to use this filter.";
 "filters.clear" = "Clear";
 "filters.beginner" = "Beginner";
 "filters.grade.range.beginner" = "Level 1 → 3";
@@ -168,4 +168,4 @@
 // MARK: Tick List
 "ticklist.title" = "Tick List";
 "ticklist.empty_state_title" = "Ready to climb?";
-"ticklist.empty_state_body" = "Your projects and sent problems will appear here.";
+"ticklist.empty_state_body" = "Your projects and ticks will appear here.";

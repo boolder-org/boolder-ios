@@ -17,8 +17,7 @@ struct DiscoverView: View {
     @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
     
-    @Binding var appTab: ContentView.Tab
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         NavigationView {
@@ -52,7 +51,7 @@ struct DiscoverView: View {
                                     }
                                 }
                                 
-                                NavigationLink(destination: TopAreasLevelView(appTab: $appTab, mapState: mapState)) {
+                                NavigationLink(destination: TopAreasLevelView()) {
                                     
                                     VStack(alignment: .leading) {
                                         HStack {
@@ -79,7 +78,7 @@ struct DiscoverView: View {
                             
                             HStack {
                                 
-                                NavigationLink(destination: TopAreasDryFast(appTab: $appTab, mapState: mapState)) {
+                                NavigationLink(destination: TopAreasDryFast()) {
                                     
                                     VStack(alignment: .leading) {
                                         HStack {
@@ -102,7 +101,7 @@ struct DiscoverView: View {
                                     }
                                 }
                                 
-                                NavigationLink(destination: TopAreasTrain(appTab: $appTab, mapState: mapState)) {
+                                NavigationLink(destination: TopAreasTrain()) {
                                     
                                     VStack(alignment: .leading) {
                                         HStack {
@@ -148,7 +147,7 @@ struct DiscoverView: View {
                                         
                                         ForEach(popularAreas) { area in
                                             NavigationLink {
-                                                AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                                AreaView(area: area, linkToMap: true)
                                             } label: {
                                                 AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                     .padding(.leading, 8)
@@ -185,7 +184,7 @@ struct DiscoverView: View {
                             ForEach(areas) { area in
                                 
                                 NavigationLink {
-                                    AreaView(area: area, mapState: mapState, appTab: $appTab, linkToMap: true)
+                                    AreaView(area: area, linkToMap: true)
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {
@@ -259,6 +258,35 @@ struct DiscoverView: View {
                         .padding(.horizontal)
                         .padding(.bottom)
                     }
+                    
+                    #if DEVELOPMENT
+                    VStack(alignment: .leading) {
+                        Text("Dev")
+                            .font(.title2).bold()
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
+                        
+                        VStack(alignment: .leading) {
+                            Divider()
+                            
+                            NavigationLink(destination: SettingsView()) {
+                                HStack {
+                                    Image(systemName: "gearshape")
+                                    Text("Settings")
+                                    Spacer()
+                                }
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            }
+                            
+                            Divider()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                    }
+                    #endif
                 }
                 .navigationBarTitle(Text("discover.title"))
                 .onAppear {

@@ -12,8 +12,7 @@ struct AreaProblemsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let area: Area
-    let mapState: MapState
-    @Binding var appTab: ContentView.Tab
+    @EnvironmentObject var appState: AppState
     
     @State private var problems = [Problem]()
     @State private var searchText = ""
@@ -23,9 +22,8 @@ struct AreaProblemsView: View {
             Section {
                 ForEach(filteredProblems) { problem in
                     Button {
-                        mapState.presentAreaView = false
-                        appTab = .map
-                        mapState.selectAndPresentAndCenterOnProblem(problem)
+                        appState.tab = .map
+                        appState.selectedProblem = problem
                     } label: {
                         HStack {
                             ProblemCircleView(problem: problem)

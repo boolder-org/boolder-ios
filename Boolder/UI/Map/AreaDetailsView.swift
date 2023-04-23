@@ -12,8 +12,7 @@ struct AreaDetailsView: View {
     @Environment(\.openURL) var openURL
     
     let area: Area
-    let mapState: MapState
-    @Binding var appTab: ContentView.Tab
+    @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
     @State private var poiRoutes = [PoiRoute]()
@@ -118,9 +117,8 @@ struct AreaDetailsView: View {
                     Spacer()
                     
                     Button {
-                        mapState.selectArea(area)
-                        mapState.centerOnArea(area)
-                        appTab = .map
+                        appState.selectedArea = area
+                        appState.tab = .map
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))

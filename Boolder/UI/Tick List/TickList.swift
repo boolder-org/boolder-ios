@@ -9,17 +9,32 @@
 import SwiftUI
 
 struct TickList: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var appTab: ContentView.Tab
-    let mapState: MapState
+    @EnvironmentObject var appState: AppState
+    
+    @State private var loaded = false
+    @State private var areas = [Area]()
+    @State private var problems = [Problem]()
+    @State private var problemsGroupedByAreas = Dictionary<Area?, [Problem]>()
     
     var body: some View {
         NavigationView {
             VStack {
-                if problems.count == 0 {
+                if !loaded {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                    .frame(minHeight: 200)
+                }
+                else if problems.count == 0 {
                     VStack(alignment: .center, spacing: 16) {
                         Spacer()
 //                        Text("ticklist.empty_state_title").font(.title2)
@@ -34,10 +49,10 @@ struct TickList: View {
                     List {
                         ForEach(areas, id: \.self) { (area: Area) in
                             Section(header: Text(area.name)) {
-                                ForEach(problemsGroupedByAreas[area]!.sorted(by: \.grade)) { problem in
+                                ForEach(problemsGroupedByAreas[area]!) { problem in
                                     Button {
-                                        appTab = .map
-                                        mapState.selectAndPresentAndCenterOnProblem(problem)
+                                        appState.tab = .map
+                                        appState.selectedProblem = problem
                                     } label: {
                                         HStack {
                                             ProblemCircleView(problem: problem)
@@ -78,25 +93,44 @@ struct TickList: View {
             }
      
             .navigationTitle("ticklist.title")
+            .modify {
+                if #available(iOS 16, *) {
+                    $0.task {
+                        load()
+                    }
+                }
+                else {
+                    $0.onAppear {
+                        load()
+                    }
+                }
+            }
         }
     }
     
-    var problemsGroupedByAreas : Dictionary<Area?, [Problem]> {
-        Dictionary(grouping: problems, by: { (problem: Problem) in
-            Area.load(id: problem.areaId)
-        })
-    }
-    
-    var areas : [Area] {
-        problemsGroupedByAreas.keys.compactMap{$0}.sorted()
-    }
-    
-    var problems: [Problem] {
+    private func load() -> Void {
         let problemIds = Set(favorites.map{ $0.problemId }).union(ticks.map{ $0.problemId })
         
-        return problemIds.map { id in
+        problems = problemIds.map { id in
             Problem.load(id: Int(id))
         }.compactMap { $0 }
+        
+        problemsGroupedByAreas = Dictionary(grouping: problems, by: { (problem: Problem) in
+            Area.load(id: problem.areaId)
+        })
+        
+        areas = problemsGroupedByAreas.keys.compactMap{$0}.sorted()
+        
+        areas.forEach { area in
+            problemsGroupedByAreas[area] = problemsGroupedByAreas[area]!.sorted { (problem1, problem2) -> Bool in
+                if problem1.grade == problem2.grade {
+                    return problem1.nameWithFallback < problem2.nameWithFallback
+                }
+                return problem1.grade > problem2.grade
+            }
+        }
+        
+        loaded = true
     }
     
     func isFavorite(problem: Problem) -> Bool {

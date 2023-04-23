@@ -13,8 +13,7 @@ struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let area: Area
-    let mapState: MapState
-    @Binding var appTab: ContentView.Tab
+    @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
     @State private var circuits = [Circuit]()
@@ -38,9 +37,8 @@ struct AreaView: View {
                     Section(header: Text("area.problems.popular")) {
                         ForEach(popularProblems) { problem in
                             Button {
-                                mapState.presentAreaView = false
-                                appTab = .map
-                                mapState.selectAndPresentAndCenterOnProblem(problem)
+                                appState.selectedProblem = problem
+                                appState.tab = .map
                             } label: {
                                 HStack {
                                     ProblemCircleView(problem: problem)
@@ -69,9 +67,8 @@ struct AreaView: View {
                     Spacer()
                     
                     Button {
-                        mapState.selectArea(area)
-                        mapState.centerOnArea(area)
-                        appTab = .map
+                        appState.selectedArea = area
+                        appState.tab = .map
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))
@@ -122,7 +119,7 @@ struct AreaView: View {
     var infos: some View {
         Section {
             NavigationLink {
-                AreaDetailsView(area: area, mapState: mapState, appTab: $appTab, linkToMap: linkToMap)
+                AreaDetailsView(area: area, linkToMap: linkToMap)
             } label: {
                 HStack {
                     Text("area.infos")
@@ -141,7 +138,7 @@ struct AreaView: View {
     var problems: some View {
         Section {
             NavigationLink {
-                AreaProblemsView(area: area, mapState: mapState, appTab: $appTab)
+                AreaProblemsView(area: area)
             } label: {
                 HStack {
                     Text("area.problems")
@@ -189,7 +186,7 @@ struct AreaView: View {
         Section {
             ForEach(circuits) { circuit in
                 NavigationLink {
-                    CircuitView(area: area, circuit: circuit, mapState: mapState, appTab: $appTab)
+                    CircuitView(area: area, circuit: circuit)
                 } label: {
                     HStack {
                         CircleView(number: "", color: circuit.color.uicolor, height: 20)

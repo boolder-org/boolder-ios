@@ -40,7 +40,9 @@ class MapboxViewController: UIViewController {
         mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
         
         mapView.ornaments.options.scaleBar.visibility = .hidden
-        mapView.ornaments.options.compass.margins = CGPoint(x: 16, y: 64)
+        
+        mapView.ornaments.options.compass.position = .bottomLeft
+        mapView.ornaments.options.compass.margins = CGPoint(x: 8, y: 40)
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
         mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
@@ -57,7 +59,7 @@ class MapboxViewController: UIViewController {
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
             // Camera movement check is throttled for performance reason (especially during flying animations)
-            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(500)
+            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
             guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
                 return
             }
@@ -196,6 +198,91 @@ class MapboxViewController: UIViewController {
         
         // ===========================
         
+        var problemsNamesLayer = SymbolLayer(id: "problems-names")
+        problemsNamesLayer.source = "problems"
+        problemsNamesLayer.sourceLayer = problemsSourceLayerId
+        problemsNamesLayer.minZoom = 15
+        problemsNamesLayer.visibility = .constant(.none)
+        problemsNamesLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Point"]
+            true
+            false
+        }
+        
+        problemsNamesLayer.textField = .expression(
+            Expression(.toString) {
+                ["get", "name"]
+            }
+        )
+        
+        problemsNamesLayer.textSize = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                8
+                20
+                14
+            }
+        )
+        
+        problemsNamesLayer.textVariableAnchor = .constant([.bottom, .top, .right, .left])
+        problemsNamesLayer.textRadialOffset = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                1
+                20
+                1.5
+            }
+        )
+        problemsNamesLayer.textHaloColor = .constant(.init(.white))
+        problemsNamesLayer.textHaloWidth = .constant(1)
+        
+        problemsNamesLayer.textAllowOverlap = .constant(false)
+        problemsNamesLayer.textOptional = .constant(true)
+        problemsNamesLayer.textIgnorePlacement = .constant(false)
+        
+        problemsNamesLayer.symbolSortKey = .expression(
+            Exp(.product) {
+                Exp(.toNumber) {
+                    Exp(.get) { "popularity" }
+                }
+                -1.0
+            }
+        )
+        
+        // (invisible) layer to prevent problem names from overlapping with the problem circles
+        var problemsNamesBoxesLayer = SymbolLayer(id: "problems-names-antioverlap")
+        problemsNamesBoxesLayer.source = "problems"
+        problemsNamesBoxesLayer.sourceLayer = problemsSourceLayerId
+        problemsNamesBoxesLayer.minZoom = 15
+        problemsNamesBoxesLayer.visibility = .constant(.none)
+        problemsNamesBoxesLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Point"]
+            true
+            false
+        }
+        
+        problemsNamesBoxesLayer.iconImage = .constant(.name("circle-15"))
+        problemsNamesBoxesLayer.iconSize = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                15
+                0.2
+                20
+                1
+            }
+        )
+        problemsNamesBoxesLayer.iconAllowOverlap = .constant(true)
+        problemsNamesBoxesLayer.iconOpacity = .constant(0)
+        
+        // ===========================
+        
         var circuitsLayer = LineLayer(id: "circuits")
         circuitsLayer.source = "circuits"
         circuitsLayer.sourceLayer = "circuits-9weff8"
@@ -259,8 +346,14 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
         do {
+            
+            
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            
+            try self.mapView.mapboxMap.style.addLayer(problemsNamesLayer)
+            try self.mapView.mapboxMap.style.addLayer(problemsNamesBoxesLayer)
+            
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
@@ -301,6 +394,10 @@ class MapboxViewController: UIViewController {
     
     @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: mapView)
+        
+        // =================================================
+        // Careful: the order of the queries is important
+        // =================================================
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
@@ -362,9 +459,10 @@ class MapboxViewController: UIViewController {
                 }
             }
         
+        // hack to be able to zoom to a level where problems are tappable
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["boulders"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
@@ -411,7 +509,7 @@ class MapboxViewController: UIViewController {
         
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
-            options: RenderedQueryOptions(layerIds: ["problems"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
@@ -524,6 +622,32 @@ class MapboxViewController: UIViewController {
             }
         }
     }
+    
+    private var favorites: [Favorite] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = Favorite.fetchRequest()
+            return try context.fetch(fetchRequest)
+        } catch {
+            return []
+        }
+    }
+    
+    private var ticks: [Tick] {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = Tick.fetchRequest()
+            return try context.fetch(fetchRequest)
+        } catch {
+            return []
+        }
+    }
+    
+    private var favoritesNotTicked: Set<Int> {
+        Set(favorites.map{ Int($0.problemId) }).subtracting(ticks.map{ Int($0.problemId) })
+    }
 
     func applyFilters(_ filters: Filters) {
         do {
@@ -532,14 +656,40 @@ class MapboxViewController: UIViewController {
             
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
-            try ["problems", "problems-texts"].forEach { layerId in
+            try ["problems", "problems-texts", "problems-names", "problems-names-antioverlap"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
-                    layer.filter = Expression(.match) {
+                    let gradeFilter = Expression(.match) {
                         Exp(.get) { "grade" }
                         gradesArray
                         true
                         false
                     }
+                    
+                    let popularFilter = Exp(.get) { "featured" }
+                    
+                    let favoriteFilter = Exp(.inExpression) {
+                        Exp(.get) { "id" }
+                        favoritesNotTicked.map{Double($0)}
+                    }
+                    
+                    let tickFilter = Exp(.inExpression) {
+                        Exp(.get) { "id" }
+                        ticks.map{Double($0.problemId)}
+                    }
+                    
+                    layer.filter = Exp(.all) {
+                        gradeFilter
+                        filters.popular ? popularFilter : Exp(.literal) { true }
+                        filters.favorite ? favoriteFilter : Exp(.literal) { true }
+                        filters.ticked ? tickFilter : Exp(.literal) { true }
+                    }
+                }
+            }
+            
+            try ["problems-names", "problems-names-antioverlap"].forEach { layerId in
+                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
+                    let visibility = (filters.popular || filters.favorite || filters.ticked) ? Visibility.visible : Visibility.none
+                    layer.visibility = .constant(visibility)
                 }
             }
  
