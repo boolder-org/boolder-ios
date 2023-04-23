@@ -254,8 +254,8 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        
-        var problemsNamesBoxesLayer = SymbolLayer(id: "problems-names-boxes")
+        // (invisible) layer to prevent problem names from overlapping with the problem circles
+        var problemsNamesBoxesLayer = SymbolLayer(id: "problems-names-antioverlap")
         problemsNamesBoxesLayer.source = "problems"
         problemsNamesBoxesLayer.sourceLayer = problemsSourceLayerId
         problemsNamesBoxesLayer.minZoom = 15
@@ -266,7 +266,6 @@ class MapboxViewController: UIViewController {
             true
             false
         }
-        
         
         problemsNamesBoxesLayer.iconImage = .constant(.name("circle-15"))
         problemsNamesBoxesLayer.iconSize = .expression(
@@ -657,7 +656,7 @@ class MapboxViewController: UIViewController {
             
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
-            try ["problems", "problems-texts", "problems-names", "problems-names-boxes"].forEach { layerId in
+            try ["problems", "problems-texts", "problems-names", "problems-names-antioverlap"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     let gradeFilter = Expression(.match) {
                         Exp(.get) { "grade" }
@@ -687,7 +686,7 @@ class MapboxViewController: UIViewController {
                 }
             }
             
-            try ["problems-names", "problems-names-boxes"].forEach { layerId in
+            try ["problems-names", "problems-names-antioverlap"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
                     let visibility = (filters.popular || filters.favorite || filters.ticked) ? Visibility.visible : Visibility.none
                     layer.visibility = .constant(visibility)
