@@ -33,8 +33,8 @@ Edit your `~/.netrc` file to add the following lines:
 
 ```
 machine api.mapbox.com
-login mapbox
-password BOOLDER_SECRET_MAPBOX_ACCESS_TOKEN
+  login mapbox
+  password BOOLDER_SECRET_MAPBOX_ACCESS_TOKEN
 ```
 
 More info: https://docs.mapbox.com/ios/maps/guides/install/
@@ -44,7 +44,7 @@ More info: https://docs.mapbox.com/ios/maps/guides/install/
 Store the secret token in the `~/.mapbox` file:
 
 ```
-BOOLDER_SECRET_MAPBOX_ACCESS_TOKEN
+BOOLDER_PUBLIC_MAPBOX_ACCESS_TOKEN
 ```
 
 More info: https://docs.mapbox.com/help/troubleshooting/private-access-token-android-and-ios/
