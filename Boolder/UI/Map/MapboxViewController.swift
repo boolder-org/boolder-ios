@@ -119,7 +119,7 @@ class MapboxViewController: UIViewController {
                 22
                 Exp(.switchCase) {
                     Exp(.boolean) {
-                        Exp(.has) { "circuitColor" }
+                        Exp(.has) { "circuitNumber" }
                         false
                     }
                     16
