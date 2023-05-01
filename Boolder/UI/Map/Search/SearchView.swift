@@ -29,7 +29,6 @@ struct SearchView: View {
                 HStack {
                   TextField("search.placeholder", text: $searchBoxController.query, onCommit: {
                       searchBoxController.submit()
-                    isEditing = false
                   })
                   .frame(maxWidth: 400)
                   .padding(10)
@@ -96,6 +95,7 @@ struct SearchView: View {
                                 ForEach(["Isatis", "La Marie-Rose", "Cul de Chien"], id: \.self) { query in
                                     Button {
                                         searchBoxController.query = query
+                                        searchBoxController.submit()
                                     } label: {
                                         Text(query).foregroundColor(.appGreen)
                                     }
@@ -106,7 +106,7 @@ struct SearchView: View {
                             Spacer()
                         }
                     }
-                    else if(areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
+                    else if(searchTask == nil && areaHitsController.hits.count == 0 && problemHitsController.hits.count == 0) {
                         Spacer()
                         Text("search.no_results").foregroundColor(Color(.secondaryLabel))
                         Spacer()
@@ -117,6 +117,9 @@ struct SearchView: View {
                 }
                 .opacity(isEditing ? 1 : 0)
             }
+        }
+        .onChange(of: searchBoxController.query) { newValue in
+            debouncedSearch()
         }
     }
     
@@ -180,6 +183,15 @@ struct SearchView: View {
         
         UIApplication.shared.dismissKeyboard()
     }
+    
+    private func debouncedSearch() {
+        self.searchTask?.cancel()
+        self.searchTask = DispatchWorkItem { searchBoxController.submit(); self.searchTask = nil }
+        DispatchQueue.main.asyncAfter(deadline: .now() + self.debounceTimeInterval, execute: self.searchTask!)
+    }
+    
+    let debounceTimeInterval: TimeInterval = 0.3
+    @State private var searchTask: DispatchWorkItem?
 }
 
 //struct SearchView_Previews: PreviewProvider {

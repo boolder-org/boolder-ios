@@ -52,10 +52,6 @@ class AlgoliaController {
                                       apiKey: "765db6917d5c17449984f7c0067ae04c")
         
         
-        //      self.searcher.shouldTriggerSearchForQuery = {
-        //        return $0.query.query != ""
-        //      }
-        
         self.searchBoxInteractor = .init()
         self.searchBoxController = .init()
         
@@ -81,10 +77,14 @@ class AlgoliaController {
                 errorController.requestError = false
             }
         }
+        
+        self.searcher.shouldTriggerSearchForQuery = { request in
+            return self.searchBoxController.query != ""
+        }
     }
     
     func setupConnections() {
-        searchBoxInteractor.connectSearcher(searcher)
+        searchBoxInteractor.connectSearcher(searcher, searchTriggeringMode: .searchOnSubmit)
         searchBoxInteractor.connectController(searchBoxController)
         
         let problemHitsSearcher = searcher.addHitsSearcher(indexName: "Problem")
