@@ -42,7 +42,7 @@ struct AreaView: View {
                             } label: {
                                 HStack {
                                     ProblemCircleView(problem: problem)
-                                    Text(problem.nameWithFallback)
+                                    Text(problem.localizedName)
                                     Spacer()
                                     Text(problem.grade.string)
                                 }

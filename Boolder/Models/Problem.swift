@@ -14,6 +14,7 @@ import SQLite
 struct Problem : Identifiable {
     let id: Int
     let name: String?
+    let nameEn: String?
     let grade: Grade
     let coordinate: CLLocationCoordinate2D
     let steepness: Steepness
@@ -28,7 +29,7 @@ struct Problem : Identifiable {
     let parentId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -38,17 +39,12 @@ struct Problem : Identifiable {
         circuitColor?.uicolorForPhotoOverlay ?? UIColor.gray
     }
     
-    var nameWithFallback: String {
-        if let circuitColor = circuitColor {
-            if circuitNumber != "" {
-                return name ?? (circuitColor.shortName + " " + circuitNumber)
-            }
-            else {
-                return name ?? NSLocalizedString("problem.no_name", comment: "")
-            }
+    var localizedName: String {
+        if NSLocale.websiteLocale == "fr" {
+            return name ?? ""
         }
         else {
-            return name ?? NSLocalizedString("problem.no_name", comment: "")
+            return nameEn ?? ""
         }
     }
     
@@ -119,6 +115,7 @@ extension Problem {
     static let id = Expression<Int>("id")
     static let areaId = Expression<Int>("area_id")
     static let name = Expression<String?>("name")
+    static let nameEn = Expression<String?>("name_en")
     static let grade = Expression<String>("grade")
     static let steepness = Expression<String>("steepness")
     static let circuitNumber = Expression<String?>("circuit_number")
@@ -140,6 +137,7 @@ extension Problem {
                 return Problem(
                     id: id,
                     name: p[name],
+                    nameEn: p[nameEn],
                     grade: Grade(p[grade]),
                     coordinate: CLLocationCoordinate2D(latitude: p[latitude], longitude: p[longitude]),
                     steepness: Steepness(rawValue: p[steepness]) ?? .other,

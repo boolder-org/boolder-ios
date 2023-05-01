@@ -88,7 +88,7 @@ struct TopoView: View {
                                 Button {
                                     mapState.selectProblem(variant)
                                 } label: {
-                                    Text("\(variant.nameWithFallback) \(variant.grade.string)")
+                                    Text("\(variant.localizedName) \(variant.grade.string)")
                                 }
                             }
                         } label: {

@@ -70,7 +70,7 @@ struct ProblemDetailsView: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text(problem.nameWithFallback)
+                        Text(problem.localizedName)
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
@@ -231,7 +231,7 @@ struct ProblemDetailsView: View {
                         
                     }, label: {
                         HStack {
-                            Text(variant.nameWithFallback)
+                            Text(variant.localizedName)
                                 .lineLimit(2)
                             Spacer()
                             Text(variant.grade.string)
@@ -264,7 +264,7 @@ struct ProblemDetailsView: View {
             "",
             "",
             "------",
-            "Problem #\(String(problem.id)) - \(problem.nameWithFallback)",
+            "Problem #\(String(problem.id)) - \(problem.localizedName)",
             "Boolder \(appVersion ?? "") (\(buildNumber ?? ""))",
             "iOS \(UIDevice.current.systemVersion)",
         ]

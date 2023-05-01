@@ -27,7 +27,7 @@ struct AreaProblemsView: View {
                     } label: {
                         HStack {
                             ProblemCircleView(problem: problem)
-                            Text(problem.nameWithFallback)
+                            Text(problem.localizedName)
                             Spacer()
                             if(problem.featured) {
                                 Image(systemName: "heart.fill").foregroundColor(.pink)

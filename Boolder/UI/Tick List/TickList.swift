@@ -57,7 +57,7 @@ struct TickList: View {
                                         HStack {
                                             ProblemCircleView(problem: problem)
                                             
-                                            Text(problem.nameWithFallback)
+                                            Text(problem.localizedName)
                                             
                                             Spacer()
                                             
@@ -124,7 +124,7 @@ struct TickList: View {
         areas.forEach { area in
             problemsGroupedByAreas[area] = problemsGroupedByAreas[area]!.sorted { (problem1, problem2) -> Bool in
                 if problem1.grade == problem2.grade {
-                    return problem1.nameWithFallback < problem2.nameWithFallback
+                    return problem1.localizedName < problem2.localizedName
                 }
                 return problem1.grade > problem2.grade
             }
