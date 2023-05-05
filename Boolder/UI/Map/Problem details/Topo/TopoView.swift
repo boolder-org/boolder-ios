@@ -26,7 +26,6 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             Group {
-                if areaResourcesDownloaded {
                     if let topoPhoto = problem.mainTopoPhoto {
                         
                         Group {
@@ -65,16 +64,15 @@ struct TopoView: View {
                             }
                         }
                     }
+                    else if !areaResourcesDownloaded {
+                        ImageLoadingView(progress: $odrManager.downloadProgress)
+                            .aspectRatio(4/3, contentMode: .fill)
+                    }
                     else {
                         Image("nophoto")
                             .font(.system(size: 60))
                             .foregroundColor(Color.gray)
                     }
-                }
-                else {
-                    ImageLoadingView(progress: $odrManager.downloadProgress)
-                        .aspectRatio(4/3, contentMode: .fill)
-                }
             }
             
             HStack {

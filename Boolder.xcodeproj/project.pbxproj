@@ -556,7 +556,6 @@
 			isa = PBXProject;
 			attributes = {
 				KnownAssetTags = (
-					"aea-62",
 					"area-1",
 					"area-10",
 					"area-11",
@@ -629,6 +628,7 @@
 					"area-75",
 					"area-8",
 					"area-9",
+					top7a,
 				);
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1200;
@@ -878,6 +878,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.7;
+				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = top7a;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -905,6 +906,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.7;
+				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = top7a;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
