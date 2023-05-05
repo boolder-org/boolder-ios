@@ -135,6 +135,7 @@ import SwiftUI
     
     func clearFilters() {
         filters = Filters()
+        filters.favorite = false
         filtersRefresh()
     }
     
