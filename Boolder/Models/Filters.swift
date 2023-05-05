@@ -10,7 +10,7 @@ struct Filters {
     var gradeRange: GradeRange? = nil
     var steepness: Set<Steepness> = Set()
     var popular = false
-    var favorite = false
+    var favorite = true
     var ticked = false
     
     func filtersCount() -> Int {

@@ -52,6 +52,9 @@ class MapboxViewController: UIViewController {
         mapView.mapboxMap.onNext(event: .mapLoaded) { [self] _ in
             self.addSources()
             self.addLayers()
+            self.top7a()
+            
+//            self.applyFilters(mapSt)
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
             self.mapView.addGestureRecognizer(tapGesture)
@@ -86,10 +89,14 @@ class MapboxViewController: UIViewController {
         
         var circuits = VectorSource()
         circuits.url = "mapbox://nmondollot.11sumdgh"
+        
+        var top7aBike = VectorSource()
+        top7aBike.url = "mapbox://nmondollot.c2qwxo24"
 
         do {
             try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
             try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
+            try self.mapView.mapboxMap.style.addSource(top7aBike, id: "top7a-bike")
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -100,7 +107,7 @@ class MapboxViewController: UIViewController {
         var problemsLayer = CircleLayer(id: "problems")
         problemsLayer.source = "problems"
         problemsLayer.sourceLayer = problemsSourceLayerId
-        problemsLayer.minZoom = 15
+        problemsLayer.minZoom = 10
         problemsLayer.filter = Expression(.match) {
             ["geometry-type"]
             ["Point"] // don't display boulders (stored in the tileset as LineStrings)
@@ -112,10 +119,10 @@ class MapboxViewController: UIViewController {
             Exp(.interpolate) {
                 ["linear"]
                 ["zoom"]
-                15
-                2
-                18
+                12
                 4
+                18
+                8
                 22
                 Exp(.switchCase) {
                     Exp(.boolean) {
@@ -128,7 +135,7 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        problemsLayer.circleColor = circuitColorExp(attribute: "circuitColor")
+        problemsLayer.circleColor = .constant(StyleColor(.blue))
         
         problemsLayer.circleStrokeWidth = .expression(
             Exp(.switchCase) {
@@ -201,7 +208,7 @@ class MapboxViewController: UIViewController {
         var problemsNamesLayer = SymbolLayer(id: "problems-names")
         problemsNamesLayer.source = "problems"
         problemsNamesLayer.sourceLayer = problemsSourceLayerId
-        problemsNamesLayer.minZoom = 15
+        problemsNamesLayer.minZoom = 14
         problemsNamesLayer.visibility = .constant(.none)
         problemsNamesLayer.filter = Expression(.match) {
             ["geometry-type"]
@@ -264,7 +271,7 @@ class MapboxViewController: UIViewController {
         var problemsNamesAntioverlapLayer = SymbolLayer(id: "problems-names-antioverlap")
         problemsNamesAntioverlapLayer.source = "problems"
         problemsNamesAntioverlapLayer.sourceLayer = problemsSourceLayerId
-        problemsNamesAntioverlapLayer.minZoom = 15
+        problemsNamesAntioverlapLayer.minZoom = 14
         problemsNamesAntioverlapLayer.visibility = .constant(.none)
         problemsNamesAntioverlapLayer.filter = Expression(.match) {
             ["geometry-type"]
@@ -351,6 +358,16 @@ class MapboxViewController: UIViewController {
 
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
+        
+        var top7aBikeLayer = LineLayer(id: "top7a-bike")
+        top7aBikeLayer.source = "top7a-bike"
+        top7aBikeLayer.sourceLayer = "top7a-bike-2kosot"
+        top7aBikeLayer.minZoom = 8
+        top7aBikeLayer.lineWidth = .constant(2)
+        top7aBikeLayer.lineDasharray = .constant([4,1])
+        top7aBikeLayer.lineColor = .constant(StyleColor(.blue))
+        top7aBikeLayer.visibility = .constant(.visible)
+        
         do {
             
             
@@ -363,9 +380,28 @@ class MapboxViewController: UIViewController {
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
+            
+            try self.mapView.mapboxMap.style.addLayer(top7aBikeLayer, layerPosition: .above("boulders"))
         }
         catch {
             print("Ran into an error adding the layers: \(error)")
+        }
+    }
+    
+    func top7a() {
+        
+        do {
+            try mapView.mapboxMap.style.updateLayer(withId: "pois-routes", type: LineLayer.self) { layer in
+                layer.visibility = .constant(.none)
+            }
+            
+            try mapView.mapboxMap.style.updateLayer(withId: "clusters", type: LineLayer.self) { layer in
+                layer.visibility = .constant(.none)
+            }
+            
+            
+        } catch {
+            print("Ran into an error updating the layer: \(error)")
         }
     }
     

@@ -33,6 +33,11 @@ struct MapContainerView: View {
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [self] in
+                mapState.filtersRefreshCount += 1
+            }
+        }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
                 mapState.selectAndPresentAndCenterOnProblem(problem)

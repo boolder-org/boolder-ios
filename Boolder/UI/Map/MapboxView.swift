@@ -21,6 +21,7 @@ struct MapboxView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
         vc.delegate = context.coordinator
+        
         return vc
     }
     
