@@ -10,8 +10,18 @@ import Foundation
 import MapboxMaps
 import CoreLocation
 
-class MapOfflineManager {
+class MapOfflineManager : ObservableObject {
     static let shared = MapOfflineManager()
+    
+    enum Status : String {
+        case initial
+        case downloading
+        case error
+        case finished
+    }
+    
+    @Published var status: Status = .initial
+    @Published var progress = 0.0
     
     private var tileStore: TileStore?
 
@@ -57,6 +67,8 @@ class MapOfflineManager {
         
         precondition(downloads.isEmpty)
         
+        self.status = .downloading
+        
         let dispatchGroup = DispatchGroup()
         var downloadError = false
         
@@ -87,6 +99,7 @@ class MapOfflineManager {
                 case let .failure(error):
                     print("stylePack download Error = \(error)")
                     downloadError = true
+                    self?.status = .error
                 }
             }
         }
@@ -124,14 +137,14 @@ class MapOfflineManager {
         // there is only ever one TileStore per unique path.
         dispatchGroup.enter()
         let tileRegionDownload = tileStore.loadTileRegion(forId: tileRegionId,
-                                                          loadOptions: tileRegionLoadOptions) { [weak self] (progress) in
+                                                          loadOptions: tileRegionLoadOptions) { [weak self] (tileProgress) in
             // These closures do not get called from the main thread. In this case
             // we're updating the UI, so it's important to dispatch to the main
             // queue.
             DispatchQueue.main.async {
+                self?.progress = Double(tileProgress.completedResourceCount / tileProgress.requiredResourceCount)
                 
-                
-                print("\(progress)")
+                print("\(tileProgress)")
             }
         } completion: { [weak self] result in
             DispatchQueue.main.async {
@@ -146,6 +159,7 @@ class MapOfflineManager {
                 case let .failure(error):
                     print("tileRegion download Error = \(error)")
                     downloadError = true
+                    self?.status = .error
                 }
             }
         }
@@ -153,9 +167,11 @@ class MapOfflineManager {
         // Wait for both downloads before moving to the next state
         dispatchGroup.notify(queue: .main) {
             self.downloads = []
-            OfflineSwitch.shared.isMapboxStackConnected = false
+//            OfflineSwitch.shared.isMapboxStackConnected = false
             print("download finished")
-            print("disable mapbox HTTP calls")
+//            print("disable mapbox HTTP calls")
+            
+            self.status = .finished
         }
         
         downloads = [stylePackDownload, tileRegionDownload]
@@ -164,10 +180,11 @@ class MapOfflineManager {
     private func cancelDownloads() {
         // Canceling will trigger `.canceled` errors that will then change state
         downloads.forEach { $0.cancel() }
+        status = .error
     }
     
     // Remove downloaded region and style pack
-    private func removeTileRegionAndStylePack() {
+    func removeTileRegionAndStylePack() {
         // Clean up after the example. Typically, you'll have custom business
         // logic to decide when to evict tile regions and style packs
         // Remove the tile region with the tile region ID.
@@ -187,6 +204,8 @@ class MapOfflineManager {
         // just mark the resources as not a part of the existing style pack. The
         // resources still exists in the disk cache.
         offlineManager.removeStylePack(for: styleURI)
+        
+        status = .initial
     }
 }
 

@@ -14,8 +14,42 @@ struct SettingsView: View {
     
     @State private var showAlertToRemoveTicksAndFavorites = false
     
+    @StateObject private var mapOfflineManager = MapOfflineManager.shared
+    
+    private var statusString : String {
+        if mapOfflineManager.status == .initial {
+            return "Map"
+        }
+//        else if mapOfflineManager.status == .downloading {
+//            let percent = String(format: "%.0f%%", mapOfflineManager.progress * 100)
+//            return "Map (\(mapOfflineManager.status.rawValue) \(percent))"
+//        }
+        else {
+            return "Map (\(mapOfflineManager.status.rawValue))"
+        }
+    }
+    
     var body: some View {
         Form {
+            Section(header: Text(statusString)) {
+                HStack {
+                    Button(action: {
+                        mapOfflineManager.downloadTileRegions()
+                    }) {
+                        Text("Download offline")
+                    }
+                    .disabled(mapOfflineManager.status == .downloading)
+                }
+                
+                HStack {
+                    Button(action: {
+                        mapOfflineManager.removeTileRegionAndStylePack()
+                    }) {
+                        Text("Clear cache").foregroundColor(.red)
+                    }
+                }
+            }
+            
             Section(header: Text("Projet 70 7a")) {
                 HStack {
                     Button(action: {
@@ -31,7 +65,7 @@ struct SettingsView: View {
                     Button(action: {
                         showAlertToRemoveTicksAndFavorites = true
                     }) {
-                        Text("Remove all ticks and favorites")
+                        Text("Remove all ticks and favorites").foregroundColor(.red)
                     }
                     .alert(isPresented: $showAlertToRemoveTicksAndFavorites) {
                         Alert(
