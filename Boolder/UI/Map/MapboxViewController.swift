@@ -14,6 +14,10 @@ class MapboxViewController: UIViewController {
     var mapView: MapView!
     var delegate: MapBoxViewDelegate?
     
+    private lazy var styleURI: StyleURI = {
+        return StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")!
+    }()
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +31,7 @@ class MapboxViewController: UIViewController {
         let myMapInitOptions = MapInitOptions(
             resourceOptions: myResourceOptions,
             cameraOptions: cameraOptions,
-            styleURI: StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")
+            styleURI: styleURI
         )
         
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)

@@ -52,7 +52,8 @@ struct MapboxView: UIViewControllerRepresentable {
         
         // center on current location
         if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
-            vc.centerOnCurrentLocation()
+//            vc.centerOnCurrentLocation()
+            MapOfflineManager.shared.downloadTileRegions()
             context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
         }
         
