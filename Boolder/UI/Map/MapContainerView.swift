@@ -17,6 +17,8 @@ struct MapContainerView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
     
+    @State private var hasAppeared = false
+    
     var body: some View {
         ZStack {
             mapbox
@@ -35,7 +37,12 @@ struct MapContainerView: View {
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
         .onAppear {
-            loadTop7a()
+            if !hasAppeared {
+                loadTop7a()
+                MapOfflineManager.shared.downloadTileRegions()
+                
+                hasAppeared = true
+            }
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {

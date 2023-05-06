@@ -55,10 +55,10 @@ class MapOfflineManager : ObservableObject {
         OfflineSwitch.shared.isMapboxStackConnected = true
     }
     
-    deinit {
-        OfflineSwitch.shared.isMapboxStackConnected = true
-        removeTileRegionAndStylePack()
-    }
+//    deinit {
+//        OfflineSwitch.shared.isMapboxStackConnected = true
+//        removeTileRegionAndStylePack()
+//    }
     
     func downloadTileRegions() {
         guard let tileStore = tileStore else {
