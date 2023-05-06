@@ -324,7 +324,7 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        circuitProblemsLayer.circleColor = problemsLayer.circleColor
+        circuitProblemsLayer.circleColor = circuitColorExp(attribute: "circuitColor")
         circuitProblemsLayer.circleStrokeWidth = problemsLayer.circleStrokeWidth
         circuitProblemsLayer.circleStrokeColor = problemsLayer.circleStrokeColor
         
@@ -738,6 +738,63 @@ class MapboxViewController: UIViewController {
         } catch {
             print("Ran into an error updating the layer: \(error)")
         }
+        
+        
+        do {
+            try mapView.mapboxMap.style.updateLayer(withId: "problems", type: CircleLayer.self) { layer in
+                if filters.favorite || filters.ticked {
+                    layer.circleRadius = .expression(
+                        Exp(.interpolate) {
+                            ["linear"]
+                            ["zoom"]
+                            12
+                            4
+                            18
+                            8
+                            22
+                            Exp(.switchCase) {
+                                Exp(.boolean) {
+                                    Exp(.has) { "circuitNumber" }
+                                    false
+                                }
+                                16
+                                10
+                            }
+                        }
+                    )
+                    
+                    layer.circleColor = .constant(StyleColor(.blue))
+                    layer.minZoom = 10
+                }
+                else {
+                    layer.circleRadius = .expression(
+                        Exp(.interpolate) {
+                            ["linear"]
+                            ["zoom"]
+                            15
+                            2
+                            18
+                            4
+                            22
+                            Exp(.switchCase) {
+                                Exp(.boolean) {
+                                    Exp(.has) { "circuitNumber" }
+                                    false
+                                }
+                                16
+                                10
+                            }
+                        }
+                    )
+                    
+                    layer.circleColor = circuitColorExp(attribute: "circuitColor")
+                    layer.minZoom = 15
+                }
+            }
+        } catch {
+            print("Ran into an error updating the layer: \(error)")
+        }
+        
     }
     
     func centerOnProblem(_ problem: Problem) {
