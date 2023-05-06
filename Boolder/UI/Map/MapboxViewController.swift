@@ -386,6 +386,9 @@ class MapboxViewController: UIViewController {
         catch {
             print("Ran into an error adding the layers: \(error)")
         }
+        
+        // DIRTY HACK
+        applyFilters(Filters())
     }
     
     func top7a() {

@@ -36,15 +36,6 @@ struct MapContainerView: View {
         }
         .onAppear {
             loadTop7a()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [self] in
-                mapState.filtersRefreshCount += 1
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [self] in
-                mapState.filtersRefreshCount += 1
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) { [self] in
-                mapState.filtersRefreshCount += 1
-            }
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
