@@ -872,7 +872,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -882,7 +882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.71;
+				MARKETING_VERSION = 2.7.72;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-2 area-4 area-5 area-6 area-7 area-8 area-9 area-10 area-11 area-12 area-14 area-16 area-17 area-20 area-25 area-31 area-32 area-36 area-40 area-41 area-47 area-59 area-61 area-64 area-69 area-75";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -899,7 +899,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -909,7 +909,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.71;
+				MARKETING_VERSION = 2.7.72;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-2 area-4 area-5 area-6 area-7 area-8 area-9 area-10 area-11 area-12 area-14 area-16 area-17 area-20 area-25 area-31 area-32 area-36 area-40 area-41 area-47 area-59 area-61 area-64 area-69 area-75";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";

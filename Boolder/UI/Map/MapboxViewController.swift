@@ -363,13 +363,40 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
         
+        // ===========
+        
+        
         var top7aBikeLayer = LineLayer(id: "top7a-bike")
         top7aBikeLayer.source = "top7a-bike"
         top7aBikeLayer.sourceLayer = "top7a-bike-2kosot"
         top7aBikeLayer.minZoom = 8
-        top7aBikeLayer.lineWidth = .constant(2)
+        top7aBikeLayer.lineWidth = .expression(
+            Exp(.match) {
+                Exp(.get) { "type" }
+                "bike"
+                2
+                "walk"
+                1
+                "walk_with_bike"
+                1
+                1
+            }
+        )
         top7aBikeLayer.lineDasharray = .constant([4,1])
-        top7aBikeLayer.lineColor = .constant(StyleColor(.blue))
+        top7aBikeLayer.lineColor = .expression(
+            Exp(.match) {
+                Exp(.get) { "type" }
+                "bike"
+                UIColor.blue
+                "walk"
+                UIColor.black
+                "walk_with_bike"
+                UIColor.black
+                "coucou"
+                UIColor.orange
+                UIColor.gray
+            }
+        )
         top7aBikeLayer.visibility = .constant(.visible)
         
         do {
