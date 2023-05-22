@@ -26,6 +26,27 @@ struct ContentView: View {
                 }
                 .tag(AppState.Tab.discover)
             
+            
+            // TODO: remove after June 2023 (?)
+            ClimbingBusView()
+                .tabItem {
+                    Label("Bus", systemImage: "bus")
+                }
+                .tag(AppState.Tab.bus)
+                .modify {
+                    if #available(iOS 15, *) {
+                        if(!appState.badgeClimbingBusWasSeen) {
+                            $0.badge("new")
+                        }
+                        else {
+                            $0
+                        }
+                    }
+                    else {
+                        $0
+                    }
+                }
+            
             TickList()
                 .tabItem {
                     Label("tabs.ticklist", systemImage: "bookmark")

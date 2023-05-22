@@ -14,6 +14,7 @@ import SwiftUI
     @Published var selectedProblem: Problem?
     @Published var selectedArea: Area?
     @Published var selectedCircuit: CircuitWithArea?
+    @Published var badgeClimbingBusWasSeen = UserDefaults.standard.bool(forKey: "climbing-bus-badge-was-seen")
     
     struct CircuitWithArea: Equatable {
         let circuit: Circuit
@@ -23,6 +24,7 @@ import SwiftUI
     enum Tab {
         case map
         case discover
+        case bus
         case ticklist
     }
 }
