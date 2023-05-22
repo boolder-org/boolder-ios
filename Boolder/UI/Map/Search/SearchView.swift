@@ -91,7 +91,7 @@ struct SearchView: View {
                             VStack(spacing: 16) {
                                 Text("search.examples")
                                     .foregroundColor(Color.secondary)
-                                
+
                                 ForEach(["Isatis", "La Marie-Rose", "Cul de Chien"], id: \.self) { query in
                                     Button {
                                         searchBoxController.query = query
@@ -112,14 +112,32 @@ struct SearchView: View {
                         Spacer()
                     }
                     else {
-                        Results()
+//                        Results()
+                        
+                        List {
+                            ForEach(Problem.search(searchBoxController.query), id: \.self) { problem in
+                                Button {
+                                    dismiss()
+                                    
+                                    mapState.selectAndPresentAndCenterOnProblem(problem)
+                                } label: {
+                                    HStack {
+                                        ProblemCircleView(problem: problem)
+                                        Text(problem.localizedName).foregroundColor(.primary)
+                                        Text(problem.grade.string).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
+                                        Spacer()
+//                                        Text(problem.area.name).foregroundColor(Color(.secondaryLabel)).font(.caption)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 .opacity(isEditing ? 1 : 0)
             }
         }
         .onChange(of: searchBoxController.query) { newValue in
-            debouncedSearch()
+//            debouncedSearch()
         }
     }
     

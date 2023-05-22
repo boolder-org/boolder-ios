@@ -161,6 +161,23 @@ extension Problem {
         }
     }
     
+    static func search(_ text: String) -> [Problem] {
+        let query = Table("problems")
+            .order(popularity.desc)
+            .filter(name.like("%\(text)%"))
+            .limit(20)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { p in
+                Problem.load(id: p[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     // TODO: handle multiple lines
     var line: Line? {
         let lines = Table("lines")
