@@ -23,14 +23,14 @@ struct ClimbingBusView: View {
                         .frame(height: 150)
                         .padding(.top, 32)
                     
-                    Text("En Juin, allez à Bleau \nen train + bus !").font(.title.bold())
+                    Text("bus.title").font(.title.bold())
                         .multilineTextAlignment(.center)
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("✅ Départ de la gare de Bois-le-Roi")
-                        Text("✅ Vers Cuvier, Apremont et Franchard")
-                        Text("✅ Tous les Samedi et Dimanche de Juin")
-                        Text("✅ Possibilité de louer un crash-pad")
+                        Text("bus.p1")
+                        Text("bus.p2")
+                        Text("bus.p3")
+                        Text("bus.p4")
                     }
                     
                     Button {

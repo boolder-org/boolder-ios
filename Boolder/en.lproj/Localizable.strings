@@ -169,3 +169,10 @@
 "ticklist.title" = "Tick List";
 "ticklist.empty_state_title" = "Ready to climb?";
 "ticklist.empty_state_body" = "Your projects and ticks will appear here.";
+
+// MARK: Climbing Bus
+"bus.title" = "In June, go to Font \nby train + bus!";
+"bus.p1" = "✅ Departure from Bois-le-Roi train station";
+"bus.p2" = "✅ Towards Cuvier, Apremont, and Franchard";
+"bus.p3" = "✅ Every Saturday and Sunday in June";
+"bus.p4" = "✅ Possibility to rent a crash pad";
