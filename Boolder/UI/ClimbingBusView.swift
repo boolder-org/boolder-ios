@@ -36,7 +36,7 @@ struct ClimbingBusView: View {
                     Button {
                         openURL(URL(string: "https://bit.ly/climbing-bus")!)
                     } label: {
-                        Text("Découvrir le Climbing Bus")
+                        Text("bus.cta")
                             .font(.body.weight(.semibold))
                             .padding(.vertical)
                     }
