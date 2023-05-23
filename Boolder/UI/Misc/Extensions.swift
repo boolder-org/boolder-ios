@@ -101,8 +101,7 @@ extension String {
 extension String {
     var normalized: String {
         self.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
-            .replacingOccurrences(of: "[^0-9a-zA-Z\\s]", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "[^0-9a-zA-Z]", with: "", options: .regularExpression)
             .lowercased()
-            .trimmingCharacters(in: .whitespaces)
     }
 }
