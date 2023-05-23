@@ -130,7 +130,7 @@ struct SearchView: View {
                                                 Text(problem.localizedName).foregroundColor(.primary)
                                                 Text(problem.grade.string).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
                                                 Spacer()
-                                                //                                        Text(problem.area.name).foregroundColor(Color(.secondaryLabel)).font(.caption)
+                                                Text(Area.load(id: problem.areaId)?.name ?? "").foregroundColor(Color(.secondaryLabel)).font(.caption)
                                             }
                                         }
                                     }
