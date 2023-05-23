@@ -12,6 +12,8 @@ import SQLite
 struct Area : Identifiable {
     let id: Int
     let name: String
+    let nameSearchable: String
+    let priority: Int
     let descriptionFr: String?
     let descriptionEn: String?
     let warningFr: String?
@@ -82,6 +84,8 @@ struct Area : Identifiable {
 extension Area {
     static let id = Expression<Int>("id")
     static let name = Expression<String>("name")
+    static let nameSearchable = Expression<String>("name_searchable")
+    static let priority = Expression<Int>("priority")
     static let descriptionFr = Expression<String?>("description_fr")
     static let descriptionEn = Expression<String?>("description_en")
     static let warningFr = Expression<String?>("warning_fr")
@@ -110,7 +114,7 @@ extension Area {
                 let allowedTags = ["popular", "beginner_friendly", "family_friendly", "dry_fast"]
                 let tags = a[tags]?.components(separatedBy: ",").filter{allowedTags.contains($0)}
                 
-                return Area(id: id, name: a[name],
+                return Area(id: id, name: a[name], nameSearchable: a[nameSearchable], priority: a[priority],
                             descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
                             warningFr: a[warningFr], warningEn: a[warningEn],
                             tags: tags ?? [],
@@ -137,6 +141,25 @@ extension Area {
         do {
             return try SqliteStore.shared.db.prepare(query).map { area in
                 Area.load(id: area[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    static func search(_ text: String) -> [Area] {
+        let query = Table("areas")
+            .order(priority.asc)
+            .filter(nameSearchable.like("%\(text.normalized)%"))
+            .limit(10) // TODO: choose value
+        
+        do {
+//            print(query.expression.description)
+            
+            return try SqliteStore.shared.db.prepare(query).map { a in
+                Area.load(id: a[id])
             }.compactMap{$0}
         }
         catch {

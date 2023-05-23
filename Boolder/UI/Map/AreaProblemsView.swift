@@ -65,6 +65,7 @@ struct AreaProblemsView: View {
         }
     }
     
+    // TODO: use normalized
     func cleanString(_ str: String) -> String {
         str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current) // .alphanumeric
     }

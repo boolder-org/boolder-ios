@@ -15,6 +15,7 @@ struct Problem : Identifiable {
     let id: Int
     let name: String?
     let nameEn: String?
+    let nameSearchable: String?
     let grade: Grade
     let coordinate: CLLocationCoordinate2D
     let steepness: Steepness
@@ -29,7 +30,7 @@ struct Problem : Identifiable {
     let parentId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -116,6 +117,7 @@ extension Problem {
     static let areaId = Expression<Int>("area_id")
     static let name = Expression<String?>("name")
     static let nameEn = Expression<String?>("name_en")
+    static let nameSearchable = Expression<String?>("name_searchable")
     static let grade = Expression<String>("grade")
     static let steepness = Expression<String>("steepness")
     static let circuitNumber = Expression<String?>("circuit_number")
@@ -138,6 +140,7 @@ extension Problem {
                     id: id,
                     name: p[name],
                     nameEn: p[nameEn],
+                    nameSearchable: p[nameSearchable],
                     grade: Grade(p[grade]),
                     coordinate: CLLocationCoordinate2D(latitude: p[latitude], longitude: p[longitude]),
                     steepness: Steepness(rawValue: p[steepness]) ?? .other,
@@ -162,12 +165,27 @@ extension Problem {
     }
     
     static func search(_ text: String) -> [Problem] {
+//        do {
+//            try SqliteStore.shared.db.createCollation("NODIACRITIC") { lhs, rhs in
+//                return lhs.compare(rhs, options: [.caseInsensitive, .diacriticInsensitive])
+//            }
+//        }
+//        catch {
+//            print("problem creating collation")
+//            print (error)
+//        }
+        
+//        let collation = name.collate(.custom("NODIACRITIC"))
+        
         let query = Table("problems")
             .order(popularity.desc)
-            .filter(name.like("%\(text)%"))
+//            .filter(name.collate(.custom("NODIACRITIC")).like("%\(text)%"))
+            .filter(nameSearchable.like("%\(text.normalized)%"))
             .limit(20)
         
         do {
+            print(query.expression.description)
+            
             return try SqliteStore.shared.db.prepare(query).map { p in
                 Problem.load(id: p[id])
             }.compactMap{$0}

@@ -93,27 +93,46 @@ struct SearchView: View {
                             Spacer()
                         }
                     }
-                    else if(Problem.search(query).count == 0) {
+                    else if(problems.count == 0 && areas.count == 0) {
                         Spacer()
                         Text("search.no_results").foregroundColor(Color(.secondaryLabel))
                         Spacer()
                     }
                     else {
-//                        Results()
-                        
                         List {
-                            ForEach(Problem.search(query), id: \.self) { problem in
-                                Button {
-                                    dismiss()
-                                    
-                                    mapState.selectAndPresentAndCenterOnProblem(problem)
-                                } label: {
-                                    HStack {
-                                        ProblemCircleView(problem: problem)
-                                        Text(problem.localizedName).foregroundColor(.primary)
-                                        Text(problem.grade.string).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
-                                        Spacer()
-//                                        Text(problem.area.name).foregroundColor(Color(.secondaryLabel)).font(.caption)
+                            if(areas.count > 0) {
+                                Section(header: Text("search.areas")) {
+                                    ForEach(Area.search(query), id: \.self) { area in
+                                        Button {
+                                            dismiss()
+                                            
+                                            mapState.selectArea(area)
+                                            mapState.centerOnArea(area)
+                                        } label: {
+                                            HStack {
+                                                Text(area.name).foregroundColor(.primary)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if(problems.count > 0) {
+                                Section(header: Text("search.problems")) {
+                                    ForEach(Problem.search(query), id: \.self) { problem in
+                                        Button {
+                                            dismiss()
+                                            
+                                            mapState.selectAndPresentAndCenterOnProblem(problem)
+                                        } label: {
+                                            HStack {
+                                                ProblemCircleView(problem: problem)
+                                                Text(problem.localizedName).foregroundColor(.primary)
+                                                Text(problem.grade.string).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
+                                                Spacer()
+                                                //                                        Text(problem.area.name).foregroundColor(Color(.secondaryLabel)).font(.caption)
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -129,6 +148,14 @@ struct SearchView: View {
                 .opacity(isEditing ? 1 : 0)
             }
         }
+    }
+    
+    private var problems : [Problem] {
+        Problem.search(query)
+    }
+    
+    private var areas : [Area] {
+        Area.search(query)
     }
     
     func dismiss() {

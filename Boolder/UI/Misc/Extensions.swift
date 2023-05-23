@@ -97,3 +97,12 @@ extension String {
         return addingPercentEncoding(withAllowedCharacters: allowed as CharacterSet)
     }
 }
+
+extension String {
+    var normalized: String {
+        self.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
+            .replacingOccurrences(of: "[^0-9a-zA-Z\\s]", with: "", options: .regularExpression)
+            .lowercased()
+            .trimmingCharacters(in: .whitespaces)
+    }
+}
