@@ -153,11 +153,9 @@ extension Area {
         let query = Table("areas")
             .order(priority.asc)
             .filter(nameSearchable.like("%\(text.normalized)%"))
-            .limit(10) // TODO: choose value
+            .limit(10)
         
         do {
-//            print(query.expression.description)
-            
             return try SqliteStore.shared.db.prepare(query).map { a in
                 Area.load(id: a[id])
             }.compactMap{$0}

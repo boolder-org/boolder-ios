@@ -165,21 +165,8 @@ extension Problem {
     }
     
     static func search(_ text: String) -> [Problem] {
-//        do {
-//            try SqliteStore.shared.db.createCollation("NODIACRITIC") { lhs, rhs in
-//                return lhs.compare(rhs, options: [.caseInsensitive, .diacriticInsensitive])
-//            }
-//        }
-//        catch {
-//            print("problem creating collation")
-//            print (error)
-//        }
-        
-//        let collation = name.collate(.custom("NODIACRITIC"))
-        
         let query = Table("problems")
             .order(popularity.desc)
-//            .filter(name.collate(.custom("NODIACRITIC")).like("%\(text)%"))
             .filter(nameSearchable.like("%\(text.normalized)%"))
             .limit(20)
         
