@@ -505,7 +505,9 @@ class MapboxViewController: UIViewController {
                        case .string(let googleUrl) = feature.properties?["googleUrl"],
                        case .point(let point) = feature.geometry
                     {
-                        self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
+                        if self.mapView.mapboxMap.cameraState.zoom >= 12 {
+                            self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
+                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
