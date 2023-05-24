@@ -57,17 +57,12 @@ struct AreaProblemsView: View {
     
     var filteredProblems: [Problem] {
         if searchText.count > 0 {
-            return problems.filter { cleanString($0.name ?? "").contains(cleanString(searchText)) }
+            return problems.filter { ($0.name?.normalized ?? "").contains(searchText.normalized) }
         }
         else
         {
             return problems
         }
-    }
-    
-    // TODO: use normalized
-    func cleanString(_ str: String) -> String {
-        str.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current) // .alphanumeric
     }
 }
 
