@@ -171,8 +171,6 @@ extension Problem {
             .limit(20)
         
         do {
-            print(query.expression.description)
-            
             return try SqliteStore.shared.db.prepare(query).map { p in
                 Problem.load(id: p[id])
             }.compactMap{$0}
