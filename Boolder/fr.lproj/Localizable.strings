@@ -167,11 +167,3 @@
 "ticklist.title" = "Mes voies";
 "ticklist.empty_state_title" = "Hâte de grimper ?";
 "ticklist.empty_state_body" = "Vos projets et vos voies réussies apparaîtront ici.";
-
-// MARK: Climbing Bus
-"bus.title" = "En Juin, allez à Bleau \nen train + bus !";
-"bus.p1" = "✅ Départ de la gare de Bois-le-Roi";
-"bus.p2" = "✅ Vers Cuvier, Apremont et Franchard";
-"bus.p3" = "✅ Tous les Samedi et Dimanche de Juin";
-"bus.p4" = "✅ Possibilité de louer un crash-pad";
-"bus.cta" = "Découvrir le Climbing Bus";
