@@ -602,6 +602,7 @@
 					"area-72",
 					"area-73",
 					"area-75",
+					"area-76",
 					"area-8",
 					"area-9",
 				);
