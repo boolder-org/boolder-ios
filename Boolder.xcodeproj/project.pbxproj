@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -529,6 +529,7 @@
 		37A8C61E2453263300DC161F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				KnownAssetTags = (
 					"aea-62",
 					"area-1",
@@ -605,7 +606,7 @@
 					"area-9",
 				);
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Nicolas Mondollot";
 				TargetAttributes = {
 					37A8C6252453263300DC161F = {
