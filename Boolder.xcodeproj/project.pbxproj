@@ -53,6 +53,8 @@
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
+		037E41EF2A475A50005C3E93 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 037E41EE2A475A50005C3E93 /* boolder.db */; };
+		037E41F02A475A50005C3E93 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 037E41EE2A475A50005C3E93 /* boolder.db */; };
 		038C2EF129201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF229201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF429201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
@@ -61,8 +63,6 @@
 		039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
 		039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
-		03BEA1C92A1F443B007BF3A0 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03BEA1C82A1F443B007BF3A0 /* boolder.db */; };
-		03BEA1CA2A1F443B007BF3A0 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03BEA1C82A1F443B007BF3A0 /* boolder.db */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
 		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
 		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
@@ -174,11 +174,11 @@
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
+		037E41EE2A475A50005C3E93 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
-		03BEA1C82A1F443B007BF3A0 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03BEA1C82A1F443B007BF3A0 /* boolder.db */,
+				037E41EE2A475A50005C3E93 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 			);
@@ -644,7 +644,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03BEA1CA2A1F443B007BF3A0 /* boolder.db in Resources */,
+				037E41F02A475A50005C3E93 /* boolder.db in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
 				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
 				37379A3D258E619400711EDA /* Assets.xcassets in Resources */,
@@ -656,7 +656,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03BEA1C92A1F443B007BF3A0 /* boolder.db in Resources */,
+				037E41EF2A475A50005C3E93 /* boolder.db in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				37379A9A258F4C3000711EDA /* Assets.xcassets in Resources */,
@@ -838,7 +838,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -848,7 +848,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -865,7 +865,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -875,7 +875,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
@@ -1009,7 +1009,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
@@ -1018,7 +1018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
@@ -1032,7 +1032,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_PREVIEWS = YES;
@@ -1041,7 +1041,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
