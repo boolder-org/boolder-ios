@@ -16,7 +16,7 @@ import MapboxMaps
 // UIKit -> SwiftUI : MapBoxViewDelegate protocol
 
 struct MapboxView: UIViewControllerRepresentable {
-    let mapState: MapState
+    @ObservedObject var mapState: MapState
     
     func makeUIViewController(context: Context) -> MapboxViewController {
         let vc = MapboxViewController()
