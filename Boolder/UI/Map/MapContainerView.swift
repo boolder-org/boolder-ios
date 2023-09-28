@@ -76,8 +76,18 @@ struct MapContainerView: View {
                 .environment(\.managedObjectContext, managedObjectContext)
                 .environmentObject(odrManager)
                 .modify {
-                    if #available(iOS 16, *) {
-                        $0.presentationDetents(undimmed: [.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                    if #available(iOS 16.4, *) {
+                        $0
+                            .presentationDetents([.medium])
+                            .presentationBackgroundInteraction(
+                                .enabled(upThrough: .medium)
+                            )
+                            .presentationDragIndicator(.hidden) // TODO: use heights?
+                    }
+                    else if #available(iOS 16, *) {
+                        $0
+                            .presentationDetents(undimmed: [.medium])
+                            .presentationDragIndicator(.hidden) // TODO: use heights?
                     }
                     else {
                         $0
