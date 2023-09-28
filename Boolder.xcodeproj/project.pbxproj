@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1086,8 +1086,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 10.12.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.15.0;
 			};
 		};
 		03C104F1290BFBCE007A94D7 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
