@@ -218,38 +218,6 @@ struct ProblemDetailsView: View {
         return buttons
     }
     
-    var variants: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            if(problem.variants.count > 0) {
-                
-                Divider()
-                
-                ForEach(problem.variants) { variant in
-                    
-                    Button(action: {
-                        mapState.selectProblem(variant)
-                        
-                    }, label: {
-                        HStack {
-                            Text(variant.localizedName)
-                                .lineLimit(2)
-                            Spacer()
-                            Text(variant.grade.string)
-                        }
-                        .foregroundColor(.primary)
-                        .padding(.horizontal)
-                        .frame(height: 44)
-                    })
-                    
-                    Divider()
-                }
-            }
-            
-            Spacer()
-        }
-        .padding(.top, 8)
-    }
-    
     var boolderURL: URL {
         URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/p/\(String(problem.id))")!
     }

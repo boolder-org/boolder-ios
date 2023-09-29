@@ -92,7 +92,10 @@ struct TopoView: View {
                                 }
                             }
                         } label: {
-                            Text(numberOfVariantsForProblem(problem))
+                            HStack {
+                                Text(numberOfVariantsForProblem(problem))
+                                Image(systemName: "chevron.down")
+                            }
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 8)
                                 .background(Color.gray.opacity(0.8))
