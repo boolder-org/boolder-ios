@@ -244,9 +244,13 @@ extension Problem {
     }
     
     var next: Problem? {
-        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
-            let nextNumber = String(circuitNumberInt + 1)
-            
+        var nextNumber = "1";
+        
+        if let circuitNumberInt = Int(self.circuitNumber) {
+            nextNumber = String(circuitNumberInt + 1)
+        }
+
+        if let circuitId = circuitId {
             let query = Table("problems")
                 .filter(Problem.circuitId == circuitId)
                 .filter(Problem.circuitNumber == nextNumber)
@@ -261,7 +265,11 @@ extension Problem {
     
     var previous: Problem? {
         if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
-            let previousNumber = String(circuitNumberInt - 1)
+            var previousNumber = String(circuitNumberInt - 1)
+            
+            if previousNumber == "0" {
+                previousNumber = "D"
+            }
             
             let query = Table("problems")
                 .filter(Problem.circuitId == circuitId)

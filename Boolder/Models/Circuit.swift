@@ -233,11 +233,17 @@ extension Circuit {
     }
     
     var firstProblem: Problem? {
-        let query = Table("problems")
+        let queryD = Table("problems")
+            .filter(Problem.circuitId == self.id)
+            .filter(Problem.circuitNumber == "D")
+        let query1 = Table("problems")
             .filter(Problem.circuitId == self.id)
             .filter(Problem.circuitNumber == "1")
-        
-        if let p = try! SqliteStore.shared.db.pluck(query) {
+
+        if let p = try! SqliteStore.shared.db.pluck(queryD) {
+            return Problem.load(id: p[Problem.id])
+        }
+        else if let p = try! SqliteStore.shared.db.pluck(query1) {
             return Problem.load(id: p[Problem.id])
         }
         
