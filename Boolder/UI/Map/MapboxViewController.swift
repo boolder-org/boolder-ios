@@ -737,7 +737,7 @@ class MapboxViewController: UIViewController {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
                     padding: safePadding,
-                    zoom: 17
+                    zoom: mapView.cameraState.zoom > 17 ? mapView.cameraState.zoom : 17
                 )
                 
                 flyTo(cameraOptions)
