@@ -26,9 +26,12 @@ struct AreaView: View {
     var body: some View {
         ZStack {
             List {
-                tagsAndDescriptionSection
-                
-//                descriptionSection
+                if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {
+                    Section {
+                        tagsWithFlowLayout
+                        descriptionAndWarning
+                    }
+                }
                 
                 problems
                 
@@ -36,7 +39,9 @@ struct AreaView: View {
                     circuitsList
                 }
                 
-                poiRoutesSection
+                if poiRoutes.count > 0 {
+                    poiRoutesList
+                }
                 
                 if(linkToMap) {
                     // leave room for sticky footer
@@ -115,18 +120,7 @@ struct AreaView: View {
         }
     }
     
-    var tagsAndDescriptionSection: some View {
-        Group {
-            if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {
-                Section {
-                    tagsSection
-                    descriptionSection
-                }
-            }
-        }
-    }
-    
-    var tagsSection: some View {
+    var tagsWithFlowLayout: some View {
         Group {
             if area.tags.count > 0 {
                 if #available(iOS 16.0, *) {
@@ -149,22 +143,20 @@ struct AreaView: View {
         }
     }
     
-    var descriptionSection: some View {
+    var descriptionAndWarning: some View {
         Group {
             if area.descriptionFr != nil || area.warningFr != nil {
-//                Section {
-                    if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
-                        VStack(alignment: .leading) {
-                            Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
-                        }
+                if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
+                    VStack(alignment: .leading) {
+                        Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
                     }
-                    
-                    if let warningFr = area.warningFr, let warningEn = area.warningEn {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
-                        }
+                }
+                
+                if let warningFr = area.warningFr, let warningEn = area.warningEn {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
                     }
-//                }
+                }
             }
         }
     }
@@ -244,52 +236,49 @@ struct AreaView: View {
         }
     }
     
-    var poiRoutesSection: some View {
-        Group {
-            if poiRoutes.count > 0 {
-                ForEach(poiRoutes) { poiRoute in
-                    if let poi = poiRoute.poi {
-                        Section {
-                            Button {
-                                if let url = URL(string: poi.googleUrl) {
-                                    openURL(url)
-                                }
-                            } label: {
-                                HStack {
-                                    Text(poi.type.string)
-                                    
-                                    Spacer()
-                                    
-                                    if poi.type == .parking {
-                                        Image(systemName: "p.square.fill")
-                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
-                                            .font(.title2)
-                                    }
-                                    else if poi.type == .trainStation {
-                                        Image(systemName: "tram.fill")
-                                            .font(.body)
-                                    }
-                                    
-                                    Text(poi.shortName)
-                                }
-                                .foregroundColor(.primary)
+    var poiRoutesList: some View {
+        
+        ForEach(poiRoutes) { poiRoute in
+            if let poi = poiRoute.poi {
+                Section {
+                    Button {
+                        if let url = URL(string: poi.googleUrl) {
+                            openURL(url)
+                        }
+                    } label: {
+                        HStack {
+                            Text(poi.type.string)
+                            
+                            Spacer()
+                            
+                            if poi.type == .parking {
+                                Image(systemName: "p.square.fill")
+                                    .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                    .font(.title2)
+                            }
+                            else if poi.type == .trainStation {
+                                Image(systemName: "tram.fill")
+                                    .font(.body)
                             }
                             
-                            HStack {
-                                Text(poiRoute.transport == .bike ? "area.bike_time" : "area.walking_time")
-                                
-                                Spacer()
-                                
-                                if poiRoute.transport == .bike {
-                                    Image(systemName: "bicycle")
-                                }
-                                else {
-                                    Image(systemName: "figure.walk")
-                                }
-                                
-                                Text("\(poiRoute.distanceInMinutes) min")
-                            }
+                            Text(poi.shortName)
                         }
+                        .foregroundColor(.primary)
+                    }
+                    
+                    HStack {
+                        Text(poiRoute.transport == .bike ? "area.bike_time" : "area.walking_time")
+                        
+                        Spacer()
+                        
+                        if poiRoute.transport == .bike {
+                            Image(systemName: "bicycle")
+                        }
+                        else {
+                            Image(systemName: "figure.walk")
+                        }
+                        
+                        Text("\(poiRoute.distanceInMinutes) min")
                     }
                 }
             }
