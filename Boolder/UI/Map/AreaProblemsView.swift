@@ -16,13 +16,14 @@ struct AreaProblemsView: View {
     
     @State private var problems = [Problem]()
     @State private var searchText = ""
-    @State private var filter = 0
+    @State private var selectedSegment = Segment.all
     
     var body: some View {
         VStack {
-            Picker("Filter", selection: $filter) {
-                Text("area.problems.all").tag(0)
-                Text("area.problems.popular").tag(1)
+            Picker("Filter", selection: $selectedSegment) {
+                ForEach(Segment.allCases) { segment in
+                    Text(segment.title).tag(segment)
+                }
             }
             .pickerStyle(.segmented)
             .padding(.horizontal)
@@ -77,13 +78,29 @@ struct AreaProblemsView: View {
     }
     
     var problemsFilteredByPopular: [Problem] {
-        if filter == 1 {
+        if selectedSegment == .popular {
             return problems.filter { $0.featured }
         }
         else {
             return problems
         }
     }
+    
+    enum Segment: Int, CaseIterable, Identifiable {
+            case all
+            case popular
+
+            var id: Self { self }
+
+            var title: String {
+                switch self {
+                case .all:
+                    return NSLocalizedString("area.problems.all", comment: "")
+                case .popular:
+                    return NSLocalizedString("area.problems.popular", comment: "")
+                }
+            }
+        }
 }
 
 //struct AreaProblemsView_Previews: PreviewProvider {
