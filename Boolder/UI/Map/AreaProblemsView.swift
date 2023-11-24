@@ -16,11 +16,19 @@ struct AreaProblemsView: View {
     
     @State private var problems = [Problem]()
     @State private var searchText = ""
+    @State private var popular = false
     
     var body: some View {
         List {
+            
+            HStack {
+                Toggle(isOn: $popular, label: {
+                    Text("area.problems.popular")
+                })
+            }
+            
             Section {
-                ForEach(filteredProblems) { problem in
+                ForEach(problemsFilteredBySearch) { problem in
                     Button {
                         appState.tab = .map
                         appState.selectedProblem = problem
@@ -55,12 +63,21 @@ struct AreaProblemsView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    var filteredProblems: [Problem] {
+    var problemsFilteredBySearch: [Problem] {
         if searchText.count > 0 {
-            return problems.filter { ($0.name?.normalized ?? "").contains(searchText.normalized) }
+            return problemsFilteredByPopular.filter { ($0.name?.normalized ?? "").contains(searchText.normalized) }
         }
         else
         {
+            return problemsFilteredByPopular
+        }
+    }
+    
+    var problemsFilteredByPopular: [Problem] {
+        if popular {
+            return problems.filter { $0.featured }
+        }
+        else {
             return problems
         }
     }
