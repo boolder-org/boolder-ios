@@ -83,6 +83,7 @@
 "area.chart.level" = "Niveau";
 "area.chart.problems" = "Voies";
 "area.problems.popular" = "Populaires";
+"area.problems.all" = "Toutes";
 "area.see_on_the_map" = "Voir sur la carte";
 "area.close" = "Fermer";
 "area.bike_time" = "Temps en vélo";

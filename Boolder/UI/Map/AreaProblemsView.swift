@@ -16,36 +16,39 @@ struct AreaProblemsView: View {
     
     @State private var problems = [Problem]()
     @State private var searchText = ""
-    @State private var popular = false
+    @State private var filter = 0
     
     var body: some View {
-        List {
-            
-            HStack {
-                Toggle(isOn: $popular, label: {
-                    Text("area.problems.popular")
-                })
+        VStack {
+            Picker("Filter", selection: $filter) {
+                Text("area.problems.all").tag(0)
+                Text("area.problems.popular").tag(1)
             }
+            .pickerStyle(.segmented)
+            .padding(.horizontal)
             
-            Section {
-                ForEach(problemsFilteredBySearch) { problem in
-                    Button {
-                        appState.tab = .map
-                        appState.selectedProblem = problem
-                    } label: {
-                        HStack {
-                            ProblemCircleView(problem: problem)
-                            Text(problem.localizedName)
-                            Spacer()
-                            if(problem.featured) {
-                                Image(systemName: "heart.fill").foregroundColor(.pink)
+            
+            List {
+                Section {
+                    ForEach(problemsFilteredBySearch) { problem in
+                        Button {
+                            appState.tab = .map
+                            appState.selectedProblem = problem
+                        } label: {
+                            HStack {
+                                ProblemCircleView(problem: problem)
+                                Text(problem.localizedName)
+                                Spacer()
+                                if(problem.featured) {
+                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                                }
+                                Text(problem.grade.string)
                             }
-                            Text(problem.grade.string)
+                            .foregroundColor(.primary)
                         }
-                        .foregroundColor(.primary)
                     }
+                    
                 }
-                
             }
         }
         .onAppear {
@@ -74,7 +77,7 @@ struct AreaProblemsView: View {
     }
     
     var problemsFilteredByPopular: [Problem] {
-        if popular {
+        if filter == 1 {
             return problems.filter { $0.featured }
         }
         else {

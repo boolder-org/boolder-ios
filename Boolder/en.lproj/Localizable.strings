@@ -83,6 +83,7 @@
 "area.chart.level" = "Level";
 "area.chart.problems" = "Problems";
 "area.problems.popular" = "Popular";
+"area.problems.all" = "All";
 "area.see_on_the_map" = "See on the map";
 "area.close" = "Close";
 "area.bike_time" = "Bike time";
