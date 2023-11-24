@@ -26,7 +26,7 @@ struct AreaView: View {
     var body: some View {
         ZStack {
             List {
-                tagsSection
+                tagsAndDescriptionSection
                 
 //                descriptionSection
                 
@@ -115,27 +115,34 @@ struct AreaView: View {
         }
     }
     
+    var tagsAndDescriptionSection: some View {
+        Group {
+            if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {
+                Section {
+                    tagsSection
+                    descriptionSection
+                }
+            }
+        }
+    }
+    
     var tagsSection: some View {
         Group {
             if area.tags.count > 0 {
                 if #available(iOS 16.0, *) {
-                    Section {
+                    Group {
                         FlowLayout(alignment: .leading) {
                             tags
                         }
                         .padding(.vertical, 4)
-                        
-                        descriptionSection
                     }
                 }
                 else {
-                    Section {
+                    Group {
                         VStack(alignment: .leading) {
                             tags
                         }
                         .padding(.vertical, 4)
-                        
-                        descriptionSection
                     }
                 }
             }
