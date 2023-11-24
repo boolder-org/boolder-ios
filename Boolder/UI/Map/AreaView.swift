@@ -28,7 +28,7 @@ struct AreaView: View {
             List {
                 tagsSection
                 
-                descriptionSection
+//                descriptionSection
                 
                 problems
                 
@@ -124,6 +124,8 @@ struct AreaView: View {
                             tags
                         }
                         .padding(.vertical, 4)
+                        
+                        descriptionSection
                     }
                 }
                 else {
@@ -132,6 +134,8 @@ struct AreaView: View {
                             tags
                         }
                         .padding(.vertical, 4)
+                        
+                        descriptionSection
                     }
                 }
             }
@@ -141,7 +145,7 @@ struct AreaView: View {
     var descriptionSection: some View {
         Group {
             if area.descriptionFr != nil || area.warningFr != nil {
-                Section {
+//                Section {
                     if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
                         VStack(alignment: .leading) {
                             Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
@@ -153,7 +157,7 @@ struct AreaView: View {
                             Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
                         }
                     }
-                }
+//                }
             }
         }
     }
