@@ -11,6 +11,7 @@ import Charts
 
 struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.openURL) var openURL
     
     let area: Area
     @EnvironmentObject var appState: AppState
@@ -20,11 +21,14 @@ struct AreaView: View {
     @State private var popularProblems = [Problem]()
     @State private var showChart = false
     @State private var chartData: [Level] = []
+    @State private var poiRoutes = [PoiRoute]()
     
     var body: some View {
         ZStack {
             List {
-                infos
+                tagsSection
+                
+                descriptionSection
                 
                 problems
                 
@@ -32,26 +36,7 @@ struct AreaView: View {
                     circuitsList
                 }
                 
-                if(popularProblems.count > 0) {
-                    
-                    Section(header: Text("area.problems.popular")) {
-                        ForEach(popularProblems) { problem in
-                            Button {
-                                appState.selectedProblem = problem
-                                appState.tab = .map
-                            } label: {
-                                HStack {
-                                    ProblemCircleView(problem: problem)
-                                    Text(problem.localizedName)
-                                    Spacer()
-                                    Text(problem.grade.string)
-                                }
-                                .foregroundColor(.primary)
-                            }
-                        }
-                        
-                    }
-                }
+                poiRoutesSection
                 
                 if(linkToMap) {
                     // leave room for sticky footer
@@ -94,6 +79,8 @@ struct AreaView: View {
                 .init(name: "7", count: min(150, area.level7Count)),
                 .init(name: "8", count: min(150, area.level8Count)),
             ]
+            
+            poiRoutes = area.poiRoutes
         }
         .navigationTitle(area.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -116,19 +103,55 @@ struct AreaView: View {
         
     }
     
-    var infos: some View {
-        Section {
-            NavigationLink {
-                AreaDetailsView(area: area, linkToMap: linkToMap)
-            } label: {
-                HStack {
-                    Text("area.infos")
-                    Spacer()
+    var tags: some View {
+        ForEach(area.tags, id: \.self) { tag in
+            Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
+                .font(.callout)
+                .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
+                .foregroundColor(Color.green)
+                .background(Color.systemBackground)
+                .cornerRadius(32)
+                .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+        }
+    }
+    
+    var tagsSection: some View {
+        Group {
+            if area.tags.count > 0 {
+                if #available(iOS 16.0, *) {
+                    Section {
+                        FlowLayout(alignment: .leading) {
+                            tags
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+                else {
+                    Section {
+                        VStack(alignment: .leading) {
+                            tags
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+            }
+        }
+    }
+    
+    var descriptionSection: some View {
+        Group {
+            if area.descriptionFr != nil || area.warningFr != nil {
+                Section {
+                    if let descriptionFr = area.descriptionFr, let descriptionEn = area.descriptionEn {
+                        VStack(alignment: .leading) {
+                            Text(NSLocale.websiteLocale == "fr" ? descriptionFr : descriptionEn)
+                        }
+                    }
                     
-                    if area.warningEn != nil {
-                        Image(systemName: "exclamationmark.circle")
-                            .foregroundColor(.orange)
-                            .font(.title3)
+                    if let warningFr = area.warningFr, let warningEn = area.warningEn {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
+                        }
                     }
                 }
             }
@@ -137,16 +160,6 @@ struct AreaView: View {
     
     var problems: some View {
         Section {
-            NavigationLink {
-                AreaProblemsView(area: area)
-            } label: {
-                HStack {
-                    Text("area.problems")
-                    Spacer()
-                    Text("\(area.problemsCount)")
-                }
-            }
-            
             VStack {
                 Button {
                     showChart.toggle()
@@ -179,6 +192,16 @@ struct AreaView: View {
                     }
                 }
             }
+            
+            NavigationLink {
+                AreaProblemsView(area: area)
+            } label: {
+                HStack {
+                    Text("area.problems")
+                    Spacer()
+                    Text("\(area.problemsCount)")
+                }
+            }
         }
     }
     
@@ -205,6 +228,58 @@ struct AreaView: View {
                         Text(circuit.averageGrade.string)
                     }
                     .foregroundColor(.primary)
+                }
+            }
+        }
+    }
+    
+    var poiRoutesSection: some View {
+        Group {
+            if poiRoutes.count > 0 {
+                ForEach(poiRoutes) { poiRoute in
+                    if let poi = poiRoute.poi {
+                        Section {
+                            Button {
+                                if let url = URL(string: poi.googleUrl) {
+                                    openURL(url)
+                                }
+                            } label: {
+                                HStack {
+                                    Text(poi.type.string)
+                                    
+                                    Spacer()
+                                    
+                                    if poi.type == .parking {
+                                        Image(systemName: "p.square.fill")
+                                            .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
+                                            .font(.title2)
+                                    }
+                                    else if poi.type == .trainStation {
+                                        Image(systemName: "tram.fill")
+                                            .font(.body)
+                                    }
+                                    
+                                    Text(poi.shortName)
+                                }
+                                .foregroundColor(.primary)
+                            }
+                            
+                            HStack {
+                                Text(poiRoute.transport == .bike ? "area.bike_time" : "area.walking_time")
+                                
+                                Spacer()
+                                
+                                if poiRoute.transport == .bike {
+                                    Image(systemName: "bicycle")
+                                }
+                                else {
+                                    Image(systemName: "figure.walk")
+                                }
+                                
+                                Text("\(poiRoute.distanceInMinutes) min")
+                            }
+                        }
+                    }
                 }
             }
         }
