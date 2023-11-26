@@ -17,6 +17,10 @@ struct AreaView: View {
     @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
+    let odrManager = ODRManager()
+    @State private var offlineMode = false
+    @State private var areaResourcesDownloaded = false
+    
     @State private var circuits = [Circuit]()
     @State private var popularProblems = [Problem]()
     @State private var showChart = false
@@ -26,6 +30,43 @@ struct AreaView: View {
     var body: some View {
         ZStack {
             List {
+                HStack {
+                    Toggle(isOn: $offlineMode, label: {
+                        Text("Disponible en hors-ligne")
+                    })
+                    .onChange(of: offlineMode) { value in
+                        print(value)
+                        
+                        odrManager.requestResources(tags: Set(["area-\(area.id)"]), onSuccess: {
+                            print("done!!")
+                            areaResourcesDownloaded = true
+                            
+                        }, onFailure: { error in
+                            print("On-demand resource error")
+                            
+                            // TODO: implement UI, log errors
+                            switch error.code {
+                            case NSBundleOnDemandResourceOutOfSpaceError:
+                                print("You don't have enough space available to download this resource.")
+                            case NSBundleOnDemandResourceExceededMaximumSizeError:
+                                print("The bundle resource was too big.")
+                            case NSBundleOnDemandResourceInvalidTagError:
+                                print("The requested tag does not exist.")
+                            default:
+                                print(error.description)
+                            }
+                        })
+                    }
+                }
+                
+                if offlineMode {
+                    HStack {
+                        Text("Progress")
+                        Spacer()
+                        Text(areaResourcesDownloaded ? "done" : odrManager.downloadProgress.description)
+                    }
+                }
+                
                 if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {
                     Section {
                         tagsWithFlowLayout
@@ -128,7 +169,7 @@ struct AreaView: View {
                         FlowLayout(alignment: .leading) {
                             tags
                         }
-                        .padding(.vertical, 4)
+//                        .padding(.vertical, 4)
                     }
                 }
                 else {
@@ -136,7 +177,7 @@ struct AreaView: View {
                         VStack(alignment: .leading) {
                             tags
                         }
-                        .padding(.vertical, 4)
+//                        .padding(.vertical, 4)
                     }
                 }
             }

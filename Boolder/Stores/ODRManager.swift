@@ -23,7 +23,7 @@ class ODRManager : ObservableObject {
         
         // track download progress
         cancellable = request.progress.publisher(for: \.fractionCompleted)
-            .throttle(for: .seconds(2), scheduler: DispatchQueue.main, latest: true) // without this the navbar buttons freeze (too many renders?), but not sure why
+//            .throttle(for: .seconds(2), scheduler: DispatchQueue.main, latest: true) // without this the navbar buttons freeze (too many renders?), but not sure why
             .receive(on: DispatchQueue.main)
             .sink() { fractionCompleted in
                 self.downloadProgress = fractionCompleted

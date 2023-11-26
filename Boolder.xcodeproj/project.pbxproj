@@ -83,6 +83,8 @@
 		03EE215A2AF14EB10039A539 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03EE21582AF14EB10039A539 /* boolder.db */; };
 		03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
+		03FE76D92B1116AE00561D34 /* OfflineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE76D82B1116AE00561D34 /* OfflineManager.swift */; };
+		03FE76DA2B1116AE00561D34 /* OfflineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE76D82B1116AE00561D34 /* OfflineManager.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -185,6 +187,7 @@
 		03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetentsViewModifier.swift; sourceTree = "<group>"; };
 		03EE21582AF14EB10039A539 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
+		03FE76D82B1116AE00561D34 /* OfflineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineManager.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
+				03FE76D82B1116AE00561D34 /* OfflineManager.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -694,6 +698,7 @@
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
+				03FE76DA2B1116AE00561D34 /* OfflineManager.swift in Sources */,
 				031A61BC29EC7CE200B2B46E /* AppState.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */,
@@ -748,6 +753,7 @@
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
+				03FE76D92B1116AE00561D34 /* OfflineManager.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37883A3E2590AB2800BCA364 /* ImageLoadingView.swift in Sources */,

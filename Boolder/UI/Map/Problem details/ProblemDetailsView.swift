@@ -30,8 +30,8 @@ struct ProblemDetailsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 TopoView(
                     problem: $problem,
-                    mapState: mapState,
-                    areaResourcesDownloaded: $areaResourcesDownloaded
+                    mapState: mapState
+//                    areaResourcesDownloaded: $areaResourcesDownloaded
                 )
                 .zIndex(10)
                 

@@ -10,13 +10,13 @@ import SwiftUI
 //import ImageViewer
 
 struct TopoView: View {
-    @EnvironmentObject var odrManager: ODRManager
+//    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
-    @Binding var areaResourcesDownloaded: Bool
+//    @Binding var areaResourcesDownloaded: Bool
     
     @State private var presentTopoFullScreenView = false
     
@@ -26,7 +26,7 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             Group {
-                if areaResourcesDownloaded {
+//                if areaResourcesDownloaded {
                     if let topoPhoto = problem.mainTopoPhoto {
                         
                         Group {
@@ -70,11 +70,11 @@ struct TopoView: View {
                             .font(.system(size: 60))
                             .foregroundColor(Color.gray)
                     }
-                }
-                else {
-                    ImageLoadingView(progress: $odrManager.downloadProgress)
-                        .aspectRatio(4/3, contentMode: .fill)
-                }
+//                }
+//                else {
+//                    ImageLoadingView(progress: $odrManager.downloadProgress)
+//                        .aspectRatio(4/3, contentMode: .fill)
+//                }
             }
             
             HStack {
