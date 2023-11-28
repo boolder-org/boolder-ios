@@ -17,7 +17,7 @@ struct AreaView: View {
     @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
-    let odrManager = ODRManager()
+    @ObservedObject private var odrManager = ODRManager()
     @State private var offlineMode = false
     @State private var areaResourcesDownloaded = false
     
@@ -35,27 +35,32 @@ struct AreaView: View {
                         Text("Disponible en hors-ligne")
                     })
                     .onChange(of: offlineMode) { value in
-                        print(value)
                         
-                        odrManager.requestResources(tags: Set(["area-\(area.id)"]), onSuccess: {
-                            print("done!!")
-                            areaResourcesDownloaded = true
+                        if value {
                             
-                        }, onFailure: { error in
-                            print("On-demand resource error")
-                            
-                            // TODO: implement UI, log errors
-                            switch error.code {
-                            case NSBundleOnDemandResourceOutOfSpaceError:
-                                print("You don't have enough space available to download this resource.")
-                            case NSBundleOnDemandResourceExceededMaximumSizeError:
-                                print("The bundle resource was too big.")
-                            case NSBundleOnDemandResourceInvalidTagError:
-                                print("The requested tag does not exist.")
-                            default:
-                                print(error.description)
-                            }
-                        })
+                            odrManager.requestResources(tags: Set(["area-\(area.id)"]), onSuccess: {
+                                print("done!!")
+                                areaResourcesDownloaded = true
+                                
+                            }, onFailure: { error in
+                                print("On-demand resource error")
+                                
+                                // TODO: implement UI, log errors
+                                switch error.code {
+                                case NSBundleOnDemandResourceOutOfSpaceError:
+                                    print("You don't have enough space available to download this resource.")
+                                case NSBundleOnDemandResourceExceededMaximumSizeError:
+                                    print("The bundle resource was too big.")
+                                case NSBundleOnDemandResourceInvalidTagError:
+                                    print("The requested tag does not exist.")
+                                default:
+                                    print(error.description)
+                                }
+                            })
+                        }
+                        else {
+                            odrManager.stop()
+                        }
                     }
                 }
                 

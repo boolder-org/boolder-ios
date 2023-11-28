@@ -11,7 +11,7 @@ import MapKit
 
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var odrManager: ODRManager
+//    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.openURL) var openURL
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -41,27 +41,27 @@ struct ProblemDetailsView: View {
             }
         }
         
-        .onAppear{
-            // FIXME: doesn't work when user selects a problem in a different area without closing the ProblemDetails sheet (which happens when two areas are really close together)
-            odrManager.requestResources(tags: Set(["area-\(problem.areaId)"]), onSuccess: {
-                areaResourcesDownloaded = true
-                
-            }, onFailure: { error in
-                print("On-demand resource error")
-                
-                // TODO: implement UI, log errors
-                switch error.code {
-                case NSBundleOnDemandResourceOutOfSpaceError:
-                    print("You don't have enough space available to download this resource.")
-                case NSBundleOnDemandResourceExceededMaximumSizeError:
-                    print("The bundle resource was too big.")
-                case NSBundleOnDemandResourceInvalidTagError:
-                    print("The requested tag does not exist.")
-                default:
-                    print(error.description)
-                }
-            })
-        }
+//        .onAppear{
+//            // FIXME: doesn't work when user selects a problem in a different area without closing the ProblemDetails sheet (which happens when two areas are really close together)
+//            odrManager.requestResources(tags: Set(["area-\(problem.areaId)"]), onSuccess: {
+//                areaResourcesDownloaded = true
+//                
+//            }, onFailure: { error in
+//                print("On-demand resource error")
+//                
+//                // TODO: implement UI, log errors
+//                switch error.code {
+//                case NSBundleOnDemandResourceOutOfSpaceError:
+//                    print("You don't have enough space available to download this resource.")
+//                case NSBundleOnDemandResourceExceededMaximumSizeError:
+//                    print("The bundle resource was too big.")
+//                case NSBundleOnDemandResourceInvalidTagError:
+//                    print("The requested tag does not exist.")
+//                default:
+//                    print(error.description)
+//                }
+//            })
+//        }
     }
     
     var infos: some View {

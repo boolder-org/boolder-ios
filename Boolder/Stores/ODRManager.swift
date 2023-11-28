@@ -39,4 +39,15 @@ class ODRManager : ObservableObject {
             onSuccess()
         }
     }
+    
+    func stop() {
+        print("stop")
+        odrRequest?.endAccessingResources()
+        cancellable = nil
+    }
+    
+    deinit {
+        print("deinit")
+        stop()
+    }
 }

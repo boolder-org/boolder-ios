@@ -31,6 +31,12 @@ struct ContentView: View {
                     Label("tabs.ticklist", systemImage: "bookmark")
                 }
                 .tag(AppState.Tab.ticklist)
+            
+            OfflineView()
+                .tabItem {
+                    Label("tabs.offline", systemImage: "arrow.down.to.line.circle")
+                }
+                .tag(AppState.Tab.offline)
         }
         .environmentObject(appState)
     }
