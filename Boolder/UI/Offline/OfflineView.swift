@@ -16,21 +16,31 @@ struct OfflineView: View {
         NavigationView {
             List {
                 ForEach(offlineManager.offlineAreas.indices, id: \.self) { index in
-                    HStack {
-                        Text(offlineManager.offlineAreas[index].area.name)
-                        Spacer()
-                        Button {
-                            offlineManager.offlineAreas[index].download()
-                        } label: {
-                            Text(offlineManager.offlineAreas[index].downloaded ? "downloaded" : "download")
-                        }
-                    }
+                    OfflineAreaRow(offlineArea: offlineManager.offlineAreas[index])
                 }
             }
             .navigationTitle(Text("Offline"))
             .onAppear {
                 
             }
+        }
+    }
+}
+
+struct OfflineAreaRow: View {
+    @ObservedObject var offlineArea: OfflineArea
+    
+    var body: some View {
+        
+        HStack {
+            Text(offlineArea.area.name)
+            Spacer()
+            Button {
+                offlineArea.download()
+            } label: {
+                Text(offlineArea.status.label)
+            }
+            
         }
     }
 }

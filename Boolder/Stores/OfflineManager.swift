@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 class OfflineManager: ObservableObject {
     static let shared = OfflineManager()
@@ -18,19 +19,23 @@ class OfflineManager: ObservableObject {
         offlineAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            OfflineArea(areaId: area.id, downloaded: false)
+            OfflineArea(areaId: area.id, status: .initial)
         }
     }
 }
 
-struct OfflineArea: Identifiable {
+class OfflineArea: Identifiable, ObservableObject {
     let areaId: Int
-    var downloaded: Bool
+    @Published var status: DownloadStatus
+    let odrManager = ODRManager()
+    var cancellable: Cancellable?
     
-//        init(areaId: Int, downloaded: Bool) {
-//            self.areaId = areaId
-//            self.downloaded = downloaded
-//        }
+    init(areaId: Int, status: DownloadStatus) {
+        self.areaId = areaId
+        self.status = status
+        
+//        odrManager.downloadProgress
+    }
     
     var id: Int {
         areaId
@@ -40,7 +45,59 @@ struct OfflineArea: Identifiable {
         Area.load(id: areaId)!
     }
     
-    mutating func download() {
-        downloaded = true
+    func download() {
+        status = .downloading(progress: 0.0)
+        self.cancellable = odrManager.$downloadProgress.receive(on: DispatchQueue.main)
+            .sink() { progress in
+                self.status = .downloading(progress: progress)
+            }
+        
+        odrManager.requestResources(tags: Set(["area-\(areaId)"]), onSuccess: { [self] in
+            print("done!!")
+            DispatchQueue.main.async{
+                self.status = .downloaded
+            }
+            
+        }, onFailure: { error in
+            print("On-demand resource error")
+            self.status = .failed
+            
+            // TODO: implement UI, log errors
+            switch error.code {
+            case NSBundleOnDemandResourceOutOfSpaceError:
+                print("You don't have enough space available to download this resource.")
+            case NSBundleOnDemandResourceExceededMaximumSizeError:
+                print("The bundle resource was too big.")
+            case NSBundleOnDemandResourceInvalidTagError:
+                print("The requested tag does not exist.")
+            default:
+                print(error.description)
+            }
+        })
+        
+        
     }
+    
+    enum DownloadStatus {
+        case initial
+        case downloading(progress: Double)
+        case downloaded
+        case failed
+        
+        var label: String {
+            switch self {
+            case .downloaded:
+                "downloaded"
+            case .initial:
+                "-"
+            case .downloading(progress: let progress):
+                "\(Int(progress*100))%"
+            case .failed:
+                "error"
+            }
+            
+        }
+    }
+    
+    
 }
