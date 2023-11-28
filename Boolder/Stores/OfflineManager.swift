@@ -9,10 +9,25 @@
 import Foundation
 import Combine
 
+
 class OfflineManager: ObservableObject {
     static let shared = OfflineManager()
     
-    private var requestedAreas: Set<Int> = Set([1,4,5,6,7])
+    private var requestedAreas: Set<Int>  // = Set([1,4,5,6,7])
+    {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: "mySet"),
+                  let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) else {
+                return []
+            }
+            return decodedSet
+        }
+        set {
+            if let encodedData = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encodedData, forKey: "mySet")
+            }
+        }
+    }
     
     @Published var offlineAreas = [OfflineArea]()
     
@@ -24,10 +39,14 @@ class OfflineManager: ObservableObject {
         }
     }
     
+    func requestArea(areaId: Int) {
+        requestedAreas.insert(areaId)
+    }
+    
     func start() {
         offlineAreas.forEach { offlineArea in
             if requestedAreas.contains(offlineArea.areaId) {
-                
+                // TODO: handle case when area is already available
                 offlineArea.download()
                 
             }

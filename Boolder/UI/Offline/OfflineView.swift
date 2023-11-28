@@ -21,7 +21,7 @@ struct OfflineView: View {
             }
             .navigationTitle(Text("Offline"))
             .onAppear {
-                
+//                offlineManager.start()
             }
         }
     }
@@ -36,6 +36,7 @@ struct OfflineAreaRow: View {
             Text(offlineArea.area.name)
             Spacer()
             Button {
+                OfflineManager.shared.requestArea(areaId: offlineArea.areaId)
                 offlineArea.download()
             } label: {
                 Text(offlineArea.status.label)
