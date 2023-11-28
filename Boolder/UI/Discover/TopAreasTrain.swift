@@ -58,7 +58,7 @@ struct TopAreasTrain: View {
                             ForEach(trainStation.poiRoutes.filter{$0.transport == .bike}) { poiRoute in
                                 if let area = Area.load(id: poiRoute.areaId) {
                                     NavigationLink {
-                                        AreaView(area: area, linkToMap: true)
+                                        AreaView(area: area, linkToMap: true, offlineArea: OfflineManager.shared.offlineArea(withId: area.id))
                                     } label: {
                                         HStack {
                                             

@@ -46,8 +46,8 @@ class ODRManager : ObservableObject {
         cancellable = nil
     }
     
-    deinit {
-        print("deinit")
-        stop()
-    }
+//    deinit {
+//        print("deinit")
+//        stop()
+//    }
 }

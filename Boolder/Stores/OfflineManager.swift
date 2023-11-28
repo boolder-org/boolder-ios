@@ -52,6 +52,12 @@ class OfflineManager: ObservableObject {
             }
         }
     }
+    
+    func offlineArea(withId id: Int) -> OfflineArea {
+        offlineAreas.first { offlineArea in
+            offlineArea.id == id
+        }! // FIXME
+    }
 }
 
 class OfflineArea: Identifiable, ObservableObject {

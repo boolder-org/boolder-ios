@@ -17,9 +17,10 @@ struct AreaView: View {
     @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
-    @ObservedObject private var odrManager = ODRManager()
-    @State private var offlineMode = false
-    @State private var areaResourcesDownloaded = false
+//    @ObservedObject private var odrManager = ODRManager()
+//    @State private var offlineMode = false
+//    @State private var areaResourcesDownloaded = false
+    @ObservedObject var offlineArea: OfflineArea // FIXME: make instantiation DRY
     
     @State private var circuits = [Circuit]()
     @State private var popularProblems = [Problem]()
@@ -31,45 +32,15 @@ struct AreaView: View {
         ZStack {
             List {
                 HStack {
-                    Toggle(isOn: $offlineMode, label: {
-                        Text("Disponible en hors-ligne")
-                    })
-                    .onChange(of: offlineMode) { value in
-                        
-                        if value {
-                            
-                            odrManager.requestResources(tags: Set(["area-\(area.id)"]), onSuccess: {
-                                print("done!!")
-                                areaResourcesDownloaded = true
-                                
-                            }, onFailure: { error in
-                                print("On-demand resource error")
-                                
-                                // TODO: implement UI, log errors
-                                switch error.code {
-                                case NSBundleOnDemandResourceOutOfSpaceError:
-                                    print("You don't have enough space available to download this resource.")
-                                case NSBundleOnDemandResourceExceededMaximumSizeError:
-                                    print("The bundle resource was too big.")
-                                case NSBundleOnDemandResourceInvalidTagError:
-                                    print("The requested tag does not exist.")
-                                default:
-                                    print(error.description)
-                                }
-                            })
-                        }
-                        else {
-                            odrManager.stop()
-                        }
+                    Text("Disponible en hors-ligne")
+                    Spacer()
+                    Button {
+                        OfflineManager.shared.requestArea(areaId: offlineArea.areaId)
+                        offlineArea.download()
+                    } label: {
+                        Text(offlineArea.status.label)
                     }
-                }
-                
-                if offlineMode {
-                    HStack {
-                        Text("Progress")
-                        Spacer()
-                        Text(areaResourcesDownloaded ? "done" : odrManager.downloadProgress.description)
-                    }
+                    
                 }
                 
                 if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {

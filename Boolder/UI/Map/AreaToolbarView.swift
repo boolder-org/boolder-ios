@@ -68,7 +68,7 @@ struct AreaToolbarView: View {
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
-                        AreaView(area: mapState.selectedArea!, linkToMap: false)
+                        AreaView(area: mapState.selectedArea!, linkToMap: false, offlineArea: OfflineManager.shared.offlineArea(withId: mapState.selectedArea!.id))
                     }
                 }
 
