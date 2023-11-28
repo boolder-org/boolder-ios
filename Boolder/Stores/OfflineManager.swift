@@ -12,14 +12,25 @@ import Combine
 class OfflineManager: ObservableObject {
     static let shared = OfflineManager()
     
-    @Published var offlineAreas = [OfflineArea]()
+    private var requestedAreas: Set<Int> = Set([1,4,5,6,7])
     
+    @Published var offlineAreas = [OfflineArea]()
     
     private init() {
         offlineAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            OfflineArea(areaId: area.id, status: .initial)
+            OfflineArea(areaId: area.id, status: requestedAreas.contains(area.id) ? .requested : .initial)
+        }
+    }
+    
+    func start() {
+        offlineAreas.forEach { offlineArea in
+            if requestedAreas.contains(offlineArea.areaId) {
+                
+                offlineArea.download()
+                
+            }
         }
     }
 }
@@ -46,14 +57,17 @@ class OfflineArea: Identifiable, ObservableObject {
     }
     
     func download() {
+        print("downloading area \(areaId)")
+        
         status = .downloading(progress: 0.0)
         self.cancellable = odrManager.$downloadProgress.receive(on: DispatchQueue.main)
             .sink() { progress in
                 self.status = .downloading(progress: progress)
             }
         
+        // FIXME: Make tag name DRY
         odrManager.requestResources(tags: Set(["area-\(areaId)"]), onSuccess: { [self] in
-            print("done!!")
+            print("downloaded area \(areaId)")
             DispatchQueue.main.async{
                 self.status = .downloaded
             }
@@ -80,6 +94,7 @@ class OfflineArea: Identifiable, ObservableObject {
     
     enum DownloadStatus {
         case initial
+        case requested
         case downloading(progress: Double)
         case downloaded
         case failed
@@ -94,6 +109,8 @@ class OfflineArea: Identifiable, ObservableObject {
                 "\(Int(progress*100))%"
             case .failed:
                 "error"
+            case .requested:
+                "waiting"
             }
             
         }
