@@ -82,39 +82,53 @@ class OfflineArea: Identifiable, ObservableObject {
     }
     
     func download() {
-        print("downloading area \(areaId)")
+        let tags = Set(["area-\(areaId)"])
         
-        status = .downloading(progress: 0.0)
-        self.cancellable = odrManager.$downloadProgress.receive(on: DispatchQueue.main)
-            .sink() { progress in
-                self.status = .downloading(progress: progress)
-            }
-        
-        // FIXME: Make tag name DRY
-        odrManager.requestResources(tags: Set(["area-\(areaId)"]), onSuccess: { [self] in
-            print("downloaded area \(areaId)")
-            DispatchQueue.main.async{
+        odrManager.checkResources(tags: tags) { available in
+            if available {
+                print("available area \(self.areaId)")
                 self.status = .downloaded
             }
-            
-        }, onFailure: { error in
-            print("On-demand resource error")
-            self.status = .failed
-            
-            // TODO: implement UI, log errors
-            switch error.code {
-            case NSBundleOnDemandResourceOutOfSpaceError:
-                print("You don't have enough space available to download this resource.")
-            case NSBundleOnDemandResourceExceededMaximumSizeError:
-                print("The bundle resource was too big.")
-            case NSBundleOnDemandResourceInvalidTagError:
-                print("The requested tag does not exist.")
-            default:
-                print(error.description)
+            else {
+                print("downloading area \(self.areaId)")
+                
+                DispatchQueue.main.async{
+                    self.status = .downloading(progress: 0.0)
+                }
+                self.cancellable = self.odrManager.$downloadProgress.receive(on: DispatchQueue.main)
+                    .sink() { progress in
+                        self.status = .downloading(progress: progress)
+                        print("progress = \(progress)")
+                    }
+                
+                // FIXME: Make tag name DRY
+                self.odrManager.requestResources(tags: tags, onSuccess: { [self] in
+                    print("downloaded area \(areaId)")
+                    DispatchQueue.main.async{
+                        self.status = .downloaded
+                        print("status = downloaded")
+                    }
+                    
+                }, onFailure: { error in
+                    DispatchQueue.main.async{
+                        print("On-demand resource error")
+                        self.status = .failed
+                    }
+                    
+                    // TODO: implement UI, log errors
+                    switch error.code {
+                    case NSBundleOnDemandResourceOutOfSpaceError:
+                        print("You don't have enough space available to download this resource.")
+                    case NSBundleOnDemandResourceExceededMaximumSizeError:
+                        print("The bundle resource was too big.")
+                    case NSBundleOnDemandResourceInvalidTagError:
+                        print("The requested tag does not exist.")
+                    default:
+                        print(error.description)
+                    }
+                })
             }
-        })
-        
-        
+        }
     }
     
     enum DownloadStatus {

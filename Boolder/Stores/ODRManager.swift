@@ -40,6 +40,13 @@ class ODRManager : ObservableObject {
         }
     }
     
+    func checkResources(tags: Set<String>, onSuccess: @escaping (Bool) -> Void) {
+        odrRequest = NSBundleResourceRequest(tags: tags)
+        guard let request = odrRequest else { return }
+        
+        request.conditionallyBeginAccessingResources(completionHandler: onSuccess)
+    }
+    
     func stop() {
         print("stop")
         odrRequest?.endAccessingResources()
