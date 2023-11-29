@@ -34,50 +34,6 @@ struct TopoView: View {
         case error
     }
     
-    var photo: some View {
-        Group {
-            switch photoStatus {
-//            case .initial:
-//                EmptyView()
-            case .none:
-                Image("nophoto")
-                    .font(.system(size: 60))
-                    .foregroundColor(Color.gray)
-//            case .loading:
-//                ProgressView()
-            case .ready(let image):
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            default:
-                EmptyView()
-            }
-        }
-//        Group {
-//            if let image = photoImage {
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-////                CachedAsyncImage(url: URL(string: url)) { phase in
-////                    if let image = phase.image {
-////                        image
-////                            .resizable()
-////                            .aspectRatio(contentMode: .fit)
-////                    } else if phase.error != nil {
-////                        Text("Error")
-////                    } else {
-////                        ProgressView()
-////                    }
-////                }
-//            }
-//            else {
-//                Image("nophoto")
-//                    .font(.system(size: 60))
-//                    .foregroundColor(Color.gray)
-//            }
-//        }
-    }
-    
     struct Response: Codable {
         var url: String
     }
@@ -117,9 +73,11 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             Group {
-                if case .ready = photoStatus  {
+                if case .ready(let image) = photoStatus  {
                         Group {
-                            photo
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
@@ -152,8 +110,16 @@ struct TopoView: View {
                             }
                         }
                 }
-                else {
+                else if case .loading = photoStatus {
                     ProgressView()
+                }
+                else if case .none = photoStatus {
+                    Image("nophoto")
+                        .font(.system(size: 60))
+                        .foregroundColor(Color.gray)
+                }
+                else {
+                    EmptyView()
                 }
             }
             
