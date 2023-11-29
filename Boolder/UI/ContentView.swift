@@ -34,7 +34,7 @@ struct ContentView: View {
             
             OfflineView()
                 .tabItem {
-                    Label("tabs.offline", systemImage: "arrow.down.to.line.circle")
+                    Label("tabs.offline", systemImage: "arrow.down.circle")
                 }
                 .tag(AppState.Tab.offline)
         }
