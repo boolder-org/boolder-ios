@@ -13,7 +13,7 @@ import Combine
 class OfflineManager: ObservableObject {
     static let shared = OfflineManager()
     
-    private var requestedAreas: Set<Int>  // = Set([1,4,5,6,7])
+    private var requestedAreasIds: Set<Int>  // = Set([1,4,5,6,7])
     {
         get {
             guard let data = UserDefaults.standard.data(forKey: "mySet"),
@@ -35,17 +35,17 @@ class OfflineManager: ObservableObject {
         offlineAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            OfflineArea(areaId: area.id, status: requestedAreas.contains(area.id) ? .requested : .initial)
+            OfflineArea(areaId: area.id, status: requestedAreasIds.contains(area.id) ? .requested : .initial)
         }
     }
     
     func requestArea(areaId: Int) {
-        requestedAreas.insert(areaId)
+        requestedAreasIds.insert(areaId)
     }
     
     func start() {
         offlineAreas.forEach { offlineArea in
-            if requestedAreas.contains(offlineArea.areaId) {
+            if requestedAreasIds.contains(offlineArea.areaId) {
                 // TODO: handle case when area is already available
                 offlineArea.download()
                 
