@@ -90,6 +90,10 @@ struct Problem : Identifiable {
         line?.photo()
     }
     
+    var mainTopoId: Int? {
+        line?.topoId
+    }
+    
     func isFavorite() -> Bool {
         favorite() != nil
     }

@@ -18,27 +18,74 @@ struct TopoView: View {
     @State private var lineDrawPercentage: CGFloat = .zero
 //    @Binding var areaResourcesDownloaded: Bool
     
+    @State private var photoUrl: String?
+    
     @State private var presentTopoFullScreenView = false
     
     let tapSize: CGFloat = 44
+    
+    var photo: some View {
+        Group {
+            if let url = photoUrl {
+                AsyncImage(url: URL(string: url)) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } else if phase.error != nil {
+                        Text("Error")
+                    } else {
+                        ProgressView()
+                    }
+                }
+            }
+            else {
+                Image("nophoto")
+                    .font(.system(size: 60))
+                    .foregroundColor(Color.gray)
+            }
+        }
+    }
+    
+    struct Response: Codable {
+        var url: String
+    }
+    
+    func loadData() async {
+        guard let topoId = problem.mainTopoId else { return }
+        
+        guard let url = URL(string: "https://www.boolder.com/api/v1/topos/\(topoId)") else {
+            print("Invalid URL")
+            return
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+
+            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
+                self.photoUrl = decodedResponse.url
+//                print(photoUrl)
+            }
+        } catch {
+            print("Invalid data")
+        }
+    }
     
     var body: some View {
         ZStack(alignment: .center) {
             
             Group {
 //                if areaResourcesDownloaded {
-                    if let topoPhoto = problem.mainTopoPhoto {
+//                    if let topoPhoto = problem.mainTopoPhoto {
                         
                         Group {
-                            Image(uiImage: topoPhoto)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                            photo
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
-                                .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                    TopoFullScreenView(image: topoPhoto, problem: problem)
-                                }
+//                                .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+//                                    TopoFullScreenView(image: topoPhoto, problem: problem)
+//                                }
                             
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
@@ -64,12 +111,12 @@ struct TopoView: View {
                                 }
                             }
                         }
-                    }
-                    else {
-                        Image("nophoto")
-                            .font(.system(size: 60))
-                            .foregroundColor(Color.gray)
-                    }
+//                    }
+//                    else {
+//                        Image("nophoto")
+//                            .font(.system(size: 60))
+//                            .foregroundColor(Color.gray)
+//                    }
 //                }
 //                else {
 //                    ImageLoadingView(progress: $odrManager.downloadProgress)
@@ -112,6 +159,11 @@ struct TopoView: View {
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color("ImageBackground"))
         .onChange(of: problem) { _ in
+            photoUrl=nil
+            Task {
+                await loadData()
+            }
+            
             lineDrawPercentage = 0.0
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 animate { lineDrawPercentage = 1.0 }
@@ -124,6 +176,9 @@ struct TopoView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 animate { lineDrawPercentage = 1.0 }
             }
+        }
+        .task {
+            await loadData()
         }
     }
     
