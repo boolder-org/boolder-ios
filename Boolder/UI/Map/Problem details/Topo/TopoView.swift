@@ -41,7 +41,10 @@ struct TopoView: View {
     func loadData() async {
         photoStatus = .loading
         
-        guard let topoId = problem.mainTopoId else { return }
+        guard let topoId = problem.mainTopoId else {
+            photoStatus = .none
+            return
+        }
         
         guard let url = URL(string: "https://www.boolder.com/api/v1/topos/\(topoId)") else {
             print("Invalid URL")
@@ -112,6 +115,12 @@ struct TopoView: View {
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
+//                        .transition(
+//                                 .asymmetric(
+//                                    insertion: .opacity.animation(.default.delay(0.1)),
+//                                      removal: .opacity
+//                                 )
+//                            )
                 }
                 else if case .none = photoStatus {
                     Image("nophoto")
