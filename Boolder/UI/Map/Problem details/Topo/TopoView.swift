@@ -34,9 +34,7 @@ struct TopoView: View {
         case error
     }
     
-    struct Response: Codable {
-        var url: String
-    }
+    
     
     func loadData() async {
         photoStatus = .loading
@@ -46,27 +44,15 @@ struct TopoView: View {
             return
         }
         
-        guard let url = URL(string: "https://www.boolder.com/api/v1/topos/\(topoId)") else {
-            print("Invalid URL")
-            return
-        }
-        
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-
-            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                self.photoUrl = decodedResponse.url
-//                print(photoUrl)
-                
-                if let urlString = photoUrl, let url = URL(string: urlString) {
-                    if let image = try await ImageCache.shared.getImage(url: url) {
-                        self.photoStatus = .ready(image: image)
-                    }
-                    else {
-                        self.photoStatus = .error
-                    }
-                }
+            
+            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
+                self.photoStatus = .ready(image: image)
             }
+            else {
+                self.photoStatus = .error
+            }
+            
         } catch {
             print("Invalid data")
         }
