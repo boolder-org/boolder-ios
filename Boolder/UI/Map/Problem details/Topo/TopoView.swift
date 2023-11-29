@@ -18,33 +18,64 @@ struct TopoView: View {
     @State private var lineDrawPercentage: CGFloat = .zero
 //    @Binding var areaResourcesDownloaded: Bool
     
-    @State private var photoUrl: String?
+    @State private var photoUrl: String? // remove
+    @State private var photoImage: UIImage?  // remove
+    @State private var photoStatus: PhotoStatus = .initial
     
     @State private var presentTopoFullScreenView = false
     
     let tapSize: CGFloat = 44
     
+    enum PhotoStatus: Equatable {
+        case initial
+        case none
+        case loading
+        case ready(image: UIImage)
+        case error
+    }
+    
     var photo: some View {
         Group {
-            if let url = photoUrl {
-                AsyncImage(url: URL(string: url)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else if phase.error != nil {
-                        Text("Error")
-                    } else {
-                        ProgressView()
-                    }
-                }
-            }
-            else {
+            switch photoStatus {
+            case .initial:
+                EmptyView()
+            case .none:
                 Image("nophoto")
                     .font(.system(size: 60))
                     .foregroundColor(Color.gray)
+            case .loading:
+                ProgressView()
+            case .ready(let image):
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            case .error:
+                Text("error")
             }
         }
+//        Group {
+//            if let image = photoImage {
+//                Image(uiImage: image)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+////                CachedAsyncImage(url: URL(string: url)) { phase in
+////                    if let image = phase.image {
+////                        image
+////                            .resizable()
+////                            .aspectRatio(contentMode: .fit)
+////                    } else if phase.error != nil {
+////                        Text("Error")
+////                    } else {
+////                        ProgressView()
+////                    }
+////                }
+//            }
+//            else {
+//                Image("nophoto")
+//                    .font(.system(size: 60))
+//                    .foregroundColor(Color.gray)
+//            }
+//        }
     }
     
     struct Response: Codable {
@@ -52,6 +83,8 @@ struct TopoView: View {
     }
     
     func loadData() async {
+        photoStatus = .loading
+        
         guard let topoId = problem.mainTopoId else { return }
         
         guard let url = URL(string: "https://www.boolder.com/api/v1/topos/\(topoId)") else {
@@ -65,6 +98,15 @@ struct TopoView: View {
             if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
                 self.photoUrl = decodedResponse.url
 //                print(photoUrl)
+                
+                if let urlString = photoUrl, let url = URL(string: urlString) {
+                    if let image = try await ImageCache.shared.getImage(url: url) {
+                        self.photoStatus = .ready(image: image)
+                    }
+                    else {
+                        self.photoStatus = .error
+                    }
+                }
             }
         } catch {
             print("Invalid data")
@@ -158,24 +200,38 @@ struct TopoView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color("ImageBackground"))
-        .onChange(of: problem) { _ in
-            photoUrl=nil
+        .onChange(of: photoStatus) { value in
+            switch value {
+            case .ready(image: _):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animate { lineDrawPercentage = 1.0 }
+                }
+            default:
+                print("")
+            }
+        }
+        .onChange(of: problem.line?.topoId) { _ in
+            photoStatus = .initial
+//            photoUrl=nil
             Task {
                 await loadData()
             }
+        }
+        .onChange(of: problem) { _ in
+            
             
             lineDrawPercentage = 0.0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                animate { lineDrawPercentage = 1.0 }
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                animate { lineDrawPercentage = 1.0 }
+//            }
         }
         .onAppear {
             // hack to make the animation start after the view is properly loaded
             // I tried doing it synchronously by I couldn't make it work :grimacing:
             // I also tried to use a lower value for the delay but it doesn't work (no animation at all)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                animate { lineDrawPercentage = 1.0 }
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                animate { lineDrawPercentage = 1.0 }
+//            }
         }
         .task {
             await loadData()
