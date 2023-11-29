@@ -37,20 +37,20 @@ struct TopoView: View {
     var photo: some View {
         Group {
             switch photoStatus {
-            case .initial:
-                EmptyView()
+//            case .initial:
+//                EmptyView()
             case .none:
                 Image("nophoto")
                     .font(.system(size: 60))
                     .foregroundColor(Color.gray)
-            case .loading:
-                ProgressView()
+//            case .loading:
+//                ProgressView()
             case .ready(let image):
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-            case .error:
-                Text("error")
+            default:
+                EmptyView()
             }
         }
 //        Group {
@@ -117,9 +117,7 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             Group {
-//                if areaResourcesDownloaded {
-//                    if let topoPhoto = problem.mainTopoPhoto {
-                        
+                if case .ready = photoStatus  {
                         Group {
                             photo
                                 .onTapGesture {
@@ -153,17 +151,10 @@ struct TopoView: View {
                                 }
                             }
                         }
-//                    }
-//                    else {
-//                        Image("nophoto")
-//                            .font(.system(size: 60))
-//                            .foregroundColor(Color.gray)
-//                    }
-//                }
-//                else {
-//                    ImageLoadingView(progress: $odrManager.downloadProgress)
-//                        .aspectRatio(4/3, contentMode: .fill)
-//                }
+                }
+                else {
+                    ProgressView()
+                }
             }
             
             HStack {
