@@ -37,7 +37,13 @@ struct TopoView: View {
     
     
     func loadData() async {
-        photoStatus = .loading
+        if let localPhoto = problem.mainTopoPhoto {
+            self.photoStatus = .ready(image: localPhoto)
+            return
+        }
+        
+        
+        
         
         guard let topoId = problem.mainTopoId else {
             photoStatus = .none
@@ -45,6 +51,8 @@ struct TopoView: View {
         }
         
         do {
+            
+            photoStatus = .loading
             
             if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
                 self.photoStatus = .ready(image: image)
@@ -67,6 +75,12 @@ struct TopoView: View {
                             Image(uiImage: image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
+//                                .transition(
+//                                         .asymmetric(
+//                                            insertion: .identity,
+//                                            removal: .opacity.animation(.linear(duration: 0.3)) // to avoid flickering when switching between 2 different topos
+//                                         )
+//                                    )
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
@@ -174,7 +188,7 @@ struct TopoView: View {
                 }
             }
             else {
-                photoStatus = .initial
+//                photoStatus = .initial
                 lineDrawPercentage = 0.0
                 
                 Task {
