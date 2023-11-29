@@ -167,17 +167,29 @@ struct TopoView: View {
                 print("")
             }
         }
-        .onChange(of: problem.line?.topoId) { _ in
-            photoStatus = .initial
-//            photoUrl=nil
-            Task {
-                await loadData()
+        .onChange(of: problem) { [problem] newValue in
+//            print("old topoId: \(problem.mainTopoId)")
+//            print("new topoId: \(newValue.mainTopoId)")
+            
+            if problem.mainTopoId == newValue.mainTopoId {
+                lineDrawPercentage = 0.0
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animate { lineDrawPercentage = 1.0 }
+                }
+            }
+            else {
+                photoStatus = .initial
+                lineDrawPercentage = 0.0
+                
+                Task {
+                    await loadData()
+                }
             }
         }
+        
         .onChange(of: problem) { _ in
-            
-            
-            lineDrawPercentage = 0.0
+//            lineDrawPercentage = 0.0
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 //                animate { lineDrawPercentage = 1.0 }
 //            }
