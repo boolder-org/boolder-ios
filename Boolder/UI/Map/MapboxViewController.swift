@@ -33,6 +33,13 @@ class MapboxViewController: UIViewController {
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+        
+        // TEMPORARY TEST
+        mapView.mapboxMap.clearData { error in
+            print("mapbox data cleared")
+        }
+        
+        
         let configuration = Puck2DConfiguration.makeDefault(showBearing: true)
         mapView.location.options.puckType = .puck2D(configuration)
         

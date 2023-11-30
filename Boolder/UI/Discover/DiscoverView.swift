@@ -147,7 +147,7 @@ struct DiscoverView: View {
                                         
                                         ForEach(popularAreas) { area in
                                             NavigationLink {
-                                                AreaView(area: area, linkToMap: true, offlineArea: OfflineManager.shared.offlineArea(withId: area.id))
+                                                AreaView(area: area, linkToMap: true, offlineArea: OfflinePhotosManager.shared.offlineArea(withId: area.id))
                                             } label: {
                                                 AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
                                                     .padding(.leading, 8)
@@ -184,7 +184,7 @@ struct DiscoverView: View {
                             ForEach(areas) { area in
                                 
                                 NavigationLink {
-                                    AreaView(area: area, linkToMap: true, offlineArea: OfflineManager.shared.offlineArea(withId: area.id))
+                                    AreaView(area: area, linkToMap: true, offlineArea: OfflinePhotosManager.shared.offlineArea(withId: area.id))
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 6) {

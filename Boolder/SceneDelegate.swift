@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import MapboxMaps
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -25,8 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Get stores
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
-        let offlineManager = OfflineManager.shared
-        offlineManager.start()
+        OfflinePhotosManager.shared.start()
+        
+        MapOfflineManager.shared.removeTileRegionAndStylePack() // TEMPORARY TEST
+        MapOfflineManager.shared.downloadTileRegions()
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        

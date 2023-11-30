@@ -10,8 +10,8 @@ import Foundation
 import Combine
 
 
-class OfflineManager: ObservableObject {
-    static let shared = OfflineManager()
+class OfflinePhotosManager: ObservableObject {
+    static let shared = OfflinePhotosManager()
     
     @Published var requestedAreasIds: Set<Int> = Set([1,4,5,6,7])
 //    {

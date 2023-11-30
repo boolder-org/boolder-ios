@@ -10,7 +10,7 @@ import SwiftUI
 
 struct OfflineView: View {
 //    @State private var offlineAreas = [OfflineManager.OfflineArea]()
-    @StateObject private var offlineManager = OfflineManager.shared
+    @StateObject private var offlineManager = OfflinePhotosManager.shared
     
     var body: some View {
         NavigationView {

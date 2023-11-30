@@ -35,7 +35,7 @@ struct AreaView: View {
                     Text("Disponible en hors-ligne")
                     Spacer()
                     Button {
-                        OfflineManager.shared.requestArea(areaId: offlineArea.areaId)
+                        OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
                         offlineArea.download()
                     } label: {
                         Text(offlineArea.status.label)
