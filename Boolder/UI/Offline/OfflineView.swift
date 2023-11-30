@@ -35,14 +35,14 @@ struct OfflineAreaRow: View {
         HStack {
             Text(offlineArea.area.name)
             Spacer()
-            Button {
-                OfflineManager.shared.requestArea(areaId: offlineArea.areaId)
-                offlineArea.download()
-            } label: {
-                Text(offlineArea.status.label)
-            }
+            Text("\(packSize) Mo").foregroundColor(.gray)
             
         }
+    }
+    
+    var packSize: Int {
+        // TODO: improve estimation
+        Int(Double(offlineArea.area.problemsCount)*0.7*150.0/1000.0)
     }
 }
 
