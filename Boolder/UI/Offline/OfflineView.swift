@@ -15,8 +15,8 @@ struct OfflineView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(offlineManager.offlineAreas.indices, id: \.self) { index in
-                    OfflineAreaRow(offlineArea: offlineManager.offlineAreas[index])
+                ForEach(offlineManager.requestedAreas.indices, id: \.self) { index in
+                    OfflineAreaRow(offlineArea: offlineManager.requestedAreas[index])
                 }
             }
             .navigationTitle(Text("Offline"))

@@ -13,23 +13,28 @@ import Combine
 class OfflineManager: ObservableObject {
     static let shared = OfflineManager()
     
-    private var requestedAreasIds: Set<Int>  // = Set([1,4,5,6,7])
-    {
-        get {
-            guard let data = UserDefaults.standard.data(forKey: "mySet"),
-                  let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) else {
-                return []
-            }
-            return decodedSet
-        }
-        set {
-            if let encodedData = try? JSONEncoder().encode(newValue) {
-                UserDefaults.standard.set(encodedData, forKey: "mySet")
-            }
-        }
-    }
+    @Published var requestedAreasIds: Set<Int> = Set([1,4,5,6,7])
+//    {
+//        get {
+//            guard let data = UserDefaults.standard.data(forKey: "mySet"),
+//                  let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) else {
+//                return []
+//            }
+//            
+//            return decodedSet
+//        }
+//        set {
+//            if let encodedData = try? JSONEncoder().encode(newValue) {
+//                UserDefaults.standard.set(encodedData, forKey: "mySet")
+//            }
+//        }
+//    }
     
-    @Published var offlineAreas = [OfflineArea]()
+    private var offlineAreas = [OfflineArea]()
+    
+    @Published var requestedAreas = [OfflineArea]()
+    
+    var cancellable: Cancellable?
     
     private init() {
         offlineAreas = Area.all.sorted{
@@ -37,6 +42,10 @@ class OfflineManager: ObservableObject {
         }.map { area in
             OfflineArea(areaId: area.id, status: requestedAreasIds.contains(area.id) ? .requested : .initial)
         }
+        
+        cancellable = $requestedAreasIds
+            .map { $0.map{self.offlineArea(withId: $0)} }
+            .assign(to: \.requestedAreas, on: self)
     }
     
     func requestArea(areaId: Int) {
@@ -87,7 +96,9 @@ class OfflineArea: Identifiable, ObservableObject {
         odrManager.checkResources(tags: tags) { available in
             if available {
                 print("available area \(self.areaId)")
-                self.status = .downloaded
+                DispatchQueue.main.async{
+                    self.status = .downloaded
+                }
             }
             else {
                 print("downloading area \(self.areaId)")
@@ -98,7 +109,7 @@ class OfflineArea: Identifiable, ObservableObject {
                 self.cancellable = self.odrManager.$downloadProgress.receive(on: DispatchQueue.main)
                     .sink() { progress in
                         self.status = .downloading(progress: progress)
-                        print("progress = \(progress)")
+//                        print("progress = \(progress)")
                     }
                 
                 // FIXME: Make tag name DRY
@@ -131,7 +142,7 @@ class OfflineArea: Identifiable, ObservableObject {
         }
     }
     
-    enum DownloadStatus {
+    enum DownloadStatus: Equatable {
         case initial
         case requested
         case downloading(progress: Double)
