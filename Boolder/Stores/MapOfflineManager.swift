@@ -46,6 +46,7 @@ class MapOfflineManager : ObservableObject {
     private let centerCoord = CLLocationCoordinate2D(latitude: 48.3777465, longitude: 2.5303744)
     private let centerZoom: CGFloat = 12
     private let tileRegionId = "trois-pignons-region"
+    private let tileRegionId2 = "trois-pignons-region2"
     
     init() {
         let tileStore = TileStore.default
@@ -107,7 +108,7 @@ class MapOfflineManager : ObservableObject {
         // - - - - - - - -
         // 2. Create an offline region with tiles for the outdoors style
         let outdoorsOptions = TilesetDescriptorOptions(styleURI: styleURI,
-                                                       zoomRange: 12...16) // TODO: choose smaller range to limit download size
+                                                       zoomRange: 12...22) // TODO: choose smaller range to limit download size
         let outdoorsDescriptor = offlineManager.createTilesetDescriptor(for: outdoorsOptions)
         
         let buthiers = LineString(Ring(coordinates: [
@@ -120,43 +121,72 @@ class MapOfflineManager : ObservableObject {
             LocationCoordinate2D(latitude: 48.4077856, longitude: 2.6074266),
         ]))
         
-        // Load the tile region
-        let tileRegionLoadOptions = TileRegionLoadOptions(
-            geometry: .lineString(isatis),
-            descriptors: [outdoorsDescriptor],
-            metadata: ["tag": "my-outdoors-tile-region"])!
+        let cuisiniere = LineString(Ring(coordinates: [
+            LocationCoordinate2D(latitude: 48.4108184, longitude: 2.6101277),
+            LocationCoordinate2D(latitude: 48.409517, longitude: 2.6145689),
+        ]))
         
-        // Use the the default TileStore to load this region. You can create
-        // custom TileStores are are unique for a particular file path, i.e.
-        // there is only ever one TileStore per unique path.
-        dispatchGroup.enter()
-        let tileRegionDownload = tileStore.loadTileRegion(forId: tileRegionId,
-                                                          loadOptions: tileRegionLoadOptions) { [weak self] (tileProgress) in
-            // These closures do not get called from the main thread. In this case
-            // we're updating the UI, so it's important to dispatch to the main
-            // queue.
-            DispatchQueue.main.async {
-                self?.progress = Double(tileProgress.completedResourceCount / tileProgress.requiredResourceCount)
-                
-                print("\(tileProgress)")
-            }
-        } completion: { [weak self] result in
-            DispatchQueue.main.async {
-                defer {
-                    dispatchGroup.leave()
-                }
-                
-                switch result {
-                case let .success(tileRegion):
-                    print("tileRegion = \(tileRegion)")
+        var dls = [Cancelable]()
+        
+        
+        
+        Area.all.prefix(3).forEach { area in
+            let zone = LineString(Ring(coordinates: [
+                LocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon),
+                LocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
+            ]))
+            
+            
+            // Load the tile region
+            let tileRegionLoadOptions = TileRegionLoadOptions(
+                geometry: .lineString(zone),
+                descriptors: [outdoorsDescriptor],
+                metadata: ["tag": "tag-area-\(area.id)"])!
+            
+            // Use the the default TileStore to load this region. You can create
+            // custom TileStores are are unique for a particular file path, i.e.
+            // there is only ever one TileStore per unique path.
+            dispatchGroup.enter()
+            let tileRegionDownload = tileStore.loadTileRegion(forId: "tile-area-\(area.id)",
+                                                              loadOptions: tileRegionLoadOptions) { [weak self] (tileProgress) in
+                // These closures do not get called from the main thread. In this case
+                // we're updating the UI, so it's important to dispatch to the main
+                // queue.
+                DispatchQueue.main.async {
+                    self?.progress = Double(tileProgress.completedResourceCount / tileProgress.requiredResourceCount)
                     
-                case let .failure(error):
-                    print("tileRegion download Error = \(error)")
-                    downloadError = true
-                    self?.status = .error
+                    print("\(tileProgress)")
+                }
+            } completion: { [weak self] result in
+                DispatchQueue.main.async {
+                    defer {
+                        dispatchGroup.leave()
+                    }
+                    
+                    switch result {
+                    case let .success(tileRegion):
+                        print("tileRegion = \(tileRegion)")
+                        
+                    case let .failure(error):
+                        print("tileRegion download Error = \(error)")
+                        downloadError = true
+                        self?.status = .error
+                    }
                 }
             }
+            
+            dls.append(tileRegionDownload)
+            
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         // Wait for both downloads before moving to the next state
         dispatchGroup.notify(queue: .main) {
@@ -168,7 +198,7 @@ class MapOfflineManager : ObservableObject {
             self.status = .finished
         }
         
-        downloads = [stylePackDownload, tileRegionDownload]
+        downloads = [stylePackDownload] + dls
     }
     
     private func cancelDownloads() {

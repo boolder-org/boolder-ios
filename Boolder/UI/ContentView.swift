@@ -32,7 +32,7 @@ struct ContentView: View {
                 }
                 .tag(AppState.Tab.ticklist)
             
-            OfflineView()
+            OfflineDebugView()
                 .tabItem {
                     Label("tabs.offline", systemImage: "arrow.down.circle")
                 }

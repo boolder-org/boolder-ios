@@ -63,8 +63,8 @@
 		039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
 		039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
-		03BDAEA42B14D8350012F6F0 /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineView.swift */; };
-		03BDAEA52B14D8350012F6F0 /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineView.swift */; };
+		03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */; };
+		03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
 		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
 		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
@@ -183,7 +183,7 @@
 		0396CF322B1890E3006CA98A /* MapOfflineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOfflineManager.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
-		03BDAEA32B14D8350012F6F0 /* OfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineView.swift; sourceTree = "<group>"; };
+		03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDebugView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 		03BDAEA22B14D8190012F6F0 /* Offline */ = {
 			isa = PBXGroup;
 			children = (
-				03BDAEA32B14D8350012F6F0 /* OfflineView.swift */,
+				03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -701,7 +701,7 @@
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
 				038C2EF229201152006581CD /* MapContainerView.swift in Sources */,
-				03BDAEA52B14D8350012F6F0 /* OfflineView.swift in Sources */,
+				03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
 				0355A0D42B1745340007EE07 /* TopoImageCache.swift in Sources */,
@@ -768,7 +768,7 @@
 			files = (
 				033F70D429191755000DD3F4 /* FiltersView.swift in Sources */,
 				038C2EF129201152006581CD /* MapContainerView.swift in Sources */,
-				03BDAEA42B14D8350012F6F0 /* OfflineView.swift in Sources */,
+				03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,

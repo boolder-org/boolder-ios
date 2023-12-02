@@ -35,9 +35,9 @@ class MapboxViewController: UIViewController {
         
         
         // TEMPORARY TEST
-        mapView.mapboxMap.clearData { error in
-            print("mapbox data cleared")
-        }
+//        mapView.mapboxMap.clearData { error in
+//            print("mapbox data cleared")
+//        }
         
         
         let configuration = Puck2DConfiguration.makeDefault(showBearing: true)
@@ -62,6 +62,8 @@ class MapboxViewController: UIViewController {
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
             self.mapView.addGestureRecognizer(tapGesture)
+            
+            print("dataPath : \(myResourceOptions.dataPathURL)")
         }
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
