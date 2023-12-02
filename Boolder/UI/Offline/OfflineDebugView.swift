@@ -45,7 +45,6 @@ struct OfflineAreaRow: View {
             } label: {
                 Text(offlineArea.status.label)
             }
-            Text("\(packSize) Mo").foregroundColor(.gray)
             
         }
     }
