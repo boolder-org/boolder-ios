@@ -9,7 +9,6 @@
 "tabs.map" = "Carte";
 "tabs.discover" = "Découvrir";
 "tabs.ticklist" = "Mes voies";
-"tabs.offline" = "Hors ligne";
 
 // MARK: Map
 "map.circuit_start" = "Départ circuit";

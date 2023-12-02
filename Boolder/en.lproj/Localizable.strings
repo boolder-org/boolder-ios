@@ -9,7 +9,6 @@
 "tabs.map" = "Map";
 "tabs.discover" = "Discover";
 "tabs.ticklist" = "Tick List";
-"tabs.offline" = "Offline";
 
 // MARK: Map
 "map.circuit_start" = "Circuit start";
