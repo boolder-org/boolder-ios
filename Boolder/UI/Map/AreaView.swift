@@ -49,7 +49,7 @@ struct AreaView: View {
                 }
                 
                 HStack {
-                    Text("Télécharger en hors-ligne")
+                    Text("Télécharger les photos")
                     Spacer()
                     Button {
                         OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
