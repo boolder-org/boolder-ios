@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Get stores
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
-//        OfflinePhotosManager.shared.start()
+        OfflinePhotosManager.shared.start()
         
 //        MapOfflineManager.shared.removeTileRegionAndStylePack() // TEMPORARY TEST
 //        MapOfflineManager.shared.downloadTileRegions()
