@@ -48,16 +48,33 @@ struct AreaView: View {
                     poiRoutesList
                 }
                 
-                HStack {
-                    Text("Télécharger les photos")
-                    Spacer()
+                Section {
+                    
                     Button {
                         OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
                         offlineArea.download()
                     } label: {
-                        Text(offlineArea.status.label)
+                        HStack {
+//                            Image(systemName: "photo").foregroundColor(.primary)
+                            Text("Photos hors-ligne").foregroundColor(.primary)
+                            Spacer()
+                            
+                            if case .initial = offlineArea.status  {
+                                Image(systemName: "arrow.down.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 22).foregroundColor(.appGreen)
+                            }
+                            else if case .downloading(let progress) = offlineArea.status  {
+                                CircularProgressView(progress: progress).frame(height: 18)
+                            }
+                            else if case .downloaded = offlineArea.status  {
+                                Image(systemName: "checkmark.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(height: 24).foregroundColor(.appGreen)
+                            }
+                            else {
+                                Text(offlineArea.status.label)
+                            }
+                        }
+                        
+                        
                     }
-                    
                 }
                 
                 if(linkToMap) {
@@ -130,10 +147,10 @@ struct AreaView: View {
             Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
                 .font(.callout)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
-                .foregroundColor(Color.green)
+//                .foregroundColor(Color(UIColor.darkGray))
                 .background(Color.systemBackground)
                 .cornerRadius(32)
-                .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+                .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color(UIColor.darkGray), lineWidth: 1.0))
         }
     }
     

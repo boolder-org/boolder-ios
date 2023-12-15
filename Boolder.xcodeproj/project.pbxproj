@@ -65,6 +65,8 @@
 		039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
 		039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
+		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
+		03B910712B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
 		03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */; };
 		03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
@@ -184,6 +186,7 @@
 		0396CF322B1890E3006CA98A /* MapOfflineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOfflineManager.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
+		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDebugView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 				038C2EF62920142C006581CD /* Search */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 				031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */,
+				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -704,6 +708,7 @@
 				03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
+				03B910712B2C798200DE7B45 /* CircularProgressView.swift in Sources */,
 				0355A0D42B1745340007EE07 /* TopoImageCache.swift in Sources */,
 				038C2EF529201315006581CD /* SearchView.swift in Sources */,
 				039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */,
@@ -776,6 +781,7 @@
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,
 				37A483402559A73A00DBD526 /* LineView.swift in Sources */,
+				03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */,
 				0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
 				0355A0D32B1745340007EE07 /* TopoImageCache.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
