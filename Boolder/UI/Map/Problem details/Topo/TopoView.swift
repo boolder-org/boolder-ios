@@ -42,16 +42,12 @@ struct TopoView: View {
             return
         }
         
-        
-        
-        
         guard let topoId = problem.mainTopoId else {
             photoStatus = .none
             return
         }
         
         do {
-            
             photoStatus = .loading
             
             if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
@@ -62,7 +58,9 @@ struct TopoView: View {
             }
             
         } catch {
+            photoStatus = .error
             print("Invalid data")
+            print(error)
         }
     }
     
@@ -126,6 +124,32 @@ struct TopoView: View {
                     Image("nophoto")
                         .font(.system(size: 60))
                         .foregroundColor(Color.gray)
+                }
+                else if case .error = photoStatus {
+                    
+                    VStack(spacing: 16) {
+                        Text("Pas de connexion à Internet")
+                            .foregroundColor(Color.gray)
+                        
+                        Button {
+                            Task {
+                                await loadData()
+                            }
+                        } label: {
+                            
+                            Label {
+                                Text("Réessayer")
+                            } icon: {
+                                Image(systemName: "arrow.clockwise")
+                                //                                    .font(.system(size: 20))
+                            }
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(.gray.opacity(0.2))
+                            .clipShape(Capsule())
+                        }
+                        .foregroundColor(Color.gray)
+                    }
                 }
                 else {
                     EmptyView()
