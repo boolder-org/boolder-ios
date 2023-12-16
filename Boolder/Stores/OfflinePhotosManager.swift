@@ -134,7 +134,7 @@ class OfflineArea: Identifiable, ObservableObject {
                 }, onFailure: { error in
                     DispatchQueue.main.async{
                         print("On-demand resource error")
-                        self.status = .failed
+                        self.status = .initial
                     }
                     
                     // TODO: implement UI, log errors
