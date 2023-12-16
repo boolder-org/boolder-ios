@@ -22,6 +22,9 @@ struct AreaView: View {
 //    @State private var areaResourcesDownloaded = false
     @ObservedObject var offlineArea: OfflineArea // FIXME: make instantiation DRY
     
+    @State private var presentRemoveDownloadSheet = false
+    @State private var presentCancelDownloadSheet = false
+    
     @State private var circuits = [Circuit]()
     @State private var popularProblems = [Problem]()
     @State private var showChart = false
@@ -51,8 +54,16 @@ struct AreaView: View {
                 Section {
                     
                     Button {
-                        OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
-                        offlineArea.download()
+                        if case .initial = offlineArea.status  {
+                            OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
+                            offlineArea.download()
+                        }
+                        else if case .downloading(let progress) = offlineArea.status  {
+                            presentCancelDownloadSheet = true
+                        }
+                        else if case .downloaded = offlineArea.status  {
+                            presentRemoveDownloadSheet = true
+                        }
                     } label: {
                         HStack {
 //                            Image(systemName: "photo").foregroundColor(.primary)
@@ -72,8 +83,28 @@ struct AreaView: View {
                                 Text(offlineArea.status.label)
                             }
                         }
-                        
-                        
+                    }
+                    .actionSheet(isPresented: $presentRemoveDownloadSheet) {
+                        ActionSheet(
+                            title: Text("Supprimer les photos hors-ligne ?"),
+                            buttons: [
+                                .destructive(Text("Supprimer")) {
+                                    offlineArea.remove()
+                                },
+                                .cancel()
+                            ]
+                        )
+                    }
+                    .actionSheet(isPresented: $presentCancelDownloadSheet) {
+                        ActionSheet(
+                            title: Text("Annuler téléchargement ?"),
+                            buttons: [
+                                .destructive(Text("Annuler téléchargement")) {
+                                    offlineArea.cancel()
+                                },
+                                .cancel() // TODO: wording?
+                            ]
+                        )
                     }
                 }
                 

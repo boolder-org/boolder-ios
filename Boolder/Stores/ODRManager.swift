@@ -48,8 +48,12 @@ class ODRManager : ObservableObject {
     }
     
     func stop() {
-        print("stop")
         odrRequest?.endAccessingResources()
+        cancellable = nil
+    }
+    
+    func cancel() {
+        odrRequest?.progress.cancel()
         cancellable = nil
     }
     

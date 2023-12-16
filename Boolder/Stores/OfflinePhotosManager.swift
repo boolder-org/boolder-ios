@@ -90,6 +90,17 @@ class OfflineArea: Identifiable, ObservableObject {
         Area.load(id: areaId)!
     }
     
+    func remove() {
+        odrManager.stop()
+        status = .initial
+    }
+    
+    func cancel() {
+        // TODO: what if download is already finished?
+        odrManager.cancel()
+        status = .initial
+    }
+    
     func download() {
         let tags = Set(["area-\(areaId)"])
         
