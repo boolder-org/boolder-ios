@@ -27,9 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
         OfflinePhotosManager.shared.start()
-        
-//        MapOfflineManager.shared.removeTileRegionAndStylePack() // TEMPORARY TEST
-//        MapOfflineManager.shared.downloadTileRegions()
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        

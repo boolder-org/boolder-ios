@@ -62,8 +62,6 @@ class MapboxViewController: UIViewController {
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
             self.mapView.addGestureRecognizer(tapGesture)
-            
-            print("dataPath : \(myResourceOptions.dataPathURL)")
         }
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
