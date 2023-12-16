@@ -82,9 +82,16 @@ struct TopoView: View {
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
-//                                .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-//                                    TopoFullScreenView(image: topoPhoto, problem: problem)
-//                                }
+                                .modify {
+                                    if case .ready(let image) = photoStatus  {
+                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                            TopoFullScreenView(image: image, problem: problem)
+                                        }
+                                    }
+                                    else {
+                                        $0
+                                    }
+                                }
                             
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
