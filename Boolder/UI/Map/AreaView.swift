@@ -34,6 +34,7 @@ struct OfflineRowView : View {
         let _ = Self._printChanges()
         Button {
             if case .initial = offlineArea.status  {
+                // FIXME: refactor
                 OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
                 offlineArea.download()
             }
