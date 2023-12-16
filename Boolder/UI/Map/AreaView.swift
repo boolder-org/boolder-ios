@@ -9,6 +9,63 @@
 import SwiftUI
 import Charts
 
+// we use a separate view to avoid redrawing the entire view and make the actionsheet unresponsive
+struct OfflineRowView : View {
+    let area: Area
+    
+    @ObservedObject var offlineArea: OfflineArea
+    @Binding var presentRemoveDownloadSheet: Bool
+    @Binding var presentCancelDownloadSheet: Bool
+    
+    init(area: Area, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
+        self.area = area
+        self.offlineArea = OfflinePhotosManager.shared.offlineArea(withId: area.id)
+        self._presentRemoveDownloadSheet = presentRemoveDownloadSheet
+        self._presentCancelDownloadSheet = presentCancelDownloadSheet
+    }
+    
+//    init(presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
+//        self.offlineArea = OfflinePhotosManager.shared.offlineArea(withId: area.id)
+//        self.presentRemoveDownloadSheet = .constant(true)
+//        self.presentCancelDownloadSheet = .constant(true)
+//    }
+    
+    var body: some View {
+        let _ = Self._printChanges()
+        Button {
+            if case .initial = offlineArea.status  {
+                OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
+                offlineArea.download()
+            }
+            else if case .downloading(_) = offlineArea.status  {
+                presentCancelDownloadSheet = true
+            }
+            else if case .downloaded = offlineArea.status  {
+                presentRemoveDownloadSheet = true
+            }
+        } label: {
+            HStack {
+//                            Image(systemName: "photo").foregroundColor(.primary)
+                Text("Photos hors-ligne").foregroundColor(.primary)
+                Spacer()
+                
+                if case .initial = offlineArea.status  {
+                    Image(systemName: "arrow.down.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 22).foregroundColor(.appGreen)
+                }
+                else if case .downloading(let progress) = offlineArea.status  {
+                    CircularProgressView(progress: progress).frame(height: 18)
+                }
+                else if case .downloaded = offlineArea.status  {
+                    Image(systemName: "checkmark.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(height: 24).foregroundColor(.appGreen)
+                }
+                else {
+                    Text(offlineArea.status.label)
+                }
+            }
+        }
+    }
+}
+
 struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) var openURL
@@ -20,7 +77,7 @@ struct AreaView: View {
 //    @ObservedObject private var odrManager = ODRManager()
 //    @State private var offlineMode = false
 //    @State private var areaResourcesDownloaded = false
-    @ObservedObject var offlineArea: OfflineArea // FIXME: make instantiation DRY
+//    @ObservedObject var offlineArea: OfflineArea // FIXME: make instantiation DRY
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -32,6 +89,7 @@ struct AreaView: View {
     @State private var poiRoutes = [PoiRoute]()
     
     var body: some View {
+        let _ = Self._printChanges()
         ZStack {
             List {
                 if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {
@@ -42,6 +100,7 @@ struct AreaView: View {
                 }
                 
                 problems
+                    
                 
                 if(circuits.count > 0) {
                     circuitsList
@@ -53,59 +112,35 @@ struct AreaView: View {
                 
                 Section {
                     
-                    Button {
-                        if case .initial = offlineArea.status  {
-                            OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
-                            offlineArea.download()
-                        }
-                        else if case .downloading(let progress) = offlineArea.status  {
-                            presentCancelDownloadSheet = true
-                        }
-                        else if case .downloaded = offlineArea.status  {
-                            presentRemoveDownloadSheet = true
-                        }
-                    } label: {
-                        HStack {
-//                            Image(systemName: "photo").foregroundColor(.primary)
-                            Text("Photos hors-ligne").foregroundColor(.primary)
-                            Spacer()
-                            
-                            if case .initial = offlineArea.status  {
-                                Image(systemName: "arrow.down.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 22).foregroundColor(.appGreen)
-                            }
-                            else if case .downloading(let progress) = offlineArea.status  {
-                                CircularProgressView(progress: progress).frame(height: 18)
-                            }
-                            else if case .downloaded = offlineArea.status  {
-                                Image(systemName: "checkmark.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(height: 24).foregroundColor(.appGreen)
-                            }
-                            else {
-                                Text(offlineArea.status.label)
+                    OfflineRowView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                        .background {
+                            EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
+                                ActionSheet(
+                                    title: Text("Supprimer les photos hors-ligne ?"),
+                                    buttons: [
+                                        .destructive(Text("Supprimer")) {
+                                            OfflinePhotosManager.shared.offlineArea(withId: area.id).remove()
+                                        },
+                                        .cancel()
+                                    ]
+                                )
                             }
                         }
-                    }
-                    .actionSheet(isPresented: $presentRemoveDownloadSheet) {
-                        ActionSheet(
-                            title: Text("Supprimer les photos hors-ligne ?"),
-                            buttons: [
-                                .destructive(Text("Supprimer")) {
-                                    offlineArea.remove()
-                                },
-                                .cancel()
-                            ]
-                        )
-                    }
-                    .actionSheet(isPresented: $presentCancelDownloadSheet) {
-                        ActionSheet(
-                            title: Text("Annuler téléchargement ?"),
-                            buttons: [
-                                .destructive(Text("Annuler téléchargement")) {
-                                    offlineArea.cancel()
-                                },
-                                .cancel() // TODO: wording?
-                            ]
-                        )
-                    }
+                        .background {
+                            EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
+                                ActionSheet(
+                                    title: Text("Annuler téléchargement ?"),
+                                    buttons: [
+                                        .destructive(Text("Annuler téléchargement")) {
+                                            OfflinePhotosManager.shared.offlineArea(withId: area.id).cancel()
+                                        },
+                                        .cancel() // TODO: wording?
+                                    ]
+                                )
+                            }
+                        }
+                    
+                    
                 }
                 
                 if(linkToMap) {

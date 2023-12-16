@@ -30,7 +30,7 @@ struct TopAreasBeginnerView: View {
                     ForEach(areasForBeginners) { area in
                         
                         NavigationLink {
-                            AreaView(area: area, linkToMap: true, offlineArea: OfflinePhotosManager.shared.offlineArea(withId: area.id))
+                            AreaView(area: area, linkToMap: true)
                         } label: {
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
