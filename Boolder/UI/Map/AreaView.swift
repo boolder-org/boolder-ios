@@ -51,13 +51,13 @@ struct OfflineRowView : View {
                 Spacer()
                 
                 if case .initial = offlineArea.status  {
-                    Image(systemName: "arrow.down.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 22).foregroundColor(.appGreen)
+                    Image(systemName: "arrow.down.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 20).foregroundColor(.appGreen)
                 }
                 else if case .downloading(let progress) = offlineArea.status  {
                     CircularProgressView(progress: progress).frame(height: 18)
                 }
                 else if case .downloaded = offlineArea.status  {
-                    Image(systemName: "checkmark.circle.fill").resizable().aspectRatio(contentMode: .fit).frame(height: 24).foregroundColor(.appGreen)
+                    Image(systemName: "checkmark.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 22).foregroundColor(.appGreen)
                 }
                 else {
                     Text(offlineArea.status.label)

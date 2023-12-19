@@ -54,8 +54,13 @@ struct AreaToolbarView: View {
                                 .foregroundColor(.primary)
                                 .lineLimit(1)
                                 .truncationMode(.head)
+                            
+                            if let area = mapState.selectedArea {
                                 
-                            Image(systemName: "info.circle")
+                                AreaLoadingStatus(area: area)
+                            }
+                                
+//                            Image(systemName: "info.circle")
                         }
                         .padding(.vertical, 10)
                     }
