@@ -24,12 +24,6 @@ struct OfflineRowView : View {
         self._presentCancelDownloadSheet = presentCancelDownloadSheet
     }
     
-//    init(presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
-//        self.offlineArea = OfflinePhotosManager.shared.offlineArea(withId: area.id)
-//        self.presentRemoveDownloadSheet = .constant(true)
-//        self.presentCancelDownloadSheet = .constant(true)
-//    }
-    
     var body: some View {
         let _ = Self._printChanges()
         Button {
@@ -46,22 +40,25 @@ struct OfflineRowView : View {
             }
         } label: {
             HStack {
-//                            Image(systemName: "photo").foregroundColor(.primary)
-                Text("Photos hors-ligne").foregroundColor(.primary)
                 Spacer()
                 
                 if case .initial = offlineArea.status  {
-                    Image(systemName: "arrow.down.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 20).foregroundColor(.appGreen)
+                    Image(systemName: "arrow.down.circle").font(.title2)
+                    Text("Télécharger les photos")
                 }
                 else if case .downloading(let progress) = offlineArea.status  {
                     CircularProgressView(progress: progress).frame(height: 18)
+                    Text("Téléchargement")
                 }
                 else if case .downloaded = offlineArea.status  {
-                    Image(systemName: "checkmark.circle").resizable().aspectRatio(contentMode: .fit).frame(height: 22).foregroundColor(.appGreen)
+                    Image(systemName: "checkmark.circle").font(.title2)
+                    Text("Photos téléchargées")
                 }
                 else {
                     Text(offlineArea.status.label)
                 }
+                
+                Spacer()
             }
         }
     }
