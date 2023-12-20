@@ -9,61 +9,6 @@
 import SwiftUI
 import Charts
 
-// we use a separate view to avoid redrawing the entire view and make the actionsheet unresponsive
-struct OfflineRowView : View {
-    let area: Area
-    
-    @ObservedObject var offlineArea: OfflineArea
-    @Binding var presentRemoveDownloadSheet: Bool
-    @Binding var presentCancelDownloadSheet: Bool
-    
-    init(area: Area, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
-        self.area = area
-        self.offlineArea = OfflinePhotosManager.shared.offlineArea(withId: area.id)
-        self._presentRemoveDownloadSheet = presentRemoveDownloadSheet
-        self._presentCancelDownloadSheet = presentCancelDownloadSheet
-    }
-    
-    var body: some View {
-        let _ = Self._printChanges()
-        Button {
-            if case .initial = offlineArea.status  {
-                // FIXME: refactor
-                OfflinePhotosManager.shared.requestArea(areaId: offlineArea.areaId)
-                offlineArea.download()
-            }
-            else if case .downloading(_) = offlineArea.status  {
-                presentCancelDownloadSheet = true
-            }
-            else if case .downloaded = offlineArea.status  {
-                presentRemoveDownloadSheet = true
-            }
-        } label: {
-            HStack {
-                Spacer()
-                
-                if case .initial = offlineArea.status  {
-                    Image(systemName: "arrow.down.circle").font(.title2)
-                    Text("Télécharger les photos")
-                }
-                else if case .downloading(let progress) = offlineArea.status  {
-                    CircularProgressView(progress: progress).frame(height: 18)
-                    Text("Téléchargement")
-                }
-                else if case .downloaded = offlineArea.status  {
-                    Image(systemName: "checkmark.circle").font(.title2)
-                    Text("Photos téléchargées")
-                }
-                else {
-                    Text(offlineArea.status.label)
-                }
-                
-                Spacer()
-            }
-        }
-    }
-}
-
 struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) var openURL
@@ -71,11 +16,6 @@ struct AreaView: View {
     let area: Area
     @EnvironmentObject var appState: AppState
     let linkToMap: Bool
-    
-//    @ObservedObject private var odrManager = ODRManager()
-//    @State private var offlineMode = false
-//    @State private var areaResourcesDownloaded = false
-//    @ObservedObject var offlineArea: OfflineArea // FIXME: make instantiation DRY
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -87,7 +27,6 @@ struct AreaView: View {
     @State private var poiRoutes = [PoiRoute]()
     
     var body: some View {
-        let _ = Self._printChanges()
         ZStack {
             List {
                 if area.tags.count > 0 || area.descriptionFr != nil || area.warningFr != nil {
@@ -110,7 +49,7 @@ struct AreaView: View {
                 
                 Section {
                     
-                    OfflineRowView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                    DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
                         .background {
                             EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
                                 ActionSheet(
