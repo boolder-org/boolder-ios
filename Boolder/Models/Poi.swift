@@ -67,7 +67,7 @@ extension Poi {
             .order(id.asc)
         
         do {
-            return try SqliteStore.shared.db.prepare(query).map { poi in
+            return try SqliteStore.shared.db.prepareRowIterator(query).map { poi in
                 Poi.load(id: poi[id])
             }.compactMap{$0}
         }
@@ -83,7 +83,7 @@ extension Poi {
             .order(PoiRoute.distanceInMinutes.asc)
         
         do {
-            return try SqliteStore.shared.db.prepare(query).map { poiRoute in
+            return try SqliteStore.shared.db.prepareRowIterator(query).map { poiRoute in
                 PoiRoute.load(id: poiRoute[PoiRoute.id])
             }.compactMap{$0}
         }

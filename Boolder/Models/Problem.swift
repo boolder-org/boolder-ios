@@ -175,7 +175,7 @@ extension Problem {
             .limit(20)
         
         do {
-            return try SqliteStore.shared.db.prepare(query).map { p in
+            return try SqliteStore.shared.db.prepareRowIterator(query).map { p in
                 Problem.load(id: p[id])
             }.compactMap{$0}
         }
@@ -210,7 +210,7 @@ extension Problem {
             .filter(Line.topoId == l.topoId)
 
         do {
-            let problemsOnSameTopo = try SqliteStore.shared.db.prepare(lines).map { l in
+            let problemsOnSameTopo = try SqliteStore.shared.db.prepareRowIterator(lines).map { l in
                 Self.load(id: l[Line.problemId])
             }
             
@@ -231,7 +231,7 @@ extension Problem {
             .filter(Problem.parentId == id)
 
         do {
-            return try SqliteStore.shared.db.prepare(problems).map { problem in
+            return try SqliteStore.shared.db.prepareRowIterator(problems).map { problem in
                 Self.load(id: problem[Problem.id])
             }.compactMap{$0}
         }

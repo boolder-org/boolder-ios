@@ -215,7 +215,7 @@ extension Circuit {
             .order(Problem.circuitNumber.asc)
         
         do {
-            return try SqliteStore.shared.db.prepare(problems).map { problem in
+            return try SqliteStore.shared.db.prepareRowIterator(problems).map { problem in
                 Problem.load(id: problem[Problem.id])
             }.compactMap{$0}.sorted(by: { (lhs, rhs) -> Bool in
                 if lhs.circuitNumber == rhs.circuitNumber {
