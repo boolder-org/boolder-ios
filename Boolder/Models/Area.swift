@@ -139,7 +139,7 @@ extension Area {
         let query = Table("areas").order(problemsCount.desc)
         
         do {
-            return try SqliteStore.shared.db.prepareRowIterator(query).map { area in
+            return try SqliteStore.shared.db.prepare(query).map { area in
                 Area.load(id: area[id])
             }.compactMap{$0}
         }
@@ -156,7 +156,7 @@ extension Area {
             .limit(10)
         
         do {
-            return try SqliteStore.shared.db.prepareRowIterator(query).map { a in
+            return try SqliteStore.shared.db.prepare(query).map { a in
                 Area.load(id: a[id])
             }.compactMap{$0}
         }
@@ -172,7 +172,7 @@ extension Area {
             .order(Problem.grade.desc, Problem.popularity.desc)
         
         do {
-            return try SqliteStore.shared.db.prepareRowIterator(problems).map { problem in
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
                 Problem.load(id: problem[Problem.id])
             }.compactMap{$0}
         }
@@ -193,7 +193,7 @@ extension Area {
             .order(Circuit.averageGrade.asc)
 
         do {
-            return try SqliteStore.shared.db.prepareRowIterator(query).map { circuit in
+            return try SqliteStore.shared.db.prepare(query).map { circuit in
                 Circuit.load(id: circuit[Circuit.id])
             }.compactMap{$0}
         }
@@ -209,7 +209,7 @@ extension Area {
         let query = poiRoutes.filter(PoiRoute.areaId == self.id)
         
         do {
-            return try SqliteStore.shared.db.prepareRowIterator(query).map { poiRoute in
+            return try SqliteStore.shared.db.prepare(query).map { poiRoute in
                 PoiRoute.load(id: poiRoute[PoiRoute.id])
             }.compactMap{$0}
         }
