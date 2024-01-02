@@ -10,8 +10,6 @@ import UIKit
 import SwiftUI
 
 extension UIColor {
-    static let appGreen = UIColor(named: "AppGreen")!
-    
     func lighter(_ componentDelta: CGFloat = 0.1) -> UIColor {
         return makeColor(componentDelta: componentDelta)
     }
@@ -54,7 +52,6 @@ extension UIColor {
 }
 
 extension Color {
-    static let appGreen = Color(UIColor.appGreen)
     static let systemBackground = Color(UIColor.systemBackground)
     static let levelGreen = Color(UIColor(red: 5/255, green: 150/255, blue: 105/255, alpha: 0.8))
 }
