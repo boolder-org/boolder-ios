@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+// we use a separate view to avoid redrawing the entire view and make the actionsheet unresponsive
+// it probably won't be necessary anymore with iOS 17's @Observable
 struct AreaLoadingStatus: View {
     let area: Area
     
