@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftUI
-import MapboxMaps
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
