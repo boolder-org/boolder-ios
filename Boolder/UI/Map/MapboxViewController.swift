@@ -141,7 +141,7 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor.appGreen))
+        problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor(resource: .appGreen)))
         
         problemsLayer.circleSortKey = .expression(
             Exp(.switchCase) {
