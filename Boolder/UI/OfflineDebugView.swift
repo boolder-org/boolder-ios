@@ -9,32 +9,22 @@
 import SwiftUI
 
 struct OfflineDebugView: View {
-//    @State private var offlineAreas = [OfflineManager.OfflineArea]()
     @StateObject private var offlineManager = OfflinePhotosManager.shared
     
     var body: some View {
-        
-        
         List {
             ForEach(offlineManager.requestedAreas.indices, id: \.self) { index in
                 OfflineAreaRow(offlineArea: offlineManager.requestedAreas[index])
             }
         }
         .navigationTitle(Text("Offline"))
-        .onAppear {
-            //                offlineManager.start()
-        }
     }
-    
-    
-
 }
 
 struct OfflineAreaRow: View {
     @ObservedObject var offlineArea: OfflineArea
     
     var body: some View {
-        
         HStack {
             Text(offlineArea.area.name)
             Spacer()
@@ -45,13 +35,7 @@ struct OfflineAreaRow: View {
             } label: {
                 Text(offlineArea.status.label)
             }
-            
         }
-    }
-    
-    var packSize: Int {
-        // TODO: improve estimation
-        Int(Double(offlineArea.area.problemsCount)*0.7*150.0/1000.0)
     }
 }
 
