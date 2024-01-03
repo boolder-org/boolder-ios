@@ -50,12 +50,6 @@ struct TopoView: View {
         do {
             photoStatus = .loading
             
-//            if #available(iOS 17.0, *) {
-//                await PopoverTip.didTriggerControlEvent.donate()
-//            } else {
-//                // Fallback on earlier versions
-//            }
-            
             if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
                 self.photoStatus = .ready(image: image)
             }

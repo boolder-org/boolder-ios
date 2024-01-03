@@ -9,7 +9,6 @@
 import UIKit
 import SwiftUI
 import MapboxMaps
-import TipKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -28,14 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
         OfflinePhotosManager.shared.start()
-        
-        if #available(iOS 17.0, *) {
-            try? Tips.resetDatastore()
-            try? Tips.configure()
-            
-        } else {
-            // Fallback on earlier versions
-        }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        

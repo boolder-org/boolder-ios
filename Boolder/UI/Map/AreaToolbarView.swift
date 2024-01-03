@@ -7,9 +7,6 @@
 //
 
 import SwiftUI
-import TipKit
-
-
 
 struct AreaToolbarView: View {
     @ObservedObject var mapState: MapState
@@ -19,8 +16,6 @@ struct AreaToolbarView: View {
     
     @State private var showingAlertFavorite = false
     @State private var showingAlertTicked = false
-    
-//    var tip = PopoverTip.shared
     
     var body: some View {
         VStack {
@@ -64,18 +59,6 @@ struct AreaToolbarView: View {
                         }
                         .padding(.vertical, 10)
                     }
-//                    .modify {
-//                        if #available(iOS 17, *) {
-//                            $0.popoverTip(tip)
-//                                .onTapGesture {
-//                                    // Invalidate the tip when someone uses the feature.
-//                                    tip.invalidate(reason: .actionPerformed)
-//                                }
-//                        }
-//                        else {
-//                            $0
-//                        }
-//                    }
                     
                     Spacer()
                     
