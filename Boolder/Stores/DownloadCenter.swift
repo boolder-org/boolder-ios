@@ -22,7 +22,7 @@ class DownloadCenter: ObservableObject {
         allAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            AreaDownloader(areaId: area.id, status: settings.areaIds.contains(area.id) ? .requested : .initial) // FIXME: extract
+            AreaDownloader(areaId: area.id, status: settings.areaIds.contains(area.id) ? .requested : .initial)
         }
         
         cancellable = settings.$areaIds
@@ -39,7 +39,7 @@ class DownloadCenter: ObservableObject {
     func areaDownloader(id: Int) -> AreaDownloader {
         allAreas.first { areaDownloader in
             areaDownloader.id == id
-        }! // FIXME
+        }! // FIXME: use a dedicated error
     }
 }
 

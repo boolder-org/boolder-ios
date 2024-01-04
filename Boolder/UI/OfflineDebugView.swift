@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct OfflineDebugView: View {
-    @StateObject private var offlineManager = DownloadCenter.shared
+    @StateObject private var downloadCenter = DownloadCenter.shared
     
     var body: some View {
         List {
-            ForEach(offlineManager.requestedAreas.indices, id: \.self) { index in
-                AreaDowloadRow(areaDownloader: offlineManager.requestedAreas[index])
+            ForEach(downloadCenter.requestedAreas) { areaDownloader in
+                AreaDowloadRow(areaDownloader: areaDownloader)
             }
         }
         .navigationTitle(Text("Offline"))
