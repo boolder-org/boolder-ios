@@ -12,27 +12,27 @@ class DownloadSettings : ObservableObject {
     static let shared = DownloadSettings()
     
     // TODO: rename
-    @Published var downloadAreasIds: Set<Int> {
+    @Published var areaIds: Set<Int> {
         didSet {
             saveToDisk()
         }
     }
     
     private init() {
-        downloadAreasIds = Set()
+        areaIds = Set()
         loadFromDisk()
     }
     
     func addArea(areaId: Int) {
-        downloadAreasIds.insert(areaId)
+        areaIds.insert(areaId)
     }
     
     func removeArea(areaId: Int) {
-        downloadAreasIds.remove(areaId)
+        areaIds.remove(areaId)
     }
     
     private func saveToDisk() {
-        if let encodedData = try? JSONEncoder().encode(downloadAreasIds) {
+        if let encodedData = try? JSONEncoder().encode(areaIds) {
             UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
         }
     }
@@ -40,9 +40,9 @@ class DownloadSettings : ObservableObject {
     private func loadFromDisk() {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
             let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) {
-            downloadAreasIds = decodedSet
+            areaIds = decodedSet
         }
     }
     
-    let userDefaultsKey = "offline/requestedAreasIds"
+    let userDefaultsKey = "offline-download/areasIds"
 }

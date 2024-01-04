@@ -9,12 +9,10 @@
 import Foundation
 import Combine
 
-// we use separate objects to avoid redrawing the entire swiftui views everytime
-// it probably won't be necessary anymore with iOS 17's @Observable
 class DownloadCenter: ObservableObject {
     static let shared = DownloadCenter()
     
-    private var offlineAreas = [AreaDownloader]()
+    private var areas = [AreaDownloader]()
     @Published var requestedAreas = [AreaDownloader]()
     
     var cancellable: Cancellable?
@@ -22,20 +20,20 @@ class DownloadCenter: ObservableObject {
     private init() {
         let settings = DownloadSettings.shared
         
-        offlineAreas = Area.all.sorted{
+        areas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            AreaDownloader(areaId: area.id, status: settings.downloadAreasIds.contains(area.id) ? .requested : .initial) // FIXME: extract
+            AreaDownloader(areaId: area.id, status: settings.areaIds.contains(area.id) ? .requested : .initial) // FIXME: extract
         }
         
-        cancellable = settings.$downloadAreasIds
-            .map { $0.map{self.offlineArea(withId: $0)} }
+        cancellable = settings.$areaIds
+            .map { $0.map{self.areaDownloader(withId: $0)} }
             .assign(to: \.requestedAreas, on: self)
     }
     
     func start() {
-        offlineAreas.forEach { offlineArea in
-            if DownloadSettings.shared.downloadAreasIds.contains(offlineArea.areaId) {
+        areas.forEach { offlineArea in
+            if DownloadSettings.shared.areaIds.contains(offlineArea.areaId) {
                 // TODO: handle case when area is already available
                 offlineArea.start()
                 
@@ -43,13 +41,15 @@ class DownloadCenter: ObservableObject {
         }
     }
     
-    func offlineArea(withId id: Int) -> AreaDownloader {
-        offlineAreas.first { offlineArea in
+    func areaDownloader(withId id: Int) -> AreaDownloader {
+        areas.first { offlineArea in
             offlineArea.id == id
         }! // FIXME
     }
 }
 
+// we use separate objects to avoid redrawing the entire swiftui views everytime
+// it probably won't be necessary anymore with iOS 17's @Observable
 class AreaDownloader: Identifiable, ObservableObject {
     let areaId: Int
     @Published var status: DownloadStatus
@@ -59,8 +59,6 @@ class AreaDownloader: Identifiable, ObservableObject {
     init(areaId: Int, status: DownloadStatus) {
         self.areaId = areaId
         self.status = status
-        
-//        odrManager.downloadProgress
     }
     
     var id: Int {
@@ -71,7 +69,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         Area.load(id: areaId)!
     }
     
-    func download() {
+    func requestAndStartDownload() {
         DownloadSettings.shared.addArea(areaId: areaId)
         start()
     }

@@ -19,7 +19,7 @@ struct DownloadAreaButtonView : View {
     
     init(area: Area, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
         self.area = area
-        self.offlineArea = DownloadCenter.shared.offlineArea(withId: area.id)
+        self.offlineArea = DownloadCenter.shared.areaDownloader(withId: area.id)
         self._presentRemoveDownloadSheet = presentRemoveDownloadSheet
         self._presentCancelDownloadSheet = presentCancelDownloadSheet
     }
@@ -27,7 +27,7 @@ struct DownloadAreaButtonView : View {
     var body: some View {
         Button {
             if case .initial = offlineArea.status  {
-                offlineArea.download()
+                offlineArea.requestAndStartDownload()
             }
             else if case .downloading(_) = offlineArea.status  {
                 presentCancelDownloadSheet = true

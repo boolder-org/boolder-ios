@@ -17,7 +17,7 @@ struct AreaLoadingStatus: View {
     
     init(area: Area) {
         self.area = area
-        self.offlineArea = DownloadCenter.shared.offlineArea(withId: area.id)
+        self.offlineArea = DownloadCenter.shared.areaDownloader(withId: area.id)
     }
     
     var body: some View {

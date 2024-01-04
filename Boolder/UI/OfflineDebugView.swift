@@ -30,7 +30,7 @@ struct OfflineAreaRow: View {
             Spacer()
             
             Button {
-                offlineArea.download()
+                offlineArea.requestAndStartDownload()
             } label: {
                 Text(offlineArea.status.label)
             }
