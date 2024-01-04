@@ -374,9 +374,9 @@
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
-				03147EE12B46B581005771C3 /* DownloadSettings.swift */,
 				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
 				03147EE42B470F59005771C3 /* AreaDownloader.swift */,
+				03147EE12B46B581005771C3 /* DownloadSettings.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";

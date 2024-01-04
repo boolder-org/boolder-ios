@@ -11,7 +11,6 @@ import Foundation
 class DownloadSettings : ObservableObject {
     static let shared = DownloadSettings()
     
-    // TODO: rename
     @Published var areaIds: Set<Int> {
         didSet {
             saveToDisk()
@@ -44,5 +43,5 @@ class DownloadSettings : ObservableObject {
         }
     }
     
-    let userDefaultsKey = "offline-download/areasIds"
+    let userDefaultsKey = "offline-photos/areasIds"
 }
