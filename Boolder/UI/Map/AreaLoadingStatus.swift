@@ -13,11 +13,11 @@ import SwiftUI
 struct AreaLoadingStatus: View {
     let area: Area
     
-    @ObservedObject var offlineArea: OfflineArea
+    @ObservedObject var offlineArea: AreaDownloader
     
     init(area: Area) {
         self.area = area
-        self.offlineArea = AreaPhotosDownloader.shared.offlineArea(withId: area.id)
+        self.offlineArea = DownloadCenter.shared.offlineArea(withId: area.id)
     }
     
     var body: some View {

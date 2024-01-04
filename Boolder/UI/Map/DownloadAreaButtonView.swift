@@ -13,13 +13,13 @@ import SwiftUI
 struct DownloadAreaButtonView : View {
     let area: Area
     
-    @ObservedObject var offlineArea: OfflineArea
+    @ObservedObject var offlineArea: AreaDownloader
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
     
     init(area: Area, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
         self.area = area
-        self.offlineArea = AreaPhotosDownloader.shared.offlineArea(withId: area.id)
+        self.offlineArea = DownloadCenter.shared.offlineArea(withId: area.id)
         self._presentRemoveDownloadSheet = presentRemoveDownloadSheet
         self._presentCancelDownloadSheet = presentCancelDownloadSheet
     }
@@ -27,7 +27,7 @@ struct DownloadAreaButtonView : View {
     var body: some View {
         Button {
             if case .initial = offlineArea.status  {
-                AreaPhotosDownloader.shared.download(areaId: area.id)
+                offlineArea.download()
             }
             else if case .downloading(_) = offlineArea.status  {
                 presentCancelDownloadSheet = true

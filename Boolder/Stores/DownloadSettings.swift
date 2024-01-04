@@ -8,8 +8,8 @@
 
 import Foundation
 
-class AreaDownloadSettings : ObservableObject {
-    static let shared = AreaDownloadSettings()
+class DownloadSettings : ObservableObject {
+    static let shared = DownloadSettings()
     
     // TODO: rename
     @Published var downloadAreasIds: Set<Int> {

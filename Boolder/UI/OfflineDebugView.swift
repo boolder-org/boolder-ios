@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct OfflineDebugView: View {
-    @StateObject private var offlineManager = AreaPhotosDownloader.shared
+    @StateObject private var offlineManager = DownloadCenter.shared
     
     var body: some View {
         List {
@@ -22,7 +22,7 @@ struct OfflineDebugView: View {
 }
 
 struct OfflineAreaRow: View {
-    @ObservedObject var offlineArea: OfflineArea
+    @ObservedObject var offlineArea: AreaDownloader
     
     var body: some View {
         HStack {
@@ -30,7 +30,7 @@ struct OfflineAreaRow: View {
             Spacer()
             
             Button {
-                AreaPhotosDownloader.shared.download(areaId: offlineArea.areaId)
+                offlineArea.download()
             } label: {
                 Text(offlineArea.status.label)
             }

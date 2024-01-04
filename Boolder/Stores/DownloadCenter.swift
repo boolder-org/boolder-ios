@@ -9,21 +9,23 @@
 import Foundation
 import Combine
 
-class AreaPhotosDownloader: ObservableObject {
-    static let shared = AreaPhotosDownloader()
+// we use separate objects to avoid redrawing the entire swiftui views everytime
+// it probably won't be necessary anymore with iOS 17's @Observable
+class DownloadCenter: ObservableObject {
+    static let shared = DownloadCenter()
     
-    private var offlineAreas = [OfflineArea]()
-    @Published var requestedAreas = [OfflineArea]()
+    private var offlineAreas = [AreaDownloader]()
+    @Published var requestedAreas = [AreaDownloader]()
     
     var cancellable: Cancellable?
     
     private init() {
-        let settings = AreaDownloadSettings.shared
+        let settings = DownloadSettings.shared
         
         offlineAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            OfflineArea(areaId: area.id, status: settings.downloadAreasIds.contains(area.id) ? .requested : .initial) // FIXME: extract
+            AreaDownloader(areaId: area.id, status: settings.downloadAreasIds.contains(area.id) ? .requested : .initial) // FIXME: extract
         }
         
         cancellable = settings.$downloadAreasIds
@@ -31,40 +33,28 @@ class AreaPhotosDownloader: ObservableObject {
             .assign(to: \.requestedAreas, on: self)
     }
     
-    func download(areaId: Int) {
-        AreaDownloadSettings.shared.addArea(areaId: areaId)
-        offlineArea(withId: areaId).download()
-    }
-    
-    func remove(areaId: Int) {
-        AreaDownloadSettings.shared.removeArea(areaId: areaId)
-        // remove offline area
-    }
-    
     func start() {
         offlineAreas.forEach { offlineArea in
-            if AreaDownloadSettings.shared.downloadAreasIds.contains(offlineArea.areaId) {
+            if DownloadSettings.shared.downloadAreasIds.contains(offlineArea.areaId) {
                 // TODO: handle case when area is already available
-                offlineArea.download()
+                offlineArea.start()
                 
             }
         }
     }
     
-    func offlineArea(withId id: Int) -> OfflineArea {
+    func offlineArea(withId id: Int) -> AreaDownloader {
         offlineAreas.first { offlineArea in
             offlineArea.id == id
         }! // FIXME
     }
 }
 
-class OfflineArea: Identifiable, ObservableObject {
+class AreaDownloader: Identifiable, ObservableObject {
     let areaId: Int
     @Published var status: DownloadStatus
     let odrManager = ODRManager()
     var cancellable: Cancellable?
-    
-//    let offlinePhotosManager = OfflinePhotosManager.shared
     
     init(areaId: Int, status: DownloadStatus) {
         self.areaId = areaId
@@ -81,11 +71,16 @@ class OfflineArea: Identifiable, ObservableObject {
         Area.load(id: areaId)!
     }
     
+    func download() {
+        DownloadSettings.shared.addArea(areaId: areaId)
+        start()
+    }
+    
     func remove() {
         odrManager.stop()
         status = .initial
         
-        AreaPhotosDownloader.shared.remove(areaId: id)
+        DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
     func cancel() {
@@ -93,10 +88,10 @@ class OfflineArea: Identifiable, ObservableObject {
         odrManager.cancel()
         status = .initial
         
-        AreaPhotosDownloader.shared.remove(areaId: id)
+        DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
-    func download() {
+    func start() {
         let tags = Set(["area-\(areaId)"])
         
         odrManager.checkResources(tags: tags) { available in
