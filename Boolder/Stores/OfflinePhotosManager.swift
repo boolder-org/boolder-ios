@@ -9,7 +9,6 @@
 import Foundation
 import Combine
 
-
 class OfflinePhotosManager: ObservableObject {
     static let shared = OfflinePhotosManager()
     
@@ -184,13 +183,11 @@ class OfflineArea: Identifiable, ObservableObject {
             case .downloading(progress: let progress):
                 "\(Int(progress*100))%"
             case .failed:
-                "error"
+                "failed"
             case .requested:
-                "waiting"
+                "requested"
             }
             
         }
     }
-    
-    
 }

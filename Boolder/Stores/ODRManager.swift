@@ -12,7 +12,6 @@ import Combine
 // On Demand Resource (ODR) Manager
 // inspired by https://www.raywenderlich.com/520-on-demand-resources-in-ios-tutorial
 class ODRManager : ObservableObject {
-        
     var odrRequest: NSBundleResourceRequest?
     var cancellable: Cancellable?
     @Published var downloadProgress: Double = 0
