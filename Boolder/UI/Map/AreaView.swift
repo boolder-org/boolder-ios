@@ -37,7 +37,7 @@ struct AreaView: View {
                 }
                 
                 problems
-                    
+                
                 if(circuits.count > 0) {
                     circuitsList
                 }
@@ -146,7 +146,6 @@ struct AreaView: View {
             Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
                 .font(.callout)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
-//                .foregroundColor(Color(UIColor.darkGray))
                 .background(Color.systemBackground)
                 .cornerRadius(32)
                 .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color(UIColor.darkGray), lineWidth: 1.0))
