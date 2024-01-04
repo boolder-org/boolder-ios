@@ -13,14 +13,8 @@ class TopoImageCache {
     private init() {}
 
     var cache = NSCache<NSNumber, UIImage>()
-    
-    struct Response: Codable {
-        var url: String
-    }
 
     func getImage(topoId: Int) async throws -> UIImage? {
-        
-        
         // Check if the image is in the cache
         if let cachedImage = cache.object(forKey: topoId as NSNumber) {
             return cachedImage
@@ -35,12 +29,7 @@ class TopoImageCache {
             let (data, _) = try await URLSession.shared.data(from: url)
             
             if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                let urlString = decodedResponse.url
-                
-                
-                if let url = URL(string: urlString) {
-                    
-                    
+                if let url = URL(string: decodedResponse.url) {
                     // Download the image if not in the cache
                     let (data, _) = try await URLSession.shared.data(from: url)
                     
@@ -57,5 +46,9 @@ class TopoImageCache {
         }
 
         return nil
+    }
+    
+    struct Response: Codable {
+        var url: String
     }
 }
