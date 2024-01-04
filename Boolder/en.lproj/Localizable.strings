@@ -91,6 +91,9 @@
 "area.problems.search_prompt" = "Problem name";
 "area.circuit.beginner" = "This circuit is beginner friendly";
 "area.circuit.dangerous" = "This circuit is dangerous: some boulders are very high and/or with difficult landings";
+"area.photos.download" = "Download the photos";
+"area.photos.downloading" = "Downloading";
+"area.photos.downloaded" = "Photos downloaded";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// we use a separate view to avoid redrawing the entire view and make the actionsheet unresponsive
+// we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
 // it probably won't be necessary anymore with iOS 17's @Observable
 struct DownloadAreaButtonView : View {
     let area: Area
@@ -25,7 +25,6 @@ struct DownloadAreaButtonView : View {
     }
     
     var body: some View {
-        let _ = Self._printChanges()
         Button {
             if case .initial = offlineArea.status  {
                 // FIXME: refactor
@@ -44,15 +43,15 @@ struct DownloadAreaButtonView : View {
                 
                 if case .initial = offlineArea.status  {
                     Image(systemName: "arrow.down.circle").font(.title2)
-                    Text("Télécharger les photos")
+                    Text("area.photos.download")
                 }
                 else if case .downloading(let progress) = offlineArea.status  {
                     CircularProgressView(progress: progress).frame(height: 18)
-                    Text("Téléchargement")
+                    Text("area.photos.downloading")
                 }
                 else if case .downloaded = offlineArea.status  {
                     Image(systemName: "checkmark.circle").font(.title2)
-                    Text("Photos téléchargées")
+                    Text("area.photos.downloaded")
                 }
                 else {
                     Text(offlineArea.status.label)
