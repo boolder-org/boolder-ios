@@ -30,8 +30,7 @@ struct OfflineAreaRow: View {
             Spacer()
             
             Button {
-                AreaPhotosDownloader.shared.requestArea(areaId: offlineArea.areaId)
-                offlineArea.download()
+                AreaPhotosDownloader.shared.download(areaId: offlineArea.areaId)
             } label: {
                 Text(offlineArea.status.label)
             }

@@ -8,23 +8,31 @@
 
 import Foundation
 
-class AreaSettings : ObservableObject {
-    static let shared = AreaSettings()
+class AreaDownloadSettings : ObservableObject {
+    static let shared = AreaDownloadSettings()
     
     // TODO: rename
-    @Published var ids: Set<Int> {
+    @Published var downloadAreasIds: Set<Int> {
         didSet {
             saveToDisk()
         }
     }
     
     private init() {
-        ids = Set()
+        downloadAreasIds = Set()
         loadFromDisk()
     }
     
+    func addArea(areaId: Int) {
+        downloadAreasIds.insert(areaId)
+    }
+    
+    func removeArea(areaId: Int) {
+        downloadAreasIds.remove(areaId)
+    }
+    
     private func saveToDisk() {
-        if let encodedData = try? JSONEncoder().encode(ids) {
+        if let encodedData = try? JSONEncoder().encode(downloadAreasIds) {
             UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
         }
     }
@@ -32,7 +40,7 @@ class AreaSettings : ObservableObject {
     private func loadFromDisk() {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
             let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) {
-            ids = decodedSet
+            downloadAreasIds = decodedSet
         }
     }
     

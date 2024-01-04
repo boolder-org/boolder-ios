@@ -18,8 +18,8 @@
 		030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
 		03147EDF2B46A3F0005771C3 /* AreaPhotosDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* AreaPhotosDownloader.swift */; };
 		03147EE02B46A3F0005771C3 /* AreaPhotosDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* AreaPhotosDownloader.swift */; };
-		03147EE22B46B581005771C3 /* AreaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* AreaSettings.swift */; };
-		03147EE32B46B581005771C3 /* AreaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* AreaSettings.swift */; };
+		03147EE22B46B581005771C3 /* AreaDownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* AreaDownloadSettings.swift */; };
+		03147EE32B46B581005771C3 /* AreaDownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* AreaDownloadSettings.swift */; };
 		0314FFDF295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
 		0314FFE0295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
 		0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
@@ -169,7 +169,7 @@
 		030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* AreaPhotosDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaPhotosDownloader.swift; sourceTree = "<group>"; };
-		03147EE12B46B581005771C3 /* AreaSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaSettings.swift; sourceTree = "<group>"; };
+		03147EE12B46B581005771C3 /* AreaDownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloadSettings.swift; sourceTree = "<group>"; };
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
 		031A4C9529673C90002CBF52 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
-				03147EE12B46B581005771C3 /* AreaSettings.swift */,
+				03147EE12B46B581005771C3 /* AreaDownloadSettings.swift */,
 				03147EDE2B46A3F0005771C3 /* AreaPhotosDownloader.swift */,
 			);
 			path = Stores;
@@ -717,7 +717,7 @@
 				03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
-				03147EE32B46B581005771C3 /* AreaSettings.swift in Sources */,
+				03147EE32B46B581005771C3 /* AreaDownloadSettings.swift in Sources */,
 				03B910712B2C798200DE7B45 /* CircularProgressView.swift in Sources */,
 				0355A0D42B1745340007EE07 /* TopoImageCache.swift in Sources */,
 				038C2EF529201315006581CD /* SearchView.swift in Sources */,
@@ -787,7 +787,7 @@
 				03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
-				03147EE22B46B581005771C3 /* AreaSettings.swift in Sources */,
+				03147EE22B46B581005771C3 /* AreaDownloadSettings.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,

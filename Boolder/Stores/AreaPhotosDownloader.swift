@@ -18,31 +18,32 @@ class AreaPhotosDownloader: ObservableObject {
     var cancellable: Cancellable?
     
     private init() {
-        let settings = AreaSettings.shared
+        let settings = AreaDownloadSettings.shared
         
         offlineAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            OfflineArea(areaId: area.id, status: settings.ids.contains(area.id) ? .requested : .initial) // FIXME: extract
+            OfflineArea(areaId: area.id, status: settings.downloadAreasIds.contains(area.id) ? .requested : .initial) // FIXME: extract
         }
         
-        cancellable = settings.$ids
+        cancellable = settings.$downloadAreasIds
             .map { $0.map{self.offlineArea(withId: $0)} }
             .assign(to: \.requestedAreas, on: self)
     }
     
-    // FIXME: move to OfflineArea (?)
-    func requestArea(areaId: Int) {
-        AreaSettings.shared.ids.insert(areaId) // FIXME: extract
+    func download(areaId: Int) {
+        AreaDownloadSettings.shared.addArea(areaId: areaId)
+        offlineArea(withId: areaId).download()
     }
     
-    func removeArea(areaId: Int) {
-        AreaSettings.shared.ids.remove(areaId)
+    func remove(areaId: Int) {
+        AreaDownloadSettings.shared.removeArea(areaId: areaId)
+        // remove offline area
     }
     
     func start() {
         offlineAreas.forEach { offlineArea in
-            if AreaSettings.shared.ids.contains(offlineArea.areaId) {
+            if AreaDownloadSettings.shared.downloadAreasIds.contains(offlineArea.areaId) {
                 // TODO: handle case when area is already available
                 offlineArea.download()
                 
@@ -84,7 +85,7 @@ class OfflineArea: Identifiable, ObservableObject {
         odrManager.stop()
         status = .initial
         
-        AreaPhotosDownloader.shared.removeArea(areaId: id)
+        AreaPhotosDownloader.shared.remove(areaId: id)
     }
     
     func cancel() {
@@ -92,7 +93,7 @@ class OfflineArea: Identifiable, ObservableObject {
         odrManager.cancel()
         status = .initial
         
-        AreaPhotosDownloader.shared.removeArea(areaId: id)
+        AreaPhotosDownloader.shared.remove(areaId: id)
     }
     
     func download() {
