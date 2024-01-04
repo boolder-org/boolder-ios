@@ -12,19 +12,20 @@ import Combine
 class OfflinePhotosManager: ObservableObject {
     static let shared = OfflinePhotosManager()
     
-    private var offlineAreas = [OfflineArea]()
-    
+    // source of truth
     @Published var requestedAreasIds: Set<Int> {
         didSet {
             saveToDisk()
         }
     }
+    
     @Published var requestedAreas = [OfflineArea]()
+    private var offlineAreas = [OfflineArea]()
     
     var cancellable: Cancellable?
     
     private init() {
-        requestedAreasIds = Set() // Set([1,4,5,6,7])
+        requestedAreasIds = Set()
         loadFromDisk()
         
         offlineAreas = Area.all.sorted{
@@ -65,16 +66,18 @@ class OfflinePhotosManager: ObservableObject {
     
     private func saveToDisk() {
         if let encodedData = try? JSONEncoder().encode(requestedAreasIds) {
-            UserDefaults.standard.set(encodedData, forKey: "offline/requestedAreasIds")
+            UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
         }
     }
     
     private func loadFromDisk() {
-        if let data = UserDefaults.standard.data(forKey: "offline/requestedAreasIds"), // FIXME: make DRY
+        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
             let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) {
             requestedAreasIds = decodedSet
         }
     }
+    
+    let userDefaultsKey = "offline/requestedAreasIds"
 }
 
 class OfflineArea: Identifiable, ObservableObject {
