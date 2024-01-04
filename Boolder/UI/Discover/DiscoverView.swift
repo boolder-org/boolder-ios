@@ -281,6 +281,18 @@ struct DiscoverView: View {
                             }
                             
                             Divider()
+                            
+                            NavigationLink(destination: OfflineDebugView()) {
+                                HStack {
+                                    Image(systemName: "arrow.down.circle")
+                                    Text("Offline debug")
+                                    Spacer()
+                                }
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            }
+                            
+                            Divider()
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.horizontal)

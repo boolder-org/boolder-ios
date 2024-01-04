@@ -7,17 +7,14 @@
 //
 
 import SwiftUI
-//import ImageViewer
 
 struct TopoView: View {
-    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
-    @Binding var areaResourcesDownloaded: Bool
-    
+    @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     
     let tapSize: CGFloat = 44
@@ -26,18 +23,23 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             Group {
-                if areaResourcesDownloaded {
-                    if let topoPhoto = problem.mainTopoPhoto {
-                        
+                if case .ready(let image) = photoStatus  {
                         Group {
-                            Image(uiImage: topoPhoto)
+                            Image(uiImage: image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
-                                .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                    TopoFullScreenView(image: topoPhoto, problem: problem)
+                                .modify {
+                                    if case .ready(let image) = photoStatus  {
+                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                            TopoFullScreenView(image: image, problem: problem)
+                                        }
+                                    }
+                                    else {
+                                        $0
+                                    }
                                 }
                             
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
@@ -64,16 +66,41 @@ struct TopoView: View {
                                 }
                             }
                         }
-                    }
-                    else {
-                        Image("nophoto")
-                            .font(.system(size: 60))
+                }
+                else if case .loading = photoStatus {
+                    ProgressView()
+                }
+                else if case .none = photoStatus {
+                    Image("nophoto")
+                        .font(.system(size: 60))
+                        .foregroundColor(Color.gray)
+                }
+                else if case .error = photoStatus {
+                    VStack(spacing: 16) {
+                        Text("problem.topo.no_internet")
                             .foregroundColor(Color.gray)
+                        
+                        Button {
+                            Task {
+                                await loadData()
+                            }
+                        } label: {
+                            
+                            Label {
+                                Text("problem.topo.retry")
+                            } icon: {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(.gray.opacity(0.2))
+                            .clipShape(Capsule())
+                        }
+                        .foregroundColor(Color.gray)
                     }
                 }
                 else {
-                    ImageLoadingView(progress: $odrManager.downloadProgress)
-                        .aspectRatio(4/3, contentMode: .fill)
+                    EmptyView()
                 }
             }
             
@@ -110,21 +137,71 @@ struct TopoView: View {
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
-        .background(Color("ImageBackground"))
-        .onChange(of: problem) { _ in
-            lineDrawPercentage = 0.0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                animate { lineDrawPercentage = 1.0 }
+        .background(Color(.imageBackground))
+        .onChange(of: photoStatus) { value in
+            switch value {
+            case .ready(image: _):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animate { lineDrawPercentage = 1.0 }
+                }
+            default:
+                print("")
             }
         }
-        .onAppear {
-            // hack to make the animation start after the view is properly loaded
-            // I tried doing it synchronously by I couldn't make it work :grimacing:
-            // I also tried to use a lower value for the delay but it doesn't work (no animation at all)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                animate { lineDrawPercentage = 1.0 }
+        .onChange(of: problem) { [problem] newValue in
+            if problem.mainTopoId == newValue.mainTopoId {
+                lineDrawPercentage = 0.0
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animate { lineDrawPercentage = 1.0 }
+                }
+            }
+            else {
+                lineDrawPercentage = 0.0
+                
+                Task {
+                    await loadData()
+                }
             }
         }
+        .task {
+            await loadData()
+        }
+    }
+    
+    func loadData() async {
+        if let localPhoto = problem.mainTopoPhoto {
+            self.photoStatus = .ready(image: localPhoto)
+            return
+        }
+        
+        guard let topoId = problem.mainTopoId else {
+            photoStatus = .none
+            return
+        }
+        
+        do {
+            photoStatus = .loading
+            
+            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
+                self.photoStatus = .ready(image: image)
+            }
+            else {
+                self.photoStatus = .error
+            }
+            
+        } catch {
+            photoStatus = .error
+            print(error)
+        }
+    }
+    
+    enum PhotoStatus: Equatable {
+        case initial
+        case none
+        case loading
+        case ready(image: UIImage)
+        case error
     }
     
     // TODO: use the proper i18n method for plural

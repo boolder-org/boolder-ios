@@ -87,7 +87,11 @@ struct Problem : Identifiable {
     }
     
     var mainTopoPhoto: UIImage? {
-        line?.photo()
+        line?.offlinePhoto
+    }
+    
+    var mainTopoId: Int? {
+        line?.topoId
     }
     
     func isFavorite() -> Bool {

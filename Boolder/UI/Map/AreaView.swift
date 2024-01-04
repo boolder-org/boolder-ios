@@ -17,6 +17,9 @@ struct AreaView: View {
     @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
+    @State private var presentRemoveDownloadSheet = false
+    @State private var presentCancelDownloadSheet = false
+    
     @State private var circuits = [Circuit]()
     @State private var popularProblems = [Problem]()
     @State private var showChart = false
@@ -41,6 +44,36 @@ struct AreaView: View {
                 
                 if poiRoutes.count > 0 {
                     poiRoutesList
+                }
+                
+                Section {
+                    DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                        .background {
+                            EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
+                                ActionSheet(
+                                    title: Text("area.photos.remove.title"),
+                                    buttons: [
+                                        .destructive(Text("area.photos.remove.action")) {
+                                            DownloadCenter.shared.areaDownloader(id: area.id).remove()
+                                        },
+                                        .cancel()
+                                    ]
+                                )
+                            }
+                        }
+                        .background {
+                            EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
+                                ActionSheet(
+                                    title: Text("area.photos.cancel.title"),
+                                    buttons: [
+                                        .destructive(Text("area.photos.cancel.action")) {
+                                            DownloadCenter.shared.areaDownloader(id: area.id).cancel()
+                                        },
+                                        .cancel()
+                                    ]
+                                )
+                            }
+                        }
                 }
                 
                 if(linkToMap) {
@@ -113,10 +146,9 @@ struct AreaView: View {
             Text(NSLocalizedString("area.tags.\(tag)", comment: ""))
                 .font(.callout)
                 .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
-                .foregroundColor(Color.green)
                 .background(Color.systemBackground)
                 .cornerRadius(32)
-                .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color.green, lineWidth: 1.0))
+                .overlay(RoundedRectangle(cornerRadius: 32).stroke(Color(UIColor.darkGray), lineWidth: 1.0))
         }
     }
     
@@ -128,7 +160,6 @@ struct AreaView: View {
                         FlowLayout(alignment: .leading) {
                             tags
                         }
-                        .padding(.vertical, 4)
                     }
                 }
                 else {
@@ -136,7 +167,6 @@ struct AreaView: View {
                         VStack(alignment: .leading) {
                             tags
                         }
-                        .padding(.vertical, 4)
                     }
                 }
             }
@@ -237,20 +267,16 @@ struct AreaView: View {
     }
     
     var poiRoutesList: some View {
-        
-        ForEach(poiRoutes) { poiRoute in
-            if let poi = poiRoute.poi {
-                Section {
+        Section(header: Text("area.access")) {
+            ForEach(poiRoutes) { poiRoute in
+                if let poi = poiRoute.poi {
+                    
                     Button {
                         if let url = URL(string: poi.googleUrl) {
                             openURL(url)
                         }
                     } label: {
                         HStack {
-                            Text(poi.type.string)
-                            
-                            Spacer()
-                            
                             if poi.type == .parking {
                                 Image(systemName: "p.square.fill")
                                     .foregroundColor(Color(UIColor(red: 0.16, green: 0.37, blue: 0.66, alpha: 1.00)))
@@ -262,23 +288,19 @@ struct AreaView: View {
                             }
                             
                             Text(poi.shortName)
+                            
+                            Spacer()
+                            
+                            if poiRoute.transport == .bike {
+                                Image(systemName: "bicycle")
+                            }
+                            else {
+                                Image(systemName: "figure.walk")
+                            }
+                            
+                            Text("\(poiRoute.distanceInMinutes) min")
                         }
                         .foregroundColor(.primary)
-                    }
-                    
-                    HStack {
-                        Text(poiRoute.transport == .bike ? "area.bike_time" : "area.walking_time")
-                        
-                        Spacer()
-                        
-                        if poiRoute.transport == .bike {
-                            Image(systemName: "bicycle")
-                        }
-                        else {
-                            Image(systemName: "figure.walk")
-                        }
-                        
-                        Text("\(poiRoute.distanceInMinutes) min")
                     }
                 }
             }

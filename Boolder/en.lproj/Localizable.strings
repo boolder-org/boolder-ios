@@ -84,6 +84,7 @@
 "area.chart.problems" = "Problems";
 "area.problems.popular" = "Popular";
 "area.problems.all" = "All";
+"area.access" = "Access";
 "area.see_on_the_map" = "See on the map";
 "area.close" = "Close";
 "area.bike_time" = "Bike time";
@@ -91,6 +92,13 @@
 "area.problems.search_prompt" = "Problem name";
 "area.circuit.beginner" = "This circuit is beginner friendly";
 "area.circuit.dangerous" = "This circuit is dangerous: some boulders are very high and/or with difficult landings";
+"area.photos.download" = "Download the photos";
+"area.photos.downloading" = "Downloading";
+"area.photos.downloaded" = "Photos downloaded";
+"area.photos.remove.title" = "Delete offline photos ?";
+"area.photos.remove.action" = "Delete";
+"area.photos.cancel.title" = "Stop download?";
+"area.photos.cancel.action" = "Stop download";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";
@@ -165,6 +173,8 @@
 "problem.image.loading" = "Loading area...";
 "problem.variants.one" = "1 variant";
 "problem.variants.other" = "%d variants";
+"problem.topo.no_internet" = "No Internet connection";
+"problem.topo.retry" = "Retry";
 
 // MARK: Tick List
 "ticklist.title" = "Tick List";

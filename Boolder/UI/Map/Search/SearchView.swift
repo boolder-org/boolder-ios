@@ -52,7 +52,7 @@ struct SearchView: View {
                           isEditing = true
                       }
                   }
-                  .background(isEditing ? Color("ImageBackground") : Color(.systemBackground))
+                  .background(isEditing ? Color(.imageBackground) : Color(.systemBackground))
                   .cornerRadius(12)
                   .shadow(color: Color(.secondaryLabel).opacity(isEditing ? 0 : 0.5), radius: 5)
                     

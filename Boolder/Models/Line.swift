@@ -19,7 +19,7 @@ struct Line: Decodable {
         let y: Double
     }
     
-    func photo() -> UIImage? {
+    var offlinePhoto: UIImage? {
         UIImage(named: "topo-\(String(topoId)).jpg")
     }
 }
