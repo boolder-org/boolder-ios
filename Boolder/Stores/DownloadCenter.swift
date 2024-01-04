@@ -31,11 +31,8 @@ class DownloadCenter: ObservableObject {
     }
     
     func start() {
-        // FIXME: don't use areaIds.contains
-        allAreas.forEach { areaDownloader in
-            if settings.areaIds.contains(areaDownloader.areaId) {
-                areaDownloader.start()
-            }
+        requestedAreas.forEach { areaDownloader in
+            areaDownloader.start()
         }
     }
     
@@ -92,29 +89,22 @@ class AreaDownloader: Identifiable, ObservableObject {
         
         odrManager.checkResources(tags: tags) { available in
             if available {
-                print("available area \(self.areaId)")
                 DispatchQueue.main.async{
                     self.status = .downloaded
                 }
             }
             else {
-                print("downloading area \(self.areaId)")
-                
                 DispatchQueue.main.async{
                     self.status = .downloading(progress: 0.0)
                 }
                 self.cancellable = self.odrManager.$downloadProgress.receive(on: DispatchQueue.main)
                     .sink() { progress in
                         self.status = .downloading(progress: progress)
-//                        print("progress = \(progress)")
                     }
                 
-                // FIXME: Make tag name DRY
                 self.odrManager.requestResources(tags: tags, onSuccess: { [self] in
-                    print("downloaded area \(areaId)")
                     DispatchQueue.main.async{
                         self.status = .downloaded
-                        print("status = downloaded")
                     }
                     
                 }, onFailure: { error in
