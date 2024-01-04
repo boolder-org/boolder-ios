@@ -84,6 +84,7 @@
 "area.chart.problems" = "Problems";
 "area.problems.popular" = "Popular";
 "area.problems.all" = "All";
+"area.access" = "Access";
 "area.see_on_the_map" = "See on the map";
 "area.close" = "Close";
 "area.bike_time" = "Bike time";
@@ -94,6 +95,10 @@
 "area.photos.download" = "Download the photos";
 "area.photos.downloading" = "Downloading";
 "area.photos.downloaded" = "Photos downloaded";
+"area.photos.remove.title" = "Delete offline photos ?";
+"area.photos.remove.action" = "Delete";
+"area.photos.cancel.title" = "Stop download?";
+"area.photos.cancel.action" = "Stop download";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";

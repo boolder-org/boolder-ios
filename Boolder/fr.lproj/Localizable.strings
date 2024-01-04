@@ -84,6 +84,7 @@
 "area.chart.problems" = "Voies";
 "area.problems.popular" = "Populaires";
 "area.problems.all" = "Toutes";
+"area.access" = "Accès";
 "area.see_on_the_map" = "Voir sur la carte";
 "area.close" = "Fermer";
 "area.bike_time" = "Temps en vélo";
@@ -94,6 +95,11 @@
 "area.photos.download" = "Télécharger les photos";
 "area.photos.downloading" = "Téléchargement";
 "area.photos.downloaded" = "Photos téléchargées";
+"area.photos.remove.title" = "Supprimer les photos hors-ligne ?";
+"area.photos.remove.action" = "Supprimer";
+"area.photos.cancel.title" = "Arrêter le téléchargement ?";
+"area.photos.cancel.action" = "Arrêter le téléchargement";
+
 
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";

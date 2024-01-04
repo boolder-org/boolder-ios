@@ -38,7 +38,6 @@ struct AreaView: View {
                 
                 problems
                     
-                
                 if(circuits.count > 0) {
                     circuitsList
                 }
@@ -48,14 +47,13 @@ struct AreaView: View {
                 }
                 
                 Section {
-                    
                     DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
                         .background {
                             EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
                                 ActionSheet(
-                                    title: Text("Supprimer les photos hors-ligne ?"),
+                                    title: Text("area.photos.remove.title"),
                                     buttons: [
-                                        .destructive(Text("Supprimer")) {
+                                        .destructive(Text("area.photos.remove.action")) {
                                             OfflinePhotosManager.shared.offlineArea(withId: area.id).remove()
                                         },
                                         .cancel()
@@ -66,18 +64,16 @@ struct AreaView: View {
                         .background {
                             EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
                                 ActionSheet(
-                                    title: Text("Annuler téléchargement ?"),
+                                    title: Text("area.photos.cancel.title"),
                                     buttons: [
-                                        .destructive(Text("Annuler téléchargement")) {
+                                        .destructive(Text("area.photos.cancel.action")) {
                                             OfflinePhotosManager.shared.offlineArea(withId: area.id).cancel()
                                         },
-                                        .cancel() // TODO: wording?
+                                        .cancel()
                                     ]
                                 )
                             }
                         }
-                    
-                    
                 }
                 
                 if(linkToMap) {
@@ -165,7 +161,6 @@ struct AreaView: View {
                         FlowLayout(alignment: .leading) {
                             tags
                         }
-//                        .padding(.vertical, 4)
                     }
                 }
                 else {
@@ -173,7 +168,6 @@ struct AreaView: View {
                         VStack(alignment: .leading) {
                             tags
                         }
-//                        .padding(.vertical, 4)
                     }
                 }
             }
@@ -274,7 +268,7 @@ struct AreaView: View {
     }
     
     var poiRoutesList: some View {
-        Section(header: Text("Accès")) {
+        Section(header: Text("area.access")) {
             ForEach(poiRoutes) { poiRoute in
                 if let poi = poiRoute.poi {
                     
