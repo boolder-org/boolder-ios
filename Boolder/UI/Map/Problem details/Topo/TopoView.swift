@@ -77,7 +77,6 @@ struct TopoView: View {
                         .foregroundColor(Color.gray)
                 }
                 else if case .error = photoStatus {
-                    
                     VStack(spacing: 16) {
                         Text("problem.topo.no_internet")
                             .foregroundColor(Color.gray)
