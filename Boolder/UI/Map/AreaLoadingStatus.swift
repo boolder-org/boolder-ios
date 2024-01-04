@@ -13,18 +13,18 @@ import SwiftUI
 struct AreaLoadingStatus: View {
     let area: Area
     
-    @ObservedObject var offlineArea: AreaDownloader
+    @ObservedObject var areaDownloader: AreaDownloader
     
     init(area: Area) {
         self.area = area
-        self.offlineArea = DownloadCenter.shared.areaDownloader(withId: area.id)
+        self.areaDownloader = DownloadCenter.shared.areaDownloader(id: area.id)
     }
     
     var body: some View {
-        if case .downloading(let progress) = offlineArea.status  {
+        if case .downloading(let progress) = areaDownloader.status  {
             CircularProgressView(progress: progress).frame(height: 14)
         }
-        else if case .downloaded = offlineArea.status  {
+        else if case .downloaded = areaDownloader.status  {
             Image(systemName: "checkmark.circle")
         }
         else {

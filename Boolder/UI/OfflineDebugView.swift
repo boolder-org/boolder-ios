@@ -14,25 +14,25 @@ struct OfflineDebugView: View {
     var body: some View {
         List {
             ForEach(offlineManager.requestedAreas.indices, id: \.self) { index in
-                OfflineAreaRow(offlineArea: offlineManager.requestedAreas[index])
+                AreaDowloadRow(areaDownloader: offlineManager.requestedAreas[index])
             }
         }
         .navigationTitle(Text("Offline"))
     }
 }
 
-struct OfflineAreaRow: View {
-    @ObservedObject var offlineArea: AreaDownloader
+struct AreaDowloadRow: View {
+    @ObservedObject var areaDownloader: AreaDownloader
     
     var body: some View {
         HStack {
-            Text(offlineArea.area.name)
+            Text(areaDownloader.area.name)
             Spacer()
             
             Button {
-                offlineArea.requestAndStartDownload()
+                areaDownloader.requestAndStartDownload()
             } label: {
-                Text(offlineArea.status.label)
+                Text(areaDownloader.status.label)
             }
         }
     }

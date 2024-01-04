@@ -54,7 +54,7 @@ struct AreaView: View {
                                     title: Text("area.photos.remove.title"),
                                     buttons: [
                                         .destructive(Text("area.photos.remove.action")) {
-                                            DownloadCenter.shared.areaDownloader(withId: area.id).remove()
+                                            DownloadCenter.shared.areaDownloader(id: area.id).remove()
                                         },
                                         .cancel()
                                     ]
@@ -67,7 +67,7 @@ struct AreaView: View {
                                     title: Text("area.photos.cancel.title"),
                                     buttons: [
                                         .destructive(Text("area.photos.cancel.action")) {
-                                            DownloadCenter.shared.areaDownloader(withId: area.id).cancel()
+                                            DownloadCenter.shared.areaDownloader(id: area.id).cancel()
                                         },
                                         .cancel()
                                     ]
