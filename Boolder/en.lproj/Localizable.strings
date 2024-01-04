@@ -165,6 +165,8 @@
 "problem.image.loading" = "Loading area...";
 "problem.variants.one" = "1 variant";
 "problem.variants.other" = "%d variants";
+"problem.topo.no_internet" = "No Internet connection";
+"problem.topo.retry" = "Retry";
 
 // MARK: Tick List
 "ticklist.title" = "Tick List";

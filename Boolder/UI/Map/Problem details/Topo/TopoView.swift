@@ -79,7 +79,7 @@ struct TopoView: View {
                 else if case .error = photoStatus {
                     
                     VStack(spacing: 16) {
-                        Text("Pas de connexion à Internet")
+                        Text("problem.topo.no_internet")
                             .foregroundColor(Color.gray)
                         
                         Button {
@@ -89,7 +89,7 @@ struct TopoView: View {
                         } label: {
                             
                             Label {
-                                Text("Réessayer")
+                                Text("problem.topo.retry")
                             } icon: {
                                 Image(systemName: "arrow.clockwise")
                             }
@@ -159,7 +159,6 @@ struct TopoView: View {
                 }
             }
             else {
-//                photoStatus = .initial
                 lineDrawPercentage = 0.0
                 
                 Task {

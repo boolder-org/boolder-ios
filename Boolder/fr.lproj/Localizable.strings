@@ -163,6 +163,8 @@
 "problem.image.loading" = "Chargement du secteur...";
 "problem.variants.one" = "1 variante";
 "problem.variants.other" = "%d variantes";
+"problem.topo.no_internet" = "Pas de connexion à Internet";
+"problem.topo.retry" = "Réessayer";
 
 // MARK: Tick List
 "ticklist.title" = "Mes voies";
