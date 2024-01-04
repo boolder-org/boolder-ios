@@ -81,14 +81,7 @@ struct TickList: View {
                     }
                     
                     .listStyle(.insetGrouped)
-                    .modify {
-                        if #available(iOS 15, *) {
-                            $0.headerProminence(.increased)
-                        }
-                        else {
-                            $0
-                        }
-                    }
+                    .headerProminence(.increased)
                 }
             }
      

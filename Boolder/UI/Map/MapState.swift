@@ -117,13 +117,7 @@ import SwiftUI
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
         centerOnProblem(problem)
         
-        var wait = 0.1
-        if #available(iOS 15, *) { }
-        else {
-            wait = 1.0 // weird bug with iOS 14 https://stackoverflow.com/questions/63293531/swiftui-crash-sheetbridge-abandoned-presentation-detected-when-dismiss-a-she
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + wait) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             self.selectProblem(problem)
             self.presentProblemDetails = true
         }
