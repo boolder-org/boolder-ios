@@ -54,7 +54,7 @@ struct AreaView: View {
                                     title: Text("area.photos.remove.title"),
                                     buttons: [
                                         .destructive(Text("area.photos.remove.action")) {
-                                            OfflinePhotosManager.shared.offlineArea(withId: area.id).remove()
+                                            AreaPhotosDownloader.shared.offlineArea(withId: area.id).remove()
                                         },
                                         .cancel()
                                     ]
@@ -67,7 +67,7 @@ struct AreaView: View {
                                     title: Text("area.photos.cancel.title"),
                                     buttons: [
                                         .destructive(Text("area.photos.cancel.action")) {
-                                            OfflinePhotosManager.shared.offlineArea(withId: area.id).cancel()
+                                            AreaPhotosDownloader.shared.offlineArea(withId: area.id).cancel()
                                         },
                                         .cancel()
                                     ]

@@ -17,7 +17,7 @@ struct AreaLoadingStatus: View {
     
     init(area: Area) {
         self.area = area
-        self.offlineArea = OfflinePhotosManager.shared.offlineArea(withId: area.id)
+        self.offlineArea = AreaPhotosDownloader.shared.offlineArea(withId: area.id)
     }
     
     var body: some View {

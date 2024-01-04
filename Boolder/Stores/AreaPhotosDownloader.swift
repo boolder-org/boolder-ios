@@ -9,48 +9,40 @@
 import Foundation
 import Combine
 
-class OfflinePhotosManager: ObservableObject {
-    static let shared = OfflinePhotosManager()
+class AreaPhotosDownloader: ObservableObject {
+    static let shared = AreaPhotosDownloader()
     
-    // source of truth
-    @Published var requestedAreasIds: Set<Int> {
-        didSet {
-            saveToDisk()
-        }
-    }
-    
-    @Published var requestedAreas = [OfflineArea]()
     private var offlineAreas = [OfflineArea]()
+    @Published var requestedAreas = [OfflineArea]()
     
     var cancellable: Cancellable?
     
     private init() {
-        requestedAreasIds = Set()
-        loadFromDisk()
+        let settings = AreaSettings.shared
         
         offlineAreas = Area.all.sorted{
             $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
         }.map { area in
-            OfflineArea(areaId: area.id, status: requestedAreasIds.contains(area.id) ? .requested : .initial)
+            OfflineArea(areaId: area.id, status: settings.ids.contains(area.id) ? .requested : .initial) // FIXME: extract
         }
         
-        cancellable = $requestedAreasIds
+        cancellable = settings.$ids
             .map { $0.map{self.offlineArea(withId: $0)} }
             .assign(to: \.requestedAreas, on: self)
     }
     
     // FIXME: move to OfflineArea (?)
     func requestArea(areaId: Int) {
-        requestedAreasIds.insert(areaId)
+        AreaSettings.shared.ids.insert(areaId) // FIXME: extract
     }
     
     func removeArea(areaId: Int) {
-        requestedAreasIds.remove(areaId)
+        AreaSettings.shared.ids.remove(areaId)
     }
     
     func start() {
         offlineAreas.forEach { offlineArea in
-            if requestedAreasIds.contains(offlineArea.areaId) {
+            if AreaSettings.shared.ids.contains(offlineArea.areaId) {
                 // TODO: handle case when area is already available
                 offlineArea.download()
                 
@@ -63,21 +55,6 @@ class OfflinePhotosManager: ObservableObject {
             offlineArea.id == id
         }! // FIXME
     }
-    
-    private func saveToDisk() {
-        if let encodedData = try? JSONEncoder().encode(requestedAreasIds) {
-            UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
-        }
-    }
-    
-    private func loadFromDisk() {
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-            let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) {
-            requestedAreasIds = decodedSet
-        }
-    }
-    
-    let userDefaultsKey = "offline/requestedAreasIds"
 }
 
 class OfflineArea: Identifiable, ObservableObject {
@@ -107,7 +84,7 @@ class OfflineArea: Identifiable, ObservableObject {
         odrManager.stop()
         status = .initial
         
-        OfflinePhotosManager.shared.removeArea(areaId: id)
+        AreaPhotosDownloader.shared.removeArea(areaId: id)
     }
     
     func cancel() {
@@ -115,7 +92,7 @@ class OfflineArea: Identifiable, ObservableObject {
         odrManager.cancel()
         status = .initial
         
-        OfflinePhotosManager.shared.removeArea(areaId: id)
+        AreaPhotosDownloader.shared.removeArea(areaId: id)
     }
     
     func download() {
