@@ -10,59 +10,15 @@ import SwiftUI
 //import ImageViewer
 
 struct TopoView: View {
-//    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
-//    @Binding var areaResourcesDownloaded: Bool
-    
-    @State private var photoUrl: String? // remove
-    @State private var photoImage: UIImage?  // remove
     @State private var photoStatus: PhotoStatus = .initial
-    
     @State private var presentTopoFullScreenView = false
     
     let tapSize: CGFloat = 44
-    
-    enum PhotoStatus: Equatable {
-        case initial
-        case none
-        case loading
-        case ready(image: UIImage)
-        case error
-    }
-    
-    
-    
-    func loadData() async {
-        if let localPhoto = problem.mainTopoPhoto {
-            self.photoStatus = .ready(image: localPhoto)
-            return
-        }
-        
-        guard let topoId = problem.mainTopoId else {
-            photoStatus = .none
-            return
-        }
-        
-        do {
-            photoStatus = .loading
-            
-            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
-                self.photoStatus = .ready(image: image)
-            }
-            else {
-                self.photoStatus = .error
-            }
-            
-        } catch {
-            photoStatus = .error
-            print("Invalid data")
-            print(error)
-        }
-    }
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -73,12 +29,6 @@ struct TopoView: View {
                             Image(uiImage: image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-//                                .transition(
-//                                         .asymmetric(
-//                                            insertion: .identity,
-//                                            removal: .opacity.animation(.linear(duration: 0.3)) // to avoid flickering when switching between 2 different topos
-//                                         )
-//                                    )
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
@@ -120,12 +70,6 @@ struct TopoView: View {
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
-//                        .transition(
-//                                 .asymmetric(
-//                                    insertion: .opacity.animation(.default.delay(0.1)),
-//                                      removal: .opacity
-//                                 )
-//                            )
                 }
                 else if case .none = photoStatus {
                     Image("nophoto")
@@ -148,7 +92,6 @@ struct TopoView: View {
                                 Text("Réessayer")
                             } icon: {
                                 Image(systemName: "arrow.clockwise")
-                                //                                    .font(.system(size: 20))
                             }
                             .padding(.horizontal)
                             .padding(.vertical, 8)
@@ -196,7 +139,7 @@ struct TopoView: View {
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
-        .background(Color("ImageBackground"))
+        .background(Color(.imageBackground))
         .onChange(of: photoStatus) { value in
             switch value {
             case .ready(image: _):
@@ -208,9 +151,6 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { [problem] newValue in
-//            print("old topoId: \(problem.mainTopoId)")
-//            print("new topoId: \(newValue.mainTopoId)")
-            
             if problem.mainTopoId == newValue.mainTopoId {
                 lineDrawPercentage = 0.0
                 
@@ -227,24 +167,44 @@ struct TopoView: View {
                 }
             }
         }
-        
-        .onChange(of: problem) { _ in
-//            lineDrawPercentage = 0.0
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                animate { lineDrawPercentage = 1.0 }
-//            }
-        }
-        .onAppear {
-            // hack to make the animation start after the view is properly loaded
-            // I tried doing it synchronously by I couldn't make it work :grimacing:
-            // I also tried to use a lower value for the delay but it doesn't work (no animation at all)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                animate { lineDrawPercentage = 1.0 }
-//            }
-        }
         .task {
             await loadData()
         }
+    }
+    
+    func loadData() async {
+        if let localPhoto = problem.mainTopoPhoto {
+            self.photoStatus = .ready(image: localPhoto)
+            return
+        }
+        
+        guard let topoId = problem.mainTopoId else {
+            photoStatus = .none
+            return
+        }
+        
+        do {
+            photoStatus = .loading
+            
+            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
+                self.photoStatus = .ready(image: image)
+            }
+            else {
+                self.photoStatus = .error
+            }
+            
+        } catch {
+            photoStatus = .error
+            print(error)
+        }
+    }
+    
+    enum PhotoStatus: Equatable {
+        case initial
+        case none
+        case loading
+        case ready(image: UIImage)
+        case error
     }
     
     // TODO: use the proper i18n method for plural
