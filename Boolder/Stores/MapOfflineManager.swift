@@ -10,6 +10,28 @@ import Foundation
 import MapboxMaps
 import CoreLocation
 
+// ======================================================================================================================================================
+//
+// **Notes for future reference**
+//
+// This proof-of-concept works but has several drawbacks:
+// - weird bugs like poi_routes not showing up at some zoom levels (because of "source compositing")
+// - takes a lot of MBs on disk (way more than mapbox's default caching strategy)
+// - needs a UI to manually delete downloaded regions
+//
+// Whereas the normal experience (without any offline shenanigans) is actually quite good:
+// - the map loads in a few seconds even in 3G/Edge
+// - the user just needs to open the map once and the SDK will automatically cache the data inside the current viewport + everything few kms around
+//   which means that if a user opens Cuvier just once, the map data for Cuvier Ouest, Est, Rempart, Merveille, etc, will be available offline
+//
+// Conclusion: we prefer to avoid using the offline SDK for now. Too much added complexity for too few benefits.
+//
+// Must-read:
+// https://docs.mapbox.com/ios/maps/guides/offline/
+// https://docs.mapbox.com/ios/maps/guides/cache-management/
+//
+// ======================================================================================================================================================
+
 class MapOfflineManager : ObservableObject {
     static let shared = MapOfflineManager()
     
