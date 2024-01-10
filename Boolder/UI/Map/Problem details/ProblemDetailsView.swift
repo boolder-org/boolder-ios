@@ -152,20 +152,6 @@ struct ProblemDetailsView: View {
                        content: {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
                 )
-                
-                Button(action: {
-                    if let url = mailToURL {
-                        UIApplication.shared.open(url)
-                    }
-                }) {
-                    HStack(alignment: .center, spacing: 8) {
-                        Image(systemName: "text.bubble")
-                        Text("problem.action.report").fixedSize(horizontal: true, vertical: true)
-                    }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                }
-                .buttonStyle(Pill())
             }
             .padding(.horizontal)
             .padding(.vertical, 4)
@@ -196,26 +182,6 @@ struct ProblemDetailsView: View {
     
     var boolderURL: URL {
         URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/p/\(String(problem.id))")!
-    }
-    
-    var mailToURL: URL? {
-        let recipient = "hello@boolder.com"
-        let subject = "Feedback".stringByAddingPercentEncodingForRFC3986() ?? ""
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-        
-        let body = [
-            "",
-            "",
-            "------",
-            "Problem #\(String(problem.id)) - \(problem.localizedName)",
-            "Boolder \(appVersion ?? "") (\(buildNumber ?? ""))",
-            "iOS \(UIDevice.current.systemVersion)",
-        ]
-            .map{$0.stringByAddingPercentEncodingForRFC3986() ?? ""}
-            .joined(separator: "%0D%0A")
-        
-        return URL(string: "mailto:\(recipient)?subject=\(subject)&body=\(body)")
     }
     
     // MARK: Ticks and favorites
