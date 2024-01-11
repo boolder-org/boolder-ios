@@ -10,9 +10,9 @@ import SwiftUI
 
 struct DiscoverView: View {
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
-    @Environment(\.openURL) var openURL
     
     @State var presentArea = false
+    @State private var presentWebView = false
     
     @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
@@ -28,7 +28,7 @@ struct DiscoverView: View {
                         VStack {
                             HStack {
                                 Button {
-                                    openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!)
+                                    presentWebView = true
                                 } label: {
                                     
                                     VStack(alignment: .leading) {
@@ -49,6 +49,11 @@ struct DiscoverView: View {
                                         )
                                         .cornerRadius(8)
                                     }
+                                }
+                                .fullScreenCover(isPresented: $presentWebView) {
+                                    SafariWebView(url: URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/articles/beginners-guide")!)
+                                        .ignoresSafeArea()
+                                    
                                 }
                                 
                                 NavigationLink(destination: TopAreasLevelView()) {

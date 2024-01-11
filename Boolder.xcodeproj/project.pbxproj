@@ -22,6 +22,8 @@
 		03147EE32B46B581005771C3 /* DownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* DownloadSettings.swift */; };
 		03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloader.swift */; };
 		03147EE62B470F59005771C3 /* AreaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloader.swift */; };
+		0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031498992B4FEF4B0014C883 /* SafariWebView.swift */; };
+		0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031498992B4FEF4B0014C883 /* SafariWebView.swift */; };
 		0314FFDF295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
 		0314FFE0295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
 		0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFE42950786F00B7E249 /* AreaToolbarView.swift */; };
@@ -173,6 +175,7 @@
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		03147EE12B46B581005771C3 /* DownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSettings.swift; sourceTree = "<group>"; };
 		03147EE42B470F59005771C3 /* AreaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloader.swift; sourceTree = "<group>"; };
+		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
 		031A4C9529673C90002CBF52 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 				37DE480D25AF9AB60052428E /* TestColorView.swift */,
 				031F36C1291EA62900BD0C2B /* TestFontSize.swift */,
 				031A4C9529673C90002CBF52 /* FlowLayout.swift */,
+				031498992B4FEF4B0014C883 /* SafariWebView.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -766,6 +770,7 @@
 				37F563F725AB09F400271346 /* TopoEntry.swift in Sources */,
 				030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
+				0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */,
 				031F36BA291D271300BD0C2B /* PinchToZoomView.swift in Sources */,
 				37B452362591450200241091 /* TopoView.swift in Sources */,
@@ -808,6 +813,7 @@
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
+				0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
