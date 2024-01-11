@@ -68,9 +68,9 @@
 "discover.top_areas.dry_fast" = "Dries fast";
 "discover.all_areas.map" = "Map";
 "discover.search_prompt" = "Area";
-"discover.support" = "Support Boolder";
+"discover.support" = "Want to help?";
 "discover.rate" = "Rate the app";
-"discover.feedback" = "Send feedback";
+"discover.contribute" = "Contribute";
 
 // MARK: Area view
 "area.tags.popular" = "popular";

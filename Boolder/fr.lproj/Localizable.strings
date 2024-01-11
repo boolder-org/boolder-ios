@@ -68,9 +68,9 @@
 "discover.top_areas.dry_fast" = "Sèche vite";
 "discover.all_areas.map" = "Carte";
 "discover.search_prompt" = "Secteur";
-"discover.support" = "Soutenir Boolder";
+"discover.support" = "Envie d'aider ?";
 "discover.rate" = "Noter l'appli";
-"discover.feedback" = "Idées d'amélioration";
+"discover.contribute" = "Contribuer";
 
 // MARK: Area view
 "area.tags.popular" = "populaire";

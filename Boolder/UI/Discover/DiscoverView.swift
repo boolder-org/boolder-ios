@@ -10,7 +10,8 @@ import SwiftUI
 
 struct DiscoverView: View {
     @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
-    
+    @Environment(\.openURL) var openURL
+
     @State var presentArea = false
     @State private var presentWebView = false
     
@@ -246,11 +247,11 @@ struct DiscoverView: View {
                             Divider()
                             
                             Button(action: {
-                                openURL(feedbackURL)
+                                openURL(contributeURL)
                             }, label: {
                                 HStack {
-                                    Image(systemName: "text.bubble")
-                                    Text("discover.feedback")
+                                    Image(systemName: "plus.app")
+                                    Text("discover.contribute")
                                     Spacer()
                                 }
                                 .font(.body)
@@ -322,11 +323,11 @@ struct DiscoverView: View {
         .phoneOnlyStackNavigationView()
     }
     
-    var feedbackURL: URL {
+    var contributeURL: URL {
         if(NSLocale.websiteLocale == "en") {
-            return URL(string: "https://forms.gle/jnnUWyg9tcXtDjZj9")!
+            return URL(string: "https://www.boolder.com/en/contribute")!
         }
-        return URL(string: "https://forms.gle/oQVnKU2kUCNP1bZz8")!
+        return URL(string: "https://www.boolder.com/fr/contribute")!
     }
 }
 
