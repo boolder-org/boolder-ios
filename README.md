@@ -16,7 +16,7 @@ Create an account on https://www.mapbox.com and go to the [Tokens]([url](https:/
 - 1 public token with all the public `scopes` (or use the default token)
 - 1 secret token with all the public `scopes` + the `DOWNLOADS:READ` scope
 
-#### Step 3: public token
+#### Step 2: set up the public token
 
 Store the secret token in `~/.mapbox` like so:
 
@@ -26,7 +26,7 @@ YOUR_PUBLIC_MAPBOX_ACCESS_TOKEN
 
 More info [here]([url](https://docs.mapbox.com/help/troubleshooting/private-access-token-android-and-ios/#ios)).
 
-#### Step 2: set up the secret token
+#### Step 3: set up the secret token
 
 To be able to download the SDK via Swift Package Manager, you must first configure the secret token.
 
