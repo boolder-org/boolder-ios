@@ -24,7 +24,7 @@ Store the secret token in `~/.mapbox` like so:
 YOUR_PUBLIC_MAPBOX_ACCESS_TOKEN
 ```
 
-More info [here]([url](https://docs.mapbox.com/help/troubleshooting/private-access-token-android-and-ios/#ios)).
+More info [here](https://docs.mapbox.com/help/troubleshooting/private-access-token-android-and-ios/#ios).
 
 #### Step 3: set up the secret token
 
@@ -38,7 +38,7 @@ machine api.mapbox.com
   password YOUR_SECRET_MAPBOX_ACCESS_TOKEN
 ```
 
-More info [here]([url](https://docs.mapbox.com/ios/maps/guides/install/)).
+More info [here](https://docs.mapbox.com/ios/maps/guides/install/).
 
 ## Contribute
 
