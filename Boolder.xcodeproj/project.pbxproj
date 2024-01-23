@@ -67,8 +67,6 @@
 		038C2EF229201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF429201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
 		038C2EF529201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
-		0393113D2B47153E00CDA11C /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0393113C2B47153E00CDA11C /* boolder.db */; };
-		0393113E2B47153E00CDA11C /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0393113C2B47153E00CDA11C /* boolder.db */; };
 		039A22A0295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
@@ -99,6 +97,8 @@
 		03E500942930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */; };
 		03E500962930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */; };
 		03E500972930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */; };
+		03E5C1F32B6009140002120D /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03E5C1F22B6009140002120D /* boolder.db */; };
+		03E5C1F42B6009140002120D /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03E5C1F22B6009140002120D /* boolder.db */; };
 		03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -197,7 +197,6 @@
 		0381F3252B30C8BF00F30A8F /* AreaLoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLoadingStatus.swift; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		0393113C2B47153E00CDA11C /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
 		039D432B2B32EBE200FD3E5D /* DownloadAreaButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAreaButtonView.swift; sourceTree = "<group>"; };
@@ -211,6 +210,7 @@
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
 		03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetentsViewModifier.swift; sourceTree = "<group>"; };
+		03E5C1F22B6009140002120D /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 		37254DED2555945100264034 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				0393113C2B47153E00CDA11C /* boolder.db */,
+				03E5C1F22B6009140002120D /* boolder.db */,
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
@@ -690,7 +690,7 @@
 				37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */,
 				37379A3D258E619400711EDA /* Assets.xcassets in Resources */,
 				37379A46258E619400711EDA /* Localizable.strings in Resources */,
-				0393113E2B47153E00CDA11C /* boolder.db in Resources */,
+				03E5C1F42B6009140002120D /* boolder.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +703,7 @@
 				37A8C6332453263400DC161F /* Preview Assets.xcassets in Resources */,
 				37379A9A258F4C3000711EDA /* Assets.xcassets in Resources */,
 				37A6572524BDC00500273A9A /* Localizable.strings in Resources */,
-				0393113D2B47153E00CDA11C /* boolder.db in Resources */,
+				03E5C1F32B6009140002120D /* boolder.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
