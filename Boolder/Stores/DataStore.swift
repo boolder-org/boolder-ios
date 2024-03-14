@@ -36,17 +36,7 @@ class DataStore : ObservableObject {
     @Published var sortedProblems = [Problem]()
     
     let areas = [
-        Area(id: 29, name: "Beauvais Nainville (circuit orange)",                     problemsCount: 410,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 63, name: "Apremont Désert",                     problemsCount: 283,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 74, name: "Mont Aigu Ouest",                     problemsCount: 64,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 77, name: "Buthiers Tennis",                     problemsCount: 90,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 78, name: "Buthiers Canard",                     problemsCount: 141,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 79, name: "Coquibus Rumont",                     problemsCount: 75,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 80, name: "Beauvais Télégraphe",                 problemsCount: 109,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 81, name: "Beauvais Loutteville",                 problemsCount: 89,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 82, name: "Beauvais Roches Noires",                 problemsCount: 102,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 83, name: "Beauvais Hameau",                 problemsCount: 353,   latitude: 0,                   longitude: 0,                   published: false),
-        Area(id: 84, name: "Puiselet Mont Sarrasin",                 problemsCount: 255,   latitude: 0,                   longitude: 0,                   published: false),
+        Area(id: 91, name: "Haute Pierre", problemsCount: 137, latitude: 0, longitude: 0, published: false)
         
     ]
 
