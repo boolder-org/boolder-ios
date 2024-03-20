@@ -18,23 +18,13 @@ struct ContributeView: View {
                 VStack(alignment: .center, spacing: 48) {
                     Spacer()
                     
-                    Text("Contribuer à Boolder")
+                    Text("contribute.title")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Aidez nous à créer le meilleur topo collaboratif pour Fontainebleau !")
-                        
-//                        Image(systemName: "camera").resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                            .frame(height: 150)
-//                            .padding(.top, 32)
-//                            .foregroundColor(.gray)
-                        
-//                        Text("Notre but est de faciliter la découverte de l’escalade de bloc à Fontainebleau de façon ludique et dans le respect de la forêt.")
-//                        Text("Prenez en photo les blocs manquants ou signalez nous les erreurs.")
-//                        Text("Merci pour votre aide !")
+                        Text("contribute.intro")
                     }
                     
                     VStack(spacing: 20) {
@@ -44,7 +34,7 @@ struct ContributeView: View {
                                 .font(.largeTitle)
                                 .frame(width: 40)
                             
-                            Text("Prenez le bloc en photo")
+                            Text("contribute.photo")
                                 .fontWeight(.semibold)
                                 .frame(maxWidth: 200, alignment: .leading)
                                 .multilineTextAlignment(.leading)
@@ -56,7 +46,7 @@ struct ContributeView: View {
                                 .font(.largeTitle)
                                 .frame(width: 40)
                             
-                            Text("Renseignez la position GPS")
+                            Text("contribute.location")
                                 .fontWeight(.semibold)
                                 .frame(maxWidth: 200, alignment: .leading)
                                 .multilineTextAlignment(.leading)
@@ -68,7 +58,7 @@ struct ContributeView: View {
                                 .font(.largeTitle)
                                 .frame(width: 40)
                             
-                            Text("Tracez la ligne de la voie")
+                            Text("contribute.line")
                                 .fontWeight(.semibold)
                                 .frame(maxWidth: 200, alignment: .leading)
                                 .multilineTextAlignment(.leading)
@@ -80,7 +70,7 @@ struct ContributeView: View {
                                 .font(.largeTitle)
                                 .frame(width: 40)
                             
-                            Text("Signalez des erreurs")
+                            Text("contribute.report")
                                 .fontWeight(.semibold)
                                 .frame(maxWidth: 200, alignment: .leading)
                                 .multilineTextAlignment(.leading)
@@ -93,7 +83,7 @@ struct ContributeView: View {
                         Button {
                             openURL(contributeURL)
                         } label: {
-                            Text("Commencer à contribuer")
+                            Text("contribute.cta")
                                 .font(.body.weight(.semibold))
                                 .padding(.vertical)
                         }
@@ -102,11 +92,10 @@ struct ContributeView: View {
                         Button {
                             openURL(aboutURL)
                         } label: {
-                            Text("En savoir plus sur Boolder")
+                            Text("contribute.learn_more")
                                 .font(.body.weight(.semibold))
                                 .padding(.vertical)
                         }
-                        //                    .buttonStyle(LargeButton())
                     }
                     
                     Spacer()
@@ -118,7 +107,6 @@ struct ContributeView: View {
             appState.badgeContributeWasSeen = true
             UserDefaults.standard.set(true, forKey: "contribute-badge-was-seen")
         }
-        .navigationTitle("Contribuer")
     }
     
     var contributeURL: URL {

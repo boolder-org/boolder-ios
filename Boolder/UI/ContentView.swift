@@ -32,10 +32,10 @@ struct ContentView: View {
                 }
                 .tag(AppState.Tab.ticklist)
             
-            // TODO: remove after June 2024 (?)
+            // TODO: remove (when?)
             ContributeView()
                 .tabItem {
-                    Label("Contribuer", systemImage: "person.2")
+                    Label("tabs.contribute", systemImage: "person.2")
                 }
                 .tag(AppState.Tab.contribute)
                 .modify {
