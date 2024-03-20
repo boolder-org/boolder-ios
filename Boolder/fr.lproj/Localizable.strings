@@ -9,6 +9,7 @@
 "tabs.map" = "Carte";
 "tabs.discover" = "Découvrir";
 "tabs.ticklist" = "Mes voies";
+"tabs.contribute" = "Contribuer";
 
 // MARK: Map
 "map.circuit_start" = "Départ circuit";
@@ -179,3 +180,13 @@
 "ticklist.title" = "Mes voies";
 "ticklist.empty_state_title" = "Hâte de grimper ?";
 "ticklist.empty_state_body" = "Vos projets et vos voies réussies apparaîtront ici.";
+
+// MARK: Contribute
+"contribute.title" = "Contribuer à Boolder";
+"contribute.intro" = "Aidez nous à créer le meilleur topo collaboratif pour Fontainebleau !";
+"contribute.photo" = "Prenez le bloc en photo";
+"contribute.location" = "Renseignez la position GPS";
+"contribute.line" = "Tracez la ligne de la voie";
+"contribute.report" = "Signalez des erreurs";
+"contribute.cta" = "Commencer à contribuer";
+"contribute.learn_more" = "En savoir plus sur Boolder";

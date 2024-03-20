@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0307619C2BAB27FF00F2DF87 /* ContributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307619B2BAB27FF00F2DF87 /* ContributeView.swift */; };
+		0307619D2BAB27FF00F2DF87 /* ContributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0307619B2BAB27FF00F2DF87 /* ContributeView.swift */; };
 		030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* Pill.swift */; };
 		030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* Pill.swift */; };
 		030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */; };
@@ -166,6 +168,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0307619B2BAB27FF00F2DF87 /* ContributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributeView.swift; sourceTree = "<group>"; };
 		030AC19C27ABCF5300AF85E7 /* Pill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pill.swift; sourceTree = "<group>"; };
 		030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasLevelView.swift; sourceTree = "<group>"; };
 		030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasTrain.swift; sourceTree = "<group>"; };
@@ -390,6 +393,7 @@
 			children = (
 				03C104F6290C0688007A94D7 /* ContentView.swift */,
 				031A61BA29EC7CE200B2B46E /* AppState.swift */,
+				0307619B2BAB27FF00F2DF87 /* ContributeView.swift */,
 				03C104E7290ACBEE007A94D7 /* Map */,
 				37158D0425487F1700A8B696 /* Discover */,
 				031F36C4291EAD8A00BD0C2B /* Tick List */,
@@ -762,6 +766,7 @@
 				031A4CAC296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
 				03E500912930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */,
+				0307619D2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
@@ -842,6 +847,7 @@
 				03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
+				0307619C2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
 				03147EE22B46B581005771C3 /* DownloadSettings.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,

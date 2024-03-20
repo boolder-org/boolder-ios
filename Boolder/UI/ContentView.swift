@@ -31,6 +31,26 @@ struct ContentView: View {
                     Label("tabs.ticklist", systemImage: "bookmark")
                 }
                 .tag(AppState.Tab.ticklist)
+            
+            // TODO: remove (when?)
+            ContributeView()
+                .tabItem {
+                    Label("tabs.contribute", systemImage: "person.2")
+                }
+                .tag(AppState.Tab.contribute)
+                .modify {
+                    if #available(iOS 15, *) {
+                        if(!appState.badgeContributeWasSeen) {
+                            $0.badge("new")
+                        }
+                        else {
+                            $0
+                        }
+                    }
+                    else {
+                        $0
+                    }
+                }
         }
         .environmentObject(appState)
     }
