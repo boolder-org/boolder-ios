@@ -189,24 +189,22 @@ struct DiscoverView: View {
                                     
                                     Divider()
                                     
-                                    ForEach(areasDisplayed) { area in
+                                    // bug with foreach & navigation link: https://stackoverflow.com/questions/66017531/swiftui-navigationlink-bug-swiftui-encountered-an-issue-when-pushing-anavigatio
+//                                    ForEach(areasDisplayed) { area in
                                         NavigationLink(
                                             destination: AreaView(),
                                             isActive: $presentArea,
                                             label: {
                                                 HStack {
-                                                    Text(area.name)
+                                                    Text("Mont d'Olivet")
                                                         .font(.body)
                                                         .foregroundColor(Color.appGreen)
-                                                    Text("(\(String(area.problemsCount)))")
-                                                        .font(.callout)
-                                                        .foregroundColor(Color(.tertiaryLabel))
                                                     Spacer()
                                                     Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
                                                 }
                                                 .contentShape(Rectangle())
                                                 .onTapGesture {
-                                                    dataStore.areaId = area.id
+                                                    dataStore.areaId = 92
                                                     dataStore.filters = Filters()
                                                     presentArea = true
                                                 }
@@ -214,7 +212,7 @@ struct DiscoverView: View {
                                         )
                                         
                                         Divider()
-                                    }
+//                                    }
                                     
                                 }
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)

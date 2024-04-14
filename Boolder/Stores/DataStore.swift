@@ -36,7 +36,8 @@ class DataStore : ObservableObject {
     @Published var sortedProblems = [Problem]()
     
     let areas = [
-        Area(id: 91, name: "Haute Pierre", problemsCount: 137, latitude: 0, longitude: 0, published: false)
+        Area(id: 91, name: "Haute Pierre", problemsCount: 137, latitude: 0, longitude: 0, published: false),
+        Area(id: 92, name: "Mont d'Olivet", problemsCount: 70, latitude: 0, longitude: 0, published: false)
         
     ]
 
