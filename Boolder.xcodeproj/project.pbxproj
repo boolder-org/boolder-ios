@@ -650,6 +650,7 @@
 					"area-84",
 					"area-86",
 					"area-9",
+					"area-91",
 				);
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1510;
