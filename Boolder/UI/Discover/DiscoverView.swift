@@ -14,6 +14,9 @@ struct DiscoverView: View {
     @Environment(\.openURL) var openURL
     
     @State var presentArea = false
+    @State var presentArea92 = false // temporary hack to avoid problem with NavigationLink (see below)
+    @State var presentArea93 = false
+    
     @State private var presentSettings = false
     @State private var searchText = ""
     
@@ -193,7 +196,7 @@ struct DiscoverView: View {
 //                                    ForEach(areasDisplayed) { area in
                                         NavigationLink(
                                             destination: AreaView(),
-                                            isActive: $presentArea,
+                                            isActive: $presentArea92,
                                             label: {
                                                 HStack {
                                                     Text("Mont d'Olivet")
@@ -206,12 +209,34 @@ struct DiscoverView: View {
                                                 .onTapGesture {
                                                     dataStore.areaId = 92
                                                     dataStore.filters = Filters()
-                                                    presentArea = true
+                                                    presentArea92 = true
                                                 }
                                             }
                                         )
                                         
                                         Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea93,
+                                        label: {
+                                            HStack {
+                                                Text("Apremont Envers (circuit orange)")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 93
+                                                dataStore.filters = Filters()
+                                                presentArea93 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
 //                                    }
                                     
                                 }
