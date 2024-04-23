@@ -16,6 +16,7 @@ struct DiscoverView: View {
     @State var presentArea = false
     @State var presentArea92 = false // temporary hack to avoid problem with NavigationLink (see below)
     @State var presentArea93 = false
+    @State var presentArea94 = false
     
     @State private var presentSettings = false
     @State private var searchText = ""
@@ -232,6 +233,28 @@ struct DiscoverView: View {
                                                 dataStore.areaId = 93
                                                 dataStore.filters = Filters()
                                                 presentArea93 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea94,
+                                        label: {
+                                            HStack {
+                                                Text("La Troche")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 94
+                                                dataStore.filters = Filters()
+                                                presentArea94 = true
                                             }
                                         }
                                     )
