@@ -39,33 +39,6 @@ struct ContributeView: View {
                                 .frame(maxWidth: 200, alignment: .leading)
                                 .multilineTextAlignment(.leading)
                         }
-
-                        HStack(spacing: 40) {
-                            Image(systemName: "location")
-                                .foregroundColor(.blue)
-                                .font(.largeTitle)
-                                .frame(width: 40)
-                            
-                            Text("contribute.location")
-                                .fontWeight(.semibold)
-                                .frame(maxWidth: 200, alignment: .leading)
-                                .multilineTextAlignment(.leading)
-                        }
-                        
-                        if #available(iOS 17.0, *) {
-                            
-                            HStack(spacing: 40) {
-                                Image(systemName: "point.topleft.down.to.point.bottomright.curvepath") // available in iOS 17.0
-                                    .foregroundColor(.teal)
-                                    .font(.largeTitle)
-                                    .frame(width: 40)
-                                
-                                Text("contribute.line")
-                                    .fontWeight(.semibold)
-                                    .frame(maxWidth: 200, alignment: .leading)
-                                    .multilineTextAlignment(.leading)
-                            }
-                        }
                         
                         HStack(spacing: 40) {
                             Image(systemName: "exclamationmark.triangle")

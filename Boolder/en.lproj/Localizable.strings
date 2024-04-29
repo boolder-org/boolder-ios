@@ -185,7 +185,7 @@
 // MARK: Contribute
 "contribute.title" = "Contribute to Boolder";
 "contribute.intro" = "Help us build the best collaborative guidebook for Fontainebleau!";
-"contribute.photo" = "Take a photo of a boulder";
+"contribute.photo" = "Take photos of missing boulders";
 "contribute.location" = "Enter the GPS position";
 "contribute.line" = "Draw the route line";
 "contribute.report" = "Report errors";

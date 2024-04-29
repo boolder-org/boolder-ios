@@ -184,7 +184,7 @@
 // MARK: Contribute
 "contribute.title" = "Contribuer à Boolder";
 "contribute.intro" = "Aidez nous à créer le meilleur topo collaboratif pour Fontainebleau !";
-"contribute.photo" = "Prenez le bloc en photo";
+"contribute.photo" = "Prenez les blocs manquants en photo";
 "contribute.location" = "Renseignez la position GPS";
 "contribute.line" = "Tracez la ligne de la voie";
 "contribute.report" = "Signalez des erreurs";
