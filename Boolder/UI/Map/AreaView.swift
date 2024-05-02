@@ -183,8 +183,13 @@ struct AreaView: View {
                 }
                 
                 if let warningFr = area.warningFr, let warningEn = area.warningEn {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.yellow)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(NSLocale.websiteLocale == "fr" ? warningFr : warningEn).foregroundColor(.orange)
+                        }
                     }
                 }
             }

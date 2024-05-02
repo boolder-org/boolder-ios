@@ -1,4 +1,5 @@
 {
+  "originHash" : "663d61215403232efd7b15a1215b9af8ee4443f97166337fd093f7d19371a8be",
   "pins" : [
     {
       "identity" : "mapbox-common-ios",
@@ -46,5 +47,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

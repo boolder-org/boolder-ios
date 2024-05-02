@@ -51,6 +51,11 @@ struct AreaToolbarView: View {
                                 .truncationMode(.head)
                             
                             if let area = mapState.selectedArea {
+                                if let _ = area.warningFr, let _ = area.warningEn {
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .foregroundColor(.yellow)
+                                }
+                                
                                 AreaLoadingStatus(area: area)
                             }
                         }
