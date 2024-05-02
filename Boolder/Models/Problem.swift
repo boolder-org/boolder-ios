@@ -218,6 +218,7 @@ extension Problem {
                 p.id != id // don't show itself
                 && (p.parentId == nil) // don't show anyone's children
                 && (p.id != parentId) // don't show problem's parent
+                && p.mainTopoId == self.mainTopoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
             }
         }
         catch {
