@@ -93,6 +93,7 @@
 "area.problems.search_prompt" = "Nom de voie";
 "area.circuit.beginner" = "Ce circuit convient aux débutants";
 "area.circuit.dangerous" = "Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile";
+"area.offline" = "Mode hors-ligne";
 "area.photos.download" = "Télécharger les photos";
 "area.photos.downloading" = "Téléchargement";
 "area.photos.downloaded" = "Photos téléchargées";

@@ -46,7 +46,7 @@ struct AreaView: View {
                     poiRoutesList
                 }
                 
-                Section {
+                Section(header: Text("area.offline")) {
                     DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
                         .background {
                             EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
