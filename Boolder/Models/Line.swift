@@ -31,6 +31,10 @@ struct Line: Decodable, Identifiable {
         return firstPoint
     }
     
+    var isFirst: Bool {
+        problem.lines.first?.id == id
+    }
+    
     var otherLinesOnSameTopo: [Line] {
         let query = Table("lines")
             .filter(Line.topoId == topoId)
@@ -44,7 +48,7 @@ struct Line: Decodable, Identifiable {
                 line.problem.id != problemId // don't show itself
                 && (line.problem.parentId == nil) // don't show anyone's children
                 && (line.problem.id != problem.parentId) // don't show problem's parent
-//                && p.mainTopoId == self.mainTopoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
+                && line.isFirst
             }
         }
         catch {
