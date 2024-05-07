@@ -47,7 +47,7 @@ struct TopoView: View {
                                     }
                                 }
                             
-                            LineView(line: problem.line!, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                            LineView(line: line, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
@@ -175,20 +175,20 @@ struct TopoView: View {
     }
     
     func loadData() async {
-        if let localPhoto = problem.mainTopoPhoto {
+        if let localPhoto = line.offlinePhoto {
             self.photoStatus = .ready(image: localPhoto)
             return
         }
         
-        guard let topoId = problem.mainTopoId else {
-            photoStatus = .none
-            return
-        }
+//        guard let topoId = line.topoId else {
+//            photoStatus = .none
+//            return
+//        }
         
         do {
             photoStatus = .loading
             
-            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
+            if let image = try await TopoImageCache.shared.getImage(topoId: line.topoId) {
                 self.photoStatus = .ready(image: image)
             }
             else {
@@ -222,7 +222,7 @@ struct TopoView: View {
     
     // TODO: make this DRY with other screens
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
+        guard let lineFirstPoint = line.firstPoint else { return nil }
         
         return CGSize(
             width:  (CGFloat(lineFirstPoint.x) * size.width) - tapSize/2,

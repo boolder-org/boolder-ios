@@ -23,6 +23,13 @@ struct Line: Decodable, Identifiable {
     var offlinePhoto: UIImage? {
         UIImage(named: "topo-\(String(topoId)).jpg")
     }
+    
+    var firstPoint: Line.PhotoPercentCoordinate? {
+        guard let coordinates = coordinates else { return nil }
+        guard let firstPoint = coordinates.first else { return nil }
+        
+        return firstPoint
+    }
 }
 
 // MARK: SQLite

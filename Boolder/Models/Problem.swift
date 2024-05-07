@@ -76,20 +76,13 @@ struct Problem : Identifiable {
             return children
         }
     }
-
-    // TODO: move to Line
-    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
-        guard let line = line else { return nil }
-        guard let coordinates = line.coordinates else { return nil }
-        guard let firstPoint = coordinates.first else { return nil }
-        
-        return firstPoint
-    }
     
+    // TODO: remove
     var mainTopoPhoto: UIImage? {
         line?.offlinePhoto
     }
     
+    // TODO: remove
     var mainTopoId: Int? {
         line?.topoId
     }
