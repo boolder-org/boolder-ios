@@ -27,19 +27,40 @@ struct ProblemDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                TabView {
-                    ForEach(problem.lines) { line in
-                        TopoView(
-                            line: line,
-                            mapState: mapState
-                        )
-                    }
-                    
-                }
-                .aspectRatio(4/3, contentMode: .fit)
-                .tabViewStyle(.page)
+//                TabView {
+//                    ForEach(problem.lines) { line in
+//                        TopoView(
+//                            line: line,
+//                            mapState: mapState
+//                        )
+//                    }
+//                    
+//                }
+//                .aspectRatio(4/3, contentMode: .fit)
+//                .tabViewStyle(.page)
                 
-                .zIndex(10)
+                if #available(iOS 17.0, *) {
+                    ScrollView(.horizontal) {
+                        LazyHStack {
+                            ForEach(problem.lines) { line in
+                                TopoView(
+                                    line: line,
+                                    mapState: mapState
+                                )
+//                                .frame(width: 300, height: 100)
+//                                .aspectRatio(4/3, contentMode: .fit)
+                            }
+                        }
+//                        .aspectRatio(4/3, contentMode: .fit)
+                        .scrollTargetLayout()
+                    }
+                    .aspectRatio(4/3, contentMode: .fit)
+                    .scrollIndicators(.hidden)
+                    .scrollTargetBehavior(.viewAligned)
+//                    .safeAreaPadding(.horizontal, 40)
+                } else {
+                    // Fallback on earlier versions
+                }
                 
                 infos
                 
