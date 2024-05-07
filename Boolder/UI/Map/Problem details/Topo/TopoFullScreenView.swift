@@ -101,7 +101,8 @@ struct TopoFullScreenView: View {
     
     // TODO: make this DRY with other screens
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.line!.firstPoint else { return nil }
+        //f FIXME: 
+        guard let lineFirstPoint = problem.lines.first!.firstPoint else { return nil }
         
         return CGSize(
             width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,

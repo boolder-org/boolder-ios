@@ -36,16 +36,16 @@ struct TopoView: View {
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
-                                .modify {
-                                    if case .ready(let image) = photoStatus  {
-                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                            TopoFullScreenView(image: image, problem: problem)
-                                        }
-                                    }
-                                    else {
-                                        $0
-                                    }
-                                }
+//                                .modify {
+//                                    if case .ready(let image) = photoStatus  {
+//                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+//                                            TopoFullScreenView(image: image, problem: problem)
+//                                        }
+//                                    }
+//                                    else {
+//                                        $0
+//                                    }
+//                                }
                             
                             LineView(line: line, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
@@ -154,7 +154,9 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { [problem] newValue in
-            if problem.mainTopoId == newValue.mainTopoId {
+            // FIXME: 
+            if true {
+//            if problem.mainTopoId == newValue.mainTopoId {
                 lineDrawPercentage = 0.0
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

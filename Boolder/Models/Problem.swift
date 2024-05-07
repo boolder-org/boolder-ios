@@ -77,16 +77,6 @@ struct Problem : Identifiable {
         }
     }
     
-    // TODO: remove
-    var mainTopoPhoto: UIImage? {
-        line?.offlinePhoto
-    }
-    
-    // TODO: remove
-    var mainTopoId: Int? {
-        line?.topoId
-    }
-    
     func isFavorite() -> Bool {
         favorite() != nil
     }
@@ -175,24 +165,6 @@ extension Problem {
         catch {
             print (error)
             return []
-        }
-    }
-    
-    // TODO: remove
-    var line: Line? {
-        let lines = Table("lines")
-            .filter(Line.problemId == id)
-        
-        do {
-            if let l = try SqliteStore.shared.db.pluck(lines) {
-                return Line.load(id: l[Line.id])
-            }
-            
-            return nil
-        }
-        catch {
-            print (error)
-            return nil
         }
     }
     
