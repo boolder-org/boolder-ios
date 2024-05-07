@@ -50,7 +50,7 @@ struct TopoView: View {
                             LineView(line: line, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
-                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                if let lineStart = lineStart(line: line, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
                                         .contentShape(Rectangle()) // makes the whole frame tappable
@@ -58,14 +58,14 @@ struct TopoView: View {
                                         .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
                                 }
                                 
-                                ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                                    if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                ForEach(line.otherLinesOnSameTopo) { secondaryLine in
+                                    if let lineStart = lineStart(line: secondaryLine, inRectOfSize: geo.size) {
+                                        ProblemCircleView(problem: secondaryLine.problem, isDisplayedOnPhoto: true)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
                                             .offset(lineStart)
                                             .onTapGesture {
-                                                mapState.selectProblem(secondaryProblem)
+                                                mapState.selectProblem(secondaryLine.problem)
                                             }
                                     }
                                 }
@@ -221,7 +221,7 @@ struct TopoView: View {
     }
     
     // TODO: make this DRY with other screens
-    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
+    func lineStart(line: Line, inRectOfSize size: CGSize) -> CGSize? {
         guard let lineFirstPoint = line.firstPoint else { return nil }
         
         return CGSize(

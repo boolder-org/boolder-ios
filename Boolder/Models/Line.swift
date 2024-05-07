@@ -30,6 +30,28 @@ struct Line: Decodable, Identifiable {
         
         return firstPoint
     }
+    
+    var otherLinesOnSameTopo: [Line] {
+        let query = Table("lines")
+            .filter(Line.topoId == topoId)
+
+        do {
+            let linesOnSameTopo = try SqliteStore.shared.db.prepare(query).map { l in
+                Self.load(id: l[Line.id])
+            }
+            
+            return linesOnSameTopo.compactMap{$0}.filter { line in
+                line.problem.id != problemId // don't show itself
+                && (line.problem.parentId == nil) // don't show anyone's children
+                && (line.problem.id != problem.parentId) // don't show problem's parent
+//                && p.mainTopoId == self.mainTopoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
+            }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
 }
 
 // MARK: SQLite

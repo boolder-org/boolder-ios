@@ -211,30 +211,6 @@ extension Problem {
         }
     }
     
-    var otherProblemsOnSameTopo: [Problem] {
-        guard let l = line else { return [] }
-        
-        let lines = Table("lines")
-            .filter(Line.topoId == l.topoId)
-
-        do {
-            let problemsOnSameTopo = try SqliteStore.shared.db.prepare(lines).map { l in
-                Self.load(id: l[Line.problemId])
-            }
-            
-            return problemsOnSameTopo.compactMap{$0}.filter { p in
-                p.id != id // don't show itself
-                && (p.parentId == nil) // don't show anyone's children
-                && (p.id != parentId) // don't show problem's parent
-                && p.mainTopoId == self.mainTopoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
-            }
-        }
-        catch {
-            print (error)
-            return []
-        }
-    }
-    
     var children: [Problem] {
         let problems = Table("problems")
             .filter(Problem.parentId == id)
