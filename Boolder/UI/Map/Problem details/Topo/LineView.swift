@@ -29,7 +29,7 @@ struct LineView: View {
     }
     
     private var linePath: Path {
-        guard problem.line != nil else { return Path() }
+//        guard line != nil else { return Path() }
         guard linePoints.count > 0 else { return Path() }
         
         let points = linePoints
@@ -50,7 +50,7 @@ struct LineView: View {
     }
     
     private var linePoints: [CGPoint] {
-        if let line = problem.line?.coordinates {
+        if let line = line.coordinates {
             return line.map{CGPoint(x: $0.x, y: $0.y)}
         }
         else {
