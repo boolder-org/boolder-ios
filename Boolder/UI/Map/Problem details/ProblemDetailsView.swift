@@ -27,10 +27,18 @@ struct ProblemDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                TopoView(
-                    problem: $problem,
-                    mapState: mapState
-                )
+                TabView {
+                    ForEach(problem.lines) { line in
+                        TopoView(
+                            line: line,
+                            mapState: mapState
+                        )
+                    }
+                    
+                }
+                .aspectRatio(4/3, contentMode: .fit)
+                .tabViewStyle(.page)
+                
                 .zIndex(10)
                 
                 infos

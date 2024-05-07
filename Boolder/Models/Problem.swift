@@ -185,7 +185,7 @@ extension Problem {
         }
     }
     
-    // TODO: handle multiple lines
+    // TODO: remove
     var line: Line? {
         let lines = Table("lines")
             .filter(Line.problemId == id)
@@ -200,6 +200,21 @@ extension Problem {
         catch {
             print (error)
             return nil
+        }
+    }
+    
+    var lines: [Line] {
+        let query = Table("lines")
+            .filter(Line.problemId == id)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { line in
+                Line.load(id: line[Line.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
         }
     }
     

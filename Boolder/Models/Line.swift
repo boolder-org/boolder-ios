@@ -9,7 +9,7 @@
 import UIKit
 import SQLite
 
-struct Line: Decodable {
+struct Line: Decodable, Identifiable {
     let id: Int
     let topoId: Int
     let problemId: Int

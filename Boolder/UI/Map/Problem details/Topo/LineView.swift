@@ -14,6 +14,7 @@ struct LineView: View {
     
     @Binding var pinchToZoomScale: CGFloat
     
+    // TODO: remove?
     var problem: Problem {
         line.problem
     }

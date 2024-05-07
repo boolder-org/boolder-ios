@@ -11,11 +11,16 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var problem: Problem
+    let line: Line
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
+    
+    // TODO: remove?
+    var problem: Problem {
+        line.problem
+    }
     
     let tapSize: CGFloat = 44
     
