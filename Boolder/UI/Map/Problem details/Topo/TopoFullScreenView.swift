@@ -49,7 +49,7 @@ struct TopoFullScreenView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
                                         ZStack {
-                                            LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
+//                                            LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
                                             
                                             GeometryReader { geo in
                                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {

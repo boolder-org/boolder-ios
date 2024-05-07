@@ -9,10 +9,14 @@
 import SwiftUI
 
 struct LineView: View {
-    let problem: Problem
+    let line: Line
     @Binding var drawPercentage: CGFloat
     
     @Binding var pinchToZoomScale: CGFloat
+    
+    var problem: Problem {
+        line.problem
+    }
     
     var body: some View {
         ResizablePath(path: linePath)
