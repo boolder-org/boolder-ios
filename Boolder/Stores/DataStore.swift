@@ -38,7 +38,10 @@ class DataStore : ObservableObject {
     let areas: [Area] = [
         Area(id: 92, name: "Mont d'Olivet", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 93, name: "Apremont Envers (circuit orange)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
-        Area(id: 94, name: "La Troche", problemsCount: 0, latitude: 0, longitude: 0, published: false)
+        Area(id: 94, name: "La Troche", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 96, name: "Mont Ussy Est", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 97, name: "La Padole", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 98, name: "La Padole (Cent Marches)", problemsCount: 0, latitude: 0, longitude: 0, published: false)
         
     ]
 

@@ -17,6 +17,9 @@ struct DiscoverView: View {
     @State var presentArea92 = false // temporary hack to avoid problem with NavigationLink (see below)
     @State var presentArea93 = false
     @State var presentArea94 = false
+    @State var presentArea96 = false
+    @State var presentArea97 = false
+    @State var presentArea98 = false
     
     @State private var presentSettings = false
     @State private var searchText = ""
@@ -255,6 +258,72 @@ struct DiscoverView: View {
                                                 dataStore.areaId = 94
                                                 dataStore.filters = Filters()
                                                 presentArea94 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea96,
+                                        label: {
+                                            HStack {
+                                                Text("Mont Ussy Est")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 96
+                                                dataStore.filters = Filters()
+                                                presentArea96 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea97,
+                                        label: {
+                                            HStack {
+                                                Text("La Padole")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 97
+                                                dataStore.filters = Filters()
+                                                presentArea97 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea98,
+                                        label: {
+                                            HStack {
+                                                Text("La Padole (Cent Marches)")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 98
+                                                dataStore.filters = Filters()
+                                                presentArea98 = true
                                             }
                                         }
                                     )
