@@ -41,7 +41,12 @@ class DataStore : ObservableObject {
         Area(id: 94, name: "La Troche", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 96, name: "Mont Ussy Est", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 97, name: "La Padole", problemsCount: 0, latitude: 0, longitude: 0, published: false),
-        Area(id: 98, name: "La Padole (Cent Marches)", problemsCount: 0, latitude: 0, longitude: 0, published: false)
+        Area(id: 98, name: "La Padole (Cent Marches)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 99, name: "Apremont Sully", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 100, name: "Monts et Merveilles", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 101, name: "Darvault", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 102, name: "Troglodyte", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 103, name: "Chamarande", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         
     ]
 
