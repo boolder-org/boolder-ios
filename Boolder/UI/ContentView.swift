@@ -7,53 +7,76 @@
 //
 
 import SwiftUI
+import Turbo
+
+let baseURL = URL(string: "https://turbo-native-demo.glitch.me/")!
+
+let mapViewController = UIHostingController(rootView: MapContainerView())
+let discoverViewController = UIHostingController(rootView: DiscoverView())
+let ticklistViewController = UIHostingController(rootView: TickList())
 
 struct ContentView: View {
     @StateObject var appState = AppState()
+    private let navigator = TurboNavigator()
     
     var body: some View {
-        TabView(selection: $appState.tab) {
-            
-            MapContainerView()
-                .tabItem {
-                    Label("tabs.map", systemImage: "map")
+            TabBarController(viewControllers: [mapViewController, discoverViewController, ticklistViewController, navigator.rootViewController])
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    mapViewController.tabBarItem = UITabBarItem(title: "Carte", image: UIImage(systemName: "map"), tag: 0)
+                    discoverViewController.tabBarItem = UITabBarItem(title: "Découvrir", image: UIImage(systemName: "sparkles"), tag: 1)
+                    ticklistViewController.tabBarItem = UITabBarItem(title: "Mes voies", image: UIImage(systemName: "bookmark"), tag: 2)
+                    navigator.rootViewController.tabBarItem = UITabBarItem(title: "Contribuer", image: UIImage(systemName: "person.2"), tag: 3)
+                    
+                    navigator.route(baseURL)
                 }
-                .tag(AppState.Tab.map)
-            
-            DiscoverView()
-                .tabItem {
-                    Label("tabs.discover", systemImage: "sparkles")
-                }
-                .tag(AppState.Tab.discover)
-            
-            TickList()
-                .tabItem {
-                    Label("tabs.ticklist", systemImage: "bookmark")
-                }
-                .tag(AppState.Tab.ticklist)
-            
-            // TODO: remove (when?)
-            ContributeView()
-                .tabItem {
-                    Label("tabs.contribute", systemImage: "person.2")
-                }
-                .tag(AppState.Tab.contribute)
-                .modify {
-                    if #available(iOS 15, *) {
-                        if(!appState.badgeContributeWasSeen) {
-                            $0.badge("new")
-                        }
-                        else {
-                            $0
-                        }
-                    }
-                    else {
-                        $0
-                    }
-                }
+                .environmentObject(appState)
         }
-        .environmentObject(appState)
-    }
+    
+    
+//    var body: some View {
+//        TabView(selection: $appState.tab) {
+//            
+//            MapContainerView()
+//                .tabItem {
+//                    Label("tabs.map", systemImage: "map")
+//                }
+//                .tag(AppState.Tab.map)
+//            
+//            DiscoverView()
+//                .tabItem {
+//                    Label("tabs.discover", systemImage: "sparkles")
+//                }
+//                .tag(AppState.Tab.discover)
+//            
+//            TickList()
+//                .tabItem {
+//                    Label("tabs.ticklist", systemImage: "bookmark")
+//                }
+//                .tag(AppState.Tab.ticklist)
+//            
+//            // TODO: remove (when?)
+//            ContributeView()
+//                .tabItem {
+//                    Label("tabs.contribute", systemImage: "person.2")
+//                }
+//                .tag(AppState.Tab.contribute)
+//                .modify {
+//                    if #available(iOS 15, *) {
+//                        if(!appState.badgeContributeWasSeen) {
+//                            $0.badge("new")
+//                        }
+//                        else {
+//                            $0
+//                        }
+//                    }
+//                    else {
+//                        $0
+//                    }
+//                }
+//        }
+//        .environmentObject(appState)
+//    }
 }
 
 //struct ContentView_Previews: PreviewProvider {

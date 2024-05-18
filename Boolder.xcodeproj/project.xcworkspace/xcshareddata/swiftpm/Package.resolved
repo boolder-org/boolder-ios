@@ -1,5 +1,5 @@
 {
-  "originHash" : "663d61215403232efd7b15a1215b9af8ee4443f97166337fd093f7d19371a8be",
+  "originHash" : "c068e0281a0060c74698376fd3eb1ff47ff0cc7d78822ee8e443b2073589b67a",
   "pins" : [
     {
       "identity" : "mapbox-common-ios",
@@ -35,6 +35,15 @@
       "state" : {
         "revision" : "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
         "version" : "0.14.1"
+      }
+    },
+    {
+      "identity" : "turbo-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hotwired/turbo-ios",
+      "state" : {
+        "branch" : "turbo-navigator",
+        "revision" : "93af6fded2aa7d65d38d4415ff2901ec531bb023"
       }
     },
     {
