@@ -15,6 +15,18 @@ struct TabBarController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = viewControllers
+        
+        // Customize the appearance of the tab bar
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.systemBackground
+        tabBarController.tabBar.standardAppearance = appearance
+        
+        // Ensure this applies to all appearances
+        if #available(iOS 15.0, *) {
+            tabBarController.tabBar.scrollEdgeAppearance = appearance
+        }
+        
         return tabBarController
     }
 
