@@ -41,7 +41,7 @@ struct CircuitView: View {
                 Section {
                     ForEach(circuit.problems) { problem in
                         Button {
-                            appState.tab = .map
+                            appState.selectTabMap()
                             appState.selectedProblem = problem
                         } label: {
                             HStack {
@@ -70,7 +70,7 @@ struct CircuitView: View {
                 
                 Button {
                     appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
-                    appState.tab = .map
+                    appState.selectTabMap()
                 } label: {
                     Text("area.see_on_the_map")
                         .font(.body.weight(.semibold))

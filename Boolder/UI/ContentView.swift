@@ -20,13 +20,15 @@ struct ContentView: View {
     private let navigator = TurboNavigator()
     
     var body: some View {
-            TabBarController(viewControllers: [mapViewController, discoverViewController, ticklistViewController, navigator.rootViewController])
+            TabBarController(viewControllers: [mapViewController, discoverViewController, ticklistViewController, navigator.rootViewController], selectedTab: $appState.selectedTab)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     mapViewController.tabBarItem = UITabBarItem(title: "Carte", image: UIImage(systemName: "map"), tag: 0)
                     discoverViewController.tabBarItem = UITabBarItem(title: "Découvrir", image: UIImage(systemName: "sparkles"), tag: 1)
                     ticklistViewController.tabBarItem = UITabBarItem(title: "Mes voies", image: UIImage(systemName: "bookmark"), tag: 2)
                     navigator.rootViewController.tabBarItem = UITabBarItem(title: "Contribuer", image: UIImage(systemName: "person.2"), tag: 3)
+                    
+//                    appState.selectedTab = 1
                     
                     navigator.route(baseURL)
                 }

@@ -33,7 +33,7 @@ struct AreaProblemsView: View {
                 Section {
                     ForEach(problemsFilteredBySearch) { problem in
                         Button {
-                            appState.tab = .map
+                            appState.selectTabMap()
                             appState.selectedProblem = problem
                         } label: {
                             HStack {
