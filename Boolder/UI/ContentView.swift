@@ -28,6 +28,15 @@ struct ContentView: View {
                     ticklistViewController.tabBarItem = UITabBarItem(title: "Mes voies", image: UIImage(systemName: "bookmark"), tag: 2)
                     navigator.rootViewController.tabBarItem = UITabBarItem(title: "Contribuer", image: UIImage(systemName: "person.2"), tag: 3)
                     
+                    let appearance = UINavigationBarAppearance()
+                    appearance.configureWithOpaqueBackground()
+                    appearance.backgroundColor = UIColor.systemBackground
+                    navigator.rootViewController.navigationBar.standardAppearance = appearance
+                    if #available(iOS 15.0, *) {
+                        navigator.rootViewController.navigationBar.scrollEdgeAppearance = appearance
+                    }
+                    
+                    
 //                    appState.selectedTab = 1
                     
                     navigator.route(baseURL)
