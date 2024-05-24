@@ -50,12 +50,14 @@ struct TopoView: View {
                             LineView(line: line, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
-                                if let lineStart = lineStart(line: line, inRectOfSize: geo.size) {
-                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .frame(width: tapSize, height: tapSize, alignment: .center)
-                                        .contentShape(Rectangle()) // makes the whole frame tappable
-                                        .offset(lineStart)
-                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
+                                if line.isFirst {
+                                    if let lineStart = lineStart(line: line, inRectOfSize: geo.size) {
+                                        ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                            .frame(width: tapSize, height: tapSize, alignment: .center)
+                                            .contentShape(Rectangle()) // makes the whole frame tappable
+                                            .offset(lineStart)
+                                            .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
+                                    }
                                 }
                                 
                                 ForEach(line.otherLinesOnSameTopo) { secondaryLine in
