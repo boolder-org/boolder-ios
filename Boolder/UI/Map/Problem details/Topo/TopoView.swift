@@ -25,9 +25,9 @@ struct TopoView: View {
     
     private var problemsOnTheLeft: [Problem] {
         problem.otherProblemsOnSameTopo.sorted {
-            ($0.lineFirstPoint()?.y ?? 0) < ($1.lineFirstPoint()?.y ?? 0)
+            ($0.lineFirstPoint()?.x ?? 0) < ($1.lineFirstPoint()?.x ?? 0)
         }.filter {
-            ($0.lineFirstPoint()?.y ?? 0) <= (problem.lineFirstPoint()?.y ?? 0)
+            ($0.lineFirstPoint()?.x ?? 0) <= (problem.lineFirstPoint()?.x ?? 0)
         }
     }
     
@@ -37,9 +37,9 @@ struct TopoView: View {
     
     private var problemsOnTheRight: [Problem] {
         problem.otherProblemsOnSameTopo.sorted {
-            ($0.lineFirstPoint()?.y ?? 0) < ($1.lineFirstPoint()?.y ?? 0)
+            ($0.lineFirstPoint()?.x ?? 0) < ($1.lineFirstPoint()?.x ?? 0)
         }.filter {
-            ($0.lineFirstPoint()?.y ?? 0) >= (problem.lineFirstPoint()?.y ?? 0)
+            ($0.lineFirstPoint()?.x ?? 0) >= (problem.lineFirstPoint()?.x ?? 0)
         }
     }
     
@@ -286,7 +286,7 @@ struct TopoView: View {
     }
     
     func animate(action: () -> Void) {
-        withAnimation(Animation.easeInOut(duration: 0.4)) {
+        withAnimation(Animation.easeInOut(duration: 0.1)) {
             action()
         }
     }
