@@ -23,16 +23,31 @@ struct TopoView: View {
     
     let tapSize: CGFloat = 44
     
+    private var problemsOnTheLeft: [Problem] {
+        problem.otherProblemsOnSameTopo.sorted {
+            ($0.lineFirstPoint()?.y ?? 0) < ($1.lineFirstPoint()?.y ?? 0)
+        }.filter {
+            ($0.lineFirstPoint()?.y ?? 0) <= (problem.lineFirstPoint()?.y ?? 0)
+        }
+    }
+    
+    private var previousProblem: Problem? {
+        problemsOnTheLeft.last
+    }
+    
     var body: some View {
         let dragGesture = DragGesture()
             .onChanged { value in
                 offset = value.translation.width
                 print(offset)
                 
-                if abs(offset - lastOffset) > 20 {
-                    mapState.selectProblem(problem.otherProblemsOnSameTopo.randomElement()!)
-                    lastOffset = offset
-                    print("last offset: \(lastOffset)")
+                if abs(offset - lastOffset) > 40 {
+                    if let previousProblem = previousProblem {
+                        mapState.selectProblem(previousProblem)
+                        lastOffset = offset
+                        print("last offset: \(lastOffset)")
+                    }
+                    
                 }
             }
             .onEnded { _ in
