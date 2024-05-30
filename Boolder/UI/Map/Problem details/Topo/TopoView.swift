@@ -17,9 +17,32 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     
+    @State private var offset = CGFloat.zero
+    @State private var lastOffset = CGFloat.zero
+    @State private var isDragging = false
+    
     let tapSize: CGFloat = 44
     
     var body: some View {
+        let dragGesture = DragGesture()
+            .onChanged { value in
+                offset = value.translation.width
+                print(offset)
+                
+                if abs(offset - lastOffset) > 20 {
+                    mapState.selectProblem(problem.otherProblemsOnSameTopo.randomElement()!)
+                    lastOffset = offset
+                    print("last offset: \(lastOffset)")
+                }
+            }
+            .onEnded { _ in
+                withAnimation {
+                    offset = .zero
+                    isDragging = false
+                    print("done")
+                }
+            }
+        
         ZStack(alignment: .center) {
             
             Group {
@@ -28,9 +51,10 @@ struct TopoView: View {
                             Image(uiImage: image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .onTapGesture {
-                                    presentTopoFullScreenView = true
-                                }
+//                                .onTapGesture {
+//                                    presentTopoFullScreenView = true
+//                                }
+//                                .gesture(dragGesture)
                                 .modify {
                                     if case .ready(let image) = photoStatus  {
                                         $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
@@ -104,6 +128,7 @@ struct TopoView: View {
                 }
             }
             
+            
             HStack {
                 Spacer()
                 
@@ -167,6 +192,7 @@ struct TopoView: View {
         .task {
             await loadData()
         }
+        .gesture(dragGesture) // TODO: move somewhere else
     }
     
     func loadData() async {
