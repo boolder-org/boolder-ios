@@ -35,19 +35,38 @@ struct TopoView: View {
         problemsOnTheLeft.last
     }
     
+    private var problemsOnTheRight: [Problem] {
+        problem.otherProblemsOnSameTopo.sorted {
+            ($0.lineFirstPoint()?.y ?? 0) < ($1.lineFirstPoint()?.y ?? 0)
+        }.filter {
+            ($0.lineFirstPoint()?.y ?? 0) >= (problem.lineFirstPoint()?.y ?? 0)
+        }
+    }
+    
+    private var nextProblem: Problem? {
+        problemsOnTheRight.first
+    }
+    
     var body: some View {
         let dragGesture = DragGesture()
             .onChanged { value in
                 offset = value.translation.width
                 print(offset)
                 
-                if abs(offset - lastOffset) > 40 {
+                if offset - lastOffset < -25 {
                     if let previousProblem = previousProblem {
                         mapState.selectProblem(previousProblem)
                         lastOffset = offset
                         print("last offset: \(lastOffset)")
                     }
-                    
+                }
+                
+                if offset - lastOffset > 25 {
+                    if let nextProblem = nextProblem {
+                        mapState.selectProblem(nextProblem)
+                        lastOffset = offset
+                        print("last offset: \(lastOffset)")
+                    }
                 }
             }
             .onEnded { _ in
