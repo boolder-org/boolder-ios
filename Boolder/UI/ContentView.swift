@@ -36,6 +36,9 @@ struct ContentView: View {
                         navigator.rootViewController.navigationBar.scrollEdgeAppearance = appearance
                     }
                     
+                    navigator.rootViewController.tabBarItem.title = "Coucou"
+                    navigator.rootViewController.navigationItem.title = "Coucou2"
+                    
                     
 //                    appState.selectedTab = 1
                     
