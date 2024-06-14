@@ -20,7 +20,9 @@ struct MapContainerView: View {
         ZStack {
             mapbox
             
-            circuitButtons
+//            circuitButtons
+            
+            navigationButtons
             
             locateButton
                 .zIndex(10)
@@ -94,6 +96,83 @@ struct MapContainerView: View {
                     }
                 }
             }
+    }
+    
+    private var problem: Problem {
+        mapState.selectedProblem
+    }
+    
+    private var problemsOnTheLeft: [Problem] {
+        problem.otherProblemsOnSameTopo.sorted {
+            ($0.lineFirstPoint()?.x ?? 0) < ($1.lineFirstPoint()?.x ?? 0)
+        }.filter {
+            ($0.lineFirstPoint()?.x ?? 0) <= (problem.lineFirstPoint()?.x ?? 0)
+        }
+    }
+    
+    private var previousProblem: Problem? {
+        problemsOnTheLeft.last
+    }
+    
+    private var problemsOnTheRight: [Problem] {
+        problem.otherProblemsOnSameTopo.sorted {
+            ($0.lineFirstPoint()?.x ?? 0) < ($1.lineFirstPoint()?.x ?? 0)
+        }.filter {
+            ($0.lineFirstPoint()?.x ?? 0) >= (problem.lineFirstPoint()?.x ?? 0)
+        }
+    }
+    
+    private var nextProblem: Problem? {
+        problemsOnTheRight.first
+    }
+    
+    var navigationButtons : some View {
+        Group {
+            if previousProblem != nil || nextProblem != nil {
+                HStack(spacing: 0) {
+                    
+                    if let previousProblem = previousProblem {
+                        Button(action: {
+                            mapState.selectProblem(previousProblem)
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .padding(10)
+                        }
+                        .font(.body.weight(.semibold))
+//                        .accentColor(.primary)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                    
+                    Spacer()
+                    
+                    if let nextProblem = nextProblem {
+                        
+                        Button(action: {
+                            mapState.selectProblem(nextProblem)
+                        }) {
+                            Image(systemName: "arrow.right")
+                                .padding(10)
+                        }
+                        .font(.body.weight(.semibold))
+//                        .accentColor(.primary)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                }
+                .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            }
+        }
     }
     
     var circuitButtons : some View {
