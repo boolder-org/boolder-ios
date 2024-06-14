@@ -1,0 +1,4012 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "readme": "****PLEASE READ ME***** This data belongs to boolder.com. Want to use it in your app? Let's discuss: hello@boolder.com"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62334156748,
+          48.43683384552
+        ]
+      },
+      "properties": {
+        "grade": "6c",
+        "steepness": "wall",
+        "height": null,
+        "name": "Zone-Art (assis)",
+        "bleauInfoId": "21172",
+        "parentId": 17608,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+          "sit_start"
+        ]
+      },
+      "id": "problem_22018"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62300847081,
+          48.43707574549
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310886",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "26",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17535"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62312078832,
+          48.43680559586
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5359",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "21",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17487"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62334760245,
+          48.43683406796
+        ]
+      },
+      "properties": {
+        "grade": "6b+",
+        "steepness": "wall",
+        "height": null,
+        "name": "Zone-Art",
+        "bleauInfoId": "21210",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17608"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62343477441,
+          48.43715037282
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310953",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "37",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17682"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62342739834,
+          48.43678446429
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5352",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "15",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17904"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62306027098,
+          48.43707730255
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310885",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "25",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17922"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62285625545,
+          48.43684418875
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310847",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "23",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18030"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6235998979,
+          48.43712290197
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310791",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "2",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_17999"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62324266069,
+          48.43691214365
+        ]
+      },
+      "properties": {
+        "grade": "5a",
+        "steepness": "other",
+        "height": null,
+        "name": "Tire à Vue",
+        "bleauInfoId": "5640",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18176"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62340208499,
+          48.43678368576
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5350",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "14",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18342"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62337241305,
+          48.43680314905
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5353",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "16",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18412"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62327987684,
+          48.43718662988
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310946",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "31",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18530"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62361800281,
+          48.43711800838
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310792",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "3",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18500"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62327384187,
+          48.43687099244
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5354",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "17",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18862"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62298751606,
+          48.43716560969
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310889",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_18962"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62358129008,
+          48.4369935552
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310794",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "5",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19009"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62362269668,
+          48.43693594407
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310798",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "9",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19001"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6234827189,
+          48.43673430459
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5346",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19021"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62312212942,
+          48.43676433368
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5358",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "20",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19077"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62345891429,
+          48.43677868091
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5344",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "11",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19134"
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310956",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "40",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19187"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62307871116,
+          48.4370837532
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310850",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "24",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19270"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62336084602,
+          48.43671495249
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5347",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "13",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19507"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62358045172,
+          48.43712590497
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310790",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "1",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19602"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62339873223,
+          48.4371706145
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "wall",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310952",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "36",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_19989"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6233303359,
+          48.43712646095
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310948",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "33",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_20478"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.6234320922,
+          48.43696619548
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310797",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "8",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_20637"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62338330952,
+          48.43677434338
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5351",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_20728"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62327350609,
+          48.4369274918
+        ]
+      },
+      "properties": {
+        "grade": "5b",
+        "steepness": "wall",
+        "height": null,
+        "name": "Plein Pot",
+        "bleauInfoId": "5638",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_20880"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62347131951,
+          48.43670983642
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5345",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "12",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_20974"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62327400951,
+          48.43688222552
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5355",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "18",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_21120"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62347282825,
+          48.43715537763
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310954",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "38",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_21448"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62358263118,
+          48.43690780579
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310799",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "10",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_21458"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62339118851,
+          48.43712968627
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310950",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "35",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_21575"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62326294539,
+          48.43676867122
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5357",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_22000"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62302272005,
+          48.43681037826
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310845",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "22",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_22760"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62345992012,
+          48.43696285893
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310796",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "7",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_23089"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62321315689,
+          48.43714770359
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310891",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "29",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_23165"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62338012423,
+          48.43682850703
+        ]
+      },
+      "properties": {
+        "grade": "5c",
+        "steepness": "wall",
+        "height": null,
+        "name": "Zone Interdite",
+        "bleauInfoId": "5637",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_23399"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62329211442,
+          48.43711845325
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310947",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "32",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24015"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62349328009,
+          48.43713858371
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310955",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "39",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24186"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62335950492,
+          48.43712668338
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310949",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "34",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24166"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62340158207,
+          48.43715749077
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310951",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24381"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62362571416,
+          48.43709743303
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310793",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "4",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24416"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62305239199,
+          48.43713580326
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310890",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "28",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24481"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62359973026,
+          48.43698754941
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310795",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "6",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24804"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62324618159,
+          48.43716160584
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310892",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "30",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_24983"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62331340395,
+          48.43690836222
+        ]
+      },
+      "properties": {
+        "grade": "6a",
+        "steepness": "other",
+        "height": null,
+        "name": "Spiderman",
+        "bleauInfoId": "5639",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+          "sit_start"
+        ]
+      },
+      "id": "problem_25129"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62297527848,
+          48.43712835165
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "310887",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "27",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_25290"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62330552546,
+          48.43677990432
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5356",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 266,
+        "circuitNumber": "19",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_25519"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.62333586795,
+          48.43674353576
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "slab",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "5348",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_25514"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62330401672,
+              48.43689223519
+            ],
+            [
+              2.62329697592,
+              48.43689234641
+            ],
+            [
+              2.6232902704,
+              48.4368916791
+            ],
+            [
+              2.62328406779,
+              48.43688956595
+            ],
+            [
+              2.62327870337,
+              48.43688634061
+            ],
+            [
+              2.62327250076,
+              48.43688066846
+            ],
+            [
+              2.62327065675,
+              48.43687410656
+            ],
+            [
+              2.62327183021,
+              48.43687199341
+            ],
+            [
+              2.62327451242,
+              48.43687043635
+            ],
+            [
+              2.62328842638,
+              48.4368677671
+            ],
+            [
+              2.62330904586,
+              48.43686532029
+            ],
+            [
+              2.62331642194,
+              48.4368647642
+            ],
+            [
+              2.62332295982,
+              48.43686509786
+            ],
+            [
+              2.62332580967,
+              48.43686609882
+            ],
+            [
+              2.62332731841,
+              48.43686821198
+            ],
+            [
+              2.62332832424,
+              48.43687277194
+            ],
+            [
+              2.62332748605,
+              48.43687944506
+            ],
+            [
+              2.62332413329,
+              48.43688545086
+            ],
+            [
+              2.62332010997,
+              48.43688945473
+            ],
+            [
+              2.62331441028,
+              48.43689134544
+            ],
+            [
+              2.62330401672,
+              48.43689223519
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17405"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6232523842,
+              48.43699989465
+            ],
+            [
+              2.6232466845,
+              48.43700367607
+            ],
+            [
+              2.62324366702,
+              48.43700501069
+            ],
+            [
+              2.62324031426,
+              48.43700590044
+            ],
+            [
+              2.6232369615,
+              48.43700523313
+            ],
+            [
+              2.62323226763,
+              48.4370020078
+            ],
+            [
+              2.62322690321,
+              48.43699611323
+            ],
+            [
+              2.62322455628,
+              48.43698944012
+            ],
+            [
+              2.62322556211,
+              48.43698732698
+            ],
+            [
+              2.6232277414,
+              48.43698554748
+            ],
+            [
+              2.62323779969,
+              48.43698432408
+            ],
+            [
+              2.62324450521,
+              48.43698421286
+            ],
+            [
+              2.62325037254,
+              48.43698632601
+            ],
+            [
+              2.62325875444,
+              48.43699077474
+            ],
+            [
+              2.62326059846,
+              48.43699277667
+            ],
+            [
+              2.6232607661,
+              48.43699511226
+            ],
+            [
+              2.62325959263,
+              48.43699722541
+            ],
+            [
+              2.6232523842,
+              48.43699989465
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17406"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62364096923,
+              48.43701702227
+            ],
+            [
+              2.62361297367,
+              48.43702302806
+            ],
+            [
+              2.62360610051,
+              48.43702336171
+            ],
+            [
+              2.62360308303,
+              48.43702213831
+            ],
+            [
+              2.62359939499,
+              48.43701846811
+            ],
+            [
+              2.62359453348,
+              48.43701535399
+            ],
+            [
+              2.62359168364,
+              48.43701413059
+            ],
+            [
+              2.62357776968,
+              48.43701135013
+            ],
+            [
+              2.62356502919,
+              48.43700723506
+            ],
+            [
+              2.62356385572,
+              48.43700512191
+            ],
+            [
+              2.62356435863,
+              48.43700289754
+            ],
+            [
+              2.62356569974,
+              48.43700089561
+            ],
+            [
+              2.62357441692,
+              48.43699622444
+            ],
+            [
+              2.62358397229,
+              48.4369923318
+            ],
+            [
+              2.623618841,
+              48.43698132118
+            ],
+            [
+              2.62362554653,
+              48.43698043144
+            ],
+            [
+              2.62363225205,
+              48.43698087631
+            ],
+            [
+              2.62363543717,
+              48.43698187728
+            ],
+            [
+              2.62364331616,
+              48.43698632601
+            ],
+            [
+              2.62365438027,
+              48.43699522348
+            ],
+            [
+              2.62365773303,
+              48.43699922734
+            ],
+            [
+              2.62365873886,
+              48.43700145171
+            ],
+            [
+              2.62365924178,
+              48.43700823602
+            ],
+            [
+              2.62365857122,
+              48.43701057161
+            ],
+            [
+              2.62365672721,
+              48.43701246232
+            ],
+            [
+              2.62365370972,
+              48.43701390816
+            ],
+            [
+              2.62364096923,
+              48.43701702227
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17407"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62327074065,
+              48.43697998651
+            ],
+            [
+              2.62327015383,
+              48.4369826558
+            ],
+            [
+              2.62326730407,
+              48.43698571425
+            ],
+            [
+              2.6232661306,
+              48.43698665961
+            ],
+            [
+              2.62326470568,
+              48.43698732692
+            ],
+            [
+              2.62326319694,
+              48.4369878274
+            ],
+            [
+              2.62326152056,
+              48.43698799423
+            ],
+            [
+              2.62325590468,
+              48.43698766058
+            ],
+            [
+              2.623252049,
+              48.43698671522
+            ],
+            [
+              2.62324458911,
+              48.43698348989
+            ],
+            [
+              2.62324391856,
+              48.4369823777
+            ],
+            [
+              2.62324383474,
+              48.43698120991
+            ],
+            [
+              2.62324458911,
+              48.43697865189
+            ],
+            [
+              2.62324743896,
+              48.43697342462
+            ],
+            [
+              2.6232493668,
+              48.43697170074
+            ],
+            [
+              2.62325137845,
+              48.43697125587
+            ],
+            [
+              2.62325917362,
+              48.43697142269
+            ],
+            [
+              2.62326638206,
+              48.43697120026
+            ],
+            [
+              2.62326981864,
+              48.43697153391
+            ],
+            [
+              2.62327099211,
+              48.43697336901
+            ],
+            [
+              2.62327090829,
+              48.43697653874
+            ],
+            [
+              2.62327074065,
+              48.43697998651
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17408"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62343645079,
+              48.43698966256
+            ],
+            [
+              2.62342002226,
+              48.43698098753
+            ],
+            [
+              2.6234131491,
+              48.43697564905
+            ],
+            [
+              2.62341147272,
+              48.4369735359
+            ],
+            [
+              2.62341130508,
+              48.43697131153
+            ],
+            [
+              2.62341365201,
+              48.43696964325
+            ],
+            [
+              2.62341683714,
+              48.43696864229
+            ],
+            [
+              2.62343879772,
+              48.43696486086
+            ],
+            [
+              2.62345992012,
+              48.43696285893
+            ],
+            [
+              2.62346344052,
+              48.43696285893
+            ],
+            [
+              2.62346679328,
+              48.43696374868
+            ],
+            [
+              2.62346914021,
+              48.43696541696
+            ],
+            [
+              2.62347031368,
+              48.4369675301
+            ],
+            [
+              2.62347333116,
+              48.4369789856
+            ],
+            [
+              2.6234770192,
+              48.43698521383
+            ],
+            [
+              2.62347886322,
+              48.43699455617
+            ],
+            [
+              2.62347869558,
+              48.43699700297
+            ],
+            [
+              2.62347718684,
+              48.43699911612
+            ],
+            [
+              2.62347450463,
+              48.43700056196
+            ],
+            [
+              2.62347115187,
+              48.43700111805
+            ],
+            [
+              2.62346394343,
+              48.43700067318
+            ],
+            [
+              2.62345388515,
+              48.43699800394
+            ],
+            [
+              2.62343645079,
+              48.43698966256
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17409"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62307133492,
+              48.43711989919
+            ],
+            [
+              2.62304853614,
+              48.43713858383
+            ],
+            [
+              2.62302540209,
+              48.43716371909
+            ],
+            [
+              2.6230197024,
+              48.43716661076
+            ],
+            [
+              2.62300595608,
+              48.43716794538
+            ],
+            [
+              2.62299220975,
+              48.4371668332
+            ],
+            [
+              2.62297309902,
+              48.43716149473
+            ],
+            [
+              2.62296840515,
+              48.43715793576
+            ],
+            [
+              2.62296639349,
+              48.43715348704
+            ],
+            [
+              2.6229677346,
+              48.43714436716
+            ],
+            [
+              2.62298718061,
+              48.43710343892
+            ],
+            [
+              2.62300008874,
+              48.43708397575
+            ],
+            [
+              2.62300830301,
+              48.43707563438
+            ],
+            [
+              2.62301366743,
+              48.43707341002
+            ],
+            [
+              2.62302003767,
+              48.43707185297
+            ],
+            [
+              2.62304887142,
+              48.43707363246
+            ],
+            [
+              2.62306664106,
+              48.43707919337
+            ],
+            [
+              2.623078711,
+              48.43708364209
+            ],
+            [
+              2.62308340486,
+              48.43708720107
+            ],
+            [
+              2.62308809873,
+              48.43709587609
+            ],
+            [
+              2.6230870929,
+              48.43710499597
+            ],
+            [
+              2.62307133492,
+              48.43711989919
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17410"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62329312025,
+              48.43700156292
+            ],
+            [
+              2.62328959985,
+              48.43700234145
+            ],
+            [
+              2.62328272669,
+              48.43700289754
+            ],
+            [
+              2.62327903865,
+              48.43700289754
+            ],
+            [
+              2.62327585353,
+              48.4370020078
+            ],
+            [
+              2.62327233313,
+              48.43699811516
+            ],
+            [
+              2.62326965092,
+              48.43699144205
+            ],
+            [
+              2.62326898037,
+              48.43698476895
+            ],
+            [
+              2.62327015383,
+              48.4369826558
+            ],
+            [
+              2.62327283604,
+              48.43698120997
+            ],
+            [
+              2.62329529954,
+              48.43697798463
+            ],
+            [
+              2.6233021727,
+              48.43697820707
+            ],
+            [
+              2.62330485491,
+              48.43697943047
+            ],
+            [
+              2.62330636365,
+              48.43698154362
+            ],
+            [
+              2.62330669893,
+              48.43698399043
+            ],
+            [
+              2.62330368144,
+              48.4369953347
+            ],
+            [
+              2.62329965813,
+              48.43699911612
+            ],
+            [
+              2.62329312025,
+              48.43700156292
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17411"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62307820825,
+              48.43693449823
+            ],
+            [
+              2.62306630595,
+              48.43693961428
+            ],
+            [
+              2.62305960042,
+              48.43694117134
+            ],
+            [
+              2.62303428708,
+              48.43694283961
+            ],
+            [
+              2.62302724628,
+              48.4369427284
+            ],
+            [
+              2.62302372588,
+              48.43694228352
+            ],
+            [
+              2.62302054076,
+              48.43693561041
+            ],
+            [
+              2.62301651744,
+              48.43692304273
+            ],
+            [
+              2.62301534398,
+              48.43691481256
+            ],
+            [
+              2.62301551161,
+              48.43691258819
+            ],
+            [
+              2.62301702036,
+              48.43691058625
+            ],
+            [
+              2.62302355824,
+              48.43690880676
+            ],
+            [
+              2.62302724628,
+              48.43690802823
+            ],
+            [
+              2.62303730456,
+              48.43690647117
+            ],
+            [
+              2.62304384245,
+              48.43690613751
+            ],
+            [
+              2.62306228263,
+              48.43690613751
+            ],
+            [
+              2.62307569368,
+              48.4369072497
+            ],
+            [
+              2.62308876945,
+              48.43690914041
+            ],
+            [
+              2.62309161929,
+              48.4369102526
+            ],
+            [
+              2.62309933065,
+              48.43691514621
+            ],
+            [
+              2.6231000012,
+              48.43691959495
+            ],
+            [
+              2.62309916301,
+              48.43692181932
+            ],
+            [
+              2.62307820825,
+              48.43693449823
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17412"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62340174971,
+              48.43715382058
+            ],
+            [
+              2.62340057625,
+              48.43716794526
+            ],
+            [
+              2.62339940278,
+              48.43717016962
+            ],
+            [
+              2.62339655293,
+              48.43717172667
+            ],
+            [
+              2.62339001505,
+              48.4371737286
+            ],
+            [
+              2.62338314189,
+              48.437174952
+            ],
+            [
+              2.62337274833,
+              48.43717517443
+            ],
+            [
+              2.62336621044,
+              48.43717328373
+            ],
+            [
+              2.6233576609,
+              48.43716961353
+            ],
+            [
+              2.62335229648,
+              48.43716672187
+            ],
+            [
+              2.62334894372,
+              48.43716282924
+            ],
+            [
+              2.62334827317,
+              48.43715604494
+            ],
+            [
+              2.62335212884,
+              48.43713535839
+            ],
+            [
+              2.62335682271,
+              48.43712768435
+            ],
+            [
+              2.62335967256,
+              48.43712646095
+            ],
+            [
+              2.62336302532,
+              48.43712601608
+            ],
+            [
+              2.62337710692,
+              48.43712601608
+            ],
+            [
+              2.62338398008,
+              48.43712668338
+            ],
+            [
+              2.6233871652,
+              48.43712735069
+            ],
+            [
+              2.62339018269,
+              48.43712890775
+            ],
+            [
+              2.62339219434,
+              48.43713068723
+            ],
+            [
+              2.62339621766,
+              48.43713691544
+            ],
+            [
+              2.62340174971,
+              48.43715382058
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17413"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62323159691,
+              48.4371904114
+            ],
+            [
+              2.6232264003,
+              48.43719641705
+            ],
+            [
+              2.62321785059,
+              48.43720197806
+            ],
+            [
+              2.62320410427,
+              48.43721165401
+            ],
+            [
+              2.62320108678,
+              48.43721599151
+            ],
+            [
+              2.62319404598,
+              48.43721732613
+            ],
+            [
+              2.62318063494,
+              48.4372146569
+            ],
+            [
+              2.62317493524,
+              48.43721176523
+            ],
+            [
+              2.62316219475,
+              48.43720108832
+            ],
+            [
+              2.6231615242,
+              48.4371966396
+            ],
+            [
+              2.623168565,
+              48.43718618512
+            ],
+            [
+              2.6231853288,
+              48.43717172679
+            ],
+            [
+              2.62319957804,
+              48.43715281973
+            ],
+            [
+              2.62320477482,
+              48.43714903832
+            ],
+            [
+              2.62321114507,
+              48.4371477037
+            ],
+            [
+              2.62323092636,
+              48.4371477037
+            ],
+            [
+              2.62323914079,
+              48.43714948308
+            ],
+            [
+              2.6232429963,
+              48.43715192999
+            ],
+            [
+              2.62324701961,
+              48.43715593383
+            ],
+            [
+              2.62324618142,
+              48.43716649954
+            ],
+            [
+              2.62323914062,
+              48.43718195884
+            ],
+            [
+              2.62323159691,
+              48.4371904114
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17414"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62329127623,
+              48.4368088212
+            ],
+            [
+              2.62327820046,
+              48.43681849723
+            ],
+            [
+              2.62326948328,
+              48.43682261232
+            ],
+            [
+              2.62325976027,
+              48.43682572645
+            ],
+            [
+              2.62325640751,
+              48.43682583767
+            ],
+            [
+              2.62325204892,
+              48.43682505914
+            ],
+            [
+              2.62324634923,
+              48.43681983186
+            ],
+            [
+              2.6232396437,
+              48.43681037826
+            ],
+            [
+              2.62324132008,
+              48.43679825542
+            ],
+            [
+              2.62323394401,
+              48.43677767994
+            ],
+            [
+              2.62323243527,
+              48.43677345363
+            ],
+            [
+              2.62323260291,
+              48.43677122925
+            ],
+            [
+              2.62324484048,
+              48.43676755903
+            ],
+            [
+              2.62325121073,
+              48.43676689172
+            ],
+            [
+              2.62325791625,
+              48.43676755903
+            ],
+            [
+              2.62327250076,
+              48.43677134047
+            ],
+            [
+              2.62329345552,
+              48.43677578922
+            ],
+            [
+              2.62330284325,
+              48.43677856969
+            ],
+            [
+              2.6233056931,
+              48.43677990432
+            ],
+            [
+              2.62331005169,
+              48.43678324088
+            ],
+            [
+              2.62331156043,
+              48.43678524282
+            ],
+            [
+              2.62331290154,
+              48.43678991401
+            ],
+            [
+              2.62331223099,
+              48.43679213839
+            ],
+            [
+              2.62329127623,
+              48.4368088212
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17415"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62286916358,
+              48.43690736092
+            ],
+            [
+              2.62285927294,
+              48.43690524776
+            ],
+            [
+              2.6228507234,
+              48.43690135511
+            ],
+            [
+              2.62284871174,
+              48.43689957562
+            ],
+            [
+              2.62284887938,
+              48.43689746247
+            ],
+            [
+              2.62285457907,
+              48.43689234641
+            ],
+            [
+              2.62285793183,
+              48.43688611817
+            ],
+            [
+              2.62286379917,
+              48.43687877774
+            ],
+            [
+              2.62286648137,
+              48.4368773319
+            ],
+            [
+              2.62286849303,
+              48.43687933384
+            ],
+            [
+              2.62287536619,
+              48.43689824099
+            ],
+            [
+              2.62287955714,
+              48.43690535898
+            ],
+            [
+              2.62288274227,
+              48.43690947407
+            ],
+            [
+              2.62287938951,
+              48.43691003016
+            ],
+            [
+              2.62287603674,
+              48.43690980772
+            ],
+            [
+              2.62286916358,
+              48.43690736092
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17416"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62348355709,
+              48.43714848212
+            ],
+            [
+              2.62347634865,
+              48.43715370936
+            ],
+            [
+              2.62346746383,
+              48.43715726834
+            ],
+            [
+              2.62346059067,
+              48.4371582693
+            ],
+            [
+              2.6234496942,
+              48.4371582693
+            ],
+            [
+              2.62344634144,
+              48.43715793565
+            ],
+            [
+              2.62344298868,
+              48.43715693468
+            ],
+            [
+              2.62343997119,
+              48.43715560007
+            ],
+            [
+              2.62343594788,
+              48.43715192988
+            ],
+            [
+              2.6234285718,
+              48.4371403632
+            ],
+            [
+              2.62342538668,
+              48.43713157698
+            ],
+            [
+              2.62342773361,
+              48.43712712826
+            ],
+            [
+              2.62343611551,
+              48.43712012152
+            ],
+            [
+              2.62344500033,
+              48.43711700741
+            ],
+            [
+              2.62345472334,
+              48.43711556158
+            ],
+            [
+              2.62346142886,
+              48.43711689619
+            ],
+            [
+              2.62347551046,
+              48.43712345806
+            ],
+            [
+              2.6234875804,
+              48.43712757313
+            ],
+            [
+              2.62349227427,
+              48.43713090967
+            ],
+            [
+              2.62349395065,
+              48.43713535839
+            ],
+            [
+              2.62349328009,
+              48.43713980711
+            ],
+            [
+              2.62349193899,
+              48.43714192025
+            ],
+            [
+              2.62348355709,
+              48.43714848212
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17417"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62309111638,
+              48.43681137923
+            ],
+            [
+              2.6230823992,
+              48.4368075978
+            ],
+            [
+              2.62307854353,
+              48.43680381636
+            ],
+            [
+              2.62307804061,
+              48.43680159198
+            ],
+            [
+              2.62307804061,
+              48.43679914517
+            ],
+            [
+              2.62307988463,
+              48.43679736567
+            ],
+            [
+              2.62308759598,
+              48.43679291692
+            ],
+            [
+              2.62309061347,
+              48.43679202717
+            ],
+            [
+              2.62309698371,
+              48.43679202717
+            ],
+            [
+              2.62310368923,
+              48.43679336179
+            ],
+            [
+              2.62311844138,
+              48.43679959004
+            ],
+            [
+              2.62312229706,
+              48.43680326026
+            ],
+            [
+              2.62311927957,
+              48.43680804267
+            ],
+            [
+              2.6231083831,
+              48.43681382604
+            ],
+            [
+              2.6231013423,
+              48.43681460458
+            ],
+            [
+              2.6230978219,
+              48.43681427092
+            ],
+            [
+              2.62309111638,
+              48.43681137923
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17418"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62360241247,
+              48.43712212344
+            ],
+            [
+              2.62358849851,
+              48.43712545999
+            ],
+            [
+              2.62357810495,
+              48.43712612729
+            ],
+            [
+              2.62357106416,
+              48.43712523755
+            ],
+            [
+              2.62356016768,
+              48.43712279075
+            ],
+            [
+              2.62355463563,
+              48.4371200103
+            ],
+            [
+              2.62354709191,
+              48.43711500549
+            ],
+            [
+              2.62354357151,
+              48.43710866606
+            ],
+            [
+              2.62354357151,
+              48.43710655291
+            ],
+            [
+              2.62354508026,
+              48.43710210419
+            ],
+            [
+              2.62354742719,
+              48.43709798912
+            ],
+            [
+              2.62355195342,
+              48.43709231699
+            ],
+            [
+              2.62355463563,
+              48.43709075994
+            ],
+            [
+              2.62357223762,
+              48.43708486538
+            ],
+            [
+              2.62358162535,
+              48.43708219614
+            ],
+            [
+              2.62359470112,
+              48.43707963813
+            ],
+            [
+              2.62360727398,
+              48.43708019422
+            ],
+            [
+              2.62361682935,
+              48.43708208493
+            ],
+            [
+              2.62361951156,
+              48.43708364198
+            ],
+            [
+              2.62362319959,
+              48.4370874234
+            ],
+            [
+              2.62362604944,
+              48.43709398527
+            ],
+            [
+              2.62362470834,
+              48.43710755388
+            ],
+            [
+              2.6236223614,
+              48.43711311478
+            ],
+            [
+              2.62362118794,
+              48.43711533914
+            ],
+            [
+              2.62361666171,
+              48.43711900934
+            ],
+            [
+              2.62360241247,
+              48.43712212344
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17419"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62303177234,
+              48.43686076044
+            ],
+            [
+              2.62301735546,
+              48.43686165019
+            ],
+            [
+              2.62300327387,
+              48.43685964825
+            ],
+            [
+              2.62298550423,
+              48.43685230782
+            ],
+            [
+              2.62296874043,
+              48.43684430008
+            ],
+            [
+              2.62296404656,
+              48.43684118596
+            ],
+            [
+              2.62296102908,
+              48.43683673721
+            ],
+            [
+              2.62294795331,
+              48.43681093447
+            ],
+            [
+              2.62294929441,
+              48.43680648572
+            ],
+            [
+              2.6229620349,
+              48.43680359403
+            ],
+            [
+              2.62298885699,
+              48.43680426134
+            ],
+            [
+              2.62302875485,
+              48.43681137934
+            ],
+            [
+              2.62304987725,
+              48.43681360372
+            ],
+            [
+              2.62305641513,
+              48.43681460469
+            ],
+            [
+              2.62306010334,
+              48.43681838601
+            ],
+            [
+              2.62306429412,
+              48.43682783971
+            ],
+            [
+              2.62306529995,
+              48.43683228846
+            ],
+            [
+              2.62306446176,
+              48.43685119564
+            ],
+            [
+              2.62305960026,
+              48.43685475463
+            ],
+            [
+              2.62303177234,
+              48.43686076044
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17420"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62330653129,
+              48.43718262603
+            ],
+            [
+              2.623304352,
+              48.43718707475
+            ],
+            [
+              2.62330250798,
+              48.43718896545
+            ],
+            [
+              2.62329949049,
+              48.43719018885
+            ],
+            [
+              2.62329261733,
+              48.43719107859
+            ],
+            [
+              2.62328574417,
+              48.43719085616
+            ],
+            [
+              2.62328054739,
+              48.43718718597
+            ],
+            [
+              2.62327585353,
+              48.4371842943
+            ],
+            [
+              2.62327199785,
+              48.43717762123
+            ],
+            [
+              2.62327166257,
+              48.437174952
+            ],
+            [
+              2.62327233313,
+              48.43717272764
+            ],
+            [
+              2.62327937393,
+              48.43717217155
+            ],
+            [
+              2.62330384908,
+              48.43717206033
+            ],
+            [
+              2.62330586074,
+              48.43717383982
+            ],
+            [
+              2.62330686657,
+              48.43717595296
+            ],
+            [
+              2.62330653129,
+              48.43718262603
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17421"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62333402393,
+              48.43714347731
+            ],
+            [
+              2.62333251519,
+              48.43715626738
+            ],
+            [
+              2.62332916243,
+              48.43716527603
+            ],
+            [
+              2.62332262455,
+              48.43716649943
+            ],
+            [
+              2.62331541611,
+              48.43716616578
+            ],
+            [
+              2.62330871059,
+              48.43716460873
+            ],
+            [
+              2.62330250798,
+              48.43716249558
+            ],
+            [
+              2.62329982577,
+              48.43716093853
+            ],
+            [
+              2.62329529954,
+              48.43715693468
+            ],
+            [
+              2.62328742055,
+              48.437151485
+            ],
+            [
+              2.62327987684,
+              48.43714225391
+            ],
+            [
+              2.62327853573,
+              48.43713769397
+            ],
+            [
+              2.62327853573,
+              48.43712412537
+            ],
+            [
+              2.62327987684,
+              48.43711956543
+            ],
+            [
+              2.62328205613,
+              48.43711800838
+            ],
+            [
+              2.62328909693,
+              48.43711811959
+            ],
+            [
+              2.62329932285,
+              48.43711912056
+            ],
+            [
+              2.62331826596,
+              48.43712267953
+            ],
+            [
+              2.62333016826,
+              48.43712657217
+            ],
+            [
+              2.62333251519,
+              48.43712824044
+            ],
+            [
+              2.62333368866,
+              48.43713035358
+            ],
+            [
+              2.62333402393,
+              48.43714347731
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17422"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62329395844,
+              48.43692126323
+            ],
+            [
+              2.6232783681,
+              48.43692671294
+            ],
+            [
+              2.62327166257,
+              48.43692749147
+            ],
+            [
+              2.62326043082,
+              48.43692749147
+            ],
+            [
+              2.62325406058,
+              48.43692571197
+            ],
+            [
+              2.62324634923,
+              48.43692059592
+            ],
+            [
+              2.62324232591,
+              48.43691436768
+            ],
+            [
+              2.62324165536,
+              48.43690535898
+            ],
+            [
+              2.62324232591,
+              48.43690291217
+            ],
+            [
+              2.62324433757,
+              48.4368994644
+            ],
+            [
+              2.6232466845,
+              48.43689801856
+            ],
+            [
+              2.62324986963,
+              48.43689735125
+            ],
+            [
+              2.62326277776,
+              48.43689668394
+            ],
+            [
+              2.62329798175,
+              48.43689323616
+            ],
+            [
+              2.62330451963,
+              48.43689390347
+            ],
+            [
+              2.62331072224,
+              48.43689590541
+            ],
+            [
+              2.62331508083,
+              48.43689924196
+            ],
+            [
+              2.62331642194,
+              48.43690135511
+            ],
+            [
+              2.6233162543,
+              48.43690602629
+            ],
+            [
+              2.62330804003,
+              48.43691403403
+            ],
+            [
+              2.62329395844,
+              48.43692126323
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17423"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62344550308,
+              48.43678201759
+            ],
+            [
+              2.62343175676,
+              48.43678424196
+            ],
+            [
+              2.62340459939,
+              48.43678424196
+            ],
+            [
+              2.62339789387,
+              48.4367826849
+            ],
+            [
+              2.62338817086,
+              48.43677578933
+            ],
+            [
+              2.6233539727,
+              48.43676511233
+            ],
+            [
+              2.62334424969,
+              48.43676088601
+            ],
+            [
+              2.62334089693,
+              48.43675710457
+            ],
+            [
+              2.62333452668,
+              48.43673930955
+            ],
+            [
+              2.62333217975,
+              48.43673508323
+            ],
+            [
+              2.62333217975,
+              48.43673085691
+            ],
+            [
+              2.62333787944,
+              48.43672284915
+            ],
+            [
+              2.62334860828,
+              48.43671751064
+            ],
+            [
+              2.62335497852,
+              48.43671573114
+            ],
+            [
+              2.62338180061,
+              48.43671172725
+            ],
+            [
+              2.62342069265,
+              48.4367043868
+            ],
+            [
+              2.62344717946,
+              48.43670216242
+            ],
+            [
+              2.62346025523,
+              48.4367043868
+            ],
+            [
+              2.62346595492,
+              48.43670661118
+            ],
+            [
+              2.62347131934,
+              48.43670950288
+            ],
+            [
+              2.62347869541,
+              48.43671528626
+            ],
+            [
+              2.62348271873,
+              48.43673063447
+            ],
+            [
+              2.62348271873,
+              48.43676333283
+            ],
+            [
+              2.62347534265,
+              48.43677423227
+            ],
+            [
+              2.62344550308,
+              48.43678201759
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17424"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62310586853,
+              48.43677412094
+            ],
+            [
+              2.6230943015,
+              48.43677890335
+            ],
+            [
+              2.62309094874,
+              48.43677934823
+            ],
+            [
+              2.62308776362,
+              48.43677834726
+            ],
+            [
+              2.62308541669,
+              48.43677667897
+            ],
+            [
+              2.62308357267,
+              48.43677478825
+            ],
+            [
+              2.62308290211,
+              48.43677256388
+            ],
+            [
+              2.62308340503,
+              48.43676767025
+            ],
+            [
+              2.62308608724,
+              48.43675944005
+            ],
+            [
+              2.62308776362,
+              48.43675109864
+            ],
+            [
+              2.62308927236,
+              48.43674898548
+            ],
+            [
+              2.62309228985,
+              48.43674809573
+            ],
+            [
+              2.62309564261,
+              48.43674787329
+            ],
+            [
+              2.62310570089,
+              48.4367490967
+            ],
+            [
+              2.62311575918,
+              48.43675154352
+            ],
+            [
+              2.62312816439,
+              48.43675543618
+            ],
+            [
+              2.62312967313,
+              48.43675743811
+            ],
+            [
+              2.62312917022,
+              48.43675977371
+            ],
+            [
+              2.62310586853,
+              48.43677412094
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17425"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62338817103,
+              48.43682650498
+            ],
+            [
+              2.62337777747,
+              48.43682895179
+            ],
+            [
+              2.62337056903,
+              48.43682973032
+            ],
+            [
+              2.62336704863,
+              48.43682973032
+            ],
+            [
+              2.62334994955,
+              48.43682750595
+            ],
+            [
+              2.62332966534,
+              48.43682194501
+            ],
+            [
+              2.62331256626,
+              48.43681571676
+            ],
+            [
+              2.62331072224,
+              48.43681382604
+            ],
+            [
+              2.62330971641,
+              48.43681160167
+            ],
+            [
+              2.62330954878,
+              48.4368093773
+            ],
+            [
+              2.62331390737,
+              48.43680592951
+            ],
+            [
+              2.62331860123,
+              48.43680370514
+            ],
+            [
+              2.62333419157,
+              48.43679792176
+            ],
+            [
+              2.62334961427,
+              48.43679425154
+            ],
+            [
+              2.62336419879,
+              48.43680159198
+            ],
+            [
+              2.62336838974,
+              48.43680337148
+            ],
+            [
+              2.62339085324,
+              48.43680270417
+            ],
+            [
+              2.62339923514,
+              48.43680415001
+            ],
+            [
+              2.62340359373,
+              48.43680626317
+            ],
+            [
+              2.62340510247,
+              48.43680837633
+            ],
+            [
+              2.62340694649,
+              48.43681282508
+            ],
+            [
+              2.62340694649,
+              48.43681749626
+            ],
+            [
+              2.62340292318,
+              48.43682116648
+            ],
+            [
+              2.62338817103,
+              48.43682650498
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17426"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.6233092135,
+              48.43684274291
+            ],
+            [
+              2.62330753712,
+              48.43684474484
+            ],
+            [
+              2.6233021727,
+              48.43684797019
+            ],
+            [
+              2.62329546718,
+              48.43684874872
+            ],
+            [
+              2.62329194678,
+              48.43684819262
+            ],
+            [
+              2.6232832296,
+              48.43684452241
+            ],
+            [
+              2.62328054739,
+              48.4368402961
+            ],
+            [
+              2.62328121794,
+              48.43683584735
+            ],
+            [
+              2.62328524126,
+              48.43683328932
+            ],
+            [
+              2.62330619602,
+              48.43682561523
+            ],
+            [
+              2.6233092135,
+              48.43682650498
+            ],
+            [
+              2.62331223099,
+              48.43683095373
+            ],
+            [
+              2.62331223099,
+              48.43683462394
+            ],
+            [
+              2.62331189571,
+              48.43683918391
+            ],
+            [
+              2.6233092135,
+              48.43684274291
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17427"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62360073609,
+              48.43694495276
+            ],
+            [
+              2.62358682213,
+              48.43694450789
+            ],
+            [
+              2.62357726676,
+              48.4369421723
+            ],
+            [
+              2.6235606706,
+              48.43691948373
+            ],
+            [
+              2.62355983241,
+              48.43691503499
+            ],
+            [
+              2.62356318517,
+              48.43690836188
+            ],
+            [
+              2.62356620265,
+              48.43690747213
+            ],
+            [
+              2.62356938777,
+              48.43690736092
+            ],
+            [
+              2.62360811217,
+              48.43690836188
+            ],
+            [
+              2.62362051738,
+              48.43690891797
+            ],
+            [
+              2.62362336723,
+              48.43691014138
+            ],
+            [
+              2.62362554653,
+              48.43691192087
+            ],
+            [
+              2.62362789346,
+              48.43691648083
+            ],
+            [
+              2.62362722291,
+              48.43692593441
+            ],
+            [
+              2.62362403778,
+              48.4369337197
+            ],
+            [
+              2.62362118794,
+              48.43693805722
+            ],
+            [
+              2.62361431478,
+              48.43694317327
+            ],
+            [
+              2.62361146493,
+              48.43694428545
+            ],
+            [
+              2.62360073609,
+              48.43694495276
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17428"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62337978913,
+              48.43705038774
+            ],
+            [
+              2.62337777747,
+              48.43706006373
+            ],
+            [
+              2.62337459235,
+              48.43706951727
+            ],
+            [
+              2.62336872501,
+              48.43707185286
+            ],
+            [
+              2.62336201949,
+              48.43707263138
+            ],
+            [
+              2.62335849909,
+              48.43707229773
+            ],
+            [
+              2.62335514633,
+              48.4370715192
+            ],
+            [
+              2.62334693206,
+              48.43706695926
+            ],
+            [
+              2.6233435793,
+              48.43706595829
+            ],
+            [
+              2.62333670614,
+              48.43706462367
+            ],
+            [
+              2.62331809832,
+              48.43706239931
+            ],
+            [
+              2.62331524847,
+              48.43706084226
+            ],
+            [
+              2.62331457792,
+              48.43705861789
+            ],
+            [
+              2.62331256626,
+              48.43704126785
+            ],
+            [
+              2.62331357209,
+              48.43702669826
+            ],
+            [
+              2.62331776304,
+              48.43702336171
+            ],
+            [
+              2.62332497148,
+              48.43702258318
+            ],
+            [
+              2.62334156765,
+              48.43702191587
+            ],
+            [
+              2.62335933728,
+              48.43702258318
+            ],
+            [
+              2.62336671336,
+              48.43702347293
+            ],
+            [
+              2.62337375415,
+              48.43702547486
+            ],
+            [
+              2.6233787833,
+              48.43702858897
+            ],
+            [
+              2.62338113023,
+              48.43703281526
+            ],
+            [
+              2.62337978913,
+              48.43705038774
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17429"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.62285105867,
+              48.43686609882
+            ],
+            [
+              2.62283731235,
+              48.43686609882
+            ],
+            [
+              2.62282691879,
+              48.43686520907
+            ],
+            [
+              2.62282188965,
+              48.43685942571
+            ],
+            [
+              2.62282088382,
+              48.43685709011
+            ],
+            [
+              2.6228212191,
+              48.43685486574
+            ],
+            [
+              2.62282373367,
+              48.43685075065
+            ],
+            [
+              2.62283161266,
+              48.43684307656
+            ],
+            [
+              2.62283815054,
+              48.43683729319
+            ],
+            [
+              2.62284452079,
+              48.43683273323
+            ],
+            [
+              2.62284938229,
+              48.43682906301
+            ],
+            [
+              2.62285307033,
+              48.43683162104
+            ],
+            [
+              2.62285592018,
+              48.43683729319
+            ],
+            [
+              2.62285675837,
+              48.43684919359
+            ],
+            [
+              2.62286178751,
+              48.4368551994
+            ],
+            [
+              2.62286765484,
+              48.43686087155
+            ],
+            [
+              2.62286849303,
+              48.43686309592
+            ],
+            [
+              2.6228674872,
+              48.43686532029
+            ],
+            [
+              2.62286463736,
+              48.4368665437
+            ],
+            [
+              2.62285105867,
+              48.43686609882
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_17430"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.62358045172,
+            48.43712590497
+          ],
+          [
+            2.6235998979,
+            48.43712290197
+          ],
+          [
+            2.62361800281,
+            48.43711800838
+          ],
+          [
+            2.62362571416,
+            48.43709743303
+          ],
+          [
+            2.62358129008,
+            48.4369935552
+          ],
+          [
+            2.62359973026,
+            48.43698754941
+          ],
+          [
+            2.62345992012,
+            48.43696285893
+          ],
+          [
+            2.6234320922,
+            48.43696619548
+          ],
+          [
+            2.62362269668,
+            48.43693594407
+          ],
+          [
+            2.62358263118,
+            48.43690780579
+          ],
+          [
+            2.62345891429,
+            48.43677868091
+          ],
+          [
+            2.62347131951,
+            48.43670983642
+          ],
+          [
+            2.62336084602,
+            48.43671495249
+          ],
+          [
+            2.62340208499,
+            48.43678368576
+          ],
+          [
+            2.62342739834,
+            48.43678446429
+          ],
+          [
+            2.62337241305,
+            48.43680314905
+          ],
+          [
+            2.62327384187,
+            48.43687099244
+          ],
+          [
+            2.62327400951,
+            48.43688222552
+          ],
+          [
+            2.62330552546,
+            48.43677990432
+          ],
+          [
+            2.62312212942,
+            48.43676433368
+          ],
+          [
+            2.62312078832,
+            48.43680559586
+          ],
+          [
+            2.62302272005,
+            48.43681037826
+          ],
+          [
+            2.62285625545,
+            48.43684418875
+          ],
+          [
+            2.62307871116,
+            48.4370837532
+          ],
+          [
+            2.62306027098,
+            48.43707730255
+          ],
+          [
+            2.62300847081,
+            48.43707574549
+          ],
+          [
+            2.62297527848,
+            48.43712835165
+          ],
+          [
+            2.62305239199,
+            48.43713580326
+          ],
+          [
+            2.62321315689,
+            48.43714770359
+          ],
+          [
+            2.62324618159,
+            48.43716160584
+          ],
+          [
+            2.62327987684,
+            48.43718662988
+          ],
+          [
+            2.62329211442,
+            48.43711845325
+          ],
+          [
+            2.6233303359,
+            48.43712646095
+          ],
+          [
+            2.62335950492,
+            48.43712668338
+          ],
+          [
+            2.62339118851,
+            48.43712968627
+          ],
+          [
+            2.62339873223,
+            48.4371706145
+          ],
+          [
+            2.62343477441,
+            48.43715037282
+          ],
+          [
+            2.62347282825,
+            48.43715537763
+          ],
+          [
+            2.62349328009,
+            48.43713858371
+          ]
+        ]
+      },
+      "properties": {
+        "color": "white"
+      },
+      "id": "circuit_266"
+    }
+  ]
+}

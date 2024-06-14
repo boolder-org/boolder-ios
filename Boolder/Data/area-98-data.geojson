@@ -10,22 +10,603 @@
     },
     {
       "type": "Feature",
-      "geometry": null,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46332657901,
+          48.47994194426
+        ]
+      },
       "properties": {
-        "grade": "2b",
+        "grade": "1c",
         "steepness": "other",
         "height": null,
-        "name": "Classique en Mur",
-        "bleauInfoId": "15582",
+        "name": null,
+        "bleauInfoId": "",
         "parentId": null,
-        "circuitColor": null,
-        "circuitId": null,
-        "circuitNumber": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "22",
         "tags": [
 
         ]
       },
-      "id": "problem_27203"
+      "id": "problem_28498"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46361480829,
+          48.47994886053
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "24",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28500"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46370871104,
+          48.48018084332
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "15",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28491"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46393912058,
+          48.47993070531
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "14",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28490"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46342787225,
+          48.4803113872
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "16",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28492"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46419996156,
+          48.47897797944
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "1",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28477"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46423865297,
+          48.47907567357
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "3",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28479"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46390564598,
+          48.47956183595
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "9",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28485"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46376826973,
+          48.47978344607
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "11",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28487"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46411953559,
+          48.47989698846
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "12",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28488"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46404780432,
+          48.47993128167
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "13",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28489"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46275098991,
+          48.47989497121
+        ]
+      },
+      "properties": {
+        "grade": "1b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "18",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28494"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46344395745,
+          48.47997710197
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "21",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28497"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46422691513,
+          48.47902725881
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "2",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28478"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46394216372,
+          48.47929930308
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "6",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28482"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46395911839,
+          48.47940852384
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "8",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28484"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46257405278,
+          48.48002897396
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "17",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28493"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46324224042,
+          48.48000736064
+        ]
+      },
+      "properties": {
+        "grade": "1c",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "19",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28495"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46410018988,
+          48.47912668194
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "4",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28480"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46390868913,
+          48.47940074295
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "7",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28483"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46390521125,
+          48.47967797245
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "10",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28486"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46328093184,
+          48.48008949121
+        ]
+      },
+      "properties": {
+        "grade": "2b",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "20",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28496"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46364567447,
+          48.47997508472
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "23",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28499"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.46394607634,
+          48.47922379941
+        ]
+      },
+      "properties": {
+        "grade": "2a",
+        "steepness": "other",
+        "height": null,
+        "name": null,
+        "bleauInfoId": "",
+        "parentId": null,
+        "circuitColor": "white",
+        "circuitId": 275,
+        "circuitNumber": "5",
+        "tags": [
+
+        ]
+      },
+      "id": "problem_28481"
     },
     {
       "type": "Feature",
@@ -146,6 +727,25 @@
         ]
       },
       "id": "problem_27200"
+    },
+    {
+      "type": "Feature",
+      "geometry": null,
+      "properties": {
+        "grade": "2b",
+        "steepness": "other",
+        "height": null,
+        "name": "Classique en Mur",
+        "bleauInfoId": "15582",
+        "parentId": null,
+        "circuitColor": null,
+        "circuitId": null,
+        "circuitNumber": null,
+        "tags": [
+
+        ]
+      },
+      "id": "problem_27203"
     },
     {
       "type": "Feature",
@@ -1899,6 +2499,103 @@
         ]
       },
       "id": "problem_27236"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              2.46408697281,
+              48.47918057786
+            ],
+            [
+              2.46407752915,
+              48.47917556976
+            ],
+            [
+              2.46406403821,
+              48.47916376495
+            ],
+            [
+              2.4640594513,
+              48.479152139
+            ],
+            [
+              2.46405999093,
+              48.47914087076
+            ],
+            [
+              2.46406107021,
+              48.47913747241
+            ],
+            [
+              2.4640637684,
+              48.47913443177
+            ],
+            [
+              2.46407132332,
+              48.47912960253
+            ],
+            [
+              2.46408157643,
+              48.47912691961
+            ],
+            [
+              2.46409722592,
+              48.47912620417
+            ],
+            [
+              2.46410562429,
+              48.47912797861
+            ],
+            [
+              2.46410936777,
+              48.47913353747
+            ],
+            [
+              2.46411746233,
+              48.47914337482
+            ],
+            [
+              2.46412366816,
+              48.4791530333
+            ],
+            [
+              2.46413041363,
+              48.47916769989
+            ],
+            [
+              2.46413257218,
+              48.47917878926
+            ],
+            [
+              2.46413014381,
+              48.47918612255
+            ],
+            [
+              2.46412582671,
+              48.47918898432
+            ],
+            [
+              2.46412043033,
+              48.47919023634
+            ],
+            [
+              2.46410909795,
+              48.47918880546
+            ],
+            [
+              2.46408697281,
+              48.47918057786
+            ]
+          ]
+        ]
+      },
+      "properties": {
+      },
+      "id": "boulder_16630"
     },
     {
       "type": "Feature",
@@ -5151,99 +5848,6 @@
         "coordinates": [
           [
             [
-              2.46408697281,
-              48.47918057786
-            ],
-            [
-              2.46407752915,
-              48.47917556976
-            ],
-            [
-              2.46406403821,
-              48.47916376495
-            ],
-            [
-              2.4640594513,
-              48.479152139
-            ],
-            [
-              2.46405999093,
-              48.47914087076
-            ],
-            [
-              2.46406107021,
-              48.47913747241
-            ],
-            [
-              2.4640637684,
-              48.47913443177
-            ],
-            [
-              2.46407132332,
-              48.47912960253
-            ],
-            [
-              2.46408157643,
-              48.47912691961
-            ],
-            [
-              2.46409722592,
-              48.47912620417
-            ],
-            [
-              2.46410936777,
-              48.47913353747
-            ],
-            [
-              2.46411746233,
-              48.47914337482
-            ],
-            [
-              2.46412366816,
-              48.4791530333
-            ],
-            [
-              2.46413041363,
-              48.47916769989
-            ],
-            [
-              2.46413257218,
-              48.47917878926
-            ],
-            [
-              2.46413014381,
-              48.47918612255
-            ],
-            [
-              2.46412582671,
-              48.47918898432
-            ],
-            [
-              2.46412043033,
-              48.47919023634
-            ],
-            [
-              2.46410909795,
-              48.47918880546
-            ],
-            [
-              2.46408697281,
-              48.47918057786
-            ]
-          ]
-        ]
-      },
-      "properties": {
-      },
-      "id": "boulder_16630"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
               2.46465985141,
               48.47891678266
             ],
@@ -7700,6 +8304,114 @@
         "color": "orange"
       },
       "id": "circuit_252"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.46419996156,
+            48.47897797944
+          ],
+          [
+            2.46422691513,
+            48.47902725881
+          ],
+          [
+            2.46423865297,
+            48.47907567357
+          ],
+          [
+            2.46410018988,
+            48.47912668194
+          ],
+          [
+            2.46394607634,
+            48.47922379941
+          ],
+          [
+            2.46394216372,
+            48.47929930308
+          ],
+          [
+            2.46390868913,
+            48.47940074295
+          ],
+          [
+            2.46395911839,
+            48.47940852384
+          ],
+          [
+            2.46390564598,
+            48.47956183595
+          ],
+          [
+            2.46390521125,
+            48.47967797245
+          ],
+          [
+            2.46376826973,
+            48.47978344607
+          ],
+          [
+            2.46411953559,
+            48.47989698846
+          ],
+          [
+            2.46404780432,
+            48.47993128167
+          ],
+          [
+            2.46393912058,
+            48.47993070531
+          ],
+          [
+            2.46370871104,
+            48.48018084332
+          ],
+          [
+            2.46342787225,
+            48.4803113872
+          ],
+          [
+            2.46257405278,
+            48.48002897396
+          ],
+          [
+            2.46275098991,
+            48.47989497121
+          ],
+          [
+            2.46324224042,
+            48.48000736064
+          ],
+          [
+            2.46328093184,
+            48.48008949121
+          ],
+          [
+            2.46344395745,
+            48.47997710197
+          ],
+          [
+            2.46332657901,
+            48.47994194426
+          ],
+          [
+            2.46364567447,
+            48.47997508472
+          ],
+          [
+            2.46361480829,
+            48.47994886053
+          ]
+        ]
+      },
+      "properties": {
+        "color": "white"
+      },
+      "id": "circuit_275"
     }
   ]
 }

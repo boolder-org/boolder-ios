@@ -36,6 +36,15 @@ class DataStore : ObservableObject {
     @Published var sortedProblems = [Problem]()
     
     let areas: [Area] = [
+        Area(id: 1, name: "Rocher Canon", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 9, name: "Elephant", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 13, name: "Canche aux Merciers", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 23, name: "Buthiers Piscine", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 24, name: "Saint Germain Est", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 29, name: "Beauvais Nainville", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 80, name: "Beauvais Télégraphe", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 81, name: "Beauvais Loutteville", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 89, name: "Franchard Ermitage", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 92, name: "Mont d'Olivet", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 93, name: "Apremont Envers (circuit orange)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 94, name: "La Troche", problemsCount: 0, latitude: 0, longitude: 0, published: false),
@@ -47,6 +56,12 @@ class DataStore : ObservableObject {
         Area(id: 101, name: "Darvault", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 102, name: "Troglodyte", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 103, name: "Chamarande", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 107, name: "Apremont Bizons", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 108, name: "Apremont (enfants)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 109, name: "Roche aux Sabots (enfants)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 110, name: "Feuillardière", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 111, name: "Buthiers Canard (enfants)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 112, name: "Chamarande Belvédère", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         
     ]
 
