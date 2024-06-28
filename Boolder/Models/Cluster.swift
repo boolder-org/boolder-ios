@@ -39,19 +39,19 @@ extension Cluster {
         }
     }
     
-//    var problems: [Problem] {
-//        let problems = Table("problems")
-//            .filter(Problem.areaId == id)
-//            .order(Problem.grade.desc, Problem.popularity.desc)
-//        
-//        do {
-//            return try SqliteStore.shared.db.prepare(problems).map { problem in
-//                Problem.load(id: problem[Problem.id])
-//            }.compactMap{$0}
-//        }
-//        catch {
-//            print (error)
-//            return []
-//        }
-//    }
+    var areas: [Area] {
+        let areas = Table("areas")
+            .filter(Area.clusterId == id)
+            .order(Area.priority.asc)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(areas).map { area in
+                Area.load(id: area[Area.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
 }
