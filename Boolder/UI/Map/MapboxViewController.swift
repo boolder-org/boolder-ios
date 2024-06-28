@@ -660,9 +660,9 @@ class MapboxViewController: UIViewController {
             let width = mapView.frame.width/4
             let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
             
-                        var debugView = UIView(frame: rect)
-                        debugView.backgroundColor = .red
-                        mapView.addSubview(debugView)
+//                        var debugView = UIView(frame: rect)
+//                        debugView.backgroundColor = .red
+//                        mapView.addSubview(debugView)
             
             mapView.mapboxMap.queryRenderedFeatures(
                 with: rect,

@@ -16,6 +16,8 @@ struct MapContainerView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
     
+    @State private var presentDownloads = false
+    
     var body: some View {
         ZStack {
             mapbox
@@ -178,12 +180,55 @@ struct MapContainerView: View {
         }
     }
     
+    // FIXME: change name
     var locateButton : some View {
         HStack {
             Spacer()
             
             VStack {
                 Spacer()
+                
+//                Button(action: {
+//                    
+//                }) {
+//                    Text("cluster")
+//                }
+//                .accentColor(.primary)
+//                .background(Color.systemBackground)
+//                .clipShape(Circle())
+//                .overlay(
+//                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                )
+//                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                .padding(.horizontal)
+                
+                Button(action: {
+                    presentDownloads = true
+                }) {
+                    Image(systemName: "arrow.down.circle")
+                        .padding(12)
+//                        .offset(x: -1, y: 0)
+                }
+                .accentColor(.primary)
+                .background(Color.systemBackground)
+                .clipShape(Circle())
+                .overlay(
+                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                )
+                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                .padding(.horizontal)
+                
+                .sheet(isPresented: $presentDownloads) {
+                    DownloadsView(mapState: mapState)
+                        .modify {
+                            if #available(iOS 16, *) {
+                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                            }
+                            else {
+                                $0
+                            }
+                        }
+                }
                 
                 Button(action: {
                     mapState.centerOnCurrentLocation()
