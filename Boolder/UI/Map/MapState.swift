@@ -41,6 +41,10 @@ import SwiftUI
     
     func selectArea(_ area: Area) {
         selectedArea = area
+        
+        if let clusterId = area.clusterId, let cluster = Cluster.load(id: clusterId) {
+            selectCluster(cluster)
+        }
     }
     
     func selectCluster(_ cluster: Cluster) {

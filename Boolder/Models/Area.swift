@@ -32,7 +32,7 @@ struct Area : Identifiable {
     let level7Count: Int
     let level8Count: Int
     let problemsCount: Int
-    let clusterId: Int
+    let clusterId: Int?
     
     static var forBeginners : [Area] {
         all
@@ -105,7 +105,7 @@ extension Area {
     static let level7Count = Expression<Int>("level7_count")
     static let level8Count = Expression<Int>("level8_count")
     static let problemsCount = Expression<Int>("problems_count")
-    static let clusterId = Expression<Int>("cluster_id")
+    static let clusterId = Expression<Int?>("cluster_id")
     
     static func load(id: Int) -> Area? {
         

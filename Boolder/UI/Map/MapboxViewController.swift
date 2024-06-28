@@ -477,6 +477,9 @@ class MapboxViewController: UIViewController {
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
                         
                         self.flyTo(cameraOptions)
+                        
+                        // TODO: select the cluster
+//                        self.delegate?.selectCluster(id: )
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
