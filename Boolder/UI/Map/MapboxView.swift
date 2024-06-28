@@ -125,6 +125,10 @@ struct MapboxView: UIViewControllerRepresentable {
             }
         }
         
+        @MainActor func setVisibleAreas(_ areas: [Area]) {
+            parent.mapState.setVisibleAreas(areas)
+        }
+        
         @MainActor func unselectArea() {
             parent.mapState.unselectArea()
         }

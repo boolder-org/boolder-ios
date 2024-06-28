@@ -73,7 +73,7 @@ class MapboxViewController: UIViewController {
             lastCameraCheck = DispatchTime.now()
             
             self.inferAreaFromMap()
-            self.inferClusterFromMap()
+            self.inferVisibleAreasFromMap()
             
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
@@ -652,35 +652,43 @@ class MapboxViewController: UIViewController {
         }
     }
     
-    func inferClusterFromMap() {
+    func inferVisibleAreasFromMap() {
         if(!flyinToSomething) {
             
-            let zoom = Expression(.lt) {
-                Expression(.zoom)
-                14.5
-            }
+//            let zoom = Expression(.lt) {
+//                Expression(.zoom)
+//                14.5
+//            }
             
-            let width = mapView.frame.width/4
+            let width = mapView.frame.width * 0.9 // FIXME: check height too
             let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
             
-//                        var debugView = UIView(frame: rect)
-//                        debugView.backgroundColor = .red
-//                        mapView.addSubview(debugView)
+            var debugView = UIView(frame: rect)
+            debugView.layer.borderColor = UIColor.blue.cgColor
+            debugView.layer.borderWidth = 2
+            
+            mapView.addSubview(debugView)
             
             mapView.mapboxMap.queryRenderedFeatures(
                 with: rect,
-                options: RenderedQueryOptions(layerIds: ["clusters-v2"], filter: zoom)) { [weak self] result in
+                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: nil)) { [weak self] result in
                     
                     guard let self = self else { return }
                     
                     switch result {
                     case .success(let queriedfeatures):
                         
-                        if let feature = queriedfeatures.first?.feature,
-                           case .number(let id) = feature.properties?["clusterId"]
-                        {
-                            self.delegate?.selectCluster(id: Int(id))
-                        }
+                        let areas = queriedfeatures.map { f in
+                            if case .number(let id) = f.feature.properties?["areaId"]
+                            {
+                                return Area.load(id: Int(id))
+                            }
+                            
+                            return nil
+                        }.compactMap{$0}
+                        
+                        self.delegate?.setVisibleAreas(areas)
+                        
                     case .failure(_):
                         break
                     }
@@ -806,7 +814,7 @@ class MapboxViewController: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
                     self.inferAreaFromMap()
-                    self.inferClusterFromMap()
+                    self.inferVisibleAreasFromMap()
                     // TODO: what if map is slow to load? we should infer again after it's loaded
                 }
             }
@@ -939,6 +947,7 @@ protocol MapBoxViewDelegate {
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func selectCluster(id: Int)
+    func setVisibleAreas(_ areas: [Area])
     func unselectArea()
     func unselectCircuit()
     func cameraChanged()

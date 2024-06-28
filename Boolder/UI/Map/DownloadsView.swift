@@ -16,15 +16,14 @@ struct DownloadsView: View {
     var body: some View {
         NavigationView {
             List {
-                if let cluster = mapState.selectedCluster {
-                    ForEach(cluster.areas) { area in
-                        HStack {
-                            Text(area.name)
-                            Spacer()
-                            DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
-                        }
+                ForEach(mapState.visibleAreasSorted) { area in
+                    HStack {
+                        Text(area.name)
+                        Spacer()
+                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
                     }
                 }
+                
             }
             .navigationTitle("Téléchargements")
             .navigationBarTitleDisplayMode(.inline)
