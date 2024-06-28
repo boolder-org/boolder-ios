@@ -73,6 +73,7 @@ class MapboxViewController: UIViewController {
             lastCameraCheck = DispatchTime.now()
             
             self.inferAreaFromMap()
+            self.inferClusterFromMap()
             
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
@@ -92,10 +93,14 @@ class MapboxViewController: UIViewController {
         
         var circuits = VectorSource()
         circuits.url = "mapbox://nmondollot.11sumdgh"
+        
+        var clusters = VectorSource()
+        clusters.url = "mapbox://nmondollot.27j044u9"
 
         do {
             try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
             try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
+            try self.mapView.mapboxMap.style.addSource(clusters, id: "clusters-v2")
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -103,6 +108,13 @@ class MapboxViewController: UIViewController {
     }
     
     func addLayers() {
+        var clustersLayer = FillLayer(id: "clusters-v2")  // CircleLayer(id: "clusters-v2")
+        clustersLayer.source = "clusters-v2"
+        clustersLayer.sourceLayer = "clusters-v2-9vxoh5"
+        clustersLayer.fillOpacity = .constant(0)
+        clustersLayer.minZoom = 1
+        
+        
         var problemsLayer = CircleLayer(id: "problems")
         problemsLayer.source = "problems"
         problemsLayer.sourceLayer = problemsSourceLayerId
@@ -358,7 +370,7 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
         do {
-            
+            try self.mapView.mapboxMap.style.addLayer(clustersLayer)
             
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
@@ -637,6 +649,48 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func inferClusterFromMap() {
+        if(!flyinToSomething) {
+            
+            let zoom = Expression(.lt) {
+                Expression(.zoom)
+                14.5
+            }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            
+                        var debugView = UIView(frame: rect)
+                        debugView.backgroundColor = .red
+                        mapView.addSubview(debugView)
+            
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: rect,
+                options: RenderedQueryOptions(layerIds: ["clusters-v2"], filter: zoom)) { [weak self] result in
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let queriedfeatures):
+                        
+                        if let feature = queriedfeatures.first?.feature,
+                           case .string(let name) = feature.properties?["name"]
+                        {
+                            self.delegate?.selectArea(id: 1)
+                            print(name)
+                        }
+                    case .failure(_):
+                        break
+                    }
+                }
+            
+            
+            if(mapView.mapboxMap.cameraState.zoom < 10) {
+                delegate?.unselectArea()
+            }
+        }
+    }
+    
     private var favorites: [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -750,6 +804,7 @@ class MapboxViewController: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
                     self.inferAreaFromMap()
+                    self.inferClusterFromMap()
                     // TODO: what if map is slow to load? we should infer again after it's loaded
                 }
             }
