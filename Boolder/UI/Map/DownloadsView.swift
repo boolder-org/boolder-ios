@@ -18,7 +18,11 @@ struct DownloadsView: View {
             List {
                 if let cluster = mapState.selectedCluster {
                     ForEach(cluster.areas) { area in
-                        Text(area.name)
+                        HStack {
+                            Text(area.name)
+                            Spacer()
+                            DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
+                        }
                     }
                 }
             }

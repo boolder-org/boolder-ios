@@ -37,11 +37,10 @@ struct DownloadAreaButtonView : View {
             }
         } label: {
             HStack {
-                Spacer()
                 
                 if case .initial = areaDownloader.status  {
                     Image(systemName: "arrow.down.circle").font(.title2)
-                    Text("area.photos.download")
+//                    Text("area.photos.download")
                 }
                 else if case .downloading(let progress) = areaDownloader.status  {
                     CircularProgressView(progress: progress).frame(height: 18)
@@ -49,13 +48,11 @@ struct DownloadAreaButtonView : View {
                 }
                 else if case .downloaded = areaDownloader.status  {
                     Image(systemName: "checkmark.circle").font(.title2)
-                    Text("area.photos.downloaded")
+//                    Text("area.photos.downloaded")
                 }
                 else {
                     Text(areaDownloader.status.label)
                 }
-                
-                Spacer()
             }
         }
     }
