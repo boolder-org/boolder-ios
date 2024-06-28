@@ -57,7 +57,7 @@ import SwiftUI
     }
     
     var visibleAreasSorted : [Area] {
-        visibleAreas.sorted{
+        Array(Set(visibleAreas)).sorted{
             $0.priority < $1.priority
         }
     }
