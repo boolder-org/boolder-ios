@@ -13,6 +13,7 @@ import SwiftUI
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var centerOnArea: Area? = nil
+    @Published private(set) var selectedCluster: Cluster? = nil
     @Published private(set) var selectedCircuit: Circuit? = nil
     @Published var selectedPoi: Poi? = nil
     @Published var filters: Filters = Filters()
@@ -40,6 +41,10 @@ import SwiftUI
     
     func selectArea(_ area: Area) {
         selectedArea = area
+    }
+    
+    func selectCluster(_ cluster: Cluster) {
+        selectedCluster = cluster
     }
     
     func unselectArea() {

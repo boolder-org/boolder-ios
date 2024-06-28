@@ -674,10 +674,9 @@ class MapboxViewController: UIViewController {
                     case .success(let queriedfeatures):
                         
                         if let feature = queriedfeatures.first?.feature,
-                           case .string(let name) = feature.properties?["name"]
+                           case .number(let id) = feature.properties?["clusterId"]
                         {
-                            self.delegate?.selectArea(id: 1)
-                            print(name)
+                            self.delegate?.selectCluster(id: Int(id))
                         }
                     case .failure(_):
                         break
@@ -936,6 +935,7 @@ protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
+    func selectCluster(id: Int)
     func unselectArea()
     func unselectCircuit()
     func cameraChanged()

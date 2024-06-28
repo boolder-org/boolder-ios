@@ -119,6 +119,12 @@ struct MapboxView: UIViewControllerRepresentable {
             }
         }
         
+        @MainActor func selectCluster(id: Int) {
+            if let cluster = Cluster.load(id: id) {
+                parent.mapState.selectCluster(cluster)
+            }
+        }
+        
         @MainActor func unselectArea() {
             parent.mapState.unselectArea()
         }
