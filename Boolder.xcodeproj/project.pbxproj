@@ -69,10 +69,10 @@
 		0381F3272B30C8BF00F30A8F /* AreaLoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0381F3252B30C8BF00F30A8F /* AreaLoadingStatus.swift */; };
 		0388E23E2C2F142100B1C5D6 /* Cluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388E23D2C2F142100B1C5D6 /* Cluster.swift */; };
 		0388E23F2C2F142100B1C5D6 /* Cluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388E23D2C2F142100B1C5D6 /* Cluster.swift */; };
-		0388E2412C2F198300B1C5D6 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0388E2402C2F198300B1C5D6 /* boolder.db */; };
-		0388E2422C2F198300B1C5D6 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0388E2402C2F198300B1C5D6 /* boolder.db */; };
 		0388E2442C2F209000B1C5D6 /* DownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388E2432C2F209000B1C5D6 /* DownloadsView.swift */; };
 		0388E2452C2F209000B1C5D6 /* DownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388E2432C2F209000B1C5D6 /* DownloadsView.swift */; };
+		0388E2472C30038D00B1C5D6 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0388E2462C30038C00B1C5D6 /* boolder.db */; };
+		0388E2482C30038D00B1C5D6 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0388E2462C30038C00B1C5D6 /* boolder.db */; };
 		038C2EF129201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF229201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF429201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
@@ -206,8 +206,8 @@
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		0381F3252B30C8BF00F30A8F /* AreaLoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLoadingStatus.swift; sourceTree = "<group>"; };
 		0388E23D2C2F142100B1C5D6 /* Cluster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cluster.swift; sourceTree = "<group>"; };
-		0388E2402C2F198300B1C5D6 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		0388E2432C2F209000B1C5D6 /* DownloadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsView.swift; sourceTree = "<group>"; };
+		0388E2462C30038C00B1C5D6 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
@@ -388,7 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				0388E2402C2F198300B1C5D6 /* boolder.db */,
+				0388E2462C30038C00B1C5D6 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
@@ -706,7 +706,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0388E2422C2F198300B1C5D6 /* boolder.db in Resources */,
+				0388E2482C30038D00B1C5D6 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -720,7 +720,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0388E2412C2F198300B1C5D6 /* boolder.db in Resources */,
+				0388E2472C30038D00B1C5D6 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
