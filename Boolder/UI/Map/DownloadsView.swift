@@ -17,44 +17,76 @@ struct DownloadsView: View {
         NavigationView {
             List {
                 
-                
-                if let cluster = mapState.selectedCluster {
-//                    Section {
-//                        HStack {
-//                            Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo")
-//                        }
-//                    }
+                Section {
                     
-                    Section {
+                    if let area = mapState.selectedArea {
+                        HStack {
+                            Image(systemName: "circle")
+                                .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+                            
+                            Text(area.name)
+                            
+                            Spacer()
+                            Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                        }
+                    }
+                    
+                    
+                    
+                    if let cluster = mapState.selectedCluster {
+                        
+                        HStack {
+                            Image(systemName: "circle")
+                                .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+                            
+                            Text(cluster.name)
+                            
+                            Spacer()
+                            Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
+                        }
                         
                         NavigationLink {
                             List {
                                 ForEach(cluster.areas) { area in
                                     HStack {
                                         Text(area.name)
-                                        Text("\(Int(area.photosSize.rounded())) Mo")
                                         Spacer()
-                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
+                                        Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                        //                                        Spacer()
+                                        //                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
                                     }
                                 }
                             }
                         } label: {
                             HStack {
-//                                Text("\(cluster.areas.count) secteurs")
-                                Text(cluster.name)
+                                Image(systemName: "circle")
+                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+                                
+                                
+                                VStack(alignment: .leading) {
+                                    Text("Personnalisé")
+                                    
+                                }
                                 Spacer()
-                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
+//                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
                             }
                         }
-                        
-                        HStack {
-                            Spacer()
-                            Text("Télécharger").foregroundStyle(Color.appGreen)
-                            Spacer()
-                        }
-                        
                     }
+                    
                 }
+                    
+                Section {
+                    
+                    HStack {
+                        Spacer()
+                        Text("Télécharger")
+                        Image(systemName: "arrow.down.circle").font(.title2)
+                        Spacer()
+                    }
+                    .foregroundStyle(Color.appGreen)
+                    
+                }
+                
                 
             }
             .navigationTitle("Téléchargements")
