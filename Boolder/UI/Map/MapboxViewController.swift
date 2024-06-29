@@ -73,6 +73,7 @@ class MapboxViewController: UIViewController {
             lastCameraCheck = DispatchTime.now()
             
             self.inferAreaFromMap()
+            self.inferClusterFromMap()
             self.inferVisibleAreasFromMap()
             
             if(!flyinToSomething) {
@@ -652,6 +653,47 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func inferClusterFromMap() {
+        if(!flyinToSomething) {
+            
+            let zoom = Expression(.lt) {
+                Expression(.zoom)
+                14.5
+            }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            
+            //                        var debugView = UIView(frame: rect)
+            //                        debugView.backgroundColor = .red
+            //                        mapView.addSubview(debugView)
+            
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: rect,
+                options: RenderedQueryOptions(layerIds: ["clusters-v2"], filter: zoom)) { [weak self] result in
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let queriedfeatures):
+                        
+                        if let feature = queriedfeatures.first?.feature,
+                           case .number(let id) = feature.properties?["clusterId"]
+                        {
+                            self.delegate?.selectCluster(id: Int(id))
+                        }
+                    case .failure(_):
+                        break
+                    }
+                }
+            
+            
+            if(mapView.mapboxMap.cameraState.zoom < 10) {
+                delegate?.unselectArea()
+            }
+        }
+    }
+    
     func inferVisibleAreasFromMap() {
         if(!flyinToSomething) {
             
@@ -664,10 +706,10 @@ class MapboxViewController: UIViewController {
             let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
             
             var debugView = UIView(frame: rect)
-            debugView.layer.borderColor = UIColor.blue.cgColor
-            debugView.layer.borderWidth = 2
             
-            mapView.addSubview(debugView)
+//            debugView.layer.borderColor = UIColor.blue.cgColor
+//            debugView.layer.borderWidth = 2
+//            mapView.addSubview(debugView)
             
             mapView.mapboxMap.queryRenderedFeatures(
                 with: rect,
@@ -814,6 +856,7 @@ class MapboxViewController: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
                     self.inferAreaFromMap()
+                    self.inferClusterFromMap()
                     self.inferVisibleAreasFromMap()
                     // TODO: what if map is slow to load? we should infer again after it's loaded
                 }
