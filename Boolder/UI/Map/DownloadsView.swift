@@ -39,7 +39,11 @@ struct DownloadsView: View {
                             Image(systemName: "circle")
                                 .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
                             
-                            Text(cluster.name)
+                            VStack(alignment: .leading) {
+                                Text("Zone \(cluster.name)")
+                                Text("\(cluster.areas.first?.name ?? "") + \(cluster.areas.count-1) secteurs").font(.caption).foregroundStyle(.gray)
+                            }
+                            
                             
                             Spacer()
                             Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
@@ -65,8 +69,8 @@ struct DownloadsView: View {
                                 
                                 VStack(alignment: .leading) {
                                     Text("Personnalisé")
-                                    
                                 }
+                                
                                 Spacer()
 //                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
                             }
@@ -89,7 +93,7 @@ struct DownloadsView: View {
                 
                 
             }
-            .navigationTitle("Téléchargements")
+            .navigationTitle("Télécharger")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 trailing: Button(action: {
