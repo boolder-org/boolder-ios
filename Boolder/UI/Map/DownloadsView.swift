@@ -27,11 +27,13 @@ struct DownloadsView: View {
                             
                             VStack(alignment: .leading) {
                                 Text(area.name).foregroundColor(.primary)
-                                Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+//                                Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
                             }
                             
                             
                             Spacer()
+                            
+                            Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
                             
                             Image(systemName: "arrow.down.circle").font(.title2)
                             
@@ -44,11 +46,19 @@ struct DownloadsView: View {
                     NavigationLink {
                         List {
                             ForEach(area.otherAreasOnSameCluster) { a in
-                                HStack {
-                                    Text(a.name)
-                                    Spacer()
-                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                    
+                                Button {
+                                    //
+                                } label: {
+                                    HStack {
+                                        VStack(alignment: .leading) {
+                                            Text(a.name).foregroundColor(.primary)
+                                            //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+                                        }
+                                        Spacer()
+                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                        Image(systemName: "arrow.down.circle").font(.title2)
+                                        
+                                    }
                                 }
                             }
                         }
