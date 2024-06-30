@@ -10,6 +10,7 @@ import UIKit
 import SQLite
 
 import CoreLocation
+//import Turf
 
 struct Area : Identifiable {
     let id: Int
@@ -224,14 +225,7 @@ extension Area {
             return []
         }
     }
-    
-//    var bounds : CoordinatesBound {
-//        CoordinateBounds(
-//            southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
-//            northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0)
-//        )
-//    }
-    
+
     var otherAreasOnSameCluster: [Area] {
         let areas = Table("areas")
         
@@ -267,9 +261,19 @@ extension Area {
         return nil
     }
     
+//    var boundingBox : BoundingBox {
+//        BoundingBox(
+//            southWest: CLLocationCoordinate2D(latitude: Double(southWestLat), longitude: Double(southWestLon)),
+//            northEast: CLLocationCoordinate2D(latitude: Double(northEastLat), longitude: Double(northEastLon))
+//        )
+//    }
+    
     // FIXME: use actual center
     var center: CLLocation {
-        CLLocation(latitude: southWestLat, longitude: southWestLon)
+        CLLocation(
+            latitude: (Double(southWestLat) + Double(northEastLat))/2,
+            longitude: (Double(southWestLon) + Double(northEastLon))/2
+        )
     }
     
     var otherAreasOnSameClusterSorted: [AreaWithDistance] {
