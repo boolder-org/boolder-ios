@@ -12,6 +12,7 @@ struct DownloadsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let mapState: MapState
+    let area: Area
     
     var body: some View {
         NavigationView {
@@ -19,76 +20,60 @@ struct DownloadsView: View {
                 
                 Section {
                     
-                    if let area = mapState.selectedArea {
+                    Button {
+                        //
+                    } label: {
                         HStack {
-                            Image(systemName: "circle")
-                                .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-                            
-                            Text(area.name)
-                            
-                            Spacer()
-                            Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                        }
-                    }
-                    
-                    
-                    
-                    if let cluster = mapState.selectedCluster {
-                        
-                        HStack {
-                            Image(systemName: "circle")
-                                .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
                             
                             VStack(alignment: .leading) {
-                                Text("Zone \(cluster.name)")
-                                Text("\(cluster.areas.count) secteurs").font(.caption).foregroundStyle(.gray)
+                                Text(area.name).foregroundColor(.primary)
+                                Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
                             }
                             
                             
                             Spacer()
-                            Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
+                            
+                            Image(systemName: "arrow.down.circle").font(.title2)
+                            
                         }
-                        
-//                        NavigationLink {
-//                            List {
-//                                ForEach(cluster.areas) { area in
-//                                    HStack {
-//                                        Text(area.name)
-//                                        Spacer()
-//                                        Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-//                                        //                                        Spacer()
-//                                        //                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
-//                                    }
-//                                }
-//                            }
-//                        } label: {
-//                            HStack {
-//                                Image(systemName: "circle")
-//                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-//                                
-//                                
-//                                VStack(alignment: .leading) {
-//                                    Text("Personnalisé")
-//                                }
-//                                
-//                                Spacer()
-////                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
-//                            }
-//                        }
                     }
                     
                 }
+                
+                // FIXME: use area's cluster
+                if let cluster = mapState.selectedCluster {
                     
-                Section {
-                    
-                    HStack {
-                        Spacer()
-                        Text("Télécharger")
-                        Image(systemName: "arrow.down.circle").font(.title2)
-                        Spacer()
+                    Section {
+                        NavigationLink {
+                            List {
+                                ForEach(cluster.areas) { area in
+                                    HStack {
+                                        Text(area.name)
+                                        Spacer()
+                                        Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                        //                                        Spacer()
+                                        //                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
+                                    }
+                                }
+                            }
+                        } label: {
+                            HStack {
+//                                Image(systemName: "circle")
+//                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
+//                                
+//                                
+                                VStack(alignment: .leading) {
+                                    Text("Secteurs voisins")
+                                }
+                                
+                                Spacer()
+                                
+                                Text("\(cluster.areas.count)").foregroundStyle(.gray)
+                                //                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
+                            }
+                        }
+                        
                     }
-                    .foregroundStyle(Color.appGreen)
-                    
                 }
                 
                 
@@ -96,7 +81,7 @@ struct DownloadsView: View {
             .navigationTitle("Télécharger")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
-                trailing: Button(action: {
+                leading: Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Fermer")

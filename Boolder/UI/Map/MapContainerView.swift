@@ -202,32 +202,35 @@ struct MapContainerView: View {
 //                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
 //                .padding(.horizontal)
                 
-                Button(action: {
-                    presentDownloads = true
-                }) {
-                    Image(systemName: "arrow.down.circle")
-                        .padding(12)
-//                        .offset(x: -1, y: 0)
-                }
-                .accentColor(.primary)
-                .background(Color.systemBackground)
-                .clipShape(Circle())
-                .overlay(
-                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                )
-                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                .padding(.horizontal)
-                
-                .sheet(isPresented: $presentDownloads) {
-                    DownloadsView(mapState: mapState)
-                        .modify {
-                            if #available(iOS 16, *) {
-                                $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                if let area = mapState.selectedArea {
+                    
+                    Button(action: {
+                        presentDownloads = true
+                    }) {
+                        Image(systemName: "arrow.down.circle")
+                            .padding(12)
+                        //                        .offset(x: -1, y: 0)
+                    }
+                    .accentColor(.primary)
+                    .background(Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding(.horizontal)
+                    
+                    .sheet(isPresented: $presentDownloads) {
+                        DownloadsView(mapState: mapState, area: area)
+                            .modify {
+                                if #available(iOS 16, *) {
+                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                                }
+                                else {
+                                    $0
+                                }
                             }
-                            else {
-                                $0
-                            }
-                        }
+                    }
                 }
                 
                 Button(action: {
