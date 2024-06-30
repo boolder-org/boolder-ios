@@ -37,44 +37,37 @@ struct DownloadsView: View {
                             
                         }
                     }
+                }
+            
+                
+                Section {
+                    NavigationLink {
+                        List {
+                            ForEach(area.otherAreasOnSameCluster) { a in
+                                HStack {
+                                    Text(a.name)
+                                    Spacer()
+                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                    
+                                }
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            
+                            VStack(alignment: .leading) {
+                                Text("Secteurs voisins")
+                            }
+                            
+                            Spacer()
+                            
+                            Text("\(area.otherAreasOnSameCluster.count)").foregroundStyle(.gray)
+                            
+                        }
+                    }
                     
                 }
                 
-                // FIXME: use area's cluster
-                if let cluster = mapState.selectedCluster {
-                    
-                    Section {
-                        NavigationLink {
-                            List {
-                                ForEach(cluster.areas) { area in
-                                    HStack {
-                                        Text(area.name)
-                                        Spacer()
-                                        Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                        //                                        Spacer()
-                                        //                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
-                                    }
-                                }
-                            }
-                        } label: {
-                            HStack {
-//                                Image(systemName: "circle")
-//                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20)
-//                                
-//                                
-                                VStack(alignment: .leading) {
-                                    Text("Secteurs voisins")
-                                }
-                                
-                                Spacer()
-                                
-                                Text("\(cluster.areas.count)").foregroundStyle(.gray)
-                                //                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
-                            }
-                        }
-                        
-                    }
-                }
                 
                 
             }

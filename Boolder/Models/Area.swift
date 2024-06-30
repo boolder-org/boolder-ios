@@ -222,6 +222,24 @@ extension Area {
             return []
         }
     }
+    
+    var otherAreasOnSameCluster: [Area] {
+        let areas = Table("areas")
+        
+        let query = areas.filter(Area.clusterId == self.clusterId)
+            .filter(Area.id != self.id)
+            .order(Area.priority.asc, Area.nameSearchable.asc)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { a in
+                Area.load(id: a[Area.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
 }
 
 extension Area : Comparable {
