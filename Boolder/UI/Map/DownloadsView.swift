@@ -41,7 +41,7 @@ struct DownloadsView: View {
                             
                             VStack(alignment: .leading) {
                                 Text("Zone \(cluster.name)")
-                                Text("\(cluster.areas.first?.name ?? "") + \(cluster.areas.count-1) secteurs").font(.caption).foregroundStyle(.gray)
+                                Text("\(cluster.areas.count) secteurs").font(.caption).foregroundStyle(.gray)
                             }
                             
                             
@@ -49,32 +49,32 @@ struct DownloadsView: View {
                             Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
                         }
                         
-                        NavigationLink {
-                            List {
-                                ForEach(cluster.areas) { area in
-                                    HStack {
-                                        Text(area.name)
-                                        Spacer()
-                                        Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                        //                                        Spacer()
-                                        //                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
-                                    }
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Image(systemName: "circle")
-                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
-                                
-                                
-                                VStack(alignment: .leading) {
-                                    Text("Personnalisé")
-                                }
-                                
-                                Spacer()
-//                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
-                            }
-                        }
+//                        NavigationLink {
+//                            List {
+//                                ForEach(cluster.areas) { area in
+//                                    HStack {
+//                                        Text(area.name)
+//                                        Spacer()
+//                                        Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+//                                        //                                        Spacer()
+//                                        //                                        DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
+//                                    }
+//                                }
+//                            }
+//                        } label: {
+//                            HStack {
+//                                Image(systemName: "circle")
+//                                    .font(Font.body.weight(.bold)).frame(width: 20, height: 20).foregroundColor(.appGreen)
+//                                
+//                                
+//                                VStack(alignment: .leading) {
+//                                    Text("Personnalisé")
+//                                }
+//                                
+//                                Spacer()
+////                                Text("\(Int(cluster.areas.reduce(0) { $0 + $1.photosSize }.rounded())) Mo").foregroundStyle(.gray)
+//                            }
+//                        }
                     }
                     
                 }
