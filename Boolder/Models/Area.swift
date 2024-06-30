@@ -9,6 +9,8 @@
 import UIKit
 import SQLite
 
+import CoreLocation
+
 struct Area : Identifiable {
     let id: Int
     let name: String
@@ -223,6 +225,13 @@ extension Area {
         }
     }
     
+//    var bounds : CoordinatesBound {
+//        CoordinateBounds(
+//            southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
+//            northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0)
+//        )
+//    }
+    
     var otherAreasOnSameCluster: [Area] {
         let areas = Table("areas")
         
@@ -238,6 +247,36 @@ extension Area {
         catch {
             print (error)
             return []
+        }
+    }
+    
+    struct AreaWithDistance : Identifiable {
+        let area: Area
+        let distance: CLLocationDistance
+        
+        var id: Int {
+            area.id
+        }
+    }
+    
+    var cluster: Cluster? {
+        if let clusterId = clusterId {
+            return Cluster.load(id: clusterId)
+        }
+        
+        return nil
+    }
+    
+    // FIXME: use actual center
+    var center: CLLocation {
+        CLLocation(latitude: southWestLat, longitude: southWestLon)
+    }
+    
+    var otherAreasOnSameClusterSorted: [AreaWithDistance] {
+        otherAreasOnSameCluster.map { a in
+            AreaWithDistance(area: a, distance: a.center.distance(from: self.center))
+        }.sorted {
+            $0.distance < $1.distance
         }
     }
 }

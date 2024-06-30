@@ -45,23 +45,25 @@ struct DownloadsView: View {
                     Section {
                         NavigationLink {
                             List {
-                                ForEach(area.otherAreasOnSameCluster) { a in
+                                ForEach(area.otherAreasOnSameClusterSorted) { a in
                                     Button {
                                         //
                                     } label: {
                                         HStack {
                                             VStack(alignment: .leading) {
-                                                Text(a.name).foregroundColor(.primary)
+                                                Text(a.area.name).foregroundColor(.primary)
+                                                Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray)
                                                 //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
                                             }
                                             Spacer()
-                                            Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                            Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
                                             Image(systemName: "arrow.down.circle").font(.title2)
                                             
                                         }
                                     }
                                 }
                             }
+                            .navigationTitle(area.cluster?.name ?? "Zone")
                         } label: {
                             HStack {
                                 
@@ -81,7 +83,7 @@ struct DownloadsView: View {
                 
                 
             }
-            .navigationTitle("Mode hors-connexion")
+            .navigationTitle("Télécharger")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
