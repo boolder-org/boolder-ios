@@ -41,47 +41,47 @@ struct DownloadsView: View {
                     }
                 }
             
-                
-                Section {
-                    NavigationLink {
-                        List {
-                            ForEach(area.otherAreasOnSameCluster) { a in
-                                Button {
-                                    //
-                                } label: {
-                                    HStack {
-                                        VStack(alignment: .leading) {
-                                            Text(a.name).foregroundColor(.primary)
-                                            //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+                if area.otherAreasOnSameCluster.count > 0 {
+                    Section {
+                        NavigationLink {
+                            List {
+                                ForEach(area.otherAreasOnSameCluster) { a in
+                                    Button {
+                                        //
+                                    } label: {
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(a.name).foregroundColor(.primary)
+                                                //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+                                            }
+                                            Spacer()
+                                            Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                            Image(systemName: "arrow.down.circle").font(.title2)
+                                            
                                         }
-                                        Spacer()
-                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                        Image(systemName: "arrow.down.circle").font(.title2)
-                                        
                                     }
                                 }
                             }
-                        }
-                    } label: {
-                        HStack {
-                            
-                            VStack(alignment: .leading) {
-                                Text("Secteurs voisins")
+                        } label: {
+                            HStack {
+                                
+                                VStack(alignment: .leading) {
+                                    Text("Secteurs voisins")
+                                }
+                                
+                                Spacer()
+                                
+                                Text("\(area.otherAreasOnSameCluster.count)").foregroundStyle(.gray)
+                                
                             }
-                            
-                            Spacer()
-                            
-                            Text("\(area.otherAreasOnSameCluster.count)").foregroundStyle(.gray)
-                            
                         }
+                        
                     }
-                    
                 }
                 
                 
-                
             }
-            .navigationTitle("Télécharger")
+            .navigationTitle("Mode hors-connexion")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
