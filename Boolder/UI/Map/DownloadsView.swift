@@ -14,6 +14,14 @@ struct DownloadsView: View {
     let mapState: MapState
     let cluster: Cluster
     
+//    private func otherClusters(except: Cluster) -> [Cluster] {
+//        Cluster.troisPignons
+//        
+//        return Array(
+//            Set(Cluster.troisPignons).subtracting(Set([except]))
+//        )
+//    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -70,7 +78,7 @@ struct DownloadsView: View {
                                 HStack {
                                     
                                     VStack(alignment: .leading) {
-                                        Text("Secteurs \(cluster.name)")
+                                        Text("\(cluster.name)")
                                     }
                                     
                                     Spacer()
@@ -106,7 +114,51 @@ struct DownloadsView: View {
                 }
                 
                 else if cluster.troisPignons {
-                    ForEach(Cluster.troisPignons) { cluster in
+                    Section {
+                        ForEach(Cluster.troisPignons) { cluster in
+                            NavigationLink {
+                                List {
+                                    Section {
+                                        ForEach(cluster.areas) { a in
+                                            Button {
+                                                //
+                                            } label: {
+                                                HStack {
+                                                    VStack(alignment: .leading) {
+                                                        Text(a.name).foregroundColor(.primary)
+                                                        //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
+                                                        //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+                                                    }
+                                                    Spacer()
+                                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                                    Image(systemName: "arrow.down.circle").font(.title2)
+                                                    
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .navigationTitle(cluster.name)
+                                
+                            } label: {
+                                HStack {
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text("\(cluster.name)")
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(cluster.areas.count)").foregroundStyle(.gray)
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                else {
+                    Section {
                         NavigationLink {
                             List {
                                 Section {
@@ -135,7 +187,7 @@ struct DownloadsView: View {
                             HStack {
                                 
                                 VStack(alignment: .leading) {
-                                    Text("Secteurs \(cluster.name)")
+                                    Text("\(cluster.name)")
                                 }
                                 
                                 Spacer()
@@ -146,48 +198,6 @@ struct DownloadsView: View {
                         }
                     }
                     
-                    
-                    
-                }
-                
-                else {
-                    NavigationLink {
-                        List {
-                            Section {
-                                ForEach(cluster.areas) { a in
-                                    Button {
-                                        //
-                                    } label: {
-                                        HStack {
-                                            VStack(alignment: .leading) {
-                                                Text(a.name).foregroundColor(.primary)
-                                                //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                                //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                            }
-                                            Spacer()
-                                            Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                            Image(systemName: "arrow.down.circle").font(.title2)
-                                            
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        .navigationTitle(cluster.name)
-                        
-                    } label: {
-                        HStack {
-                            
-                            VStack(alignment: .leading) {
-                                Text("Secteurs \(cluster.name)")
-                            }
-                            
-                            Spacer()
-                            
-                            Text("\(cluster.areas.count)").foregroundStyle(.gray)
-                            
-                        }
-                    }
                     
                     
                 }

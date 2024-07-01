@@ -9,22 +9,22 @@
 import UIKit
 import SQLite
 
-struct Cluster : Identifiable {
+struct Cluster : Identifiable, Hashable {
     let id: Int
     let name: String
     let priority: Int
     
     // FIXME: remove hack
     var troisPignons : Bool {
-        id <= 4
+        id == 2 || id == 3 || id == 4
     }
     
     static var troisPignons: [Cluster] {
         [
-            Cluster.load(id: 1),
-            Cluster.load(id: 2),
+            Cluster.load(id: 4),
             Cluster.load(id: 3),
-            Cluster.load(id: 4)
+            Cluster.load(id: 2),
+//            Cluster.load(id: 1)
         ].compactMap{$0}
     }
 }
