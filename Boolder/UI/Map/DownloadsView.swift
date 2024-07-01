@@ -15,6 +15,8 @@ struct DownloadsView: View {
     let cluster: Cluster
     let area: Area?
     
+    private let maxAreas = 5
+    
     @State private var collapsed = true
     
 //    private func otherClusters(except: Cluster) -> [Cluster] {
@@ -41,8 +43,8 @@ struct DownloadsView: View {
     var areasToDisplay: [Area] {
         let areas = mainArea.otherAreasOnSameClusterSorted.map{$0.area}
         
-        if collapsed && areas.count > 5 {
-            return Array(areas.prefix(4))
+        if collapsed && areas.count > maxAreas {
+            return Array(areas.prefix(maxAreas-1))
         }
         else {
             return areas
@@ -112,13 +114,13 @@ struct DownloadsView: View {
                                 }
                             }
                             
-                            if collapsed && mainArea.otherAreasOnSameClusterSorted.count > 5 {
+                            if collapsed && mainArea.otherAreasOnSameClusterSorted.count > maxAreas {
                                 HStack {
                                     Spacer()
                                     Button {
                                         collapsed = false
                                     } label: {
-                                        Text("Voir plus")
+                                        Text("+ \(mainArea.otherAreasOnSameClusterSorted.count - maxAreas + 1) secteurs")
                                     }
                                     Spacer()
                                 }
