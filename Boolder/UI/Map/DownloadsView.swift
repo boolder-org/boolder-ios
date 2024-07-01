@@ -28,30 +28,22 @@ struct DownloadsView: View {
                 
                 if let area = mapState.selectedArea {
                     
-                    Section {
-                        
-                        Button {
-                            //
-                        } label: {
-                            HStack {
-                                
-                                VStack(alignment: .leading) {
+                    
+                    
+                    if area.otherAreasOnSameCluster.count >= 4 {
+                        Section {
+                            Button {
+                                //
+                            } label: {
+                                HStack {
                                     Text(area.name).foregroundColor(.primary)
-                                    //                                Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+                                    Spacer()
+                                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                    Image(systemName: "arrow.down.circle").font(.title2)
                                 }
-                                
-                                
-                                Spacer()
-                                
-                                Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                
-                                Image(systemName: "arrow.down.circle").font(.title2)
-                                
                             }
                         }
-                    }
-                    
-                    if area.otherAreasOnSameCluster.count > 2 {
+                        
                         Section {
                             NavigationLink {
                                 List {
@@ -90,23 +82,21 @@ struct DownloadsView: View {
                             
                         }
                     }
-                    else if area.otherAreasOnSameCluster.count > 0 {
-                        Section(header: Text(cluster.name)) {
-                            ForEach(area.otherAreasOnSameClusterSorted) { a in
-                                Button {
-                                    //
-                                } label: {
-                                    HStack {
-                                        VStack(alignment: .leading) {
-                                            Text(a.area.name).foregroundColor(.primary)
-                                            //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                            //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                        }
-                                        Spacer()
-                                        Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                        Image(systemName: "arrow.down.circle").font(.title2)
-                                        
+                    else  {
+                        ForEach(area.otherAreasOnSameClusterSorted) { a in
+                            Button {
+                                //
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(a.area.name).foregroundColor(.primary)
+                                        //                                                Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
+                                        //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
                                     }
+                                    Spacer()
+                                    Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                    Image(systemName: "arrow.down.circle").font(.title2)
+                                    
                                 }
                             }
                         }
