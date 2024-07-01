@@ -15,6 +15,8 @@ struct DownloadsView: View {
     let cluster: Cluster
     let area: Area?
     
+    @State private var collapsed = true
+    
 //    private func otherClusters(except: Cluster) -> [Cluster] {
 //        Cluster.troisPignons
 //        
@@ -33,6 +35,17 @@ struct DownloadsView: View {
         }
         else {
             return mainArea.cluster?.name ?? ""
+        }
+    }
+    
+    var areasToDisplay: [Area] {
+        let areas = mainArea.otherAreasOnSameClusterSorted.map{$0.area}
+        
+        if collapsed && areas.count > 5 {
+            return Array(areas.prefix(4))
+        }
+        else {
+            return areas
         }
     }
     
@@ -81,23 +94,37 @@ struct DownloadsView: View {
                 }
                 
                 else {
-                    Section(footer: Text("Téléchargez tous les secteurs des environs pour utiliser Boolder en mode hors-connexion.")) {
-                        
-                        ForEach(mainArea.otherAreasOnSameClusterSorted.map{$0.area}) { a in
-                            Button {
-                                //
-                            } label: {
+                    
+                        Section(footer: Text("Téléchargez les secteurs en avance pour utiliser Boolder en mode hors-connexion.")) {
+                            
+                            ForEach(areasToDisplay) { a in
+                                Button {
+                                    //
+                                } label: {
+                                    HStack {
+                                        Text(a.name).foregroundColor(.primary)
+                                        
+                                        Spacer()
+                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                        Image(systemName: "arrow.down.circle").font(.title2)
+                                        
+                                    }
+                                }
+                            }
+                            
+                            if collapsed && mainArea.otherAreasOnSameClusterSorted.count > 5 {
                                 HStack {
-                                    Text(a.name).foregroundColor(.primary)
-                                    
                                     Spacer()
-                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                    Image(systemName: "arrow.down.circle").font(.title2)
-                                    
+                                    Button {
+                                        collapsed = false
+                                    } label: {
+                                        Text("Voir plus")
+                                    }
+                                    Spacer()
                                 }
                             }
                         }
-                    }
+                    
                 }
                 
             }
