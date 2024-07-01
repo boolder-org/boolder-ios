@@ -30,77 +30,25 @@ struct DownloadsView: View {
                     
                     
                     
-                    if area.otherAreasOnSameCluster.count >= 4 {
-                        Section {
-                            Button {
-                                //
-                            } label: {
-                                HStack {
-                                    Text(area.name).foregroundColor(.primary)
-                                    Spacer()
-                                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                    Image(systemName: "arrow.down.circle").font(.title2)
+                    
+                    ForEach(area.otherAreasOnSameClusterSorted) { a in
+                        Button {
+                            //
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(a.area.name).foregroundColor(.primary)
+                                    //                                                Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
+                                    //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
                                 }
-                            }
-                        }
-                        
-                        Section {
-                            NavigationLink {
-                                List {
-                                    ForEach(area.otherAreasOnSameClusterSorted) { a in
-                                        Button {
-                                            //
-                                        } label: {
-                                            HStack {
-                                                VStack(alignment: .leading) {
-                                                    Text(a.area.name).foregroundColor(.primary)
-                                                    //                                                Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                                    //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                                }
-                                                Spacer()
-                                                Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                                Image(systemName: "arrow.down.circle").font(.title2)
-                                                
-                                            }
-                                        }
-                                    }
-                                }
-                                .navigationTitle(area.cluster?.name ?? "Zone")
-                            } label: {
-                                HStack {
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text("\(cluster.name)")
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Text("\(area.otherAreasOnSameCluster.count)").foregroundStyle(.gray)
-                                    
-                                }
-                            }
-                            
-                        }
-                    }
-                    else  {
-                        ForEach(area.otherAreasOnSameClusterSorted) { a in
-                            Button {
-                                //
-                            } label: {
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(a.area.name).foregroundColor(.primary)
-                                        //                                                Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                        //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                    }
-                                    Spacer()
-                                    Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                    Image(systemName: "arrow.down.circle").font(.title2)
-                                    
-                                }
+                                Spacer()
+                                Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                Image(systemName: "arrow.down.circle").font(.title2)
+                                
                             }
                         }
                     }
+                    
                 }
                 
                 else if cluster.troisPignons {
