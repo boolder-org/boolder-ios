@@ -27,11 +27,20 @@ struct DownloadsView: View {
         area ?? cluster.mainArea
     }
     
+    var title: String {
+        if area == nil && cluster.troisPignons {
+            return "Trois Pignons"
+        }
+        else {
+            return mainArea.cluster?.name ?? ""
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
                 
-                if cluster.troisPignons {
+                if area == nil && cluster.troisPignons {
                     Section {
                         ForEach(Cluster.troisPignons) { cluster in
                             NavigationLink {
@@ -72,7 +81,7 @@ struct DownloadsView: View {
                 }
                 
                 else {
-                    Section {
+                    Section(footer: Text("Téléchargez tous les secteurs des environs pour utiliser Boolder en mode hors-connexion.")) {
                         
                         ForEach(mainArea.otherAreasOnSameClusterSorted.map{$0.area}) { a in
                             Button {
@@ -92,7 +101,7 @@ struct DownloadsView: View {
                 }
                 
             }
-            .navigationTitle("Télécharger")
+            .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
