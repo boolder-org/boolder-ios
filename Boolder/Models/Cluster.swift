@@ -13,6 +13,7 @@ struct Cluster : Identifiable, Hashable {
     let id: Int
     let name: String
     let priority: Int
+    let mainAreaId: Int
     
     // FIXME: remove hack
     var troisPignons : Bool {
@@ -27,6 +28,14 @@ struct Cluster : Identifiable, Hashable {
 //            Cluster.load(id: 1)
         ].compactMap{$0}
     }
+    
+    var mainArea: Area {
+        Area.load(id: mainAreaId)!
+    }
+    
+    var areasSorted: [Area] {
+        mainArea.otherAreasOnSameClusterSorted.map{$0.area}
+    }
 }
 
 // MARK: SQLite
@@ -34,6 +43,7 @@ extension Cluster {
     static let id = Expression<Int>("id")
     static let name = Expression<String>("name")
     static let priority = Expression<Int>("priority")
+    static let mainAreaId = Expression<Int>("main_area_id")
     
     static func load(id: Int) -> Cluster? {
         
@@ -42,7 +52,7 @@ extension Cluster {
         do {
             if let c = try SqliteStore.shared.db.pluck(query) {
                 
-                return Cluster(id: id, name: c[name], priority: c[priority])
+                return Cluster(id: id, name: c[name], priority: c[priority], mainAreaId: c[mainAreaId])
             }
             
             return nil

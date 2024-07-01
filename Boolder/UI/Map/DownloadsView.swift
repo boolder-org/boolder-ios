@@ -119,7 +119,7 @@ struct DownloadsView: View {
                             NavigationLink {
                                 List {
                                     Section {
-                                        ForEach(cluster.areas) { a in
+                                        ForEach(cluster.areasSorted) { a in
                                             Button {
                                                 //
                                             } label: {
@@ -162,7 +162,7 @@ struct DownloadsView: View {
                         NavigationLink {
                             List {
                                 Section {
-                                    ForEach(cluster.areas) { a in
+                                    ForEach(cluster.areasSorted) { a in
                                         Button {
                                             //
                                         } label: {
