@@ -484,6 +484,9 @@ class MapboxViewController: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
                             self.inferClusterFromMap()
                         }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
+                            self.inferClusterFromMap()
+                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
