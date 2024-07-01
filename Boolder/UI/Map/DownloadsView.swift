@@ -159,47 +159,25 @@ struct DownloadsView: View {
                 
                 else {
                     Section {
-                        NavigationLink {
-                            List {
-                                Section {
-                                    ForEach(cluster.areasSorted) { a in
-                                        Button {
-                                            //
-                                        } label: {
-                                            HStack {
-                                                VStack(alignment: .leading) {
-                                                    Text(a.name).foregroundColor(.primary)
-                                                    //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                                    //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                                }
-                                                Spacer()
-                                                Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                                Image(systemName: "arrow.down.circle").font(.title2)
-                                                
-                                            }
-                                        }
+                        
+                        ForEach(cluster.areasSorted) { a in
+                            Button {
+                                //
+                            } label: {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(a.name).foregroundColor(.primary)
+                                        //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
+                                        //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
                                     }
+                                    Spacer()
+                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                    Image(systemName: "arrow.down.circle").font(.title2)
+                                    
                                 }
-                            }
-                            .navigationTitle(cluster.name)
-                            
-                        } label: {
-                            HStack {
-                                
-                                VStack(alignment: .leading) {
-                                    Text("\(cluster.name)")
-                                }
-                                
-                                Spacer()
-                                
-                                Text("\(cluster.areas.count)").foregroundStyle(.gray)
-                                
                             }
                         }
                     }
-                    
-                    
-                    
                 }
                 
             }

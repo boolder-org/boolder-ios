@@ -23,8 +23,8 @@ struct Cluster : Identifiable, Hashable {
     static var troisPignons: [Cluster] {
         [
             Cluster.load(id: 4),
-            Cluster.load(id: 3),
             Cluster.load(id: 2),
+            Cluster.load(id: 3),
 //            Cluster.load(id: 1)
         ].compactMap{$0}
     }
