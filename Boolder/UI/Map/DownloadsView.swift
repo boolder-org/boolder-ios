@@ -11,8 +11,9 @@ import SwiftUI
 struct DownloadsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let mapState: MapState
+//    let mapState: MapState
     let cluster: Cluster
+    let area: Area?
     
 //    private func otherClusters(except: Cluster) -> [Cluster] {
 //        Cluster.troisPignons
@@ -22,36 +23,15 @@ struct DownloadsView: View {
 //        )
 //    }
     
+    var mainArea : Area {
+        area ?? cluster.mainArea
+    }
+    
     var body: some View {
         NavigationView {
             List {
                 
-                if let area = mapState.selectedArea {
-                    
-                    
-                    
-                    
-                    ForEach(area.otherAreasOnSameClusterSorted) { a in
-                        Button {
-                            //
-                        } label: {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(a.area.name).foregroundColor(.primary)
-                                    //                                                Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                    //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                }
-                                Spacer()
-                                Text("\(Int(a.area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                Image(systemName: "arrow.down.circle").font(.title2)
-                                
-                            }
-                        }
-                    }
-                    
-                }
-                
-                else if cluster.troisPignons {
+                if cluster.troisPignons {
                     Section {
                         ForEach(Cluster.troisPignons) { cluster in
                             NavigationLink {
@@ -62,11 +42,7 @@ struct DownloadsView: View {
                                                 //
                                             } label: {
                                                 HStack {
-                                                    VStack(alignment: .leading) {
-                                                        Text(a.name).foregroundColor(.primary)
-                                                        //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                                        //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                                    }
+                                                    Text(a.name).foregroundColor(.primary)
                                                     Spacer()
                                                     Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
                                                     Image(systemName: "arrow.down.circle").font(.title2)
@@ -98,16 +74,13 @@ struct DownloadsView: View {
                 else {
                     Section {
                         
-                        ForEach(cluster.areasSorted) { a in
+                        ForEach(mainArea.otherAreasOnSameClusterSorted.map{$0.area}) { a in
                             Button {
                                 //
                             } label: {
                                 HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(a.name).foregroundColor(.primary)
-                                        //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
-                                        //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
-                                    }
+                                    Text(a.name).foregroundColor(.primary)
+                                    
                                     Spacer()
                                     Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
                                     Image(systemName: "arrow.down.circle").font(.title2)
