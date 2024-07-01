@@ -97,8 +97,8 @@
 		03C104F8290C0688007A94D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F6290C0688007A94D7 /* ContentView.swift */; };
 		03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
-		03CB36572C31BBD400E49107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03CB36562C31BBD400E49107 /* boolder.db */; };
-		03CB36582C31BBD400E49107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03CB36562C31BBD400E49107 /* boolder.db */; };
+		03CB365A2C329E3B00E49107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03CB36592C329E3A00E49107 /* boolder.db */; };
+		03CB365B2C329E3B00E49107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03CB36592C329E3A00E49107 /* boolder.db */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
@@ -218,7 +218,7 @@
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
-		03CB36562C31BBD400E49107 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03CB36592C329E3A00E49107 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
@@ -388,7 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03CB36562C31BBD400E49107 /* boolder.db */,
+				03CB36592C329E3A00E49107 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
@@ -706,7 +706,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CB36582C31BBD400E49107 /* boolder.db in Resources */,
+				03CB365B2C329E3B00E49107 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -720,7 +720,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CB36572C31BBD400E49107 /* boolder.db in Resources */,
+				03CB365A2C329E3B00E49107 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,

@@ -661,10 +661,10 @@ class MapboxViewController: UIViewController {
             
             let zoom = Expression(.gt) {
                 Expression(.zoom)
-                12
+                11
             }
             
-            let width = mapView.frame.width/4
+            let width = mapView.frame.width * 0.5
             let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
             
             //                        var debugView = UIView(frame: rect)
@@ -685,13 +685,16 @@ class MapboxViewController: UIViewController {
                         {
                             self.delegate?.selectCluster(id: Int(id))
                         }
+                        else {
+                            self.delegate?.unselectCluster()
+                        }
                     case .failure(_):
                         break
                     }
                 }
             
             
-            if(mapView.mapboxMap.cameraState.zoom < 12) {
+            if(mapView.mapboxMap.cameraState.zoom < 11) {
                 delegate?.unselectCluster()
             }
         }

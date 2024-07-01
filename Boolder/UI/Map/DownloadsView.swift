@@ -70,7 +70,7 @@ struct DownloadsView: View {
                                 HStack {
                                     
                                     VStack(alignment: .leading) {
-                                        Text("Secteurs voisins")
+                                        Text("Secteurs \(cluster.name)")
                                     }
                                     
                                     Spacer()
@@ -83,7 +83,7 @@ struct DownloadsView: View {
                         }
                     }
                     else if area.otherAreasOnSameCluster.count > 0 {
-                        Section(header: Text("Secteurs voisins")) {
+                        Section(header: Text(cluster.name)) {
                             ForEach(area.otherAreasOnSameClusterSorted) { a in
                                 Button {
                                     //
@@ -103,6 +103,51 @@ struct DownloadsView: View {
                             }
                         }
                     }
+                }
+                
+                else if cluster.troisPignons {
+                    ForEach(Cluster.troisPignons) { cluster in
+                        NavigationLink {
+                            List {
+                                Section {
+                                    ForEach(cluster.areas) { a in
+                                        Button {
+                                            //
+                                        } label: {
+                                            HStack {
+                                                VStack(alignment: .leading) {
+                                                    Text(a.name).foregroundColor(.primary)
+                                                    //                                        Text("\(Int(a.distance.rounded())) meters").foregroundStyle(.gray).font(.caption)
+                                                    //                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray).font(.caption)
+                                                }
+                                                Spacer()
+                                                Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                                Image(systemName: "arrow.down.circle").font(.title2)
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .navigationTitle(cluster.name)
+                            
+                        } label: {
+                            HStack {
+                                
+                                VStack(alignment: .leading) {
+                                    Text("Secteurs \(cluster.name)")
+                                }
+                                
+                                Spacer()
+                                
+                                Text("\(cluster.areas.count)").foregroundStyle(.gray)
+                                
+                            }
+                        }
+                    }
+                    
+                    
+                    
                 }
                 
                 else {
@@ -134,7 +179,7 @@ struct DownloadsView: View {
                         HStack {
                             
                             VStack(alignment: .leading) {
-                                Text(cluster.name)
+                                Text("Secteurs \(cluster.name)")
                             }
                             
                             Spacer()

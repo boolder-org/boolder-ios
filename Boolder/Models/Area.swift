@@ -230,7 +230,7 @@ extension Area {
         let areas = Table("areas")
         
         let query = areas.filter(Area.clusterId == self.clusterId)
-            .filter(Area.id != self.id)
+//            .filter(Area.id != self.id)
             .order(Area.priority.asc, Area.nameSearchable.asc)
         
         do {

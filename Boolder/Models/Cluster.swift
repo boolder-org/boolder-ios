@@ -13,6 +13,20 @@ struct Cluster : Identifiable {
     let id: Int
     let name: String
     let priority: Int
+    
+    // FIXME: remove hack
+    var troisPignons : Bool {
+        id <= 4
+    }
+    
+    static var troisPignons: [Cluster] {
+        [
+            Cluster.load(id: 1),
+            Cluster.load(id: 2),
+            Cluster.load(id: 3),
+            Cluster.load(id: 4)
+        ].compactMap{$0}
+    }
 }
 
 // MARK: SQLite
@@ -38,6 +52,8 @@ extension Cluster {
             return nil
         }
     }
+    
+    
     
     var areas: [Area] {
         let areas = Table("areas")
