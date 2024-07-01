@@ -202,7 +202,7 @@ struct MapContainerView: View {
 //                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
 //                .padding(.horizontal)
                 
-                if let area = mapState.selectedArea {
+                if let cluster = mapState.selectedCluster {
                     
                     Button(action: {
                         presentDownloads = true
@@ -221,7 +221,7 @@ struct MapContainerView: View {
                     .padding(.horizontal)
                     
                     .sheet(isPresented: $presentDownloads) {
-                        DownloadsView(mapState: mapState, area: area)
+                        DownloadsView(mapState: mapState, cluster: cluster)
                             .modify {
                                 if #available(iOS 16, *) {
                                     $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?

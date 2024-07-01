@@ -656,9 +656,9 @@ class MapboxViewController: UIViewController {
     func inferClusterFromMap() {
         if(!flyinToSomething) {
             
-            let zoom = Expression(.lt) {
+            let zoom = Expression(.gt) {
                 Expression(.zoom)
-                14.5
+                12
             }
             
             let width = mapView.frame.width/4
@@ -688,8 +688,8 @@ class MapboxViewController: UIViewController {
                 }
             
             
-            if(mapView.mapboxMap.cameraState.zoom < 10) {
-                delegate?.unselectArea()
+            if(mapView.mapboxMap.cameraState.zoom < 12) {
+                delegate?.unselectCluster()
             }
         }
     }
@@ -992,6 +992,7 @@ protocol MapBoxViewDelegate {
     func selectCluster(id: Int)
     func setVisibleAreas(_ areas: [Area])
     func unselectArea()
+    func unselectCluster()
     func unselectCircuit()
     func cameraChanged()
     func dismissProblemDetails()

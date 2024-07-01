@@ -92,6 +92,8 @@ struct MapboxView: UIViewControllerRepresentable {
     // MARK: Coordinator
     
     class Coordinator: MapBoxViewDelegate {
+        
+        
         var parent: MapboxView
         
         var lastSelectProblemCount = 0
@@ -131,6 +133,10 @@ struct MapboxView: UIViewControllerRepresentable {
         
         @MainActor func unselectArea() {
             parent.mapState.unselectArea()
+        }
+        
+        @MainActor func unselectCluster() {
+            parent.mapState.unselectCluster()
         }
         
         @MainActor func unselectCircuit() {

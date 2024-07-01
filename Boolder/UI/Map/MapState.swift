@@ -66,6 +66,10 @@ import SwiftUI
         selectedArea = nil
     }
     
+    func unselectCluster() {
+        selectedCluster = nil
+    }
+    
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
         selectCircuitCount += 1
