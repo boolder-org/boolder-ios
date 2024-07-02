@@ -17,8 +17,8 @@ struct AreaView: View {
     @EnvironmentObject var appState: AppState
     let linkToMap: Bool
     
-    @State private var presentRemoveDownloadSheet = false
-    @State private var presentCancelDownloadSheet = false
+//    @State private var presentRemoveDownloadSheet = false
+//    @State private var presentCancelDownloadSheet = false
     
     @State private var circuits = [Circuit]()
     @State private var popularProblems = [Problem]()

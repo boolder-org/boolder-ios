@@ -19,6 +19,10 @@ struct DownloadsView: View {
     
     @State private var collapsed = true
     
+    @State private var presentRemoveDownloadSheet = false
+    @State private var presentCancelDownloadSheet = false
+    @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
+    
 //    private func otherClusters(except: Cluster) -> [Cluster] {
 //        Cluster.troisPignons
 //        
@@ -72,7 +76,7 @@ struct DownloadsView: View {
                                                 HStack {
                                                     Text(a.name).foregroundColor(.primary)
                                                     Spacer()
-                                                    DownloadAreaButtonView(area: a, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
+                                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
                                                     
                                                 }
                                             }
@@ -109,8 +113,7 @@ struct DownloadsView: View {
                                     
                                     Spacer()
                                     
-                                    DownloadAreaButtonView(area: a, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
-                                    
+                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
                                 }
                                 
                             }
@@ -130,6 +133,32 @@ struct DownloadsView: View {
                     
                 }
                 
+            }
+            .background {
+                EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
+                    ActionSheet(
+                        title: Text("area.photos.remove.title"),
+                        buttons: [
+                            .destructive(Text("area.photos.remove.action")) {
+                                DownloadCenter.shared.areaDownloader(id: areaToEdit.id).remove()
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
+            }
+            .background {
+                EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
+                    ActionSheet(
+                        title: Text("area.photos.cancel.title"),
+                        buttons: [
+                            .destructive(Text("area.photos.cancel.action")) {
+                                DownloadCenter.shared.areaDownloader(id: areaToEdit.id).cancel()
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
             }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
