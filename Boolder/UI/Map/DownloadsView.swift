@@ -72,7 +72,6 @@ struct DownloadsView: View {
                                                 HStack {
                                                     Text(a.name).foregroundColor(.primary)
                                                     Spacer()
-                                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
                                                     DownloadAreaButtonView(area: a, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
                                                     
                                                 }
@@ -109,7 +108,6 @@ struct DownloadsView: View {
                                     Text(a.name).foregroundColor(.primary)
                                     
                                     Spacer()
-                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
                                     
                                     DownloadAreaButtonView(area: a, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
                                     

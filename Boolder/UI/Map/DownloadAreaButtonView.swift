@@ -39,14 +39,16 @@ struct DownloadAreaButtonView : View {
             HStack {
                 
                 if case .initial = areaDownloader.status  {
+                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
                     Image(systemName: "arrow.down.circle").font(.title2)
 //                    Text("area.photos.download")
                 }
                 else if case .downloading(let progress) = areaDownloader.status  {
-                    CircularProgressView(progress: progress).frame(height: 18)
                     Text("area.photos.downloading")
+                    CircularProgressView(progress: progress).frame(height: 18)
                 }
                 else if case .downloaded = areaDownloader.status  {
+                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
                     Image(systemName: "checkmark.circle").font(.title2).foregroundColor(.gray)
 //                    Text("area.photos.downloaded")
                 }
