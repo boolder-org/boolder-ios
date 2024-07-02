@@ -51,16 +51,20 @@ struct DownloadsView: View {
         }
     }
     
+    private var footer: some View {
+        Text("Téléchargez les secteurs en avance pour utiliser Boolder en mode hors-connexion.")
+    }
+    
     var body: some View {
         NavigationView {
             List {
                 
                 if area == nil && cluster.troisPignons {
-                    Section {
+                    Section(footer: footer) {
                         ForEach(Cluster.troisPignons) { cluster in
                             NavigationLink {
                                 List {
-                                    Section {
+                                    Section(footer: footer) {
                                         ForEach(cluster.areasSorted) { a in
                                             Button {
                                                 //
@@ -69,7 +73,7 @@ struct DownloadsView: View {
                                                     Text(a.name).foregroundColor(.primary)
                                                     Spacer()
                                                     Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                                    Image(systemName: "arrow.down.circle").font(.title2)
+                                                    DownloadAreaButtonView(area: a, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
                                                     
                                                 }
                                             }
@@ -97,21 +101,20 @@ struct DownloadsView: View {
                 
                 else {
                     
-                        Section(footer: Text("Téléchargez les secteurs en avance pour utiliser Boolder en mode hors-connexion.")) {
+                        Section(footer: footer) {
                             
                             ForEach(areasToDisplay) { a in
-                                Button {
-                                    //
-                                } label: {
-                                    HStack {
-                                        Text(a.name).foregroundColor(.primary)
-                                        
-                                        Spacer()
-                                        Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                                        Image(systemName: "arrow.down.circle").font(.title2)
-                                        
-                                    }
+                                
+                                HStack {
+                                    Text(a.name).foregroundColor(.primary)
+                                    
+                                    Spacer()
+                                    Text("\(Int(a.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                                    
+                                    DownloadAreaButtonView(area: a, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
+                                    
                                 }
+                                
                             }
                             
                             if collapsed && mainArea.otherAreasOnSameClusterSorted.count > maxAreas {

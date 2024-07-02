@@ -47,7 +47,7 @@ struct DownloadAreaButtonView : View {
                     Text("area.photos.downloading")
                 }
                 else if case .downloaded = areaDownloader.status  {
-                    Image(systemName: "checkmark.circle").font(.title2)
+                    Image(systemName: "checkmark.circle").font(.title2).foregroundColor(.gray)
 //                    Text("area.photos.downloaded")
                 }
                 else {
