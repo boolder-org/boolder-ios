@@ -47,13 +47,13 @@ struct DownloadAreaButtonView : View {
 //                    Text("area.photos.download")
                 }
                 else if case .downloading(let progress) = areaDownloader.status  {
-                    Text("area.photos.downloading")
+                    Text("Téléchargement")
                     CircularProgressView(progress: progress).frame(height: 18)
                 }
                 else if case .downloaded = areaDownloader.status  {
-                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                    Image(systemName: "checkmark.circle").font(.title2).foregroundColor(.gray)
-//                    Text("area.photos.downloaded")
+//                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+//                    Image(systemName: "checkmark.circle").font(.title2).foregroundColor(.gray)
+                    Text("Téléchargé")
                 }
                 else {
                     Text(areaDownloader.status.label)

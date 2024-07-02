@@ -207,6 +207,7 @@ struct MapContainerView: View {
                     Button(action: {
                         presentDownloads = true
                     }) {
+                        
                         Image(systemName: "arrow.down.circle")
                             .padding(12)
                         //                        .offset(x: -1, y: 0)
