@@ -15,7 +15,7 @@ struct DownloadsView: View {
     let cluster: Cluster
     let area: Area?
     
-    private let maxAreas = 5
+    private let maxAreas = 25
     
     @State private var collapsed = true
     
@@ -64,23 +64,21 @@ struct DownloadsView: View {
             List {
                 
                 if area == nil && cluster.troisPignons {
-                    Section(footer: footer) {
+                    Section {
                         ForEach(Cluster.troisPignons) { cluster in
                             NavigationLink {
                                 List {
-                                    Section(footer: footer) {
+                                    Section {
                                         ForEach(cluster.areasSorted) { a in
-                                            Button {
-                                                //
-                                            } label: {
-                                                HStack {
-                                                    Text(a.name).foregroundColor(.primary)
-                                                    Spacer()
-                                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: .constant(false), presentCancelDownloadSheet: .constant(false))
-                                                    
-                                                }
+                                            
+                                            HStack {
+                                                Text(a.name).foregroundColor(.primary)
+                                                Spacer()
+                                                DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                                                
                                             }
                                         }
+                                        
                                     }
                                 }
                                 .navigationTitle(cluster.name)
@@ -104,7 +102,7 @@ struct DownloadsView: View {
                 
                 else {
                     
-                        Section(footer: footer) {
+                        Section {
                             
                             ForEach(areasToDisplay) { a in
                                 
