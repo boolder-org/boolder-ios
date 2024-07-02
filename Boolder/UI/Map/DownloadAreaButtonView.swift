@@ -53,7 +53,7 @@ struct DownloadAreaButtonView : View {
                 else if case .downloaded = areaDownloader.status  {
 //                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
 //                    Image(systemName: "checkmark.circle").font(.title2).foregroundColor(.gray)
-                    Text("Téléchargé")
+                    Text("Téléchargé").foregroundColor(.gray)
                 }
                 else {
                     Text(areaDownloader.status.label)
