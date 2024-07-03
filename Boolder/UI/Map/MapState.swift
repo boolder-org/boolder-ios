@@ -7,11 +7,14 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 @MainActor class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
+    @Published private(set) var center: CLLocationCoordinate2D? = nil
+    @Published private(set) var zoom: CGFloat? = nil
     @Published private(set) var centerOnArea: Area? = nil
     @Published private(set) var selectedCluster: Cluster? = nil
     @Published private(set) var visibleAreas: [Area] = []
@@ -158,5 +161,10 @@ import SwiftUI
     
     func filtersRefresh() {
         filtersRefreshCount += 1
+    }
+    
+    func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {
+        self.center = center
+        self.zoom = zoom
     }
 }

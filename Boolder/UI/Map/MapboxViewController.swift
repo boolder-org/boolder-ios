@@ -72,11 +72,10 @@ class MapboxViewController: UIViewController {
             
             lastCameraCheck = DispatchTime.now()
             
-            self.inferAreaFromMap()
-            self.inferClusterFromMap()
-            
             if(!flyinToSomething) {
-                self.delegate?.cameraChanged()
+                self.inferAreaFromMap()
+                self.inferClusterFromMap()
+                self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
             }
         }
         
@@ -663,15 +662,15 @@ class MapboxViewController: UIViewController {
             
             let zoom = Expression(.gt) {
                 Expression(.zoom)
-                11
+                10.5
             }
             
             let width = mapView.frame.width/4
             let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2 + safePaddingYForAreaDetector, width: width, height: width)
             
-                                    var debugView = UIView(frame: rect)
-                                    debugView.backgroundColor = .blue
-                                    mapView.addSubview(debugView)
+//                                    var debugView = UIView(frame: rect)
+//                                    debugView.backgroundColor = .blue
+//                                    mapView.addSubview(debugView)
             
             mapView.mapboxMap.queryRenderedFeatures(
                 with: rect,
@@ -696,7 +695,7 @@ class MapboxViewController: UIViewController {
                 }
             
             
-            if(mapView.mapboxMap.cameraState.zoom < 11) {
+            if(mapView.mapboxMap.cameraState.zoom < 10.5) {
                 delegate?.unselectCluster()
             }
         }
@@ -953,6 +952,6 @@ protocol MapBoxViewDelegate {
     func unselectArea()
     func unselectCluster()
     func unselectCircuit()
-    func cameraChanged()
+    func cameraChanged(state: CameraState)
     func dismissProblemDetails()
 }

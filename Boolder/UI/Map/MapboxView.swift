@@ -92,8 +92,6 @@ struct MapboxView: UIViewControllerRepresentable {
     // MARK: Coordinator
     
     class Coordinator: MapBoxViewDelegate {
-        
-        
         var parent: MapboxView
         
         var lastSelectProblemCount = 0
@@ -155,8 +153,10 @@ struct MapboxView: UIViewControllerRepresentable {
             parent.mapState.presentProblemDetails = false
         }
         
-        @MainActor func cameraChanged() {
+        @MainActor func cameraChanged(state: MapboxMaps.CameraState) {
             parent.mapState.displayCircuitStartButton = false
+            
+            parent.mapState.updateCameraState(center: state.center, zoom: state.zoom)
         }
     }
 }

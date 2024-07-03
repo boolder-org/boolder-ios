@@ -180,6 +180,30 @@ struct MapContainerView: View {
         }
     }
     
+    private func areaBestGuess(in cluster: Cluster) -> Area {
+        if let selectedArea = mapState.selectedArea {
+            return selectedArea
+        }
+        
+        if let zoom = mapState.zoom, let center = mapState.center {
+            if zoom > 12.5 {
+                if let area = closestArea(in: cluster, from: CLLocation(latitude: center.latitude, longitude: center.longitude)) {
+                    return area
+                }
+            }
+//            print(zoom)
+//            print(center)
+        }
+        
+        return cluster.mainArea
+    }
+    
+    private func closestArea(in cluster: Cluster, from center: CLLocation) -> Area? {
+        cluster.areas.sorted {
+            $0.center.distance(from: center) < $1.center.distance(from: center)
+        }.first
+    }
+    
     // FIXME: change name
     var locateButton : some View {
         HStack {
@@ -222,7 +246,7 @@ struct MapContainerView: View {
                     .padding(.horizontal)
                     
                     .sheet(isPresented: $presentDownloads) {
-                        DownloadsView(cluster: cluster, area: mapState.selectedArea)
+                        DownloadsView(cluster: cluster, area: areaBestGuess(in: cluster))
                             .modify {
                                 if #available(iOS 16, *) {
                                     $0.presentationDetents([.medium, .large])

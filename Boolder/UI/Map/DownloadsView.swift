@@ -13,35 +13,14 @@ struct DownloadsView: View {
     
 //    let mapState: MapState
     let cluster: Cluster
-    let area: Area?
+    let area: Area
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
     
-//    private func otherClusters(except: Cluster) -> [Cluster] {
-//        Cluster.troisPignons
-//        
-//        return Array(
-//            Set(Cluster.troisPignons).subtracting(Set([except]))
-//        )
-//    }
-    
-    var mainArea : Area {
-        area ?? cluster.mainArea
-    }
-    
-//    var title: String {
-//        if area == nil && cluster.troisPignons {
-//            return "Trois Pignons"
-//        }
-//        else {
-//            return mainArea.cluster?.name ?? ""
-//        }
-//    }
-    
     var areasToDisplay: [Area] {
-        mainArea.otherAreasOnSameClusterSorted.map{$0.area}
+        area.otherAreasOnSameClusterSorted.map{$0.area}
     }
     
     private var footer: some View {
