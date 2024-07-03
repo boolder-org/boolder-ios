@@ -35,14 +35,14 @@ struct DownloadsView: View {
         area ?? cluster.mainArea
     }
     
-    var title: String {
-        if area == nil && cluster.troisPignons {
-            return "Trois Pignons"
-        }
-        else {
-            return mainArea.cluster?.name ?? ""
-        }
-    }
+//    var title: String {
+//        if area == nil && cluster.troisPignons {
+//            return "Trois Pignons"
+//        }
+//        else {
+//            return mainArea.cluster?.name ?? ""
+//        }
+//    }
     
     var areasToDisplay: [Area] {
         let areas = mainArea.otherAreasOnSameClusterSorted.map{$0.area}
@@ -63,73 +63,36 @@ struct DownloadsView: View {
         NavigationView {
             List {
                 
-                if area == nil && cluster.troisPignons {
-                    Section {
-                        ForEach(Cluster.troisPignons) { cluster in
-                            NavigationLink {
-                                List {
-                                    Section {
-                                        ForEach(cluster.areasSorted) { a in
-                                            
-                                            HStack {
-                                                Text(a.name).foregroundColor(.primary)
-                                                Spacer()
-                                                DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
-                                                
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                                .navigationTitle(cluster.name)
-                                
+                
+                
+                Section {
+                    
+                    ForEach(areasToDisplay) { a in
+                        
+                        HStack {
+                            Text(a.name).foregroundColor(.primary)
+                            
+                            Spacer()
+                            
+                            DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                        }
+                        
+                    }
+                    
+                    if collapsed && mainArea.otherAreasOnSameClusterSorted.count > maxAreas {
+                        HStack {
+                            Spacer()
+                            Button {
+                                collapsed = false
                             } label: {
-                                HStack {
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text("\(cluster.name)")
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Text("\(cluster.areas.count)").foregroundStyle(.gray)
-                                    
-                                }
+                                Text("+ \(mainArea.otherAreasOnSameClusterSorted.count - maxAreas + 1) secteurs")
                             }
+                            Spacer()
                         }
                     }
                 }
                 
-                else {
-                    
-                        Section {
-                            
-                            ForEach(areasToDisplay) { a in
-                                
-                                HStack {
-                                    Text(a.name).foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
-                                }
-                                
-                            }
-                            
-                            if collapsed && mainArea.otherAreasOnSameClusterSorted.count > maxAreas {
-                                HStack {
-                                    Spacer()
-                                    Button {
-                                        collapsed = false
-                                    } label: {
-                                        Text("+ \(mainArea.otherAreasOnSameClusterSorted.count - maxAreas + 1) secteurs")
-                                    }
-                                    Spacer()
-                                }
-                            }
-                        }
-                    
-                }
+                
                 
             }
             .background {
@@ -158,7 +121,7 @@ struct DownloadsView: View {
                     )
                 }
             }
-            .navigationTitle(title)
+            .navigationTitle(cluster.name)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {

@@ -626,7 +626,7 @@ class MapboxViewController: UIViewController {
             }
             
             let width = mapView.frame.width/4
-            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2 + safePaddingYForAreaDetector, width: width, height: width)
             
             //            var debugView = UIView(frame: rect)
             //            debugView.backgroundColor = .red
@@ -667,11 +667,11 @@ class MapboxViewController: UIViewController {
             }
             
             let width = mapView.frame.width/4
-            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2 + safePaddingYForAreaDetector, width: width, height: width)
             
-            //                        var debugView = UIView(frame: rect)
-            //                        debugView.backgroundColor = .red
-            //                        mapView.addSubview(debugView)
+                                    var debugView = UIView(frame: rect)
+                                    debugView.backgroundColor = .blue
+                                    mapView.addSubview(debugView)
             
             mapView.mapboxMap.queryRenderedFeatures(
                 with: rect,
@@ -939,6 +939,7 @@ class MapboxViewController: UIViewController {
     var safePaddingForBottomSheet : UIEdgeInsets {
         UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
     }
+    let safePaddingYForAreaDetector : CGFloat = 30
 }
 
 import CoreLocation

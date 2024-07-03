@@ -12,7 +12,6 @@ import SQLite
 struct Cluster : Identifiable, Hashable {
     let id: Int
     let name: String
-    let priority: Int
     let mainAreaId: Int
     
     // FIXME: remove hack
@@ -42,7 +41,6 @@ struct Cluster : Identifiable, Hashable {
 extension Cluster {
     static let id = Expression<Int>("id")
     static let name = Expression<String>("name")
-    static let priority = Expression<Int>("priority")
     static let mainAreaId = Expression<Int>("main_area_id")
     
     static func load(id: Int) -> Cluster? {
@@ -52,7 +50,7 @@ extension Cluster {
         do {
             if let c = try SqliteStore.shared.db.pluck(query) {
                 
-                return Cluster(id: id, name: c[name], priority: c[priority], mainAreaId: c[mainAreaId])
+                return Cluster(id: id, name: c[name], mainAreaId: c[mainAreaId])
             }
             
             return nil
