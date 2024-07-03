@@ -15,10 +15,6 @@ struct DownloadsView: View {
     let cluster: Cluster
     let area: Area?
     
-    private let maxAreas = 25
-    
-    @State private var collapsed = true
-    
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
@@ -45,14 +41,7 @@ struct DownloadsView: View {
 //    }
     
     var areasToDisplay: [Area] {
-        let areas = mainArea.otherAreasOnSameClusterSorted.map{$0.area}
-        
-        if collapsed && areas.count > maxAreas {
-            return Array(areas.prefix(maxAreas-1))
-        }
-        else {
-            return areas
-        }
+        mainArea.otherAreasOnSameClusterSorted.map{$0.area}
     }
     
     private var footer: some View {
@@ -62,11 +51,8 @@ struct DownloadsView: View {
     var body: some View {
         NavigationView {
             List {
-                
-                
-                
+
                 Section {
-                    
                     ForEach(areasToDisplay) { a in
                         
                         HStack {
@@ -76,23 +62,8 @@ struct DownloadsView: View {
                             
                             DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
                         }
-                        
-                    }
-                    
-                    if collapsed && mainArea.otherAreasOnSameClusterSorted.count > maxAreas {
-                        HStack {
-                            Spacer()
-                            Button {
-                                collapsed = false
-                            } label: {
-                                Text("+ \(mainArea.otherAreasOnSameClusterSorted.count - maxAreas + 1) secteurs")
-                            }
-                            Spacer()
-                        }
                     }
                 }
-                
-                
                 
             }
             .background {
