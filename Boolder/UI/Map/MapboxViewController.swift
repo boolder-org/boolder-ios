@@ -74,7 +74,6 @@ class MapboxViewController: UIViewController {
             
             self.inferAreaFromMap()
             self.inferClusterFromMap()
-            self.inferVisibleAreasFromMap()
             
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
@@ -703,55 +702,6 @@ class MapboxViewController: UIViewController {
         }
     }
     
-    func inferVisibleAreasFromMap() {
-        if(!flyinToSomething) {
-            
-//            let zoom = Expression(.lt) {
-//                Expression(.zoom)
-//                14.5
-//            }
-            
-            let width = mapView.frame.width * 0.9 // FIXME: check height too
-            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
-            
-            var debugView = UIView(frame: rect)
-            
-//            debugView.layer.borderColor = UIColor.blue.cgColor
-//            debugView.layer.borderWidth = 2
-//            mapView.addSubview(debugView)
-            
-            mapView.mapboxMap.queryRenderedFeatures(
-                with: rect,
-                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: nil)) { [weak self] result in
-                    
-                    guard let self = self else { return }
-                    
-                    switch result {
-                    case .success(let queriedfeatures):
-                        
-                        let areas = queriedfeatures.map { f in
-                            if case .number(let id) = f.feature.properties?["areaId"]
-                            {
-                                return Area.load(id: Int(id))
-                            }
-                            
-                            return nil
-                        }.compactMap{$0}
-                        
-                        self.delegate?.setVisibleAreas(areas)
-                        
-                    case .failure(_):
-                        break
-                    }
-                }
-            
-            
-            if(mapView.mapboxMap.cameraState.zoom < 10) {
-                delegate?.unselectArea()
-            }
-        }
-    }
-    
     private var favorites: [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -866,7 +816,6 @@ class MapboxViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
                     self.inferAreaFromMap()
                     self.inferClusterFromMap()
-                    self.inferVisibleAreasFromMap()
                     // TODO: what if map is slow to load? we should infer again after it's loaded
                 }
             }
