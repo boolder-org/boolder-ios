@@ -24,14 +24,12 @@ struct DownloadsButtonView: View {
         }) {
             if clusterDownloader.downloading {
                 ProgressView()
-                    
+            }
+            else if clusterDownloader.allDownloaded {
+                Image(systemName: "checkmark.icloud")
             }
             else {
-                
                 Image(systemName: "icloud.and.arrow.down")
-//                    .font(.title3.weight(.regular))
-                    
-//                    .font(.system(size: 24, weight: .thin))
                     
             }
             
