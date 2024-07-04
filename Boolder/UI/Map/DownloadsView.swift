@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct DownloadsView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -14,6 +15,8 @@ struct DownloadsView: View {
 //    let mapState: MapState
     let cluster: Cluster
     let area: Area
+    
+    var tip = DownloadTip()
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -27,9 +30,20 @@ struct DownloadsView: View {
         Text("Téléchargez les secteurs en avance pour utiliser Boolder en mode hors-connexion.")
     }
     
+    // Vous pouvez utiliser Boolder en mode hors-connexion dans tous les secteurs ci-dessus.
+    
     var body: some View {
         NavigationView {
             List {
+                
+                if #available(iOS 17.0, *) {
+                    Section {
+                        TipView(tip)
+                            .listRowInsets(EdgeInsets()) // Remove default padding
+                            .background(Color.clear) // Remove default white background
+                    }
+                    .padding(.vertical, 0)
+                }
 
                 Section {
                     ForEach(areasToDisplay) { a in

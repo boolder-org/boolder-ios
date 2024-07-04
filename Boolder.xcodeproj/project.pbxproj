@@ -117,6 +117,8 @@
 		03F79CF72C358F4C004F7CA3 /* DownloadsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF52C358F4C004F7CA3 /* DownloadsButtonView.swift */; };
 		03F79CF92C3696E0004F7CA3 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF82C3696E0004F7CA3 /* FabButton.swift */; };
 		03F79CFA2C3696E0004F7CA3 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF82C3696E0004F7CA3 /* FabButton.swift */; };
+		03F79CFC2C3743E0004F7CA3 /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */; };
+		03F79CFD2C3743E0004F7CA3 /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -233,6 +235,7 @@
 		03F79CF22C3583B5004F7CA3 /* ClusterDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterDownloader.swift; sourceTree = "<group>"; };
 		03F79CF52C358F4C004F7CA3 /* DownloadsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsButtonView.swift; sourceTree = "<group>"; };
 		03F79CF82C3696E0004F7CA3 /* FabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabButton.swift; sourceTree = "<group>"; };
+		03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -358,6 +361,7 @@
 				031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */,
 				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
 				0388E2432C2F209000B1C5D6 /* DownloadsView.swift */,
+				03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */,
 				03F79CF82C3696E0004F7CA3 /* FabButton.swift */,
 			);
 			path = Map;
@@ -825,6 +829,7 @@
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
+				03F79CFD2C3743E0004F7CA3 /* DownloadTip.swift in Sources */,
 				0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
 				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
 				37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */,
@@ -935,6 +940,7 @@
 				033F70D72919535A000DD3F4 /* Area.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
+				03F79CFC2C3743E0004F7CA3 /* DownloadTip.swift in Sources */,
 				03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
 				031A4CAE296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
 				031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */,
