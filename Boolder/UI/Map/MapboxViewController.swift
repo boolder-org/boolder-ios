@@ -72,6 +72,8 @@ class MapboxViewController: UIViewController {
             
             lastCameraCheck = DispatchTime.now()
             
+//            print(mapView.mapboxMap.cameraState.zoom)
+            
             if(!flyinToSomething) {
                 self.inferAreaFromMap()
                 self.inferClusterFromMap()
@@ -650,7 +652,7 @@ class MapboxViewController: UIViewController {
                     }
                 }
             
-            
+            // FIXME: put 14.5?
             if(mapView.mapboxMap.cameraState.zoom < 15) {
                 delegate?.unselectArea()
             }
@@ -660,9 +662,9 @@ class MapboxViewController: UIViewController {
     func inferClusterFromMap() {
         if(!flyinToSomething) {
             
-            let zoom = Expression(.gt) {
+            let zoom = Expression(.gte) {
                 Expression(.zoom)
-                10.5
+                12
             }
             
             let width = mapView.frame.width/4
@@ -695,9 +697,9 @@ class MapboxViewController: UIViewController {
                 }
             
             
-            if(mapView.mapboxMap.cameraState.zoom < 10.5) {
-                delegate?.unselectCluster()
-            }
+//            if(mapView.mapboxMap.cameraState.zoom < 11) {
+//                delegate?.unselectCluster()
+//            }
         }
     }
     
