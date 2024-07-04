@@ -93,14 +93,15 @@
 "area.problems.search_prompt" = "Problem name";
 "area.circuit.beginner" = "This circuit is beginner friendly";
 "area.circuit.dangerous" = "This circuit is dangerous: some boulders are very high and/or with difficult landings";
-"area.offline" = "Offline mode";
-"area.photos.download" = "Download the photos";
-"area.photos.downloading" = "Downloading";
-"area.photos.downloaded" = "Photos downloaded";
-"area.photos.remove.title" = "Delete offline photos ?";
-"area.photos.remove.action" = "Delete";
-"area.photos.cancel.title" = "Stop download?";
-"area.photos.cancel.action" = "Stop download";
+
+// MARK: Download
+"download.download" = "Download the area";
+"download.downloading" = "Downloading";
+"download.downloaded" = "Downloaded";
+"download.remove.title" = "Delete download?";
+"download.remove.action" = "Delete";
+"download.cancel.title" = "Stop download?";
+"download.cancel.action" = "Stop download";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";

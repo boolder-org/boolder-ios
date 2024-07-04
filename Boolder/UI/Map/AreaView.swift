@@ -46,35 +46,6 @@ struct AreaView: View {
                     poiRoutesList
                 }
                 
-//                Section(header: Text("area.offline")) {
-//                    DownloadAreaButtonView(area: area, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
-//                        .background {
-//                            EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
-//                                ActionSheet(
-//                                    title: Text("area.photos.remove.title"),
-//                                    buttons: [
-//                                        .destructive(Text("area.photos.remove.action")) {
-//                                            DownloadCenter.shared.areaDownloader(id: area.id).remove()
-//                                        },
-//                                        .cancel()
-//                                    ]
-//                                )
-//                            }
-//                        }
-//                        .background {
-//                            EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
-//                                ActionSheet(
-//                                    title: Text("area.photos.cancel.title"),
-//                                    buttons: [
-//                                        .destructive(Text("area.photos.cancel.action")) {
-//                                            DownloadCenter.shared.areaDownloader(id: area.id).cancel()
-//                                        },
-//                                        .cancel()
-//                                    ]
-//                                )
-//                            }
-//                        }
-//                }
                 
                 if(linkToMap) {
                     // leave room for sticky footer

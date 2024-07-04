@@ -48,9 +48,9 @@ struct DownloadsView: View {
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
                     ActionSheet(
-                        title: Text("area.photos.remove.title"),
+                        title: Text("download.remove.title"),
                         buttons: [
-                            .destructive(Text("area.photos.remove.action")) {
+                            .destructive(Text("download.remove.action")) {
                                 DownloadCenter.shared.areaDownloader(id: areaToEdit.id).remove()
                             },
                             .cancel()
@@ -61,9 +61,9 @@ struct DownloadsView: View {
             .background {
                 EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
                     ActionSheet(
-                        title: Text("area.photos.cancel.title"),
+                        title: Text("download.cancel.title"),
                         buttons: [
-                            .destructive(Text("area.photos.cancel.action")) {
+                            .destructive(Text("download.cancel.action")) {
                                 DownloadCenter.shared.areaDownloader(id: areaToEdit.id).cancel()
                             },
                             .cancel()

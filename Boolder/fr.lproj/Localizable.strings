@@ -93,15 +93,15 @@
 "area.problems.search_prompt" = "Nom de voie";
 "area.circuit.beginner" = "Ce circuit convient aux débutants";
 "area.circuit.dangerous" = "Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile";
-"area.offline" = "Mode hors-ligne";
-"area.photos.download" = "Télécharger les photos";
-"area.photos.downloading" = "Téléchargement";
-"area.photos.downloaded" = "Photos téléchargées";
-"area.photos.remove.title" = "Supprimer les photos hors-ligne ?";
-"area.photos.remove.action" = "Supprimer";
-"area.photos.cancel.title" = "Arrêter le téléchargement ?";
-"area.photos.cancel.action" = "Arrêter le téléchargement";
 
+// MARK: Download
+"download.download" = "Télécharger le secteur";
+"download.downloading" = "Téléchargement";
+"download.downloaded" = "Téléchargé";
+"download.remove.title" = "Supprimer le téléchargement ?";
+"download.remove.action" = "Supprimer";
+"download.cancel.title" = "Arrêter le téléchargement ?";
+"download.cancel.action" = "Arrêter le téléchargement";
 
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";
