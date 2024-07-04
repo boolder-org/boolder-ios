@@ -23,24 +23,20 @@ struct DownloadsButtonView: View {
             presentDownloads = true
         }) {
             if clusterDownloader.downloading {
-                Text("D")
-                    .padding(12)
+                ProgressView()
+                    
             }
             else {
                 
-                Image(systemName: "arrow.down.circle")
-                    .padding(12)
-                //                        .offset(x: -1, y: 0)
+                Image(systemName: "icloud.and.arrow.down")
+//                    .font(.title3.weight(.regular))
+                    
+//                    .font(.system(size: 24, weight: .thin))
+                    
             }
+            
         }
-        .accentColor(.primary)
-        .background(Color.systemBackground)
-        .clipShape(Circle())
-        .overlay(
-            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-        )
-        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-        .padding(.horizontal)
+        .buttonStyle(FabButton())
         
         .sheet(isPresented: $presentDownloads) {
             DownloadsView(cluster: cluster, area: areaBestGuess(in: cluster))
@@ -79,15 +75,6 @@ struct DownloadsButtonView: View {
         }.first
     }
 }
-
-struct DownloadsButtonFakeRowView: View {
-    @ObservedObject var area: AreaDownloader
-    
-    var body: some View {
-        EmptyView()
-    }
-}
-
 
 //#Preview {
 //    DownloadsButtonView()

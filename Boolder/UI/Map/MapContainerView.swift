@@ -190,20 +190,6 @@ struct MapContainerView: View {
             VStack {
                 Spacer()
                 
-//                Button(action: {
-//                    
-//                }) {
-//                    Text("cluster")
-//                }
-//                .accentColor(.primary)
-//                .background(Color.systemBackground)
-//                .clipShape(Circle())
-//                .overlay(
-//                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                )
-//                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                .padding(.horizontal)
-                
                 if let cluster = mapState.selectedCluster {
                     
                     DownloadsButtonView(cluster: cluster, mapState: mapState, selectedArea: mapState.selectedArea, zoom: mapState.zoom, center: mapState.center, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster))
@@ -213,17 +199,10 @@ struct MapContainerView: View {
                     mapState.centerOnCurrentLocation()
                 }) {
                     Image(systemName: "location")
-                        .padding(12)
                         .offset(x: -1, y: 0)
+//                        .font(.system(size: 20, weight: .regular))
                 }
-                .accentColor(.primary)
-                .background(Color.systemBackground)
-                .clipShape(Circle())
-                .overlay(
-                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                )
-                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                .padding(.horizontal)
+                .buttonStyle(FabButton())
                 
             }
         }

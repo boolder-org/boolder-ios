@@ -43,7 +43,7 @@ struct DownloadAreaButtonView : View {
                 
                 if case .initial = areaDownloader.status  {
                     Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-                    Image(systemName: "arrow.down.circle").font(.title2)
+                    Image(systemName: "icloud.and.arrow.down").font(.title2)
 //                    Text("area.photos.download")
                 }
                 else if case .downloading(let progress) = areaDownloader.status  {

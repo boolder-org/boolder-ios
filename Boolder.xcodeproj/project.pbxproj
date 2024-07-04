@@ -115,6 +115,8 @@
 		03F79CF42C3583B5004F7CA3 /* ClusterDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF22C3583B5004F7CA3 /* ClusterDownloader.swift */; };
 		03F79CF62C358F4C004F7CA3 /* DownloadsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF52C358F4C004F7CA3 /* DownloadsButtonView.swift */; };
 		03F79CF72C358F4C004F7CA3 /* DownloadsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF52C358F4C004F7CA3 /* DownloadsButtonView.swift */; };
+		03F79CF92C3696E0004F7CA3 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF82C3696E0004F7CA3 /* FabButton.swift */; };
+		03F79CFA2C3696E0004F7CA3 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF82C3696E0004F7CA3 /* FabButton.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -230,6 +232,7 @@
 		03F79CEF2C354626004F7CA3 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03F79CF22C3583B5004F7CA3 /* ClusterDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterDownloader.swift; sourceTree = "<group>"; };
 		03F79CF52C358F4C004F7CA3 /* DownloadsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsButtonView.swift; sourceTree = "<group>"; };
+		03F79CF82C3696E0004F7CA3 /* FabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabButton.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -355,6 +358,7 @@
 				031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */,
 				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
 				0388E2432C2F209000B1C5D6 /* DownloadsView.swift */,
+				03F79CF82C3696E0004F7CA3 /* FabButton.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -853,6 +857,7 @@
 				03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */,
+				03F79CFA2C3696E0004F7CA3 /* FabButton.swift in Sources */,
 				031F36BA291D271300BD0C2B /* PinchToZoomView.swift in Sources */,
 				37B452362591450200241091 /* TopoView.swift in Sources */,
 				37B452282591414800241091 /* NewTopoView.swift in Sources */,
@@ -901,6 +906,7 @@
 				0388E23E2C2F142100B1C5D6 /* Cluster.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
+				03F79CF92C3696E0004F7CA3 /* FabButton.swift in Sources */,
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
