@@ -25,16 +25,17 @@ class ClusterDownloader: ObservableObject {
         
         // TODO: make this a little less hacky
         // https://stackoverflow.com/a/57302695
-        self.areas.forEach({
-            let c = $0.objectWillChange.sink(receiveValue: { self.objectWillChange.send() })
+        self.areas.forEach { area in
+//            let c = $0.objectWillChange.sink(receiveValue: { self.objectWillChange.send() })
+            let c = area.$status.map{$0.isDownloading}.removeDuplicates().sink(receiveValue: { _ in self.objectWillChange.send() })
             self.cancellables.append(c)
-        })
+        }
     }
     
     var downloading: Bool {
-//        print("downloading called")
-//        print(areas.map{$0.areaId})
-//        print(areas.map{$0.status.label})
+        print("downloading called")
+        print(areas.map{$0.areaId})
+        print(areas.map{$0.status.label})
         return areas.contains(where: {
             $0.isDownloading
         })
