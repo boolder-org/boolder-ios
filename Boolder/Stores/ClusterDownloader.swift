@@ -33,9 +33,9 @@ class ClusterDownloader: ObservableObject {
     }
     
     var downloading: Bool {
-        print("downloading called")
-        print(areas.map{$0.areaId})
-        print(areas.map{$0.status.label})
+//        print("downloading called")
+//        print(areas.map{$0.areaId})
+//        print(areas.map{$0.status.label})
         return areas.contains(where: {
             $0.isDownloading
         })
