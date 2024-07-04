@@ -13,7 +13,6 @@ class ClusterDownloader: ObservableObject {
     
     private let cluster: Cluster
     @Published var areas = [AreaDownloader]()
-//    @Published var downloading: Bool = false
     
     var cancellables = [AnyCancellable]()
     
