@@ -31,11 +31,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     var isDownloading: Bool {
-        if case .downloading(_) = status {
-            return true
-        }
-        
-        return false
+        status.isDownloading
     }
     
     func requestAndStartDownload() {
@@ -125,6 +121,14 @@ class AreaDownloader: Identifiable, ObservableObject {
             case .requested:
                 "requested"
             }
+        }
+        
+        var isDownloading: Bool {
+            if case .downloading(_) = self {
+                return true
+            }
+            
+            return false
         }
     }
 }
