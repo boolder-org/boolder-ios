@@ -16,15 +16,22 @@ struct DownloadsButtonView: View {
     let zoom: CGFloat?
     let center: CLLocationCoordinate2D?
     @Binding var presentDownloads: Bool
+    @ObservedObject var clusterDownloader: ClusterDownloader
     
     var body: some View {
         Button(action: {
             presentDownloads = true
         }) {
-            
-            Image(systemName: "arrow.down.circle")
-                .padding(12)
-            //                        .offset(x: -1, y: 0)
+            if clusterDownloader.downloading {
+                Text("D")
+                    .padding(12)
+            }
+            else {
+                
+                Image(systemName: "arrow.down.circle")
+                    .padding(12)
+                //                        .offset(x: -1, y: 0)
+            }
         }
         .accentColor(.primary)
         .background(Color.systemBackground)
@@ -72,6 +79,15 @@ struct DownloadsButtonView: View {
         }.first
     }
 }
+
+struct DownloadsButtonFakeRowView: View {
+    @ObservedObject var area: AreaDownloader
+    
+    var body: some View {
+        EmptyView()
+    }
+}
+
 
 //#Preview {
 //    DownloadsButtonView()

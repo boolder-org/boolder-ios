@@ -31,7 +31,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     var isDownloading: Bool {
-        if case .downloading(let progress) = status {
+        if case .downloading(_) = status {
             return true
         }
         

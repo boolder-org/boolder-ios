@@ -13,39 +13,31 @@ class ClusterDownloader: ObservableObject {
     
     private let cluster: Cluster
     @Published var areas = [AreaDownloader]()
-    @Published var downloading: Bool = false
+//    @Published var downloading: Bool = false
     
-    let settings = DownloadSettings.shared
-    var cancellable: Cancellable?
+    var cancellables = [AnyCancellable]()
     
     init(cluster: Cluster) {
         self.cluster = cluster
         
         areas = cluster.areas.map { area in
-            AreaDownloader(areaId: area.id, status: settings.areaIds.contains(area.id) ? .requested : .initial)
+            DownloadCenter.shared.areaDownloader(id: area.id)
         }
         
-        cancellable = $areas
-            .map { objects in
-                objects.map { $0.$status }
-            }
-            .flatMap { statuses in
-                Publishers.MergeMany(statuses)
-            }
-            .map { status in
-                self.areas.contains(where: { $0.status == .initial })
-            }
-            .removeDuplicates()
-            .assign(to: \.downloading, on: self)
-        
-//        cancellable = settings.$areaIds
-//            .map { $0.map{self.areaDownloader(id: $0)} }
-//            .assign(to: \.requestedAreas, on: self)
+        // TODO: make this a little less hacky
+        // https://stackoverflow.com/a/57302695
+        self.areas.forEach({
+            let c = $0.objectWillChange.sink(receiveValue: { self.objectWillChange.send() })
+            self.cancellables.append(c)
+        })
     }
     
-    func areaDownloader(id: Int) -> AreaDownloader {
-        areas.first { areaDownloader in
-            areaDownloader.id == id
-        }! // FIXME: use a dedicated error
+    var downloading: Bool {
+//        print("downloading called")
+//        print(areas.map{$0.areaId})
+//        print(areas.map{$0.status.label})
+        return areas.contains(where: {
+            $0.isDownloading
+        })
     }
 }
