@@ -192,7 +192,7 @@ struct MapContainerView: View {
                 
                 if let cluster = mapState.selectedCluster {
                     
-                    DownloadsButtonView(cluster: cluster, mapState: mapState, selectedArea: mapState.selectedArea, zoom: mapState.zoom, center: mapState.center, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster))
+                    DownloadButtonView(cluster: cluster, mapState: mapState, selectedArea: mapState.selectedArea, zoom: mapState.zoom, center: mapState.center, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster))
                 }
                 
                 Button(action: {

@@ -1,5 +1,5 @@
 //
-//  DownloadsButtonView.swift
+//  DownloadButtonView.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 03/07/2024.
@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreLocation
 
-struct DownloadsButtonView: View {
+struct DownloadButtonView: View {
     let cluster: Cluster
     let mapState: MapState
     let selectedArea: Area?
