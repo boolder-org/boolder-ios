@@ -37,7 +37,7 @@ struct DownloadsButtonView: View {
         .buttonStyle(FabButton())
         
         .sheet(isPresented: $presentDownloads) {
-            DownloadsView(cluster: cluster, area: areaBestGuess(in: cluster))
+            ClusterView(cluster: cluster, area: areaBestGuess(in: cluster))
                 .modify {
                     if #available(iOS 16, *) {
                         $0.presentationDetents([.medium, .large])
