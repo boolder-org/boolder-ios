@@ -38,7 +38,7 @@ struct DownloadsView: View {
                 
                 if #available(iOS 17.0, *) {
                     Section {
-                        TipView(tip)
+                        TipView(tip, arrowEdge: .bottom)
                             .listRowInsets(EdgeInsets()) // Remove default padding
                             .background(Color.clear) // Remove default white background
                     }
@@ -57,6 +57,13 @@ struct DownloadsView: View {
                         }
                     }
                 }
+//                .modify {
+//                    if #available(iOS 17.0, *) {
+//                        $0.popoverTip(tip, arrowEdge: .bottom)
+//                    } else {
+//                        // Fallback on earlier versions
+//                    }
+//                }
                 
             }
             .background {

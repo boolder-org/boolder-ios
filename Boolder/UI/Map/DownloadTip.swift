@@ -12,7 +12,7 @@ struct DownloadTip: Tip {
     let id = 1 // FIXME: remove when we target iOS > 15
 
     var title: Text {
-        Text("Téléchargez les secteurs ci-dessous")
+        Text("Téléchargez les secteurs qui vous intéressent")
     }
     var message: Text? {
         Text("Vous pourrez ensuite utiliser Boolder en mode hors-connexion.")
