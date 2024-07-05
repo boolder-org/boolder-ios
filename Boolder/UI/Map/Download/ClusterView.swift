@@ -37,48 +37,49 @@ struct ClusterView: View {
     var body: some View {
         NavigationView {
             List {
-
-                Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
-                    Button {
-                        if clusterDownloader.downloading {
-                            // TODO
-                        }
-                        else {
-                            // TODO: launch area downloads at the same time or no?
-                            clusterDownloader.remainingAreasToDownload.forEach{ area in
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2 * Double.random(in: 0..<1)) {
-                                    area.requestAndStartDownload()
-//                                }
-                            }
-                        }
-                    } label : {
-                        HStack {
-                            
-                            VStack(alignment: .leading) {
-                                Text(cluster.name).foregroundColor(.primary)
-                                // TODO: deal with singulier
-                                // TODO: Elephant + 2 secteurs - when there is a selectedArea
-                                Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
-                            }
-                            Spacer()
-                            
+                if clusterDownloader.areas.count > 1 {
+                    Section("Zone") { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
+                        Button {
                             if clusterDownloader.downloading {
-//                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
-//                                    .padding(.trailing)
-                                ProgressView()
-                            }
-                            else if clusterDownloader.remainingAreasToDownload.count > 0 {
-                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
-                                Image(systemName: "icloud.and.arrow.down").font(.title2)
+                                // TODO
                             }
                             else {
-                                Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
+                                // TODO: launch area downloads at the same time or no?
+                                clusterDownloader.remainingAreasToDownload.forEach{ area in
+                                    //                                DispatchQueue.main.asyncAfter(deadline: .now() + 2 * Double.random(in: 0..<1)) {
+                                    area.requestAndStartDownload()
+                                    //                                }
+                                }
+                            }
+                        } label : {
+                            HStack {
+                                
+                                VStack(alignment: .leading) {
+                                    Text(cluster.name).foregroundColor(.primary)
+                                    // TODO: deal with singulier
+                                    // TODO: Elephant + 2 secteurs - when there is a selectedArea
+                                    Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
+                                }
+                                Spacer()
+                                
+                                if clusterDownloader.downloading {
+                                    //                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
+                                    //                                    .padding(.trailing)
+                                    ProgressView()
+                                }
+                                else if clusterDownloader.remainingAreasToDownload.count > 0 {
+                                    Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
+                                    Image(systemName: "icloud.and.arrow.down").font(.title2)
+                                }
+                                else {
+                                    Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
+                                }
                             }
                         }
+                        
+                        // TODO: add button to cancel all downloads
+                        // TODO: add "Vous pouvez utiliser Boolder en mode hors-connexion
                     }
-                    
-                    // TODO: add button to cancel all downloads
-                    // TODO: add "Vous pouvez utiliser Boolder en mode hors-connexion
                 }
                
 //                if clusterDownloader.areas.count > 1 {
