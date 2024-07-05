@@ -12,6 +12,8 @@ import SwiftUI
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     
+    @ObservedObject var clusterDownloader: ClusterDownloader
+    
 //    let mapState: MapState
     let cluster: Cluster
     let area: Area
@@ -33,9 +35,7 @@ struct ClusterView: View {
     }
     
     private var showDownloadSection: Bool {
-        self.areasToDisplay
-            .map { DownloadCenter.shared.areaDownloader(id: $0.id) }
-            .filter { $0.status != .initial }.count > 0
+        clusterDownloader.downloadRequested
     }
     
     private var totalSize : Double {
@@ -91,8 +91,8 @@ struct ClusterView: View {
                     }
                 }
                
-                if true { //showDownloadSection {
-                    Section("Téléchargements") {
+                if showDownloadSection {
+                    Section("Secteurs") {
                         ForEach(areasToDisplay) { a in
                             
                             HStack {

@@ -48,4 +48,8 @@ class ClusterDownloader: ObservableObject {
 //    var remainingToDownload: Int {
 //        areas.count - areas.filter{ $0.status == .downloaded }.count
 //    }
+    
+    var downloadRequested: Bool {
+        areas.filter { $0.status != .initial }.count > 0
+    }
 }
