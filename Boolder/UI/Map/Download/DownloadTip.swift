@@ -12,10 +12,10 @@ struct DownloadTip: Tip {
     let id = 1 // FIXME: remove when we target iOS > 15
 
     var title: Text {
-        Text("Téléchargez les secteurs qui vous intéressent")
+        Text("Téléchargez toute la zone en hors-connexion")
     }
     var message: Text? {
-        Text("Vous pourrez ensuite utiliser Boolder en mode hors-connexion.")
+        Text("Vous pourrez ensuite grimper en tout tranquilité, même en mode avion.")
     }
 //    var image: Image? {
 //        Image(systemName: "star")

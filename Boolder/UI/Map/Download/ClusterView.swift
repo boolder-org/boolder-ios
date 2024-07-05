@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-//import TipKit
+import TipKit
 
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -18,7 +18,7 @@ struct ClusterView: View {
     let cluster: Cluster
     let area: Area
     
-//    var tip = DownloadTip()
+    var tip = DownloadTip()
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -38,7 +38,7 @@ struct ClusterView: View {
         NavigationView {
             List {
                 if clusterDownloader.areas.count > 1 {
-                    Section("Zone") { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
+                    Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
                         Button {
                             if clusterDownloader.downloading {
                                 // TODO
@@ -55,7 +55,7 @@ struct ClusterView: View {
                             HStack {
                                 
                                 VStack(alignment: .leading) {
-                                    Text(cluster.name).foregroundColor(.primary)
+                                    Text("Zone \(cluster.name)").foregroundColor(.primary)
                                     // TODO: deal with singulier
                                     // TODO: Elephant + 2 secteurs - when there is a selectedArea
                                     Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
@@ -76,15 +76,21 @@ struct ClusterView: View {
                                 }
                             }
                         }
+//                        .modify {
+//                            if #available(iOS 17.0, *) {
+//                                $0.popoverTip(tip, arrowEdge: .top)
+//                            }
+//                        }
                         
                         // TODO: add button to cancel all downloads
                         // TODO: add "Vous pouvez utiliser Boolder en mode hors-connexion
                     }
+                    
                 }
                
 //                if clusterDownloader.areas.count > 1 {
 //                    if clusterDownloader.downloadRequested || !collapsed {
-                        Section("Secteurs") {
+                        Section {
                             ForEach(areasToDisplay) { a in
                                 
                                 HStack {
