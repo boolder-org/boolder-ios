@@ -24,12 +24,14 @@ struct ClusterView: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
     
+    @State private var collapsed = true
+    
     var areasToDisplay: [Area] {
         area.otherAreasOnSameClusterSorted.map{$0.area}
     }
     
     private var showDownloadSection: Bool {
-        clusterDownloader.downloadRequested
+        clusterDownloader.areas.count > 1 && (clusterDownloader.downloadRequested || !collapsed)
     }
     
     var body: some View {
@@ -44,9 +46,9 @@ struct ClusterView: View {
                         else {
                             // TODO: launch area downloads at the same time or no?
                             clusterDownloader.remainingAreasToDownload.forEach{ area in
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2 * Double.random(in: 0..<1)) {
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2 * Double.random(in: 0..<1)) {
                                     area.requestAndStartDownload()
-                                }
+//                                }
                             }
                         }
                     } label : {
@@ -54,7 +56,9 @@ struct ClusterView: View {
                             
                             VStack(alignment: .leading) {
                                 Text(cluster.name).foregroundColor(.primary)
-                                Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption) // TODO: deal with singulier
+                                // TODO: deal with singulier
+                                // TODO: Elephant + 2 secteurs - when there is a selectedArea
+                                Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
                             }
                             Spacer()
                             
@@ -72,22 +76,28 @@ struct ClusterView: View {
                             }
                         }
                     }
+                    
+                    // TODO: add button to cancel all downloads
+                    // TODO: add "Vous pouvez utiliser Boolder en mode hors-connexion
                 }
                
-                if showDownloadSection {
-                    Section("Secteurs") {
-                        ForEach(areasToDisplay) { a in
-                            
-                            HStack {
-                                Text(a.name).foregroundColor(.primary)
+//                if clusterDownloader.areas.count > 1 {
+//                    if clusterDownloader.downloadRequested || !collapsed {
+                        Section("Secteurs") {
+                            ForEach(areasToDisplay) { a in
                                 
-                                Spacer()
-                                
-                                DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                                HStack {
+                                    Text(a.name).foregroundColor(.primary)
+                                    
+                                    Spacer()
+                                    
+                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                                }
                             }
                         }
-                    }
-                }
+//                    }
+//                    
+//                }
 
                 
             }
