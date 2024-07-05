@@ -52,4 +52,15 @@ class ClusterDownloader: ObservableObject {
     var downloadRequested: Bool {
         areas.filter { $0.status != .initial }.count > 0
     }
+    
+    var totalSize : Double {
+        areas.map { $0.area.photosSize }.reduce(0) { sum, size in
+            sum + size
+        }.rounded()
+    }
+    
+    var remainingAreasToDownload: [AreaDownloader] {
+        self.areas
+            .filter { $0.status != .downloaded }
+    }
 }

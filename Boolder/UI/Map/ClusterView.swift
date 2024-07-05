@@ -28,63 +28,35 @@ struct ClusterView: View {
         area.otherAreasOnSameClusterSorted.map{$0.area}
     }
     
-    private var remainingAreasToDownload: [AreaDownloader] {
-        self.areasToDisplay
-            .map { DownloadCenter.shared.areaDownloader(id: $0.id) }
-            .filter { $0.status != .downloaded }
-    }
-    
     private var showDownloadSection: Bool {
         clusterDownloader.downloadRequested
-    }
-    
-    private var totalSize : Double {
-        remainingAreasToDownload.map { $0.area.photosSize }.reduce(0) { sum, size in
-            sum + size
-        }.rounded()
-    }
-    
-    private var label: String {
-        let preview = remainingAreasToDownload.prefix(2).map{$0.area.name}.joined(separator: ", ")
-        let remaining = remainingAreasToDownload.count - 2
-        
-        return [preview, remaining > 0 ? "+\(remaining)" : nil].compactMap{$0}.joined(separator: " ")
     }
     
     var body: some View {
         NavigationView {
             List {
 
-
-                
-                if remainingAreasToDownload.count > 0 {
-                    Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
-                        Button {
-                            remainingAreasToDownload.forEach{$0.requestAndStartDownload()}
-                        } label : {
-                            HStack {
-                                
-                                VStack(alignment: .leading) {
-                                    Text(cluster.name).foregroundColor(.primary)
-                                    Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption) // TODO: deal with singulier
-                                }
-                                Spacer()
-                                Text("\(Int(self.totalSize.rounded())) Mo").foregroundStyle(.gray)
-                                Image(systemName: "icloud.and.arrow.down").font(.title2)
+                Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
+                    Button {
+                        clusterDownloader.remainingAreasToDownload.forEach{ area in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5 * Double.random(in: 0..<1)) {
+                                area.requestAndStartDownload()
                             }
                         }
-                    }
-                }
-                else {
-                    Section { // (footer: Text("Vous pouvez utiliser Boolder en mode hors-connexion.")) {
-                        Button {
-                            //
-                        } label : {
-                            HStack(alignment: .center) {
-                                
-                                Text("Tous les secteurs").foregroundColor(.primary)
-                                Spacer()
-                                //                            Text("\(Int(self.totalSize.rounded())) Mo").foregroundStyle(.gray)
+                    } label : {
+                        HStack {
+                            
+                            VStack(alignment: .leading) {
+                                Text(cluster.name).foregroundColor(.primary)
+                                Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption) // TODO: deal with singulier
+                            }
+                            Spacer()
+                            
+                            if clusterDownloader.remainingAreasToDownload.count > 0 {
+                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
+                                Image(systemName: "icloud.and.arrow.down").font(.title2)
+                            }
+                            else {
                                 Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
                             }
                         }
