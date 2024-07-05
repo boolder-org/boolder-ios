@@ -484,7 +484,7 @@ class MapboxViewController: UIViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
                             self.inferClusterFromMap()
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [self] in
                             self.inferClusterFromMap()
                         }
                     }
