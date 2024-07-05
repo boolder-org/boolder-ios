@@ -54,7 +54,7 @@ class ClusterDownloader: ObservableObject {
     }
     
     var totalSize : Double {
-        areas.map { $0.area.photosSize }.reduce(0) { sum, size in
+        remainingAreasToDownload.map { $0.area.photosSize }.reduce(0) { sum, size in
             sum + size
         }.rounded()
     }
