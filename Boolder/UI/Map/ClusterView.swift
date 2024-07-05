@@ -38,8 +38,10 @@ struct ClusterView: View {
 
                 Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
                     Button {
+                        // FIXME: handle when it's already downloading
+//                        clusterDownloader.remainingAreasToDownload.first?.requestAndStartDownload()
                         clusterDownloader.remainingAreasToDownload.forEach{ area in
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 5 * Double.random(in: 0..<1)) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2 * Double.random(in: 0..<1)) {
                                 area.requestAndStartDownload()
                             }
                         }
@@ -52,7 +54,12 @@ struct ClusterView: View {
                             }
                             Spacer()
                             
-                            if clusterDownloader.remainingAreasToDownload.count > 0 {
+                            if clusterDownloader.downloading {
+                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
+                                    .padding(.trailing)
+                                ProgressView()
+                            }
+                            else if clusterDownloader.remainingAreasToDownload.count > 0 {
                                 Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
                                 Image(systemName: "icloud.and.arrow.down").font(.title2)
                             }
