@@ -117,8 +117,8 @@
 		03F79CFA2C3696E0004F7CA3 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CF82C3696E0004F7CA3 /* FabButton.swift */; };
 		03F79CFC2C3743E0004F7CA3 /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */; };
 		03F79CFD2C3743E0004F7CA3 /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */; };
-		03F79D032C39675F004F7CA3 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03F79D022C39675F004F7CA3 /* boolder.db */; };
-		03F79D042C39675F004F7CA3 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03F79D022C39675F004F7CA3 /* boolder.db */; };
+		03F79D062C397AAD004F7CA3 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03F79D052C397AAD004F7CA3 /* boolder.db */; };
+		03F79D072C397AAD004F7CA3 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03F79D052C397AAD004F7CA3 /* boolder.db */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -235,7 +235,7 @@
 		03F79CF52C358F4C004F7CA3 /* DownloadButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonView.swift; sourceTree = "<group>"; };
 		03F79CF82C3696E0004F7CA3 /* FabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabButton.swift; sourceTree = "<group>"; };
 		03F79CFB2C3743E0004F7CA3 /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
-		03F79D022C39675F004F7CA3 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03F79D052C397AAD004F7CA3 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -411,7 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				03F79D022C39675F004F7CA3 /* boolder.db */,
+				03F79D052C397AAD004F7CA3 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
@@ -730,7 +730,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F79D042C39675F004F7CA3 /* boolder.db in Resources */,
+				03F79D072C397AAD004F7CA3 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -744,7 +744,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03F79D032C39675F004F7CA3 /* boolder.db in Resources */,
+				03F79D062C397AAD004F7CA3 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,

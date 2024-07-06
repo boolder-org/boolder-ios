@@ -96,12 +96,12 @@ class MapboxViewController: UIViewController {
         circuits.url = "mapbox://nmondollot.11sumdgh"
         
         var clusters = VectorSource()
-        clusters.url = "mapbox://nmondollot.27j044u9"
+        clusters.url = "mapbox://nmondollot.6trst48g"
 
         do {
             try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
             try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
-            try self.mapView.mapboxMap.style.addSource(clusters, id: "clusters-v2")
+            try self.mapView.mapboxMap.style.addSource(clusters, id: "clusters") // necessary?
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -109,11 +109,17 @@ class MapboxViewController: UIViewController {
     }
     
     func addLayers() {
-        var clustersLayer = FillLayer(id: "clusters-v2")  // CircleLayer(id: "clusters-v2")
-        clustersLayer.source = "clusters-v2"
-        clustersLayer.sourceLayer = "clusters-v2-9vxoh5"
-        clustersLayer.fillOpacity = .constant(0)
-        clustersLayer.minZoom = 1
+        var clustersHullsLayer = FillLayer(id: "clusters-hulls")
+        clustersHullsLayer.source = "clusters"
+        clustersHullsLayer.sourceLayer = "clusters-4fq7v3"
+        clustersHullsLayer.fillOpacity = .constant(0)
+        clustersHullsLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Polygon"]
+            true
+            false
+        }
+        clustersHullsLayer.minZoom = 1
         
         
         var problemsLayer = CircleLayer(id: "problems")
@@ -371,7 +377,7 @@ class MapboxViewController: UIViewController {
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
         do {
-            try self.mapView.mapboxMap.style.addLayer(clustersLayer)
+            try self.mapView.mapboxMap.style.addLayer(clustersHullsLayer)
             
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
@@ -457,6 +463,14 @@ class MapboxViewController: UIViewController {
                 }
             }
         
+        // FIXME: remove
+//        let filter = Expression(.match) {
+//            ["geometry-type"]
+//            ["Point"]
+//            true
+//            false
+//        }
+        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
@@ -467,6 +481,7 @@ class MapboxViewController: UIViewController {
                 case .success(let queriedfeatures):
                     
                     if let feature = queriedfeatures.first?.feature,
+                       case .number(let id) = feature.properties?["clusterId"],
                        case .string(let southWestLon) = feature.properties?["southWestLon"],
                        case .string(let southWestLat) = feature.properties?["southWestLat"],
                        case .string(let northEastLon) = feature.properties?["northEastLon"],
@@ -479,14 +494,16 @@ class MapboxViewController: UIViewController {
                         
                         self.flyTo(cameraOptions)
                         
-                        // TODO: select the cluster
-//                        self.delegate?.selectCluster(id: )
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
-                            self.inferClusterFromMap()
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [self] in
-                            self.inferClusterFromMap()
-                        }
+//                        print(feature.properties)
+                        
+                        self.delegate?.selectCluster(id: Int(id))
+                        
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+//                            self.inferClusterFromMap()
+//                        }
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [self] in
+//                            self.inferClusterFromMap()
+//                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -676,7 +693,7 @@ class MapboxViewController: UIViewController {
             
             mapView.mapboxMap.queryRenderedFeatures(
                 with: rect,
-                options: RenderedQueryOptions(layerIds: ["clusters-v2"], filter: zoom)) { [weak self] result in
+                options: RenderedQueryOptions(layerIds: ["clusters-hulls"], filter: zoom)) { [weak self] result in
                     
                     guard let self = self else { return }
                     
