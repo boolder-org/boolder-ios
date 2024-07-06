@@ -36,7 +36,7 @@ struct Area : Identifiable {
     let level8Count: Int
     let problemsCount: Int
     let clusterId: Int?
-    let photosSize: Double
+    let downloadSize: Double
     
     static var forBeginners : [Area] {
         all
@@ -110,7 +110,7 @@ extension Area {
     static let level8Count = Expression<Int>("level8_count")
     static let problemsCount = Expression<Int>("problems_count")
     static let clusterId = Expression<Int?>("cluster_id")
-    static let photosSize = Expression<Double>("photos_size")
+    static let downloadSize = Expression<Double>("download_size")
     
     static func load(id: Int) -> Area? {
         
@@ -129,7 +129,7 @@ extension Area {
                             northEastLat: a[northEastLat], northEastLon: a[northEastLon],
                             level1Count: a[level1Count], level2Count: a[level2Count], level3Count: a[level3Count], level4Count: a[level4Count],
                             level5Count: a[level5Count], level6Count: a[level6Count], level7Count: a[level7Count], level8Count: a[level8Count],
-                            problemsCount: a[problemsCount], clusterId: a[clusterId], photosSize: a[photosSize]
+                            problemsCount: a[problemsCount], clusterId: a[clusterId], downloadSize: a[downloadSize]
                 )
             }
             

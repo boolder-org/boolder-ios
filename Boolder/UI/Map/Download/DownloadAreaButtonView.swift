@@ -45,7 +45,7 @@ struct DownloadAreaButtonView : View {
             HStack {
                 
                 if case .initial = areaDownloader.status  {
-                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
+                    Text("\(Int(area.downloadSize.rounded())) Mo").foregroundStyle(.gray)
                     Image(systemName: "icloud.and.arrow.down").font(.title2)
 //                    Text("download.download")
                 }

@@ -36,7 +36,7 @@ class ClusterDownloader: ObservableObject {
         let base = areas.filter { $0.status != .initial }
         
         let values = base.map{$0.status.progress}
-        let weights = base.map{$0.area.photosSize}
+        let weights = base.map{$0.area.downloadSize}
 //        let downloading = total.map{$0.status.progress}.reduce(0) { sum, progress in sum + progress }.rounded()
         
         print(values)
@@ -109,7 +109,7 @@ class ClusterDownloader: ObservableObject {
     }
     
     var totalSize : Double {
-        remainingAreasToDownload.map { $0.area.photosSize }.reduce(0) { sum, size in
+        remainingAreasToDownload.map { $0.area.downloadSize }.reduce(0) { sum, size in
             sum + size
         }.rounded()
     }
