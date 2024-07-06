@@ -24,15 +24,15 @@ struct ClusterView: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
     
-    @State private var collapsed = true
+    @State private var forceShowDownloadSection = false
     
     var areasToDisplay: [Area] {
         area.otherAreasOnSameClusterSorted.map{$0.area}
     }
     
-    private var showDownloadSection: Bool {
-        clusterDownloader.areas.count > 1 && (clusterDownloader.downloadRequested || !collapsed)
-    }
+//    private var showDownloadSection: Bool {
+//        clusterDownloader.areas.count > 1 && (clusterDownloader.downloadRequested || !collapsed)
+//    }
     
     var body: some View {
         NavigationView {
@@ -40,6 +40,8 @@ struct ClusterView: View {
                 if clusterDownloader.areas.count > 1 {
                     Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
                         Button {
+                            forceShowDownloadSection = true
+                            
                             if clusterDownloader.downloading {
                                 // TODO
                             }
@@ -82,14 +84,23 @@ struct ClusterView: View {
 //                            }
 //                        }
                         
-                        // TODO: add button to cancel all downloads
-                        // TODO: add "Vous pouvez utiliser Boolder en mode hors-connexion
+                        if clusterDownloader.severalDownloading {
+                            Button {
+                                clusterDownloader.stopDownloads()
+                            } label : {
+                                HStack {
+                                    Spacer()
+                                    Text("Annuler les téléchargements").foregroundStyle(.red)
+                                    Spacer()
+                                }
+                            }
+                        }
                     }
                     
                 }
                
 //                if clusterDownloader.areas.count > 1 {
-                    if clusterDownloader.downloadRequested || !collapsed {
+                if clusterDownloader.downloadRequested || forceShowDownloadSection || clusterDownloader.areas.count == 1 {
                         Section {
                             ForEach(areasToDisplay) { a in
                                 

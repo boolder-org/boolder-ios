@@ -41,6 +41,14 @@ class ClusterDownloader: ObservableObject {
         })
     }
     
+    var severalDownloading: Bool {
+        return areas.filter { $0.isDownloading }.count >= 2
+    }
+    
+    func stopDownloads() {
+        areas.forEach{ $0.cancel() }
+    }
+    
     var allDownloaded: Bool {
         areas.allSatisfy { $0.status == .downloaded }
     }
