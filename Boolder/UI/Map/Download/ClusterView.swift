@@ -61,7 +61,7 @@ struct ClusterView: View {
                                     Text("Zone \(cluster.name)").foregroundColor(.primary)
                                     // TODO: deal with singulier
                                     // TODO: Elephant + 2 secteurs - when there is a selectedArea
-                                    Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
+//                                    Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
                                 }
                                 Spacer()
                                 
@@ -85,6 +85,8 @@ struct ClusterView: View {
 //                            }
 //                        }
                         
+                        
+                        
                         if clusterDownloader.severalDownloading {
                             Button {
                                 // TODO: ask for confirmation
@@ -97,6 +99,7 @@ struct ClusterView: View {
                                 }
                             }
                         }
+                        
                     }
                     
                 }
@@ -116,7 +119,18 @@ struct ClusterView: View {
                             }
                         }
                     }
-//                    
+                else if !forceShowDownloadSection {
+                    Button {
+                        forceShowDownloadSection = true
+                    } label : {
+                        HStack {
+                            Text("\(areasToDisplay.count) secteurs").foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.down").foregroundStyle(.gray)
+                        }
+                    }
+                }
+//
 //                }
 
                 

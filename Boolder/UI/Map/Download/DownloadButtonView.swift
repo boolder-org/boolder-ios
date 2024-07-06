@@ -23,6 +23,7 @@ struct DownloadButtonView: View {
             presentDownloads = true
         }) {
             if clusterDownloader.downloading {
+                // TODO: use cluster progress
                 ProgressView()
             }
             else if clusterDownloader.allDownloaded {
