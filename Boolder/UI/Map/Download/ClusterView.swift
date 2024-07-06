@@ -86,11 +86,12 @@ struct ClusterView: View {
                         
                         if clusterDownloader.severalDownloading {
                             Button {
+                                // TODO: ask for confirmation
                                 clusterDownloader.stopDownloads()
                             } label : {
                                 HStack {
                                     Spacer()
-                                    Text("Annuler les téléchargements").foregroundStyle(.red)
+                                    Text("Annuler").foregroundStyle(.red)
                                     Spacer()
                                 }
                             }
