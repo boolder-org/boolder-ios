@@ -42,7 +42,7 @@ struct ClusterView: View {
                     Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
                         Button {
                             handpickedDownload = false
-                            expandDetails = true // necessary?
+//                            expandDetails = true // necessary?
                             
                             if clusterDownloader.severalDownloading {
                                 // TODO: ask for confirmation
@@ -107,7 +107,7 @@ struct ClusterView: View {
                 }
                
 //                if clusterDownloader.areas.count > 1 {
-                if clusterDownloader.downloadRequested || expandDetails || clusterDownloader.areas.count == 1 {
+                if expandDetails || clusterDownloader.areas.count == 1 {
                         Section {
                             ForEach(areasToDisplay) { a in
                                 
@@ -121,7 +121,7 @@ struct ClusterView: View {
                             }
                         }
                     }
-                else if !expandDetails {
+                else {
                     Button {
                         expandDetails = true
                     } label : {
