@@ -89,7 +89,7 @@ struct ClusterView: View {
                 }
                
 //                if clusterDownloader.areas.count > 1 {
-//                    if clusterDownloader.downloadRequested || !collapsed {
+                    if clusterDownloader.downloadRequested || !collapsed {
                         Section {
                             ForEach(areasToDisplay) { a in
                                 
@@ -102,7 +102,7 @@ struct ClusterView: View {
                                 }
                             }
                         }
-//                    }
+                    }
 //                    
 //                }
 
