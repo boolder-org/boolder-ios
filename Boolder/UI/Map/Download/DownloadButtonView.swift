@@ -54,16 +54,16 @@ struct DownloadButtonView: View {
         if let selectedArea = selectedArea {
             return selectedArea
         }
-//        
-//        if let zoom = zoom, let center = center {
-//            if zoom > 12.5 {
-//                if let area = closestArea(in: cluster, from: CLLocation(latitude: center.latitude, longitude: center.longitude)) {
-//                    return area
-//                }
-//            }
-////            print(zoom)
-////            print(center)
-//        }
+        
+        if let zoom = zoom, let center = center {
+            if zoom > 12.5 {
+                if let area = closestArea(in: cluster, from: CLLocation(latitude: center.latitude, longitude: center.longitude)) {
+                    return area
+                }
+            }
+//            print(zoom)
+//            print(center)
+        }
         
         return cluster.mainArea
     }
