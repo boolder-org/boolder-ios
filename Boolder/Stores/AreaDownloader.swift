@@ -134,5 +134,16 @@ class AreaDownloader: Identifiable, ObservableObject {
             
             return false
         }
+        
+        var progress: Double {
+            if case .downloading(let p) = self {
+                return p
+            }
+            else if case .downloaded = self {
+                return 1.0
+            }
+            
+            return 0.0
+        }
     }
 }

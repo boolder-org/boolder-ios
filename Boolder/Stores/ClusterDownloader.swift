@@ -32,6 +32,53 @@ class ClusterDownloader: ObservableObject {
         }
     }
     
+    var progress: Double {
+        let base = areas.filter { $0.status != .initial }
+        
+        let values = base.map{$0.status.progress}
+        let weights = base.map{$0.area.photosSize}
+//        let downloading = total.map{$0.status.progress}.reduce(0) { sum, progress in sum + progress }.rounded()
+        
+        print(values)
+        print(weights)
+        
+        let p = weightedAverage(values: values, weights: weights) ?? 0.5
+        print(p)
+        
+        return p
+    }
+    
+    func weightedAverage(values: [Double], weights: [Double]) -> Double? {
+        // Check if both arrays have the same length
+        guard values.count == weights.count else {
+            print("The number of values and weights must be the same.")
+            return nil
+        }
+
+        // Check if weights are not empty
+        guard !weights.isEmpty else {
+            print("Weights array must not be empty.")
+            return nil
+        }
+        
+        // Calculate the sum of weighted values
+        let weightedSum = zip(values, weights).map(*).reduce(0, +)
+        
+        // Calculate the sum of weights
+        let totalWeight = weights.reduce(0, +)
+        
+        // Ensure the total weight is not zero to avoid division by zero
+        guard totalWeight != 0 else {
+            print("Total weight must not be zero.")
+            return nil
+        }
+        
+        // Calculate the weighted average
+        let weightedAverage = weightedSum / totalWeight
+        
+        return weightedAverage
+    }
+    
     var downloading: Bool {
 //        print("downloading called")
 //        print(areas.map{$0.areaId})

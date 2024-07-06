@@ -42,8 +42,9 @@ struct ClusterView: View {
                         Button {
                             forceShowDownloadSection = true
                             
-                            if clusterDownloader.downloading {
-                                // TODO
+                            if clusterDownloader.severalDownloading {
+                                // TODO: ask for confirmation
+                                clusterDownloader.stopDownloads()
                             }
                             else {
                                 // TODO: launch area downloads at the same time or no?
@@ -67,7 +68,7 @@ struct ClusterView: View {
                                 if clusterDownloader.downloading {
                                     //                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
                                     //                                    .padding(.trailing)
-                                    ProgressView()
+                                    CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
                                 }
                                 else if clusterDownloader.remainingAreasToDownload.count > 0 {
                                     Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
