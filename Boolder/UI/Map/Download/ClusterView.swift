@@ -24,7 +24,8 @@ struct ClusterView: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
     
-    @State private var forceShowDownloadSection = false
+    @State private var expandDetails = false
+    @State private var handpickedDownload = false
     
     var areasToDisplay: [Area] {
         area.otherAreasOnSameClusterSorted.map{$0.area}
@@ -40,7 +41,8 @@ struct ClusterView: View {
                 if clusterDownloader.areas.count > 1 {
                     Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
                         Button {
-                            forceShowDownloadSection = true
+                            handpickedDownload = false
+                            expandDetails = true // necessary?
                             
                             if clusterDownloader.severalDownloading {
                                 // TODO: ask for confirmation
@@ -65,7 +67,7 @@ struct ClusterView: View {
                                 }
                                 Spacer()
                                 
-                                if clusterDownloader.downloading {
+                                if clusterDownloader.downloading && !handpickedDownload {
                                     //                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
                                     //                                    .padding(.trailing)
                                     CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
@@ -87,7 +89,7 @@ struct ClusterView: View {
                         
                         
                         
-                        if clusterDownloader.severalDownloading {
+                        if clusterDownloader.severalDownloading && !handpickedDownload {
                             Button {
                                 // TODO: ask for confirmation
                                 clusterDownloader.stopDownloads()
@@ -105,7 +107,7 @@ struct ClusterView: View {
                 }
                
 //                if clusterDownloader.areas.count > 1 {
-                if clusterDownloader.downloadRequested || forceShowDownloadSection || clusterDownloader.areas.count == 1 {
+                if clusterDownloader.downloadRequested || expandDetails || clusterDownloader.areas.count == 1 {
                         Section {
                             ForEach(areasToDisplay) { a in
                                 
@@ -114,14 +116,14 @@ struct ClusterView: View {
                                     
                                     Spacer()
                                     
-                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet)
+                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload)
                                 }
                             }
                         }
                     }
-                else if !forceShowDownloadSection {
+                else if !expandDetails {
                     Button {
-                        forceShowDownloadSection = true
+                        expandDetails = true
                     } label : {
                         HStack {
                             Text("\(areasToDisplay.count) secteurs").foregroundColor(.primary)

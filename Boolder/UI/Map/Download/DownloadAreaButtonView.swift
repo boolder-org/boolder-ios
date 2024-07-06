@@ -17,18 +17,21 @@ struct DownloadAreaButtonView : View {
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit : Area
+    @Binding var handpickedDownload: Bool
     
-    init(area: Area, areaToEdit: Binding<Area>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>) {
+    init(area: Area, areaToEdit: Binding<Area>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>, handpickedDownload: Binding<Bool>) {
         self.area = area
         self.areaDownloader = DownloadCenter.shared.areaDownloader(id: area.id)
         self._areaToEdit = areaToEdit
         self._presentRemoveDownloadSheet = presentRemoveDownloadSheet
         self._presentCancelDownloadSheet = presentCancelDownloadSheet
+        self._handpickedDownload = handpickedDownload
     }
     
     var body: some View {
         Button {
             areaToEdit = area
+            handpickedDownload = true
             if case .initial = areaDownloader.status  {
                 areaDownloader.requestAndStartDownload()
             }

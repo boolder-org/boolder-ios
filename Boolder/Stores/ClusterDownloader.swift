@@ -93,7 +93,7 @@ class ClusterDownloader: ObservableObject {
     }
     
     func stopDownloads() {
-        areas.forEach{ $0.cancel() }
+        areas.filter { $0.status != .initial }.forEach{ $0.cancel() }
     }
     
     var allDownloaded: Bool {
