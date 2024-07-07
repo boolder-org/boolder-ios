@@ -574,6 +574,7 @@
 					"aea-62",
 					"area-1",
 					"area-10",
+					"area-101",
 					"area-104",
 					"area-11",
 					"area-12",
@@ -656,8 +657,10 @@
 					"area-86",
 					"area-9",
 					"area-91",
+					"area-92",
 					"area-94",
 					"area-95",
+					"area-96",
 					"area-99",
 				);
 				LastSwiftUpdateCheck = 1140;
