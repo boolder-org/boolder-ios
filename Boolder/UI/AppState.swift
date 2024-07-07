@@ -15,8 +15,6 @@ import SwiftUI
     @Published var selectedArea: Area?
     @Published var selectedCircuit: CircuitWithArea?
     
-    @Published var badgeContributeWasSeen = UserDefaults.standard.bool(forKey: "contribute-badge-was-seen")
-    
     struct CircuitWithArea: Equatable {
         let circuit: Circuit
         let area: Area
