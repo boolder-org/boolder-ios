@@ -79,10 +79,6 @@ struct ContributeView: View {
                 .padding(.horizontal)
             }
         }
-        .onAppear {
-            appState.badgeContributeWasSeen = true
-            UserDefaults.standard.set(true, forKey: "contribute-badge-was-seen")
-        }
     }
     
     var contributeURL: URL {
