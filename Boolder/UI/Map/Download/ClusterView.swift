@@ -29,68 +29,12 @@ struct ClusterView: View {
     var body: some View {
         NavigationView {
             List {
-                if clusterDownloader.areas.count > 1 {
-                    Section {
-                        Button {
-                            handpickedDownload = false
-                            
-                            if clusterDownloader.severalDownloading {
-                                // TODO: ask for confirmation
-                                clusterDownloader.stopDownloads()
-                            }
-                            else {
-                                // TODO: launch area downloads at the same time or no?
-                                // TODO: handle priority?
-                                clusterDownloader.remainingAreasToDownload.forEach{ area in
-                                    area.requestAndStartDownload()
-                                }
-                            }
-                        } label : {
-                            HStack {
-                                Text("Zone \(cluster.name)").foregroundColor(.primary)
-                                
-                                Spacer()
-                                
-                                if clusterDownloader.downloading && !handpickedDownload {
-                                    CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
-                                }
-                                else if clusterDownloader.remainingAreasToDownload.count > 0 {
-                                    Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
-                                    Image(systemName: "icloud.and.arrow.down").font(.title2)
-                                }
-                                else {
-                                    Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
-                                }
-                            }
-                        }
-                        
-                        if clusterDownloader.severalDownloading && !handpickedDownload {
-                            Button {
-                                // TODO: ask for confirmation
-                                clusterDownloader.stopDownloads()
-                            } label : {
-                                HStack {
-                                    Spacer()
-                                    Text("Annuler").foregroundStyle(.red)
-                                    Spacer()
-                                }
-                            }
-                        }
-                    }
+                if areas.count > 1 {
+                    clusterSection
                 }
                 
-                if expandDetails || clusterDownloader.areas.count == 1 {
-                    Section {
-                        ForEach(areas) { a in
-                            HStack {
-                                Text(a.name).foregroundColor(.primary)
-                                
-                                Spacer()
-                                
-                                DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload)
-                            }
-                        }
-                    }
+                if expandDetails || areas.count == 1 {
+                    areasSection
                 }
                 else {
                     Button {
@@ -141,6 +85,70 @@ struct ClusterView: View {
                         .font(.body)
                 }
             )
+        }
+    }
+    
+    var clusterSection: some View {
+        Section {
+            Button {
+                handpickedDownload = false
+                
+                if clusterDownloader.severalDownloading {
+                    // TODO: ask for confirmation
+                    clusterDownloader.stopDownloads()
+                }
+                else {
+                    // TODO: launch area downloads at the same time or no?
+                    // TODO: handle priority?
+                    clusterDownloader.remainingAreasToDownload.forEach{ area in
+                        area.requestAndStartDownload()
+                    }
+                }
+            } label : {
+                HStack {
+                    Text("Zone \(cluster.name)").foregroundColor(.primary)
+                    
+                    Spacer()
+                    
+                    if clusterDownloader.downloading && !handpickedDownload {
+                        CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
+                    }
+                    else if clusterDownloader.remainingAreasToDownload.count > 0 {
+                        Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
+                        Image(systemName: "icloud.and.arrow.down").font(.title2)
+                    }
+                    else {
+                        Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
+                    }
+                }
+            }
+            
+            if clusterDownloader.severalDownloading && !handpickedDownload {
+                Button {
+                    // TODO: ask for confirmation
+                    clusterDownloader.stopDownloads()
+                } label : {
+                    HStack {
+                        Spacer()
+                        Text("Annuler").foregroundStyle(.red)
+                        Spacer()
+                    }
+                }
+            }
+        }
+    }
+    
+    var areasSection: some View {
+        Section {
+            ForEach(areas) { a in
+                HStack {
+                    Text(a.name).foregroundColor(.primary)
+                    
+                    Spacer()
+                    
+                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload)
+                }
+            }
         }
     }
 }
