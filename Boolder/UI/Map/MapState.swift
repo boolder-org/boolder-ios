@@ -17,7 +17,6 @@ import CoreLocation
     @Published private(set) var zoom: CGFloat? = nil
     @Published private(set) var centerOnArea: Area? = nil
     @Published private(set) var selectedCluster: Cluster? = nil
-    @Published private(set) var visibleAreas: [Area] = []
     @Published private(set) var selectedCircuit: Circuit? = nil
     @Published var selectedPoi: Poi? = nil
     @Published var filters: Filters = Filters()
@@ -53,16 +52,6 @@ import CoreLocation
     
     func selectCluster(_ cluster: Cluster) {
         selectedCluster = cluster
-    }
-    
-    func setVisibleAreas(_ areas: [Area]) {
-        visibleAreas = areas
-    }
-    
-    var visibleAreasSorted : [Area] {
-        Array(Set(visibleAreas)).sorted{
-            $0.priority < $1.priority
-        }
     }
     
     func unselectArea() {
