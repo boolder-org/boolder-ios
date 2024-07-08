@@ -35,9 +35,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func requestAndStartDownload() {
-        if downloading || status == .downloaded {
-            return
-        }
+        guard !downloading && status != .downloaded else { return }
         
         DownloadSettings.shared.addArea(areaId: areaId)
         start()
