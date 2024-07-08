@@ -706,6 +706,8 @@ class MapboxViewController: UIViewController {
                             self.delegate?.selectCluster(id: Int(id))
                         }
                         else {
+                            // FIXME: this is a problem when we have poor connectivity
+                            // clusters may not be loaded properly and we may wrongly unselect a cluster that has been selected by a tap on a cluster
                             self.delegate?.unselectCluster()
                         }
                     case .failure(_):
