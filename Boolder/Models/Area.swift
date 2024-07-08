@@ -261,13 +261,6 @@ extension Area {
         return nil
     }
     
-//    var boundingBox : BoundingBox {
-//        BoundingBox(
-//            southWest: CLLocationCoordinate2D(latitude: Double(southWestLat), longitude: Double(southWestLon)),
-//            northEast: CLLocationCoordinate2D(latitude: Double(northEastLat), longitude: Double(northEastLon))
-//        )
-//    }
-    
     // FIXME: use actual center
     var center: CLLocation {
         CLLocation(

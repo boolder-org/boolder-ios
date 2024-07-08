@@ -14,20 +14,6 @@ struct Cluster : Identifiable, Hashable {
     let name: String
     let mainAreaId: Int
     
-    // FIXME: remove hack
-    var troisPignons : Bool {
-        id == 2 || id == 3 || id == 4
-    }
-    
-    static var troisPignons: [Cluster] {
-        [
-            Cluster.load(id: 4),
-            Cluster.load(id: 2),
-            Cluster.load(id: 3),
-//            Cluster.load(id: 1)
-        ].compactMap{$0}
-    }
-    
     var mainArea: Area {
         Area.load(id: mainAreaId)!
     }
@@ -60,8 +46,6 @@ extension Cluster {
             return nil
         }
     }
-    
-    
     
     var areas: [Area] {
         let areas = Table("areas")
