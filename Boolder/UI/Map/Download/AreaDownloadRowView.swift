@@ -1,5 +1,5 @@
 //
-//  DownloadAreaButtonView.swift
+//  AreaDownloadRowView.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 20/12/2023.
@@ -10,7 +10,7 @@ import SwiftUI
 
 // we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
 // it probably won't be necessary anymore with iOS 17's @Observable
-struct DownloadAreaButtonView : View {
+struct AreaDownloadRowView : View {
     let area: Area
     
     @ObservedObject var areaDownloader: AreaDownloader
@@ -47,16 +47,11 @@ struct DownloadAreaButtonView : View {
                 if case .initial = areaDownloader.status  {
                     Text("\(Int(area.downloadSize.rounded())) Mo").foregroundStyle(.gray)
                     Image(systemName: "icloud.and.arrow.down").font(.title2)
-//                    Text("download.download")
                 }
                 else if case .downloading(let progress) = areaDownloader.status  {
-//                    Text("Téléchargement")
                     CircularProgressView(progress: progress).frame(height: 18)
                 }
                 else if case .downloaded = areaDownloader.status  {
-//                    Text("\(Int(area.photosSize.rounded())) Mo").foregroundStyle(.gray)
-//                    Image(systemName: "checkmark.circle").font(.title2).foregroundColor(.gray)
-//                    Text("Téléchargé").foregroundColor(.gray)
                     Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
                 }
                 else {
