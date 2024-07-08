@@ -9,8 +9,7 @@
 import UIKit
 import SQLite
 
-import CoreLocation
-//import Turf
+import CoreLocation // comment out
 
 struct Area : Identifiable {
     let id: Int
@@ -82,6 +81,22 @@ struct Area : Identifiable {
         var name: String {
             String(id)
         }
+    }
+    
+    var cluster: Cluster? {
+        if let clusterId = clusterId {
+            return Cluster.load(id: clusterId)
+        }
+        
+        return nil
+    }
+    
+    // FIXME: use actual center
+    var center: CLLocation {
+        CLLocation(
+            latitude: (Double(southWestLat) + Double(northEastLat))/2,
+            longitude: (Double(southWestLon) + Double(northEastLon))/2
+        )
     }
 }
 
@@ -223,57 +238,6 @@ extension Area {
         catch {
             print (error)
             return []
-        }
-    }
-
-    var otherAreasOnSameCluster: [Area] {
-        let areas = Table("areas")
-        
-        let query = areas.filter(Area.clusterId == self.clusterId)
-//            .filter(Area.id != self.id)
-            .order(Area.priority.asc, Area.nameSearchable.asc)
-        
-        do {
-            return try SqliteStore.shared.db.prepare(query).map { a in
-                Area.load(id: a[Area.id])
-            }.compactMap{$0}
-        }
-        catch {
-            print (error)
-            return []
-        }
-    }
-    
-    struct AreaWithDistance : Identifiable {
-        let area: Area
-        let distance: CLLocationDistance
-        
-        var id: Int {
-            area.id
-        }
-    }
-    
-    var cluster: Cluster? {
-        if let clusterId = clusterId {
-            return Cluster.load(id: clusterId)
-        }
-        
-        return nil
-    }
-    
-    // FIXME: use actual center
-    var center: CLLocation {
-        CLLocation(
-            latitude: (Double(southWestLat) + Double(northEastLat))/2,
-            longitude: (Double(southWestLon) + Double(northEastLon))/2
-        )
-    }
-    
-    var otherAreasOnSameClusterSorted: [AreaWithDistance] {
-        otherAreasOnSameCluster.map { a in
-            AreaWithDistance(area: a, distance: a.center.distance(from: self.center))
-        }.sorted {
-            $0.distance < $1.distance
         }
     }
 }

@@ -9,17 +9,23 @@
 import UIKit
 import SQLite
 
+import CoreLocation
+
 struct Cluster : Identifiable, Hashable {
     let id: Int
     let name: String
     let mainAreaId: Int
     
     var mainArea: Area {
-        Area.load(id: mainAreaId)!
+        Area.load(id: mainAreaId)! // FIXME: don't use bang
     }
     
-    var areasSorted: [Area] {
-        mainArea.otherAreasOnSameClusterSorted.map{$0.area}
+    func areasSortedByDistance(_ reference: Area?) -> [Area] {
+        let area = reference ?? mainArea
+        
+        return areas.sorted {
+            $0.center.distance(from: area.center) < $1.center.distance(from: area.center)
+        }
     }
 }
 

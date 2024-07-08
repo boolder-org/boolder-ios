@@ -28,7 +28,7 @@ struct ClusterView: View {
     @State private var handpickedDownload = false
     
     var areasToDisplay: [Area] {
-        area.otherAreasOnSameClusterSorted.map{$0.area}
+        cluster.areasSortedByDistance(area)
     }
     
 //    private var showDownloadSection: Bool {
