@@ -12,34 +12,27 @@ struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var clusterDownloader: ClusterDownloader
-    
-//    let mapState: MapState
     let cluster: Cluster
-    let area: Area
+    let area: Area // TODO: rename
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
-    @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME
+    @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
     
     @State private var expandDetails = false
-    @State private var handpickedDownload = false
+    @State private var handpickedDownload = false // TODO: use enum
     
-    var areasToDisplay: [Area] {
+    var areas: [Area] {
         cluster.areasSortedByDistance(area)
     }
-    
-//    private var showDownloadSection: Bool {
-//        clusterDownloader.areas.count > 1 && (clusterDownloader.downloadRequested || !collapsed)
-//    }
     
     var body: some View {
         NavigationView {
             List {
                 if clusterDownloader.areas.count > 1 {
-                    Section { // (footer: Text("Téléchargez tous les secteurs pour utiliser Boolder en mode hors-connexion.")) {
+                    Section {
                         Button {
                             handpickedDownload = false
-//                            expandDetails = true // necessary?
                             
                             if clusterDownloader.severalDownloading {
                                 // TODO: ask for confirmation
@@ -47,26 +40,18 @@ struct ClusterView: View {
                             }
                             else {
                                 // TODO: launch area downloads at the same time or no?
+                                // TODO: handle priority?
                                 clusterDownloader.remainingAreasToDownload.forEach{ area in
-                                    //                                DispatchQueue.main.asyncAfter(deadline: .now() + 2 * Double.random(in: 0..<1)) {
                                     area.requestAndStartDownload()
-                                    //                                }
                                 }
                             }
                         } label : {
                             HStack {
+                                Text("Zone \(cluster.name)").foregroundColor(.primary)
                                 
-                                VStack(alignment: .leading) {
-                                    Text("Zone \(cluster.name)").foregroundColor(.primary)
-                                    // TODO: deal with singulier
-                                    // TODO: Elephant + 2 secteurs - when there is a selectedArea
-//                                    Text("\(areasToDisplay.count) secteurs").foregroundColor(.gray).font(.caption)
-                                }
                                 Spacer()
                                 
                                 if clusterDownloader.downloading && !handpickedDownload {
-                                    //                                Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
-                                    //                                    .padding(.trailing)
                                     CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
                                 }
                                 else if clusterDownloader.remainingAreasToDownload.count > 0 {
@@ -91,41 +76,33 @@ struct ClusterView: View {
                                 }
                             }
                         }
-                        
                     }
-                    
                 }
-               
-//                if clusterDownloader.areas.count > 1 {
+                
                 if expandDetails || clusterDownloader.areas.count == 1 {
-                        Section {
-                            ForEach(areasToDisplay) { a in
+                    Section {
+                        ForEach(areas) { a in
+                            HStack {
+                                Text(a.name).foregroundColor(.primary)
                                 
-                                HStack {
-                                    Text(a.name).foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload)
-                                }
+                                Spacer()
+                                
+                                DownloadAreaButtonView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload)
                             }
                         }
                     }
+                }
                 else {
                     Button {
                         expandDetails = true
                     } label : {
                         HStack {
-                            Text("\(areasToDisplay.count) secteurs").foregroundColor(.primary)
+                            Text("\(areas.count) secteurs").foregroundColor(.primary)
                             Spacer()
                             Image(systemName: "chevron.down").foregroundStyle(.gray)
                         }
                     }
                 }
-//
-//                }
-
-                
             }
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
