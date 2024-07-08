@@ -360,9 +360,9 @@
 			children = (
 				038C2EF029201152006581CD /* MapContainerView.swift */,
 				031F36AF291CE56100BD0C2B /* MapState.swift */,
-				038F7F432C3A8CC500AE7028 /* Download */,
 				03C104EB290ACDC6007A94D7 /* MapboxView.swift */,
 				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
+				038F7F432C3A8CC500AE7028 /* Download */,
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				0314FFE42950786F00B7E249 /* AreaToolbarView.swift */,

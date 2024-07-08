@@ -24,7 +24,7 @@ struct MapContainerView: View {
             
             circuitButtons
             
-            locateButton
+            fabButtons
                 .zIndex(10)
             
             SearchView(mapState: mapState)
@@ -180,10 +180,7 @@ struct MapContainerView: View {
         }
     }
     
-    
-    
-    // FIXME: change name
-    var locateButton : some View {
+    var fabButtons: some View {
         HStack {
             Spacer()
             
