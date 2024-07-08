@@ -72,8 +72,6 @@ class MapboxViewController: UIViewController {
             
             lastCameraCheck = DispatchTime.now()
             
-//            print(mapView.mapboxMap.cameraState.zoom)
-            
             if(!flyinToSomething) {
                 self.inferAreaFromMap()
                 self.inferClusterFromMap()
@@ -101,7 +99,7 @@ class MapboxViewController: UIViewController {
         do {
             try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
             try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
-            try self.mapView.mapboxMap.style.addSource(clusters, id: "clusters") // necessary?
+            try self.mapView.mapboxMap.style.addSource(clusters, id: "clusters")
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -109,19 +107,6 @@ class MapboxViewController: UIViewController {
     }
     
     func addLayers() {
-        var clustersHullsLayer = FillLayer(id: "clusters-hulls")
-        clustersHullsLayer.source = "clusters"
-        clustersHullsLayer.sourceLayer = "clusters-4fq7v3"
-        clustersHullsLayer.fillOpacity = .constant(0)
-        clustersHullsLayer.filter = Expression(.match) {
-            ["geometry-type"]
-            ["Polygon"]
-            true
-            false
-        }
-        clustersHullsLayer.minZoom = 1
-        
-        
         var problemsLayer = CircleLayer(id: "problems")
         problemsLayer.source = "problems"
         problemsLayer.sourceLayer = problemsSourceLayerId
@@ -376,9 +361,23 @@ class MapboxViewController: UIViewController {
 
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
+        // ===========================
+        
+        
+        // TODO: move to mapbox studio
+        var clustersHullsLayer = FillLayer(id: "clusters-hulls")
+        clustersHullsLayer.source = "clusters"
+        clustersHullsLayer.sourceLayer = "clusters-4fq7v3"
+        clustersHullsLayer.fillOpacity = .constant(0)
+        clustersHullsLayer.filter = Expression(.match) {
+            ["geometry-type"]
+            ["Polygon"]
+            true
+            false
+        }
+        clustersHullsLayer.minZoom = 1
+        
         do {
-            try self.mapView.mapboxMap.style.addLayer(clustersHullsLayer)
-            
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
             
@@ -388,6 +387,8 @@ class MapboxViewController: UIViewController {
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
+            
+            try self.mapView.mapboxMap.style.addLayer(clustersHullsLayer)
         }
         catch {
             print("Ran into an error adding the layers: \(error)")
@@ -463,14 +464,6 @@ class MapboxViewController: UIViewController {
                 }
             }
         
-        // FIXME: remove
-//        let filter = Expression(.match) {
-//            ["geometry-type"]
-//            ["Point"]
-//            true
-//            false
-//        }
-        
         mapView.mapboxMap.queryRenderedFeatures(
             with: tapPoint,
             options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
@@ -494,16 +487,7 @@ class MapboxViewController: UIViewController {
                         
                         self.flyTo(cameraOptions)
                         
-//                        print(feature.properties)
-                        
                         self.delegate?.selectCluster(id: Int(id))
-                        
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
-//                            self.inferClusterFromMap()
-//                        }
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [self] in
-//                            self.inferClusterFromMap()
-//                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -959,7 +943,7 @@ class MapboxViewController: UIViewController {
     var safePaddingForBottomSheet : UIEdgeInsets {
         UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
     }
-    let safePaddingYForAreaDetector : CGFloat = 30
+    let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
 }
 
 import CoreLocation
