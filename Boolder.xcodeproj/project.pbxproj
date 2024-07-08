@@ -77,8 +77,6 @@
 		038F7F492C3A8CC500AE7028 /* DownloadAreaButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F3F2C3A8CC500AE7028 /* DownloadAreaButtonView.swift */; };
 		038F7F4A2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */; };
 		038F7F4B2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */; };
-		038F7F4C2C3A8CC500AE7028 /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F412C3A8CC500AE7028 /* DownloadTip.swift */; };
-		038F7F4D2C3A8CC500AE7028 /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F412C3A8CC500AE7028 /* DownloadTip.swift */; };
 		038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F422C3A8CC500AE7028 /* FabButton.swift */; };
 		038F7F4F2C3A8CC500AE7028 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F422C3A8CC500AE7028 /* FabButton.swift */; };
 		038F7F512C3A8CDC00AE7028 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 038F7F502C3A8CDC00AE7028 /* boolder.db */; };
@@ -218,7 +216,6 @@
 		038F7F3E2C3A8CC500AE7028 /* ClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
 		038F7F3F2C3A8CC500AE7028 /* DownloadAreaButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadAreaButtonView.swift; sourceTree = "<group>"; };
 		038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadButtonView.swift; sourceTree = "<group>"; };
-		038F7F412C3A8CC500AE7028 /* DownloadTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		038F7F422C3A8CC500AE7028 /* FabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabButton.swift; sourceTree = "<group>"; };
 		038F7F502C3A8CDC00AE7028 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		038F7F532C3A8D1600AE7028 /* ClusterDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterDownloader.swift; sourceTree = "<group>"; };
@@ -345,7 +342,6 @@
 				038F7F3E2C3A8CC500AE7028 /* ClusterView.swift */,
 				038F7F3F2C3A8CC500AE7028 /* DownloadAreaButtonView.swift */,
 				038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */,
-				038F7F412C3A8CC500AE7028 /* DownloadTip.swift */,
 				038F7F422C3A8CC500AE7028 /* FabButton.swift */,
 			);
 			path = Download;
@@ -860,7 +856,6 @@
 				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
-				038F7F4D2C3A8CC500AE7028 /* DownloadTip.swift in Sources */,
 				038F7F492C3A8CC500AE7028 /* DownloadAreaButtonView.swift in Sources */,
 				03E500942930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */,
 				031A4CA62968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
@@ -909,7 +904,6 @@
 				038F7F442C3A8CC500AE7028 /* AreaLoadingStatus.swift in Sources */,
 				03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */,
 				0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
-				038F7F4C2C3A8CC500AE7028 /* DownloadTip.swift in Sources */,
 				0355A0D32B1745340007EE07 /* TopoImageCache.swift in Sources */,
 				37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */,
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,

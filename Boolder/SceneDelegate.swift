@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftUI
-import TipKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -27,23 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
         DownloadCenter.shared.start()
-        
-        // Configure tips in the app.
-        do {
-            if #available(iOS 17.0, *) {
-                // Purge all TipKit-related data and reset the state of all tips.
-                try Tips.resetDatastore()
-                
-                try Tips.configure()
-                
-            } else {
-                // Fallback on earlier versions
-            }
-        }
-        catch {
-            // Handle TipKit errors
-            print("Error initializing TipKit \(error.localizedDescription)")
-        }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        

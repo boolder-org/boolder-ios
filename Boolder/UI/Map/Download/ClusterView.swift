@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import TipKit
 
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -17,8 +16,6 @@ struct ClusterView: View {
 //    let mapState: MapState
     let cluster: Cluster
     let area: Area
-    
-    var tip = DownloadTip()
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -81,13 +78,6 @@ struct ClusterView: View {
                                 }
                             }
                         }
-//                        .modify {
-//                            if #available(iOS 17.0, *) {
-//                                $0.popoverTip(tip, arrowEdge: .top)
-//                            }
-//                        }
-                        
-                        
                         
                         if clusterDownloader.severalDownloading && !handpickedDownload {
                             Button {

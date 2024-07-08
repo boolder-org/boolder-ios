@@ -9,8 +9,6 @@
 import UIKit
 import SQLite
 
-import CoreLocation // comment out
-
 struct Area : Identifiable {
     let id: Int
     let name: String
