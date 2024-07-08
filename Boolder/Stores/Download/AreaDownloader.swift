@@ -30,12 +30,12 @@ class AreaDownloader: Identifiable, ObservableObject {
         Area.load(id: areaId)!
     }
     
-    var isDownloading: Bool {
-        status.isDownloading
+    var downloading: Bool {
+        status.downloading
     }
     
     func requestAndStartDownload() {
-        if isDownloading || status == .downloaded {
+        if downloading || status == .downloaded {
             return
         }
         
@@ -127,7 +127,7 @@ class AreaDownloader: Identifiable, ObservableObject {
             }
         }
         
-        var isDownloading: Bool {
+        var downloading: Bool {
             if case .downloading(_) = self {
                 return true
             }

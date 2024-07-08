@@ -8,6 +8,7 @@
 
 import UIKit
 import SQLite
+import CoreLocation
 
 struct Area : Identifiable {
     let id: Int

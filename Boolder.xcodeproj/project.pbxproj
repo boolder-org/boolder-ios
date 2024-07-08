@@ -347,6 +347,18 @@
 			path = Download;
 			sourceTree = "<group>";
 		};
+		038F7F592C3BDB3800AE7028 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				37B4524E25923B5A00241091 /* ODRManager.swift */,
+				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
+				03147EE42B470F59005771C3 /* AreaDownloader.swift */,
+				038F7F532C3A8D1600AE7028 /* ClusterDownloader.swift */,
+				03147EE12B46B581005771C3 /* DownloadSettings.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
 		03C104E7290ACBEE007A94D7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,11 +421,7 @@
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				038F7F502C3A8CDC00AE7028 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
-				37B4524E25923B5A00241091 /* ODRManager.swift */,
-				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
-				03147EE42B470F59005771C3 /* AreaDownloader.swift */,
-				038F7F532C3A8D1600AE7028 /* ClusterDownloader.swift */,
-				03147EE12B46B581005771C3 /* DownloadSettings.swift */,
+				038F7F592C3BDB3800AE7028 /* Download */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
