@@ -11,7 +11,6 @@ import CoreLocation
 
 struct DownloadButtonView: View {
     let cluster: Cluster
-    let mapState: MapState
     let selectedArea: Area?
     let zoom: CGFloat?
     let center: CLLocationCoordinate2D?
@@ -19,9 +18,9 @@ struct DownloadButtonView: View {
     @ObservedObject var clusterDownloader: ClusterDownloader
     
     var body: some View {
-        Button(action: {
+        Button {
             presentDownloads = true
-        }) {
+        } label: {
             if clusterDownloader.downloading {
                 // TODO: use cluster progress
                 ProgressView()
@@ -31,12 +30,9 @@ struct DownloadButtonView: View {
             }
             else {
                 Image(systemName: "icloud.and.arrow.down")
-                    
             }
-            
         }
         .buttonStyle(FabButton())
-        
         .sheet(isPresented: $presentDownloads) {
             ClusterView(clusterDownloader: clusterDownloader, cluster: cluster, area: areaBestGuess(in: cluster))
                 .modify {
@@ -50,7 +46,7 @@ struct DownloadButtonView: View {
         }
     }
     
-    private func areaBestGuess(in cluster: Cluster) -> Area {
+    private func areaBestGuess(in cluster: Cluster) -> Area? {
         if let selectedArea = selectedArea {
             return selectedArea
         }
@@ -61,11 +57,9 @@ struct DownloadButtonView: View {
                     return area
                 }
             }
-//            print(zoom)
-//            print(center)
         }
         
-        return cluster.mainArea
+        return nil
     }
     
     private func closestArea(in cluster: Cluster, from center: CLLocation) -> Area? {

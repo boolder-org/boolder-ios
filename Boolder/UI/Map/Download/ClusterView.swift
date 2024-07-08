@@ -13,7 +13,7 @@ struct ClusterView: View {
     
     @ObservedObject var clusterDownloader: ClusterDownloader
     let cluster: Cluster
-    let area: Area // TODO: rename
+    let area: Area?
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
