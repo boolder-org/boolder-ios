@@ -19,13 +19,7 @@ class MapboxViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        let accessToken = Bundle.main.object(forInfoDictionaryKey: "MBXAccessToken") as? String
-
-        if accessToken == nil {
-            print("access token not found in Info.plist")
-        }
-        
-//        let myResourceOptions = ResourceOptions(accessToken: accessToken ?? "")
+//        let accessToken = Bundle.main.object(forInfoDictionaryKey: "MBXAccessToken") as? String
         
         let cameraOptions = CameraOptions(
             center: CLLocationCoordinate2D(latitude: 48.3925623, longitude: 2.5968216),
@@ -106,7 +100,6 @@ class MapboxViewController: UIViewController {
     
     func addLayers() {
         var problemsLayer = CircleLayer(id: "problems", source: "problems")
-//        problemsLayer.source = "problems"
         problemsLayer.sourceLayer = problemsSourceLayerId
         problemsLayer.minZoom = 15
         problemsLayer.filter = Expression(.match) {
@@ -163,7 +156,6 @@ class MapboxViewController: UIViewController {
         )
         
         var problemsTextsLayer = SymbolLayer(id: "problems-texts", source: "problems")
-//        problemsTextsLayer.source = "problems"
         problemsTextsLayer.sourceLayer = problemsSourceLayerId
         problemsTextsLayer.minZoom = 19
         problemsTextsLayer.filter = Expression(.match) {
@@ -207,7 +199,6 @@ class MapboxViewController: UIViewController {
         // ===========================
         
         var problemsNamesLayer = SymbolLayer(id: "problems-names", source: "problems")
-//        problemsNamesLayer.source = "problems"
         problemsNamesLayer.sourceLayer = problemsSourceLayerId
         problemsNamesLayer.minZoom = 15
         problemsNamesLayer.visibility = .constant(.none)
@@ -270,7 +261,6 @@ class MapboxViewController: UIViewController {
         
         // (invisible) layer to prevent problem names from overlapping with the problem circles
         var problemsNamesAntioverlapLayer = SymbolLayer(id: "problems-names-antioverlap", source: "problems")
-//        problemsNamesAntioverlapLayer.source = "problems"
         problemsNamesAntioverlapLayer.sourceLayer = problemsSourceLayerId
         problemsNamesAntioverlapLayer.minZoom = 15
         problemsNamesAntioverlapLayer.visibility = .constant(.none)
@@ -298,7 +288,6 @@ class MapboxViewController: UIViewController {
         // ===========================
         
         var circuitsLayer = LineLayer(id: "circuits", source: "circuits")
-//        circuitsLayer.source = "circuits"
         circuitsLayer.sourceLayer = "circuits-9weff8"
         circuitsLayer.minZoom = 15
         circuitsLayer.lineWidth = .constant(2)
@@ -307,7 +296,6 @@ class MapboxViewController: UIViewController {
         circuitsLayer.visibility = .constant(.none)
         
         var circuitProblemsLayer = CircleLayer(id: "circuit-problems", source: "problems")
-//        circuitProblemsLayer.source = "problems"
         circuitProblemsLayer.sourceLayer = problemsSourceLayerId
         circuitProblemsLayer.minZoom = 15
         circuitProblemsLayer.visibility = .constant(.none)
@@ -330,7 +318,6 @@ class MapboxViewController: UIViewController {
         circuitProblemsLayer.circleStrokeColor = problemsLayer.circleStrokeColor
         
         var circuitProblemsTextsLayer = SymbolLayer(id: "circuit-problems-texts", source: "problems")
-//        circuitProblemsTextsLayer.source = "problems"
         circuitProblemsTextsLayer.sourceLayer = problemsSourceLayerId
         circuitProblemsTextsLayer.minZoom = 16
         circuitProblemsTextsLayer.visibility = .constant(.none)
