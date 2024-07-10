@@ -51,11 +51,12 @@ class MapboxViewController: UIViewController {
         
         // Wait for the map to load its style before adding data.
         mapView.mapboxMap.onStyleLoaded.observeNext { [weak self] _ in
-            self?.addSources()
-            self?.addLayers()
+            guard let self = self else { return }
+            self.addSources()
+            self.addLayers()
             
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self?.findFeatures))
-            self?.mapView.addGestureRecognizer(tapGesture)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
+            self.mapView.addGestureRecognizer(tapGesture)
         }.store(in: &cancelables)
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
