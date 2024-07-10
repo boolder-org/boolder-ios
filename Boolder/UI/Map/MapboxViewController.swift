@@ -422,9 +422,7 @@ class MapboxViewController: UIViewController {
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
                         var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
-//                        print(cameraOptions)
-                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0) // FIXME: doesn't work
-//                        print(cameraOptions)
+                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
                         
                         self.flyTo(cameraOptions)
                         
@@ -717,7 +715,7 @@ class MapboxViewController: UIViewController {
 
         
         var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
-        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0) // FIXME: doesn't work
+        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
         
         flyTo(cameraOptions)
     }
@@ -771,7 +769,7 @@ class MapboxViewController: UIViewController {
             maxZoom: nil,
             offset: nil
         )
-        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0) // FIXME: doesn't work
+        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
         
         flyTo(cameraOptions)
     }
