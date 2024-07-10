@@ -719,42 +719,44 @@ class MapboxViewController: UIViewController {
         
         flyTo(cameraOptions)
     }
-//    
-//    func centerOnCurrentLocation() {
-//        if let location = mapView.location.latestLocation {
-//            
-//            let fontainebleauBounds = CoordinateBounds(
-//                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
-//                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
-//            )
-//            
-//            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
-//                let cameraOptions = CameraOptions(
-//                    center: location.coordinate,
-//                    padding: safePadding,
-//                    zoom: 17
-//                )
-//                
-//                flyTo(cameraOptions)
-//                
-//                DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
-//                    self.inferAreaFromMap()
-//                    // TODO: what if map is slow to load? we should infer again after it's loaded
-//                }
-//            }
-//            else {
-//                let cameraOptions = mapView.mapboxMap.camera(
-//                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
-//                    padding: safePadding,
-//                    bearing: 0,
-//                    pitch: 0
-//                )
-//                
-//                flyTo(cameraOptions)
-//            }
-//        }
-//    }
-//    
+    
+    func centerOnCurrentLocation() {
+        if let location = mapView.location.latestLocation {
+            
+            let fontainebleauBounds = CoordinateBounds(
+                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
+                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
+            )
+            
+            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
+                let cameraOptions = CameraOptions(
+                    center: location.coordinate,
+                    padding: safePadding,
+                    zoom: 17
+                )
+                
+                flyTo(cameraOptions)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
+                    self.inferAreaFromMap()
+                    // TODO: what if map is slow to load? we should infer again after it's loaded
+                }
+            }
+            else {
+                let cameraOptions = mapView.mapboxMap.camera(
+                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
+                    padding: safePadding,
+                    bearing: 0,
+                    pitch: 0,
+                    maxZoom: nil,
+                    offset: nil
+                )
+                
+                flyTo(cameraOptions)
+            }
+        }
+    }
+    
     func centerOnCircuit(_ circuit: Circuit) {
         let circuitBounds = CoordinateBounds(
             southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),

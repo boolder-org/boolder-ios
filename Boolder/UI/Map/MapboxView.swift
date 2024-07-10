@@ -29,7 +29,7 @@ struct MapboxView: UIViewControllerRepresentable {
         
         // select problem
         if mapState.selectProblemCount > context.coordinator.lastSelectProblemCount {
-//            vc.setProblemAsSelected(problemFeatureId: String(mapState.selectedProblem.id))
+            vc.setProblemAsSelected(problemFeatureId: String(mapState.selectedProblem.id))
             context.coordinator.lastSelectProblemCount = mapState.selectProblemCount
         }
         
@@ -44,14 +44,14 @@ struct MapboxView: UIViewControllerRepresentable {
         // center on area
         if mapState.centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
             if let area = mapState.centerOnArea {
-//                vc.centerOnArea(area)
+                vc.centerOnArea(area)
                 context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
             }
         }
         
         // center on current location
         if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
-//            vc.centerOnCurrentLocation()
+            vc.centerOnCurrentLocation()
             context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
         }
         
@@ -70,7 +70,7 @@ struct MapboxView: UIViewControllerRepresentable {
         if mapState.centerOnCircuitCount > context.coordinator.lastCenterOnCircuitCount {
             
             if let circuit = mapState.selectedCircuit {
-//                vc.centerOnCircuit(circuit)
+                vc.centerOnCircuit(circuit)
             }
             else {
                 vc.unselectCircuit()
