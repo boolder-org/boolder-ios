@@ -27,7 +27,6 @@ class MapboxViewController: UIViewController {
         )
         
         let myMapInitOptions = MapInitOptions(
-//            resourceOptions: myResourceOptions,
             cameraOptions: cameraOptions,
             styleURI: StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")
         )
@@ -51,13 +50,13 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
         
         // Wait for the map to load its style before adding data.
-        mapView.mapboxMap.onNext(event: .mapLoaded) { [self] _ in
-            self.addSources()
-            self.addLayers()
+        mapView.mapboxMap.onStyleLoaded.observeNext { [weak self] _ in
+            self?.addSources()
+            self?.addLayers()
             
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
-            self.mapView.addGestureRecognizer(tapGesture)
-        }
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self?.findFeatures))
+            self?.mapView.addGestureRecognizer(tapGesture)
+        }.store(in: &cancelables)
         
 //        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
 //            // Camera movement check is throttled for performance reason (especially during flying animations)
