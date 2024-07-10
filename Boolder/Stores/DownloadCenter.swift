@@ -26,7 +26,8 @@ class DownloadCenter: ObservableObject {
         }
         
         cancellable = settings.$areaIds
-            .map { $0.map{self.areaDownloader(id: $0)} }
+            .map { ids in ids.map{ id in Area.load(id: id)}.compactMap{$0} }
+            .map { $0.map{self.areaDownloader(id: $0.id)} }
             .assign(to: \.requestedAreas, on: self)
     }
     
