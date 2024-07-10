@@ -422,7 +422,9 @@ class MapboxViewController: UIViewController {
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
                         var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
-                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
+//                        print(cameraOptions)
+                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0) // FIXME: doesn't work
+//                        print(cameraOptions)
                         
                         self.flyTo(cameraOptions)
                         
@@ -709,16 +711,16 @@ class MapboxViewController: UIViewController {
         ))
     }
     
-//    func centerOnArea(_ area: Area) {
-//        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
-//                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-//
-//        
-//        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0)
-//        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-//        
-//        flyTo(cameraOptions)
-//    }
+    func centerOnArea(_ area: Area) {
+        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
+                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
+
+        
+        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
+        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0) // FIXME: doesn't work
+        
+        flyTo(cameraOptions)
+    }
 //    
 //    func centerOnCurrentLocation() {
 //        if let location = mapView.location.latestLocation {
@@ -755,22 +757,24 @@ class MapboxViewController: UIViewController {
 //        }
 //    }
 //    
-//    func centerOnCircuit(_ circuit: Circuit) {
-//        let circuitBounds = CoordinateBounds(
-//            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
-//            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
-//        )
-//        
-//        var cameraOptions = mapView.mapboxMap.camera(
-//            for: circuitBounds,
-//            padding: safePadding,
-//            bearing: 0,
-//            pitch: 0
-//        )
-//        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-//        
-//        flyTo(cameraOptions)
-//    }
+    func centerOnCircuit(_ circuit: Circuit) {
+        let circuitBounds = CoordinateBounds(
+            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
+        )
+        
+        var cameraOptions = mapView.mapboxMap.camera(
+            for: circuitBounds,
+            padding: safePadding,
+            bearing: 0,
+            pitch: 0,
+            maxZoom: nil,
+            offset: nil
+        )
+        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0) // FIXME: doesn't work
+        
+        flyTo(cameraOptions)
+    }
     
     func setCircuitAsSelected(circuit: Circuit) {
         do {
