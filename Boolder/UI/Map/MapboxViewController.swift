@@ -58,21 +58,21 @@ class MapboxViewController: UIViewController {
             self?.mapView.addGestureRecognizer(tapGesture)
         }.store(in: &cancelables)
         
-//        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
-//            // Camera movement check is throttled for performance reason (especially during flying animations)
-//            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
-//            guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
-//                return
-//            }
-//            
-//            lastCameraCheck = DispatchTime.now()
-//            
-//            self.inferAreaFromMap()
-//            
-//            if(!flyinToSomething) {
-//                self.delegate?.cameraChanged()
-//            }
-//        }
+        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+            // Camera movement check is throttled for performance reason (especially during flying animations)
+            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
+            guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
+                return
+            }
+            
+            lastCameraCheck = DispatchTime.now()
+            
+            self.inferAreaFromMap()
+            
+            if(!flyinToSomething) {
+                self.delegate?.cameraChanged()
+            }
+        }
         
         self.view.addSubview(mapView)
     }
@@ -585,47 +585,47 @@ class MapboxViewController: UIViewController {
                 }
             }
     }
-//    
-//    func inferAreaFromMap() {
-//        if(!flyinToSomething) {
-//            
-//            let zoom = Expression(.gt) {
-//                Expression(.zoom)
-//                14.5
-//            }
-//            
-//            let width = mapView.frame.width/4
-//            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
-//            
-//            //            var debugView = UIView(frame: rect)
-//            //            debugView.backgroundColor = .red
-//            //            mapView.addSubview(debugView)
-//            
-//            mapView.mapboxMap.queryRenderedFeatures(
-//                with: rect,
-//                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
-//                    
-//                    guard let self = self else { return }
-//                    
-//                    switch result {
-//                    case .success(let queriedfeatures):
-//                        
-//                        if let feature = queriedfeatures.first?.feature,
-//                           case .number(let id) = feature.properties?["areaId"]
-//                        {
-//                            self.delegate?.selectArea(id: Int(id))
-//                        }
-//                    case .failure(_):
-//                        break
-//                    }
-//                }
-//            
-//            
-//            if(mapView.mapboxMap.cameraState.zoom < 15) {
-//                delegate?.unselectArea()
-//            }
-//        }
-//    }
+    
+    func inferAreaFromMap() {
+        if(!flyinToSomething) {
+            
+            let zoom = Expression(.gt) {
+                Expression(.zoom)
+                14.5
+            }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            
+            //            var debugView = UIView(frame: rect)
+            //            debugView.backgroundColor = .red
+            //            mapView.addSubview(debugView)
+            
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: rect,
+                options: RenderedQueryOptions(layerIds: ["areas-hulls"], filter: zoom)) { [weak self] result in
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let queriedfeatures):
+                        
+                        if let feature = queriedfeatures.first?.queriedFeature.feature,
+                           case .number(let id) = feature.properties?["areaId"]
+                        {
+                            self.delegate?.selectArea(id: Int(id))
+                        }
+                    case .failure(_):
+                        break
+                    }
+                }
+            
+            
+            if(mapView.mapboxMap.cameraState.zoom < 15) {
+                delegate?.unselectArea()
+            }
+        }
+    }
     
     private var favorites: [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
