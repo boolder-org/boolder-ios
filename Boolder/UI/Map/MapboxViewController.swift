@@ -528,7 +528,7 @@ class MapboxViewController: UIViewController {
                        case .point(let point) = feature.geometry
                     {
                         self.delegate?.selectProblem(id: Int(id))
-//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
                         // if problem is hidden by the bottom sheet
                         if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
@@ -542,7 +542,7 @@ class MapboxViewController: UIViewController {
                     }
                     else {
                         // TODO: make it more explicit that this works only at a certain zoom level
-//                        self.unselectPreviousProblem()
+                        self.unselectPreviousProblem()
                         self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
@@ -569,7 +569,7 @@ class MapboxViewController: UIViewController {
                        case .point(let point) = feature.geometry
                     {
                         self.delegate?.selectProblem(id: Int(id))
-//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
                         // if problem is hidden by the bottom sheet
                         if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
@@ -828,27 +828,31 @@ class MapboxViewController: UIViewController {
     
     private var previouslyTappedProblemId: String = ""
     
-//    func setProblemAsSelected(problemFeatureId: String) {
-//        self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-//                                               sourceLayerId: problemsSourceLayerId,
-//                                               featureId: problemFeatureId,
-//                                               state: ["selected": true])
-//        
-//        if problemFeatureId != self.previouslyTappedProblemId {
-//            unselectPreviousProblem()
-//        }
-//        
-//        self.previouslyTappedProblemId = problemFeatureId
-//    }
-//    
-//    func unselectPreviousProblem() {
-//        if(self.previouslyTappedProblemId != "") {
-//            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-//                                                   sourceLayerId: problemsSourceLayerId,
-//                                                   featureId: self.previouslyTappedProblemId,
-//                                                   state: ["selected": false])
-//        }
-//    }
+    func setProblemAsSelected(problemFeatureId: String) {
+        self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                               sourceLayerId: problemsSourceLayerId,
+                                               featureId: problemFeatureId,
+                                               state: ["selected": true]) { result in
+            
+        }
+        
+        if problemFeatureId != self.previouslyTappedProblemId {
+            unselectPreviousProblem()
+        }
+        
+        self.previouslyTappedProblemId = problemFeatureId
+    }
+    
+    func unselectPreviousProblem() {
+        if(self.previouslyTappedProblemId != "") {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                   sourceLayerId: problemsSourceLayerId,
+                                                   featureId: self.previouslyTappedProblemId,
+                                                   state: ["selected": false]) { result in
+                
+            }
+        }
+    }
     
     func flyTo(_ cameraOptions: CameraOptions) {
         flyinToSomething = true
