@@ -74,9 +74,8 @@ class MapboxViewController: UIViewController {
             
             lastCameraCheck = DispatchTime.now()
             
-            self.inferAreaFromMap()
-            
             if(!flyinToSomething) {
+                self.inferAreaFromMap()
                 self.delegate?.cameraChanged()
             }
         }.store(in: &cancelables)
