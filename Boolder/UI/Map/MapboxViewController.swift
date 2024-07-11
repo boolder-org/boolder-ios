@@ -95,8 +95,8 @@ class MapboxViewController: UIViewController {
         circuits.url = "mapbox://nmondollot.11sumdgh"
 
         do {
-            try self.mapView.mapboxMap.style.addSource(problems)
-            try self.mapView.mapboxMap.style.addSource(circuits)
+            try self.mapView.mapboxMap.addSource(problems)
+            try self.mapView.mapboxMap.addSource(circuits)
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -354,15 +354,15 @@ class MapboxViewController: UIViewController {
         do {
             
             
-            try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
-            try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            try self.mapView.mapboxMap.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
+            try self.mapView.mapboxMap.addLayer(problemsTextsLayer)
             
-            try self.mapView.mapboxMap.style.addLayer(problemsNamesLayer)
-            try self.mapView.mapboxMap.style.addLayer(problemsNamesAntioverlapLayer)
+            try self.mapView.mapboxMap.addLayer(problemsNamesLayer)
+            try self.mapView.mapboxMap.addLayer(problemsNamesAntioverlapLayer)
             
-            try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
-            try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
-            try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
+            try self.mapView.mapboxMap.addLayer(circuitsLayer)
+            try self.mapView.mapboxMap.addLayer(circuitProblemsLayer)
+            try self.mapView.mapboxMap.addLayer(circuitProblemsTextsLayer)
         }
         catch {
             print("Ran into an error adding the layers: \(error)")
@@ -664,7 +664,7 @@ class MapboxViewController: UIViewController {
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
             try ["problems", "problems-texts", "problems-names", "problems-names-antioverlap"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     let gradeFilter = Expression(.match) {
                         Exp(.get) { "grade" }
                         gradesArray
@@ -694,7 +694,7 @@ class MapboxViewController: UIViewController {
             }
             
             try ["problems-names", "problems-names-antioverlap"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
                     let visibility = (filters.popular || filters.favorite || filters.ticked) ? Visibility.visible : Visibility.none
                     layer.visibility = .constant(visibility)
                 }
@@ -783,7 +783,7 @@ class MapboxViewController: UIViewController {
     func setCircuitAsSelected(circuit: Circuit) {
         do {
             try ["circuits"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: LineLayer.self) { layer in
                     layer.filter = Expression(.match) {
                         Exp(.get) { "id" }
                         [Double(circuit.id)]
@@ -795,7 +795,7 @@ class MapboxViewController: UIViewController {
             }
             
             try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     layer.filter = Expression(.match) {
                         Exp(.get) { "circuitId" }
                         [Double(circuit.id)]
@@ -814,13 +814,13 @@ class MapboxViewController: UIViewController {
     func unselectCircuit() {
         do {
             try ["circuits"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: LineLayer.self) { layer in
                     layer.visibility = .constant(.none)
                 }
             }
             
             try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     layer.visibility = .constant(.none)
                 }
             }
