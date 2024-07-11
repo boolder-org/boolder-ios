@@ -398,36 +398,6 @@ class MapboxViewController: UIViewController {
         )
     }
     
-    private func coordinatesFrom(southWestLat: String, southWestLon: String, northEastLat: String, northEastLon: String) -> [CLLocationCoordinate2D] {
-        if let southWestLat = Double(southWestLat), let southWestLon = Double(southWestLon), let northEastLat = Double(northEastLat), let northEastLon = Double(northEastLon) {
-         
-            return [
-                CLLocationCoordinate2D(latitude: southWestLat, longitude: southWestLon),
-                CLLocationCoordinate2D(latitude: northEastLat, longitude: northEastLon),
-            ]
-        }
-        
-        return []
-    }
-    
-    private func cameraOptionsFor(_ coordinates: [CLLocationCoordinate2D], minZoom: CGFloat? = nil) -> CameraOptions? {
-        if var cameraOptions = try? self.mapView.mapboxMap.camera(
-            for: coordinates,
-            camera: CameraOptions(),
-            coordinatesPadding: self.safePadding,
-            maxZoom: nil,
-            offset: nil) {
-            
-            if let minZoom = minZoom {
-                cameraOptions.zoom = max(minZoom, cameraOptions.zoom ?? 0)
-            }
-            
-            return cameraOptions
-        }
-        
-        return nil
-    }
-    
     func findFeatures(tapPoint: CGPoint) {
         
         // =================================================
@@ -479,12 +449,11 @@ class MapboxViewController: UIViewController {
                        case .string(let northEastLon) = feature.properties?["northEastLon"],
                        case .string(let northEastLat) = feature.properties?["northEastLat"]
                     {
-                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
-                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
+                        let coords = coordinatesFrom(southWestLat: southWestLat, southWestLon: southWestLon, northEastLat: northEastLat, northEastLon: northEastLon)
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
-                        
-                        self.flyTo(cameraOptions)
+                        if let cameraOptions = self.cameraOptionsFor(coords) {
+                            self.flyTo(cameraOptions)
+                        }
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -741,14 +710,14 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnArea(_ area: Area) {
-        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
-                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-
+        let coords = [
+            CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
+            CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon)
+            ]
         
-        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
-        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-        
-        flyTo(cameraOptions)
+        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+            flyTo(cameraOptions)
+        }
     }
     
     func centerOnCurrentLocation() {
@@ -774,37 +743,26 @@ class MapboxViewController: UIViewController {
                 }
             }
             else {
-                let cameraOptions = mapView.mapboxMap.camera(
-                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
-                    padding: safePadding,
-                    bearing: 0,
-                    pitch: 0,
-                    maxZoom: nil,
-                    offset: nil
-                )
+                let bounds = fontainebleauBounds.extend(forPoint: location.coordinate)
                 
-                flyTo(cameraOptions)
+                let coords = [bounds.southwest, bounds.northeast]
+                
+                if let cameraOptions = self.cameraOptionsFor(coords) {
+                    flyTo(cameraOptions)
+                }
             }
         }
     }
     
     func centerOnCircuit(_ circuit: Circuit) {
-        let circuitBounds = CoordinateBounds(
-            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
-            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
-        )
+        let coords = [
+            CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+            CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
+        ]
         
-        var cameraOptions = mapView.mapboxMap.camera(
-            for: circuitBounds,
-            padding: safePadding,
-            bearing: 0,
-            pitch: 0,
-            maxZoom: nil,
-            offset: nil
-        )
-        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-        
-        flyTo(cameraOptions)
+        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+            flyTo(cameraOptions)
+        }
     }
     
     func setCircuitAsSelected(circuit: Circuit) {
@@ -900,6 +858,36 @@ class MapboxViewController: UIViewController {
     let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20)
     var safePaddingForBottomSheet : UIEdgeInsets {
         UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
+    }
+    
+    private func coordinatesFrom(southWestLat: String, southWestLon: String, northEastLat: String, northEastLon: String) -> [CLLocationCoordinate2D] {
+        if let southWestLat = Double(southWestLat), let southWestLon = Double(southWestLon), let northEastLat = Double(northEastLat), let northEastLon = Double(northEastLon) {
+         
+            return [
+                CLLocationCoordinate2D(latitude: southWestLat, longitude: southWestLon),
+                CLLocationCoordinate2D(latitude: northEastLat, longitude: northEastLon),
+            ]
+        }
+        
+        return []
+    }
+    
+    private func cameraOptionsFor(_ coordinates: [CLLocationCoordinate2D], minZoom: CGFloat? = nil) -> CameraOptions? {
+        if var cameraOptions = try? self.mapView.mapboxMap.camera(
+            for: coordinates,
+            camera: CameraOptions(),
+            coordinatesPadding: self.safePadding,
+            maxZoom: nil,
+            offset: nil) {
+            
+            if let minZoom = minZoom {
+                cameraOptions.zoom = max(minZoom, cameraOptions.zoom ?? 0)
+            }
+            
+            return cameraOptions
+        }
+        
+        return nil
     }
 }
 
