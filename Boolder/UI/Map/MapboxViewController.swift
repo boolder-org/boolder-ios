@@ -455,7 +455,7 @@ class MapboxViewController: UIViewController {
                         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
                                                       northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
                         
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: UIEdgeInsets(), bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
+                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0, maxZoom: nil, offset: nil)
                         
                         self.flyTo(cameraOptions)
                     }
