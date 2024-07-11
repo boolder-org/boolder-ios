@@ -39,6 +39,8 @@ class MapboxViewController: UIViewController {
         
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
+        mapView.gestures.options.doubleTapToZoomInEnabled = false // prevents the delay for tapGesture
+        mapView.gestures.options.doubleTouchToZoomOutEnabled = false // prevents the delay for tapGesture
         
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
@@ -394,7 +396,8 @@ class MapboxViewController: UIViewController {
         )
     }
     
-    func findFeatures(tapPoint: CGPoint) {        
+    func findFeatures(tapPoint: CGPoint) {
+        
         // =================================================
         // Careful: the order of the queries is important
         // =================================================
