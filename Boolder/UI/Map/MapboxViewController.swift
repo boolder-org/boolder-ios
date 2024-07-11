@@ -54,9 +54,10 @@ class MapboxViewController: UIViewController {
             guard let self = self else { return }
             self.addSources()
             self.addLayers()
-            
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
-            self.mapView.addGestureRecognizer(tapGesture)
+        }.store(in: &cancelables)
+        
+        mapView.gestures.onMapTap.observe { context in
+            self.findFeatures(tapPoint: context.point)
         }.store(in: &cancelables)
         
         mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
@@ -393,9 +394,7 @@ class MapboxViewController: UIViewController {
         )
     }
     
-    @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
-        let tapPoint = sender.location(in: mapView)
-        
+    func findFeatures(tapPoint: CGPoint) {        
         // =================================================
         // Careful: the order of the queries is important
         // =================================================
