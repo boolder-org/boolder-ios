@@ -62,7 +62,10 @@ class MapboxViewController: UIViewController {
             self.findFeatures(tapPoint: context.point)
         }.store(in: &cancelables)
         
-        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+        mapView.mapboxMap.onCameraChanged.observe { [weak self] event in
+            guard let self = self else { return }
+            
+            // TODO: use throttling via Combine
             // Camera movement check is throttled for performance reason (especially during flying animations)
             let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
             guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
@@ -76,7 +79,7 @@ class MapboxViewController: UIViewController {
             if(!flyinToSomething) {
                 self.delegate?.cameraChanged()
             }
-        }
+        }.store(in: &cancelables)
         
         self.view.addSubview(mapView)
     }
