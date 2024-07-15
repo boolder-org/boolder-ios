@@ -25,7 +25,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Get stores
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
-        DownloadCenter.shared.start()
+//        DownloadCenter.shared.start()
+        
+        // Usage
+        let urls: [URL] = [
+            URL(string: "https://d1tuum4k4qcbs8.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUlEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--396c7ad5c491166428b243df407a6e396e270380/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lKYW5CbFp3WTZCa1ZVT2hOeVpYTnBlbVZmZEc5ZlptbHNiRnNIYVFLd0JHa0NoQU02Q25OaGRtVnlld2c2REhGMVlXeHBkSGxwTnpvS2MzUnlhWEJVT2c1cGJuUmxjbXhoWTJWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--391bbcd6faaf310dbeb1600f965bbb012c19de95/IMG_0995.jpeg")!,
+        ]
+        
+        let downloader = Downloader(maxRetries: 3)
+        Task {
+            await downloader.downloadFiles(urls: urls)
+        }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        
