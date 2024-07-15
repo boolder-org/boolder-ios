@@ -51,7 +51,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func start() {
-        if false { //available {
+        if false { // TODO: look for downloaded files
             DispatchQueue.main.async{
                 self.status = .downloaded
             }
@@ -72,7 +72,19 @@ class AreaDownloader: Identifiable, ObservableObject {
                         self.status = .downloading(progress: progress)
                     }
                 
-                await downloader.downloadFiles()
+                await downloader.downloadFiles(onSuccess: { [self] in
+                    DispatchQueue.main.async{
+                        self.status = .downloaded
+                    }
+                    
+                }, onFailure: { error in
+                    DispatchQueue.main.async{
+                        print("error")
+                        self.status = .initial
+                    }
+                    
+                    
+                })
             }
         }
         

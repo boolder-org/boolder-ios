@@ -19,7 +19,7 @@ class Downloader : ObservableObject {
         self.topos = topos
     }
     
-    func downloadFiles() async {
+    func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping (NSError) -> Void) async {
         await withTaskGroup(of: Void.self) { group in
             for topo in topos {
                 try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
@@ -28,7 +28,7 @@ class Downloader : ObservableObject {
                 }
             }
         }
-        progress = 1.0
+        onSuccess()
         print("All downloads completed")
     }
     
