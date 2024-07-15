@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: remove?
 class DownloadSettings : ObservableObject {
     static let shared = DownloadSettings()
     

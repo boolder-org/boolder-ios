@@ -22,7 +22,7 @@ class Downloader : ObservableObject {
     func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping (NSError) -> Void) async {
         await withTaskGroup(of: Void.self) { group in
             for topo in topos {
-                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
+//                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
                 group.addTask {
                     await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
                 }
@@ -30,6 +30,8 @@ class Downloader : ObservableObject {
         }
         onSuccess()
         print("All downloads completed")
+        
+        // TODO: handle failure
     }
     
     private func downloadFile(topo: TopoData, retriesLeft: Int) async {

@@ -64,9 +64,6 @@ class AreaDownloader: Identifiable, ObservableObject {
             Task {
                 let downloader = try await Downloader(maxRetries: 3, topos: getTopoList())
                 
-                
-                
-                
                 self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
                     .sink() { progress in
                         self.status = .downloading(progress: progress)
@@ -79,16 +76,12 @@ class AreaDownloader: Identifiable, ObservableObject {
                     
                 }, onFailure: { error in
                     DispatchQueue.main.async{
-                        print("error")
+                        print("Error downloading")
                         self.status = .initial
                     }
-                    
-                    
                 })
             }
         }
-        
-        
     }
     
     private func getTopoList() async throws -> [TopoData] {
