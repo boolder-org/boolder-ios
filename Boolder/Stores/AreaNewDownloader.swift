@@ -51,10 +51,14 @@ class AreaNewDownloader: Identifiable, ObservableObject {
     }
     
     func start() {
+        let downloader = Downloader(maxRetries: 3)
         
+        Task {
+            try await downloader.downloadFiles(getTopoList())
+        }
     }
     
-    func getTopoList() async throws {
+    private func getTopoList() async throws -> [TopoData] {
         let url = URL(string: "https://www.boolder.com/api/v1/areas/\(areaId)/topos.json")!
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -65,14 +69,11 @@ class AreaNewDownloader: Identifiable, ObservableObject {
                     print("Topo ID: \(topo.topoID), URL: \(topo.url)")
                 }
                 
-                let a = topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!)}
-                
-                let downloader = Downloader(maxRetries: 3)
-                Task {
-                    await downloader.downloadFiles(a)
-                }
+                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!)}
             }
         }
+        
+        return []
     }
     
     struct TopoJson: Codable {

@@ -38,9 +38,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            await downloader.downloadFiles(topos)
 //        }
         
-        Task {
-            try await AreaNewDownloader(areaId: 22, status: .initial).getTopoList()
-        }
+//        Task {
+//            try await AreaNewDownloader(areaId: 22, status: .initial).getTopoList()
+//        }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        
