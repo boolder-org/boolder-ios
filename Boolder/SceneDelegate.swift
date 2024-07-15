@@ -25,22 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Get stores
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
+        // FIXME: remove this?
 //        DownloadCenter.shared.start()
-        
-//        // Usage
-//        let topos: [TopoData] = [
-//            TopoData(id: 461, url: URL(string: "https://d1tuum4k4qcbs8.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ2dEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5d423fff4da5cca475f8a43ffde27d50d274249a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQXJBRWFRS0VBem9LYzJGMlpYSjdDRG9NY1hWaGJHbDBlV2szT2dwemRISnBjRlE2RG1sdWRHVnliR0ZqWlZRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--06a902fccb81fe67c9c48f37bc4e96c04c216e8c/photo.jpg")!)
-//            ,
-//        ]
-//        
-//        let downloader = Downloader(maxRetries: 3)
-//        Task {
-//            await downloader.downloadFiles(topos)
-//        }
-        
-//        Task {
-//            try await AreaNewDownloader(areaId: 22, status: .initial).getTopoList()
-//        }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        

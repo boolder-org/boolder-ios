@@ -29,6 +29,10 @@ struct DownloadAreaButtonView : View {
             if case .initial = areaDownloader.status  {
                 areaDownloader.requestAndStartDownload()
             }
+            // FIXME: remove this case
+            if case .requested = areaDownloader.status  {
+                areaDownloader.requestAndStartDownload()
+            }
             else if case .downloading(_) = areaDownloader.status  {
                 presentCancelDownloadSheet = true
             }
