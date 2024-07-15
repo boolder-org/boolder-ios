@@ -51,11 +51,32 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func start() {
-        let downloader = Downloader(maxRetries: 3)
-        
-        Task {
-            try await downloader.downloadFiles(getTopoList())
+        if false { //available {
+            DispatchQueue.main.async{
+                self.status = .downloaded
+            }
         }
+        else {
+            DispatchQueue.main.async{
+                self.status = .downloading(progress: 0.0)
+            }
+            
+            Task {
+                let downloader = try await Downloader(maxRetries: 3, topos: getTopoList())
+                
+                
+                
+                
+                self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+                    .sink() { progress in
+                        self.status = .downloading(progress: progress)
+                    }
+                
+                await downloader.downloadFiles()
+            }
+        }
+        
+        
     }
     
     private func getTopoList() async throws -> [TopoData] {
