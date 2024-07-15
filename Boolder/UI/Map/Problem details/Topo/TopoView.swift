@@ -170,6 +170,15 @@ struct TopoView: View {
     }
     
     func loadData() async {
+//        let fileManager = FileManager.default
+//        let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+//        let fileURL = documentsURL.appendingPathComponent("topo-534.jpg")
+//        
+//        if let localPhoto = UIImage(contentsOfFile: fileURL.path) {
+//            self.photoStatus = .ready(image: localPhoto)
+//            return
+//        }
+        
         if let localPhoto = problem.mainTopoPhoto {
             self.photoStatus = .ready(image: localPhoto)
             return

@@ -27,14 +27,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        DownloadCenter.shared.start()
         
-        // Usage
-        let urls: [URL] = [
-            URL(string: "https://d1tuum4k4qcbs8.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbUlEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--396c7ad5c491166428b243df407a6e396e270380/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lKYW5CbFp3WTZCa1ZVT2hOeVpYTnBlbVZmZEc5ZlptbHNiRnNIYVFLd0JHa0NoQU02Q25OaGRtVnlld2c2REhGMVlXeHBkSGxwTnpvS2MzUnlhWEJVT2c1cGJuUmxjbXhoWTJWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--391bbcd6faaf310dbeb1600f965bbb012c19de95/IMG_0995.jpeg")!,
-        ]
+//        // Usage
+//        let topos: [TopoData] = [
+//            TopoData(id: 461, url: URL(string: "https://d1tuum4k4qcbs8.cloudfront.net/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ2dEIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--5d423fff4da5cca475f8a43ffde27d50d274249a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQXJBRWFRS0VBem9LYzJGMlpYSjdDRG9NY1hWaGJHbDBlV2szT2dwemRISnBjRlE2RG1sdWRHVnliR0ZqWlZRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--06a902fccb81fe67c9c48f37bc4e96c04c216e8c/photo.jpg")!)
+//            ,
+//        ]
+//        
+//        let downloader = Downloader(maxRetries: 3)
+//        Task {
+//            await downloader.downloadFiles(topos)
+//        }
         
-        let downloader = Downloader(maxRetries: 3)
         Task {
-            await downloader.downloadFiles(urls: urls)
+            try await AreaNewDownloader(areaId: 22, status: .initial).getTopoList()
         }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.

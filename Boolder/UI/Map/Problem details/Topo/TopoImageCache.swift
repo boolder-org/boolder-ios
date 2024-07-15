@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: remove
 class TopoImageCache {
     static let shared = TopoImageCache()
     private init() {}

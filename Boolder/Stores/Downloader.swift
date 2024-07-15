@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 class Downloader {
     private let maxRetries: Int
     
@@ -15,55 +17,45 @@ class Downloader {
         self.maxRetries = maxRetries
     }
     
-    func downloadFiles(urls: [URL]) async {
+    func downloadFiles(_ topos: [TopoData]) async {
         await withTaskGroup(of: Void.self) { group in
-            for url in urls {
+            for topo in topos {
                 group.addTask {
-                    await self.downloadFile(url: url, retriesLeft: self.maxRetries)
+                    await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
                 }
             }
         }
         print("All downloads completed")
     }
     
-    private func downloadFile(url: URL, retriesLeft: Int) async {
-        if let (data, response) = try? await URLSession.shared.data(from: url) {
+    private func downloadFile(topo: TopoData, retriesLeft: Int) async {
+        if let (data, response) = try? await URLSession.shared.data(from: topo.url) {
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                save(data: data, for: url)
-                print("Downloaded and saved \(url)")
+                save(data: data, for: topo)
+                print("Downloaded and saved \(topo.url)")
             } else if retriesLeft > 0 {
-                print("Retrying \(url), retries left: \(retriesLeft)")
-                await downloadFile(url: url, retriesLeft: retriesLeft - 1)
+                print("Retrying \(topo.url), retries left: \(retriesLeft)")
+                await downloadFile(topo: topo, retriesLeft: retriesLeft - 1)
             } else {
-                print("Failed to download \(url) after maximum retries")
+                print("Failed to download \(topo.url) after maximum retries")
             }
         }
         else {
-            print("Failed to download \(url) after maximum retries")
+            // TODO
         }
     }
     
-    private func save(data: Data, for url: URL) {
+    private func save(data: Data, for topo: TopoData) {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent("topo-534.jpg")
+        let fileURL = documentsURL.appendingPathComponent("topo-\(topo.id).jpg")
         
         do {
             try data.write(to: fileURL)
             print("File saved: \(fileURL)")
         } catch {
-            print("Failed to save file \(url): \(error)")
+            print("Failed to save file \(topo.url): \(error)")
         }
     }
 }
-
-//// Usage
-//let urls: [URL] = [
-//    // Add your file URLs here
-//]
-//
-//let downloader = Downloader(maxRetries: 3)
-//Task {
-//    await downloader.downloadFiles(urls: urls)
-//}
