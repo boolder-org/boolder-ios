@@ -51,7 +51,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func start() {
-        if false { // TODO: look for downloaded files
+        if alreadyDownloaded {
             DispatchQueue.main.async{
                 self.status = .downloaded
             }
@@ -72,6 +72,7 @@ class AreaDownloader: Identifiable, ObservableObject {
                 await downloader.downloadFiles(onSuccess: { [self] in
                     DispatchQueue.main.async{
                         self.status = .downloaded
+                        self.createDownloadedFile()
                     }
                     
                 }, onFailure: { error in
@@ -95,12 +96,50 @@ class AreaDownloader: Identifiable, ObservableObject {
                     print("Topo ID: \(topo.topoID), URL: \(topo.url)")
                 }
                 
-                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!)}
+                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
             }
         }
         
         return []
     }
+
+    private func createDownloadedFile() {
+        print("DOWNLOADED")
+        
+        // Step 1: Get the path to the caches directory
+        let fileManager = FileManager.default
+        guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            print("Could not find caches directory")
+            return
+        }
+        
+        // Step 2: Construct the file path for ".downloaded"
+        let downloadedFilePath = cachesDirectory.appendingPathComponent("area-\(areaId)").appendingPathComponent("downloaded")
+        
+        // Step 3: Create an empty file at that path
+        let success = fileManager.createFile(atPath: downloadedFilePath.path, contents: nil, attributes: nil)
+        
+        if success {
+            print("Successfully created .downloaded file in caches directory")
+        } else {
+            print("Failed to create .downloaded file in caches directory")
+        }
+    }
+    
+    var alreadyDownloaded : Bool {
+        // Get the path to the caches directory
+        let fileManager = FileManager.default
+        guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            print("Could not find caches directory")
+            return false
+        }
+        
+        let downloadedFilePath = cachesDirectory.appendingPathComponent("area-\(areaId)").appendingPathComponent("downloaded")
+        
+        return fileManager.fileExists(atPath: downloadedFilePath.path)
+    }
+    
+    
     
     struct TopoJson: Codable {
         let topoID: Int

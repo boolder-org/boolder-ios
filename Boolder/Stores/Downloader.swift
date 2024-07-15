@@ -20,6 +20,11 @@ class Downloader : ObservableObject {
     }
     
     func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping (NSError) -> Void) async {
+        
+        Array(Set(topos.map{$0.areaId})).forEach { id in
+            createFolderInCachesDirectory(folderName: "area-\(id)")
+        }
+        
         await withTaskGroup(of: Void.self) { group in
             for topo in topos {
 //                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
@@ -58,13 +63,37 @@ class Downloader : ObservableObject {
     private func save(data: Data, for topo: TopoData) {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent("topo-\(topo.id).jpg")
+        let fileURL = documentsURL.appendingPathComponent("area-\(topo.areaId)").appendingPathComponent("topo-\(topo.id).jpg")
         
         do {
             try data.write(to: fileURL)
             print("File saved: \(fileURL)")
         } catch {
             print("Failed to save file \(topo.url): \(error)")
+        }
+    }
+    
+    func createFolderInCachesDirectory(folderName: String) {
+        // Get the path to the Caches directory
+        if let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
+            
+            // Create a URL for the new folder
+            let newFolderURL = cachesDirectory.appendingPathComponent(folderName)
+            
+            // Check if the folder already exists
+            if !FileManager.default.fileExists(atPath: newFolderURL.path) {
+                do {
+                    // Create the folder at the specified URL
+                    try FileManager.default.createDirectory(at: newFolderURL, withIntermediateDirectories: true, attributes: nil)
+                    print("Folder created at: \(newFolderURL.path)")
+                } catch {
+                    print("Error creating folder: \(error.localizedDescription)")
+                }
+            } else {
+                print("Folder already exists at: \(newFolderURL.path)")
+            }
+        } else {
+            print("Could not find Caches directory")
         }
     }
 }

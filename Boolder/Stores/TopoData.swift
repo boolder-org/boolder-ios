@@ -11,4 +11,5 @@ import Foundation
 struct TopoData {
     let id: Int
     let url: URL
+    let areaId: Int
 }
