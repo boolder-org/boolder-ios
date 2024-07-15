@@ -1,8 +1,8 @@
 //
-//  AreaDownloader.swift
+//  AreaNewDownloader.swift
 //  Boolder
 //
-//  Created by Nicolas Mondollot on 04/01/2024.
+//  Created by Nicolas Mondollot on 15/07/2024.
 //  Copyright © 2024 Nicolas Mondollot. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ import Combine
 class AreaDownloader: Identifiable, ObservableObject {
     let areaId: Int
     @Published var status: DownloadStatus
-    let odrManager = ODRManager()
+//    let odrManager = ODRManager()
     var cancellable: Cancellable?
     
     init(areaId: Int, status: DownloadStatus) {
@@ -36,7 +36,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func remove() {
-        odrManager.stop()
+//        odrManager.stop()
         status = .initial
         
         DownloadSettings.shared.removeArea(areaId: areaId)
@@ -44,57 +44,47 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     func cancel() {
         // TODO: what if download is already finished?
-        odrManager.cancel()
+//        odrManager.cancel()
         status = .initial
         
         DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
     func start() {
-        odrManager.checkResources(tags: tags) { available in
-            if available {
-                DispatchQueue.main.async{
-                    self.status = .downloaded
-                }
-            }
-            else {
-                DispatchQueue.main.async{
-                    self.status = .downloading(progress: 0.0)
-                }
-                self.cancellable = self.odrManager.$downloadProgress.receive(on: DispatchQueue.main)
-                    .sink() { progress in
-                        self.status = .downloading(progress: progress)
-                    }
-                
-                self.odrManager.requestResources(tags: self.tags, onSuccess: { [self] in
-                    DispatchQueue.main.async{
-                        self.status = .downloaded
-                    }
-                    
-                }, onFailure: { error in
-                    DispatchQueue.main.async{
-                        print("On-demand resource error")
-                        self.status = .initial
-                    }
-                    
-                    // TODO: implement UI, log errors
-                    switch error.code {
-                    case NSBundleOnDemandResourceOutOfSpaceError:
-                        print("You don't have enough space available to download this resource.")
-                    case NSBundleOnDemandResourceExceededMaximumSizeError:
-                        print("The bundle resource was too big.")
-                    case NSBundleOnDemandResourceInvalidTagError:
-                        print("The requested tag does not exist.")
-                    default:
-                        print(error.description)
-                    }
-                })
-            }
+        let downloader = Downloader(maxRetries: 3)
+        
+        Task {
+            try await downloader.downloadFiles(getTopoList())
         }
     }
     
-    private var tags: Set<String> {
-        Set(["area-\(areaId)"])
+    private func getTopoList() async throws -> [TopoData] {
+        let url = URL(string: "https://www.boolder.com/api/v1/areas/\(areaId)/topos.json")!
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            if let topoArray = try? JSONDecoder().decode([TopoJson].self, from: data) {
+                
+                for topo in topoArray {
+                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
+                }
+                
+                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!)}
+            }
+        }
+        
+        return []
+    }
+    
+    struct TopoJson: Codable {
+        let topoID: Int
+        let url: String
+        
+        // Define the coding keys to match the JSON keys
+        enum CodingKeys: String, CodingKey {
+            case topoID = "topo_id"
+            case url
+        }
     }
     
     enum DownloadStatus: Equatable {
