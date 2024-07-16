@@ -44,5 +44,5 @@ class DownloadSettings : ObservableObject {
         }
     }
     
-    let userDefaultsKey = "offline-photos/areasIds"
+    let userDefaultsKey = "offline-photos-v2/areasIds"
 }

@@ -33,6 +33,7 @@ class Downloader : ObservableObject {
                     //                    try Task.checkCancellation()
                     
                     if self.alreadyExists(topo: topo) {
+                        print("topo \(topo.id) already exists")
                         self.count += 1
                         progress = min(1.0, Double(self.count) / Double(topos.count))
                     }
@@ -42,10 +43,12 @@ class Downloader : ObservableObject {
                     
                 }
             }
+            
+//            try await group.waitForAll()
         }
         
         if Task.isCancelled {
-            print("canceled")
+            print("cancelled")
         }
         else
         {
@@ -59,8 +62,16 @@ class Downloader : ObservableObject {
     }
     
     private func downloadFile(topo: TopoData, retriesLeft: Int) async {
+        print("downloading topo \(topo.id)")
+        
+        // TODO: use a timeout?
+//        let config = URLSessionConfiguration.default
+//        config.timeoutIntervalForResource =
         let session = URLSession(configuration: .ephemeral) // TODO: use URLSession.shared in production
-        if let (data, response) = try? await session.data(from: topo.url) {
+        
+        do {
+        
+            let (data, response) = try await session.data(from: topo.url)
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 save(data: data, for: topo)
@@ -69,13 +80,16 @@ class Downloader : ObservableObject {
 //                print("Downloaded and saved \(topo.url)")
             } else if retriesLeft > 0 {
                 print("Retrying \(topo.url), retries left: \(retriesLeft)")
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
                 await downloadFile(topo: topo, retriesLeft: retriesLeft - 1)
             } else {
                 print("Failed to download \(topo.url) after maximum retries")
             }
         }
-        else {
-            // TODO
+        catch {
+            // TODO: exception or cancelation
+            print(error)
+//            print(error.localizedDescription)
         }
     }
     
