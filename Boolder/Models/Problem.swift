@@ -87,7 +87,7 @@ struct Problem : Identifiable {
     }
     
     var mainTopoPhoto: UIImage? {
-        line?.offlinePhoto
+        line?.offlinePhoto(areaId: areaId)
     }
     
     var mainTopoId: Int? {

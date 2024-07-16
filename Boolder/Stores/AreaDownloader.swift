@@ -105,7 +105,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
 
     private func createDownloadedFile() {
-        print("DOWNLOADED")
+//        print("DOWNLOADED")
         
         // Step 1: Get the path to the caches directory
         let fileManager = FileManager.default

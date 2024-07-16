@@ -19,8 +19,12 @@ struct Line: Decodable {
         let y: Double
     }
     
-    var offlinePhoto: UIImage? {
-        UIImage(named: "topo-\(String(topoId)).jpg")
+    func offlinePhoto(areaId: Int) -> UIImage? {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(topoId).jpg")
+        return UIImage(contentsOfFile: fileURL.path)
+//        UIImage(named: "topo-\(String(topoId)).jpg")
     }
 }
 
