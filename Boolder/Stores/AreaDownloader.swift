@@ -36,7 +36,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func remove() {
-//        odrManager.stop()
+        deleteFolder()
         status = .initial
         
         DownloadSettings.shared.removeArea(areaId: areaId)
@@ -44,7 +44,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     func cancel() {
         // TODO: what if download is already finished?
-//        odrManager.cancel()
+        deleteFolder()
         status = .initial
         
         DownloadSettings.shared.removeArea(areaId: areaId)
@@ -58,6 +58,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         }
         else {
             DispatchQueue.main.async{
+                // TODO: show some progress before we get the topos list?
                 self.status = .downloading(progress: 0.0)
             }
             
@@ -137,6 +138,31 @@ class AreaDownloader: Identifiable, ObservableObject {
         let downloadedFilePath = cachesDirectory.appendingPathComponent("area-\(areaId)").appendingPathComponent("downloaded")
         
         return fileManager.fileExists(atPath: downloadedFilePath.path)
+    }
+    
+    func deleteFolder() {
+        let fileManager = FileManager.default
+        
+        guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            print("Could not find caches directory")
+            return
+        }
+        
+        let folder = cachesDirectory.appendingPathComponent("area-\(areaId)")
+
+        do {
+            // Check if the folder exists
+            if fileManager.fileExists(atPath: folder.path) {
+                // Attempt to remove the folder and its contents
+                try fileManager.removeItem(at: folder)
+                print("Folder deleted successfully.")
+            } else {
+                print("Folder does not exist at path: \(folder)")
+            }
+        } catch {
+            // Handle the error
+            print("Error while deleting folder: \(error)")
+        }
     }
     
     

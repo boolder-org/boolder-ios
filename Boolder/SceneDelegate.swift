@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let odrManager = (UIApplication.shared.delegate as! AppDelegate).odrManager
         
         // FIXME: remove this?
-//        DownloadCenter.shared.start()
+        DownloadCenter.shared.start()
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        
