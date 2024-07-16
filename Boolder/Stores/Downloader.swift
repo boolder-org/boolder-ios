@@ -14,6 +14,8 @@ class Downloader : ObservableObject {
     private let topos: [TopoData]
     private var count: Int = 0
     
+    var taskGroup : TaskGroup<Void>?
+    
     init(maxRetries: Int, topos: [TopoData]) {
         self.maxRetries = maxRetries
         self.topos = topos
@@ -26,17 +28,33 @@ class Downloader : ObservableObject {
         }
         
         await withTaskGroup(of: Void.self) { group in
+//            self.taskGroup = taskGroup
             for topo in topos {
-//                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
-                group.addTask {
-                    await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
+                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
+                group.addTask { [self] in
+                    if self.alreadyExists(topo: topo) {
+                        self.count += 1
+                        progress = min(1.0, Double(self.count) / Double(topos.count))
+//                        print("file already exists")
+//                        print(topo.url)
+                    }
+                    else {
+//                        print("file does not exist")
+//                        print(topo.url)
+                        await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
+                    }
                 }
             }
         }
         onSuccess()
         print("All downloads completed")
+//        self.taskGroup = nil
         
         // TODO: handle failure
+    }
+    
+    private func alreadyExists(topo: TopoData) -> Bool {
+        FileManager.default.fileExists(atPath: topo.fileUrl.path)
     }
     
     private func downloadFile(topo: TopoData, retriesLeft: Int) async {

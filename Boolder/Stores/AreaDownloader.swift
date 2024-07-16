@@ -141,6 +141,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func deleteFolder() {
+        
         let fileManager = FileManager.default
         
         guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
