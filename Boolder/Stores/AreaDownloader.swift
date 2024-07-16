@@ -87,7 +87,7 @@ class AreaDownloader: Identifiable, ObservableObject {
                         self.createDownloadedFile()
                     }
                     
-                }, onFailure: { error in
+                }, onFailure: { [self] in
                     DispatchQueue.main.async{
                         print("Error downloading")
                         self.status = .initial
@@ -108,7 +108,10 @@ class AreaDownloader: Identifiable, ObservableObject {
 //                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
 //                }
                 
-                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
+                var a = topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
+                a.append(TopoData(id: 123, url: URL(string: "https://www.boolder.com/fr/topoooo")!, areaId: 1))
+                
+                return a
             }
         }
         

@@ -19,16 +19,16 @@ class Downloader : ObservableObject {
         self.topos = topos
     }
     
-    func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping (NSError) -> Void) async {
+    func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
         
         Array(Set(topos.map{$0.areaId})).forEach { id in
             createFolderInCachesDirectory(folderName: "area-\(id)")
         }
         
-        await withThrowingTaskGroup(of: Void.self) { group in
+        let success = await withTaskGroup(of: Bool.self) { group -> Bool in
             
             for topo in topos {
-                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
+//                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
                 group.addTask { [self] in
                     //                    try Task.checkCancellation()
                     
@@ -36,15 +36,17 @@ class Downloader : ObservableObject {
                         print("topo \(topo.id) already exists")
                         self.count += 1
                         progress = min(1.0, Double(self.count) / Double(topos.count))
+                        return true
                     }
                     else {
-                        await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
+                        return await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
                     }
                     
                 }
             }
             
 //            try await group.waitForAll()
+            return await group.allSatisfy{$0}
         }
         
         if Task.isCancelled {
@@ -52,8 +54,15 @@ class Downloader : ObservableObject {
         }
         else
         {
-            onSuccess()
-            print("All downloads completed")
+            if success {
+                onSuccess()
+                print("All downloads completed")
+            }
+            else {
+                print("failure")
+                // TODO
+                onFailure()
+            }
         }
     }
     
@@ -61,7 +70,7 @@ class Downloader : ObservableObject {
         FileManager.default.fileExists(atPath: topo.fileUrl.path)
     }
     
-    private func downloadFile(topo: TopoData, retriesLeft: Int) async {
+    private func downloadFile(topo: TopoData, retriesLeft: Int) async -> Bool {
         print("downloading topo \(topo.id)")
         
         // TODO: use a timeout?
@@ -77,11 +86,12 @@ class Downloader : ObservableObject {
                 save(data: data, for: topo)
                 count += 1
                 progress = min(1.0, Double(count) / Double(topos.count))
+                return true
 //                print("Downloaded and saved \(topo.url)")
             } else if retriesLeft > 0 {
                 print("Retrying \(topo.url), retries left: \(retriesLeft)")
                 try? await Task.sleep(nanoseconds: 1_000_000_000)
-                await downloadFile(topo: topo, retriesLeft: retriesLeft - 1)
+                return await downloadFile(topo: topo, retriesLeft: retriesLeft - 1)
             } else {
                 print("Failed to download \(topo.url) after maximum retries")
             }
@@ -91,6 +101,8 @@ class Downloader : ObservableObject {
             print(error)
 //            print(error.localizedDescription)
         }
+        
+        return false
     }
     
     private func save(data: Data, for topo: TopoData) {
