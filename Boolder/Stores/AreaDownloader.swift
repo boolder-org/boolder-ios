@@ -17,6 +17,8 @@ class AreaDownloader: Identifiable, ObservableObject {
 //    let odrManager = ODRManager()
     var cancellable: Cancellable?
     
+    var task: Task<(), any Error>?
+    
     init(areaId: Int, status: DownloadStatus) {
         self.areaId = areaId
         self.status = status
@@ -36,6 +38,8 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func remove() {
+        cancellable = nil
+        
         deleteFolder()
         status = .initial
         
@@ -44,7 +48,14 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     func cancel() {
         // TODO: what if download is already finished?
-        deleteFolder()
+        
+        self.task?.cancel()
+        
+        cancellable = nil
+        
+        // TODO: should we delete folder?
+//        deleteFolder()
+        
         status = .initial
         
         DownloadSettings.shared.removeArea(areaId: areaId)
@@ -62,7 +73,7 @@ class AreaDownloader: Identifiable, ObservableObject {
                 self.status = .downloading(progress: 0.0)
             }
             
-            Task {
+            self.task = Task {
                 let downloader = try await Downloader(maxRetries: 3, topos: getTopoList())
                 
                 self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
@@ -93,9 +104,9 @@ class AreaDownloader: Identifiable, ObservableObject {
             
             if let topoArray = try? JSONDecoder().decode([TopoJson].self, from: data) {
                 
-                for topo in topoArray {
-                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
-                }
+//                for topo in topoArray {
+//                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
+//                }
                 
                 return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
             }

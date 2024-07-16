@@ -14,8 +14,6 @@ class Downloader : ObservableObject {
     private let topos: [TopoData]
     private var count: Int = 0
     
-    var taskGroup : TaskGroup<Void>?
-    
     init(maxRetries: Int, topos: [TopoData]) {
         self.maxRetries = maxRetries
         self.topos = topos
@@ -27,30 +25,33 @@ class Downloader : ObservableObject {
             createFolderInCachesDirectory(folderName: "area-\(id)")
         }
         
-        await withTaskGroup(of: Void.self) { group in
-//            self.taskGroup = taskGroup
+        await withThrowingTaskGroup(of: Void.self) { group in
+            
             for topo in topos {
                 try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
                 group.addTask { [self] in
+                    //                    try Task.checkCancellation()
+                    
                     if self.alreadyExists(topo: topo) {
                         self.count += 1
                         progress = min(1.0, Double(self.count) / Double(topos.count))
-//                        print("file already exists")
-//                        print(topo.url)
                     }
                     else {
-//                        print("file does not exist")
-//                        print(topo.url)
                         await self.downloadFile(topo: topo, retriesLeft: self.maxRetries)
                     }
+                    
                 }
             }
         }
-        onSuccess()
-        print("All downloads completed")
-//        self.taskGroup = nil
         
-        // TODO: handle failure
+        if Task.isCancelled {
+            print("canceled")
+        }
+        else
+        {
+            onSuccess()
+            print("All downloads completed")
+        }
     }
     
     private func alreadyExists(topo: TopoData) -> Bool {
@@ -65,7 +66,7 @@ class Downloader : ObservableObject {
                 save(data: data, for: topo)
                 count += 1
                 progress = min(1.0, Double(count) / Double(topos.count))
-                print("Downloaded and saved \(topo.url)")
+//                print("Downloaded and saved \(topo.url)")
             } else if retriesLeft > 0 {
                 print("Retrying \(topo.url), retries left: \(retriesLeft)")
                 await downloadFile(topo: topo, retriesLeft: retriesLeft - 1)
@@ -85,7 +86,7 @@ class Downloader : ObservableObject {
         
         do {
             try data.write(to: fileURL)
-            print("File saved: \(fileURL)")
+//            print("File saved: \(fileURL)")
         } catch {
             print("Failed to save file \(topo.url): \(error)")
         }
