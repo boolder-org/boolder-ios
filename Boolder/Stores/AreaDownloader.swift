@@ -109,7 +109,7 @@ class AreaDownloader: Identifiable, ObservableObject {
 //                }
                 
                 var a = topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
-                a.append(TopoData(id: 123, url: URL(string: "https://www.boolder.com/fr/topoooo")!, areaId: 1))
+//                a.append(TopoData(id: 123, url: URL(string: "https://www.boolder.com/fr/topoooo")!, areaId: 1))
                 
                 return a
             }

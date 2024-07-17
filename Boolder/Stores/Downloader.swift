@@ -71,7 +71,7 @@ class Downloader : ObservableObject {
     }
     
     private func downloadFile(topo: TopoData, retriesLeft: Int) async -> Bool {
-        print("downloading topo \(topo.id)")
+        
         
         // TODO: use a timeout?
 //        let config = URLSessionConfiguration.default
@@ -80,6 +80,7 @@ class Downloader : ObservableObject {
         
         do {
         
+            print("downloading topo \(topo.id)")
             let (data, response) = try await session.data(from: topo.url)
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
