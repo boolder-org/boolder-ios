@@ -17,6 +17,8 @@ class Downloader : ObservableObject {
     init(maxRetries: Int, topos: [TopoData]) {
         self.maxRetries = maxRetries
         self.topos = topos
+        
+        // TODO: raise if topos array is empty
     }
     
     func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
@@ -88,23 +90,23 @@ class Downloader : ObservableObject {
     private func downloadFile(topo: TopoData, retriesLeft: Int) async -> Bool {
         print("downloading topo \(topo.id)")
         
-        try? await Task.sleep(nanoseconds: 1_000_000_000*UInt64(Int.random(in: 0...5))) // FIXME: remove
+//        try? await Task.sleep(nanoseconds: 1_000_000_000*UInt64(Int.random(in: 0...5))) // FIXME: remove
         
-        // TODO: use a timeout?
-//        let config = URLSessionConfiguration.default
-//        config.timeoutIntervalForResource =
-        let session = URLSession(configuration: .ephemeral) // TODO: use URLSession.shared in production
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 30
+//        config.waitsForConnectivity = false
+        let session = URLSession(configuration: config) 
         
         do {
         
             
             let (data, response) = try await session.data(from: topo.url)
             
-            if Int.random(in: 0...30) == 0 {
-                print("BUGG for topo \(topo.id)")
-                try? await Task.sleep(nanoseconds: 3_000_000_000) // FIXME: remove
-                return false
-            }
+//            if Int.random(in: 0...30) == 0 {
+//                print("BUGG for topo \(topo.id)")
+//                try? await Task.sleep(nanoseconds: 3_000_000_000) // FIXME: remove
+//                return false
+//            }
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 save(data: data, for: topo)
