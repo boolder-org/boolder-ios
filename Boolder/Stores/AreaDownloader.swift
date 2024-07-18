@@ -76,6 +76,8 @@ class AreaDownloader: Identifiable, ObservableObject {
             self.task = Task {
                 let topos = try await getTopoList()
                 
+                print("\(topos.count) topos to download")
+                
                 // TODO: use an exception instead of an empty list?
                 if(topos.isEmpty) {
                     DispatchQueue.main.async{
