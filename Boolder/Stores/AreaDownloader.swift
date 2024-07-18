@@ -74,30 +74,42 @@ class AreaDownloader: Identifiable, ObservableObject {
             }
             
             self.task = Task {
-                let downloader = try await Downloader(maxRetries: 3, topos: getTopoList())
+                let topos = try await getTopoList()
                 
-                self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
-                    .sink() { progress in
-                        self.status = .downloading(progress: progress)
-                    }
-                
-                await downloader.downloadFiles(onSuccess: { [self] in
+                // TODO: use an exception instead of an empty list?
+                if(topos.isEmpty) {
                     DispatchQueue.main.async{
-                        self.status = .downloaded
-                        self.createDownloadedFile()
-                    }
-                    
-                }, onFailure: { [self] in
-                    DispatchQueue.main.async{
-                        print("Error downloading")
+                        print("No topos")
                         self.status = .initial
                     }
-                })
+                }
+                else {
+                    
+                    let downloader = Downloader(maxRetries: 3, topos: topos)
+                    
+                    self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+                        .sink() { progress in
+                            self.status = .downloading(progress: progress)
+                        }
+                    
+                    await downloader.downloadFiles(onSuccess: { [self] in
+                        DispatchQueue.main.async{
+                            self.status = .downloaded
+                            self.createDownloadedFile()
+                        }
+                        
+                    }, onFailure: { [self] in
+                        DispatchQueue.main.async{
+                            print("Error downloading")
+                            self.status = .initial
+                        }
+                    })
+                }
             }
         }
     }
     
-    private func getTopoList() async throws -> [TopoData] {
+    private func getTopoList() async -> [TopoData] {
         let url = URL(string: "https://www.boolder.com/api/v1/areas/\(areaId)/topos.json")!
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -108,14 +120,14 @@ class AreaDownloader: Identifiable, ObservableObject {
 //                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
 //                }
                 
-                var a = topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
-//                a.append(TopoData(id: 123, url: URL(string: "https://www.boolder.com/fr/topoooo")!, areaId: 1))
-                
-                return a
+                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
             }
         }
+        catch {
+            return [] // FIXME: don't return empty array
+        }
         
-        return []
+        return [] // FIXME: don't return empty array
     }
 
     private func createDownloadedFile() {
