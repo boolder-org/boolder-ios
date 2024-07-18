@@ -45,9 +45,24 @@ class Downloader : ObservableObject {
                 }
             }
             
+            var results = [Bool]()
+            
+            for await success in group {
+                results.append(success)
+                if !success {
+                    group.cancelAll()
+                }
+            }
+            
+            print(results)
+            
 //            try await group.waitForAll()
-            return await group.allSatisfy{$0}
+            
+            // FIXME: fail if one fails
+            return results.allSatisfy{$0}
         }
+        
+        print("result = \(success)")
         
         if Task.isCancelled {
             print("cancelled")
@@ -71,7 +86,9 @@ class Downloader : ObservableObject {
     }
     
     private func downloadFile(topo: TopoData, retriesLeft: Int) async -> Bool {
+        print("downloading topo \(topo.id)")
         
+        try? await Task.sleep(nanoseconds: 1_000_000_000*UInt64(Int.random(in: 0...5))) // FIXME: remove
         
         // TODO: use a timeout?
 //        let config = URLSessionConfiguration.default
@@ -80,8 +97,14 @@ class Downloader : ObservableObject {
         
         do {
         
-            print("downloading topo \(topo.id)")
+            
             let (data, response) = try await session.data(from: topo.url)
+            
+            if Int.random(in: 0...30) == 0 {
+                print("BUGG for topo \(topo.id)")
+                try? await Task.sleep(nanoseconds: 3_000_000_000) // FIXME: remove
+                return false
+            }
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                 save(data: data, for: topo)
