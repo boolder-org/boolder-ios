@@ -61,6 +61,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
+    // TODO: rename
     func updateStatus() {
         if alreadyDownloaded {
             DispatchQueue.main.async{
@@ -220,7 +221,7 @@ class AreaDownloader: Identifiable, ObservableObject {
 //        case requested
         case downloading(progress: Double)
         case downloaded
-        case failed
+//        case failed
         
         var label: String {
             switch self {
@@ -230,8 +231,8 @@ class AreaDownloader: Identifiable, ObservableObject {
                 "-"
             case .downloading(progress: let progress):
                 "\(Int(progress*100))%"
-            case .failed:
-                "failed"
+//            case .failed:
+//                "failed"
 //            case .requested:
 //                "requested"
             }

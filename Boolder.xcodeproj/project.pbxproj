@@ -24,8 +24,6 @@
 		03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE22B46B581005771C3 /* DownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* DownloadSettings.swift */; };
 		03147EE32B46B581005771C3 /* DownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* DownloadSettings.swift */; };
-		03147EE52B470F59005771C3 /* AreaDownloaderOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloaderOld.swift */; };
-		03147EE62B470F59005771C3 /* AreaDownloaderOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloaderOld.swift */; };
 		0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031498992B4FEF4B0014C883 /* SafariWebView.swift */; };
 		0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031498992B4FEF4B0014C883 /* SafariWebView.swift */; };
 		0314FFDF295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
@@ -186,7 +184,6 @@
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		03147EE12B46B581005771C3 /* DownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSettings.swift; sourceTree = "<group>"; };
-		03147EE42B470F59005771C3 /* AreaDownloaderOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloaderOld.swift; sourceTree = "<group>"; };
 		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
@@ -396,7 +393,6 @@
 				038F9D5D2C457C5B00152BC4 /* TopoData.swift */,
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
-				03147EE42B470F59005771C3 /* AreaDownloaderOld.swift */,
 				038F9D5A2C457BEB00152BC4 /* AreaDownloader.swift */,
 				03147EE12B46B581005771C3 /* DownloadSettings.swift */,
 			);
@@ -863,7 +859,6 @@
 				03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */,
 				03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
 				03E500972930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */,
-				03147EE62B470F59005771C3 /* AreaDownloaderOld.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -889,7 +884,6 @@
 				37A8C62A2453263300DC161F /* AppDelegate.swift in Sources */,
 				031F36B0291CE56100BD0C2B /* MapState.swift in Sources */,
 				031A61BB29EC7CE200B2B46E /* AppState.swift in Sources */,
-				03147EE52B470F59005771C3 /* AreaDownloaderOld.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
