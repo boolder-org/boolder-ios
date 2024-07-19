@@ -1,5 +1,5 @@
 //
-//  AreaNewDownloader.swift
+//  AreaDownloader.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 15/07/2024.
