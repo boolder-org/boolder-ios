@@ -90,7 +90,7 @@ class Downloader : ObservableObject {
         FileManager.default.fileExists(atPath: topo.fileUrl.path)
     }
     
-    private func downloadFile(topo: TopoData) async -> Bool {
+    func downloadFile(topo: TopoData) async -> Bool {
         print("downloading topo \(topo.id)")
         
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
@@ -124,7 +124,7 @@ class Downloader : ObservableObject {
         }
         
         // Move the downloaded file to the destination URL
-        try? fileManager.moveItem(at: localURL, to: destinationURL)
+        try! fileManager.moveItem(at: localURL, to: destinationURL)
     }
     
     func createFolderInCachesDirectory(folderName: String) {
