@@ -75,11 +75,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    // MARK: - DataStore
-    
-    lazy var odrManager: ODRManager = {
-       ODRManager()
-    }()
 }
 
