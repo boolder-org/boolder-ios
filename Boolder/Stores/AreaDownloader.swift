@@ -19,9 +19,9 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     var task: Task<(), any Error>?
     
-    init(areaId: Int, status: DownloadStatus) {
+    init(areaId: Int) {
         self.areaId = areaId
-        self.status = status
+        self.status = .initial
     }
     
     var id: Int {
@@ -59,6 +59,14 @@ class AreaDownloader: Identifiable, ObservableObject {
         status = .initial
         
         DownloadSettings.shared.removeArea(areaId: areaId)
+    }
+    
+    func updateStatus() {
+        if alreadyDownloaded {
+            DispatchQueue.main.async{
+                self.status = .downloaded
+            }
+        }
     }
     
     func start() {
@@ -209,7 +217,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     enum DownloadStatus: Equatable {
         case initial
-        case requested
+//        case requested
         case downloading(progress: Double)
         case downloaded
         case failed
@@ -224,8 +232,8 @@ class AreaDownloader: Identifiable, ObservableObject {
                 "\(Int(progress*100))%"
             case .failed:
                 "failed"
-            case .requested:
-                "requested"
+//            case .requested:
+//                "requested"
             }
         }
     }
