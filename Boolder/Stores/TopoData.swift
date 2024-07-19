@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: rename TopoUrl
 struct TopoData {
     let id: Int
     let url: URL

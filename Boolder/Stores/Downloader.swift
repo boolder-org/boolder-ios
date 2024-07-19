@@ -23,9 +23,12 @@ class Downloader : ObservableObject {
     
     func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
         
+        // TODO: refactor
         Array(Set(topos.map{$0.areaId})).forEach { id in
             createFolderInCachesDirectory(folderName: "area-\(id)")
         }
+        
+        count = 0
         
         let success = await withTaskGroup(of: Bool.self) { group -> Bool in
             
@@ -89,6 +92,8 @@ class Downloader : ObservableObject {
     
     private func downloadFile(topo: TopoData) async -> Bool {
         print("downloading topo \(topo.id)")
+        
+        createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
         
         //        try? await Task.sleep(nanoseconds: 1_000_000_000*UInt64(Int.random(in: 0...5))) // FIXME: remove
         
