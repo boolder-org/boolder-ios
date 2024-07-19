@@ -123,7 +123,7 @@ class Downloader : ObservableObject {
             try? fileManager.removeItem(at: destinationURL)
         }
         
-        // Move the downloaded file to the destination URL
+        // TODO: don't use bang
         try! fileManager.moveItem(at: localURL, to: destinationURL)
     }
     
