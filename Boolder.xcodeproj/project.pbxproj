@@ -22,8 +22,6 @@
 		030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
 		03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
-		03147EE22B46B581005771C3 /* DownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* DownloadSettings.swift */; };
-		03147EE32B46B581005771C3 /* DownloadSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE12B46B581005771C3 /* DownloadSettings.swift */; };
 		0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031498992B4FEF4B0014C883 /* SafariWebView.swift */; };
 		0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031498992B4FEF4B0014C883 /* SafariWebView.swift */; };
 		0314FFDF295054C500B7E249 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314FFDE295054C500B7E249 /* AreaView.swift */; };
@@ -83,8 +81,6 @@
 		039D432D2B32EBE200FD3E5D /* DownloadAreaButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039D432B2B32EBE200FD3E5D /* DownloadAreaButtonView.swift */; };
 		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
 		03B910712B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
-		03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */; };
-		03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
 		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
 		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
@@ -183,7 +179,6 @@
 		030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
-		03147EE12B46B581005771C3 /* DownloadSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSettings.swift; sourceTree = "<group>"; };
 		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
 		0314FFDE295054C500B7E249 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
 		0314FFE42950786F00B7E249 /* AreaToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaToolbarView.swift; sourceTree = "<group>"; };
@@ -213,7 +208,6 @@
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
 		039D432B2B32EBE200FD3E5D /* DownloadAreaButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAreaButtonView.swift; sourceTree = "<group>"; };
 		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
-		03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDebugView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -394,7 +388,6 @@
 				37B4524E25923B5A00241091 /* ODRManager.swift */,
 				03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */,
 				038F9D5A2C457BEB00152BC4 /* AreaDownloader.swift */,
-				03147EE12B46B581005771C3 /* DownloadSettings.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -408,7 +401,6 @@
 				03C104E7290ACBEE007A94D7 /* Map */,
 				37158D0425487F1700A8B696 /* Discover */,
 				031F36C4291EAD8A00BD0C2B /* Tick List */,
-				03BDAEA32B14D8350012F6F0 /* OfflineDebugView.swift */,
 				3794555E25AB6DC9009C47A4 /* SettingsView.swift */,
 				033F70E4291AA1B1000DD3F4 /* Misc */,
 			);
@@ -795,10 +787,8 @@
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
 				038C2EF229201152006581CD /* MapContainerView.swift in Sources */,
-				03BDAEA52B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
-				03147EE32B46B581005771C3 /* DownloadSettings.swift in Sources */,
 				03B910712B2C798200DE7B45 /* CircularProgressView.swift in Sources */,
 				0355A0D42B1745340007EE07 /* TopoImageCache.swift in Sources */,
 				038C2EF529201315006581CD /* SearchView.swift in Sources */,
@@ -868,11 +858,9 @@
 			files = (
 				033F70D429191755000DD3F4 /* FiltersView.swift in Sources */,
 				038C2EF129201152006581CD /* MapContainerView.swift in Sources */,
-				03BDAEA42B14D8350012F6F0 /* OfflineDebugView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				0307619C2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
-				03147EE22B46B581005771C3 /* DownloadSettings.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
 				030AC1A927BAFBFE00AF85E7 /* TopAreasDryFast.swift in Sources */,

@@ -33,7 +33,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func requestAndStartDownload() {
-        DownloadSettings.shared.addArea(areaId: areaId)
+//        DownloadSettings.shared.addArea(areaId: areaId)
         start()
     }
     
@@ -43,7 +43,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         deleteFolder()
         status = .initial
         
-        DownloadSettings.shared.removeArea(areaId: areaId)
+//        DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
     func cancel() {
@@ -58,7 +58,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         
         status = .initial
         
-        DownloadSettings.shared.removeArea(areaId: areaId)
+//        DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
     // TODO: rename

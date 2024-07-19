@@ -13,10 +13,6 @@ class DownloadCenter: ObservableObject {
     static let shared = DownloadCenter()
     
     private var allAreas = [AreaDownloader]()
-    @Published var requestedAreas = [AreaDownloader]()
-    
-    let settings = DownloadSettings.shared
-    var cancellable: Cancellable?
     
     private init() {
         allAreas = Area.all.sorted{
@@ -24,15 +20,10 @@ class DownloadCenter: ObservableObject {
         }.map { area in
             AreaDownloader(areaId: area.id)
         }
-        
-        cancellable = settings.$areaIds
-            .map { ids in ids.map{ id in Area.load(id: id)}.compactMap{$0} }
-            .map { $0.map{self.areaDownloader(id: $0.id)} }
-            .assign(to: \.requestedAreas, on: self)
     }
     
     func start() {
-        requestedAreas.forEach { areaDownloader in
+        allAreas.forEach { areaDownloader in
             areaDownloader.updateStatus()
         }
     }
