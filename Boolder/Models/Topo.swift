@@ -20,13 +20,16 @@ struct Topo {
         self.remoteFile = remoteFile
     }
     
-    // TODO: make private?
-    var localFile: URL {
-        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
-    }
-    
     var offlinePhoto: UIImage? {
         UIImage(contentsOfFile: localFile.path)
+    }
+    
+    var offlinePhotoExists: Bool {
+        FileManager.default.fileExists(atPath: localFile.path)
+    }
+    
+    private var localFile: URL {
+        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }
 }

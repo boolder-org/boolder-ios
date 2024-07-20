@@ -87,7 +87,7 @@ class Downloader : ObservableObject {
     }
     
     private func alreadyExists(topo: Topo) -> Bool {
-        FileManager.default.fileExists(atPath: topo.localFile.path)
+        topo.offlinePhotoExists
     }
     
     func downloadFile(topo: Topo) async -> Bool {
