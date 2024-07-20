@@ -86,20 +86,18 @@ struct Problem : Identifiable {
         return firstPoint
     }
     
-    var mainTopoPhoto: UIImage? {
-        mainTopo?.offlinePhoto
-    }
-    
-    var mainTopo: Topo? {
-        if let topoId = mainTopoId {
-            return Topo(id: topoId, areaId: areaId)
-        }
-        
-        return nil
-    }
-    
-    var mainTopoId: Int? {
+    var topoId: Int? {
         line?.topoId
+    }
+    
+    private var topo: Topo? {
+        guard let topoId = topoId else { return nil }
+        
+        return Topo(id: topoId, areaId: areaId)
+    }
+    
+    var offlinePhoto: UIImage? {
+        topo?.offlinePhoto
     }
     
     func isFavorite() -> Bool {
@@ -226,7 +224,7 @@ extension Problem {
                 p.id != id // don't show itself
                 && (p.parentId == nil) // don't show anyone's children
                 && (p.id != parentId) // don't show problem's parent
-                && p.mainTopoId == self.mainTopoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
+                && p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
             }
         }
         catch {

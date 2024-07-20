@@ -149,7 +149,7 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { [problem] newValue in
-            if problem.mainTopoId == newValue.mainTopoId {
+            if problem.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -170,12 +170,12 @@ struct TopoView: View {
     }
     
     func loadData() async {
-        if let localPhoto = problem.mainTopoPhoto {
+        if let localPhoto = problem.offlinePhoto {
             self.photoStatus = .ready(image: localPhoto)
             return
         }
         
-        guard let topoId = problem.mainTopoId else {
+        guard let topoId = problem.topoId else {
             photoStatus = .none
             return
         }
@@ -187,7 +187,7 @@ struct TopoView: View {
             let downloader = Downloader(maxRetries: 3, topos: [topo]) // FIXME: don't pass arguments here
             if await downloader.downloadFile(topo: topo) {
                 print("got it")
-                if let localPhoto = problem.mainTopoPhoto {
+                if let localPhoto = problem.offlinePhoto {
                     print("yeah")
                     self.photoStatus = .ready(image: localPhoto)
                     return
