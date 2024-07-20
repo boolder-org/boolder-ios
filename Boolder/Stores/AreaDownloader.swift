@@ -14,7 +14,6 @@ import Combine
 class AreaDownloader: Identifiable, ObservableObject {
     let areaId: Int
     @Published var status: DownloadStatus
-//    let odrManager = ODRManager()
     var cancellable: Cancellable?
     
     var task: Task<(), any Error>?
