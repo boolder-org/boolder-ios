@@ -187,6 +187,7 @@ struct TopoView: View {
         photoStatus = .loading
         try? await topo.getRemoteUrl()
         
+        // TODO: make it clear that this is a side-effect from topo.getRemoteUrl()
         guard topo.remoteFile != nil else {
             self.photoStatus = .error
             return
