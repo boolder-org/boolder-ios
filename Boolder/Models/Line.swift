@@ -19,12 +19,11 @@ struct Line: Decodable {
         let y: Double
     }
     
+    // TODO: move to Topo
     func offlinePhoto(areaId: Int) -> UIImage? {
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(topoId).jpg")
         return UIImage(contentsOfFile: fileURL.path)
-//        UIImage(named: "topo-\(String(topoId)).jpg")
     }
 }
 

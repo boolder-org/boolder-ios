@@ -120,7 +120,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         }
     }
     
-    private func getTopoList() async -> [TopoData] {
+    private func getTopoList() async -> [Topo] {
         let url = URL(string: "https://www.boolder.com/api/v1/areas/\(areaId)/topos.json")!
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -131,7 +131,7 @@ class AreaDownloader: Identifiable, ObservableObject {
 //                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
 //                }
                 
-                return topoArray.map{TopoData(id: $0.topoID, url: URL(string: $0.url)!, areaId: areaId)}
+                return topoArray.map{Topo(id: $0.topoID, areaId: areaId, remoteFile: URL(string: $0.url)!)}
             }
         }
         catch {

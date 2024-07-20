@@ -1,5 +1,5 @@
 //
-//  TopoData.swift
+//  Topo.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 15/07/2024.
@@ -8,16 +8,13 @@
 
 import Foundation
 
-// TODO: rename TopoUrl
-struct TopoData {
+struct Topo {
     let id: Int
-    let url: URL
     let areaId: Int
+    let remoteFile: URL
     
-    // TODO: rename
-    var fileUrl : URL {
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+    var localFile : URL {
+        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }
 }

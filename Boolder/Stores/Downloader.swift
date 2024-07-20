@@ -11,10 +11,10 @@ import Foundation
 class Downloader : ObservableObject {
     @Published var progress: Double = 0
     private let maxRetries: Int // TODO: remove
-    private let topos: [TopoData]
+    private let topos: [Topo]
     private var count: Int = 0
     
-    init(maxRetries: Int, topos: [TopoData]) {
+    init(maxRetries: Int, topos: [Topo]) {
         self.maxRetries = maxRetries
         self.topos = topos
         
@@ -86,11 +86,11 @@ class Downloader : ObservableObject {
         }
     }
     
-    private func alreadyExists(topo: TopoData) -> Bool {
-        FileManager.default.fileExists(atPath: topo.fileUrl.path)
+    private func alreadyExists(topo: Topo) -> Bool {
+        FileManager.default.fileExists(atPath: topo.localFile.path)
     }
     
-    func downloadFile(topo: TopoData) async -> Bool {
+    func downloadFile(topo: Topo) async -> Bool {
         print("downloading topo \(topo.id)")
         
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
@@ -102,7 +102,7 @@ class Downloader : ObservableObject {
         //        config.waitsForConnectivity = false
         let session = URLSession(configuration: config)
         
-        if let (localURL, _) = try? await session.download(from: topo.url) {
+        if let (localURL, _) = try? await session.download(from: topo.remoteFile) {
             save(localURL: localURL, for: topo)
             count += 1
             progress = min(1.0, Double(count) / Double(topos.count))
@@ -114,7 +114,7 @@ class Downloader : ObservableObject {
         
     }
     
-    private func save(localURL: URL, for topo: TopoData) {
+    private func save(localURL: URL, for topo: Topo) {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         let destinationURL = documentsURL.appendingPathComponent("area-\(topo.areaId)").appendingPathComponent("topo-\(topo.id).jpg")

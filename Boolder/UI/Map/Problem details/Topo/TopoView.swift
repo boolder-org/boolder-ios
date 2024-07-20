@@ -212,7 +212,7 @@ struct TopoView: View {
         var url: String
     }
     
-    func getTopoData(topoId: Int) async -> TopoData? {
+    func getTopoData(topoId: Int) async -> Topo? {
         guard let apiUrl = URL(string: "https://www.boolder.com/api/v1/topos/\(topoId)") else {
             print("Invalid URL")
             return nil
@@ -223,7 +223,7 @@ struct TopoView: View {
             
             if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
                 if let url = URL(string: decodedResponse.url) {
-                    return TopoData(id: topoId, url: url, areaId: problem.areaId)
+                    return Topo(id: topoId, areaId: problem.areaId, remoteFile: url)
                 }
             }
         }
