@@ -18,13 +18,6 @@ struct Line: Decodable {
         let x: Double
         let y: Double
     }
-    
-    // TODO: move to Topo
-    func offlinePhoto(areaId: Int) -> UIImage? {
-        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(topoId).jpg")
-        return UIImage(contentsOfFile: fileURL.path)
-    }
 }
 
 // MARK: SQLite

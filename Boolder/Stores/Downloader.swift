@@ -102,7 +102,9 @@ class Downloader : ObservableObject {
         //        config.waitsForConnectivity = false
         let session = URLSession(configuration: config)
         
-        if let (localURL, _) = try? await session.download(from: topo.remoteFile) {
+        guard let remoteFile = topo.remoteFile else { return false }
+        
+        if let (localURL, _) = try? await session.download(from: remoteFile) {
             save(localURL: localURL, for: topo)
             count += 1
             progress = min(1.0, Double(count) / Double(topos.count))

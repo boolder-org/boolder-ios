@@ -87,7 +87,15 @@ struct Problem : Identifiable {
     }
     
     var mainTopoPhoto: UIImage? {
-        line?.offlinePhoto(areaId: areaId)
+        mainTopo?.offlinePhoto
+    }
+    
+    var mainTopo: Topo? {
+        if let topoId = mainTopoId {
+            return Topo(id: topoId, areaId: areaId)
+        }
+        
+        return nil
     }
     
     var mainTopoId: Int? {
