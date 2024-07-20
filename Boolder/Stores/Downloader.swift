@@ -10,24 +10,17 @@ import Foundation
 
 class Downloader : ObservableObject {
     @Published var progress: Double = 0
-    private let maxRetries: Int // TODO: remove
-    private let topos: [Topo]
     private var count: Int = 0
+    var totalCount: Int = 0
     
-    init(maxRetries: Int, topos: [Topo]) {
-        self.maxRetries = maxRetries
-        self.topos = topos
-        
-        // TODO: raise if topos array is empty
-    }
-    
-    func downloadFiles(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
+    func downloadFiles(topos: [Topo], onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
         
         // TODO: refactor
         Array(Set(topos.map{$0.areaId})).forEach { id in
             createFolderInCachesDirectory(folderName: "area-\(id)")
         }
         
+        totalCount = topos.count
         count = 0
         
         let success = await withTaskGroup(of: Bool.self) { group -> Bool in
@@ -107,7 +100,7 @@ class Downloader : ObservableObject {
         if let (localURL, _) = try? await session.download(from: remoteFile) {
             save(localURL: localURL, for: topo)
             count += 1
-            progress = min(1.0, Double(count) / Double(topos.count))
+            progress = min(1.0, Double(count) / Double(totalCount))
             return true
         }
         

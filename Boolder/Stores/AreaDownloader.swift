@@ -95,14 +95,14 @@ class AreaDownloader: Identifiable, ObservableObject {
                 }
                 else {
                     
-                    let downloader = Downloader(maxRetries: 3, topos: topos)
+                    let downloader = Downloader()
                     
                     self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
                         .sink() { progress in
                             self.status = .downloading(progress: progress)
                         }
                     
-                    await downloader.downloadFiles(onSuccess: { [self] in
+                    await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
                         DispatchQueue.main.async{
                             self.status = .downloaded
                             self.createDownloadedFile()

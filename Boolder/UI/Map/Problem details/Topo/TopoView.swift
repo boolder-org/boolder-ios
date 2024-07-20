@@ -180,18 +180,23 @@ struct TopoView: View {
             return
         }
         
+        await downloadPhoto(topo: topo)
+    }
+    
+    func downloadPhoto(topo: Topo) async {
         photoStatus = .loading
         try? await topo.getRemoteUrl()
         
-        if topo.remoteFile != nil {
-            let downloader = Downloader(maxRetries: 3, topos: [topo]) // FIXME: don't pass arguments here
-            if await downloader.downloadFile(topo: topo) {
-                print("got it")
-                if let localPhoto = problem.offlinePhoto {
-                    print("yeah")
-                    self.photoStatus = .ready(image: localPhoto)
-                    return
-                }
+        guard topo.remoteFile != nil else {
+            self.photoStatus = .error
+            return
+        }
+        
+        if await Downloader().downloadFile(topo: topo) {
+            // TODO: move this logic to Downloader
+            if let photo = problem.offlinePhoto {
+                self.photoStatus = .ready(image: photo)
+                return
             }
         }
         
