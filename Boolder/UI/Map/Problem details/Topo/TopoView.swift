@@ -170,20 +170,20 @@ struct TopoView: View {
     }
     
     func loadData() async {
-        if let localPhoto = problem.offlinePhoto {
-            self.photoStatus = .ready(image: localPhoto)
-            return
-        }
-        
-        guard let topoId = problem.topoId else {
+        guard let topo = problem.topo else {
             photoStatus = .none
             return
         }
         
+        if let photo = problem.offlinePhoto {
+            self.photoStatus = .ready(image: photo)
+            return
+        }
         
         photoStatus = .loading
+        try? await topo.getRemoteUrl()
         
-        if let topo = await getTopoData(topoId: topoId) {
+        if topo.remoteFile != nil {
             let downloader = Downloader(maxRetries: 3, topos: [topo]) // FIXME: don't pass arguments here
             if await downloader.downloadFile(topo: topo) {
                 print("got it")
@@ -195,43 +195,8 @@ struct TopoView: View {
             }
         }
         
-        
         self.photoStatus = .error
         return
-            
-//            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
-//                self.photoStatus = .ready(image: image)
-//            }
-//            else {
-//                self.photoStatus = .error
-//            }
-
-    }
-    
-    struct Response: Codable {
-        var url: String
-    }
-    
-    func getTopoData(topoId: Int) async -> Topo? {
-        guard let apiUrl = URL(string: "https://www.boolder.com/api/v1/topos/\(topoId)") else {
-            print("Invalid URL")
-            return nil
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: apiUrl)
-            
-            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                if let url = URL(string: decodedResponse.url) {
-                    return Topo(id: topoId, areaId: problem.areaId, remoteFile: url)
-                }
-            }
-        }
-        catch {
-            return nil
-        }
-        
-        return nil
     }
     
     enum PhotoStatus: Equatable {

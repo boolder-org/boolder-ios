@@ -90,7 +90,7 @@ struct Problem : Identifiable {
         line?.topoId
     }
     
-    private var topo: Topo? {
+    var topo: Topo? {
         guard let topoId = topoId else { return nil }
         
         return Topo(id: topoId, areaId: areaId)

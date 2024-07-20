@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-struct Topo {
+class Topo {
     let id: Int
     let areaId: Int
-    let remoteFile: URL?
+    var remoteFile: URL?
     
     init(id: Int, areaId: Int, remoteFile: URL? = nil) {
         self.id = id
@@ -31,5 +31,20 @@ struct Topo {
     private var localFile: URL {
         let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
+    }
+    
+    func getRemoteUrl() async throws {
+        let (data, _) = try await URLSession.shared.data(from: apiUrl)
+        let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
+        
+        self.remoteFile = URL(string: decodedResponse.url)
+    }
+    
+    private var apiUrl: URL {
+        URL(string: "https://www.boolder.com/api/v1/topos/\(id)")!
+    }
+    
+    struct Response: Codable {
+        var url: String
     }
 }
