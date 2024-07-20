@@ -32,7 +32,10 @@ class Topo {
         let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }
-    
+}
+
+// MARK: API calls
+extension Topo {
     func getRemoteUrl() async throws {
         let (data, _) = try await URLSession.shared.data(from: apiUrl)
         let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
@@ -44,7 +47,7 @@ class Topo {
         URL(string: "https://www.boolder.com/api/v1/topos/\(id)")!
     }
     
-    struct Response: Codable {
+    private struct Response: Codable {
         var url: String
     }
 }
