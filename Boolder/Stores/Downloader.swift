@@ -104,7 +104,7 @@ class Downloader : ObservableObject {
             try? FileManager.default.removeItem(at: topo.onDiskURL)
         }
         
-        createDirectoryForArea(areaId: topo.areaId)
+        createDirectoryIfNeeded(areaId: topo.areaId)
         
         do {
             try FileManager.default.moveItem(at: file, to: topo.onDiskURL)
@@ -115,10 +115,9 @@ class Downloader : ObservableObject {
     }
     
     // TODO: make it DRY with Topo
-    func createDirectoryForArea(areaId: Int) {
-        let folderName = "area-\(areaId)"
+    func createDirectoryIfNeeded(areaId: Int) {
         let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let newFolderURL = cachesDirectory.appendingPathComponent(folderName)
+        let newFolderURL = cachesDirectory.appendingPathComponent("topos").appendingPathComponent("area-\(areaId)")
         
         if !FileManager.default.fileExists(atPath: newFolderURL.path) {
             try? FileManager.default.createDirectory(at: newFolderURL, withIntermediateDirectories: true, attributes: nil)
