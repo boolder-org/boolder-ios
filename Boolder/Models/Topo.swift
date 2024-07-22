@@ -18,15 +18,15 @@ struct Topo: Hashable {
         self.areaId = areaId
     }
     
-    var offlinePhoto: UIImage? {
-        UIImage(contentsOfFile: localFile.path)
+    var onDiskPhoto: UIImage? {
+        UIImage(contentsOfFile: onDiskURL.path)
     }
     
-    var offlinePhotoExists: Bool {
-        FileManager.default.fileExists(atPath: localFile.path)
+    var onDiskPhotoExists: Bool {
+        FileManager.default.fileExists(atPath: onDiskURL.path)
     }
     
-    private var localFile: URL {
+    private var onDiskURL: URL {
         let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         return cachesURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }

@@ -175,7 +175,7 @@ struct TopoView: View {
             return
         }
         
-        if let photo = problem.offlinePhoto {
+        if let photo = problem.onDiskPhoto {
             self.photoStatus = .ready(image: photo)
             return
         }
@@ -190,7 +190,7 @@ struct TopoView: View {
         if result == .success
         {
             // TODO: move this logic to Downloader
-            if let photo = problem.offlinePhoto {
+            if let photo = problem.onDiskPhoto {
                 self.photoStatus = .ready(image: photo)
                 return
             }

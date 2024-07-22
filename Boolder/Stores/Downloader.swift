@@ -27,7 +27,7 @@ class Downloader : ObservableObject {
             
             for topo in topos {
                 group.addTask { [self] in
-                    if topo.offlinePhotoExists {
+                    if topo.onDiskPhotoExists {
                         self.addCount(toposCount: topos.count)
                         return true
                     }
@@ -72,21 +72,16 @@ class Downloader : ObservableObject {
         }
     }
     
-    private func addCount(toposCount: Int) {
-        self.count += 1
-        progress = min(1.0, Double(self.count) / Double(toposCount))
-    }
-    
     func downloadFile(topo: Topo) async -> DownloadResult {
         
         // TODO: refactor
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
         
-        if let (localURL, response) = try? await session.download(from: topo.remoteFile) {
+        if let (onDiskURL, response) = try? await session.download(from: topo.remoteFile) {
             guard let response = response as? HTTPURLResponse, let mimeType = response.mimeType else { return .error }
             
             if response.statusCode == 200 && mimeType.hasPrefix("image") {
-                save(localURL: localURL, for: topo)
+                save(localURL: onDiskURL, for: topo)
                 return .success
             }
             else if response.statusCode == 404 {
@@ -101,6 +96,11 @@ class Downloader : ObservableObject {
         case success
         case notFound
         case error
+    }
+    
+    private func addCount(toposCount: Int) {
+        self.count += 1
+        progress = min(1.0, Double(self.count) / Double(toposCount))
     }
     
     private var session: URLSession {

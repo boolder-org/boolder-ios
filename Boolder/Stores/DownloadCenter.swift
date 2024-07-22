@@ -1,5 +1,5 @@
 //
-//  OfflineManager.swift
+//  DownloadCenter.swift
 //  Boolder
 //
 //  Created by Nicolas Mondollot on 24/11/2023.
