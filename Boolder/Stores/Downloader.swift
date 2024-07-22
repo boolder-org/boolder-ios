@@ -77,11 +77,11 @@ class Downloader : ObservableObject {
         // TODO: refactor
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
         
-        if let (onDiskURL, response) = try? await session.download(from: topo.remoteFile) {
+        if let (file, response) = try? await session.download(from: topo.remoteFile) {
             guard let response = response as? HTTPURLResponse, let mimeType = response.mimeType else { return .error }
             
             if response.statusCode == 200 && mimeType.hasPrefix("image") {
-                save(localURL: onDiskURL, for: topo)
+                save(file, for: topo)
                 return .success
             }
             else if response.statusCode == 404 {
@@ -109,17 +109,17 @@ class Downloader : ObservableObject {
         return URLSession(configuration: config)
     }
     
-    private func save(localURL: URL, for topo: Topo) {
-        let fileManager = FileManager.default
-        let cachesURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let destinationURL = cachesURL.appendingPathComponent("area-\(topo.areaId)").appendingPathComponent("topo-\(topo.id).jpg")
-        
-        if fileManager.fileExists(atPath: destinationURL.path) {
-            try? fileManager.removeItem(at: destinationURL)
+    private func save(_ file: URL, for topo: Topo) {
+        if FileManager.default.fileExists(atPath: topo.onDiskURL.path) {
+            try? FileManager.default.removeItem(at: topo.onDiskURL)
         }
         
-        // TODO: don't use bang
-        try! fileManager.moveItem(at: localURL, to: destinationURL)
+        do {
+            try FileManager.default.moveItem(at: file, to: topo.onDiskURL)
+        }
+        catch {
+            // TODO: handle error
+        }
     }
     
     func createFolderInCachesDirectory(folderName: String) {

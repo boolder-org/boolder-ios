@@ -96,8 +96,8 @@ struct Problem : Identifiable {
         return Topo(id: topoId, areaId: areaId)
     }
     
-    var offlinePhoto: UIImage? {
-        topo?.offlinePhoto
+    var onDiskPhoto: UIImage? {
+        topo?.onDiskPhoto
     }
     
     func isFavorite() -> Bool {

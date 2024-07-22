@@ -26,7 +26,7 @@ struct Topo: Hashable {
         FileManager.default.fileExists(atPath: onDiskURL.path)
     }
     
-    private var onDiskURL: URL {
+    var onDiskURL: URL {
         let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         return cachesURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }
