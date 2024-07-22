@@ -27,8 +27,8 @@ struct Topo: Hashable {
     }
     
     private var localFile: URL {
-        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
+        let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        return cachesURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }
     
     var remoteFile: URL {

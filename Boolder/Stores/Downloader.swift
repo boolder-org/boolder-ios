@@ -129,8 +129,8 @@ class Downloader : ObservableObject {
     
     private func save(localURL: URL, for topo: Topo) {
         let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let destinationURL = documentsURL.appendingPathComponent("area-\(topo.areaId)").appendingPathComponent("topo-\(topo.id).jpg")
+        let cachesURL = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let destinationURL = cachesURL.appendingPathComponent("area-\(topo.areaId)").appendingPathComponent("topo-\(topo.id).jpg")
         
         if fileManager.fileExists(atPath: destinationURL.path) {
             try? fileManager.removeItem(at: destinationURL)
