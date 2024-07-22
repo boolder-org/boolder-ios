@@ -11,7 +11,7 @@ import Foundation
 class Downloader : ObservableObject {
     @Published var progress: Double = 0
     private var count: Int = 0
-    var totalCount: Int = 0
+    private var totalCount: Int = 0
     
     func downloadFiles(topos: [Topo], onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
         
@@ -26,24 +26,18 @@ class Downloader : ObservableObject {
         let success = await withTaskGroup(of: Bool.self) { group -> Bool in
             
             for topo in topos {
-//                try? await Task.sleep(nanoseconds: 100_000_000) // FIXME: remove
                 group.addTask { [self] in
-                    //                    try Task.checkCancellation()
-                    
-                    if self.alreadyExists(topo: topo) {
-                        print("topo \(topo.id) already exists")
-                        self.count += 1
-                        progress = min(1.0, Double(self.count) / Double(topos.count))
+                    if topo.offlinePhotoExists {
+                        self.addCount(toposCount: topos.count)
                         return true
                     }
                     else {
                         let result = await self.downloadFile(topo: topo)
                         
+                        // Note: we tolerate "404 not found"
+                        // probable reason: the topo has been deleted on the server the user is using an old app version
                         if result == .success || result == .notFound {
-                            // we treat a 404 not found error the same as success because it's probably because the user is using an old app version and the topo has been deleted on the server => we can just ignore it
-                            self.count += 1
-                            progress = min(1.0, Double(self.count) / Double(topos.count))
-                            
+                            self.addCount(toposCount: topos.count)
                             return true
                         }
                     }
@@ -61,57 +55,45 @@ class Downloader : ObservableObject {
                 }
             }
             
-            print(results)
-            
-//            try await group.waitForAll()
-            
-            // FIXME: fail if one fails
             return results.allSatisfy{$0}
         }
         
-        print("result = \(success)")
-        
         if Task.isCancelled {
-            print("cancelled")
+            // TODO: do something?
         }
         else
         {
             if success {
                 onSuccess()
-                print("All downloads completed")
             }
             else {
-                print("failure")
-                // TODO
                 onFailure()
             }
         }
     }
     
-    private func alreadyExists(topo: Topo) -> Bool {
-        topo.offlinePhotoExists
+    private func addCount(toposCount: Int) {
+        self.count += 1
+        progress = min(1.0, Double(self.count) / Double(toposCount))
     }
     
     func downloadFile(topo: Topo) async -> DownloadResult {
-        print("downloading topo \(topo.id)")
         
+        // TODO: refactor
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
         
         if let (localURL, response) = try? await session.download(from: topo.remoteFile) {
             guard let response = response as? HTTPURLResponse, let mimeType = response.mimeType else { return .error }
             
             if response.statusCode == 200 && mimeType.hasPrefix("image") {
-                print("downloaded")
                 save(localURL: localURL, for: topo)
                 return .success
             }
             else if response.statusCode == 404 {
-                print("404 not found")
                 return .notFound
             }
         }
         
-        print("error")
         return .error
     }
     
