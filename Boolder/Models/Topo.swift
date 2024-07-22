@@ -19,16 +19,20 @@ struct Topo: Hashable {
     }
     
     var onDiskPhoto: UIImage? {
-        UIImage(contentsOfFile: onDiskURL.path)
+        UIImage(contentsOfFile: onDiskFile.path)
     }
     
     var onDiskPhotoExists: Bool {
-        FileManager.default.fileExists(atPath: onDiskURL.path)
+        FileManager.default.fileExists(atPath: onDiskFile.path)
     }
     
-    var onDiskURL: URL {
+    var onDiskFile: URL {
+        onDiskFolder.appendingPathComponent("topo-\(id).jpg")
+    }
+    
+    var onDiskFolder: URL {
         let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        return cachesURL.appendingPathComponent("topos").appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
+        return cachesURL.appendingPathComponent("topos").appendingPathComponent("area-\(areaId)")
     }
     
     var remoteFile: URL {

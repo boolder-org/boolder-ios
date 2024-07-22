@@ -100,27 +100,25 @@ class Downloader : ObservableObject {
     }
     
     private func save(_ file: URL, for topo: Topo) {
-        if FileManager.default.fileExists(atPath: topo.onDiskURL.path) {
-            try? FileManager.default.removeItem(at: topo.onDiskURL)
+        if FileManager.default.fileExists(atPath: topo.onDiskFile.path) {
+            try? FileManager.default.removeItem(at: topo.onDiskFile)
         }
         
-        createDirectoryIfNeeded(areaId: topo.areaId)
+        createDirectoryIfNeeded(topo: topo)
         
         do {
-            try FileManager.default.moveItem(at: file, to: topo.onDiskURL)
+            try FileManager.default.moveItem(at: file, to: topo.onDiskFile)
         }
         catch {
             // TODO: handle error
         }
     }
     
-    // TODO: make it DRY with Topo
-    func createDirectoryIfNeeded(areaId: Int) {
-        let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let newFolderURL = cachesDirectory.appendingPathComponent("topos").appendingPathComponent("area-\(areaId)")
+    func createDirectoryIfNeeded(topo: Topo) {
+        let folderURL = topo.onDiskFolder
         
-        if !FileManager.default.fileExists(atPath: newFolderURL.path) {
-            try? FileManager.default.createDirectory(at: newFolderURL, withIntermediateDirectories: true, attributes: nil)
+        if !FileManager.default.fileExists(atPath: folderURL.path) {
+            try? FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
         }
     }
 }
