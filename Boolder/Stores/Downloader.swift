@@ -38,9 +38,17 @@ class Downloader : ObservableObject {
                     }
                     else {
                         let result = await self.downloadFile(topo: topo)
-                        return result == .success || result == .notFound
+                        
+                        if result == .success || result == .notFound {
+                            // we treat a 404 not found error the same as success because it's probably because the user is using an old app version and the topo has been deleted on the server => we can just ignore it
+                            self.count += 1
+                            progress = min(1.0, Double(self.count) / Double(topos.count))
+                            
+                            return true
+                        }
                     }
                     
+                    return false
                 }
             }
             
@@ -95,20 +103,12 @@ class Downloader : ObservableObject {
             
             guard let response = response as? HTTPURLResponse else { return .error }
             
-            // TODO: check if file is an image?
-            
             if response.statusCode == 200 {
+                // TODO: check if file is an image?
                 save(localURL: localURL, for: topo)
-                count += 1
-                progress = min(1.0, Double(count) / Double(totalCount))
                 return .success
             }
             else if response.statusCode == 404 {
-                // a 404 error probably means the topo was deleted on the server and the user is using an old database
-                // => we do not treat this scenario as an error
-                
-                count += 1
-                progress = min(1.0, Double(count) / Double(totalCount))
                 return .notFound
             }
         }
