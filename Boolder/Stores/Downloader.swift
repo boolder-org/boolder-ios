@@ -98,21 +98,20 @@ class Downloader : ObservableObject {
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
         
         if let (localURL, response) = try? await session.download(from: topo.remoteFile) {
-            print(localURL)
-            print(response)
+            guard let response = response as? HTTPURLResponse, let mimeType = response.mimeType else { return .error }
             
-            guard let response = response as? HTTPURLResponse else { return .error }
-            
-            if response.statusCode == 200 {
-                // TODO: check if file is an image?
+            if response.statusCode == 200 && mimeType.hasPrefix("image") {
+                print("downloaded")
                 save(localURL: localURL, for: topo)
                 return .success
             }
             else if response.statusCode == 404 {
+                print("404 not found")
                 return .notFound
             }
         }
         
+        print("error")
         return .error
     }
     
