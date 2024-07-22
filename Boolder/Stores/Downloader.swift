@@ -37,7 +37,8 @@ class Downloader : ObservableObject {
                         return true
                     }
                     else {
-                        return await self.downloadFile(topo: topo)
+                        let result = await self.downloadFile(topo: topo)
+                        return result == .success || result == .notFound
                     }
                     
                 }
@@ -83,28 +84,48 @@ class Downloader : ObservableObject {
         topo.offlinePhotoExists
     }
     
-    func downloadFile(topo: Topo) async -> Bool {
+    func downloadFile(topo: Topo) async -> DownloadResult {
         print("downloading topo \(topo.id)")
         
         createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
         
-        //        try? await Task.sleep(nanoseconds: 1_000_000_000*UInt64(Int.random(in: 0...5))) // FIXME: remove
-        
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 60
-        //        config.waitsForConnectivity = false
-        let session = URLSession(configuration: config)
-        
-        if let (localURL, _) = try? await session.download(from: topo.remoteFile) {
-            save(localURL: localURL, for: topo)
-            count += 1
-            progress = min(1.0, Double(count) / Double(totalCount))
-            return true
+        if let (localURL, response) = try? await session.download(from: topo.remoteFile) {
+            print(localURL)
+            print(response)
+            
+            guard let response = response as? HTTPURLResponse else { return .error }
+            
+            // TODO: check if file is an image?
+            
+            if response.statusCode == 200 {
+                save(localURL: localURL, for: topo)
+                count += 1
+                progress = min(1.0, Double(count) / Double(totalCount))
+                return .success
+            }
+            else if response.statusCode == 404 {
+                // a 404 error probably means the topo was deleted on the server and the user is using an old database
+                // => we do not treat this scenario as an error
+                
+                count += 1
+                progress = min(1.0, Double(count) / Double(totalCount))
+                return .notFound
+            }
         }
         
-        return false
-        
-        
+        return .error
+    }
+    
+    enum DownloadResult {
+        case success
+        case notFound
+        case error
+    }
+    
+    private var session: URLSession {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 60
+        return URLSession(configuration: config)
     }
     
     private func save(localURL: URL, for topo: Topo) {

@@ -186,7 +186,9 @@ struct TopoView: View {
     func downloadPhoto(topo: Topo) async {
         photoStatus = .loading
         
-        if await Downloader().downloadFile(topo: topo) {
+        let result = await Downloader().downloadFile(topo: topo)
+        if result == .success
+        {
             // TODO: move this logic to Downloader
             if let photo = problem.offlinePhoto {
                 self.photoStatus = .ready(image: photo)
