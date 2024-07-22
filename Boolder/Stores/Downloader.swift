@@ -66,6 +66,8 @@ class Downloader : ObservableObject {
         }
     }
     
+    // Note: this function may be called hundreds of times in parallel within the TakGroup of the downloadFiles(topos:) function
+    // This is not a real issue as URLSession.download already has a max concurency (around ~5 downloads max at the same time)
     func downloadFile(topo: Topo) async -> DownloadResult {
         if let (file, response) = try? await session.download(from: topo.remoteFile) {
             guard let response = response as? HTTPURLResponse, let mimeType = response.mimeType else { return .error }
