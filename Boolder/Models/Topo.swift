@@ -9,15 +9,13 @@
 import Foundation
 import UIKit
 
-class Topo {
+struct Topo: Hashable {
     let id: Int
     let areaId: Int
-    var remoteFile: URL?
     
-    init(id: Int, areaId: Int, remoteFile: URL? = nil) {
+    init(id: Int, areaId: Int) {
         self.id = id
         self.areaId = areaId
-        self.remoteFile = remoteFile
     }
     
     var offlinePhoto: UIImage? {
@@ -32,22 +30,8 @@ class Topo {
         let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
         return documentsURL.appendingPathComponent("area-\(areaId)").appendingPathComponent("topo-\(id).jpg")
     }
-}
-
-// MARK: API calls
-extension Topo {
-    func getRemoteUrl() async throws {
-        let (data, _) = try await URLSession.shared.data(from: apiUrl)
-        let decodedResponse = try JSONDecoder().decode(Response.self, from: data)
-        
-        self.remoteFile = URL(string: decodedResponse.url)
-    }
     
-    private var apiUrl: URL {
-        URL(string: "https://www.boolder.com/api/v1/topos/\(id)")!
-    }
-    
-    private struct Response: Codable {
-        var url: String
+    var remoteFile: URL {
+        URL(string: "https://assets.boolder.com/proxy/topos/\(id)")!
     }
 }

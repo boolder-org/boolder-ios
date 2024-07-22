@@ -203,6 +203,27 @@ extension Area {
         }
     }
     
+    var topos: [Topo] {
+        let lines = Table("lines")
+        let problems = Table("problems")
+        
+        let query = lines
+            .join(problems, on: lines[Line.problemId] == problems[Problem.id])
+            .filter(Problem.areaId == id)
+        
+        do {
+            let topos = try SqliteStore.shared.db.prepare(query).map { line in
+                Topo(id: line[Line.topoId], areaId: id)
+            }
+            
+            return Array(Set(topos)).sorted{$0.id < $1.id}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     var poiRoutes: [PoiRoute] {
         let poiRoutes = Table("poi_routes")
         

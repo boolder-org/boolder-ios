@@ -82,62 +82,31 @@ class AreaDownloader: Identifiable, ObservableObject {
             }
             
             self.task = Task {
-                let topos = try await getTopoList()
-                
+                let topos = area.topos
                 print("\(topos.count) topos to download")
                 
-                // TODO: use an exception instead of an empty list?
-                if(topos.isEmpty) {
+                let downloader = Downloader()
+                
+                self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+                    .sink() { progress in
+                        self.status = .downloading(progress: progress)
+                    }
+                
+                await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
                     DispatchQueue.main.async{
-                        print("No topos")
+                        self.status = .downloaded
+                        self.createDownloadedFile()
+                    }
+                    
+                }, onFailure: { [self] in
+                    DispatchQueue.main.async{
+                        print("Error downloading")
                         self.status = .initial
                     }
-                }
-                else {
-                    
-                    let downloader = Downloader()
-                    
-                    self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
-                        .sink() { progress in
-                            self.status = .downloading(progress: progress)
-                        }
-                    
-                    await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
-                        DispatchQueue.main.async{
-                            self.status = .downloaded
-                            self.createDownloadedFile()
-                        }
-                        
-                    }, onFailure: { [self] in
-                        DispatchQueue.main.async{
-                            print("Error downloading")
-                            self.status = .initial
-                        }
-                    })
-                }
+                })
+                
             }
         }
-    }
-    
-    private func getTopoList() async -> [Topo] {
-        let url = URL(string: "https://www.boolder.com/api/v1/areas/\(areaId)/topos.json")!
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            
-            if let topoArray = try? JSONDecoder().decode([TopoJson].self, from: data) {
-                
-//                for topo in topoArray {
-//                    print("Topo ID: \(topo.topoID), URL: \(topo.url)")
-//                }
-                
-                return topoArray.map{Topo(id: $0.topoID, areaId: areaId, remoteFile: URL(string: $0.url)!)}
-            }
-        }
-        catch {
-            return [] // FIXME: don't return empty array
-        }
-        
-        return [] // FIXME: don't return empty array
     }
 
     private func createDownloadedFile() {
@@ -199,19 +168,6 @@ class AreaDownloader: Identifiable, ObservableObject {
         } catch {
             // Handle the error
             print("Error while deleting folder: \(error)")
-        }
-    }
-    
-    
-    
-    struct TopoJson: Codable {
-        let topoID: Int
-        let url: String
-        
-        // Define the coding keys to match the JSON keys
-        enum CodingKeys: String, CodingKey {
-            case topoID = "topo_id"
-            case url
         }
     }
     
