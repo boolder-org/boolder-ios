@@ -14,12 +14,6 @@ class Downloader : ObservableObject {
     private var totalCount: Int = 0
     
     func downloadFiles(topos: [Topo], onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
-        
-        // TODO: refactor
-        Array(Set(topos.map{$0.areaId})).forEach { id in
-            createFolderInCachesDirectory(folderName: "area-\(id)")
-        }
-        
         totalCount = topos.count
         count = 0
         
@@ -73,10 +67,6 @@ class Downloader : ObservableObject {
     }
     
     func downloadFile(topo: Topo) async -> DownloadResult {
-        
-        // TODO: refactor
-        createFolderInCachesDirectory(folderName: "area-\(topo.areaId)")
-        
         if let (file, response) = try? await session.download(from: topo.remoteFile) {
             guard let response = response as? HTTPURLResponse, let mimeType = response.mimeType else { return .error }
             
@@ -114,6 +104,8 @@ class Downloader : ObservableObject {
             try? FileManager.default.removeItem(at: topo.onDiskURL)
         }
         
+        createDirectoryForArea(areaId: topo.areaId)
+        
         do {
             try FileManager.default.moveItem(at: file, to: topo.onDiskURL)
         }
@@ -122,27 +114,14 @@ class Downloader : ObservableObject {
         }
     }
     
-    func createFolderInCachesDirectory(folderName: String) {
-        // Get the path to the Caches directory
-        if let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
-            
-            // Create a URL for the new folder
-            let newFolderURL = cachesDirectory.appendingPathComponent(folderName)
-            
-            // Check if the folder already exists
-            if !FileManager.default.fileExists(atPath: newFolderURL.path) {
-                do {
-                    // Create the folder at the specified URL
-                    try FileManager.default.createDirectory(at: newFolderURL, withIntermediateDirectories: true, attributes: nil)
-                    print("Folder created at: \(newFolderURL.path)")
-                } catch {
-                    print("Error creating folder: \(error.localizedDescription)")
-                }
-            } else {
-                print("Folder already exists at: \(newFolderURL.path)")
-            }
-        } else {
-            print("Could not find Caches directory")
+    // TODO: make it DRY with Topo
+    func createDirectoryForArea(areaId: Int) {
+        let folderName = "area-\(areaId)"
+        let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        let newFolderURL = cachesDirectory.appendingPathComponent(folderName)
+        
+        if !FileManager.default.fileExists(atPath: newFolderURL.path) {
+            try? FileManager.default.createDirectory(at: newFolderURL, withIntermediateDirectories: true, attributes: nil)
         }
     }
 }
