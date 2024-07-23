@@ -33,7 +33,7 @@ struct AreaDownloadRowView : View {
             areaToEdit = area
             handpickedDownload = true
             if case .initial = areaDownloader.status  {
-                areaDownloader.requestAndStartDownload()
+                areaDownloader.start()
             }
             else if case .downloading(_) = areaDownloader.status  {
                 presentCancelDownloadSheet = true

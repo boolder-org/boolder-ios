@@ -10,7 +10,6 @@ import SwiftUI
 import CoreLocation
 
 struct MapContainerView: View {
-    @EnvironmentObject var odrManager: ODRManager
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @EnvironmentObject var appState: AppState
@@ -76,7 +75,6 @@ struct MapContainerView: View {
                 // TODO: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
                 // remove these lines as soon as it's fixed
                 .environment(\.managedObjectContext, managedObjectContext)
-                .environmentObject(odrManager)
                 .modify {
                     if #available(iOS 16.4, *) {
                         $0
