@@ -36,7 +36,8 @@ class ClusterDownloader: ObservableObject {
     }
     
     func start() {
-        remainingAreasToDownload.forEach{ downloadQueue.append($0) }
+//        remainingAreasToDownload.forEach{ $0.queue() }
+        downloadQueue = Array(remainingAreasToDownload)
         
         guard !downloadQueue.isEmpty else { return }
         currentIndex = 0
