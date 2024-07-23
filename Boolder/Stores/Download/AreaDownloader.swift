@@ -31,7 +31,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     func start() {
         // TODO: necessary?
-        guard !downloading && status != .downloaded else { return }
+//        guard !downloading && status != .downloaded else { return }
         
         if alreadyDownloaded {
             DispatchQueue.main.async { self.status = .downloaded }
@@ -65,6 +65,10 @@ class AreaDownloader: Identifiable, ObservableObject {
         }
     }
     
+    func queue() {
+        self.status = .queued
+    }
+    
     func cancel() {
         self.task?.cancel()
         cancellable = nil
@@ -79,8 +83,8 @@ class AreaDownloader: Identifiable, ObservableObject {
         status = .initial
     }
     
-    var downloading: Bool {
-        status.downloading
+    var downloadingOrQueued: Bool {
+        status.downloadingOrQueued
     }
     
     private var successfulDownloadFile: URL {
@@ -112,11 +116,15 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     enum DownloadStatus: Equatable {
         case initial
+        case queued
         case downloading(progress: Double)
         case downloaded
         
-        var downloading: Bool {
+        var downloadingOrQueued: Bool {
             if case .downloading(_) = self {
+                return true
+            }
+            else if case .queued = self {
                 return true
             }
             
@@ -142,6 +150,8 @@ class AreaDownloader: Identifiable, ObservableObject {
                 "-"
             case .downloading(progress: let progress):
                 "\(Int(progress*100))%"
+            case .queued:
+                "queued"
             }
         }
     }

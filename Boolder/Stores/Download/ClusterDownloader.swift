@@ -36,8 +36,8 @@ class ClusterDownloader: ObservableObject {
     }
     
     func start() {
-//        remainingAreasToDownload.forEach{ $0.queue() }
-        downloadQueue = Array(remainingAreasToDownload)
+        remainingAreasToDownload.forEach{ $0.queue() }
+        downloadQueue = Array(remainingAreasToDownload) // TODO: sort
         
         guard !downloadQueue.isEmpty else { return }
         currentIndex = 0
@@ -61,11 +61,11 @@ class ClusterDownloader: ObservableObject {
     }
     
     var downloading: Bool {
-        areas.contains{ $0.downloading }
+        areas.contains{ $0.downloadingOrQueued }
     }
     
     var severalDownloading: Bool {
-        areas.filter{ $0.downloading }.count >= 2
+        areas.filter{ $0.downloadingOrQueued }.count >= 2
     }
     
     var allDownloaded: Bool {

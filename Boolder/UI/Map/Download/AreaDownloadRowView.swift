@@ -48,8 +48,8 @@ struct AreaDownloadRowView : View {
                     Text("\(Int(area.downloadSize.rounded())) Mo").foregroundStyle(.gray)
                     Image(systemName: "icloud.and.arrow.down").font(.title2)
                 }
-                else if case .downloading(let progress) = areaDownloader.status  {
-                    CircularProgressView(progress: progress).frame(height: 18)
+                else if areaDownloader.downloadingOrQueued  {
+                    CircularProgressView(progress: areaDownloader.status.progress).frame(height: 18)
                 }
                 else if case .downloaded = areaDownloader.status  {
                     Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
