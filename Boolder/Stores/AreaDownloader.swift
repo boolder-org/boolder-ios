@@ -31,18 +31,11 @@ class AreaDownloader: Identifiable, ObservableObject {
         Area.load(id: areaId)!
     }
     
-    func requestAndStartDownload() {
-//        DownloadSettings.shared.addArea(areaId: areaId)
-        start()
-    }
-    
     func remove() {
         cancellable = nil
         
         deleteFolder()
         status = .initial
-        
-//        DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
     func cancel() {
@@ -56,11 +49,9 @@ class AreaDownloader: Identifiable, ObservableObject {
 //        deleteFolder()
         
         status = .initial
-        
-//        DownloadSettings.shared.removeArea(areaId: areaId)
     }
     
-    // TODO: rename
+    // TODO: rename to loadStatus()
     func updateStatus() {
         if alreadyDownloaded {
             DispatchQueue.main.async{
@@ -173,10 +164,8 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     enum DownloadStatus: Equatable {
         case initial
-//        case requested
         case downloading(progress: Double)
         case downloaded
-//        case failed
         
         var label: String {
             switch self {
@@ -186,10 +175,6 @@ class AreaDownloader: Identifiable, ObservableObject {
                 "-"
             case .downloading(progress: let progress):
                 "\(Int(progress*100))%"
-//            case .failed:
-//                "failed"
-//            case .requested:
-//                "requested"
             }
         }
     }

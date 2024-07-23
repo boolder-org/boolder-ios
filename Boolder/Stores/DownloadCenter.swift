@@ -22,6 +22,7 @@ class DownloadCenter: ObservableObject {
         }
     }
     
+    // TODO: move to AreaDownloader initializer?
     func start() {
         allAreas.forEach { areaDownloader in
             areaDownloader.updateStatus()
@@ -31,7 +32,7 @@ class DownloadCenter: ObservableObject {
     func areaDownloader(id: Int) -> AreaDownloader {
         allAreas.first { areaDownloader in
             areaDownloader.id == id
-        }! // FIXME: use a dedicated error
+        }! // FIXME: use a dedicated error 
     }
 }
 
