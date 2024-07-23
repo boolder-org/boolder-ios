@@ -122,6 +122,7 @@ struct ClusterView: View {
                 }
             }
             
+            // FIXME: clusterDownloader.oneDownloading && !handpickedDownload
             if clusterDownloader.severalDownloading && !handpickedDownload {
                 Button {
                     // TODO: ask for confirmation
