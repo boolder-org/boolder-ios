@@ -2,7 +2,7 @@
 //  AreaDownloader.swift
 //  Boolder
 //
-//  Created by Nicolas Mondollot on 04/01/2024.
+//  Created by Nicolas Mondollot on 15/07/2024.
 //  Copyright © 2024 Nicolas Mondollot. All rights reserved.
 //
 
@@ -14,12 +14,92 @@ import Combine
 class AreaDownloader: Identifiable, ObservableObject {
     let areaId: Int
     @Published var status: DownloadStatus
-    let odrManager = ODRManager()
     var cancellable: Cancellable?
     
-    init(areaId: Int, status: DownloadStatus) {
+    var task: Task<(), any Error>?
+    
+    init(areaId: Int) {
         self.areaId = areaId
-        self.status = status
+        self.status = .initial
+    }
+    
+    func loadStatus() {
+        if alreadyDownloaded {
+            DispatchQueue.main.async { self.status = .downloaded }
+        }
+    }
+    
+    func start() {
+        // TODO: necessary?
+        guard !downloading && status != .downloaded else { return }
+        
+        if alreadyDownloaded {
+            DispatchQueue.main.async { self.status = .downloaded }
+        }
+        else {
+            DispatchQueue.main.async {
+                self.status = .downloading(progress: 0.0)
+            }
+            
+            self.task = Task {
+                let topos = area.topos
+                let downloader = Downloader()
+                
+                self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+                    .sink() { progress in
+                        self.status = .downloading(progress: progress)
+                    }
+                
+                await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
+                    DispatchQueue.main.async {
+                        self.status = .downloaded
+                        self.createSuccessfulDownloadFile()
+                    }
+                    
+                }, onFailure: { [self] in
+                    DispatchQueue.main.async {
+                        self.status = .initial
+                    }
+                })
+            }
+        }
+    }
+    
+    func cancel() {
+        self.task?.cancel()
+        cancellable = nil
+        
+        status = .initial
+    }
+    
+    func remove() {
+        deleteFolder()
+        cancellable = nil
+        
+        status = .initial
+    }
+    
+    var downloading: Bool {
+        status.downloading
+    }
+    
+    private var successfulDownloadFile: URL {
+        Downloader.onDiskFolder(areaId: areaId).appendingPathComponent("downloaded")
+    }
+
+    private func createSuccessfulDownloadFile() {
+        if !FileManager.default.createFile(atPath: successfulDownloadFile.path, contents: nil, attributes: nil) {
+            print("Failed to create succesful download file for area \(areaId)")
+        }
+    }
+    
+    var alreadyDownloaded: Bool {
+        FileManager.default.fileExists(atPath: successfulDownloadFile.path)
+    }
+    
+    private func deleteFolder() {
+        let folder = Downloader.onDiskFolder(areaId: areaId)
+        try? FileManager.default.removeItem(at: folder)
     }
     
     var id: Int {
@@ -30,100 +110,10 @@ class AreaDownloader: Identifiable, ObservableObject {
         Area.load(id: areaId)!
     }
     
-    var downloading: Bool {
-        status.downloading
-    }
-    
-    func requestAndStartDownload() {
-        guard !downloading && status != .downloaded else { return }
-        
-        DownloadSettings.shared.addArea(areaId: areaId)
-        start()
-    }
-    
-    func remove() {
-        odrManager.stop()
-        status = .initial
-        
-        DownloadSettings.shared.removeArea(areaId: areaId)
-    }
-    
-    func cancel() {
-        // TODO: what if download is already finished?
-        odrManager.cancel()
-        status = .initial
-        
-        DownloadSettings.shared.removeArea(areaId: areaId)
-    }
-    
-    func start() {
-        odrManager.checkResources(tags: tags) { available in
-            if available {
-                DispatchQueue.main.async{
-                    self.status = .downloaded
-                }
-            }
-            else {
-                DispatchQueue.main.async{
-                    self.status = .downloading(progress: 0.0)
-                }
-                self.cancellable = self.odrManager.$downloadProgress.receive(on: DispatchQueue.main)
-                    .sink() { progress in
-                        self.status = .downloading(progress: progress)
-                    }
-                
-                self.odrManager.requestResources(tags: self.tags, onSuccess: { [self] in
-                    DispatchQueue.main.async{
-                        self.status = .downloaded
-                    }
-                    
-                }, onFailure: { error in
-                    DispatchQueue.main.async{
-                        print("On-demand resource error")
-                        self.status = .initial
-                    }
-                    
-                    // TODO: implement UI, log errors
-                    switch error.code {
-                    case NSBundleOnDemandResourceOutOfSpaceError:
-                        print("You don't have enough space available to download this resource.")
-                    case NSBundleOnDemandResourceExceededMaximumSizeError:
-                        print("The bundle resource was too big.")
-                    case NSBundleOnDemandResourceInvalidTagError:
-                        print("The requested tag does not exist.")
-                    default:
-                        print(error.description)
-                    }
-                })
-            }
-        }
-    }
-    
-    private var tags: Set<String> {
-        Set(["area-\(areaId)"])
-    }
-    
     enum DownloadStatus: Equatable {
         case initial
-        case requested
         case downloading(progress: Double)
         case downloaded
-        case failed
-        
-        var label: String {
-            switch self {
-            case .downloaded:
-                "downloaded"
-            case .initial:
-                "-"
-            case .downloading(progress: let progress):
-                "\(Int(progress*100))%"
-            case .failed:
-                "failed"
-            case .requested:
-                "requested"
-            }
-        }
         
         var downloading: Bool {
             if case .downloading(_) = self {
@@ -142,6 +132,17 @@ class AreaDownloader: Identifiable, ObservableObject {
             }
             
             return 0.0
+        }
+        
+        var label: String {
+            switch self {
+            case .downloaded:
+                "downloaded"
+            case .initial:
+                "-"
+            case .downloading(progress: let progress):
+                "\(Int(progress*100))%"
+            }
         }
     }
 }

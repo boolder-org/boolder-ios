@@ -101,7 +101,7 @@ struct ClusterView: View {
                     // TODO: launch area downloads at the same time or no?
                     // TODO: handle priority?
                     clusterDownloader.remainingAreasToDownload.forEach{ area in
-                        area.requestAndStartDownload()
+                        area.start()
                     }
                 }
             } label : {
