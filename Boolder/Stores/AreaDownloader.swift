@@ -23,34 +23,6 @@ class AreaDownloader: Identifiable, ObservableObject {
         self.status = .initial
     }
     
-    var id: Int {
-        areaId
-    }
-    
-    var area: Area {
-        Area.load(id: areaId)!
-    }
-    
-    func remove() {
-        cancellable = nil
-        
-        deleteFolder()
-        status = .initial
-    }
-    
-    func cancel() {
-        // TODO: what if download is already finished?
-        
-        self.task?.cancel()
-        
-        cancellable = nil
-        
-        // TODO: should we delete folder?
-//        deleteFolder()
-        
-        status = .initial
-    }
-    
     // TODO: rename to loadStatus()
     func updateStatus() {
         if alreadyDownloaded {
@@ -86,7 +58,7 @@ class AreaDownloader: Identifiable, ObservableObject {
                 await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
                     DispatchQueue.main.async{
                         self.status = .downloaded
-                        self.createDownloadedFile()
+                        self.createSuccessfulDownloadFile()
                     }
                     
                 }, onFailure: { [self] in
@@ -99,67 +71,52 @@ class AreaDownloader: Identifiable, ObservableObject {
             }
         }
     }
+    
+    func cancel() {
+        // TODO: what if download is already finished?
+        
+        self.task?.cancel()
+        
+        cancellable = nil
+        
+        // TODO: should we delete folder?
+//        deleteFolder()
+        
+        status = .initial
+    }
+    
+    func remove() {
+        cancellable = nil
+        
+        deleteFolder()
+        status = .initial
+    }
+    
+    private var successfulDownloadFile: URL {
+        Downloader.onDiskFolder(areaId: areaId).appendingPathComponent("downloaded")
+    }
 
-    private func createDownloadedFile() {
-//        print("DOWNLOADED")
-        
-        // Step 1: Get the path to the caches directory
-        let fileManager = FileManager.default
-        guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-            print("Could not find caches directory")
-            return
-        }
-        
-        // Step 2: Construct the file path for ".downloaded"
-        let downloadedFilePath = cachesDirectory.appendingPathComponent("area-\(areaId)").appendingPathComponent("downloaded")
-        
-        // Step 3: Create an empty file at that path
-        let success = fileManager.createFile(atPath: downloadedFilePath.path, contents: nil, attributes: nil)
-        
-        if success {
-            print("Successfully created .downloaded file in caches directory")
-        } else {
-            print("Failed to create .downloaded file in caches directory")
+    private func createSuccessfulDownloadFile() {
+        if !FileManager.default.createFile(atPath: successfulDownloadFile.path, contents: nil, attributes: nil) {
+            print("Failed to create downloaded file for area \(areaId)")
         }
     }
     
-    var alreadyDownloaded : Bool {
-        // Get the path to the caches directory
-        let fileManager = FileManager.default
-        guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-            print("Could not find caches directory")
-            return false
-        }
-        
-        let downloadedFilePath = cachesDirectory.appendingPathComponent("area-\(areaId)").appendingPathComponent("downloaded")
-        
-        return fileManager.fileExists(atPath: downloadedFilePath.path)
+    var alreadyDownloaded: Bool {
+        FileManager.default.fileExists(atPath: successfulDownloadFile.path)
     }
     
-    func deleteFolder() {
-        
-        let fileManager = FileManager.default
-        
-        guard let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
-            print("Could not find caches directory")
-            return
-        }
-        
-        let folder = cachesDirectory.appendingPathComponent("area-\(areaId)")
-
-        do {
-            // Check if the folder exists
-            if fileManager.fileExists(atPath: folder.path) {
-                // Attempt to remove the folder and its contents
-                try fileManager.removeItem(at: folder)
-                print("Folder deleted successfully.")
-            } else {
-                print("Folder does not exist at path: \(folder)")
-            }
-        } catch {
-            // Handle the error
-            print("Error while deleting folder: \(error)")
-        }
+    private func deleteFolder() {
+        let folder = Downloader.onDiskFolder(areaId: areaId)
+        try? FileManager.default.removeItem(at: folder)
+    }
+    
+    var id: Int {
+        areaId
+    }
+    
+    var area: Area {
+        Area.load(id: areaId)!
     }
     
     enum DownloadStatus: Equatable {

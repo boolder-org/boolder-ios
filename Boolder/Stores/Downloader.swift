@@ -117,7 +117,7 @@ class Downloader : ObservableObject {
     }
     
     func createDirectoryIfNeeded(topo: Topo) {
-        let folderURL = Self.onDiskFolder(for: topo)
+        let folderURL = Self.onDiskFolder(areaId: topo.areaId)
         
         if !FileManager.default.fileExists(atPath: folderURL.path) {
             try? FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
@@ -125,11 +125,11 @@ class Downloader : ObservableObject {
     }
     
     static func onDiskFile(for topo: Topo) -> URL {
-        onDiskFolder(for: topo).appendingPathComponent("topo-\(topo.id).jpg")
+        onDiskFolder(areaId: topo.areaId).appendingPathComponent("topo-\(topo.id).jpg")
     }
     
-    static func onDiskFolder(for topo: Topo) -> URL {
+    static func onDiskFolder(areaId: Int) -> URL {
         let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        return cachesURL.appendingPathComponent("topos").appendingPathComponent("area-\(topo.areaId)")
+        return cachesURL.appendingPathComponent("topos").appendingPathComponent("area-\(areaId)")
     }
 }
