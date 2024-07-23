@@ -22,11 +22,8 @@ class DownloadCenter: ObservableObject {
         }
     }
     
-    // TODO: move to AreaDownloader initializer?
     func start() {
-        allAreas.forEach { areaDownloader in
-            areaDownloader.updateStatus()
-        }
+        allAreas.forEach { $0.loadStatus() }
     }
     
     func areaDownloader(id: Int) -> AreaDownloader {

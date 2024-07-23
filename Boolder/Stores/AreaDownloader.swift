@@ -23,12 +23,9 @@ class AreaDownloader: Identifiable, ObservableObject {
         self.status = .initial
     }
     
-    // TODO: rename to loadStatus()
-    func updateStatus() {
+    func loadStatus() {
         if alreadyDownloaded {
-            DispatchQueue.main.async{
-                self.status = .downloaded
-            }
+            DispatchQueue.main.async { self.status = .downloaded }
         }
     }
     
