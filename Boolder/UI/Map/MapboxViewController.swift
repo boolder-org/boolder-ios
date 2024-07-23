@@ -953,7 +953,6 @@ protocol MapBoxViewDelegate {
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func selectCluster(id: Int)
-    func setVisibleAreas(_ areas: [Area])
     func unselectArea()
     func unselectCluster()
     func unselectCircuit()
