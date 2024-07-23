@@ -34,7 +34,7 @@ struct AreaDownloadRowView : View {
             handpickedDownload = true
             if case .initial = areaDownloader.status  {
                 // FIXME: add to queue instead of start
-                areaDownloader.start()
+                areaDownloader.start(onSuccess: {}, onFailure: {})
             }
             else if case .queued = areaDownloader.status  {
                 // TODO: remove from queue

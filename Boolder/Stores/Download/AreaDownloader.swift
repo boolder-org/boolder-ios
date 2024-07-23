@@ -29,7 +29,7 @@ class AreaDownloader: Identifiable, ObservableObject {
         }
     }
     
-    func start() {
+    func start(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) {
         // TODO: necessary?
 //        guard !downloading && status != .downloaded else { return }
         
@@ -55,11 +55,13 @@ class AreaDownloader: Identifiable, ObservableObject {
                         self.status = .downloaded
                         self.createSuccessfulDownloadFile()
                     }
+                    onSuccess()
                     
                 }, onFailure: { [self] in
                     DispatchQueue.main.async {
                         self.status = .initial
                     }
+                    onFailure()
                 })
             }
         }
