@@ -27,12 +27,7 @@ struct Topo: Hashable {
     }
     
     var onDiskFile: URL {
-        onDiskFolder.appendingPathComponent("topo-\(id).jpg")
-    }
-    
-    var onDiskFolder: URL {
-        let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        return cachesURL.appendingPathComponent("topos").appendingPathComponent("area-\(areaId)")
+        Downloader.onDiskFile(for: self)
     }
     
     var remoteFile: URL {
