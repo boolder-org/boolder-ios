@@ -149,7 +149,7 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { [problem] newValue in
-            if problem.mainTopoId == newValue.mainTopoId {
+            if problem.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -170,30 +170,34 @@ struct TopoView: View {
     }
     
     func loadData() async {
-        if let localPhoto = problem.mainTopoPhoto {
-            self.photoStatus = .ready(image: localPhoto)
-            return
-        }
-        
-        guard let topoId = problem.mainTopoId else {
+        guard let topo = problem.topo else {
             photoStatus = .none
             return
         }
         
-        do {
-            photoStatus = .loading
-            
-            if let image = try await TopoImageCache.shared.getImage(topoId: topoId) {
-                self.photoStatus = .ready(image: image)
-            }
-            else {
-                self.photoStatus = .error
-            }
-            
-        } catch {
-            photoStatus = .error
-            print(error)
+        if let photo = problem.onDiskPhoto {
+            self.photoStatus = .ready(image: photo)
+            return
         }
+        
+        await downloadPhoto(topo: topo)
+    }
+    
+    func downloadPhoto(topo: Topo) async {
+        photoStatus = .loading
+        
+        let result = await Downloader().downloadFile(topo: topo)
+        if result == .success
+        {
+            // TODO: move this logic to Downloader
+            if let photo = problem.onDiskPhoto {
+                self.photoStatus = .ready(image: photo)
+                return
+            }
+        }
+        
+        self.photoStatus = .error
+        return
     }
     
     enum PhotoStatus: Equatable {

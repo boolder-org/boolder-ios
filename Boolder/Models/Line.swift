@@ -18,10 +18,6 @@ struct Line: Decodable {
         let x: Double
         let y: Double
     }
-    
-    var offlinePhoto: UIImage? {
-        UIImage(named: "topo-\(String(topoId)).jpg")
-    }
 }
 
 // MARK: SQLite

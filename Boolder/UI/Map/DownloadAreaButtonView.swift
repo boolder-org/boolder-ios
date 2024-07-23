@@ -27,7 +27,7 @@ struct DownloadAreaButtonView : View {
     var body: some View {
         Button {
             if case .initial = areaDownloader.status  {
-                areaDownloader.requestAndStartDownload()
+                areaDownloader.start()
             }
             else if case .downloading(_) = areaDownloader.status  {
                 presentCancelDownloadSheet = true
