@@ -31,20 +31,15 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     func start() {
         if alreadyDownloaded {
-            DispatchQueue.main.async{
-                self.status = .downloaded
-            }
+            DispatchQueue.main.async { self.status = .downloaded }
         }
         else {
-            DispatchQueue.main.async{
-                // TODO: show some progress before we get the topos list?
+            DispatchQueue.main.async {
                 self.status = .downloading(progress: 0.0)
             }
             
             self.task = Task {
                 let topos = area.topos
-                print("\(topos.count) topos to download")
-                
                 let downloader = Downloader()
                 
                 self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
@@ -53,39 +48,31 @@ class AreaDownloader: Identifiable, ObservableObject {
                     }
                 
                 await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
-                    DispatchQueue.main.async{
+                    DispatchQueue.main.async {
                         self.status = .downloaded
                         self.createSuccessfulDownloadFile()
                     }
                     
                 }, onFailure: { [self] in
-                    DispatchQueue.main.async{
-                        print("Error downloading")
+                    DispatchQueue.main.async {
                         self.status = .initial
                     }
                 })
-                
             }
         }
     }
     
     func cancel() {
-        // TODO: what if download is already finished?
-        
         self.task?.cancel()
-        
         cancellable = nil
-        
-        // TODO: should we delete folder?
-//        deleteFolder()
         
         status = .initial
     }
     
     func remove() {
+        deleteFolder()
         cancellable = nil
         
-        deleteFolder()
         status = .initial
     }
     
@@ -95,7 +82,7 @@ class AreaDownloader: Identifiable, ObservableObject {
 
     private func createSuccessfulDownloadFile() {
         if !FileManager.default.createFile(atPath: successfulDownloadFile.path, contents: nil, attributes: nil) {
-            print("Failed to create downloaded file for area \(areaId)")
+            print("Failed to create succesful download file for area \(areaId)")
         }
     }
     
