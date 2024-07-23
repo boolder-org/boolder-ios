@@ -54,14 +54,14 @@ class AreaDownloader: Identifiable, ObservableObject {
                     DispatchQueue.main.async {
                         self.status = .downloaded
                         self.createSuccessfulDownloadFile()
+                        onSuccess()
                     }
-                    onSuccess()
                     
                 }, onFailure: { [self] in
                     DispatchQueue.main.async {
                         self.status = .initial
+                        onFailure()
                     }
-                    onFailure()
                 })
             }
         }
