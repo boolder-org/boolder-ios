@@ -333,6 +333,7 @@
 				038F7F3E2C3A8CC500AE7028 /* ClusterView.swift */,
 				038F7F3F2C3A8CC500AE7028 /* AreaDownloadRowView.swift */,
 				038F7F422C3A8CC500AE7028 /* FabButton.swift */,
+				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -367,7 +368,6 @@
 				038C2EF62920142C006581CD /* Search */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
 				031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */,
-				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";

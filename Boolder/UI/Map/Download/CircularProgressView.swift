@@ -19,7 +19,7 @@ struct CircularProgressView: View {
                     lineWidth: 3
                 )
             Circle()
-                .trim(from: 0, to: progress)
+                .trim(from: 0, to: roundedProgress())
                 .stroke(
                     Color.appGreen,
                     style: StrokeStyle(
@@ -30,6 +30,10 @@ struct CircularProgressView: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.easeOut, value: progress)
         }
+    }
+    
+    func roundedProgress() -> Double {
+        min(max(progress, 0.05), 0.95)
     }
 }
 
