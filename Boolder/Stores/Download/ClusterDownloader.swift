@@ -67,12 +67,8 @@ class ClusterDownloader: ObservableObject {
         downloadQueue = []
     }
     
-    var downloading: Bool {
+    var downloadingOrQueued: Bool {
         areas.contains{ $0.downloadingOrQueued }
-    }
-    
-    var severalDownloading: Bool {
-        areas.filter{ $0.downloadingOrQueued }.count >= 2
     }
     
     var allDownloaded: Bool {

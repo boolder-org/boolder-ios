@@ -94,7 +94,7 @@ struct ClusterView: View {
                 handpickedDownload = false
                 
                 // TODO: refactor: use an enum for button state
-                if clusterDownloader.severalDownloading {
+                if clusterDownloader.downloadingOrQueued {
                     // TODO: ask for confirmation
                     clusterDownloader.stopDownloads()
                 }
@@ -109,7 +109,7 @@ struct ClusterView: View {
                     
                     Spacer()
                     
-                    if clusterDownloader.downloading && !handpickedDownload {
+                    if clusterDownloader.downloadingOrQueued && !handpickedDownload {
                         CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
                     }
                     else if clusterDownloader.remainingAreasToDownload.count > 0 {
@@ -123,7 +123,7 @@ struct ClusterView: View {
             }
             
             // FIXME: clusterDownloader.oneDownloading && !handpickedDownload
-            if clusterDownloader.severalDownloading && !handpickedDownload {
+            if clusterDownloader.downloadingOrQueued && !handpickedDownload {
                 Button {
                     // TODO: ask for confirmation
                     clusterDownloader.stopDownloads()

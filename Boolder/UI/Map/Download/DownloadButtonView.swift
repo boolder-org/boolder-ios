@@ -21,7 +21,7 @@ struct DownloadButtonView: View {
         Button {
             presentDownloads = true
         } label: {
-            if clusterDownloader.downloading {
+            if clusterDownloader.downloadingOrQueued {
                 // TODO: use cluster progress
                 ProgressView()
             }
