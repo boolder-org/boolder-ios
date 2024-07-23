@@ -33,7 +33,11 @@ struct AreaDownloadRowView : View {
             areaToEdit = area
             handpickedDownload = true
             if case .initial = areaDownloader.status  {
+                // FIXME: add to queue instead of start
                 areaDownloader.start()
+            }
+            else if case .queued = areaDownloader.status  {
+                // TODO: remove from queue
             }
             else if case .downloading(_) = areaDownloader.status  {
                 presentCancelDownloadSheet = true
