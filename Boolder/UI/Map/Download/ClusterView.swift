@@ -93,6 +93,7 @@ struct ClusterView: View {
             Button {
                 handpickedDownload = false
                 
+                // TODO: refactor: use an enum for button state
                 if clusterDownloader.severalDownloading {
                     // TODO: ask for confirmation
                     clusterDownloader.stopDownloads()
@@ -100,9 +101,7 @@ struct ClusterView: View {
                 else {
                     // TODO: launch area downloads at the same time or no?
                     // TODO: handle priority?
-                    clusterDownloader.remainingAreasToDownload.forEach{ area in
-                        area.start()
-                    }
+                    clusterDownloader.start()
                 }
             } label : {
                 HStack {

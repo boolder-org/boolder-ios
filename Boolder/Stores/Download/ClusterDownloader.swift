@@ -13,6 +13,11 @@ class ClusterDownloader: ObservableObject {
     private let cluster: Cluster
     @Published var areas = [AreaDownloader]()
     
+    private var cancellables2 = Set<AnyCancellable>()
+    private var downloadQueue = [AreaDownloader]()
+    private var currentIndex = 0
+    @Published var currentDownloader: AreaDownloader?
+    
     var cancellables = [AnyCancellable]()
     
     init(cluster: Cluster) {
@@ -28,6 +33,30 @@ class ClusterDownloader: ObservableObject {
             let c = area.objectWillChange.sink(receiveValue: { self.objectWillChange.send() })
             self.cancellables.append(c)
         }
+    }
+    
+    func start() {
+        remainingAreasToDownload.forEach{ downloadQueue.append($0) }
+        
+        guard !downloadQueue.isEmpty else { return }
+        currentIndex = 0
+        startNextDownload()
+    }
+    
+    private func startNextDownload() {
+        guard currentIndex < downloadQueue.count else { return }
+        let downloader = downloadQueue[currentIndex]
+        currentDownloader = downloader
+        
+        downloader.$status
+            .filter { $0 == .downloaded }
+            .sink { [weak self] _ in
+                self?.currentIndex += 1
+                self?.startNextDownload()
+            }
+            .store(in: &cancellables2)
+        
+        downloader.start()
     }
     
     var downloading: Bool {
