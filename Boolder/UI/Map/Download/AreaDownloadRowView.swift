@@ -31,7 +31,8 @@ struct AreaDownloadRowView : View {
     var body: some View {
         Button {
             areaToEdit = area
-            handpickedDownload = true
+            
+            handpickedDownload = true // FIXME: don't set it to true if area is queued
             if case .initial = areaDownloader.status  {
                 // FIXME: add to queue instead of start
                 areaDownloader.start(onSuccess: {}, onFailure: {})
