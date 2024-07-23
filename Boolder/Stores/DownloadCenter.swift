@@ -27,9 +27,7 @@ class DownloadCenter: ObservableObject {
     }
     
     func areaDownloader(id: Int) -> AreaDownloader {
-        allAreas.first { areaDownloader in
-            areaDownloader.id == id
-        }! // FIXME: use a dedicated error 
+        allAreas.first { $0.id == id }! // Careful when changing this method, you need to make sure the id exists in the allAreas array
     }
 }
 
