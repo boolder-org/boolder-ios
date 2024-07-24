@@ -28,7 +28,7 @@ class ClusterDownloader: ObservableObject {
         // inspired by https://stackoverflow.com/a/57302695
         self.areas.forEach { area in
             let c = area.objectWillChange
-                .debounce(for: .milliseconds(500), scheduler: RunLoop.main) // to avoid refreshing ClusterView too often, which makes the UI unresponsive
+//                .debounce(for: .milliseconds(500), scheduler: RunLoop.main) // to avoid refreshing ClusterView too often, which makes the UI unresponsive
                 .sink(receiveValue: { self.objectWillChange.send() })
             self.cancellables.append(c)
         }

@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-// we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
-// it probably won't be necessary anymore with iOS 17's @Observable
 struct AreaDownloadRowView : View {
     let area: Area
     

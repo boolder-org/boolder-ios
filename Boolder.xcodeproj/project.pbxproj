@@ -59,6 +59,8 @@
 		033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */; };
 		0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
+		036EE3782C512A4300137120 /* ClusterDownloadRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036EE3772C512A4300137120 /* ClusterDownloadRowView.swift */; };
+		036EE3792C512A4300137120 /* ClusterDownloadRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036EE3772C512A4300137120 /* ClusterDownloadRowView.swift */; };
 		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		038C2EF129201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
@@ -201,6 +203,7 @@
 		033F70D62919535A000DD3F4 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
+		036EE3772C512A4300137120 /* ClusterDownloadRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterDownloadRowView.swift; sourceTree = "<group>"; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -331,6 +334,7 @@
 			children = (
 				038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */,
 				038F7F3E2C3A8CC500AE7028 /* ClusterView.swift */,
+				036EE3772C512A4300137120 /* ClusterDownloadRowView.swift */,
 				038F7F3F2C3A8CC500AE7028 /* AreaDownloadRowView.swift */,
 				038F7F422C3A8CC500AE7028 /* FabButton.swift */,
 				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
@@ -800,6 +804,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				033F70D529191755000DD3F4 /* FiltersView.swift in Sources */,
+				036EE3792C512A4300137120 /* ClusterDownloadRowView.swift in Sources */,
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
 				031A4CAC296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
@@ -940,6 +945,7 @@
 				031A4CAE296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
 				031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */,
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
+				036EE3782C512A4300137120 /* ClusterDownloadRowView.swift in Sources */,
 				038C2EF429201315006581CD /* SearchView.swift in Sources */,
 				03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */,
 				37B45231259144D300241091 /* TopoView.swift in Sources */,

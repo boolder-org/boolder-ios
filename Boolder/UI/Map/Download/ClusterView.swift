@@ -22,7 +22,7 @@ struct ClusterView: View {
     @State private var presentRemoveClusterDownloadSheet = false
     @State private var presentCancelClusterDownloadSheet = false
     
-    @State private var handpickedDownload = false // TODO: use enum
+    @State private var handpickedDownload = false // TODO: refactor
     
     var areas: [Area] {
         cluster.areasSortedByDistance(area)
@@ -79,42 +79,9 @@ struct ClusterView: View {
     
     var clusterSection: some View {
         Section {
-            Button {
-                handpickedDownload = false
-                
-                // TODO: refactor: use an enum for button state
-                if clusterDownloader.downloadingOrQueued {
-                    presentCancelClusterDownloadSheet = true
-                }
-                else if clusterDownloader.allDownloaded {
-                    presentRemoveClusterDownloadSheet = true
-                }
-                else {
-                    // TODO: launch area downloads at the same time or no?
-                    // TODO: handle priority?
-                    clusterDownloader.start()
-                }
-            } label : {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Zone \(cluster.name)").foregroundColor(.primary)
-                        Text("\(cluster.areas.count) secteurs").foregroundColor(.gray).font(.caption)
-                    }
-                    
-                    Spacer()
-                    
-                    if clusterDownloader.downloadingOrQueued && !handpickedDownload {
-                        CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
-                    }
-                    else if clusterDownloader.remainingAreasToDownload.count > 0 {
-                        Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
-                        Image(systemName: "icloud.and.arrow.down").font(.title2)
-                    }
-                    else {
-                        Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
-                    }
-                }
-            }
+            // we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
+            // it probably won't be necessary anymore with iOS 17's @Observable
+            ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
         }
         .background {
             EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
@@ -152,6 +119,8 @@ struct ClusterView: View {
                     
                     Spacer()
                     
+                    // we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
+                    // it probably won't be necessary anymore with iOS 17's @Observable
                     AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                 }
             }
