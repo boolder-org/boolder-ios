@@ -110,19 +110,6 @@ struct ClusterView: View {
                     }
                 }
             }
-            
-            if clusterDownloader.downloadingOrQueued && !handpickedDownload {
-                Button {
-                    // TODO: ask for confirmation
-                    clusterDownloader.stopDownloads()
-                } label : {
-                    HStack {
-                        Spacer()
-                        Text("Annuler").foregroundStyle(.red)
-                        Spacer()
-                    }
-                }
-            }
         }
     }
     
