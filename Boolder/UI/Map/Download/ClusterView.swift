@@ -79,7 +79,7 @@ struct ClusterView: View {
     
     var clusterSection: some View {
         Section {
-            // we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
+            // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
             // it probably won't be necessary anymore with iOS 17's @Observable
             ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
         }
@@ -119,7 +119,7 @@ struct ClusterView: View {
                     
                     Spacer()
                     
-                    // we use a separate view to avoid redrawing the entire AreaView everytime, which makes the actionsheet unresponsive
+                    // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
                     // it probably won't be necessary anymore with iOS 17's @Observable
                     AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                 }
