@@ -22,8 +22,7 @@ struct DownloadButtonView: View {
             presentDownloads = true
         } label: {
             if clusterDownloader.downloadingOrQueued {
-                // TODO: use cluster progress
-                ProgressView()
+                CircularProgressView(progress: clusterDownloader.progress)
             }
             else if clusterDownloader.allDownloaded {
                 Image(systemName: "checkmark.icloud")
