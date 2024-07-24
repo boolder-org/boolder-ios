@@ -97,7 +97,7 @@ class Downloader : ObservableObject {
     
     private var session: URLSession {
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 20
+        config.timeoutIntervalForRequest = 60*5 // in seconds
         return URLSession(configuration: config)
     }
     
