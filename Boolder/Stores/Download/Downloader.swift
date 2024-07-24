@@ -29,7 +29,7 @@ class Downloader : ObservableObject {
                         let result = await self.downloadFile(topo: topo)
                         
                         // Note: we tolerate "404 not found"
-                        // probable reason: the topo has been deleted on the server the user is using an old app version
+                        // probable reason: the topo has been deleted on the server and the user is using an old app version
                         if result == .success || result == .notFound {
                             self.addCount(toposCount: topos.count)
                             return true
