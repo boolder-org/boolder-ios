@@ -13,9 +13,7 @@ class ClusterDownloader: ObservableObject {
     private let cluster: Cluster
     @Published var areas = [AreaDownloader]()
     
-    private var downloadQueue = [AreaDownloader]()
-    private var currentIndex = 0
-    @Published var currentDownloader: AreaDownloader?
+    @Published var queueRunning = false
     
     var cancellables = [AnyCancellable]()
     
@@ -36,37 +34,48 @@ class ClusterDownloader: ObservableObject {
         }
     }
     
-//    func addToQueue() {
-//    }
-    
     func start() {
+        // TODO: use same sort logic as the UI
         remainingAreasToDownload.forEach{ $0.queue() }
-        downloadQueue = Array(remainingAreasToDownload) // TODO: sort
-        
-        guard !downloadQueue.isEmpty else { return }
-        currentIndex = 0
-        startNextDownload()
+
+        startQueueIfNeeded()
     }
     
-    private func startNextDownload() {
-        guard currentIndex < downloadQueue.count else { return }
-        let downloader = downloadQueue[currentIndex]
-        currentDownloader = downloader
+    func addAreaToQueue(_ area: AreaDownloader) {
+        area.queue()
+        startQueueIfNeeded()
+    }
+    
+    private func startQueueIfNeeded() {
+        if !queueRunning {
+            startQueue()
+        }
+    }
+    
+    private func startQueue() {
+        queueRunning = true
         
-        downloader.start(onSuccess: { [self] in
-            self.currentIndex += 1
-            self.startNextDownload()
-            
-            }, onFailure: { [self] in
-               stopDownloads()
-            })
+        if let area = (areas.first { $0.status == .queued }) {
+            area.start(onSuccess: { [self] in
+                self.startQueue()
+                
+                }, onFailure: { [self] in
+                   stopDownloads()
+                })
+        }
+        else {
+            queueRunning = false
+//            print("queue done")
+        }
     }
     
     func stopDownloads() {
         areas.filter{ $0.status.downloadingOrQueued }.forEach{ $0.cancel() }
         
+//        currentDownloader = nil
+        
 //        currentDownloader?.cancel()
-        downloadQueue = []
+//        downloadQueue = []
     }
     
     func removeDownloads() {

@@ -19,13 +19,16 @@ struct AreaDownloadRowView : View {
     @Binding var areaToEdit : Area
     @Binding var handpickedDownload: Bool
     
-    init(area: Area, areaToEdit: Binding<Area>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>, handpickedDownload: Binding<Bool>) {
+    @ObservedObject var clusterDownloader: ClusterDownloader
+    
+    init(area: Area, areaToEdit: Binding<Area>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>, handpickedDownload: Binding<Bool>, clusterDownloader: ClusterDownloader) {
         self.area = area
         self.areaDownloader = DownloadCenter.shared.areaDownloader(id: area.id)
         self._areaToEdit = areaToEdit
         self._presentRemoveDownloadSheet = presentRemoveDownloadSheet
         self._presentCancelDownloadSheet = presentCancelDownloadSheet
         self._handpickedDownload = handpickedDownload
+        self.clusterDownloader = clusterDownloader
     }
     
     var body: some View {
@@ -34,8 +37,7 @@ struct AreaDownloadRowView : View {
             
             handpickedDownload = true // FIXME: don't set it to true if area is queued
             if case .initial = areaDownloader.status  {
-                // FIXME: add to queue instead of start
-                areaDownloader.start(onSuccess: {}, onFailure: {})
+                clusterDownloader.addAreaToQueue(areaDownloader)
             }
             else if case .queued = areaDownloader.status  {
                 // TODO: remove from queue
