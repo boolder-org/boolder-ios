@@ -72,6 +72,8 @@ class ClusterDownloader: ObservableObject {
     func stopDownloads() {
         areas.filter{ $0.status.downloadingOrQueued }.forEach{ $0.cancel() }
         
+        queueRunning = false
+        
 //        currentDownloader = nil
         
 //        currentDownloader?.cancel()
