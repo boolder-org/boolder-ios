@@ -67,6 +67,10 @@ class ClusterDownloader: ObservableObject {
         downloadQueue = []
     }
     
+    func removeDownloads() {
+        areas.forEach { $0.remove() }
+    }
+    
     var downloadingOrQueued: Bool {
         areas.contains{ $0.downloadingOrQueued }
     }

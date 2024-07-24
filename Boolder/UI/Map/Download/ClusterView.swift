@@ -19,6 +19,9 @@ struct ClusterView: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
     
+    @State private var presentRemoveClusterDownloadSheet = false
+    @State private var presentCancelClusterDownloadSheet = false
+    
     @State private var handpickedDownload = false // TODO: use enum
     
     var areas: [Area] {
@@ -81,8 +84,10 @@ struct ClusterView: View {
                 
                 // TODO: refactor: use an enum for button state
                 if clusterDownloader.downloadingOrQueued {
-                    // TODO: ask for confirmation
-                    clusterDownloader.stopDownloads()
+                    presentCancelClusterDownloadSheet = true
+                }
+                else if clusterDownloader.allDownloaded {
+                    presentRemoveClusterDownloadSheet = true
                 }
                 else {
                     // TODO: launch area downloads at the same time or no?
@@ -109,6 +114,32 @@ struct ClusterView: View {
                         Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
                     }
                 }
+            }
+        }
+        .background {
+            EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                ActionSheet(
+                    title: Text("Supprimer les téléchargements ?"),
+                    buttons: [
+                        .destructive(Text("Supprimer")) {
+                            clusterDownloader.removeDownloads()
+                        },
+                        .cancel()
+                    ]
+                )
+            }
+        }
+        .background {
+            EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
+                ActionSheet(
+                    title: Text("Arrêter les téléchargements ?"),
+                    buttons: [
+                        .destructive(Text("Arrêter")) {
+                            clusterDownloader.stopDownloads()
+                        },
+                        .cancel()
+                    ]
+                )
             }
         }
     }
