@@ -33,7 +33,7 @@ struct CircularProgressView: View {
     }
     
     func roundedProgress() -> Double {
-        min(max(progress, 0.05), 0.95)
+        min(max(progress-0.03, 0.01), 1.0)
     }
 }
 
