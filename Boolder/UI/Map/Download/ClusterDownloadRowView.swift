@@ -17,10 +17,10 @@ struct ClusterDownloadRowView: View {
     
     var body: some View {
         Button {
-            handpickedDownload = false
+            
             
             // TODO: refactor: use an enum for button state
-            if clusterDownloader.downloadingOrQueued {
+            if clusterDownloader.downloadingOrQueued && !handpickedDownload {
                 presentCancelClusterDownloadSheet = true
             }
             else if clusterDownloader.allDownloaded {
@@ -29,6 +29,7 @@ struct ClusterDownloadRowView: View {
             else {
                 // TODO: launch area downloads at the same time or no?
                 // TODO: handle priority?
+                handpickedDownload = false // move logic to ClusterDownloader
                 clusterDownloader.start()
             }
         } label : {
