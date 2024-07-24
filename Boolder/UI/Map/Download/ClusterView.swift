@@ -19,7 +19,6 @@ struct ClusterView: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
     
-    @State private var expandDetails = false
     @State private var handpickedDownload = false // TODO: use enum
     
     var areas: [Area] {
@@ -33,20 +32,7 @@ struct ClusterView: View {
                     clusterSection
                 }
                 
-                if expandDetails || areas.count == 1 {
-                    areasSection
-                }
-                else {
-                    Button {
-                        expandDetails = true
-                    } label : {
-                        HStack {
-                            Text("\(areas.count) secteurs").foregroundColor(.primary)
-                            Spacer()
-                            Image(systemName: "chevron.down").foregroundStyle(.gray)
-                        }
-                    }
-                }
+                areasSection
             }
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
@@ -138,7 +124,7 @@ struct ClusterView: View {
     }
     
     var areasSection: some View {
-        Section {
+        Section(header: Text("\(areas.count) secteurs")) {
             ForEach(areas) { a in
                 HStack {
                     Text(a.name).foregroundColor(.primary)
