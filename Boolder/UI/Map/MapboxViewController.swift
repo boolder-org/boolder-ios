@@ -532,9 +532,10 @@ class MapboxViewController: UIViewController {
                     if let feature = queriedfeatures.first?.feature,
                        case .string(let name) = feature.properties?["name"],
                        case .string(let googleUrl) = feature.properties?["googleUrl"],
+                       case .string(let type) = feature.properties?["type"],
                        case .point(let point) = feature.geometry
                     {
-                        if self.mapView.mapboxMap.cameraState.zoom >= 12 {
+                        if (self.mapView.mapboxMap.cameraState.zoom >= 12 && type == "trainstation") || (self.mapView.mapboxMap.cameraState.zoom >= 14) {
                             self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
                         }
                     }
@@ -653,8 +654,7 @@ class MapboxViewController: UIViewController {
                     }
                 }
             
-            // FIXME: put 14.5?
-            if(mapView.mapboxMap.cameraState.zoom < 15) {
+            if(mapView.mapboxMap.cameraState.zoom < 14.5) {
                 delegate?.unselectArea()
             }
         }
