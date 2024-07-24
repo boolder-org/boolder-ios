@@ -91,7 +91,10 @@ struct ClusterView: View {
                 }
             } label : {
                 HStack {
-                    Text("Zone \(cluster.name)").foregroundColor(.primary)
+                    VStack(alignment: .leading) {
+                        Text("Zone \(cluster.name)").foregroundColor(.primary)
+                        Text("\(cluster.areas.count) secteurs").foregroundColor(.gray).font(.caption)
+                    }
                     
                     Spacer()
                     
@@ -124,7 +127,7 @@ struct ClusterView: View {
     }
     
     var areasSection: some View {
-        Section(header: Text("\(areas.count) secteurs")) {
+        Section { // }(header: Text("\(areas.count) secteurs")) {
             ForEach(areas) { a in
                 HStack {
                     Text(a.name).foregroundColor(.primary)
