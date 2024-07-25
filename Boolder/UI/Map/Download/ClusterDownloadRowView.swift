@@ -16,37 +16,70 @@ struct ClusterDownloadRowView: View {
     @Binding var handpickedDownload: Bool
     
     var body: some View {
-        if clusterDownloader.downloadingOrQueued && !handpickedDownload {
-            Button {
-                presentCancelClusterDownloadSheet = true
-            } label: {
-                Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
-                    .font(.title3.weight(.semibold))
-                    .padding(.vertical, 8)
+        if clusterDownloader.allDownloaded {
+            Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs de la zone")) {
+                Button {
+                    presentRemoveClusterDownloadSheet = true
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Zone \(cluster.name)").foregroundColor(.primary)
+//                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
+                        }
+                        
+                        Spacer()
+                        Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
+                    }
+                }
+                .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                    ActionSheet(
+                        title: Text("Supprimer les téléchargements ?"),
+                        buttons: [
+                            .destructive(Text("Supprimer")) {
+                                clusterDownloader.removeDownloads()
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
             }
-            .buttonStyle(LargeButton())
         }
-        else if clusterDownloader.allDownloaded {
-            // not supposed to happen
+        else if clusterDownloader.downloadingOrQueued && !handpickedDownload {
+            Section {
+                Button {
+                    presentCancelClusterDownloadSheet = true
+                } label: {
+                    Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
+                        .font(.title3.weight(.semibold))
+                        .padding(.vertical, 8)
+                }
+                .buttonStyle(LargeButton())
+            }
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
         }
         else {
-            Button {
-                // TODO: launch area downloads at the same time or no?
-                // TODO: handle priority?
-                handpickedDownload = false // move logic to ClusterDownloader
-                clusterDownloader.start()
-            } label: {
-                HStack {
-                    Image(systemName: "icloud.and.arrow.down")
-                    Text("Télécharger")
-//                        .font(.body.weight(.semibold))
-//                        .padding(.vertical)
+            Section {
+                Button {
+                    // TODO: launch area downloads at the same time or no?
+                    // TODO: handle priority?
+                    handpickedDownload = false // move logic to ClusterDownloader
+                    clusterDownloader.start()
+                } label: {
+                    HStack {
+                        Image(systemName: "icloud.and.arrow.down")
+                        Text("Télécharger")
+                        //                        .font(.body.weight(.semibold))
+                        //                        .padding(.vertical)
+                    }
+                    .font(.title3.weight(.semibold))
+                    .padding(.vertical, 8)
+                    
                 }
-                .font(.title3.weight(.semibold))
-                .padding(.vertical, 8)
-                
+                .buttonStyle(LargeButton())
             }
-            .buttonStyle(LargeButton())
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
         }
         
     }

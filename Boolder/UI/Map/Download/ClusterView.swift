@@ -32,38 +32,7 @@ struct ClusterView: View {
     var body: some View {
         NavigationView {
             List {
-                if clusterDownloader.allDownloaded {
-                    // TODO: don't display if there is only one area in the cluster?
-                    Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs de la zone")) {
-                        Button {
-                            presentRemoveClusterDownloadSheet = true
-                        } label: {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("Zone \(cluster.name)").foregroundColor(.primary)
-//                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
-                                }
-                                
-                                Spacer()
-                                Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
-                            }
-                        }
-                        .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
-                            ActionSheet(
-                                title: Text("Supprimer les téléchargements ?"),
-                                buttons: [
-                                    .destructive(Text("Supprimer")) {
-                                        clusterDownloader.removeDownloads()
-                                    },
-                                    .cancel()
-                                ]
-                            )
-                        }
-                    }
-                    
-                }
-                
-                if areas.count > 1 && !clusterDownloader.allDownloaded {
+                if areas.count > 1 {
                     clusterSection
                 }
                 
@@ -110,13 +79,10 @@ struct ClusterView: View {
     }
     
     var clusterSection: some View {
-        Section {
-            // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
-            // it probably won't be necessary anymore with iOS 17's @Observable
-            ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
-        }
-        .listRowInsets(EdgeInsets())
-        .listRowBackground(Color.clear)
+        // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
+        // it probably won't be necessary anymore with iOS 17's @Observable
+        ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
+        
         .background {
             EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
                 ActionSheet(
