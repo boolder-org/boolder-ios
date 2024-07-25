@@ -11,7 +11,6 @@ import SwiftUI
 struct ClusterDownloadRowView: View {
     @ObservedObject var clusterDownloader: ClusterDownloader
     let cluster: Cluster
-    @Binding var presentRemoveClusterDownloadSheet: Bool // TODO: remove
     @Binding var presentCancelClusterDownloadSheet: Bool
     @Binding var handpickedDownload: Bool
     
