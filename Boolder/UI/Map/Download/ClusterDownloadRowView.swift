@@ -49,9 +49,12 @@ struct ClusterDownloadRowView: View {
                 Button {
                     presentCancelClusterDownloadSheet = true
                 } label: {
-                    Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
-                        .font(.title3.weight(.semibold))
-                        .padding(.vertical, 8)
+                    HStack {
+                        Image(systemName: "stop.circle")
+                        Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
+                    }
+                    .font(.title3.weight(.semibold))
+                    .padding(.vertical, 8)
                 }
                 .buttonStyle(LargeButton())
             }
