@@ -36,7 +36,7 @@ struct ClusterView: View {
                 // it probably won't be necessary anymore with iOS 17's @Observable
                 ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
                 
-                Section {
+                Section(header: Text("Secteurs")) {
                     ForEach(areas) { a in
                         HStack {
                             Text(a.name).foregroundColor(.primary)

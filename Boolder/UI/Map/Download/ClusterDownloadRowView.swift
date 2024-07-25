@@ -17,32 +17,7 @@ struct ClusterDownloadRowView: View {
     
     var body: some View {
         if clusterDownloader.allDownloaded {
-            Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs ci-dessous :")) {
-                Button {
-                    presentRemoveClusterDownloadSheet = true
-                } label: {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Zone \(cluster.name)").foregroundColor(.primary)
-//                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
-                        }
-                        
-                        Spacer()
-                        Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
-                    }
-                }
-                .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
-                    ActionSheet(
-                        title: Text("Supprimer les téléchargements ?"),
-                        buttons: [
-                            .destructive(Text("Supprimer")) {
-                                clusterDownloader.removeDownloads()
-                            },
-                            .cancel()
-                        ]
-                    )
-                }
-            }
+            
         }
         else if clusterDownloader.downloadingOrQueued && !handpickedDownload {
             Section {
