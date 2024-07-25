@@ -11,7 +11,7 @@ import SwiftUI
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var clusterDownloader: ClusterDownloader
+    let clusterDownloader: ClusterDownloader // we don't use @ObservedObject because it would make the actionsheets unresponsive
     let cluster: Cluster
     let area: Area?
     
@@ -48,18 +48,19 @@ struct ClusterView: View {
                                 Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
                             }
                         }
+                        .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                            ActionSheet(
+                                title: Text("Supprimer les téléchargements ?"),
+                                buttons: [
+                                    .destructive(Text("Supprimer")) {
+                                        clusterDownloader.removeDownloads()
+                                    },
+                                    .cancel()
+                                ]
+                            )
+                        }
                     }
-                    .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
-                        ActionSheet(
-                            title: Text("Supprimer les téléchargements ?"),
-                            buttons: [
-                                .destructive(Text("Supprimer")) {
-                                    clusterDownloader.removeDownloads()
-                                },
-                                .cancel()
-                            ]
-                        )
-                    }
+                    
                 }
                 
                 if areas.count > 1 && !clusterDownloader.allDownloaded {
