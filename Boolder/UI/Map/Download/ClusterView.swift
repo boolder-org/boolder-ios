@@ -32,6 +32,21 @@ struct ClusterView: View {
     var body: some View {
         NavigationView {
             List {
+                if clusterDownloader.allDownloaded {
+                    Section(footer: Text("Vous pouvez utiliser Boolder sans connexion")) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Zone \(cluster.name)")
+                                Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
+                            }
+                            
+                            Spacer()
+                            Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
+                        }
+                        
+                    }
+                }
+                
                 if areas.count > 1 && !clusterDownloader.allDownloaded {
                     clusterSection
                 }
