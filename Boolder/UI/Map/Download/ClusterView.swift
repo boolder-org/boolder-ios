@@ -34,16 +34,32 @@ struct ClusterView: View {
             List {
                 if clusterDownloader.allDownloaded {
                     Section(footer: Text("Vous pouvez utiliser Boolder sans connexion")) {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("Zone \(cluster.name)")
-                                Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
+                        Button {
+                            presentRemoveClusterDownloadSheet = true
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("Zone \(cluster.name)").foregroundColor(.primary)
+                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
+                                }
+                                
+                                Spacer()
+                                Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
                             }
-                            
-                            Spacer()
-                            Image(systemName: "checkmark.icloud").foregroundStyle(.gray).font(.title2)
                         }
-                        
+                    }
+                    .background {
+                        EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                            ActionSheet(
+                                title: Text("Supprimer les téléchargements ?"),
+                                buttons: [
+                                    .destructive(Text("Supprimer")) {
+                                        clusterDownloader.removeDownloads()
+                                    },
+                                    .cancel()
+                                ]
+                            )
+                        }
                     }
                 }
                 
@@ -52,10 +68,6 @@ struct ClusterView: View {
                 }
                 
                 areasSection
-                
-                if areas.count > 1 && clusterDownloader.allDownloaded {
-                    removeSection
-                }
             }
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
@@ -132,33 +144,6 @@ struct ClusterView: View {
                     // it probably won't be necessary anymore with iOS 17's @Observable
                     AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                 }
-            }
-        }
-    }
-    
-    var removeSection: some View {
-        Section {
-            Button {
-                presentRemoveClusterDownloadSheet = true
-            } label: {
-                HStack {
-                    Spacer()
-                    Text("Supprimer les téléchargements").foregroundColor(.red)
-                    Spacer()
-                }
-            }
-        }
-        .background {
-            EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
-                ActionSheet(
-                    title: Text("Supprimer les téléchargements ?"),
-                    buttons: [
-                        .destructive(Text("Supprimer")) {
-                            clusterDownloader.removeDownloads()
-                        },
-                        .cancel()
-                    ]
-                )
             }
         }
     }
