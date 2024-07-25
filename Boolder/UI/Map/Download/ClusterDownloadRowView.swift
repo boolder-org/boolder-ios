@@ -21,7 +21,7 @@ struct ClusterDownloadRowView: View {
                 presentCancelClusterDownloadSheet = true
             } label: {
                 Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
-                    .font(.body.weight(.semibold))
+                    .font(.title3.weight(.semibold))
                     .padding(.vertical)
             }
             .buttonStyle(LargeButton())
@@ -36,9 +36,15 @@ struct ClusterDownloadRowView: View {
                 handpickedDownload = false // move logic to ClusterDownloader
                 clusterDownloader.start()
             } label: {
-                Text("Télécharger tous les secteurs")
-                    .font(.body.weight(.semibold))
-                    .padding(.vertical)
+                HStack {
+                    Image(systemName: "icloud.and.arrow.down")
+                    Text("Télécharger")
+//                        .font(.body.weight(.semibold))
+//                        .padding(.vertical)
+                }
+                .font(.title3.weight(.semibold))
+                .padding(.vertical)
+                
             }
             .buttonStyle(LargeButton())
         }
