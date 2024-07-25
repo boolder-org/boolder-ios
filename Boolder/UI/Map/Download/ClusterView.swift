@@ -49,6 +49,21 @@ struct ClusterView: View {
                         }
                     }
                 }
+                
+                ClusterRemoveDownloadsView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet)
+            }
+            .background {
+                EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
+                    ActionSheet(
+                        title: Text("Arrêter les téléchargements ?"),
+                        buttons: [
+                            .destructive(Text("Arrêter")) {
+                                clusterDownloader.stopDownloads()
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
             }
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {

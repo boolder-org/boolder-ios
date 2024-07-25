@@ -11,7 +11,7 @@ import SwiftUI
 struct ClusterDownloadRowView: View {
     @ObservedObject var clusterDownloader: ClusterDownloader
     let cluster: Cluster
-    @Binding var presentRemoveClusterDownloadSheet: Bool
+    @Binding var presentRemoveClusterDownloadSheet: Bool // TODO: remove
     @Binding var presentCancelClusterDownloadSheet: Bool
     @Binding var handpickedDownload: Bool
     
@@ -35,19 +35,6 @@ struct ClusterDownloadRowView: View {
             }
             .listRowInsets(EdgeInsets())
             .listRowBackground(Color.clear)
-            .background {
-                EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
-                    ActionSheet(
-                        title: Text("Arrêter les téléchargements ?"),
-                        buttons: [
-                            .destructive(Text("Arrêter")) {
-                                clusterDownloader.stopDownloads()
-                            },
-                            .cancel()
-                        ]
-                    )
-                }
-            }
         }
         else {
             Section {
