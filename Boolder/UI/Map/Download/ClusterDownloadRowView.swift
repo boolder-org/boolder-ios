@@ -17,7 +17,7 @@ struct ClusterDownloadRowView: View {
     
     var body: some View {
         if clusterDownloader.allDownloaded {
-            Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs ci-dessous")) {
+            Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs ci-dessous :")) {
                 Button {
                     presentRemoveClusterDownloadSheet = true
                 } label: {

@@ -32,11 +32,23 @@ struct ClusterView: View {
     var body: some View {
         NavigationView {
             List {
-                if areas.count > 1 {
-                    clusterSection
-                }
+                // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
+                // it probably won't be necessary anymore with iOS 17's @Observable
+                ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
                 
-                areasSection
+                Section {
+                    ForEach(areas) { a in
+                        HStack {
+                            Text(a.name).foregroundColor(.primary)
+                            
+                            Spacer()
+                            
+                            // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
+                            // it probably won't be necessary anymore with iOS 17's @Observable
+                            AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
+                        }
+                    }
+                }
             }
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
@@ -64,7 +76,7 @@ struct ClusterView: View {
                     )
                 }
             }
-            .navigationTitle("Téléchargements")
+            .navigationTitle("Zone \(cluster.name)")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -75,29 +87,6 @@ struct ClusterView: View {
                         .font(.body)
                 }
             )
-        }
-    }
-    
-    var clusterSection: some View {
-        // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
-        // it probably won't be necessary anymore with iOS 17's @Observable
-        ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
-        
-    }
-    
-    var areasSection: some View {
-        Section {
-            ForEach(areas) { a in
-                HStack {
-                    Text(a.name).foregroundColor(.primary)
-                    
-                    Spacer()
-                    
-                    // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
-                    // it probably won't be necessary anymore with iOS 17's @Observable
-                    AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
-                }
-            }
         }
     }
 }
