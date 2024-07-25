@@ -40,7 +40,7 @@ struct ClusterView: View {
                         } label: {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text(cluster.name).foregroundColor(.primary)
+                                    Text("Zone \(cluster.name)").foregroundColor(.primary)
 //                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
                                 }
                                 
