@@ -33,14 +33,15 @@ struct ClusterView: View {
         NavigationView {
             List {
                 if clusterDownloader.allDownloaded {
-                    Section(footer: Text("Vous pouvez utiliser Boolder sans connexion")) {
+                    // TODO: don't display if there is only one area in the cluster?
+                    Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs de la zone")) {
                         Button {
                             presentRemoveClusterDownloadSheet = true
                         } label: {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("Zone \(cluster.name)").foregroundColor(.primary)
-                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
+                                    Text(cluster.name).foregroundColor(.primary)
+//                                    Text("\(cluster.areas.count) secteurs").font(.caption).foregroundColor(.gray)
                                 }
                                 
                                 Spacer()
@@ -48,18 +49,16 @@ struct ClusterView: View {
                             }
                         }
                     }
-                    .background {
-                        EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
-                            ActionSheet(
-                                title: Text("Supprimer les téléchargements ?"),
-                                buttons: [
-                                    .destructive(Text("Supprimer")) {
-                                        clusterDownloader.removeDownloads()
-                                    },
-                                    .cancel()
-                                ]
-                            )
-                        }
+                    .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                        ActionSheet(
+                            title: Text("Supprimer les téléchargements ?"),
+                            buttons: [
+                                .destructive(Text("Supprimer")) {
+                                    clusterDownloader.removeDownloads()
+                                },
+                                .cancel()
+                            ]
+                        )
                     }
                 }
                 

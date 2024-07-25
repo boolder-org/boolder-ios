@@ -22,7 +22,7 @@ struct ClusterDownloadRowView: View {
             } label: {
                 Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
                     .font(.title3.weight(.semibold))
-                    .padding(.vertical)
+                    .padding(.vertical, 8)
             }
             .buttonStyle(LargeButton())
         }
@@ -43,7 +43,7 @@ struct ClusterDownloadRowView: View {
 //                        .padding(.vertical)
                 }
                 .font(.title3.weight(.semibold))
-                .padding(.vertical)
+                .padding(.vertical, 8)
                 
             }
             .buttonStyle(LargeButton())
