@@ -64,7 +64,7 @@ struct ClusterView: View {
                     )
                 }
             }
-            .navigationTitle(cluster.name)
+            .navigationTitle("Téléchargements")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -83,23 +83,10 @@ struct ClusterView: View {
         // it probably won't be necessary anymore with iOS 17's @Observable
         ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
         
-        .background {
-            EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
-                ActionSheet(
-                    title: Text("Arrêter les téléchargements ?"),
-                    buttons: [
-                        .destructive(Text("Arrêter")) {
-                            clusterDownloader.stopDownloads()
-                        },
-                        .cancel()
-                    ]
-                )
-            }
-        }
     }
     
     var areasSection: some View {
-        Section { // }(header: Text("\(areas.count) secteurs")) {
+        Section {
             ForEach(areas) { a in
                 HStack {
                     Text(a.name).foregroundColor(.primary)

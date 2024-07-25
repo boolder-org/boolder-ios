@@ -17,7 +17,7 @@ struct ClusterDownloadRowView: View {
     
     var body: some View {
         if clusterDownloader.allDownloaded {
-            Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs de la zone")) {
+            Section(footer: Text("Vous pouvez utiliser Boolder sans connexion dans tous les secteurs ci-dessous")) {
                 Button {
                     presentRemoveClusterDownloadSheet = true
                 } label: {
@@ -57,6 +57,19 @@ struct ClusterDownloadRowView: View {
             }
             .listRowInsets(EdgeInsets())
             .listRowBackground(Color.clear)
+            .background {
+                EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
+                    ActionSheet(
+                        title: Text("Arrêter les téléchargements ?"),
+                        buttons: [
+                            .destructive(Text("Arrêter")) {
+                                clusterDownloader.stopDownloads()
+                            },
+                            .cancel()
+                        ]
+                    )
+                }
+            }
         }
         else {
             Section {
