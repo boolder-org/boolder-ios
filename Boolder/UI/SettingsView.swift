@@ -21,7 +21,7 @@ struct SettingsView: View {
                     Button(action: {
                         showAlertToRemoveTicksAndFavorites = true
                     }) {
-                        Text("Remove all ticks and favorites")
+                        Text("Remove all ticks and favorites").foregroundColor(.red)
                     }
                     .alert(isPresented: $showAlertToRemoveTicksAndFavorites) {
                         Alert(
@@ -48,6 +48,17 @@ struct SettingsView: View {
                         createTicks()
                     }) {
                         Text("Create ticks")
+                    }
+                }
+            }
+            
+            Section {
+                HStack {
+                    Button(action: {
+                        DownloadCenter.shared.forceReset()
+                        print("force reset")
+                    }) {
+                        Text("Remove photo downloads").foregroundColor(.red)
                     }
                 }
             }
