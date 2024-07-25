@@ -16,43 +16,33 @@ struct ClusterDownloadRowView: View {
     @Binding var handpickedDownload: Bool
     
     var body: some View {
-        Button {
-            
-            
-            // TODO: refactor: use an enum for button state
-            if clusterDownloader.downloadingOrQueued && !handpickedDownload {
+        if clusterDownloader.downloadingOrQueued && !handpickedDownload {
+            Button {
                 presentCancelClusterDownloadSheet = true
+            } label: {
+                Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
+                    .font(.body.weight(.semibold))
+                    .padding(.vertical)
             }
-            else if clusterDownloader.allDownloaded {
-                presentRemoveClusterDownloadSheet = true
-            }
-            else {
+            .buttonStyle(LargeButton())
+        }
+        else if clusterDownloader.allDownloaded {
+            // not supposed to happen
+        }
+        else {
+            Button {
                 // TODO: launch area downloads at the same time or no?
                 // TODO: handle priority?
                 handpickedDownload = false // move logic to ClusterDownloader
                 clusterDownloader.start()
+            } label: {
+                Text("Télécharger tous les secteurs")
+                    .font(.body.weight(.semibold))
+                    .padding(.vertical)
             }
-        } label : {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Zone \(cluster.name)").foregroundColor(.primary)
-                    Text("\(cluster.areas.count) secteurs").foregroundColor(.gray).font(.caption)
-                }
-                
-                Spacer()
-                
-                if clusterDownloader.downloadingOrQueued && !handpickedDownload {
-                    CircularProgressView(progress: clusterDownloader.progress).frame(height: 18)
-                }
-                else if clusterDownloader.remainingAreasToDownload.count > 0 {
-                    Text("\(Int(clusterDownloader.totalSize.rounded())) Mo").foregroundStyle(.gray)
-                    Image(systemName: "icloud.and.arrow.down").font(.title2)
-                }
-                else {
-                    Image(systemName: "checkmark.icloud").font(.title2).foregroundStyle(.gray)
-                }
-            }
+            .buttonStyle(LargeButton())
         }
+        
     }
 }
 

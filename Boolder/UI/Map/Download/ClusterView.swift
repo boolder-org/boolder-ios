@@ -24,6 +24,7 @@ struct ClusterView: View {
     
     @State private var handpickedDownload = false // TODO: refactor
     
+    // TODO: compute only once (inside cluster downloader?)
     var areas: [Area] {
         cluster.areasSortedByDistance(area)
     }
@@ -31,11 +32,15 @@ struct ClusterView: View {
     var body: some View {
         NavigationView {
             List {
-                if areas.count > 1 {
+                if areas.count > 1 && !clusterDownloader.allDownloaded {
                     clusterSection
                 }
                 
                 areasSection
+                
+                if areas.count > 1 && clusterDownloader.allDownloaded {
+                    removeSection
+                }
             }
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
@@ -63,7 +68,7 @@ struct ClusterView: View {
                     )
                 }
             }
-            .navigationTitle("Télécharger")
+            .navigationTitle(cluster.name)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -83,19 +88,8 @@ struct ClusterView: View {
             // it probably won't be necessary anymore with iOS 17's @Observable
             ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
         }
-        .background {
-            EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
-                ActionSheet(
-                    title: Text("Supprimer les téléchargements ?"),
-                    buttons: [
-                        .destructive(Text("Supprimer")) {
-                            clusterDownloader.removeDownloads()
-                        },
-                        .cancel()
-                    ]
-                )
-            }
-        }
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
         .background {
             EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
                 ActionSheet(
@@ -123,6 +117,33 @@ struct ClusterView: View {
                     // it probably won't be necessary anymore with iOS 17's @Observable
                     AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                 }
+            }
+        }
+    }
+    
+    var removeSection: some View {
+        Section {
+            Button {
+                presentRemoveClusterDownloadSheet = true
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Supprimer les téléchargements").foregroundColor(.red)
+                    Spacer()
+                }
+            }
+        }
+        .background {
+            EmptyView().actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                ActionSheet(
+                    title: Text("Supprimer les téléchargements ?"),
+                    buttons: [
+                        .destructive(Text("Supprimer")) {
+                            clusterDownloader.removeDownloads()
+                        },
+                        .cancel()
+                    ]
+                )
             }
         }
     }

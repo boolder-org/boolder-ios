@@ -16,9 +16,9 @@ struct LargeButton: ButtonStyle {
             .foregroundColor(Color.systemBackground)
             .opacity(configuration.isPressed ? 0.7 : 1)
             .cornerRadius(32)
-            .overlay(
-                RoundedRectangle(cornerRadius: 32)
-                    .stroke(Color.appGreen, lineWidth: 2)
-            )
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 32)
+//                    .stroke(Color.appGreen, lineWidth: 2)
+//            )
     }
 }
