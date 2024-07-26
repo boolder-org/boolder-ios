@@ -17,12 +17,14 @@ class ClusterDownloader: ObservableObject {
     
     var cancellables = [AnyCancellable]()
     
-    init(cluster: Cluster) {
+    init(cluster: Cluster, mainArea: Area) {
         self.cluster = cluster
         
-        areas = cluster.areas.map { area in
+        areas = cluster.areasSortedByDistance(mainArea).map { area in
             DownloadCenter.shared.areaDownloader(id: area.id)
         }
+        
+        print(areas.first!.area)
         
         // hack to make sure we publish changes when any of the AreaDownloader publishes a change
         // inspired by https://stackoverflow.com/a/57302695

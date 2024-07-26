@@ -11,9 +11,6 @@ import CoreLocation
 
 struct DownloadButtonView: View {
     let cluster: Cluster
-    let selectedArea: Area?
-    let zoom: CGFloat?
-    let center: CLLocationCoordinate2D?
     @Binding var presentDownloads: Bool
     @ObservedObject var clusterDownloader: ClusterDownloader
     
@@ -33,7 +30,7 @@ struct DownloadButtonView: View {
         }
         .buttonStyle(FabButton())
         .sheet(isPresented: $presentDownloads) {
-            ClusterView(clusterDownloader: clusterDownloader, cluster: cluster, area: areaBestGuess(in: cluster))
+            ClusterView(clusterDownloader: clusterDownloader, cluster: cluster)
                 .modify {
                     if #available(iOS 16, *) {
                         $0.presentationDetents([.medium, .large])
@@ -43,28 +40,6 @@ struct DownloadButtonView: View {
                     }
                 }
         }
-    }
-    
-    private func areaBestGuess(in cluster: Cluster) -> Area? {
-        if let selectedArea = selectedArea {
-            return selectedArea
-        }
-        
-        if let zoom = zoom, let center = center {
-            if zoom > 12.5 {
-                if let area = closestArea(in: cluster, from: CLLocation(latitude: center.latitude, longitude: center.longitude)) {
-                    return area
-                }
-            }
-        }
-        
-        return nil
-    }
-    
-    private func closestArea(in cluster: Cluster, from center: CLLocation) -> Area? {
-        cluster.areas.sorted {
-            $0.center.distance(from: center) < $1.center.distance(from: center)
-        }.first
     }
 }
 

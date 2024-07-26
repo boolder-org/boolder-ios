@@ -13,7 +13,6 @@ struct ClusterView: View {
     
     let clusterDownloader: ClusterDownloader // we don't use @ObservedObject because it would make the actionsheets unresponsive
     let cluster: Cluster
-    let area: Area?
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -21,9 +20,9 @@ struct ClusterView: View {
     
     @State private var handpickedDownload = false // TODO: refactor
     
-    // TODO: compute only once (inside cluster downloader?)
+    // TODO: use AreaDownloader instead of Area
     var areas: [Area] {
-        cluster.areasSortedByDistance(area)
+        clusterDownloader.areas.map{$0.area}
     }
     
     var body: some View {

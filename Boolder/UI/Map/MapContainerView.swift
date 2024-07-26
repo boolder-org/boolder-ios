@@ -18,6 +18,7 @@ struct MapContainerView: View {
     @State private var presentDownloads = false
     
     var body: some View {
+        
         ZStack {
             mapbox
             
@@ -186,8 +187,7 @@ struct MapContainerView: View {
                 Spacer()
                 
                 if let cluster = mapState.selectedCluster {
-                    
-                    DownloadButtonView(cluster: cluster, selectedArea: mapState.selectedArea, zoom: mapState.zoom, center: mapState.center, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster))
+                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
                 }
                 
                 Button(action: {
@@ -203,6 +203,29 @@ struct MapContainerView: View {
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
+    }
+    
+    private func areaBestGuess(in cluster: Cluster) -> Area? {
+        print("best guess")
+        if let selectedArea = mapState.selectedArea {
+            return selectedArea
+        }
+        
+        if let zoom = mapState.zoom, let center = mapState.center {
+            if zoom > 12.5 {
+                if let area = closestArea(in: cluster, from: CLLocation(latitude: center.latitude, longitude: center.longitude)) {
+                    return area
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    private func closestArea(in cluster: Cluster, from center: CLLocation) -> Area? {
+        cluster.areas.sorted {
+            $0.center.distance(from: center) < $1.center.distance(from: center)
+        }.first
     }
 }
 
