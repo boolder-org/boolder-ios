@@ -17,7 +17,7 @@ struct ClusterView: View {
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit: Area
     
-    @Binding var handpickedDownload: Bool
+    @State private var handpickedDownload = false
     
     var body: some View {
         NavigationView {

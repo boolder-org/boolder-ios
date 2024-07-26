@@ -17,10 +17,8 @@ struct ClusterViewWithActionsheet: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
     
-    @State private var handpickedDownload = false // TODO: refactor
-    
     var body: some View {
-        ClusterView(clusterDownloader: clusterDownloader, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, areaToEdit: $areaToEdit, handpickedDownload: $handpickedDownload)
+        ClusterView(clusterDownloader: clusterDownloader, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, areaToEdit: $areaToEdit)
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
                     ActionSheet(
