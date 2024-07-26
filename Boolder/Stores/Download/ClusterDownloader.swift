@@ -24,8 +24,6 @@ class ClusterDownloader: ObservableObject {
             DownloadCenter.shared.areaDownloader(id: area.id)
         }
         
-        print(areas.first!.area)
-        
         // hack to make sure we publish changes when any of the AreaDownloader publishes a change
         // inspired by https://stackoverflow.com/a/57302695
         self.areas.forEach { area in

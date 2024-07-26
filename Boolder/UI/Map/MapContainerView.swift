@@ -206,7 +206,6 @@ struct MapContainerView: View {
     }
     
     private func areaBestGuess(in cluster: Cluster) -> Area? {
-        print("best guess")
         if let selectedArea = mapState.selectedArea {
             return selectedArea
         }
