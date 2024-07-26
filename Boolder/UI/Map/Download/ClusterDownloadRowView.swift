@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ClusterDownloadRowView: View {
     @ObservedObject var clusterDownloader: ClusterDownloader
-    let cluster: Cluster
     @Binding var handpickedDownload: Bool
     
     var body: some View {

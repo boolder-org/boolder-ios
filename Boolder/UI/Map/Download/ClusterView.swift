@@ -12,7 +12,6 @@ struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let clusterDownloader: ClusterDownloader // we don't use @ObservedObject because it would make the actionsheets unresponsive
-    let cluster: Cluster
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
@@ -30,7 +29,7 @@ struct ClusterView: View {
             List {
                 // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
                 // it probably won't be necessary anymore with iOS 17's @Observable
-                ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, handpickedDownload: $handpickedDownload)
+                ClusterDownloadRowView(clusterDownloader: clusterDownloader, handpickedDownload: $handpickedDownload)
                 
                 Section(header: Text("Secteurs")) {
                     ForEach(areas) { a in
@@ -72,7 +71,7 @@ struct ClusterView: View {
                     )
                 }
             }
-            .navigationTitle("Zone \(cluster.name)")
+            .navigationTitle("Zone \(clusterDownloader.cluster.name)")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {

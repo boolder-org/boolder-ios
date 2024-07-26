@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class ClusterDownloader: ObservableObject {
-    private let cluster: Cluster
+    let cluster: Cluster
     @Published var areas = [AreaDownloader]()
     
     @Published var queueRunning = false
