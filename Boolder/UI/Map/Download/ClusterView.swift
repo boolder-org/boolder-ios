@@ -68,7 +68,19 @@ struct ClusterView: View {
     var bigButton: some View {
         Group {
             if clusterDownloader.allDownloaded {
-                // nothing
+                Section {
+                    Button {
+                        
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "checkmark.icloud").font(.title2)
+                            Text("Téléchargé") // .foregroundColor(.primary)
+                            Spacer()
+                        }
+                        .foregroundStyle(.gray)
+                    }
+                }
             }
             else if clusterDownloader.downloadingOrQueued && !handpickedDownload {
                 Section {
