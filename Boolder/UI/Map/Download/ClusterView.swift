@@ -24,7 +24,7 @@ struct ClusterView: View {
             List {
                 ClusterDownloadRowView(clusterDownloader: clusterDownloader, handpickedDownload: $handpickedDownload)
                 
-                Section(header: Text("Secteurs"), footer: footer) {
+                Section(header: Text("Secteurs")) {
                     ForEach(areas) { a in
                         HStack {
                             Text(a.name).foregroundColor(.primary)
@@ -34,6 +34,20 @@ struct ClusterView: View {
                             AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                         }
                     }
+                }
+                
+                Section(header: Text("Les avantages")) {
+                    HStack {
+                        Image(systemName: "antenna.radiowaves.left.and.right").frame(minWidth: 30)
+                        Text("Plus besoin de chercher du réseau Internet au milieu de la forêt").font(.caption)
+                    }
+                    .foregroundColor(.gray)
+                    
+                    HStack {
+                        Image(systemName: "battery.75percent").frame(minWidth: 30)
+                        Text("Économisez votre batterie en activant le mode avion").font(.caption)
+                    }
+                    .foregroundColor(.gray)
                 }
             }
             
@@ -54,15 +68,6 @@ struct ClusterView: View {
     // TODO: use AreaDownloader instead of Area
     var areas: [Area] {
         clusterDownloader.areas.map{$0.area}
-    }
-    
-    var footer: some View {
-        if clusterDownloader.allDownloaded {
-            Text("Tout est bon, vous pouvez utiliser Boolder sans connexion dans tous ces secteurs.")
-        }
-        else {
-            Text("Après avoir téléchargé ces secteurs, vous pourrez utiliser Boolder sans connexion.")
-        }
     }
 }
 
