@@ -31,21 +31,22 @@ struct AreaDownloadRowView : View {
     
     var body: some View {
         Button {
-            areaToEdit = area
-            
-            
-            if case .initial = areaDownloader.status  {
-                handpickedDownload = true
-                clusterDownloader.addAreaToQueue(areaDownloader)
-            }
-            else if case .queued = areaDownloader.status  {
-                // TODO: remove from queue
-            }
-            else if case .downloading(_) = areaDownloader.status  {
-                presentCancelDownloadSheet = true
-            }
-            else if case .downloaded = areaDownloader.status  {
-                presentRemoveDownloadSheet = true
+            if !(clusterDownloader.queueRunning && !handpickedDownload) {
+                if case .initial = areaDownloader.status  {
+                    handpickedDownload = true
+                    clusterDownloader.addAreaToQueue(areaDownloader)
+                }
+                else if case .queued = areaDownloader.status  {
+                    // TODO: remove from queue
+                }
+                else if case .downloading(_) = areaDownloader.status  {
+                    areaToEdit = area
+                    presentCancelDownloadSheet = true
+                }
+                else if case .downloaded = areaDownloader.status  {
+                    areaToEdit = area
+                    presentRemoveDownloadSheet = true
+                }
             }
         } label: {
             HStack {
