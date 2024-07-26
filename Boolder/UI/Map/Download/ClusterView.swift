@@ -19,8 +19,6 @@ struct ClusterView: View {
     @State private var presentCancelDownloadSheet = false
     @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
     
-    @State private var presentCancelClusterDownloadSheet = false
-    
     @State private var handpickedDownload = false // TODO: refactor
     
     // TODO: compute only once (inside cluster downloader?)
@@ -33,7 +31,7 @@ struct ClusterView: View {
             List {
                 // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
                 // it probably won't be necessary anymore with iOS 17's @Observable
-                ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, presentCancelClusterDownloadSheet: $presentCancelClusterDownloadSheet, handpickedDownload: $handpickedDownload)
+                ClusterDownloadRowView(clusterDownloader: clusterDownloader, cluster: cluster, handpickedDownload: $handpickedDownload)
                 
                 Section(header: Text("Secteurs")) {
                     ForEach(areas) { a in
@@ -47,19 +45,6 @@ struct ClusterView: View {
                             AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                         }
                     }
-                }
-            }
-            .background {
-                EmptyView().actionSheet(isPresented: $presentCancelClusterDownloadSheet) {
-                    ActionSheet(
-                        title: Text("Arrêter les téléchargements ?"),
-                        buttons: [
-                            .destructive(Text("Arrêter")) {
-                                clusterDownloader.stopDownloads()
-                            },
-                            .cancel()
-                        ]
-                    )
                 }
             }
             .background {

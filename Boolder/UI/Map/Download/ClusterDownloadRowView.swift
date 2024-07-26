@@ -11,7 +11,6 @@ import SwiftUI
 struct ClusterDownloadRowView: View {
     @ObservedObject var clusterDownloader: ClusterDownloader
     let cluster: Cluster
-    @Binding var presentCancelClusterDownloadSheet: Bool
     @Binding var handpickedDownload: Bool
     
     var body: some View {
@@ -21,7 +20,7 @@ struct ClusterDownloadRowView: View {
         else if clusterDownloader.downloadingOrQueued && !handpickedDownload {
             Section {
                 Button {
-                    presentCancelClusterDownloadSheet = true
+                    clusterDownloader.stopDownloads()
                 } label: {
                     HStack {
                         Image(systemName: "stop.circle").frame(height: 18)
