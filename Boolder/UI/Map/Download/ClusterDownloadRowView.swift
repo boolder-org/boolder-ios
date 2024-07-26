@@ -16,7 +16,7 @@ struct ClusterDownloadRowView: View {
     
     var body: some View {
         if clusterDownloader.allDownloaded {
-            
+            // nothing
         }
         else if clusterDownloader.downloadingOrQueued && !handpickedDownload {
             Section {
@@ -24,7 +24,7 @@ struct ClusterDownloadRowView: View {
                     presentCancelClusterDownloadSheet = true
                 } label: {
                     HStack {
-                        Image(systemName: "stop.circle")
+                        Image(systemName: "stop.circle").frame(height: 18)
                         Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
                     }
                     .font(.title3.weight(.semibold))
@@ -44,7 +44,7 @@ struct ClusterDownloadRowView: View {
                     clusterDownloader.start()
                 } label: {
                     HStack {
-                        Image(systemName: "icloud.and.arrow.down")
+                        Image(systemName: "icloud.and.arrow.down").frame(height: 18)
                         Text("Télécharger")
                         //                        .font(.body.weight(.semibold))
                         //                        .padding(.vertical)
