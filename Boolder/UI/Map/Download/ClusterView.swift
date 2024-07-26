@@ -36,7 +36,7 @@ struct ClusterView: View {
                     }
                 }
                 
-                Section(header: Text("Les avantages")) {
+                Section {
                     HStack {
                         Image(systemName: "antenna.radiowaves.left.and.right").frame(minWidth: 30)
                         Text("Plus besoin de chercher du réseau Internet au milieu de la forêt").font(.caption)
