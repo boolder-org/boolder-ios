@@ -76,7 +76,7 @@ struct ClusterView: View {
                             Text("Téléchargé") // .foregroundColor(.primary)
                             Spacer()
                         }
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.appGreen)
                     }
                 }
             }
