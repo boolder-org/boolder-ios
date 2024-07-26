@@ -11,24 +11,17 @@ import SwiftUI
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let clusterDownloader: ClusterDownloader // we don't use @ObservedObject because it would make the actionsheets unresponsive
+    @ObservedObject var clusterDownloader: ClusterDownloader
     
-    @State private var presentRemoveDownloadSheet = false
-    @State private var presentCancelDownloadSheet = false
-    @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
+    @Binding var presentRemoveDownloadSheet: Bool
+    @Binding var presentCancelDownloadSheet: Bool
+    @Binding var areaToEdit: Area
     
-    @State private var handpickedDownload = false // TODO: refactor
-    
-    // TODO: use AreaDownloader instead of Area
-    var areas: [Area] {
-        clusterDownloader.areas.map{$0.area}
-    }
+    @Binding var handpickedDownload: Bool
     
     var body: some View {
         NavigationView {
             List {
-                // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
-                // it probably won't be necessary anymore with iOS 17's @Observable
                 ClusterDownloadRowView(clusterDownloader: clusterDownloader, handpickedDownload: $handpickedDownload)
                 
                 Section(header: Text("Secteurs")) {
@@ -38,39 +31,12 @@ struct ClusterView: View {
                             
                             Spacer()
                             
-                            // we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
-                            // it probably won't be necessary anymore with iOS 17's @Observable
                             AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
                         }
                     }
                 }
             }
-            .background {
-                EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
-                    ActionSheet(
-                        title: Text("download.remove.title"),
-                        buttons: [
-                            .destructive(Text("download.remove.action")) {
-                                DownloadCenter.shared.areaDownloader(id: areaToEdit.id).remove()
-                            },
-                            .cancel()
-                        ]
-                    )
-                }
-            }
-            .background {
-                EmptyView().actionSheet(isPresented: $presentCancelDownloadSheet) {
-                    ActionSheet(
-                        title: Text("download.cancel.title"),
-                        buttons: [
-                            .destructive(Text("download.cancel.action")) {
-                                DownloadCenter.shared.areaDownloader(id: areaToEdit.id).cancel()
-                            },
-                            .cancel()
-                        ]
-                    )
-                }
-            }
+            
             .navigationTitle("Zone \(clusterDownloader.cluster.name)")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
@@ -83,6 +49,11 @@ struct ClusterView: View {
                 }
             )
         }
+    }
+    
+    // TODO: use AreaDownloader instead of Area
+    var areas: [Area] {
+        clusterDownloader.areas.map{$0.area}
     }
 }
 
