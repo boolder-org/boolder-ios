@@ -24,7 +24,7 @@ struct ClusterView: View {
             List {
                 ClusterDownloadRowView(clusterDownloader: clusterDownloader, handpickedDownload: $handpickedDownload)
                 
-                Section(header: Text("Secteurs")) {
+                Section(header: Text("Secteurs"), footer: footer) {
                     ForEach(areas) { a in
                         HStack {
                             Text(a.name).foregroundColor(.primary)
@@ -54,6 +54,15 @@ struct ClusterView: View {
     // TODO: use AreaDownloader instead of Area
     var areas: [Area] {
         clusterDownloader.areas.map{$0.area}
+    }
+    
+    var footer: some View {
+        if clusterDownloader.allDownloaded {
+            Text("Tout est bon, vous pouvez utiliser Boolder sans connexion dans tous ces secteurs.")
+        }
+        else {
+            Text("Après avoir téléchargé ces secteurs, vous pourrez utiliser Boolder sans connexion.")
+        }
     }
 }
 
