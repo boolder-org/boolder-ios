@@ -17,8 +17,6 @@ struct ClusterView: View {
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit: Area
     
-    @State private var handpickedDownload = false
-    
     var body: some View {
         NavigationView {
             List {
@@ -31,7 +29,7 @@ struct ClusterView: View {
                             
                             Spacer()
                             
-                            AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, handpickedDownload: $handpickedDownload, clusterDownloader: clusterDownloader)
+                            AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, clusterDownloader: clusterDownloader)
                         }
                     }
                 }
@@ -82,7 +80,7 @@ struct ClusterView: View {
                     }
                 }
             }
-            else if clusterDownloader.downloadingOrQueued && !handpickedDownload {
+            else if clusterDownloader.downloadingOrQueued && clusterDownloader.queueType == .auto {
                 Section {
                     Button {
                         clusterDownloader.stopDownloads()
@@ -102,16 +100,11 @@ struct ClusterView: View {
             else {
                 Section {
                     Button {
-                        // TODO: launch area downloads at the same time or no?
-                        // TODO: handle priority?
-                        handpickedDownload = false // move logic to ClusterDownloader
                         clusterDownloader.start()
                     } label: {
                         HStack {
                             Image(systemName: "icloud.and.arrow.down").frame(height: 18)
                             Text("Télécharger")
-                            //                        .font(.body.weight(.semibold))
-                            //                        .padding(.vertical)
                         }
                         .font(.title3.weight(.semibold))
                         .padding(.vertical, 8)

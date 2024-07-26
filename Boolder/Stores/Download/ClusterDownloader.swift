@@ -14,6 +14,7 @@ class ClusterDownloader: ObservableObject {
     @Published var areas = [AreaDownloader]()
     
     @Published var queueRunning = false
+    @Published var queueType: QueueType = .auto
     
     var cancellables = [AnyCancellable]()
     
@@ -35,14 +36,16 @@ class ClusterDownloader: ObservableObject {
     }
     
     func start() {
-        // TODO: use same sort logic as the UI
+        stopDownloads()
         areas.filter{ $0.status == .initial }.forEach{ $0.queue() }
 
-        startQueueIfNeeded()
+        queueType = .auto
+        startQueue()
     }
     
     func addAreaToQueue(_ area: AreaDownloader) {
         area.queue()
+        queueType = .manual
         startQueueIfNeeded()
     }
     
@@ -134,5 +137,10 @@ class ClusterDownloader: ObservableObject {
         }
         
         return weightedSum / totalWeight
+    }
+    
+    enum QueueType {
+        case manual
+        case auto
     }
 }
