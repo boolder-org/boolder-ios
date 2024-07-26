@@ -29,12 +29,12 @@ struct AreaDownloadRowView : View {
     
     var body: some View {
         Button {
-            if !(clusterDownloader.queueRunning && clusterDownloader.queueType == .auto) {
+            if !clusterDownloader.queueRunning || clusterDownloader.queueType == .manual {
                 if case .initial = areaDownloader.status  {
                     clusterDownloader.addAreaToQueue(areaDownloader)
                 }
                 else if case .queued = areaDownloader.status  {
-                    // TODO: remove from queue
+                    clusterDownloader.removeAreaFromQueue(areaDownloader)
                 }
                 else if case .downloading(_) = areaDownloader.status  {
                     areaToEdit = area

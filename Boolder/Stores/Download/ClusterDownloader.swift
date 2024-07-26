@@ -49,6 +49,10 @@ class ClusterDownloader: ObservableObject {
         startQueueIfNeeded()
     }
     
+    func removeAreaFromQueue(_ area: AreaDownloader) {
+        area.status = .initial
+    }
+    
     private func startQueueIfNeeded() {
         if !queueRunning {
             startQueue()
