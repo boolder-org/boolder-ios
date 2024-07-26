@@ -33,8 +33,9 @@ struct AreaDownloadRowView : View {
         Button {
             areaToEdit = area
             
-            handpickedDownload = true // FIXME: don't set it to true if area is queued
+            
             if case .initial = areaDownloader.status  {
+                handpickedDownload = true
                 clusterDownloader.addAreaToQueue(areaDownloader)
             }
             else if case .queued = areaDownloader.status  {
