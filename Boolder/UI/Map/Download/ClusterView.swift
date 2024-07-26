@@ -33,20 +33,6 @@ struct ClusterView: View {
                         }
                     }
                 }
-                
-                Section {
-                    HStack {
-                        Image(systemName: "antenna.radiowaves.left.and.right").frame(minWidth: 30)
-                        Text("Plus besoin de chercher du réseau Internet au milieu de la forêt").font(.caption)
-                    }
-                    .foregroundColor(.gray)
-                    
-                    HStack {
-                        Image(systemName: "battery.75percent").frame(minWidth: 30)
-                        Text("Économisez votre batterie en activant le mode avion").font(.caption)
-                    }
-                    .foregroundColor(.gray)
-                }
             }
             
             .navigationTitle(clusterDownloader.cluster.name)
