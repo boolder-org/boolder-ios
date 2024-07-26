@@ -49,7 +49,7 @@ struct ClusterView: View {
                 }
             }
             
-            .navigationTitle("Zone \(clusterDownloader.cluster.name)")
+            .navigationTitle(clusterDownloader.cluster.name)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
