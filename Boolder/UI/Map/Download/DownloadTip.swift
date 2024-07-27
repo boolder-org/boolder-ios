@@ -12,11 +12,11 @@ struct DownloadTip: Tip {
     var id: Int = 1 // TODO: clean up
     
     var title: Text {
-        Text("On grimpe bientôt ?")
+        Text("Mode hors connexion")
     }
 
     var message: Text? {
-        Text("Pensez à télécharger le secteur pour profiter du mode hors connexion.")
+        Text("Pensez à télécharger les secteurs en avance.")
     }
 
 //    var image: Image? {

@@ -13,11 +13,11 @@ struct DownloadExplanationTip: Tip {
     var id: Int = 2 // TODO: clean up
     
     var title: Text {
-        Text("Téléchargez les secteurs où vous souhaitez grimper")
+        Text("Téléchargez les secteurs en hors connexion")
     }
 
     var message: Text? {
-        Text("Vous pourrez alors utiliser Boolder en mode hors connexion : c'est plus rapide et ça consomme moins de batterie.")
+        Text("Vous pourrez ensuite utiliser toutes les fonctionnalités de Boolder même sans connexion à Internet.")
     }
 
 //    var image: Image? {
