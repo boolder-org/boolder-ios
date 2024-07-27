@@ -15,7 +15,9 @@ struct MapContainerView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
     
+    // TODO: make this more DRY
     @State private var presentDownloads = false
+    @State private var presentDownloadsPlaceholder = false
     
     var body: some View {
         
@@ -188,6 +190,9 @@ struct MapContainerView: View {
                 
                 if let cluster = mapState.selectedCluster {
                     DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                }
+                else {
+                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
                 }
                 
                 Button(action: {

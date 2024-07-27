@@ -103,6 +103,8 @@
 		03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3642C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
 		03C5A3652C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
+		03D199152C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
+		03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
@@ -223,6 +225,7 @@
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
 		03C5A3602C4F9E750057C42A /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		03C5A3632C4F9E980057C42A /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
+		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
@@ -333,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */,
+				03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */,
 				038F7F3E2C3A8CC500AE7028 /* ClusterView.swift */,
 				037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */,
 				038F7F3F2C3A8CC500AE7028 /* AreaDownloadRowView.swift */,
@@ -811,6 +815,7 @@
 				0307619D2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
+				03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
 				038C2EF229201152006581CD /* MapContainerView.swift in Sources */,
@@ -919,6 +924,7 @@
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
 				0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */,
+				03D199152C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
 				37379904258E157D00711EDA /* LargeButton.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				038F7F542C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */,
