@@ -21,6 +21,5 @@ struct FabButton: ButtonStyle {
                 Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
             )
             .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-            .padding(.horizontal)
     }
 }

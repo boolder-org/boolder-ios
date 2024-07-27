@@ -9,6 +9,8 @@
 import SwiftUI
 import CoreLocation
 
+import TipKit
+
 struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
@@ -181,11 +183,13 @@ struct MapContainerView: View {
         }
     }
     
+    let downloadTip = DownloadTip()
+    
     var fabButtons: some View {
         HStack {
             Spacer()
             
-            VStack {
+            VStack(alignment: .trailing) {
                 Spacer()
                 
                 if let cluster = mapState.selectedCluster {
@@ -193,6 +197,18 @@ struct MapContainerView: View {
                 }
                 else {
                     DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
+                        .padding(.leading, 64) // to make the tip appear in the right location
+                        .modify
+                    {
+                        
+                        if #available(iOS 17.0, *) {
+                            $0.popoverTip(downloadTip)
+                                .onTapGesture {
+                                    // Invalidate the tip when someone uses the feature.
+                                    downloadTip.invalidate(reason: .actionPerformed)
+                                }
+                        } 
+                    }
                 }
                 
                 Button(action: {
@@ -205,6 +221,7 @@ struct MapContainerView: View {
                 .buttonStyle(FabButton())
                 
             }
+            .padding(.trailing)
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
