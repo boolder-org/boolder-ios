@@ -18,34 +18,20 @@ struct ClusterView: View {
     @Binding var areaToEdit: Area
     
     var body: some View {
-        NavigationView {
-            List {
-                bigButton
-                
-                Section(header: Text("Secteurs")) {
-                    ForEach(areas) { a in
-                        HStack {
-                            Text(a.name).foregroundColor(.primary)
-                            
-                            Spacer()
-                            
-                            AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, clusterDownloader: clusterDownloader)
-                        }
+        List {
+            bigButton
+            
+            Section(header: Text("Secteurs")) {
+                ForEach(areas) { a in
+                    HStack {
+                        Text(a.name).foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        AreaDownloadRowView(area: a, areaToEdit: $areaToEdit, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, clusterDownloader: clusterDownloader)
                     }
                 }
             }
-            
-            .navigationTitle(clusterDownloader.cluster.name)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(
-                leading: Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Fermer")
-                        .padding(.vertical)
-                        .font(.body)
-                }
-            )
         }
     }
     
