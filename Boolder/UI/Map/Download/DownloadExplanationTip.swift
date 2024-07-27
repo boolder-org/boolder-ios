@@ -13,11 +13,11 @@ struct DownloadExplanationTip: Tip {
     var id: Int = 2 // TODO: clean up
     
     var title: Text {
-        Text("Téléchargez les secteurs en hors connexion")
+        Text("Téléchargez vos secteurs préférés")
     }
 
     var message: Text? {
-        Text("Vous pourrez ensuite utiliser toutes les fonctionnalités de Boolder même sans connexion à Internet.")
+        Text("Vous pourrez éviter le temps de chargement des photos et utiliser Boolder sans connexion à Internet.")
     }
 
 //    var image: Image? {
