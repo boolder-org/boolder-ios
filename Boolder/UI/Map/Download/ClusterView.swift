@@ -45,7 +45,7 @@ struct ClusterView: View {
                         HStack {
                             Spacer()
                             Image(systemName: "checkmark.icloud").font(.title2)
-                            Text("Téléchargé") // .foregroundColor(.primary)
+                            Text("Tous les secteurs téléchargés") // .foregroundColor(.primary)
                             Spacer()
                         }
                         .foregroundStyle(.appGreen)
