@@ -27,8 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DownloadCenter.shared.start()
         
         if #available(iOS 17.0, *) {
+            try? Tips.resetDatastore()
             try? Tips.configure()
-            Tips.showAllTipsForTesting()
+//            Tips.showAllTipsForTesting()
         }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.

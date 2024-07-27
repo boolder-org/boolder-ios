@@ -194,9 +194,6 @@ struct MapContainerView: View {
                 
                 if let cluster = mapState.selectedCluster {
                     DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
-                }
-                else {
-                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
                         .padding(.leading, 64) // to make the tip appear in the right location
                         .modify
                     {
@@ -207,8 +204,11 @@ struct MapContainerView: View {
                                     // Invalidate the tip when someone uses the feature.
                                     downloadTip.invalidate(reason: .actionPerformed)
                                 }
-                        } 
+                        }
                     }
+                }
+                else {
+                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
                 }
                 
                 Button(action: {
