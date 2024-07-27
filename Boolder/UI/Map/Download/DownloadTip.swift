@@ -12,11 +12,11 @@ struct DownloadTip: Tip {
     var id: Int = 1 // TODO: clean up
     
     var title: Text {
-        Text("Mode hors connexion")
+        Text("On grimpe bientôt ?")
     }
 
     var message: Text? {
-        Text("Téléchargez les secteurs en avance et utilisez Boolder sans connexion.")
+        Text("Pensez à télécharger le secteur pour profiter du mode hors connexion.")
     }
 
 //    var image: Image? {

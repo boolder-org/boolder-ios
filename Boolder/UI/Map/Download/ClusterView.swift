@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -17,8 +18,16 @@ struct ClusterView: View {
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit: Area
     
+    let downloadExplanationTip = DownloadExplanationTip()
+    
     var body: some View {
         List {
+            if #available(iOS 17.0, *) {
+                TipView(downloadExplanationTip)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+            }
+            
             bigButton
             
             Section(header: Text("Secteurs")) {
