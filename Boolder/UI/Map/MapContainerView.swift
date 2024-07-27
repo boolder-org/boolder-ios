@@ -202,7 +202,7 @@ struct MapContainerView: View {
                     {
                         
                         if #available(iOS 17.0, *) {
-                            $0.popoverTip(downloadTip)
+                            $0.popoverTip(downloadTip, arrowEdge: .trailing)
                                 .onTapGesture {
                                     // Invalidate the tip when someone uses the feature.
                                     downloadTip.invalidate(reason: .actionPerformed)

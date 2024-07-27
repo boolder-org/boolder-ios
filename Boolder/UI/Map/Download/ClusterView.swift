@@ -18,12 +18,12 @@ struct ClusterView: View {
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit: Area
     
-    let downloadExplanationTip = DownloadExplanationTip()
+    let downloadTip = DownloadTip()
     
     var body: some View {
         List {
             if #available(iOS 17.0, *) {
-                TipView(downloadExplanationTip)
+                TipView(downloadTip)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             }

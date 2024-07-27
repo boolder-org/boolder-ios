@@ -107,8 +107,6 @@
 		03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
 		03D199182C556B550082B56C /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199172C556B550082B56C /* DownloadTip.swift */; };
 		03D199192C556B550082B56C /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199172C556B550082B56C /* DownloadTip.swift */; };
-		03D1991B2C55718F0082B56C /* DownloadExplanationTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D1991A2C55718F0082B56C /* DownloadExplanationTip.swift */; };
-		03D1991C2C55718F0082B56C /* DownloadExplanationTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D1991A2C55718F0082B56C /* DownloadExplanationTip.swift */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
@@ -231,7 +229,6 @@
 		03C5A3632C4F9E980057C42A /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
-		03D1991A2C55718F0082B56C /* DownloadExplanationTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadExplanationTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
@@ -349,7 +346,6 @@
 				038F7F422C3A8CC500AE7028 /* FabButton.swift */,
 				03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */,
 				03D199172C556B550082B56C /* DownloadTip.swift */,
-				03D1991A2C55718F0082B56C /* DownloadExplanationTip.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -878,7 +874,6 @@
 				37F563F725AB09F400271346 /* TopoEntry.swift in Sources */,
 				030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				038F7F4F2C3A8CC500AE7028 /* FabButton.swift in Sources */,
-				03D1991C2C55718F0082B56C /* DownloadExplanationTip.swift in Sources */,
 				03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */,
@@ -943,7 +938,6 @@
 				03E500932930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */,
 				031A4CA52968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
 				03E500962930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */,
-				03D1991B2C55718F0082B56C /* DownloadExplanationTip.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
 				038F7F4A2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
