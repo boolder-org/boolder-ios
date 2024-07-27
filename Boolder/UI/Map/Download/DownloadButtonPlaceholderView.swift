@@ -35,7 +35,7 @@ struct DownloadButtonPlaceholderView: View {
     var placeholderView: some View {
         VStack(alignment: .center, spacing: 16) {
             Spacer()
-            Text("Zoomez sur un secteur pour le télécharger.").foregroundColor(.gray).font(.body)
+            Text("Zoomez sur la carte pour télécharger vos secteurs préférés.").foregroundColor(.gray).font(.body)
                 .multilineTextAlignment(.center)
             Spacer()
         }
