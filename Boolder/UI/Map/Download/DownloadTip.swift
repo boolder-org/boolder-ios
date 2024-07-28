@@ -17,7 +17,7 @@ struct DownloadTip: Tip {
     }
 
     var message: Text? {
-        Text("Évitez le temps de chargement des photos et utilisez Boolder sans connexion à Internet.")
+        Text("Évitez les temps de chargement et utilisez Boolder sans connexion à Internet.")
     }
 
 //    var image: Image? {
