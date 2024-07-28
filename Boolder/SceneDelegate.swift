@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DownloadCenter.shared.start()
         
         if #available(iOS 17.0, *) {
-            try? Tips.resetDatastore()
+//            try? Tips.resetDatastore()
             try? Tips.configure()
 //            Tips.showAllTipsForTesting()
         }
