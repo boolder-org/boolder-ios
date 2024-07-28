@@ -22,13 +22,14 @@ struct ClusterView: View {
     
     var body: some View {
         List {
+            bigButton
+            
             if #available(iOS 17.0, *) {
                 TipView(downloadTip)
+                    .tipBackground(Color.systemBackground)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             }
-            
-            bigButton
             
             Section(header: Text("Secteurs")) {
                 ForEach(areas) { a in
@@ -81,6 +82,9 @@ struct ClusterView: View {
             else {
                 Section {
                     Button {
+                        if #available(iOS 17.0, *) {
+                            downloadTip.invalidate(reason: .actionPerformed)
+                        }
                         clusterDownloader.start()
                     } label: {
                         HStack {

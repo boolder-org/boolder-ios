@@ -194,18 +194,18 @@ struct MapContainerView: View {
                 
                 if let cluster = mapState.selectedCluster {
                     DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
-                        .padding(.leading, 64) // to make the tip appear in the right location
-                        .modify
-                    {
-                        
-                        if #available(iOS 17.0, *) {
-                            $0.popoverTip(downloadTip, arrowEdge: .trailing)
-                                .onTapGesture {
-                                    // Invalidate the tip when someone uses the feature.
-                                    downloadTip.invalidate(reason: .actionPerformed)
-                                }
-                        }
-                    }
+//                        .padding(.leading, 64) // to make the tip appear in the right location
+//                        .modify
+//                    {
+//                        
+//                        if #available(iOS 17.0, *) {
+//                            $0.popoverTip(downloadTip, arrowEdge: .trailing)
+//                                .onTapGesture {
+//                                    // Invalidate the tip when someone uses the feature.
+//                                    downloadTip.invalidate(reason: .actionPerformed)
+//                                }
+//                        }
+//                    }
                 }
                 else {
                     DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
