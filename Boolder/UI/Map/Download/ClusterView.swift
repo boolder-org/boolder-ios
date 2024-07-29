@@ -52,6 +52,9 @@ struct ClusterView: View {
                     newValue
                 }
             }
+            else {
+                $0
+            }
         }
     }
     

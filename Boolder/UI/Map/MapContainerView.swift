@@ -206,6 +206,12 @@ struct MapContainerView: View {
                                         }
                                     }
                             }
+                            else {
+                                $0
+                            }
+                        }
+                        else {
+                            $0
                         }
                     }
                         
@@ -220,6 +226,9 @@ struct MapContainerView: View {
                                     tip.invalidate(reason: .actionPerformed)
                                 }
                             }
+                        }
+                        else {
+                            $0
                         }
                     }
                 }
