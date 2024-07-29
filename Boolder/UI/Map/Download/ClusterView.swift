@@ -18,19 +18,19 @@ struct ClusterView: View {
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit: Area?
     
-    let downloadTip = DownloadTip()
+    let tip = DownloadTip()
     
     var body: some View {
         List {
             bigButton
             
             if #available(iOS 17.0, *) {
-                TipView(downloadTip)
+                TipView(tip)
                     .tipBackground(Color.systemBackground)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
                     .onChange(of: clusterDownloader.queueRunning) { oldValue, newValue in
-                        downloadTip.invalidate(reason: .actionPerformed)
+                        tip.invalidate(reason: .actionPerformed)
                     }
             }
             

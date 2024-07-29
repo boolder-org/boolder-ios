@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import TipKit
 
 struct SettingsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -16,7 +17,7 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Section {
+            Section(header: Text("Ticks and favorites")) {
                 HStack {
                     Button(action: {
                         showAlertToRemoveTicksAndFavorites = true
@@ -52,13 +53,45 @@ struct SettingsView: View {
                 }
             }
             
-            Section {
+            Section(header: Text("Downloads")) {
                 HStack {
                     Button(action: {
                         DownloadCenter.shared.forceReset()
                         print("force reset")
                     }) {
                         Text("Remove photo downloads").foregroundColor(.red)
+                    }
+                }
+            }
+            
+            Section(header: Text("Tips")) {
+                HStack {
+                    Button(action: {
+                        if #available(iOS 17.0, *) {
+                            try? Tips.resetDatastore()
+                        }
+                    }) {
+                        Text("Reset Tips datastore").foregroundColor(.red)
+                    }
+                }
+                
+                HStack {
+                    Button(action: {
+                        if #available(iOS 17.0, *) {
+                            Tips.showAllTipsForTesting()
+                        }
+                    }) {
+                        Text("Show all tips")
+                    }
+                }
+                
+                HStack {
+                    Button(action: {
+                        if #available(iOS 17.0, *) {
+                            Tips.hideAllTipsForTesting()
+                        }
+                    }) {
+                        Text("Hide all tips")
                     }
                 }
             }
