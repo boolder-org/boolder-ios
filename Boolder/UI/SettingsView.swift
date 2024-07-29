@@ -69,6 +69,7 @@ struct SettingsView: View {
                     Button(action: {
                         if #available(iOS 17.0, *) {
                             try? Tips.resetDatastore()
+                            try? Tips.configure()
                         }
                     }) {
                         Text("Reset Tips datastore").foregroundColor(.red)

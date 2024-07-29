@@ -197,18 +197,31 @@ struct MapContainerView: View {
                         .padding(.leading, 64) // to make the tip appear in the right location
                         .modify
                     {
-                        
-                        if #available(iOS 17.0, *) {
-                            $0.popoverTip(tip, arrowEdge: .trailing)
-                                .onTapGesture {
-                                    // Invalidate the tip when someone uses the feature.
-                                    tip.invalidate(reason: .actionPerformed)
-                                }
+                        if userDidUseOldOfflineMode {
+                            if #available(iOS 17.0, *) {
+                                $0.popoverTip(tip, arrowEdge: .trailing)
+                                    .onChange(of: presentDownloads) { _, presented in
+                                        if presented {
+                                            tip.invalidate(reason: .actionPerformed)
+                                        }
+                                    }
+                            }
                         }
                     }
+                        
                 }
                 else {
                     DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
+                        .modify
+                    {
+                        if #available(iOS 17.0, *) {
+                            $0.onChange(of: presentDownloadsPlaceholder) { _, presented in
+                                if presented {
+                                    tip.invalidate(reason: .actionPerformed)
+                                }
+                            }
+                        }
+                    }
                 }
                 
                 Button(action: {
@@ -225,6 +238,16 @@ struct MapContainerView: View {
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
+    }
+    
+    // TODO: remove after October 2024
+    private var userDidUseOldOfflineMode: Bool {
+        if let data = UserDefaults.standard.data(forKey: "offline-photos/areasIds"),
+           let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) {
+            return decodedSet.count > 0
+        }
+        
+        return false
     }
     
     private func areaBestGuess(in cluster: Cluster) -> Area? {

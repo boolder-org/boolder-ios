@@ -12,11 +12,11 @@ struct DownloadAnnouncementTip: Tip {
     var id: String = "download.announcement.tip"
     
     var title: Text {
-        Text("Nouveau mode hors ligne !")
+        Text("download.announcement.tip.title")
     }
 
     var message: Text? {
-        Text("C'est ici que ça se passe.")
+        Text("download.announcement.tip.message")
     }
 
 //    var image: Image? {

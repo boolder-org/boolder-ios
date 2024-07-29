@@ -106,6 +106,8 @@
 "download.cancel.title" = "Stop download?";
 "download.cancel.action" = "Stop download";
 "download.zoom" = "Zoom on the map to download areas.";
+"download.announcement.tip.title" = "New offline mode";
+"download.announcement.tip.message" = "Even easier and more practical.";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";
