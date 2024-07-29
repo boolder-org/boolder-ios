@@ -43,6 +43,13 @@ struct ClusterView: View {
                 }
             }
         }
+        .modify {
+            if #available(iOS 17.0, *) {
+                $0.sensoryFeedback(.success, trigger: clusterDownloader.allDownloaded) { oldValue, newValue in
+                    newValue
+                }
+            }
+        }
     }
     
     var bigButton: some View {
@@ -50,7 +57,7 @@ struct ClusterView: View {
             if clusterDownloader.allDownloaded {
                 Section {
                     Button {
-                        
+                        // TODO: remove downloads
                     } label: {
                         HStack {
                             Spacer()
