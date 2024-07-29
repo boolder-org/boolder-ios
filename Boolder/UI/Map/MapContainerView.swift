@@ -194,12 +194,12 @@ struct MapContainerView: View {
                 
                 if let cluster = mapState.selectedCluster {
                     DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
-                        .padding(.leading, 64) // to make the tip appear in the right location
+                        .padding(.leading, 44) // to make the tip appear in the right location
                         .modify
                     {
                         if userDidUseOldOfflineMode {
                             if #available(iOS 17.0, *) {
-                                $0.popoverTip(tip, arrowEdge: .trailing)
+                                $0.popoverTip(tip)
                                     .onChange(of: presentDownloads) { _, presented in
                                         if presented {
                                             tip.invalidate(reason: .actionPerformed)
