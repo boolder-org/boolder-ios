@@ -29,6 +29,9 @@ struct ClusterView: View {
                     .tipBackground(Color.systemBackground)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
+                    .onChange(of: clusterDownloader.queueRunning) { oldValue, newValue in
+                        downloadTip.invalidate(reason: .actionPerformed)
+                    }
             }
             
             Section(header: Text("download.cluster.areas")) {
@@ -89,9 +92,6 @@ struct ClusterView: View {
             else {
                 Section {
                     Button {
-                        if #available(iOS 17.0, *) {
-                            downloadTip.invalidate(reason: .actionPerformed)
-                        }
                         clusterDownloader.start()
                     } label: {
                         HStack {
