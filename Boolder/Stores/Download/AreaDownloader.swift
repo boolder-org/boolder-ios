@@ -30,7 +30,7 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func start(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) {
-        guard !downloadingOrQueued else { return }
+        guard downloadingOrQueued else { return }
         
         DispatchQueue.main.async {
             self.status = .downloading(progress: 0.0)
