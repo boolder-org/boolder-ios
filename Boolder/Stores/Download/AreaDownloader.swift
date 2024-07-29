@@ -30,41 +30,36 @@ class AreaDownloader: Identifiable, ObservableObject {
     }
     
     func start(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) {
-        // TODO: necessary?
-//        guard !downloading && status != .downloaded else { return }
+        guard !downloadingOrQueued else { return }
         
-        if alreadyDownloaded {
-            DispatchQueue.main.async { self.status = .downloaded }
+        DispatchQueue.main.async {
+            self.status = .downloading(progress: 0.0)
         }
-        else {
-            DispatchQueue.main.async {
-                self.status = .downloading(progress: 0.0)
-            }
+        
+        self.task = Task {
+            let topos = area.topos
+            let downloader = Downloader()
             
-            self.task = Task {
-                let topos = area.topos
-                let downloader = Downloader()
+            self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+                .sink() { progress in
+                    self.status = .downloading(progress: progress)
+                }
+            
+            await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
+                DispatchQueue.main.async {
+                    self.status = .downloaded
+                    self.createSuccessfulDownloadFile()
+                    onSuccess()
+                }
                 
-                self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
-                    .sink() { progress in
-                        self.status = .downloading(progress: progress)
-                    }
-                
-                await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
-                    DispatchQueue.main.async {
-                        self.status = .downloaded
-                        self.createSuccessfulDownloadFile()
-                        onSuccess()
-                    }
-                    
-                }, onFailure: { [self] in
-                    DispatchQueue.main.async {
-                        self.status = .initial
-                        onFailure()
-                    }
-                })
-            }
+            }, onFailure: { [self] in
+                DispatchQueue.main.async {
+                    self.status = .initial
+                    onFailure()
+                }
+            })
         }
+        
     }
     
     func queue() {
