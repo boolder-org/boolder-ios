@@ -9,7 +9,7 @@
 import TipKit
 
 struct DownloadTip: Tip {
-    var id: Int = 1 // TODO: clean up
+    var id: String = "download.cluster.tip"
     
     var title: Text {
         Text("download.cluster.tip.title")
