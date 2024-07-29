@@ -12,11 +12,11 @@ struct DownloadTip: Tip {
     var id: Int = 1 // TODO: clean up
     
     var title: Text {
-        Text("Téléchargez les secteurs en avance")
+        Text("download.cluster.tip.title")
     }
 
     var message: Text? {
-        Text("Vous éviterez les temps de chargement et vous pourrez utiliser Boolder sans connexion à Internet.")
+        Text("download.cluster.tip.message")
     }
 
 //    var image: Image? {

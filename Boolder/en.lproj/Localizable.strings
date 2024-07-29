@@ -99,10 +99,13 @@
 "download.cluster.download" = "Download";
 "download.cluster.downloading" = "Downloading %d%%";
 "download.cluster.downloaded" = "Areas downloaded";
+"download.cluster.tip.title" = "Download areas in advance";
+"download.cluster.tip.message" = "Skip loading times and use Boolder without an Internet connection.";
 "download.remove.title" = "Delete download?";
 "download.remove.action" = "Delete";
 "download.cancel.title" = "Stop download?";
 "download.cancel.action" = "Stop download";
+"download.zoom" = "Zoom on the map to download areas.";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";

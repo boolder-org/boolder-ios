@@ -99,10 +99,14 @@
 "download.cluster.download" = "Télécharger";
 "download.cluster.downloading" = "Téléchargement %d%%";
 "download.cluster.downloaded" = "Secteurs téléchargés";
+"download.cluster.tip.title" = "Téléchargez les secteurs en avance";
+"download.cluster.tip.message" = "Vous éviterez les temps de chargement et vous pourrez utiliser Boolder sans connexion à Internet.";
 "download.remove.title" = "Supprimer le téléchargement ?";
 "download.remove.action" = "Supprimer";
 "download.cancel.title" = "Arrêter le téléchargement ?";
 "download.cancel.action" = "Arrêter le téléchargement";
+"download.zoom" = "Zoomez sur la carte pour télécharger les secteurs.";
+
 
 // MARK: Top areas
 "top_areas.level.title" = "Par niveau";
