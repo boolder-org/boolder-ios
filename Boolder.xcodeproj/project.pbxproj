@@ -610,99 +610,6 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				KnownAssetTags = (
-					"aea-62",
-					"area-1",
-					"area-10",
-					"area-101",
-					"area-104",
-					"area-11",
-					"area-12",
-					"area-13",
-					"area-14",
-					"area-15",
-					"area-16",
-					"area-17",
-					"area-18",
-					"area-19",
-					"area-2",
-					"area-20",
-					"area-21",
-					"area-22",
-					"area-23",
-					"area-24",
-					"area-25",
-					"area-26",
-					"area-27",
-					"area-28",
-					"area-29",
-					"area-30",
-					"area-31",
-					"area-32",
-					"area-33",
-					"area-34",
-					"area-35",
-					"area-36",
-					"area-37",
-					"area-38",
-					"area-39",
-					"area-4",
-					"area-40",
-					"area-41",
-					"area-42",
-					"area-43",
-					"area-44",
-					"area-45",
-					"area-46",
-					"area-47",
-					"area-48",
-					"area-49",
-					"area-5",
-					"area-50",
-					"area-51",
-					"area-52",
-					"area-53",
-					"area-54",
-					"area-55",
-					"area-56",
-					"area-57",
-					"area-58",
-					"area-59",
-					"area-6",
-					"area-60",
-					"area-61",
-					"area-62",
-					"area-63",
-					"area-64",
-					"area-66",
-					"area-67",
-					"area-68",
-					"area-69",
-					"area-7",
-					"area-70",
-					"area-71",
-					"area-72",
-					"area-73",
-					"area-75",
-					"area-76",
-					"area-77",
-					"area-78",
-					"area-79",
-					"area-8",
-					"area-80",
-					"area-81",
-					"area-82",
-					"area-83",
-					"area-84",
-					"area-86",
-					"area-9",
-					"area-91",
-					"area-92",
-					"area-94",
-					"area-95",
-					"area-96",
-					"area-99",
-				);
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = "Nicolas Mondollot";
@@ -1022,7 +929,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.25.1;
-				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1050,7 +956,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.25.1;
-				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "area-1 area-4 area-2 area-5";
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
