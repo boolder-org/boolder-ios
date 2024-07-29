@@ -29,6 +29,13 @@ class DownloadCenter: ObservableObject {
     func areaDownloader(id: Int) -> AreaDownloader {
         allAreas.first { $0.id == id }! // Careful when changing this method, you need to make sure the id exists in the allAreas array
     }
+    
+    // Careful: use only in dev environment
+    func forceReset() {
+        #if DEVELOPMENT
+        allAreas.forEach { $0.remove() }
+        #endif
+    }
 }
 
 

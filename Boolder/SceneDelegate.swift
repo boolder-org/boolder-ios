@@ -9,6 +9,8 @@
 import UIKit
 import SwiftUI
 
+import TipKit
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -23,6 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         DownloadCenter.shared.start()
+        
+        if #available(iOS 17.0, *) {            
+            try? Tips.configure()
+        }
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.        

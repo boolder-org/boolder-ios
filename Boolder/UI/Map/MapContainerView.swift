@@ -9,19 +9,26 @@
 import SwiftUI
 import CoreLocation
 
+import TipKit
+
 struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
     
+    // TODO: make this more DRY
+    @State private var presentDownloads = false
+    @State private var presentDownloadsPlaceholder = false
+    
     var body: some View {
+        
         ZStack {
             mapbox
             
             circuitButtons
             
-            locateButton
+            fabButtons
                 .zIndex(10)
             
             SearchView(mapState: mapState)
@@ -176,33 +183,93 @@ struct MapContainerView: View {
         }
     }
     
-    var locateButton : some View {
+    let tip = DownloadAnnouncementTip()
+    
+    var fabButtons: some View {
         HStack {
             Spacer()
             
-            VStack {
+            VStack(alignment: .trailing) {
                 Spacer()
+                
+                if let cluster = mapState.selectedCluster {
+                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                        .padding(.leading, 44) // to make the tip appear in the right location
+                        .modify
+                    {
+                        if userDidUseOldOfflineMode {
+                            if #available(iOS 17.0, *) {
+                                $0.popoverTip(tip)
+                                    .onChange(of: presentDownloads) { _, presented in
+                                        if presented {
+                                            tip.invalidate(reason: .actionPerformed)
+                                        }
+                                    }
+                            }
+                        }
+                    }
+                        
+                }
+                else {
+                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
+                        .modify
+                    {
+                        if #available(iOS 17.0, *) {
+                            $0.onChange(of: presentDownloadsPlaceholder) { _, presented in
+                                if presented {
+                                    tip.invalidate(reason: .actionPerformed)
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 Button(action: {
                     mapState.centerOnCurrentLocation()
                 }) {
                     Image(systemName: "location")
-                        .padding(12)
                         .offset(x: -1, y: 0)
+//                        .font(.system(size: 20, weight: .regular))
                 }
-                .accentColor(.primary)
-                .background(Color.systemBackground)
-                .clipShape(Circle())
-                .overlay(
-                    Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                )
-                .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                .padding(.horizontal)
+                .buttonStyle(FabButton())
                 
             }
+            .padding(.trailing)
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
+    }
+    
+    // TODO: remove after October 2024
+    private var userDidUseOldOfflineMode: Bool {
+        if let data = UserDefaults.standard.data(forKey: "offline-photos/areasIds"),
+           let decodedSet = try? JSONDecoder().decode(Set<Int>.self, from: data) {
+            return decodedSet.count > 0
+        }
+        
+        return false
+    }
+    
+    private func areaBestGuess(in cluster: Cluster) -> Area? {
+        if let selectedArea = mapState.selectedArea {
+            return selectedArea
+        }
+        
+        if let zoom = mapState.zoom, let center = mapState.center {
+            if zoom > 12.5 {
+                if let area = closestArea(in: cluster, from: CLLocation(latitude: center.latitude, longitude: center.longitude)) {
+                    return area
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    private func closestArea(in cluster: Cluster, from center: CLLocation) -> Area? {
+        cluster.areas.sorted {
+            $0.center.distance(from: center) < $1.center.distance(from: center)
+        }.first
     }
 }
 

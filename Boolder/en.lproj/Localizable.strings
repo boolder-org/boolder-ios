@@ -93,14 +93,21 @@
 "area.problems.search_prompt" = "Problem name";
 "area.circuit.beginner" = "This circuit is beginner friendly";
 "area.circuit.dangerous" = "This circuit is dangerous: some boulders are very high and/or with difficult landings";
-"area.offline" = "Offline mode";
-"area.photos.download" = "Download the photos";
-"area.photos.downloading" = "Downloading";
-"area.photos.downloaded" = "Photos downloaded";
-"area.photos.remove.title" = "Delete offline photos ?";
-"area.photos.remove.action" = "Delete";
-"area.photos.cancel.title" = "Stop download?";
-"area.photos.cancel.action" = "Stop download";
+
+// MARK: Download
+"download.cluster.areas" = "Areas";
+"download.cluster.download" = "Download";
+"download.cluster.downloading" = "Downloading %d%%";
+"download.cluster.downloaded" = "Areas downloaded";
+"download.cluster.tip.title" = "Download areas in advance";
+"download.cluster.tip.message" = "Skip loading times and use Boolder without an Internet connection.";
+"download.remove.title" = "Delete download?";
+"download.remove.action" = "Delete";
+"download.cancel.title" = "Stop download?";
+"download.cancel.action" = "Stop download";
+"download.zoom" = "Zoom on the map to download areas.";
+"download.announcement.tip.title" = "New offline mode";
+"download.announcement.tip.message" = "Even easier and more convenient.";
 
 // MARK: Top areas
 "top_areas.level.title" = "For your level";

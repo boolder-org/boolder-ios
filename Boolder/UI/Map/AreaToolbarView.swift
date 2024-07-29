@@ -56,7 +56,7 @@ struct AreaToolbarView: View {
                                         .foregroundColor(.yellow)
                                 }
                                 
-                                AreaLoadingStatus(area: area)
+                                Image(systemName: "info.circle")
                             }
                         }
                         .padding(.vertical, 10)

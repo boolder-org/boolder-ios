@@ -119,8 +119,18 @@ struct MapboxView: UIViewControllerRepresentable {
             }
         }
         
+        @MainActor func selectCluster(id: Int) {
+            if let cluster = Cluster.load(id: id) {
+                parent.mapState.selectCluster(cluster)
+            }
+        }
+        
         @MainActor func unselectArea() {
             parent.mapState.unselectArea()
+        }
+        
+        @MainActor func unselectCluster() {
+            parent.mapState.unselectCluster()
         }
         
         @MainActor func unselectCircuit() {
@@ -139,8 +149,11 @@ struct MapboxView: UIViewControllerRepresentable {
             parent.mapState.presentProblemDetails = false
         }
         
-        @MainActor func cameraChanged() {
+        @MainActor func cameraChanged(state: MapboxMaps.CameraState) {
             parent.mapState.displayCircuitStartButton = false
+            
+            // TODO: deal with padding
+            parent.mapState.updateCameraState(center: state.center, zoom: state.zoom)
         }
     }
 }

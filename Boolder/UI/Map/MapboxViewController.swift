@@ -72,10 +72,10 @@ class MapboxViewController: UIViewController {
             
             lastCameraCheck = DispatchTime.now()
             
-            self.inferAreaFromMap()
-            
             if(!flyinToSomething) {
-                self.delegate?.cameraChanged()
+                self.inferAreaFromMap()
+                self.inferClusterFromMap()
+                self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
             }
         }
         
@@ -357,9 +357,9 @@ class MapboxViewController: UIViewController {
 
         circuitProblemsTextsLayer.textColor = problemsTextsLayer.textColor
         
+        // ===========================
+        
         do {
-            
-            
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
             
@@ -454,6 +454,7 @@ class MapboxViewController: UIViewController {
                 case .success(let queriedfeatures):
                     
                     if let feature = queriedfeatures.first?.feature,
+                       case .number(let id) = feature.properties?["clusterId"],
                        case .string(let southWestLon) = feature.properties?["southWestLon"],
                        case .string(let southWestLat) = feature.properties?["southWestLat"],
                        case .string(let northEastLon) = feature.properties?["northEastLon"],
@@ -465,6 +466,8 @@ class MapboxViewController: UIViewController {
                         let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
                         
                         self.flyTo(cameraOptions)
+                        
+                        self.delegate?.selectCluster(id: Int(id))
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -509,9 +512,10 @@ class MapboxViewController: UIViewController {
                     if let feature = queriedfeatures.first?.feature,
                        case .string(let name) = feature.properties?["name"],
                        case .string(let googleUrl) = feature.properties?["googleUrl"],
+                       case .string(let type) = feature.properties?["type"],
                        case .point(let point) = feature.geometry
                     {
-                        if self.mapView.mapboxMap.cameraState.zoom >= 12 {
+                        if (self.mapView.mapboxMap.cameraState.zoom >= 12 && type == "trainstation") || (self.mapView.mapboxMap.cameraState.zoom >= 14) {
                             self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
                         }
                     }
@@ -605,7 +609,7 @@ class MapboxViewController: UIViewController {
             }
             
             let width = mapView.frame.width/4
-            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2, width: width, height: width)
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2 + safePaddingYForAreaDetector, width: width, height: width)
             
             //            var debugView = UIView(frame: rect)
             //            debugView.backgroundColor = .red
@@ -630,9 +634,49 @@ class MapboxViewController: UIViewController {
                     }
                 }
             
-            
-            if(mapView.mapboxMap.cameraState.zoom < 15) {
+            if(mapView.mapboxMap.cameraState.zoom < 14.5) {
                 delegate?.unselectArea()
+            }
+        }
+    }
+    
+    func inferClusterFromMap() {
+        if(!flyinToSomething) {
+            
+            let zoom = Expression(.gte) {
+                Expression(.zoom)
+                12
+            }
+            
+            let width = mapView.frame.width/4
+            let rect = CGRect(x: mapView.center.x - width/2, y: mapView.center.y - width/2 + safePaddingYForAreaDetector, width: width, height: width)
+            
+//                                    var debugView = UIView(frame: rect)
+//                                    debugView.backgroundColor = .blue
+//                                    mapView.addSubview(debugView)
+            
+            mapView.mapboxMap.queryRenderedFeatures(
+                with: rect,
+                options: RenderedQueryOptions(layerIds: ["clusters-hulls"], filter: zoom)) { [weak self] result in
+                    
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let queriedfeatures):
+                        
+                        if let feature = queriedfeatures.first?.feature,
+                           case .number(let id) = feature.properties?["clusterId"]
+                        {
+                            self.delegate?.selectCluster(id: Int(id))
+                        }
+                    case .failure(_):
+                        break
+                    }
+                }
+            
+            
+            if(mapView.mapboxMap.cameraState.zoom < 11) {
+                delegate?.unselectCluster()
             }
         }
     }
@@ -747,11 +791,6 @@ class MapboxViewController: UIViewController {
                 )
                 
                 flyTo(cameraOptions)
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
-                    self.inferAreaFromMap()
-                    // TODO: what if map is slow to load? we should infer again after it's loaded
-                }
             }
             else {
                 let cameraOptions = mapView.mapboxMap.camera(
@@ -859,20 +898,47 @@ class MapboxViewController: UIViewController {
     
     func flyTo(_ cameraOptions: CameraOptions) {
         flyinToSomething = true
-        mapView.camera.fly(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
+        
+        mapView.camera.fly(to: cameraOptions, duration: flyinDuration) { _ in
+            self.flyinToSomething = false
+            
+            // hack to make sure we detect the right cluster and area after the fly animation is done
+            // we do this because sometimes the area and/or cluster are unselected by mistake because the inferArea/inferCluster funcs are called during a flying animation
+            // we can probably remove it when we move to MapboxMap.isAnimationInProgress in v11
+            self.triggerMapDetectors()
+        }
     }
     
     func easeTo(_ cameraOptions: CameraOptions) {
         flyinToSomething = true
-        mapView.camera.ease(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
+        mapView.camera.ease(to: cameraOptions, duration: flyinDuration) { _ in
+            self.flyinToSomething = false
+            
+            // TODO: use the same hack as flyTo() ?
+        }
     }
     
-    var flyinToSomething = false
+    func triggerMapDetectors() {
+        // hack to make sure we detect the right cluster and area after the flying animation is done
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.inferAreaFromMap()
+            self.inferClusterFromMap()
+        }
+        
+        // In case the map is slow to load
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.inferAreaFromMap()
+            self.inferClusterFromMap()
+        }
+    }
+    
+    var flyinToSomething = false // TODO: replace with MapboxMap.isAnimationInProgress in v11 (probably more reliable)
     let flyinDuration = 0.5
     let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20)
     var safePaddingForBottomSheet : UIEdgeInsets {
         UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
     }
+    let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
 }
 
 import CoreLocation
@@ -881,8 +947,10 @@ protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
+    func selectCluster(id: Int)
     func unselectArea()
+    func unselectCluster()
     func unselectCircuit()
-    func cameraChanged()
+    func cameraChanged(state: CameraState)
     func dismissProblemDetails()
 }

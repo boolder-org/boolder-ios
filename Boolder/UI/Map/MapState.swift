@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 @MainActor class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
+    @Published private(set) var center: CLLocationCoordinate2D? = nil
+    @Published private(set) var zoom: CGFloat? = nil
     @Published private(set) var centerOnArea: Area? = nil
+    @Published private(set) var selectedCluster: Cluster? = nil
     @Published private(set) var selectedCircuit: Circuit? = nil
     @Published var selectedPoi: Poi? = nil
     @Published var filters: Filters = Filters()
@@ -40,10 +44,22 @@ import SwiftUI
     
     func selectArea(_ area: Area) {
         selectedArea = area
+        
+        if let clusterId = area.clusterId, let cluster = Cluster.load(id: clusterId) {
+            selectCluster(cluster)
+        }
+    }
+    
+    func selectCluster(_ cluster: Cluster) {
+        selectedCluster = cluster
     }
     
     func unselectArea() {
         selectedArea = nil
+    }
+    
+    func unselectCluster() {
+        selectedCluster = nil
     }
     
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
@@ -134,5 +150,10 @@ import SwiftUI
     
     func filtersRefresh() {
         filtersRefreshCount += 1
+    }
+    
+    func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {
+        self.center = center
+        self.zoom = zoom
     }
 }

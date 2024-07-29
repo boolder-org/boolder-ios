@@ -29,37 +29,41 @@ class AreaDownloader: Identifiable, ObservableObject {
         }
     }
     
-    func start() {
-        if alreadyDownloaded {
-            DispatchQueue.main.async { self.status = .downloaded }
+    func start(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) {
+        guard downloadingOrQueued else { return }
+        
+        DispatchQueue.main.async {
+            self.status = .downloading(progress: 0.0)
         }
-        else {
-            DispatchQueue.main.async {
-                self.status = .downloading(progress: 0.0)
-            }
+        
+        self.task = Task {
+            let topos = area.topos
+            let downloader = Downloader()
             
-            self.task = Task {
-                let topos = area.topos
-                let downloader = Downloader()
+            self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+                .sink() { progress in
+                    self.status = .downloading(progress: progress)
+                }
+            
+            await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
+                DispatchQueue.main.async {
+                    self.status = .downloaded
+                    self.createSuccessfulDownloadFile()
+                    onSuccess()
+                }
                 
-                self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
-                    .sink() { progress in
-                        self.status = .downloading(progress: progress)
-                    }
-                
-                await downloader.downloadFiles(topos: topos, onSuccess: { [self] in
-                    DispatchQueue.main.async {
-                        self.status = .downloaded
-                        self.createSuccessfulDownloadFile()
-                    }
-                    
-                }, onFailure: { [self] in
-                    DispatchQueue.main.async {
-                        self.status = .initial
-                    }
-                })
-            }
+            }, onFailure: { [self] in
+                DispatchQueue.main.async {
+                    self.status = .initial
+                    onFailure()
+                }
+            })
         }
+        
+    }
+    
+    func queue() {
+        self.status = .queued
     }
     
     func cancel() {
@@ -74,6 +78,10 @@ class AreaDownloader: Identifiable, ObservableObject {
         cancellable = nil
         
         status = .initial
+    }
+    
+    var downloadingOrQueued: Bool {
+        status.downloadingOrQueued
     }
     
     private var successfulDownloadFile: URL {
@@ -105,8 +113,31 @@ class AreaDownloader: Identifiable, ObservableObject {
     
     enum DownloadStatus: Equatable {
         case initial
+        case queued
         case downloading(progress: Double)
         case downloaded
+        
+        var downloadingOrQueued: Bool {
+            if case .downloading(_) = self {
+                return true
+            }
+            else if case .queued = self {
+                return true
+            }
+            
+            return false
+        }
+        
+        var progress: Double {
+            if case .downloading(let p) = self {
+                return p
+            }
+            else if case .downloaded = self {
+                return 1.0
+            }
+            
+            return 0.0
+        }
         
         var label: String {
             switch self {
@@ -116,6 +147,8 @@ class AreaDownloader: Identifiable, ObservableObject {
                 "-"
             case .downloading(progress: let progress):
                 "\(Int(progress*100))%"
+            case .queued:
+                "queued"
             }
         }
     }
