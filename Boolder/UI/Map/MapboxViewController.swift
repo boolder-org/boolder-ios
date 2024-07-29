@@ -669,20 +669,15 @@ class MapboxViewController: UIViewController {
                         {
                             self.delegate?.selectCluster(id: Int(id))
                         }
-                        else {
-                            // FIXME: this is a problem when we have poor connectivity
-                            // clusters may not be loaded properly and we may wrongly unselect a cluster that has been selected by a tap on a cluster
-                            self.delegate?.unselectCluster()
-                        }
                     case .failure(_):
                         break
                     }
                 }
             
             
-//            if(mapView.mapboxMap.cameraState.zoom < 11) {
-//                delegate?.unselectCluster()
-//            }
+            if(mapView.mapboxMap.cameraState.zoom < 11) {
+                delegate?.unselectCluster()
+            }
         }
     }
     
@@ -796,12 +791,6 @@ class MapboxViewController: UIViewController {
                 )
                 
                 flyTo(cameraOptions)
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + flyinDuration + 0.1) { // make sure the fly animation is over
-                    self.inferAreaFromMap()
-                    self.inferClusterFromMap()
-                    // TODO: what if map is slow to load? we should infer again after it's loaded
-                }
             }
             else {
                 let cameraOptions = mapView.mapboxMap.camera(
@@ -909,15 +898,41 @@ class MapboxViewController: UIViewController {
     
     func flyTo(_ cameraOptions: CameraOptions) {
         flyinToSomething = true
-        mapView.camera.fly(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
+        
+        mapView.camera.fly(to: cameraOptions, duration: flyinDuration) { _ in
+            self.flyinToSomething = false
+            
+            // hack to make sure we detect the right cluster and area after the fly animation is done
+            // we do this because sometimes the area and/or cluster are unselected by mistake because the inferArea/inferCluster funcs are called during a flying animation
+            // we can probably remove it when we move to MapboxMap.isAnimationInProgress in v11
+            self.triggerMapDetectors()
+        }
     }
     
     func easeTo(_ cameraOptions: CameraOptions) {
         flyinToSomething = true
-        mapView.camera.ease(to: cameraOptions, duration: flyinDuration) { _ in self.flyinToSomething = false }
+        mapView.camera.ease(to: cameraOptions, duration: flyinDuration) { _ in
+            self.flyinToSomething = false
+            
+            // TODO: use the same hack as flyTo() ?
+        }
     }
     
-    var flyinToSomething = false
+    func triggerMapDetectors() {
+        // hack to make sure we detect the right cluster and area after the flying animation is done
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.inferAreaFromMap()
+            self.inferClusterFromMap()
+        }
+        
+        // In case the map is slow to load
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.inferAreaFromMap()
+            self.inferClusterFromMap()
+        }
+    }
+    
+    var flyinToSomething = false // TODO: replace with MapboxMap.isAnimationInProgress in v11 (probably more reliable)
     let flyinDuration = 0.5
     let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20)
     var safePaddingForBottomSheet : UIEdgeInsets {
