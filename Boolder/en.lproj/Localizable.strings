@@ -94,10 +94,11 @@
 "area.circuit.beginner" = "This circuit is beginner friendly";
 "area.circuit.dangerous" = "This circuit is dangerous: some boulders are very high and/or with difficult landings";
 
-// MARK: Download
-"download.download" = "Download the area";
-"download.downloading" = "Downloading";
-"download.downloaded" = "Downloaded";
+// MARK: Cluster View
+"download.cluster.areas" = "Areas";
+"download.cluster.download" = "Download";
+"download.cluster.downloading" = "Downloading %d%%";
+"download.cluster.downloaded" = "Areas downloaded";
 "download.remove.title" = "Delete download?";
 "download.remove.action" = "Delete";
 "download.cancel.title" = "Stop download?";

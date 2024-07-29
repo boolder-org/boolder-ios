@@ -95,9 +95,10 @@
 "area.circuit.dangerous" = "Ce circuit est dangereux : certains blocs sont très hauts et/ou avec une réception difficile";
 
 // MARK: Download
-"download.download" = "Télécharger le secteur";
-"download.downloading" = "Téléchargement";
-"download.downloaded" = "Téléchargé";
+"download.cluster.areas" = "Secteurs";
+"download.cluster.download" = "Télécharger";
+"download.cluster.downloading" = "Téléchargement %d%%";
+"download.cluster.downloaded" = "Secteurs téléchargés";
 "download.remove.title" = "Supprimer le téléchargement ?";
 "download.remove.action" = "Supprimer";
 "download.cancel.title" = "Arrêter le téléchargement ?";

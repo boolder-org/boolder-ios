@@ -31,7 +31,7 @@ struct ClusterView: View {
                     .listRowBackground(Color.clear)
             }
             
-            Section(header: Text("Secteurs")) {
+            Section(header: Text("download.cluster.areas")) {
                 ForEach(areas) { a in
                     HStack {
                         Text(a.name).foregroundColor(.primary)
@@ -62,7 +62,7 @@ struct ClusterView: View {
                         HStack {
                             Spacer()
                             Image(systemName: "checkmark.icloud").font(.title2)
-                            Text("Secteurs téléchargés") // .foregroundColor(.primary)
+                            Text("download.cluster.downloaded")
                             Spacer()
                         }
                         .foregroundStyle(.appGreen)
@@ -76,7 +76,7 @@ struct ClusterView: View {
                     } label: {
                         HStack {
                             Image(systemName: "stop.circle").frame(height: 18)
-                            Text("Téléchargement \(Int(Double(clusterDownloader.progress*100).rounded()))%")
+                            Text(titleDownloading)
                         }
                         .font(.title3.weight(.semibold))
                         .padding(.vertical, 8)
@@ -96,7 +96,7 @@ struct ClusterView: View {
                     } label: {
                         HStack {
                             Image(systemName: "icloud.and.arrow.down").frame(height: 18)
-                            Text("Télécharger")
+                            Text("download.cluster.download")
                         }
                         .font(.title3.weight(.semibold))
                         .padding(.vertical, 8)
@@ -108,6 +108,11 @@ struct ClusterView: View {
                 .listRowBackground(Color.clear)
             }
         }
+    }
+    
+    var titleDownloading: String {
+        let percentage = Int(Double(clusterDownloader.progress*100).rounded())
+        return String(format: NSLocalizedString("download.cluster.downloading", comment: ""), percentage)
     }
     
     // TODO: use AreaDownloader instead of Area

@@ -49,7 +49,6 @@ struct AreaDownloadRowView : View {
             HStack {
                 
                 if case .initial = areaDownloader.status  {
-//                    Text("\(Int(area.downloadSize.rounded())) Mo").foregroundStyle(.gray)
                     Image(systemName: "icloud.and.arrow.down").font(.title2)
                 }
                 else if areaDownloader.downloadingOrQueued  {
