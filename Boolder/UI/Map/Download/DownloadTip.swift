@@ -8,16 +8,15 @@
 
 import TipKit
 
-
 struct DownloadTip: Tip {
     var id: Int = 1 // TODO: clean up
     
     var title: Text {
-        Text("Téléchargez vos secteurs préférés")
+        Text("Téléchargez les secteurs en avance")
     }
 
     var message: Text? {
-        Text("Évitez les temps de chargement et utilisez Boolder sans connexion à Internet.")
+        Text("Vous éviterez les temps de chargement et vous pourrez utiliser Boolder sans connexion à Internet.")
     }
 
 //    var image: Image? {
