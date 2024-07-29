@@ -92,14 +92,10 @@ class MapboxViewController: UIViewController {
         
         var circuits = VectorSource()
         circuits.url = "mapbox://nmondollot.11sumdgh"
-        
-        var clusters = VectorSource()
-        clusters.url = "mapbox://nmondollot.6trst48g"
 
         do {
             try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
             try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
-            try self.mapView.mapboxMap.style.addSource(clusters, id: "clusters")
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -363,20 +359,6 @@ class MapboxViewController: UIViewController {
         
         // ===========================
         
-        
-        // TODO: move to mapbox studio
-        var clustersHullsLayer = FillLayer(id: "clusters-hulls")
-        clustersHullsLayer.source = "clusters"
-        clustersHullsLayer.sourceLayer = "clusters-4fq7v3"
-        clustersHullsLayer.fillOpacity = .constant(0)
-        clustersHullsLayer.filter = Expression(.match) {
-            ["geometry-type"]
-            ["Polygon"]
-            true
-            false
-        }
-        clustersHullsLayer.minZoom = 1
-        
         do {
             try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
@@ -387,8 +369,6 @@ class MapboxViewController: UIViewController {
             try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
             try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
-            
-            try self.mapView.mapboxMap.style.addLayer(clustersHullsLayer)
         }
         catch {
             print("Ran into an error adding the layers: \(error)")
