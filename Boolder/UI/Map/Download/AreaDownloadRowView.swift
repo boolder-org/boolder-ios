@@ -14,11 +14,11 @@ struct AreaDownloadRowView : View {
     @ObservedObject var areaDownloader: AreaDownloader
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
-    @Binding var areaToEdit : Area
+    @Binding var areaToEdit: Area?
     
     @ObservedObject var clusterDownloader: ClusterDownloader
     
-    init(area: Area, areaToEdit: Binding<Area>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>, clusterDownloader: ClusterDownloader) {
+    init(area: Area, areaToEdit: Binding<Area?>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>, clusterDownloader: ClusterDownloader) {
         self.area = area
         self.areaDownloader = DownloadCenter.shared.areaDownloader(id: area.id)
         self._areaToEdit = areaToEdit

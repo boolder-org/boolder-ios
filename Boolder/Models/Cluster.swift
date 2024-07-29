@@ -17,7 +17,7 @@ struct Cluster : Identifiable, Hashable {
     let mainAreaId: Int
     
     var mainArea: Area {
-        Area.load(id: mainAreaId)! // FIXME: don't use bang
+        Area.load(id: mainAreaId) ?? areas.first!
     }
     
     func areasSortedByDistance(_ reference: Area?) -> [Area] {

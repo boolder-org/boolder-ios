@@ -152,7 +152,7 @@ struct MapboxView: UIViewControllerRepresentable {
         @MainActor func cameraChanged(state: MapboxMaps.CameraState) {
             parent.mapState.displayCircuitStartButton = false
             
-            // FIXME: deal with padding
+            // TODO: deal with padding
             parent.mapState.updateCameraState(center: state.center, zoom: state.zoom)
         }
     }

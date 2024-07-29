@@ -15,7 +15,7 @@ struct ClusterViewWithActionsheet: View {
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
-    @State private var areaToEdit : Area = Area.load(id: 1)! // FIXME: don't use bang
+    @State private var areaToEdit: Area?
     
     var body: some View {
         ClusterView(clusterDownloader: clusterDownloader, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, areaToEdit: $areaToEdit)
@@ -25,7 +25,9 @@ struct ClusterViewWithActionsheet: View {
                         title: Text("download.remove.title"),
                         buttons: [
                             .destructive(Text("download.remove.action")) {
-                                DownloadCenter.shared.areaDownloader(id: areaToEdit.id).remove()
+                                if let areaToEdit = areaToEdit {
+                                    DownloadCenter.shared.areaDownloader(id: areaToEdit.id).remove()
+                                }
                             },
                             .cancel()
                         ]
@@ -38,7 +40,9 @@ struct ClusterViewWithActionsheet: View {
                         title: Text("download.cancel.title"),
                         buttons: [
                             .destructive(Text("download.cancel.action")) {
-                                DownloadCenter.shared.areaDownloader(id: areaToEdit.id).cancel()
+                                if let areaToEdit = areaToEdit {
+                                    DownloadCenter.shared.areaDownloader(id: areaToEdit.id).cancel()
+                                }
                             },
                             .cancel()
                         ]

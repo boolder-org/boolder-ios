@@ -16,7 +16,7 @@ struct ClusterView: View {
     
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
-    @Binding var areaToEdit: Area
+    @Binding var areaToEdit: Area?
     
     let downloadTip = DownloadTip()
     
