@@ -90,7 +90,7 @@ struct Area : Identifiable {
         return nil
     }
     
-    // FIXME: use actual center
+    // TODO: use actual center
     var center: CLLocation {
         CLLocation(
             latitude: (Double(southWestLat) + Double(northEastLat))/2,
