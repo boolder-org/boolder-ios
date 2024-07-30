@@ -106,8 +106,6 @@
 "download.cancel.title" = "Arrêter le téléchargement ?";
 "download.cancel.action" = "Arrêter le téléchargement";
 "download.zoom" = "Zoomez sur la carte pour télécharger les secteurs.";
-"download.announcement.tip.title" = "Nouveau mode hors ligne";
-"download.announcement.tip.message" = "Encore plus facile et plus pratique.";
 
 
 // MARK: Top areas
