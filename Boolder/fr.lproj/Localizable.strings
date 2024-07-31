@@ -99,6 +99,8 @@
 "download.cluster.download" = "Télécharger";
 "download.cluster.downloading" = "Téléchargement %d%%";
 "download.cluster.downloaded" = "Secteurs téléchargés";
+"download.cluster.remove.title" = "Supprimer les téléchargements ?";
+"download.cluster.remove.action" = "Supprimer";
 "download.cluster.tip.title" = "Téléchargez les secteurs en avance";
 "download.cluster.tip.message" = "Vous éviterez les temps de chargement et vous pourrez utiliser Boolder sans connexion à Internet.";
 "download.remove.title" = "Supprimer le téléchargement ?";

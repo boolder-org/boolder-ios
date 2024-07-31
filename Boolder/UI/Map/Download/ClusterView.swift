@@ -16,6 +16,7 @@ struct ClusterView: View {
     
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
+    @Binding var presentRemoveClusterDownloadSheet: Bool
     @Binding var areaToEdit: Area?
     
     let tip = DownloadTip()
@@ -63,7 +64,7 @@ struct ClusterView: View {
             if clusterDownloader.allDownloaded {
                 Section {
                     Button {
-                        // TODO: remove downloads
+                        presentRemoveClusterDownloadSheet = true
                     } label: {
                         HStack {
                             Spacer()
@@ -73,6 +74,18 @@ struct ClusterView: View {
                         }
                         .foregroundStyle(.appGreen)
                     }
+                    .actionSheet(isPresented: $presentRemoveClusterDownloadSheet) {
+                        ActionSheet(
+                            title: Text("download.cluster.remove.title"),
+                            buttons: [
+                                .destructive(Text("download.cluster.remove.action")) {
+                                    clusterDownloader.removeDownloads()
+                                },
+                                .cancel()
+                            ]
+                        )
+                    }
+                    
                 }
             }
             else if clusterDownloader.downloadingOrQueued && clusterDownloader.queueType == .auto {

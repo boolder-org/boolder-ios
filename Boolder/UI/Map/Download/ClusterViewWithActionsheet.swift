@@ -15,10 +15,11 @@ struct ClusterViewWithActionsheet: View {
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false
+    @State private var presentRemoveClusterDownloadSheet = false
     @State private var areaToEdit: Area?
     
     var body: some View {
-        ClusterView(clusterDownloader: clusterDownloader, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, areaToEdit: $areaToEdit)
+        ClusterView(clusterDownloader: clusterDownloader, presentRemoveDownloadSheet: $presentRemoveDownloadSheet, presentCancelDownloadSheet: $presentCancelDownloadSheet, presentRemoveClusterDownloadSheet: $presentRemoveClusterDownloadSheet, areaToEdit: $areaToEdit)
             .background {
                 EmptyView().actionSheet(isPresented: $presentRemoveDownloadSheet) {
                     ActionSheet(
