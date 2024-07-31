@@ -184,6 +184,8 @@
 "problem.variants.one" = "1 variante";
 "problem.variants.other" = "%d variantes";
 "problem.topo.no_internet" = "Pas de connexion à Internet";
+"problem.topo.timeout" = "Vérifiez votre connexion à Internet";
+"problem.topo.error" = "Erreur de chargement";
 "problem.topo.retry" = "Réessayer";
 
 // MARK: Tick List

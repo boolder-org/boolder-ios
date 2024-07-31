@@ -75,10 +75,20 @@ struct TopoView: View {
                         .font(.system(size: 60))
                         .foregroundColor(Color.gray)
                 }
-                else if case .error = photoStatus {
+                else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
                     VStack(spacing: 16) {
-                        Text("problem.topo.no_internet")
-                            .foregroundColor(Color.gray)
+                        if photoStatus == .noInternet {
+                            Text("problem.topo.no_internet")
+                                .foregroundColor(Color.gray)
+                        }
+                        else if photoStatus == .timeout {
+                            Text("problem.topo.timeout")
+                                .foregroundColor(Color.gray)
+                        }
+                        else {
+                            Text("problem.topo.error")
+                                .foregroundColor(Color.gray)
+                        }
                         
                         Button {
                             Task {
@@ -195,6 +205,14 @@ struct TopoView: View {
                 return
             }
         }
+        else if result == .noInternet {
+            self.photoStatus = .noInternet
+            return
+        }
+        else if result == .timeout {
+            self.photoStatus = .timeout
+            return
+        }
         
         self.photoStatus = .error
         return
@@ -205,6 +223,8 @@ struct TopoView: View {
         case none
         case loading
         case ready(image: UIImage)
+        case noInternet
+        case timeout
         case error
     }
     

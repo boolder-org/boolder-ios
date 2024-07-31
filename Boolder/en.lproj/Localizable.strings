@@ -185,6 +185,8 @@
 "problem.variants.one" = "1 variant";
 "problem.variants.other" = "%d variants";
 "problem.topo.no_internet" = "No Internet connection";
+"problem.topo.timeout" = "Check your Internet connection";
+"problem.topo.error" = "Failed to load the photo";
 "problem.topo.retry" = "Retry";
 
 // MARK: Tick List
