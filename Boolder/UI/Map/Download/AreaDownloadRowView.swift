@@ -62,6 +62,21 @@ struct AreaDownloadRowView : View {
                 }
             }
         }
+        .modify {
+            if case .downloaded = areaDownloader.status  {
+                $0.swipeActions(allowsFullSwipe: false) {
+                    Button {
+                        areaDownloader.remove()
+                    } label: {
+                        Label("Delete", systemImage: "trash.fill")
+                    }
+                    .tint(.red)
+                }
+            }
+            else {
+                $0
+            }
+        }
     }
 }
 
