@@ -152,24 +152,37 @@ struct TopoView: View {
             if let previous = problem.previousAdjacent {
                 GeometryReader { geometry in
                     HStack {
-                        Rectangle()
-                            .fill(leftSideTapped ? Color.gray.opacity(0.5) : Color.clear)
-                            .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                mapState.selectProblem(previous)
-                                
-                                withAnimation {
-                                    leftSideTapped = true
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.clear)
+                                .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    mapState.selectProblem(previous)
+                                    
                                     withAnimation {
-                                        leftSideTapped = false
+                                        leftSideTapped = true
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        withAnimation {
+                                            leftSideTapped = false
+                                        }
                                     }
                                 }
+                            
+                            if leftSideTapped {
+                                LinearGradient(
+                                    gradient: gradient,
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                                .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
+                                .transition(.opacity)
                             }
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    
                 }
             }
             
@@ -177,22 +190,34 @@ struct TopoView: View {
                 GeometryReader { geometry in
                     HStack {
                         Spacer()
-                        Rectangle()
-                            .fill(rightSideTapped ? Color.gray.opacity(0.5) : Color.clear)
-                            .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                mapState.selectProblem(next)
-                                
-                                withAnimation {
-                                    rightSideTapped = true
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.clear)
+                                .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    mapState.selectProblem(next)
+                                    
                                     withAnimation {
-                                        rightSideTapped = false
+                                        rightSideTapped = true
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        withAnimation {
+                                            rightSideTapped = false
+                                        }
                                     }
                                 }
+                            
+                            if rightSideTapped {
+                                LinearGradient(
+                                    gradient: gradient,
+                                    startPoint: .trailing,
+                                    endPoint: .leading
+                                )
+                                .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
+                                .transition(.opacity)
                             }
+                        }
                     }
                 }
             }
@@ -229,6 +254,12 @@ struct TopoView: View {
             await loadData()
         }
     }
+    
+    let gradient = Gradient(stops: [
+        .init(color: Color.gray.opacity(0.5), location: 0.0),
+        .init(color: Color.gray.opacity(0.5), location: 0.5),
+        .init(color: Color.gray.opacity(0.0), location: 1.0)
+    ])
     
     func loadData() async {
         guard let topo = problem.topo else {
