@@ -17,6 +17,9 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     
+    @State private var leftSideTapped = false
+    @State private var rightSideTapped = false
+    
     let tapSize: CGFloat = 44
     
     var body: some View {
@@ -150,11 +153,20 @@ struct TopoView: View {
                 GeometryReader { geometry in
                     HStack {
                         Rectangle()
-                            .fill(Color.clear)
+                            .fill(leftSideTapped ? Color.gray.opacity(0.5) : Color.clear)
                             .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 mapState.selectProblem(previous)
+                                
+                                withAnimation {
+                                    leftSideTapped = true
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    withAnimation {
+                                        leftSideTapped = false
+                                    }
+                                }
                             }
                     }
                     Spacer()
@@ -166,11 +178,20 @@ struct TopoView: View {
                     HStack {
                         Spacer()
                         Rectangle()
-                            .fill(Color.clear)
+                            .fill(rightSideTapped ? Color.gray.opacity(0.5) : Color.clear)
                             .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 mapState.selectProblem(next)
+                                
+                                withAnimation {
+                                    rightSideTapped = true
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    withAnimation {
+                                        rightSideTapped = false
+                                    }
+                                }
                             }
                     }
                 }
