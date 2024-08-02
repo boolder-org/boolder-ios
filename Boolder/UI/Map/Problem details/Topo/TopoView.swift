@@ -145,6 +145,36 @@ struct TopoView: View {
                     Spacer()
                 }
             }
+            
+            if let previous = problem.previousAdjacent {
+                GeometryReader { geometry in
+                    HStack {
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                mapState.selectProblem(previous)
+                            }
+                    }
+                    Spacer()
+                }
+            }
+            
+            if let next = problem.nextAdjacent {
+                GeometryReader { geometry in
+                    HStack {
+                        Spacer()
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                mapState.selectProblem(next)
+                            }
+                    }
+                }
+            }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
