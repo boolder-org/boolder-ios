@@ -119,7 +119,7 @@ class MapboxViewController: UIViewController {
                 ["linear"]
                 ["zoom"]
                 15
-                2
+                1.5
                 18
                 4
                 22
@@ -128,8 +128,8 @@ class MapboxViewController: UIViewController {
                         Exp(.has) { "circuitNumber" }
                         false
                     }
-                    16
-                    10
+                    12
+                    8
                 }
             }
         )
@@ -183,9 +183,9 @@ class MapboxViewController: UIViewController {
                 ["linear"]
                 ["zoom"]
                 19
-                10
+                9
                 22
-                20
+                18
             }
         )
         

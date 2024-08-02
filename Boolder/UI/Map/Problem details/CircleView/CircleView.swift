@@ -24,7 +24,7 @@ struct CircleView: View {
                 .fill(Color(color))
                 .modifier(DropShadow(visible: showShadow))
             Text(number)
-                .font(.headline)
+                .font(.body)
                 .fontWeight(.regular)
                 .foregroundColor(Color(readableColor()))
                 .minimumScaleFactor(0.5)
