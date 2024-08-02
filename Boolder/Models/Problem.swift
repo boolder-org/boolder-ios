@@ -28,9 +28,11 @@ struct Problem : Identifiable {
     let featured: Bool
     let popularity: Int?
     let parentId: Int?
+    let previousId: Int?
+    let nextId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, previousId: nil, nextId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -47,6 +49,18 @@ struct Problem : Identifiable {
         else {
             return nameEn ?? ""
         }
+    }
+    
+    var previousAdjacent: Problem? {
+        guard let previousId = previousId else { return nil }
+        
+        return Problem.load(id: previousId)
+    }
+    
+    var nextAdjacent: Problem? {
+        guard let nextId = nextId else { return nil }
+        
+        return Problem.load(id: nextId)
     }
     
     func circuitNumberComparableValue() -> Double {
@@ -140,6 +154,8 @@ extension Problem {
     static let sitStart = Expression<Int>("sit_start")
     static let featured = Expression<Int>("featured")
     static let popularity = Expression<Int?>("popularity")
+    static let previousId = Expression<Int?>("previous_id")
+    static let nextId = Expression<Int?>("next_id")
     
     static func load(id: Int) -> Problem? {
         do {
@@ -162,7 +178,9 @@ extension Problem {
                     bleauInfoId: p[bleauInfoId],
                     featured: p[featured] == 1,
                     popularity: p[popularity],
-                    parentId: p[parentId]
+                    parentId: p[parentId],
+                    previousId: p[previousId],
+                    nextId: p[nextId]
                 )
             }
             
@@ -254,6 +272,7 @@ extension Problem {
         return Self.load(id: parentId)
     }
     
+    // TODO: rename
     var next: Problem? {
         if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
             let nextNumber = String(circuitNumberInt + 1)
@@ -270,6 +289,7 @@ extension Problem {
         return nil
     }
     
+    // TODO: rename
     var previous: Problem? {
         if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
             let previousNumber = String(circuitNumberInt - 1)
