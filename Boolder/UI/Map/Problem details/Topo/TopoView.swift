@@ -163,7 +163,7 @@ struct TopoView: View {
                                     withAnimation {
                                         leftSideTapped = true
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                                         withAnimation {
                                             leftSideTapped = false
                                         }
@@ -201,7 +201,7 @@ struct TopoView: View {
                                     withAnimation {
                                         rightSideTapped = true
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                                         withAnimation {
                                             rightSideTapped = false
                                         }
