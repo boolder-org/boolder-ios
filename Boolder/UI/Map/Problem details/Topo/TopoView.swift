@@ -20,6 +20,8 @@ struct TopoView: View {
     @State private var leftSideTapped = false
     @State private var rightSideTapped = false
     
+    @State private var showMissingLineNotice = false
+    
     let tapSize: CGFloat = 44
     
     var adjacentButtons: some View {
@@ -126,7 +128,19 @@ struct TopoView: View {
                             
                             adjacentButtons
                             
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                            if problem.line?.coordinates != nil {
+                                LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                            }
+                            else {
+                                Text("Ligne manquante")
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 8)
+                                    .background(Color.gray.opacity(0.8))
+                                    .foregroundColor(Color(UIColor.systemBackground))
+                                    .cornerRadius(16)
+                                    .transition(.opacity)
+                                    .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                            }
                             
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
@@ -264,6 +278,16 @@ struct TopoView: View {
                 Task {
                     await loadData()
                 }
+            }
+            
+            if newValue.line?.coordinates == nil {
+                withAnimation { showMissingLineNotice = true }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    withAnimation { showMissingLineNotice = false }
+                }
+            }
+            else {
+                withAnimation { showMissingLineNotice = false }
             }
         }
         .task {
