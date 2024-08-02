@@ -163,7 +163,7 @@ struct TopoView: View {
                                     withAnimation {
                                         leftSideTapped = true
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         withAnimation {
                                             leftSideTapped = false
                                         }
@@ -201,7 +201,7 @@ struct TopoView: View {
                                     withAnimation {
                                         rightSideTapped = true
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         withAnimation {
                                             rightSideTapped = false
                                         }
@@ -256,7 +256,7 @@ struct TopoView: View {
     }
     
     let gradient = Gradient(stops: [
-        .init(color: Color.gray.opacity(0.5), location: 0.0),
+        .init(color: Color.gray.opacity(0.7), location: 0.0),
         .init(color: Color.gray.opacity(0.5), location: 0.5),
         .init(color: Color.gray.opacity(0.0), location: 1.0)
     ])
