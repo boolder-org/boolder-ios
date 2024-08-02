@@ -104,7 +104,9 @@ struct MapContainerView: View {
     var circuitButtons : some View {
         Group {
             if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
-                HStack(spacing: 0) {
+                HStack(spacing: 8) {
+                    
+                    Spacer()
                     
                     if(mapState.canGoToPreviousCircuitProblem) {
                         Button(action: {
@@ -122,10 +124,8 @@ struct MapContainerView: View {
                             Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
                         )
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
+//                        .padding(.horizontal)
                     }
-                    
-                    Spacer()
                     
                     if(mapState.canGoToNextCircuitProblem) {
                         
@@ -144,9 +144,10 @@ struct MapContainerView: View {
                             Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
                         )
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
+//                        .padding(.horizontal)
                     }
                 }
+                .padding(.horizontal)
                 .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
             }
             
