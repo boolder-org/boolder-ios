@@ -22,133 +22,8 @@ struct TopoView: View {
     
     let tapSize: CGFloat = 44
     
-    var body: some View {
-        ZStack(alignment: .center) {
-            
-            Group {
-                if case .ready(let image) = photoStatus  {
-                        Group {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .onTapGesture {
-                                    presentTopoFullScreenView = true
-                                }
-                                .modify {
-                                    if case .ready(let image) = photoStatus  {
-                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                            TopoFullScreenView(image: image, problem: problem)
-                                        }
-                                    }
-                                    else {
-                                        $0
-                                    }
-                                }
-                            
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                            
-                            GeometryReader { geo in
-                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .frame(width: tapSize, height: tapSize, alignment: .center)
-                                        .contentShape(Rectangle()) // makes the whole frame tappable
-                                        .offset(lineStart)
-                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
-                                }
-                                
-                                ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                                    if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
-                                            .frame(width: tapSize, height: tapSize, alignment: .center)
-                                            .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(lineStart)
-                                            .onTapGesture {
-                                                mapState.selectProblem(secondaryProblem)
-                                            }
-                                    }
-                                }
-                            }
-                        }
-                }
-                else if case .loading = photoStatus {
-                    ProgressView()
-                }
-                else if case .none = photoStatus {
-                    Image("nophoto")
-                        .font(.system(size: 60))
-                        .foregroundColor(Color.gray)
-                }
-                else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
-                    VStack(spacing: 16) {
-                        if photoStatus == .noInternet {
-                            Text("problem.topo.no_internet")
-                                .foregroundColor(Color.gray)
-                        }
-                        else if photoStatus == .timeout {
-                            Text("problem.topo.timeout")
-                                .foregroundColor(Color.gray)
-                        }
-                        else {
-                            Text("problem.topo.error")
-                                .foregroundColor(Color.gray)
-                        }
-                        
-                        Button {
-                            Task {
-                                await loadData()
-                            }
-                        } label: {
-                            
-                            Label {
-                                Text("problem.topo.retry")
-                            } icon: {
-                                Image(systemName: "arrow.clockwise")
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .background(.gray.opacity(0.2))
-                            .clipShape(Capsule())
-                        }
-                        .foregroundColor(Color.gray)
-                    }
-                }
-                else {
-                    EmptyView()
-                }
-            }
-            
-            HStack {
-                Spacer()
-                
-                VStack {
-                    
-                    if(problem.variants.count > 0) {
-                        Menu {
-                            ForEach(problem.variants) { variant in
-                                Button {
-                                    mapState.selectProblem(variant)
-                                } label: {
-                                    Text("\(variant.localizedName) \(variant.grade.string)")
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(numberOfVariantsForProblem(problem))
-                                Image(systemName: "chevron.down")
-                            }
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background(Color.gray.opacity(0.8))
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
-                                .padding(8)
-                        }
-                    }
-                    
-                    Spacer()
-                }
-            }
-            
+    var adjacentButtons: some View {
+        Group {
             if let previous = problem.previousAdjacent {
                 GeometryReader { geometry in
                     HStack {
@@ -221,6 +96,147 @@ struct TopoView: View {
                     }
                 }
             }
+        }
+    }
+    
+    var body: some View {
+        ZStack(alignment: .center) {
+            
+            
+            
+            Group {
+                if case .ready(let image) = photoStatus  {
+                        Group {
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+//                                .onTapGesture {
+//                                    presentTopoFullScreenView = true
+//                                }
+                                .modify {
+                                    if case .ready(let image) = photoStatus  {
+                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                            TopoFullScreenView(image: image, problem: problem)
+                                        }
+                                    }
+                                    else {
+                                        $0
+                                    }
+                                }
+                            
+                            adjacentButtons
+                            
+                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                            
+                            GeometryReader { geo in
+                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                        .frame(width: tapSize, height: tapSize, alignment: .center)
+                                        .contentShape(Rectangle()) // makes the whole frame tappable
+                                        .offset(lineStart)
+                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
+                                }
+                                
+                                ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
+                                    if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
+                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                            .frame(width: tapSize, height: tapSize, alignment: .center)
+                                            .contentShape(Rectangle()) // makes the whole frame tappable
+                                            .offset(lineStart)
+                                            .onTapGesture {
+                                                mapState.selectProblem(secondaryProblem)
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                }
+                else if case .loading = photoStatus {
+                    ProgressView()
+                    
+                    adjacentButtons
+                }
+                else if case .none = photoStatus {
+                    Image("nophoto")
+                        .font(.system(size: 60))
+                        .foregroundColor(Color.gray)
+                    
+                    adjacentButtons
+                }
+                else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
+                    VStack(spacing: 16) {
+                        if photoStatus == .noInternet {
+                            Text("problem.topo.no_internet")
+                                .foregroundColor(Color.gray)
+                        }
+                        else if photoStatus == .timeout {
+                            Text("problem.topo.timeout")
+                                .foregroundColor(Color.gray)
+                        }
+                        else {
+                            Text("problem.topo.error")
+                                .foregroundColor(Color.gray)
+                        }
+                        
+                        Button {
+                            Task {
+                                await loadData()
+                            }
+                        } label: {
+                            
+                            Label {
+                                Text("problem.topo.retry")
+                            } icon: {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(.gray.opacity(0.2))
+                            .clipShape(Capsule())
+                        }
+                        .foregroundColor(Color.gray)
+                    }
+                    
+                    adjacentButtons
+                }
+                else {
+                    EmptyView()
+                }
+            }
+            
+            HStack {
+                Spacer()
+                
+                VStack {
+                    
+                    if(problem.variants.count > 0) {
+                        Menu {
+                            ForEach(problem.variants) { variant in
+                                Button {
+                                    mapState.selectProblem(variant)
+                                } label: {
+                                    Text("\(variant.localizedName) \(variant.grade.string)")
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(numberOfVariantsForProblem(problem))
+                                Image(systemName: "chevron.down")
+                            }
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 8)
+                                .background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                                .padding(8)
+                        }
+                    }
+                    
+                    Spacer()
+                }
+            }
+            
+            
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
