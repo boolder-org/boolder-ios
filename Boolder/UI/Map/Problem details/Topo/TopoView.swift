@@ -35,7 +35,9 @@ struct TopoView: View {
                                 .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    mapState.selectProblem(previous)
+                                    if previous.topoId == problem.topoId {
+                                        mapState.selectProblem(previous)
+                                    }
                                     
                                     withAnimation {
                                         leftSideTapped = true
@@ -73,7 +75,9 @@ struct TopoView: View {
                                 .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    mapState.selectProblem(next)
+                                    if next.topoId == problem.topoId {
+                                        mapState.selectProblem(next)
+                                    }
                                     
                                     withAnimation {
                                         rightSideTapped = true
