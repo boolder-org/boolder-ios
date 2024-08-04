@@ -24,12 +24,27 @@ struct ProblemDetailsView: View {
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
     
+    @State private var offset = CGSize.zero
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
                 TopoView(
                     problem: $problem,
                     mapState: mapState
+                )
+                .offset(x: max(-100,min(offset.width, 100)))
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            offset = gesture.translation
+                        }
+                        .onEnded { _ in
+                            if abs(offset.width) > 100 {
+                                // TODO
+                            }
+                            offset = .zero
+                        }
                 )
                 .zIndex(10)
                 
