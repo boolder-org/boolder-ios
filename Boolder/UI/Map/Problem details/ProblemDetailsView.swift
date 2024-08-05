@@ -33,19 +33,26 @@ struct ProblemDetailsView: View {
                     problem: $problem,
                     mapState: mapState
                 )
-                .offset(x: max(-100,min(offset.width, 100)))
-                .gesture(
-                    DragGesture()
-                        .onChanged { gesture in
-                            offset = gesture.translation
-                        }
-                        .onEnded { _ in
-                            if abs(offset.width) > 100 {
-                                // TODO
-                            }
-                            offset = .zero
-                        }
-                )
+//                .offset(x: max(-100,min(offset.width, 100)))
+//                .gesture(
+//                    DragGesture()
+//                        .onChanged { gesture in
+//                            offset = gesture.translation
+//                        }
+//                        .onEnded { _ in
+//                            if offset.width < -100 {
+//                                if let topoNextAdjacent = problem.topoNextAdjacent {
+//                                    mapState.selectProblem(topoNextAdjacent)
+//                                }
+//                            }
+//                            if offset.width > 100 {
+//                                if let topoPreviousAdjacent = problem.topoPreviousAdjacent {
+//                                    mapState.selectProblem(topoPreviousAdjacent)
+//                                }
+//                            }
+//                            offset = .zero
+//                        }
+//                )
                 .zIndex(10)
                 
                 infos

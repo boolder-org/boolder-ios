@@ -48,6 +48,18 @@ struct TopoView: View {
                                         }
                                     }
                                 }
+                                .onLongPressGesture {
+                                    mapState.selectProblem(previous)
+                                    
+                                    withAnimation {
+                                        leftSideTapped = true
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                        withAnimation {
+                                            leftSideTapped = false
+                                        }
+                                    }
+                                }
                             
                             if leftSideTapped {
                                 LinearGradient(
@@ -78,6 +90,18 @@ struct TopoView: View {
                                     if next.topoId == problem.topoId {
                                         mapState.selectProblem(next)
                                     }
+                                    
+                                    withAnimation {
+                                        rightSideTapped = true
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                        withAnimation {
+                                            rightSideTapped = false
+                                        }
+                                    }
+                                }
+                                .onLongPressGesture {
+                                    mapState.selectProblem(next)
                                     
                                     withAnimation {
                                         rightSideTapped = true
