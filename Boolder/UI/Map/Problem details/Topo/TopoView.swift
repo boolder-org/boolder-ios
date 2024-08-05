@@ -35,9 +35,9 @@ struct TopoView: View {
                                 .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    if previous.topoId == problem.topoId {
+//                                    if previous.topoId == problem.topoId {
                                         mapState.selectProblem(previous)
-                                    }
+//                                    }
                                     
                                     withAnimation {
                                         leftSideTapped = true
@@ -48,18 +48,18 @@ struct TopoView: View {
                                         }
                                     }
                                 }
-                                .onLongPressGesture {
-                                    mapState.selectProblem(previous)
-                                    
-                                    withAnimation {
-                                        leftSideTapped = true
-                                    }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                                        withAnimation {
-                                            leftSideTapped = false
-                                        }
-                                    }
-                                }
+//                                .onLongPressGesture {
+//                                    mapState.selectProblem(previous)
+//                                    
+//                                    withAnimation {
+//                                        leftSideTapped = true
+//                                    }
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+//                                        withAnimation {
+//                                            leftSideTapped = false
+//                                        }
+//                                    }
+//                                }
                             
                             if leftSideTapped {
                                 LinearGradient(
@@ -87,9 +87,9 @@ struct TopoView: View {
                                 .frame(width: geometry.size.width / 3.5, height: geometry.size.height)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
-                                    if next.topoId == problem.topoId {
+//                                    if next.topoId == problem.topoId {
                                         mapState.selectProblem(next)
-                                    }
+//                                    }
                                     
                                     withAnimation {
                                         rightSideTapped = true
@@ -100,18 +100,18 @@ struct TopoView: View {
                                         }
                                     }
                                 }
-                                .onLongPressGesture {
-                                    mapState.selectProblem(next)
-                                    
-                                    withAnimation {
-                                        rightSideTapped = true
-                                    }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                                        withAnimation {
-                                            rightSideTapped = false
-                                        }
-                                    }
-                                }
+//                                .onLongPressGesture {
+//                                    mapState.selectProblem(next)
+//                                    
+//                                    withAnimation {
+//                                        rightSideTapped = true
+//                                    }
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+//                                        withAnimation {
+//                                            rightSideTapped = false
+//                                        }
+//                                    }
+//                                }
                             
                             if rightSideTapped {
                                 LinearGradient(

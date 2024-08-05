@@ -26,7 +26,9 @@ struct MapContainerView: View {
         ZStack {
             mapbox
             
-            circuitButtons
+            prevNextButtons
+            
+//            circuitButtons
             
             fabButtons
                 .zIndex(10)
@@ -101,12 +103,62 @@ struct MapContainerView: View {
             }
     }
     
+    var prevNextButtons : some View {
+        Group {
+            HStack(spacing: 8) {
+                
+                Spacer()
+                
+                if let previous = mapState.selectedProblem.previousAdjacent {
+                
+                    Button(action: {
+                        mapState.selectProblem(previous)
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .padding(10)
+                    }
+                    .font(.body.weight(.semibold))
+                    .accentColor(.primary)
+                    .background(Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    //                        .padding(.horizontal)
+                }
+                
+                if let next = mapState.selectedProblem.nextAdjacent {
+                    
+                    Button(action: {
+                        mapState.selectProblem(next)
+                    }) {
+                        Image(systemName: "arrow.right")
+                            .padding(10)
+                    }
+                    .font(.body.weight(.semibold))
+                    .accentColor(.primary)
+                    .background(Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    //                        .padding(.horizontal)
+                }
+            }
+            .padding(.horizontal)
+            .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            
+        }
+    }
+    
     var circuitButtons : some View {
         Group {
             if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
                 HStack(spacing: 8) {
                     
-                    Spacer()
+//                    Spacer()
                     
                     if(mapState.canGoToPreviousCircuitProblem) {
                         Button(action: {
@@ -146,6 +198,8 @@ struct MapContainerView: View {
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
 //                        .padding(.horizontal)
                     }
+                    
+                    Spacer()
                 }
                 .padding(.horizontal)
                 .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
