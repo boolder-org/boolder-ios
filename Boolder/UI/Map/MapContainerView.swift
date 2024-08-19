@@ -26,7 +26,9 @@ struct MapContainerView: View {
         ZStack {
             mapbox
             
-            prevNextButtons
+            if mapState.presentProblemDetails {
+                prevNextButtons
+            }
             
 //            circuitButtons
             
