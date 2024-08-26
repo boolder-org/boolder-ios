@@ -25,18 +25,23 @@ struct ProblemDetailsView: View {
     @State private var presentSharesheet = false
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                TopoView(
-                    problem: $problem,
-                    mapState: mapState
-                )
-                .zIndex(10)
-                
-                infos
-                
-                actionButtons
+        VStack {
+            GeometryReader { geo in
+                VStack(alignment: .leading, spacing: 8) {
+                    TopoView(
+                        problem: $problem,
+                        mapState: mapState
+                    )
+                    .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                    .zIndex(10)
+                    
+                    infos
+                    
+                    actionButtons
+                }
             }
+            
+            Spacer()
         }
     }
     
@@ -52,6 +57,7 @@ struct ProblemDetailsView: View {
                             .foregroundColor(.primary)
                             .lineLimit(1)
                             .truncationMode(.middle)
+                            .fixedSize(horizontal: false, vertical: true)
                             .minimumScaleFactor(0.5)
                         
                         Spacer()
