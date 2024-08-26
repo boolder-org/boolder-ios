@@ -26,7 +26,7 @@ struct MapContainerView: View {
         ZStack {
             mapbox
             
-            circuitButtons
+//            circuitButtons
             
             fabButtons
                 .zIndex(10)
