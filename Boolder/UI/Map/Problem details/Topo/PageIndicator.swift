@@ -16,13 +16,25 @@ struct PageIndicator: View {
         HStack(spacing: 4) {
             ForEach(0..<numberOfDots, id: \.self) { index in
                 Circle()
-                    .fill(index == currentIndex ? Color.white : Color.gray)
+                    .fill(index == currentIndex ? Color.white : Color.black.opacity(0.2))
                     .frame(width: 4, height: 4)
             }
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 4)
-        .background(Color.gray.opacity(0.8))
+        .background(Color.clear.background(VisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))))
         .cornerRadius(6)
+    }
+}
+
+struct VisualEffectView: UIViewRepresentable {
+    var effect: UIVisualEffect?
+    
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        return UIVisualEffectView(effect: effect)
+    }
+    
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+        uiView.effect = effect
     }
 }
