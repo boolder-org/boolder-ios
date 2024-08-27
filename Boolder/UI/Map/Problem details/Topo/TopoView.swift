@@ -55,6 +55,18 @@ struct TopoView: View {
                                                 mapState.selectProblem(nextVariant)
                                             }
                                         }
+                                    
+                                    if problem.variantsForDisplayOnTopoView.count > 1, let index = problem.nextVariantIndex {
+                                        PageIndicator(numberOfDots: problem.variantsForDisplayOnTopoView.count, currentIndex: index)
+                                            .frame(width: 40, height: 20, alignment: .center)
+                                            .contentShape(Rectangle()) // makes the whole frame tappable
+                                            .offset(CGSize(width: lineStart.width, height: lineStart.height + 32))
+                                            .onTapGesture {
+                                                if let nextVariant = problem.nextVariant {
+                                                    mapState.selectProblem(nextVariant)
+                                                }
+                                            }
+                                    }
                                 }
                                 
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in

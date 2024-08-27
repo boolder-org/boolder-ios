@@ -116,6 +116,10 @@ struct Problem : Identifiable {
         return nil
     }
     
+    var nextVariantIndex: Int? {
+        variantsForDisplayOnTopoView.firstIndex(of: self)
+    }
+    
     func circuitNumberComparableValue() -> Double {
         if let int = Int(circuitNumber) {
             return Double(int)

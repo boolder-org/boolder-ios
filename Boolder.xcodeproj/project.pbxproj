@@ -121,6 +121,8 @@
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
 		03F75D602B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
+		03FF98152C7DB21700F85DAB /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF98142C7DB21700F85DAB /* PageIndicator.swift */; };
+		03FF98162C7DB21700F85DAB /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FF98142C7DB21700F85DAB /* PageIndicator.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -237,6 +239,7 @@
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
 		03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetentsViewModifier.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
+		03FF98142C7DB21700F85DAB /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -526,6 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
+				03FF98142C7DB21700F85DAB /* PageIndicator.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
 				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
@@ -792,6 +796,7 @@
 				37B452362591450200241091 /* TopoView.swift in Sources */,
 				37B452282591414800241091 /* NewTopoView.swift in Sources */,
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
+				03FF98162C7DB21700F85DAB /* PageIndicator.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
 				37379931258E619400711EDA /* Line.swift in Sources */,
 				03D1991F2C57BEFE0082B56C /* DownloadAnnouncementTip.swift in Sources */,
@@ -837,6 +842,7 @@
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
+				03FF98152C7DB21700F85DAB /* PageIndicator.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
