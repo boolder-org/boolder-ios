@@ -119,26 +119,46 @@ struct TopoView: View {
                 
                 VStack {
                     
-                    if(problem.variants.count > 0) {
-                        Menu {
-                            ForEach(problem.variants) { variant in
-                                Button {
-                                    mapState.selectProblem(variant)
-                                } label: {
-                                    Text("\(variant.localizedName) \(variant.grade.string)")
+                    HStack {
+//                        if(problem.variantsForDisplayOnTopoView.count > 0) {
+//                            ForEach(problem.variantsForDisplayOnTopoView) { variant in
+//                                Button {
+//                                    mapState.selectProblem(variant)
+//                                } label: {
+//                                    Text("\(variant.variation ?? "autre")")
+//                                        .padding(.vertical, 4)
+//                                        .padding(.horizontal, 8)
+//                                        .background(Color.gray.opacity(0.8))
+//                                        .foregroundColor(Color(UIColor.systemBackground))
+//                                        .cornerRadius(16)
+//                                        .padding(8)
+//                                }
+//                            }
+//                        }
+                        
+                        
+                        if(problem.variantsForDisplayOnTopoView.count > 1) {
+                            
+                            Menu {
+                                ForEach(problem.variantsForDisplayOnTopoView) { variant in
+                                    Button {
+                                        mapState.selectProblem(variant)
+                                    } label: {
+                                        Text("\(variant.localizedName) \(variant.grade.string)")
+                                    }
                                 }
-                            }
-                        } label: {
-                            HStack {
-                                Text(numberOfVariantsForProblem(problem))
-                                Image(systemName: "chevron.down")
-                            }
+                            } label: {
+                                HStack {
+                                    Text(numberOfVariantsForProblem(problem))
+                                    Image(systemName: "chevron.down")
+                                }
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 8)
                                 .background(Color.gray.opacity(0.8))
                                 .foregroundColor(Color(UIColor.systemBackground))
                                 .cornerRadius(16)
                                 .padding(8)
+                            }
                         }
                     }
                     
@@ -230,7 +250,7 @@ struct TopoView: View {
     
     // TODO: use the proper i18n method for plural
     func numberOfVariantsForProblem(_ p: Problem) -> String {
-        let count = problem.variants.count
+        let count = problem.variantsForDisplayOnTopoView.count
         if count >= 2 {
             return String(format: NSLocalizedString("problem.variants.other", comment: ""), count)
         }

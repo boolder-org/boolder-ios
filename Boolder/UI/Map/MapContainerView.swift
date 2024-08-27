@@ -28,6 +28,8 @@ struct MapContainerView: View {
             
 //            circuitButtons
             
+//            variantsButtons
+            
             fabButtons
                 .zIndex(10)
             
@@ -99,6 +101,30 @@ struct MapContainerView: View {
                     }
                 }
             }
+    }
+    
+    var variantsButtons: some View {
+        HStack {
+            
+            if(mapState.selectedProblem.variantsForDisplayOnTopoView.count > 1) {
+                ForEach(mapState.selectedProblem.variantsForDisplayOnTopoView) { variant in
+                    Button {
+                        mapState.selectProblem(variant)
+                    } label: {
+                        Text("\(variant.variation ?? "normal")")
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color.gray.opacity(0.8))
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
+                            .padding(8)
+                    }
+                }
+            }
+            
+            Spacer()
+        }
+        .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
     }
     
     var circuitButtons : some View {

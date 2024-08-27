@@ -51,11 +51,11 @@ struct ProblemDetailsView: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        if !problem.circuitNumber.isEmpty {
-                            ProblemCircleView(problem: problem)
-                        }
+//                        if !problem.circuitNumber.isEmpty {
+//                            ProblemCircleView(problem: problem)
+//                        }
                         
-                        Text(problem.localizedName)
+                        Text(problem.localizedName) // Text(problem.nameShort ?? problem.localizedName)
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
@@ -86,6 +86,31 @@ struct ProblemDetailsView: View {
 //                        .font(.body)
 //                    }
                     
+//                    ForEach(problem.variantsForDisplayOnTopoView) { variant in
+//                        Button {
+//                            mapState.selectProblem(variant)
+//                        } label: {
+//                            
+//                            HStack {
+//                                if variant.sitStart {
+//                                    Image(systemName: "figure.rower")
+//                                }
+//                                
+//                                Text("\(variant.variation ?? "normal")")
+//                                    .font(.body)
+//                            }
+//                            
+//                            .foregroundColor(.primary)
+//                            .padding(.horizontal, 8)
+//                            .padding(.vertical, 2)
+//                            .opacity(variant == problem ? 1.0 : 0.4)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 8)
+//                                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+//                            )
+//                        }
+//                    }
+                    
                     if(problem.sitStart) {
 //                        if problem.steepness != .other {
 //                            Text("•")
@@ -98,14 +123,14 @@ struct ProblemDetailsView: View {
                     
                     Spacer()
                     
-                    if isTicked() {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(Color.appGreen)
-                    }
-                    else if isFavorite() {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
-                    }
+//                    if isTicked() {
+//                        Image(systemName: "checkmark.circle.fill")
+//                            .foregroundColor(Color.appGreen)
+//                    }
+//                    else if isFavorite() {
+//                        Image(systemName: "star.fill")
+//                            .foregroundColor(Color.yellow)
+//                    }
                 }
             }
         }

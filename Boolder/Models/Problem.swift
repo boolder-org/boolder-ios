@@ -49,6 +49,65 @@ struct Problem : Identifiable {
         }
     }
     
+    var nameShort: String? {
+        guard let name = name else { return nil }
+        
+        let string = name
+        let pattern = #"^(.*?)\s*\((.*?)\)$"#
+
+        // Create a regular expression object
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+
+        // Perform the match on the input string
+        if let match = regex.firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) {
+            // Extract the first piece (La Marie Rose)
+            let firstRange = Range(match.range(at: 1), in: string)!
+            let first = String(string[firstRange])
+            
+            // Extract the second piece (assis)
+            let secondRange = Range(match.range(at: 2), in: string)!
+            let second = String(string[secondRange])
+            
+            return first
+        }
+        
+        return nil
+    }
+    
+    var variation: String? {
+        guard let name = name else { return nil }
+        
+        let string = name
+        let pattern = #"^(.*?)\s*\((.*?)\)$"#
+
+        // Create a regular expression object
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+
+        // Perform the match on the input string
+        if let match = regex.firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) {
+            // Extract the first piece (La Marie Rose)
+            let firstRange = Range(match.range(at: 1), in: string)!
+            let first = String(string[firstRange])
+            
+            // Extract the second piece (assis)
+            let secondRange = Range(match.range(at: 2), in: string)!
+            let second = String(string[secondRange])
+            
+            return second
+        }
+        
+        return nil
+    }
+    
+    var variantsForDisplayOnTopoView: [Problem] {
+        if let parent = parent {
+            return parent.variantsForDisplayOnTopoView
+        }
+        else {
+            return Array([self]) + children
+        }
+    }
+    
     func circuitNumberComparableValue() -> Double {
         if let int = Int(circuitNumber) {
             return Double(int)
