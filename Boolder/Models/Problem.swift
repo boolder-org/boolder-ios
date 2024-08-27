@@ -108,6 +108,14 @@ struct Problem : Identifiable {
         }
     }
     
+    var nextVariant: Problem? {
+        if let index = variantsForDisplayOnTopoView.firstIndex(of: self) {
+            return variantsForDisplayOnTopoView[(index + 1) % variantsForDisplayOnTopoView.count]
+        }
+        
+        return nil
+    }
+    
     func circuitNumberComparableValue() -> Double {
         if let int = Int(circuitNumber) {
             return Double(int)

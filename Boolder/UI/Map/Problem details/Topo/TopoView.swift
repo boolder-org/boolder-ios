@@ -50,7 +50,11 @@ struct TopoView: View {
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
                                         .contentShape(Rectangle()) // makes the whole frame tappable
                                         .offset(lineStart)
-                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
+                                        .onTapGesture {
+                                            if let nextVariant = problem.nextVariant {
+                                                mapState.selectProblem(nextVariant)
+                                            }
+                                        }
                                 }
                                 
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
