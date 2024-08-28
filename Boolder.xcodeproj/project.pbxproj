@@ -40,8 +40,8 @@
 		031A4CAF296B0DF3002CBF52 /* PoiRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */; };
 		031A61BB29EC7CE200B2B46E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A61BA29EC7CE200B2B46E /* AppState.swift */; };
 		031A61BC29EC7CE200B2B46E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A61BA29EC7CE200B2B46E /* AppState.swift */; };
-		031E02362C7F7D9B0093B107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031E02352C7F7D9B0093B107 /* boolder.db */; };
-		031E02372C7F7D9B0093B107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031E02352C7F7D9B0093B107 /* boolder.db */; };
+		031E02392C7F86010093B107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031E02382C7F86010093B107 /* boolder.db */; };
+		031E023A2C7F86010093B107 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 031E02382C7F86010093B107 /* boolder.db */; };
 		031F36B0291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
@@ -200,7 +200,7 @@
 		031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
 		031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRoute.swift; sourceTree = "<group>"; };
 		031A61BA29EC7CE200B2B46E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		031E02352C7F7D9B0093B107 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		031E02382C7F86010093B107 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
 		031F36B8291D271300BD0C2B /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				031E02352C7F7D9B0093B107 /* boolder.db */,
+				031E02382C7F86010093B107 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				038F7F592C3BDB3800AE7028 /* Download */,
 			);
@@ -648,7 +648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				031E02372C7F7D9B0093B107 /* boolder.db in Resources */,
+				031E023A2C7F86010093B107 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -662,7 +662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				031E02362C7F7D9B0093B107 /* boolder.db in Resources */,
+				031E02392C7F86010093B107 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
