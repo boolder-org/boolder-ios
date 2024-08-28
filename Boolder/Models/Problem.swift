@@ -30,11 +30,9 @@ struct Problem : Identifiable {
     let parentId: Int?
     let previousId: Int?
     let nextId: Int?
-    let topoPreviousId: Int?
-    let topoNextId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, previousId: nil, nextId: nil, topoPreviousId: nil, topoNextId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, previousId: nil, nextId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -63,18 +61,6 @@ struct Problem : Identifiable {
         guard let nextId = nextId else { return nil }
         
         return Problem.load(id: nextId)
-    }
-    
-    var topoPreviousAdjacent: Problem? {
-        guard let topoPreviousId = topoPreviousId else { return nil }
-        
-        return Problem.load(id: topoPreviousId)
-    }
-    
-    var topoNextAdjacent: Problem? {
-        guard let topoNextId = topoNextId else { return nil }
-        
-        return Problem.load(id: topoNextId)
     }
     
     func circuitNumberComparableValue() -> Double {
@@ -218,9 +204,7 @@ extension Problem {
                     popularity: p[popularity],
                     parentId: p[parentId],
                     previousId: p[previousId],
-                    nextId: p[nextId],
-                    topoPreviousId: p[topoPreviousId],
-                    topoNextId: p[topoNextId]
+                    nextId: p[nextId]
                 )
             }
             
