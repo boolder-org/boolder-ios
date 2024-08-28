@@ -72,9 +72,10 @@ struct TopoView: View {
                                     ForEach(Array(problem.variants.enumerated()), id: \.element) { index, variant in
                                         ProblemCircleView(problem: variant, isDisplayedOnPhoto: true, smaller: true)
                                             .zIndex(100)
+                                            .opacity(0.8)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(CGSize(width: lineStart.width + CGFloat(index+1)*10.0, height: lineStart.height + 3.0))
+                                            .offset(CGSize(width: lineStart.width + CGFloat(index+1)*10.0, height: lineStart.height + 6.0))
                                             .onTapGesture {
                                                 if let nextVariant = problem.nextVariant {
                                                     mapState.selectProblem(nextVariant)
@@ -97,9 +98,10 @@ struct TopoView: View {
                                         ForEach(Array(secondaryProblem.variants.enumerated()), id: \.element) { index, variant in
                                             ProblemCircleView(problem: variant, isDisplayedOnPhoto: true, smaller: true)
                                                 .zIndex(secondaryProblem.zIndex - CGFloat(index+1))
+                                                .opacity(0.8)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
 //                                                .contentShape(Rectangle()) // makes the whole frame tappable
-                                                .offset(CGSize(width: lineStart.width + CGFloat(index+1)*10.0, height: lineStart.height + 3.0))
+                                                .offset(CGSize(width: lineStart.width + CGFloat(index+1)*10.0, height: lineStart.height + 6.0))
                                                 .allowsHitTesting(false)
 //                                                .onTapGesture {
 //                                                    if let nextVariant = secondaryProblem.nextVariant {
