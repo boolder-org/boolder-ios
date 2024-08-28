@@ -37,7 +37,8 @@ struct CircleView: View {
                 )
                 .frame(width: height-2, height: height-2)
         }
-        .scaleEffect(scaleEffect)
+//        .scaleEffect(scaleEffect)
+        .scaleEffect(0.7) // FIXME: remove hack
         .frame(width: height, height: height)
     }
     
