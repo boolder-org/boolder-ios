@@ -251,19 +251,15 @@ struct TopoView: View {
                 
                 VStack {
                     
-                    if(problem.variants.count > 0) {
-                        Menu {
-                            ForEach(problem.variants) { variant in
-                                Button {
-                                    mapState.selectProblem(variant)
-                                } label: {
-                                    Text("\(variant.localizedName) \(variant.grade.string)")
-                                }
+                    if problem.variantsForDisplayOnTopoView.count > 0, let nextVariantIndex = problem.nextVariantIndex {
+                        Button {
+                            if let nextVariant = problem.nextVariant {
+                                mapState.selectProblem(nextVariant)
                             }
                         } label: {
                             HStack {
-                                Text(numberOfVariantsForProblem(problem))
-                                Image(systemName: "chevron.down")
+                                Text("variante \(nextVariantIndex+1)/\(problem.variantsForDisplayOnTopoView.count)")
+//                                Image(systemName: "chevron.down")
                             }
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 8)

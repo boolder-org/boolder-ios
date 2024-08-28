@@ -104,6 +104,28 @@ struct Problem : Identifiable {
             return children
         }
     }
+    
+    var variantsForDisplayOnTopoView: [Problem] {
+        if let parent = parent {
+            return parent.variantsForDisplayOnTopoView
+        }
+        else {
+            return Array([self]) + children
+        }
+    }
+
+    var nextVariantIndex: Int? {
+        variantsForDisplayOnTopoView.firstIndex(of: self)
+    }
+    
+    var nextVariant: Problem? {
+        if let index = variantsForDisplayOnTopoView.firstIndex(of: self) {
+            return variantsForDisplayOnTopoView[(index + 1) % variantsForDisplayOnTopoView.count]
+        }
+        
+        return nil
+    }
+
 
     // TODO: move to Line
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
