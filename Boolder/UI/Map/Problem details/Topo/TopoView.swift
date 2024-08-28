@@ -57,11 +57,24 @@ struct TopoView: View {
                                             }
                                         }
                                     
-                                    if problem.variantsForDisplayOnTopoView.count > 1, let index = problem.nextVariantIndex {
-                                        VariantIndicator(text: "\(index+1)/\(problem.variantsForDisplayOnTopoView.count)")
-                                            .frame(width: 40, height: 20, alignment: .center)
+//                                    if problem.variantsForDisplayOnTopoView.count > 1, let index = problem.nextVariantIndex {
+//                                        VariantIndicator(text: "\(index+1)/\(problem.variantsForDisplayOnTopoView.count)")
+//                                            .frame(width: 40, height: 20, alignment: .center)
+//                                            .contentShape(Rectangle()) // makes the whole frame tappable
+//                                            .offset(CGSize(width: lineStart.width, height: lineStart.height + 40))
+//                                            .onTapGesture {
+//                                                if let nextVariant = problem.nextVariant {
+//                                                    mapState.selectProblem(nextVariant)
+//                                                }
+//                                            }
+//                                    }
+                                    
+                                    ForEach(Array(problem.variants.enumerated()), id: \.element) { index, variant in
+                                        ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
+                                            .zIndex(100)
+                                            .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(CGSize(width: lineStart.width, height: lineStart.height + 40))
+                                            .offset(CGSize(width: lineStart.width + CGFloat(index+1)*4.0, height: lineStart.height))
                                             .onTapGesture {
                                                 if let nextVariant = problem.nextVariant {
                                                     mapState.selectProblem(nextVariant)
