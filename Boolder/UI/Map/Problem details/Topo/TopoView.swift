@@ -94,6 +94,18 @@ struct TopoView: View {
                                                 mapState.selectProblem(secondaryProblem)
                                             }
                                             
+                                        ForEach(Array(secondaryProblem.variants.enumerated()), id: \.element) { index, variant in
+                                            ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
+                                                .zIndex(secondaryProblem.zIndex - CGFloat(index+1))
+                                                .frame(width: tapSize, height: tapSize, alignment: .center)
+                                                .contentShape(Rectangle()) // makes the whole frame tappable
+                                                .offset(CGSize(width: lineStart.width + CGFloat(index+1)*4.0, height: lineStart.height))
+                                                .onTapGesture {
+                                                    if let nextVariant = secondaryProblem.nextVariant {
+                                                        mapState.selectProblem(nextVariant)
+                                                    }
+                                                }
+                                        }
                                     }
                                 }
                             }
