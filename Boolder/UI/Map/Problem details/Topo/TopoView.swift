@@ -77,7 +77,7 @@ struct TopoView: View {
                                             .opacity(0.8)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(CGSize(width: lineStart.width + CGFloat(index+1)*6.0, height: lineStart.height + 3))
+                                            .offset(CGSize(width: lineStart.width + CGFloat(index)*6.0, height: lineStart.height + 8))
                                             .onTapGesture {
                                                 if let nextVariant = problem.nextVariant {
                                                     mapState.selectProblem(nextVariant)
@@ -103,7 +103,7 @@ struct TopoView: View {
                                                 .opacity(0.8)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
 //                                                .contentShape(Rectangle()) // makes the whole frame tappable
-                                                .offset(CGSize(width: lineStart.width + CGFloat(index+1)*6.0, height: lineStart.height + 3))
+                                                .offset(CGSize(width: lineStart.width + CGFloat(index)*6.0, height: lineStart.height + 8))
                                                 .allowsHitTesting(false)
 //                                                .onTapGesture {
 //                                                    if let nextVariant = secondaryProblem.nextVariant {
