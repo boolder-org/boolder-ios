@@ -11,6 +11,7 @@ import SwiftUI
 struct ProblemCircleView: View {
     var problem: Problem
     var isDisplayedOnPhoto = false
+    var smaller = false
     
     var body: some View {
         CircleView(number: problem.circuitNumber,
@@ -19,6 +20,7 @@ struct ProblemCircleView: View {
                    showShadow: isDisplayedOnPhoto,
                    scaleEffect: (problem.circuitNumber.isEmpty) ? 0.7 : 1.0
         )
+        .scaleEffect(smaller ? 0.7 : 1.0)
     }
 }
 //
