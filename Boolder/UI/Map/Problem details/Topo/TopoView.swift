@@ -251,7 +251,7 @@ struct TopoView: View {
                 
                 VStack {
                     
-                    if problem.variantsForDisplayOnTopoView.count > 0, let nextVariantIndex = problem.nextVariantIndex {
+                    if problem.variantsForDisplayOnTopoView.count > 1, let nextVariantIndex = problem.nextVariantIndex {
                         Button {
                             if let nextVariant = problem.nextVariant {
                                 mapState.selectProblem(nextVariant)
