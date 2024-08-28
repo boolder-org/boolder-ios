@@ -17,6 +17,8 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     
+//    @ObservedObject var motionManager = MotionManager()
+    
     let tapSize: CGFloat = 44
     
     var body: some View {
