@@ -114,12 +114,12 @@ struct Problem : Identifiable {
         }
     }
 
-    var nextVariantIndex: Int? {
+    var variantIndex: Int? {
         variantsForDisplayOnTopoView.firstIndex(of: self)
     }
     
     var nextVariant: Problem? {
-        if let index = variantsForDisplayOnTopoView.firstIndex(of: self) {
+        if let index = variantIndex {
             return variantsForDisplayOnTopoView[(index + 1) % variantsForDisplayOnTopoView.count]
         }
         

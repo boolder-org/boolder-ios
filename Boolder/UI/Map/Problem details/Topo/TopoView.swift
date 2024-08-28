@@ -251,14 +251,14 @@ struct TopoView: View {
                 
                 VStack {
                     
-                    if problem.variantsForDisplayOnTopoView.count > 1, let nextVariantIndex = problem.nextVariantIndex {
+                    if problem.variantsForDisplayOnTopoView.count > 1, let variantIndex = problem.variantIndex {
                         Button {
                             if let nextVariant = problem.nextVariant {
                                 mapState.selectProblem(nextVariant)
                             }
                         } label: {
                             HStack {
-                                Text("variante \(nextVariantIndex+1)/\(problem.variantsForDisplayOnTopoView.count)")
+                                Text("variante \(variantIndex+1)/\(problem.variantsForDisplayOnTopoView.count)")
 //                                Image(systemName: "chevron.down")
                             }
                                 .padding(.vertical, 4)
