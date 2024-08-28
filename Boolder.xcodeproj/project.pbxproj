@@ -75,8 +75,6 @@
 		038F7F4B2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */; };
 		038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F422C3A8CC500AE7028 /* FabButton.swift */; };
 		038F7F4F2C3A8CC500AE7028 /* FabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F422C3A8CC500AE7028 /* FabButton.swift */; };
-		038F7F512C3A8CDC00AE7028 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 038F7F502C3A8CDC00AE7028 /* boolder.db */; };
-		038F7F522C3A8CDC00AE7028 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 038F7F502C3A8CDC00AE7028 /* boolder.db */; };
 		038F7F542C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F532C3A8D1600AE7028 /* ClusterDownloader.swift */; };
 		038F7F552C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F532C3A8D1600AE7028 /* ClusterDownloader.swift */; };
 		038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F7F562C3A8D3700AE7028 /* Cluster.swift */; };
@@ -115,6 +113,8 @@
 		03E3DACB2C7F0110004D47A1 /* VariantIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3DAC92C7F0110004D47A1 /* VariantIndicator.swift */; };
 		03E3DACD2C7F19D7004D47A1 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3DACC2C7F19D7004D47A1 /* MotionManager.swift */; };
 		03E3DACE2C7F19D7004D47A1 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3DACC2C7F19D7004D47A1 /* MotionManager.swift */; };
+		03E3DAD32C7F3A99004D47A1 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03E3DAD22C7F3A99004D47A1 /* boolder.db */; };
+		03E3DAD42C7F3A99004D47A1 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03E3DAD22C7F3A99004D47A1 /* boolder.db */; };
 		03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
 		03E500912930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
 		03E500932930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */; };
@@ -223,7 +223,6 @@
 		038F7F3F2C3A8CC500AE7028 /* AreaDownloadRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaDownloadRowView.swift; sourceTree = "<group>"; };
 		038F7F402C3A8CC500AE7028 /* DownloadButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadButtonView.swift; sourceTree = "<group>"; };
 		038F7F422C3A8CC500AE7028 /* FabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabButton.swift; sourceTree = "<group>"; };
-		038F7F502C3A8CDC00AE7028 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		038F7F532C3A8D1600AE7028 /* ClusterDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterDownloader.swift; sourceTree = "<group>"; };
 		038F7F562C3A8D3700AE7028 /* Cluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cluster.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
@@ -241,6 +240,7 @@
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03E3DAC92C7F0110004D47A1 /* VariantIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantIndicator.swift; sourceTree = "<group>"; };
 		03E3DACC2C7F19D7004D47A1 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		03E3DAD22C7F3A99004D47A1 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
 		03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetentsViewModifier.swift; sourceTree = "<group>"; };
@@ -433,8 +433,8 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				038F7F502C3A8CDC00AE7028 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
+				03E3DAD22C7F3A99004D47A1 /* boolder.db */,
 				038F7F592C3BDB3800AE7028 /* Download */,
 			);
 			path = Stores;
@@ -660,7 +660,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				038F7F522C3A8CDC00AE7028 /* boolder.db in Resources */,
+				03E3DAD42C7F3A99004D47A1 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -674,7 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				038F7F512C3A8CDC00AE7028 /* boolder.db in Resources */,
+				03E3DAD32C7F3A99004D47A1 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,

@@ -71,7 +71,7 @@ struct TopoView: View {
 //                                            }
 //                                    }
                                     
-                                    ForEach(Array(problem.variants.enumerated()), id: \.element) { index, variant in
+                                    ForEach(Array(problem.startVariants.enumerated()), id: \.element) { index, variant in
                                         ProblemCircleView(problem: variant, isDisplayedOnPhoto: true, smaller: true)
                                             .zIndex(100)
                                             .opacity(0.8)
@@ -97,7 +97,7 @@ struct TopoView: View {
                                                 mapState.selectProblem(secondaryProblem)
                                             }
                                             
-                                        ForEach(Array(secondaryProblem.variants.enumerated()), id: \.element) { index, variant in
+                                        ForEach(Array(secondaryProblem.startVariants.enumerated()), id: \.element) { index, variant in
                                             ProblemCircleView(problem: variant, isDisplayedOnPhoto: true, smaller: true)
                                                 .zIndex(secondaryProblem.zIndex - CGFloat(index+1))
                                                 .opacity(0.8)

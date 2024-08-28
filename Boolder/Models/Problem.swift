@@ -28,9 +28,10 @@ struct Problem : Identifiable {
     let featured: Bool
     let popularity: Int?
     let parentId: Int?
+    let startParentId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, startParentId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -104,11 +105,11 @@ struct Problem : Identifiable {
     }
     
     var variantsForDisplayOnTopoView: [Problem] {
-        if let parent = parent {
-            return parent.variantsForDisplayOnTopoView
+        if let startParent = startParent {
+            return startParent.variantsForDisplayOnTopoView
         }
         else {
-            return Array([self]) + children
+            return Array([self]) + startChildren
         }
     }
     
@@ -151,6 +152,20 @@ struct Problem : Identifiable {
             return children
         }
     }
+    
+    var startVariants: [Problem] {
+        if let startParent = startParent {
+            return Array(
+                Set([startParent]).union(
+                    Set(startParent.startChildren).subtracting(Set([self]))
+                )
+            )
+        }
+        else {
+            return startChildren
+        }
+    }
+    
 
     // TODO: move to Line
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
@@ -210,6 +225,7 @@ extension Problem {
     static let circuitId = Expression<Int?>("circuit_id")
     static let bleauInfoId = Expression<String?>("bleau_info_id")
     static let parentId = Expression<Int?>("parent_id")
+    static let startParentId = Expression<Int?>("start_parent_id")
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
     static let sitStart = Expression<Int>("sit_start")
@@ -237,7 +253,8 @@ extension Problem {
                     bleauInfoId: p[bleauInfoId],
                     featured: p[featured] == 1,
                     popularity: p[popularity],
-                    parentId: p[parentId]
+                    parentId: p[parentId], 
+                    startParentId: p[startParentId]
                 )
             }
             
@@ -297,8 +314,8 @@ extension Problem {
             
             return problemsOnSameTopo.compactMap{$0}.filter { p in
                 p.id != id // don't show itself
-                && (p.parentId == nil) // don't show anyone's children
-                && (p.id != parentId) // don't show problem's parent
+                && (p.startParentId == nil) // don't show anyone's start children
+                && (p.id != startParentId) // don't show problem's start parent
                 && p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
             }
         }
@@ -323,10 +340,31 @@ extension Problem {
         }
     }
     
+    var startChildren: [Problem] {
+        let problems = Table("problems")
+            .filter(Problem.startParentId == id)
+
+        do {
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
+                Self.load(id: problem[Problem.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     var parent: Problem? {
         guard let parentId = parentId else { return nil }
         
         return Self.load(id: parentId)
+    }
+    
+    var startParent: Problem? {
+        guard let startParentId = startParentId else { return nil }
+        
+        return Self.load(id: startParentId)
     }
     
     var next: Problem? {
