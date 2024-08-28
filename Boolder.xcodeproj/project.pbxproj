@@ -111,6 +111,8 @@
 		03D1991F2C57BEFE0082B56C /* DownloadAnnouncementTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D1991D2C57BEFE0082B56C /* DownloadAnnouncementTip.swift */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
+		03E3DACA2C7F0110004D47A1 /* VariantIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3DAC92C7F0110004D47A1 /* VariantIndicator.swift */; };
+		03E3DACB2C7F0110004D47A1 /* VariantIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E3DAC92C7F0110004D47A1 /* VariantIndicator.swift */; };
 		03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
 		03E500912930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
 		03E500932930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */; };
@@ -235,6 +237,7 @@
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03D1991D2C57BEFE0082B56C /* DownloadAnnouncementTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAnnouncementTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
+		03E3DAC92C7F0110004D47A1 /* VariantIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantIndicator.swift; sourceTree = "<group>"; };
 		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
 		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
 		03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetentsViewModifier.swift; sourceTree = "<group>"; };
@@ -530,6 +533,7 @@
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
 				03FF98142C7DB21700F85DAB /* PageIndicator.swift */,
+				03E3DAC92C7F0110004D47A1 /* VariantIndicator.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
 				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
@@ -739,6 +743,7 @@
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
 				038C2EF229201152006581CD /* MapContainerView.swift in Sources */,
+				03E3DACB2C7F0110004D47A1 /* VariantIndicator.swift in Sources */,
 				038F7F552C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */,
 				033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */,
 				37379913258E619400711EDA /* LineView.swift in Sources */,
@@ -845,6 +850,7 @@
 				03FF98152C7DB21700F85DAB /* PageIndicator.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
+				03E3DACA2C7F0110004D47A1 /* VariantIndicator.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
 				0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */,

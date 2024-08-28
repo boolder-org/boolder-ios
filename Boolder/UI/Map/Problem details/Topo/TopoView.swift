@@ -47,6 +47,7 @@ struct TopoView: View {
                             GeometryReader { geo in
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                        .zIndex(.infinity)
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
                                         .contentShape(Rectangle()) // makes the whole frame tappable
                                         .offset(lineStart)
@@ -57,10 +58,10 @@ struct TopoView: View {
                                         }
                                     
                                     if problem.variantsForDisplayOnTopoView.count > 1, let index = problem.nextVariantIndex {
-                                        PageIndicator(numberOfDots: problem.variantsForDisplayOnTopoView.count, currentIndex: index)
+                                        VariantIndicator(text: "\(index+1)/\(problem.variantsForDisplayOnTopoView.count)")
                                             .frame(width: 40, height: 20, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(CGSize(width: lineStart.width, height: lineStart.height + 32))
+                                            .offset(CGSize(width: lineStart.width, height: lineStart.height + 40))
                                             .onTapGesture {
                                                 if let nextVariant = problem.nextVariant {
                                                     mapState.selectProblem(nextVariant)
@@ -72,12 +73,14 @@ struct TopoView: View {
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
+                                            .zIndex(secondaryProblem.zIndex)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
                                             .offset(lineStart)
                                             .onTapGesture {
                                                 mapState.selectProblem(secondaryProblem)
                                             }
+                                            
                                     }
                                 }
                             }
