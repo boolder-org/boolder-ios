@@ -112,6 +112,19 @@ struct Problem : Identifiable {
         
         return nil
     }
+    
+    var startVariants: [Problem] {
+        if let parent = startParent {
+            return Array(
+                Set([parent]).union(
+                    Set(parent.startChildren).subtracting(Set([self]))
+                )
+            )
+        }
+        else {
+            return startChildren
+        }
+    }
 
 
     // TODO: move to Line
@@ -299,6 +312,28 @@ extension Problem {
         guard let parentId = parentId else { return nil }
         
         return Self.load(id: parentId)
+    }
+    
+    var startChildren: [Problem] {
+        let problems = Table("problems")
+            .filter(Problem.startParentId == id)
+            .filter(Problem.parentId == nil)
+
+        do {
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
+                Self.load(id: problem[Problem.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var startParent: Problem? {
+        guard let startParentId = startParentId else { return nil }
+        
+        return Self.load(id: startParentId)
     }
     
     // TODO: rename
