@@ -115,15 +115,27 @@ struct Problem : Identifiable {
     
     var startVariants: [Problem] {
         if let parent = startParent {
-            return Array(
-                Set([parent]).union(
-                    Set(parent.startChildren).subtracting(Set([self]))
-                )
-            )
+            return parent.startVariants
         }
         else {
-            return startChildren
+            return Array([self]) + startChildren
         }
+    }
+    
+    var startVariantsWithoutSelf: [Problem] {
+        Array(Set(startVariants).subtracting([self]))
+    }
+    
+    var startVariantIndex: Int? {
+        startVariants.firstIndex(of: self)
+    }
+    
+    var nextStartVariant: Problem? {
+        if let index = startVariantIndex {
+            return startVariants[(index + 1) % startVariants.count]
+        }
+        
+        return nil
     }
 
 

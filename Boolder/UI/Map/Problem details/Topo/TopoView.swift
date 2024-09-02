@@ -176,17 +176,24 @@ struct TopoView: View {
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
                                         .contentShape(Rectangle()) // makes the whole frame tappable
                                         .offset(lineStart)
-                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
+                                        .onTapGesture {
+                                            if let nextStartVariant = problem.nextStartVariant {
+                                                mapState.selectProblem(nextStartVariant)
+                                            }
+                                        }
                                     
-//                                    ForEach(Array(problem.startVariants.enumerated()), id: \.element) { index, variant in
-//                                        ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
-//                                            .frame(width: tapSize, height: tapSize, alignment: .center)
-//                                            .contentShape(Rectangle()) // makes the whole frame tappable
-//                                            .offset(CGSize(width: lineStart.width + CGFloat(index+1)*20, height: lineStart.height))
-//                                            .onTapGesture {
-//                                                mapState.selectProblem(variant)
-//                                            }
-//                                    }
+                                    ForEach(Array(problem.startVariantsWithoutSelf.enumerated()), id: \.element) { index, variant in
+                                        ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
+                                            .frame(width: tapSize, height: tapSize, alignment: .center)
+                                            .contentShape(Rectangle()) // makes the whole frame tappable
+                                            .offset(CGSize(width: lineStart.width + CGFloat(index+1)*5, height: lineStart.height))
+                                            .zIndex(-CGFloat(index+1))
+                                            .onTapGesture {
+                                                if let nextStartVariant = problem.nextStartVariant {
+                                                    mapState.selectProblem(nextStartVariant)
+                                                }
+                                            }
+                                    }
                                 }
                                 
                                 
