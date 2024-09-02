@@ -207,6 +207,17 @@ struct TopoView: View {
                                             .onTapGesture {
                                                 mapState.selectProblem(secondaryProblem)
                                             }
+                                        
+                                        ForEach(Array(secondaryProblem.startVariantsWithoutSelf.enumerated()), id: \.element) { index, variant in
+                                            ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
+                                                .frame(width: tapSize, height: tapSize, alignment: .center)
+                                                .contentShape(Rectangle()) // makes the whole frame tappable
+                                                .offset(CGSize(width: lineStart.width + CGFloat(index+1)*5, height: lineStart.height))
+                                                .zIndex(-CGFloat(index+1))
+                                                .onTapGesture {
+                                                    mapState.selectProblem(secondaryProblem)
+                                                }
+                                        }
                                     }
                                 }
                             }
