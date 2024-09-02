@@ -292,8 +292,8 @@ extension Problem {
             
             return problemsOnSameTopo.compactMap{$0}.filter { p in
                 p.id != id // don't show itself
-                && (p.parentId == nil) // don't show anyone's children
-                && (p.id != parentId) // don't show problem's parent
+//                && (p.parentId == nil) // don't show anyone's children
+//                && (p.id != parentId) // don't show problem's parent
                 && (p.startParentId == nil) // don't show anyone's start children
                 && (p.id != startParentId) // don't show problem's start parent
                 && p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
@@ -329,7 +329,7 @@ extension Problem {
     var startChildren: [Problem] {
         let problems = Table("problems")
             .filter(Problem.startParentId == id)
-            .filter(Problem.parentId == nil)
+//            .filter(Problem.parentId == nil)
 
         do {
             return try SqliteStore.shared.db.prepare(problems).map { problem in
