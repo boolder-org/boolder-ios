@@ -91,26 +91,27 @@ struct ProblemDetailsView: View {
                 
                 HStack(alignment: .firstTextBaseline) {
                     
-                    if problem.steepness != .other {
-                        HStack(alignment: .firstTextBaseline) {
-                            Image(problem.steepness.imageName)
-                                .frame(minWidth: 16)
-                            Text(problem.steepness.localizedName)
-                            
-                        }
-                        .font(.body)
-                    }
-                    
                     if(problem.sitStart) {
-                        if problem.steepness != .other {
-                            Text("•")
-                                .font(.body)
-                        }
+//                        if problem.steepness != .other {
+//                            Text("•")
+//                                .font(.body)
+//                        }
+                        Image(systemName: "figure.rower")
                         Text("problem.sit_start")
                             .font(.body)
                     }
                     
                     Spacer()
+                    
+//                    if problem.steepness != .other {
+//                        HStack(alignment: .firstTextBaseline) {
+//                            Image(problem.steepness.imageName)
+//                                .frame(minWidth: 16)
+//                            Text(problem.steepness.localizedName)
+//                            
+//                        }
+//                        .font(.body)
+//                    }
                     
                     if isTicked() {
                         Image(systemName: "checkmark.circle.fill")
