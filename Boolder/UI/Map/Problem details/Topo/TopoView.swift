@@ -31,28 +31,20 @@ struct TopoView: View {
                                 .onTapGesture {
                                     presentTopoFullScreenView = true
                                 }
-                                .modify {
-                                    if case .ready(let image) = photoStatus  {
-                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                            TopoFullScreenView(image: image, problem: problem)
-                                        }
-                                    }
-                                    else {
-                                        $0
-                                    }
-                                }
+//                                .modify {
+//                                    if case .ready(let image) = photoStatus  {
+//                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+//                                            TopoFullScreenView(image: image, problem: problem)
+//                                        }
+//                                    }
+//                                    else {
+//                                        $0
+//                                    }
+//                                }
                             
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
-                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .frame(width: tapSize, height: tapSize, alignment: .center)
-                                        .contentShape(Rectangle()) // makes the whole frame tappable
-                                        .offset(lineStart)
-                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
-                                }
-                                
                                 ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
@@ -64,6 +56,17 @@ struct TopoView: View {
                                             }
                                     }
                                 }
+                                
+                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                        .frame(width: tapSize, height: tapSize, alignment: .center)
+                                        .contentShape(Rectangle()) // makes the whole frame tappable
+                                        .offset(lineStart)
+                                        .allowsHitTesting(false)
+//                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
+                                }
+                                
+                                
                             }
                         }
                 }
