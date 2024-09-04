@@ -45,14 +45,29 @@ struct TopoView: View {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
-                                ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
+                                ForEach(problem.otherProblemsOnSameTopo) { (secondaryProblem: Problem) in
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
                                             .offset(lineStart)
+                                            .zIndex(secondaryProblem.zIndex)
+//                                            .allowsHitTesting(secondaryProblem.zIndex < problem.zIndex)
                                             .onTapGesture {
-                                                mapState.selectProblem(secondaryProblem)
+//                                                print(problem.startVariants.map{$0.localizedName})
+//                                                let parent = problem.startParent ?? problem.startChildren.first?.startParent
+
+                                                if(problem.startVariants.contains(secondaryProblem)) {
+//                                                    print("next")
+                                                    if let nextStartVariant = problem.nextStartVariant {
+                                                        
+                                                        mapState.selectProblem(nextStartVariant)
+                                                    }
+                                                }
+                                                else {
+//                                                    print("normal")
+                                                    mapState.selectProblem(secondaryProblem)
+                                                }
                                             }
                                     }
                                 }
@@ -62,6 +77,7 @@ struct TopoView: View {
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
                                         .contentShape(Rectangle()) // makes the whole frame tappable
                                         .offset(lineStart)
+                                        .zIndex(.infinity)
                                         .allowsHitTesting(false)
 //                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
                                 }

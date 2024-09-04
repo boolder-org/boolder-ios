@@ -28,9 +28,19 @@ struct Problem : Identifiable {
     let featured: Bool
     let popularity: Int?
     let parentId: Int?
+    let startParentId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, startParentId: 0)
+    
+    var zIndex: Double {
+        if let popularity = popularity {
+            Double(popularity)
+        }
+        else {
+            Double(id) / 100000
+        }
+    }
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -135,6 +145,7 @@ extension Problem {
     static let circuitId = Expression<Int?>("circuit_id")
     static let bleauInfoId = Expression<String?>("bleau_info_id")
     static let parentId = Expression<Int?>("parent_id")
+    static let startParentId = Expression<Int?>("start_parent_id")
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
     static let sitStart = Expression<Int>("sit_start")
@@ -162,7 +173,8 @@ extension Problem {
                     bleauInfoId: p[bleauInfoId],
                     featured: p[featured] == 1,
                     popularity: p[popularity],
-                    parentId: p[parentId]
+                    parentId: p[parentId],
+                    startParentId: p[startParentId]
                 )
             }
             
@@ -232,6 +244,54 @@ extension Problem {
             return []
         }
     }
+    
+    var startChildren: [Problem] {
+        let problems = Table("problems")
+            .filter(Problem.startParentId == id)
+            .filter(Problem.parentId == nil)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(problems).map { problem in
+                Self.load(id: problem[Problem.id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var startParent: Problem? {
+        guard let startParentId = startParentId else { return nil }
+        
+        return Self.load(id: startParentId)
+    }
+    
+    var startVariants: [Problem] {
+        if let parent = startParent {
+            return parent.startVariants
+        }
+        else {
+            return Array([self]) + startChildren
+        }
+    }
+    
+//    var startVariantsWithoutSelf: [Problem] {
+//        Array(Set(startVariants).subtracting([self]))
+//    }
+    
+    var startVariantIndex: Int? {
+        startVariants.firstIndex(of: self)
+    }
+    
+    var nextStartVariant: Problem? {
+        if let index = startVariantIndex {
+            return startVariants[(index + 1) % startVariants.count]
+        }
+        
+        return nil
+    }
+    
     
     var children: [Problem] {
         let problems = Table("problems")
