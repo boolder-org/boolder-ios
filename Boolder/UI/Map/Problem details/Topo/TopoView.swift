@@ -182,7 +182,7 @@ struct TopoView: View {
                                             }
                                         }
                                     
-                                    ForEach(Array(problem.startVariantsWithoutSelf.enumerated()), id: \.element) { index, variant in
+                                    ForEach(Array(problem.startVariantsWithoutSelf.prefix(2).enumerated()), id: \.element) { index, variant in
                                         ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .contentShape(Rectangle()) // makes the whole frame tappable
@@ -208,7 +208,7 @@ struct TopoView: View {
                                                 mapState.selectProblem(secondaryProblem)
                                             }
                                         
-                                        ForEach(Array(secondaryProblem.startVariantsWithoutSelf.enumerated()), id: \.element) { index, variant in
+                                        ForEach(Array(secondaryProblem.startVariantsWithoutSelf.prefix(2).enumerated()), id: \.element) { index, variant in
                                             ProblemCircleView(problem: variant, isDisplayedOnPhoto: true)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
                                                 .contentShape(Rectangle()) // makes the whole frame tappable
