@@ -248,7 +248,7 @@ extension Problem {
     var startChildren: [Problem] {
         let problems = Table("problems")
             .filter(Problem.startParentId == id)
-            .filter(Problem.parentId == nil)
+//            .filter(Problem.parentId == nil)
         
         do {
             return try SqliteStore.shared.db.prepare(problems).map { problem in
