@@ -30,7 +30,7 @@ struct MapContainerView: View {
 //                prevNextButtons
 //            }
             
-//            circuitButtons
+            circuitButtons
             
             fabButtons
                 .zIndex(10)
