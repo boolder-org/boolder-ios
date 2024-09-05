@@ -49,6 +49,7 @@ struct TopoView: View {
                                     if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
+//                                            .background(Color.blue.opacity(0.2))
                                             .contentShape(Rectangle()) // makes the whole frame tappable
                                             .offset(lineStart)
                                             .zIndex(secondaryProblem.zIndex)
@@ -75,6 +76,7 @@ struct TopoView: View {
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
                                         .frame(width: tapSize, height: tapSize, alignment: .center)
+//                                        .background(Color.blue.opacity(0.2))
                                         .contentShape(Rectangle()) // makes the whole frame tappable
                                         .offset(lineStart)
                                         .zIndex(.infinity)
@@ -137,29 +139,47 @@ struct TopoView: View {
                 Spacer()
                 
                 VStack {
-                    
                     if(problem.variants.count > 0) {
-                        Menu {
-                            ForEach(problem.variants) { variant in
-                                Button {
-                                    mapState.selectProblem(variant)
-                                } label: {
-                                    Text("\(variant.localizedName) \(variant.grade.string)")
-                                }
+                        Button {
+                            if let variant = problem.variants.first {
+                                mapState.selectProblem(variant)
                             }
                         } label: {
                             HStack {
-                                Text(numberOfVariantsForProblem(problem))
-                                Image(systemName: "chevron.down")
+                                Image(systemName: "figure.stand")
+                                Image(systemName: "figure.rower")
                             }
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 8)
                                 .background(Color.gray.opacity(0.8))
                                 .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
+                                .cornerRadius(8)
                                 .padding(8)
                         }
                     }
+                    
+//                    if(problem.variants.count > 0) {
+//                        Menu {
+//                            ForEach(problem.variants) { variant in
+//                                Button {
+//                                    mapState.selectProblem(variant)
+//                                } label: {
+//                                    Text("\(variant.localizedName) \(variant.grade.string)")
+//                                }
+//                            }
+//                        } label: {
+//                            HStack {
+//                                Text(numberOfVariantsForProblem(problem))
+//                                Image(systemName: "chevron.down")
+//                            }
+//                                .padding(.vertical, 4)
+//                                .padding(.horizontal, 8)
+//                                .background(Color.gray.opacity(0.8))
+//                                .foregroundColor(Color(UIColor.systemBackground))
+//                                .cornerRadius(16)
+//                                .padding(8)
+//                        }
+//                    }
                     
                     Spacer()
                 }
