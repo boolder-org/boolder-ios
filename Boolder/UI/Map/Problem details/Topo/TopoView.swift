@@ -152,6 +152,24 @@ struct TopoView: View {
                                     else if variant.variantType == "sit" {
                                         Image(systemName: "figure.rower")
                                     }
+                                    else if variant.variantType == "right" {
+                                        Image(systemName: "arrow.uturn.right")
+                                    }
+                                    else if variant.variantType == "left" {
+                                        Image(systemName: "arrow.uturn.left")
+                                    }
+                                    else if variant.variantType == "back" {
+                                        Image(systemName: "arrow.backward")
+                                    }
+                                    else if variant.variantType == "traverse" {
+                                        Image(systemName: "arrow.forward")
+                                    }
+                                    else if variant.variantType == "extended" {
+                                        Image(systemName: "arrow.left.and.line.vertical.and.arrow.right")
+                                    }
+                                    else if variant.variantType == "short" {
+                                        Image(systemName: "arrow.right.and.line.vertical.and.arrow.left")
+                                    }
                                     else {
                                         Image(systemName: "questionmark.circle")
                                     }
