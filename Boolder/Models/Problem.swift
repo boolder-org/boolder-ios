@@ -28,10 +28,11 @@ struct Problem : Identifiable {
     let featured: Bool
     let popularity: Int?
     let parentId: Int?
+    let variantType: String?
     let startParentId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, startParentId: 0)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, variantType: nil, startParentId: 0)
     
     var zIndex: Double {
         if let popularity = popularity {
@@ -76,14 +77,10 @@ struct Problem : Identifiable {
     // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
     var variants: [Problem] {
         if let parent = parent {
-            return Array(
-                Set([parent]).union(
-                    Set(parent.children).subtracting(Set([self]))
-                )
-            )
+            return parent.variants
         }
         else {
-            return children
+            return [self] + children
         }
     }
 
@@ -145,6 +142,7 @@ extension Problem {
     static let circuitId = Expression<Int?>("circuit_id")
     static let bleauInfoId = Expression<String?>("bleau_info_id")
     static let parentId = Expression<Int?>("parent_id")
+    static let variantType = Expression<String?>("variant_type")
     static let startParentId = Expression<Int?>("start_parent_id")
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
@@ -174,6 +172,7 @@ extension Problem {
                     featured: p[featured] == 1,
                     popularity: p[popularity],
                     parentId: p[parentId],
+                    variantType: p[variantType],
                     startParentId: p[startParentId]
                 )
             }

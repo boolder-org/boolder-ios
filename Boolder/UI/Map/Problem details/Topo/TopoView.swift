@@ -139,23 +139,35 @@ struct TopoView: View {
                 Spacer()
                 
                 VStack {
-                    if(problem.variants.count > 0) {
-                        Button {
-                            if let variant = problem.variants.first {
-                                mapState.selectProblem(variant)
+                    if(problem.variants.count > 1) {
+                        HStack {
+                            ForEach(problem.variants) { variant in
+//                                Image(systemName: "figure.stand")
+                                Button {
+                                    mapState.selectProblem(variant)
+                                } label: {
+                                    if variant.parentId == nil {
+                                        Image(systemName: "figure.stand")
+                                    }
+                                    else if variant.variantType == "sit" {
+                                        Image(systemName: "figure.rower")
+                                    }
+                                    else {
+                                        Image(systemName: "questionmark.circle")
+                                    }
+                                }
+                                .foregroundColor(variant == problem ? Color.systemBackground : Color.black.opacity(0.5))
+                                
                             }
-                        } label: {
-                            HStack {
-                                Image(systemName: "figure.stand")
-                                Image(systemName: "figure.rower")
-                            }
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background(Color.gray.opacity(0.8))
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(8)
-                                .padding(8)
+                            
+                           
                         }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                        .background(Color.gray.opacity(0.8))
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .cornerRadius(8)
+                        .padding(8)
                     }
                     
 //                    if(problem.variants.count > 0) {
