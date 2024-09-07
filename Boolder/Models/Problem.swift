@@ -457,7 +457,7 @@ class StartGroup: Identifiable {
     }
     
     func next(after: Problem) -> Problem? {
-        print(problemsWithoutVariants)
+//        print(problemsWithoutVariants)
         if let index = problemsWithoutVariants.firstIndex(of: after) {
             return problemsWithoutVariants[(index + 1) % problemsWithoutVariants.count]
         }
