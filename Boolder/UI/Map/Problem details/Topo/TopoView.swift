@@ -54,16 +54,14 @@ struct TopoView: View {
                                                 .offset(lineStart)
                                                 .zIndex(p.zIndex)
                                                 .onTapGesture {
-
-                                                    if(problem.startVariants.contains(p)) {
-                                                        if let nextStartVariant = problem.nextStartVariant {
-                                                            
-                                                            mapState.selectProblem(nextStartVariant)
-                                                        }
+                                                    
+                                                    if let next = group.next(after: problem) {
+                                                        mapState.selectProblem(next)
                                                     }
                                                     else {
                                                         mapState.selectProblem(p)
                                                     }
+
                                                 }
                                         }
                                     }
@@ -162,14 +160,14 @@ struct TopoView: View {
                                     else if variant.variantType == "traverse" {
                                         Image(systemName: "arrow.forward")
                                     }
-                                    else if variant.variantType == "extended" {
-                                        Image(systemName: "arrow.left.and.line.vertical.and.arrow.right")
-                                    }
-                                    else if variant.variantType == "short" {
-                                        Image(systemName: "arrow.right.and.line.vertical.and.arrow.left")
-                                    }
+//                                    else if variant.variantType == "extended" {
+//                                        Image(systemName: "arrow.left.and.line.vertical.and.arrow.right")
+//                                    }
+//                                    else if variant.variantType == "short" {
+//                                        Image(systemName: "arrow.right.and.line.vertical.and.arrow.left")
+//                                    }
                                     else {
-                                        Image(systemName: "questionmark.circle")
+                                        Image(systemName: "circle.fill")
                                     }
                                 }
                                 .foregroundColor(variant == problem ? Color.systemBackground : Color.black.opacity(0.5))
