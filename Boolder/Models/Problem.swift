@@ -458,8 +458,8 @@ class StartGroup: Identifiable {
     
     func next(after: Problem) -> Problem? {
 //        print(problemsWithoutVariants)
-        if let index = problemsWithoutVariants.firstIndex(of: after) {
-            return problemsWithoutVariants[(index + 1) % problemsWithoutVariants.count]
+        if let index = problems.firstIndex(of: after) {
+            return problems[(index + 1) % problems.count]
         }
         
         return nil

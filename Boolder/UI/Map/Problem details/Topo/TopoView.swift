@@ -60,7 +60,7 @@ struct TopoView: View {
                             
                             GeometryReader { geo in
                                 ForEach(problem.startGroups) { (group: StartGroup) in
-                                    ForEach(group.problemsWithoutVariants) { (p: Problem) in
+                                    ForEach(group.problems) { (p: Problem) in
                                         if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
                                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
