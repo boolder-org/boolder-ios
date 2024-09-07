@@ -17,7 +17,7 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     
-    let tapSize: CGFloat = 44
+    let tapSize: CGFloat = 22 // FIXME: increase
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -46,10 +46,11 @@ struct TopoView: View {
                             
                             GeometryReader { geo in
                                 ForEach(problem.startGroups) { (group: StartGroup) in
-                                    ForEach(group.problems) { (p: Problem) in
+                                    ForEach(group.problemsWithoutVariants) { (p: Problem) in
                                         if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
                                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
+                                                .background(Color.blue.opacity(0.2))
                                                 .contentShape(Rectangle()) // makes the whole frame tappable
                                                 .offset(lineStart)
                                                 .zIndex(p.zIndex)

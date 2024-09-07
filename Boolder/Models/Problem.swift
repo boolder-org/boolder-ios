@@ -431,7 +431,7 @@ class StartGroup: Identifiable {
 
     func overlaps(with problem: Problem) -> Bool {
         return problems.contains { p in
-            p.distance(from: problem) < 0.04
+            p.distance(from: problem) < 0.05
         }
     }
 
@@ -445,13 +445,21 @@ class StartGroup: Identifiable {
         return problems.map { $0.localizedName }.joined(separator: ", ")
     }
     
-//    var problemsWithoutVariants: [Problem] {
-//        problems.filter { $0.parentId == nil }
-//    }
+    var problemsWithoutVariants: [Problem] {
+        problems.filter {
+            if let parent = $0.parent {
+                return !problems.contains(parent)
+            }
+            else {
+                return true
+            }
+        }
+    }
     
     func next(after: Problem) -> Problem? {
-        if let index = problems.firstIndex(of: after) {
-            return problems[(index + 1) % problems.count]
+        print(problemsWithoutVariants)
+        if let index = problemsWithoutVariants.firstIndex(of: after) {
+            return problemsWithoutVariants[(index + 1) % problemsWithoutVariants.count]
         }
         
         return nil
