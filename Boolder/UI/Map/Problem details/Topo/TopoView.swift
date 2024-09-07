@@ -17,6 +17,8 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     
+    @State private var showMissingLineNotice = false
+    
     let tapSize: CGFloat = 22 // FIXME: increase
     
     var body: some View {
@@ -42,7 +44,19 @@ struct TopoView: View {
 //                                    }
 //                                }
                             
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                            if problem.line?.coordinates != nil {
+                                LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                            }
+                            else {
+                                Text("Ligne manquante")
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 8)
+                                    .background(Color.gray.opacity(0.8))
+                                    .foregroundColor(Color(UIColor.systemBackground))
+                                    .cornerRadius(16)
+                                    .transition(.opacity)
+                                    .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                            }
                             
                             GeometryReader { geo in
                                 ForEach(problem.startGroups) { (group: StartGroup) in
@@ -50,7 +64,7 @@ struct TopoView: View {
                                         if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
                                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
-                                                .background(Color.blue.opacity(0.2))
+//                                                .background(Color.blue.opacity(0.2))
                                                 .contentShape(Rectangle()) // makes the whole frame tappable
                                                 .offset(lineStart)
                                                 .zIndex(p.zIndex)
@@ -238,6 +252,16 @@ struct TopoView: View {
                 Task {
                     await loadData()
                 }
+            }
+            
+            if newValue.line?.coordinates == nil {
+                withAnimation { showMissingLineNotice = true }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    withAnimation { showMissingLineNotice = false }
+                }
+            }
+            else {
+                withAnimation { showMissingLineNotice = false }
             }
         }
         .task {
