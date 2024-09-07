@@ -45,33 +45,31 @@ struct TopoView: View {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             GeometryReader { geo in
-                                ForEach(problem.otherProblemsOnSameTopo) { (secondaryProblem: Problem) in
-                                    if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
-                                            .frame(width: tapSize, height: tapSize, alignment: .center)
-//                                            .background(Color.blue.opacity(0.2))
-                                            .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(lineStart)
-                                            .zIndex(secondaryProblem.zIndex)
-//                                            .allowsHitTesting(secondaryProblem.zIndex < problem.zIndex)
-                                            .onTapGesture {
-//                                                print(problem.startVariants.map{$0.localizedName})
-//                                                let parent = problem.startParent ?? problem.startChildren.first?.startParent
+                                ForEach(problem.startGroups) { (group: StartGroup) in
+                                    ForEach(group.problems) { (p: Problem) in
+                                        if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
+                                            ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                                .frame(width: tapSize, height: tapSize, alignment: .center)
+                                                .contentShape(Rectangle()) // makes the whole frame tappable
+                                                .offset(lineStart)
+                                                .zIndex(p.zIndex)
+                                                .onTapGesture {
 
-                                                if(problem.startVariants.contains(secondaryProblem)) {
-//                                                    print("next")
-                                                    if let nextStartVariant = problem.nextStartVariant {
-                                                        
-                                                        mapState.selectProblem(nextStartVariant)
+                                                    if(problem.startVariants.contains(p)) {
+                                                        if let nextStartVariant = problem.nextStartVariant {
+                                                            
+                                                            mapState.selectProblem(nextStartVariant)
+                                                        }
+                                                    }
+                                                    else {
+                                                        mapState.selectProblem(p)
                                                     }
                                                 }
-                                                else {
-//                                                    print("normal")
-                                                    mapState.selectProblem(secondaryProblem)
-                                                }
-                                            }
+                                        }
                                     }
                                 }
+                                
+                                
                                 
                                 if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)

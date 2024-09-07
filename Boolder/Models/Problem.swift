@@ -84,7 +84,7 @@ struct Problem : Identifiable {
         }
     }
 
-    // TODO: move to Line
+    // TODO: rename and move to Line
     func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         guard let coordinates = line.coordinates else { return nil }
@@ -232,15 +232,45 @@ extension Problem {
             }
             
             return problemsOnSameTopo.compactMap{$0}.filter { p in
-                p.id != id // don't show itself
+//                p.id != id // don't show itself
 //                && (p.parentId == nil) // don't show anyone's children
 //                && (p.id != parentId) // don't show problem's parent
-                && p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
+                p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
             }
+            .filter{$0.line?.coordinates != nil}
         }
         catch {
             print (error)
             return []
+        }
+    }
+    
+    // TODO: move to Topo
+    var startGroups: [StartGroup] {
+        var groups = [StartGroup]()
+        
+        otherProblemsOnSameTopo.forEach { p in
+            let group = groups.first{$0.overlaps(with: p)}
+            
+            if let group = group {
+                group.addProblem(p)
+            }
+            else {
+                groups.append(StartGroup(problem: p))
+            }
+        }
+        
+        return groups
+    }
+    
+    func distance(from: Problem) -> Double {
+        if let a = from.lineFirstPoint(), let b = self.lineFirstPoint() {
+            let dx = a.x - b.x
+            let dy = a.y - b.y
+            return sqrt(dx*dx + dy*dy)
+        }
+        else {
+            return 1.0
         }
     }
     
@@ -388,5 +418,30 @@ extension Problem : Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+}
+
+
+class StartGroup: Identifiable {
+    private(set) var problems: [Problem]
+
+    init(problem: Problem) {
+        self.problems = [problem]
+    }
+
+    func overlaps(with problem: Problem) -> Bool {
+        return problems.contains { p in
+            p.distance(from: problem) < 0.04
+        }
+    }
+
+    func addProblem(_ problem: Problem) {
+        if overlaps(with: problem) {
+            problems.append(problem)
+        }
+    }
+
+    func description() -> String {
+        return problems.map { $0.localizedName }.joined(separator: ", ")
     }
 }
