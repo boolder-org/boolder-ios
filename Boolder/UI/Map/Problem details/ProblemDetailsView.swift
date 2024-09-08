@@ -24,12 +24,10 @@ struct ProblemDetailsView: View {
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
     
-    @State private var currentPage = 0
-    
     var body: some View {
         VStack {
             GeometryReader { geo in
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: 8) {
                     TopoView(
                         problem: $problem,
                         mapState: mapState
@@ -37,30 +35,9 @@ struct ProblemDetailsView: View {
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
-                    TabView(selection: $currentPage) {
-                        ForEach(0..<10) { index in
-                            VStack {
-                                infos
-                                
-                                actionButtons
-                            }
-//                            .padding(.top, 8)
-                                .tag(index) // Assign a tag to each item for selection tracking
-                        }
-                    }
-                    .frame(maxHeight: .infinity)
-//                    .background(Color.red.opacity(0.2))
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .onChange(of: currentPage) { newPage in
-                        print("Page turned to: \(newPage)")
-                        // Add any action you want to perform when the page changes
-                        
-                        if let variant = problem.variants.last {
-                            mapState.selectProblem(variant)
-                        }
-                    }
+                    infos
                     
-                    
+                    actionButtons
                 }
             }
             
