@@ -60,6 +60,8 @@ struct ProblemDetailsView: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .minimumScaleFactor(0.5)
                         
+                        Spacer()
+                        
                         if(problem.variants.count > 0) {
                             Menu {
                                 ForEach(problem.variants) { variant in
@@ -77,7 +79,7 @@ struct ProblemDetailsView: View {
                             }
                         }
                         
-                        Spacer()
+                        
                         
                         Text(problem.grade.string)
                             .font(.title)
