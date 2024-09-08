@@ -60,6 +60,23 @@ struct ProblemDetailsView: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .minimumScaleFactor(0.5)
                         
+                        if(problem.variants.count > 0) {
+                            Menu {
+                                ForEach(problem.variants) { variant in
+                                    Button {
+                                        mapState.selectProblem(variant)
+                                    } label: {
+                                        Text("\(variant.localizedName) \(variant.grade.string)")
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "ellipsis.circle.fill")
+                                }
+                                .foregroundColor(.gray)
+                            }
+                        }
+                        
                         Spacer()
                         
                         Text(problem.grade.string)
