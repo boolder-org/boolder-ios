@@ -146,85 +146,38 @@ struct TopoView: View {
                 }
             }
             
-//            HStack {
-//                Spacer()
-//                
-//                VStack {
-//                    if(problem.variants.count > 1) {
-//                        HStack {
-//                            ForEach(problem.variants) { variant in
-////                                Image(systemName: "figure.stand")
-//                                Button {
-//                                    mapState.selectProblem(variant)
-//                                } label: {
-//                                    if variant.parentId == nil {
-//                                        Image(systemName: "figure.stand")
-//                                    }
-//                                    else if variant.variantType == "sit" {
-//                                        Image(systemName: "figure.rower")
-//                                    }
-//                                    else if variant.variantType == "right" {
-//                                        Image(systemName: "arrow.uturn.right")
-//                                    }
-//                                    else if variant.variantType == "left" {
-//                                        Image(systemName: "arrow.uturn.left")
-//                                    }
-//                                    else if variant.variantType == "back" {
-//                                        Image(systemName: "arrow.backward")
-//                                    }
-//                                    else if variant.variantType == "traverse" {
-//                                        Image(systemName: "arrow.forward")
-//                                    }
-////                                    else if variant.variantType == "extended" {
-////                                        Image(systemName: "arrow.left.and.line.vertical.and.arrow.right")
-////                                    }
-////                                    else if variant.variantType == "short" {
-////                                        Image(systemName: "arrow.right.and.line.vertical.and.arrow.left")
-////                                    }
-//                                    else {
-//                                        Image(systemName: "circle.fill")
-//                                    }
-//                                }
-//                                .foregroundColor(variant == problem ? Color.systemBackground : Color.black.opacity(0.5))
-//                                
-//                            }
-//                            
-//                           
-//                        }
-//                        .padding(.vertical, 4)
-//                        .padding(.horizontal, 8)
-//                        .background(Color.gray.opacity(0.8))
-//                        .foregroundColor(Color(UIColor.systemBackground))
-//                        .cornerRadius(8)
-//                        .padding(8)
-//                    }
-//                    
-////                    if(problem.variants.count > 0) {
-////                        Menu {
-////                            ForEach(problem.variants) { variant in
-////                                Button {
-////                                    mapState.selectProblem(variant)
-////                                } label: {
-////                                    Text("\(variant.localizedName) \(variant.grade.string)")
-////                                }
-////                            }
-////                        } label: {
-////                            HStack {
-////                                Text(numberOfVariantsForProblem(problem))
-////                                Image(systemName: "chevron.down")
-////                            }
-////                                .padding(.vertical, 4)
-////                                .padding(.horizontal, 8)
-////                                .background(Color.gray.opacity(0.8))
-////                                .foregroundColor(Color(UIColor.systemBackground))
-////                                .cornerRadius(16)
-////                                .padding(8)
-////                        }
-////                    }
-//                    
-//                    Spacer()
-//                }
-//            }
+            VStack {
+                HStack {
+                    Spacer()
+            
+                    if(problem.variants.count > 1) {
+                        Menu {
+                            ForEach(problem.variants) { variant in
+                                Button {
+                                    mapState.selectProblem(variant)
+                                } label: {
+                                    Text("\(variant.localizedName) \(variant.grade.string)")
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(numberOfVariantsForProblem(problem))
+                                Image(systemName: "chevron.down")
+                            }
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 8)
+                                .background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                                .padding(8)
+                        }
+                    }
+                    
+                    
+                }
+                
+                Spacer()
+            }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
