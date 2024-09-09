@@ -431,20 +431,20 @@ class StartGroup: Identifiable, Comparable {
 
     func overlaps(with problem: Problem) -> Bool {
         return problems.contains { p in
-            p.distance(from: problem) < 0.05
+            p.distance(from: problem) < 0.03
         }
     }
     
-    func reactsToTap(at: Line.PhotoPercentCoordinate) -> Bool {
-        return problems.contains { p in
-            if let b = p.lineFirstPoint() {
-                return distance(a: at, b: b) < 0.05
-            }
-            else {
-                return false
-            }
-        }
-    }
+//    func reactsToTap(at: Line.PhotoPercentCoordinate) -> Bool {
+//        return problems.contains { p in
+//            if let b = p.lineFirstPoint() {
+//                return distance(a: at, b: b) < 0.05
+//            }
+//            else {
+//                return false
+//            }
+//        }
+//    }
     
     func distance(at: Line.PhotoPercentCoordinate) -> Double {
         return problems.map { p in
