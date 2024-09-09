@@ -28,11 +28,9 @@ struct Problem : Identifiable {
     let featured: Bool
     let popularity: Int?
     let parentId: Int?
-    let variantType: String?
-    let startParentId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, variantType: nil, startParentId: 0)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
     var zIndex: Double {
         if let popularity = popularity {
@@ -171,9 +169,7 @@ extension Problem {
                     bleauInfoId: p[bleauInfoId],
                     featured: p[featured] == 1,
                     popularity: p[popularity],
-                    parentId: p[parentId],
-                    variantType: p[variantType],
-                    startParentId: p[startParentId]
+                    parentId: p[parentId]
                 )
             }
             
@@ -273,54 +269,6 @@ extension Problem {
             return 1.0
         }
     }
-    
-    var startChildren: [Problem] {
-        let problems = Table("problems")
-            .filter(Problem.startParentId == id)
-//            .filter(Problem.parentId == nil)
-        
-        do {
-            return try SqliteStore.shared.db.prepare(problems).map { problem in
-                Self.load(id: problem[Problem.id])
-            }.compactMap{$0}
-        }
-        catch {
-            print (error)
-            return []
-        }
-    }
-    
-    var startParent: Problem? {
-        guard let startParentId = startParentId else { return nil }
-        
-        return Self.load(id: startParentId)
-    }
-    
-    var startVariants: [Problem] {
-        if let parent = startParent {
-            return parent.startVariants
-        }
-        else {
-            return Array([self]) + startChildren
-        }
-    }
-    
-//    var startVariantsWithoutSelf: [Problem] {
-//        Array(Set(startVariants).subtracting([self]))
-//    }
-    
-    var startVariantIndex: Int? {
-        startVariants.firstIndex(of: self)
-    }
-    
-    var nextStartVariant: Problem? {
-        if let index = startVariantIndex {
-            return startVariants[(index + 1) % startVariants.count]
-        }
-        
-        return nil
-    }
-    
     
     var children: [Problem] {
         let problems = Table("problems")
