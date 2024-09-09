@@ -66,19 +66,21 @@ struct TopoView: View {
                 if case .ready(let image) = photoStatus  {
                         Group {
                             GeometryReader { geo in
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .gesture(
-                                        DragGesture(minimumDistance: 0)
-                                            .onEnded { value in
-//                                                print(value.location.x / geo.size.width)
-//                                                print(value.location.y / geo.size.height)
-                                                handleTap(tapPoint: Line.PhotoPercentCoordinate(x: value.location.x / geo.size.width, y: value.location.y / geo.size.height))
-//                                                handleTap(tapPoint: CGPointMake(value.location.x / geo.size.width, value.location.y / geo.size.height))
-                                            }
-                                    )
+                                ZStack {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                    
+                                    TapLocationView { location in
+                                        print(location)
+                                        handleTap(tapPoint: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                                    }
+//                                    .background(Color.blue.opacity(0.5))
+                                }
                             }
+                            
+                            
+                            
 //                                .onTapGesture {
 //                                    presentTopoFullScreenView = true
 //                                }
@@ -114,6 +116,7 @@ struct TopoView: View {
                                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                                 .frame(width: tapSize, height: tapSize, alignment: .center)
 //                                                .background(Color.blue.opacity(0.2))
+                                                .allowsHitTesting(false)
                                                 .contentShape(Rectangle()) // makes the whole frame tappable
                                                 .offset(lineStart)
                                                 .zIndex(p.zIndex)
@@ -357,3 +360,4 @@ struct TopoView: View {
 //        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
 //    }
 //}
+
