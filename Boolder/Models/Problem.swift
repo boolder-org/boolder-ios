@@ -422,7 +422,7 @@ extension Problem : Hashable {
 }
 
 
-class StartGroup: Identifiable {
+class StartGroup: Identifiable, Comparable {
     private(set) var problems: [Problem]
 
     init(problem: Problem) {
@@ -444,6 +444,29 @@ class StartGroup: Identifiable {
                 return false
             }
         }
+    }
+    
+    func distance(at: Line.PhotoPercentCoordinate) -> Double {
+        return problems.map { p in
+            if let b = p.lineFirstPoint() {
+                return distance(a: at, b: b)
+            }
+            else {
+                return 1.0
+            }
+        }.min() ?? 1.0
+    }
+    
+    static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
+        lhs.problems.map{$0.id} == rhs.problems.map{$0.id}
+    }
+    
+    static func < (lhs: StartGroup, rhs: StartGroup) -> Bool {
+        lhs.popularity < rhs.popularity
+    }
+    
+    var popularity : Int {
+        problems.map{$0.popularity}.compactMap{$0}.max() ?? 0
     }
     
     func distance(a: Line.PhotoPercentCoordinate, b: Line.PhotoPercentCoordinate) -> Double {

@@ -22,12 +22,40 @@ struct TopoView: View {
     let tapSize: CGFloat = 22 // FIXME: REMOVE?
     
     func handleTap(tapPoint: Line.PhotoPercentCoordinate) {
+        print("===== TAP ======")
         let groups = problem.startGroups.filter { group in
-            group.reactsToTap(at: tapPoint)
+            group.distance(at: tapPoint) < 0.05
+        }.sorted { a, b in
+            a.distance(at: tapPoint) < b.distance(at: tapPoint)
         }
         
         groups.forEach { group in
             print(group.problems.map{$0.localizedName}.joined(separator: ", "))
+        }
+        
+        if let group = groups.first {
+            print("group: ")
+            print(group.problems.map{$0.localizedName}.joined(separator: ", "))
+            
+            if group.problems.contains(problem) {
+                if let next = group.next(after: problem) {
+                    mapState.selectProblem(next)
+                }
+                else {
+                    print("no problem to show")
+                }
+            }
+            else {
+                let p = group.problems.sorted { a, b in
+                    a.zIndex > b.zIndex
+                }.first
+                if let p = p {
+                    mapState.selectProblem(p)
+                }
+            }
+            
+            
+
         }
     }
     
