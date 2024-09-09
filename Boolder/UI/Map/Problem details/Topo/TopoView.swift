@@ -66,17 +66,22 @@ struct TopoView: View {
                 if case .ready(let image) = photoStatus  {
                         Group {
                             GeometryReader { geo in
-                                ZStack {
+//                                ZStack {
                                     Image(uiImage: image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
+//                                        .gesture(
+//                                            DragGesture(minimumDistance: 0)
+//                                                .onEnded { value in
+//                                                    print("drag gesture")
+//                                                    handleTap(tapPoint: Line.PhotoPercentCoordinate(x: value.location.x / geo.size.width, y: value.location.y / geo.size.height))
+//                                                }
+//                                        )
+
                                     
-                                    TapLocationView { location in
-                                        print(location)
-                                        handleTap(tapPoint: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                                    }
+                                    
 //                                    .background(Color.blue.opacity(0.5))
-                                }
+//                                }
                             }
                             
                             
@@ -149,6 +154,13 @@ struct TopoView: View {
                                 
                                 
                                 
+                            }
+                            
+                            GeometryReader { geo in
+                                TapLocationView { location in
+                                    print(location)
+                                    handleTap(tapPoint: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                                }
                             }
                         }
                         
