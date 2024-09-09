@@ -24,7 +24,7 @@ struct TopoView: View {
     func handleTap(tapPoint: Line.PhotoPercentCoordinate) {
         print("===== TAP ======")
         let groups = problem.startGroups.filter { group in
-            group.distance(at: tapPoint) < 0.05
+            group.distance(at: tapPoint) < 0.1
         }.sorted { a, b in
             a.distance(at: tapPoint) < b.distance(at: tapPoint)
         }
