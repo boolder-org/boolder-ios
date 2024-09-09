@@ -225,9 +225,8 @@ extension Problem {
                 Self.load(id: l[Line.problemId])
             }
             
-            // TODO: clean up once we handle ordering of multiple lines
             return problemsOnSameTopo.compactMap{$0}
-                .filter { $0.topoId == self.topoId }
+                .filter { $0.topoId == self.topoId } // Note: it might break when we deal with multiple lines (eg. for traverses)
                 .filter{ $0.line?.coordinates != nil }
         }
         catch {
