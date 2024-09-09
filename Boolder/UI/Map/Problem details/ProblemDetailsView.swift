@@ -62,25 +62,6 @@ struct ProblemDetailsView: View {
                         
                         Spacer()
                         
-//                        if(problem.variants.count > 0) {
-//                            Menu {
-//                                ForEach(problem.variants) { variant in
-//                                    Button {
-//                                        mapState.selectProblem(variant)
-//                                    } label: {
-//                                        Text("\(variant.localizedName) \(variant.grade.string)")
-//                                    }
-//                                }
-//                            } label: {
-//                                HStack {
-//                                    Image(systemName: "ellipsis.circle.fill")
-//                                }
-//                                .foregroundColor(.gray)
-//                            }
-//                        }
-                        
-                        
-                        
                         Text(problem.grade.string)
                             .font(.title)
                             .fontWeight(.bold)
@@ -97,10 +78,10 @@ struct ProblemDetailsView: View {
                     }
                     
                     if problem.steepness != .other {
-//                        if problem.sitStart {
-//                            Text("•")
-//                                .font(.body)
-//                        }
+                        if problem.sitStart {
+                            Text("•")
+                                .font(.body)
+                        }
                         
                         HStack(alignment: .firstTextBaseline) {
                             Image(problem.steepness.imageName)
