@@ -434,6 +434,23 @@ class StartGroup: Identifiable {
             p.distance(from: problem) < 0.05
         }
     }
+    
+    func reactsToTap(at: Line.PhotoPercentCoordinate) -> Bool {
+        return problems.contains { p in
+            if let b = p.lineFirstPoint() {
+                return distance(a: at, b: b) < 0.05
+            }
+            else {
+                return false
+            }
+        }
+    }
+    
+    func distance(a: Line.PhotoPercentCoordinate, b: Line.PhotoPercentCoordinate) -> Double {
+        let dx = a.x - b.x
+        let dy = a.y - b.y
+        return sqrt(dx*dx + dy*dy)
+    }
 
     func addProblem(_ problem: Problem) {
         if overlaps(with: problem) {

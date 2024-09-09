@@ -19,7 +19,17 @@ struct TopoView: View {
     
     @State private var showMissingLineNotice = false
     
-    let tapSize: CGFloat = 22 // FIXME: increase
+    let tapSize: CGFloat = 22 // FIXME: REMOVE?
+    
+    func handleTap(tapPoint: Line.PhotoPercentCoordinate) {
+        let groups = problem.startGroups.filter { group in
+            group.reactsToTap(at: tapPoint)
+        }
+        
+        groups.forEach { group in
+            print(group.problems.map{$0.localizedName}.joined(separator: ", "))
+        }
+    }
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -27,12 +37,23 @@ struct TopoView: View {
             Group {
                 if case .ready(let image) = photoStatus  {
                         Group {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .onTapGesture {
-                                    presentTopoFullScreenView = true
-                                }
+                            GeometryReader { geo in
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .gesture(
+                                        DragGesture(minimumDistance: 0)
+                                            .onEnded { value in
+//                                                print(value.location.x / geo.size.width)
+//                                                print(value.location.y / geo.size.height)
+                                                handleTap(tapPoint: Line.PhotoPercentCoordinate(x: value.location.x / geo.size.width, y: value.location.y / geo.size.height))
+//                                                handleTap(tapPoint: CGPointMake(value.location.x / geo.size.width, value.location.y / geo.size.height))
+                                            }
+                                    )
+                            }
+//                                .onTapGesture {
+//                                    presentTopoFullScreenView = true
+//                                }
 //                                .modify {
 //                                    if case .ready(let image) = photoStatus  {
 //                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
@@ -68,16 +89,16 @@ struct TopoView: View {
                                                 .contentShape(Rectangle()) // makes the whole frame tappable
                                                 .offset(lineStart)
                                                 .zIndex(p.zIndex)
-                                                .onTapGesture {
-                                                    
-                                                    if let next = group.next(after: problem) {
-                                                        mapState.selectProblem(next)
-                                                    }
-                                                    else {
-                                                        mapState.selectProblem(p)
-                                                    }
-
-                                                }
+//                                                .onTapGesture {
+//                                                    
+//                                                    if let next = group.next(after: problem) {
+//                                                        mapState.selectProblem(next)
+//                                                    }
+//                                                    else {
+//                                                        mapState.selectProblem(p)
+//                                                    }
+//
+//                                                }
                                         }
                                     }
                                 }
@@ -96,8 +117,10 @@ struct TopoView: View {
                                 }
                                 
                                 
+                                
                             }
                         }
+                        
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
