@@ -140,8 +140,6 @@ extension Problem {
     static let circuitId = Expression<Int?>("circuit_id")
     static let bleauInfoId = Expression<String?>("bleau_info_id")
     static let parentId = Expression<Int?>("parent_id")
-    static let variantType = Expression<String?>("variant_type")
-    static let startParentId = Expression<Int?>("start_parent_id")
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
     static let sitStart = Expression<Int>("sit_start")
@@ -227,13 +225,10 @@ extension Problem {
                 Self.load(id: l[Line.problemId])
             }
             
-            return problemsOnSameTopo.compactMap{$0}.filter { p in
-//                p.id != id // don't show itself
-//                && (p.parentId == nil) // don't show anyone's children
-//                && (p.id != parentId) // don't show problem's parent
-                p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
-            }
-            .filter{$0.line?.coordinates != nil}
+            // TODO: clean up once we handle ordering of multiple lines
+            return problemsOnSameTopo.compactMap{$0}
+                .filter { $0.topoId == self.topoId }
+                .filter{ $0.line?.coordinates != nil }
         }
         catch {
             print (error)
