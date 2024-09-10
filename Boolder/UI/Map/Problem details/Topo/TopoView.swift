@@ -21,44 +21,6 @@ struct TopoView: View {
     
     let tapSize: CGFloat = 22 // FIXME: REMOVE?
     
-    func handleTap(tapPoint: Line.PhotoPercentCoordinate) {
-        print("===== TAP ======")
-        let groups = problem.startGroups.filter { group in
-            group.distance(to: tapPoint) < 0.1
-        }.sorted { a, b in
-            a.distance(to: tapPoint) < b.distance(to: tapPoint)
-        }
-        
-        groups.forEach { group in
-            print(group.problems.map{$0.localizedName}.joined(separator: ", "))
-        }
-        
-        if let group = groups.first {
-            print("group: ")
-            print(group.problems.map{$0.localizedName}.joined(separator: ", "))
-            
-            if group.problems.contains(problem) {
-                if let next = group.next(after: problem) {
-                    mapState.selectProblem(next)
-                }
-                else {
-                    print("no problem to show")
-                }
-            }
-            else {
-                let p = group.problems.sorted { a, b in
-                    a.zIndex > b.zIndex
-                }.first
-                if let p = p {
-                    mapState.selectProblem(p)
-                }
-            }
-            
-            
-
-        }
-    }
-    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -361,6 +323,30 @@ struct TopoView: View {
     func animate(action: () -> Void) {
         withAnimation(Animation.easeInOut(duration: 0.4)) {
             action()
+        }
+    }
+    
+    func handleTap(tapPoint: Line.PhotoPercentCoordinate) {
+        let groups = problem.startGroups.filter { group in
+            group.distance(to: tapPoint) < 0.1
+        }.sorted { a, b in
+            a.distance(to: tapPoint) < b.distance(to: tapPoint)
+        }
+        
+        if let group = groups.first {
+            if group.problems.contains(problem) {
+                if let next = group.next(after: problem) {
+                    mapState.selectProblem(next)
+                }
+            }
+            else {
+                let p = group.problems.sorted { a, b in
+                    a.zIndex > b.zIndex
+                }.first
+                if let p = p {
+                    mapState.selectProblem(p)
+                }
+            }
         }
     }
 }
