@@ -375,10 +375,6 @@ class StartGroup: Identifiable {
         
         return distances.min() ?? 1.0
     }
-    
-    var popularity : Int {
-        problems.map{$0.popularity}.compactMap{$0}.max() ?? 0
-    }
 
     func addProblem(_ problem: Problem) {
         if overlaps(with: problem) {
