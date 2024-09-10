@@ -155,9 +155,7 @@ struct TopoView: View {
         .onChange(of: photoStatus) { value in
             switch value {
             case .ready(image: _):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    animate { lineDrawPercentage = 1.0 }
-                }
+                displayLine()
             default:
                 print("")
             }
@@ -166,9 +164,7 @@ struct TopoView: View {
             if problem.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    animate { lineDrawPercentage = 1.0 }
-                }
+                displayLine()
             }
             else {
                 lineDrawPercentage = 0.0
@@ -177,19 +173,24 @@ struct TopoView: View {
                     await loadData()
                 }
             }
-            
-            if newValue.line?.coordinates == nil {
-                withAnimation { showMissingLineNotice = true }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    withAnimation { showMissingLineNotice = false }
-                }
-            }
-            else {
-                withAnimation { showMissingLineNotice = false }
-            }
         }
         .task {
             await loadData()
+        }
+    }
+    
+    func displayLine() {
+        if problem.line?.coordinates != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                animate { lineDrawPercentage = 1.0 }
+                showMissingLineNotice = false
+            }
+        }
+        else {
+            withAnimation { showMissingLineNotice = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                withAnimation { showMissingLineNotice = false }
+            }
         }
     }
     
