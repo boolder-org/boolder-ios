@@ -17,6 +17,12 @@ struct Line: Decodable {
     struct PhotoPercentCoordinate: Decodable {
         let x: Double
         let y: Double
+        
+        func distance(to other: PhotoPercentCoordinate) -> Double {
+            let dx = other.x - self.x
+            let dy = other.y - self.y
+            return (dx * dx + dy * dy).squareRoot()
+        }
     }
 }
 

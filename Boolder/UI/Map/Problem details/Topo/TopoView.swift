@@ -16,56 +16,61 @@ struct TopoView: View {
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
-    
-    let tapSize: CGFloat = 44
+    @State private var showMissingLineNotice = false
     
     var body: some View {
         ZStack(alignment: .center) {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                        Group {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .onTapGesture {
-                                    presentTopoFullScreenView = true
-                                }
-                                .modify {
-                                    if case .ready(let image) = photoStatus  {
-                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                            TopoFullScreenView(image: image, problem: problem)
-                                        }
-                                    }
-                                    else {
-                                        $0
+                    Group {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .modify {
+                                if case .ready(let image) = photoStatus  {
+                                    $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                        TopoFullScreenView(image: image, problem: problem)
                                     }
                                 }
-                            
+                                else {
+                                    $0
+                                }
+                            }
+                        
+                        if problem.line?.coordinates != nil {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                            
-                            GeometryReader { geo in
-                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .frame(width: tapSize, height: tapSize, alignment: .center)
-                                        .contentShape(Rectangle()) // makes the whole frame tappable
-                                        .offset(lineStart)
-                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
-                                }
-                                
-                                ForEach(problem.otherProblemsOnSameTopo) { secondaryProblem in
-                                    if let lineStart = lineStart(problem: secondaryProblem, inRectOfSize: geo.size) {
-                                        ProblemCircleView(problem: secondaryProblem, isDisplayedOnPhoto: true)
-                                            .frame(width: tapSize, height: tapSize, alignment: .center)
-                                            .contentShape(Rectangle()) // makes the whole frame tappable
-                                            .offset(lineStart)
-                                            .onTapGesture {
-                                                mapState.selectProblem(secondaryProblem)
-                                            }
+                        }
+                        else {
+                            Text("problem.missing_line")
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 8)
+                                .background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                                .transition(.opacity)
+                                .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                        }
+                        
+                        GeometryReader { geo in
+                            ForEach(problem.startGroups) { (group: StartGroup) in
+                                ForEach(group.problems) { (p: Problem) in
+                                    if let firstPoint = p.lineFirstPoint {
+                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                            .allowsHitTesting(false)
+                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            .zIndex(p == problem ? .infinity : p.zIndex)
                                     }
                                 }
                             }
                         }
+                        
+                        GeometryReader { geo in
+                            TapLocationView { location in
+                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                            }
+                        }
+                    }
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
@@ -114,12 +119,11 @@ struct TopoView: View {
                 }
             }
             
-            HStack {
-                Spacer()
-                
-                VStack {
-                    
-                    if(problem.variants.count > 0) {
+            VStack {
+                HStack {
+                    Spacer()
+            
+                    if(problem.variants.count > 1) {
                         Menu {
                             ForEach(problem.variants) { variant in
                                 Button {
@@ -141,9 +145,9 @@ struct TopoView: View {
                                 .padding(8)
                         }
                     }
-                    
-                    Spacer()
                 }
+                
+                Spacer()
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
@@ -151,9 +155,7 @@ struct TopoView: View {
         .onChange(of: photoStatus) { value in
             switch value {
             case .ready(image: _):
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    animate { lineDrawPercentage = 1.0 }
-                }
+                displayLine()
             default:
                 print("")
             }
@@ -162,9 +164,7 @@ struct TopoView: View {
             if problem.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    animate { lineDrawPercentage = 1.0 }
-                }
+                displayLine()
             }
             else {
                 lineDrawPercentage = 0.0
@@ -176,6 +176,21 @@ struct TopoView: View {
         }
         .task {
             await loadData()
+        }
+    }
+    
+    func displayLine() {
+        if problem.line?.coordinates != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                animate { lineDrawPercentage = 1.0 }
+                showMissingLineNotice = false
+            }
+        }
+        else {
+            withAnimation { showMissingLineNotice = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                withAnimation { showMissingLineNotice = false }
+            }
         }
     }
     
@@ -239,20 +254,35 @@ struct TopoView: View {
         }
     }
     
-    // TODO: make this DRY with other screens
-    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
-        
-        return CGSize(
-            width:  (CGFloat(lineFirstPoint.x) * size.width) - tapSize/2,
-            height: (CGFloat(lineFirstPoint.y) * size.height) - tapSize/2
-        )
-    }
-    
     func animate(action: () -> Void) {
         withAnimation(Animation.easeInOut(duration: 0.4)) {
             action()
         }
+    }
+    
+    func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
+        let groups = problem.startGroups
+            .filter { $0.distance(to: tapPoint) < 0.1 }
+            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
+        
+        guard let group = groups.first else {
+            return handleTapOnBackground()
+        }
+        
+        if group.problems.contains(problem) {
+            if let next = group.next(after: problem) {
+                mapState.selectProblem(next)
+            }
+        }
+        else {
+            if let topProblem = group.topProblem {
+                mapState.selectProblem(topProblem)
+            }
+        }
+    }
+    
+    func handleTapOnBackground() {
+        presentTopoFullScreenView = true
     }
 }
 

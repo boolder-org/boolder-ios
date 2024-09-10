@@ -17,8 +17,17 @@ struct ProblemCircleView: View {
                    color: isDisplayedOnPhoto ? problem.circuitUIColorForPhotoOverlay : problem.circuitUIColor,
                    showStroke: problem.circuitColor == .white && !isDisplayedOnPhoto,
                    showShadow: isDisplayedOnPhoto,
-                   scaleEffect: (problem.circuitNumber.isEmpty) ? 0.7 : 1.0
+                   scaleEffect: scaleEffect
         )
+    }
+    
+    var scaleEffect: CGFloat {
+        if isDisplayedOnPhoto {
+            0.7
+        }
+        else {
+            problem.circuitNumber.isEmpty ? 0.7 : 1.0
+        }
     }
 }
 //

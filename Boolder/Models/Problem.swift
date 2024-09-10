@@ -63,29 +63,6 @@ struct Problem : Identifiable {
         }
     }
     
-    // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
-    var variants: [Problem] {
-        if let parent = parent {
-            return Array(
-                Set([parent]).union(
-                    Set(parent.children).subtracting(Set([self]))
-                )
-            )
-        }
-        else {
-            return children
-        }
-    }
-
-    // TODO: move to Line
-    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
-        guard let line = line else { return nil }
-        guard let coordinates = line.coordinates else { return nil }
-        guard let firstPoint = coordinates.first else { return nil }
-        
-        return firstPoint
-    }
-    
     var topoId: Int? {
         line?.topoId
     }
@@ -99,6 +76,34 @@ struct Problem : Identifiable {
     var onDiskPhoto: UIImage? {
         topo?.onDiskPhoto
     }
+    
+    var variants: [Problem] {
+        if let parent = parent {
+            return parent.variants
+        }
+        else {
+            return [self] + children
+        }
+    }
+    
+    var zIndex: Double {
+        if let popularity = popularity {
+            Double(popularity)
+        }
+        else {
+            Double(id) / 100000
+        }
+    }
+
+    // TODO: move to Line
+    var lineFirstPoint: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        guard let coordinates = line.coordinates else { return nil }
+        guard let firstPoint = coordinates.first else { return nil }
+        
+        return firstPoint
+    }
+    
     
     func isFavorite() -> Bool {
         favorite() != nil
@@ -220,12 +225,9 @@ extension Problem {
                 Self.load(id: l[Line.problemId])
             }
             
-            return problemsOnSameTopo.compactMap{$0}.filter { p in
-                p.id != id // don't show itself
-                && (p.parentId == nil) // don't show anyone's children
-                && (p.id != parentId) // don't show problem's parent
-                && p.topoId == self.topoId // show only if it's on the same topo. TODO: clean up once we handle ordering of multiple lines
-            }
+            return problemsOnSameTopo.compactMap{$0}
+                .filter { $0.topoId == self.topoId } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
+                .filter { $0.line?.coordinates != nil }
         }
         catch {
             print (error)
@@ -233,6 +235,24 @@ extension Problem {
         }
     }
     
+    // TODO: move to Topo
+    var startGroups: [StartGroup] {
+        var groups = [StartGroup]()
+        
+        otherProblemsOnSameTopo.forEach { p in
+            let group = groups.first{$0.overlaps(with: p)}
+            
+            if let group = group {
+                group.addProblem(p)
+            }
+            else {
+                groups.append(StartGroup(problem: p))
+            }
+        }
+        
+        return groups
+    }
+
     var children: [Problem] {
         let problems = Table("problems")
             .filter(Problem.parentId == id)
@@ -329,5 +349,48 @@ extension Problem : Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+}
+
+// TODO: move to Topo
+class StartGroup: Identifiable {
+    private(set) var problems: [Problem]
+
+    init(problem: Problem) {
+        self.problems = [problem]
+    }
+
+    func overlaps(with problem: Problem) -> Bool {
+        return problems.contains { p in
+            guard let a = p.lineFirstPoint, let b = problem.lineFirstPoint else { return false }
+            return a.distance(to: b) < 0.03
+        }
+    }
+    
+    func distance(to point: Line.PhotoPercentCoordinate) -> Double {
+        let distances = problems.map { p in
+            guard let b = p.lineFirstPoint else { return 1.0 }
+            return point.distance(to: b)
+        }
+        
+        return distances.min() ?? 1.0
+    }
+
+    func addProblem(_ problem: Problem) {
+        if overlaps(with: problem) {
+            problems.append(problem)
+        }
+    }
+    
+    func next(after: Problem) -> Problem? {
+        if let index = problems.firstIndex(of: after) {
+            return problems[(index + 1) % problems.count]
+        }
+        
+        return nil
+    }
+    
+    var topProblem: Problem? {
+        problems.sorted { $0.zIndex > $1.zIndex }.first
     }
 }

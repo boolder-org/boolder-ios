@@ -71,7 +71,18 @@ struct ProblemDetailsView: View {
                 
                 HStack(alignment: .firstTextBaseline) {
                     
+                    if(problem.sitStart) {
+                        Image(systemName: "figure.rower")
+                        Text("problem.sit_start")
+                            .font(.body)
+                    }
+                    
                     if problem.steepness != .other {
+                        if problem.sitStart {
+                            Text("•")
+                                .font(.body)
+                        }
+                        
                         HStack(alignment: .firstTextBaseline) {
                             Image(problem.steepness.imageName)
                                 .frame(minWidth: 16)
@@ -79,15 +90,6 @@ struct ProblemDetailsView: View {
                             
                         }
                         .font(.body)
-                    }
-                    
-                    if(problem.sitStart) {
-                        if problem.steepness != .other {
-                            Text("•")
-                                .font(.body)
-                        }
-                        Text("problem.sit_start")
-                            .font(.body)
                     }
                     
                     Spacer()
