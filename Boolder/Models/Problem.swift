@@ -95,8 +95,8 @@ struct Problem : Identifiable {
         }
     }
 
-    // TODO: rename and move to Line
-    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
+    // TODO: move to Line
+    var lineFirstPoint: Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         guard let coordinates = line.coordinates else { return nil }
         guard let firstPoint = coordinates.first else { return nil }
@@ -254,7 +254,7 @@ extension Problem {
     }
     
     func distance(from: Problem) -> Double {
-        if let a = from.lineFirstPoint(), let b = self.lineFirstPoint() {
+        if let a = from.lineFirstPoint, let b = self.lineFirstPoint {
             let dx = a.x - b.x
             let dy = a.y - b.y
             return sqrt(dx*dx + dy*dy)
@@ -379,7 +379,7 @@ class StartGroup: Identifiable, Comparable {
     
     func distance(at: Line.PhotoPercentCoordinate) -> Double {
         return problems.map { p in
-            if let b = p.lineFirstPoint() {
+            if let b = p.lineFirstPoint {
                 return distance(a: at, b: b)
             }
             else {

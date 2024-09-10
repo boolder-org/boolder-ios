@@ -350,7 +350,7 @@ struct TopoView: View {
     
     // TODO: make this DRY with other screens
     func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.lineFirstPoint() else { return nil }
+        guard let lineFirstPoint = problem.lineFirstPoint else { return nil }
         
         return CGSize(
             width:  (CGFloat(lineFirstPoint.x) * size.width) - tapSize/2,
