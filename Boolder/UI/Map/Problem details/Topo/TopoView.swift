@@ -33,20 +33,6 @@ struct TopoView: View {
                                 .aspectRatio(contentMode: .fit)
                         }
                         
-                        //                                .onTapGesture {
-                        //                                    presentTopoFullScreenView = true
-                        //                                }
-                        //                                .modify {
-                        //                                    if case .ready(let image) = photoStatus  {
-                        //                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                        //                                            TopoFullScreenView(image: image, problem: problem)
-                        //                                        }
-                        //                                    }
-                        //                                    else {
-                        //                                        $0
-                        //                                    }
-                        //                                }
-                        
                         if problem.line?.coordinates != nil {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                         }
@@ -67,23 +53,11 @@ struct TopoView: View {
                                     if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
                                         ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                             .frame(width: tapSize, height: tapSize, alignment: .center)
-                                        //                                                .background(Color.blue.opacity(0.2))
                                             .allowsHitTesting(false)
                                             .offset(lineStart)
-                                            .zIndex(p.zIndex)
+                                            .zIndex(p == problem ? .infinity : p.zIndex)
                                     }
                                 }
-                            }
-                            
-                            
-                            
-                            if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                    .frame(width: tapSize, height: tapSize, alignment: .center)
-                                //                                        .background(Color.blue.opacity(0.2))
-                                    .offset(lineStart)
-                                    .zIndex(.infinity)
-                                    .allowsHitTesting(false)
                             }
                         }
                         
@@ -314,6 +288,20 @@ struct TopoView: View {
                 }
             }
         }
+        
+        //                                .onTapGesture {
+        //                                    presentTopoFullScreenView = true
+        //                                }
+        //                                .modify {
+        //                                    if case .ready(let image) = photoStatus  {
+        //                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+        //                                            TopoFullScreenView(image: image, problem: problem)
+        //                                        }
+        //                                    }
+        //                                    else {
+        //                                        $0
+        //                                    }
+        //                                }
     }
 }
 
