@@ -252,18 +252,7 @@ extension Problem {
         
         return groups
     }
-    
-    func distance(from: Problem) -> Double {
-        if let a = from.lineFirstPoint, let b = self.lineFirstPoint {
-            let dx = a.x - b.x
-            let dy = a.y - b.y
-            return sqrt(dx*dx + dy*dy)
-        }
-        else {
-            return 1.0
-        }
-    }
-    
+
     var children: [Problem] {
         let problems = Table("problems")
             .filter(Problem.parentId == id)
@@ -373,29 +362,22 @@ class StartGroup: Identifiable {
 
     func overlaps(with problem: Problem) -> Bool {
         return problems.contains { p in
-            p.distance(from: problem) < 0.03
+            guard let a = p.lineFirstPoint, let b = problem.lineFirstPoint else { return false }
+            return a.distance(to: b) < 0.03
         }
     }
     
-    func distance(at: Line.PhotoPercentCoordinate) -> Double {
-        return problems.map { p in
-            if let b = p.lineFirstPoint {
-                return distance(a: at, b: b)
-            }
-            else {
-                return 1.0
-            }
-        }.min() ?? 1.0
+    func distance(to point: Line.PhotoPercentCoordinate) -> Double {
+        let distances = problems.map { p in
+            guard let b = p.lineFirstPoint else { return 1.0 }
+            return point.distance(to: b)
+        }
+        
+        return distances.min() ?? 1.0
     }
     
     var popularity : Int {
         problems.map{$0.popularity}.compactMap{$0}.max() ?? 0
-    }
-    
-    func distance(a: Line.PhotoPercentCoordinate, b: Line.PhotoPercentCoordinate) -> Double {
-        let dx = a.x - b.x
-        let dy = a.y - b.y
-        return sqrt(dx*dx + dy*dy)
     }
 
     func addProblem(_ problem: Problem) {
