@@ -48,11 +48,10 @@ struct TopoView: View {
                         GeometryReader { geo in
                             ForEach(problem.startGroups) { (group: StartGroup) in
                                 ForEach(group.problems) { (p: Problem) in
-                                    if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
+                                    if let firstPoint = p.lineFirstPoint {
                                         ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                            .frame(width: tapSize, height: tapSize, alignment: .center)
                                             .allowsHitTesting(false)
-                                            .offset(lineStart)
+                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
                                     }
                                 }
@@ -65,7 +64,6 @@ struct TopoView: View {
                             }
                         }
                     }
-                    
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
@@ -246,16 +244,6 @@ struct TopoView: View {
         else {
             return NSLocalizedString("problem.variants.one", comment: "")
         }
-    }
-    
-    // TODO: make this DRY with other screens
-    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.lineFirstPoint else { return nil }
-        
-        return CGSize(
-            width:  (CGFloat(lineFirstPoint.x) * size.width) - tapSize/2,
-            height: (CGFloat(lineFirstPoint.y) * size.height) - tapSize/2
-        )
     }
     
     func animate(action: () -> Void) {
