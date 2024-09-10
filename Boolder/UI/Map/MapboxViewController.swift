@@ -128,8 +128,8 @@ class MapboxViewController: UIViewController {
                         Exp(.has) { "circuitNumber" }
                         false
                     }
-                    12
-                    8
+                    16
+                    10
                 }
             }
         )
@@ -185,7 +185,7 @@ class MapboxViewController: UIViewController {
                 19
                 10
                 22
-                16
+                20
             }
         )
         
