@@ -363,8 +363,8 @@ extension Problem : Hashable {
     }
 }
 
-
-class StartGroup: Identifiable, Comparable {
+// TODO: move to Topo
+class StartGroup: Identifiable {
     private(set) var problems: [Problem]
 
     init(problem: Problem) {
@@ -388,14 +388,6 @@ class StartGroup: Identifiable, Comparable {
         }.min() ?? 1.0
     }
     
-    static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
-        lhs.problems.map{$0.id} == rhs.problems.map{$0.id}
-    }
-    
-    static func < (lhs: StartGroup, rhs: StartGroup) -> Bool {
-        lhs.popularity < rhs.popularity
-    }
-    
     var popularity : Int {
         problems.map{$0.popularity}.compactMap{$0}.max() ?? 0
     }
@@ -411,24 +403,8 @@ class StartGroup: Identifiable, Comparable {
             problems.append(problem)
         }
     }
-
-    func description() -> String {
-        return problems.map { $0.localizedName }.joined(separator: ", ")
-    }
-    
-    var problemsWithoutVariants: [Problem] {
-        problems.filter {
-            if let parent = $0.parent {
-                return !problems.contains(parent)
-            }
-            else {
-                return true
-            }
-        }
-    }
     
     func next(after: Problem) -> Problem? {
-//        print(problemsWithoutVariants)
         if let index = problems.firstIndex(of: after) {
             return problems[(index + 1) % problems.count]
         }
