@@ -274,8 +274,8 @@ struct TopoView: View {
             }
         }
         else {
-            if let p = (group.problems.sorted { $0.zIndex > $1.zIndex }.first) {
-                mapState.selectProblem(p)
+            if let topProblem = group.topProblem {
+                mapState.selectProblem(topProblem)
             }
         }
     }

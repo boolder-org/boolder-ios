@@ -389,4 +389,8 @@ class StartGroup: Identifiable {
         
         return nil
     }
+    
+    var topProblem: Problem? {
+        problems.sorted { $0.zIndex > $1.zIndex }.first
+    }
 }
