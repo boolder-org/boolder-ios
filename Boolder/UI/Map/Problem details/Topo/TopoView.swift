@@ -26,106 +26,74 @@ struct TopoView: View {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                        Group {
-                            GeometryReader { geo in
-//                                ZStack {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-//                                        .gesture(
-//                                            DragGesture(minimumDistance: 0)
-//                                                .onEnded { value in
-//                                                    print("drag gesture")
-//                                                    handleTap(tapPoint: Line.PhotoPercentCoordinate(x: value.location.x / geo.size.width, y: value.location.y / geo.size.height))
-//                                                }
-//                                        )
-
-                                    
-                                    
-//                                    .background(Color.blue.opacity(0.5))
-//                                }
-                            }
-                            
-                            
-                            
-//                                .onTapGesture {
-//                                    presentTopoFullScreenView = true
-//                                }
-//                                .modify {
-//                                    if case .ready(let image) = photoStatus  {
-//                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-//                                            TopoFullScreenView(image: image, problem: problem)
-//                                        }
-//                                    }
-//                                    else {
-//                                        $0
-//                                    }
-//                                }
-                            
-                            if problem.line?.coordinates != nil {
-                                LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                            }
-                            else {
-                                Text("Ligne manquante")
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal, 8)
-                                    .background(Color.gray.opacity(0.8))
-                                    .foregroundColor(Color(UIColor.systemBackground))
-                                    .cornerRadius(16)
-                                    .transition(.opacity)
-                                    .opacity(showMissingLineNotice ? 1.0 : 0.0)
-                            }
-                            
-                            GeometryReader { geo in
-                                ForEach(problem.startGroups) { (group: StartGroup) in
-                                    ForEach(group.problems) { (p: Problem) in
-                                        if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
-                                            ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                                .frame(width: tapSize, height: tapSize, alignment: .center)
-//                                                .background(Color.blue.opacity(0.2))
-                                                .allowsHitTesting(false)
-                                                .contentShape(Rectangle()) // makes the whole frame tappable
-                                                .offset(lineStart)
-                                                .zIndex(p.zIndex)
-//                                                .onTapGesture {
-//                                                    
-//                                                    if let next = group.next(after: problem) {
-//                                                        mapState.selectProblem(next)
-//                                                    }
-//                                                    else {
-//                                                        mapState.selectProblem(p)
-//                                                    }
-//
-//                                                }
-                                        }
+                    Group {
+                        GeometryReader { geo in
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                        
+                        //                                .onTapGesture {
+                        //                                    presentTopoFullScreenView = true
+                        //                                }
+                        //                                .modify {
+                        //                                    if case .ready(let image) = photoStatus  {
+                        //                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                        //                                            TopoFullScreenView(image: image, problem: problem)
+                        //                                        }
+                        //                                    }
+                        //                                    else {
+                        //                                        $0
+                        //                                    }
+                        //                                }
+                        
+                        if problem.line?.coordinates != nil {
+                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                        }
+                        else {
+                            Text("Ligne manquante")
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 8)
+                                .background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                                .transition(.opacity)
+                                .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                        }
+                        
+                        GeometryReader { geo in
+                            ForEach(problem.startGroups) { (group: StartGroup) in
+                                ForEach(group.problems) { (p: Problem) in
+                                    if let lineStart = lineStart(problem: p, inRectOfSize: geo.size) {
+                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                            .frame(width: tapSize, height: tapSize, alignment: .center)
+                                        //                                                .background(Color.blue.opacity(0.2))
+                                            .allowsHitTesting(false)
+                                            .offset(lineStart)
+                                            .zIndex(p.zIndex)
                                     }
                                 }
-                                
-                                
-                                
-                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
-                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                        .frame(width: tapSize, height: tapSize, alignment: .center)
-//                                        .background(Color.blue.opacity(0.2))
-                                        .contentShape(Rectangle()) // makes the whole frame tappable
-                                        .offset(lineStart)
-                                        .zIndex(.infinity)
-                                        .allowsHitTesting(false)
-//                                        .onTapGesture { /* intercept tap to avoid triggerring a tap on the background photo */ }
-                                }
-                                
-                                
-                                
                             }
                             
-                            GeometryReader { geo in
-                                TapLocationView { location in
-                                    print(location)
-                                    handleTap(tapPoint: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                                }
+                            
+                            
+                            if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                    .frame(width: tapSize, height: tapSize, alignment: .center)
+                                //                                        .background(Color.blue.opacity(0.2))
+                                    .offset(lineStart)
+                                    .zIndex(.infinity)
+                                    .allowsHitTesting(false)
                             }
                         }
                         
+                        GeometryReader { geo in
+                            TapLocationView { location in
+                                handleTap(tapPoint: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                            }
+                        }
+                    }
+                    
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
@@ -200,8 +168,6 @@ struct TopoView: View {
                                 .padding(8)
                         }
                     }
-                    
-                    
                 }
                 
                 Spacer()
