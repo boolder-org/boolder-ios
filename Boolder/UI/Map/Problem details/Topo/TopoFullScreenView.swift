@@ -52,10 +52,10 @@ struct TopoFullScreenView: View {
                                             LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
                                             
                                             GeometryReader { geo in
-                                                if let lineStart = lineStart(problem: problem, inRectOfSize: geo.size) {
+                                                if let firstPoint = problem.lineFirstPoint {
                                                     ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
                                                         .scaleEffect(1/pinchToZoomState.scale)
-                                                        .offset(lineStart)
+                                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                                 }
                                             }
                                         }
@@ -97,16 +97,6 @@ struct TopoFullScreenView: View {
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-    
-    // TODO: make this DRY with other screens
-    func lineStart(problem: Problem, inRectOfSize size: CGSize) -> CGSize? {
-        guard let lineFirstPoint = problem.lineFirstPoint else { return nil }
-        
-        return CGSize(
-            width:  (CGFloat(lineFirstPoint.x) * size.width) - 14,
-            height: (CGFloat(lineFirstPoint.y) * size.height) - 14
-        )
     }
 }
 
