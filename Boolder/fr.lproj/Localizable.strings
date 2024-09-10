@@ -183,6 +183,7 @@
 "problem.image.loading" = "Chargement du secteur...";
 "problem.variants.one" = "1 variante";
 "problem.variants.other" = "%d variantes";
+"problem.missing_line" = "Ligne manquante";
 "problem.topo.no_internet" = "Pas de connexion à Internet";
 "problem.topo.timeout" = "Vérifiez votre connexion à Internet";
 "problem.topo.error" = "Échec de chargement de la photo";

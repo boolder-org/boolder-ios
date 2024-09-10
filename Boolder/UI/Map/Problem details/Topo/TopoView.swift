@@ -27,17 +27,15 @@ struct TopoView: View {
             Group {
                 if case .ready(let image) = photoStatus  {
                     Group {
-                        GeometryReader { geo in
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                        }
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                         
                         if problem.line?.coordinates != nil {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                         }
                         else {
-                            Text("Ligne manquante")
+                            Text("problem.missing_line")
                                 .padding(.vertical, 4)
                                 .padding(.horizontal, 8)
                                 .background(Color.gray.opacity(0.8))
