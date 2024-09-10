@@ -67,7 +67,7 @@ struct TopoView: View {
                         
                         GeometryReader { geo in
                             TapLocationView { location in
-                                handleTap(tapPoint: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
                             }
                         }
                     }
@@ -259,31 +259,29 @@ struct TopoView: View {
         }
     }
     
-    func handleTap(tapPoint: Line.PhotoPercentCoordinate) {
-        let groups = problem.startGroups.filter { group in
-            group.distance(to: tapPoint) < 0.1
-        }.sorted { a, b in
-            a.distance(to: tapPoint) < b.distance(to: tapPoint)
+    func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
+        let groups = problem.startGroups
+            .filter { $0.distance(to: tapPoint) < 0.1 }
+            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
+        
+        guard let group = groups.first else {
+            return handleTapOnBackground()
         }
         
-        if let group = groups.first {
-            if group.problems.contains(problem) {
-                if let next = group.next(after: problem) {
-                    mapState.selectProblem(next)
-                }
-            }
-            else {
-                let p = group.problems.sorted { a, b in
-                    a.zIndex > b.zIndex
-                }.first
-                if let p = p {
-                    mapState.selectProblem(p)
-                }
+        if group.problems.contains(problem) {
+            if let next = group.next(after: problem) {
+                mapState.selectProblem(next)
             }
         }
         else {
-            presentTopoFullScreenView = true
+            if let p = (group.problems.sorted { $0.zIndex > $1.zIndex }.first) {
+                mapState.selectProblem(p)
+            }
         }
+    }
+    
+    func handleTapOnBackground() {
+        presentTopoFullScreenView = true
     }
 }
 
@@ -294,4 +292,3 @@ struct TopoView: View {
 //        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
 //    }
 //}
-
