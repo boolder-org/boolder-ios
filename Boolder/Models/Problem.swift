@@ -32,15 +32,6 @@ struct Problem : Identifiable {
     // TODO: remove
     static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
     
-    var zIndex: Double {
-        if let popularity = popularity {
-            Double(popularity)
-        }
-        else {
-            Double(id) / 100000
-        }
-    }
-    
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
     }
@@ -72,25 +63,6 @@ struct Problem : Identifiable {
         }
     }
     
-    // Same logic exists server side: https://github.com/nmondollot/boolder/blob/145d1b7fbebfc71bab6864e081d25082bcbeb25c/app/models/problem.rb#L99-L105
-    var variants: [Problem] {
-        if let parent = parent {
-            return parent.variants
-        }
-        else {
-            return [self] + children
-        }
-    }
-
-    // TODO: rename and move to Line
-    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
-        guard let line = line else { return nil }
-        guard let coordinates = line.coordinates else { return nil }
-        guard let firstPoint = coordinates.first else { return nil }
-        
-        return firstPoint
-    }
-    
     var topoId: Int? {
         line?.topoId
     }
@@ -104,6 +76,34 @@ struct Problem : Identifiable {
     var onDiskPhoto: UIImage? {
         topo?.onDiskPhoto
     }
+    
+    var variants: [Problem] {
+        if let parent = parent {
+            return parent.variants
+        }
+        else {
+            return [self] + children
+        }
+    }
+    
+    var zIndex: Double {
+        if let popularity = popularity {
+            Double(popularity)
+        }
+        else {
+            Double(id) / 100000
+        }
+    }
+
+    // TODO: rename and move to Line
+    func lineFirstPoint() -> Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        guard let coordinates = line.coordinates else { return nil }
+        guard let firstPoint = coordinates.first else { return nil }
+        
+        return firstPoint
+    }
+    
     
     func isFavorite() -> Bool {
         favorite() != nil
