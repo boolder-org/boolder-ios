@@ -16,7 +16,6 @@ struct TopoView: View {
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
-    
     @State private var showMissingLineNotice = false
     
     var body: some View {
@@ -28,6 +27,16 @@ struct TopoView: View {
                         Image(uiImage: image)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .modify {
+                                if case .ready(let image) = photoStatus  {
+                                    $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                        TopoFullScreenView(image: image, problem: problem)
+                                    }
+                                }
+                                else {
+                                    $0
+                                }
+                            }
                         
                         if problem.line?.coordinates != nil {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
@@ -272,20 +281,9 @@ struct TopoView: View {
                 }
             }
         }
-        
-        //                                .onTapGesture {
-        //                                    presentTopoFullScreenView = true
-        //                                }
-        //                                .modify {
-        //                                    if case .ready(let image) = photoStatus  {
-        //                                        $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-        //                                            TopoFullScreenView(image: image, problem: problem)
-        //                                        }
-        //                                    }
-        //                                    else {
-        //                                        $0
-        //                                    }
-        //                                }
+        else {
+            presentTopoFullScreenView = true
+        }
     }
 }
 
