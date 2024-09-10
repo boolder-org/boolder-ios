@@ -19,8 +19,6 @@ struct TopoView: View {
     
     @State private var showMissingLineNotice = false
     
-    let tapSize: CGFloat = 22 // FIXME: REMOVE?
-    
     var body: some View {
         ZStack(alignment: .center) {
             
