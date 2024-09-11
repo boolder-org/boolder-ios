@@ -39,6 +39,16 @@ struct BoulderView: View {
                     problem = first
                 }
             }
+            .onChange(of: problem) { newProblem in
+                let currentTopoId = currentPage
+                if TopoWithPosition.load(id: currentTopoId)!.problems.contains(newProblem) {
+                    print("here")
+                }
+                else {
+                    print("not here")
+                    currentPage = newProblem.topoId!
+                }
+            }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
