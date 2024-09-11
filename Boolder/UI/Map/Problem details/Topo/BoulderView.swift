@@ -22,8 +22,8 @@ struct BoulderView: View {
             TabView(selection: $currentPage) {
                 ForEach(topos) { topo in
                     ZStack {
-                        ImprovedTopoView(topo: topo)
-                        Text(problem.localizedName)
+                        ImprovedTopoView(topo: topo, problem: problem)
+//                        Text(problem.localizedName)
                     }
                     .tag(topo.id)
                 }
