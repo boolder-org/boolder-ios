@@ -35,7 +35,7 @@ struct ImprovedTopoView: View {
             }
             
             GeometryReader { geo in
-                ForEach(problem.startGroups) { (group: StartGroup) in
+                ForEach(topo.startGroups) { (group: StartGroup) in
                     ForEach(group.problems) { (p: Problem) in
                         if let firstPoint = p.lineFirstPoint {
                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)

@@ -235,7 +235,7 @@ extension Problem {
         }
     }
     
-    // TODO: move to Topo
+    // FIXME: remove
     var startGroups: [StartGroup] {
         var groups = [StartGroup]()
         

@@ -92,4 +92,22 @@ extension TopoWithPosition {
             return []
         }
     }
+    
+    // TODO: move to Topo
+    var startGroups: [StartGroup] {
+        var groups = [StartGroup]()
+        
+        problems.forEach { p in
+            let group = groups.first{$0.overlaps(with: p)}
+            
+            if let group = group {
+                group.addProblem(p)
+            }
+            else {
+                groups.append(StartGroup(problem: p))
+            }
+        }
+        
+        return groups
+    }
 }
