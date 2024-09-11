@@ -52,7 +52,11 @@ struct TopoView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
             .onChange(of: currentPage) { newPage in
                 print("Page turned to: \(newPage)")
-                // Add any action you want to perform when the page changes
+                
+                if currentPage == 1 {
+                    mapState.selectProblem(Problem.load(id: 3832)!)
+                    currentPage = 0
+                }
             }
             
 //            variantBadge
@@ -68,6 +72,8 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { [problem] newValue in
+            currentPage = 0
+            
             if problem.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
