@@ -11,9 +11,10 @@ import SwiftUI
 struct BoulderView: View {
     @State private var currentPage = 0
     @Binding var problem: Problem
+    let boulderId: Int
     
     var topos: [TopoWithPosition] {
-        TopoWithPosition.onBoulder(1703)
+        TopoWithPosition.onBoulder(boulderId)
     }
     
     var body: some View {
@@ -35,6 +36,7 @@ struct BoulderView: View {
                 
                 let topo = TopoWithPosition.load(id: newPage)
                 
+                // TODO: choose problem on the left
                 if let first = topo?.problems.first {
                     problem = first
                 }
@@ -53,6 +55,7 @@ struct BoulderView: View {
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
     }
+    
 }
 
 //#Preview {

@@ -45,11 +45,12 @@ struct ImprovedTopoView: View {
                         }
                     }
                 }
+                
             }
-//            
+            
 //            GeometryReader { geo in
 //                TapLocationView { location in
-////                    handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+//                    handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
 //                }
 //            }
         }
@@ -57,6 +58,34 @@ struct ImprovedTopoView: View {
     
     var image: UIImage {
         topo.topo.onDiskPhoto!
+    }
+    
+    
+    func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
+        let groups = problem.startGroups
+            .filter { $0.distance(to: tapPoint) < 0.1 }
+            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
+        
+        guard let group = groups.first else {
+            return handleTapOnBackground()
+        }
+        
+        if group.problems.contains(problem) {
+            if let next = group.next(after: problem) {
+//                mapState.selectProblem(next)
+//                problem = next
+            }
+        }
+        else {
+            if let topProblem = group.topProblem {
+//                mapState.selectProblem(topProblem)
+//                problem = topProblem
+            }
+        }
+    }
+    
+    func handleTapOnBackground() {
+//        presentTopoFullScreenView = true
     }
 }
 

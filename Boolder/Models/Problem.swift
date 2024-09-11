@@ -305,6 +305,12 @@ extension Problem {
         
         return nil
     }
+    
+    var boulderId: Int? {
+        guard let topoId = topoId else { return nil }
+        
+        return TopoWithPosition.load(id: topoId)?.boulderId
+    }
 }
 
 // MARK: CoreData
