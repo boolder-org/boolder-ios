@@ -26,8 +26,9 @@ struct TopoView: View {
             TabView(selection: $currentPage) {
                 ZStack {
                     photo
-                        .tag(0) // Assign a tag to each item for selection tracking
+                        
                 }
+                .tag(0)
                 
                 if let topoId = problem.topoId {
                     if let topo = TopoWithPosition.load(id: topoId) {
@@ -37,8 +38,9 @@ struct TopoView: View {
                                     Image(uiImage: image)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .tag(1) // Assign a tag to each item for selection tracking
+                                        
                                 }
+                                .tag(1)
                             }
                             
                         }
