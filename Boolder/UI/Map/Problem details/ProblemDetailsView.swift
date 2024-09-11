@@ -32,7 +32,7 @@ struct ProblemDetailsView: View {
 //                        problem: $problem,
 //                        mapState: mapState
 //                    )
-                    BoulderView()
+                    BoulderView(problem: $problem)
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     

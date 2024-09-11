@@ -73,4 +73,23 @@ extension TopoWithPosition {
         
         return nil
     }
+    
+    var problems: [Problem] {
+        let query = Table("lines")
+            .filter(Line.topoId == id)
+
+        do {
+            let lines = try SqliteStore.shared.db.prepare(query).map { l in
+                Problem.load(id: l[Line.problemId])
+            }
+            
+            return lines.compactMap{$0}
+                .filter { $0.topoId == self.id } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
+                .filter { $0.line?.coordinates != nil }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BoulderView: View {
     @State private var currentPage = 0
+    @Binding var problem: Problem
     
     var topos: [TopoWithPosition] {
         TopoWithPosition.onBoulder(1703)
@@ -22,6 +23,7 @@ struct BoulderView: View {
                 ForEach(topos) { topo in
                     ZStack {
                         ImprovedTopoView(topo: topo)
+                        Text(problem.localizedName)
                     }
                     .tag(topo.id)
                 }
@@ -29,7 +31,13 @@ struct BoulderView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
             .onChange(of: currentPage) { newPage in
-                print("Page turned to: \(newPage)")   
+                print("Page turned to: \(newPage)")
+                
+                let topo = TopoWithPosition.load(id: newPage)
+                
+                if let first = topo?.problems.first {
+                    problem = first
+                }
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
@@ -37,6 +45,6 @@ struct BoulderView: View {
     }
 }
 
-#Preview {
-    BoulderView()
-}
+//#Preview {
+//    BoulderView()
+//}
