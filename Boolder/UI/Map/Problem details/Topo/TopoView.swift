@@ -18,105 +18,24 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     
+    @State private var currentPage = 0
+    
     var body: some View {
         ZStack(alignment: .center) {
             
-            Group {
-                if case .ready(let image) = photoStatus  {
-                    Group {
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .modify {
-                                if case .ready(let image) = photoStatus  {
-                                    $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                        TopoFullScreenView(image: image, problem: problem)
-                                    }
-                                }
-                                else {
-                                    $0
-                                }
-                            }
-                        
-                        if problem.line?.coordinates != nil {
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                        }
-                        else {
-                            Text("problem.missing_line")
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background(Color.gray.opacity(0.8))
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
-                                .transition(.opacity)
-                                .opacity(showMissingLineNotice ? 1.0 : 0.0)
-                        }
-                        
-                        GeometryReader { geo in
-                            ForEach(problem.startGroups) { (group: StartGroup) in
-                                ForEach(group.problems) { (p: Problem) in
-                                    if let firstPoint = p.lineFirstPoint {
-                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                            .allowsHitTesting(false)
-                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                            .zIndex(p == problem ? .infinity : p.zIndex)
-                                    }
-                                }
-                            }
-                        }
-                        
-                        GeometryReader { geo in
-                            TapLocationView { location in
-                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                            }
-                        }
+            TabView(selection: $currentPage) {
+                ForEach(0..<10) { index in
+                    ZStack {
+                        photo
+                            .tag(index) // Assign a tag to each item for selection tracking
                     }
                 }
-                else if case .loading = photoStatus {
-                    ProgressView()
-                }
-                else if case .none = photoStatus {
-                    Image("nophoto")
-                        .font(.system(size: 60))
-                        .foregroundColor(Color.gray)
-                }
-                else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
-                    VStack(spacing: 16) {
-                        if photoStatus == .noInternet {
-                            Text("problem.topo.no_internet")
-                                .foregroundColor(Color.gray)
-                        }
-                        else if photoStatus == .timeout {
-                            Text("problem.topo.timeout")
-                                .foregroundColor(Color.gray)
-                        }
-                        else {
-                            Text("problem.topo.error")
-                                .foregroundColor(Color.gray)
-                        }
-                        
-                        Button {
-                            Task {
-                                await loadData()
-                            }
-                        } label: {
-                            
-                            Label {
-                                Text("problem.topo.retry")
-                            } icon: {
-                                Image(systemName: "arrow.clockwise")
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .background(.gray.opacity(0.2))
-                            .clipShape(Capsule())
-                        }
-                        .foregroundColor(Color.gray)
-                    }
-                }
-                else {
-                    EmptyView()
-                }
+            }
+//            .frame(height: 250)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+            .onChange(of: currentPage) { newPage in
+                print("Page turned to: \(newPage)")
+                // Add any action you want to perform when the page changes
             }
             
             VStack {
@@ -176,6 +95,106 @@ struct TopoView: View {
         }
         .task {
             await loadData()
+        }
+    }
+    
+    var photo: some View {
+        Group {
+            if case .ready(let image) = photoStatus  {
+                Group {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .modify {
+                            if case .ready(let image) = photoStatus  {
+                                $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                    TopoFullScreenView(image: image, problem: problem)
+                                }
+                            }
+                            else {
+                                $0
+                            }
+                        }
+                    
+                    if problem.line?.coordinates != nil {
+                        LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                    }
+                    else {
+                        Text("problem.missing_line")
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color.gray.opacity(0.8))
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
+                            .transition(.opacity)
+                            .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                    }
+                    
+                    GeometryReader { geo in
+                        ForEach(problem.startGroups) { (group: StartGroup) in
+                            ForEach(group.problems) { (p: Problem) in
+                                if let firstPoint = p.lineFirstPoint {
+                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                        .allowsHitTesting(false)
+                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                        .zIndex(p == problem ? .infinity : p.zIndex)
+                                }
+                            }
+                        }
+                    }
+                    
+                    GeometryReader { geo in
+                        TapLocationView { location in
+                            handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                        }
+                    }
+                }
+            }
+            else if case .loading = photoStatus {
+                ProgressView()
+            }
+            else if case .none = photoStatus {
+                Image("nophoto")
+                    .font(.system(size: 60))
+                    .foregroundColor(Color.gray)
+            }
+            else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
+                VStack(spacing: 16) {
+                    if photoStatus == .noInternet {
+                        Text("problem.topo.no_internet")
+                            .foregroundColor(Color.gray)
+                    }
+                    else if photoStatus == .timeout {
+                        Text("problem.topo.timeout")
+                            .foregroundColor(Color.gray)
+                    }
+                    else {
+                        Text("problem.topo.error")
+                            .foregroundColor(Color.gray)
+                    }
+                    
+                    Button {
+                        Task {
+                            await loadData()
+                        }
+                    } label: {
+                        
+                        Label {
+                            Text("problem.topo.retry")
+                        } icon: {
+                            Image(systemName: "arrow.clockwise")
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(.gray.opacity(0.2))
+                        .clipShape(Capsule())
+                    }
+                    .foregroundColor(Color.gray)
+                }
+            }
+            else {
+                EmptyView()
+            }
         }
     }
     
