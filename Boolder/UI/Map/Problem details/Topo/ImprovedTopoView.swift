@@ -18,19 +18,21 @@ struct ImprovedTopoView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             
-//            if problem.line?.coordinates != nil {
-//                LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-//            }
-//            else {
-//                Text("problem.missing_line")
-//                    .padding(.vertical, 4)
-//                    .padding(.horizontal, 8)
-//                    .background(Color.gray.opacity(0.8))
-//                    .foregroundColor(Color(UIColor.systemBackground))
-//                    .cornerRadius(16)
-//                    .transition(.opacity)
-//                    .opacity(showMissingLineNotice ? 1.0 : 0.0)
-//            }
+            if topo.problems.contains(problem) {
+                if problem.line?.coordinates != nil {
+                    LineView(problem: problem, drawPercentage: .constant(1.0), pinchToZoomScale: .constant(1))
+                }
+                else {
+                    //                Text("problem.missing_line")
+                    //                    .padding(.vertical, 4)
+                    //                    .padding(.horizontal, 8)
+                    //                    .background(Color.gray.opacity(0.8))
+                    //                    .foregroundColor(Color(UIColor.systemBackground))
+                    //                    .cornerRadius(16)
+                    //                    .transition(.opacity)
+                    //                    .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                }
+            }
             
             GeometryReader { geo in
                 ForEach(problem.startGroups) { (group: StartGroup) in
