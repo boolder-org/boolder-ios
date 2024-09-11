@@ -57,8 +57,6 @@
 		033F70DC291959F8000DD3F4 /* TopAreasLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */; };
 		033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */; };
 		033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */; };
-		0340D8772C90CE4E0025A4E2 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0340D8762C90CE4E0025A4E2 /* boolder.db */; };
-		0340D8782C90CE4E0025A4E2 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0340D8762C90CE4E0025A4E2 /* boolder.db */; };
 		0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
@@ -85,6 +83,10 @@
 		039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
 		039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
+		03A1CB642C917B8000D52B29 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03A1CB632C917B8000D52B29 /* boolder.db */; };
+		03A1CB652C917B8000D52B29 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03A1CB632C917B8000D52B29 /* boolder.db */; };
+		03A1CB672C917ECD00D52B29 /* TopoWithPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */; };
+		03A1CB682C917ECD00D52B29 /* TopoWithPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */; };
 		03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
@@ -209,7 +211,6 @@
 		031F36C1291EA62900BD0C2B /* TestFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFontSize.swift; sourceTree = "<group>"; };
 		033F70D329191755000DD3F4 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		033F70D62919535A000DD3F4 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
-		0340D8762C90CE4E0025A4E2 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
@@ -224,6 +225,8 @@
 		038F7F562C3A8D3700AE7028 /* Cluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cluster.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
+		03A1CB632C917B8000D52B29 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoWithPosition.swift; sourceTree = "<group>"; };
 		03AB8B852C8EF32D00093D76 /* TapLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapLocationView.swift; sourceTree = "<group>"; };
 		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
@@ -427,7 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
-				0340D8762C90CE4E0025A4E2 /* boolder.db */,
+				03A1CB632C917B8000D52B29 /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
 				038F7F592C3BDB3800AE7028 /* Download */,
 			);
@@ -511,6 +514,7 @@
 				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
 				031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */,
+				03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -652,7 +656,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0340D8782C90CE4E0025A4E2 /* boolder.db in Resources */,
+				03A1CB652C917B8000D52B29 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -666,7 +670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0340D8772C90CE4E0025A4E2 /* boolder.db in Resources */,
+				03A1CB642C917B8000D52B29 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
@@ -770,6 +774,7 @@
 				37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */,
 				031F36B1291CE56100BD0C2B /* MapState.swift in Sources */,
 				0314FFE0295054C500B7E249 /* AreaView.swift in Sources */,
+				03A1CB682C917ECD00D52B29 /* TopoWithPosition.swift in Sources */,
 				03C104F8290C0688007A94D7 /* ContentView.swift in Sources */,
 				37379924258E619400711EDA /* GradeRange.swift in Sources */,
 				37379926258E619400711EDA /* Grade.swift in Sources */,
@@ -850,6 +855,7 @@
 				0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */,
 				03D199152C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
 				37379904258E157D00711EDA /* LargeButton.swift in Sources */,
+				03A1CB672C917ECD00D52B29 /* TopoWithPosition.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				038F7F542C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */,
 				375397C625AC6C4C00430BF4 /* Extensions.swift in Sources */,
