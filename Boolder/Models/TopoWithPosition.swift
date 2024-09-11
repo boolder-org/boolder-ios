@@ -13,6 +13,8 @@ struct TopoWithPosition: Hashable {
     let id: Int
     let boulderId: Int?
     let position: Int?
+    
+    
 }
 
 // MARK: SQLite
@@ -37,5 +39,31 @@ extension TopoWithPosition {
                 return nil
             }
         }
+    }
+    
+    var onSameBoulder: [TopoWithPosition] {
+        guard let boulderId = boulderId else { return [] }
+        
+        let query = Table("topos")
+            .filter(TopoWithPosition.boulderId == boulderId)
+            .order(TopoWithPosition.position)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { topo in
+                TopoWithPosition(id: topo[TopoWithPosition.id], boulderId: topo[TopoWithPosition.boulderId], position: topo[TopoWithPosition.position])
+            }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var next: TopoWithPosition? {
+        if let index = onSameBoulder.firstIndex(of: self) {
+            return onSameBoulder[(index + 1) % onSameBoulder.count]
+        }
+        
+        return nil
     }
 }

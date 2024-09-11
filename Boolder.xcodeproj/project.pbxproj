@@ -87,6 +87,8 @@
 		03A1CB652C917B8000D52B29 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03A1CB632C917B8000D52B29 /* boolder.db */; };
 		03A1CB672C917ECD00D52B29 /* TopoWithPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */; };
 		03A1CB682C917ECD00D52B29 /* TopoWithPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */; };
+		03A1CB6A2C91831300D52B29 /* ToposView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CB692C91831300D52B29 /* ToposView.swift */; };
+		03A1CB6B2C91831300D52B29 /* ToposView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1CB692C91831300D52B29 /* ToposView.swift */; };
 		03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
@@ -227,6 +229,7 @@
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
 		03A1CB632C917B8000D52B29 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoWithPosition.swift; sourceTree = "<group>"; };
+		03A1CB692C91831300D52B29 /* ToposView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToposView.swift; sourceTree = "<group>"; };
 		03AB8B852C8EF32D00093D76 /* TapLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapLocationView.swift; sourceTree = "<group>"; };
 		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
@@ -511,10 +514,10 @@
 				37254DE825557F9700264034 /* GradeRange.swift */,
 				37A8C80C245326F200DC161F /* Line.swift */,
 				03C5A3632C4F9E980057C42A /* Topo.swift */,
+				03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
 				031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */,
-				03A1CB662C917ECD00D52B29 /* TopoWithPosition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
+				03A1CB692C91831300D52B29 /* ToposView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
 				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
@@ -757,6 +761,7 @@
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
+				03A1CB6B2C91831300D52B29 /* ToposView.swift in Sources */,
 				038F7F472C3A8CC500AE7028 /* ClusterView.swift in Sources */,
 				031A61BC29EC7CE200B2B46E /* AppState.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
@@ -847,6 +852,7 @@
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */,
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
+				03A1CB6A2C91831300D52B29 /* ToposView.swift in Sources */,
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,

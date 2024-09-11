@@ -24,50 +24,36 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             
             TabView(selection: $currentPage) {
-                ForEach(0..<10) { index in
-                    ZStack {
-                        photo
-                            .tag(index) // Assign a tag to each item for selection tracking
+                ZStack {
+                    photo
+                        .tag(0) // Assign a tag to each item for selection tracking
+                }
+                
+                if let topoId = problem.topoId {
+                    if let topo = TopoWithPosition.load(id: topoId) {
+                        if let next = topo.next {
+                            if let image = Topo(id: next.id, areaId: problem.areaId).onDiskPhoto {
+                                ZStack {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .tag(1) // Assign a tag to each item for selection tracking
+                                }
+                            }
+                            
+                        }
                     }
                 }
+                
             }
-//            .frame(height: 250)
+    //            .frame(height: 250)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
             .onChange(of: currentPage) { newPage in
                 print("Page turned to: \(newPage)")
                 // Add any action you want to perform when the page changes
             }
             
-            VStack {
-                HStack {
-                    Spacer()
-            
-                    if(problem.variants.count > 1) {
-                        Menu {
-                            ForEach(problem.variants) { variant in
-                                Button {
-                                    mapState.selectProblem(variant)
-                                } label: {
-                                    Text("\(variant.localizedName) \(variant.grade.string)")
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(numberOfVariantsForProblem(problem))
-                                Image(systemName: "chevron.down")
-                            }
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background(Color.gray.opacity(0.8))
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
-                                .padding(8)
-                        }
-                    }
-                }
-                
-                Spacer()
-            }
+//            variantBadge
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
@@ -195,6 +181,39 @@ struct TopoView: View {
             else {
                 EmptyView()
             }
+        }
+    }
+    
+    var variantBadge: some View {
+        VStack {
+            HStack {
+                Spacer()
+        
+                if(problem.variants.count > 1) {
+                    Menu {
+                        ForEach(problem.variants) { variant in
+                            Button {
+                                mapState.selectProblem(variant)
+                            } label: {
+                                Text("\(variant.localizedName) \(variant.grade.string)")
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Text(numberOfVariantsForProblem(problem))
+                            Image(systemName: "chevron.down")
+                        }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color.gray.opacity(0.8))
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
+                            .padding(8)
+                    }
+                }
+            }
+            
+            Spacer()
         }
     }
     
