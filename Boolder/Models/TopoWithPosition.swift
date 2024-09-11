@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import UIKit
 import SQLite
 
-struct TopoWithPosition: Hashable {
+struct TopoWithPosition: Hashable, Identifiable {
     let id: Int
     let boulderId: Int?
     let position: Int?
     
-    
+    var topo: Topo {
+        Topo(id: id, areaId: 14)
+    }
 }
 
 // MARK: SQLite
@@ -44,8 +47,12 @@ extension TopoWithPosition {
     var onSameBoulder: [TopoWithPosition] {
         guard let boulderId = boulderId else { return [] }
         
+        return TopoWithPosition.onBoulder(boulderId)
+    }
+    
+    static func onBoulder(_ id: Int) -> [TopoWithPosition] {
         let query = Table("topos")
-            .filter(TopoWithPosition.boulderId == boulderId)
+            .filter(TopoWithPosition.boulderId == id)
             .order(TopoWithPosition.position)
         
         do {

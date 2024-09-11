@@ -28,10 +28,11 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    TopoView(
-                        problem: $problem,
-                        mapState: mapState
-                    )
+//                    TopoView(
+//                        problem: $problem,
+//                        mapState: mapState
+//                    )
+                    BoulderView()
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
