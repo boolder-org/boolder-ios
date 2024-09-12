@@ -17,16 +17,24 @@ struct BoulderView: View {
         TopoWithPosition.onBoulder(boulderId)
     }
     
+    func pageForTopo(_ topo: TopoWithPosition) -> Int? {
+        topos.firstIndex(of: topo)
+    }
+    
+    func topoForPage(_ page: Int) -> TopoWithPosition? {
+        topos[page]
+    }
+    
     var body: some View {
         ZStack(alignment: .center) {
             
             TabView(selection: $currentPage) {
                 ForEach(topos) { topo in
                     ZStack {
-                        ImprovedTopoView(topo: topo, problem: problem)
+                        ImprovedTopoView(topo: topo, problem: $problem)
 //                        Text(problem.localizedName)
                     }
-                    .tag(topo.id)
+                    .tag(pageForTopo(topo))
                 }
                 
             }
@@ -42,7 +50,8 @@ struct BoulderView: View {
                 }
             }
             .onChange(of: problem) { newProblem in
-                let currentTopoId = currentPage
+                guard let currentTopoId = newProblem.topoId else { return }
+                
                 if TopoWithPosition.load(id: currentTopoId)!.problems.contains(newProblem) {
                     print("here")
                 }

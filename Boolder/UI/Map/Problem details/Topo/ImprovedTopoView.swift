@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ImprovedTopoView: View {
     let topo: TopoWithPosition
-    let problem: Problem
+    @Binding var problem: Problem
     
     var body: some View {
         ZStack {
@@ -40,19 +40,27 @@ struct ImprovedTopoView: View {
                         if let firstPoint = p.lineFirstPoint {
                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                 .allowsHitTesting(false)
+//                                .frame(width: 22, height: 22) // FIXME: remove
+//                                .background(Color.blue.opacity(0.5))
                                 .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                 .zIndex(p == problem ? .infinity : p.zIndex)
+//                                .contentShape(Rectangle())
+//                                .onTapGesture {
+//                                    print("tap")
+//                                    print(p.localizedName)
+//                                    problem = p
+//                                }
                         }
                     }
                 }
                 
             }
             
-//            GeometryReader { geo in
-//                TapLocationView { location in
-//                    handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-//                }
-//            }
+            GeometryReader { geo in
+                TapLocationView { location in
+                    handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                }
+            }
         }
     }
     
@@ -73,13 +81,13 @@ struct ImprovedTopoView: View {
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
 //                mapState.selectProblem(next)
-//                problem = next
+                problem = next
             }
         }
         else {
             if let topProblem = group.topProblem {
 //                mapState.selectProblem(topProblem)
-//                problem = topProblem
+                problem = topProblem
             }
         }
     }
