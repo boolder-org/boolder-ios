@@ -119,12 +119,6 @@
 		03D1991F2C57BEFE0082B56C /* DownloadAnnouncementTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D1991D2C57BEFE0082B56C /* DownloadAnnouncementTip.swift */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
-		03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
-		03E500912930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */; };
-		03E500932930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */; };
-		03E500942930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */; };
-		03E500962930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */; };
-		03E500972930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */; };
 		03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -245,9 +239,6 @@
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03D1991D2C57BEFE0082B56C /* DownloadAnnouncementTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAnnouncementTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
-		03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetent.swift; sourceTree = "<group>"; };
-		03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISheetPresentationController.Detent.Identifier+Init.swift"; sourceTree = "<group>"; };
-		03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndimmedPresentationDetentsViewModifier.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -322,7 +313,6 @@
 		033F70E4291AA1B1000DD3F4 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				03E5008E2930BCB100AD907E /* UndimmedPresentation */,
 				37379903258E157D00711EDA /* LargeButton.swift */,
 				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
@@ -398,16 +388,6 @@
 				031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		03E5008E2930BCB100AD907E /* UndimmedPresentation */ = {
-			isa = PBXGroup;
-			children = (
-				03E5008F2930BCC900AD907E /* UndimmedPresentationDetent.swift */,
-				03E500922930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift */,
-				03E500952930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift */,
-			);
-			path = UndimmedPresentation;
 			sourceTree = "<group>";
 		};
 		37158D0425487F1700A8B696 /* Discover */ = {
@@ -744,7 +724,6 @@
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
 				031A4CAC296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				3737990B258E619400711EDA /* LocationFetcher.swift in Sources */,
-				03E500912930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */,
 				0307619D2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
@@ -796,7 +775,6 @@
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
 				038F7F492C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
 				03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */,
-				03E500942930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */,
 				031A4CA62968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
 				0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */,
 				033F70D82919535A000DD3F4 /* Area.swift in Sources */,
@@ -820,7 +798,6 @@
 				031F36C3291EA62900BD0C2B /* TestFontSize.swift in Sources */,
 				03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */,
 				03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
-				03E500972930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */,
 				03147EE62B470F59005771C3 /* AreaDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,13 +847,10 @@
 				038F7F542C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */,
 				375397C625AC6C4C00430BF4 /* Extensions.swift in Sources */,
 				03C104F7290C0688007A94D7 /* ContentView.swift in Sources */,
-				03E500932930BCF400AD907E /* UISheetPresentationController.Detent.Identifier+Init.swift in Sources */,
 				031A4CA52968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
-				03E500962930BD1200AD907E /* UndimmedPresentationDetentsViewModifier.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
 				038F7F4A2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
-				03E500902930BCC900AD907E /* UndimmedPresentationDetent.swift in Sources */,
 				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				03C5A3612C4F9E750057C42A /* Downloader.swift in Sources */,
 				031A4C9629673C90002CBF52 /* FlowLayout.swift in Sources */,
@@ -948,7 +922,7 @@
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -976,7 +950,7 @@
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Dev-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1124,7 +1098,7 @@
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Boolder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1149,7 +1123,7 @@
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Boolder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
