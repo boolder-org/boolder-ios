@@ -55,14 +55,7 @@ struct AreaProblemsView: View {
         .onAppear {
             problems = area.problems
         }
-        .modify {
-            if #available(iOS 16, *) {
-                $0.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("area.problems.search_prompt")).autocorrectionDisabled()
-            }
-            else {
-                $0
-            }
-        }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("area.problems.search_prompt")).autocorrectionDisabled()
         .navigationTitle("area.problems")
         .navigationBarTitleDisplayMode(.inline)
     }

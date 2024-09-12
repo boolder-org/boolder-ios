@@ -123,18 +123,9 @@ struct AreaView: View {
     var tagsWithFlowLayout: some View {
         Group {
             if area.tags.count > 0 {
-                if #available(iOS 16.0, *) {
-                    Group {
-                        FlowLayout(alignment: .leading) {
-                            tags
-                        }
-                    }
-                }
-                else {
-                    Group {
-                        VStack(alignment: .leading) {
-                            tags
-                        }
+                Group {
+                    FlowLayout(alignment: .leading) {
+                        tags
                     }
                 }
             }
@@ -181,21 +172,19 @@ struct AreaView: View {
                 }
 
                 if showChart {
-                    if #available(iOS 16.0, *) {
-                        Chart {
-                            ForEach(chartData) { shape in
-                                BarMark(
-                                    x: .value("area.chart.level", shape.name),
-                                    y: .value("area.chart.problems", shape.count)
-                                )
-                            }
+                    Chart {
+                        ForEach(chartData) { shape in
+                            BarMark(
+                                x: .value("area.chart.level", shape.name),
+                                y: .value("area.chart.problems", shape.count)
+                            )
                         }
-                        .chartYScale(domain: 0...150)
-                        .foregroundColor(.levelGreen)
-                        .frame(height: 150)
-                        .padding(.vertical)
-                        .clipShape(Rectangle())
                     }
+                    .chartYScale(domain: 0...150)
+                    .foregroundColor(.levelGreen)
+                    .frame(height: 150)
+                    .padding(.vertical)
+                    .clipShape(Rectangle())
                 }
             }
             
