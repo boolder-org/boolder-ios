@@ -73,10 +73,12 @@ struct MapContainerView: View {
                 )
             )
             .sheet(isPresented: $mapState.presentProblemDetails) {
-                ProblemDetailsView(
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState
-                )
+                NavigationStack {
+                    ProblemDetailsView(
+                        problem: $mapState.selectedProblem,
+                        mapState: mapState
+                    )
+                }
                 // TODO: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
                 // remove these lines as soon as it's fixed
                 .environment(\.managedObjectContext, managedObjectContext)
