@@ -18,7 +18,10 @@ struct BoulderView: View {
     }
     
     func pageForTopo(_ topo: TopoWithPosition) -> Int? {
-        topos.firstIndex(of: topo)
+        
+        let page = topos.firstIndex(of: topo)
+        print(page)
+        return page
     }
     
     func topoForPage(_ page: Int) -> TopoWithPosition? {
@@ -34,7 +37,7 @@ struct BoulderView: View {
                         ImprovedTopoView(topo: topo, problem: $problem)
 //                        Text(problem.localizedName)
                     }
-                    .tag(pageForTopo(topo))
+                    .tag(pageForTopo(topo)!)
                 }
                 
             }
@@ -42,7 +45,7 @@ struct BoulderView: View {
             .onChange(of: currentPage) { newPage in
                 print("Page turned to: \(newPage)")
                 
-                let topo = TopoWithPosition.load(id: newPage)
+                let topo = topoForPage(newPage)
                 
                 // TODO: choose problem on the left
                 if let first = topo?.problems.first {
@@ -50,14 +53,17 @@ struct BoulderView: View {
                 }
             }
             .onChange(of: problem) { newProblem in
-                guard let currentTopoId = newProblem.topoId else { return }
+                guard let currentTopoId = topoForPage(currentPage)?.id else { return }
                 
                 if TopoWithPosition.load(id: currentTopoId)!.problems.contains(newProblem) {
                     print("here")
                 }
                 else {
                     print("not here")
-                    currentPage = newProblem.topoId!
+                    let t = TopoWithPosition.load(id: newProblem.topoId!)! // FIXME: no bang
+                    if let page = pageForTopo(t) {
+                        currentPage = page
+                    }
                 }
             }
         }
