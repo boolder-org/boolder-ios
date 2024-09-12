@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BoulderView: View {
-    @State private var currentPage = 0
+    @State private var currentPage = 0 // FIXME
     @Binding var problem: Problem
     let boulderId: Int
     
@@ -50,9 +50,11 @@ struct BoulderView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
-//        .onAppear {
-//            paginateToProblem()
-//        }
+        .onAppear {
+            if let topoId = problem.topoId {
+                currentPage = topoId
+            }
+        }
     }
     
     func paginateToProblem(p: Problem) {
