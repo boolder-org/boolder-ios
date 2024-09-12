@@ -17,17 +17,6 @@ struct BoulderView: View {
         TopoWithPosition.onBoulder(boulderId)
     }
     
-    func pageForTopo(_ topo: TopoWithPosition) -> Int? {
-        
-        let page = topos.firstIndex(of: topo)
-        print(page)
-        return page
-    }
-    
-    func topoForPage(_ page: Int) -> TopoWithPosition? {
-        topos[page]
-    }
-    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -37,15 +26,16 @@ struct BoulderView: View {
                         ImprovedTopoView(topo: topo, problem: $problem)
 //                        Text(problem.localizedName)
                     }
-                    .tag(pageForTopo(topo)!)
+                    .tag(topo.id)
                 }
                 
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
             .onChange(of: currentPage) { newPage in
                 print("Page turned to: \(newPage)")
-                
-                let topo = topoForPage(newPage)
+               
+                let topoId = newPage
+                let topo = TopoWithPosition.load(id: topoId)
                 
                 // TODO: choose problem on the left
                 if let first = topo?.problems.first {
@@ -53,7 +43,7 @@ struct BoulderView: View {
                 }
             }
             .onChange(of: problem) { newProblem in
-                guard let currentTopoId = topoForPage(currentPage)?.id else { return }
+                let currentTopoId = currentPage
                 
                 if TopoWithPosition.load(id: currentTopoId)!.problems.contains(newProblem) {
                     print("here")
@@ -61,9 +51,7 @@ struct BoulderView: View {
                 else {
                     print("not here")
                     let t = TopoWithPosition.load(id: newProblem.topoId!)! // FIXME: no bang
-                    if let page = pageForTopo(t) {
-                        currentPage = page
-                    }
+                    currentPage = t.id
                 }
             }
         }
