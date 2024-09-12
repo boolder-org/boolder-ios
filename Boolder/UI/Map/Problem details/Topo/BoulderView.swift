@@ -30,33 +30,40 @@ struct BoulderView: View {
                 }
                 
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-            .onChange(of: currentPage) { newPage in
-                print("Page turned to: \(newPage)")
-               
-                let topoId = newPage
-                let topo = TopoWithPosition.load(id: topoId)
-                
-                // TODO: choose problem on the left
-                if let first = topo?.problems.first {
-                    problem = first
-                }
-            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//            .onChange(of: currentPage) { newPage in
+//                print("Page turned to: \(newPage)")
+//               
+//                let topoId = newPage
+//                let topo = TopoWithPosition.load(id: topoId)
+//                
+//                // TODO: choose problem on the left
+//                if let first = topo?.problems.first {
+//                    problem = first
+//                }
+//            }
             .onChange(of: problem) { newProblem in
-                let currentTopoId = currentPage
-                
-                if TopoWithPosition.load(id: currentTopoId)!.problems.contains(newProblem) {
-                    print("here")
-                }
-                else {
-                    print("not here")
-                    let t = TopoWithPosition.load(id: newProblem.topoId!)! // FIXME: no bang
-                    currentPage = t.id
-                }
+                paginateToProblem(p: newProblem)
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
+//        .onAppear {
+//            paginateToProblem()
+//        }
+    }
+    
+    func paginateToProblem(p: Problem) {
+        let currentTopoId = currentPage
+        
+        if TopoWithPosition.load(id: currentTopoId)!.problems.contains(p) {
+            print("here")
+        }
+        else {
+            print("not here")
+            let t = TopoWithPosition.load(id: p.topoId!)! // FIXME: no bang
+            currentPage = t.id
+        }
     }
     
 }

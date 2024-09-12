@@ -70,7 +70,7 @@ struct ImprovedTopoView: View {
     
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
-        let groups = problem.startGroups
+        let groups = topo.startGroups
             .filter { $0.distance(to: tapPoint) < 0.1 }
             .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
         
