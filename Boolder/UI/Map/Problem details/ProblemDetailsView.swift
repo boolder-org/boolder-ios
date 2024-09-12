@@ -33,7 +33,7 @@ struct ProblemDetailsView: View {
 //                        mapState: mapState
 //                    )
                     if let boulderId = problem.boulderId {
-                        BoulderView(problem: $problem, boulderId: boulderId)
+                        BoulderView(problem: $problem, boulderId: boulderId, mapState: mapState)
                             .frame(width: geo.size.width, height: geo.size.width * 3/4)
                             .zIndex(10)
                     }

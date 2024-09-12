@@ -12,6 +12,8 @@ struct ImprovedTopoView: View {
     let topo: TopoWithPosition
     @Binding var problem: Problem
     
+    @ObservedObject var mapState: MapState
+    
     var body: some View {
         ZStack {
             Image(uiImage: image)
@@ -80,14 +82,14 @@ struct ImprovedTopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
-//                mapState.selectProblem(next)
-                problem = next
+                mapState.selectProblem(next)
+//                problem = next
             }
         }
         else {
             if let topProblem = group.topProblem {
-//                mapState.selectProblem(topProblem)
-                problem = topProblem
+                mapState.selectProblem(topProblem)
+//                problem = topProblem
             }
         }
     }

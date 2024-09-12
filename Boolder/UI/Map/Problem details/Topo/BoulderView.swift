@@ -13,6 +13,8 @@ struct BoulderView: View {
     @Binding var problem: Problem
     let boulderId: Int
     
+    @ObservedObject var mapState: MapState
+    
     var topos: [TopoWithPosition] {
         TopoWithPosition.onBoulder(boulderId)
     }
@@ -23,7 +25,7 @@ struct BoulderView: View {
             TabView(selection: $currentPage) {
                 ForEach(topos) { topo in
                     ZStack {
-                        ImprovedTopoView(topo: topo, problem: $problem)
+                        ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
 //                        Text(problem.localizedName)
                     }
                     .tag(topo.id)
