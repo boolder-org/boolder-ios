@@ -15,8 +15,9 @@ struct TopoWithPosition: Hashable, Identifiable {
     let boulderId: Int?
     let position: Int?
     
+    // FIXME: merge Topo and TopoWithPosition
     var topo: Topo {
-        Topo(id: id, areaId: 14)
+        Topo(id: id, areaId: problems.first?.areaId ?? 14)
     }
 }
 
