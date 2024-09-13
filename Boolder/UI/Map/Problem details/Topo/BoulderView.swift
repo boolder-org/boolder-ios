@@ -19,34 +19,57 @@ struct BoulderView: View {
         TopoWithPosition.onBoulder(boulderId)
     }
     
-    var body: some View {
-        ZStack(alignment: .center) {
-            
-            TabView(selection: $currentPage) {
-                ForEach(topos) { topo in
-                    ZStack {
+    var scrollView: some View {
+        if #available(iOS 17.0, *) {
+            return ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(topos) { topo in
                         ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
-//                        Text(problem.localizedName)
+                        .tag(topo.id)
                     }
-                    .tag(topo.id)
                 }
-                
+                .scrollTargetLayout()
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .scrollTargetBehavior(.viewAligned)
+//            .safeAreaPadding(.horizontal, 40)
+        }
+        else {
+            return EmptyView()
+        }
+    }
+    
+    var tabView: some View {
+        TabView(selection: $currentPage) {
+            ForEach(topos) { topo in
+                ZStack {
+                    ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
+//                        Text(problem.localizedName)
+                }
+                .tag(topo.id)
+            }
+            
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 //            .onChange(of: currentPage) { newPage in
 //                print("Page turned to: \(newPage)")
-//               
+//
 //                let topoId = newPage
 //                let topo = TopoWithPosition.load(id: topoId)
-//                
+//
 //                // TODO: choose problem on the left
 //                if let first = topo?.problems.first {
 //                    problem = first
 //                }
 //            }
-            .onChange(of: problem) { newProblem in
-                paginateToProblem(p: newProblem)
-            }
+        .onChange(of: problem) { newProblem in
+            paginateToProblem(p: newProblem)
+        }
+    }
+    
+    var body: some View {
+        ZStack(alignment: .center) {
+//            scrollView
+            tabView
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
