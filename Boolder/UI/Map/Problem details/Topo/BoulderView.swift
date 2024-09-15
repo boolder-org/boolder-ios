@@ -43,6 +43,9 @@ struct BoulderView: View {
 //                        }
                     }
                 }
+                .onChange(of: problem) { newProblem in
+                    scrollTarget = newProblem.topoId
+                }
                 .modify {
                     if #available(iOS 18.0, *) {
                         $0.onScrollPhaseChange { oldPhase, newPhase in
