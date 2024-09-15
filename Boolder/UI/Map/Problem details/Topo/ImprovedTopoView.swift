@@ -16,7 +16,7 @@ struct ImprovedTopoView: View {
     
     var body: some View {
         ZStack {
-            Image(uiImage: image)
+            Image(uiImage: image ?? UIImage.areaCover1) // FIXME
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             
@@ -66,8 +66,8 @@ struct ImprovedTopoView: View {
         }
     }
     
-    var image: UIImage {
-        topo.topo.onDiskPhoto!
+    var image: UIImage? {
+        topo.topo.onDiskPhoto
     }
     
     
