@@ -55,7 +55,7 @@ struct BoulderView: View {
                                     if let visibleTopoId = visibleTopoId {
                                         if let array = TopoWithPosition.load(id: visibleTopoId) {
                                             if let first = array.problems.first {
-                                                problem = first
+                                                mapState.selectProblem(first)
                                             }
                                         }
                                     }
