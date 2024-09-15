@@ -94,6 +94,14 @@ extension TopoWithPosition {
         }
     }
     
+    var firstProblemOnTheLeft: Problem? {
+        problems.sorted { ($0.lineFirstPoint?.x ?? 1.0) < ($1.lineFirstPoint?.x ?? 1.0) }.first
+    }
+    
+    var firstProblemOnTheRight: Problem? {
+        problems.sorted { ($0.lineFirstPoint?.x ?? 0) > ($1.lineFirstPoint?.x ?? 0) }.first
+    }
+    
     // TODO: move to Topo
     var startGroups: [StartGroup] {
         var groups = [StartGroup]()

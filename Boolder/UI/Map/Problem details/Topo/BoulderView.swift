@@ -53,8 +53,8 @@ struct BoulderView: View {
                                 print("changed page")
 //                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     if let visibleTopoId = visibleTopoId {
-                                        if let array = TopoWithPosition.load(id: visibleTopoId) {
-                                            if let first = array.problems.first {
+                                        if let t = TopoWithPosition.load(id: visibleTopoId) {
+                                            if let first = t.firstProblemOnTheLeft {
                                                 mapState.selectProblem(first)
                                             }
                                         }
