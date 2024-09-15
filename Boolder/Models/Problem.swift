@@ -87,16 +87,9 @@ struct Problem : Identifiable {
     }
     
     var zIndex: Double {
-        if circuitId != nil {
-            return .infinity
-        }
-        
-        if let popularity = popularity {
-            return Double(popularity)
-        }
-        else {
-            return Double(id) / 100000
-        }
+        let bonusCircuit = circuitId != nil ? 1000.0 : 0.0
+        let tiebreaker = Double(id) / 100
+        return Double(popularity ?? 0) + bonusCircuit + tiebreaker
     }
 
     // TODO: move to Line
