@@ -237,14 +237,17 @@ extension Problem {
         var groups = [StartGroup]()
         
         otherProblemsOnSameTopo.forEach { p in
-            let group = groups.first{$0.overlaps(with: p)}
+            let overlapping = groups.filter{$0.overlaps(with: p)}
             
-            if let group = group {
-                group.addProblem(p)
+            let newGroup = StartGroup(problem: p)
+            
+            // we merge the groups that overlap with the current problem
+            overlapping.forEach { group in
+                group.problems.forEach{ newGroup.addProblem($0)}
+                groups.remove(at: groups.firstIndex(of: group)!)
             }
-            else {
-                groups.append(StartGroup(problem: p))
-            }
+            
+            groups.append(newGroup)
         }
         
         return groups
@@ -350,7 +353,7 @@ extension Problem : Hashable {
 }
 
 // TODO: move to Topo
-class StartGroup: Identifiable {
+class StartGroup: Identifiable, Equatable {
     private(set) var problems: [Problem]
 
     init(problem: Problem) {
@@ -374,9 +377,7 @@ class StartGroup: Identifiable {
     }
 
     func addProblem(_ problem: Problem) {
-        if overlaps(with: problem) {
-            problems.append(problem)
-        }
+        problems.append(problem)
     }
     
     func next(after: Problem) -> Problem? {
@@ -389,5 +390,9 @@ class StartGroup: Identifiable {
     
     var topProblem: Problem? {
         problems.sorted { $0.zIndex > $1.zIndex }.first
+    }
+    
+    static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
+        Set(lhs.problems.map{$0.id}) == Set(rhs.problems.map{$0.id})
     }
 }
