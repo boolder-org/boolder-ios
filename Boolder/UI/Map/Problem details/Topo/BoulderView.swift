@@ -49,11 +49,17 @@ struct BoulderView: View {
                 .modify {
                     if #available(iOS 18.0, *) {
                         $0.onScrollPhaseChange { oldPhase, newPhase in
-                            if newPhase == .interacting {
-                                
-                            } else {
+                            if newPhase == .idle {
                                 print("changed page")
-                                
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    if let visibleTopoId = visibleTopoId {
+                                        if let array = TopoWithPosition.load(id: visibleTopoId) {
+                                            if let first = array.problems.first {
+                                                problem = first
+                                            }
+                                        }
+                                    }
+//                                }
                             }
                         }
                         .onScrollTargetVisibilityChange(idType: TopoWithPosition.ID.self, threshold: 0.5) { array in
