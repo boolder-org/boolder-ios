@@ -243,18 +243,14 @@ extension Problem {
     var startGroups: [StartGroup] {
         var groups = [StartGroup]()
         
-        let groupedByExactStart = Dictionary(grouping: otherProblemsOnSameTopo, by: { $0.lineFirstPoint })
-        
-        groupedByExactStart.forEach { (point, problems) in
-            guard let p = problems.first else { return }
-            
+        otherProblemsOnSameTopo.forEach { p in
             let group = groups.first{$0.overlaps(with: p)}
             
             if let group = group {
-                group.addProblems(problems)
+                group.addProblem(p)
             }
             else {
-                groups.append(StartGroup(problems: problems))
+                groups.append(StartGroup(problem: p))
             }
         }
         
@@ -364,8 +360,8 @@ extension Problem : Hashable {
 class StartGroup: Identifiable {
     private(set) var problems: [Problem]
 
-    init(problems: [Problem]) {
-        self.problems = problems
+    init(problem: Problem) {
+        self.problems = [problem]
     }
 
     func overlaps(with problem: Problem) -> Bool {
@@ -384,8 +380,10 @@ class StartGroup: Identifiable {
         return distances.min() ?? 1.0
     }
 
-    func addProblems(_ array: [Problem]) {
-        problems.append(contentsOf: array)
+    func addProblem(_ problem: Problem) {
+        if overlaps(with: problem) {
+            problems.append(problem)
+        }
     }
     
     func next(after: Problem) -> Problem? {
