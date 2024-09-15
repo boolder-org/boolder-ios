@@ -373,22 +373,12 @@ class StartGroup: Identifiable {
             return point.distance(to: b)
         }
         
-        return median(distances)
-    }
-    
-    func median(_ array: [Double]) -> Double {
-        if array.isEmpty {
-            return 1
-        }
-        else {
-            return array.sorted(by: <)[array.count / 2]
-        }
+        return distances.min() ?? 1.0
     }
 
     func addProblem(_ problem: Problem) {
         if overlaps(with: problem) {
             problems.append(problem)
-            // TODO: edge case: migrate other problems that have the exact same location
         }
     }
     
