@@ -10,6 +10,8 @@ import UIKit
 import MapboxMaps
 import CoreLocation
 
+//typealias Expression = MapboxMaps.Expression
+
 class MapboxViewController: UIViewController {
     var mapView: MapView!
     var delegate: MapBoxViewDelegate?
@@ -107,7 +109,7 @@ class MapboxViewController: UIViewController {
         problemsLayer.source = "problems"
         problemsLayer.sourceLayer = problemsSourceLayerId
         problemsLayer.minZoom = 15
-        problemsLayer.filter = Expression(.match) {
+        problemsLayer.filter = Exp(.match) {
             ["geometry-type"]
             ["Point"] // don't display boulders (stored in the tileset as LineStrings)
             true
@@ -164,7 +166,7 @@ class MapboxViewController: UIViewController {
         problemsTextsLayer.source = "problems"
         problemsTextsLayer.sourceLayer = problemsSourceLayerId
         problemsTextsLayer.minZoom = 19
-        problemsTextsLayer.filter = Expression(.match) {
+        problemsTextsLayer.filter = Exp(.match) {
             ["geometry-type"]
             ["Point"]
             true
@@ -173,7 +175,7 @@ class MapboxViewController: UIViewController {
         
         problemsTextsLayer.textAllowOverlap = .constant(true)
         problemsTextsLayer.textField = .expression(
-            Expression(.toString) {
+            Exp(.toString) {
                 ["get", "circuitNumber"]
             }
         )
@@ -190,8 +192,8 @@ class MapboxViewController: UIViewController {
         )
         
         problemsTextsLayer.textColor = .expression(
-            Expression(.switchCase) {
-                Expression(.match) {
+            Exp(.switchCase) {
+                Exp(.match) {
                     ["get", "circuitColor"]
                     ["", "white"]
                     true
@@ -209,7 +211,7 @@ class MapboxViewController: UIViewController {
         problemsNamesLayer.sourceLayer = problemsSourceLayerId
         problemsNamesLayer.minZoom = 15
         problemsNamesLayer.visibility = .constant(.none)
-        problemsNamesLayer.filter = Expression(.match) {
+        problemsNamesLayer.filter = Exp(.match) {
             ["geometry-type"]
             ["Point"]
             true
@@ -218,11 +220,11 @@ class MapboxViewController: UIViewController {
         
         problemsNamesLayer.textField = .expression(
             Exp(.concat) {
-                Expression(.toString) {
+                Exp(.toString) {
                     ["get", "name"]
                 }
                 " "
-                Expression(.toString) {
+                Exp(.toString) {
                     ["get", "grade"]
                 }
             }
@@ -272,7 +274,7 @@ class MapboxViewController: UIViewController {
         problemsNamesAntioverlapLayer.sourceLayer = problemsSourceLayerId
         problemsNamesAntioverlapLayer.minZoom = 15
         problemsNamesAntioverlapLayer.visibility = .constant(.none)
-        problemsNamesAntioverlapLayer.filter = Expression(.match) {
+        problemsNamesAntioverlapLayer.filter = Exp(.match) {
             ["geometry-type"]
             ["Point"]
             true
@@ -335,7 +337,7 @@ class MapboxViewController: UIViewController {
 
         circuitProblemsTextsLayer.textAllowOverlap = .constant(true)
         circuitProblemsTextsLayer.textField = .expression(
-            Expression(.toString) {
+            Exp(.toString) {
                 ["get", "circuitNumber"]
             }
         )
@@ -603,8 +605,8 @@ class MapboxViewController: UIViewController {
     func inferAreaFromMap() {
         if(!flyinToSomething) {
             
-            let zoom = Expression(.gt) {
-                Expression(.zoom)
+            let zoom = Exp(.gt) {
+                Exp(.zoom)
                 14.5
             }
             
@@ -643,8 +645,8 @@ class MapboxViewController: UIViewController {
     func inferClusterFromMap() {
         if(!flyinToSomething) {
             
-            let zoom = Expression(.gte) {
-                Expression(.zoom)
+            let zoom = Exp(.gte) {
+                Exp(.zoom)
                 12
             }
             
@@ -716,7 +718,7 @@ class MapboxViewController: UIViewController {
             
             try ["problems", "problems-texts", "problems-names", "problems-names-antioverlap"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
-                    let gradeFilter = Expression(.match) {
+                    let gradeFilter = Exp(.match) {
                         Exp(.get) { "grade" }
                         gradesArray
                         true
@@ -826,7 +828,7 @@ class MapboxViewController: UIViewController {
         do {
             try ["circuits"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
-                    layer.filter = Expression(.match) {
+                    layer.filter = Exp(.match) {
                         Exp(.get) { "id" }
                         [Double(circuit.id)]
                         true
@@ -838,7 +840,7 @@ class MapboxViewController: UIViewController {
             
             try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
                 try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
-                    layer.filter = Expression(.match) {
+                    layer.filter = Exp(.match) {
                         Exp(.get) { "circuitId" }
                         [Double(circuit.id)]
                         true
