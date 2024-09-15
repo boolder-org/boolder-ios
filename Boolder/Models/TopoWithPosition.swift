@@ -107,14 +107,17 @@ extension TopoWithPosition {
         var groups = [StartGroup]()
         
         problems.forEach { p in
-            let group = groups.first{$0.overlaps(with: p)}
+            let overlapping = groups.filter{$0.overlaps(with: p)}
             
-            if let group = group {
-                group.addProblem(p)
+            let newGroup = StartGroup(problem: p)
+            
+            // we merge the groups that overlap with the current problem
+            overlapping.forEach { group in
+                group.problems.forEach{ newGroup.addProblem($0)}
+                groups.remove(at: groups.firstIndex(of: group)!)
             }
-            else {
-                groups.append(StartGroup(problem: p))
-            }
+            
+            groups.append(newGroup)
         }
         
         return groups
