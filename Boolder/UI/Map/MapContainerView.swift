@@ -80,24 +80,11 @@ struct MapContainerView: View {
                 // TODO: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
                 // remove these lines as soon as it's fixed
                 .environment(\.managedObjectContext, managedObjectContext)
-                .modify {
-                    if #available(iOS 16.4, *) {
-                        $0
-                            .presentationDetents([.medium])
-                            .presentationBackgroundInteraction(
-                                .enabled(upThrough: .medium)
-                            )
-                            .presentationDragIndicator(.hidden) // TODO: use heights?
-                    }
-                    else if #available(iOS 16, *) {
-                        $0
-                            .presentationDetents(undimmed: [.medium])
-                            .presentationDragIndicator(.hidden) // TODO: use heights?
-                    }
-                    else {
-                        $0
-                    }
-                }
+                .presentationDetents([.medium])
+                .presentationBackgroundInteraction(
+                    .enabled(upThrough: .medium)
+                )
+                .presentationDragIndicator(.hidden) // TODO: use heights?
             }
     }
     
