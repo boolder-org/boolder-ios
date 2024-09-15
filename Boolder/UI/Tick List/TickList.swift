@@ -86,17 +86,8 @@ struct TickList: View {
             }
      
             .navigationTitle("ticklist.title")
-            .modify {
-                if #available(iOS 16, *) {
-                    $0.task {
-                        load()
-                    }
-                }
-                else {
-                    $0.onAppear {
-                        load()
-                    }
-                }
+            .task {
+                load()
             }
         }
     }

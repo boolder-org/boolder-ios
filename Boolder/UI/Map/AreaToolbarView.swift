@@ -107,14 +107,7 @@ struct AreaToolbarView: View {
                             
                         }) {
                             CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
-                                .modify {
-                                    if #available(iOS 16, *) {
-                                        $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                                    }
-                                    else {
-                                        $0
-                                    }
-                                }
+                                .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                         }
                     }
                     
@@ -137,14 +130,7 @@ struct AreaToolbarView: View {
                         mapState.filtersRefresh() // TODO: simplify refresh logic
                     }) {
                         FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
-                            .modify {
-                                if #available(iOS 16, *) {
-                                    $0.presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                                }
-                                else {
-                                    $0
-                                }
-                            }
+                            .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                     }
                     
                     Button {

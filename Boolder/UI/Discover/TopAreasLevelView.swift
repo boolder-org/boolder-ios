@@ -126,19 +126,9 @@ struct TopAreasLevelView: View {
                     .padding(.bottom)
                 }
             }
-            .modify {
-                if #available(iOS 16, *) {
-                    $0.task {
-                        loadAreasForBeginners()
-                        loadAreas()
-                    }
-                }
-                else {
-                    $0.onAppear {
-                        loadAreasForBeginners()
-                        loadAreas()
-                    }
-                }
+            .task {
+                loadAreasForBeginners()
+                loadAreas()
             }
         }
         .navigationTitle("top_areas.level.title")
