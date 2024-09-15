@@ -15,23 +15,58 @@ struct BoulderView: View {
     
     @ObservedObject var mapState: MapState
     
+    @State private var scrollTarget: Int? = nil
+    @State private var visibleTopoId: Int? = nil
+    
     var topos: [TopoWithPosition] {
         TopoWithPosition.onBoulder(boulderId)
     }
     
     var scrollView: some View {
         if #available(iOS 17.0, *) {
-            return ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(topos) { topo in
-                        ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
-                        .tag(topo.id)
+            return ScrollViewReader { proxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(topos) { topo in
+                            ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
+                                .tag(topo.id)
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .scrollTargetBehavior(.viewAligned)
+                //            .safeAreaPadding(.horizontal, 40)
+                .onChange(of: scrollTarget) { target in
+                    if let target = target {
+//                        withAnimation {
+                            proxy.scrollTo(target, anchor: .center)
+//                        }
                     }
                 }
-                .scrollTargetLayout()
+                .modify {
+                    if #available(iOS 18.0, *) {
+                        $0.onScrollPhaseChange { oldPhase, newPhase in
+                            if newPhase == .interacting {
+                                
+                            } else {
+                                print("changed page")
+                                
+                            }
+                        }
+                        .onScrollTargetVisibilityChange(idType: TopoWithPosition.ID.self, threshold: 0.5) { array in
+                            if let first = array.first {
+                                visibleTopoId = first
+//                                paginateToProblemWithScrollView(p: problem)
+                            }
+                        }
+                    } else {
+                        $0
+                    }
+                }
+                .task {
+                    scrollTarget = problem.topoId
+                }
             }
-            .scrollTargetBehavior(.viewAligned)
-//            .safeAreaPadding(.horizontal, 40)
         }
         else {
             return EmptyView()
@@ -64,19 +99,29 @@ struct BoulderView: View {
         .onChange(of: problem) { newProblem in
             paginateToProblem(p: newProblem)
         }
-    }
-    
-    var body: some View {
-        ZStack(alignment: .center) {
-//            scrollView
-            tabView
-        }
-        .aspectRatio(4/3, contentMode: .fit)
-        .background(Color(.imageBackground))
         .onAppear {
             if let topoId = problem.topoId {
                 currentPage = topoId
             }
+        }
+    }
+    
+    var body: some View {
+        ZStack(alignment: .center) {
+            scrollView
+//            tabView
+        }
+        
+        .aspectRatio(4/3, contentMode: .fit)
+        .background(Color(.imageBackground))
+        
+    }
+    
+    func paginateToProblemWithScrollView(p: Problem) {
+        print("visible : \(visibleTopoId)")
+        print("selected : \(problem.topoId)")
+        if visibleTopoId != problem.topoId {
+            scrollTarget = problem.topoId
         }
     }
     
