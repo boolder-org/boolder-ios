@@ -10,6 +10,8 @@ import UIKit
 import SQLite
 import CoreLocation
 
+typealias Expression = SQLite.Expression
+
 struct Area : Identifiable {
     let id: Int
     let name: String
