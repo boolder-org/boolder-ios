@@ -46,12 +46,6 @@ struct SearchView: View {
                       }
                     }
                   )
-                  .onTapGesture {
-                      mapState.presentProblemDetails = false
-                      withAnimation {
-                          isEditing = true
-                      }
-                  }
                   .background(isEditing ? Color(.imageBackground) : Color(.systemBackground))
                   .cornerRadius(12)
                   .shadow(color: Color(.secondaryLabel).opacity(isEditing ? 0 : 0.5), radius: 5)
@@ -72,6 +66,12 @@ struct SearchView: View {
                 .disableAutocorrection(true)
                 .padding(.horizontal)
                 .padding(.top, 8)
+                .simultaneousGesture(TapGesture().onEnded {
+                    mapState.presentProblemDetails = false
+                    withAnimation {
+                        isEditing = true
+                    }
+                })
                 
                 VStack(spacing: 0) {
                     if query.count == 0 {

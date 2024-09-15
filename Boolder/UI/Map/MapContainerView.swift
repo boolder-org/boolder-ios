@@ -82,12 +82,30 @@ struct MapContainerView: View {
                 // TODO: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
                 // remove these lines as soon as it's fixed
                 .environment(\.managedObjectContext, managedObjectContext)
-                .presentationDetents([.medium])
+                .presentationDetents([detent])
                 .presentationBackgroundInteraction(
-                    .enabled(upThrough: .medium)
+                    .enabled(upThrough: detent)
                 )
-                .presentationDragIndicator(.hidden) // TODO: use heights?
+                .presentationDragIndicator(.hidden)
             }
+    }
+    
+    var detent: PresentationDetent {
+        if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
+            return .height(420)
+        }
+        else {
+            return .medium
+        }
+    }
+    
+    var offsetToBeOnTopOfSheet: CGFloat {
+        if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
+            return -104
+        }
+        else {
+            return -48
+        }
     }
     
     var circuitButtons : some View {
@@ -136,7 +154,7 @@ struct MapContainerView: View {
                         .padding(.horizontal)
                     }
                 }
-                .offset(CGSize(width: 0, height: -44)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
             }
             
             if mapState.displayCircuitStartButton {
