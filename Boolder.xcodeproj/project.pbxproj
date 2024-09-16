@@ -111,6 +111,10 @@
 		03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3642C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
 		03C5A3652C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
+		03CD59142C9784B8001AC2A0 /* InfiniteTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD59132C9784B8001AC2A0 /* InfiniteTabView.swift */; };
+		03CD59152C9784B8001AC2A0 /* InfiniteTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD59132C9784B8001AC2A0 /* InfiniteTabView.swift */; };
+		03CD59172C980B11001AC2A0 /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD59162C980B11001AC2A0 /* InfiniteScrollView.swift */; };
+		03CD59182C980B11001AC2A0 /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CD59162C980B11001AC2A0 /* InfiniteScrollView.swift */; };
 		03D199152C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
 		03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
 		03D199182C556B550082B56C /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199172C556B550082B56C /* DownloadTip.swift */; };
@@ -235,6 +239,8 @@
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
 		03C5A3602C4F9E750057C42A /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		03C5A3632C4F9E980057C42A /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
+		03CD59132C9784B8001AC2A0 /* InfiniteTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteTabView.swift; sourceTree = "<group>"; };
+		03CD59162C980B11001AC2A0 /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03D1991D2C57BEFE0082B56C /* DownloadAnnouncementTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAnnouncementTip.swift; sourceTree = "<group>"; };
@@ -520,6 +526,8 @@
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
 				03A1CB6C2C91E85600D52B29 /* BoulderView.swift */,
+				03CD59132C9784B8001AC2A0 /* InfiniteTabView.swift */,
+				03CD59162C980B11001AC2A0 /* InfiniteScrollView.swift */,
 				033F157A2C91EBF700A39B38 /* ImprovedTopoView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
@@ -752,6 +760,7 @@
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
 				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
+				03CD59142C9784B8001AC2A0 /* InfiniteTabView.swift in Sources */,
 				038F7F4B2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */,
 				37B2C28F25A8ABF7003A7C64 /* MapMakerStore.swift in Sources */,
 				37379922258E619400711EDA /* LargeButton.swift in Sources */,
@@ -793,6 +802,7 @@
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
 				37379931258E619400711EDA /* Line.swift in Sources */,
 				03D1991F2C57BEFE0082B56C /* DownloadAnnouncementTip.swift in Sources */,
+				03CD59172C980B11001AC2A0 /* InfiniteScrollView.swift in Sources */,
 				0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
 				038F7F582C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				031F36C3291EA62900BD0C2B /* TestFontSize.swift in Sources */,
@@ -850,6 +860,7 @@
 				031A4CA52968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
 				37254DE925557F9700264034 /* GradeRange.swift in Sources */,
 				038F7F4A2C3A8CC500AE7028 /* DownloadButtonView.swift in Sources */,
+				03CD59152C9784B8001AC2A0 /* InfiniteTabView.swift in Sources */,
 				37A8C80F245326F200DC161F /* Grade.swift in Sources */,
 				03C104EC290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				03C5A3612C4F9E750057C42A /* Downloader.swift in Sources */,
@@ -869,6 +880,7 @@
 				031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */,
 				03D199182C556B550082B56C /* DownloadTip.swift in Sources */,
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
+				03CD59182C980B11001AC2A0 /* InfiniteScrollView.swift in Sources */,
 				038C2EF429201315006581CD /* SearchView.swift in Sources */,
 				03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */,
 				37B45231259144D300241091 /* TopoView.swift in Sources */,
