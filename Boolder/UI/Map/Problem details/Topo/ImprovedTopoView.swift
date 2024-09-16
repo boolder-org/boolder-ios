@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ImprovedTopoView: View {
-    let topo: TopoWithPosition
+    let topo: PaginableTopoWithPosition
     @Binding var problem: Problem
     
     @ObservedObject var mapState: MapState
@@ -20,7 +20,7 @@ struct ImprovedTopoView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             
-            if topo.problems.contains(problem) {
+            if topo.topo.problems.contains(problem) {
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: .constant(1.0), pinchToZoomScale: .constant(1))
                 }
@@ -37,7 +37,7 @@ struct ImprovedTopoView: View {
             }
             
             GeometryReader { geo in
-                ForEach(topo.startGroups) { (group: StartGroup) in
+                ForEach(topo.topo.startGroups) { (group: StartGroup) in
                     ForEach(group.problems) { (p: Problem) in
                         if let firstPoint = p.lineFirstPoint {
                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
@@ -67,12 +67,12 @@ struct ImprovedTopoView: View {
     }
     
     var image: UIImage? {
-        topo.topo.onDiskPhoto
+        topo.topo.topo.onDiskPhoto
     }
     
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
-        let groups = topo.startGroups
+        let groups = topo.topo.startGroups
             .filter { $0.distance(to: tapPoint) < 0.1 }
             .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
         
