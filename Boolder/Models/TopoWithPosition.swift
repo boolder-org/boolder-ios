@@ -10,16 +10,6 @@ import Foundation
 import UIKit
 import SQLite
 
-struct PaginableTopoWithPosition: Hashable, Identifiable {
-    var id: [Int] {
-//        "\(topo.id)-\(index)"
-        [topo.id, index]
-    }
-    
-    let topo: TopoWithPosition
-    let index: Int
-}
-
 struct TopoWithPosition: Hashable, Identifiable {
     let id: Int
     let boulderId: Int?
