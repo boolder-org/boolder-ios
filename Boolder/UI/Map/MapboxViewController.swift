@@ -765,7 +765,6 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnArea(_ area: Area) {
-        print("coucou")
         let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
                                       northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
 
