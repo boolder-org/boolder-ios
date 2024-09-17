@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreLocation
 
-@MainActor class MapState : ObservableObject {
+class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
@@ -28,18 +28,18 @@ import CoreLocation
     @Published var presentCircuitPicker = false
     @Published var displayCircuitStartButton = false
     
-    // TODO: find a better way to trigger map UI refreshes
-    @Published private(set) var selectProblemCount = 0
-    @Published private(set) var centerOnProblemCount = 0
-    @Published private(set) var centerOnAreaCount = 0
-    @Published private(set) var selectCircuitCount = 0
-    @Published private(set) var centerOnCircuitCount = 0
-    @Published private(set) var filtersRefreshCount = 0
-    @Published private(set) var centerOnCurrentLocationCount = 0
+//    // TODO: find a better way to trigger map UI refreshes
+//    @Published private(set) var selectProblemCount = 0
+//    @Published private(set) var centerOnProblemCount = 0
+//    @Published private(set) var centerOnAreaCount = 0
+//    @Published private(set) var selectCircuitCount = 0
+//    @Published private(set) var centerOnCircuitCount = 0
+//    @Published private(set) var filtersRefreshCount = 0
+//    @Published private(set) var centerOnCurrentLocationCount = 0
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
-        centerOnAreaCount += 1
+//        centerOnAreaCount += 1
     }
     
     func selectArea(_ area: Area) {
@@ -64,18 +64,18 @@ import CoreLocation
     
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
-        selectCircuitCount += 1
-        centerOnCircuitCount += 1
+//        selectCircuitCount += 1
+//        centerOnCircuitCount += 1
     }
     
     func selectCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
-        selectCircuitCount += 1
+//        selectCircuitCount += 1
     }
     
     func unselectCircuit() {
         selectedCircuit = nil
-        selectCircuitCount += 1
+//        selectCircuitCount += 1
     }
     
     var canGoToNextCircuitProblem: Bool {
@@ -119,13 +119,13 @@ import CoreLocation
     
     private func centerOnProblem(_ problem: Problem) {
         centerOnProblem = problem
-        centerOnProblemCount += 1
+//        centerOnProblemCount += 1
     }
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem) {
         selectedProblem = problem
-        selectProblemCount += 1
+//        selectProblemCount += 1
         
         selectedArea = Area.load(id: problem.areaId)
     }
@@ -140,7 +140,7 @@ import CoreLocation
     }
     
     func centerOnCurrentLocation() {
-        centerOnCurrentLocationCount += 1
+//        centerOnCurrentLocationCount += 1
     }
     
     func clearFilters() {
@@ -149,7 +149,7 @@ import CoreLocation
     }
     
     func filtersRefresh() {
-        filtersRefreshCount += 1
+//        filtersRefreshCount += 1
     }
     
     func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {
