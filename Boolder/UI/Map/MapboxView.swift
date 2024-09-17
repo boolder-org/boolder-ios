@@ -27,63 +27,6 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        
-//        // select problem
-//        if mapState.selectProblemCount > context.coordinator.lastSelectProblemCount {
-//            vc.setProblemAsSelected(problemFeatureId: String(mapState.selectedProblem.id))
-//            context.coordinator.lastSelectProblemCount = mapState.selectProblemCount
-//        }
-//        
-//        // center on problem
-//        if mapState.centerOnProblemCount > context.coordinator.lastCenterOnProblemCount {
-//            if let problem = mapState.centerOnProblem {
-//                vc.centerOnProblem(problem)
-//                context.coordinator.lastCenterOnProblemCount = mapState.centerOnProblemCount
-//            }
-//        }
-//        
-//        // center on area
-//        if mapState.centerOnAreaCount > context.coordinator.lastCenterOnAreaCount {
-//            if let area = mapState.centerOnArea {
-//                vc.centerOnArea(area)
-//                context.coordinator.lastCenterOnAreaCount = mapState.centerOnAreaCount
-//            }
-//        }
-//        
-//        // center on current location
-//        if mapState.centerOnCurrentLocationCount > context.coordinator.lastCenterOnCurrentLocationCount {
-//            vc.centerOnCurrentLocation()
-//            context.coordinator.lastCenterOnCurrentLocationCount = mapState.centerOnCurrentLocationCount
-//        }
-//        
-//        // select a circuit
-//        if mapState.selectCircuitCount > context.coordinator.lastSelectCircuitCount {
-//            if let circuit = mapState.selectedCircuit {
-//                vc.setCircuitAsSelected(circuit: circuit)
-//            }
-//            else {
-//                vc.unselectCircuit()
-//            }
-//            context.coordinator.lastSelectCircuitCount = mapState.selectCircuitCount
-//        }
-//        
-//        // center on circuit
-//        if mapState.centerOnCircuitCount > context.coordinator.lastCenterOnCircuitCount {
-//            
-//            if let circuit = mapState.selectedCircuit {
-//                vc.centerOnCircuit(circuit)
-//            }
-//            else {
-//                vc.unselectCircuit()
-//            }
-//            context.coordinator.lastCenterOnCircuitCount = mapState.centerOnCircuitCount
-//        }
-//        
-//        // refresh filters
-//        if(mapState.filtersRefreshCount > context.coordinator.lastFiltersRefreshCount) {
-//            vc.applyFilters(mapState.filters)
-//            context.coordinator.lastFiltersRefreshCount = mapState.filtersRefreshCount
-//        }
     }
     
     func makeCoordinator() -> Coordinator {

@@ -31,18 +31,8 @@ class MapState : ObservableObject {
     @Published var presentCircuitPicker = false
     @Published var displayCircuitStartButton = false
     
-//    // TODO: find a better way to trigger map UI refreshes
-//    @Published private(set) var selectProblemCount = 0
-//    @Published private(set) var centerOnProblemCount = 0
-//    @Published private(set) var centerOnAreaCount = 0
-//    @Published private(set) var selectCircuitCount = 0
-//    @Published private(set) var centerOnCircuitCount = 0
-//    @Published private(set) var filtersRefreshCount = 0
-//    @Published private(set) var centerOnCurrentLocationCount = 0
-    
     func centerOnArea(_ area: Area) {
         centerOnArea = area
-//        centerOnAreaCount += 1
     }
     
     func selectArea(_ area: Area) {
@@ -68,18 +58,14 @@ class MapState : ObservableObject {
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
         centerOnCircuit = circuit
-//        selectCircuitCount += 1
-//        centerOnCircuitCount += 1
     }
     
     func selectCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
-//        selectCircuitCount += 1
     }
     
     func unselectCircuit() {
         selectedCircuit = nil
-//        selectCircuitCount += 1
     }
     
     var canGoToNextCircuitProblem: Bool {
@@ -123,13 +109,11 @@ class MapState : ObservableObject {
     
     private func centerOnProblem(_ problem: Problem) {
         centerOnProblem = problem
-//        centerOnProblemCount += 1
     }
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem) {
         selectedProblem = problem
-//        selectProblemCount += 1
         
         selectedArea = Area.load(id: problem.areaId)
     }
@@ -144,7 +128,6 @@ class MapState : ObservableObject {
     }
     
     func centerOnCurrentLocation() {
-//        centerOnCurrentLocationCount += 1
         currentLocation = true
     }
     
@@ -155,7 +138,6 @@ class MapState : ObservableObject {
     
     func filtersRefresh() {
         refreshFilters = true
-//        filtersRefreshCount += 1
     }
     
     func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {
