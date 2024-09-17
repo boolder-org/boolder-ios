@@ -13,11 +13,13 @@ class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
+    @Published private(set) var currentLocation: Bool = false
     @Published private(set) var center: CLLocationCoordinate2D? = nil
     @Published private(set) var zoom: CGFloat? = nil
     @Published private(set) var centerOnArea: Area? = nil
     @Published private(set) var selectedCluster: Cluster? = nil
     @Published private(set) var selectedCircuit: Circuit? = nil
+    @Published private(set) var centerOnCircuit: Circuit? = nil
     @Published var selectedPoi: Poi? = nil
     @Published var filters: Filters = Filters()
     
@@ -64,6 +66,7 @@ class MapState : ObservableObject {
     
     func selectAndCenterOnCircuit(_ circuit: Circuit) {
         selectedCircuit = circuit
+        centerOnCircuit = circuit
 //        selectCircuitCount += 1
 //        centerOnCircuitCount += 1
     }
@@ -141,6 +144,7 @@ class MapState : ObservableObject {
     
     func centerOnCurrentLocation() {
 //        centerOnCurrentLocationCount += 1
+        currentLocation = true
     }
     
     func clearFilters() {

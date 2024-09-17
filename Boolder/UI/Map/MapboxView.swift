@@ -26,7 +26,6 @@ struct MapboxView: UIViewControllerRepresentable {
         return vc
     }
     
-    // TODO: find a way to make this DRY
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
         
 //        // select problem
@@ -130,6 +129,49 @@ struct MapboxView: UIViewControllerRepresentable {
                     if let area = area {
                         DispatchQueue.main.async {
                             self.viewController?.centerOnArea(area)
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+            
+            parent.mapState.$currentLocation
+                .sink { [weak self] centerOnCurrentLocation in
+                    guard let self = self else { return }
+                    if centerOnCurrentLocation {
+                        DispatchQueue.main.async {
+                            self.viewController?.centerOnCurrentLocation()
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+            
+            parent.mapState.$centerOnCircuit
+                .sink { [weak self] circuit in
+                    guard let self = self else { return }
+                    if let circuit = circuit {
+                        DispatchQueue.main.async {
+                            self.viewController?.centerOnCircuit(circuit)
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.viewController?.unselectCircuit()
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+            
+            parent.mapState.$selectedCircuit
+                .sink { [weak self] circuit in
+                    guard let self = self else { return }
+                    if let circuit = circuit {
+                        DispatchQueue.main.async {
+                            self.viewController?.setCircuitAsSelected(circuit: circuit)
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.viewController?.unselectCircuit()
                         }
                     }
                 }
