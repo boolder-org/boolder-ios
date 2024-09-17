@@ -31,14 +31,7 @@ struct DownloadButtonView: View {
         .buttonStyle(FabButton())
         .sheet(isPresented: $presentDownloads) {
             ClusterViewWithActionsheet(clusterDownloader: clusterDownloader)
-                .modify {
-                    if #available(iOS 16, *) {
-                        $0.presentationDetents([.medium, .large])
-                    }
-                    else {
-                        $0
-                    }
-                }
+                .presentationDetents([.medium, .large])
         }
     }
 }

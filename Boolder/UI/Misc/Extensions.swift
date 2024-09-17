@@ -59,7 +59,7 @@ extension Color {
 // Locale to use when redirectign to URLs hosted on boolder.com
 extension NSLocale {
     static var websiteLocale: String {
-        if let lang = NSLocale.current.languageCode {
+        if let lang = NSLocale.current.language.languageCode?.identifier {
             if (lang == "en") {
                 return "en"
             }

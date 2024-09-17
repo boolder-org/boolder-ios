@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct DiscoverView: View {
-    @Environment(\.presentationMode) var presentationMode // required because of a bug with iOS 13: https://stackoverflow.com/questions/58512344/swiftui-navigation-bar-button-not-clickable-after-sheet-has-been-presented
     @Environment(\.openURL) var openURL
 
     @State var presentArea = false
@@ -134,176 +133,187 @@ struct DiscoverView: View {
                         .padding(.top)
                     }
                     
-                    VStack(alignment: .leading) {
-                        Text("discover.popular")
-                            .font(.title2).bold()
-                            .padding(.top, 16)
-                            .padding(.bottom, 8)
-                            .padding(.horizontal)
-                        
+                    if popularAreas.isEmpty {
                         VStack {
-                            VStack(alignment: .leading) {
-                                
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(alignment: .top, spacing: 0) {
-                                        
-                                        Color.white.opacity(0)
-                                            .frame(width: 0, height: 1)
-                                            .padding(.leading, 8)
-                                        
-                                        ForEach(popularAreas) { area in
-                                            NavigationLink {
-                                                AreaView(area: area, linkToMap: true)
-                                            } label: {
-                                                AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
-                                                    .padding(.leading, 8)
-                                                    .contentShape(Rectangle())
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
+                            Spacer()
+                        }
+                        .frame(minHeight: 200)
+                    }
+                    else {
+                        
+                        VStack(alignment: .leading) {
+                            Text("discover.popular")
+                                .font(.title2).bold()
+                                .padding(.top, 16)
+                                .padding(.bottom, 8)
+                                .padding(.horizontal)
+                            
+                            VStack {
+                                VStack(alignment: .leading) {
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(alignment: .top, spacing: 0) {
+                                            
+                                            Color.white.opacity(0)
+                                                .frame(width: 0, height: 1)
+                                                .padding(.leading, 8)
+                                            
+                                            ForEach(popularAreas) { area in
+                                                NavigationLink {
+                                                    AreaView(area: area, linkToMap: true)
+                                                } label: {
+                                                    AreaCardView(area: area, width: abs(geo.size.width-16*2-8)/2, height: abs(geo.size.width-16*2-8)/2*9/16)
+                                                        .padding(.leading, 8)
+                                                        .contentShape(Rectangle())
+                                                }
+                                                
                                             }
                                             
+                                            Color.white.opacity(0)
+                                                .frame(width: 0, height: 1)
+                                                .padding(.trailing, 16)
                                         }
-                                        
-                                        Color.white.opacity(0)
-                                            .frame(width: 0, height: 1)
-                                            .padding(.trailing, 16)
                                     }
                                 }
                             }
                         }
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text("discover.all_areas")
-                                .font(.title2.bold())
+                        
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text("discover.all_areas")
+                                    .font(.title2.bold())
+                                
+                                Spacer()
+                                
+                            }
                             
-                            Spacer()
+                            .padding(.top, 24)
+                            .padding(.bottom, 8)
+                            .padding(.horizontal)
                             
+                            VStack {
+                                Divider()
+                                
+                                ForEach(areas) { area in
+                                    
+                                    NavigationLink {
+                                        AreaView(area: area, linkToMap: true)
+                                    } label: {
+                                        HStack {
+                                            VStack(alignment: .leading, spacing: 6) {
+                                                Text(area.name)
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            Text("\(area.problemsCount)").foregroundColor(Color(.systemGray))
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(.caption.weight(.bold))
+                                                .foregroundColor(.gray.opacity(0.7))
+                                            
+                                        }
+                                        .font(.body)
+                                        .foregroundColor(.primary)
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 4)
+                                    }
+                                    
+                                    
+                                    Divider().padding(.leading)
+                                }
+                            }
                         }
                         
-                        .padding(.top, 24)
-                        .padding(.bottom, 8)
-                        .padding(.horizontal)
-                        
-                        VStack {
-                            Divider()
+                        VStack(alignment: .leading) {
+                            Text("discover.support")
+                                .font(.title2).bold()
+                                .padding(.top, 16)
+                                .padding(.bottom, 8)
+                                .padding(.horizontal)
                             
-                            ForEach(areas) { area in
+                            VStack(alignment: .leading) {
+                                Divider()
                                 
-                                NavigationLink {
-                                    AreaView(area: area, linkToMap: true)
-                                } label: {
+                                Button(action: {
+                                    let appID = "1506614493"
+                                    let urlStr = "https://itunes.apple.com/app/id\(appID)?action=write-review"
+                                    guard let url = URL(string: urlStr) else { return }
+                                    openURL(url)
+                                }, label: {
                                     HStack {
-                                        VStack(alignment: .leading, spacing: 6) {
-                                            Text(area.name)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                        }
-                                        
+                                        Image(systemName: "star")
+                                        Text("discover.rate")
                                         Spacer()
-                                        
-                                        Text("\(area.problemsCount)").foregroundColor(Color(.systemGray))
-                                        
-                                        Image(systemName: "chevron.right")
-                                            .font(.caption.weight(.bold))
-                                            .foregroundColor(.gray.opacity(0.7))
-                                        
                                     }
                                     .font(.body)
                                     .foregroundColor(.primary)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 4)
+                                })
+                                
+                                Divider()
+                                
+                                Button(action: {
+                                    openURL(contributeURL)
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: "plus.app")
+                                        Text("discover.contribute")
+                                        Spacer()
+                                    }
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                                })
+                                
+                                Divider()
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                            .padding(.horizontal)
+                            .padding(.bottom)
+                        }
+                        
+#if DEVELOPMENT
+                        VStack(alignment: .leading) {
+                            Text("Dev")
+                                .font(.title2).bold()
+                                .padding(.top, 16)
+                                .padding(.bottom, 8)
+                                .padding(.horizontal)
+                            
+                            VStack(alignment: .leading) {
+                                Divider()
+                                
+                                NavigationLink(destination: SettingsView()) {
+                                    HStack {
+                                        Image(systemName: "gearshape")
+                                        Text("Settings")
+                                        Spacer()
+                                    }
+                                    .font(.body)
+                                    .foregroundColor(.primary)
                                 }
                                 
-                                
-                                Divider().padding(.leading)
+                                Divider()
                             }
-                        }
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("discover.support")
-                            .font(.title2).bold()
-                            .padding(.top, 16)
-                            .padding(.bottom, 8)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                             .padding(.horizontal)
-                        
-                        VStack(alignment: .leading) {
-                            Divider()
-                            
-                            Button(action: {
-                                let appID = "1506614493"
-                                let urlStr = "https://itunes.apple.com/app/id\(appID)?action=write-review"
-                                guard let url = URL(string: urlStr) else { return }
-                                openURL(url)
-                            }, label: {
-                                HStack {
-                                    Image(systemName: "star")
-                                    Text("discover.rate")
-                                    Spacer()
-                                }
-                                .font(.body)
-                                .foregroundColor(.primary)
-                            })
-                            
-                            Divider()
-                            
-                            Button(action: {
-                                openURL(contributeURL)
-                            }, label: {
-                                HStack {
-                                    Image(systemName: "plus.app")
-                                    Text("discover.contribute")
-                                    Spacer()
-                                }
-                                .font(.body)
-                                .foregroundColor(.primary)
-                            })
-                            
-                            Divider()
+                            .padding(.bottom)
                         }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        .padding(.horizontal)
-                        .padding(.bottom)
+#endif
                     }
-                    
-                    #if DEVELOPMENT
-                    VStack(alignment: .leading) {
-                        Text("Dev")
-                            .font(.title2).bold()
-                            .padding(.top, 16)
-                            .padding(.bottom, 8)
-                            .padding(.horizontal)
-                        
-                        VStack(alignment: .leading) {
-                            Divider()
-                            
-                            NavigationLink(destination: SettingsView()) {
-                                HStack {
-                                    Image(systemName: "gearshape")
-                                    Text("Settings")
-                                    Spacer()
-                                }
-                                .font(.body)
-                                .foregroundColor(.primary)
-                            }
-                            
-                            Divider()
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                        .padding(.horizontal)
-                        .padding(.bottom)
-                    }
-                    #endif
                 }
                 .navigationBarTitle(Text("discover.title"))
-                .onAppear {
-                    if popularAreas.isEmpty {
-                        popularAreas = Area.all.filter{$0.popular}
-                    }
+                .task {
+                    popularAreas = Area.all.filter{$0.popular}
                     
-                    if areas.isEmpty {
-                        areas = Area.all.sorted{
-                            $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
-                        }
+                    areas = Area.all.sorted{
+                        $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
                     }
                 }
             }

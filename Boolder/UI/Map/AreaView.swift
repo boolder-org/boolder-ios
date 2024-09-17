@@ -71,7 +71,7 @@ struct AreaView: View {
             }
 
         }
-        .onAppear {
+        .task {
             circuits = area.circuits
             popularProblems = area.popularProblems
             
