@@ -52,7 +52,7 @@ struct AreaProblemsView: View {
                 }
             }
         }
-        .onAppear {
+        .task {
             problems = area.problems
         }
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("area.problems.search_prompt")).autocorrectionDisabled()

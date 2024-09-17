@@ -53,7 +53,7 @@ struct GradeRangePickerView: View {
                     .padding(.leading, 32)
             }
         )
-        .onAppear {
+        .task {
             save()
         }
     }

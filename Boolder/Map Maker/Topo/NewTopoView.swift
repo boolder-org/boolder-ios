@@ -143,7 +143,7 @@ struct NewTopoView: View {
                         .padding(.leading)
                 }
             )
-            .onAppear {
+            .task {
                 UITextView.appearance().backgroundColor = .clear
                 topoEntry.pickerModeEnabled = true
                 

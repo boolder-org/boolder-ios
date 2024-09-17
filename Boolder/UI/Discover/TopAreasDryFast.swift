@@ -88,7 +88,7 @@ struct TopAreasDryFast: View {
                 }
                 .padding(.top)
             }
-            .onAppear{
+            .task {
                 areas = Area.all.filter{$0.dryFast}
             }
         }

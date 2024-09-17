@@ -295,7 +295,7 @@ struct DiscoverView: View {
                     #endif
                 }
                 .navigationBarTitle(Text("discover.title"))
-                .onAppear {
+                .task {
                     if popularAreas.isEmpty {
                         popularAreas = Area.all.filter{$0.popular}
                     }

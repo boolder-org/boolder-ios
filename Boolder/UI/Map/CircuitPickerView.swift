@@ -49,7 +49,7 @@ struct CircuitPickerView: View {
                 }
                 
             }
-            .onAppear {
+            .task {
                 circuits = area.circuits
             }
             .navigationTitle("Circuits")
