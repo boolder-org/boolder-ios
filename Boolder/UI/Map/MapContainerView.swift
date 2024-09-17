@@ -77,9 +77,6 @@ struct MapContainerView: View {
                     problem: $mapState.selectedProblem,
                     mapState: mapState
                 )
-                // TODO: there is a bug with SwiftUI not passing environment correctly to modal views (only on iOS14?)
-                // remove these lines as soon as it's fixed
-                .environment(\.managedObjectContext, managedObjectContext)
                 .presentationDetents([detent])
 //                .presentationDetents([.medium])
                 .presentationBackgroundInteraction(
