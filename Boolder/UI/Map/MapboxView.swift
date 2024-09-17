@@ -176,6 +176,17 @@ struct MapboxView: UIViewControllerRepresentable {
                     }
                 }
                 .store(in: &cancellables)
+            
+            parent.mapState.$refreshFilters
+                .sink { [weak self] refresh in
+                    guard let self = self else { return }
+                    if refresh {
+                        DispatchQueue.main.async {
+                            self.viewController?.applyFilters(self.parent.mapState.filters)
+                        }
+                    }
+                }
+                .store(in: &cancellables)
         }
         
         func selectProblem(id: Int) {

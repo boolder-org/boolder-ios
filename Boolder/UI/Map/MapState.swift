@@ -22,6 +22,7 @@ class MapState : ObservableObject {
     @Published private(set) var centerOnCircuit: Circuit? = nil
     @Published var selectedPoi: Poi? = nil
     @Published var filters: Filters = Filters()
+    @Published private(set) var refreshFilters: Bool = false
     
     @Published var presentProblemDetails = false
     @Published var presentPoiActionSheet = false
@@ -153,6 +154,7 @@ class MapState : ObservableObject {
     }
     
     func filtersRefresh() {
+        refreshFilters = true
 //        filtersRefreshCount += 1
     }
     
