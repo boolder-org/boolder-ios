@@ -18,7 +18,7 @@ Create an account on https://www.mapbox.com and go to the [Tokens]([url](https:/
 
 #### Step 2: set up the public token
 
-Store the secret token in `~/.mapbox` like so:
+Store the public token in `~/.mapbox` like so:
 
 ```
 YOUR_PUBLIC_MAPBOX_ACCESS_TOKEN
