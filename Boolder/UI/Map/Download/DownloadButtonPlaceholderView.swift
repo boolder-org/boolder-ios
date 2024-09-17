@@ -21,14 +21,7 @@ struct DownloadButtonPlaceholderView: View {
         .buttonStyle(FabButton())
         .sheet(isPresented: $presentDownloadsPlaceholder) {
             placeholderView
-                .modify {
-                    if #available(iOS 16, *) {
-                        $0.presentationDetents([.fraction(0.3)])
-                    }
-                    else {
-                        $0
-                    }
-                }
+                .presentationDetents([.fraction(0.3)])
         }
     }
     

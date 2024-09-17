@@ -63,7 +63,7 @@ struct TopAreasBeginnerView: View {
             }
             .padding(.vertical)
         }
-        .onAppear{
+        .task{
             areasForBeginners = Area.forBeginners
         }
         

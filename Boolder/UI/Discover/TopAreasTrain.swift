@@ -87,7 +87,7 @@ struct TopAreasTrain: View {
                 }
                 .padding(.vertical)
             }
-            .onAppear {
+            .task {
                 trainStations = Poi.all.filter{$0.type == .trainStation}.filter{$0.poiRoutes.count > 0}
             }
         }

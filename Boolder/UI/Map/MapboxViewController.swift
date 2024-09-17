@@ -926,12 +926,6 @@ class MapboxViewController: UIViewController {
             self.inferAreaFromMap()
             self.inferClusterFromMap()
         }
-        
-        // In case the map is slow to load
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.inferAreaFromMap()
-            self.inferClusterFromMap()
-        }
     }
     
     var flyinToSomething = false // TODO: replace with MapboxMap.isAnimationInProgress in v11 (probably more reliable)
