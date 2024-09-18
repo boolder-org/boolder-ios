@@ -94,39 +94,6 @@ struct BoulderView: View {
         }
     }
     
-    var tabView: some View {
-        TabView(selection: $currentPage) {
-            ForEach(topos) { topo in
-                ZStack {
-                    ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
-//                        Text(problem.localizedName)
-                }
-                .tag(topo.id)
-            }
-            
-        }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-//            .onChange(of: currentPage) { newPage in
-//                print("Page turned to: \(newPage)")
-//
-//                let topoId = newPage
-//                let topo = TopoWithPosition.load(id: topoId)
-//
-//                // TODO: choose problem on the left
-//                if let first = topo?.problems.first {
-//                    problem = first
-//                }
-//            }
-        .onChange(of: problem) { newProblem in
-            paginateToProblem(p: newProblem)
-        }
-        .onAppear {
-            if let topoId = problem.topoId {
-                currentPage = topoId
-            }
-        }
-    }
-    
     var body: some View {
         ZStack(alignment: .center) {
             scrollView
@@ -137,28 +104,6 @@ struct BoulderView: View {
         .background(Color(.imageBackground))
         
     }
-    
-//    func paginateToProblemWithScrollView(p: Problem) {
-//        print("visible : \(visibleTopoId)")
-//        print("selected : \(problem.topoId)")
-//        if visibleTopoId != problem.topoId {
-//            scrollTarget = problem.topoId
-//        }
-//    }
-    
-    func paginateToProblem(p: Problem) {
-        let currentTopoId = currentPage
-        
-        if TopoWithPosition.load(id: currentTopoId)!.problems.contains(p) {
-            print("here")
-        }
-        else {
-            print("not here")
-            let t = TopoWithPosition.load(id: p.topoId!)! // FIXME: no bang
-            currentPage = t.id
-        }
-    }
-    
 }
 
 //#Preview {
