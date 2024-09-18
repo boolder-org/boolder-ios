@@ -56,7 +56,7 @@ struct BoulderView: View {
                     }
                 }
                 .onChange(of: problem) { newProblem in
-                    scrollTarget = Position(topoId: newProblem.topoId!, index: 1)
+                    scrollTarget = Position(topoId: newProblem.topoId!, index: 0)
                 }
                 .modify {
                     if #available(iOS 18.0, *) {
@@ -76,7 +76,7 @@ struct BoulderView: View {
                         }
                         .onScrollTargetVisibilityChange(idType: TopoWithPosition.ID.self, threshold: 0.5) { array in
                             if let first = array.first {
-//                                visibleTopoId = first
+                                visibleTopoId = first
 //                                paginateToProblemWithScrollView(p: problem)
                             }
                         }
