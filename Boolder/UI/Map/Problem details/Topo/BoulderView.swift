@@ -36,7 +36,7 @@ struct BoulderView: View {
             return ScrollViewReader { proxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(-2..<3) { index in
+                        ForEach(-1..<2) { index in
                             ForEach(topos) { topo in
                                 ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
                                     .id(Position(topoId: topo.id, index: index))
