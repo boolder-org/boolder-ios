@@ -8,6 +8,15 @@
 
 import SwiftUI
 
+struct Position: Identifiable, Hashable {
+    let topoId: Int
+    let index: Int
+    
+    var id: [Int] {
+        [topoId, index]
+    }
+}
+
 struct BoulderView: View {
     @State private var currentPage = 0 // FIXME
     @Binding var problem: Problem
@@ -15,7 +24,7 @@ struct BoulderView: View {
     
     @ObservedObject var mapState: MapState
     
-    @State private var scrollTarget: Int? = nil
+    @State private var scrollTarget: Position? = nil
     @State private var visibleTopoId: Int? = nil
     
     var topos: [TopoWithPosition] {
@@ -27,9 +36,11 @@ struct BoulderView: View {
             return ScrollViewReader { proxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        ForEach(topos) { topo in
-                            ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
-                                .tag(topo.id)
+                        ForEach(-2..<3) { index in
+                            ForEach(topos) { topo in
+                                ImprovedTopoView(topo: topo, problem: $problem, mapState: mapState)
+                                    .id(Position(topoId: topo.id, index: index))
+                            }
                         }
                     }
                     .scrollTargetLayout()
@@ -39,12 +50,13 @@ struct BoulderView: View {
                 .onChange(of: scrollTarget) { target in
                     if let target = target {
 //                        withAnimation {
+                        print("scrolling to \(target)")
                             proxy.scrollTo(target, anchor: .center)
 //                        }
                     }
                 }
                 .onChange(of: problem) { newProblem in
-                    scrollTarget = newProblem.topoId
+                    scrollTarget = Position(topoId: newProblem.topoId!, index: 1)
                 }
                 .modify {
                     if #available(iOS 18.0, *) {
@@ -64,7 +76,7 @@ struct BoulderView: View {
                         }
                         .onScrollTargetVisibilityChange(idType: TopoWithPosition.ID.self, threshold: 0.5) { array in
                             if let first = array.first {
-                                visibleTopoId = first
+//                                visibleTopoId = first
 //                                paginateToProblemWithScrollView(p: problem)
                             }
                         }
@@ -73,7 +85,7 @@ struct BoulderView: View {
                     }
                 }
                 .task {
-                    scrollTarget = problem.topoId
+                    scrollTarget = Position(topoId: problem.topoId!, index: 0)
                 }
             }
         }
@@ -126,13 +138,13 @@ struct BoulderView: View {
         
     }
     
-    func paginateToProblemWithScrollView(p: Problem) {
-        print("visible : \(visibleTopoId)")
-        print("selected : \(problem.topoId)")
-        if visibleTopoId != problem.topoId {
-            scrollTarget = problem.topoId
-        }
-    }
+//    func paginateToProblemWithScrollView(p: Problem) {
+//        print("visible : \(visibleTopoId)")
+//        print("selected : \(problem.topoId)")
+//        if visibleTopoId != problem.topoId {
+//            scrollTarget = problem.topoId
+//        }
+//    }
     
     func paginateToProblem(p: Problem) {
         let currentTopoId = currentPage
