@@ -10,7 +10,19 @@ import SwiftUI
 
 struct ImprovedTopoView: View {
     let topo: TopoWithPosition
-    @Binding var problem: Problem
+//    @Binding var problem: Problem
+    
+    var problem: Problem {
+        if topo.problems.contains(mapState.selectedProblem) {
+            return mapState.selectedProblem
+        }
+//        else if let selectedProblem = topo.selectedProblem {
+//            return selectedProblem
+//        }
+        else {
+            return topo.firstProblemOnTheLeft ?? Problem.empty // FIXME
+        }
+    }
     
     @ObservedObject var mapState: MapState
     
