@@ -235,7 +235,8 @@ extension Circuit {
     var firstProblem: Problem? {
         let query = Table("problems")
             .filter(Problem.circuitId == self.id)
-            .filter(Problem.circuitNumber == "1")
+            .filter(Problem.circuitNumber == "D" || Problem.circuitNumber == "1")
+            .order(Problem.circuitNumber.desc)
         
         if let p = try! SqliteStore.shared.db.pluck(query) {
             return Problem.load(id: p[Problem.id])

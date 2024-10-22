@@ -275,7 +275,8 @@ extension Problem {
     }
     
     var next: Problem? {
-        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+        if let circuitId = circuitId {
+            let circuitNumberInt = Int(self.circuitNumberComparableValue())
             let nextNumber = String(circuitNumberInt + 1)
             
             let query = Table("problems")
@@ -291,12 +292,18 @@ extension Problem {
     }
     
     var previous: Problem? {
-        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+        if let circuitId = circuitId {
+            let circuitNumberInt = Int(self.circuitNumberComparableValue())
+            
+            if circuitNumberInt == 0 {
+                return nil
+            }
+            
             let previousNumber = String(circuitNumberInt - 1)
             
             let query = Table("problems")
                 .filter(Problem.circuitId == circuitId)
-                .filter(Problem.circuitNumber == previousNumber)
+                .filter(Problem.circuitNumber == previousNumber || Problem.circuitNumber == "D")
             
             if let p = try! SqliteStore.shared.db.pluck(query) {
                 return Problem.load(id: p[Problem.id])
