@@ -75,7 +75,14 @@ struct ProblemDetailsView: View {
                                     .font(.title)
                                     .fontWeight(.bold)
                             }
+                            .padding(.horizontal)
                             .containerRelativeFrame(.horizontal)
+//                            .scrollTransition(.animated, axis: .horizontal) { content, phase in
+//                                content
+//                                    .opacity(phase.isIdentity ? 1.0 : 0.8)
+//                                    .scaleEffect(phase.isIdentity ? 1.0 : 0.8)
+//                            }
+                            
                             //                                .frame(width: geo.size.width)
                             //                                .padding(.horizontal)
                             //                            .padding(.top, 4)
@@ -87,6 +94,20 @@ struct ProblemDetailsView: View {
                 
             }
             .scrollTargetBehavior(.viewAligned)
+            .modify {
+                if #available(iOS 18.0, *) {
+                    
+                    $0.onScrollTargetVisibilityChange(idType: Problem.ID.self, threshold: 0.5) { array in
+                        if let first = array.first {
+                            if let pp = Problem.load(id: first) {
+                                mapState.selectProblem(pp)
+                            }
+                        }
+                    }
+                } else {
+                    $0
+                }
+            }
             
         }
         else {
