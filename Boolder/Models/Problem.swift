@@ -12,6 +12,7 @@ import CoreData
 import SQLite
 
 struct Problem : Identifiable {
+    static let defaultCircuitNumber = "D"
     let id: Int
     let name: String?
     let nameEn: String?
@@ -275,7 +276,8 @@ extension Problem {
     }
     
     var next: Problem? {
-        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+        let circutiNumberInt = (self.circuitNumber == Problem.defaultCircuitNumber) ? 0 : Int(self.circuitNumber)
+        if let circuitNumberInt = circutiNumberInt, let circuitId = circuitId {
             let nextNumber = String(circuitNumberInt + 1)
             
             let query = Table("problems")
@@ -292,8 +294,7 @@ extension Problem {
     
     var previous: Problem? {
         if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
-            let previousNumber = String(circuitNumberInt - 1)
-            
+            let previousNumber = (circuitNumberInt == 1 ) ? Problem.defaultCircuitNumber : String(circuitNumberInt - 1)
             let query = Table("problems")
                 .filter(Problem.circuitId == circuitId)
                 .filter(Problem.circuitNumber == previousNumber)
