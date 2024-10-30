@@ -36,15 +36,61 @@ struct ProblemDetailsView: View {
                         BoulderView(problem: $problem, boulderId: boulderId, mapState: mapState)
                             .frame(width: geo.size.width, height: geo.size.width * 3/4)
                             .zIndex(10)
+                        
+                        
                     }
                     
-                    infos
+                    scrollView
                     
-                    actionButtons
+//                    infos
+//                    
+//                    actionButtons
                 }
             }
             
             Spacer()
+        }
+    }
+    
+    var scrollView: some View {
+        if #available(iOS 17.0, *) {
+            return ScrollViewReader { proxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        
+                        ForEach(problem.otherProblemsOnSameTopo) { p in
+                            HStack {
+                                Text(p.localizedName)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.primary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .minimumScaleFactor(0.5)
+                                
+                                Spacer()
+                                
+                                Text(p.grade.string)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                            }
+                            .containerRelativeFrame(.horizontal)
+                            //                                .frame(width: geo.size.width)
+                            //                                .padding(.horizontal)
+                            //                            .padding(.top, 4)
+                            .id(p.id)
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                
+            }
+            .scrollTargetBehavior(.viewAligned)
+            
+        }
+        else {
+            return EmptyView()
         }
     }
     
