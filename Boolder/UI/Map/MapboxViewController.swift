@@ -783,11 +783,13 @@ class MapboxViewController: UIViewController {
                 northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
             )
             
+            let currentZoomLevel = mapView.cameraState.zoom
+            
             if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
                 let cameraOptions = CameraOptions(
                     center: location.coordinate,
                     padding: safePadding,
-                    zoom: 17
+                    zoom: max(currentZoomLevel, 17)
                 )
                 
                 flyTo(cameraOptions)
