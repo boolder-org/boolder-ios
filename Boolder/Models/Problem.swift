@@ -50,7 +50,7 @@ struct Problem : Identifiable {
         }
     }
     
-    func circuitNumberComparableValue() -> Double {
+    var circuitNumberComparableValue: Double {
         if let int = Int(circuitNumber) {
             return Double(int)
         }
@@ -103,22 +103,22 @@ struct Problem : Identifiable {
     }
     
     
-    func isFavorite() -> Bool {
-        favorite() != nil
+    var isFavorite: Bool {
+        favorite != nil
     }
     
-    func favorite() -> Favorite? {
-        favorites().first { (favorite: Favorite) -> Bool in
+    var favorite: Favorite? {
+        favorites.first { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == id
         }
     }
     
-    func isTicked() -> Bool {
-        tick() != nil
+    var isTicked: Bool {
+        tick != nil
     }
     
-    func tick() -> Tick? {
-        ticks().first { (tick: Tick) -> Bool in
+    var tick: Tick? {
+        ticks.first { (tick: Tick) -> Bool in
             return Int(tick.problemId) == id
         }
     }
@@ -310,7 +310,7 @@ extension Problem {
 
 // MARK: CoreData
 extension Problem {
-    func favorites() -> [Favorite] {
+    var favorites: [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
@@ -323,7 +323,7 @@ extension Problem {
         }
     }
     
-    func ticks() -> [Tick] {
+    var ticks: [Tick] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request: NSFetchRequest<Tick> = Tick.fetchRequest()

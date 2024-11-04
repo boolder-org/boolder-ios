@@ -222,7 +222,7 @@ extension Circuit {
                     return lhs.grade < rhs.grade
                 }
                 else {
-                    return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+                    return lhs.circuitNumberComparableValue < rhs.circuitNumberComparableValue
                 }
             })
         }
