@@ -235,7 +235,7 @@ struct AreaToolbarView: View {
     }
     
     var filtersActive : Bool {
-        mapState.filters.filtersCount() > 0 || circuitFilterActive
+        mapState.filters.filtersCount > 0 || circuitFilterActive
     }
     
     var circuitBelongsToArea : Bool {
