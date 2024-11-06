@@ -86,6 +86,21 @@ struct AreaToolbarView: View {
                 HStack(alignment: .center, spacing: 8) {
                     Spacer()
                     
+                    if (mapState.filters.filtersCount() > 0 || mapState.selectedCircuit != nil) {
+                        Button {
+                            mapState.unselectCircuit()
+                            mapState.clearFilters()
+                        } label: {
+                            Image(systemName: "x.circle")
+                                .padding(6)
+                                .foregroundColor(.primary)
+                                .background(
+                                    Circle()
+                                        .fill(Color(UIColor.systemBackground))
+                                )
+                        }
+                    }
+                    
                     // `mapState.selectedArea == nil` is a hack to avoid losing position in the horizontal filters scrollview when zooming in and out
                     if(circuits.count > 0 || mapState.selectedArea == nil) {
                         Button {
@@ -256,7 +271,8 @@ struct AreaToolbarView: View {
 }
 
 //struct AreaToolbarView_Previews: PreviewProvider {
+//    static let mapState = MapState()
 //    static var previews: some View {
-//        AreaToolbarView()
+//        AreaToolbarView(mapState: mapState)
 //    }
 //}
