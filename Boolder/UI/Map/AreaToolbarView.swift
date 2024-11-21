@@ -82,165 +82,168 @@ struct AreaToolbarView: View {
             }
             .padding(.horizontal)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: 8) {
-                    Spacer()
-                    
-                    if (mapState.filters.filtersCount() > 0 || mapState.selectedCircuit != nil) {
-                        Button {
-                            mapState.unselectCircuit()
-                            mapState.clearFilters()
-                        } label: {
-                            Image(systemName: "x.circle")
-                                .padding(6)
-                                .foregroundColor(.primary)
-                                .background(
-                                    Circle()
-                                        .fill(Color(UIColor.systemBackground))
-                                )
-                        }
+            HStack {
+                if (mapState.filters.filtersCount() > 0 || mapState.selectedCircuit != nil) {
+                    Button {
+                        mapState.unselectCircuit()
+                        mapState.clearFilters()
+                    } label: {
+                        Image(systemName: "x.circle")
+                            .padding(6)
+                            .foregroundColor(.primary)
+                            .background(
+                                Circle()
+                                    .fill(Color(UIColor.systemBackground))
+                            )
                     }
-                    
-                    // `mapState.selectedArea == nil` is a hack to avoid losing position in the horizontal filters scrollview when zooming in and out
-                    if(circuits.count > 0 || mapState.selectedArea == nil) {
+                }
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .center, spacing: 8) {
+                        
+                        
+                        // `mapState.selectedArea == nil` is a hack to avoid losing position in the horizontal filters scrollview when zooming in and out
+                        if(circuits.count > 0 || mapState.selectedArea == nil) {
+                            Button {
+                                mapState.presentCircuitPicker = true
+                                mapState.clearFilters()
+                            } label: {
+                                HStack {
+                                    Image("circuit")
+                                    Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
+                                }
+                                .font(.callout.weight(.regular))
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
+                                .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+                                .cornerRadius(32)
+                            }
+                            .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
+                                
+                            }) {
+                                CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
+                                    .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
+                            }
+                        }
+                        
                         Button {
-                            mapState.presentCircuitPicker = true
-                            mapState.clearFilters()
+                            mapState.presentFilters = true
+                            mapState.unselectCircuit()
                         } label: {
                             HStack {
-                                Image("circuit")
-                                Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
+                                Image(systemName: "chart.bar")
+                                Text(mapState.filters.gradeRange?.description ?? NSLocalizedString("filters.levels", comment: ""))
                             }
                             .font(.callout.weight(.regular))
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
-                            .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
-                            .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+                            .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
+                            .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
                             .cornerRadius(32)
                         }
-                        .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
-                            
+                        .sheet(isPresented: $mapState.presentFilters, onDismiss: {
+                            mapState.filtersRefresh() // TODO: simplify refresh logic
                         }) {
-                            CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
+                            FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
                                 .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                         }
-                    }
-                    
-                    Button {
-                        mapState.presentFilters = true
-                        mapState.unselectCircuit()
-                    } label: {
-                        HStack {
-                            Image(systemName: "chart.bar")
-                            Text(mapState.filters.gradeRange?.description ?? NSLocalizedString("filters.levels", comment: ""))
-                        }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
-                    }
-                    .sheet(isPresented: $mapState.presentFilters, onDismiss: {
-                        mapState.filtersRefresh() // TODO: simplify refresh logic
-                    }) {
-                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
-                            .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
-                    }
-                    
-                    Button {
-                        let previous = mapState.filters.popular
-                        mapState.clearFilters()
-                        mapState.unselectCircuit()
-                        mapState.filters.popular = !previous
-                        mapState.filtersRefresh()
-                    } label: {
-                        HStack {
-                            Image(systemName: "heart")
-                            Text("filters.popular")
-                        }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
-                    }
-                    
-                    Button {
-                        if(favorites.isEmpty) {
-                            if mapState.filters.favorite {
-                                mapState.filters.favorite = false
-                                mapState.filtersRefresh()
-                            }
-                            else {
-                                showingAlertFavorite = true
-                            }
-                        }
-                        else {
-                            let previous = mapState.filters.favorite
+                        
+                        Button {
+                            let previous = mapState.filters.popular
                             mapState.clearFilters()
                             mapState.unselectCircuit()
-                            mapState.filters.favorite = !previous
+                            mapState.filters.popular = !previous
                             mapState.filtersRefresh()
+                        } label: {
+                            HStack {
+                                Image(systemName: "heart")
+                                Text("filters.popular")
+                            }
+                            .font(.callout.weight(.regular))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
+                            .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
+                            .cornerRadius(32)
                         }
                         
-                    } label: {
-                        HStack {
-                            Image(systemName: "star")
-                            Text("filters.favorite")
-                        }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
-                    }
-                    .alert(isPresented: $showingAlertFavorite) {
-                        Alert(title: Text("filters.no_favorites_alert.title"), message: Text("filters.no_favorites_alert.message"), dismissButton: .default(Text("OK")))
-                    }
-                    
-                    Button {
-                        if(ticks.isEmpty) {
-                            if mapState.filters.ticked {
-                                mapState.filters.ticked = false
-                                mapState.filtersRefresh()
+                        Button {
+                            if(favorites.isEmpty) {
+                                if mapState.filters.favorite {
+                                    mapState.filters.favorite = false
+                                    mapState.filtersRefresh()
+                                }
+                                else {
+                                    showingAlertFavorite = true
+                                }
                             }
                             else {
-                                showingAlertTicked = true
+                                let previous = mapState.filters.favorite
+                                mapState.clearFilters()
+                                mapState.unselectCircuit()
+                                mapState.filters.favorite = !previous
+                                mapState.filtersRefresh()
                             }
+                            
+                        } label: {
+                            HStack {
+                                Image(systemName: "star")
+                                Text("filters.favorite")
+                            }
+                            .font(.callout.weight(.regular))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
+                            .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
+                            .cornerRadius(32)
                         }
-                        else {
-                            let previous = mapState.filters.ticked
-                            mapState.clearFilters()
-                            mapState.unselectCircuit()
-                            mapState.filters.ticked = !previous
-                            mapState.filtersRefresh()
+                        .alert(isPresented: $showingAlertFavorite) {
+                            Alert(title: Text("filters.no_favorites_alert.title"), message: Text("filters.no_favorites_alert.message"), dismissButton: .default(Text("OK")))
                         }
-                    } label: {
-                        HStack {
-                            Image(systemName: "checkmark.circle")
-                            Text("filters.ticked")
+                        
+                        Button {
+                            if(ticks.isEmpty) {
+                                if mapState.filters.ticked {
+                                    mapState.filters.ticked = false
+                                    mapState.filtersRefresh()
+                                }
+                                else {
+                                    showingAlertTicked = true
+                                }
+                            }
+                            else {
+                                let previous = mapState.filters.ticked
+                                mapState.clearFilters()
+                                mapState.unselectCircuit()
+                                mapState.filters.ticked = !previous
+                                mapState.filtersRefresh()
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: "checkmark.circle")
+                                Text("filters.ticked")
+                            }
+                            .font(.callout.weight(.regular))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
+                            .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
+                            .cornerRadius(32)
                         }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
-                    }
-                    .alert(isPresented: $showingAlertTicked) {
-                        Alert(title: Text("filters.no_ticks_alert.title"), message: Text("filters.no_ticks_alert.message"), dismissButton: .default(Text("OK")))
+                        .alert(isPresented: $showingAlertTicked) {
+                            Alert(title: Text("filters.no_ticks_alert.title"), message: Text("filters.no_ticks_alert.message"), dismissButton: .default(Text("OK")))
+                        }
+                        
+                        Spacer()
                     }
                     
-                    Spacer()
                 }
-
+                .opacity(mapState.presentProblemDetails ? 0 : 1)
             }
             .padding(.top, 8)
-            .opacity(mapState.presentProblemDetails ? 0 : 1)
-            
+            .padding(.horizontal)
+
             Spacer()
         }
     }
