@@ -450,7 +450,7 @@ class MapboxViewController: UIViewController {
                     {
                         let coords = coordinatesFrom(southWestLat: southWestLat, southWestLon: southWestLon, northEastLat: northEastLat, northEastLon: northEastLon)
 
-                        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+                        if let cameraOptions = self.cameraOptionsFor(coords) {
                             self.flyTo(cameraOptions)
                             self.delegate?.selectCluster(id: Int(id))
                         }
