@@ -934,7 +934,7 @@ class MapboxViewController: UIViewController {
     private func cameraOptionsFor(_ coordinates: [CLLocationCoordinate2D], minZoom: CGFloat? = nil) -> CameraOptions? {
         if var cameraOptions = try? self.mapView.mapboxMap.camera(
             for: coordinates,
-            camera: CameraOptions(),
+            camera: CameraOptions(padding: UIEdgeInsets(), bearing: 0, pitch: 0),
             coordinatesPadding: self.safePadding,
             maxZoom: nil,
             offset: nil) {
