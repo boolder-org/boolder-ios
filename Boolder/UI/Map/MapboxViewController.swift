@@ -59,28 +59,20 @@ class MapboxViewController: UIViewController {
             self.findFeatures(tapPoint: context.point)
         }.store(in: &cancelables)
         
-        mapView.mapboxMap.onCameraChanged.observe { [weak self] event in
-            guard let self = self else { return }
-            
-            // TODO: use throttling via Combine
-            // Camera movement check is throttled for performance reason (especially during flying animations)
-            let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
-            guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
-                return
-            }
-            
-            lastCameraCheck = DispatchTime.now()
-            
-            if(!flyinToSomething) {
-                self.inferAreaFromMap()
-                self.inferClusterFromMap()
-                self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
-            }
-        }.store(in: &cancelables)
+        mapView.mapboxMap.onCameraChanged
+            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                
+                if(!flyinToSomething) {
+                    self.inferAreaFromMap()
+                    self.inferClusterFromMap()
+                    self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
+                }
+            }.store(in: &cancelables)
         
         self.view.addSubview(mapView)
     }
-    var lastCameraCheck: DispatchTime?
 
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
     
