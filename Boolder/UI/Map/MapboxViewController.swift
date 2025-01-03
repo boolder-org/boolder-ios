@@ -60,7 +60,7 @@ class MapboxViewController: UIViewController {
         }.store(in: &cancelables)
         
         mapView.mapboxMap.onCameraChanged
-            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+            .throttle(for: .milliseconds(100), scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] event in
                 guard let self = self else { return }
                 
