@@ -26,7 +26,7 @@ YOUR_PUBLIC_MAPBOX_ACCESS_TOKEN
 
 More info [here](https://docs.mapbox.com/help/troubleshooting/private-access-token-android-and-ios/#ios).
 
-#### Step 3: set up the secret token
+#### Step 3 (optional): set up the secret token 
 
 To be able to download the SDK via Swift Package Manager, you must first configure the secret token.
 
