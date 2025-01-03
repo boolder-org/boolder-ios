@@ -13,17 +13,10 @@ import CoreLocation
 class MapboxViewController: UIViewController {
     var mapView: MapView!
     var delegate: MapBoxViewDelegate?
+    var cancelables = Set<AnyCancelable>()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        let accessToken = Bundle.main.object(forInfoDictionaryKey: "MBXAccessToken") as? String
-
-        if accessToken == nil {
-            print("access token not found in Info.plist")
-        }
-        
-        let myResourceOptions = ResourceOptions(accessToken: accessToken ?? "")
         
         let cameraOptions = CameraOptions(
             center: CLLocationCoordinate2D(latitude: 48.3925623, longitude: 2.5968216),
@@ -31,7 +24,6 @@ class MapboxViewController: UIViewController {
         )
         
         let myMapInitOptions = MapInitOptions(
-            resourceOptions: myResourceOptions,
             cameraOptions: cameraOptions,
             styleURI: StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")
         )
@@ -44,6 +36,8 @@ class MapboxViewController: UIViewController {
         
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
+        mapView.gestures.options.doubleTapToZoomInEnabled = false // prevents the delay for tapGesture
+        mapView.gestures.options.doubleTouchToZoomOutEnabled = false // prevents the delay for tapGesture
         
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
@@ -55,15 +49,20 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
         
         // Wait for the map to load its style before adding data.
-        mapView.mapboxMap.onNext(event: .mapLoaded) { [self] _ in
+        mapView.mapboxMap.onStyleLoaded.observeNext { [weak self] _ in
+            guard let self = self else { return }
             self.addSources()
             self.addLayers()
-            
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.findFeatures))
-            self.mapView.addGestureRecognizer(tapGesture)
-        }
+        }.store(in: &cancelables)
         
-        mapView.mapboxMap.onEvery(event: .cameraChanged) { [self] _ in
+        mapView.gestures.onMapTap.observe { context in
+            self.findFeatures(tapPoint: context.point)
+        }.store(in: &cancelables)
+        
+        mapView.mapboxMap.onCameraChanged.observe { [weak self] event in
+            guard let self = self else { return }
+            
+            // TODO: use throttling via Combine
             // Camera movement check is throttled for performance reason (especially during flying animations)
             let cameraCheckThrottleRate = DispatchTimeInterval.milliseconds(100)
             guard lastCameraCheck == nil || lastCameraCheck!.advanced(by: cameraCheckThrottleRate) <= DispatchTime.now() else {
@@ -77,7 +76,7 @@ class MapboxViewController: UIViewController {
                 self.inferClusterFromMap()
                 self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
             }
-        }
+        }.store(in: &cancelables)
         
         self.view.addSubview(mapView)
     }
@@ -86,16 +85,16 @@ class MapboxViewController: UIViewController {
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
     
     func addSources() {
-        var problems = VectorSource()
+        var problems = VectorSource(id: "problems")
         problems.url = "mapbox://nmondollot.4xsv235p"
         problems.promoteId = .string("id") // needed to make Feature-State work
         
-        var circuits = VectorSource()
+        var circuits = VectorSource(id: "circuits")
         circuits.url = "mapbox://nmondollot.11sumdgh"
 
         do {
-            try self.mapView.mapboxMap.style.addSource(problems, id: "problems")
-            try self.mapView.mapboxMap.style.addSource(circuits, id: "circuits")
+            try self.mapView.mapboxMap.addSource(problems)
+            try self.mapView.mapboxMap.addSource(circuits)
         }
         catch {
             print("Ran into an error adding the sources: \(error)")
@@ -103,8 +102,7 @@ class MapboxViewController: UIViewController {
     }
     
     func addLayers() {
-        var problemsLayer = CircleLayer(id: "problems")
-        problemsLayer.source = "problems"
+        var problemsLayer = CircleLayer(id: "problems", source: "problems")
         problemsLayer.sourceLayer = problemsSourceLayerId
         problemsLayer.minZoom = 15
         problemsLayer.filter = Exp(.match) {
@@ -160,8 +158,7 @@ class MapboxViewController: UIViewController {
             }
         )
         
-        var problemsTextsLayer = SymbolLayer(id: "problems-texts")
-        problemsTextsLayer.source = "problems"
+        var problemsTextsLayer = SymbolLayer(id: "problems-texts", source: "problems")
         problemsTextsLayer.sourceLayer = problemsSourceLayerId
         problemsTextsLayer.minZoom = 19
         problemsTextsLayer.filter = Exp(.match) {
@@ -204,8 +201,7 @@ class MapboxViewController: UIViewController {
         
         // ===========================
         
-        var problemsNamesLayer = SymbolLayer(id: "problems-names")
-        problemsNamesLayer.source = "problems"
+        var problemsNamesLayer = SymbolLayer(id: "problems-names", source: "problems")
         problemsNamesLayer.sourceLayer = problemsSourceLayerId
         problemsNamesLayer.minZoom = 15
         problemsNamesLayer.visibility = .constant(.none)
@@ -267,8 +263,7 @@ class MapboxViewController: UIViewController {
         )
         
         // (invisible) layer to prevent problem names from overlapping with the problem circles
-        var problemsNamesAntioverlapLayer = SymbolLayer(id: "problems-names-antioverlap")
-        problemsNamesAntioverlapLayer.source = "problems"
+        var problemsNamesAntioverlapLayer = SymbolLayer(id: "problems-names-antioverlap", source: "problems")
         problemsNamesAntioverlapLayer.sourceLayer = problemsSourceLayerId
         problemsNamesAntioverlapLayer.minZoom = 15
         problemsNamesAntioverlapLayer.visibility = .constant(.none)
@@ -295,8 +290,7 @@ class MapboxViewController: UIViewController {
         
         // ===========================
         
-        var circuitsLayer = LineLayer(id: "circuits")
-        circuitsLayer.source = "circuits"
+        var circuitsLayer = LineLayer(id: "circuits", source: "circuits")
         circuitsLayer.sourceLayer = "circuits-9weff8"
         circuitsLayer.minZoom = 15
         circuitsLayer.lineWidth = .constant(2)
@@ -304,8 +298,7 @@ class MapboxViewController: UIViewController {
         circuitsLayer.lineColor = circuitColorExp(attribute: "color")
         circuitsLayer.visibility = .constant(.none)
         
-        var circuitProblemsLayer = CircleLayer(id: "circuit-problems")
-        circuitProblemsLayer.source = "problems"
+        var circuitProblemsLayer = CircleLayer(id: "circuit-problems", source: "problems")
         circuitProblemsLayer.sourceLayer = problemsSourceLayerId
         circuitProblemsLayer.minZoom = 15
         circuitProblemsLayer.visibility = .constant(.none)
@@ -327,8 +320,7 @@ class MapboxViewController: UIViewController {
         circuitProblemsLayer.circleStrokeWidth = problemsLayer.circleStrokeWidth
         circuitProblemsLayer.circleStrokeColor = problemsLayer.circleStrokeColor
         
-        var circuitProblemsTextsLayer = SymbolLayer(id: "circuit-problems-texts")
-        circuitProblemsTextsLayer.source = "problems"
+        var circuitProblemsTextsLayer = SymbolLayer(id: "circuit-problems-texts", source: "problems")
         circuitProblemsTextsLayer.sourceLayer = problemsSourceLayerId
         circuitProblemsTextsLayer.minZoom = 16
         circuitProblemsTextsLayer.visibility = .constant(.none)
@@ -360,15 +352,15 @@ class MapboxViewController: UIViewController {
         // ===========================
         
         do {
-            try self.mapView.mapboxMap.style.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
-            try self.mapView.mapboxMap.style.addLayer(problemsTextsLayer)
+            try self.mapView.mapboxMap.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
+            try self.mapView.mapboxMap.addLayer(problemsTextsLayer)
             
-            try self.mapView.mapboxMap.style.addLayer(problemsNamesLayer)
-            try self.mapView.mapboxMap.style.addLayer(problemsNamesAntioverlapLayer)
+            try self.mapView.mapboxMap.addLayer(problemsNamesLayer)
+            try self.mapView.mapboxMap.addLayer(problemsNamesAntioverlapLayer)
             
-            try self.mapView.mapboxMap.style.addLayer(circuitsLayer)
-            try self.mapView.mapboxMap.style.addLayer(circuitProblemsLayer)
-            try self.mapView.mapboxMap.style.addLayer(circuitProblemsTextsLayer)
+            try self.mapView.mapboxMap.addLayer(circuitsLayer)
+            try self.mapView.mapboxMap.addLayer(circuitProblemsLayer)
+            try self.mapView.mapboxMap.addLayer(circuitProblemsTextsLayer)
         }
         catch {
             print("Ran into an error adding the layers: \(error)")
@@ -404,201 +396,204 @@ class MapboxViewController: UIViewController {
         )
     }
     
-    @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
-        let tapPoint = sender.location(in: mapView)
-        
-        // =================================================
-        // Careful: the order of the queries is important
-        // =================================================
-        
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint,
-            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: nil)) { [weak self] result in
-                
-                guard let self = self else { return }
-                
-                if self.mapView.mapboxMap.cameraState.zoom >= 15 { return }
-                
-                switch result {
-                case .success(let queriedfeatures):
-                    
-                    if let feature = queriedfeatures.first?.feature,
-                       case .number(let id) = feature.properties?["areaId"],
-                       case .string(let southWestLon) = feature.properties?["southWestLon"],
-                       case .string(let southWestLat) = feature.properties?["southWestLat"],
-                       case .string(let northEastLon) = feature.properties?["northEastLon"],
-                       case .string(let northEastLat) = feature.properties?["northEastLat"]
-                    {
-                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
-                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
-                        
-                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
-                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-                        
-                        self.flyTo(cameraOptions)
-                        
-                        self.delegate?.selectArea(id: Int(id))
-                    }
-                case .failure(let error):
-                    print("An error occurred: \(error.localizedDescription)")
-                }
-            }
-        
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint,
-            options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
-                
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let queriedfeatures):
-                    
-                    if let feature = queriedfeatures.first?.feature,
-                       case .number(let id) = feature.properties?["clusterId"],
-                       case .string(let southWestLon) = feature.properties?["southWestLon"],
-                       case .string(let southWestLat) = feature.properties?["southWestLat"],
-                       case .string(let northEastLon) = feature.properties?["northEastLon"],
-                       case .string(let northEastLat) = feature.properties?["northEastLat"]
-                    {
-                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
-                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
-                        
-                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
-                        
-                        self.flyTo(cameraOptions)
-                        
-                        self.delegate?.selectCluster(id: Int(id))
-                    }
-                case .failure(let error):
-                    print("An error occurred: \(error.localizedDescription)")
-                }
-            }
-        
-        // hack to be able to zoom to a level where problems are tappable
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
-                
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let queriedfeatures):
-                    
-                    if(queriedfeatures.first?.feature.geometry != nil) {
-                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
-                            let cameraOptions = CameraOptions(
-                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
-                                padding: self.safePadding,
-                                zoom: 19
-                            )
-                            self.flyTo(cameraOptions)
-                        }
-                    }
-                    
-                case .failure(let error):
-                    print("An error occurred: \(error.localizedDescription)")
-                }
-            }
-        
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint,
-            options: RenderedQueryOptions(layerIds: ["pois"], filter: nil)) { [weak self] result in
-                
-                guard let self = self else { return }
-                
-                switch result {
-                case .success(let queriedfeatures):
-                    
-                    if let feature = queriedfeatures.first?.feature,
-                       case .string(let name) = feature.properties?["name"],
-                       case .string(let googleUrl) = feature.properties?["googleUrl"],
-                       case .string(let type) = feature.properties?["type"],
-                       case .point(let point) = feature.geometry
-                    {
-                        if (self.mapView.mapboxMap.cameraState.zoom >= 12 && type == "trainstation") || (self.mapView.mapboxMap.cameraState.zoom >= 14) {
-                            self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
-                        }
-                    }
-                case .failure(let error):
-                    print("An error occurred: \(error.localizedDescription)")
-                }
-            }
-        
-        
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
-            options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
-                
-                guard let self = self else { return }
-                
-                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
-                
-                switch result {
-                case .success(let queriedfeatures):
-                    
-                    if let feature = queriedfeatures.first?.feature,
-                       case .number(let id) = feature.properties?["id"],
-                       case .point(let point) = feature.geometry
-                    {
-                        self.delegate?.selectProblem(id: Int(id))
-                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
-                        
-                        // if problem is hidden by the bottom sheet
-                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
-                            
-                            let cameraOptions = CameraOptions(
-                                center: point.coordinates,
-                                padding: self.safePaddingForBottomSheet
-                            )
-                            self.easeTo(cameraOptions)
-                        }
-                    }
-                    else {
-                        // TODO: make it more explicit that this works only at a certain zoom level
-                        self.unselectPreviousProblem()
-                        self.delegate?.dismissProblemDetails()
-                    }
-                case .failure(let error):
-                    print("An error occurred: \(error.localizedDescription)")
-                }
-            }
-        
-        // TODO: make this DRY with problems layer
-        // Note: I already tried using the same query for both problems and circuit-problems layer, but taps work better with tapPoint than with a rect => I prefered to keep a tapPoint for circuit-problem
-        // Careful: the order between problems and circuit problems is important!
-        mapView.mapboxMap.queryRenderedFeatures(
-            with: tapPoint,
-            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
-                
-                guard let self = self else { return }
-                
-                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
-                
-                switch result {
-                case .success(let queriedfeatures):
-                    
-                    if let feature = queriedfeatures.first?.feature,
-                       case .number(let id) = feature.properties?["id"],
-                       case .point(let point) = feature.geometry
-                    {
-                        self.delegate?.selectProblem(id: Int(id))
-                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
-                        
-                        // if problem is hidden by the bottom sheet
-                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
-                            
-                            let cameraOptions = CameraOptions(
-                                center: point.coordinates,
-                                padding: self.safePaddingForBottomSheet
-                            )
-                            self.easeTo(cameraOptions)
-                        }
-                    }
-                case .failure(let error):
-                    print("An error occurred: \(error.localizedDescription)")
-                }
-            }
+    func findFeatures(tapPoint: CGPoint) {
     }
+    
+//    @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
+//        let tapPoint = sender.location(in: mapView)
+//        
+//        // =================================================
+//        // Careful: the order of the queries is important
+//        // =================================================
+//        
+//        mapView.mapboxMap.queryRenderedFeatures(
+//            with: tapPoint,
+//            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: nil)) { [weak self] result in
+//                
+//                guard let self = self else { return }
+//                
+//                if self.mapView.mapboxMap.cameraState.zoom >= 15 { return }
+//                
+//                switch result {
+//                case .success(let queriedfeatures):
+//                    
+//                    if let feature = queriedfeatures.first?.feature,
+//                       case .number(let id) = feature.properties?["areaId"],
+//                       case .string(let southWestLon) = feature.properties?["southWestLon"],
+//                       case .string(let southWestLat) = feature.properties?["southWestLat"],
+//                       case .string(let northEastLon) = feature.properties?["northEastLon"],
+//                       case .string(let northEastLat) = feature.properties?["northEastLat"]
+//                    {
+//                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
+//                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
+//                        
+//                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
+//                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
+//                        
+//                        self.flyTo(cameraOptions)
+//                        
+//                        self.delegate?.selectArea(id: Int(id))
+//                    }
+//                case .failure(let error):
+//                    print("An error occurred: \(error.localizedDescription)")
+//                }
+//            }
+//        
+//        mapView.mapboxMap.queryRenderedFeatures(
+//            with: tapPoint,
+//            options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
+//                
+//                guard let self = self else { return }
+//                
+//                switch result {
+//                case .success(let queriedfeatures):
+//                    
+//                    if let feature = queriedfeatures.first?.feature,
+//                       case .number(let id) = feature.properties?["clusterId"],
+//                       case .string(let southWestLon) = feature.properties?["southWestLon"],
+//                       case .string(let southWestLat) = feature.properties?["southWestLat"],
+//                       case .string(let northEastLon) = feature.properties?["northEastLon"],
+//                       case .string(let northEastLat) = feature.properties?["northEastLat"]
+//                    {
+//                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
+//                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
+//                        
+//                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
+//                        
+//                        self.flyTo(cameraOptions)
+//                        
+//                        self.delegate?.selectCluster(id: Int(id))
+//                    }
+//                case .failure(let error):
+//                    print("An error occurred: \(error.localizedDescription)")
+//                }
+//            }
+//        
+//        // hack to be able to zoom to a level where problems are tappable
+//        mapView.mapboxMap.queryRenderedFeatures(
+//            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
+//            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
+//                
+//                guard let self = self else { return }
+//                
+//                switch result {
+//                case .success(let queriedfeatures):
+//                    
+//                    if(queriedfeatures.first?.feature.geometry != nil) {
+//                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
+//                            let cameraOptions = CameraOptions(
+//                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
+//                                padding: self.safePadding,
+//                                zoom: 19
+//                            )
+//                            self.flyTo(cameraOptions)
+//                        }
+//                    }
+//                    
+//                case .failure(let error):
+//                    print("An error occurred: \(error.localizedDescription)")
+//                }
+//            }
+//        
+//        mapView.mapboxMap.queryRenderedFeatures(
+//            with: tapPoint,
+//            options: RenderedQueryOptions(layerIds: ["pois"], filter: nil)) { [weak self] result in
+//                
+//                guard let self = self else { return }
+//                
+//                switch result {
+//                case .success(let queriedfeatures):
+//                    
+//                    if let feature = queriedfeatures.first?.feature,
+//                       case .string(let name) = feature.properties?["name"],
+//                       case .string(let googleUrl) = feature.properties?["googleUrl"],
+//                       case .string(let type) = feature.properties?["type"],
+//                       case .point(let point) = feature.geometry
+//                    {
+//                        if (self.mapView.mapboxMap.cameraState.zoom >= 12 && type == "trainstation") || (self.mapView.mapboxMap.cameraState.zoom >= 14) {
+//                            self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("An error occurred: \(error.localizedDescription)")
+//                }
+//            }
+//        
+//        
+//        mapView.mapboxMap.queryRenderedFeatures(
+//            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
+//            options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
+//                
+//                guard let self = self else { return }
+//                
+//                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
+//                
+//                switch result {
+//                case .success(let queriedfeatures):
+//                    
+//                    if let feature = queriedfeatures.first?.feature,
+//                       case .number(let id) = feature.properties?["id"],
+//                       case .point(let point) = feature.geometry
+//                    {
+//                        self.delegate?.selectProblem(id: Int(id))
+//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+//                        
+//                        // if problem is hidden by the bottom sheet
+//                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
+//                            
+//                            let cameraOptions = CameraOptions(
+//                                center: point.coordinates,
+//                                padding: self.safePaddingForBottomSheet
+//                            )
+//                            self.easeTo(cameraOptions)
+//                        }
+//                    }
+//                    else {
+//                        // TODO: make it more explicit that this works only at a certain zoom level
+//                        self.unselectPreviousProblem()
+//                        self.delegate?.dismissProblemDetails()
+//                    }
+//                case .failure(let error):
+//                    print("An error occurred: \(error.localizedDescription)")
+//                }
+//            }
+//        
+//        // TODO: make this DRY with problems layer
+//        // Note: I already tried using the same query for both problems and circuit-problems layer, but taps work better with tapPoint than with a rect => I prefered to keep a tapPoint for circuit-problem
+//        // Careful: the order between problems and circuit problems is important!
+//        mapView.mapboxMap.queryRenderedFeatures(
+//            with: tapPoint,
+//            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
+//                
+//                guard let self = self else { return }
+//                
+//                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
+//                
+//                switch result {
+//                case .success(let queriedfeatures):
+//                    
+//                    if let feature = queriedfeatures.first?.feature,
+//                       case .number(let id) = feature.properties?["id"],
+//                       case .point(let point) = feature.geometry
+//                    {
+//                        self.delegate?.selectProblem(id: Int(id))
+//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+//                        
+//                        // if problem is hidden by the bottom sheet
+//                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
+//                            
+//                            let cameraOptions = CameraOptions(
+//                                center: point.coordinates,
+//                                padding: self.safePaddingForBottomSheet
+//                            )
+//                            self.easeTo(cameraOptions)
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("An error occurred: \(error.localizedDescription)")
+//                }
+//            }
+//    }
     
     func inferAreaFromMap() {
         if(!flyinToSomething) {
@@ -624,7 +619,7 @@ class MapboxViewController: UIViewController {
                     switch result {
                     case .success(let queriedfeatures):
                         
-                        if let feature = queriedfeatures.first?.feature,
+                        if let feature = queriedfeatures.first?.queriedFeature.feature,
                            case .number(let id) = feature.properties?["areaId"]
                         {
                             self.delegate?.selectArea(id: Int(id))
@@ -664,7 +659,7 @@ class MapboxViewController: UIViewController {
                     switch result {
                     case .success(let queriedfeatures):
                         
-                        if let feature = queriedfeatures.first?.feature,
+                        if let feature = queriedfeatures.first?.queriedFeature.feature,
                            case .number(let id) = feature.properties?["clusterId"]
                         {
                             self.delegate?.selectCluster(id: Int(id))
@@ -715,7 +710,7 @@ class MapboxViewController: UIViewController {
             let gradesArray = (gradeMin...gradeMax).map{ $0.string }
             
             try ["problems", "problems-texts", "problems-names", "problems-names-antioverlap"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     let gradeFilter = Exp(.match) {
                         Exp(.get) { "grade" }
                         gradesArray
@@ -745,7 +740,7 @@ class MapboxViewController: UIViewController {
             }
             
             try ["problems-names", "problems-names-antioverlap"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: SymbolLayer.self) { layer in
                     let visibility = (filters.popular || filters.favorite || filters.ticked) ? Visibility.visible : Visibility.none
                     layer.visibility = .constant(visibility)
                 }
@@ -765,69 +760,69 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnArea(_ area: Area) {
-        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
-                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-
-        
-        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0)
-        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-        
-        flyTo(cameraOptions)
+//        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
+//                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
+//
+//        
+//        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0)
+//        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
+//        
+//        flyTo(cameraOptions)
     }
     
     func centerOnCurrentLocation() {
-        if let location = mapView.location.latestLocation {
-            
-            let fontainebleauBounds = CoordinateBounds(
-                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
-                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
-            )
-            
-            let currentZoomLevel = mapView.cameraState.zoom
-            
-            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
-                let cameraOptions = CameraOptions(
-                    center: location.coordinate,
-                    padding: safePadding,
-                    zoom: max(currentZoomLevel, 17)
-                )
-                
-                flyTo(cameraOptions)
-            }
-            else {
-                let cameraOptions = mapView.mapboxMap.camera(
-                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
-                    padding: safePadding,
-                    bearing: 0,
-                    pitch: 0
-                )
-                
-                flyTo(cameraOptions)
-            }
-        }
+//        if let location = mapView.location.latestLocation {
+//            
+//            let fontainebleauBounds = CoordinateBounds(
+//                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
+//                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
+//            )
+//            
+//            let currentZoomLevel = mapView.cameraState.zoom
+//            
+//            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
+//                let cameraOptions = CameraOptions(
+//                    center: location.coordinate,
+//                    padding: safePadding,
+//                    zoom: max(currentZoomLevel, 17)
+//                )
+//                
+//                flyTo(cameraOptions)
+//            }
+//            else {
+//                let cameraOptions = mapView.mapboxMap.camera(
+//                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
+//                    padding: safePadding,
+//                    bearing: 0,
+//                    pitch: 0
+//                )
+//                
+//                flyTo(cameraOptions)
+//            }
+//        }
     }
     
     func centerOnCircuit(_ circuit: Circuit) {
-        let circuitBounds = CoordinateBounds(
-            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
-            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
-        )
-        
-        var cameraOptions = mapView.mapboxMap.camera(
-            for: circuitBounds,
-            padding: safePadding,
-            bearing: 0,
-            pitch: 0
-        )
-        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-        
-        flyTo(cameraOptions)
+//        let circuitBounds = CoordinateBounds(
+//            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+//            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
+//        )
+//        
+//        var cameraOptions = mapView.mapboxMap.camera(
+//            for: circuitBounds,
+//            padding: safePadding,
+//            bearing: 0,
+//            pitch: 0
+//        )
+//        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
+//        
+//        flyTo(cameraOptions)
     }
     
     func setCircuitAsSelected(circuit: Circuit) {
         do {
             try ["circuits"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: LineLayer.self) { layer in
                     layer.filter = Exp(.match) {
                         Exp(.get) { "id" }
                         [Double(circuit.id)]
@@ -839,7 +834,7 @@ class MapboxViewController: UIViewController {
             }
             
             try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     layer.filter = Exp(.match) {
                         Exp(.get) { "circuitId" }
                         [Double(circuit.id)]
@@ -858,13 +853,13 @@ class MapboxViewController: UIViewController {
     func unselectCircuit() {
         do {
             try ["circuits"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: LineLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: LineLayer.self) { layer in
                     layer.visibility = .constant(.none)
                 }
             }
             
             try ["circuit-problems", "circuit-problems-texts"].forEach { layerId in
-                try mapView.mapboxMap.style.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
+                try mapView.mapboxMap.updateLayer(withId: layerId, type: CircleLayer.self) { layer in
                     layer.visibility = .constant(.none)
                 }
             }
@@ -880,7 +875,9 @@ class MapboxViewController: UIViewController {
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                sourceLayerId: problemsSourceLayerId,
                                                featureId: problemFeatureId,
-                                               state: ["selected": true])
+                                               state: ["selected": true]) { result in
+            
+        }
         
         if problemFeatureId != self.previouslyTappedProblemId {
             unselectPreviousProblem()
@@ -894,7 +891,9 @@ class MapboxViewController: UIViewController {
             self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                    sourceLayerId: problemsSourceLayerId,
                                                    featureId: self.previouslyTappedProblemId,
-                                                   state: ["selected": false])
+                                                   state: ["selected": false]) { result in
+                
+            }
         }
     }
     
