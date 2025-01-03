@@ -751,63 +751,56 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnArea(_ area: Area) {
-//        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
-//                                      northeast: CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon))
-//
-//        
-//        var cameraOptions = mapView.mapboxMap.camera(for: bounds, padding: safePadding, bearing: 0, pitch: 0)
-//        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-//        
-//        flyTo(cameraOptions)
+        let coords = [
+            CLLocationCoordinate2D(latitude: area.southWestLat, longitude: area.southWestLon),
+            CLLocationCoordinate2D(latitude: area.northEastLat, longitude: area.northEastLon)
+        ]
+        
+        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+            flyTo(cameraOptions)
+        }
     }
     
     func centerOnCurrentLocation() {
-//        if let location = mapView.location.latestLocation {
-//            
-//            let fontainebleauBounds = CoordinateBounds(
-//                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
-//                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
-//            )
-//            
-//            let currentZoomLevel = mapView.cameraState.zoom
-//            
-//            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
-//                let cameraOptions = CameraOptions(
-//                    center: location.coordinate,
-//                    padding: safePadding,
-//                    zoom: max(currentZoomLevel, 17)
-//                )
-//                
-//                flyTo(cameraOptions)
-//            }
-//            else {
-//                let cameraOptions = mapView.mapboxMap.camera(
-//                    for: fontainebleauBounds.extend(forPoint: location.coordinate),
-//                    padding: safePadding,
-//                    bearing: 0,
-//                    pitch: 0
-//                )
-//                
-//                flyTo(cameraOptions)
-//            }
-//        }
+        if let location = mapView.location.latestLocation {
+            
+            let fontainebleauBounds = CoordinateBounds(
+                southwest: CLLocationCoordinate2D(latitude: 48.241596, longitude: 2.3936456),
+                northeast: CLLocationCoordinate2D(latitude: 48.5075073, longitude: 2.7616875)
+            )
+            
+            let currentZoomLevel = mapView.mapboxMap.cameraState.zoom
+            
+            if fontainebleauBounds.contains(forPoint: location.coordinate, wrappedCoordinates: false) {
+                let cameraOptions = CameraOptions(
+                    center: location.coordinate,
+                    padding: safePadding,
+                    zoom: max(currentZoomLevel, 17)
+                )
+                
+                flyTo(cameraOptions)
+            }
+            else {
+                let bounds = fontainebleauBounds.extend(forPoint: location.coordinate)
+                
+                let coords = [bounds.southwest, bounds.northeast]
+                
+                if let cameraOptions = self.cameraOptionsFor(coords) {
+                    flyTo(cameraOptions)
+                }
+            }
+        }
     }
     
     func centerOnCircuit(_ circuit: Circuit) {
-//        let circuitBounds = CoordinateBounds(
-//            southwest: CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
-//            northeast: CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
-//        )
-//        
-//        var cameraOptions = mapView.mapboxMap.camera(
-//            for: circuitBounds,
-//            padding: safePadding,
-//            bearing: 0,
-//            pitch: 0
-//        )
-//        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-//        
-//        flyTo(cameraOptions)
+        let coords = [
+            CLLocationCoordinate2D(latitude: circuit.southWestLat, longitude: circuit.southWestLon),
+            CLLocationCoordinate2D(latitude: circuit.northEastLat, longitude: circuit.northEastLon)
+        ]
+        
+        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+            flyTo(cameraOptions)
+        }
     }
     
     func setCircuitAsSelected(circuit: Circuit) {
