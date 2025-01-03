@@ -397,203 +397,194 @@ class MapboxViewController: UIViewController {
     }
     
     func findFeatures(tapPoint: CGPoint) {
+        
+        // =================================================
+        // Careful: the order of the queries is important
+        // =================================================
+        
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                if self.mapView.mapboxMap.cameraState.zoom >= 15 { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.queriedFeature.feature,
+                       case .number(let id) = feature.properties?["areaId"],
+                       case .string(let southWestLon) = feature.properties?["southWestLon"],
+                       case .string(let southWestLat) = feature.properties?["southWestLat"],
+                       case .string(let northEastLon) = feature.properties?["northEastLon"],
+                       case .string(let northEastLat) = feature.properties?["northEastLat"]
+                    {
+                        let coords = coordinatesFrom(southWestLat: southWestLat, southWestLon: southWestLon, northEastLat: northEastLat, northEastLon: northEastLon)
+
+                        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+                            self.flyTo(cameraOptions)
+                            self.delegate?.selectArea(id: Int(id))
+                        }
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.queriedFeature.feature,
+                       case .number(let id) = feature.properties?["clusterId"],
+                       case .string(let southWestLon) = feature.properties?["southWestLon"],
+                       case .string(let southWestLat) = feature.properties?["southWestLat"],
+                       case .string(let northEastLon) = feature.properties?["northEastLon"],
+                       case .string(let northEastLat) = feature.properties?["northEastLat"]
+                    {
+                        let coords = coordinatesFrom(southWestLat: southWestLat, southWestLon: southWestLon, northEastLat: northEastLat, northEastLon: northEastLon)
+
+                        if let cameraOptions = self.cameraOptionsFor(coords, minZoom: 15) {
+                            self.flyTo(cameraOptions)
+                            self.delegate?.selectCluster(id: Int(id))
+                        }
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        // hack to be able to zoom to a level where problems are tappable
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
+            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if(queriedfeatures.first?.queriedFeature.feature.geometry != nil) {
+                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
+                            let cameraOptions = CameraOptions(
+                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
+                                padding: self.safePadding,
+                                zoom: 19
+                            )
+                            self.flyTo(cameraOptions)
+                        }
+                    }
+                    
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["pois"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.queriedFeature.feature,
+                       case .string(let name) = feature.properties?["name"],
+                       case .string(let googleUrl) = feature.properties?["googleUrl"],
+                       case .string(let type) = feature.properties?["type"],
+                       case .point(let point) = feature.geometry
+                    {
+                        if (self.mapView.mapboxMap.cameraState.zoom >= 12 && type == "trainstation") || (self.mapView.mapboxMap.cameraState.zoom >= 14) {
+                            self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
+                        }
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
+            options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.queriedFeature.feature,
+                       case .number(let id) = feature.properties?["id"],
+                       case .point(let point) = feature.geometry
+                    {
+                        self.delegate?.selectProblem(id: Int(id))
+                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                        
+                        // if problem is hidden by the bottom sheet
+                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
+                            
+                            let cameraOptions = CameraOptions(
+                                center: point.coordinates,
+                                padding: self.safePaddingForBottomSheet
+                            )
+                            self.easeTo(cameraOptions)
+                        }
+                    }
+                    else {
+                        // TODO: make it more explicit that this works only at a certain zoom level
+                        self.unselectPreviousProblem()
+                        self.delegate?.dismissProblemDetails()
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
+        
+        // TODO: make this DRY with problems layer
+        // Note: I already tried using the same query for both problems and circuit-problems layer, but taps work better with tapPoint than with a rect => I prefered to keep a tapPoint for circuit-problem
+        // Careful: the order between problems and circuit problems is important!
+        mapView.mapboxMap.queryRenderedFeatures(
+            with: tapPoint,
+            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
+                
+                guard let self = self else { return }
+                
+                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
+                
+                switch result {
+                case .success(let queriedfeatures):
+                    
+                    if let feature = queriedfeatures.first?.queriedFeature.feature,
+                       case .number(let id) = feature.properties?["id"],
+                       case .point(let point) = feature.geometry
+                    {
+                        self.delegate?.selectProblem(id: Int(id))
+                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                        
+                        // if problem is hidden by the bottom sheet
+                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
+                            
+                            let cameraOptions = CameraOptions(
+                                center: point.coordinates,
+                                padding: self.safePaddingForBottomSheet
+                            )
+                            self.easeTo(cameraOptions)
+                        }
+                    }
+                case .failure(let error):
+                    print("An error occurred: \(error.localizedDescription)")
+                }
+            }
     }
-    
-//    @objc public func findFeatures(_ sender: UITapGestureRecognizer) {
-//        let tapPoint = sender.location(in: mapView)
-//        
-//        // =================================================
-//        // Careful: the order of the queries is important
-//        // =================================================
-//        
-//        mapView.mapboxMap.queryRenderedFeatures(
-//            with: tapPoint,
-//            options: RenderedQueryOptions(layerIds: ["areas", "areas-hulls"], filter: nil)) { [weak self] result in
-//                
-//                guard let self = self else { return }
-//                
-//                if self.mapView.mapboxMap.cameraState.zoom >= 15 { return }
-//                
-//                switch result {
-//                case .success(let queriedfeatures):
-//                    
-//                    if let feature = queriedfeatures.first?.feature,
-//                       case .number(let id) = feature.properties?["areaId"],
-//                       case .string(let southWestLon) = feature.properties?["southWestLon"],
-//                       case .string(let southWestLat) = feature.properties?["southWestLat"],
-//                       case .string(let northEastLon) = feature.properties?["northEastLon"],
-//                       case .string(let northEastLat) = feature.properties?["northEastLat"]
-//                    {
-//                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
-//                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
-//                        
-//                        var cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
-//                        cameraOptions.zoom = max(15, cameraOptions.zoom ?? 0)
-//                        
-//                        self.flyTo(cameraOptions)
-//                        
-//                        self.delegate?.selectArea(id: Int(id))
-//                    }
-//                case .failure(let error):
-//                    print("An error occurred: \(error.localizedDescription)")
-//                }
-//            }
-//        
-//        mapView.mapboxMap.queryRenderedFeatures(
-//            with: tapPoint,
-//            options: RenderedQueryOptions(layerIds: ["clusters"], filter: nil)) { [weak self] result in
-//                
-//                guard let self = self else { return }
-//                
-//                switch result {
-//                case .success(let queriedfeatures):
-//                    
-//                    if let feature = queriedfeatures.first?.feature,
-//                       case .number(let id) = feature.properties?["clusterId"],
-//                       case .string(let southWestLon) = feature.properties?["southWestLon"],
-//                       case .string(let southWestLat) = feature.properties?["southWestLat"],
-//                       case .string(let northEastLon) = feature.properties?["northEastLon"],
-//                       case .string(let northEastLat) = feature.properties?["northEastLat"]
-//                    {
-//                        let bounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: Double(southWestLat) ?? 0, longitude: Double(southWestLon) ?? 0),
-//                                                      northeast: CLLocationCoordinate2D(latitude: Double(northEastLat) ?? 0, longitude: Double(northEastLon) ?? 0))
-//                        
-//                        let cameraOptions = self.mapView.mapboxMap.camera(for: bounds, padding: self.safePadding, bearing: 0, pitch: 0)
-//                        
-//                        self.flyTo(cameraOptions)
-//                        
-//                        self.delegate?.selectCluster(id: Int(id))
-//                    }
-//                case .failure(let error):
-//                    print("An error occurred: \(error.localizedDescription)")
-//                }
-//            }
-//        
-//        // hack to be able to zoom to a level where problems are tappable
-//        mapView.mapboxMap.queryRenderedFeatures(
-//            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-//            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
-//                
-//                guard let self = self else { return }
-//                
-//                switch result {
-//                case .success(let queriedfeatures):
-//                    
-//                    if(queriedfeatures.first?.feature.geometry != nil) {
-//                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
-//                            let cameraOptions = CameraOptions(
-//                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
-//                                padding: self.safePadding,
-//                                zoom: 19
-//                            )
-//                            self.flyTo(cameraOptions)
-//                        }
-//                    }
-//                    
-//                case .failure(let error):
-//                    print("An error occurred: \(error.localizedDescription)")
-//                }
-//            }
-//        
-//        mapView.mapboxMap.queryRenderedFeatures(
-//            with: tapPoint,
-//            options: RenderedQueryOptions(layerIds: ["pois"], filter: nil)) { [weak self] result in
-//                
-//                guard let self = self else { return }
-//                
-//                switch result {
-//                case .success(let queriedfeatures):
-//                    
-//                    if let feature = queriedfeatures.first?.feature,
-//                       case .string(let name) = feature.properties?["name"],
-//                       case .string(let googleUrl) = feature.properties?["googleUrl"],
-//                       case .string(let type) = feature.properties?["type"],
-//                       case .point(let point) = feature.geometry
-//                    {
-//                        if (self.mapView.mapboxMap.cameraState.zoom >= 12 && type == "trainstation") || (self.mapView.mapboxMap.cameraState.zoom >= 14) {
-//                            self.delegate?.selectPoi(name: name, location: point.coordinates, googleUrl: googleUrl)
-//                        }
-//                    }
-//                case .failure(let error):
-//                    print("An error occurred: \(error.localizedDescription)")
-//                }
-//            }
-//        
-//        
-//        mapView.mapboxMap.queryRenderedFeatures(
-//            with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
-//            options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
-//                
-//                guard let self = self else { return }
-//                
-//                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
-//                
-//                switch result {
-//                case .success(let queriedfeatures):
-//                    
-//                    if let feature = queriedfeatures.first?.feature,
-//                       case .number(let id) = feature.properties?["id"],
-//                       case .point(let point) = feature.geometry
-//                    {
-//                        self.delegate?.selectProblem(id: Int(id))
-//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
-//                        
-//                        // if problem is hidden by the bottom sheet
-//                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
-//                            
-//                            let cameraOptions = CameraOptions(
-//                                center: point.coordinates,
-//                                padding: self.safePaddingForBottomSheet
-//                            )
-//                            self.easeTo(cameraOptions)
-//                        }
-//                    }
-//                    else {
-//                        // TODO: make it more explicit that this works only at a certain zoom level
-//                        self.unselectPreviousProblem()
-//                        self.delegate?.dismissProblemDetails()
-//                    }
-//                case .failure(let error):
-//                    print("An error occurred: \(error.localizedDescription)")
-//                }
-//            }
-//        
-//        // TODO: make this DRY with problems layer
-//        // Note: I already tried using the same query for both problems and circuit-problems layer, but taps work better with tapPoint than with a rect => I prefered to keep a tapPoint for circuit-problem
-//        // Careful: the order between problems and circuit problems is important!
-//        mapView.mapboxMap.queryRenderedFeatures(
-//            with: tapPoint,
-//            options: RenderedQueryOptions(layerIds: ["circuit-problems"], filter: nil)) { [weak self] result in
-//                
-//                guard let self = self else { return }
-//                
-//                if self.mapView.mapboxMap.cameraState.zoom < 19 { return }
-//                
-//                switch result {
-//                case .success(let queriedfeatures):
-//                    
-//                    if let feature = queriedfeatures.first?.feature,
-//                       case .number(let id) = feature.properties?["id"],
-//                       case .point(let point) = feature.geometry
-//                    {
-//                        self.delegate?.selectProblem(id: Int(id))
-//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
-//                        
-//                        // if problem is hidden by the bottom sheet
-//                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
-//                            
-//                            let cameraOptions = CameraOptions(
-//                                center: point.coordinates,
-//                                padding: self.safePaddingForBottomSheet
-//                            )
-//                            self.easeTo(cameraOptions)
-//                        }
-//                    }
-//                case .failure(let error):
-//                    print("An error occurred: \(error.localizedDescription)")
-//                }
-//            }
-//    }
     
     func inferAreaFromMap() {
         if(!flyinToSomething) {
@@ -934,6 +925,36 @@ class MapboxViewController: UIViewController {
         UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
     }
     let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
+    
+    private func coordinatesFrom(southWestLat: String, southWestLon: String, northEastLat: String, northEastLon: String) -> [CLLocationCoordinate2D] {
+        if let southWestLat = Double(southWestLat), let southWestLon = Double(southWestLon), let northEastLat = Double(northEastLat), let northEastLon = Double(northEastLon) {
+            
+            return [
+                CLLocationCoordinate2D(latitude: southWestLat, longitude: southWestLon),
+                CLLocationCoordinate2D(latitude: northEastLat, longitude: northEastLon),
+            ]
+        }
+        
+        return []
+    }
+    
+    private func cameraOptionsFor(_ coordinates: [CLLocationCoordinate2D], minZoom: CGFloat? = nil) -> CameraOptions? {
+        if var cameraOptions = try? self.mapView.mapboxMap.camera(
+            for: coordinates,
+            camera: CameraOptions(),
+            coordinatesPadding: self.safePadding,
+            maxZoom: nil,
+            offset: nil) {
+            
+            if let minZoom = minZoom {
+                cameraOptions.zoom = max(minZoom, cameraOptions.zoom ?? 0)
+            }
+            
+            return cameraOptions
+        }
+        
+        return nil
+    }
 }
 
 import CoreLocation
