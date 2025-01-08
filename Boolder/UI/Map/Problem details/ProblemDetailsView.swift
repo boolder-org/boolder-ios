@@ -37,7 +37,7 @@ struct ProblemDetailsView: View {
                     
                     infos
                     
-                    actionButtons
+//                    actionButtons
                 }
             }
             
