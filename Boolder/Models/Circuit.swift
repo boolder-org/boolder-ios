@@ -197,7 +197,10 @@ extension Circuit {
                     averageGrade: Grade(p[averageGrade]),
                     beginnerFriendly: p[beginnerFriendly] == 1,
                     dangerous: p[dangerous] == 1,
-                    southWestLat: p[southWestLat], southWestLon: p[southWestLon], northEastLat: p[northEastLat], northEastLon: p[northEastLon]
+                    southWestLat: p[southWestLat],
+                    southWestLon: p[southWestLon],
+                    northEastLat: p[northEastLat],
+                    northEastLon: p[northEastLon]
                 )
             }
             

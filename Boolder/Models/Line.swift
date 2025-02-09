@@ -24,6 +24,12 @@ struct Line: Decodable {
             return (dx * dx + dy * dy).squareRoot()
         }
     }
+    
+    var firstPoint: Line.PhotoPercentCoordinate? {
+        guard let firstPoint = coordinates?.first else { return nil }
+        
+        return firstPoint
+    }
 }
 
 // MARK: SQLite

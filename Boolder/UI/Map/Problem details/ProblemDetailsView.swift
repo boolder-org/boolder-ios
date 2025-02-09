@@ -17,7 +17,7 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var problem: Problem
+    var problem: Problem
     @ObservedObject var mapState: MapState
     
     @State private var areaResourcesDownloaded = false
@@ -29,7 +29,7 @@ struct ProblemDetailsView: View {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
                     TopoView(
-                        problem: $problem,
+                        problem: problem,
                         mapState: mapState
                     )
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)

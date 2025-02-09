@@ -72,9 +72,16 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
+        //TODO: This looks cleaner but dismiss and presents a new view when selectedProblem changes
+//            .sheet(item: $mapState.selectedProblem) { problem in
+//                ProblemDetailsView(
+//                    problem: problem,
+//                    mapState: mapState
+//                )
+//            }
             .sheet(isPresented: $mapState.presentProblemDetails) {
                 ProblemDetailsView(
-                    problem: $mapState.selectedProblem,
+                    problem: mapState.selectedProblem!,
                     mapState: mapState
                 )
                 .presentationDetents([detent])
@@ -104,9 +111,11 @@ struct MapContainerView: View {
         }
     }
     
-    var circuitButtons : some View {
+    var circuitButtons: some View {
         Group {
-            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
+            if let circuitId = mapState.selectedProblem?.circuitId,
+                let circuit = Circuit.load(id: circuitId),
+                mapState.presentProblemDetails {
                 HStack(spacing: 0) {
                     
                     if(mapState.canGoToPreviousCircuitProblem) {

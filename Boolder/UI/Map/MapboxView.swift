@@ -50,7 +50,9 @@ struct MapboxView: UIViewControllerRepresentable {
                 .sink { [weak self] problem in
                     guard let self = self else { return }
                     DispatchQueue.main.async {
-                        self.viewController?.setProblemAsSelected(problemFeatureId: String(self.parent.mapState.selectedProblem.id))
+                        if let selectedProblemId = self.parent.mapState.selectedProblem?.id {
+                            self.viewController?.setProblemAsSelected(problemFeatureId: String(selectedProblemId))
+                        }
                     }
                 }
                 .store(in: &cancellables)

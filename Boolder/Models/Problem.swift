@@ -30,9 +30,6 @@ struct Problem : Identifiable {
     let popularity: Int?
     let parentId: Int?
     
-    // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
-    
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
     }
@@ -92,16 +89,6 @@ struct Problem : Identifiable {
         let tiebreaker = Double(id) / 100
         return Double(popularity ?? 0) + bonusCircuit + tiebreaker
     }
-
-    // TODO: move to Line
-    var lineFirstPoint: Line.PhotoPercentCoordinate? {
-        guard let line = line else { return nil }
-        guard let coordinates = line.coordinates else { return nil }
-        guard let firstPoint = coordinates.first else { return nil }
-        
-        return firstPoint
-    }
-    
     
     var isFavorite: Bool {
         favorite != nil
@@ -363,14 +350,14 @@ class StartGroup: Identifiable, Equatable {
 
     func overlaps(with problem: Problem) -> Bool {
         return problems.contains { p in
-            guard let a = p.lineFirstPoint, let b = problem.lineFirstPoint else { return false }
+            guard let a = p.line?.firstPoint, let b = problem.line?.firstPoint else { return false }
             return a.distance(to: b) < 0.03
         }
     }
     
     func distance(to point: Line.PhotoPercentCoordinate) -> Double {
         let distances = problems.map { p in
-            guard let b = p.lineFirstPoint else { return 1.0 }
+            guard let b = p.line?.firstPoint else { return 1.0 }
             return point.distance(to: b)
         }
         

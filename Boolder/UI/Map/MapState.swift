@@ -10,7 +10,7 @@ import SwiftUI
 import CoreLocation
 
 class MapState : ObservableObject {
-    @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+    @Published var selectedProblem: Problem? = nil
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var currentLocation: Bool = false
@@ -69,13 +69,13 @@ class MapState : ObservableObject {
     }
     
     var canGoToNextCircuitProblem: Bool {
-        selectedProblem.next != nil
+        selectedProblem?.next != nil
     }
     
     func goToNextCircuitProblem() {
         if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let next = selectedProblem.next {
+            if !(selectedProblem?.circuitNumber.isEmpty == true) && selectedProblem?.circuitId == circuit.id {
+                if let next = selectedProblem?.next {
                     selectAndPresentAndCenterOnProblem(next)
                 }
             }
@@ -88,13 +88,13 @@ class MapState : ObservableObject {
     }
     
     var canGoToPreviousCircuitProblem: Bool {
-        selectedProblem.previous != nil
+        selectedProblem?.previous != nil
     }
     
     func goToPreviousCircuitProblem() {
         if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let previous = selectedProblem.previous {
+            if !(selectedProblem?.circuitNumber.isEmpty == true) && selectedProblem?.circuitId == circuit.id {
+                if let previous = selectedProblem?.previous {
                     selectAndPresentAndCenterOnProblem(previous)
                 }
             }
