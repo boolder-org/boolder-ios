@@ -8,7 +8,7 @@
 
 import SwiftUI
 import TipKit
-
+//TODO: Rename to ClusterDownloadView
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     

@@ -120,6 +120,7 @@ struct MapContainerView: View {
                     
                     if(mapState.canGoToPreviousCircuitProblem) {
                         Button(action: {
+                            //TODO: Navigate to next area in cluster
                             mapState.selectCircuit(circuit)
                             mapState.goToPreviousCircuitProblem()
                         }) {
@@ -140,7 +141,6 @@ struct MapContainerView: View {
                     Spacer()
                     
                     if(mapState.canGoToNextCircuitProblem) {
-                        
                         Button(action: {
                             mapState.selectCircuit(circuit)
                             mapState.goToNextCircuitProblem()

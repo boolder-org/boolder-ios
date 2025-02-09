@@ -16,6 +16,7 @@ struct DiscoverView: View {
     
     @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
+    @State private var clusters = [Cluster]()
     
     @EnvironmentObject var appState: AppState
     
@@ -184,6 +185,8 @@ struct DiscoverView: View {
                             }
                         }
                         
+                        clustersSection
+                        
                         VStack(alignment: .leading) {
                             HStack {
                                 Text("discover.all_areas")
@@ -311,6 +314,7 @@ struct DiscoverView: View {
                 .navigationBarTitle(Text("discover.title"))
                 .task {
                     popularAreas = Area.all.filter{$0.popular}
+                    clusters = Cluster.all
                     
                     areas = Area.all.sorted{
                         $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)
@@ -319,6 +323,50 @@ struct DiscoverView: View {
             }
         }
         .phoneOnlyStackNavigationView()
+    }
+    
+    var clustersSection: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Clusters") // TODO: Add localization
+                    .font(.title2.bold())
+                Spacer()
+            }
+            .padding(.top, 24)
+            .padding(.bottom, 8)
+            .padding(.horizontal)
+            
+            VStack {
+                Divider()
+                
+                ForEach(clusters) { cluster in
+                    NavigationLink {
+                        ClusterAreasView(cluster: cluster)
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(cluster.name)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            
+                            Spacer()
+                            
+                            Text("areas: \(cluster.areas.count)").foregroundColor(Color(.systemGray))
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.caption.weight(.bold))
+                                .foregroundColor(.gray.opacity(0.7))
+                            
+                        }
+                        .font(.body)
+                        .foregroundColor(.primary)
+                        .padding(.horizontal)
+                        .padding(.vertical, 4)
+                    }
+                    Divider().padding(.leading)
+                }
+            }
+        }
     }
     
     var contributeURL: URL {

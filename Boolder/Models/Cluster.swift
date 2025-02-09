@@ -68,4 +68,18 @@ extension Cluster {
             return []
         }
     }
+    
+    static var all: [Cluster] {
+        let query = Table("clusters").order(id)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { cluster in
+                Cluster.load(id: cluster[id])
+            }.compactMap{$0}
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
 }

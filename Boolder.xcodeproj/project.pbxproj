@@ -173,6 +173,8 @@
 		37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E42EE0245DB52F00EEBA96 /* CircleView.swift */; };
 		37F563F725AB09F400271346 /* TopoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F563F525AB09F400271346 /* TopoEntry.swift */; };
 		37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
+		645151422D59403C00A940C7 /* ClusterAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645151412D59403C00A940C7 /* ClusterAreasView.swift */; };
+		645151432D59403C00A940C7 /* ClusterAreasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645151412D59403C00A940C7 /* ClusterAreasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -266,6 +268,7 @@
 		37F563F525AB09F400271346 /* TopoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoEntry.swift; sourceTree = "<group>"; };
 		37F9358C250578D000B1CAB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37F9358E250578D700B1CAB2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		645151412D59403C00A940C7 /* ClusterAreasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAreasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +372,7 @@
 				0314FFDE295054C500B7E249 /* AreaView.swift */,
 				03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */,
 				039A22A5295F21F90096E137 /* AreaProblemsView.swift */,
+				645151412D59403C00A940C7 /* ClusterAreasView.swift */,
 				039A229F295EE75B0096E137 /* CircuitView.swift */,
 				038C2EF62920142C006581CD /* Search */,
 				37F12D862456D50E0036E3E3 /* Problem details */,
@@ -710,6 +714,7 @@
 				0307619D2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
+				645151422D59403C00A940C7 /* ClusterAreasView.swift in Sources */,
 				03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
@@ -812,6 +817,7 @@
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */,
+				645151432D59403C00A940C7 /* ClusterAreasView.swift in Sources */,
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
