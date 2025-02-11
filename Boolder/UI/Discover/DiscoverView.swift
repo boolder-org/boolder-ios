@@ -146,6 +146,34 @@ struct DiscoverView: View {
                         .frame(minHeight: 200)
                     }
                     else {
+#if DEVELOPMENT
+                        VStack(alignment: .leading) {
+                            Text("Dev")
+                                .font(.title2).bold()
+                                .padding(.top, 16)
+                                .padding(.bottom, 8)
+                                .padding(.horizontal)
+                            
+                            VStack(alignment: .leading) {
+                                Divider()
+                                
+                                NavigationLink(destination: SettingsView()) {
+                                    HStack {
+                                        Image(systemName: "gearshape")
+                                        Text("Settings")
+                                        Spacer()
+                                    }
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                                }
+                                
+                                Divider()
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+                            .padding(.horizontal)
+                            .padding(.bottom)
+                        }
+#endif
                         
                         VStack(alignment: .leading) {
                             Text("discover.popular")
@@ -277,35 +305,6 @@ struct DiscoverView: View {
                             .padding(.horizontal)
                             .padding(.bottom)
                         }
-                        
-#if DEVELOPMENT
-                        VStack(alignment: .leading) {
-                            Text("Dev")
-                                .font(.title2).bold()
-                                .padding(.top, 16)
-                                .padding(.bottom, 8)
-                                .padding(.horizontal)
-                            
-                            VStack(alignment: .leading) {
-                                Divider()
-                                
-                                NavigationLink(destination: SettingsView()) {
-                                    HStack {
-                                        Image(systemName: "gearshape")
-                                        Text("Settings")
-                                        Spacer()
-                                    }
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                }
-                                
-                                Divider()
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                            .padding(.horizontal)
-                            .padding(.bottom)
-                        }
-#endif
                     }
                 }
                 .navigationBarTitle(Text("discover.title"))
