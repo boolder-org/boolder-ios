@@ -64,10 +64,18 @@ struct NewTopoView: View {
                         }
                     }
                     .fullScreenCover(isPresented: $presentImagePicker) {
+                        
+#if targetEnvironment(simulator)
+                        ImagePickerView(sourceType: .photoLibrary, selectedImage: $topoEntry.photo)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color.black)
+                            .edgesIgnoringSafeArea(.all)
+#else
                         ImagePickerView(sourceType: .camera, selectedImage: $topoEntry.photo)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color.black)
                             .edgesIgnoringSafeArea(.all)
+#endif
                     }
                     
                     Text("Problems")
