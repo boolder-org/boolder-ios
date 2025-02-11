@@ -137,7 +137,10 @@ extension Area {
                 let allowedTags = ["popular", "beginner_friendly", "family_friendly", "dry_fast"]
                 let tags = a[tags]?.components(separatedBy: ",").filter{allowedTags.contains($0)}
                 
-                return Area(id: id, name: a[name], nameSearchable: a[nameSearchable], priority: a[priority],
+                return Area(id: id,
+                            name: a[name],
+                            nameSearchable: a[nameSearchable],
+                            priority: a[priority],
                             descriptionFr: a[descriptionFr], descriptionEn: a[descriptionEn],
                             warningFr: a[warningFr], warningEn: a[warningEn],
                             tags: tags ?? [],
