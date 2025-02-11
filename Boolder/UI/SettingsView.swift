@@ -14,9 +14,20 @@ struct SettingsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showAlertToRemoveTicksAndFavorites = false
+    @State private var showNewTopoView = false
     
     var body: some View {
         Form {
+            Section(header: Text("Topo Creation")) {
+                Button(action: {
+                    showNewTopoView = true
+                }) {
+                    Text("Show NewTopoView")
+                }.sheet(isPresented: $showNewTopoView) {
+                    NewTopoView(topoEntry: TopoEntry())
+                }
+            }
+            
             Section(header: Text("Ticks and favorites")) {
                 HStack {
                     Button(action: {
