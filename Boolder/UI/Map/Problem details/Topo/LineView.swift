@@ -15,43 +15,13 @@ struct LineView: View {
     @Binding var pinchToZoomScale: CGFloat
     
     var body: some View {
-        ResizablePath(path: linePath)
+        ResizablePath(path: problem.line?.path ?? Path())
             .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk
             .stroke(
                 Color(problem.circuitUIColorForPhotoOverlay),
                 style: StrokeStyle(lineWidth: 4/pinchToZoomScale, lineCap: .round, lineJoin: .round)
             )
             .modifier(DropShadow())
-    }
-    
-    private var linePath: Path {
-        guard problem.line != nil else { return Path() }
-        guard linePoints.count > 0 else { return Path() }
-        
-        let points = linePoints
-        let controlPoints = CubicCurveAlgorithm().controlPointsFromPoints(dataPoints: points)
-        
-        return Path { path in
-            for i in 0..<points.count {
-                let point = points[i]
-                
-                if i==0 {
-                    path.move(to: CGPoint(x: point.x, y: point.y))
-                } else {
-                    let segment = controlPoints[i-1]
-                    path.addCurve(to: point, control1: segment.controlPoint1, control2: segment.controlPoint2)
-                }
-            }
-        }
-    }
-    
-    private var linePoints: [CGPoint] {
-        if let line = problem.line?.coordinates {
-            return line.map{CGPoint(x: $0.x, y: $0.y)}
-        }
-        else {
-            return []
-        }
     }
 }
 
