@@ -891,7 +891,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -903,7 +903,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.30;
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -919,7 +919,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -931,7 +931,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.30;
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1068,7 +1068,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -1079,7 +1079,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.30;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
@@ -1093,7 +1093,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -1104,7 +1104,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.30;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
