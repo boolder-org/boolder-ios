@@ -20,6 +20,8 @@
 		030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */; };
 		030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
 		030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
+		030FD81C2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */; };
+		030FD81D2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */; };
 		03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloader.swift */; };
@@ -184,6 +186,7 @@
 		030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasDryFast.swift; sourceTree = "<group>"; };
 		030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
+		030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPathExtensions.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		03147EE42B470F59005771C3 /* AreaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloader.swift; sourceTree = "<group>"; };
 		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
@@ -510,6 +513,7 @@
 				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+				030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";
@@ -742,6 +746,7 @@
 				37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */,
 				039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */,
 				375397C925AC6CEF00430BF4 /* Extensions.swift in Sources */,
+				030FD81C2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */,
 				37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */,
 				031F36B1291CE56100BD0C2B /* MapState.swift in Sources */,
 				0314FFE0295054C500B7E249 /* AreaView.swift in Sources */,
@@ -808,6 +813,7 @@
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
+				030FD81D2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */,
 				0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
