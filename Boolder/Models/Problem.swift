@@ -93,15 +93,19 @@ struct Problem : Identifiable {
         return Double(popularity ?? 0) + bonusCircuit + tiebreaker
     }
 
-    // TODO: move to Line
+    // TODO: remove
     var lineFirstPoint: Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
-        guard let coordinates = line.coordinates else { return nil }
-        guard let firstPoint = coordinates.first else { return nil }
         
-        return firstPoint
+        return line.firstPoint
     }
     
+    // TODO: remove
+    var lineLastPoint: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        
+        return line.lastPoint
+    }
     
     var isFavorite: Bool {
         favorite != nil

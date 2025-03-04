@@ -55,11 +55,21 @@ struct TopoView: View {
                         GeometryReader { geo in
                             ForEach(problem.startGroups) { (group: StartGroup) in
                                 ForEach(group.problems) { (p: Problem) in
-                                    if let firstPoint = p.lineFirstPoint {
+                                    if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = line.middlePoint {
                                         ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+//                                            .scaleEffect(0.8)
+//                                            .opacity(0.5)
                                             .allowsHitTesting(false)
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
+                                        
+                                        Text(p.parentId == nil ? p.grade.string : "")
+                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                            .zIndex(p == problem ? .infinity : p.zIndex)
+                                            
+                                        
+                                        LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                                            .opacity(0.5)
                                     }
                                 }
                             }
@@ -266,7 +276,8 @@ struct TopoView: View {
             .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
         
         guard let group = groups.first else {
-            return handleTapOnBackground()
+//            return handleTapOnBackground()
+            return
         }
         
         if group.problems.contains(problem) {

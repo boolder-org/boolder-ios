@@ -26,6 +26,20 @@ struct Line: Decodable {
         }
     }
     
+    var firstPoint: Line.PhotoPercentCoordinate? {
+        coordinates?.first
+    }
+    
+    var lastPoint: Line.PhotoPercentCoordinate? {
+        coordinates?.last
+    }
+    
+    var middlePoint: Line.PhotoPercentCoordinate? {
+        guard let cgPoint = path.cgPath.point(at: 0.5) else { return nil }
+        
+        return PhotoPercentCoordinate(x: cgPoint.x, y: cgPoint.y)
+    }
+    
     private var cgPoints: [CGPoint] {
         if let coordinates = coordinates {
             return coordinates.map{CGPoint(x: $0.x, y: $0.y)}
