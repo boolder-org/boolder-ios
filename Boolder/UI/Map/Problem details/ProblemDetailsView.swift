@@ -49,7 +49,7 @@ struct ProblemDetailsView: View {
     
     var infos: some View {
         TabView(selection: $currentPage) {
-            ForEach(problem.topo!.problemsWithoutVariants) { (p: Problem) in
+            ForEach(problem.topo!.orderedProblems) { (p: Problem) in
                 ProblemCardView(problem: p)
                     .tag(p.id)
             }

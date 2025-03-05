@@ -34,11 +34,19 @@ struct Topo: Hashable {
     var remoteFile: URL {
         URL(string: "https://assets.boolder.com/proxy/topos/\(id)")!
     }
+    
+    var orderedProblems: [Problem] {
+        problemsWithoutVariants.sorted {
+            ($0.line?.firstPoint?.x ?? 0) < ($1.line?.firstPoint?.x ?? 0)
+        }.flatMap {
+            [$0] + $0.children
+        }
+    }
 }
 
 // MARK: SQLite
 extension Topo {
-    var problemsWithoutVariants: [Problem] {
+    private var problemsWithoutVariants: [Problem] {
         let query = Table("lines")
             .filter(Line.topoId == self.id)
 
