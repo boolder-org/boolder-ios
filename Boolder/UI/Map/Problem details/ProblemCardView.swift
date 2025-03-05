@@ -10,9 +10,45 @@ import SwiftUI
 
 struct ProblemCardView: View {
     let problem: Problem
+    @ObservedObject var mapState: MapState
+    
+    var variants: some View {
+//        VStack {
+            HStack {
+//                Spacer()
+        
+                if(problem.variants.count > 1) {
+                    Menu {
+                        ForEach(problem.variants) { variant in
+                            Button {
+                                mapState.selectProblem(variant)
+                            } label: {
+                                Text("\(variant.localizedName) \(variant.grade.string)")
+                            }
+                        }
+                    } label: {
+                        HStack {
+//                            Text("+\(problem.variants.count - 1)")
+                            Image(systemName: "chevron.down")
+                        }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color.gray.opacity(0.8))
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
+                            .padding(8)
+                    }
+                }
+//            }
+//            
+//            Spacer()
+        }
+    }
     
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 4) {
+            
             VStack(alignment: .leading, spacing: 4) {
                 
                 VStack(alignment: .leading, spacing: 4) {
@@ -31,6 +67,8 @@ struct ProblemCardView: View {
                         Text(problem.grade.string)
                             .font(.title)
                             .fontWeight(.bold)
+                        
+                        variants
                     }
                     .padding(.top, 4)
                 }
