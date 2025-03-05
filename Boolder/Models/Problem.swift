@@ -230,7 +230,7 @@ extension Problem {
             
             return problemsOnSameTopo.compactMap{$0}
                 .filter { $0.topoId == self.topoId } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
-                .filter { $0.parentId == nil }
+//                .filter { $0.parentId == nil }
                 .filter { $0.line?.coordinates != nil }
         }
         catch {
