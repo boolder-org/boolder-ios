@@ -141,36 +141,36 @@ struct TopoView: View {
                 }
             }
             
-            VStack {
-                HStack {
-                    Spacer()
-            
-                    if(problem.variants.count > 1) {
-                        Menu {
-                            ForEach(problem.variants) { variant in
-                                Button {
-                                    mapState.selectProblem(variant)
-                                } label: {
-                                    Text("\(variant.localizedName) \(variant.grade.string)")
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(numberOfVariantsForProblem(problem))
-                                Image(systemName: "chevron.down")
-                            }
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background(Color.gray.opacity(0.8))
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
-                                .padding(8)
-                        }
-                    }
-                }
-                
-                Spacer()
-            }
+//            VStack {
+//                HStack {
+//                    Spacer()
+//            
+//                    if(problem.variants.count > 1) {
+//                        Menu {
+//                            ForEach(problem.variants) { variant in
+//                                Button {
+//                                    mapState.selectProblem(variant)
+//                                } label: {
+//                                    Text("\(variant.localizedName) \(variant.grade.string)")
+//                                }
+//                            }
+//                        } label: {
+//                            HStack {
+//                                Text(numberOfVariantsForProblem(problem))
+//                                Image(systemName: "chevron.down")
+//                            }
+//                                .padding(.vertical, 4)
+//                                .padding(.horizontal, 8)
+//                                .background(Color.gray.opacity(0.8))
+//                                .foregroundColor(Color(UIColor.systemBackground))
+//                                .cornerRadius(16)
+//                                .padding(8)
+//                        }
+//                    }
+//                }
+//                
+//                Spacer()
+//            }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
