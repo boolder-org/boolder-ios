@@ -62,14 +62,10 @@ struct TopoView: View {
                                             .allowsHitTesting(false)
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
-                                        
-                                        Text(p.parentId == nil ? p.grade.string : "")
-                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-                                            .zIndex(p == problem ? .infinity : p.zIndex)
                                             
                                         
-                                        LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                                            .opacity(0.5)
+//                                        LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+//                                            .opacity(0.5)
                                     }
                                 }
                             }
@@ -80,6 +76,22 @@ struct TopoView: View {
                                 handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
                             }
                         }
+                        
+//                        GeometryReader { geo in
+//                            ForEach(problem.startGroups) { (group: StartGroup) in
+//                                ForEach(group.problems) { (p: Problem) in
+//                                    if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = line.middlePoint {
+//                                        
+//                                        GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+//                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+//                                            .zIndex(.infinity)
+//                                            .onTapGesture {
+//                                                mapState.selectProblem(p)
+//                                            }
+//                                    }
+//                                }
+//                            }
+//                        }
                     }
                 }
                 else if case .loading = photoStatus {
@@ -129,36 +141,36 @@ struct TopoView: View {
                 }
             }
             
-//            VStack {
-//                HStack {
-//                    Spacer()
-//            
-//                    if(problem.variants.count > 1) {
-//                        Menu {
-//                            ForEach(problem.variants) { variant in
-//                                Button {
-//                                    mapState.selectProblem(variant)
-//                                } label: {
-//                                    Text("\(variant.localizedName) \(variant.grade.string)")
-//                                }
-//                            }
-//                        } label: {
-//                            HStack {
-//                                Text(numberOfVariantsForProblem(problem))
-//                                Image(systemName: "chevron.down")
-//                            }
-//                                .padding(.vertical, 4)
-//                                .padding(.horizontal, 8)
-//                                .background(Color.gray.opacity(0.8))
-//                                .foregroundColor(Color(UIColor.systemBackground))
-//                                .cornerRadius(16)
-//                                .padding(8)
-//                        }
-//                    }
-//                }
-//                
-//                Spacer()
-//            }
+            VStack {
+                HStack {
+                    Spacer()
+            
+                    if(problem.variants.count > 1) {
+                        Menu {
+                            ForEach(problem.variants) { variant in
+                                Button {
+                                    mapState.selectProblem(variant)
+                                } label: {
+                                    Text("\(variant.localizedName) \(variant.grade.string)")
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(numberOfVariantsForProblem(problem))
+                                Image(systemName: "chevron.down")
+                            }
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 8)
+                                .background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                                .padding(8)
+                        }
+                    }
+                }
+                
+                Spacer()
+            }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
