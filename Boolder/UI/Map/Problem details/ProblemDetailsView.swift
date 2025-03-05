@@ -57,6 +57,10 @@ struct ProblemDetailsView: View {
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
         .onChange(of: currentPage) { newPage in
             print(newPage)
+            mapState.selectProblem(Problem.load(id: newPage)!)
+        }
+        .onChange(of: problem) { [problem] newValue in
+            currentPage = newValue.id
         }
         .padding(.top, 0)
 //        .padding(.horizontal)
