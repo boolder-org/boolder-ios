@@ -19,6 +19,7 @@ struct TopoView: View {
     @State private var showMissingLineNotice = false
     
     @State private var showAllLines = false
+    @Binding var selectedDetent: PresentationDetent
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -217,9 +218,13 @@ struct TopoView: View {
                 }
             }
         }
+        .onChange(of: selectedDetent) { newDetent in
+            print("User selected: \(newDetent == .large ? "Large" : "Medium")")
+        }
         .task {
             await loadData()
         }
+        
     }
     
     func displayLine() {

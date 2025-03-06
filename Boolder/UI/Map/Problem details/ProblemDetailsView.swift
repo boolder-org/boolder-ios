@@ -26,18 +26,25 @@ struct ProblemDetailsView: View {
     
     @State private var currentPage = 0
     
+    @Binding var selectedDetent: PresentationDetent
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
                     TopoView(
                         problem: $problem,
-                        mapState: mapState
+                        mapState: mapState,
+                        selectedDetent: $selectedDetent
                     )
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
-                    infos
+//                    tabs
+                    
+                    ProblemCardView(problem: problem, mapState: mapState)
+                    
+                    Spacer()
                     
 //                    actionButtons
                 }
@@ -47,7 +54,7 @@ struct ProblemDetailsView: View {
         }
     }
     
-    var infos: some View {
+    var tabs: some View {
         TabView(selection: $currentPage) {
             ForEach(problem.topo!.orderedProblems) { (p: Problem) in
                 ProblemCardView(problem: p, mapState: mapState)

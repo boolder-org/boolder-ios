@@ -21,6 +21,8 @@ struct MapContainerView: View {
     @State private var presentDownloads = false
     @State private var presentDownloadsPlaceholder = false
     
+    @State private var selectedDetent: PresentationDetent = .medium
+    
     var body: some View {
         
         ZStack {
@@ -75,25 +77,26 @@ struct MapContainerView: View {
             .sheet(isPresented: $mapState.presentProblemDetails) {
                 ProblemDetailsView(
                     problem: $mapState.selectedProblem,
-                    mapState: mapState
+                    mapState: mapState,
+                    selectedDetent: $selectedDetent
                 )
-                .presentationDetents([detent])
+                .presentationDetents([.medium, .large], selection: $selectedDetent)
 //                .presentationDetents([.medium])
                 .presentationBackgroundInteraction(
-                    .enabled(upThrough: detent)
+                    .enabled(upThrough: .medium)
                 )
-                .presentationDragIndicator(.hidden)
+//                .presentationDragIndicator(.hidden)
             }
     }
     
-    var detent: PresentationDetent {
-        if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
-            return .height(420)
-        }
-        else {
-            return .medium
-        }
-    }
+//    var detent: PresentationDetent {
+//        if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
+//            return .height(420)
+//        }
+//        else {
+//            return .medium
+//        }
+//    }
     
     var offsetToBeOnTopOfSheet: CGFloat {
         if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
