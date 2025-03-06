@@ -34,6 +34,8 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
+                    
+                    
                     TopoView(
                         problem: $problem,
                         mapState: mapState,
@@ -43,13 +45,77 @@ struct ProblemDetailsView: View {
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
-//                    tabs
-                    
                     ProblemCardView(problem: problem, mapState: mapState)
                         .frame(height: 80)
+                        .opacity(showAllLines ? 0.2 : 1)
+                    
+//                    tabs
+                    
+                    
                     
                     if selectedDetent == .large {
-                        Divider()
+//                        Divider()
+                        
+//                        HStack(spacing: 0) {
+//                            
+//                            
+//                            Button(action: {
+//                                
+//                            }) {
+//                                Image(systemName: "arrow.left")
+//                                    .padding(10)
+//                            }
+//                            .font(.body.weight(.semibold))
+//                            //                                .accentColor(.appGreen)
+//                            .background(Color.systemBackground)
+//                            .clipShape(Circle())
+//                            .overlay(
+//                                Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                            )
+//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                            .padding(.horizontal)
+//                            
+//                            
+//                            Spacer()
+//                            
+//                            Button(action: {
+//                                showAllLines.toggle()
+//                            }) {
+//                                Text("Afficher")
+//                                    .padding(10)
+//                            }
+//                            .font(.body.weight(.semibold))
+//                            //                                .accentColor(.appGreen)
+//                            .background(Color.systemBackground)
+////                            .clipShape(Circle())
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 12).stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                            )
+//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                            .padding(.horizontal)
+//                            
+//                            
+//                            Spacer()
+//                            
+//                            
+//                            
+//                            Button(action: {
+//                                
+//                            }) {
+//                                Image(systemName: "arrow.right")
+//                                    .padding(10)
+//                            }
+//                            .font(.body.weight(.semibold))
+//                            //                                .accentColor(.appGreen)
+//                            .background(Color.systemBackground)
+//                            .clipShape(Circle())
+//                            .overlay(
+//                                Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                            )
+//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                            .padding(.horizontal)
+//                            
+//                        }
                         
                         ScrollView {
                             
