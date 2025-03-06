@@ -114,6 +114,9 @@ struct ProblemDetailsView: View {
             
             Spacer()
         }
+        .onChange(of: problem) { [problem] newValue in
+            showAllLines = false
+        }
     }
     
     var tabs: some View {
