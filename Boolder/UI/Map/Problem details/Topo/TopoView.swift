@@ -18,6 +18,8 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     
+    @State private var showAllLines = false
+    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -63,9 +65,10 @@ struct TopoView: View {
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
                                             
-                                        
-//                                        LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-//                                            .opacity(0.5)
+                                        if(showAllLines) {
+                                            LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+//                                                .opacity(0.5)
+                                        }
                                     }
                                 }
                             }
@@ -76,22 +79,24 @@ struct TopoView: View {
                                 handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
                             }
                         }
-                        
-//                        GeometryReader { geo in
-//                            ForEach(problem.startGroups) { (group: StartGroup) in
-//                                ForEach(group.problems) { (p: Problem) in
-//                                    if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = line.middlePoint {
-//                                        
-//                                        GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-//                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-//                                            .zIndex(.infinity)
-//                                            .onTapGesture {
-//                                                mapState.selectProblem(p)
-//                                            }
-//                                    }
-//                                }
-//                            }
-//                        }
+
+                        if(showAllLines) {
+                            GeometryReader { geo in
+                                ForEach(problem.startGroups) { (group: StartGroup) in
+                                    ForEach(group.problems) { (p: Problem) in
+                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = line.middlePoint {
+                                            
+                                            GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                                .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                                .zIndex(.infinity)
+                                                .onTapGesture {
+                                                    mapState.selectProblem(p)
+                                                }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 else if case .loading = photoStatus {
@@ -139,6 +144,22 @@ struct TopoView: View {
                 else {
                     EmptyView()
                 }
+            }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        showAllLines.toggle()
+                    } label: {
+                        Image(systemName: "eye")
+                            .padding()
+                    }
+
+                }
+                
+                Spacer()
             }
             
 //            VStack {
