@@ -18,7 +18,7 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     
-    @State private var showAllLines = false
+    @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
     var body: some View {

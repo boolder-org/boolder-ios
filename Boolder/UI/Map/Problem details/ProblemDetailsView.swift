@@ -28,6 +28,8 @@ struct ProblemDetailsView: View {
     
     @Binding var selectedDetent: PresentationDetent
     
+    @State private var showAllLines = false
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
@@ -35,6 +37,7 @@ struct ProblemDetailsView: View {
                     TopoView(
                         problem: $problem,
                         mapState: mapState,
+                        showAllLines: $showAllLines,
                         selectedDetent: $selectedDetent
                     )
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
@@ -43,6 +46,37 @@ struct ProblemDetailsView: View {
 //                    tabs
                     
                     ProblemCardView(problem: problem, mapState: mapState)
+                        .frame(height: 72)
+                    
+                    if selectedDetent == .large {
+                        Divider()
+                        
+                        ScrollView {
+                            
+                            
+                            ForEach(problem.topo!.orderedProblems) { p in
+                                Button {
+                                    mapState.selectProblem(p)
+                                } label: {
+                                    HStack {
+                                        ProblemCircleView(problem: p)
+                                        Text(p.localizedName)
+                                        Spacer()
+                                        if(p.featured) {
+                                            Image(systemName: "heart.fill").foregroundColor(.pink)
+                                        }
+                                        Text(p.grade.string)
+                                    }
+                                    .foregroundColor(.primary)
+                                }
+                                .padding(.horizontal)
+                                
+                                Divider()
+                            }
+                        }
+                        
+                        
+                    }
                     
                     Spacer()
                     
