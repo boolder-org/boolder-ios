@@ -46,7 +46,7 @@ struct ProblemDetailsView: View {
 //                    tabs
                     
                     ProblemCardView(problem: problem, mapState: mapState)
-                        .frame(height: 72)
+                        .frame(height: 80)
                     
                     if selectedDetent == .large {
                         Divider()
@@ -54,7 +54,7 @@ struct ProblemDetailsView: View {
                         ScrollView {
                             
                             
-                            ForEach(problem.topo!.orderedProblems) { p in
+                            ForEach(problem.topo!.orderedProblemsWithoutVariants) { p in
                                 Button {
                                     mapState.selectProblem(p)
                                 } label: {
@@ -68,10 +68,38 @@ struct ProblemDetailsView: View {
                                         Text(p.grade.string)
                                     }
                                     .foregroundColor(.primary)
+                                    
                                 }
                                 .padding(.horizontal)
+                                .background(p.id == problem.id ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                 
                                 Divider()
+                                
+                                ForEach(p.children) { child in
+                                    Button {
+                                        mapState.selectProblem(child)
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "arrow.turn.down.right")
+                                                .foregroundColor(.gray)
+                                            
+                                            ProblemCircleView(problem: child)
+                                            Text(child.localizedName)
+                                            Spacer()
+                                            if(child.featured) {
+                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                                            }
+                                            Text(child.grade.string)
+                                        }
+                                        .foregroundColor(.primary)
+                                    }
+                                    .padding(.horizontal)
+                                    .background(child.id == problem.id ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                    
+                                    Divider()
+                                }
+                                
+                                
                             }
                         }
                         

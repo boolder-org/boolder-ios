@@ -68,7 +68,7 @@ struct ProblemCardView: View {
                             .font(.title)
                             .fontWeight(.bold)
                         
-                        variants
+//                        variants
                     }
                     .padding(.top, 4)
                 }

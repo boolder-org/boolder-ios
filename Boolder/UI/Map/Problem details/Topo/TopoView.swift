@@ -153,6 +153,7 @@ struct TopoView: View {
                     
                     Button {
                         showAllLines.toggle()
+//                        selectedDetent = .large
                     } label: {
                         Image(systemName: "eye")
                             .padding()

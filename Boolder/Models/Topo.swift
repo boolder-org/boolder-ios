@@ -36,9 +36,7 @@ struct Topo: Hashable {
     }
     
     var orderedProblems: [Problem] {
-        problemsWithoutVariants.sorted {
-            ($0.line?.firstPoint?.x ?? 0) < ($1.line?.firstPoint?.x ?? 0)
-        }.flatMap {
+        orderedProblemsWithoutVariants.flatMap {
             [$0] + $0.children
         }
     }
@@ -46,7 +44,7 @@ struct Topo: Hashable {
 
 // MARK: SQLite
 extension Topo {
-    private var problemsWithoutVariants: [Problem] {
+    var orderedProblemsWithoutVariants: [Problem] {
         let query = Table("lines")
             .filter(Line.topoId == self.id)
 
@@ -58,6 +56,9 @@ extension Topo {
             return results.compactMap{$0}
                 .filter { $0.topoId == self.id } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
                 .filter { $0.parentId == nil }
+                .sorted {
+                    ($0.line?.firstPoint?.x ?? 1) < ($1.line?.firstPoint?.x ?? 1)
+                }
 //                .filter { $0.line?.coordinates != nil }
         }
         catch {
