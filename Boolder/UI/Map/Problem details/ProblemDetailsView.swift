@@ -35,15 +35,31 @@ struct ProblemDetailsView: View {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
                     
-                    
-                    TopoView(
-                        problem: $problem,
-                        mapState: mapState,
-                        showAllLines: $showAllLines,
-                        selectedDetent: $selectedDetent
-                    )
+                    TabView(selection: $currentPage) {
+                        ForEach(problem.topo!.onSameBoulder) { topo in
+                            TopoView(
+                                problem: topo.firstProblemOnTheLeft!,
+                                mapState: mapState,
+                                showAllLines: $showAllLines,
+                                selectedDetent: $selectedDetent
+                            )
+                            .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                            .zIndex(10)
+                                .tag(topo.id) // use tag or id?
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                    .zIndex(10)
+                    .onChange(of: currentPage) { newPage in
+                        print(newPage)
+                        if let topo = Topo.load(id: newPage) {
+                            mapState.selectProblem(topo.firstProblemOnTheLeft!)
+                        }
+                    }
+                    .onChange(of: problem) { [problem] newValue in
+//                        currentPage = newValue.topo!.id
+                    }
+                    
                     
                     if selectedDetent == .medium {
                         
@@ -184,7 +200,7 @@ struct ProblemDetailsView: View {
             Spacer()
         }
         .onChange(of: problem) { [problem] newValue in
-            showAllLines = false
+//            showAllLines = false
         }
     }
     
