@@ -13,11 +13,8 @@ import SQLite
 struct Topo: Hashable {
     let id: Int
     let areaId: Int
-    
-    init(id: Int, areaId: Int) {
-        self.id = id
-        self.areaId = areaId
-    }
+    let boulderId: Int?
+    let position: Int?
     
     var onDiskPhoto: UIImage? {
         UIImage(contentsOfFile: onDiskFile.path)
@@ -44,6 +41,29 @@ struct Topo: Hashable {
 
 // MARK: SQLite
 extension Topo {
+    static let id = Expression<Int>("id")
+    static let areaId = Expression<Int>("area_id")
+    static let boulderId = Expression<Int?>("boulder_id")
+    static let position = Expression<Int?>("position")
+    
+    static func load(id: Int) -> Topo? {
+        do {
+            let topos = Table("topos").filter(self.id == id)
+            
+            do {
+                if let t = try SqliteStore.shared.db.pluck(topos) {
+                    return Topo(id: t[self.id], areaId: t[areaId], boulderId: t[boulderId], position: t[position])
+                }
+                
+                return nil
+            }
+            catch {
+                print (error)
+                return nil
+            }
+        }
+    }
+    
     var orderedProblemsWithoutVariants: [Problem] {
         let query = Table("lines")
             .filter(Line.topoId == self.id)

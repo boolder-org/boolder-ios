@@ -226,6 +226,7 @@ extension Area {
         }
     }
     
+    // TODO: simplify with new topos table
     var topos: [Topo] {
         let lines = Table("lines")
         let problems = Table("problems")
@@ -236,10 +237,10 @@ extension Area {
         
         do {
             let topos = try SqliteStore.shared.db.prepare(query).map { line in
-                Topo(id: line[Line.topoId], areaId: id)
+                Topo.load(id: line[Line.topoId])
             }
             
-            return Array(Set(topos)).sorted{$0.id < $1.id}
+            return topos.compactMap{$0}.sorted{$0.id < $1.id}
         }
         catch {
             print (error)
