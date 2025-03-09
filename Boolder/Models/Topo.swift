@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SQLite
 
-struct Topo: Hashable {
+struct Topo: Hashable, Identifiable {
     let id: Int
     let areaId: Int
     let boulderId: Int?
@@ -85,5 +85,43 @@ extension Topo {
             print (error)
             return []
         }
+    }
+    
+    var onSameBoulder: [Topo] {
+        guard let boulderId = boulderId else { return [] }
+        
+        return Topo.onBoulder(boulderId)
+    }
+    
+    static func onBoulder(_ id: Int) -> [Topo] {
+        let query = Table("topos")
+            .filter(Topo.boulderId == id)
+            .order(Topo.position)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { t in
+                Topo.load(id: t[Topo.id])! // FIXME: don't ue bang
+            }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
+    var next: Topo? {
+        if let index = onSameBoulder.firstIndex(of: self) {
+            return onSameBoulder[(index + 1) % onSameBoulder.count]
+        }
+        
+        return nil
+    }
+    
+    var firstProblemOnTheLeft: Problem? {
+        orderedProblemsWithoutVariants.sorted { ($0.lineFirstPoint?.x ?? 1.0) < ($1.lineFirstPoint?.x ?? 1.0) }.first
+    }
+    
+    var firstProblemOnTheRight: Problem? {
+        orderedProblemsWithoutVariants.sorted { ($0.lineFirstPoint?.x ?? 0) > ($1.lineFirstPoint?.x ?? 0) }.first
     }
 }
