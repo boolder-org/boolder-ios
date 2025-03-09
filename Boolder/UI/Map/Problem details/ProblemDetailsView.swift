@@ -45,9 +45,12 @@ struct ProblemDetailsView: View {
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
-                    ProblemCardView(problem: problem, mapState: mapState)
-                        .frame(height: 80)
-                        .opacity(showAllLines ? 0.2 : 1)
+                    if selectedDetent == .medium {
+                        
+                        ProblemCardView(problem: problem, mapState: mapState)
+                            .frame(height: 80)
+                            .opacity(showAllLines ? 0.2 : 1)
+                    }
                     
 //                    tabs
                     
@@ -137,7 +140,7 @@ struct ProblemDetailsView: View {
                                     
                                 }
                                 .padding(.horizontal)
-                                .background(p.id == problem.id ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                .background(p.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                 
                                 Divider()
                                 
@@ -160,7 +163,7 @@ struct ProblemDetailsView: View {
                                         .foregroundColor(.primary)
                                     }
                                     .padding(.horizontal)
-                                    .background(child.id == problem.id ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                    .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                     
                                     Divider()
                                 }

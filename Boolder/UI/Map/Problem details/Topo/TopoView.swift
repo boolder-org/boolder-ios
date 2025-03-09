@@ -147,22 +147,26 @@ struct TopoView: View {
                 }
             }
             
-            VStack {
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        showAllLines.toggle()
-//                        selectedDetent = .large
-                    } label: {
-                        Image(systemName: "eye")
-                            .padding()
-                    }
+            if selectedDetent == .large {
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            showAllLines.toggle()
+    //                        selectedDetent = .large
+                        } label: {
+                            Image(systemName: "eye")
+                                .padding()
+                        }
 
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
             }
+            
+            
             
 //            VStack {
 //                HStack {
@@ -221,6 +225,12 @@ struct TopoView: View {
         }
         .onChange(of: selectedDetent) { newDetent in
             print("User selected: \(newDetent == .large ? "Large" : "Medium")")
+            if newDetent == .large {
+                showAllLines = true
+            }
+            else {
+                showAllLines = false
+            }
         }
         .task {
             await loadData()
