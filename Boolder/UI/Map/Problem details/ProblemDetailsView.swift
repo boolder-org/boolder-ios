@@ -57,7 +57,7 @@ struct ProblemDetailsView: View {
                         }
                     }
                     .onChange(of: problem) { [problem] newValue in
-//                        currentPage = newValue.topo!.id
+                        currentPage = newValue.topo!.id
                     }
                     
                     
@@ -201,6 +201,9 @@ struct ProblemDetailsView: View {
         }
         .onChange(of: problem) { [problem] newValue in
 //            showAllLines = false
+        }
+        .task {
+            currentPage = problem.topo!.id
         }
     }
     
