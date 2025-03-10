@@ -11,7 +11,8 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let problem: Problem
+    let topo: Topo
+    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
@@ -254,12 +255,13 @@ struct TopoView: View {
     }
     
     func loadData() async {
-        guard let topo = problem.topo else {
-            photoStatus = .none
-            return
-        }
+//        guard let topo = problem.topo else {
+//            photoStatus = .none
+//            return
+//        }
         
-        if let photo = problem.onDiskPhoto {
+        
+        if let photo = topo.onDiskPhoto {
             self.photoStatus = .ready(image: photo)
             return
         }
@@ -274,7 +276,7 @@ struct TopoView: View {
         if result == .success
         {
             // TODO: move this logic to Downloader
-            if let photo = problem.onDiskPhoto {
+            if let photo = topo.onDiskPhoto {
                 self.photoStatus = .ready(image: photo)
                 return
             }

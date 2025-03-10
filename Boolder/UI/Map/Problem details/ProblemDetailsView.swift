@@ -38,7 +38,8 @@ struct ProblemDetailsView: View {
                     TabView(selection: $currentPage) {
                         ForEach(problem.topo!.onSameBoulder) { topo in
                             TopoView(
-                                problem: topo.firstProblemOnTheLeft!,
+                                topo: topo,
+                                problem: $problem,
                                 mapState: mapState,
                                 showAllLines: $showAllLines,
                                 selectedDetent: $selectedDetent
@@ -142,6 +143,7 @@ struct ProblemDetailsView: View {
                             ForEach(problem.topo!.orderedProblemsWithoutVariants) { p in
                                 Button {
                                     mapState.selectProblem(p)
+                                    showAllLines = false
                                 } label: {
                                     HStack {
                                         ProblemCircleView(problem: p)
@@ -163,6 +165,7 @@ struct ProblemDetailsView: View {
                                 ForEach(p.children) { child in
                                     Button {
                                         mapState.selectProblem(child)
+                                        showAllLines = false
                                     } label: {
                                         HStack {
                                             Image(systemName: "arrow.turn.down.right")
