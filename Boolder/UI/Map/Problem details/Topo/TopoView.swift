@@ -148,24 +148,24 @@ struct TopoView: View {
                 }
             }
             
-            if selectedDetent == .large {
-                VStack {
-                    HStack {
-                        Spacer()
-                        
-                        Button {
-                            showAllLines.toggle()
-    //                        selectedDetent = .large
-                        } label: {
-                            Image(systemName: "eye")
-                                .padding()
-                        }
-
-                    }
-                    
-                    Spacer()
-                }
-            }
+//            if selectedDetent == .large {
+//                VStack {
+//                    HStack {
+//                        Spacer()
+//                        
+//                        Button {
+//                            showAllLines.toggle()
+//    //                        selectedDetent = .large
+//                        } label: {
+//                            Image(systemName: "eye")
+//                                .padding()
+//                        }
+//
+//                    }
+//                    
+//                    Spacer()
+//                }
+//            }
             
             
             

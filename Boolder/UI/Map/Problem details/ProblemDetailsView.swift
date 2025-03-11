@@ -33,7 +33,7 @@ struct ProblemDetailsView: View {
     var body: some View {
         VStack {
             GeometryReader { geo in
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 0) {
                     
                     TabView(selection: $currentPage) {
                         ForEach(problem.topo!.onSameBoulder) { topo in
@@ -49,7 +49,7 @@ struct ProblemDetailsView: View {
                                 .tag(topo.id) // use tag or id?
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: selectedDetent == .large ? .automatic : .never))
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .onChange(of: currentPage) { newPage in
                         print(newPage)
