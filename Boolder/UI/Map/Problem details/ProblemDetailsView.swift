@@ -77,10 +77,10 @@ struct ProblemDetailsView: View {
 //                        Divider()
                         
 //                        HStack(spacing: 0) {
-//                            
-//                            
+//
+//
 //                            Button(action: {
-//                                
+//
 //                            }) {
 //                                Image(systemName: "arrow.left")
 //                                    .padding(10)
@@ -94,10 +94,10 @@ struct ProblemDetailsView: View {
 //                            )
 //                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
 //                            .padding(.horizontal)
-//                            
-//                            
+//
+//
 //                            Spacer()
-//                            
+//
 //                            Button(action: {
 //                                showAllLines.toggle()
 //                            }) {
@@ -113,14 +113,14 @@ struct ProblemDetailsView: View {
 //                            )
 //                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
 //                            .padding(.horizontal)
-//                            
-//                            
+//
+//
 //                            Spacer()
-//                            
-//                            
-//                            
+//
+//
+//
 //                            Button(action: {
-//                                
+//
 //                            }) {
 //                                Image(systemName: "arrow.right")
 //                                    .padding(10)
@@ -134,60 +134,65 @@ struct ProblemDetailsView: View {
 //                            )
 //                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
 //                            .padding(.horizontal)
-//                            
+//
 //                        }
                         
                         ScrollView {
                             
-                            
-                            ForEach(problem.topo!.orderedProblemsWithoutVariants) { p in
-                                Button {
-                                    mapState.selectProblem(p)
-                                    showAllLines = false
-                                } label: {
-                                    HStack {
-                                        ProblemCircleView(problem: p)
-                                        Text(p.localizedName)
-                                        Spacer()
-                                        if(p.featured) {
-                                            Image(systemName: "heart.fill").foregroundColor(.pink)
-                                        }
-                                        Text(p.grade.string)
-                                    }
-                                    .foregroundColor(.primary)
-                                    
-                                }
-                                .padding(.horizontal)
-                                .background(p.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                            VStack(spacing: 0) {
                                 
-                                Divider()
-                                
-                                ForEach(p.children) { child in
+                                ForEach(problem.topo!.orderedProblems) { p in
                                     Button {
-                                        mapState.selectProblem(child)
+                                        mapState.selectProblem(p)
                                         showAllLines = false
                                     } label: {
                                         HStack {
-                                            Image(systemName: "arrow.turn.down.right")
-                                                .foregroundColor(.gray)
-                                            
-                                            ProblemCircleView(problem: child)
-                                            Text(child.localizedName)
+                                            ProblemCircleView(problem: p)
+                                            Text(p.localizedName)
                                             Spacer()
-                                            if(child.featured) {
+                                            if(p.featured) {
                                                 Image(systemName: "heart.fill").foregroundColor(.pink)
                                             }
-                                            Text(child.grade.string)
+                                            Text(p.grade.string)
                                         }
                                         .foregroundColor(.primary)
+                                        
                                     }
                                     .padding(.horizontal)
-                                    .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                    .padding(.vertical, 6)
+                                    .background(p.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                     
-                                    Divider()
+                                    Divider().padding(.vertical, 0)
+                                    
+                                    //                                Divider()
+                                    //
+                                    //                                ForEach(p.children) { child in
+                                    //                                    Button {
+                                    //                                        mapState.selectProblem(child)
+                                    //                                        showAllLines = false
+                                    //                                    } label: {
+                                    //                                        HStack {
+                                    //                                            Image(systemName: "arrow.turn.down.right")
+                                    //                                                .foregroundColor(.gray)
+                                    //
+                                    //                                            ProblemCircleView(problem: child)
+                                    //                                            Text(child.localizedName)
+                                    //                                            Spacer()
+                                    //                                            if(child.featured) {
+                                    //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                                    //                                            }
+                                    //                                            Text(child.grade.string)
+                                    //                                        }
+                                    //                                        .foregroundColor(.primary)
+                                    //                                    }
+                                    //                                    .padding(.horizontal)
+                                    //                                    .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                    //
+                                    //                                    Divider()
+                                    //                                }
+                                    
+                                    
                                 }
-                                
-                                
                             }
                         }
                         

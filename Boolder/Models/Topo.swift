@@ -32,11 +32,7 @@ struct Topo: Hashable, Identifiable {
         URL(string: "https://assets.boolder.com/proxy/topos/\(id)")!
     }
     
-    var orderedProblems: [Problem] {
-        orderedProblemsWithoutVariants.flatMap {
-            [$0] + $0.children
-        }
-    }
+    
 }
 
 // MARK: SQLite
@@ -64,7 +60,13 @@ extension Topo {
         }
     }
     
-    var orderedProblemsWithoutVariants: [Problem] {
+//    var orderedProblems: [Problem] {
+//        orderedProblemsWithoutVariants.flatMap {
+//            [$0] + $0.children
+//        }
+//    }
+    
+    var orderedProblems: [Problem] {
         let query = Table("lines")
             .filter(Line.topoId == self.id)
 
@@ -75,7 +77,7 @@ extension Topo {
             
             return results.compactMap{$0}
                 .filter { $0.topoId == self.id } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
-                .filter { $0.parentId == nil }
+//                .filter { $0.parentId == nil }
                 .sorted {
                     ($0.line?.firstPoint?.x ?? 1) < ($1.line?.firstPoint?.x ?? 1)
                 }
@@ -118,10 +120,10 @@ extension Topo {
     }
     
     var firstProblemOnTheLeft: Problem? {
-        orderedProblemsWithoutVariants.sorted { ($0.lineFirstPoint?.x ?? 1.0) < ($1.lineFirstPoint?.x ?? 1.0) }.first
+        orderedProblems.sorted { ($0.lineFirstPoint?.x ?? 1.0) < ($1.lineFirstPoint?.x ?? 1.0) }.first
     }
     
     var firstProblemOnTheRight: Problem? {
-        orderedProblemsWithoutVariants.sorted { ($0.lineFirstPoint?.x ?? 0) > ($1.lineFirstPoint?.x ?? 0) }.first
+        orderedProblems.sorted { ($0.lineFirstPoint?.x ?? 0) > ($1.lineFirstPoint?.x ?? 0) }.first
     }
 }
