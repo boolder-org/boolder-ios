@@ -120,10 +120,10 @@ extension Topo {
     }
     
     var firstProblemOnTheLeft: Problem? {
-        orderedProblems.sorted { ($0.lineFirstPoint?.x ?? 1.0) < ($1.lineFirstPoint?.x ?? 1.0) }.first
+        orderedProblemsWithoutVariants.sorted { ($0.lineFirstPoint?.x ?? 1.0) < ($1.lineFirstPoint?.x ?? 1.0) }.first
     }
     
     var firstProblemOnTheRight: Problem? {
-        orderedProblems.sorted { ($0.lineFirstPoint?.x ?? 0) > ($1.lineFirstPoint?.x ?? 0) }.first
+        orderedProblemsWithoutVariants.sorted { ($0.lineFirstPoint?.x ?? 0) > ($1.lineFirstPoint?.x ?? 0) }.first
     }
 }
