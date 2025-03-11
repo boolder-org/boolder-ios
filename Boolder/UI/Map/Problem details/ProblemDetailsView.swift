@@ -141,7 +141,7 @@ struct ProblemDetailsView: View {
                             
                             VStack(spacing: 0) {
                                 
-                                ForEach(problem.topo!.orderedProblems) { p in
+                                ForEach(problem.topo!.orderedProblemsWithoutVariants) { p in
                                     Button {
                                         mapState.selectProblem(p)
                                         showAllLines = false
@@ -164,32 +164,31 @@ struct ProblemDetailsView: View {
                                     
                                     Divider().padding(.vertical, 0)
                                     
-                                    //                                Divider()
-                                    //
-                                    //                                ForEach(p.children) { child in
-                                    //                                    Button {
-                                    //                                        mapState.selectProblem(child)
-                                    //                                        showAllLines = false
-                                    //                                    } label: {
-                                    //                                        HStack {
-                                    //                                            Image(systemName: "arrow.turn.down.right")
-                                    //                                                .foregroundColor(.gray)
-                                    //
-                                    //                                            ProblemCircleView(problem: child)
-                                    //                                            Text(child.localizedName)
-                                    //                                            Spacer()
-                                    //                                            if(child.featured) {
-                                    //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
-                                    //                                            }
-                                    //                                            Text(child.grade.string)
-                                    //                                        }
-                                    //                                        .foregroundColor(.primary)
-                                    //                                    }
-                                    //                                    .padding(.horizontal)
-                                    //                                    .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
-                                    //
-                                    //                                    Divider()
-                                    //                                }
+                                    ForEach(p.children) { child in
+                                        Button {
+                                            mapState.selectProblem(child)
+                                            showAllLines = false
+                                        } label: {
+                                            HStack {
+//                                                Image(systemName: "arrow.turn.down.right")
+//                                                    .foregroundColor(.gray)
+                                                
+                                                ProblemCircleView(problem: child)
+                                                Text(child.localizedName)
+                                                Spacer()
+                                                if(child.featured) {
+                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                                                }
+                                                Text(child.grade.string)
+                                            }
+                                            .foregroundColor(.primary)
+                                        }
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 6)
+                                        .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                        
+                                        Divider().padding(.vertical, 0)
+                                    }
                                     
                                     
                                 }
@@ -215,26 +214,26 @@ struct ProblemDetailsView: View {
         }
     }
     
-    var tabs: some View {
-        TabView(selection: $currentPage) {
-            ForEach(problem.topo!.orderedProblems) { (p: Problem) in
-                ProblemCardView(problem: p, mapState: mapState)
-                    .tag(p.id)
-            }
-        }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-        .onChange(of: currentPage) { newPage in
-            print(newPage)
-            mapState.selectProblem(Problem.load(id: newPage)!)
-        }
-        .onChange(of: problem) { [problem] newValue in
-            currentPage = newValue.id
-        }
-        .padding(.top, 0)
-//        .padding(.horizontal)
-        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
-        
-    }
+//    var tabs: some View {
+//        TabView(selection: $currentPage) {
+//            ForEach(problem.topo!.orderedProblemsWithoutVariants) { (p: Problem) in
+//                ProblemCardView(problem: p, mapState: mapState)
+//                    .tag(p.id)
+//            }
+//        }
+//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+//        .onChange(of: currentPage) { newPage in
+//            print(newPage)
+//            mapState.selectProblem(Problem.load(id: newPage)!)
+//        }
+//        .onChange(of: problem) { [problem] newValue in
+//            currentPage = newValue.id
+//        }
+//        .padding(.top, 0)
+////        .padding(.horizontal)
+//        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+//        
+//    }
     
     var actionButtons: some View {
         ScrollView(.horizontal, showsIndicators: false) {
