@@ -64,6 +64,12 @@ struct ProblemCardView: View {
                         
                         Spacer()
                         
+//                        if(problem.sitStart) {
+//                            Image(systemName: "figure.rower")
+//                            Text("problem.sit_start")
+//                                .font(.body)
+//                        }
+                        
                         Text(problem.grade.string)
                             .font(.title)
                             .fontWeight(.bold)
@@ -81,20 +87,20 @@ struct ProblemCardView: View {
                             .font(.body)
                     }
                     
-                    if problem.steepness != .other {
-                        if problem.sitStart {
-                            Text("•")
-                                .font(.body)
-                        }
-                        
-                        HStack(alignment: .firstTextBaseline) {
-                            Image(problem.steepness.imageName)
-                                .frame(minWidth: 16)
-                            Text(problem.steepness.localizedName)
-                            
-                        }
-                        .font(.body)
-                    }
+//                    if problem.steepness != .other {
+//                        if problem.sitStart {
+//                            Text("•")
+//                                .font(.body)
+//                        }
+//                        
+//                        HStack(alignment: .firstTextBaseline) {
+//                            Image(problem.steepness.imageName)
+//                                .frame(minWidth: 16)
+//                            Text(problem.steepness.localizedName)
+//                            
+//                        }
+//                        .font(.body)
+//                    }
                     
                     Spacer()
                     
