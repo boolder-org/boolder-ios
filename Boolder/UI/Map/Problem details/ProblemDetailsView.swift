@@ -150,9 +150,13 @@ struct ProblemDetailsView: View {
                                             ProblemCircleView(problem: p)
                                             Text(p.localizedName)
                                             Spacer()
-                                            if(p.featured) {
-                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                                            if(p.sitStart) {
+                                                Image(systemName: "figure.rower")
                                             }
+                                            
+//                                            if(p.featured) {
+//                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+//                                            }
                                             Text(p.grade.string)
                                         }
                                         .foregroundColor(.primary)
@@ -176,9 +180,14 @@ struct ProblemDetailsView: View {
                                                 ProblemCircleView(problem: child)
                                                 Text(child.localizedName)
                                                 Spacer()
-                                                if(child.featured) {
-                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                                                if(child.sitStart) {
+                                                    Image(systemName: "figure.rower")
                                                 }
+                                                
+//                                                if(child.featured) {
+//                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+//                                                }
+                                                
                                                 Text(child.grade.string)
                                             }
                                             .foregroundColor(.primary)
