@@ -79,6 +79,7 @@ struct TopoView: View {
 //                                            .opacity(0.5)
                                             .allowsHitTesting(false)
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
                                             
                                         if(showAllLines) {
