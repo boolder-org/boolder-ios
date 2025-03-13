@@ -46,7 +46,7 @@ struct TopoView: View {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
                             if selectedDetent == .large {
-                                if let line = problem.line, let middlePoint = line.middlePoint {
+                                if let line = problem.line, let middlePoint = problem.overlayBadgePosition {
                                     
                                     GeometryReader { geo in
                                         GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
@@ -101,7 +101,7 @@ struct TopoView: View {
                             GeometryReader { geo in
                                 ForEach(problem.startGroups) { (group: StartGroup) in
                                     ForEach(group.problems) { (p: Problem) in
-                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = line.middlePoint {
+                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition {
                                             
                                             GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
                                                 .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)

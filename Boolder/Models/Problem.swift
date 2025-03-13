@@ -216,6 +216,17 @@ extension Problem {
         }
     }
     
+    var overlayBadgePosition: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        
+        if parentId != nil && sitStart {
+            return line.overlayPoint(at: 0.25)
+        }
+        else {
+            return line.overlayPoint(at: 0.4)
+        }
+    }
+    
     // TODO: move to Topo ?
     var otherProblemsOnSameTopo: [Problem] {
         guard let l = line else { return [] }
