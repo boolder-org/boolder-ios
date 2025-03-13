@@ -30,16 +30,20 @@ struct MapContainerView: View {
             
 //            circuitButtons
             
-            fabButtons
-                .zIndex(10)
-            
-            SearchView(mapState: mapState)
-                .zIndex(20)
-                .opacity(mapState.selectedArea != nil ? 0 : 1)
-            
-            AreaToolbarView(mapState: mapState)
-                .zIndex(30)
-                .opacity(mapState.selectedArea != nil ? 1 : 0)
+            Group {
+                
+                fabButtons
+                    .zIndex(10)
+                
+                SearchView(mapState: mapState)
+                    .zIndex(20)
+                    .opacity(mapState.selectedArea != nil ? 0 : 1)
+                
+                AreaToolbarView(mapState: mapState)
+                    .zIndex(30)
+                    .opacity(mapState.selectedArea != nil ? 1 : 0)
+            }
+            .opacity(mapState.presentProblemDetails ? 0 : 1)
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
