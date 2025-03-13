@@ -212,7 +212,9 @@ struct ProblemDetailsView: View {
                     
                     Spacer()
                     
-//                    actionButtons
+                    if !showAllLines {
+                        actionButtons
+                    }
                 }
             }
             
@@ -256,7 +258,7 @@ struct ProblemDetailsView: View {
                         openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
                     }) {
                         HStack(alignment: .center, spacing: 8) {
-                            Image(systemName: "info.circle")
+                            Image(systemName: "arrow.up.forward.app")
                             Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
                         }
                         .padding(.vertical, 8)
@@ -270,7 +272,7 @@ struct ProblemDetailsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: (isFavorite() || isTicked()) ? "bookmark.fill" : "bookmark")
-                        Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
+//                        Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
                             .fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
@@ -286,7 +288,7 @@ struct ProblemDetailsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: "square.and.arrow.up")
-                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+//                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
