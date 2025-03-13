@@ -22,8 +22,6 @@ struct TopoView: View {
     @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
-    @StateObject var pinchToZoomState = PinchToZoomState()
-    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -33,26 +31,25 @@ struct TopoView: View {
                         Image(uiImage: image)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-//                            .modify {
-//                                if case .ready(let image) = photoStatus  {
-//                                    $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-//                                        TopoFullScreenView(image: image, problem: problem)
-//                                    }
-//                                }
-//                                else {
-//                                    $0
-//                                }
-//                            }
+                            .modify {
+                                if case .ready(let image) = photoStatus  {
+                                    $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                        TopoFullScreenView(image: image, problem: problem)
+                                    }
+                                }
+                                else {
+                                    $0
+                                }
+                            }
                         
                         if problem.line?.coordinates != nil {
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $pinchToZoomState.scale)
+                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
-                            if true { //selectedDetent == .large {
+                            if selectedDetent == .large {
                                 if let line = problem.line, let middlePoint = problem.overlayBadgePosition {
                                     
                                     GeometryReader { geo in
                                         GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
-                                            .scaleEffect(1/pinchToZoomState.scale)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
                                             .onTapGesture {
@@ -81,13 +78,12 @@ struct TopoView: View {
 //                                            .scaleEffect(0.8)
 //                                            .opacity(0.5)
                                             .allowsHitTesting(false)
-                                            .scaleEffect(1/pinchToZoomState.scale)
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
                                             
                                         if(showAllLines) {
-                                            LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $pinchToZoomState.scale)
+                                            LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
 //                                                .opacity(0.5)
                                         }
                                     }
@@ -108,7 +104,6 @@ struct TopoView: View {
                                         if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition {
                                             
                                             GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-                                                .scaleEffect(1/pinchToZoomState.scale)
                                                 .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                                 .zIndex(.infinity)
                                                 .onTapGesture {
@@ -120,9 +115,6 @@ struct TopoView: View {
                             }
                         }
                     }
-                    .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
-                    .offset(pinchToZoomState.offset)
-                    .overlay(PinchToZoom(state: pinchToZoomState))
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
