@@ -361,8 +361,8 @@ struct TopoView: View {
             .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
         
         guard let group = groups.first else {
-//            return handleTapOnBackground()
-            return
+            return handleTapOnBackground()
+//            return
         }
         
         if group.problems.contains(problem) {
@@ -380,7 +380,8 @@ struct TopoView: View {
     }
     
     func handleTapOnBackground() {
-        presentTopoFullScreenView = true
+//        presentTopoFullScreenView = true
+        showAllLines.toggle()
     }
 }
 

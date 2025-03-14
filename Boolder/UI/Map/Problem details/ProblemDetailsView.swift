@@ -210,7 +210,7 @@ struct ProblemDetailsView: View {
                         
                     }
                     
-                    Spacer()
+//                    Spacer()
                     
                     if !showAllLines {
                         actionButtons
