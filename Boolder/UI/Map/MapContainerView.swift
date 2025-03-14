@@ -43,7 +43,7 @@ struct MapContainerView: View {
                     .zIndex(30)
                     .opacity(mapState.selectedArea != nil ? 1 : 0)
             }
-//            .opacity(mapState.presentProblemDetails ? 0 : 1)
+            .opacity(selectedDetent == .fraction(0.8) ? 0 : 1)
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
@@ -89,7 +89,7 @@ struct MapContainerView: View {
                 .presentationBackgroundInteraction(
                     .enabled(upThrough: .fraction(0.8))
                 )
-                .presentationDragIndicator(.hidden)
+//                .presentationDragIndicator(.hidden)
             }
     }
     
