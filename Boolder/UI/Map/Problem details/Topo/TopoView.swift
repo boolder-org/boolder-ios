@@ -45,7 +45,7 @@ struct TopoView: View {
                         if problem.line?.coordinates != nil {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
-                            if selectedDetent == .large {
+                            if true { // selectedDetent == .large {
                                 if let line = problem.line, let middlePoint = problem.overlayBadgePosition {
                                     
                                     GeometryReader { geo in
@@ -163,24 +163,43 @@ struct TopoView: View {
                 }
             }
             
-//            if selectedDetent == .large {
-//                VStack {
-//                    HStack {
-//                        Spacer()
-//                        
-//                        Button {
-//                            showAllLines.toggle()
-//    //                        selectedDetent = .large
-//                        } label: {
-//                            Image(systemName: "eye")
-//                                .padding()
-//                        }
-//
-//                    }
-//                    
-//                    Spacer()
-//                }
-//            }
+            if showAllLines {
+                VStack {
+                    HStack {
+                        Button {
+                            mapState.presentProblemDetails = false
+    //                        selectedDetent = .large
+                        } label: {
+                            Image(systemName: "xmark")
+                                .padding()
+                        }
+                        
+                        Spacer()
+
+                    }
+                    
+                    Spacer()
+                }
+            }
+            else
+            {
+                VStack {
+                    HStack {
+                        Button {
+                            showAllLines = true
+    //                        selectedDetent = .large
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .padding()
+                        }
+                        
+                        Spacer()
+
+                    }
+                    
+                    Spacer()
+                }
+            }
             
             
             
@@ -241,12 +260,12 @@ struct TopoView: View {
         }
         .onChange(of: selectedDetent) { newDetent in
             print("User selected: \(newDetent == .large ? "Large" : "Medium")")
-            if newDetent == .large {
-                showAllLines = true
-            }
-            else {
-                showAllLines = false
-            }
+//            if newDetent == .large {
+//                showAllLines = true
+//            }
+//            else {
+//                showAllLines = false
+//            }
         }
         .task {
             await loadData()
@@ -349,11 +368,13 @@ struct TopoView: View {
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
                 mapState.selectProblem(next)
+                showAllLines = false
             }
         }
         else {
             if let topProblem = group.topProblem {
                 mapState.selectProblem(topProblem)
+                showAllLines = false
             }
         }
     }

@@ -55,9 +55,9 @@ struct ProblemDetailsView: View {
                         print(newPage)
                         if let topo = Topo.load(id: newPage) {
                             mapState.selectProblem(topo.firstProblemOnTheLeft!)
-                            if selectedDetent == .large {
-                                showAllLines = true
-                            }
+//                            if selectedDetent == .large {
+//                                showAllLines = true
+//                            }
                         }
                     }
                     .onChange(of: problem) { [problem] newValue in
@@ -65,7 +65,7 @@ struct ProblemDetailsView: View {
                     }
                     
                     
-                    if selectedDetent == .medium {
+                    if !showAllLines {  //selectedDetent == .medium {
                         
                         ProblemCardView(problem: problem, mapState: mapState)
                             .frame(height: 80)
@@ -76,7 +76,7 @@ struct ProblemDetailsView: View {
                     
                     
                     
-                    if selectedDetent == .large {
+                    if showAllLines { // selectedDetent == .large {
 //                        Divider()
                         
 //                        HStack(spacing: 0) {
