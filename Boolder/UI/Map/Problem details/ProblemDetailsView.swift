@@ -25,6 +25,7 @@ struct ProblemDetailsView: View {
     @State private var presentSharesheet = false
     
     @State private var currentPage = 0
+    @State private var pageCounter = 0
     
     @Binding var selectedDetent: PresentationDetent
     
@@ -55,6 +56,14 @@ struct ProblemDetailsView: View {
                         print(newPage)
                         if let topo = Topo.load(id: newPage) {
                             mapState.selectProblem(topo.firstProblemOnTheLeft!)
+                            
+//                            print(pageCounter)
+                            if pageCounter > 0 {
+                                showAllLines = true
+                                
+                            }
+                            pageCounter = pageCounter + 1
+                            
 //                            if selectedDetent == .large {
 //                                showAllLines = true
 //                            }

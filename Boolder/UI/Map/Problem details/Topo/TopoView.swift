@@ -163,43 +163,43 @@ struct TopoView: View {
                 }
             }
             
-            if showAllLines {
-                VStack {
-                    HStack {
-                        Button {
-                            mapState.presentProblemDetails = false
-    //                        selectedDetent = .large
-                        } label: {
-                            Image(systemName: "xmark")
-                                .padding()
-                        }
-                        
-                        Spacer()
-
-                    }
-                    
-                    Spacer()
-                }
-            }
-            else
-            {
-                VStack {
-                    HStack {
-                        Button {
-                            showAllLines = true
-    //                        selectedDetent = .large
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .padding()
-                        }
-                        
-                        Spacer()
-
-                    }
-                    
-                    Spacer()
-                }
-            }
+//            if showAllLines {
+//                VStack {
+//                    HStack {
+//                        Button {
+//                            mapState.presentProblemDetails = false
+//    //                        selectedDetent = .large
+//                        } label: {
+//                            Image(systemName: "xmark")
+//                                .padding()
+//                        }
+//                        
+//                        Spacer()
+//
+//                    }
+//                    
+//                    Spacer()
+//                }
+//            }
+//            else
+//            {
+//                VStack {
+//                    HStack {
+//                        Button {
+//                            showAllLines = true
+//    //                        selectedDetent = .large
+//                        } label: {
+//                            Image(systemName: "chevron.left")
+//                                .padding()
+//                        }
+//                        
+//                        Spacer()
+//
+//                    }
+//                    
+//                    Spacer()
+//                }
+//            }
             
             
             

@@ -84,10 +84,10 @@ struct MapContainerView: View {
                     mapState: mapState,
                     selectedDetent: $selectedDetent
                 )
-                .presentationDetents([.medium, .large], selection: $selectedDetent)
+                .presentationDetents([.medium, .fraction(0.8)], selection: $selectedDetent)
 //                .presentationDetents([.medium])
                 .presentationBackgroundInteraction(
-                    .enabled(upThrough: .medium)
+                    .enabled(upThrough: .fraction(0.8))
                 )
                 .presentationDragIndicator(.hidden)
             }
