@@ -24,8 +24,6 @@
 		030FD81D2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */; };
 		030FD81F2D7706EB0092B7E1 /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */; };
 		030FD8202D7706EB0092B7E1 /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */; };
-		030FD8252D78ADB70092B7E1 /* ProblemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD8242D78ADB70092B7E1 /* ProblemCardView.swift */; };
-		030FD8262D78ADB70092B7E1 /* ProblemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD8242D78ADB70092B7E1 /* ProblemCardView.swift */; };
 		03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloader.swift */; };
@@ -192,7 +190,6 @@
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPathExtensions.swift; sourceTree = "<group>"; };
 		030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeBadgeView.swift; sourceTree = "<group>"; };
-		030FD8242D78ADB70092B7E1 /* ProblemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCardView.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		03147EE42B470F59005771C3 /* AreaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloader.swift; sourceTree = "<group>"; };
 		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
@@ -529,7 +526,6 @@
 			isa = PBXGroup;
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
-				030FD8242D78ADB70092B7E1 /* ProblemCardView.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
 				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
@@ -785,7 +781,6 @@
 				03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */,
 				37B452282591414800241091 /* NewTopoView.swift in Sources */,
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
-				030FD8262D78ADB70092B7E1 /* ProblemCardView.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
 				37379931258E619400711EDA /* Line.swift in Sources */,
 				0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
@@ -822,7 +817,6 @@
 				03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
-				030FD8252D78ADB70092B7E1 /* ProblemCardView.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				030FD81D2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */,
 				0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,

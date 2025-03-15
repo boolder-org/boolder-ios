@@ -405,6 +405,8 @@ class MapboxViewController: UIViewController {
                 switch result {
                 case .success(let queriedfeatures):
                     
+                    // TODO: distinguish when there's one or several problems tapped
+                    
                     if let feature = queriedfeatures.first?.queriedFeature.feature,
                        case .number(let id) = feature.properties?["areaId"],
                        case .string(let southWestLon) = feature.properties?["southWestLon"],

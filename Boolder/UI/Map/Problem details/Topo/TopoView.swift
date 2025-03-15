@@ -381,7 +381,7 @@ struct TopoView: View {
     
     func handleTapOnBackground() {
 //        presentTopoFullScreenView = true
-        showAllLines = true
+//        showAllLines = true
     }
 }
 
