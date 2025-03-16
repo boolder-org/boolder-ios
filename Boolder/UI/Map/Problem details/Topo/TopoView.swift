@@ -259,7 +259,7 @@ struct TopoView: View {
             }
         }
         .onChange(of: selectedDetent) { newDetent in
-            print("User selected: \(newDetent == .large ? "Large" : "Medium")")
+            print("User selected: \(newDetent)")
 //            if newDetent == .large {
 //                showAllLines = true
 //            }
