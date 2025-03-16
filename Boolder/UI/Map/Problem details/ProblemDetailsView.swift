@@ -163,6 +163,11 @@ struct ProblemDetailsView: View {
                         currentPage = newValue.topo!.id
                     }
                     
+                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
+                        .padding(.top, 8)
+                        .padding(.bottom, 4)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    
                     
                     if !showAllLines {  //selectedDetent == .medium {
                         
@@ -173,11 +178,6 @@ struct ProblemDetailsView: View {
                     
 //                    tabs
                     
-                    
-                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
-                        .padding(.top, 8)
-                        .padding(.bottom, 4)
-                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     if showAllLines { // selectedDetent == .large {
 //                        Divider()
