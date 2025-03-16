@@ -21,8 +21,9 @@ struct MapContainerView: View {
     @State private var presentDownloads = false
     @State private var presentDownloadsPlaceholder = false
     
-    @State private var selectedDetent: PresentationDetent = .fraction(0.6)
-    let maxDetent = PresentationDetent.fraction(1.0)
+    @State private var selectedDetent: PresentationDetent = smallDetent
+    static let maxDetent = PresentationDetent.fraction(0.90)
+    static let smallDetent = PresentationDetent.fraction(0.6)
     
     var body: some View {
         
@@ -44,7 +45,7 @@ struct MapContainerView: View {
                     .zIndex(30)
                     .opacity(mapState.selectedArea != nil ? 1 : 0)
             }
-            .opacity(selectedDetent == maxDetent ? 0 : 1)
+            .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
@@ -85,10 +86,10 @@ struct MapContainerView: View {
                     mapState: mapState,
                     selectedDetent: $selectedDetent
                 )
-                .presentationDetents([.fraction(0.6), maxDetent], selection: $selectedDetent)
+                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
 //                .presentationDetents([.medium])
                 .presentationBackgroundInteraction(
-                    .enabled(upThrough: maxDetent)
+                    .enabled(upThrough: MapContainerView.maxDetent)
                 )
 //                .presentationDragIndicator(.hidden)
                 .edgesIgnoringSafeArea(.bottom)
