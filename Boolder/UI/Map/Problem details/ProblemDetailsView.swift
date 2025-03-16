@@ -114,6 +114,12 @@ struct ProblemDetailsView: View {
         .padding(.horizontal)
     }
     
+    var currentTopoIndex: Int {
+        guard let t = Topo.load(id: currentPage) else { return 0 }
+        
+        return problem.topo!.onSameBoulder.firstIndex(of: t) ?? 0
+    }
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
@@ -167,6 +173,10 @@ struct ProblemDetailsView: View {
 //                    tabs
                     
                     
+                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
+                        .padding(.top, 8)
+                        .padding(.bottom, 4)
+                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     if showAllLines { // selectedDetent == .large {
 //                        Divider()
