@@ -147,7 +147,7 @@ struct ProblemDetailsView: View {
                             mapState.selectProblem(topo.firstProblemOnTheLeft!)
                             
 //                            print(pageCounter)
-                            if pageCounter > 0 {
+                            if true { // pageCounter > 0 {
                                 showAllLines = true
                                 
                             }
@@ -156,6 +156,7 @@ struct ProblemDetailsView: View {
 //                            if selectedDetent == .large {
 //                                showAllLines = true
 //                            }
+                            
                         }
                     }
                     .onChange(of: problem) { [problem] newValue in
