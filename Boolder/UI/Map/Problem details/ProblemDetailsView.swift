@@ -169,83 +169,24 @@ struct ProblemDetailsView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if !showAllLines {  //selectedDetent == .medium {
-                        
-                        infosCard
-                            .frame(height: 80)
-                            .opacity(showAllLines ? 0.2 : 1)
-                    }
+//                    if !showAllLines {  //selectedDetent == .medium {
+//                        
+//                        infosCard
+//                            .frame(height: 80)
+//                            .opacity(showAllLines ? 0.2 : 1)
+//                    }
                     
 //                    tabs
                     
                     
-                    if showAllLines { // selectedDetent == .large {
-//                        Divider()
-                        
-//                        HStack(spacing: 0) {
-//
-//
-//                            Button(action: {
-//
-//                            }) {
-//                                Image(systemName: "arrow.left")
-//                                    .padding(10)
-//                            }
-//                            .font(.body.weight(.semibold))
-//                            //                                .accentColor(.appGreen)
-//                            .background(Color.systemBackground)
-//                            .clipShape(Circle())
-//                            .overlay(
-//                                Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                            )
-//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                            .padding(.horizontal)
-//
-//
-//                            Spacer()
-//
-//                            Button(action: {
-//                                showAllLines.toggle()
-//                            }) {
-//                                Text("Afficher")
-//                                    .padding(10)
-//                            }
-//                            .font(.body.weight(.semibold))
-//                            //                                .accentColor(.appGreen)
-//                            .background(Color.systemBackground)
-////                            .clipShape(Circle())
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 12).stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                            )
-//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                            .padding(.horizontal)
-//
-//
-//                            Spacer()
-//
-//
-//
-//                            Button(action: {
-//
-//                            }) {
-//                                Image(systemName: "arrow.right")
-//                                    .padding(10)
-//                            }
-//                            .font(.body.weight(.semibold))
-//                            //                                .accentColor(.appGreen)
-//                            .background(Color.systemBackground)
-//                            .clipShape(Circle())
-//                            .overlay(
-//                                Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                            )
-//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                            .padding(.horizontal)
-//
-//                        }
+                    if true { // showAllLines { // selectedDetent == .large {
+
                         
                         ScrollView {
                             
                             VStack(spacing: 0) {
+                                
+//                                Divider().padding(.vertical, 0)
                                 
                                 ForEach(problem.topo!.orderedProblems) { p in
                                     Button {
@@ -315,9 +256,9 @@ struct ProblemDetailsView: View {
                     
 //                    Spacer()
                     
-                    if !showAllLines {
-                        actionButtons
-                    }
+//                    if !showAllLines {
+//                        actionButtons
+//                    }
                 }
             }
             
