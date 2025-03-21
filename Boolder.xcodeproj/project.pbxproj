@@ -20,10 +20,6 @@
 		030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */; };
 		030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
 		030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
-		030FD81C2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */; };
-		030FD81D2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */; };
-		030FD81F2D7706EB0092B7E1 /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */; };
-		030FD8202D7706EB0092B7E1 /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */; };
 		03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloader.swift */; };
@@ -63,8 +59,6 @@
 		033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */; };
 		0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
-		0349CC172D7DEC3800926A67 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0349CC162D7DEC3800926A67 /* boolder.db */; };
-		0349CC182D7DEC3800926A67 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 0349CC162D7DEC3800926A67 /* boolder.db */; };
 		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */; };
@@ -89,8 +83,6 @@
 		039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A229F295EE75B0096E137 /* CircuitView.swift */; };
 		039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
 		039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
-		03A487F32D86CA2700EDCED3 /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A487F22D86CA2000EDCED3 /* PageControlView.swift */; };
-		03A487F42D86CA2700EDCED3 /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A487F22D86CA2000EDCED3 /* PageControlView.swift */; };
 		03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
@@ -121,6 +113,10 @@
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
 		03F75D602B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
+		03FD89902D8D9E1100B7FAD9 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FD898F2D8D9E1100B7FAD9 /* boolder.db */; };
+		03FD89912D8D9E1100B7FAD9 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FD898F2D8D9E1100B7FAD9 /* boolder.db */; };
+		03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
+		03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -190,8 +186,6 @@
 		030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasDryFast.swift; sourceTree = "<group>"; };
 		030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
-		030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPathExtensions.swift; sourceTree = "<group>"; };
-		030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeBadgeView.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		03147EE42B470F59005771C3 /* AreaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloader.swift; sourceTree = "<group>"; };
 		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
@@ -210,7 +204,6 @@
 		033F70D329191755000DD3F4 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		033F70D62919535A000DD3F4 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
-		0349CC162D7DEC3800926A67 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterViewWithActionsheet.swift; sourceTree = "<group>"; };
@@ -224,7 +217,6 @@
 		038F7F562C3A8D3700AE7028 /* Cluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cluster.swift; sourceTree = "<group>"; };
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
-		03A487F22D86CA2000EDCED3 /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		03AB8B852C8EF32D00093D76 /* TapLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapLocationView.swift; sourceTree = "<group>"; };
 		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +229,8 @@
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
+		03FD898F2D8D9E1100B7FAD9 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -318,6 +312,7 @@
 				031F36C1291EA62900BD0C2B /* TestFontSize.swift */,
 				031A4C9529673C90002CBF52 /* FlowLayout.swift */,
 				031498992B4FEF4B0014C883 /* SafariWebView.swift */,
+				03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -403,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				37E42EE0245DB52F00EEBA96 /* CircleView.swift */,
-				030FD81E2D7706EA0092B7E1 /* GradeBadgeView.swift */,
 				37166735255405CA0078AE09 /* ProblemCircleView.swift */,
 			);
 			path = CircleView;
@@ -414,7 +408,7 @@
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
-				0349CC162D7DEC3800926A67 /* boolder.db */,
+				03FD898F2D8D9E1100B7FAD9 /* boolder.db */,
 				038F7F592C3BDB3800AE7028 /* Download */,
 			);
 			path = Stores;
@@ -515,13 +509,11 @@
 			isa = PBXGroup;
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
-				03A487F22D86CA2000EDCED3 /* PageControlView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
 				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
-				030FD81B2D7634030092B7E1 /* CGPathExtensions.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";
@@ -640,7 +632,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0349CC172D7DEC3800926A67 /* boolder.db in Resources */,
+				03FD89912D8D9E1100B7FAD9 /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -654,7 +646,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0349CC182D7DEC3800926A67 /* boolder.db in Resources */,
+				03FD89902D8D9E1100B7FAD9 /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,
@@ -723,7 +715,6 @@
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
 				03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
-				03A487F32D86CA2700EDCED3 /* PageControlView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
 				038C2EF229201152006581CD /* MapContainerView.swift in Sources */,
@@ -753,10 +744,8 @@
 				37379922258E619400711EDA /* LargeButton.swift in Sources */,
 				031F36B7291D235000BD0C2B /* TopoFullScreenView.swift in Sources */,
 				37379923258E619400711EDA /* CubicCurveAlgorithm.swift in Sources */,
-				030FD81F2D7706EB0092B7E1 /* GradeBadgeView.swift in Sources */,
 				039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */,
 				375397C925AC6CEF00430BF4 /* Extensions.swift in Sources */,
-				030FD81C2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */,
 				37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */,
 				031F36B1291CE56100BD0C2B /* MapState.swift in Sources */,
 				0314FFE0295054C500B7E249 /* AreaView.swift in Sources */,
@@ -765,6 +754,7 @@
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
+				03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
 				037AF0352C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */,
 				03C5A3652C4F9E980057C42A /* Topo.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
@@ -806,7 +796,6 @@
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				0307619C2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
-				03A487F42D86CA2700EDCED3 /* PageControlView.swift in Sources */,
 				038F7F482C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
 				037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
@@ -824,7 +813,6 @@
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
-				030FD81D2D76340A0092B7E1 /* CGPathExtensions.swift in Sources */,
 				0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
@@ -833,6 +821,7 @@
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
+				03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
 				0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */,
@@ -869,7 +858,6 @@
 				37A8C810245326F200DC161F /* Circuit.swift in Sources */,
 				03C5A3642C4F9E980057C42A /* Topo.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
-				030FD8202D7706EB0092B7E1 /* GradeBadgeView.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
 				030AC1A627BAF77500AF85E7 /* TopAreasTrain.swift in Sources */,
@@ -909,7 +897,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -921,7 +909,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.31;
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -937,7 +925,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -949,7 +937,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.31;
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1086,7 +1074,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -1097,7 +1085,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.31;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
@@ -1111,7 +1099,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 76;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				DEVELOPMENT_TEAM = 8Y46BCZUL9;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -1122,7 +1110,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.29;
+				MARKETING_VERSION = 2.31;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
