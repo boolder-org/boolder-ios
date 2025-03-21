@@ -115,6 +115,8 @@
 		03F75D602B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
 		03FD89902D8D9E1100B7FAD9 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FD898F2D8D9E1100B7FAD9 /* boolder.db */; };
 		03FD89912D8D9E1100B7FAD9 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FD898F2D8D9E1100B7FAD9 /* boolder.db */; };
+		03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
+		03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -228,6 +230,7 @@
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		03FD898F2D8D9E1100B7FAD9 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -309,6 +312,7 @@
 				031F36C1291EA62900BD0C2B /* TestFontSize.swift */,
 				031A4C9529673C90002CBF52 /* FlowLayout.swift */,
 				031498992B4FEF4B0014C883 /* SafariWebView.swift */,
+				03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -750,6 +754,7 @@
 				37379926258E619400711EDA /* Grade.swift in Sources */,
 				03C104ED290ACDC6007A94D7 /* MapboxView.swift in Sources */,
 				033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */,
+				03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
 				037AF0352C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */,
 				03C5A3652C4F9E980057C42A /* Topo.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
@@ -816,6 +821,7 @@
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
+				03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
 				0314FFE52950786F00B7E249 /* AreaToolbarView.swift in Sources */,

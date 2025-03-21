@@ -7,11 +7,16 @@
 //
 
 import SwiftUI
+import StoreKit
 import MapKit
 
 struct ProblemDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) var openURL
+    
+    @AppStorage("problemDetails/viewCount") var viewCount = 0
+    @AppStorage("lastVersionPromptedForReview") var lastVersionPromptedForReview = ""
+    @Environment(\.requestReview) private var requestReview
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
@@ -42,6 +47,27 @@ struct ProblemDetailsView: View {
             }
             
             Spacer()
+        }
+        .modify {
+            if #available(iOS 17.0, *) {
+                $0.onAppear {
+                    viewCount += 1
+                }
+                // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
+                .onChange(of: viewCount) {
+                    guard let currentAppVersion = Bundle.currentAppVersion else {
+                        return
+                    }
+
+                    if viewCount >= 100, currentAppVersion != lastVersionPromptedForReview {
+                        presentReview()
+                        lastVersionPromptedForReview = currentAppVersion
+                    }
+                }
+            }
+            else {
+                $0
+            }
         }
     }
     
@@ -190,6 +216,14 @@ struct ProblemDetailsView: View {
     
     var boolderURL: URL {
         URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/p/\(String(problem.id))")!
+    }
+    
+    private func presentReview() {
+        Task {
+            // Delay for two seconds to avoid interrupting the person using the app.
+            try await Task.sleep(for: .seconds(2))
+            await requestReview()
+        }
     }
     
     // MARK: Ticks and favorites
