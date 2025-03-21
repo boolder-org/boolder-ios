@@ -103,6 +103,12 @@
 		03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3642C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
 		03C5A3652C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
+		03C7D6232D8DBB7F006CADEA /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7D6222D8DBB7F006CADEA /* CGPathExtensions.swift */; };
+		03C7D6242D8DBB7F006CADEA /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7D6222D8DBB7F006CADEA /* CGPathExtensions.swift */; };
+		03C7D6262D8DBB94006CADEA /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7D6252D8DBB94006CADEA /* GradeBadgeView.swift */; };
+		03C7D6272D8DBB94006CADEA /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7D6252D8DBB94006CADEA /* GradeBadgeView.swift */; };
+		03C7D6292D8DBBBD006CADEA /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7D6282D8DBBBD006CADEA /* PageControlView.swift */; };
+		03C7D62A2D8DBBBD006CADEA /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7D6282D8DBBBD006CADEA /* PageControlView.swift */; };
 		03D199152C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
 		03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */; };
 		03D199182C556B550082B56C /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199172C556B550082B56C /* DownloadTip.swift */; };
@@ -225,6 +231,9 @@
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
 		03C5A3602C4F9E750057C42A /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		03C5A3632C4F9E980057C42A /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
+		03C7D6222D8DBB7F006CADEA /* CGPathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPathExtensions.swift; sourceTree = "<group>"; };
+		03C7D6252D8DBB94006CADEA /* GradeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeBadgeView.swift; sourceTree = "<group>"; };
+		03C7D6282D8DBBBD006CADEA /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
@@ -398,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				37E42EE0245DB52F00EEBA96 /* CircleView.swift */,
+				03C7D6252D8DBB94006CADEA /* GradeBadgeView.swift */,
 				37166735255405CA0078AE09 /* ProblemCircleView.swift */,
 			);
 			path = CircleView;
@@ -509,11 +519,13 @@
 			isa = PBXGroup;
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
+				03C7D6282D8DBBBD006CADEA /* PageControlView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
 				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+				03C7D6222D8DBB7F006CADEA /* CGPathExtensions.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";
@@ -706,6 +718,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C7D6272D8DBB94006CADEA /* GradeBadgeView.swift in Sources */,
 				03D199192C556B550082B56C /* DownloadTip.swift in Sources */,
 				033F70D529191755000DD3F4 /* FiltersView.swift in Sources */,
 				37379909258E619400711EDA /* ImagePickerView.swift in Sources */,
@@ -747,6 +760,7 @@
 				039A22A1295EE75B0096E137 /* CircuitView.swift in Sources */,
 				375397C925AC6CEF00430BF4 /* Extensions.swift in Sources */,
 				37B2C28325A86282003A7C64 /* EditProblemView.swift in Sources */,
+				03C7D6242D8DBB7F006CADEA /* CGPathExtensions.swift in Sources */,
 				031F36B1291CE56100BD0C2B /* MapState.swift in Sources */,
 				0314FFE0295054C500B7E249 /* AreaView.swift in Sources */,
 				03C104F8290C0688007A94D7 /* ContentView.swift in Sources */,
@@ -757,6 +771,7 @@
 				03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
 				037AF0352C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */,
 				03C5A3652C4F9E980057C42A /* Topo.swift in Sources */,
+				03C7D6292D8DBBBD006CADEA /* PageControlView.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
 				038F7F492C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
@@ -821,6 +836,7 @@
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
+				03C7D6262D8DBB94006CADEA /* GradeBadgeView.swift in Sources */,
 				03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
 				030AC1AC27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				030AC1A027B1257200AF85E7 /* TopAreasLevelView.swift in Sources */,
@@ -829,6 +845,7 @@
 				37379904258E157D00711EDA /* LargeButton.swift in Sources */,
 				3790C3602456008F005E786E /* CubicCurveAlgorithm.swift in Sources */,
 				038F7F542C3A8D1600AE7028 /* ClusterDownloader.swift in Sources */,
+				03C7D6232D8DBB7F006CADEA /* CGPathExtensions.swift in Sources */,
 				375397C625AC6C4C00430BF4 /* Extensions.swift in Sources */,
 				03C104F7290C0688007A94D7 /* ContentView.swift in Sources */,
 				031A4CA52968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
@@ -848,6 +865,7 @@
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
 				031A4CAE296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
+				03C7D62A2D8DBBBD006CADEA /* PageControlView.swift in Sources */,
 				031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */,
 				03D199182C556B550082B56C /* DownloadTip.swift in Sources */,
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,

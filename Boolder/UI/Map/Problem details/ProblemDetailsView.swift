@@ -33,47 +33,6 @@ struct ProblemDetailsView: View {
     @State private var pageCounter = 0
     
     @Binding var selectedDetent: PresentationDetent
-    var body: some View {
-        VStack {
-            GeometryReader { geo in
-                VStack(alignment: .leading, spacing: 8) {
-                    TopoView(
-                        problem: $problem,
-                        mapState: mapState
-                    )
-                    .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                    .zIndex(10)
-                    
-                    infos
-                    
-                    actionButtons
-                }
-            }
-            
-            Spacer()
-        }
-        .modify {
-            if #available(iOS 17.0, *) {
-                $0.onAppear {
-                    viewCount += 1
-                }
-                // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
-                .onChange(of: viewCount) {
-                    guard let currentAppVersion = Bundle.currentAppVersion else {
-                        return
-                    }
-
-                    if viewCount >= 100, currentAppVersion != lastVersionPromptedForReview {
-                        presentReview()
-                        lastVersionPromptedForReview = currentAppVersion
-                    }
-                }
-            }
-            else {
-                $0
-            }
-        }
-    }
     
     @State private var showAllLines = false
     
@@ -92,7 +51,7 @@ struct ProblemDetailsView: View {
                             }
                             .foregroundColor(.gray)
                             .font(.title2)
-//                            .fontWeight(.bold)
+                            //                            .fontWeight(.bold)
                         }
                         
                         Text(problem.localizedName)
@@ -106,17 +65,17 @@ struct ProblemDetailsView: View {
                         
                         Spacer()
                         
-//                        if(problem.sitStart) {
-//                            Image(systemName: "figure.rower")
-//                            Text("problem.sit_start")
-//                                .font(.body)
-//                        }
+                        //                        if(problem.sitStart) {
+                        //                            Image(systemName: "figure.rower")
+                        //                            Text("problem.sit_start")
+                        //                                .font(.body)
+                        //                        }
                         
                         Text(problem.grade.string)
                             .font(.title)
                             .fontWeight(.bold)
                         
-//                        variants
+                        //                        variants
                     }
                     .padding(.top, 4)
                 }
@@ -129,31 +88,31 @@ struct ProblemDetailsView: View {
                             .font(.body)
                     }
                     
-//                    if problem.steepness != .other {
-//                        if problem.sitStart {
-//                            Text("•")
-//                                .font(.body)
-//                        }
-//
-//                        HStack(alignment: .firstTextBaseline) {
-//                            Image(problem.steepness.imageName)
-//                                .frame(minWidth: 16)
-//                            Text(problem.steepness.localizedName)
-//
-//                        }
-//                        .font(.body)
-//                    }
+                    //                    if problem.steepness != .other {
+                    //                        if problem.sitStart {
+                    //                            Text("•")
+                    //                                .font(.body)
+                    //                        }
+                    //
+                    //                        HStack(alignment: .firstTextBaseline) {
+                    //                            Image(problem.steepness.imageName)
+                    //                                .frame(minWidth: 16)
+                    //                            Text(problem.steepness.localizedName)
+                    //
+                    //                        }
+                    //                        .font(.body)
+                    //                    }
                     
                     Spacer()
                     
-//                    if isTicked() {
-//                        Image(systemName: "checkmark.circle.fill")
-//                            .foregroundColor(Color.appGreen)
-//                    }
-//                    else if isFavorite() {
-//                        Image(systemName: "star.fill")
-//                            .foregroundColor(Color.yellow)
-//                    }
+                    //                    if isTicked() {
+                    //                        Image(systemName: "checkmark.circle.fill")
+                    //                            .foregroundColor(Color.appGreen)
+                    //                    }
+                    //                    else if isFavorite() {
+                    //                        Image(systemName: "star.fill")
+                    //                            .foregroundColor(Color.yellow)
+                    //                    }
                 }
             }
         }
@@ -182,7 +141,7 @@ struct ProblemDetailsView: View {
                             )
                             .frame(width: geo.size.width, height: geo.size.width * 3/4)
                             .zIndex(10)
-                                .tag(topo.id) // use tag or id?
+                            .tag(topo.id) // use tag or id?
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -192,16 +151,16 @@ struct ProblemDetailsView: View {
                         if let topo = Topo.load(id: newPage) {
                             mapState.selectProblem(topo.firstProblemOnTheLeft!)
                             
-//                            print(pageCounter)
+                            //                            print(pageCounter)
                             if true { // pageCounter > 0 {
                                 showAllLines = true
                                 
                             }
                             pageCounter = pageCounter + 1
                             
-//                            if selectedDetent == .large {
-//                                showAllLines = true
-//                            }
+                            //                            if selectedDetent == .large {
+                            //                                showAllLines = true
+                            //                            }
                             
                         }
                     }
@@ -215,24 +174,24 @@ struct ProblemDetailsView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-//                    if !showAllLines {  //selectedDetent == .medium {
-//                        
-//                        infosCard
-//                            .frame(height: 80)
-//                            .opacity(showAllLines ? 0.2 : 1)
-//                    }
+                    //                    if !showAllLines {  //selectedDetent == .medium {
+                    //
+                    //                        infosCard
+                    //                            .frame(height: 80)
+                    //                            .opacity(showAllLines ? 0.2 : 1)
+                    //                    }
                     
-//                    tabs
+                    //                    tabs
                     
                     
                     if true { // showAllLines { // selectedDetent == .large {
-
+                        
                         
                         ScrollView {
                             
                             VStack(spacing: 0) {
                                 
-//                                Divider().padding(.vertical, 0)
+                                //                                Divider().padding(.vertical, 0)
                                 
                                 ForEach(problem.topo!.orderedProblems) { p in
                                     Button {
@@ -243,13 +202,13 @@ struct ProblemDetailsView: View {
                                             ProblemCircleView(problem: p)
                                             Text(p.localizedName)
                                             Spacer()
-//                                            if(p.sitStart) {
-//                                                Image(systemName: "figure.rower")
-//                                            }
+                                            //                                            if(p.sitStart) {
+                                            //                                                Image(systemName: "figure.rower")
+                                            //                                            }
                                             
-//                                            if(p.featured) {
-//                                                Image(systemName: "heart.fill").foregroundColor(.pink)
-//                                            }
+                                            //                                            if(p.featured) {
+                                            //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                                            //                                            }
                                             Text(p.grade.string)
                                         }
                                         .foregroundColor(.primary)
@@ -261,36 +220,36 @@ struct ProblemDetailsView: View {
                                     
                                     Divider().padding(.vertical, 0)
                                     
-//                                    ForEach(p.children) { child in
-//                                        Button {
-//                                            mapState.selectProblem(child)
-//                                            showAllLines = false
-//                                        } label: {
-//                                            HStack {
-////                                                Image(systemName: "arrow.turn.down.right")
-////                                                    .foregroundColor(.gray)
-//                                                
-//                                                ProblemCircleView(problem: child)
-//                                                Text(child.localizedName)
-//                                                Spacer()
-////                                                if(child.sitStart) {
-////                                                    Image(systemName: "figure.rower")
-////                                                }
-//                                                
-////                                                if(child.featured) {
-////                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
-////                                                }
-//                                                
-//                                                Text(child.grade.string)
-//                                            }
-//                                            .foregroundColor(.primary)
-//                                        }
-//                                        .padding(.horizontal)
-//                                        .padding(.vertical, 6)
-//                                        .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
-//                                        
-//                                        Divider().padding(.vertical, 0)
-//                                    }
+                                    //                                    ForEach(p.children) { child in
+                                    //                                        Button {
+                                    //                                            mapState.selectProblem(child)
+                                    //                                            showAllLines = false
+                                    //                                        } label: {
+                                    //                                            HStack {
+                                    ////                                                Image(systemName: "arrow.turn.down.right")
+                                    ////                                                    .foregroundColor(.gray)
+                                    //
+                                    //                                                ProblemCircleView(problem: child)
+                                    //                                                Text(child.localizedName)
+                                    //                                                Spacer()
+                                    ////                                                if(child.sitStart) {
+                                    ////                                                    Image(systemName: "figure.rower")
+                                    ////                                                }
+                                    //
+                                    ////                                                if(child.featured) {
+                                    ////                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                                    ////                                                }
+                                    //
+                                    //                                                Text(child.grade.string)
+                                    //                                            }
+                                    //                                            .foregroundColor(.primary)
+                                    //                                        }
+                                    //                                        .padding(.horizontal)
+                                    //                                        .padding(.vertical, 6)
+                                    //                                        .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                    //
+                                    //                                        Divider().padding(.vertical, 0)
+                                    //                                    }
                                     
                                     
                                 }
@@ -300,44 +259,65 @@ struct ProblemDetailsView: View {
                         
                     }
                     
-//                    Spacer()
+                    //                    Spacer()
                     
-//                    if !showAllLines {
-//                        actionButtons
-//                    }
+                    //                    if !showAllLines {
+                    //                        actionButtons
+                    //                    }
                 }
             }
             
             Spacer()
         }
         .onChange(of: problem) { [problem] newValue in
-//            showAllLines = false
+            //            showAllLines = false
         }
         .task {
             currentPage = problem.topo!.id
         }
+        .modify {
+            if #available(iOS 17.0, *) {
+                $0.onAppear {
+                    viewCount += 1
+                }
+                // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
+                .onChange(of: viewCount) {
+                    guard let currentAppVersion = Bundle.currentAppVersion else {
+                        return
+                    }
+                    
+                    if viewCount >= 100, currentAppVersion != lastVersionPromptedForReview {
+                        presentReview()
+                        lastVersionPromptedForReview = currentAppVersion
+                    }
+                }
+            }
+            else {
+                $0
+            }
+        }
     }
     
-//    var tabs: some View {
-//        TabView(selection: $currentPage) {
-//            ForEach(problem.topo!.orderedProblemsWithoutVariants) { (p: Problem) in
-//                ProblemCardView(problem: p, mapState: mapState)
-//                    .tag(p.id)
-//            }
-//        }
-//        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-//        .onChange(of: currentPage) { newPage in
-//            print(newPage)
-//            mapState.selectProblem(Problem.load(id: newPage)!)
-//        }
-//        .onChange(of: problem) { [problem] newValue in
-//            currentPage = newValue.id
-//        }
-//        .padding(.top, 0)
-////        .padding(.horizontal)
-//        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
-//        
-//    }
+    //    var tabs: some View {
+    //        TabView(selection: $currentPage) {
+    //            ForEach(problem.topo!.orderedProblemsWithoutVariants) { (p: Problem) in
+    //                ProblemCardView(problem: p, mapState: mapState)
+    //                    .tag(p.id)
+    //            }
+    //        }
+    //        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+    //        .onChange(of: currentPage) { newPage in
+    //            print(newPage)
+    //            mapState.selectProblem(Problem.load(id: newPage)!)
+    //        }
+    //        .onChange(of: problem) { [problem] newValue in
+    //            currentPage = newValue.id
+    //        }
+    //        .padding(.top, 0)
+    ////        .padding(.horizontal)
+    //        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+    //
+    //    }
     
     var actionButtons: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -362,7 +342,7 @@ struct ProblemDetailsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: (isFavorite() || isTicked()) ? "bookmark.fill" : "bookmark")
-//                        Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
+                        //                        Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
                             .fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
@@ -378,7 +358,7 @@ struct ProblemDetailsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: "square.and.arrow.up")
-//                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+                        //                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
