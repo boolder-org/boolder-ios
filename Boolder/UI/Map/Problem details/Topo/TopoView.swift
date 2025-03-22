@@ -120,7 +120,7 @@ struct TopoView: View {
                         
                         if let line = problem.line, let firstPoint = problem.lineFirstPoint {
                             if let group = problem.startGroup, let index = problem.indexWithinStartGroup {
-                                if(group.problems.count > 1) {
+                                if(group.problems.count > 1 && !showAllLines) {
                                     GeometryReader { geo in
                                         Menu {
                                             ForEach(group.problems) { p in
@@ -130,6 +130,9 @@ struct TopoView: View {
                                                     Text("\(p.localizedName) \(p.grade.string)")
                                                 }
                                             }
+                                            
+                                            Divider()
+                                            
                                             Menu("Voir aussi") {
                                                 Button {
                                                     
@@ -431,6 +434,7 @@ struct TopoView: View {
     func handleTapOnBackground() {
 //        presentTopoFullScreenView = true
 //        showAllLines = true
+        showAllLines.toggle()
     }
 }
 
