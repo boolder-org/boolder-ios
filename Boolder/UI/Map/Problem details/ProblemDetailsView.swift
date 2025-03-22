@@ -301,13 +301,13 @@ struct ProblemDetailsView: View {
     
     var tabs: some View {
         TabView(selection: $currentPageForVariants) {
-            ForEach(problem.topo!.orderedProblemsWithoutVariants) { (p: Problem) in
+            ForEach(problem.variants) { (p: Problem) in
                 HStack {
                     Text(p.localizedName)
                     Spacer()
                     if(problem.sitStart) {
                         Image(systemName: "figure.rower")
-                        Text("problem.sit_start")
+//                        Text("problem.sit_start")
 //                            .font(.body)
                     }
                     Text(p.grade.string)
