@@ -31,6 +31,7 @@ struct ProblemDetailsView: View {
     
     @State private var currentPage = 0
     @State private var pageCounter = 0
+    @State private var currentPageForVariants = 0
     
     @Binding var selectedDetent: PresentationDetent
     
@@ -153,7 +154,7 @@ struct ProblemDetailsView: View {
                             
                             //                            print(pageCounter)
                             if true { // pageCounter > 0 {
-                                showAllLines = true
+//                                showAllLines = true
                                 
                             }
                             pageCounter = pageCounter + 1
@@ -168,23 +169,23 @@ struct ProblemDetailsView: View {
                         currentPage = newValue.topo!.id
                     }
                     
-                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
-                        .padding(.top, 8)
-                        .padding(.bottom, 4)
-                        .frame(maxWidth: .infinity, alignment: .center)
+//                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
+//                        .padding(.top, 8)
+//                        .padding(.bottom, 4)
+//                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    //                    if !showAllLines {  //selectedDetent == .medium {
-                    //
-                    //                        infosCard
-                    //                            .frame(height: 80)
-                    //                            .opacity(showAllLines ? 0.2 : 1)
-                    //                    }
+//                    if !showAllLines {  //selectedDetent == .medium {
+//                        
+//                        infosCard
+//                            .frame(height: 80)
+//                            .opacity(showAllLines ? 0.2 : 1)
+//                    }
                     
-                    //                    tabs
+                    tabs
                     
                     
-                    if true { // showAllLines { // selectedDetent == .large {
+                    if showAllLines { // selectedDetent == .large {
                         
                         
                         ScrollView {
@@ -298,26 +299,41 @@ struct ProblemDetailsView: View {
         }
     }
     
-    //    var tabs: some View {
-    //        TabView(selection: $currentPage) {
-    //            ForEach(problem.topo!.orderedProblemsWithoutVariants) { (p: Problem) in
-    //                ProblemCardView(problem: p, mapState: mapState)
-    //                    .tag(p.id)
-    //            }
-    //        }
-    //        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-    //        .onChange(of: currentPage) { newPage in
-    //            print(newPage)
-    //            mapState.selectProblem(Problem.load(id: newPage)!)
-    //        }
-    //        .onChange(of: problem) { [problem] newValue in
-    //            currentPage = newValue.id
-    //        }
-    //        .padding(.top, 0)
-    ////        .padding(.horizontal)
-    //        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
-    //
-    //    }
+    var tabs: some View {
+        TabView(selection: $currentPageForVariants) {
+            ForEach(problem.topo!.orderedProblemsWithoutVariants) { (p: Problem) in
+                HStack {
+                    Text(p.localizedName)
+                    Spacer()
+                    if(problem.sitStart) {
+                        Image(systemName: "figure.rower")
+                        Text("problem.sit_start")
+//                            .font(.body)
+                    }
+                    Text(p.grade.string)
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+                .padding(.horizontal)
+                .tag(p.id)
+            }
+        }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .onChange(of: currentPageForVariants) { newPage in
+            print(newPage)
+            mapState.selectProblem(Problem.load(id: newPage)!)
+        }
+        .onChange(of: problem) { [problem] newValue in
+            currentPageForVariants = newValue.id
+        }
+        .padding(.top, 0)
+        //        .padding(.horizontal)
+        //        .layoutPriority(1) // without this the imageview prevents the title from going multiline
+        
+    }
     
     var actionButtons: some View {
         ScrollView(.horizontal, showsIndicators: false) {
