@@ -44,7 +44,7 @@ struct ProblemDetailsView: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        if true { // showAllLines {
+                        if false { // showAllLines {
                             Button {
                                 showAllLines = true
                             } label: {
@@ -55,9 +55,11 @@ struct ProblemDetailsView: View {
                             //                            .fontWeight(.bold)
                         }
                         
+                        ProblemCircleView(problem: problem)
+                        
                         Text(problem.localizedName)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.title2)
+//                            .fontWeight(.bold)
                             .foregroundColor(.primary)
                             .lineLimit(1)
                             .truncationMode(.middle)
@@ -73,8 +75,8 @@ struct ProblemDetailsView: View {
                         //                        }
                         
                         Text(problem.grade.string)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.title2)
+//                            .fontWeight(.bold)
                         
                         //                        variants
                     }
@@ -175,14 +177,20 @@ struct ProblemDetailsView: View {
 //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-//                    if !showAllLines {  //selectedDetent == .medium {
-//                        
-//                        infosCard
-//                            .frame(height: 80)
-//                            .opacity(showAllLines ? 0.2 : 1)
+                    if !showAllLines {  //selectedDetent == .medium {
+                        
+                        infosCard
+                            .frame(height: 80)
+                            .opacity(showAllLines ? 0.2 : 1)
+                    }
+                    
+                    
+//                    HStack {
+//                        Text("Same start")
+//                        Text("Voir aussi")
 //                    }
                     
-                    tabs
+//                    tabs
                     
                     
                     if showAllLines { // selectedDetent == .large {

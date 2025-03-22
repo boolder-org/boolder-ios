@@ -45,19 +45,22 @@ struct TopoView: View {
                         if problem.line?.coordinates != nil {
                             LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                             
-                            if true { // selectedDetent == .large {
-                                if let line = problem.line, let middlePoint = problem.overlayBadgePosition {
-                                    
-                                    GeometryReader { geo in
-                                        GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
-                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-                                            .zIndex(.infinity)
-                                            .onTapGesture {
-                                                mapState.selectProblem(problem)
-                                            }
-                                    }
-                                }
-                            }
+//                            if true { // selectedDetent == .large {
+//                                if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
+//                                    
+//                                    GeometryReader { geo in
+//                                        GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+//                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+//                                            .zIndex(.infinity)
+//                                            .onTapGesture {
+//                                                mapState.selectProblem(problem)
+//                                            }
+//                                        
+//                                        
+//                                        
+//                                    }
+//                                }
+//                            }
                         }
                         else {
                             Text("problem.missing_line")
@@ -79,7 +82,7 @@ struct TopoView: View {
 //                                            .opacity(0.5)
                                             .allowsHitTesting(false)
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                            .offset(x: 0, y: (p.lineFirstPoint?.y == group.topProblem?.lineFirstPoint?.y && p.id != group.topProblem?.id) ? 6 : 0)
+//                                            .offset(x: 0, y: (p.lineFirstPoint?.y == group.topProblem?.lineFirstPoint?.y && p.id != group.topProblem?.id) ? 6 : 0)
                                             .zIndex(p == problem ? .infinity : p.zIndex)
                                             
                                         if(showAllLines) {
@@ -114,6 +117,50 @@ struct TopoView: View {
                                 }
                             }
                         }
+                        
+                        if let line = problem.line, let firstPoint = problem.lineFirstPoint {
+                            if(problem.variants.count > 1) {
+                                GeometryReader { geo in
+                                    Menu {
+                                        ForEach(problem.variants) { variant in
+                                            Button {
+                                                mapState.selectProblem(variant)
+                                            } label: {
+                                                Text("\(variant.localizedName) \(variant.grade.string)")
+                                            }
+                                        }
+                                        Menu("Voir aussi") {
+                                            Button {
+                                                
+                                            } label : {
+                                                Text("Test")
+                                            }
+                                            Button {
+                                                
+                                            } label : {
+                                                Text("Test 2")
+                                            }
+                                        }
+                                    } label: {
+                                        HStack(spacing: 4) {
+                                            Text("1 sur 2")
+//                                            Image(systemName: "chevron.down")
+                                        }
+                                        .font(.caption)
+                                        .padding(.vertical, 2)
+                                        .padding(.horizontal, 6)
+                                        .background(Color(.darkGray).opacity(0.8))
+                                        .foregroundColor(Color(UIColor.systemBackground))
+                                        .cornerRadius(16)
+                                        .padding(8)
+                                    }
+                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 28)
+                                    .zIndex(.infinity)
+                                    
+                                }
+                            }
+                        }
+                        
                     }
                 }
                 else if case .loading = photoStatus {
