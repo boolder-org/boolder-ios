@@ -275,9 +275,9 @@ extension Problem {
         startGroups.first { $0.problems.contains(self) }
     }
     
-    var indexWithinStartGroup: Int? {
-        startGroup?.problems.sorted{ $0.zIndex > $1.zIndex }.firstIndex(of: self)
-    }
+//    var indexWithinStartGroup: Int? {
+//        startGroup?.problems.sorted{ $0.zIndex > $1.zIndex }.firstIndex(of: self)
+//    }
 
     var children: [Problem] {
         let problems = Table("problems")
@@ -415,10 +415,16 @@ class StartGroup: Identifiable, Equatable {
     }
     
     var topProblem: Problem? {
-        problems.sorted { $0.zIndex > $1.zIndex }.first
+        sortedProblems.first
+    }
+    
+    var sortedProblems: [Problem] {
+        problems.sorted { $0.zIndex > $1.zIndex }
     }
     
     static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
         Set(lhs.problems.map{$0.id}) == Set(rhs.problems.map{$0.id})
     }
+    
+    
 }
