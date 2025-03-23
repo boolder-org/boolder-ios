@@ -148,7 +148,8 @@ struct TopoView: View {
                                         } label: {
                                             HStack(spacing: 4) {
                                                 Text("\(index + 1) sur \(group.problems.count)")
-                                                //                                            Image(systemName: "chevron.down")
+//                                                Image(systemName: "list.bullet")
+//                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
                                             }
                                             .font(.caption)
                                             .padding(.vertical, 2)
