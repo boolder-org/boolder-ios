@@ -88,9 +88,9 @@ struct MapContainerView: View {
                 )
 //                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
                 .presentationDetents([.medium])
-//                .presentationBackgroundInteraction(
-//                    .enabled(upThrough: MapContainerView.maxDetent)
-//                )
+                .presentationBackgroundInteraction(
+                    .enabled(upThrough: .medium)
+                )
                 .presentationDragIndicator(.hidden)
                 .edgesIgnoringSafeArea(.bottom)
             }

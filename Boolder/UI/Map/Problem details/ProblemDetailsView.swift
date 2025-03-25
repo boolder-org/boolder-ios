@@ -177,20 +177,15 @@ struct ProblemDetailsView: View {
 //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if !showAllLines {  //selectedDetent == .medium {
-                        
-                        infosCard
-                            .frame(height: 80)
-                            .opacity(showAllLines ? 0.2 : 1)
-                    }
-                    
-                    
-//                    HStack {
-//                        Text("Same start")
-//                        Text("Voir aussi")
+//                    if !showAllLines {  //selectedDetent == .medium {
+//                        
+//                        infosCard
+//                            .frame(height: 80)
+//                            .opacity(showAllLines ? 0.2 : 1)
 //                    }
                     
-//                    tabs
+                    
+                    tabs
                     
                     
                     if showAllLines { // selectedDetent == .large {
@@ -307,18 +302,40 @@ struct ProblemDetailsView: View {
         }
     }
     
+//    var problemsSharingSameStart: [Problem] {
+//        let problemsWithoutVariants = problem.startGroup?.problems.compactMap{$0}.filter{ $0.parentId == nil }
+//        return problemsWithoutVariants.flatMap {
+//            [$0] + $0.children.
+//        }
+//    }
+    
     var tabs: some View {
         TabView(selection: $currentPageForVariants) {
-            ForEach(problem.variants) { (p: Problem) in
-                HStack {
-                    Text(p.localizedName)
-                    Spacer()
-                    if(problem.sitStart) {
-                        Image(systemName: "figure.rower")
-//                        Text("problem.sit_start")
-//                            .font(.body)
+            ForEach(problem.startGroup?.sortedProblems ?? []) { (p: Problem) in
+                VStack {
+                    HStack {
+                        ProblemCircleView(problem: problem)
+                        Text(p.localizedName)
+                        Spacer()
+//                        if(problem.sitStart) {
+//                            Image(systemName: "figure.rower")
+//                            //                        Text("problem.sit_start")
+//                            //                            .font(.body)
+//                        }
+                        Text(p.grade.string)
                     }
-                    Text(p.grade.string)
+                    
+                    
+                    HStack(alignment: .firstTextBaseline) {
+                        
+                        if(p.sitStart) {
+                            Image(systemName: "figure.rower")
+                            Text("problem.sit_start")
+                                .font(.body)
+                        }
+                        
+                        Spacer()
+                    }
                 }
                 .padding()
                 .overlay(

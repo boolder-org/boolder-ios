@@ -22,16 +22,6 @@ struct TopoView: View {
     @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
-    func withoutVariants(problems: [Problem]) -> [Problem] {
-        problems.filter{ $0.parentId == nil }
-    }
-    
-    func orderedProblems(problems: [Problem]) -> [Problem] {
-        withoutVariants(problems: problems).flatMap {
-            [$0] + $0.children.filter{ problems.contains($0) }
-        }
-    }
-    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -95,7 +85,7 @@ struct TopoView: View {
 //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                         
                                         Menu {
-                                            ForEach(orderedProblems(problems: problems)) { p in
+                                            ForEach(problems) { p in
                                                 
                                                 Button {
                                                     mapState.selectProblem(p)

@@ -418,9 +418,27 @@ class StartGroup: Identifiable, Equatable {
         sortedProblems.first
     }
     
+//    var sortedProblems: [Problem] {
+//        let withoutVariants = problems.sorted { $0.zIndex > $1.zIndex }.filter{ $0.parentId == nil }
+//        
+//        return withoutVariants.flatMap {
+//            [$0] + $0.children // .filter{ problems.contains($0) }
+//        }
+//    }
+    
     var sortedProblems: [Problem] {
-        problems.sorted { $0.zIndex > $1.zIndex }
+        return problems.sorted { $0.zIndex > $1.zIndex }
     }
+    
+//    func withoutVariants(problems: [Problem]) -> [Problem] {
+//        problems.filter{ $0.parentId == nil }
+//    }
+//    
+//    func orderedProblems(problems: [Problem]) -> [Problem] {
+//        withoutVariants(problems: problems).flatMap {
+//            [$0] + $0.children.filter{ problems.contains($0) }
+//        }
+//    }
     
     static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
         Set(lhs.problems.map{$0.id}) == Set(rhs.problems.map{$0.id})
