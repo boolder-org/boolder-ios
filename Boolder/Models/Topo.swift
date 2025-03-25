@@ -62,7 +62,7 @@ extension Topo {
     
     var orderedProblems: [Problem] {
         orderedProblemsWithoutVariants.flatMap {
-            [$0] + $0.children
+            [$0] + $0.children.sorted{ $0.zIndex > $1.zIndex }
         }
     }
     

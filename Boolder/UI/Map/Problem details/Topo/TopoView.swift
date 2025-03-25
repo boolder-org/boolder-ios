@@ -28,7 +28,7 @@ struct TopoView: View {
     
     func orderedProblems(problems: [Problem]) -> [Problem] {
         withoutVariants(problems: problems).flatMap {
-            [$0] + $0.children
+            [$0] + $0.children.filter{ problems.contains($0) }
         }
     }
     
@@ -88,7 +88,8 @@ struct TopoView: View {
                                 let problems = group.sortedProblems
                                 
                                 if problems.count >= 3 {
-                                    if let line = problems.first?.line, let firstPoint = line.firstPoint {
+                                    let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first
+                                    if let line = problemToUseAsStart?.line, let firstPoint = line.firstPoint {
 //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
 ////                                            .allowsHitTesting(false)
 //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
