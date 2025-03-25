@@ -22,6 +22,16 @@ struct TopoView: View {
     @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
+    func withoutVariants(problems: [Problem]) -> [Problem] {
+        problems.filter{ $0.parentId == nil }
+    }
+    
+    func orderedProblems(problems: [Problem]) -> [Problem] {
+        withoutVariants(problems: problems).flatMap {
+            [$0] + $0.children
+        }
+    }
+    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -76,34 +86,92 @@ struct TopoView: View {
                         GeometryReader { geo in
                             ForEach(problem.startGroups) { (group: StartGroup) in
                                 let problems = group.sortedProblems
-                                ForEach(problems.indices, id: \.self) { (i: Int) in
-                                    let p = problems[i]
-                                    let offseeet = group.sortedProblems.firstIndex(of: problem)
-                                    if let line = p.line, let firstPoint = line.firstPoint {
-                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-//                                            .scaleEffect(0.8)
-//                                            .opacity(0.5)
-                                            .allowsHitTesting(false)
-                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-//                                            .offset(x: Double((i-(offseeet ?? 0))*4), y: 0)
-                                            .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
-
-                                            .zIndex(p == problem ? .infinity : p.zIndex)
+                                
+                                if problems.count >= 2 {
+                                    if let line = problems.first?.line, let firstPoint = line.firstPoint {
+//                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
+////                                            .allowsHitTesting(false)
+//                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                        
+                                        Menu {
+                                            ForEach(orderedProblems(problems: problems)) { p in
+                                                
+                                                Button {
+                                                    mapState.selectProblem(p)
+                                                } label: {
+                                                    Text("\(p.grade.string) \(p.localizedName) ")
+                                                }
+                                                
+                                            }
                                             
-                                        if(showAllLines) {
-                                            LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-//                                                .opacity(0.5)
+//                                            Divider()
+//                                            
+//                                            Menu("Voir aussi") {
+//                                                Button {
+//                                                    
+//                                                } label : {
+//                                                    Text("Test")
+//                                                }
+//                                                Button {
+//                                                    
+//                                                } label : {
+//                                                    Text("Test 2")
+//                                                }
+//                                            }
+                                        } label: {
+                                            HStack(spacing: 4) {
+                                                Text("+")
+                                                //                                                Image(systemName: "list.bullet")
+                                                //                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
+                                            }
+                                            .font(.caption)
+                                            .padding(.vertical, 2)
+                                            .padding(.horizontal, 6)
+                                            .background(Color(.darkGray).opacity(0.8))
+                                            .foregroundColor(Color(UIColor.systemBackground))
+                                            .cornerRadius(16)
+                                            .padding(8)
+                                        }
+                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            
+                                    }
+                                }
+                                else {
+                                    ForEach(problems.indices, id: \.self) { (i: Int) in
+                                        let p = problems[i]
+                                        //                                    let offseeet = group.sortedProblems.firstIndex(of: problem)
+                                        
+                                        
+                                        
+                                        if let line = p.line, let firstPoint = line.firstPoint {
+                                            ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                            //                                            .scaleEffect(0.8)
+                                            //                                            .opacity(0.5)
+//                                                .allowsHitTesting(false)
+                                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            //                                            .offset(x: Double((i-(offseeet ?? 0))*4), y: 0)
+                                                .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
+                                            
+                                                .zIndex(p == problem ? .infinity : p.zIndex)
+                                                .onTapGesture {
+                                                    mapState.selectProblem(p)
+                                                }
+                                            
+                                            if(showAllLines) {
+                                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                                                //                                                .opacity(0.5)
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                         
-                        GeometryReader { geo in
-                            TapLocationView { location in
-                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                            }
-                        }
+//                        GeometryReader { geo in
+//                            TapLocationView { location in
+//                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+//                            }
+//                        }
 
                         if(showAllLines) {
                             GeometryReader { geo in
