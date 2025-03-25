@@ -187,6 +187,11 @@ struct ProblemDetailsView: View {
                     
                     tabs
                     
+                    PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
+                        .padding(.top, 8)
+                        .padding(.bottom, 4)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    
                     
                     if showAllLines { // selectedDetent == .large {
                         
@@ -346,7 +351,7 @@ struct ProblemDetailsView: View {
                 .tag(p.id)
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .onChange(of: currentPageForVariants) { newPage in
             print(newPage)
             mapState.selectProblem(Problem.load(id: newPage)!)

@@ -275,9 +275,9 @@ extension Problem {
         startGroups.first { $0.problems.contains(self) }
     }
     
-//    var indexWithinStartGroup: Int? {
-//        startGroup?.problems.sorted{ $0.zIndex > $1.zIndex }.firstIndex(of: self)
-//    }
+    var indexWithinStartGroup: Int? {
+        startGroup?.sortedProblems.firstIndex(of: self)
+    }
 
     var children: [Problem] {
         let problems = Table("problems")
