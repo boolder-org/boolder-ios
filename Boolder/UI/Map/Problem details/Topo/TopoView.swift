@@ -87,7 +87,7 @@ struct TopoView: View {
                             ForEach(problem.startGroups) { (group: StartGroup) in
                                 let problems = group.sortedProblems
                                 
-                                if problems.count >= 2 {
+                                if problems.count >= 3 {
                                     if let line = problems.first?.line, let firstPoint = line.firstPoint {
 //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
 ////                                            .allowsHitTesting(false)
@@ -119,18 +119,32 @@ struct TopoView: View {
 //                                                }
 //                                            }
                                         } label: {
-                                            HStack(spacing: 4) {
-                                                Text("+")
-                                                //                                                Image(systemName: "list.bullet")
-                                                //                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
+//                                            HStack(spacing: 4) {
+//                                                Text("+")
+//                                                //                                                Image(systemName: "list.bullet")
+//                                                //                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
+//                                            }
+//                                            .font(.caption)
+//                                            .padding(.vertical, 2)
+//                                            .padding(.horizontal, 6)
+//                                            .background(Color(.darkGray).opacity(0.8))
+//                                            .foregroundColor(Color(UIColor.systemBackground))
+//                                            .cornerRadius(16)
+//                                            .padding(8)
+                                            
+                                            ZStack {
+                                                Circle()
+                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                                                    .frame(width: 18, height: 18)
+                                                
+                                                Circle()
+                                                    .fill(Color(.darkGray).opacity(0.8))
+                                                    .frame(width: 18, height: 18)
+                                                
+                                                Circle()
+                                                    .fill(Color.white)
+                                                    .frame(width: 8, height: 8)
                                             }
-                                            .font(.caption)
-                                            .padding(.vertical, 2)
-                                            .padding(.horizontal, 6)
-                                            .background(Color(.darkGray).opacity(0.8))
-                                            .foregroundColor(Color(UIColor.systemBackground))
-                                            .cornerRadius(16)
-                                            .padding(8)
                                         }
                                         .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             
