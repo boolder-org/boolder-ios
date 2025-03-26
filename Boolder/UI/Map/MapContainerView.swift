@@ -92,7 +92,7 @@ struct MapContainerView: View {
                     .enabled(upThrough: .medium)
                 )
                 .presentationDragIndicator(.hidden)
-                .edgesIgnoringSafeArea(.bottom)
+//                .edgesIgnoringSafeArea(.bottom)
             }
     }
     
