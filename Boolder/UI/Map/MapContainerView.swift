@@ -31,7 +31,7 @@ struct MapContainerView: View {
             mapbox
                 .overlay(
                             DraggableSheet()
-                                .padding(.bottom, 50)  // Adjust based on your tab bar height
+//                                .padding(.bottom, 50)  // Adjust based on your tab bar height
                         )
             
 //            circuitButtons
