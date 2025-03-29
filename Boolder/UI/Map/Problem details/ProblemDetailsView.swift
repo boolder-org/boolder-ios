@@ -185,16 +185,17 @@ struct ProblemDetailsView: View {
 //                    }
                     
                     
-                    tabs
-                    
-                    if (problem.startGroup?.problems.count ?? 0) > 1 {
+                    if !showAllLines {
+                        tabs
                         
-                        PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
-                            .padding(.top, 8)
-                            .padding(.bottom, 4)
-                            .frame(maxWidth: .infinity, alignment: .center)
+                        if (problem.startGroup?.problems.count ?? 0) > 1 {
+                            
+                            PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
+                                .padding(.top, 8)
+                                .padding(.bottom, 4)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
                     }
-                    
                     
                     if showAllLines { // selectedDetent == .large {
                         

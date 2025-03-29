@@ -84,59 +84,22 @@ struct TopoView: View {
 ////                                            .allowsHitTesting(false)
 //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                         
-                                        Menu {
-                                            ForEach(problems) { p in
-                                                
-                                                Button {
-                                                    mapState.selectProblem(p)
-                                                } label: {
-                                                    Text("\(p.grade.string) \(p.localizedName) ")
-                                                }
-                                                
-                                            }
+                                        
+                                        
+                                        ZStack {
+                                            Circle()
+                                                .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                                                .frame(width: 18, height: 18)
                                             
-//                                            Divider()
-//                                            
-//                                            Menu("Voir aussi") {
-//                                                Button {
-//                                                    
-//                                                } label : {
-//                                                    Text("Test")
-//                                                }
-//                                                Button {
-//                                                    
-//                                                } label : {
-//                                                    Text("Test 2")
-//                                                }
-//                                            }
-                                        } label: {
-//                                            HStack(spacing: 4) {
-//                                                Text("+")
-//                                                //                                                Image(systemName: "list.bullet")
-//                                                //                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
-//                                            }
-//                                            .font(.caption)
-//                                            .padding(.vertical, 2)
-//                                            .padding(.horizontal, 6)
-//                                            .background(Color(.darkGray).opacity(0.8))
-//                                            .foregroundColor(Color(UIColor.systemBackground))
-//                                            .cornerRadius(16)
-//                                            .padding(8)
+                                            Circle()
+                                                .fill(Color(.darkGray).opacity(0.8))
+                                                .frame(width: 18, height: 18)
                                             
-                                            ZStack {
-                                                Circle()
-                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                                    .frame(width: 18, height: 18)
-                                                
-                                                Circle()
-                                                    .fill(Color(.darkGray).opacity(0.8))
-                                                    .frame(width: 18, height: 18)
-                                                
-                                                Circle()
-                                                    .fill(Color.white)
-                                                    .frame(width: 8, height: 8)
-                                            }
+                                            Circle()
+                                                .fill(Color.white)
+                                                .frame(width: 8, height: 8)
                                         }
+                                        
                                         .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             
                                     }
@@ -162,21 +125,25 @@ struct TopoView: View {
                                                     mapState.selectProblem(p)
                                                 }
                                             
-                                            if(showAllLines) {
-                                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                                                //                                                .opacity(0.5)
-                                            }
+                                            
                                         }
+                                    }
+                                }
+                                
+                                if(showAllLines) {
+                                    ForEach(problems) { p in
+                                        LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                                        //                                                .opacity(0.5)
                                     }
                                 }
                             }
                         }
                         
-//                        GeometryReader { geo in
-//                            TapLocationView { location in
-//                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-//                            }
-//                        }
+                        GeometryReader { geo in
+                            TapLocationView { location in
+                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                            }
+                        }
 
                         if(showAllLines) {
                             GeometryReader { geo in
