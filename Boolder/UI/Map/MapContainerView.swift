@@ -30,9 +30,8 @@ struct MapContainerView: View {
         ZStack {
             mapbox
                 .overlay(
-                            DraggableSheet()
-//                                .padding(.bottom, 50)  // Adjust based on your tab bar height
-                        )
+                    DraggableSheet()
+                )
             
 //            circuitButtons
             

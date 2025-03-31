@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DraggableSheet: View {
-    @State private var currentHeight: CGFloat = 100   // Starting height of the sheet
+    @State private var currentHeight: CGFloat = 60   // Starting height of the sheet
     @State private var dragOffset: CGFloat = 0         // Temporary offset during dragging
 
     var body: some View {
@@ -28,8 +28,8 @@ struct DraggableSheet: View {
                         .padding(8)
                     
                     // Your sheet content goes here
-                    Text("Sheet Content")
-                        .padding()
+                    Text("12 voies")
+                        .padding(.horizontal)
                     
                     Spacer()
                 }
@@ -48,12 +48,12 @@ struct DraggableSheet: View {
                         .onEnded { value in
                             withAnimation(.spring()) {
                                 // If the user drags upward more than 100 points, expand the sheet
-                                if -value.translation.height > 100 {
-                                    currentHeight = geometry.size.height
+                                if -value.translation.height > 20 {
+                                    currentHeight = geometry.size.height - 100
                                 }
                                 // Otherwise, if the user drags downward more than 100 points, collapse
-                                else if value.translation.height > 100 {
-                                    currentHeight = 100
+                                else if value.translation.height > 20 {
+                                    currentHeight = 60
                                 }
                                 // Reset temporary drag offset
                                 dragOffset = 0
@@ -62,6 +62,12 @@ struct DraggableSheet: View {
                 )
                 .clipped()
             }
+            .overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(.gray.opacity(0.3)),
+                alignment: .bottom
+            )
         }
     }
 }
