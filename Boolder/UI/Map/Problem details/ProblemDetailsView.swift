@@ -37,6 +37,30 @@ struct ProblemDetailsView: View {
     
     @State private var showAllLines = false
     
+    var variants: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                
+                ForEach(problem.startGroup?.sortedProblems ?? []) { (p: Problem) in
+                    Text("\(p.localizedName) \(p.grade.string)")
+                    // Text color depends on selection
+                        .font(.callout)
+                        .foregroundColor(problem.id == p.id ? .white : .black)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                    // Background depends on selection
+                        .background(problem.id == p.id ? Color.appGreen : Color(.systemGray5))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .onTapGesture {
+                            mapState.selectProblem(p)
+                        }
+                }
+            }
+            .padding(.horizontal)
+        }
+        .padding(.top)
+    }
+    
     var infosCard: some View {
         VStack(alignment: .leading, spacing: 4) {
             
@@ -177,25 +201,27 @@ struct ProblemDetailsView: View {
 //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-//                    if !showAllLines {  //selectedDetent == .medium {
-//                        
-//                        infosCard
-//                            .frame(height: 80)
-//                            .opacity(showAllLines ? 0.2 : 1)
-//                    }
-                    
-                    
-                    if !showAllLines {
-                        tabs
+                    if !showAllLines {  //selectedDetent == .medium {
                         
-                        if (problem.startGroup?.problems.count ?? 0) > 1 {
-                            
-                            PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
-                                .padding(.top, 8)
-                                .padding(.bottom, 4)
-                                .frame(maxWidth: .infinity, alignment: .center)
-                        }
+                        variants
+                        
+                        infosCard
+                            .frame(height: 80)
+                            .opacity(showAllLines ? 0.2 : 1)
                     }
+                    
+                    
+//                    if !showAllLines {
+//                        tabs
+//                        
+//                        if (problem.startGroup?.problems.count ?? 0) > 1 {
+//                            
+//                            PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
+//                                .padding(.top, 8)
+//                                .padding(.bottom, 4)
+//                                .frame(maxWidth: .infinity, alignment: .center)
+//                        }
+//                    }
                     
                     if showAllLines { // selectedDetent == .large {
                         
