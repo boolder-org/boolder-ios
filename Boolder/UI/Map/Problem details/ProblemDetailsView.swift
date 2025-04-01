@@ -37,12 +37,15 @@ struct ProblemDetailsView: View {
     
     @State private var showAllLines = false
     
+    var array: [Problem] {
+        problem.startGroup?.sortedProblems ?? []
+    }
+    
     var variants: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    
-                    ForEach(problem.startGroup?.sortedProblems ?? []) { (p: Problem) in
+                    ForEach(array) { (p: Problem) in
                         HStack {
                             if p.sitStart {
                                 Image(systemName: "figure.rower")
@@ -216,7 +219,9 @@ struct ProblemDetailsView: View {
                     
                     if !showAllLines {  //selectedDetent == .medium {
                         
-                        variants
+                        if array.count > 1 {
+                            variants
+                        }
                         
                         infosCard
                             .frame(height: 80)
@@ -226,9 +231,9 @@ struct ProblemDetailsView: View {
                     
 //                    if !showAllLines {
 //                        tabs
-//                        
+//
 //                        if (problem.startGroup?.problems.count ?? 0) > 1 {
-//                            
+//
 //                            PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
 //                                .padding(.top, 8)
 //                                .padding(.bottom, 4)

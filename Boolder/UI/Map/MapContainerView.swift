@@ -35,6 +35,8 @@ struct MapContainerView: View {
             
 //            circuitButtons
             
+            browseButtons
+            
             Group {
                 
                 fabButtons
@@ -114,6 +116,57 @@ struct MapContainerView: View {
         }
         else {
             return -48
+        }
+    }
+    
+    var browseButtons : some View {
+        Group {
+            
+            if mapState.presentProblemDetails {
+                HStack(spacing: 0) {
+                    
+                    if(true) {
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .padding(10)
+                        }
+                        .font(.body.weight(.semibold))
+                        .accentColor(.black)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                    
+                    Spacer()
+                    
+                    if(true) {
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "arrow.right")
+                                .padding(10)
+                        }
+                        .font(.body.weight(.semibold))
+                        .accentColor(.black)
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .padding(.horizontal)
+                    }
+                }
+                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            }
+            
         }
     }
     
