@@ -38,27 +38,40 @@ struct ProblemDetailsView: View {
     @State private var showAllLines = false
     
     var variants: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                
-                ForEach(problem.startGroup?.sortedProblems ?? []) { (p: Problem) in
-                    Text("\(p.localizedName) \(p.grade.string)")
-                    // Text color depends on selection
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    
+                    ForEach(problem.startGroup?.sortedProblems ?? []) { (p: Problem) in
+                        HStack {
+                            if p.sitStart {
+                                Image(systemName: "figure.rower")
+                            }
+                            
+                            Text("\(p.grade.string)")
+                                .lineLimit(1)
+                                .truncationMode(.middle)
+                        }
+                        .id(p.id)
                         .font(.callout)
+                        .frame(maxWidth: UIScreen.main.bounds.width / 2)
                         .foregroundColor(problem.id == p.id ? .white : .black)
                         .padding(.vertical, 4)
                         .padding(.horizontal, 8)
-                    // Background depends on selection
                         .background(problem.id == p.id ? Color.appGreen : Color(.systemGray5))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .onTapGesture {
-                            mapState.selectProblem(p)
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                mapState.selectProblem(p)
+                                proxy.scrollTo(p.id, anchor: .center)
+                            }
                         }
+                    }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .padding(.top)
         }
-        .padding(.top)
     }
     
     var infosCard: some View {
