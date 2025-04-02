@@ -38,7 +38,7 @@ struct ProblemDetailsView: View {
     @State private var showAllLines = false
     
     var array: [Problem] {
-        problem.startGroup?.sortedProblems ?? []
+        problem.variants
     }
     
     var variants: some View {
