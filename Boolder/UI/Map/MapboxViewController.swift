@@ -33,6 +33,7 @@ class MapboxViewController: UIViewController {
         
         let configuration = Puck2DConfiguration.makeDefault(showBearing: true)
         mapView.location.options.puckType = .puck2D(configuration)
+        mapView.location.options.puckBearingEnabled = true
         
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
