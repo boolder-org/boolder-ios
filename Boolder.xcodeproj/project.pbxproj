@@ -121,10 +121,10 @@
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
 		03F75D602B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
-		03FD89902D8D9E1100B7FAD9 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FD898F2D8D9E1100B7FAD9 /* boolder.db */; };
-		03FD89912D8D9E1100B7FAD9 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FD898F2D8D9E1100B7FAD9 /* boolder.db */; };
 		03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
 		03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
+		03FEAA172DA960A100E29F8F /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FEAA162DA960A100E29F8F /* boolder.db */; };
+		03FEAA182DA960A100E29F8F /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FEAA162DA960A100E29F8F /* boolder.db */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -241,8 +241,8 @@
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
-		03FD898F2D8D9E1100B7FAD9 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
+		03FEAA162DA960A100E29F8F /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -420,8 +420,8 @@
 			isa = PBXGroup;
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
+				03FEAA162DA960A100E29F8F /* boolder.db */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
-				03FD898F2D8D9E1100B7FAD9 /* boolder.db */,
 				038F7F592C3BDB3800AE7028 /* Download */,
 			);
 			path = Stores;
@@ -648,7 +648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03FD89912D8D9E1100B7FAD9 /* boolder.db in Resources */,
+				03FEAA182DA960A100E29F8F /* boolder.db in Resources */,
 				03F75D602B44547C002227EE /* (null) in Resources */,
 				030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37379A0A258E619400711EDA /* InfoPlist.strings in Resources */,
@@ -662,7 +662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03FD89902D8D9E1100B7FAD9 /* boolder.db in Resources */,
+				03FEAA172DA960A100E29F8F /* boolder.db in Resources */,
 				03F75D5F2B44547C002227EE /* (null) in Resources */,
 				030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */,
 				37F9358B250578D000B1CAB2 /* InfoPlist.strings in Resources */,

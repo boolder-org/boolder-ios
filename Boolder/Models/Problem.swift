@@ -250,6 +250,11 @@ extension Problem {
         }
     }
     
+    var startId: Int? {
+        line?.startId
+    }
+
+    
     // TODO: move to Topo
     var startGroups: [StartGroup] {
         var groups = [StartGroup]()

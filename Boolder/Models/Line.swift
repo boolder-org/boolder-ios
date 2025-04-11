@@ -13,6 +13,7 @@ import SQLite
 struct Line: Decodable {
     let id: Int
     let topoId: Int
+    let startId: Int?
     let coordinates: [PhotoPercentCoordinate]?
     
     struct PhotoPercentCoordinate: Decodable {
@@ -80,6 +81,7 @@ extension Line {
     static let id = Expression<Int>("id")
     static let problemId = Expression<Int>("problem_id")
     static let topoId = Expression<Int>("topo_id")
+    static let startId = Expression<Int?>("start_id")
     static let coordinates = Expression<String>("coordinates")
     
     static func load(id: Int) -> Line? {
@@ -92,7 +94,7 @@ extension Line {
                     if let jsonData = jsonString.data(using: .utf8) {
                         let coordinates = try JSONDecoder().decode([Line.PhotoPercentCoordinate]?.self, from: jsonData)
                         
-                        return Line(id: l[self.id], topoId: l[topoId], coordinates: coordinates)
+                        return Line(id: l[self.id], topoId: l[topoId], startId: l[startId], coordinates: coordinates)
                     }
                 }
                 
