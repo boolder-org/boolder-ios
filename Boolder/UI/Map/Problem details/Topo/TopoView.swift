@@ -75,30 +75,34 @@ struct TopoView: View {
                                 let problems = group.sortedProblems
 
                                 if (problems.filter { $0.parentId == nil }).count >= 2 {
-                                    let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first
-                                    if let line = problemToUseAsStart?.line, let firstPoint = line.firstPoint {
-//                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
-////                                            .allowsHitTesting(false)
-//                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-
-
-
-                                        ZStack {
-                                            Circle()
-                                                .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                                .frame(width: 18, height: 18)
-
-                                            Circle()
-                                                .fill(Color(.darkGray).opacity(0.8))
-                                                .frame(width: 18, height: 18)
-
-                                            Circle()
-                                                .fill(Color.white)
-                                                .frame(width: 8, height: 8)
+                                    if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
+                                        if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
+                                            //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
+                                            ////                                            .allowsHitTesting(false)
+                                            //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            
+                                            
+                                            
+                                            ZStack {
+                                                Circle()
+                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                                                    .frame(width: 18, height: 18)
+                                                
+                                                Circle()
+                                                    .fill(Color(.darkGray).opacity(0.8))
+                                                    .frame(width: 18, height: 18)
+                                                
+                                                Circle()
+                                                    .fill(Color.white)
+                                                    .frame(width: 8, height: 8)
+                                            }
+                                            
+                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            .onTapGesture {
+                                                mapState.selectProblem(problemToUseAsStart)
+                                                showAllLines = true
+                                            }
                                         }
-
-                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-
                                     }
                                 }
                                 else {
@@ -119,6 +123,7 @@ struct TopoView: View {
 
                                                 .zIndex(p == problem ? .infinity : p.zIndex)
                                                 .onTapGesture {
+                                                    showAllLines = false
                                                     mapState.selectProblem(p)
                                                 }
 
@@ -128,7 +133,7 @@ struct TopoView: View {
                                 }
 
                                 if(showAllLines) {
-                                    ForEach(problems) { p in
+                                    ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                         LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                                         //                                                .opacity(0.5)
                                     }
