@@ -22,32 +22,29 @@ struct TopoView: View {
     @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
-    var body: some View {
-        ZStack(alignment: .center) {
-            
+    func contentWithImage(_ image: UIImage) -> some View {
+        
             Group {
-                if case .ready(let image) = photoStatus  {
-                    Group {
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .modify {
-                                if case .ready(let image) = photoStatus  {
-                                    $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                        TopoFullScreenView(image: image, problem: problem)
-                                    }
-                                }
-                                else {
-                                    $0
-                                }
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .modify {
+                        if case .ready(let image) = photoStatus  {
+                            $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                                TopoFullScreenView(image: image, problem: problem)
                             }
-                        
-                        if problem.line?.coordinates != nil {
-                            LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-                            
+                        }
+                        else {
+                            $0
+                        }
+                    }
+                
+                if problem.line?.coordinates != nil {
+                    LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                    
 //                            if true { // selectedDetent == .large {
 //                                if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
-//                                    
+//
 //                                    GeometryReader { geo in
 //                                        GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
 //                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
@@ -55,62 +52,62 @@ struct TopoView: View {
 //                                            .onTapGesture {
 //                                                mapState.selectProblem(problem)
 //                                            }
-//                                        
-//                                        
-//                                        
+//
+//
+//
 //                                    }
 //                                }
 //                            }
-                        }
-                        else {
-                            Text("problem.missing_line")
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
-                                .background(Color.gray.opacity(0.8))
-                                .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
-                                .transition(.opacity)
-                                .opacity(showMissingLineNotice ? 1.0 : 0.0)
-                        }
-                        
+                }
+                else {
+                    Text("problem.missing_line")
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                        .background(Color.gray.opacity(0.8))
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .cornerRadius(16)
+                        .transition(.opacity)
+                        .opacity(showMissingLineNotice ? 1.0 : 0.0)
+                }
+                
                         GeometryReader { geo in
                             ForEach(problem.startGroups) { (group: StartGroup) in
                                 let problems = group.sortedProblems
-                                
+
                                 if problems.count >= 2 {
                                     let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first
                                     if let line = problemToUseAsStart?.line, let firstPoint = line.firstPoint {
 //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
 ////                                            .allowsHitTesting(false)
 //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                        
-                                        
-                                        
+
+
+
                                         ZStack {
                                             Circle()
                                                 .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                                                 .frame(width: 18, height: 18)
-                                            
+
                                             Circle()
                                                 .fill(Color(.darkGray).opacity(0.8))
                                                 .frame(width: 18, height: 18)
-                                            
+
                                             Circle()
                                                 .fill(Color.white)
                                                 .frame(width: 8, height: 8)
                                         }
-                                        
+
                                         .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                            
+
                                     }
                                 }
                                 else {
                                     ForEach(problems.indices, id: \.self) { (i: Int) in
                                         let p = problems[i]
                                         //                                    let offseeet = group.sortedProblems.firstIndex(of: problem)
-                                        
-                                        
-                                        
+
+
+
                                         if let line = p.line, let firstPoint = line.firstPoint {
                                             ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                             //                                            .scaleEffect(0.8)
@@ -118,18 +115,18 @@ struct TopoView: View {
 //                                                .allowsHitTesting(false)
                                                 .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             //                                            .offset(x: Double((i-(offseeet ?? 0))*4), y: 0)
-                                                .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
-                                            
+//                                                .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
+
                                                 .zIndex(p == problem ? .infinity : p.zIndex)
                                                 .onTapGesture {
                                                     mapState.selectProblem(p)
                                                 }
-                                            
-                                            
+
+
                                         }
                                     }
                                 }
-                                
+
                                 if(showAllLines) {
                                     ForEach(problems) { p in
                                         LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
@@ -138,31 +135,31 @@ struct TopoView: View {
                                 }
                             }
                         }
-                        
-                        GeometryReader { geo in
-                            TapLocationView { location in
-                                handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                            }
-                        }
+                
+                GeometryReader { geo in
+                    TapLocationView { location in
+                        handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                    }
+                }
 
-                        if(showAllLines) {
-                            GeometryReader { geo in
-                                ForEach(problem.startGroups) { (group: StartGroup) in
-                                    ForEach(group.problems) { (p: Problem) in
-                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition {
-                                            
-                                            GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-                                                .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-                                                .zIndex(.infinity)
-                                                .onTapGesture {
-                                                    mapState.selectProblem(p)
-                                                }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        
+                if(showAllLines) {
+//                            GeometryReader { geo in
+//                                ForEach(problem.startGroups) { (group: StartGroup) in
+//                                    ForEach(group.problems) { (p: Problem) in
+//                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition {
+//
+//                                            GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+//                                                .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+//                                                .zIndex(.infinity)
+//                                                .onTapGesture {
+//                                                    mapState.selectProblem(p)
+//                                                }
+//                                        }
+//                                    }
+//                                }
+//                            }
+                }
+                
 //                        if let line = problem.line, let firstPoint = problem.lineFirstPoint {
 //                            if let group = problem.startGroup, let index = problem.indexWithinStartGroup {
 //                                if(group.problems.count > 1 && !showAllLines) {
@@ -175,17 +172,17 @@ struct TopoView: View {
 //                                                    Text("\(p.localizedName) \(p.grade.string)")
 //                                                }
 //                                            }
-//                                            
+//
 //                                            Divider()
-//                                            
+//
 //                                            Menu("Voir aussi") {
 //                                                Button {
-//                                                    
+//
 //                                                } label : {
 //                                                    Text("Test")
 //                                                }
 //                                                Button {
-//                                                    
+//
 //                                                } label : {
 //                                                    Text("Test 2")
 //                                                }
@@ -206,13 +203,22 @@ struct TopoView: View {
 //                                        }
 //                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 28)
 //                                        .zIndex(.infinity)
-//                                        
+//
 //                                    }
 //                                }
 //                            }
 //                        }
-                        
-                    }
+                
+            
+        }
+    }
+    
+    var body: some View {
+        ZStack(alignment: .center) {
+            
+            Group {
+                if case .ready(let image) = photoStatus  {
+                    contentWithImage(image)
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
@@ -454,27 +460,29 @@ struct TopoView: View {
     }
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
-        let groups = problem.startGroups
-            .filter { $0.distance(to: tapPoint) < 0.1 }
-            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
+        handleTapOnBackground()
         
-        guard let group = groups.first else {
-            return handleTapOnBackground()
-//            return
-        }
-        
-        if group.problems.contains(problem) {
-            if let next = group.next(after: problem) {
-                mapState.selectProblem(next)
-                showAllLines = false
-            }
-        }
-        else {
-            if let topProblem = group.topProblem {
-                mapState.selectProblem(topProblem)
-                showAllLines = false
-            }
-        }
+//        let groups = problem.startGroups
+//            .filter { $0.distance(to: tapPoint) < 0.1 }
+//            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
+//        
+//        guard let group = groups.first else {
+//            return handleTapOnBackground()
+////            return
+//        }
+//        
+//        if group.problems.contains(problem) {
+//            if let next = group.next(after: problem) {
+//                mapState.selectProblem(next)
+//                showAllLines = false
+//            }
+//        }
+//        else {
+//            if let topProblem = group.topProblem {
+//                mapState.selectProblem(topProblem)
+//                showAllLines = false
+//            }
+//        }
     }
     
     func handleTapOnBackground() {

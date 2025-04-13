@@ -60,6 +60,53 @@ extension Topo {
         }
     }
     
+    var problemsGroupedByStart: [(startId: Int?, problems: [Problem])] {
+        Dictionary(grouping: problems, by: { $0.startId })
+            .map { (key, value) in (startId: key, problems: value) }
+            .sorted {
+                switch ($0.startId, $1.startId) {
+                case let (lhs?, rhs?): return lhs < rhs
+                case (nil, _): return false
+                case (_, nil): return true
+                }
+            }
+    }
+    
+    var startGroups: [StartGroup] {
+        Dictionary(grouping: problems, by: { $0.startId })
+            .map { (key, value) in StartGroup(startId: key, problems: value) }
+//            .sorted {
+//                switch ($0.startId, $1.startId) {
+//                case let (lhs?, rhs?): return lhs < rhs
+//                case (nil, _): return false
+//                case (_, nil): return true
+//                }
+//            }
+    }
+    
+    var problems: [Problem] {
+        let query = Table("lines")
+            .filter(Line.topoId == self.id)
+
+        do {
+            let results = try SqliteStore.shared.db.prepare(query).map { l in
+                Problem.load(id: l[Line.problemId])
+            }
+            
+            return results.compactMap{$0}
+                .filter { $0.topoId == self.id } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
+//                .filter { $0.parentId == nil }
+                .sorted {
+                    ($0.line?.firstPoint?.x ?? 1) < ($1.line?.firstPoint?.x ?? 1)
+                }
+//                .filter { $0.line?.coordinates != nil }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     var orderedProblems: [Problem] {
         orderedProblemsWithoutVariants.flatMap {
             [$0] + $0.children.sorted{ $0.zIndex > $1.zIndex }

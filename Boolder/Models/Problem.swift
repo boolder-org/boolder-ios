@@ -257,23 +257,9 @@ extension Problem {
     
     // TODO: move to Topo
     var startGroups: [StartGroup] {
-        var groups = [StartGroup]()
+        guard let topo = topo else { return [] }
         
-        otherProblemsOnSameTopo.forEach { p in
-            let overlapping = groups.filter{$0.overlaps(with: p)}
-            
-            let newGroup = StartGroup(problem: p)
-            
-            // we merge the groups that overlap with the current problem
-            overlapping.forEach { group in
-                group.problems.forEach{ newGroup.addProblem($0)}
-                groups.remove(at: groups.firstIndex(of: group)!)
-            }
-            
-            groups.append(newGroup)
-        }
-        
-        return groups
+        return topo.startGroups
     }
     
     var startGroup : StartGroup? {
@@ -384,70 +370,16 @@ extension Problem : Hashable {
 }
 
 // TODO: move to Topo
-class StartGroup: Identifiable, Equatable {
-    private(set) var problems: [Problem]
-
-    init(problem: Problem) {
-        self.problems = [problem]
-    }
-
-    func overlaps(with problem: Problem) -> Bool {
-        return problems.contains { p in
-            guard let a = p.lineFirstPoint, let b = problem.lineFirstPoint else { return false }
-            return a.distance(to: b) < 0.03
-        }
+struct StartGroup: Identifiable, Equatable {
+    var id: Int {
+        startId ?? 0
     }
     
-    func distance(to point: Line.PhotoPercentCoordinate) -> Double {
-        let distances = problems.map { p in
-            guard let b = p.lineFirstPoint else { return 1.0 }
-            return point.distance(to: b)
-        }
-        
-        return distances.min() ?? 1.0
-    }
-
-    func addProblem(_ problem: Problem) {
-        problems.append(problem)
-    }
-    
-    func next(after: Problem) -> Problem? {
-        if let index = problems.firstIndex(of: after) {
-            return problems[(index + 1) % problems.count]
-        }
-        
-        return nil
-    }
-    
-    var topProblem: Problem? {
-        sortedProblems.first
-    }
-    
-//    var sortedProblems: [Problem] {
-//        let withoutVariants = problems.sorted { $0.zIndex > $1.zIndex }.filter{ $0.parentId == nil }
-//        
-//        return withoutVariants.flatMap {
-//            [$0] + $0.children // .filter{ problems.contains($0) }
-//        }
-//    }
+//    private(set) var problems: [Problem]
+    let startId: Int?
+    let problems: [Problem]
     
     var sortedProblems: [Problem] {
-        return problems.sorted { $0.zIndex > $1.zIndex }
+        problems
     }
-    
-//    func withoutVariants(problems: [Problem]) -> [Problem] {
-//        problems.filter{ $0.parentId == nil }
-//    }
-//    
-//    func orderedProblems(problems: [Problem]) -> [Problem] {
-//        withoutVariants(problems: problems).flatMap {
-//            [$0] + $0.children.filter{ problems.contains($0) }
-//        }
-//    }
-    
-    static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
-        Set(lhs.problems.map{$0.id}) == Set(rhs.problems.map{$0.id})
-    }
-    
-    
 }
