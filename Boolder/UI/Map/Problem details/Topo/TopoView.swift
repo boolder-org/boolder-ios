@@ -74,7 +74,7 @@ struct TopoView: View {
                             ForEach(problem.startGroups) { (group: StartGroup) in
                                 let problems = group.sortedProblems
 
-                                if problems.count >= 2 {
+                                if (problems.filter { $0.parentId == nil }).count >= 2 {
                                     let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first
                                     if let line = problemToUseAsStart?.line, let firstPoint = line.firstPoint {
 //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
@@ -136,11 +136,11 @@ struct TopoView: View {
                             }
                         }
                 
-                GeometryReader { geo in
-                    TapLocationView { location in
-                        handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                    }
-                }
+//                GeometryReader { geo in
+//                    TapLocationView { location in
+//                        handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+//                    }
+//                }
 
                 if(showAllLines) {
 //                            GeometryReader { geo in
@@ -460,8 +460,6 @@ struct TopoView: View {
     }
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
-        handleTapOnBackground()
-        
 //        let groups = problem.startGroups
 //            .filter { $0.distance(to: tapPoint) < 0.1 }
 //            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
