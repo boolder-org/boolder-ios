@@ -364,7 +364,7 @@ struct ProblemDetailsView: View {
     
     var tabs: some View {
         TabView(selection: $currentPageForVariants) {
-            ForEach(problem.startGroup?.sortedProblems ?? []) { (p: Problem) in
+            ForEach(problem.variants) { (p: Problem) in
                 VStack {
                     HStack {
                         ProblemCircleView(problem: problem)
