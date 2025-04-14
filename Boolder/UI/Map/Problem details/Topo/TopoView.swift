@@ -42,16 +42,17 @@ struct TopoView: View {
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                     
-                            if false { // showAllLines { // selectedDetent == .large {
+                            if true { // showAllLines { // selectedDetent == .large {
                                 if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
 
                                     GeometryReader { geo in
                                         GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
-                                            .onTapGesture {
-                                                mapState.selectProblem(problem)
-                                            }
+//                                            .onTapGesture {
+//                                                showAllLines = false
+//                                                mapState.selectProblem(problem)
+//                                            }
 
 
 
@@ -166,20 +167,21 @@ struct TopoView: View {
                                             
                                             if p.parentId == nil {
                                                 
-//                                                GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-//                                                    .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                                GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                                    .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                                    .zIndex(.infinity)
+                                                    .onTapGesture {
+                                                        showAllLines = false
+                                                        mapState.selectProblem(p)
+                                                    }
+                                                
+//                                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+//                                                    .position(x: topPoint.x * geo.size.width, y: topPoint.y * geo.size.height)
 //                                                    .zIndex(.infinity)
 //                                                    .onTapGesture {
 //                                                        mapState.selectProblem(p)
+//                                                        showAllLines = false
 //                                                    }
-                                                
-                                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                                    .position(x: topPoint.x * geo.size.width, y: topPoint.y * geo.size.height)
-                                                    .zIndex(.infinity)
-                                                    .onTapGesture {
-                                                        mapState.selectProblem(p)
-                                                        showAllLines = false
-                                                    }
                                             }
                                         }
                                     }
