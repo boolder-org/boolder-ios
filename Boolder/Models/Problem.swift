@@ -386,4 +386,12 @@ struct StartGroup: Identifiable, Equatable {
     var problemsWithoutVariants: [Problem] {
         sortedProblems.filter { $0.parentId == nil }
     }
+    
+    func next(after: Problem) -> Problem? {
+        if let index = problemsWithoutVariants.firstIndex(of: after) {
+            return problemsWithoutVariants[(index + 1) % problemsWithoutVariants.count]
+        }
+        
+        return nil
+    }
 }
