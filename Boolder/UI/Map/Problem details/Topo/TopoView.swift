@@ -100,7 +100,7 @@ struct TopoView: View {
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .onTapGesture {
                                                 mapState.selectProblem(problemToUseAsStart)
-                                                showAllLines = true
+//                                                showAllLines = true
                                             }
                                         }
                                     }
@@ -123,7 +123,7 @@ struct TopoView: View {
 
                                                 .zIndex(p == problem ? .infinity : p.zIndex)
                                                 .onTapGesture {
-                                                    showAllLines = false
+//                                                    showAllLines = false
                                                     mapState.selectProblem(p)
                                                 }
 
@@ -132,7 +132,7 @@ struct TopoView: View {
                                     }
                                 }
 
-                                if(showAllLines && group.startId == problem.startId) {
+                                if(showAllLines) {
                                     ForEach(problems) { p in
                                         LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                                         //                                                .opacity(0.5)
@@ -224,6 +224,11 @@ struct TopoView: View {
             Group {
                 if case .ready(let image) = photoStatus  {
                     contentWithImage(image)
+                        .onLongPressGesture(minimumDuration: 1) {
+                                
+                            } onPressingChanged: { inProgress in
+                                showAllLines = inProgress
+                            }
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
