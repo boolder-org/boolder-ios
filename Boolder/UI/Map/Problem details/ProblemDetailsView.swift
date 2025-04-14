@@ -196,7 +196,7 @@ struct ProblemDetailsView: View {
                             
                             //                            print(pageCounter)
                             if true { // pageCounter > 0 {
-//                                showAllLines = true
+                                //                                showAllLines = true
                                 
                             }
                             pageCounter = pageCounter + 1
@@ -211,16 +211,17 @@ struct ProblemDetailsView: View {
                         currentPage = newValue.topo!.id
                     }
                     
-//                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
-//                        .padding(.top, 8)
-//                        .padding(.bottom, 4)
-//                        .frame(maxWidth: .infinity, alignment: .center)
+                    //                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
+                    //                        .padding(.top, 8)
+                    //                        .padding(.bottom, 4)
+                    //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if !showAllLines {  //selectedDetent == .medium {
+                    if true { // !showAllLines {  //selectedDetent == .medium {
                         
                         if array.count > 1 {
                             variants
+                                .opacity(showAllLines ? 0.2 : 1)
                         }
                         
                         infosCard
@@ -241,7 +242,7 @@ struct ProblemDetailsView: View {
 //                        }
 //                    }
                     
-                    if showAllLines { // selectedDetent == .large {
+                    if  false { // showAllLines { // selectedDetent == .large {
                         
                         
                         ScrollView {

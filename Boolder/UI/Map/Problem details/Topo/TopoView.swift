@@ -42,22 +42,22 @@ struct TopoView: View {
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                     
-//                            if true { // selectedDetent == .large {
-//                                if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
-//
-//                                    GeometryReader { geo in
-//                                        GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
-//                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-//                                            .zIndex(.infinity)
-//                                            .onTapGesture {
-//                                                mapState.selectProblem(problem)
-//                                            }
-//
-//
-//
-//                                    }
-//                                }
-//                            }
+                            if showAllLines { // selectedDetent == .large {
+                                if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
+
+                                    GeometryReader { geo in
+                                        GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                            .zIndex(.infinity)
+                                            .onTapGesture {
+                                                mapState.selectProblem(problem)
+                                            }
+
+
+
+                                    }
+                                }
+                            }
                 }
                 else {
                     Text("problem.missing_line")
@@ -148,21 +148,21 @@ struct TopoView: View {
 //                }
 
                 if(showAllLines) {
-//                            GeometryReader { geo in
-//                                ForEach(problem.startGroups) { (group: StartGroup) in
-//                                    ForEach(group.problems) { (p: Problem) in
-//                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition {
-//
-//                                            GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-//                                                .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-//                                                .zIndex(.infinity)
-//                                                .onTapGesture {
-//                                                    mapState.selectProblem(p)
-//                                                }
-//                                        }
-//                                    }
-//                                }
-//                            }
+                            GeometryReader { geo in
+                                ForEach(problem.startGroups) { (group: StartGroup) in
+                                    ForEach(group.problems) { (p: Problem) in
+                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition {
+
+                                            GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                                .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                                .zIndex(.infinity)
+                                                .onTapGesture {
+                                                    mapState.selectProblem(p)
+                                                }
+                                        }
+                                    }
+                                }
+                            }
                 }
                 
                         if let line = problem.line, let firstPoint = problem.lineFirstPoint {
