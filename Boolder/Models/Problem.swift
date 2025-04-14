@@ -227,6 +227,12 @@ extension Problem {
         }
     }
     
+    var topPosition: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        
+        return line.lastPoint
+    }
+    
     // TODO: move to Topo ?
     var otherProblemsOnSameTopo: [Problem] {
         guard let l = line else { return [] }
