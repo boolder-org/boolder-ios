@@ -178,20 +178,20 @@ struct TopoView: View {
                                                 }
                                             }
 
-                                            Divider()
-
-                                            Menu("Voir aussi") {
-                                                Button {
-
-                                                } label : {
-                                                    Text("Test")
-                                                }
-                                                Button {
-
-                                                } label : {
-                                                    Text("Test 2")
-                                                }
-                                            }
+//                                            Divider()
+//
+//                                            Menu("Voir aussi") {
+//                                                Button {
+//
+//                                                } label : {
+//                                                    Text("Test")
+//                                                }
+//                                                Button {
+//
+//                                                } label : {
+//                                                    Text("Test 2")
+//                                                }
+//                                            }
                                         } label: {
                                             HStack(spacing: 4) {
                                                 Text("\(index + 1) sur \(group.problemsWithoutVariants.count)")
@@ -224,10 +224,20 @@ struct TopoView: View {
             Group {
                 if case .ready(let image) = photoStatus  {
                     contentWithImage(image)
-                        .onLongPressGesture(minimumDuration: 1) {
+                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
                                 
                             } onPressingChanged: { inProgress in
                                 showAllLines = inProgress
+                            }
+                            .modify {
+                                if #available(iOS 17.0, *) {
+                                    $0.sensoryFeedback(.success, trigger: showAllLines) { oldValue, newValue in
+                                        newValue
+                                    }
+                                }
+                                else {
+                                    $0
+                                }
                             }
                 }
                 else if case .loading = photoStatus {
