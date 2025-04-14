@@ -99,9 +99,16 @@ struct TopoView: View {
                                             
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                             .onTapGesture {
-                                                if let next = problem.startGroup?.next(after: problem) {
-                                                    mapState.selectProblem(next)
-                                                    //                                                showAllLines = true
+                                                if group.problems.contains(problem) {
+                                                    if let next = problem.startGroup?.next(after: problem) {
+                                                        mapState.selectProblem(next)
+                                                    }
+                                                    
+                                                }
+                                                else {
+                                                    if let topProblem = group.topProblem {
+                                                        mapState.selectProblem(topProblem)
+                                                    }
                                                 }
                                             }
                                         }

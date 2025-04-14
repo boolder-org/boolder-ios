@@ -380,7 +380,7 @@ struct StartGroup: Identifiable, Equatable {
     let problems: [Problem]
     
     var sortedProblems: [Problem] {
-        problems
+        problems.sorted { $0.zIndex > $1.zIndex }
     }
     
     var problemsWithoutVariants: [Problem] {
@@ -393,5 +393,9 @@ struct StartGroup: Identifiable, Equatable {
         }
         
         return nil
+    }
+    
+    var topProblem: Problem? {
+        sortedProblems.first
     }
 }
