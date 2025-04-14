@@ -267,7 +267,7 @@ extension Problem {
     }
     
     var indexWithinStartGroup: Int? {
-        startGroup?.sortedProblems.firstIndex(of: self)
+        startGroup?.problemsWithoutVariants.firstIndex(of: self)
     }
 
     var children: [Problem] {
@@ -381,5 +381,9 @@ struct StartGroup: Identifiable, Equatable {
     
     var sortedProblems: [Problem] {
         problems
+    }
+    
+    var problemsWithoutVariants: [Problem] {
+        sortedProblems.filter { $0.parentId == nil }
     }
 }

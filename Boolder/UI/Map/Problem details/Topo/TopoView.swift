@@ -72,9 +72,9 @@ struct TopoView: View {
                 
                         GeometryReader { geo in
                             ForEach(problem.startGroups) { (group: StartGroup) in
-                                let problems = group.sortedProblems
+                                let problems = group.problemsWithoutVariants
 
-                                if (problems.filter { $0.parentId == nil }).count >= 2 {
+                                if problems.count >= 2 {
                                     if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
                                         if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
                                             //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
@@ -132,8 +132,8 @@ struct TopoView: View {
                                     }
                                 }
 
-                                if(showAllLines) {
-                                    ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                                if(showAllLines && group.startId == problem.startId) {
+                                    ForEach(problems) { p in
                                         LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                                         //                                                .opacity(0.5)
                                     }
@@ -165,54 +165,54 @@ struct TopoView: View {
 //                            }
                 }
                 
-//                        if let line = problem.line, let firstPoint = problem.lineFirstPoint {
-//                            if let group = problem.startGroup, let index = problem.indexWithinStartGroup {
-//                                if(group.problems.count > 1 && !showAllLines) {
-//                                    GeometryReader { geo in
-//                                        Menu {
-//                                            ForEach(group.problems) { p in
-//                                                Button {
-//                                                    mapState.selectProblem(p)
-//                                                } label: {
-//                                                    Text("\(p.localizedName) \(p.grade.string)")
-//                                                }
-//                                            }
-//
-//                                            Divider()
-//
-//                                            Menu("Voir aussi") {
-//                                                Button {
-//
-//                                                } label : {
-//                                                    Text("Test")
-//                                                }
-//                                                Button {
-//
-//                                                } label : {
-//                                                    Text("Test 2")
-//                                                }
-//                                            }
-//                                        } label: {
-//                                            HStack(spacing: 4) {
-//                                                Text("\(index + 1) sur \(group.problems.count)")
-////                                                Image(systemName: "list.bullet")
-////                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
-//                                            }
-//                                            .font(.caption)
-//                                            .padding(.vertical, 2)
-//                                            .padding(.horizontal, 6)
-//                                            .background(Color(.darkGray).opacity(0.8))
-//                                            .foregroundColor(Color(UIColor.systemBackground))
-//                                            .cornerRadius(16)
-//                                            .padding(8)
-//                                        }
-//                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 28)
-//                                        .zIndex(.infinity)
-//
-//                                    }
-//                                }
-//                            }
-//                        }
+                        if let line = problem.line, let firstPoint = problem.lineFirstPoint {
+                            if let group = problem.startGroup, let index = problem.indexWithinStartGroup {
+                                if(group.problemsWithoutVariants.count > 1 ) {
+                                    GeometryReader { geo in
+                                        Menu {
+                                            ForEach(group.problemsWithoutVariants) { p in
+                                                Button {
+                                                    mapState.selectProblem(p)
+                                                } label: {
+                                                    Text("\(p.localizedName) \(p.grade.string)")
+                                                }
+                                            }
+
+                                            Divider()
+
+                                            Menu("Voir aussi") {
+                                                Button {
+
+                                                } label : {
+                                                    Text("Test")
+                                                }
+                                                Button {
+
+                                                } label : {
+                                                    Text("Test 2")
+                                                }
+                                            }
+                                        } label: {
+                                            HStack(spacing: 4) {
+                                                Text("\(index + 1) sur \(group.problemsWithoutVariants.count)")
+//                                                Image(systemName: "list.bullet")
+//                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
+                                            }
+                                            .font(.caption)
+                                            .padding(.vertical, 2)
+                                            .padding(.horizontal, 6)
+                                            .background(Color(.darkGray).opacity(0.8))
+                                            .foregroundColor(Color(UIColor.systemBackground))
+                                            .cornerRadius(16)
+                                            .padding(8)
+                                        }
+                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 28)
+                                        .zIndex(.infinity)
+
+                                    }
+                                }
+                            }
+                        }
                 
             
         }

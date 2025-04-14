@@ -250,7 +250,7 @@ struct ProblemDetailsView: View {
                                 
                                 //                                Divider().padding(.vertical, 0)
                                 
-                                ForEach(problem.topo!.orderedProblems.filter{$0.startId == problem.startId  }) { p in
+                                ForEach(problem.topo!.orderedProblems.filter{$0.startId == problem.startId && $0.parentId == nil }) { p in
                                     Button {
                                         mapState.selectProblem(p)
                                         showAllLines = false
