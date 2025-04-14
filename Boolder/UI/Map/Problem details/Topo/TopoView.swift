@@ -224,21 +224,21 @@ struct TopoView: View {
             Group {
                 if case .ready(let image) = photoStatus  {
                     contentWithImage(image)
-                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
-                                
-                            } onPressingChanged: { inProgress in
-                                showAllLines = inProgress
-                            }
-                            .modify {
-                                if #available(iOS 17.0, *) {
-                                    $0.sensoryFeedback(.success, trigger: showAllLines) { oldValue, newValue in
-                                        newValue
-                                    }
-                                }
-                                else {
-                                    $0
-                                }
-                            }
+//                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
+//                                
+//                            } onPressingChanged: { inProgress in
+//                                showAllLines = inProgress
+//                            }
+//                            .modify {
+//                                if #available(iOS 17.0, *) {
+//                                    $0.sensoryFeedback(.success, trigger: showAllLines) { oldValue, newValue in
+//                                        newValue
+//                                    }
+//                                }
+//                                else {
+//                                    $0
+//                                }
+//                            }
                 }
                 else if case .loading = photoStatus {
                     ProgressView()
