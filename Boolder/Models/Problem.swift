@@ -386,7 +386,7 @@ struct StartGroup: Identifiable, Equatable {
     let problems: [Problem]
     
     var sortedProblems: [Problem] {
-        problems.sorted { $0.zIndex > $1.zIndex }
+        problems.sorted { ($0.lineLastPoint?.x ?? 0) < ($1.lineLastPoint?.y ?? 0) }
     }
     
     var problemsWithoutVariants: [Problem] {
