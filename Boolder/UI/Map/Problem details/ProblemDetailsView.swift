@@ -327,6 +327,9 @@ struct ProblemDetailsView: View {
             
             Spacer()
         }
+        .overlay(
+            ProblemListSheet(showAllLines: $showAllLines)
+        )
         .onChange(of: problem) { [problem] newValue in
             //            showAllLines = false
         }

@@ -125,6 +125,8 @@
 		03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
 		03FEAA1A2DABEE5900E29F8F /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FEAA192DABEE5900E29F8F /* boolder.db */; };
 		03FEAA1B2DABEE5900E29F8F /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 03FEAA192DABEE5900E29F8F /* boolder.db */; };
+		03FEAA1D2DAE4B9700E29F8F /* ProblemListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEAA1C2DAE4B8A00E29F8F /* ProblemListSheet.swift */; };
+		03FEAA1E2DAE4B9700E29F8F /* ProblemListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FEAA1C2DAE4B8A00E29F8F /* ProblemListSheet.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -243,6 +245,7 @@
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		03FEAA192DABEE5900E29F8F /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		03FEAA1C2DAE4B8A00E29F8F /* ProblemListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemListSheet.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -537,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
+				03FEAA1C2DAE4B8A00E29F8F /* ProblemListSheet.swift */,
 				0385F98F2D98178B00AC8AEF /* DraggableSheet.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
@@ -746,6 +750,7 @@
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
+				03FEAA1E2DAE4B9700E29F8F /* ProblemListSheet.swift in Sources */,
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
@@ -816,6 +821,7 @@
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				0307619C2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
+				03FEAA1D2DAE4B9700E29F8F /* ProblemListSheet.swift in Sources */,
 				038F7F482C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
 				037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
