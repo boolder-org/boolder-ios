@@ -114,6 +114,26 @@ struct TopoView: View {
                                                     }
                                                 }
                                             }
+                                            
+                                            if showAllLines && problem.startId == group.startId {
+                                                HStack(spacing: 0) {
+                                                    ForEach(problems.indices, id: \.self) { (i: Int) in
+                                                        let p = problems[i]
+                                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                                            .onTapGesture {
+                                                                showAllLines = false
+                                                                mapState.selectProblem(p)
+                                                            }
+                                                    }
+                                                }
+                                                .background {
+                                                    Color.gray
+                                                }
+                                                .cornerRadius(8)
+                                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                                .zIndex(.infinity)
+//                                                .offset(x: 0, y: 32)
+                                            }
                                         }
                                     }
                                 }
