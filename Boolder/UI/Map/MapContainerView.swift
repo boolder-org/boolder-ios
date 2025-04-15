@@ -35,7 +35,7 @@ struct MapContainerView: View {
             
 //            circuitButtons
             
-            browseButtons
+//            browseButtons
             
             Group {
                 
@@ -142,6 +142,24 @@ struct MapContainerView: View {
                         .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                         .padding(.horizontal)
                     }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                            .padding(10)
+                    }
+                    .font(.body.weight(.semibold))
+                    .accentColor(.black)
+                    .background(Color.systemBackground)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                    .padding(.horizontal)
                     
                     Spacer()
                     
