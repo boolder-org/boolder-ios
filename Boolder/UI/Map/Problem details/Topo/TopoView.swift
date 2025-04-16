@@ -168,6 +168,10 @@ struct TopoView: View {
                                     ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                         LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                                         //                                                .opacity(0.5)
+                                            .onTapGesture {
+                                                showAllLines = false
+                                                mapState.selectProblem(p)
+                                            }
                                     }
                                 }
                             }
