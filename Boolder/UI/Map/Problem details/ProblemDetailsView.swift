@@ -98,7 +98,7 @@ struct ProblemDetailsView: View {
                         ProblemCircleView(problem: problem)
                         
                         Text(problem.localizedName)
-                            .font(.title2)
+                            .font(.body)
 //                            .fontWeight(.bold)
                             .foregroundColor(.primary)
                             .lineLimit(1)
@@ -115,12 +115,12 @@ struct ProblemDetailsView: View {
                         //                        }
                         
                         Text(problem.grade.string)
-                            .font(.title2)
+                            .font(.body)
 //                            .fontWeight(.bold)
                         
                         //                        variants
                     }
-                    .padding(.top, 4)
+//                    .padding(.top, 4)
                 }
                 
                 HStack(alignment: .firstTextBaseline) {
@@ -219,13 +219,16 @@ struct ProblemDetailsView: View {
                     
                     if true { // !showAllLines {  //selectedDetent == .medium {
                         
-                        if array.count > 1 {
-                            variants
-                                .opacity(showAllLines ? 0.2 : 1)
-                        }
+//                        if array.count > 1 {
+//                            variants
+//                                .opacity(showAllLines ? 0.2 : 1)
+//                        }
                         
                         infosCard
                             .frame(height: 80)
+                            .opacity(showAllLines ? 0.2 : 1)
+                        
+                        actionButtons
                             .opacity(showAllLines ? 0.2 : 1)
                     }
                     
