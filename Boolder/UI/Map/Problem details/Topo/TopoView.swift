@@ -11,7 +11,7 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let topo: Topo
+    let topo: Topo // FIXME: what happends when page changes?
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero

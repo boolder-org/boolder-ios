@@ -21,6 +21,10 @@ struct ProblemListSheet: View {
     @State private var dragOffset: CGFloat = 0         // Temporary offset during dragging
     
     @Binding var showAllLines: Bool
+    
+    @Binding var problem: Problem
+    @ObservedObject var mapState: MapState
+    
 
     var body: some View {
         GeometryReader { geometry in
@@ -37,9 +41,43 @@ struct ProblemListSheet: View {
                         .frame(width: 40, height: 6)
                         .padding(8)
                     
-                    // Your sheet content goes here
-                    Text("12 voies")
-                        .padding(.horizontal)
+                    VStack {
+                        ScrollView {
+                            
+                            VStack(spacing: 0) {
+                                
+                                //                                Divider().padding(.vertical, 0)
+                                
+                                ForEach(problem.topo!.orderedProblems.filter{$0.startId == problem.startId }) { p in
+                                    Button {
+                                        mapState.selectProblem(p)
+                                        showAllLines = false
+                                    } label: {
+                                        HStack {
+                                            ProblemCircleView(problem: p)
+                                            Text(p.localizedName)
+                                            Spacer()
+                                            //                                            if(p.sitStart) {
+                                            //                                                Image(systemName: "figure.rower")
+                                            //                                            }
+                                            
+                                            //                                            if(p.featured) {
+                                            //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                                            //                                            }
+                                            Text(p.grade.string)
+                                        }
+                                        .foregroundColor(.primary)
+                                        
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 6)
+                                    .background(p.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                    
+                                    Divider().padding(.vertical, 0)
+                                }
+                            }
+                        }
+                    }
                     
                     Spacer()
                 }
