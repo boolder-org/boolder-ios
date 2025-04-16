@@ -93,8 +93,10 @@ struct MapContainerView: View {
                 )
 //                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
                 .presentationDetents([.medium])
+//                .presentationDetents([.height(UIScreen.main.bounds.width*3/4)])
                 .presentationBackgroundInteraction(
                     .enabled(upThrough: .medium)
+//                    .enabled(upThrough: .height(UIScreen.main.bounds.width*3/4))
                 )
                 .presentationDragIndicator(.hidden)
 //                .edgesIgnoringSafeArea(.bottom)
