@@ -252,19 +252,35 @@ struct ProblemDetailsView: View {
                     if  showAllLines { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
-                            HStack {
-                                Spacer()
-//                                Text("\(problem.topo!.orderedProblems.count) problems")
-                                Text("Voir la liste")
-//                                Image(systemName: "chevron.down")
-                                Spacer()
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(alignment: .center, spacing: 16) {
+                                    ForEach(problem.startGroups) { (group: StartGroup) in
+                                        let problems = group.problemsWithoutVariants
+                                        ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                                            Button {
+                                                showAllLines = false
+                                                mapState.selectProblem(p)
+                                            } label: {
+                                                HStack(alignment: .center, spacing: 8) {
+                                                    ProblemCircleView(problem: p)
+                                                    Text(p.localizedName)
+                                                    Text(p.grade.string)
+                                                }
+                                                .foregroundColor(.primary)
+                                                .padding(.horizontal, 4)
+                                                .padding(.vertical, 4)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .stroke(Color.gray, lineWidth: 1)
+                                                )
+                                            }
+                                            
+                                        }
+                                    }
+                                }
                             }
-                            .onTapGesture {
-                                selectedDetent = MapContainerView.maxDetent
-                            }
-                            .foregroundStyle(.gray)
-                            .padding(.horizontal)
                             .padding(.vertical)
+                            .padding(.horizontal)
                         }
                         else {
                             
