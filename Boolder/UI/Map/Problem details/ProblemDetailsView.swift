@@ -106,11 +106,11 @@ struct ProblemDetailsView: View {
                 
                 Spacer()
                 
-                if(problem.sitStart) {
-                    Image(systemName: "figure.rower")
-                    Text("problem.sit_start")
-                        .font(.body)
-                }
+//                if(problem.sitStart) {
+//                    Image(systemName: "figure.rower")
+//                    Text("problem.sit_start")
+//                        .font(.body)
+//                }
                 
                 Text(problem.grade.string)
                     .font(.body)
@@ -120,40 +120,40 @@ struct ProblemDetailsView: View {
             }
             //                    .padding(.top, 4)
             
-//            HStack(alignment: .firstTextBaseline) {
-//                
-//                if(problem.sitStart) {
-//                    Image(systemName: "figure.rower")
-//                    Text("problem.sit_start")
-//                        .font(.body)
-//                }
-//                
-//                //                    if problem.steepness != .other {
-//                //                        if problem.sitStart {
-//                //                            Text("•")
-//                //                                .font(.body)
-//                //                        }
-//                //
-//                //                        HStack(alignment: .firstTextBaseline) {
-//                //                            Image(problem.steepness.imageName)
-//                //                                .frame(minWidth: 16)
-//                //                            Text(problem.steepness.localizedName)
-//                //
-//                //                        }
-//                //                        .font(.body)
-//                //                    }
-//                
-//                Spacer()
-//                
-//                //                    if isTicked() {
-//                //                        Image(systemName: "checkmark.circle.fill")
-//                //                            .foregroundColor(Color.appGreen)
-//                //                    }
-//                //                    else if isFavorite() {
-//                //                        Image(systemName: "star.fill")
-//                //                            .foregroundColor(Color.yellow)
-//                //                    }
-//            }
+            HStack(alignment: .firstTextBaseline) {
+                
+                if(problem.sitStart) {
+                    Image(systemName: "figure.rower")
+                    Text("problem.sit_start")
+                        .font(.body)
+                }
+                
+                //                    if problem.steepness != .other {
+                //                        if problem.sitStart {
+                //                            Text("•")
+                //                                .font(.body)
+                //                        }
+                //
+                //                        HStack(alignment: .firstTextBaseline) {
+                //                            Image(problem.steepness.imageName)
+                //                                .frame(minWidth: 16)
+                //                            Text(problem.steepness.localizedName)
+                //
+                //                        }
+                //                        .font(.body)
+                //                    }
+                
+                Spacer()
+                
+                //                    if isTicked() {
+                //                        Image(systemName: "checkmark.circle.fill")
+                //                            .foregroundColor(Color.appGreen)
+                //                    }
+                //                    else if isFavorite() {
+                //                        Image(systemName: "star.fill")
+                //                            .foregroundColor(Color.yellow)
+                //                    }
+            }
         }
         
         .padding(.horizontal)
@@ -229,11 +229,11 @@ struct ProblemDetailsView: View {
 //                                .opacity(showAllLines ? 0.2 : 1)
 //                        }
                         
-                        if selectedDetent == MapContainerView.maxDetent {
+//                        if selectedDetent == MapContainerView.maxDetent {
                             
                             actionButtons
                                 .opacity(showAllLines ? 0.2 : 1)
-                        }
+//                        }
                     }
                     
                     
