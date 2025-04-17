@@ -43,6 +43,7 @@ struct TopoView: View {
 //                        handleTapOnBackground()
 //                    }
                 
+                
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                     
@@ -169,7 +170,7 @@ struct TopoView: View {
                         }
                         
                         if showAllLines { // }(showAllLines) {
-                            ForEach(problems) { p in
+                            ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
@@ -191,7 +192,7 @@ struct TopoView: View {
                 if showAllLines { // }(showAllLines) {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems) { (p: Problem) in
+                            ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
                                     if p.parentId == nil {
@@ -270,6 +271,12 @@ struct TopoView: View {
                 
                 
             }
+//            .simultaneousGesture(
+//                        TapGesture()
+//                            .onEnded { _ in
+//                                print("Group tapped")
+//                            }
+//                    )
             
 //            VStack {
 //                HStack {
@@ -302,7 +309,6 @@ struct TopoView: View {
 //                
 //                Spacer()
 //            }
-//            .padding(.vertical)
         }
     }
     
