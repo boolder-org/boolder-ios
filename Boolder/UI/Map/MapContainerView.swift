@@ -99,7 +99,7 @@ struct MapContainerView: View {
 //                    .enabled(upThrough: .medium)
 //                    .enabled(upThrough: .height(UIScreen.main.bounds.width*3/4))
                 )
-                .presentationDragIndicator(.hidden)
+//                .presentationDragIndicator(.hidden)
 //                .edgesIgnoringSafeArea(.bottom)
             }
     }

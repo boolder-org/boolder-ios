@@ -38,10 +38,10 @@ struct TopoView: View {
                             $0
                         }
                     }
-                    .onTapGesture {
-                        print("Tapped on image")
-                        handleTapOnBackground()
-                    }
+//                    .onTapGesture {
+//                        print("Tapped on image")
+//                        handleTapOnBackground()
+//                    }
                 
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
@@ -277,6 +277,7 @@ struct TopoView: View {
                                             .foregroundColor(.white)
                                             .opacity(0.8)
                                             .shadow(radius: 2)
+                                            .padding()
                             .onTapGesture {
                                 showAllLines = true
                             }
@@ -295,11 +296,11 @@ struct TopoView: View {
                     
                     Spacer()
                 }
-                .padding(.horizontal)
+//                .padding(.horizontal)
                 
                 Spacer()
             }
-            .padding(.vertical)
+//            .padding(.vertical)
         }
     }
     
