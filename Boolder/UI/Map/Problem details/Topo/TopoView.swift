@@ -88,36 +88,36 @@ struct TopoView: View {
                                     
                                     
                                     
-                                    //                                            ZStack {
-                                    //                                                Circle()
-                                    //                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                    //                                                    .frame(width: 18, height: 18)
-                                    //
-                                    //                                                Circle()
-                                    //                                                    .fill(Color(.darkGray).opacity(0.8))
-                                    //                                                    .frame(width: 18, height: 18)
-                                    //
-                                    //                                                Circle()
-                                    //                                                    .fill(Color.white)
-                                    //                                                    .frame(width: 8, height: 8)
-                                    //                                            }
-                                    //
-                                    //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    //                                            .onTapGesture {
-                                    //                                                showAllLines = true
-                                    //
-                                    //                                                if group.problems.contains(problem) {
-                                    //                                                    if let next = problem.startGroup?.next(after: problem) {
-                                    //                                                        mapState.selectProblem(next)
-                                    //                                                    }
-                                    //
-                                    //                                                }
-                                    //                                                else {
-                                    //                                                    if let topProblem = group.topProblem {
-                                    //                                                        mapState.selectProblem(topProblem)
-                                    //                                                    }
-                                    //                                                }
-                                    //                                            }
+                                    ZStack {
+                                        Circle()
+                                            .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                                            .frame(width: 18, height: 18)
+                                        
+                                        Circle()
+                                            .fill(Color(.darkGray).opacity(0.8))
+                                            .frame(width: 18, height: 18)
+                                        
+                                        Circle()
+                                            .fill(Color.white)
+                                            .frame(width: 8, height: 8)
+                                    }
+                                    
+                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                    .onTapGesture {
+                                        showAllLines = true
+                                        
+                                        if group.problems.contains(problem) {
+                                            if let next = problem.startGroup?.next(after: problem) {
+                                                mapState.selectProblem(next)
+                                            }
+                                            
+                                        }
+                                        else {
+                                            if let topProblem = group.topProblem {
+                                                mapState.selectProblem(topProblem)
+                                            }
+                                        }
+                                    }
                                     
                                     //                                            if showAllLines && problem.startId == group.startId {
                                     //                                                HStack(spacing: 0) {
@@ -141,7 +141,7 @@ struct TopoView: View {
                                 }
                             }
                         }
-                        else if false  {
+                        else  {
                             ForEach(problems.indices, id: \.self) { (i: Int) in
                                 let p = problems[i]
                                 //                                    let offseeet = group.sortedProblems.firstIndex(of: problem)
@@ -171,6 +171,7 @@ struct TopoView: View {
                         if showAllLines { // }(showAllLines) {
                             ForEach(problems) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+//                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
                                     .onTapGesture {
                                         showAllLines = false
@@ -198,6 +199,7 @@ struct TopoView: View {
                                         GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
+//                                            .opacity(showAllLines ? 1 : 0.7)
                                             .onTapGesture {
                                                 showAllLines = false
                                                 mapState.selectProblem(p)
@@ -269,37 +271,37 @@ struct TopoView: View {
                 
             }
             
-            VStack {
-                HStack {
-                    if !showAllLines {
-                        Image(systemName: "chevron.left.circle.fill")
-                            .font(.system(size: 22, weight: .semibold))
-                                            .foregroundColor(.white)
-                                            .opacity(0.8)
-                                            .shadow(radius: 2)
-                                            .padding()
-                            .onTapGesture {
-                                showAllLines = true
-                            }
-                    }
-//                    else {
-//                        Image(systemName: "xmark.circle.fill")
+//            VStack {
+//                HStack {
+//                    if !showAllLines {
+//                        Image(systemName: "chevron.left.circle.fill")
 //                            .font(.system(size: 22, weight: .semibold))
 //                                            .foregroundColor(.white)
 //                                            .opacity(0.8)
 //                                            .shadow(radius: 2)
+//                                            .padding()
 //                            .onTapGesture {
-//                                
+//                                showAllLines = true
 //                            }
 //                    }
-                        
-                    
-                    Spacer()
-                }
-//                .padding(.horizontal)
-                
-                Spacer()
-            }
+////                    else {
+////                        Image(systemName: "xmark.circle.fill")
+////                            .font(.system(size: 22, weight: .semibold))
+////                                            .foregroundColor(.white)
+////                                            .opacity(0.8)
+////                                            .shadow(radius: 2)
+////                            .onTapGesture {
+////                                
+////                            }
+////                    }
+//                        
+//                    
+//                    Spacer()
+//                }
+////                .padding(.horizontal)
+//                
+//                Spacer()
+//            }
 //            .padding(.vertical)
         }
     }
