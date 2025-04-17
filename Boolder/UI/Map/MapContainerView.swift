@@ -23,7 +23,7 @@ struct MapContainerView: View {
     
     @State private var selectedDetent: PresentationDetent = smallDetent
     static let maxDetent = PresentationDetent.fraction(0.90)
-    static let smallDetent = PresentationDetent.fraction(0.6)
+    static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 64)
     
     var body: some View {
         
@@ -91,11 +91,12 @@ struct MapContainerView: View {
                     mapState: mapState,
                     selectedDetent: $selectedDetent
                 )
-//                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
-                .presentationDetents([.medium])
+                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
+//                .presentationDetents([.medium])
 //                .presentationDetents([.height(UIScreen.main.bounds.width*3/4)])
                 .presentationBackgroundInteraction(
-                    .enabled(upThrough: .medium)
+                    .enabled(upThrough: MapContainerView.smallDetent)
+//                    .enabled(upThrough: .medium)
 //                    .enabled(upThrough: .height(UIScreen.main.bounds.width*3/4))
                 )
                 .presentationDragIndicator(.hidden)
