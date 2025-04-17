@@ -78,88 +78,86 @@ struct ProblemDetailsView: View {
     }
     
     var infosCard: some View {
+        
+        
         VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                if false { // showAllLines {
+                    Button {
+                        showAllLines = true
+                    } label: {
+                        Image(systemName: "chevron.backward.circle")
+                    }
+                    .foregroundColor(.gray)
+                    .font(.title2)
+                    //                            .fontWeight(.bold)
+                }
+                
+                ProblemCircleView(problem: problem)
+                
+                Text(problem.localizedName)
+                    .font(.body)
+                //                            .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .minimumScaleFactor(0.5)
+                
+                Spacer()
+                
+                //                        if(problem.sitStart) {
+                //                            Image(systemName: "figure.rower")
+                //                            Text("problem.sit_start")
+                //                                .font(.body)
+                //                        }
+                
+                Text(problem.grade.string)
+                    .font(.body)
+                //                            .fontWeight(.bold)
+                
+                //                        variants
+            }
+            //                    .padding(.top, 4)
             
-            VStack(alignment: .leading, spacing: 4) {
+            HStack(alignment: .firstTextBaseline) {
                 
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        if false { // showAllLines {
-                            Button {
-                                showAllLines = true
-                            } label: {
-                                Image(systemName: "chevron.backward.circle")
-                            }
-                            .foregroundColor(.gray)
-                            .font(.title2)
-                            //                            .fontWeight(.bold)
-                        }
-                        
-                        ProblemCircleView(problem: problem)
-                        
-                        Text(problem.localizedName)
-                            .font(.body)
-//                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .lineLimit(1)
-                            .truncationMode(.middle)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .minimumScaleFactor(0.5)
-                        
-                        Spacer()
-                        
-                        //                        if(problem.sitStart) {
-                        //                            Image(systemName: "figure.rower")
-                        //                            Text("problem.sit_start")
-                        //                                .font(.body)
-                        //                        }
-                        
-                        Text(problem.grade.string)
-                            .font(.body)
-//                            .fontWeight(.bold)
-                        
-                        //                        variants
-                    }
-//                    .padding(.top, 4)
+                if(problem.sitStart) {
+                    Image(systemName: "figure.rower")
+                    Text("problem.sit_start")
+                        .font(.body)
                 }
                 
-                HStack(alignment: .firstTextBaseline) {
-                    
-                    if(problem.sitStart) {
-                        Image(systemName: "figure.rower")
-                        Text("problem.sit_start")
-                            .font(.body)
-                    }
-                    
-                    //                    if problem.steepness != .other {
-                    //                        if problem.sitStart {
-                    //                            Text("•")
-                    //                                .font(.body)
-                    //                        }
-                    //
-                    //                        HStack(alignment: .firstTextBaseline) {
-                    //                            Image(problem.steepness.imageName)
-                    //                                .frame(minWidth: 16)
-                    //                            Text(problem.steepness.localizedName)
-                    //
-                    //                        }
-                    //                        .font(.body)
-                    //                    }
-                    
-                    Spacer()
-                    
-                    //                    if isTicked() {
-                    //                        Image(systemName: "checkmark.circle.fill")
-                    //                            .foregroundColor(Color.appGreen)
-                    //                    }
-                    //                    else if isFavorite() {
-                    //                        Image(systemName: "star.fill")
-                    //                            .foregroundColor(Color.yellow)
-                    //                    }
-                }
+                //                    if problem.steepness != .other {
+                //                        if problem.sitStart {
+                //                            Text("•")
+                //                                .font(.body)
+                //                        }
+                //
+                //                        HStack(alignment: .firstTextBaseline) {
+                //                            Image(problem.steepness.imageName)
+                //                                .frame(minWidth: 16)
+                //                            Text(problem.steepness.localizedName)
+                //
+                //                        }
+                //                        .font(.body)
+                //                    }
+                
+                Spacer()
+                
+                //                    if isTicked() {
+                //                        Image(systemName: "checkmark.circle.fill")
+                //                            .foregroundColor(Color.appGreen)
+                //                    }
+                //                    else if isFavorite() {
+                //                        Image(systemName: "star.fill")
+                //                            .foregroundColor(Color.yellow)
+                //                    }
             }
         }
+        
         .padding(.horizontal)
+        .padding(.vertical)
     }
     
     var currentTopoIndex: Int {
@@ -222,7 +220,7 @@ struct ProblemDetailsView: View {
                     if !showAllLines { // !showAllLines {  //selectedDetent == .medium {
                         
                         infosCard
-                            .frame(height: 80)
+//                            .frame(height: 80)
                             .opacity(showAllLines ? 0.2 : 1)
                         
                         
@@ -254,8 +252,11 @@ struct ProblemDetailsView: View {
                     if  showAllLines { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
-                            VStack {
+                            HStack {
+                                Spacer()
                                 Text("\(problem.topo!.orderedProblems.count) problems")
+//                                Image(systemName: "arrow.down.circle")
+                                Spacer()
                             }
                             .padding(.horizontal)
                             .padding(.vertical)
