@@ -254,8 +254,9 @@ struct ProblemDetailsView: View {
                         if selectedDetent == MapContainerView.smallDetent {
                             HStack {
                                 Spacer()
-                                Text("\(problem.topo!.orderedProblems.count) problems")
-//                                Image(systemName: "arrow.down.circle")
+//                                Text("\(problem.topo!.orderedProblems.count) problems")
+                                Text("Voir la liste")
+                                Image(systemName: "chevron.down")
                                 Spacer()
                             }
                             .padding(.horizontal)

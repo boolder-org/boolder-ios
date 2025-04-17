@@ -23,7 +23,7 @@ struct MapContainerView: View {
     
     @State private var selectedDetent: PresentationDetent = smallDetent
     static let maxDetent = PresentationDetent.fraction(0.90)
-    static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 64)
+    static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 56)
     
     var body: some View {
         
