@@ -252,35 +252,43 @@ struct ProblemDetailsView: View {
                     if  showAllLines { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .center, spacing: 16) {
-                                    ForEach(problem.startGroups) { (group: StartGroup) in
-                                        let problems = group.problemsWithoutVariants
-                                        ForEach(problems.filter{$0.startId == problem.startId}) { p in
-                                            Button {
-                                                showAllLines = false
-                                                mapState.selectProblem(p)
-                                            } label: {
-                                                HStack(alignment: .center, spacing: 8) {
-                                                    ProblemCircleView(problem: p)
-                                                    Text(p.localizedName)
-                                                    Text(p.grade.string)
-                                                }
-                                                .foregroundColor(.primary)
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 4)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 8)
-                                                        .stroke(Color.gray, lineWidth: 1)
-                                                )
-                                            }
-                                            
-                                        }
-                                    }
-                                }
+//                            ScrollView(.horizontal, showsIndicators: false) {
+//                                HStack(alignment: .center, spacing: 16) {
+//                                    ForEach(problem.startGroups) { (group: StartGroup) in
+//                                        let problems = group.problemsWithoutVariants
+//                                        ForEach(problems.filter{$0.startId == problem.startId}) { p in
+//                                            Button {
+//                                                showAllLines = false
+//                                                mapState.selectProblem(p)
+//                                            } label: {
+//                                                HStack(alignment: .center, spacing: 8) {
+//                                                    ProblemCircleView(problem: p)
+////                                                    Text(p.localizedName)
+//                                                    Text(p.grade.string)
+//                                                }
+//                                                .foregroundColor(.primary)
+//                                                .padding(.horizontal, 4)
+//                                                .padding(.vertical, 4)
+//                                                .overlay(
+//                                                    RoundedRectangle(cornerRadius: 8)
+//                                                        .stroke(Color.gray, lineWidth: 1)
+//                                                )
+//                                            }
+//                                            
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            .padding(.vertical)
+//                            .padding(.horizontal)
+                            
+                            HStack {
+                                Spacer()
+                                Text("Sélectionnez une voie sur l'image")
+                                Spacer()
                             }
-                            .padding(.vertical)
-                            .padding(.horizontal)
+                            .foregroundColor(.gray.opacity(0.7))
+                            .padding()
                         }
                         else {
                             
