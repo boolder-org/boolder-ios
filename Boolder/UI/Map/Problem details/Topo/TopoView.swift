@@ -38,6 +38,10 @@ struct TopoView: View {
                             $0
                         }
                     }
+                    .onTapGesture {
+                        print("Tapped on image")
+                        handleTapOnBackground()
+                    }
                 
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
@@ -84,36 +88,36 @@ struct TopoView: View {
                                             
                                             
                                             
-                                            ZStack {
-                                                Circle()
-                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                                    .frame(width: 18, height: 18)
-                                                
-                                                Circle()
-                                                    .fill(Color(.darkGray).opacity(0.8))
-                                                    .frame(width: 18, height: 18)
-                                                
-                                                Circle()
-                                                    .fill(Color.white)
-                                                    .frame(width: 8, height: 8)
-                                            }
-                                            
-                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                            .onTapGesture {
-                                                showAllLines = true
-                                                
-                                                if group.problems.contains(problem) {
-                                                    if let next = problem.startGroup?.next(after: problem) {
-                                                        mapState.selectProblem(next)
-                                                    }
-                                                    
-                                                }
-                                                else {
-                                                    if let topProblem = group.topProblem {
-                                                        mapState.selectProblem(topProblem)
-                                                    }
-                                                }
-                                            }
+//                                            ZStack {
+//                                                Circle()
+//                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+//                                                    .frame(width: 18, height: 18)
+//                                                
+//                                                Circle()
+//                                                    .fill(Color(.darkGray).opacity(0.8))
+//                                                    .frame(width: 18, height: 18)
+//                                                
+//                                                Circle()
+//                                                    .fill(Color.white)
+//                                                    .frame(width: 8, height: 8)
+//                                            }
+//                                            
+//                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+//                                            .onTapGesture {
+//                                                showAllLines = true
+//                                                
+//                                                if group.problems.contains(problem) {
+//                                                    if let next = problem.startGroup?.next(after: problem) {
+//                                                        mapState.selectProblem(next)
+//                                                    }
+//                                                    
+//                                                }
+//                                                else {
+//                                                    if let topProblem = group.topProblem {
+//                                                        mapState.selectProblem(topProblem)
+//                                                    }
+//                                                }
+//                                            }
                                             
 //                                            if showAllLines && problem.startId == group.startId {
 //                                                HStack(spacing: 0) {
@@ -137,7 +141,7 @@ struct TopoView: View {
                                         }
                                     }
                                 }
-                                else {
+                                else if false  {
                                     ForEach(problems.indices, id: \.self) { (i: Int) in
                                         let p = problems[i]
                                         //                                    let offseeet = group.sortedProblems.firstIndex(of: problem)
@@ -164,8 +168,8 @@ struct TopoView: View {
                                     }
                                 }
 
-                                if(showAllLines) {
-                                    ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                                if showAllLines { // }(showAllLines) {
+                                    ForEach(problems) { p in
                                         LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
                                         //                                                .opacity(0.5)
                                             .onTapGesture {
@@ -183,9 +187,9 @@ struct TopoView: View {
 //                    }
 //                }
 
-                if(showAllLines) {
+                if showAllLines { // }(showAllLines) {
                             GeometryReader { geo in
-                                ForEach(problem.startGroups.filter{$0.startId == problem.startId}) { (group: StartGroup) in
+                                ForEach(problem.startGroups) { (group: StartGroup) in
                                     ForEach(group.problems) { (p: Problem) in
                                         if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                             
@@ -528,6 +532,7 @@ struct TopoView: View {
     }
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
+        handleTapOnBackground()
 //        let groups = problem.startGroups
 //            .filter { $0.distance(to: tapPoint) < 0.1 }
 //            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
@@ -554,7 +559,8 @@ struct TopoView: View {
     func handleTapOnBackground() {
 //        presentTopoFullScreenView = true
 //        showAllLines = true
-        showAllLines.toggle()
+//        showAllLines.toggle()
+        showAllLines = true
     }
 }
 

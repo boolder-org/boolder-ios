@@ -193,6 +193,7 @@ struct ProblemDetailsView: View {
                         print(newPage)
                         if let topo = Topo.load(id: newPage) {
                             mapState.selectProblem(topo.firstProblemOnTheLeft!)
+                            showAllLines = true
                             
                             //                            print(pageCounter)
                             if true { // pageCounter > 0 {
@@ -204,6 +205,7 @@ struct ProblemDetailsView: View {
                             //                            if selectedDetent == .large {
                             //                                showAllLines = true
                             //                            }
+                            
                             
                         }
                     }
