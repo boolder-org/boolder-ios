@@ -92,12 +92,12 @@ struct MapContainerView: View {
                     selectedDetent: $selectedDetent
                 )
 //                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
-                .presentationDetents([MapContainerView.smallDetent])
-//                .presentationDetents([.medium])
+//                .presentationDetents([MapContainerView.smallDetent])
+                .presentationDetents([.medium])
 //                .presentationDetents([.height(UIScreen.main.bounds.width*3/4)])
                 .presentationBackgroundInteraction(
-                    .enabled(upThrough: MapContainerView.smallDetent)
-//                    .enabled(upThrough: .medium)
+//                    .enabled(upThrough: MapContainerView.smallDetent)
+                    .enabled(upThrough: .medium)
 //                    .enabled(upThrough: .height(UIScreen.main.bounds.width*3/4))
                 )
                 .presentationDragIndicator(.hidden)
@@ -149,19 +149,21 @@ struct MapContainerView: View {
                     
                     Spacer()
                     
-                    Button(action: {
+                    Button {
                         
-                    }) {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
-                            .padding(10)
+                    } label: {
+                        HStack {
+                            Image(systemName: "list.bullet")
+                            Text("Liste")
+                        }
                     }
                     .font(.body.weight(.semibold))
                     .accentColor(.black)
-                    .background(Color.systemBackground)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                    )
+//                    .background(Color.systemBackground)
+//                    .clipShape(Circle())
+//                    .overlay(
+//                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                    )
                     .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                     .padding(.horizontal)
                     
