@@ -88,19 +88,26 @@ struct TopoView: View {
                                     //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     
                                     ZStack {
-                                        ZStack {
-                                            Circle()
-                                                .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                                .frame(width: 18, height: 18)
-                                            
-                                            Circle()
-                                                .fill(Color(.darkGray).opacity(0.8))
-                                                .frame(width: 18, height: 18)
-                                            
-                                            Circle()
-                                                .fill(Color.white)
-                                                .frame(width: 8, height: 8)
-                                        }
+//                                        ZStack {
+//                                            Circle()
+//                                                .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+//                                                .frame(width: 18, height: 18)
+//                                            
+//                                            Circle()
+//                                                .fill(Color(.darkGray).opacity(0.8))
+//                                                .frame(width: 18, height: 18)
+//                                            
+//                                            Circle()
+//                                                .fill(Color.white)
+//                                                .frame(width: 8, height: 8)
+//                                        }
+                                        
+                                        CircleView(number: "",
+                                                   color: Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay,
+                                                   showStroke: false,
+                                                   showShadow: true,
+                                                   scaleEffect: 0.7
+                                        )
                                         
                                         if let c = (problems.filter{$0.circuitColor != .offCircuit}.first) {
                                             ProblemCircleView(problem: c, isDisplayedOnPhoto: true)
