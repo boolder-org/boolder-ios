@@ -195,7 +195,7 @@ struct TopoView: View {
                             ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
-                                    if p.parentId == nil {
+                                    if true { // p.parentId == nil {
                                         
                                         GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
