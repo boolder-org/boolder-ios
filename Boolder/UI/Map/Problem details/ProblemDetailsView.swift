@@ -247,7 +247,7 @@ struct ProblemDetailsView: View {
                     if !showAllLines { // !showAllLines {  //selectedDetent == .medium {
                         
                         infosCard
-//                            .frame(height: 80)
+                            .frame(height: 80)
                             .opacity(showAllLines ? 0.2 : 1)
                         
                         
