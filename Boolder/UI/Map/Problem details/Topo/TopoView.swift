@@ -78,9 +78,9 @@ struct TopoView: View {
                 
                 GeometryReader { geo in
                     ForEach(problem.startGroups) { (group: StartGroup) in
-                        let problems = group.problemsWithoutVariants
+                        let problems = group.problemsToDisplay
                         
-                        if problems.count >= 2 {
+                        if (problems.count >= 2) {
                             if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
                                 if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
                                     //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)

@@ -273,7 +273,7 @@ extension Problem {
     }
     
     var indexWithinStartGroup: Int? {
-        startGroup?.problemsWithoutVariants.firstIndex(of: self)
+        startGroup?.problemsToDisplay.firstIndex(of: self)
     }
 
     var children: [Problem] {
@@ -389,13 +389,17 @@ struct StartGroup: Identifiable, Equatable {
         problems.sorted { $0.grade < $1.grade } //.sorted { ($0.lineLastPoint?.x ?? 1) < ($1.lineLastPoint?.y ?? 1) }
     }
     
-    var problemsWithoutVariants: [Problem] {
+    var problemsToDisplay: [Problem] {
         sortedProblems //.filter { $0.parentId == nil }
     }
     
+    var problemsToBeConsidered: [Problem] {
+        sortedProblems.filter { $0.parentId == nil }
+    }
+    
     func next(after: Problem) -> Problem? {
-        if let index = problemsWithoutVariants.firstIndex(of: after) {
-            return problemsWithoutVariants[(index + 1) % problemsWithoutVariants.count]
+        if let index = problemsToDisplay.firstIndex(of: after) {
+            return problemsToDisplay[(index + 1) % problemsToDisplay.count]
         }
         
         return nil

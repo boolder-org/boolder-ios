@@ -282,7 +282,7 @@ struct ProblemDetailsView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(alignment: .top, spacing: 0) {
                                     ForEach(problem.startGroups) { (group: StartGroup) in
-                                        let problems = group.problemsWithoutVariants
+                                        let problems = group.problemsToDisplay
                                         ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                             Button {
                                                 showAllLines = false
