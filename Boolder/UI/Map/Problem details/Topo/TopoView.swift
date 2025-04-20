@@ -105,76 +105,16 @@ struct TopoView: View {
                         if (problems.count >= 2) {
                             if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
                                 if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
-                                    //                                        CircleView(number: "+", color: .darkGray, scaleEffect: 0.7)
-                                    ////                                            .allowsHitTesting(false)
-                                    //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                    
+                                    let array = problems.sorted{$0.zIndex > $1.zIndex}
                                     
                                     ZStack {
-                                        
-                                        if let c = (problems.filter{$0.circuitColor != .offCircuit}.first) {
-//                                            ZStack {
-//                                                Circle()
-//                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-//                                                    .frame(width: 26, height: 26)
-//                                                
-//                                                Circle()
-//                                                    .fill(Color(.darkGray).opacity(0.8))
-//                                                    .frame(width: 26, height: 26)
-//                                                
-//                                                Circle()
-//                                                    .fill(Color.white)
-//                                                    .frame(width: 8, height: 8)
-//                                            }
-                                            CircleView(number: "",
-                                                       color: Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay,
-                                                       showStroke: false,
-                                                       showShadow: true,
-                                                       scaleEffect: 0.7
-                                            )
-                                            .offset(x: xOffset, y: yOffset)
-//                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
-                                            
-                                            ProblemCircleView(problem: c, isDisplayedOnPhoto: true)
-//                                                .offset(x: -xOffset, y: -yOffset)
-//                                                                .animation(.easeOut(duration: 0.1), value: motion.roll)
-//                                                .scaleEffect(0.7)
-                                        }
-                                        else {
-                                            ZStack {
-                                                Circle()
-                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                                    .frame(width: 18, height: 18)
-                                                
-                                                Circle()
-                                                    .fill(Color(.darkGray).opacity(0.8))
-                                                    .frame(width: 18, height: 18)
-                                                
-                                                Circle()
-                                                    .fill(Color(Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay))
-                                                    .frame(width: 8, height: 8)
-                                            }
-                                        }
-                                        
-                                        
-                                        
-//                                        CircleView(number: "",
-//                                                   color: Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay,
-//                                                   showStroke: false,
-//                                                   showShadow: true,
-//                                                   scaleEffect: 0.7
-//                                        )
-//                                        
-//                                        if let c = (problems.filter{$0.circuitColor != .offCircuit}.first) {
-//                                            ProblemCircleView(problem: c, isDisplayedOnPhoto: true)
-//                                        }
-                                        
-//                                        let array = problems.sorted{$0.zIndex > $1.zIndex}
-//                                        if let first = array.first {
-//                                            ProblemCircleView(problem: first, isDisplayedOnPhoto: true).zIndex(first.zIndex)
-//                                            ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true).offset(x: 4, y: 0)
-//                                        }
+                                        ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(array[0].zIndex)
+                                        ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
+                                            .offset(x: 2, y: 2)
+                                        //                                            .offset(x: xOffset, y: yOffset)
+                                        //                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
                                     }
-                                    
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
                                         
