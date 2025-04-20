@@ -116,19 +116,30 @@ struct TopoView: View {
                                     
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
-                                        showAllLines = true
                                         
-                                        if group.problems.contains(problem) {
-                                            if let next = problem.startGroup?.next(after: problem) {
-                                                mapState.selectProblem(next)
-                                            }
+                                        if group.problemsToBeConsidered.count >= 2 {
+                                            showAllLines = true
                                             
+                                            if group.problems.contains(problem) {
+                                                if let next = problem.startGroup?.next(after: problem) {
+                                                    mapState.selectProblem(next)
+                                                }
+                                                
+                                            }
+                                            else {
+                                                if let topProblem = group.topProblem {
+                                                    mapState.selectProblem(topProblem)
+                                                }
+                                            }
                                         }
                                         else {
-                                            if let topProblem = group.topProblem {
-                                                mapState.selectProblem(topProblem)
+                                            if let ppp = group.problemsToBeConsidered.first {
+                                                mapState.selectProblem(ppp)
+                                                showAllLines = false
                                             }
                                         }
+                                        
+                                        
                                     }
                                     
                                     //                                            if showAllLines && problem.startId == group.startId {
@@ -200,33 +211,44 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                if showAllLines { // }(showAllLines) {
+                if showAllLines {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
                             ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
-                                    if true { // p.parentId == nil {
+                                    if true {
                                         
                                         GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
-//                                            .opacity(showAllLines ? 1 : 0.7)
                                             .onTapGesture {
                                                 showAllLines = false
                                                 mapState.selectProblem(p)
                                             }
-                                        
-                                        //                                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                        //                                                    .position(x: topPoint.x * geo.size.width, y: topPoint.y * geo.size.height)
-                                        //                                                    .zIndex(.infinity)
-                                        //                                                    .onTapGesture {
-                                        //                                                        mapState.selectProblem(p)
-                                        //                                                        showAllLines = false
-                                        //                                                    }
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+                else {
+                    GeometryReader { geo in
+                        ForEach(problem.variants.filter{$0.startId == problem.startId && $0.id != problem.id}) {  (p: Problem) in
+                            if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
+                                
+                                if true {
+                                    
+                                    GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                        .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                        .zIndex(.infinity)
+                                        .onTapGesture {
+                                            showAllLines = false
+                                            mapState.selectProblem(p)
+                                        }
+                                }
+                            }
+                            
                         }
                     }
                 }
