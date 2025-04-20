@@ -386,11 +386,11 @@ struct StartGroup: Identifiable, Equatable {
     let problems: [Problem]
     
     var sortedProblems: [Problem] {
-        problems.sorted { ($0.lineLastPoint?.x ?? 1) < ($1.lineLastPoint?.y ?? 1) }
+        problems.sorted { $0.grade < $1.grade } //.sorted { ($0.lineLastPoint?.x ?? 1) < ($1.lineLastPoint?.y ?? 1) }
     }
     
     var problemsWithoutVariants: [Problem] {
-        sortedProblems.filter { $0.parentId == nil }
+        sortedProblems //.filter { $0.parentId == nil }
     }
     
     func next(after: Problem) -> Problem? {
