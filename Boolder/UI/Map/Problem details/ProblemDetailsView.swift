@@ -217,8 +217,10 @@ struct ProblemDetailsView: View {
                     .onChange(of: currentPage) { newPage in
                         print(newPage)
                         if let topo = Topo.load(id: newPage) {
-                            mapState.selectProblem(topo.firstProblemOnTheLeft!)
-//                            showAllLines = true
+                            if problem.topoId != topo.id {
+                                mapState.selectProblem(topo.firstProblemOnTheLeft!)
+                                //                            showAllLines = true
+                            }
                             
                             //                            print(pageCounter)
                             if true { // pageCounter > 0 {
