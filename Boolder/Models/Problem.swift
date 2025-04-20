@@ -29,9 +29,10 @@ struct Problem : Identifiable {
     let featured: Bool
     let popularity: Int?
     let parentId: Int?
+    let startId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, startId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -142,6 +143,7 @@ extension Problem {
     static let circuitId = Expression<Int?>("circuit_id")
     static let bleauInfoId = Expression<String?>("bleau_info_id")
     static let parentId = Expression<Int?>("parent_id")
+    static let startId = Expression<Int?>("start_id")
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
     static let sitStart = Expression<Int>("sit_start")
@@ -169,7 +171,8 @@ extension Problem {
                     bleauInfoId: p[bleauInfoId],
                     featured: p[featured] == 1,
                     popularity: p[popularity],
-                    parentId: p[parentId]
+                    parentId: p[parentId],
+                    startId: p[startId]
                 )
             }
             
@@ -254,10 +257,6 @@ extension Problem {
             print (error)
             return []
         }
-    }
-    
-    var startId: Int? {
-        line?.startId
     }
 
     
