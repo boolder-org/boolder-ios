@@ -87,20 +87,24 @@ struct TopoView: View {
                                     ////                                            .allowsHitTesting(false)
                                     //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     
-                                    
-                                    
                                     ZStack {
-                                        Circle()
-                                            .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                            .frame(width: 18, height: 18)
+                                        ZStack {
+                                            Circle()
+                                                .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                                                .frame(width: 18, height: 18)
+                                            
+                                            Circle()
+                                                .fill(Color(.darkGray).opacity(0.8))
+                                                .frame(width: 18, height: 18)
+                                            
+                                            Circle()
+                                                .fill(Color.white)
+                                                .frame(width: 8, height: 8)
+                                        }
                                         
-                                        Circle()
-                                            .fill(Color(.darkGray).opacity(0.8))
-                                            .frame(width: 18, height: 18)
-                                        
-                                        Circle()
-                                            .fill(Color.white)
-                                            .frame(width: 8, height: 8)
+                                        if let c = (problems.filter{$0.circuitColor != .offCircuit}.first) {
+                                            ProblemCircleView(problem: c, isDisplayedOnPhoto: true)
+                                        }
                                     }
                                     
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
