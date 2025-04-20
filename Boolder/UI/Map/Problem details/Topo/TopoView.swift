@@ -22,6 +22,28 @@ struct TopoView: View {
     @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
+//    @StateObject private var motion = MotionManager()
+    
+    private let responseCurve: Double = 0.5
+
+    private func curved(_ normalized: Double) -> Double {
+      let s = normalized >= 0 ? 1.0 : -1.0
+      return s * pow(abs(normalized), responseCurve)
+    }
+
+    private var xOffset: CGFloat {
+      // roll / π gives you a normalized –1…1
+//      let norm = motion.roll / .pi
+//      return CGFloat(curved(norm)) * 4
+        return 2
+    }
+
+    private var yOffset: CGFloat {
+//      let norm = motion.pitch / (.pi/2)
+//      return CGFloat(curved(norm)) * 4
+        return 2
+    }
+    
     func contentWithImage(_ image: UIImage) -> some View {
         ZStack {
             Group {
@@ -88,30 +110,69 @@ struct TopoView: View {
                                     //                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     
                                     ZStack {
-//                                        ZStack {
-//                                            Circle()
-//                                                .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-//                                                .frame(width: 18, height: 18)
-//                                            
-//                                            Circle()
-//                                                .fill(Color(.darkGray).opacity(0.8))
-//                                                .frame(width: 18, height: 18)
-//                                            
-//                                            Circle()
-//                                                .fill(Color.white)
-//                                                .frame(width: 8, height: 8)
-//                                        }
-                                        
-                                        CircleView(number: "",
-                                                   color: Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay,
-                                                   showStroke: false,
-                                                   showShadow: true,
-                                                   scaleEffect: 0.7
-                                        )
                                         
                                         if let c = (problems.filter{$0.circuitColor != .offCircuit}.first) {
+//                                            ZStack {
+//                                                Circle()
+//                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+//                                                    .frame(width: 26, height: 26)
+//                                                
+//                                                Circle()
+//                                                    .fill(Color(.darkGray).opacity(0.8))
+//                                                    .frame(width: 26, height: 26)
+//                                                
+//                                                Circle()
+//                                                    .fill(Color.white)
+//                                                    .frame(width: 8, height: 8)
+//                                            }
+                                            CircleView(number: "",
+                                                       color: Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay,
+                                                       showStroke: false,
+                                                       showShadow: true,
+                                                       scaleEffect: 0.7
+                                            )
+                                            .offset(x: xOffset, y: yOffset)
+//                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
+                                            
                                             ProblemCircleView(problem: c, isDisplayedOnPhoto: true)
+//                                                .offset(x: -xOffset, y: -yOffset)
+//                                                                .animation(.easeOut(duration: 0.1), value: motion.roll)
+//                                                .scaleEffect(0.7)
                                         }
+                                        else {
+                                            ZStack {
+                                                Circle()
+                                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                                                    .frame(width: 18, height: 18)
+                                                
+                                                Circle()
+                                                    .fill(Color(.darkGray).opacity(0.8))
+                                                    .frame(width: 18, height: 18)
+                                                
+                                                Circle()
+                                                    .fill(Color(Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay))
+                                                    .frame(width: 8, height: 8)
+                                            }
+                                        }
+                                        
+                                        
+                                        
+//                                        CircleView(number: "",
+//                                                   color: Circuit.CircuitColor.offCircuit.uicolorForPhotoOverlay,
+//                                                   showStroke: false,
+//                                                   showShadow: true,
+//                                                   scaleEffect: 0.7
+//                                        )
+//                                        
+//                                        if let c = (problems.filter{$0.circuitColor != .offCircuit}.first) {
+//                                            ProblemCircleView(problem: c, isDisplayedOnPhoto: true)
+//                                        }
+                                        
+//                                        let array = problems.sorted{$0.zIndex > $1.zIndex}
+//                                        if let first = array.first {
+//                                            ProblemCircleView(problem: first, isDisplayedOnPhoto: true).zIndex(first.zIndex)
+//                                            ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true).offset(x: 4, y: 0)
+//                                        }
                                     }
                                     
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
