@@ -82,16 +82,16 @@ struct ProblemDetailsView: View {
         
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                if false { // showAllLines {
-                    Button {
-                        showAllLines = true
-                    } label: {
-                        Image(systemName: "chevron.backward.circle")
-                    }
-                    .foregroundColor(.gray)
-                    .font(.title2)
-                    //                            .fontWeight(.bold)
-                }
+//                if false { // showAllLines {
+//                    Button {
+//                        showAllLines = true
+//                    } label: {
+//                        Image(systemName: "chevron.backward.circle")
+//                    }
+//                    .foregroundColor(.gray)
+//                    .font(.title2)
+//                    //                            .fontWeight(.bold)
+//                }
                 
                 ProblemCircleView(problem: problem)
                 
@@ -112,13 +112,40 @@ struct ProblemDetailsView: View {
 //                        .font(.body)
 //                }
                 
-                Text(problem.grade.string)
-                    .font(.body)
-                //                            .fontWeight(.bold)
                 
-                //                        variants
+                if problem.variants.count > 1 {
+                    
+                    Menu {
+                        ForEach(problem.variants.sorted { $0.grade > $1.grade }) { p in
+                            Button {
+                                showAllLines = false
+                                mapState.selectProblem(p)
+                            } label: {
+                                Text("\(p.localizedName) \(p.grade.string)")
+                            }
+                        }
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text(problem.grade.string)
+//                                .font(.body)
+//                                .foregroundColor(.primary)
+                            
+                            Image(systemName: "chevron.down")
+                        }
+                        .font(.body)
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, 6)
+                        .background(Color(.darkGray).opacity(0.8))
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .cornerRadius(16)
+                        .padding(8)
+                    }
+                }
+                else {
+                    Text(problem.grade.string)
+                        .font(.body)
+                }
             }
-            //                    .padding(.top, 4)
             
             HStack(alignment: .firstTextBaseline) {
                 
