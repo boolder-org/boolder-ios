@@ -117,7 +117,7 @@ struct TopoView: View {
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
                                         
-                                        if group.problemsToBeConsidered.count >= 2 {
+                                        if true { //group.problemsToBeConsidered.count >= 2 {
                                             showAllLines = true
                                             
                                             if group.problems.contains(problem) {
@@ -233,24 +233,24 @@ struct TopoView: View {
                     }
                 }
                 else {
-                    GeometryReader { geo in
-                        ForEach(problem.variants.filter{$0.startId == problem.startId && $0.id != problem.id}) {  (p: Problem) in
-                            if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
-                                
-                                if true {
-                                    
-                                    GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-                                        .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-                                        .zIndex(.infinity)
-                                        .onTapGesture {
-                                            showAllLines = false
-                                            mapState.selectProblem(p)
-                                        }
-                                }
-                            }
-                            
-                        }
-                    }
+//                    GeometryReader { geo in
+//                        ForEach(problem.variants.filter{$0.startId == problem.startId && $0.id != problem.id}) {  (p: Problem) in
+//                            if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
+//                                
+//                                if true {
+//                                    
+//                                    GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+//                                        .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+//                                        .zIndex(.infinity)
+//                                        .onTapGesture {
+//                                            showAllLines = false
+//                                            mapState.selectProblem(p)
+//                                        }
+//                                }
+//                            }
+//                            
+//                        }
+//                    }
                 }
                 
                 //                        if let line = problem.line, let firstPoint = problem.lineFirstPoint {

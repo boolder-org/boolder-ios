@@ -218,8 +218,18 @@ struct ProblemDetailsView: View {
                         print(newPage)
                         if let topo = Topo.load(id: newPage) {
                             if problem.topoId != topo.id {
-                                mapState.selectProblem(topo.firstProblemOnTheLeft!)
-                                //                            showAllLines = true
+                                if let newProblem = topo.firstProblemOnTheLeft  {
+                                    mapState.selectProblem(newProblem)
+                                    
+                                    // FIXME: refactor
+                                    if newProblem.startGroup?.problemsToDisplay.count ?? 0 > 1 {
+                                        showAllLines = true
+                                    }
+                                    else {
+                                        showAllLines = false
+                                    }
+                                }
+                                
                             }
                             
                             //                            print(pageCounter)
