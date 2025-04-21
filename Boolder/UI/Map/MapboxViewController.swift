@@ -517,6 +517,17 @@ class MapboxViewController: UIViewController {
                 
                 switch result {
                 case .success(let queriedfeatures):
+                    let problems = queriedfeatures.compactMap { qf -> Problem? in
+                        if case .number(let id) = qf.queriedFeature.feature.properties?["id"] {
+                            return Problem.load(id: Int(id))
+                        }
+                        return nil
+                    }
+                    let problemsByStartId = Dictionary(grouping: problems, by: { $0.startId })
+                    print("========")
+                    for (startId, problemsList) in problemsByStartId {
+                        print("Start ID \(startId): \(problemsList.map(\.localizedName).joined(separator: ", "))")
+                    }
                     
                     if let feature = queriedfeatures.first?.queriedFeature.feature,
                        case .number(let id) = feature.properties?["id"],
