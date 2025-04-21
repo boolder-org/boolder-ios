@@ -135,7 +135,7 @@ struct ProblemDetailsView: View {
                         .font(.body)
                         .padding(.vertical, 2)
                         .padding(.horizontal, 6)
-                        .background(Color(.darkGray).opacity(0.8))
+                        .background(Color(.gray).opacity(0.8))
                         .foregroundColor(Color(UIColor.systemBackground))
                         .cornerRadius(16)
                         .padding(8)
