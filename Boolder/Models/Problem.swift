@@ -238,25 +238,15 @@ extension Problem {
     
     // TODO: move to Topo ?
     var otherProblemsOnSameTopo: [Problem] {
-        guard let l = line else { return [] }
+        guard let topo = topo else { return [] }
         
-        let lines = Table("lines")
-            .filter(Line.topoId == l.topoId)
-
-        do {
-            let problemsOnSameTopo = try SqliteStore.shared.db.prepare(lines).map { l in
-                Self.load(id: l[Line.problemId])
-            }
-            
-            return problemsOnSameTopo.compactMap{$0}
-                .filter { $0.topoId == self.topoId } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on the same topo
-//                .filter { $0.parentId == nil }
-                .filter { $0.line?.coordinates != nil }
-        }
-        catch {
-            print (error)
-            return []
-        }
+        return topo.otherProblemsOnSameTopo
+    }
+    
+    var otherProblemsOnSameBoulder: [Problem] {
+        guard let topo = topo, let boulderId = topo.boulderId else { return [] }
+        
+        return Topo.onBoulder(boulderId).flatMap{$0.otherProblemsOnSameTopo}
     }
 
     
