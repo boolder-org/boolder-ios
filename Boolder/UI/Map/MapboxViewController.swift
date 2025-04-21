@@ -140,6 +140,7 @@ class MapboxViewController: UIViewController {
         
         problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor(resource: .appGreen)))
         
+        // TODO: refactor with backend logic
         problemsLayer.circleSortKey = .expression(
             Exp(.switchCase) {
                 Exp(.boolean) {
@@ -524,14 +525,27 @@ class MapboxViewController: UIViewController {
                         self.delegate?.selectProblem(id: Int(id))
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
-                        // if problem is hidden by the bottom sheet
-                        if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
+                        if let problem = Problem.load(id: Int(id))
+                        {
+                            let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
+                            let screenPoints: [CGPoint] = mapView.mapboxMap.points(for: locations)
                             
-                            let cameraOptions = CameraOptions(
-                                center: point.coordinates,
-                                padding: self.safePaddingForBottomSheet
-                            )
-                            self.easeTo(cameraOptions)
+                            // if the boulder is hidden by the bottom sheet
+                            let insets = UIEdgeInsets(top: 100, left: 20, bottom: self.mapView.bounds.height/2, right: 20)
+                            let safeRect = self.mapView.bounds.inset(by: insets)
+                            if screenPoints.contains(where: { !safeRect.contains($0) }) {
+    
+                                if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
+                                    let paddedCameraOptions = CameraOptions(
+                                        center: cameraOptions.center,
+                                        padding: UIEdgeInsets(top: 100, left: 20, bottom: view.bounds.height/2, right: 20),
+                                        zoom: 20,
+                                        bearing: cameraOptions.bearing,
+                                        pitch: cameraOptions.pitch
+                                    )
+                                    easeTo(paddedCameraOptions)
+                                }
+                            }
                         }
                     }
                     else {
@@ -738,11 +752,19 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnProblem(_ problem: Problem) {
-        flyTo(CameraOptions(
-            center: problem.coordinate,
-            padding: safePaddingForBottomSheet,
-            zoom: 20
-        ))
+        let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
+        
+        if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
+//            print(cameraOptions.zoom)
+            let paddedCameraOptions = CameraOptions(
+                center: cameraOptions.center,
+                padding: UIEdgeInsets(top: 100, left: 20, bottom: view.bounds.height/2, right: 20),
+                zoom: 20,
+                bearing: cameraOptions.bearing,
+                pitch: cameraOptions.pitch
+            )
+            flyTo(paddedCameraOptions)
+        }
     }
     
     func centerOnArea(_ area: Area) {
