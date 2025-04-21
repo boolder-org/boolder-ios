@@ -525,6 +525,7 @@ class MapboxViewController: UIViewController {
                         self.delegate?.selectProblem(id: Int(id))
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
+                        // FIXME: refactor with centerOnProblem
                         if let problem = Problem.load(id: Int(id))
                         {
                             let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
@@ -751,6 +752,8 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    // FIXME: refactor with findFeatures#problems
+    // FIXME: rename centerOnBoulderProblems ?
     func centerOnProblem(_ problem: Problem) {
         let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
         
