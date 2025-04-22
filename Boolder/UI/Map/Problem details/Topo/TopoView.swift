@@ -111,7 +111,7 @@ struct TopoView: View {
                                     ZStack {
                                         ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(array[0].zIndex)
                                         ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
-                                            .offset(x: 4, y: 4)
+                                            .offset(x: 3, y: 3)
                                         //                                            .offset(x: xOffset, y: yOffset)
                                         //                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
                                     }
