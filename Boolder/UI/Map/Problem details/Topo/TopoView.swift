@@ -116,30 +116,10 @@ struct TopoView: View {
                                     }
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
-                                        
-                                        // TODO: introduce selectStart(id:)
-                                        
-                                        if true { //group.problemsToBeConsidered.count >= 2 {
-                                            
-                                            if group.problems.contains(problem) {
-                                                if let next = problem.startGroup?.next(after: problem) {
-                                                    mapState.selectProblem(next)
-                                                }
-                                                
-                                            }
-                                            else {
-                                                if let topProblem = group.topProblem {
-                                                    mapState.selectProblem(topProblem)
-                                                }
-                                            }
+                                        // TODO: use the start parent
+                                        if let topProblem = group.topProblem {
+                                            mapState.selectStart(topProblem)
                                         }
-                                        else {
-                                            if let ppp = group.problemsToBeConsidered.first {
-                                                mapState.selectProblem(ppp)
-                                            }
-                                        }
-                                        
-                                        
                                     }
                                     
                                     //                                            if showAllLines && problem.startId == group.startId {

@@ -546,7 +546,7 @@ class MapboxViewController: UIViewController {
 //                    print("Features sorted by distance:", sorted)
                     print("Features sorted by distance:", sortedIds)
                     
-//                    let sortedProblems = sortedIds.compactMap { Problem.load(id: $0) }
+                    let sortedProblems = sortedIds.compactMap { Problem.load(id: $0) }
 //                    print("Problems sorted by distance:", sortedProblems.map(\.localizedName).joined(separator: ", "))
                     
                     
@@ -555,17 +555,18 @@ class MapboxViewController: UIViewController {
 //                    if let feature = queriedfeatures.first?.queriedFeature.feature,
 //                       case .number(let id) = feature.properties?["id"],
 //                       case .point(let point) = feature.geometry
-                    if let id = sortedIds.first
+                    if let first = sortedProblems.first
                     {
-//                        self.delegate?.selectProblem(id: Int(id))
-                        self.delegate?.selectStart(id: Int(id)) // TODO: use selectProblem when there is only one problem tapped?
-                        
-                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
-                        
-                        // TODO: introduce selectStart(id:)
+                        if (sortedProblems.filter{$0.startId == first.id || $0.id == first.id}.count > 1) {
+                            self.delegate?.selectStart(id: first.id)
+                        }
+                        else {
+                            self.delegate?.selectProblem(id: first.id)
+                            self.setProblemAsSelected(problemFeatureId: String(first.id))
+                        }
                         
                         // FIXME: refactor with centerOnProblem
-                        if let problem = Problem.load(id: Int(id))
+                        if let problem = Problem.load(id: first.id)
                         {
                             let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
                             let screenPoints: [CGPoint] = mapView.mapboxMap.points(for: locations)

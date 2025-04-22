@@ -121,7 +121,7 @@ class MapState : ObservableObject {
     }
     
     func selectStart(_ start: Problem) {
-        selectedStart = start
+        selectedStart = start // FIXME: check if there is a start parent
         selectedProblem = start
 //        selectedArea = Area.load(id: problem.areaId)
     }
