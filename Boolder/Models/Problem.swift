@@ -248,6 +248,10 @@ extension Problem {
         
         return Topo.onBoulder(boulderId).flatMap{$0.otherProblemsOnSameTopo}
     }
+    
+    var toposOnSameBoulder: [Topo] {
+        topo?.onSameBoulder ?? []
+    }
 
     
     // TODO: move to Topo

@@ -199,7 +199,7 @@ struct ProblemDetailsView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     
                     TabView(selection: $currentPage) {
-                        ForEach(problem.topo!.onSameBoulder) { topo in
+                        ForEach(problem.toposOnSameBoulder) { topo in
                             TopoView(
                                 topo: topo,
                                 problem: $problem,
