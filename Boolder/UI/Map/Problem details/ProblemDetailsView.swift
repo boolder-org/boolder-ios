@@ -111,37 +111,37 @@ struct ProblemDetailsView: View {
 //                }
                 
                 
-                if problem.variants.count > 1 {
-                    
-                    Menu {
-                        ForEach(problem.variants.sorted { $0.grade > $1.grade }) { p in
-                            Button {
-                                mapState.selectProblem(p)
-                            } label: {
-                                Text("\(p.localizedName) \(p.grade.string)")
-                            }
-                        }
-                    } label: {
-                        HStack(spacing: 4) {
-                            Text(problem.grade.string)
-//                                .font(.body)
-//                                .foregroundColor(.primary)
-                            
-                            Image(systemName: "chevron.down")
-                        }
-                        .font(.body)
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 6)
-                        .background(Color(.gray).opacity(0.8))
-                        .foregroundColor(Color(UIColor.systemBackground))
-                        .cornerRadius(16)
-                        .padding(8)
-                    }
-                }
-                else {
+//                if problem.variants.count > 1 {
+//                    
+//                    Menu {
+//                        ForEach(problem.variants.sorted { $0.grade > $1.grade }) { p in
+//                            Button {
+//                                mapState.selectProblem(p)
+//                            } label: {
+//                                Text("\(p.localizedName) \(p.grade.string)")
+//                            }
+//                        }
+//                    } label: {
+//                        HStack(spacing: 4) {
+//                            Text(problem.grade.string)
+////                                .font(.body)
+////                                .foregroundColor(.primary)
+//                            
+//                            Image(systemName: "chevron.down")
+//                        }
+//                        .font(.body)
+//                        .padding(.vertical, 2)
+//                        .padding(.horizontal, 6)
+//                        .background(Color(.gray).opacity(0.8))
+//                        .foregroundColor(Color(UIColor.systemBackground))
+//                        .cornerRadius(16)
+//                        .padding(8)
+//                    }
+//                }
+//                else {
                     Text(problem.grade.string)
                         .font(.body)
-                }
+//                }
             }
             
             HStack(alignment: .firstTextBaseline) {
