@@ -35,8 +35,6 @@ struct ProblemDetailsView: View {
     
     @Binding var selectedDetent: PresentationDetent
     
-    @State private var showAllLines = false
-    
     var array: [Problem] {
         problem.variants
     }
@@ -118,7 +116,6 @@ struct ProblemDetailsView: View {
                     Menu {
                         ForEach(problem.variants.sorted { $0.grade > $1.grade }) { p in
                             Button {
-                                showAllLines = false
                                 mapState.selectProblem(p)
                             } label: {
                                 Text("\(p.localizedName) \(p.grade.string)")
@@ -204,7 +201,6 @@ struct ProblemDetailsView: View {
                                 topo: topo,
                                 problem: $problem,
                                 mapState: mapState,
-                                showAllLines: $showAllLines,
                                 selectedDetent: $selectedDetent
                             )
                             .frame(width: geo.size.width, height: geo.size.width * 3/4)
@@ -220,14 +216,6 @@ struct ProblemDetailsView: View {
                             if problem.topoId != topo.id {
                                 if let newProblem = topo.firstProblemOnTheLeft  {
                                     mapState.selectProblem(newProblem)
-                                    
-                                    // FIXME: refactor
-                                    if newProblem.startGroup?.problemsToDisplay.count ?? 0 > 1 {
-                                        showAllLines = true
-                                    }
-                                    else {
-                                        showAllLines = false
-                                    }
                                 }
                                 
                             }
@@ -299,7 +287,6 @@ struct ProblemDetailsView: View {
                                         let problems = group.problemsToDisplay
                                         ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                             Button {
-                                                showAllLines = false
                                                 mapState.selectProblem(p)
                                             } label: {
                                                 HStack {
@@ -353,7 +340,6 @@ struct ProblemDetailsView: View {
                                     ForEach(problem.topo!.orderedProblems) { p in
                                         Button {
                                             mapState.selectProblem(p)
-                                            showAllLines = false
                                         } label: {
                                             HStack {
                                                 ProblemCircleView(problem: p)

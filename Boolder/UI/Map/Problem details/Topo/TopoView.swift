@@ -19,7 +19,6 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     
-    @Binding var showAllLines: Bool
     @Binding var selectedDetent: PresentationDetent
     
 //    @StateObject private var motion = MotionManager()
@@ -121,7 +120,6 @@ struct TopoView: View {
                                         // TODO: introduce selectStart(id:)
                                         
                                         if true { //group.problemsToBeConsidered.count >= 2 {
-                                            showAllLines = true
                                             
                                             if group.problems.contains(problem) {
                                                 if let next = problem.startGroup?.next(after: problem) {
@@ -138,7 +136,6 @@ struct TopoView: View {
                                         else {
                                             if let ppp = group.problemsToBeConsidered.first {
                                                 mapState.selectProblem(ppp)
-                                                showAllLines = false
                                             }
                                         }
                                         
@@ -185,7 +182,6 @@ struct TopoView: View {
                                     
                                         .zIndex(p == problem ? .infinity : p.zIndex)
                                         .onTapGesture {
-                                            showAllLines = false
                                             mapState.selectProblem(p)
                                         }
                                     
@@ -201,7 +197,6 @@ struct TopoView: View {
 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
                                     .onTapGesture {
-                                        showAllLines = false
                                         mapState.selectProblem(p)
                                     }
                             }
@@ -228,7 +223,6 @@ struct TopoView: View {
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
                                             .onTapGesture {
-                                                showAllLines = false
                                                 mapState.selectProblem(p)
                                             }
                                     }
@@ -640,7 +634,6 @@ struct TopoView: View {
 //        presentTopoFullScreenView = true
 //        showAllLines = true
 //        showAllLines.toggle()
-        showAllLines = true
     }
 }
 
