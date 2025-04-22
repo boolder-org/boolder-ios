@@ -582,7 +582,10 @@ class MapboxViewController: UIViewController {
                             // if the boulder is hidden by the bottom sheet
                             let insets = UIEdgeInsets(top: 100, left: 20, bottom: self.mapView.bounds.height/2, right: 20)
                             let safeRect = self.mapView.bounds.inset(by: insets)
-                            if screenPoints.contains(where: { !safeRect.contains($0) }) {
+                            
+                            // if problem is hidden by the bottom sheet
+                            if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
+//                            if screenPoints.contains(where: { !safeRect.contains($0) }) {
     
                                 if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
                                     let paddedCameraOptions = CameraOptions(
