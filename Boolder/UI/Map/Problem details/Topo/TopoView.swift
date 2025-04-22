@@ -118,6 +118,8 @@ struct TopoView: View {
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
                                         
+                                        // TODO: introduce selectStart(id:)
+                                        
                                         if true { //group.problemsToBeConsidered.count >= 2 {
                                             showAllLines = true
                                             
@@ -192,7 +194,8 @@ struct TopoView: View {
                             }
                         }
                         
-                        if showAllLines { // }(showAllLines) {
+                        // HERE
+                        if mapState.isStartSelected { // }(showAllLines) {
                             ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
 //                                    .opacity(showAllLines ? 1 : 0.7)
@@ -212,7 +215,8 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                if showAllLines {
+                // HERE
+                if mapState.isStartSelected {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
                             ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in

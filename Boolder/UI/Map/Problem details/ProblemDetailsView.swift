@@ -258,11 +258,11 @@ struct ProblemDetailsView: View {
                     //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if !showAllLines { // !showAllLines {  //selectedDetent == .medium {
+                    if !mapState.isStartSelected { // !showAllLines {  //selectedDetent == .medium {
                         
                         infosCard
                             .frame(height: 80)
-                            .opacity(showAllLines ? 0.2 : 1)
+                            .opacity(mapState.isStartSelected ? 0.2 : 1)
                         
                         
 //                        if array.count > 1 {
@@ -273,7 +273,7 @@ struct ProblemDetailsView: View {
 //                        if selectedDetent == MapContainerView.maxDetent {
                             
                             actionButtons
-                                .opacity(showAllLines ? 0.2 : 1)
+                                .opacity(mapState.isStartSelected ? 0.2 : 1)
 //                        }
                     }
                     
@@ -290,7 +290,7 @@ struct ProblemDetailsView: View {
 //                        }
 //                    }
                     
-                    if  showAllLines { // showAllLines { // selectedDetent == .large {
+                    if  mapState.isStartSelected { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -373,7 +373,7 @@ struct ProblemDetailsView: View {
                                         }
                                         .padding(.horizontal)
                                         .padding(.vertical, 6)
-                                        .background(p.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                        .background(p.id == problem.id && !mapState.isStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                         
                                         Divider().padding(.vertical, 0)
                                         
@@ -433,7 +433,9 @@ struct ProblemDetailsView: View {
             //            showAllLines = false
         }
         .task {
-            currentPage = problem.topo!.id
+            if let topoId = problem.topoId {
+                currentPage = topoId
+            }
         }
         .modify {
             if #available(iOS 17.0, *) {

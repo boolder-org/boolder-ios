@@ -516,17 +516,17 @@ class MapboxViewController: UIViewController {
                 
                 switch result {
                 case .success(let queriedfeatures):
-                    let problems = queriedfeatures.compactMap { qf -> Problem? in
-                        if case .number(let id) = qf.queriedFeature.feature.properties?["id"] {
-                            return Problem.load(id: Int(id))
-                        }
-                        return nil
-                    }
-                    let problemsByStartId = Dictionary(grouping: problems, by: { $0.startId })
-                    print("========")
-                    for (startId, problemsList) in problemsByStartId {
-                        print("Start ID \(startId): \(problemsList.map(\.localizedName).joined(separator: ", "))")
-                    }
+//                    let problems = queriedfeatures.compactMap { qf -> Problem? in
+//                        if case .number(let id) = qf.queriedFeature.feature.properties?["id"] {
+//                            return Problem.load(id: Int(id))
+//                        }
+//                        return nil
+//                    }
+//                    let problemsByStartId = Dictionary(grouping: problems, by: { $0.startId })
+//                    print("========")
+//                    for (startId, problemsList) in problemsByStartId {
+//                        print("Start ID \(startId): \(problemsList.map(\.localizedName).joined(separator: ", "))")
+//                    }
                     
                     
                     
@@ -546,8 +546,10 @@ class MapboxViewController: UIViewController {
 //                    print("Features sorted by distance:", sorted)
                     print("Features sorted by distance:", sortedIds)
                     
-                    let sortedProblems = sortedIds.compactMap { Problem.load(id: $0) }
-                    print("Problems sorted by distance:", sortedProblems.map(\.localizedName).joined(separator: ", "))
+//                    let sortedProblems = sortedIds.compactMap { Problem.load(id: $0) }
+//                    print("Problems sorted by distance:", sortedProblems.map(\.localizedName).joined(separator: ", "))
+                    
+                    
                     
                     
 //                    if let feature = queriedfeatures.first?.queriedFeature.feature,
@@ -555,8 +557,12 @@ class MapboxViewController: UIViewController {
 //                       case .point(let point) = feature.geometry
                     if let id = sortedIds.first
                     {
-                        self.delegate?.selectProblem(id: Int(id))
+//                        self.delegate?.selectProblem(id: Int(id))
+                        self.delegate?.selectStart(id: Int(id)) // TODO: use selectProblem when there is only one problem tapped?
+                        
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                        
+                        // TODO: introduce selectStart(id:)
                         
                         // FIXME: refactor with centerOnProblem
                         if let problem = Problem.load(id: Int(id))
@@ -1007,6 +1013,7 @@ import CoreLocation
 
 protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
+    func selectStart(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func selectCluster(id: Int)

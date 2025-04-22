@@ -11,6 +11,7 @@ import CoreLocation
 
 class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+    @Published var selectedStart: Problem?
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var currentLocation: Bool = false
@@ -114,8 +115,19 @@ class MapState : ObservableObject {
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem) {
         selectedProblem = problem
+        selectedStart = nil
         
         selectedArea = Area.load(id: problem.areaId)
+    }
+    
+    func selectStart(_ start: Problem) {
+        selectedStart = start
+        selectedProblem = start
+//        selectedArea = Area.load(id: problem.areaId)
+    }
+    
+    var isStartSelected: Bool {
+        selectedStart != nil
     }
     
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
