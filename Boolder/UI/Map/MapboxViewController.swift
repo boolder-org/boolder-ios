@@ -506,7 +506,6 @@ class MapboxViewController: UIViewController {
                 }
             }
         
-        
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32), // we use rect to avoid a weird bug with dynamic circle radius not triggering taps
             options: RenderedQueryOptions(layerIds: ["problems", "problems-names"], filter: nil)) { [weak self] result in
@@ -529,9 +528,32 @@ class MapboxViewController: UIViewController {
                         print("Start ID \(startId): \(problemsList.map(\.localizedName).joined(separator: ", "))")
                     }
                     
-                    if let feature = queriedfeatures.first?.queriedFeature.feature,
-                       case .number(let id) = feature.properties?["id"],
-                       case .point(let point) = feature.geometry
+                    
+                    
+                    let withDistances: [(QueriedRenderedFeature, CLLocationDistance)] = queriedfeatures.compactMap { qf -> (QueriedRenderedFeature, CLLocationDistance)? in
+                        guard
+                            case let .point(ptCoords) = qf.queriedFeature.feature.geometry
+                        else { return nil }
+                        let tapCoord = self.mapView.mapboxMap.coordinate(for: tapPoint)
+                        let featureLoc = CLLocation(latitude: ptCoords.coordinates.latitude, longitude: ptCoords.coordinates.longitude)
+                        let tapLoc = CLLocation(latitude: tapCoord.latitude, longitude: tapCoord.longitude)
+                        let distance = featureLoc.distance(from: tapLoc)
+                        return (qf, distance)
+                    }
+                    // Sort ascending and extract the features
+                    let sorted = withDistances.sorted { $0.1 < $1.1 }.map { $0.0.queriedFeature.feature }
+                    let sortedIds = sorted.compactMap { if case .number(let id) = $0.properties?["id"] { return Int(id) } else { return nil } }
+//                    print("Features sorted by distance:", sorted)
+                    print("Features sorted by distance:", sortedIds)
+                    
+                    let sortedProblems = sortedIds.compactMap { Problem.load(id: $0) }
+                    print("Problems sorted by distance:", sortedProblems.map(\.localizedName).joined(separator: ", "))
+                    
+                    
+//                    if let feature = queriedfeatures.first?.queriedFeature.feature,
+//                       case .number(let id) = feature.properties?["id"],
+//                       case .point(let point) = feature.geometry
+                    if let id = sortedIds.first
                     {
                         self.delegate?.selectProblem(id: Int(id))
                         self.setProblemAsSelected(problemFeatureId: String(Int(id)))
