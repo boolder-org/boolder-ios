@@ -247,7 +247,9 @@ struct ProblemDetailsView: View {
                         }
                     }
                     .onChange(of: problem) { [problem] newValue in
-                        currentPage = newValue.topo!.id
+                        if let topoId = newValue.topoId {
+                            currentPage = topoId
+                        }
                     }
                     
                     //                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
