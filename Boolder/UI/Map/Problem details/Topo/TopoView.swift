@@ -117,8 +117,8 @@ struct TopoView: View {
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
                                         // TODO: use the start parent
-                                        if let topProblem = group.topProblem {
-                                            mapState.selectStart(topProblem)
+                                        if let startId = group.startId, let start = Problem.load(id: startId) {
+                                            mapState.selectStart(start)
                                         }
                                     }
                                     

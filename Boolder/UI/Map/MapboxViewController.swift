@@ -557,12 +557,20 @@ class MapboxViewController: UIViewController {
 //                       case .point(let point) = feature.geometry
                     if let first = sortedProblems.first
                     {
-                        if (sortedProblems.filter{$0.startId == first.id || $0.id == first.id}.count > 1) {
-                            self.delegate?.selectStart(id: first.id)
+                        print("first id: \(first.id)")
+                        print("first start_id: \(first.startId)")
+                        let startId = first.startId ?? first.id
+                        print("start_id: \(startId)")
+                        
+                        if (sortedProblems.filter{$0.startId == startId || $0.id == startId}.count > 1) {
+                            self.delegate?.selectStart(id: first.startId ?? first.id)
+                            self.setProblemAsSelected(problemFeatureId: String(startId))
+                            print("select start")
                         }
                         else {
                             self.delegate?.selectProblem(id: first.id)
                             self.setProblemAsSelected(problemFeatureId: String(first.id))
+                            print("select problem")
                         }
                         
                         // FIXME: refactor with centerOnProblem
