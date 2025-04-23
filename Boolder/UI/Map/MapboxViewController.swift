@@ -75,11 +75,11 @@ class MapboxViewController: UIViewController {
         self.view.addSubview(mapView)
     }
 
-    let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
+    let problemsSourceLayerId = "problems-v2-a7pwif" // name of the layer in the mapbox tileset
     
     func addSources() {
         var problems = VectorSource(id: "problems")
-        problems.url = "mapbox://nmondollot.4xsv235p"
+        problems.url = "mapbox://nmondollot.4pbzls4k"
         problems.promoteId = .string("id") // needed to make Feature-State work
         
         var circuits = VectorSource(id: "circuits")
@@ -129,16 +129,22 @@ class MapboxViewController: UIViewController {
         
         problemsLayer.circleStrokeWidth = .expression(
             Exp(.switchCase) {
-                Exp(.boolean) {
+                Exp(.any) {
+                    Exp(.get) { "start" }
                     Exp(.featureState) { "selected" }
-                    false
                 }
-                3.0
+                2.0
                 0.0
             }
         )
         
-        problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor(resource: .appGreen)))
+        problemsLayer.circleStrokeColor = .expression(
+            Exp(.switchCase) {
+                Exp(.featureState) { "selected" }
+                UIColor(resource: .appGreen)
+                UIColor.darkGray
+            }
+        )
         
         // TODO: refactor with backend logic
         problemsLayer.circleSortKey = .expression(

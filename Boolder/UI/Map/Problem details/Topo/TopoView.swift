@@ -122,7 +122,7 @@ struct TopoView: View {
                                         ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(10)
                                             .overlay(
                                                 Circle()
-                                                    .stroke(Color(UIColor.black).opacity(0.8), lineWidth: 3)
+                                                    .stroke(Color(UIColor.black).opacity(0.7), lineWidth: 2)
                                                     .frame(width: 20, height: 20)
                                             )
 //                                        ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
