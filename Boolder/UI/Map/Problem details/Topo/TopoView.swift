@@ -108,9 +108,15 @@ struct TopoView: View {
                                     let array = problems.sorted{$0.zIndex > $1.zIndex}
                                     
                                     ZStack {
-                                        ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(array[0].zIndex)
-                                        ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
-                                            .offset(x: 3, y: 3)
+                                        ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(10)
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color(UIColor.black).opacity(0.8), lineWidth: 3)
+                                                    .frame(width: 20, height: 20)
+                                            )
+//                                        ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
+//                                            .scaleEffect(1.2)
+//                                            .offset(x: 3, y: 3)
                                         //                                            .offset(x: xOffset, y: yOffset)
                                         //                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
                                     }
