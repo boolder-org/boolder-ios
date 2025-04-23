@@ -101,6 +101,17 @@ struct TopoView: View {
                     ForEach(problem.startGroups) { (group: StartGroup) in
                         let problems = group.problemsToDisplay
                         
+                        if mapState.isStartSelected { // }(showAllLines) {
+                            ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+//                                    .opacity(showAllLines ? 1 : 0.7)
+                                //                                                .opacity(0.5)
+                                    .onTapGesture {
+                                        mapState.selectProblem(p)
+                                    }
+                            }
+                        }
+                        
                         if (problems.count >= 2) {
                             if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
                                 if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
@@ -127,26 +138,6 @@ struct TopoView: View {
                                             mapState.selectStart(start)
                                         }
                                     }
-                                    
-                                    //                                            if showAllLines && problem.startId == group.startId {
-                                    //                                                HStack(spacing: 0) {
-                                    //                                                    ForEach(problems.indices, id: \.self) { (i: Int) in
-                                    //                                                        let p = problems[i]
-                                    //                                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                    //                                                            .onTapGesture {
-                                    //                                                                showAllLines = false
-                                    //                                                                mapState.selectProblem(p)
-                                    //                                                            }
-                                    //                                                    }
-                                    //                                                }
-                                    //                                                .background {
-                                    //                                                    Color.gray
-                                    //                                                }
-                                    //                                                .cornerRadius(8)
-                                    //                                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    //                                                .zIndex(.infinity)
-                                    ////                                                .offset(x: 0, y: 32)
-                                    //                                            }
                                 }
                             }
                         }
@@ -176,17 +167,7 @@ struct TopoView: View {
                             }
                         }
                         
-                        // HERE
-                        if mapState.isStartSelected { // }(showAllLines) {
-                            ForEach(problems.filter{$0.startId == problem.startId}) { p in
-                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
-//                                    .opacity(showAllLines ? 1 : 0.7)
-                                //                                                .opacity(0.5)
-                                    .onTapGesture {
-                                        mapState.selectProblem(p)
-                                    }
-                            }
-                        }
+                        
                     }
                 }
                 
@@ -196,7 +177,6 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                // HERE
                 if mapState.isStartSelected {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
@@ -218,115 +198,8 @@ struct TopoView: View {
                     }
                 }
                 else {
-//                    GeometryReader { geo in
-//                        ForEach(problem.variants.filter{$0.startId == problem.startId && $0.id != problem.id}) {  (p: Problem) in
-//                            if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
-//                                
-//                                if true {
-//                                    
-//                                    GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-//                                        .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
-//                                        .zIndex(.infinity)
-//                                        .onTapGesture {
-//                                            showAllLines = false
-//                                            mapState.selectProblem(p)
-//                                        }
-//                                }
-//                            }
-//                            
-//                        }
-//                    }
                 }
-                
-                //                        if let line = problem.line, let firstPoint = problem.lineFirstPoint {
-                //                            if let group = problem.startGroup, let index = problem.indexWithinStartGroup {
-                //                                if(group.problemsWithoutVariants.count > 1 ) {
-                //                                    GeometryReader { geo in
-                //                                        Menu {
-                //                                            ForEach(group.problemsWithoutVariants) { p in
-                //                                                Button {
-                //                                                    mapState.selectProblem(p)
-                //                                                } label: {
-                //                                                    Text("\(p.localizedName) \(p.grade.string)")
-                //                                                }
-                //                                            }
-                //
-                ////                                            Divider()
-                ////
-                ////                                            Menu("Voir aussi") {
-                ////                                                Button {
-                ////
-                ////                                                } label : {
-                ////                                                    Text("Test")
-                ////                                                }
-                ////                                                Button {
-                ////
-                ////                                                } label : {
-                ////                                                    Text("Test 2")
-                ////                                                }
-                ////                                            }
-                //                                        } label: {
-                //                                            HStack(spacing: 4) {
-                //                                                Text("\(index + 1) sur \(group.problemsWithoutVariants.count)")
-                ////                                                Image(systemName: "list.bullet")
-                ////                                                PageControlView(numberOfPages: group.problems.count, currentPage: index)
-                //                                            }
-                //                                            .font(.caption)
-                //                                            .padding(.vertical, 2)
-                //                                            .padding(.horizontal, 6)
-                //                                            .background(Color(.darkGray).opacity(0.8))
-                //                                            .foregroundColor(Color(UIColor.systemBackground))
-                //                                            .cornerRadius(16)
-                //                                            .padding(8)
-                //                                        }
-                //                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 28)
-                //                                        .zIndex(.infinity)
-                //
-                //                                    }
-                //                                }
-                //                            }
-                //                        }
-                
-                
             }
-//            .simultaneousGesture(
-//                        TapGesture()
-//                            .onEnded { _ in
-//                                print("Group tapped")
-//                            }
-//                    )
-            
-//            VStack {
-//                HStack {
-//                    if !showAllLines {
-//                        Image(systemName: "chevron.left.circle.fill")
-//                            .font(.system(size: 22, weight: .semibold))
-//                                            .foregroundColor(.white)
-//                                            .opacity(0.8)
-//                                            .shadow(radius: 2)
-//                                            .padding()
-//                            .onTapGesture {
-//                                showAllLines = true
-//                            }
-//                    }
-////                    else {
-////                        Image(systemName: "xmark.circle.fill")
-////                            .font(.system(size: 22, weight: .semibold))
-////                                            .foregroundColor(.white)
-////                                            .opacity(0.8)
-////                                            .shadow(radius: 2)
-////                            .onTapGesture {
-////                                
-////                            }
-////                    }
-//                        
-//                    
-//                    Spacer()
-//                }
-////                .padding(.horizontal)
-//                
-//                Spacer()
-//            }
         }
     }
     
