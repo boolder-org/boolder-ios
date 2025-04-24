@@ -129,24 +129,37 @@ class MapboxViewController: UIViewController {
         
         problemsLayer.circleStrokeWidth = .expression(
             Exp(.switchCase) {
-                Exp(.any) {
-                    Exp(.get) { "start" }
+                Exp(.boolean) {
                     Exp(.featureState) { "selected" }
+                    false
                 }
-                2.0
+                3.0
                 0.0
             }
         )
         
-        problemsLayer.circleStrokeColor = .expression(
-            Exp(.switchCase) {
-                Exp(.featureState) { "selected" }
-                UIColor(resource: .appGreen)
-                Exp(.get) { "start" }
-                UIColor.darkGray
-                UIColor(white: 1.0, alpha: 0.0)
-            }
-        )
+        problemsLayer.circleStrokeColor = .constant(StyleColor(UIColor(resource: .appGreen)))
+        
+//        problemsLayer.circleStrokeWidth = .expression(
+//            Exp(.switchCase) {
+//                Exp(.any) {
+//                    Exp(.get) { "start" }
+//                    Exp(.featureState) { "selected" }
+//                }
+//                2.0
+//                0.0
+//            }
+//        )
+//        
+//        problemsLayer.circleStrokeColor = .expression(
+//            Exp(.switchCase) {
+//                Exp(.featureState) { "selected" }
+//                UIColor(resource: .appGreen)
+//                Exp(.get) { "start" }
+//                UIColor.darkGray
+//                UIColor(white: 1.0, alpha: 0.0)
+//            }
+//        )
         
         // TODO: refactor with backend logic
         problemsLayer.circleSortKey = .expression(
