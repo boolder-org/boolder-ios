@@ -43,6 +43,8 @@ struct TopoView: View {
         return 2
     }
     
+//    private var
+    
     func contentWithImage(_ image: UIImage) -> some View {
         ZStack {
             Group {
@@ -101,8 +103,8 @@ struct TopoView: View {
                     ForEach(problem.startGroups) { (group: StartGroup) in
                         let problems = group.problemsToDisplay
                         
-                        if mapState.isStartSelected { // }(showAllLines) {
-                            ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                        if mapState.isStartSelected || mapState.showAllStarts { // }(showAllLines) {
+                            ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
@@ -177,10 +179,10 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                if mapState.isStartSelected {
+                if mapState.isStartSelected || mapState.showAllStarts {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
+                            ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
                                     if true {
@@ -208,7 +210,22 @@ struct TopoView: View {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                    contentWithImage(image)
+                    ZStack {
+                        contentWithImage(image)
+                        
+                        VStack {
+                            HStack {
+                                Button {
+                                    mapState.selectAllStarts()
+                                } label: {
+                                    Text("All")
+                                        .padding()
+                                }
+                                Spacer()
+                            }
+                            Spacer()
+                        }
+                    }
 //                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
 //                                
 //                            } onPressingChanged: { inProgress in
