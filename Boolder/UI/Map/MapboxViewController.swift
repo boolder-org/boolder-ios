@@ -142,7 +142,9 @@ class MapboxViewController: UIViewController {
             Exp(.switchCase) {
                 Exp(.featureState) { "selected" }
                 UIColor(resource: .appGreen)
+                Exp(.get) { "start" }
                 UIColor.darkGray
+                UIColor(white: 1.0, alpha: 0.0)
             }
         )
         
