@@ -103,7 +103,7 @@ struct TopoView: View {
                     ForEach(problem.startGroups) { (group: StartGroup) in
                         let problems = group.problemsToDisplay
                         
-                        if mapState.isStartSelected || mapState.showAllStarts { // }(showAllLines) {
+                        if mapState.anyStartSelected { // }(showAllLines) {
                             ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
 //                                    .opacity(showAllLines ? 1 : 0.7)
@@ -179,7 +179,7 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                if mapState.isStartSelected || mapState.showAllStarts {
+                if mapState.anyStartSelected {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
                             ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in

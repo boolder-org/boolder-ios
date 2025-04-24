@@ -133,6 +133,10 @@ class MapState : ObservableObject {
         selectedStart != nil
     }
     
+    var anyStartSelected: Bool {
+        isStartSelected || showAllStarts
+    }
+    
     func selectAllStarts() {
         showAllStarts = true
     }

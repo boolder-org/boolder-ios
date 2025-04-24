@@ -218,18 +218,8 @@ struct ProblemDetailsView: View {
                                     mapState.selectProblem(newProblem)
                                 }
                                 
+                                mapState.selectAllStarts()
                             }
-                            
-                            //                            print(pageCounter)
-                            if true { // pageCounter > 0 {
-                                //                                showAllLines = true
-                                
-                            }
-                            pageCounter = pageCounter + 1
-                            
-                            //                            if selectedDetent == .large {
-                            //                                showAllLines = true
-                            //                            }
                             
                             
                         }
@@ -246,11 +236,11 @@ struct ProblemDetailsView: View {
                     //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if !mapState.isStartSelected { // !showAllLines {  //selectedDetent == .medium {
+                    if !mapState.anyStartSelected { // !showAllLines {  //selectedDetent == .medium {
                         
                         infosCard
                             .frame(height: 80)
-                            .opacity(mapState.isStartSelected ? 0.2 : 1)
+                            .opacity(mapState.anyStartSelected ? 0.2 : 1)
                         
                         
 //                        if array.count > 1 {
@@ -261,7 +251,7 @@ struct ProblemDetailsView: View {
 //                        if selectedDetent == MapContainerView.maxDetent {
                             
                             actionButtons
-                                .opacity(mapState.isStartSelected ? 0.2 : 1)
+                                .opacity(mapState.anyStartSelected ? 0.2 : 1)
 //                        }
                     }
                     
@@ -278,14 +268,14 @@ struct ProblemDetailsView: View {
 //                        }
 //                    }
                     
-                    if  mapState.isStartSelected { // showAllLines { // selectedDetent == .large {
+                    if  mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(alignment: .top, spacing: 0) {
                                     ForEach(problem.startGroups) { (group: StartGroup) in
                                         let problems = group.problemsToDisplay
-                                        ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
                                             Button {
                                                 mapState.selectProblem(p)
                                             } label: {
@@ -359,7 +349,7 @@ struct ProblemDetailsView: View {
                                         }
                                         .padding(.horizontal)
                                         .padding(.vertical, 6)
-                                        .background(p.id == problem.id && !mapState.isStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                        .background(p.id == problem.id && !mapState.anyStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                         
                                         Divider().padding(.vertical, 0)
                                         
