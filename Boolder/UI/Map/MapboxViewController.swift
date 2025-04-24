@@ -947,6 +947,7 @@ class MapboxViewController: UIViewController {
     }
     
     private var previouslyTappedProblemId: String = ""
+    private var previouslySelectedTopoId: Int?
     
     func setProblemAsSelected(problemFeatureId: String) {
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
@@ -970,6 +971,40 @@ class MapboxViewController: UIViewController {
                                                    featureId: self.previouslyTappedProblemId,
                                                    state: ["selected": false]) { result in
                 
+            }
+        }
+    }
+    
+    func setTopoProblemsAsSelected(topoId: Int) {
+        if let topo = Topo.load(id: topoId) {
+            topo.problems.forEach { problem in
+                self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                       sourceLayerId: problemsSourceLayerId,
+                                                       featureId: String(problem.id),
+                                                       state: ["selected": true]) { result in
+                    
+                }
+            }
+        }
+        
+        if topoId != self.previouslySelectedTopoId {
+            unselectPreviousTopo()
+        }
+        
+        self.previouslySelectedTopoId = topoId
+    }
+    
+    func unselectPreviousTopo() {
+        if let topoId = self.previouslySelectedTopoId {
+            if let topo = Topo.load(id: topoId) {
+                topo.problems.forEach { problem in
+                    self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                           sourceLayerId: problemsSourceLayerId,
+                                                           featureId: String(problem.id),
+                                                           state: ["selected": false]) { result in
+                        
+                    }
+                }
             }
         }
     }

@@ -55,6 +55,21 @@ struct MapboxView: UIViewControllerRepresentable {
                 }
                 .store(in: &cancellables)
             
+            // TODO: select start
+            
+            parent.mapState.$showAllStarts
+                .sink { [weak self] showAllStarts in
+                    guard let self = self else { return }
+                    if showAllStarts {
+                        if let topoId = self.parent.mapState.selectedProblem.topoId {
+                            DispatchQueue.main.async {
+                                self.viewController?.setTopoProblemsAsSelected(topoId: topoId)
+                            }
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+            
             parent.mapState.$centerOnProblem
                 .sink { [weak self] problem in
                     guard let self = self else { return }

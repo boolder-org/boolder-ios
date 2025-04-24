@@ -214,6 +214,7 @@ struct ProblemDetailsView: View {
                         print(newPage)
                         if let topo = Topo.load(id: newPage) {
                             if problem.topoId != topo.id {
+                                // FIXME: refactor this to update topo without chaning the problem
                                 if let newProblem = topo.firstProblemOnTheLeft  {
                                     mapState.selectProblem(newProblem)
                                 }
