@@ -237,39 +237,7 @@ struct ProblemDetailsView: View {
                     //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if !mapState.anyStartSelected { // !showAllLines {  //selectedDetent == .medium {
-                        
-                        infosCard
-                            .frame(height: 80)
-                            .opacity(mapState.anyStartSelected ? 0.2 : 1)
-                        
-                        
-//                        if array.count > 1 {
-//                            variants
-//                                .opacity(showAllLines ? 0.2 : 1)
-//                        }
-                        
-//                        if selectedDetent == MapContainerView.maxDetent {
-                            
-                            actionButtons
-                                .opacity(mapState.anyStartSelected ? 0.2 : 1)
-//                        }
-                    }
-                    
-                    
-//                    if !showAllLines {
-//                        tabs
-//
-//                        if (problem.startGroup?.problems.count ?? 0) > 1 {
-//
-//                            PageControlView(numberOfPages: problem.startGroup?.problems.count ?? 0, currentPage: problem.indexWithinStartGroup ?? 0)
-//                                .padding(.top, 8)
-//                                .padding(.bottom, 4)
-//                                .frame(maxWidth: .infinity, alignment: .center)
-//                        }
-//                    }
-                    
-                    if  mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
+                    if mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -392,12 +360,20 @@ struct ProblemDetailsView: View {
                         }
                         
                     }
+                    else { // !showAllLines {  //selectedDetent == .medium {
+                        
+                        infosCard
+                            .frame(height: 80)
+                            .opacity(mapState.anyStartSelected ? 0.2 : 1)
+                        
+//                        if selectedDetent == MapContainerView.maxDetent {
+                            
+                            actionButtons
+                                .opacity(mapState.anyStartSelected ? 0.2 : 1)
+//                        }
+                    }
                     
-                    //                    Spacer()
-                    
-                    //                    if !showAllLines {
-                    //                        actionButtons
-                    //                    }
+
                 }
             }
             
