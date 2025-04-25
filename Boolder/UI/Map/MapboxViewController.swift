@@ -838,23 +838,31 @@ class MapboxViewController: UIViewController {
         }
     }
     
-    // FIXME: refactor with findFeatures#problems
-    // FIXME: rename centerOnBoulderProblems ?
     func centerOnProblem(_ problem: Problem) {
-        let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
-        
-        if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
-//            print(cameraOptions.zoom)
-            let paddedCameraOptions = CameraOptions(
-                center: cameraOptions.center,
-                padding: UIEdgeInsets(top: 100, left: 20, bottom: view.bounds.height/2, right: 20),
-                zoom: 20,
-                bearing: cameraOptions.bearing,
-                pitch: cameraOptions.pitch
-            )
-            flyTo(paddedCameraOptions)
-        }
+        flyTo(CameraOptions(
+            center: problem.coordinate,
+            padding: safePaddingForBottomSheet,
+            zoom: 20
+        ))
     }
+    
+//    // FIXME: refactor with findFeatures#problems
+//    // FIXME: rename centerOnBoulderProblems ?
+//    func centerOnProblem(_ problem: Problem) {
+//        let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
+//        
+//        if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
+////            print(cameraOptions.zoom)
+//            let paddedCameraOptions = CameraOptions(
+//                center: cameraOptions.center,
+//                padding: UIEdgeInsets(top: 100, left: 20, bottom: view.bounds.height/2, right: 20),
+//                zoom: 20,
+//                bearing: cameraOptions.bearing,
+//                pitch: cameraOptions.pitch
+//            )
+//            flyTo(paddedCameraOptions)
+//        }
+//    }
     
     func centerOnArea(_ area: Area) {
         let coords = [
