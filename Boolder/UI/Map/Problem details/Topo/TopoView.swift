@@ -203,6 +203,12 @@ struct TopoView: View {
                 }
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            print("tap on background")
+            mapState.showAllStarts = true
+            
+        }
     }
     
     var body: some View {
@@ -210,24 +216,9 @@ struct TopoView: View {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                    ZStack {
-                        contentWithImage(image)
-                        
-                        VStack {
-                            HStack {
-                                Spacer()
-                                Button {
-                                    mapState.selectAllStarts()
-                                } label: {
-                                    Text("All")
-                                        .padding()
-                                }
-                            }
-                            Spacer()
-                        }
-                    }
+                    contentWithImage(image)
 //                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
-//                                
+//
 //                            } onPressingChanged: { inProgress in
 //                                showAllLines = inProgress
 //                            }
@@ -299,11 +290,11 @@ struct TopoView: View {
 //                            Image(systemName: "xmark")
 //                                .padding()
 //                        }
-//                        
+//
 //                        Spacer()
 //
 //                    }
-//                    
+//
 //                    Spacer()
 //                }
 //            }
@@ -318,11 +309,11 @@ struct TopoView: View {
 //                            Image(systemName: "chevron.left")
 //                                .padding()
 //                        }
-//                        
+//
 //                        Spacer()
 //
 //                    }
-//                    
+//
 //                    Spacer()
 //                }
 //            }
@@ -332,7 +323,7 @@ struct TopoView: View {
 //            VStack {
 //                HStack {
 //                    Spacer()
-//            
+//
 //                    if(problem.variants.count > 1) {
 //                        Menu {
 //                            ForEach(problem.variants) { variant in
@@ -356,7 +347,7 @@ struct TopoView: View {
 //                        }
 //                    }
 //                }
-//                
+//
 //                Spacer()
 //            }
         }
@@ -482,16 +473,16 @@ struct TopoView: View {
     }
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
-        handleTapOnBackground()
+        
 //        let groups = problem.startGroups
 //            .filter { $0.distance(to: tapPoint) < 0.1 }
 //            .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
-//        
+//
 //        guard let group = groups.first else {
 //            return handleTapOnBackground()
 ////            return
 //        }
-//        
+//
 //        if group.problems.contains(problem) {
 //            if let next = group.next(after: problem) {
 //                mapState.selectProblem(next)
@@ -505,17 +496,12 @@ struct TopoView: View {
 //            }
 //        }
     }
-    
-    func handleTapOnBackground() {
-//        presentTopoFullScreenView = true
-//        showAllLines = true
-//        showAllLines.toggle()
-    }
+
 }
 
 //struct TopoView_Previews: PreviewProvider {
 //    static let dataStore = DataStore()
-//    
+//
 //    static var previews: some View {
 //        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
 //    }
