@@ -216,7 +216,24 @@ struct TopoView: View {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                    contentWithImage(image)
+                    ZStack {
+                        contentWithImage(image)
+                        
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Button {
+                                    mapState.presentProblemDetails = false
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.title)
+                                        .padding(8)
+                                        .foregroundColor(Color.gray.opacity(0.7))
+                                }
+                            }
+                            Spacer()
+                        }
+                    }
 //                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
 //
 //                            } onPressingChanged: { inProgress in

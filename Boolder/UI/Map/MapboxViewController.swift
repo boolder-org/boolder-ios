@@ -694,7 +694,6 @@ class MapboxViewController: UIViewController {
                         }
                         
                         // if problem is hidden by the bottom sheet
-                        // FIXME: extract logic somewhere else to re-use it when problem is selected somewhere else (eg. tap on boulder)
                         if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
                             if let feature = sorted.first, case .point(let point) = feature.geometry {
                                 
