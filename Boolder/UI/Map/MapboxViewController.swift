@@ -163,7 +163,7 @@ class MapboxViewController: UIViewController {
                 1
             }
         )
-        bouldersOutlinesLayer.lineWidth = .expression(
+        bouldersOutlinesLayer.lineOpacity = .expression(
             Exp(.interpolate) {
                 ["linear"]
                 ["zoom"]
