@@ -93,6 +93,8 @@
 		03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
 		03B910712B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
+		03BA1BDC2DBD6CE200211AB0 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA1BDB2DBD6CE200211AB0 /* ZoomableScrollView.swift */; };
+		03BA1BDD2DBD6CE200211AB0 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA1BDB2DBD6CE200211AB0 /* ZoomableScrollView.swift */; };
 		03C104E4290ACB85007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E3290ACB85007A94D7 /* MapboxMaps */; };
 		03C104E6290ACBC9007A94D7 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 03C104E5290ACBC9007A94D7 /* MapboxMaps */; };
 		03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */; };
@@ -234,6 +236,7 @@
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
 		03AB8B852C8EF32D00093D76 /* TapLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapLocationView.swift; sourceTree = "<group>"; };
 		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		03BA1BDB2DBD6CE200211AB0 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -528,6 +531,7 @@
 		37B4522B259144B000241091 /* Topo */ = {
 			isa = PBXGroup;
 			children = (
+				03BA1BDB2DBD6CE200211AB0 /* ZoomableScrollView.swift */,
 				37B45230259144D300241091 /* TopoView.swift */,
 				03C7D6282D8DBBBD006CADEA /* PageControlView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
@@ -740,6 +744,7 @@
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
 				03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
+				03BA1BDD2DBD6CE200211AB0 /* ZoomableScrollView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
 				038C2EF229201152006581CD /* MapContainerView.swift in Sources */,
@@ -825,6 +830,7 @@
 				038EC24B2DB5459800135314 /* MotionManager.swift in Sources */,
 				038C2EF129201152006581CD /* MapContainerView.swift in Sources */,
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
+				03BA1BDC2DBD6CE200211AB0 /* ZoomableScrollView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				0307619C2BAB27FF00F2DF87 /* ContributeView.swift in Sources */,
 				03FEAA1D2DAE4B9700E29F8F /* ProblemListSheet.swift in Sources */,

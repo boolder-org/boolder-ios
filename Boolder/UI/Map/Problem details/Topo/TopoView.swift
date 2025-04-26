@@ -216,7 +216,9 @@ struct TopoView: View {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                    contentWithImage(image)
+                    ZoomableScrollView {
+                        contentWithImage(image)
+                    }
 //                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {
 //
 //                            } onPressingChanged: { inProgress in
