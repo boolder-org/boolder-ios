@@ -191,193 +191,210 @@ struct ProblemDetailsView: View {
     }
     
     var body: some View {
-        VStack {
-            GeometryReader { geo in
-                VStack(alignment: .leading, spacing: 0) {
-                    
-                    TabView(selection: $currentPage) {
-                        ForEach(problem.toposOnSameBoulder) { topo in
-                            TopoView(
-                                topo: topo,
-                                problem: $problem,
-                                mapState: mapState,
-                                selectedDetent: $selectedDetent
-                            )
-                            .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                            .zIndex(10)
-                            .tag(topo.id) // use tag or id?
+        ZStack {
+            VStack {
+                GeometryReader { geo in
+                    VStack(alignment: .leading, spacing: 0) {
+                        
+                        TabView(selection: $currentPage) {
+                            ForEach(problem.toposOnSameBoulder) { topo in
+                                TopoView(
+                                    topo: topo,
+                                    problem: $problem,
+                                    mapState: mapState,
+                                    selectedDetent: $selectedDetent
+                                )
+                                .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                                .zIndex(10)
+                                .tag(topo.id) // use tag or id?
+                            }
                         }
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                    .onChange(of: currentPage) { newPage in
-                        print(newPage)
-                        if let topo = Topo.load(id: newPage) {
-                            if problem.topoId != topo.id {
-                                // FIXME: refactor this to update topo without chaning the problem
-                                if let newProblem = topo.firstProblemOnTheLeft  {
-                                    mapState.selectProblem(newProblem)
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                        .onChange(of: currentPage) { newPage in
+                            print(newPage)
+                            if let topo = Topo.load(id: newPage) {
+                                if problem.topoId != topo.id {
+                                    // FIXME: refactor this to update topo without chaning the problem
+                                    if let newProblem = topo.firstProblemOnTheLeft  {
+                                        mapState.selectProblem(newProblem)
+                                    }
+                                    
+                                    mapState.selectAllStarts()
                                 }
                                 
-                                mapState.selectAllStarts()
+                                
                             }
-                            
-                            
                         }
-                    }
-                    .onChange(of: problem) { [problem] newValue in
-                        if let topoId = newValue.topoId {
-                            currentPage = topoId
+                        .onChange(of: problem) { [problem] newValue in
+                            if let topoId = newValue.topoId {
+                                currentPage = topoId
+                            }
                         }
-                    }
-                    
-                    //                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
-                    //                        .padding(.top, 8)
-                    //                        .padding(.bottom, 4)
-                    //                        .frame(maxWidth: .infinity, alignment: .center)
-                    
-                    
-                    if mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
                         
-                        if selectedDetent == MapContainerView.smallDetent {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .top, spacing: 0) {
-                                    ForEach(problem.startGroups) { (group: StartGroup) in
-                                        let problems = group.problemsToDisplay
-                                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                        //                    PageControlView(numberOfPages: problem.topo!.onSameBoulder.count, currentPage: currentTopoIndex)
+                        //                        .padding(.top, 8)
+                        //                        .padding(.bottom, 4)
+                        //                        .frame(maxWidth: .infinity, alignment: .center)
+                        
+                        
+                        if mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
+                            
+                            if selectedDetent == MapContainerView.smallDetent {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(alignment: .top, spacing: 0) {
+                                        ForEach(problem.startGroups) { (group: StartGroup) in
+                                            let problems = group.problemsToDisplay
+                                            ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                                                Button {
+                                                    mapState.selectProblem(p)
+                                                } label: {
+                                                    HStack {
+                                                        VStack {
+                                                            HStack {
+                                                                ProblemCircleView(problem: p)
+                                                                Text(p.grade.string)
+                                                            }
+                                                            Text(p.localizedName).truncationMode(.middle)
+                                                            
+                                                        }
+                                                    }
+                                                    .frame(height: 88)
+                                                    .frame(minWidth: 120, maxWidth: 160)
+                                                    .foregroundColor(.primary)
+                                                    .padding(.horizontal, 4)
+                                                    .padding(.vertical, 4)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: 8)
+                                                            .stroke(Color.gray, lineWidth: 1)
+                                                    )
+                                                    .padding(.vertical, 2)
+                                                    .padding(.leading, 16)
+                                                    
+                                                    
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.vertical)
+                                
+                                
+                                HStack {
+                                    //                                Spacer()
+                                    //                                Text("Sélectionnez une voie sur l'image")
+                                    //                                Spacer()
+                                }
+                                .foregroundColor(.gray.opacity(0.7))
+                                .padding()
+                            }
+                            else {
+                                
+                                ScrollView {
+                                    
+                                    VStack(spacing: 0) {
+                                        
+                                        //                                Divider().padding(.vertical, 0)
+                                        
+                                        ForEach(problem.topo!.orderedProblems) { p in
                                             Button {
                                                 mapState.selectProblem(p)
                                             } label: {
                                                 HStack {
-                                                    VStack {
-                                                        HStack {
-                                                            ProblemCircleView(problem: p)
-                                                            Text(p.grade.string)
-                                                        }
-                                                        Text(p.localizedName).truncationMode(.middle)
-                                                        
-                                                    }
+                                                    ProblemCircleView(problem: p)
+                                                    Text(p.localizedName)
+                                                    Spacer()
+                                                    //                                            if(p.sitStart) {
+                                                    //                                                Image(systemName: "figure.rower")
+                                                    //                                            }
+                                                    
+                                                    //                                            if(p.featured) {
+                                                    //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
+                                                    //                                            }
+                                                    Text(p.grade.string)
                                                 }
-                                                .frame(height: 88)
-                                                .frame(minWidth: 120, maxWidth: 160)
                                                 .foregroundColor(.primary)
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 4)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 8)
-                                                        .stroke(Color.gray, lineWidth: 1)
-                                                )
-                                                .padding(.vertical, 2)
-                                                .padding(.leading, 16)
-                                                
                                                 
                                             }
+                                            .padding(.horizontal)
+                                            .padding(.vertical, 6)
+                                            .background(p.id == problem.id && !mapState.anyStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                            
+                                            Divider().padding(.vertical, 0)
+                                            
+                                            //                                    ForEach(p.children) { child in
+                                            //                                        Button {
+                                            //                                            mapState.selectProblem(child)
+                                            //                                            showAllLines = false
+                                            //                                        } label: {
+                                            //                                            HStack {
+                                            ////                                                Image(systemName: "arrow.turn.down.right")
+                                            ////                                                    .foregroundColor(.gray)
+                                            //
+                                            //                                                ProblemCircleView(problem: child)
+                                            //                                                Text(child.localizedName)
+                                            //                                                Spacer()
+                                            ////                                                if(child.sitStart) {
+                                            ////                                                    Image(systemName: "figure.rower")
+                                            ////                                                }
+                                            //
+                                            ////                                                if(child.featured) {
+                                            ////                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                                            ////                                                }
+                                            //
+                                            //                                                Text(child.grade.string)
+                                            //                                            }
+                                            //                                            .foregroundColor(.primary)
+                                            //                                        }
+                                            //                                        .padding(.horizontal)
+                                            //                                        .padding(.vertical, 6)
+                                            //                                        .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                            //
+                                            //                                        Divider().padding(.vertical, 0)
+                                            //                                    }
+                                            
                                             
                                         }
                                     }
                                 }
                             }
-                            .padding(.vertical)
                             
-                            
-                            HStack {
-//                                Spacer()
-//                                Text("Sélectionnez une voie sur l'image")
-//                                Spacer()
-                            }
-                            .foregroundColor(.gray.opacity(0.7))
-                            .padding()
                         }
-                        else {
+                        else { // !showAllLines {  //selectedDetent == .medium {
                             
-                            ScrollView {
-                                
-                                VStack(spacing: 0) {
-                                    
-                                    //                                Divider().padding(.vertical, 0)
-                                    
-                                    ForEach(problem.topo!.orderedProblems) { p in
-                                        Button {
-                                            mapState.selectProblem(p)
-                                        } label: {
-                                            HStack {
-                                                ProblemCircleView(problem: p)
-                                                Text(p.localizedName)
-                                                Spacer()
-                                                //                                            if(p.sitStart) {
-                                                //                                                Image(systemName: "figure.rower")
-                                                //                                            }
-                                                
-                                                //                                            if(p.featured) {
-                                                //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
-                                                //                                            }
-                                                Text(p.grade.string)
-                                            }
-                                            .foregroundColor(.primary)
-                                            
-                                        }
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 6)
-                                        .background(p.id == problem.id && !mapState.anyStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
-                                        
-                                        Divider().padding(.vertical, 0)
-                                        
-                                        //                                    ForEach(p.children) { child in
-                                        //                                        Button {
-                                        //                                            mapState.selectProblem(child)
-                                        //                                            showAllLines = false
-                                        //                                        } label: {
-                                        //                                            HStack {
-                                        ////                                                Image(systemName: "arrow.turn.down.right")
-                                        ////                                                    .foregroundColor(.gray)
-                                        //
-                                        //                                                ProblemCircleView(problem: child)
-                                        //                                                Text(child.localizedName)
-                                        //                                                Spacer()
-                                        ////                                                if(child.sitStart) {
-                                        ////                                                    Image(systemName: "figure.rower")
-                                        ////                                                }
-                                        //
-                                        ////                                                if(child.featured) {
-                                        ////                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
-                                        ////                                                }
-                                        //
-                                        //                                                Text(child.grade.string)
-                                        //                                            }
-                                        //                                            .foregroundColor(.primary)
-                                        //                                        }
-                                        //                                        .padding(.horizontal)
-                                        //                                        .padding(.vertical, 6)
-                                        //                                        .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
-                                        //
-                                        //                                        Divider().padding(.vertical, 0)
-                                        //                                    }
-                                        
-                                        
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
-                    else { // !showAllLines {  //selectedDetent == .medium {
-                        
-                        infosCard
-                            .frame(height: 80)
-                            .opacity(mapState.anyStartSelected ? 0.2 : 1)
-                        
-//                        if selectedDetent == MapContainerView.maxDetent {
+                            infosCard
+                                .frame(height: 80)
+                                .opacity(mapState.anyStartSelected ? 0.2 : 1)
+                            
+                            //                        if selectedDetent == MapContainerView.maxDetent {
                             
                             actionButtons
                                 .opacity(mapState.anyStartSelected ? 0.2 : 1)
-//                        }
+                            //                        }
+                        }
+                        
+                        
                     }
-                    
-
                 }
+                
+                Spacer()
             }
             
-            Spacer()
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        mapState.presentProblemDetails = false
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title)
+                            .padding(8)
+                            .foregroundColor(Color.gray.opacity(0.7))
+                    }
+                }
+                Spacer()
+            }
         }
 //        .overlay(
 //            ProblemListSheet(showAllLines: $showAllLines, problem: $problem, mapState: mapState)
