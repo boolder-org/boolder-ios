@@ -51,11 +51,6 @@ struct MapboxView: UIViewControllerRepresentable {
                     guard let self = self else { return }
                     DispatchQueue.main.async {
                         self.viewController?.setProblemAsSelected(problemFeatureId: String(self.parent.mapState.selectedProblem.id))
-                        
-                        // FIXME: refactor
-                        if let boulderId = self.parent.mapState.selectedProblem.topo?.boulderId {
-                            self.viewController?.setBoulderAsSelected(boulderFeatureId: String(boulderId))
-                        }
                     }
                 }
                 .store(in: &cancellables)
