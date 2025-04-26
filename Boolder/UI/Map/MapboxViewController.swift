@@ -54,6 +54,7 @@ class MapboxViewController: UIViewController {
             guard let self = self else { return }
             self.addSources()
             self.addLayers()
+            self.updateLayers()
         }.store(in: &cancelables)
         
         mapView.gestures.onMapTap.observe { context in
@@ -94,7 +95,90 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func updateLayers()
+    {
+//        try? mapView.mapboxMap.updateLayer(withId: "boulders", type: FillLayer.self) { layer in
+//            layer.fillColor = .expression(
+//                Exp(.switchCase) {
+//                    Exp(.boolean) {
+//                        Exp(.featureState) { "selected" }
+//                        false
+//                    }
+//                    UIColor(hue: 0, saturation: 0, brightness: 0.95, alpha: 1.0)
+//                    UIColor(hue: 0, saturation: 0, brightness: 0.8, alpha: 1.0) // default
+//                }
+//            )
+//        }
+        
+        try? mapView.mapboxMap.updateLayer(withId: "boulders", type: FillLayer.self) { layer in
+            layer.visibility = .constant(.none)
+        }
+        
+        try? mapView.mapboxMap.updateLayer(withId: "boulders-outlines", type: LineLayer.self) { layer in
+            layer.visibility = .constant(.none)
+        }
+    }
+    
     func addLayers() {
+        var bouldersLayer = FillLayer(id: "boulders-v2", source: "problems")
+        bouldersLayer.sourceLayer = problemsSourceLayerId
+//        bouldersLayer.minZoom = 15
+        bouldersLayer.filter = Exp(.match) {
+            ["geometry-type"]
+            ["Polygon"]
+            true
+            false
+        }
+        bouldersLayer.fillColor = .expression(
+            Exp(.switchCase) {
+                Exp(.boolean) {
+                    Exp(.featureState) { "selected" }
+                    false
+                }
+                UIColor(hue: 0, saturation: 0, brightness: 0.95, alpha: 1.0)
+                UIColor(hue: 0, saturation: 0, brightness: 0.8, alpha: 1.0) // default
+            }
+        )
+        
+        var bouldersOutlinesLayer = LineLayer(id: "boulders-v2-outlines", source: "problems")
+        bouldersOutlinesLayer.sourceLayer = problemsSourceLayerId
+        bouldersOutlinesLayer.filter = Exp(.match) {
+            ["geometry-type"]
+            ["Polygon"]
+            true
+            false
+        }
+        bouldersOutlinesLayer.lineColor = .constant(StyleColor(UIColor(hue: 0, saturation: 0, brightness: 0.7, alpha: 1.0)))
+        bouldersOutlinesLayer.lineOpacity = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                0
+                0
+                13
+                0
+                14
+                1
+                22
+                1
+            }
+        )
+        bouldersOutlinesLayer.lineOpacity = .expression(
+            Exp(.interpolate) {
+                ["linear"]
+                ["zoom"]
+                11
+                3
+                15
+                1
+                22
+                1
+                
+            }
+        )
+        
+        
+        
         var problemsLayer = CircleLayer(id: "problems", source: "problems")
         problemsLayer.sourceLayer = problemsSourceLayerId
         problemsLayer.minZoom = 15
@@ -150,7 +234,7 @@ class MapboxViewController: UIViewController {
 //                0.0
 //            }
 //        )
-//        
+//
 //        problemsLayer.circleStrokeColor = .expression(
 //            Exp(.switchCase) {
 //                Exp(.featureState) { "selected" }
@@ -367,6 +451,9 @@ class MapboxViewController: UIViewController {
         // ===========================
         
         do {
+            try self.mapView.mapboxMap.addLayer(bouldersLayer)
+            try self.mapView.mapboxMap.addLayer(bouldersOutlinesLayer)
+            
             try self.mapView.mapboxMap.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.addLayer(problemsTextsLayer)
             
@@ -478,15 +565,18 @@ class MapboxViewController: UIViewController {
             }
         
         // hack to be able to zoom to a level where problems are tappable
+        // FIXME: document change of layer name
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["boulders-v2", "problems-names"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
                     
+//                    print(queriedfeatures.first?.queriedFeature.feature)
+                    // TODO: sort by distance
                     if(queriedfeatures.first?.queriedFeature.feature.geometry != nil) {
                         if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
                             let cameraOptions = CameraOptions(
@@ -495,6 +585,15 @@ class MapboxViewController: UIViewController {
                                 zoom: 19
                             )
                             self.flyTo(cameraOptions)
+                        }
+                        else if self.mapView.mapboxMap.cameraState.zoom >= 19 {
+                            if case .number(let id) = queriedfeatures.first?.queriedFeature.feature.properties?["id"] {
+                                print("boulder_id=\(id)")
+                                //                            setBoulderAsSelected(boulderFeatureId: String(Int(id)))
+                                if let topo = Topo.onBoulder(Int(id)).first, let randomProblem = topo.firstProblemOnTheLeft {
+                                    self.delegate?.selectProblem(id: randomProblem.id)
+                                }
+                            }
                         }
                     }
                     
@@ -611,15 +710,15 @@ class MapboxViewController: UIViewController {
 //                        {
 //                            let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
 //                            let screenPoints: [CGPoint] = mapView.mapboxMap.points(for: locations)
-//                            
+//
 //                            // if the boulder is hidden by the bottom sheet
 //                            let insets = UIEdgeInsets(top: 100, left: 20, bottom: self.mapView.bounds.height/2, right: 20)
 //                            let safeRect = self.mapView.bounds.inset(by: insets)
-//                            
+//
 //                            // if problem is hidden by the bottom sheet
 //                            if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
 ////                            if screenPoints.contains(where: { !safeRect.contains($0) }) {
-//    
+//
 //                                if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
 //                                    let paddedCameraOptions = CameraOptions(
 //                                        center: cameraOptions.center,
@@ -636,9 +735,11 @@ class MapboxViewController: UIViewController {
                         
                     }
                     else {
+                        // FIXME: re-implement with a tap detector on map background? (or mapbox layer)
+                        
                         // TODO: make it more explicit that this works only at a certain zoom level
-                        self.unselectPreviousProblem()
-                        self.delegate?.dismissProblemDetails()
+//                        self.unselectPreviousProblem()
+//                        self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -850,7 +951,7 @@ class MapboxViewController: UIViewController {
 //    // FIXME: rename centerOnBoulderProblems ?
 //    func centerOnProblem(_ problem: Problem) {
 //        let locations = problem.otherProblemsOnSameBoulder.map { $0.coordinate }
-//        
+//
 //        if let cameraOptions = self.cameraOptionsFor(locations, minZoom: 20) {
 ////            print(cameraOptions.zoom)
 //            let paddedCameraOptions = CameraOptions(
@@ -967,8 +1068,37 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    private var previouslyTappedBoulderId: String = ""
     private var previouslyTappedProblemId: String = ""
     private var previouslySelectedTopoId: Int?
+    
+    // FIXME: use a separate layer for boulders (otherwise there's a clash of ids)
+    
+    func setBoulderAsSelected(boulderFeatureId: String) {
+        self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                               sourceLayerId: problemsSourceLayerId,
+                                               featureId: boulderFeatureId,
+                                               state: ["selected": true]) { result in
+            
+        }
+        
+        if boulderFeatureId != self.previouslyTappedBoulderId {
+            unselectPreviousBoulder()
+        }
+        
+        self.previouslyTappedBoulderId = boulderFeatureId
+    }
+    
+    func unselectPreviousBoulder() {
+        if(self.previouslyTappedBoulderId != "") {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                   sourceLayerId: problemsSourceLayerId,
+                                                   featureId: self.previouslyTappedBoulderId,
+                                                   state: ["selected": false]) { result in
+                
+            }
+        }
+    }
     
     func setProblemAsSelected(problemFeatureId: String) {
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
