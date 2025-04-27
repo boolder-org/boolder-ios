@@ -27,17 +27,21 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.showsHorizontalScrollIndicator = false
 
         let hosted = context.coordinator.hostingController.view!
-        hosted.translatesAutoresizingMaskIntoConstraints = true
-        hosted.frame = scrollView.bounds
-        hosted.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        hosted.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(hosted)
+        NSLayoutConstraint.activate([
+            hosted.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            hosted.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            hosted.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            hosted.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            hosted.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            hosted.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        ])
         return scrollView
     }
 
     func updateUIView(_ uiView: UIScrollView, context: Context) {
         context.coordinator.hostingController.rootView = content
-        // Ensure the hosted view fills the scrollView bounds
-        context.coordinator.hostingController.view.frame = uiView.bounds
     }
 
     func makeCoordinator() -> Coordinator {
@@ -55,5 +59,9 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         func viewForZooming(in scrollView: UIScrollView) -> UIView? {
             return hostingController.view
         }
+        
+//        func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+//            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+//        }
     }
 }
