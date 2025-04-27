@@ -60,8 +60,8 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
             return hostingController.view
         }
         
-//        func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-//            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
-//        }
+        func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+            scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+        }
     }
 }
