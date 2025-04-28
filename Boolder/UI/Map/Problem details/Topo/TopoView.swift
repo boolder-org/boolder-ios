@@ -18,6 +18,7 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
+    @State private var zoomScale: CGFloat = 1.0
     
     @Binding var selectedDetent: PresentationDetent
     
@@ -68,7 +69,7 @@ struct TopoView: View {
                 
                 
                 if problem.line?.coordinates != nil {
-                    LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                    LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
                     
                     if true { // showAllLines { // selectedDetent == .large {
                         if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
@@ -105,7 +106,7 @@ struct TopoView: View {
                         
                         if mapState.anyStartSelected { // }(showAllLines) {
                             ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
-                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
                                     .onTapGesture {
@@ -216,7 +217,7 @@ struct TopoView: View {
             
             Group {
                 if case .ready(let image) = photoStatus  {
-                    ZoomableScrollView {
+                    ZoomableScrollView(zoomScale: $zoomScale) {
                         contentWithImage(image)
                     }
 //                        .onLongPressGesture(minimumDuration: 1, maximumDistance: 10) {

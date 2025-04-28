@@ -12,8 +12,10 @@ import SwiftUI
 
 struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     let content: Content
+    @Binding var zoomScale: CGFloat
 
-    init(@ViewBuilder content: () -> Content) {
+    init(zoomScale: Binding<CGFloat>, @ViewBuilder content: () -> Content) {
+        self._zoomScale = zoomScale
         self.content = content()
     }
 
@@ -46,22 +48,29 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
 
     func makeCoordinator() -> Coordinator {
         let hostingController = UIHostingController(rootView: content)
-        return Coordinator(hostingController: hostingController)
+        return Coordinator(hostingController: hostingController, zoomScale: $zoomScale)
     }
 
     class Coordinator: NSObject, UIScrollViewDelegate {
         let hostingController: UIHostingController<Content>
+        let zoomScale: Binding<CGFloat>
 
-        init(hostingController: UIHostingController<Content>) {
+        init(hostingController: UIHostingController<Content>, zoomScale: Binding<CGFloat>) {
             self.hostingController = hostingController
+            self.zoomScale = zoomScale
         }
 
         func viewForZooming(in scrollView: UIScrollView) -> UIView? {
             return hostingController.view
         }
         
+        func scrollViewDidZoom(_ scrollView: UIScrollView) {
+            zoomScale.wrappedValue = scrollView.zoomScale
+        }
+        
         func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
+            zoomScale.wrappedValue = scrollView.minimumZoomScale
         }
     }
 }
