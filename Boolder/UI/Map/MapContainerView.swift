@@ -369,13 +369,17 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, UISheetPresentationControllerDelegate {
         var parent: CustomNoClipSheet
+        var isPresented: Bool = false
         
         init(_ parent: CustomNoClipSheet) {
             self.parent = parent
         }
         
         func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-            parent.isPresented = false
+            if isPresented {
+                parent.isPresented = false
+                isPresented = false
+            }
         }
     }
     
@@ -384,45 +388,39 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
     }
 
     func makeUIViewController(context: Context) -> UIViewController {
-        // A dummy container VC from which we'll present our sheet
         UIViewController()
     }
 
     func updateUIViewController(_ uiVC: UIViewController, context: Context) {
-        // Present when binding flips on
-        if isPresented && uiVC.presentedViewController == nil {
-            // Wrap the SwiftUI content in our no-clip hosting controller
-            let sheetVC = NoClipHostingController(rootView:
-                content()
-                    // let SwiftUI content go under safe areas if needed
-                    .edgesIgnoringSafeArea(.all)
-                    // Pass through the managed object context
-                    .environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
-            )
+        // Only handle presentation/dismissal if the state has actually changed
+        if isPresented != context.coordinator.isPresented {
+            if isPresented && uiVC.presentedViewController == nil {
+                // Wrap the SwiftUI content in our no-clip hosting controller
+                let sheetVC = NoClipHostingController(rootView:
+                    content()
+                        .edgesIgnoringSafeArea(.all)
+                        .environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+                )
 
-            // Configure the native sheet controller
-            if let sheet = sheetVC.sheetPresentationController {
-                sheet.detents = detents
-                sheet.prefersGrabberVisible = prefersGrabber
-                // remove rounded corners entirely
-                sheet.preferredCornerRadius = 0
-                // allow interaction with the view behind by disabling background dimming
-                sheet.largestUndimmedDetentIdentifier = .medium
-                sheet.delegate = context.coordinator
-            }
+                // Configure the native sheet controller
+                if let sheet = sheetVC.sheetPresentationController {
+                    sheet.detents = detents
+                    sheet.prefersGrabberVisible = prefersGrabber
+                    sheet.preferredCornerRadius = 0
+                    sheet.largestUndimmedDetentIdentifier = .medium
+                    sheet.delegate = context.coordinator
+                }
 
-            // Also turn off clipping on the sheet VC's view hierarchy
-            sheetVC.view.clipsToBounds = false
-            sheetVC.view.layer.masksToBounds = false
+                sheetVC.view.clipsToBounds = false
+                sheetVC.view.layer.masksToBounds = false
 
-            uiVC.present(sheetVC, animated: true)
-        }
-
-        // Dismiss when binding flips off
-        if !isPresented && uiVC.presentedViewController != nil {
-            uiVC.dismiss(animated: true) {
-                // Sync binding
-                DispatchQueue.main.async { self.isPresented = false }
+                uiVC.present(sheetVC, animated: true) {
+                    context.coordinator.isPresented = true
+                }
+            } else if !isPresented && uiVC.presentedViewController != nil {
+                uiVC.dismiss(animated: true) {
+                    context.coordinator.isPresented = false
+                }
             }
         }
     }
