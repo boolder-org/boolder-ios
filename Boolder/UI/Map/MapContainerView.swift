@@ -366,6 +366,22 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
     let detents: [UISheetPresentationController.Detent]
     let prefersGrabber: Bool
     let content: () -> Content
+    
+    class Coordinator: NSObject, UISheetPresentationControllerDelegate {
+        var parent: CustomNoClipSheet
+        
+        init(_ parent: CustomNoClipSheet) {
+            self.parent = parent
+        }
+        
+        func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+            parent.isPresented = false
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
 
     func makeUIViewController(context: Context) -> UIViewController {
         // A dummy container VC from which we'll present our sheet
@@ -380,6 +396,8 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
                 content()
                     // let SwiftUI content go under safe areas if needed
                     .edgesIgnoringSafeArea(.all)
+                    // Pass through the managed object context
+                    .environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
             )
 
             // Configure the native sheet controller
@@ -390,9 +408,10 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
                 sheet.preferredCornerRadius = 0
                 // allow interaction with the view behind by disabling background dimming
                 sheet.largestUndimmedDetentIdentifier = .medium
+                sheet.delegate = context.coordinator
             }
 
-            // Also turn off clipping on the sheet VC’s view hierarchy
+            // Also turn off clipping on the sheet VC's view hierarchy
             sheetVC.view.clipsToBounds = false
             sheetVC.view.layer.masksToBounds = false
 
