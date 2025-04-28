@@ -12,7 +12,6 @@ import CoreLocation
 class MapState : ObservableObject {
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published var selectedStart: Problem?
-    @Published var showAllStarts = false
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var currentLocation: Bool = false
@@ -117,7 +116,6 @@ class MapState : ObservableObject {
     func selectProblem(_ problem: Problem) {
         selectedProblem = problem
         selectedStart = nil
-        showAllStarts = false
         
         selectedArea = Area.load(id: problem.areaId)
     }
@@ -125,20 +123,11 @@ class MapState : ObservableObject {
     func selectStart(_ start: Problem) {
         selectedStart = start // FIXME: check if there is a start parent
         selectedProblem = start
-        showAllStarts = false
 //        selectedArea = Area.load(id: problem.areaId)
     }
     
     var isStartSelected: Bool {
         selectedStart != nil
-    }
-    
-    var anyStartSelected: Bool {
-        isStartSelected || showAllStarts
-    }
-    
-    func selectAllStarts() {
-        showAllStarts = true
     }
     
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {

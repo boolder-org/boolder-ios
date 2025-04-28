@@ -217,9 +217,9 @@ struct ProblemDetailsView: View {
                                 // FIXME: refactor this to update topo without chaning the problem
                                 if let newProblem = topo.firstProblemOnTheLeft  {
                                     mapState.selectProblem(newProblem)
+                                    // TODO: select start?
                                 }
                                 
-                                mapState.selectAllStarts()
                             }
                             
                             
@@ -237,14 +237,14 @@ struct ProblemDetailsView: View {
                     //                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     
-                    if mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
+                    if mapState.isStartSelected { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(alignment: .top, spacing: 0) {
                                     ForEach(problem.startGroups) { (group: StartGroup) in
                                         let problems = group.problemsToDisplay
-                                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                                        ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                             Button {
                                                 mapState.selectProblem(p)
                                             } label: {
@@ -318,7 +318,7 @@ struct ProblemDetailsView: View {
                                         }
                                         .padding(.horizontal)
                                         .padding(.vertical, 6)
-                                        .background(p.id == problem.id && !mapState.anyStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
+                                        .background(p.id == problem.id && !mapState.isStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                         
                                         Divider().padding(.vertical, 0)
                                         
@@ -364,12 +364,12 @@ struct ProblemDetailsView: View {
                         
                         infosCard
                             .frame(height: 80)
-                            .opacity(mapState.anyStartSelected ? 0.2 : 1)
+                            .opacity(mapState.isStartSelected ? 0.2 : 1)
                         
 //                        if selectedDetent == MapContainerView.maxDetent {
                             
                             actionButtons
-                                .opacity(mapState.anyStartSelected ? 0.2 : 1)
+                                .opacity(mapState.isStartSelected ? 0.2 : 1)
 //                        }
                     }
                     

@@ -104,8 +104,8 @@ struct TopoView: View {
                     ForEach(problem.startGroups) { (group: StartGroup) in
                         let problems = group.problemsToDisplay
                         
-                        if mapState.anyStartSelected { // }(showAllLines) {
-                            ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                        if mapState.isStartSelected { // }(showAllLines) {
+                            ForEach(problems.filter{$0.startId == problem.startId}) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
@@ -180,10 +180,10 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                if mapState.anyStartSelected {
+                if mapState.isStartSelected {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
+                            ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
                                     if true {
@@ -207,7 +207,6 @@ struct TopoView: View {
         .contentShape(Rectangle())
         .onTapGesture {
             print("tap on background")
-            mapState.showAllStarts = true
             
         }
     }
