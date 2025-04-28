@@ -388,6 +388,8 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
                 sheet.prefersGrabberVisible = prefersGrabber
                 // remove rounded corners entirely
                 sheet.preferredCornerRadius = 0
+                // allow interaction with the view behind by disabling background dimming
+                sheet.largestUndimmedDetentIdentifier = .medium
             }
 
             // Also turn off clipping on the sheet VC’s view hierarchy
