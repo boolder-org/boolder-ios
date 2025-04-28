@@ -85,24 +85,20 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .sheet(isPresented: $mapState.presentProblemDetails) {
-                ProblemDetailsView(
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState,
-                    selectedDetent: $selectedDetent
-                )
-//                .presentationDetents([MapContainerView.smallDetent, MapContainerView.maxDetent], selection: $selectedDetent)
-//                .presentationDetents([MapContainerView.smallDetent])
-                .presentationDetents([.medium])
-//                .presentationDetents([.height(UIScreen.main.bounds.width*3/4)])
-                .presentationBackgroundInteraction(
-//                    .enabled(upThrough: MapContainerView.smallDetent)
-                    .enabled(upThrough: .medium)
-//                    .enabled(upThrough: .height(UIScreen.main.bounds.width*3/4))
-                )
-                .presentationDragIndicator(.hidden)
-//                .edgesIgnoringSafeArea(.bottom)
-            }
+            .background(
+                CustomNoClipSheet(
+                    isPresented: $mapState.presentProblemDetails,
+                    detents: [.medium()],
+                    prefersGrabber: false)
+                {
+                    ProblemDetailsView(
+                        problem: $mapState.selectedProblem,
+                        mapState: mapState,
+                        selectedDetent: $selectedDetent
+                    )
+                }
+            )
+        
     }
     
 //    var detent: PresentationDetent {
@@ -345,3 +341,68 @@ struct MapContainerView: View {
 //        MapView()
 //    }
 //}
+
+/// A UIHostingController subclass that turns off all masks on itself and its container views.
+class NoClipHostingController<Content: View>: UIHostingController<Content> {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Disable clipping on the hosting view and its superviews
+        func disableClipping(_ v: UIView?) {
+            v?.clipsToBounds = false
+            v?.layer.masksToBounds = false
+        }
+
+        disableClipping(view)
+        disableClipping(view.superview)
+        disableClipping(view.superview?.superview)
+    }
+}
+
+/// A SwiftUI wrapper that presents its `content` as a custom iOS sheet,
+/// but with clipping completely turned off.
+struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
+    let detents: [UISheetPresentationController.Detent]
+    let prefersGrabber: Bool
+    let content: () -> Content
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        // A dummy container VC from which we'll present our sheet
+        UIViewController()
+    }
+
+    func updateUIViewController(_ uiVC: UIViewController, context: Context) {
+        // Present when binding flips on
+        if isPresented && uiVC.presentedViewController == nil {
+            // Wrap the SwiftUI content in our no-clip hosting controller
+            let sheetVC = NoClipHostingController(rootView:
+                content()
+                    // let SwiftUI content go under safe areas if needed
+                    .edgesIgnoringSafeArea(.all)
+            )
+
+            // Configure the native sheet controller
+            if let sheet = sheetVC.sheetPresentationController {
+                sheet.detents = detents
+                sheet.prefersGrabberVisible = prefersGrabber
+                // remove rounded corners entirely
+                sheet.preferredCornerRadius = 0
+            }
+
+            // Also turn off clipping on the sheet VC’s view hierarchy
+            sheetVC.view.clipsToBounds = false
+            sheetVC.view.layer.masksToBounds = false
+
+            uiVC.present(sheetVC, animated: true)
+        }
+
+        // Dismiss when binding flips off
+        if !isPresented && uiVC.presentedViewController != nil {
+            uiVC.dismiss(animated: true) {
+                // Sync binding
+                DispatchQueue.main.async { self.isPresented = false }
+            }
+        }
+    }
+}
