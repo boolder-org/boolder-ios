@@ -50,6 +50,10 @@ struct TopoView: View {
     
 //    private var
     
+    var zoomScaleAdapted: CGFloat {
+        (zoomScale / 2) + 0.5
+    }
+    
     func contentWithImage(_ image: UIImage) -> some View {
         ZStack {
             Group {
@@ -80,7 +84,7 @@ struct TopoView: View {
                             
                             GeometryReader { geo in
                                 GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
-                                    .scaleEffect(1/zoomScale)
+                                    .scaleEffect(1/zoomScaleAdapted)
                                     .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                     .zIndex(.infinity)
                                 //                                            .onTapGesture {
@@ -139,7 +143,7 @@ struct TopoView: View {
                                         //                                            .offset(x: xOffset, y: yOffset)
                                         //                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
                                     }
-                                    .scaleEffect(1/zoomScale)
+                                    .scaleEffect(1/zoomScaleAdapted)
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .onTapGesture {
                                         // TODO: use the start parent
@@ -159,7 +163,7 @@ struct TopoView: View {
                                 
                                 if let line = p.line, let firstPoint = line.firstPoint {
                                     ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                        .scaleEffect(1/zoomScale)
+                                        .scaleEffect(1/zoomScaleAdapted)
                                     //                                            .scaleEffect(0.8)
                                     //                                            .opacity(0.5)
                                     //                                                .allowsHitTesting(false)
@@ -196,7 +200,7 @@ struct TopoView: View {
                                     if true {
                                         
                                         GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-                                            .scaleEffect(1/zoomScale)
+                                            .scaleEffect(1/zoomScaleAdapted)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
                                             .onTapGesture {
