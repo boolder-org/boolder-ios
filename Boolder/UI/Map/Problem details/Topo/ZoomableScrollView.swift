@@ -27,6 +27,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.bouncesZoom = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.clipsToBounds = false
 
         let hosted = context.coordinator.hostingController.view!
         hosted.translatesAutoresizingMaskIntoConstraints = false
@@ -35,10 +36,14 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
             hosted.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             hosted.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             hosted.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            hosted.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             hosted.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            hosted.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+            hosted.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            hosted.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
+        
+        // Set initial content size to match the scroll view's size
+        scrollView.contentSize = scrollView.bounds.size
+        
         return scrollView
     }
 
