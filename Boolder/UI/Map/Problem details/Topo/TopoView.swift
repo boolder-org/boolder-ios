@@ -11,7 +11,7 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let topo: Topo // FIXME: what happends when page changes?
+//    let topo: Topo // FIXME: what happends when page changes?
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
@@ -21,6 +21,10 @@ struct TopoView: View {
     @State private var zoomScale: CGFloat = 1.0
     
     @Binding var selectedDetent: PresentationDetent
+    
+    var topo: Topo {
+        problem.topo! // FIXME: don't use bang
+    }
     
 //    @StateObject private var motion = MotionManager()
     
