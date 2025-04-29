@@ -34,6 +34,10 @@ struct Line: Decodable {
         coordinates?.last
     }
     
+    var minX: Double? {
+        coordinates?.compactMap{$0.x}.min() ?? 1
+    }
+    
     var middlePoint: Line.PhotoPercentCoordinate? {
         overlayPoint(at: 0.5)
     }

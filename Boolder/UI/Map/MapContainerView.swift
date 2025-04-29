@@ -35,7 +35,7 @@ struct MapContainerView: View {
             
 //            circuitButtons
             
-//            browseButtons
+            browseButtons
             
             Group {
                 
@@ -145,30 +145,12 @@ struct MapContainerView: View {
                     
                     Spacer()
                     
-                    Button {
-                        
-                    } label: {
-                        HStack {
-                            Image(systemName: "list.bullet")
-                            Text("Liste")
-                        }
-                    }
-                    .font(.body.weight(.semibold))
-                    .accentColor(.black)
-//                    .background(Color.systemBackground)
-//                    .clipShape(Circle())
-//                    .overlay(
-//                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                    )
-                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                    .padding(.horizontal)
-                    
-                    Spacer()
-                    
-                    if(true) {
+                    if let boulderId = mapState.selectedProblem.topo?.boulderId {
                         
                         Button(action: {
-                            
+                            if let next = Boulder(id: boulderId).next(after: mapState.selectedProblem) {
+                                mapState.selectStart(next)
+                            }
                         }) {
                             Image(systemName: "arrow.right")
                                 .padding(10)
