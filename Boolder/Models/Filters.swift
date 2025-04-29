@@ -13,7 +13,7 @@ struct Filters {
     var favorite = false
     var ticked = false
     
-    func filtersCount() -> Int {
+    var filtersCount: Int {
         let initialValues = Filters()
         var count = 0
         

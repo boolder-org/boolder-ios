@@ -32,7 +32,7 @@ struct Grade: Hashable, CustomStringConvertible {
         string = Self.grades[index % Grade.grades.count]
     }
     
-    func category() -> Int {
+    var category: Int {
         Int(String(string.first!))!
     }
     
@@ -43,12 +43,12 @@ struct Grade: Hashable, CustomStringConvertible {
 
 extension Grade: Comparable {
     
-    func index() -> Int {
+    var index: Int {
         Self.grades.firstIndex(of: string)!
     }
     
     static func < (lhs: Grade, rhs: Grade) -> Bool {
-        return lhs.index() < rhs.index()
+        return lhs.index < rhs.index
     }
     
     static func == (lhs: Grade, rhs: Grade) -> Bool {
@@ -58,11 +58,11 @@ extension Grade: Comparable {
 
 extension Grade: Strideable {
     public func distance(to other: Grade) -> Grade.Stride {
-        return Stride(other.index()) - Stride(index())
+        return Stride(other.index) - Stride(index)
     }
 
     public func advanced(by n: Grade.Stride) -> Grade {
-        let newIndex = Stride(index() + n)
+        let newIndex = Stride(index + n)
         return Grade(index: newIndex)
     }
 

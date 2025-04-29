@@ -12,6 +12,7 @@ import CoreData
 import SQLite
 
 struct Problem : Identifiable {
+    static let defaultCircuitNumber = "D"
     let id: Int
     let name: String?
     let nameEn: String?
@@ -49,7 +50,7 @@ struct Problem : Identifiable {
         }
     }
     
-    func circuitNumberComparableValue() -> Double {
+    var circuitNumberComparableValue: Double {
         if let int = Int(circuitNumber) {
             return Double(int)
         }
@@ -102,22 +103,22 @@ struct Problem : Identifiable {
     }
     
     
-    func isFavorite() -> Bool {
-        favorite() != nil
+    var isFavorite: Bool {
+        favorite != nil
     }
     
-    func favorite() -> Favorite? {
-        favorites().first { (favorite: Favorite) -> Bool in
+    var favorite: Favorite? {
+        favorites.first { (favorite: Favorite) -> Bool in
             return Int(favorite.problemId) == id
         }
     }
     
-    func isTicked() -> Bool {
-        tick() != nil
+    var isTicked: Bool {
+        tick != nil
     }
     
-    func tick() -> Tick? {
-        ticks().first { (tick: Tick) -> Bool in
+    var tick: Tick? {
+        ticks.first { (tick: Tick) -> Bool in
             return Int(tick.problemId) == id
         }
     }
@@ -275,7 +276,8 @@ extension Problem {
     }
     
     var next: Problem? {
-        if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
+        let circutiNumberInt = (self.circuitNumber == Problem.defaultCircuitNumber) ? 0 : Int(self.circuitNumber)
+        if let circuitNumberInt = circutiNumberInt, let circuitId = circuitId {
             let nextNumber = String(circuitNumberInt + 1)
             
             let query = Table("problems")
@@ -292,8 +294,7 @@ extension Problem {
     
     var previous: Problem? {
         if let circuitNumberInt = Int(self.circuitNumber), let circuitId = circuitId {
-            let previousNumber = String(circuitNumberInt - 1)
-            
+            let previousNumber = (circuitNumberInt == 1 ) ? Problem.defaultCircuitNumber : String(circuitNumberInt - 1)
             let query = Table("problems")
                 .filter(Problem.circuitId == circuitId)
                 .filter(Problem.circuitNumber == previousNumber)
@@ -309,7 +310,7 @@ extension Problem {
 
 // MARK: CoreData
 extension Problem {
-    func favorites() -> [Favorite] {
+    var favorites: [Favorite] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request: NSFetchRequest<Favorite> = Favorite.fetchRequest()
@@ -322,7 +323,7 @@ extension Problem {
         }
     }
     
-    func ticks() -> [Tick] {
+    var ticks: [Tick] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let request: NSFetchRequest<Tick> = Tick.fetchRequest()

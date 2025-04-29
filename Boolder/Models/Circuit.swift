@@ -222,7 +222,7 @@ extension Circuit {
                     return lhs.grade < rhs.grade
                 }
                 else {
-                    return lhs.circuitNumberComparableValue() < rhs.circuitNumberComparableValue()
+                    return lhs.circuitNumberComparableValue < rhs.circuitNumberComparableValue
                 }
             })
         }
@@ -233,14 +233,6 @@ extension Circuit {
     }
     
     var firstProblem: Problem? {
-        let query = Table("problems")
-            .filter(Problem.circuitId == self.id)
-            .filter(Problem.circuitNumber == "1")
-        
-        if let p = try! SqliteStore.shared.db.pluck(query) {
-            return Problem.load(id: p[Problem.id])
-        }
-        
-        return nil
+        return problems.first
     }
 }
