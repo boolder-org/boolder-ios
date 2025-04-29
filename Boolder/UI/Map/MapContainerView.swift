@@ -35,7 +35,7 @@ struct MapContainerView: View {
             
 //            circuitButtons
             
-            browseButtons
+//            browseButtons
             
             Group {
                 
