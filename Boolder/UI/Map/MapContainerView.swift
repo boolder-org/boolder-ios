@@ -51,6 +51,20 @@ struct MapContainerView: View {
                     .opacity(mapState.selectedArea != nil ? 1 : 0)
             }
             .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
+            
+            if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
+                VStack {
+                    Spacer()
+                    TopoView(
+                        problem: $mapState.selectedProblem,
+                        mapState: mapState,
+                        selectedDetent: $selectedDetent
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                .padding(8)
+                .zIndex(40)
+            }
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
@@ -85,19 +99,19 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .background(
-                CustomNoClipSheet(
-                    isPresented: $mapState.presentProblemDetails,
-                    detents: [.medium()],
-                    prefersGrabber: false)
-                {
-                    ProblemDetailsView(
-                        problem: $mapState.selectedProblem,
-                        mapState: mapState,
-                        selectedDetent: $selectedDetent
-                    )
-                }
-            )
+//            .background(
+//                CustomNoClipSheet(
+//                    isPresented: $mapState.presentProblemDetails,
+//                    detents: [.medium()],
+//                    prefersGrabber: false)
+//                {
+//                    ProblemDetailsView(
+//                        problem: $mapState.selectedProblem,
+//                        mapState: mapState,
+//                        selectedDetent: $selectedDetent
+//                    )
+//                }
+//            )
         
     }
     
