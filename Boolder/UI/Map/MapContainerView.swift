@@ -55,12 +55,43 @@ struct MapContainerView: View {
             if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
                 VStack {
                     Spacer()
-                    TopoView(
-                        problem: $mapState.selectedProblem,
-                        mapState: mapState,
-                        selectedDetent: $selectedDetent
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    
+                    VStack {
+                        if !mapState.showAllStarts {
+                            let problem = mapState.selectedProblem
+                            HStack {
+                                ProblemCircleView(problem: problem)
+                                
+                                Text(problem.localizedName)
+                                    .font(.body)
+                                Text(problem.grade.string)
+                                    .font(.body)
+                                
+                                Spacer()
+                                
+                                Button {
+                                    mapState.showAllStarts = true
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.gray)
+                                        .font(.system(size: 24))
+                                }
+                                
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 38)
+                            .background(Color.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                        
+                        TopoView(
+                            problem: $mapState.selectedProblem,
+                            mapState: mapState,
+                            selectedDetent: $selectedDetent
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
                 }
                 .padding(8)
                 .zIndex(40)
