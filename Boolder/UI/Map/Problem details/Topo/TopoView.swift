@@ -401,6 +401,9 @@ struct TopoView: View {
         .task {
             await loadData()
         }
+//        .onAppear {
+//            mapState.showAllStarts = true
+//        }
         
     }
     

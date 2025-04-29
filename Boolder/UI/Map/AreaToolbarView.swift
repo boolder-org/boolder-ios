@@ -25,7 +25,7 @@ struct AreaToolbarView: View {
                         mapState.unselectArea()
                         mapState.presentProblemDetails = false
                     } label: {
-                        Image(systemName: "chevron.left")
+                        Image(systemName: "magnifyingglass")
                             .font(Font.body.weight(.semibold))
                             .foregroundColor(Color(.secondaryLabel))
                             .padding(.horizontal, 16)

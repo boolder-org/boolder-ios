@@ -56,16 +56,23 @@ struct MapContainerView: View {
                 VStack {
                     Spacer()
                     
-                    VStack {
+//                    ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
                         if !mapState.showAllStarts {
                             let problem = mapState.selectedProblem
                             HStack {
-                                ProblemCircleView(problem: problem)
                                 
-                                Text(problem.localizedName)
-                                    .font(.body)
-                                Text(problem.grade.string)
-                                    .font(.body)
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                                    
+                                    Text(problem.localizedName)
+                                        .font(.body)
+                                    Text(problem.grade.string)
+                                        .font(.body)
+                                }
                                 
                                 Spacer()
                                 
@@ -73,16 +80,18 @@ struct MapContainerView: View {
                                     mapState.showAllStarts = true
                                 } label: {
                                     Image(systemName: "xmark.circle.fill")
-                                        .foregroundColor(.gray)
-                                        .font(.system(size: 24))
+                                        .font(Font.body.weight(.semibold))
+                                        .foregroundColor(Color(.secondaryLabel))
+//                                        .padding(.horizontal, 16)
                                 }
                                 
                             }
                             .padding(.horizontal)
                             .frame(maxWidth: .infinity)
                             .frame(height: 38)
-                            .background(Color.white)
+                            .background(.regularMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
+//                            .zIndex(20)
                         }
                         
                         TopoView(
@@ -91,6 +100,7 @@ struct MapContainerView: View {
                             selectedDetent: $selectedDetent
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+//                        .zIndex(10)
                     }
                 }
                 .padding(8)
@@ -284,7 +294,7 @@ struct MapContainerView: View {
                             .padding(.vertical, 8)
                             .font(.body.weight(.semibold))
                             .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                            .background(Color.systemBackground)
+                            .background(.thinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 32))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
