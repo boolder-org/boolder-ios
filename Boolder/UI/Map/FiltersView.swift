@@ -92,11 +92,11 @@ struct FiltersView: View {
     }
 }
 
-//struct FiltersView_Previews: PreviewProvider {
-//    @State static var presentFilters = true
-//    @State static var filters = Filters()
-//    static let mapState = MapState()
-//    static var previews: some View {
-//        FiltersView(presentFilters: $presentFilters, filters: $filters,  mapState: mapState)
-//    }
-//}
+struct FiltersView_Previews: PreviewProvider {
+    @State static var presentFilters = true
+    @State static var filters = Filters()
+    static let mapState = MapState()
+    static var previews: some View {
+        FiltersView(presentFilters: $presentFilters, filters: $filters,  mapState: mapState)
+    }
+}

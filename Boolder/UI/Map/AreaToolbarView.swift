@@ -83,7 +83,7 @@ struct AreaToolbarView: View {
             .padding(.horizontal)
             
             HStack {
-                if (mapState.filters.filtersCount() > 0 || mapState.selectedCircuit != nil) {
+              if (mapState.filters.filtersCount > 0 || mapState.selectedCircuit != nil) {
                     Button {
                         mapState.unselectCircuit()
                         mapState.clearFilters()
@@ -241,8 +241,9 @@ struct AreaToolbarView: View {
                 }
                 .opacity(mapState.presentProblemDetails ? 0 : 1)
             }
+            .animation(.easeInOut, value: mapState.filters.filtersCount > 0 || mapState.selectedCircuit != nil)
             .padding(.top, 8)
-            .padding(.horizontal)
+            .padding(.leading)
 
             Spacer()
         }
@@ -273,9 +274,10 @@ struct AreaToolbarView: View {
     }
 }
 
-//struct AreaToolbarView_Previews: PreviewProvider {
-//    static let mapState = MapState()
-//    static var previews: some View {
-//        AreaToolbarView(mapState: mapState)
-//    }
-//}
+struct AreaToolbarView_Previews: PreviewProvider {
+    static let mapState = MapState()
+    static var previews: some View {
+        AreaToolbarView(mapState: mapState)
+        .background(Color.black)
+    }
+}
