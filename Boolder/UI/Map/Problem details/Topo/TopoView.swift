@@ -113,8 +113,8 @@ struct TopoView: View {
                     ForEach(problem.startGroups) { (group: StartGroup) in
                         let problems = group.problemsToDisplay
                         
-                        if mapState.isStartSelected { // }(showAllLines) {
-                            ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                        if mapState.anyStartSelected { // }(showAllLines) {
+                            ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
@@ -191,10 +191,10 @@ struct TopoView: View {
                 //                    }
                 //                }
                 
-                if mapState.isStartSelected {
+                if mapState.anyStartSelected {
                     GeometryReader { geo in
                         ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
+                            ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
                                     if true {

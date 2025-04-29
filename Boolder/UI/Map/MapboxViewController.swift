@@ -1069,6 +1069,7 @@ import CoreLocation
 protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectStart(id: Int)
+    func selectAllStarts()
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func selectCluster(id: Int)

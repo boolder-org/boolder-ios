@@ -57,6 +57,19 @@ struct MapboxView: UIViewControllerRepresentable {
             
             // TODO: select start
             
+            parent.mapState.$showAllStarts
+                .sink { [weak self] showAllStarts in
+                    guard let self = self else { return }
+                    if showAllStarts {
+                        if let topoId = self.parent.mapState.selectedProblem.topoId {
+                            DispatchQueue.main.async {
+//                                self.viewController?.setTopoProblemsAsSelected(topoId: topoId)
+                            }
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+            
             parent.mapState.$centerOnProblem
                 .sink { [weak self] problem in
                     guard let self = self else { return }
@@ -146,6 +159,10 @@ struct MapboxView: UIViewControllerRepresentable {
                 parent.mapState.selectStart(start)
                 parent.mapState.presentProblemDetails = true
             }
+        }
+        
+        func selectAllStarts() {
+            parent.mapState.selectAllStarts()
         }
         
         func selectArea(id: Int) {
