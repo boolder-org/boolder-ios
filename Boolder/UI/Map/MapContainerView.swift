@@ -38,7 +38,14 @@ struct MapContainerView: View {
 //            browseButtons
             
             if !mapState.showAllStarts && mapState.presentProblemDetails {
-                selectedStart
+                VStack(spacing: 0) {
+                    Spacer()
+                    //                selectedStart
+                    
+                    infosCard
+                        .background(Color.white)
+                }
+                    .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
             }
             
             Group {
@@ -80,10 +87,66 @@ struct MapContainerView: View {
         }
     }
     
+    var infosCard: some View {
+        
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                
+                ProblemCircleView(problem: problem)
+                
+                Text(problem.localizedName)
+                    .font(.body)
+                //                            .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .minimumScaleFactor(0.5)
+                
+                Spacer()
+                
+                if(problem.sitStart) {
+                    Image(systemName: "figure.rower")
+//                    Text("problem.sit_start")
+//                        .font(.body)
+                }
+
+                    Text(problem.grade.string)
+                        .font(.body)
+                
+                Button {
+                    mapState.showAllStarts = true
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(Font.body.weight(.semibold))
+                        .foregroundColor(Color(.secondaryLabel))
+                }
+
+            }
+            
+//            HStack(alignment: .firstTextBaseline) {
+//                
+//                if(problem.sitStart) {
+//                    Image(systemName: "figure.rower")
+//                    Text("problem.sit_start")
+//                        .font(.body)
+//                }
+//                
+//                Spacer()
+//
+//            }
+        }
+        
+        .padding(.horizontal)
+        .padding(.vertical)
+    }
+    
+    var problem : Problem {
+        mapState.selectedProblem
+    }
+    
     var selectedStart: some View {
-        VStack(spacing: 0) {
-            Spacer()
-                let problem = mapState.selectedProblem
+        
                 HStack {
                     
                     
@@ -116,8 +179,8 @@ struct MapContainerView: View {
                 .background(.regularMaterial)
                 //                            .clipShape(RoundedRectangle(cornerRadius: 8))
                 //                            .zIndex(20)
-            }
-        .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
+            
+        
     }
     
     var mapbox : some View {
