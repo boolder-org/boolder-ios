@@ -90,7 +90,7 @@ struct MapContainerView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 38)
                             .background(.regularMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
+//                            .clipShape(RoundedRectangle(cornerRadius: 8))
 //                            .zIndex(20)
                         }
                         
@@ -99,11 +99,11 @@ struct MapContainerView: View {
                             mapState: mapState,
                             selectedDetent: $selectedDetent
                         )
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+//                        .clipShape(RoundedRectangle(cornerRadius: 8))
 //                        .zIndex(10)
                     }
                 }
-                .padding(8)
+//                .padding(8)
                 .zIndex(40)
             }
         }
