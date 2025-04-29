@@ -37,6 +37,10 @@ struct MapContainerView: View {
             
 //            browseButtons
             
+            if !mapState.showAllStarts && mapState.presentProblemDetails {
+                selectedStart
+            }
+            
             Group {
                 
                 fabButtons
@@ -52,60 +56,7 @@ struct MapContainerView: View {
             }
             .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
             
-            if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
-                VStack {
-                    Spacer()
-                    
-//                    ZStack(alignment: .top) {
-                    VStack(spacing: 0) {
-                        if !mapState.showAllStarts {
-                            let problem = mapState.selectedProblem
-                            HStack {
-                                
-                                
-                                Spacer()
-                                
-                                HStack {
-                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                    
-                                    Text(problem.localizedName)
-                                        .font(.body)
-                                    Text(problem.grade.string)
-                                        .font(.body)
-                                }
-                                
-                                Spacer()
-                                
-                                Button {
-                                    mapState.showAllStarts = true
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(Font.body.weight(.semibold))
-                                        .foregroundColor(Color(.secondaryLabel))
-//                                        .padding(.horizontal, 16)
-                                }
-                                
-                            }
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 38)
-                            .background(.regularMaterial)
-//                            .clipShape(RoundedRectangle(cornerRadius: 8))
-//                            .zIndex(20)
-                        }
-                        
-                        TopoView(
-                            problem: $mapState.selectedProblem,
-                            mapState: mapState,
-                            selectedDetent: $selectedDetent
-                        )
-//                        .clipShape(RoundedRectangle(cornerRadius: 8))
-//                        .zIndex(10)
-                    }
-                }
-//                .padding(8)
-                .zIndex(40)
-            }
+            
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
@@ -129,6 +80,46 @@ struct MapContainerView: View {
         }
     }
     
+    var selectedStart: some View {
+        VStack(spacing: 0) {
+            Spacer()
+                let problem = mapState.selectedProblem
+                HStack {
+                    
+                    
+                    Spacer()
+                    
+                    HStack {
+                        ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+                        
+                        Text(problem.localizedName)
+                            .font(.body)
+                        Text(problem.grade.string)
+                            .font(.body)
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        mapState.showAllStarts = true
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(Font.body.weight(.semibold))
+                            .foregroundColor(Color(.secondaryLabel))
+                        //                                        .padding(.horizontal, 16)
+                    }
+                    
+                }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity)
+                .frame(height: 38)
+                .background(.regularMaterial)
+                //                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                //                            .zIndex(20)
+            }
+        .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
+    }
+    
     var mapbox : some View {
         MapboxView(mapState: mapState)
             .edgesIgnoringSafeArea(.top)
@@ -140,19 +131,30 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-//            .background(
-//                CustomNoClipSheet(
-//                    isPresented: $mapState.presentProblemDetails,
-//                    detents: [.medium()],
-//                    prefersGrabber: false)
-//                {
+            .background(
+                CustomNoClipSheet(
+                    isPresented: $mapState.presentProblemDetails,
+                    detents: [UISheetPresentationController.Detent.custom { _ in 340 }],  // FIXME: make DRY
+                    prefersGrabber: false)
+                {
 //                    ProblemDetailsView(
 //                        problem: $mapState.selectedProblem,
 //                        mapState: mapState,
 //                        selectedDetent: $selectedDetent
 //                    )
-//                }
-//            )
+                    VStack {
+                        TopoView(
+                            problem: $mapState.selectedProblem,
+                            mapState: mapState,
+                            selectedDetent: $selectedDetent
+                        )
+                        
+                        PageControlView(numberOfPages: 5, currentPage: 1)
+                        
+                        Spacer()
+                    }
+                }
+            )
         
     }
     
@@ -441,10 +443,11 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
 
                 // Configure the native sheet controller
                 if let sheet = sheetVC.sheetPresentationController {
-                    sheet.detents = detents
+                    let customDetent = UISheetPresentationController.Detent.custom { _ in 340 } // FIXME: make DRY
+                    sheet.detents = [customDetent]
                     sheet.prefersGrabberVisible = prefersGrabber
                     sheet.preferredCornerRadius = 0
-                    sheet.largestUndimmedDetentIdentifier = .medium
+                    sheet.largestUndimmedDetentIdentifier = customDetent.identifier
                     sheet.delegate = context.coordinator
                 }
 
