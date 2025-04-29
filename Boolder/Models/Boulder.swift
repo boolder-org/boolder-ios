@@ -24,4 +24,12 @@ struct Boulder {
         
         return nil
     }
+    
+    func previous(before: Problem) -> Problem? {
+        if let index = starts.firstIndex(of: before) {
+            return starts[(index + starts.count - 1) % starts.count]
+        }
+        
+        return nil
+    }
 }

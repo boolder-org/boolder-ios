@@ -86,7 +86,7 @@ extension Topo {
     
     var starts: [Problem] {
         problems.filter{$0.startId == $0.id}.sorted {
-            $0.line?.minX ?? 1 < $1.line?.minX ?? 1
+            $0.line?.firstPoint?.x ?? 1 < $1.line?.firstPoint?.x ?? 1
         }
     }
     

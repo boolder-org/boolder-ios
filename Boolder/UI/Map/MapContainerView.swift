@@ -122,12 +122,12 @@ struct MapContainerView: View {
     var browseButtons : some View {
         Group {
             
-            if mapState.presentProblemDetails {
+            if mapState.presentProblemDetails, let boulderId = mapState.selectedProblem.topo?.boulderId {
                 HStack(spacing: 0) {
                     
-                    if(true) {
+                    if let previous = Boulder(id: boulderId).previous(before: mapState.selectedProblem) {
                         Button(action: {
-                            
+                            mapState.selectStart(previous)
                         }) {
                             Image(systemName: "arrow.left")
                                 .padding(10)
@@ -145,12 +145,12 @@ struct MapContainerView: View {
                     
                     Spacer()
                     
-                    if let boulderId = mapState.selectedProblem.topo?.boulderId {
+                    if let next = Boulder(id: boulderId).next(after: mapState.selectedProblem) {
                         
                         Button(action: {
-                            if let next = Boulder(id: boulderId).next(after: mapState.selectedProblem) {
+                            
                                 mapState.selectStart(next)
-                            }
+                            
                         }) {
                             Image(systemName: "arrow.right")
                                 .padding(10)
