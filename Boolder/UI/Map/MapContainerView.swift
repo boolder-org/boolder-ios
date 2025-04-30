@@ -13,6 +13,7 @@ import TipKit
 
 struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Namespace private var namespace
     
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
@@ -86,6 +87,14 @@ struct MapContainerView: View {
                                     selectedDetent: $selectedDetent
                                 )
                                 .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                                .modify {
+                                    if #available(iOS 18.0, *) {
+                                        $0.matchedTransitionSource(id: "photo", in: namespace)
+                                    } else {
+                                        // Fallback on earlier versions
+                                    }
+                                }
+                                
                                 //                        .clipShape(RoundedRectangle(cornerRadius: 8))
                                 //                        .zIndex(10)
                                 
@@ -238,6 +247,25 @@ struct MapContainerView: View {
                     googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
+            )
+            .background(
+                EmptyView().fullScreenCover(isPresented: $mapState.presentStartSheet) {
+                    TopoView(
+                        problem: $mapState.selectedProblem,
+                        mapState: mapState,
+                        selectedDetent: $selectedDetent
+                    )
+                    .modify {
+                        if #available(iOS 18.0, *) {
+                            $0
+                                .matchedTransitionSource(id: "photo", in: namespace) // reuse same ID/namespace
+                                .navigationTransition(.zoom(sourceID: "photo", in: namespace))
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                    }
+                    
+                }
             )
 //            .background(
 //                CustomNoClipSheet(

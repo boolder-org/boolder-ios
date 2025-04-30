@@ -26,7 +26,8 @@ class MapState : ObservableObject {
     @Published var filters: Filters = Filters()
     @Published private(set) var refreshFilters: Bool = false
     
-    @Published var presentProblemDetails = false
+    @Published var presentProblemDetails = false // TODO: rename presentBoulder
+    @Published var presentStartSheet = false
     @Published var presentPoiActionSheet = false
     @Published var presentFilters = false
     @Published var presentAreaView = false
@@ -117,7 +118,11 @@ class MapState : ObservableObject {
     func selectProblem(_ problem: Problem, showAllStarts: Bool = false) {
         selectedProblem = problem
         selectedStart = nil
+        
         self.showAllStarts = showAllStarts
+        if !showAllStarts {
+            presentStartSheet = true
+        }
         
         selectedArea = Area.load(id: problem.areaId)
     }
@@ -125,7 +130,11 @@ class MapState : ObservableObject {
     func selectStart(_ start: Problem, showAllStarts: Bool = false) {
         selectedStart = start // FIXME: check if there is a start parent
         selectedProblem = start
+        
         self.showAllStarts = showAllStarts
+        if !showAllStarts {
+            presentStartSheet = true
+        }
 //        selectedArea = Area.load(id: problem.areaId)
     }
     
