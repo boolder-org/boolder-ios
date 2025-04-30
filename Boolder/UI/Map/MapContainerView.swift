@@ -28,9 +28,18 @@ struct MapContainerView: View {
     
     var body: some View {
         NavigationStack {
-            
             ZStack {
                 mapbox
+                
+                VStack {
+                    Spacer()
+                    Color.white
+                        .frame(height: 83)
+                        
+                }
+                .edgesIgnoringSafeArea(.bottom)
+//                .zIndex(100)
+                
                 //                .overlay(
                 //                    DraggableSheet()
                 //                )
