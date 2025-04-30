@@ -71,57 +71,39 @@ struct MapContainerView: View {
             .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
             
             if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
-                VStack {
-                    Spacer()
-                    
-//                    ZStack(alignment: .top) {
-                    VStack(spacing: 0) {
-//                        if !mapState.showAllStarts {
-//                            let problem = mapState.selectedProblem
-//                            HStack {
-//                                
-//                                
-//                                Spacer()
-//                                
-//                                HStack {
-//                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-//                                    
-//                                    Text(problem.localizedName)
-//                                        .font(.body)
-//                                    Text(problem.grade.string)
-//                                        .font(.body)
-//                                }
-//                                
-//                                Spacer()
-//                                
-//                                Button {
-//                                    mapState.showAllStarts = true
-//                                } label: {
-//                                    Image(systemName: "xmark.circle.fill")
-//                                        .font(Font.body.weight(.semibold))
-//                                        .foregroundColor(Color(.secondaryLabel))
-////                                        .padding(.horizontal, 16)
-//                                }
-//                                
-//                            }
-//                            .padding(.horizontal)
-//                            .frame(maxWidth: .infinity)
-//                            .frame(height: 38)
-//                            .background(.regularMaterial)
-////                            .clipShape(RoundedRectangle(cornerRadius: 8))
-////                            .zIndex(20)
-//                        }
+                GeometryReader { geo in
+                    VStack {
+                        Spacer()
                         
-                        TopoView(
-                            problem: $mapState.selectedProblem,
-                            mapState: mapState,
-                            selectedDetent: $selectedDetent
-                        )
-//                        .clipShape(RoundedRectangle(cornerRadius: 8))
-//                        .zIndex(10)
+                        VStack(spacing: 0) {
+                            
+                            
+                            ZStack(alignment: .topTrailing) {
+                                
+                                TopoView(
+                                    problem: $mapState.selectedProblem,
+                                    mapState: mapState,
+                                    selectedDetent: $selectedDetent
+                                )
+                                .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                                //                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                //                        .zIndex(10)
+                                
+                                Button {
+                                    mapState.presentProblemDetails = false
+                                } label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(Font.title2.weight(.semibold))
+                                        .foregroundColor(Color(.secondaryLabel))
+                                        .padding()
+                                    //                                        .padding(.horizontal, 16)
+                                }
+                            }
+                        }
                     }
+                    //                .padding(8)
+                    
                 }
-//                .padding(8)
                 .zIndex(40)
             }
 
