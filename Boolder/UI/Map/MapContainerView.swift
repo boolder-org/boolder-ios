@@ -43,7 +43,14 @@ struct MapContainerView: View {
                     //                selectedStart
                     
                     infosCard
+//                        .background(.thinMaterial)
                         .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color(.secondaryLabel), lineWidth: 0.5)
+                        )
+                        .padding(8)
                 }
                     .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
             }
@@ -103,7 +110,7 @@ struct MapContainerView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .minimumScaleFactor(0.5)
                 
-                Spacer()
+//                Spacer()
                 
                 if(problem.sitStart) {
                     Image(systemName: "figure.rower")
@@ -114,11 +121,13 @@ struct MapContainerView: View {
                     Text(problem.grade.string)
                         .font(.body)
                 
+                Spacer()
+                
                 Button {
                     mapState.showAllStarts = true
                 } label: {
                     Image(systemName: "xmark.circle.fill")
-                        .font(Font.body.weight(.semibold))
+                        .font(Font.title2.weight(.semibold))
                         .foregroundColor(Color(.secondaryLabel))
                 }
 
