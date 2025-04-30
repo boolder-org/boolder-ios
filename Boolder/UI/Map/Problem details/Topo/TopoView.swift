@@ -219,7 +219,7 @@ struct TopoView: View {
         .contentShape(Rectangle())
         .onTapGesture {
             print("tap on background")
-            
+            mapState.presentStartSheet = true
         }
     }
     
