@@ -114,18 +114,18 @@ class MapState : ObservableObject {
     }
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
-    func selectProblem(_ problem: Problem) {
+    func selectProblem(_ problem: Problem, showAllStarts: Bool = false) {
         selectedProblem = problem
         selectedStart = nil
-        showAllStarts = false
+        self.showAllStarts = showAllStarts
         
         selectedArea = Area.load(id: problem.areaId)
     }
     
-    func selectStart(_ start: Problem) {
+    func selectStart(_ start: Problem, showAllStarts: Bool = false) {
         selectedStart = start // FIXME: check if there is a start parent
         selectedProblem = start
-        showAllStarts = false
+        self.showAllStarts = showAllStarts
 //        selectedArea = Area.load(id: problem.areaId)
     }
     

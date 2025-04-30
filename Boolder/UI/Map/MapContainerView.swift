@@ -37,23 +37,23 @@ struct MapContainerView: View {
             
 //            browseButtons
             
-            if !mapState.showAllStarts && mapState.presentProblemDetails {
-                VStack(spacing: 0) {
-                    Spacer()
-                    //                selectedStart
-                    
-                    infosCard
-//                        .background(.thinMaterial)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color(.secondaryLabel), lineWidth: 0.5)
-                        )
-                        .padding(8)
-                }
-                    .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
-            }
+//            if !mapState.showAllStarts && mapState.presentProblemDetails {
+//                VStack(spacing: 0) {
+//                    Spacer()
+//                    //                selectedStart
+//                    
+//                    infosCard
+////                        .background(.thinMaterial)
+//                        .background(Color.white)
+//                        .clipShape(RoundedRectangle(cornerRadius: 12))
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 12)
+//                                .stroke(Color(.secondaryLabel), lineWidth: 0.5)
+//                        )
+//                        .padding(8)
+//                }
+//                    .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
+//            }
             
             Group {
                 
@@ -70,7 +70,61 @@ struct MapContainerView: View {
             }
             .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
             
-            
+            if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
+                VStack {
+                    Spacer()
+                    
+//                    ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
+//                        if !mapState.showAllStarts {
+//                            let problem = mapState.selectedProblem
+//                            HStack {
+//                                
+//                                
+//                                Spacer()
+//                                
+//                                HStack {
+//                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
+//                                    
+//                                    Text(problem.localizedName)
+//                                        .font(.body)
+//                                    Text(problem.grade.string)
+//                                        .font(.body)
+//                                }
+//                                
+//                                Spacer()
+//                                
+//                                Button {
+//                                    mapState.showAllStarts = true
+//                                } label: {
+//                                    Image(systemName: "xmark.circle.fill")
+//                                        .font(Font.body.weight(.semibold))
+//                                        .foregroundColor(Color(.secondaryLabel))
+////                                        .padding(.horizontal, 16)
+//                                }
+//                                
+//                            }
+//                            .padding(.horizontal)
+//                            .frame(maxWidth: .infinity)
+//                            .frame(height: 38)
+//                            .background(.regularMaterial)
+////                            .clipShape(RoundedRectangle(cornerRadius: 8))
+////                            .zIndex(20)
+//                        }
+                        
+                        TopoView(
+                            problem: $mapState.selectedProblem,
+                            mapState: mapState,
+                            selectedDetent: $selectedDetent
+                        )
+//                        .clipShape(RoundedRectangle(cornerRadius: 8))
+//                        .zIndex(10)
+                    }
+                }
+//                .padding(8)
+                .zIndex(40)
+            }
+
         }
         .onChange(of: appState.selectedProblem) { newValue in
             if let problem = appState.selectedProblem {
@@ -203,30 +257,30 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .background(
-                CustomNoClipSheet(
-                    isPresented: $mapState.presentProblemDetails,
-                    detents: [UISheetPresentationController.Detent.custom { _ in 340 }],  // FIXME: make DRY
-                    prefersGrabber: false)
-                {
-//                    ProblemDetailsView(
-//                        problem: $mapState.selectedProblem,
-//                        mapState: mapState,
-//                        selectedDetent: $selectedDetent
-//                    )
-                    VStack {
-                        TopoView(
-                            problem: $mapState.selectedProblem,
-                            mapState: mapState,
-                            selectedDetent: $selectedDetent
-                        )
-                        
-                        PageControlView(numberOfPages: 5, currentPage: 1)
-                        
-                        Spacer()
-                    }
-                }
-            )
+//            .background(
+//                CustomNoClipSheet(
+//                    isPresented: $mapState.presentProblemDetails,
+//                    detents: [UISheetPresentationController.Detent.custom { _ in 340 }],  // FIXME: make DRY
+//                    prefersGrabber: false)
+//                {
+////                    ProblemDetailsView(
+////                        problem: $mapState.selectedProblem,
+////                        mapState: mapState,
+////                        selectedDetent: $selectedDetent
+////                    )
+//                    VStack {
+//                        TopoView(
+//                            problem: $mapState.selectedProblem,
+//                            mapState: mapState,
+//                            selectedDetent: $selectedDetent
+//                        )
+//                        
+//                        PageControlView(numberOfPages: 5, currentPage: 1)
+//                        
+//                        Spacer()
+//                    }
+//                }
+//            )
         
     }
     
