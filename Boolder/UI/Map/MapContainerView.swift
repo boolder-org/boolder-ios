@@ -88,6 +88,7 @@ struct MapContainerView: View {
                                         selectedDetent: $selectedDetent
                                     )
                                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                                    .toolbar(.hidden, for: .tabBar)
                                     .onAppear {
                                         mapState.showAllStarts = true
                                     }
@@ -117,6 +118,7 @@ struct MapContainerView: View {
                                             }
                                             .navigationTitle(problem.localizedName)
                                             .navigationBarTitleDisplayMode(.inline)
+                                            
                                             
                                         }
                                     
@@ -265,7 +267,7 @@ struct MapContainerView: View {
     
     var mapbox : some View {
         MapboxView(mapState: mapState)
-            .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.all)
             .ignoresSafeArea(.keyboard)
             .background(
                 PoiActionSheet(
