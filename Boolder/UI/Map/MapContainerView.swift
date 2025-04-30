@@ -27,114 +27,140 @@ struct MapContainerView: View {
     static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 96)
     
     var body: some View {
-        
-        ZStack {
-            mapbox
-//                .overlay(
-//                    DraggableSheet()
-//                )
+        NavigationStack {
             
-//            circuitButtons
-            
-//            browseButtons
-            
-//            if !mapState.showAllStarts && mapState.presentProblemDetails {
-//                VStack(spacing: 0) {
-//                    Spacer()
-//                    //                selectedStart
-//                    
-//                    infosCard
-////                        .background(.thinMaterial)
-//                        .background(Color.white)
-//                        .clipShape(RoundedRectangle(cornerRadius: 12))
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 12)
-//                                .stroke(Color(.secondaryLabel), lineWidth: 0.5)
-//                        )
-//                        .padding(8)
-//                }
-//                    .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
-//            }
-            
-            Group {
+            ZStack {
+                mapbox
+                //                .overlay(
+                //                    DraggableSheet()
+                //                )
                 
-                fabButtons
-                    .zIndex(10)
+                //            circuitButtons
                 
-                SearchView(mapState: mapState)
-                    .zIndex(20)
-                    .opacity(mapState.selectedArea != nil ? 0 : 1)
+                //            browseButtons
                 
-                AreaToolbarView(mapState: mapState)
-                    .zIndex(30)
-                    .opacity(mapState.selectedArea != nil ? 1 : 0)
-            }
-            .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
-            
-            if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
-                GeometryReader { geo in
-                    VStack {
-                        Spacer()
-                        
-                        VStack(spacing: 0) {
+                //            if !mapState.showAllStarts && mapState.presentProblemDetails {
+                //                VStack(spacing: 0) {
+                //                    Spacer()
+                //                    //                selectedStart
+                //                    
+                //                    infosCard
+                ////                        .background(.thinMaterial)
+                //                        .background(Color.white)
+                //                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                //                        .overlay(
+                //                            RoundedRectangle(cornerRadius: 12)
+                //                                .stroke(Color(.secondaryLabel), lineWidth: 0.5)
+                //                        )
+                //                        .padding(8)
+                //                }
+                //                    .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
+                //            }
+                
+                Group {
+                    
+                    fabButtons
+                        .zIndex(10)
+                    
+                    SearchView(mapState: mapState)
+                        .zIndex(20)
+                        .opacity(mapState.selectedArea != nil ? 0 : 1)
+                    
+                    AreaToolbarView(mapState: mapState)
+                        .zIndex(30)
+                        .opacity(mapState.selectedArea != nil ? 1 : 0)
+                }
+                .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
+                
+                if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
+                    GeometryReader { geo in
+                        VStack {
+                            Spacer()
                             
-                            
-                            ZStack(alignment: .topTrailing) {
+                            VStack(spacing: 0) {
                                 
-                                TopoView(
-                                    problem: $mapState.selectedProblem,
-                                    mapState: mapState,
-                                    selectedDetent: $selectedDetent
-                                )
-                                .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                                .modify {
-                                    if #available(iOS 18.0, *) {
-                                        $0.matchedTransitionSource(id: "photo", in: namespace)
-                                    } else {
-                                        // Fallback on earlier versions
+                                
+                                ZStack(alignment: .topTrailing) {
+                                    
+                                    TopoView(
+                                        problem: $mapState.selectedProblem,
+                                        mapState: mapState,
+                                        selectedDetent: $selectedDetent
+                                    )
+                                    .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                                    .onAppear {
+                                        mapState.showAllStarts = true
                                     }
-                                }
-                                
-                                //                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                //                        .zIndex(10)
-                                
-                                Button {
-                                    mapState.presentProblemDetails = false
-                                } label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(Font.title2.weight(.semibold))
-                                        .foregroundColor(Color(.secondaryLabel))
-                                        .padding()
-                                    //                                        .padding(.horizontal, 16)
+                                    .modify {
+                                        if #available(iOS 18.0, *) {
+                                            $0.matchedTransitionSource(id: "photo", in: namespace)
+                                        } else {
+                                            // Fallback on earlier versions
+                                        }
+                                    }
+                                    .navigationDestination(isPresented: $mapState.presentStartSheet)
+                                    {
+                                            TopoView(
+                                                problem: $mapState.selectedProblem,
+                                                mapState: mapState,
+                                                selectedDetent: $selectedDetent
+                                            )
+                                            .modify {
+                                                if #available(iOS 18.0, *) {
+                                                    $0
+                                                        .matchedTransitionSource(id: "photo", in: namespace) // reuse same ID/namespace
+                                                        .navigationTransition(.zoom(sourceID: "photo", in: namespace))
+                                                } else {
+                                                    // Fallback on earlier versions
+                                                }
+                                                
+                                            }
+                                            .navigationTitle(problem.localizedName)
+                                            .navigationBarTitleDisplayMode(.inline)
+                                            
+                                        }
+                                    
+                                    //                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    //                        .zIndex(10)
+                                    
+                                    Button {
+                                        mapState.presentProblemDetails = false
+                                    } label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .font(Font.title2.weight(.semibold))
+                                            .foregroundColor(Color(.secondaryLabel))
+                                            .padding()
+                                        //                                        .padding(.horizontal, 16)
+                                    }
                                 }
                             }
                         }
+                        //                .padding(8)
+                        
                     }
-                    //                .padding(8)
-                    
+                    .zIndex(40)
                 }
-                .zIndex(40)
+                
             }
-
-        }
-        .onChange(of: appState.selectedProblem) { newValue in
-            if let problem = appState.selectedProblem {
-                mapState.selectAndPresentAndCenterOnProblem(problem)
-                mapState.presentAreaView = false
+            .onChange(of: appState.selectedProblem) { newValue in
+                if let problem = appState.selectedProblem {
+                    mapState.selectAndPresentAndCenterOnProblem(problem)
+                    mapState.presentAreaView = false
+                }
             }
-        }
-        .onChange(of: appState.selectedArea) { newValue in
-            if let area = appState.selectedArea {
-                mapState.selectArea(area)
-                mapState.centerOnArea(area)
+            .onChange(of: appState.selectedArea) { newValue in
+                if let area = appState.selectedArea {
+                    mapState.selectArea(area)
+                    mapState.centerOnArea(area)
+                }
             }
-        }
-        .onChange(of: appState.selectedCircuit) { newValue in
-            if let circuitWithArea = appState.selectedCircuit {
-                mapState.selectArea(circuitWithArea.area)
-                mapState.selectAndCenterOnCircuit(circuitWithArea.circuit)
-                mapState.displayCircuitStartButton = true
-                mapState.presentAreaView = false
+            .onChange(of: appState.selectedCircuit) { newValue in
+                if let circuitWithArea = appState.selectedCircuit {
+                    mapState.selectArea(circuitWithArea.area)
+                    mapState.selectAndCenterOnCircuit(circuitWithArea.circuit)
+                    mapState.displayCircuitStartButton = true
+                    mapState.presentAreaView = false
+                }
             }
         }
     }
@@ -248,29 +274,8 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .background(
-                EmptyView().fullScreenCover(isPresented: $mapState.presentStartSheet) {
-                    
-                        mapState.showAllStarts = true
-                    }
-                content: {
-                    TopoView(
-                        problem: $mapState.selectedProblem,
-                        mapState: mapState,
-                        selectedDetent: $selectedDetent
-                    )
-                    .modify {
-                        if #available(iOS 18.0, *) {
-                            $0
-                                .matchedTransitionSource(id: "photo", in: namespace) // reuse same ID/namespace
-                                .navigationTransition(.zoom(sourceID: "photo", in: namespace))
-                        } else {
-                            // Fallback on earlier versions
-                        }
-                    }
-                    
-                }
-            )
+            
+            
 //            .background(
 //                CustomNoClipSheet(
 //                    isPresented: $mapState.presentProblemDetails,
