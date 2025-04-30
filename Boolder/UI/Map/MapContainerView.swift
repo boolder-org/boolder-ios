@@ -250,6 +250,10 @@ struct MapContainerView: View {
             )
             .background(
                 EmptyView().fullScreenCover(isPresented: $mapState.presentStartSheet) {
+                    
+                        mapState.showAllStarts = true
+                    }
+                content: {
                     TopoView(
                         problem: $mapState.selectedProblem,
                         mapState: mapState,
