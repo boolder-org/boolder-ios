@@ -88,6 +88,11 @@ struct MapContainerView: View {
                             
                             VStack(spacing: 0) {
                                 
+                                if mapState.presentProblemDetails && !mapState.showAllStarts {
+                                    infosCard
+                                        .background(Color.white)
+                                }
+                                
                                 
                                 ZStack(alignment: .topTrailing) {
                                     
@@ -98,9 +103,9 @@ struct MapContainerView: View {
                                     )
                                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                                     .toolbar(.hidden, for: .tabBar)
-                                    .onAppear {
-                                        mapState.showAllStarts = true
-                                    }
+//                                    .onAppear {
+//                                        mapState.showAllStarts = true
+//                                    }
                                     .modify {
                                         if #available(iOS 18.0, *) {
                                             $0.matchedTransitionSource(id: "photo", in: namespace)

@@ -120,9 +120,9 @@ class MapState : ObservableObject {
         selectedStart = nil
         
         self.showAllStarts = showAllStarts
-        if !showAllStarts {
-            presentStartSheet = true
-        }
+//        if !showAllStarts {
+//            presentStartSheet = true
+//        }
         
         selectedArea = Area.load(id: problem.areaId)
     }
@@ -132,9 +132,9 @@ class MapState : ObservableObject {
         selectedProblem = start
         
         self.showAllStarts = showAllStarts
-        if !showAllStarts {
-            presentStartSheet = true
-        }
+//        if !showAllStarts {
+//            presentStartSheet = true
+//        }
 //        selectedArea = Area.load(id: problem.areaId)
     }
     
