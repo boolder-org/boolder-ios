@@ -103,18 +103,7 @@ struct TopoView: View {
                                 )
                                 .animation(.easeInOut(duration: 0.2), value: highlightedSide)
                             )
-                            .onTapGesture {
-                                print("tap on left side")
-                                highlightedSide = "left"
-                                if let boulderId = problem.topo?.boulderId {
-                                    if let previous = Boulder(id: boulderId).previous(before: problem) {
-                                        mapState.selectStartOrProblem(previous)
-                                    }
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                    highlightedSide = nil
-                                }
-                            }
+                            
                         
                         Rectangle()
                             .fill(Color.clear)
@@ -131,18 +120,7 @@ struct TopoView: View {
                                 )
                                 .animation(.easeInOut(duration: 0.2), value: highlightedSide)
                             )
-                            .onTapGesture {
-                                print("tap on right side")
-                                highlightedSide = "right"
-                                if let boulderId = problem.topo?.boulderId {
-                                    if let next = Boulder(id: boulderId).next(after: problem) {
-                                        mapState.selectStartOrProblem(next)
-                                    }
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                    highlightedSide = nil
-                                }
-                            }
+                            
                     }
                 }
                 
@@ -289,6 +267,43 @@ struct TopoView: View {
         }
 //        .contentShape(Rectangle())
         .background(Color(.imageBackground))
+        .onTapGesture(coordinateSpace: .local) { location in
+            print("tap location: \(location)")
+            
+            // FIXME: make it work on iPad
+            let x = location.x / UIScreen.main.bounds.width
+            let y = location.y / UIScreen.main.bounds.width * 3/4
+            
+            print("tap location x: \(x)")
+            print("tap location y: \(y)")
+            
+            if x <= 0.33 {
+                print("tap on left side")
+                
+                highlightedSide = "left"
+                if let boulderId = problem.topo?.boulderId {
+                    if let previous = Boulder(id: boulderId).previous(before: problem) {
+                        mapState.selectStartOrProblem(previous)
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    highlightedSide = nil
+                }
+            }
+            else if x >= 0.66 {
+                print("tap on right side")
+                highlightedSide = "right"
+                if let boulderId = problem.topo?.boulderId {
+                    if let next = Boulder(id: boulderId).next(after: problem) {
+                        mapState.selectStartOrProblem(next)
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    highlightedSide = nil
+                }
+            }
+//
+        }
 //        .simultaneousGesture(
 //            LongPressGesture(minimumDuration: 0.5)
 //                .onEnded { _ in
