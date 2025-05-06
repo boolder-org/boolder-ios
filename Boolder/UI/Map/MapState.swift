@@ -138,6 +138,15 @@ class MapState : ObservableObject {
 //        selectedArea = Area.load(id: problem.areaId)
     }
     
+    func selectStartOrProblem(_ start: Problem) {
+        if (start.startGroup?.problems.count ?? 0) >= 2 {
+            selectStart(start)
+        }
+        else {
+            selectProblem(start)
+        }
+    }
+    
     var isStartSelected: Bool {
         selectedStart != nil
     }

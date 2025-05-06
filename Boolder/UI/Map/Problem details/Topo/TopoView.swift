@@ -229,7 +229,7 @@ struct TopoView: View {
                             print("tap on left side")
                             if let boulderId = problem.topo?.boulderId {
                                 if let previous = Boulder(id: boulderId).previous(before: problem) {
-                                    mapState.selectStart(previous)
+                                    mapState.selectStartOrProblem(previous)
                                 }
                             }
                         }
@@ -246,7 +246,7 @@ struct TopoView: View {
                             print("tap on right side")
                             if let boulderId = problem.topo?.boulderId {
                                 if let next = Boulder(id: boulderId).next(after: problem) {
-                                    mapState.selectStart(next)
+                                    mapState.selectStartOrProblem(next)
                                 }
                             }
                         }
@@ -257,9 +257,20 @@ struct TopoView: View {
             LongPressGesture(minimumDuration: 0.5)
                 .onEnded { _ in
                     print("long press detected")
+                    
                     mapState.showAllStarts = true
                 }
         )
+        .modify {
+            if #available(iOS 17.0, *) {
+                $0.sensoryFeedback(.success, trigger: mapState.showAllStarts) { oldValue, newValue in
+                    newValue
+                }
+            }
+            else {
+                $0
+            }
+        }
     }
     
     var body: some View {
