@@ -284,28 +284,28 @@ struct ProblemDetailsView: View {
                         
                         HStack(spacing: 4) {
                             
-                            if (problem.startGroup?.problems.count ?? 0) >= 2 {
-                                Button {
-                                    mapState.selectStart(problem.start)
-                                } label: {
-                                    Image(systemName: "chevron.backward")
-                                }
-                                .foregroundColor(.gray)
-                                .font(.title2)
-//                                .frame(maxHeight: .infinity)
-                                .frame(height: 80)
-//                                .frame(minWidth: 120, maxWidth: 160)
-//                                .foregroundColor(.primary)
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 4)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-//                                .padding(.vertical, 2)
-//                                .padding(.leading, 16)
-                                
-                            }
+//                            if (problem.startGroup?.problems.count ?? 0) >= 2 {
+//                                Button {
+//                                    mapState.selectStart(problem.start)
+//                                } label: {
+//                                    Image(systemName: "chevron.backward")
+//                                }
+//                                .foregroundColor(.gray)
+//                                .font(.title2)
+////                                .frame(maxHeight: .infinity)
+//                                .frame(height: 80)
+////                                .frame(minWidth: 120, maxWidth: 160)
+////                                .foregroundColor(.primary)
+//                                .padding(.horizontal, 4)
+//                                .padding(.vertical, 4)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 8)
+//                                        .stroke(Color.gray, lineWidth: 1)
+//                                )
+////                                .padding(.vertical, 2)
+////                                .padding(.leading, 16)
+//                                
+//                            }
                             
                             VStack {
                                 
