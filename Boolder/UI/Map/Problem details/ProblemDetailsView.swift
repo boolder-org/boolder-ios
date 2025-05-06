@@ -77,111 +77,102 @@ struct ProblemDetailsView: View {
     
     var infosCard: some View {
         
-        
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-//                if false { // showAllLines {
-//                    Button {
-//                        showAllLines = true
-//                    } label: {
-//                        Image(systemName: "chevron.backward.circle")
-//                    }
-//                    .foregroundColor(.gray)
-//                    .font(.title2)
-//                    //                            .fontWeight(.bold)
-//                }
-                
-                ProblemCircleView(problem: problem)
-                
-                Text(problem.localizedName)
-                    .font(.body)
-                //                            .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .minimumScaleFactor(0.5)
-                
-                Spacer()
-                
-//                if(problem.sitStart) {
-//                    Image(systemName: "figure.rower")
-//                    Text("problem.sit_start")
-//                        .font(.body)
-//                }
-                
-                
-//                if problem.variants.count > 1 {
-//                    
-//                    Menu {
-//                        ForEach(problem.variants.sorted { $0.grade > $1.grade }) { p in
-//                            Button {
-//                                mapState.selectProblem(p)
-//                            } label: {
-//                                Text("\(p.localizedName) \(p.grade.string)")
-//                            }
-//                        }
-//                    } label: {
-//                        HStack(spacing: 4) {
-//                            Text(problem.grade.string)
-////                                .font(.body)
-////                                .foregroundColor(.primary)
-//                            
-//                            Image(systemName: "chevron.down")
-//                        }
-//                        .font(.body)
-//                        .padding(.vertical, 2)
-//                        .padding(.horizontal, 6)
-//                        .background(Color(.gray).opacity(0.8))
-//                        .foregroundColor(Color(UIColor.systemBackground))
-//                        .cornerRadius(16)
-//                        .padding(8)
-//                    }
-//                }
-//                else {
+
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    
+                    
+                    ProblemCircleView(problem: problem)
+                    
+                    Text(problem.localizedName)
+                        .font(.body)
+                    //                            .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .minimumScaleFactor(0.5)
+                    
+                    Spacer()
+                    
+                    //                if(problem.sitStart) {
+                    //                    Image(systemName: "figure.rower")
+                    //                    Text("problem.sit_start")
+                    //                        .font(.body)
+                    //                }
+                    
+                    
+                    //                if problem.variants.count > 1 {
+                    //
+                    //                    Menu {
+                    //                        ForEach(problem.variants.sorted { $0.grade > $1.grade }) { p in
+                    //                            Button {
+                    //                                mapState.selectProblem(p)
+                    //                            } label: {
+                    //                                Text("\(p.localizedName) \(p.grade.string)")
+                    //                            }
+                    //                        }
+                    //                    } label: {
+                    //                        HStack(spacing: 4) {
+                    //                            Text(problem.grade.string)
+                    ////                                .font(.body)
+                    ////                                .foregroundColor(.primary)
+                    //
+                    //                            Image(systemName: "chevron.down")
+                    //                        }
+                    //                        .font(.body)
+                    //                        .padding(.vertical, 2)
+                    //                        .padding(.horizontal, 6)
+                    //                        .background(Color(.gray).opacity(0.8))
+                    //                        .foregroundColor(Color(UIColor.systemBackground))
+                    //                        .cornerRadius(16)
+                    //                        .padding(8)
+                    //                    }
+                    //                }
+                    //                else {
                     Text(problem.grade.string)
                         .font(.body)
-//                }
-            }
-            
-            HStack(alignment: .firstTextBaseline) {
-                
-                if(problem.sitStart) {
-                    Image(systemName: "figure.rower")
-                    Text("problem.sit_start")
-                        .font(.body)
+                    //                }
                 }
                 
-                //                    if problem.steepness != .other {
-                //                        if problem.sitStart {
-                //                            Text("•")
-                //                                .font(.body)
-                //                        }
-                //
-                //                        HStack(alignment: .firstTextBaseline) {
-                //                            Image(problem.steepness.imageName)
-                //                                .frame(minWidth: 16)
-                //                            Text(problem.steepness.localizedName)
-                //
-                //                        }
-                //                        .font(.body)
-                //                    }
-                
-                Spacer()
-                
-                //                    if isTicked() {
-                //                        Image(systemName: "checkmark.circle.fill")
-                //                            .foregroundColor(Color.appGreen)
-                //                    }
-                //                    else if isFavorite() {
-                //                        Image(systemName: "star.fill")
-                //                            .foregroundColor(Color.yellow)
-                //                    }
+                HStack(alignment: .firstTextBaseline) {
+                    
+                    if(problem.sitStart) {
+                        Image(systemName: "figure.rower")
+                        Text("problem.sit_start")
+                            .font(.body)
+                    }
+                    
+                    //                    if problem.steepness != .other {
+                    //                        if problem.sitStart {
+                    //                            Text("•")
+                    //                                .font(.body)
+                    //                        }
+                    //
+                    //                        HStack(alignment: .firstTextBaseline) {
+                    //                            Image(problem.steepness.imageName)
+                    //                                .frame(minWidth: 16)
+                    //                            Text(problem.steepness.localizedName)
+                    //
+                    //                        }
+                    //                        .font(.body)
+                    //                    }
+                    
+                    Spacer()
+                    
+                    //                    if isTicked() {
+                    //                        Image(systemName: "checkmark.circle.fill")
+                    //                            .foregroundColor(Color.appGreen)
+                    //                    }
+                    //                    else if isFavorite() {
+                    //                        Image(systemName: "star.fill")
+                    //                            .foregroundColor(Color.yellow)
+                    //                    }
+                }
             }
-        }
+
         
-        .padding(.horizontal)
-        .padding(.vertical)
+        
     }
     
     var currentTopoIndex: Int {
@@ -269,13 +260,7 @@ struct ProblemDetailsView: View {
                                                 ProblemCircleView(problem: p)
                                                 Text(p.localizedName)
                                                 Spacer()
-                                                //                                            if(p.sitStart) {
-                                                //                                                Image(systemName: "figure.rower")
-                                                //                                            }
                                                 
-                                                //                                            if(p.featured) {
-                                                //                                                Image(systemName: "heart.fill").foregroundColor(.pink)
-                                                //                                            }
                                                 Text(p.grade.string)
                                             }
                                             .foregroundColor(.primary)
@@ -286,37 +271,7 @@ struct ProblemDetailsView: View {
                                         .background(p.id == problem.id && !mapState.isStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
                                         
                                         Divider().padding(.vertical, 0)
-                                        
-                                        //                                    ForEach(p.children) { child in
-                                        //                                        Button {
-                                        //                                            mapState.selectProblem(child)
-                                        //                                            showAllLines = false
-                                        //                                        } label: {
-                                        //                                            HStack {
-                                        ////                                                Image(systemName: "arrow.turn.down.right")
-                                        ////                                                    .foregroundColor(.gray)
-                                        //
-                                        //                                                ProblemCircleView(problem: child)
-                                        //                                                Text(child.localizedName)
-                                        //                                                Spacer()
-                                        ////                                                if(child.sitStart) {
-                                        ////                                                    Image(systemName: "figure.rower")
-                                        ////                                                }
-                                        //
-                                        ////                                                if(child.featured) {
-                                        ////                                                    Image(systemName: "heart.fill").foregroundColor(.pink)
-                                        ////                                                }
-                                        //
-                                        //                                                Text(child.grade.string)
-                                        //                                            }
-                                        //                                            .foregroundColor(.primary)
-                                        //                                        }
-                                        //                                        .padding(.horizontal)
-                                        //                                        .padding(.vertical, 6)
-                                        //                                        .background(child.id == problem.id && !showAllLines ? Color.secondary.opacity(0.1) : Color.systemBackground)
-                                        //
-                                        //                                        Divider().padding(.vertical, 0)
-                                        //                                    }
+  
                                         
                                         
                                     }
@@ -327,15 +282,43 @@ struct ProblemDetailsView: View {
                     }
                     else { // !showAllLines {  //selectedDetent == .medium {
                         
-                        infosCard
-                            .frame(height: 80)
-                            .opacity(mapState.isStartSelected ? 0.2 : 1)
-                        
-//                        if selectedDetent == MapContainerView.maxDetent {
+                        HStack(spacing: 4) {
                             
-                            actionButtons
-                                .opacity(mapState.isStartSelected ? 0.2 : 1)
-//                        }
+                            if (problem.startGroup?.problems.count ?? 0) >= 2 {
+                                Button {
+                                    mapState.selectStart(problem.start)
+                                } label: {
+                                    Image(systemName: "chevron.backward")
+                                }
+                                .foregroundColor(.gray)
+                                .font(.title2)
+//                                .frame(maxHeight: .infinity)
+                                .frame(height: 80)
+//                                .frame(minWidth: 120, maxWidth: 160)
+//                                .foregroundColor(.primary)
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 4)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
+//                                .padding(.vertical, 2)
+//                                .padding(.leading, 16)
+                                
+                            }
+                            
+                            VStack {
+                                
+                                infosCard
+                                    .frame(height: 80)
+                                    .opacity(mapState.isStartSelected ? 0.2 : 1)
+                                
+                                actionButtons
+                                    .opacity(mapState.isStartSelected ? 0.2 : 1)
+                            }
+                        }
+                        .padding(.horizontal)
+//                        .padding(.vertical)
                     }
                     
 
@@ -486,8 +469,8 @@ struct ProblemDetailsView: View {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
                 )
             }
-            .padding(.horizontal)
-            .padding(.vertical, 4)
+//            .padding(.horizontal)
+//            .padding(.vertical, 4)
         }
     }
     
