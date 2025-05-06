@@ -19,6 +19,7 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     @State private var zoomScale: CGFloat = 1.0
+    @State private var highlightedSide: String? = nil
     
     @Binding var selectedDetent: PresentationDetent
     
@@ -54,6 +55,20 @@ struct TopoView: View {
         (zoomScale / 2) + 0.5
     }
     
+    private struct HighlightView: View {
+        let isLeft: Bool
+        let opacity: Double
+        
+        var body: some View {
+            LinearGradient(
+                gradient: Gradient(colors: [Color.gray.opacity(0.3), Color.clear]),
+                startPoint: isLeft ? .leading : .trailing,
+                endPoint: isLeft ? .trailing : .leading
+            )
+            .opacity(opacity)
+        }
+    }
+    
     func contentWithImage(_ image: UIImage) -> some View {
         ZStack {
             Group {
@@ -81,29 +96,51 @@ struct TopoView: View {
                             .fill(Color.clear)
                             .frame(width: geometry.size.width * 0.33)
                             .contentShape(Rectangle())
+                            .overlay(
+                                HighlightView(
+                                    isLeft: true,
+                                    opacity: highlightedSide == "left" ? 1 : 0
+                                )
+                                .animation(.easeInOut(duration: 0.2), value: highlightedSide)
+                            )
                             .onTapGesture {
                                 print("tap on left side")
+                                highlightedSide = "left"
                                 if let boulderId = problem.topo?.boulderId {
                                     if let previous = Boulder(id: boulderId).previous(before: problem) {
                                         mapState.selectStartOrProblem(previous)
                                     }
                                 }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    highlightedSide = nil
+                                }
                             }
                         
                         Rectangle()
                             .fill(Color.clear)
-                            .frame(width: geometry.size.width * 0.33)
+                            .frame(width: geometry.size.width * 0.34)
                         
                         Rectangle()
                             .fill(Color.clear)
                             .frame(width: geometry.size.width * 0.33)
                             .contentShape(Rectangle())
+                            .overlay(
+                                HighlightView(
+                                    isLeft: false,
+                                    opacity: highlightedSide == "right" ? 1 : 0
+                                )
+                                .animation(.easeInOut(duration: 0.2), value: highlightedSide)
+                            )
                             .onTapGesture {
                                 print("tap on right side")
+                                highlightedSide = "right"
                                 if let boulderId = problem.topo?.boulderId {
                                     if let next = Boulder(id: boulderId).next(after: problem) {
                                         mapState.selectStartOrProblem(next)
                                     }
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    highlightedSide = nil
                                 }
                             }
                     }
