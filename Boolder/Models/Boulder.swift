@@ -18,7 +18,7 @@ struct Boulder {
     }
     
     func next(after: Problem) -> Problem? {
-        if let index = starts.firstIndex(of: after) {
+        if let index = starts.firstIndex(of: after.start) {
             return starts[(index + 1) % starts.count]
         }
         
@@ -26,7 +26,7 @@ struct Boulder {
     }
     
     func previous(before: Problem) -> Problem? {
-        if let index = starts.firstIndex(of: before) {
+        if let index = starts.firstIndex(of: before.start) {
             return starts[(index + starts.count - 1) % starts.count]
         }
         

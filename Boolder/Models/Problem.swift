@@ -268,6 +268,14 @@ extension Problem {
     var indexWithinStartGroup: Int? {
         startGroup?.problemsToDisplay.firstIndex(of: self)
     }
+    
+    var start: Problem {
+        if let startId = startId {
+            return Self.load(id: startId) ?? self
+        }
+        
+        return self
+    }
 
     var children: [Problem] {
         let problems = Table("problems")
