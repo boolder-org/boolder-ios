@@ -61,7 +61,7 @@ struct TopoView: View {
         
         var body: some View {
             LinearGradient(
-                gradient: Gradient(colors: [Color.primary.opacity(0.3), Color.primary.opacity(0.2), Color.clear]),
+                gradient: Gradient(colors: [Color.primary.opacity(0.2), Color.primary.opacity(0.1), Color.primary.opacity(0.1), Color.clear]),
                 startPoint: isLeft ? .leading : .trailing,
                 endPoint: isLeft ? .trailing : .leading
             )
