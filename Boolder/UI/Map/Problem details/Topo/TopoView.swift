@@ -61,7 +61,7 @@ struct TopoView: View {
         
         var body: some View {
             LinearGradient(
-                gradient: Gradient(colors: [Color.gray.opacity(0.3), Color.clear]),
+                gradient: Gradient(colors: [Color.primary.opacity(0.2), Color.primary.opacity(0.1), Color.clear]),
                 startPoint: isLeft ? .leading : .trailing,
                 endPoint: isLeft ? .trailing : .leading
             )
@@ -111,7 +111,7 @@ struct TopoView: View {
                                         mapState.selectStartOrProblem(previous)
                                     }
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                     highlightedSide = nil
                                 }
                             }
@@ -139,7 +139,7 @@ struct TopoView: View {
                                         mapState.selectStartOrProblem(next)
                                     }
                                 }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                     highlightedSide = nil
                                 }
                             }
