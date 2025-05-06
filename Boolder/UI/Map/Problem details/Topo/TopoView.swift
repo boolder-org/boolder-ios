@@ -216,11 +216,50 @@ struct TopoView: View {
                 }
             }
         }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            print("tap on background")
-            mapState.presentStartSheet = true
-        }
+//        .contentShape(Rectangle())
+        .background(Color(.imageBackground))
+        .overlay(
+            GeometryReader { geometry in
+                HStack(spacing: 0) {
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(width: geometry.size.width * 0.33)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            print("tap on left side")
+                            if let boulderId = problem.topo?.boulderId {
+                                if let previous = Boulder(id: boulderId).previous(before: problem) {
+                                    mapState.selectStart(previous)
+                                }
+                            }
+                        }
+                    
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(width: geometry.size.width * 0.33)
+                    
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(width: geometry.size.width * 0.33)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            print("tap on right side")
+                            if let boulderId = problem.topo?.boulderId {
+                                if let next = Boulder(id: boulderId).next(after: problem) {
+                                    mapState.selectStart(next)
+                                }
+                            }
+                        }
+                }
+            }
+        )
+        .simultaneousGesture(
+            LongPressGesture(minimumDuration: 0.5)
+                .onEnded { _ in
+                    print("long press detected")
+                    mapState.showAllStarts = true
+                }
+        )
     }
     
     var body: some View {
