@@ -312,17 +312,29 @@ struct TopoView: View {
             }
 //
         }
-        .simultaneousGesture(
-                DragGesture(minimumDistance: 20)
-                    .onEnded { gesture in
-                        if gesture.translation.width > 0 {
-                            print("swipe right")
-                            moveLeft()
-                        } else {
-                            print("swipe left")
-                            moveRight()
-                        }
+//        .simultaneousGesture(
+//                DragGesture(minimumDistance: 20)
+//                    .onChanged { gesture in
+//                        print("Dragging at: x: \(gesture.location.x), y: \(gesture.location.y)")
+//                    }
+//                    .onEnded { gesture in
+//                        if gesture.translation.width > 0 {
+//                            print("swipe right")
+//                            moveLeft()
+//                        } else {
+//                            print("swipe left")
+//                            moveRight()
+//                        }
+//                    }
+//        )
+        .highPriorityGesture(
+            DragGesture(minimumDistance: 20)
+                .onChanged { gesture in
+                    // If the drag is more horizontal than vertical, consume the gesture
+                    if abs(gesture.translation.width) > abs(gesture.translation.height) {
+                        print("Dragging at: x: \(gesture.location.x), y: \(gesture.location.y)")
                     }
+                }
         )
         
 //        .simultaneousGesture(
