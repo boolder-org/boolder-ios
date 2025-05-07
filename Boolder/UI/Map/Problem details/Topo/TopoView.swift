@@ -292,50 +292,7 @@ struct TopoView: View {
         }
 //        .contentShape(Rectangle())
         .background(Color(.imageBackground))
-        .onTapGesture(coordinateSpace: .local) { location in
-            print("tap location: \(location)")
-            
-            // FIXME: make it work on iPad
-            let x = location.x / UIScreen.main.bounds.width
-            let y = location.y / UIScreen.main.bounds.width * 3/4
-            
-            print("tap location x: \(x)")
-            print("tap location y: \(y)")
-            
-            if x <= 0.33 {
-                print("tap on left side")
-                moveLeft()
-            }
-            else if x >= 0.66 {
-                print("tap on right side")
-                moveRight()
-            }
-//
-        }
-//        .simultaneousGesture(
-//                DragGesture(minimumDistance: 20)
-//                    .onChanged { gesture in
-//                        print("Dragging at: x: \(gesture.location.x), y: \(gesture.location.y)")
-//                    }
-//                    .onEnded { gesture in
-//                        if gesture.translation.width > 0 {
-//                            print("swipe right")
-//                            moveLeft()
-//                        } else {
-//                            print("swipe left")
-//                            moveRight()
-//                        }
-//                    }
-//        )
-        .highPriorityGesture(
-            DragGesture(minimumDistance: 20)
-                .onChanged { gesture in
-                    // If the drag is more horizontal than vertical, consume the gesture
-                    if abs(gesture.translation.width) > abs(gesture.translation.height) {
-                        print("Dragging at: x: \(gesture.location.x), y: \(gesture.location.y)")
-                    }
-                }
-        )
+       
         
 //        .simultaneousGesture(
 //            LongPressGesture(minimumDuration: 0.5)
