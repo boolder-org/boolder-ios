@@ -90,6 +90,12 @@ extension Topo {
         }
     }
     
+    func closestStart(from point: Line.PhotoPercentCoordinate) -> Problem? {
+        starts.sorted { 
+            $0.distance(to: point) < $1.distance(to: point)
+        }.first
+    }
+    
     var problems: [Problem] {
         let query = Table("lines")
             .filter(Line.topoId == self.id)

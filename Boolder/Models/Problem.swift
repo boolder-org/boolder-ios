@@ -93,6 +93,15 @@ struct Problem : Identifiable {
         let tiebreaker = Double(id) / 100
         return Double(popularity ?? 0) + bonusCircuit + tiebreaker
     }
+    
+    func distance(to other: Line.PhotoPercentCoordinate) -> Double {
+        if let point = lineFirstPoint {
+            return point.distance(to: other)
+        }
+        else {
+            return 1
+        }
+    }
 
     // TODO: remove
     var lineFirstPoint: Line.PhotoPercentCoordinate? {
