@@ -69,6 +69,30 @@ struct TopoView: View {
         }
     }
     
+    func moveRight() {
+        highlightedSide = "right"
+        if let boulderId = problem.topo?.boulderId {
+            if let next = Boulder(id: boulderId).next(after: problem) {
+                mapState.selectStartOrProblem(next)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            highlightedSide = nil
+        }
+    }
+    
+    func moveLeft() {
+        highlightedSide = "left"
+        if let boulderId = problem.topo?.boulderId {
+            if let previous = Boulder(id: boulderId).previous(before: problem) {
+                mapState.selectStartOrProblem(previous)
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            highlightedSide = nil
+        }
+    }
+    
     func contentWithImage(_ image: UIImage) -> some View {
         ZStack {
             Group {
@@ -85,6 +109,7 @@ struct TopoView: View {
                             $0
                         }
                     }
+                    
 //                    .onTapGesture {
 //                        print("Tapped on image")
 //                        handleTapOnBackground()
@@ -279,31 +304,27 @@ struct TopoView: View {
             
             if x <= 0.33 {
                 print("tap on left side")
-                
-                highlightedSide = "left"
-                if let boulderId = problem.topo?.boulderId {
-                    if let previous = Boulder(id: boulderId).previous(before: problem) {
-                        mapState.selectStartOrProblem(previous)
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    highlightedSide = nil
-                }
+                moveLeft()
             }
             else if x >= 0.66 {
                 print("tap on right side")
-                highlightedSide = "right"
-                if let boulderId = problem.topo?.boulderId {
-                    if let next = Boulder(id: boulderId).next(after: problem) {
-                        mapState.selectStartOrProblem(next)
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    highlightedSide = nil
-                }
+                moveRight()
             }
 //
         }
+        .simultaneousGesture(
+                DragGesture(minimumDistance: 20)
+                    .onEnded { gesture in
+                        if gesture.translation.width > 0 {
+                            print("swipe right")
+                            moveLeft()
+                        } else {
+                            print("swipe left")
+                            moveRight()
+                        }
+                    }
+        )
+        
 //        .simultaneousGesture(
 //            LongPressGesture(minimumDuration: 0.5)
 //                .onEnded { _ in
