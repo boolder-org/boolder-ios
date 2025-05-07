@@ -185,13 +185,44 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 0) {
-                    TopoView(
-                        problem: $problem,
-                        mapState: mapState,
-                        selectedDetent: $selectedDetent
-                    )
+                    TabView(selection: $currentPage) {
+                        ForEach(problem.toposOnSameBoulder) { topo in
+                            
+                            TopoView(
+                                topo: topo,
+                                problem: $problem,
+                                mapState: mapState,
+                                selectedDetent: $selectedDetent
+                            )
+                            .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                            .zIndex(10)
+                            .tag(topo.id) // use tag or id?
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                    .zIndex(10)
+                    .onChange(of: currentPage) { newPage in
+                        print(newPage)
+                        if let topo = Topo.load(id: newPage) {
+                            if problem.topoId != topo.id {
+                                // FIXME: refactor this to update topo without chaning the problem
+                                if let newProblem = topo.firstProblemOnTheLeft  {
+                                    mapState.selectStartOrProblem(newProblem)
+                                    // TODO: select start?
+                                }
+                                
+                            }
+                            
+                            
+                        }
+                    }
+                    .onChange(of: problem) { [problem] newValue in
+                        if let topoId = newValue.topoId {
+                            currentPage = topoId
+                        }
+                    }
+
+
                     
                     if mapState.isStartSelected { // showAllLines { // selectedDetent == .large {
                         

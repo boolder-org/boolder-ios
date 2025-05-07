@@ -11,7 +11,7 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-//    let topo: Topo // FIXME: what happends when page changes?
+    let topo: Topo // FIXME: what happends when page changes?
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
@@ -26,9 +26,9 @@ struct TopoView: View {
     @State private var offset = CGSize.zero
     @State private var lastGestureTime: TimeInterval = 0
     
-    var topo: Topo {
-        problem.topo! // FIXME: don't use bang
-    }
+//    var topo: Topo {
+//        problem.topo! // FIXME: don't use bang
+//    }
     
 //    @StateObject private var motion = MotionManager()
     
@@ -295,28 +295,32 @@ struct TopoView: View {
         }
 //        .contentShape(Rectangle())
         .background(Color(.imageBackground))
+        .onTapGesture {
+            print("Tapped on image")
+            
+        }
 //        .offset(x: offset.width)
-        .gesture(
-            DragGesture()
-                .onChanged { gesture in
-                    let currentTime = Date().timeIntervalSince1970
-                    guard currentTime - lastGestureTime >= 0.2 else { return }
-                    lastGestureTime = currentTime
-                    
-                    if let topo = problem.topo {
-                        let ref = Line.PhotoPercentCoordinate(
-                            x: Double(gesture.location.x / UIScreen.main.bounds.width),
-                            y: Double(gesture.location.y / (UIScreen.main.bounds.width * 3/4))
-                        )
-                        if let closestStart = topo.closestStart(from: ref) {
-                            mapState.selectStartOrProblem(closestStart)
-                        }
-                    }
-                }
-                .onEnded { _ in
-                    offset = .zero
-                }
-        )
+//        .gesture(
+//            DragGesture()
+//                .onChanged { gesture in
+//                    let currentTime = Date().timeIntervalSince1970
+//                    guard currentTime - lastGestureTime >= 0.2 else { return }
+//                    lastGestureTime = currentTime
+//                    
+//                    if let topo = problem.topo {
+//                        let ref = Line.PhotoPercentCoordinate(
+//                            x: Double(gesture.location.x / UIScreen.main.bounds.width),
+//                            y: Double(gesture.location.y / (UIScreen.main.bounds.width * 3/4))
+//                        )
+//                        if let closestStart = topo.closestStart(from: ref) {
+//                            mapState.selectStartOrProblem(closestStart)
+//                        }
+//                    }
+//                }
+//                .onEnded { _ in
+//                    offset = .zero
+//                }
+//        )
         
 //        .simultaneousGesture(
 //            LongPressGesture(minimumDuration: 0.5)
@@ -525,8 +529,8 @@ struct TopoView: View {
     func displayLine() {
         if problem.line?.coordinates != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                animate { lineDrawPercentage = 1.0 }
-                lineDrawPercentage = 1.0
+                animate { lineDrawPercentage = 1.0 }
+//                lineDrawPercentage = 1.0
                 showMissingLineNotice = false
             }
         }
