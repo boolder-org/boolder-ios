@@ -93,7 +93,7 @@ struct ProblemDetailsView: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .minimumScaleFactor(0.5)
                     
-                    Spacer()
+                    
                     
                     //                if(problem.sitStart) {
                     //                    Image(systemName: "figure.rower")
@@ -133,6 +133,15 @@ struct ProblemDetailsView: View {
                     Text(problem.grade.string)
                         .font(.body)
                     //                }
+                    
+                    Spacer()
+                    
+                    Button {
+                        mapState.showAllStarts = true
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                    }
                 }
                 
                 HStack(alignment: .firstTextBaseline) {
@@ -215,7 +224,7 @@ struct ProblemDetailsView: View {
                             
                             
                         }
-                        mapState.selectAllStarts()
+//                        mapState.selectAllStarts()
                     }
                     .onChange(of: problem) { [problem] newValue in
                         if let topoId = newValue.topoId {
@@ -313,68 +322,24 @@ struct ProblemDetailsView: View {
                         
                     }
                     else { // !showAllLines {  //selectedDetent == .medium {
-                        
-                        HStack(spacing: 4) {
+
+                        VStack {
                             
-//                            if (problem.startGroup?.problems.count ?? 0) >= 2 {
-//                                Button {
-//                                    mapState.selectStart(problem.start)
-//                                } label: {
-//                                    Image(systemName: "chevron.backward")
-//                                }
-//                                .foregroundColor(.gray)
-//                                .font(.title2)
-////                                .frame(maxHeight: .infinity)
-//                                .frame(height: 80)
-////                                .frame(minWidth: 120, maxWidth: 160)
-////                                .foregroundColor(.primary)
-//                                .padding(.horizontal, 4)
-//                                .padding(.vertical, 4)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 8)
-//                                        .stroke(Color.gray, lineWidth: 1)
-//                                )
-////                                .padding(.vertical, 2)
-////                                .padding(.leading, 16)
-//                                
-//                            }
+                            infosCard
+                                .frame(height: 60)
+                                .opacity(mapState.isStartSelected ? 0.2 : 1)
                             
-                            ZStack {
-                                
-                                VStack {
-                                    
-                                    infosCard
-                                        .frame(height: 60)
-                                        .opacity(mapState.isStartSelected ? 0.2 : 1)
-                                    
-                                    actionButtons
-                                        .opacity(mapState.isStartSelected ? 0.2 : 1)
-                                }
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 4)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-                                .padding(.vertical, 2)
-                                //                            .padding(.leading, 16)
-                                
-                                VStack {
-                                    HStack {
-                                        Spacer()
-                                        Button {
-                                            mapState.showAllStarts = true
-                                        } label: {
-                                            Image(systemName: "xmark.circle.fill")
-                                        }
-                                    }
-                                    Spacer()
-                                }
-                            }
-                            
+                            actionButtons
+                                .opacity(mapState.isStartSelected ? 0.2 : 1)
                         }
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 4)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
                         .padding(.horizontal)
-//                        .padding(.vertical)
+                        .padding(.vertical)
                     }
                     
 
@@ -394,7 +359,7 @@ struct ProblemDetailsView: View {
                 currentPage = topoId
             }
             
-            mapState.showAllStarts = true
+//            mapState.showAllStarts = true
         }
         .modify {
             if #available(iOS 17.0, *) {
