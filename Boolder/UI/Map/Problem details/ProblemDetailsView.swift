@@ -225,7 +225,7 @@ struct ProblemDetailsView: View {
                             
                             
                         }
-//                        mapState.selectAllStarts()
+                        mapState.selectAllStarts()
                     }
                     .onChange(of: problem) { [problem] newValue in
                         if let topoId = newValue.topoId {
@@ -326,19 +326,19 @@ struct ProblemDetailsView: View {
 
                         VStack {
                             
-                            infosCard
-//                                .frame(height: 60)
-                                .opacity(mapState.isStartSelected ? 0.2 : 1)
+//                            infosCard
+////                                .frame(height: 60)
+//                                .opacity(mapState.isStartSelected ? 0.2 : 1)
                             
                             actionButtons
                                 .opacity(mapState.isStartSelected ? 0.2 : 1)
                         }
-                        .padding(.horizontal)
-                        .padding(.vertical)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
+//                        .padding(.horizontal)
+//                        .padding(.vertical)
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 8)
+//                                .stroke(Color.gray, lineWidth: 1)
+//                        )
                         .padding(.horizontal)
                         .padding(.vertical)
                     }
