@@ -220,12 +220,12 @@ struct ProblemDetailsView: View {
                                     mapState.selectStartOrProblem(newProblem)
                                     
                                 }
-                                
+                                mapState.selectAllStarts()
                             }
                             
                             
                         }
-                        mapState.selectAllStarts()
+                        
                     }
                     .onChange(of: problem) { [problem] newValue in
                         if let topoId = newValue.topoId {
@@ -235,92 +235,13 @@ struct ProblemDetailsView: View {
 
 
                     
-                    if mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
-                        
-                        if selectedDetent == MapContainerView.smallDetent {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(alignment: .top, spacing: 0) {
-                                    ForEach(problem.startGroups) { (group: StartGroup) in
-                                        let problems = group.problemsToDisplay
-                                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
-                                            Button {
-                                                mapState.selectProblem(p)
-                                            } label: {
-                                                HStack {
-                                                    VStack {
-                                                        HStack {
-                                                            ProblemCircleView(problem: p)
-                                                            Text(p.grade.string)
-                                                        }
-                                                        Text(p.localizedName).truncationMode(.middle)
-                                                        
-                                                    }
-                                                }
-                                                .frame(height: 88)
-                                                .frame(minWidth: 120, maxWidth: 160)
-                                                .foregroundColor(.primary)
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 4)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 8)
-                                                        .stroke(Color.gray, lineWidth: 1)
-                                                )
-                                                .padding(.vertical, 2)
-                                                .padding(.leading, 16)
-                                                
-                                                
-                                            }
-                                            
-                                        }
-                                    }
-                                }
-                            }
-                            .padding(.vertical)
-                            
-                            
-                            HStack {
-//                                Spacer()
-//                                Text("Sélectionnez une voie sur l'image")
-//                                Spacer()
-                            }
-                            .foregroundColor(.gray.opacity(0.7))
-                            .padding()
+                    if mapState.anyStartSelected {
+                        HStack {
+                            Spacer()
+                            PageControlView(numberOfPages: 3, currentPage: 1)
+                            Spacer()
                         }
-                        else {
-                            
-                            ScrollView {
-                                
-                                VStack(spacing: 0) {
-                                    
-                                    //                                Divider().padding(.vertical, 0)
-                                    
-                                    ForEach(problem.topo!.orderedProblems) { p in
-                                        Button {
-                                            mapState.selectProblem(p)
-                                        } label: {
-                                            HStack {
-                                                ProblemCircleView(problem: p)
-                                                Text(p.localizedName)
-                                                Spacer()
-                                                
-                                                Text(p.grade.string)
-                                            }
-                                            .foregroundColor(.primary)
-                                            
-                                        }
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 6)
-                                        .background(p.id == problem.id && !mapState.isStartSelected ? Color.secondary.opacity(0.1) : Color.systemBackground)
-                                        
-                                        Divider().padding(.vertical, 0)
-  
-                                        
-                                        
-                                    }
-                                }
-                            }
-                        }
-                        
+                        .padding()
                     }
                     else { // !showAllLines {  //selectedDetent == .medium {
 
@@ -444,7 +365,7 @@ struct ProblemDetailsView: View {
     }
     
     var actionButtons: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        
             HStack(alignment: .center, spacing: 16) {
                 
                 if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
@@ -495,7 +416,7 @@ struct ProblemDetailsView: View {
             }
 //            .padding(.horizontal)
 //            .padding(.vertical, 4)
-        }
+        
     }
     
     var saveButtons: [ActionSheet.Button] {
