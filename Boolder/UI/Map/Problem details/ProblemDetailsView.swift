@@ -82,7 +82,7 @@ struct ProblemDetailsView: View {
                 HStack {
                     
                     
-                    ProblemCircleView(problem: problem)
+//                    ProblemCircleView(problem: problem)
                     
                     Text(problem.localizedName)
                         .font(.body)
@@ -139,8 +139,9 @@ struct ProblemDetailsView: View {
                     Button {
                         mapState.showAllStarts = true
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
+                        Image(systemName: "chevron.down.circle.fill")
                             .foregroundColor(.gray)
+                            .font(.title2)
                     }
                 }
                 
@@ -326,14 +327,14 @@ struct ProblemDetailsView: View {
                         VStack {
                             
                             infosCard
-                                .frame(height: 60)
+//                                .frame(height: 60)
                                 .opacity(mapState.isStartSelected ? 0.2 : 1)
                             
                             actionButtons
                                 .opacity(mapState.isStartSelected ? 0.2 : 1)
                         }
-                        .padding(.horizontal, 4)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal)
+                        .padding(.vertical)
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
