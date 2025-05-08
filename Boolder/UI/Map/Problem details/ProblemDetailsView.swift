@@ -208,13 +208,14 @@ struct ProblemDetailsView: View {
                                 // FIXME: refactor this to update topo without chaning the problem
                                 if let newProblem = topo.firstProblemOnTheLeft  {
                                     mapState.selectStartOrProblem(newProblem)
-                                    // TODO: select start?
+                                    
                                 }
                                 
                             }
                             
                             
                         }
+                        mapState.selectAllStarts()
                     }
                     .onChange(of: problem) { [problem] newValue in
                         if let topoId = newValue.topoId {
@@ -224,14 +225,14 @@ struct ProblemDetailsView: View {
 
 
                     
-                    if mapState.isStartSelected { // showAllLines { // selectedDetent == .large {
+                    if mapState.anyStartSelected { // showAllLines { // selectedDetent == .large {
                         
                         if selectedDetent == MapContainerView.smallDetent {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(alignment: .top, spacing: 0) {
                                     ForEach(problem.startGroups) { (group: StartGroup) in
                                         let problems = group.problemsToDisplay
-                                        ForEach(problems.filter{$0.startId == problem.startId}) { p in
+                                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
                                             Button {
                                                 mapState.selectProblem(p)
                                             } label: {
@@ -338,15 +339,39 @@ struct ProblemDetailsView: View {
 //                                
 //                            }
                             
-                            VStack {
+                            ZStack {
                                 
-                                infosCard
-                                    .frame(height: 80)
-                                    .opacity(mapState.isStartSelected ? 0.2 : 1)
+                                VStack {
+                                    
+                                    infosCard
+                                        .frame(height: 60)
+                                        .opacity(mapState.isStartSelected ? 0.2 : 1)
+                                    
+                                    actionButtons
+                                        .opacity(mapState.isStartSelected ? 0.2 : 1)
+                                }
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 4)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
+                                .padding(.vertical, 2)
+                                //                            .padding(.leading, 16)
                                 
-                                actionButtons
-                                    .opacity(mapState.isStartSelected ? 0.2 : 1)
+                                VStack {
+                                    HStack {
+                                        Spacer()
+                                        Button {
+                                            mapState.showAllStarts = true
+                                        } label: {
+                                            Image(systemName: "xmark.circle.fill")
+                                        }
+                                    }
+                                    Spacer()
+                                }
                             }
+                            
                         }
                         .padding(.horizontal)
 //                        .padding(.vertical)
@@ -368,6 +393,8 @@ struct ProblemDetailsView: View {
             if let topoId = problem.topoId {
                 currentPage = topoId
             }
+            
+            mapState.showAllStarts = true
         }
         .modify {
             if #available(iOS 17.0, *) {

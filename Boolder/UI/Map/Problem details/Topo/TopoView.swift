@@ -297,6 +297,7 @@ struct TopoView: View {
         .background(Color(.imageBackground))
         .onTapGesture {
             print("Tapped on image")
+            mapState.selectAllStarts()
             
         }
 //        .offset(x: offset.width)

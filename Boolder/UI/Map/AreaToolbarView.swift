@@ -224,7 +224,7 @@ struct AreaToolbarView: View {
 
             }
             .padding(.top, 8)
-            .opacity(mapState.presentProblemDetails ? 0 : 1)
+//            .opacity(mapState.presentProblemDetails ? 0 : 1)
             
             Spacer()
         }
