@@ -267,7 +267,8 @@ struct TopoView: View {
                                     Text("\(p.localizedName)")
                                         .foregroundColor(.white)
                                         .font(.caption2)
-                                        .padding(2)
+                                        .padding(.horizontal, 4)
+                                        .padding(.vertical, 2)
                                         .background {
                                             Color(p.circuitUIColor)
                                                 

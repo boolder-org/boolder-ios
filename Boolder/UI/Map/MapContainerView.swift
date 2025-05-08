@@ -603,7 +603,7 @@ struct CustomNoClipSheet<Content: View>: UIViewControllerRepresentable {
 
                 // Configure the native sheet controller
                 if let sheet = sheetVC.sheetPresentationController {
-                    let customDetent = UISheetPresentationController.Detent.custom { _ in 360 } // UISheetPresentationController.Detent.medium() // UISheetPresentationController.Detent.custom { _ in 340 } // FIXME: make DRY
+                    let customDetent = UISheetPresentationController.Detent.custom { _ in 354 } // UISheetPresentationController.Detent.medium() // UISheetPresentationController.Detent.custom { _ in 340 } // FIXME: make DRY
                     sheet.detents = [customDetent]
                     sheet.prefersGrabberVisible = prefersGrabber
                     sheet.preferredCornerRadius = 0
