@@ -14,7 +14,7 @@ struct TopoFullScreenView: View {
     let image: UIImage
     let problem: Problem
     
-    @StateObject var pinchToZoomState = PinchToZoomState()
+    @State var pinchToZoomState = PinchToZoomState()
     
     // drag gesture (to dismiss the sheet)
     @State var dragOffset: CGSize = CGSize.zero

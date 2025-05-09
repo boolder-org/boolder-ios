@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Combine
 
-class DownloadCenter: ObservableObject {
+class DownloadCenter {
     static let shared = DownloadCenter()
     
     private var allAreas = [AreaDownloader]()
