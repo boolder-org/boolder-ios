@@ -12,6 +12,7 @@ struct GradeBadgeView: View {
     static var defaultHeight: CGFloat = 22
     
     var number: String
+    var sitStart = false
     var color: UIColor
     var showStroke = true
     var showShadow = false
@@ -24,20 +25,29 @@ struct GradeBadgeView: View {
                 .fill(Color(color))
 //                .fill(.white)
                 .modifier(DropShadow(visible: showShadow))
-            Text(number)
-//                .foregroundColor(Color(color))
-                .font(.caption)
-                .fontWeight(.regular)
-                .foregroundColor(Color(readableColor()))
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-                .overlay(
-                    RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                        .stroke(Color(UIColor.systemGray3), lineWidth: 1)
-                        .frame(width: height, height: height)
-                        .opacity(showStroke ? 1.0 : 0.0)
-                )
-                .frame(width: height-2, height: height-2)
+            HStack(spacing: 0) {
+                Text(number)
+                
+                //                .foregroundColor(Color(color))
+                    .font(.caption)
+                    .fontWeight(.regular)
+                    .foregroundColor(Color(readableColor()))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .overlay(
+                        RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                            .stroke(Color(UIColor.systemGray3), lineWidth: 1)
+                            .frame(width: height, height: height)
+                            .opacity(showStroke ? 1.0 : 0.0)
+                    )
+                    .frame(width: height-2, height: height-2)
+                
+                if sitStart {
+                    Image(systemName: "figure.rower")
+                        .font(.caption)
+                        .foregroundColor(Color(readableColor()))
+                }
+            }
         }
         .scaleEffect(0.7)
         .frame(width: height, height: height)
@@ -54,5 +64,5 @@ struct GradeBadgeView: View {
 }
 
 #Preview {
-    GradeBadgeView(number: "4a", color: .red)
+    GradeBadgeView(number: "4a", sitStart: true, color: .red)
 }

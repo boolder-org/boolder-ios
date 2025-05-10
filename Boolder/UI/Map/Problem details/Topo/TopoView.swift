@@ -160,7 +160,7 @@ struct TopoView: View {
                         if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
                             
                             GeometryReader { geo in
-                                GradeBadgeView(number: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+                                GradeBadgeView(number: problem.grade.string, sitStart: problem.sitStart, color: problem.circuitUIColorForPhotoOverlay)
                                     .scaleEffect(1/zoomScaleAdapted)
                                     .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                     .zIndex(.infinity)
@@ -334,7 +334,7 @@ struct TopoView: View {
                                     
                                     if true {
                                         
-                                        GradeBadgeView(number: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                        GradeBadgeView(number: p.grade.string, sitStart: p.sitStart, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(1/zoomScaleAdapted)
                                             .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                             .zIndex(.infinity)
