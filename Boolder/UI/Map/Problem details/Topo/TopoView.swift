@@ -258,12 +258,39 @@ struct TopoView: View {
                             }
                         }
                         
-                        
-                        ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
+                        if !mapState.showAllStarts {
+                            
+                            if mapState.isStartSelected {
+                                    let group = problem.startGroup!
+                                    ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
+                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
+                                            
+                                            
+                                            Text("\(p.localizedName)")
+                                                .foregroundColor(.white)
+                                                .font(.caption2)
+                                                .padding(.horizontal, 4)
+                                                .padding(.vertical, 2)
+                                                .background {
+                                                    Color(p.circuitUIColor)
+                                                    
+                                                }
+                                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                                            
+                                                .scaleEffect(1/zoomScaleAdapted)
+                                                .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
+                                                .offset(x: 0, y: -16)
+                                                .zIndex(.infinity)
+                                                .onTapGesture {
+                                                    mapState.selectProblem(p)
+                                                }
+                                        }
+                                    }
+                                
+                            }
+                            else {
+                                let p = problem
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
-                                    
-                                    
                                     Text("\(p.localizedName)")
                                         .foregroundColor(.white)
                                         .font(.caption2)
@@ -271,10 +298,10 @@ struct TopoView: View {
                                         .padding(.vertical, 2)
                                         .background {
                                             Color(p.circuitUIColor)
-                                                
+                                            
                                         }
                                         .clipShape(RoundedRectangle(cornerRadius: 4))
-                                        
+                                    
                                         .scaleEffect(1/zoomScaleAdapted)
                                         .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
                                         .offset(x: 0, y: -16)
@@ -285,6 +312,10 @@ struct TopoView: View {
                                 }
                             }
                         }
+                        
+
+                            
+                        
                         
                     }
                 }
