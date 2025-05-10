@@ -13,7 +13,7 @@ struct CircuitView: View {
     
     let area: Area
     let circuit: Circuit
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     var body: some View {
         ZStack {

@@ -9,11 +9,12 @@
 import SwiftUI
 
 // Careful: the whole app is redrawn when these properties are changed => big hit on performance, use only when there is no other way
-@MainActor class AppState: ObservableObject {
-    @Published var tab = Tab.map
-    @Published var selectedProblem: Problem?
-    @Published var selectedArea: Area?
-    @Published var selectedCircuit: CircuitWithArea?
+@Observable
+@MainActor class AppState {
+    var tab = Tab.map
+    var selectedProblem: Problem?
+    var selectedArea: Area?
+    var selectedCircuit: CircuitWithArea?
     
     struct CircuitWithArea: Equatable {
         let circuit: Circuit

@@ -14,7 +14,7 @@ import TipKit
 struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     @StateObject private var mapState = MapState()
     
     // TODO: make this more DRY

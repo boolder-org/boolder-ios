@@ -12,7 +12,7 @@ struct TickList: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     @State private var loaded = false
     @State private var areas = [Area]()

@@ -14,7 +14,7 @@ struct AreaView: View {
     @Environment(\.openURL) var openURL
     
     let area: Area
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     let linkToMap: Bool
     
     @State private var circuits = [Circuit]()
