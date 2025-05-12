@@ -30,9 +30,10 @@ struct Problem : Identifiable {
     let popularity: Int?
     let parentId: Int?
     let startId: Int?
+    let endId: Int?
     
     // TODO: remove
-    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, startId: nil)
+    static let empty = Problem(id: 0, name: "", nameEn: "", nameSearchable: "", grade: Grade.min, coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), steepness: .other, sitStart: false, areaId: 0, circuitId: nil, circuitColor: .offCircuit, circuitNumber: "", bleauInfoId: nil, featured: false, popularity: 0, parentId: nil, startId: nil, endId: nil)
     
     var circuitUIColor: UIColor {
         circuitColor?.uicolor ?? UIColor.gray
@@ -153,6 +154,7 @@ extension Problem {
     static let bleauInfoId = Expression<String?>("bleau_info_id")
     static let parentId = Expression<Int?>("parent_id")
     static let startId = Expression<Int?>("start_id")
+    static let endId = Expression<Int?>("end_id")
     static let latitude = Expression<Double>("latitude")
     static let longitude = Expression<Double>("longitude")
     static let sitStart = Expression<Int>("sit_start")
@@ -181,7 +183,8 @@ extension Problem {
                     featured: p[featured] == 1,
                     popularity: p[popularity],
                     parentId: p[parentId],
-                    startId: p[startId]
+                    startId: p[startId],
+                    endId: p[endId]
                 )
             }
             
