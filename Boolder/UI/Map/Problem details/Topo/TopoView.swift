@@ -261,12 +261,13 @@ struct TopoView: View {
                         if !mapState.showAllStarts {
                             
                             if mapState.isStartSelected {
-                                    let group = problem.startGroup!
-                                    ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
+                                let p = problem.start
+                                let count = problem.startGroup?.problems.count ?? 0
+//                                    ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
                                         if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                             
                                             
-                                            Text("\(p.localizedName)")
+                                            Text("\(p.localizedName) +\(count)")
                                                 .foregroundColor(.white)
                                                 .font(.caption2)
                                                 .padding(.horizontal, 4)
@@ -285,7 +286,7 @@ struct TopoView: View {
                                                     mapState.selectProblem(p)
                                                 }
                                         }
-                                    }
+//                                    }
                                 
                             }
                             else {
