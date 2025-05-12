@@ -96,6 +96,15 @@ struct TopoView: View {
         }
     }
     
+    // TODO: refactor
+    var width : CGFloat {
+        UIScreen.main.bounds.size.width
+    }
+    
+    var height : CGFloat {
+        width * 3/4
+    }
+    
     func contentWithImage(_ image: UIImage) -> some View {
         ZStack {
             Group {
@@ -118,51 +127,17 @@ struct TopoView: View {
 //                        handleTapOnBackground()
 //                    }
                 
-                GeometryReader { geometry in
-                    HStack(spacing: 0) {
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(width: geometry.size.width * 0.33)
-                            .contentShape(Rectangle())
-                            .overlay(
-                                HighlightView(
-                                    isLeft: true,
-                                    opacity: highlightedSide == "left" ? 1 : 0
-                                )
-                                .animation(.easeInOut(duration: 0.2), value: highlightedSide)
-                            )
-                            
-                        
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(width: geometry.size.width * 0.34)
-                        
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(width: geometry.size.width * 0.33)
-                            .contentShape(Rectangle())
-                            .overlay(
-                                HighlightView(
-                                    isLeft: false,
-                                    opacity: highlightedSide == "right" ? 1 : 0
-                                )
-                                .animation(.easeInOut(duration: 0.2), value: highlightedSide)
-                            )
-                            
-                    }
-                }
-                
-                
+
                 if problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
                     
                     if true { // showAllLines { // selectedDetent == .large {
                         if let line = problem.line, let middlePoint = problem.overlayBadgePosition, let firstPoint = line.firstPoint {
                             
-                            GeometryReader { geo in
+                            
                                 GradeBadgeView(number: problem.grade.string, sitStart: problem.sitStart, color: problem.circuitUIColorForPhotoOverlay)
                                     .scaleEffect(1/zoomScaleAdapted)
-                                    .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                    .position(x: middlePoint.x * width, y: middlePoint.y * height)
                                     .zIndex(.infinity)
                                 //                                            .onTapGesture {
                                 //                                                showAllLines = false
@@ -171,7 +146,7 @@ struct TopoView: View {
                                 
                                 
                                 
-                            }
+                            
                         }
                     }
                 }
@@ -186,7 +161,7 @@ struct TopoView: View {
                         .opacity(showMissingLineNotice ? 1.0 : 0.0)
                 }
                 
-                GeometryReader { geo in
+                
                     ForEach(problem.startGroups) { (group: StartGroup) in
                         let problems = group.problemsToDisplay
                         
@@ -221,7 +196,7 @@ struct TopoView: View {
                                         //                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
                                     }
                                     .scaleEffect(1/zoomScaleAdapted)
-                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                    .position(x: firstPoint.x * width, y: firstPoint.y * height)
                                     .onTapGesture {
                                         // TODO: use the start parent
                                         if let startId = group.startId, let start = Problem.load(id: startId) {
@@ -244,7 +219,7 @@ struct TopoView: View {
                                     //                                            .scaleEffect(0.8)
                                     //                                            .opacity(0.5)
                                     //                                                .allowsHitTesting(false)
-                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                        .position(x: firstPoint.x * width, y: firstPoint.y * height)
                                     //                                            .offset(x: Double((i-(offseeet ?? 0))*4), y: 0)
                                     //                                                .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
                                     
@@ -262,29 +237,51 @@ struct TopoView: View {
                             
                             if mapState.isStartSelected {
                                 let p = problem.start
-                                let count = problem.startGroup?.problems.count ?? 0
+                                let problems = problem.startGroup?.problems ?? []
+                                
 //                                    ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
                                         if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                             
                                             
-                                            Text("\(p.localizedName) +\(count)")
-                                                .foregroundColor(.white)
-                                                .font(.caption2)
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 2)
-                                                .background {
-                                                    Color(p.circuitUIColor)
+                                            Menu {
+                                                ForEach(problems) { p in
+                                                    Button {
+                                                        mapState.selectProblem(p)
+                                                    } label: {
+                                                        Text("\(p.localizedName) \(p.grade.string)")
+                                                    }
+                                                }
+                                                
+                                            } label: {
+                                                HStack {
+                                                    Text("\(p.localizedName) +\(problems.count - 1)")
+                                                        .foregroundColor(.white)
+                                                        .font(.caption2)
+                                                        .padding(.horizontal, 4)
+                                                        .padding(.vertical, 2)
+                                                        .background {
+                                                            Color(p.circuitUIColor)
+                                                            
+                                                        }
+                                                        .clipShape(RoundedRectangle(cornerRadius: 4))
                                                     
+                                                        
+                                                    //                                                    .onTapGesture {
+                                                    //                                                        mapState.selectProblem(p)
+                                                    //                                                    }
                                                 }
-                                                .clipShape(RoundedRectangle(cornerRadius: 4))
+//                                                .contentShape(Rectangle())
+//                                                .frame(width: 80, height: 32)
+                                            }
+//                                            .contentShape(Rectangle())
+//                                            .frame(width: 80, height: 32)
+                                            .scaleEffect(1/zoomScaleAdapted)
+                                            .position(x: lastPoint.x * width, y: lastPoint.y * height)
+                                            .offset(x: 0, y: -16)
+                                            .zIndex(.infinity)
                                             
-                                                .scaleEffect(1/zoomScaleAdapted)
-                                                .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
-                                                .offset(x: 0, y: -16)
-                                                .zIndex(.infinity)
-                                                .onTapGesture {
-                                                    mapState.selectProblem(p)
-                                                }
+                                            
+                                            
                                         }
 //                                    }
                                 
@@ -304,7 +301,7 @@ struct TopoView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 4))
                                     
                                         .scaleEffect(1/zoomScaleAdapted)
-                                        .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
+                                        .position(x: lastPoint.x * width, y: lastPoint.y * height)
                                         .offset(x: 0, y: -16)
                                         .zIndex(.infinity)
                                         .onTapGesture {
@@ -319,7 +316,7 @@ struct TopoView: View {
                         
                         
                     }
-                }
+                
                 
                 //                GeometryReader { geo in
                 //                    TapLocationView { location in
@@ -328,7 +325,7 @@ struct TopoView: View {
                 //                }
                 
                 if mapState.anyStartSelected {
-                    GeometryReader { geo in
+                    
                         ForEach(problem.startGroups) { (group: StartGroup) in
                             ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
@@ -337,7 +334,7 @@ struct TopoView: View {
                                         
                                         GradeBadgeView(number: p.grade.string, sitStart: p.sitStart, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(1/zoomScaleAdapted)
-                                            .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                            .position(x: middlePoint.x * width, y: middlePoint.y * height)
                                             .zIndex(.infinity)
                                             .onTapGesture {
                                                 mapState.selectProblem(p)
@@ -346,7 +343,7 @@ struct TopoView: View {
                                 }
                             }
                         }
-                    }
+                    
                 }
                 else {
                 }
