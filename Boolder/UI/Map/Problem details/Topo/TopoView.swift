@@ -253,23 +253,21 @@ struct TopoView: View {
                                                 }
                                                 
                                             } label: {
-                                                HStack {
-                                                    Text("\(p.localizedName) +\(problems.count - 1)")
-                                                        .foregroundColor(.white)
-                                                        .font(.caption2)
-                                                        .padding(.horizontal, 4)
-                                                        .padding(.vertical, 2)
-                                                        .background {
-                                                            Color(p.circuitUIColor)
-                                                            
-                                                        }
-                                                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                                                HStack(spacing: 2) {
+//                                                    Text("\(p.localizedName) +\(problems.count - 1)")
+                                                    Text("\(p.localizedName)")
+                                                    Image(systemName: "chevron.down")
                                                     
-                                                        
-                                                    //                                                    .onTapGesture {
-                                                    //                                                        mapState.selectProblem(p)
-                                                    //                                                    }
                                                 }
+                                                .foregroundColor(.white)
+                                                .font(.caption2)
+                                                .padding(.horizontal, 4)
+                                                .padding(.vertical, 2)
+                                                .background {
+                                                    Color(p.circuitUIColor)
+                                                    
+                                                }
+                                                .clipShape(RoundedRectangle(cornerRadius: 4))
 //                                                .contentShape(Rectangle())
 //                                                .frame(width: 80, height: 32)
                                             }
