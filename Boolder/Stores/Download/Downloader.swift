@@ -7,11 +7,24 @@
 //
 
 import Foundation
+import Combine
 
-class Downloader : ObservableObject {
-    @Published var progress: Double = 0
+@Observable
+class Downloader {
     private var count: Int = 0
     private var totalCount: Int = 0
+    
+    var progress: Double = 0 {
+        didSet {
+            progressPublisher.send(progress)
+        }
+    }
+    
+    // Add a Combine publisher for progress. Maybe we can refactor later
+    private let progressPublisher = PassthroughSubject<Double, Never>()
+    var progressUpdates: AnyPublisher<Double, Never> {
+        progressPublisher.eraseToAnyPublisher()
+    }
     
     func downloadFiles(topos: [Topo], onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) async {
         totalCount = topos.count
