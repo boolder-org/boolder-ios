@@ -42,11 +42,12 @@ struct GradeBadgeView: View {
                     )
                     .frame(width: height-2, height: height-2)
                 
-                if sitStart {
-                    Image(systemName: "figure.rower")
-                        .font(.caption)
-                        .foregroundColor(Color(readableColor()))
-                }
+//                if sitStart {
+////                    Image(systemName: "figure.rower")
+//                    Image(systemName: "arrow.down")
+//                        .font(.caption)
+//                        .foregroundColor(Color(readableColor()))
+//                }
             }
         }
         .scaleEffect(0.7)
