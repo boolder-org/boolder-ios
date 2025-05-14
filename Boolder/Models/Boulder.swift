@@ -13,6 +13,22 @@ struct Boulder {
         Topo.onBoulder(id)
     }
     
+    func nextTopo(after: Topo) -> Topo? {
+        if let index = topos.firstIndex(of: after) {
+            return topos[(index + 1) % topos.count]
+        }
+        
+        return nil
+    }
+    
+    func previousTopo(before: Topo) -> Topo? {
+        if let index = topos.firstIndex(of: before) {
+            return topos[(index + topos.count - 1) % topos.count]
+        }
+        
+        return nil
+    }
+    
     var starts: [Problem] {
         topos.flatMap{$0.starts}
     }
