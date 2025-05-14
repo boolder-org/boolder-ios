@@ -234,6 +234,22 @@ extension Problem {
     var overlayBadgePosition: Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         
+        if id == 3875 { // samarkand
+            return line.overlayPoint(at: 0.7)
+        }
+        else if id == 3876 { // samarkand rallongé
+            return line.overlayPoint(at: 0.4)
+        }
+        else if id == 3877 { // samarkand rallongé pas le bas
+            return line.overlayPoint(at: 0.5)
+        }
+        else if id == 3878 { // les inversées
+            return line.overlayPoint(at: 0.45)
+        }
+        else if id == 3873 { // sabots neufs
+            return line.overlayPoint(at: 0.5)
+        }
+        
         if parentId != nil && sitStart {
             return line.overlayPoint(at: 0.25)
         }
