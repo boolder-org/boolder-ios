@@ -239,55 +239,62 @@ struct TopoView: View {
                                 let p = problem.start
                                 let problems = problem.startGroup?.problems ?? []
                                 
-//                                    ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
-                                        if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
-                                            
-                                            
-                                            Menu {
-                                                ForEach(problems) { p in
-                                                    Button {
-                                                        mapState.selectProblem(p)
-                                                    } label: {
-                                                        Text("\(p.localizedName) \(p.grade.string)")
-                                                    }
+                                if problems.allSatisfy{$0.endId == p.endId} {
+                                    
+                                    //                                    ForEach(group.problems.filter{$0.startId == problem.startId}) { (p: Problem) in
+                                    if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
+                                        
+                                        
+                                        Menu {
+                                            ForEach(problems) { p in
+                                                Button {
+                                                    mapState.selectProblem(p)
+                                                } label: {
+                                                    Text("\(p.localizedName) \(p.grade.string)")
                                                 }
-                                                
-                                            } label: {
-                                                HStack(spacing: 2) {
-//                                                    Text("\(p.localizedName) +\(problems.count - 1)")
-                                                    Text("\(p.localizedName)")
-                                                    Image(systemName: "chevron.down")
-                                                    
-                                                }
-                                                .foregroundColor(.white)
-                                                .font(.caption2)
-                                                .padding(.horizontal, 4)
-                                                .padding(.vertical, 2)
-                                                .background {
-                                                    Color(p.circuitUIColor)
-                                                    
-                                                }
-                                                .clipShape(RoundedRectangle(cornerRadius: 4))
-//                                                .contentShape(Rectangle())
-//                                                .frame(width: 80, height: 32)
                                             }
-//                                            .contentShape(Rectangle())
-//                                            .frame(width: 80, height: 32)
-                                            .scaleEffect(1/zoomScaleAdapted)
-                                            .position(x: lastPoint.x * width, y: lastPoint.y * height)
-                                            .offset(x: 0, y: -16)
-                                            .zIndex(.infinity)
                                             
-                                            
-                                            
+                                        } label: {
+                                            HStack(spacing: 2) {
+                                                //                                                    Text("\(p.localizedName) +\(problems.count - 1)")
+                                                Text("\(p.localizedName)")
+                                                Image(systemName: "chevron.down")
+                                                
+                                            }
+                                            .foregroundColor(.white)
+                                            .font(.caption2)
+                                            .padding(.horizontal, 4)
+                                            .padding(.vertical, 2)
+                                            .background {
+                                                Color(p.circuitUIColor)
+                                                
+                                            }
+                                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                                            //                                                .contentShape(Rectangle())
+                                            //                                                .frame(width: 80, height: 32)
                                         }
-//                                    }
-                                
+                                        //                                            .contentShape(Rectangle())
+                                        //                                            .frame(width: 80, height: 32)
+                                        .scaleEffect(1/zoomScaleAdapted)
+                                        .position(x: lastPoint.x * width, y: lastPoint.y * height)
+                                        .offset(x: 0, y: -16)
+                                        .zIndex(.infinity)
+                                        
+                                        
+                                        
+                                    }
+                                    //                                    }
+                                }
                             }
                             else {
                                 let p = problem
+                                
+                                // if variants then show menu
+                                
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
-                                    Text("\(p.localizedName)")
+                                    HStack {
+                                        Text("\(p.localizedName)")
+                                    }
                                         .foregroundColor(.white)
                                         .font(.caption2)
                                         .padding(.horizontal, 4)
