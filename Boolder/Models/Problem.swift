@@ -250,6 +250,35 @@ extension Problem {
             return line.overlayPoint(at: 0.5)
         }
         
+        
+        else if id == 4092 { // surplom de la mée
+            return line.overlayPoint(at: 0.5)
+        }
+        else if id == 4095 { // putain du diable
+            return line.overlayPoint(at: 0.7)
+        }
+        else if id == 4096 { // putain du diable assis
+            return line.overlayPoint(at: 0.55)
+        }
+        
+        
+        else if id == 230 { // levitation
+            return line.overlayPoint(at: 0.5)
+        }
+        else if id == 7702 { // vagabond des limbes
+            return line.overlayPoint(at: 0.8)
+        }
+        else if id == 7703 { // vagabond des limbes prolongé
+            return line.overlayPoint(at: 0.7)
+        }
+        else if id == 15699 { // rocking chair du fond
+            return line.overlayPoint(at: 0.15)
+        }
+        else if id == 15692 { // levitation du fond
+            return line.overlayPoint(at: 0.2)
+        }
+        
+        
         if parentId != nil && sitStart {
             return line.overlayPoint(at: 0.25)
         }
