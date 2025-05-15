@@ -289,32 +289,48 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            
-            
-            .background(
-                CustomNoClipSheet(
-                    isPresented: $mapState.presentProblemDetails,
-                    detents: [.medium()], // [UISheetPresentationController.Detent.custom { _ in 340 }],  // FIXME: make DRY
-                    prefersGrabber: false)
-                {
-                    ProblemDetailsView(
-                        problem: $mapState.selectedProblem,
-                        mapState: mapState,
-                        selectedDetent: $selectedDetent
-                    )
-//                    VStack {
-//                        TopoView(
-//                            problem: $mapState.selectedProblem,
-//                            mapState: mapState,
-//                            selectedDetent: $selectedDetent
-//                        )
-//                        
-//                        PageControlView(numberOfPages: 5, currentPage: 1)
-//                        
-//                        Spacer()
-//                    }
+            .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
+                GeometryReader { proxy in
+                    
+                    ZoomableScrollView {
+                        TopoView(
+                            topo: mapState.selectedProblem.topo!,
+                            problem: $mapState.selectedProblem,
+                            mapState: mapState,
+                            selectedDetent: $selectedDetent
+                        )
+                            .frame(width: proxy.size.width, height: proxy.size.height)
+                    }
+                    .background(Color.black)
+                    .ignoresSafeArea()
                 }
-            )
+                
+            }
+            
+//            .background(
+//                CustomNoClipSheet(
+//                    isPresented: $mapState.presentProblemDetails,
+//                    detents: [.medium()], // [UISheetPresentationController.Detent.custom { _ in 340 }],  // FIXME: make DRY
+//                    prefersGrabber: false)
+//                {
+//                    ProblemDetailsView(
+//                        problem: $mapState.selectedProblem,
+//                        mapState: mapState,
+//                        selectedDetent: $selectedDetent
+//                    )
+////                    VStack {
+////                        TopoView(
+////                            problem: $mapState.selectedProblem,
+////                            mapState: mapState,
+////                            selectedDetent: $selectedDetent
+////                        )
+////                        
+////                        PageControlView(numberOfPages: 5, currentPage: 1)
+////                        
+////                        Spacer()
+////                    }
+//                }
+//            )
         
     }
     
