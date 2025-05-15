@@ -12,24 +12,30 @@ struct BoulderFullScreenView: View {
     @State private var zoomScale: CGFloat = 1
 //    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         GeometryReader { proxy in
-            
-            ZoomableScrollView(zoomScale: $zoomScale) {
-                TopoView(
-                    topo: mapState.selectedProblem.topo!,
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState,
-                    zoomScale: $zoomScale
-                )
-                    .frame(width: proxy.size.width, height: proxy.size.height)
+            ZStack(alignment: .topTrailing) {
+                ZoomableScrollView(zoomScale: $zoomScale) {
+                    TopoView(
+                        topo: mapState.selectedProblem.topo!,
+                        problem: $mapState.selectedProblem,
+                        mapState: mapState,
+                        zoomScale: $zoomScale
+                    )
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                }
+                .background(Color.black)
+                .ignoresSafeArea()
+                
+                Button(action: { dismiss() }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 28))
+                        .foregroundColor(.white)
+                        .padding(16)
+                }
             }
-            .background(Color.black)
-            .ignoresSafeArea()
-//            .onChange(of: zoomScale) { newValue in
-//                print(newValue)
-//            }
         }
     }
 }
