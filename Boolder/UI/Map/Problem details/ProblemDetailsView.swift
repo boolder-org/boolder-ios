@@ -201,8 +201,7 @@ struct ProblemDetailsView: View {
                             TopoView(
                                 topo: topo,
                                 problem: $problem,
-                                mapState: mapState,
-                                selectedDetent: $selectedDetent
+                                mapState: mapState
                             )
                             .frame(width: geo.size.width, height: geo.size.width * 3/4)
                             .zIndex(10)

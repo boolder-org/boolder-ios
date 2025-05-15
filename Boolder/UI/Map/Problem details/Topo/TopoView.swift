@@ -25,7 +25,7 @@ struct TopoView: View {
     @State private var zoomScale: CGFloat = 1.0
     @State private var highlightedSide: String? = nil
     
-    @Binding var selectedDetent: PresentationDetent
+    @State var selectedDetent: PresentationDetent = .large
     
     @State private var offset = CGSize.zero
     @State private var lastGestureTime: TimeInterval = 0
