@@ -20,15 +20,16 @@ struct BoulderFullScreenView: View {
                 TopoView(
                     topo: mapState.selectedProblem.topo!,
                     problem: $mapState.selectedProblem,
-                    mapState: mapState
+                    mapState: mapState,
+                    zoomScale: $zoomScale
                 )
                     .frame(width: proxy.size.width, height: proxy.size.height)
             }
             .background(Color.black)
             .ignoresSafeArea()
-            .onChange(of: zoomScale) { newValue in
-                print(newValue)
-            }
+//            .onChange(of: zoomScale) { newValue in
+//                print(newValue)
+//            }
         }
     }
 }

@@ -22,7 +22,7 @@ struct TopoView: View {
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
-    @State private var zoomScale: CGFloat = 1.0
+    @Binding var zoomScale: CGFloat
     @State private var highlightedSide: String? = nil
     
     @State var selectedDetent: PresentationDetent = .large
