@@ -11,10 +11,10 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-//    let topo: Topo // FIXME: what happends when page changes?
-    var topo: Topo {
-        problem.topo! // FIXME: don't use bang
-    }
+    let topo: Topo // FIXME: what happends when page changes?
+//    var topo: Topo {
+//        problem.topo! // FIXME: don't use bang
+//    }
     
     @Binding var problem: Problem
     @ObservedObject var mapState: MapState

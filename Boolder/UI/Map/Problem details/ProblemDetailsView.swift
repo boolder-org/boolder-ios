@@ -35,9 +35,6 @@ struct ProblemDetailsView: View {
     
     @Binding var selectedDetent: PresentationDetent
     
-    @State private var dragOffset: CGFloat = 0
-    @State private var isDragging = false
-    
     var array: [Problem] {
         problem.variants
     }
@@ -198,46 +195,46 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 0) {
-                    TopoView(
-                        problem: $problem,
-                        mapState: mapState,
-                        selectedDetent: $selectedDetent
-                    )
+                    TabView(selection: $currentPage) {
+                        ForEach(problem.toposOnSameBoulder) { topo in
+                            
+                            TopoView(
+                                topo: topo,
+                                problem: $problem,
+                                mapState: mapState,
+                                selectedDetent: $selectedDetent
+                            )
+                            .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                            .zIndex(10)
+                            .tag(topo.id) // use tag or id?
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                    .zIndex(10)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { gesture in
-                                isDragging = true
-                                dragOffset = gesture.translation.width
-                            }
-                            .onEnded { gesture in
-                                isDragging = false
-                                let threshold: CGFloat = 50
-                                
-                                if gesture.translation.width > threshold {
-                                    // Swiped right
-                                    if let boulderId = mapState.selectedProblem.topo?.boulderId {
-                                        if let previous = Boulder(id: boulderId).previousTopo(before: problem.topo!) {
-                                            mapState.selectStartOrProblem(previous.firstProblemOnTheRight!)
-                                        }
-                                    }
+                    .onChange(of: currentPage) { newPage in
+                        print(newPage)
+                        if let topo = Topo.load(id: newPage) {
+                            if problem.topoId != topo.id {
+                                // FIXME: refactor this to update topo without chaning the problem
+                                if let newProblem = topo.firstProblemOnTheLeft  {
+                                    mapState.selectStartOrProblem(newProblem)
                                     
-                                } else if gesture.translation.width < -threshold {
-                                    // Swiped left
-                                    if let boulderId = mapState.selectedProblem.topo?.boulderId {
-                                        if let next = Boulder(id: boulderId).nextTopo(after: problem.topo!) {
-                                            mapState.selectStartOrProblem(next.firstProblemOnTheLeft!)
-                                        }
-                                    }
                                 }
-                                
-                                withAnimation(.spring()) {
-                                    dragOffset = 0
-                                }
+                                mapState.selectAllStarts()
                             }
-                    )
-                    .offset(x: dragOffset)
+                            
+                            
+                        }
+                        
+                    }
+                    .onChange(of: problem) { [problem] newValue in
+                        if let topoId = newValue.topoId {
+                            currentPage = topoId
+                        }
+                    }
+
+                    
+                    
                     
                     if mapState.anyStartSelected {
                         HStack {
