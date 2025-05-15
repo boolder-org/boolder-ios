@@ -213,6 +213,16 @@ extension Problem {
         }
     }
     
+    var showLine: Bool {
+        let hidden = [7702, 7703, 15692, 15699]
+        
+        if hidden.contains(id) {
+            return false
+        }
+        
+        return true
+    }
+    
     // TODO: handle multiple lines
     var line: Line? {
         let lines = Table("lines")
@@ -276,6 +286,12 @@ extension Problem {
         }
         else if id == 15692 { // levitation du fond
             return line.overlayPoint(at: 0.2)
+        }
+        else if id == 7675 { // levitation raccourci
+            return line.overlayPoint(at: 0.35)
+        }
+        else if id == 7676 { // rocking chair
+            return line.overlayPoint(at: 0.5)
         }
         
         

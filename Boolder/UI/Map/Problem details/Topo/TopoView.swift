@@ -169,12 +169,14 @@ struct TopoView: View {
                         
                         if mapState.anyStartSelected { // }(showAllLines) {
                             ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
-                                LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
-//                                    .opacity(showAllLines ? 1 : 0.7)
-                                //                                                .opacity(0.5)
-                                    .onTapGesture {
-                                        mapState.selectProblem(p)
-                                    }
+                                if p.showLine {
+                                    LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
+                                    //                                    .opacity(showAllLines ? 1 : 0.7)
+                                    //                                                .opacity(0.5)
+                                        .onTapGesture {
+                                            mapState.selectProblem(p)
+                                        }
+                                }
                             }
                         }
                         
@@ -337,7 +339,7 @@ struct TopoView: View {
                             ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
                                 if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                     
-                                    if true {
+                                    if p.showLine {
                                         
                                         GradeBadgeView(number: p.grade.string, sitStart: p.sitStart, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(1/zoomScaleAdapted)
