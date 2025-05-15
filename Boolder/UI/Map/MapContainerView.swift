@@ -26,6 +26,8 @@ struct MapContainerView: View {
     static let maxDetent = PresentationDetent.fraction(0.90)
     static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 96)
     
+    @State private var zoomScale: CGFloat = 1
+    
     var body: some View {
             ZStack {
                 mapbox
@@ -292,7 +294,7 @@ struct MapContainerView: View {
             .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
                 GeometryReader { proxy in
                     
-                    ZoomableScrollView {
+                    ZoomableScrollView(zoomScale: $zoomScale) {
                         TopoView(
                             topo: mapState.selectedProblem.topo!,
                             problem: $mapState.selectedProblem,
@@ -303,6 +305,9 @@ struct MapContainerView: View {
                     }
                     .background(Color.black)
                     .ignoresSafeArea()
+                    .onChange(of: zoomScale) { newValue in
+                        print(newValue)
+                    }
                 }
                 
             }

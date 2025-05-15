@@ -10,10 +10,11 @@ import SwiftUI
 
 // MARK: – ZoomableScrollView
 struct ZoomableScrollView<Content: View>: UIViewRepresentable {
+    @Binding var zoomScale: CGFloat
     @ViewBuilder var content: () -> Content
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(self)
     }
 
     func makeUIView(context: Context) -> UIScrollView {
@@ -24,6 +25,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.bouncesZoom = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.zoomScale = zoomScale
 
         // Host SwiftUI content
         let hostedController = UIHostingController(rootView: content())
@@ -49,12 +51,19 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         // Update content and recenter on layout/zoom changes
         context.coordinator.hostingController?.rootView = content()
         context.coordinator.recenterContent(in: uiView)
+        
+        // Update zoom scale if it changed externally
+        if uiView.zoomScale != zoomScale {
+            uiView.setZoomScale(zoomScale, animated: false)
+        }
     }
 
     class Coordinator: NSObject, UIScrollViewDelegate {
         var hostingController: UIHostingController<Content>?
+        var parent: ZoomableScrollView
 
-        override init() {
+        init(_ parent: ZoomableScrollView) {
+            self.parent = parent
             super.init()
         }
 
@@ -64,6 +73,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
 
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
             recenterContent(in: scrollView)
+            parent.zoomScale = scrollView.zoomScale
         }
 
         /// Centers the hosted view within the scroll view if it's smaller than the scroll view bounds.
