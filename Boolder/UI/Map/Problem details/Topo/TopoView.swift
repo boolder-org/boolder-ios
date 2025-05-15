@@ -113,16 +113,16 @@ struct TopoView: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .modify {
-                        if case .ready(let image) = photoStatus  {
-                            $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                TopoFullScreenView(image: image, problem: problem)
-                            }
-                        }
-                        else {
-                            $0
-                        }
-                    }
+//                    .modify {
+//                        if case .ready(let image) = photoStatus  {
+//                            $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
+//                                TopoFullScreenView(image: image, problem: problem)
+//                            }
+//                        }
+//                        else {
+//                            $0
+//                        }
+//                    }
                     
 //                    .onTapGesture {
 //                        print("Tapped on image")
