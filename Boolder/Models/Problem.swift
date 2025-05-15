@@ -214,11 +214,11 @@ extension Problem {
     }
     
     var showLine: Bool {
-        let hidden = [7702, 7703, 15692, 15699]
-        
-        if hidden.contains(id) {
-            return false
-        }
+//        let hidden = [7702, 7703, 15692, 15699]
+//        
+//        if hidden.contains(id) {
+//            return false
+//        }
         
         return true
     }
