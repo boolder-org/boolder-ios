@@ -45,9 +45,12 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.compass.position = .bottomLeft
         mapView.ornaments.options.compass.margins = CGPoint(x: 8, y: 40)
         
+//        mapView.ornaments.options.attributionButton.position = .bottomLeading
+//        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
+//        mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
         mapView.ornaments.options.attributionButton.position = .bottomLeading
-        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
-        mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
+        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: -666)
+        mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: -666)
         
         // Wait for the map to load its style before adding data.
         mapView.mapboxMap.onStyleLoaded.observeNext { [weak self] _ in
