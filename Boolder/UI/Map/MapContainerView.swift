@@ -26,20 +26,23 @@ struct MapContainerView: View {
     static let maxDetent = PresentationDetent.fraction(0.90)
     static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 96)
     
-    
+    @State private var zoomScale: CGFloat = 1
     
     var body: some View {
             ZStack {
                 mapbox
                 
-                VStack {
-                    Spacer()
-                    Color.white
-                        .frame(height: 83)
-                        
-                }
-                .edgesIgnoringSafeArea(.bottom)
+//                VStack {
+//                    Spacer()
+//                    Color.white
+//                        .frame(height: 83)
+//                        
+//                }
+//                .edgesIgnoringSafeArea(.bottom)
 //                .zIndex(100)
+                
+                
+                
                 
                 //                .overlay(
                 //                    DraggableSheet()
@@ -81,6 +84,35 @@ struct MapContainerView: View {
                         .opacity(mapState.selectedArea != nil ? 1 : 0)
                 }
                 .opacity(selectedDetent == MapContainerView.maxDetent ? 0 : 1)
+                
+                if mapState.presentProblemDetails {
+                    VStack {
+                        Spacer()
+                        
+                        ZoomableScrollView(zoomScale: $zoomScale) {
+                            TopoView(
+                                topo: mapState.selectedProblem.topo!,
+                                problem: $mapState.selectedProblem,
+                                mapState: mapState,
+                                zoomScale: $zoomScale
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                        
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .padding(.horizontal, 8)
+                        .padding(.bottom, 16)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 3/4)
+                        
+//                        .modify {
+//                            if #available(iOS 18.0, *) {
+//                                $0.matchedTransitionSource(id: "topo", in: namespace)
+//                            }
+//                        }
+                    }
+                    .zIndex(.infinity)
+                }
+
                 
 //                if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
 //                    GeometryReader { geo in
@@ -291,10 +323,10 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
-                BoulderFullScreenView(mapState: mapState)
-                
-            }
+//            .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
+//                BoulderFullScreenView(mapState: mapState)
+//                
+//            }
             
 //            .background(
 //                CustomNoClipSheet(

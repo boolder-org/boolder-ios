@@ -100,7 +100,7 @@ struct TopoView: View {
     
     // TODO: refactor
     var width : CGFloat {
-        UIScreen.main.bounds.size.width
+        UIScreen.main.bounds.size.width - 16
     }
     
     var height : CGFloat {
