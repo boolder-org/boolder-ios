@@ -98,6 +98,7 @@ struct MapContainerView: View {
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
+                        .background(Color.gray)
                         
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .padding(.horizontal, 8)
