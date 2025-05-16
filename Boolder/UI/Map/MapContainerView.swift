@@ -96,14 +96,14 @@ struct MapContainerView: View {
                                 mapState: mapState,
                                 zoomScale: $zoomScale
                             )
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
+//                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         .background(Color.gray)
-                        
                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                        
+//                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 3/4)
+                        .aspectRatio(4/3, contentMode: .fit)
                         .padding(.horizontal, 8)
-                        .padding(.bottom, 16)
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 3/4)
                         
 //                        .modify {
 //                            if #available(iOS 18.0, *) {
@@ -111,6 +111,9 @@ struct MapContainerView: View {
 //                            }
 //                        }
                     }
+//                    .background{ Color.blue }
+                    
+                    .padding(.bottom, 80)
                     .zIndex(.infinity)
                 }
 
@@ -313,6 +316,8 @@ struct MapContainerView: View {
         
     }
     
+    @State private var sheetPresented = true
+    
     var mapbox : some View {
         MapboxView(mapState: mapState)
             .edgesIgnoringSafeArea(.all)
@@ -324,6 +329,24 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
+            .sheet(isPresented: $sheetPresented) {
+                VStack {
+                    if mapState.selectedProblem != Problem.empty {
+                        HStack {
+                            Text(mapState.selectedProblem.localizedName)
+                                .font(.title2.weight(.semibold))
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                    }
+                    else {
+                        Text("12 problems")
+                    }
+                }
+                    .presentationDetents([.height(70), .large])
+                    .presentationBackgroundInteraction(.enabled)
+            }
+            
 //            .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
 //                BoulderFullScreenView(mapState: mapState)
 //                
