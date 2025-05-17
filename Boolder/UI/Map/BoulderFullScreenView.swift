@@ -18,27 +18,30 @@ struct BoulderFullScreenView: View {
     var animation: Namespace.ID
     
     var body: some View {
-            ZStack(alignment: .center) {
+            ZStack(alignment: .topTrailing) {
                 Color.white
                     .ignoresSafeArea()
                 
 //                ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(
-                        topo: mapState.selectedProblem.topo!,
-                        problem: $mapState.selectedProblem,
-                        mapState: mapState,
-                        zoomScale: $zoomScale
-                    )
+//                    TopoView(
+//                        topo: mapState.selectedProblem.topo!,
+//                        problem: $mapState.selectedProblem,
+//                        mapState: mapState,
+//                        zoomScale: $zoomScale
+//                    )
+                Image("yellow-circuit-start")
+                    .resizable()
+                    .scaledToFit()
                     .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
 //                    .matchedTransitionSource(id: "photo", in: animation)
                     
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
 //                }
 //                .background(Color.white)
-                .ignoresSafeArea()
+//                .ignoresSafeArea()
                 
                 Button {
-                    withAnimation {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                         presentFullScreen = false
                     }
                    

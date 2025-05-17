@@ -95,7 +95,7 @@ struct MapContainerView: View {
                         Spacer()
                         
                         Button {
-                            withAnimation {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                 presentFullScreen = true
                             }
                             
@@ -146,19 +146,31 @@ struct MapContainerView: View {
 //                        }
                         
 //                        ZoomableScrollView(zoomScale: $zoomScale) {
-                            TopoView(
-                                topo: mapState.selectedProblem.topo!,
-                                problem: $mapState.selectedProblem,
-                                mapState: mapState,
-                                zoomScale: $zoomScale
-                            )
-                            .matchedGeometryEffect(id: presentFullScreen ? "photo" : "none", in: animation, isSource: false)
-//                            .matchedTransitionSource(id: "photo", in: animation)
-//                        }
-                        .background(Color.gray)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .aspectRatio(4/3, contentMode: .fit)
-                        .padding(.horizontal, 8)
+//                            TopoView(
+//                                topo: mapState.selectedProblem.topo!,
+//                                problem: $mapState.selectedProblem,
+//                                mapState: mapState,
+//                                zoomScale: $zoomScale
+//                            )
+                        if !presentFullScreen {
+                            Image("yellow-circuit-start")
+                                .resizable()
+                                .scaledToFit()
+                                .matchedGeometryEffect(id: "photo", in: animation)
+                            //                            .matchedTransitionSource(id: "photo", in: animation)
+                            //                        }
+                                .background(Color.gray)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .aspectRatio(4/3, contentMode: .fit)
+                                .padding(.horizontal, 8)
+                        } else {
+                            Rectangle()
+                            .background(Color.gray)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .aspectRatio(4/3, contentMode: .fit)
+                            .padding(.horizontal, 8)
+                        }
+                        
                     }
                     .offset(y: dragOffset)
                     .gesture(
@@ -210,9 +222,9 @@ struct MapContainerView: View {
                     .zIndex(40)
                 }
                     
-                if mapState.selectedProblem != Problem.empty {
+                if presentFullScreen {
                     BoulderFullScreenView(mapState: mapState, presentFullScreen: $presentFullScreen, animation: animation)
-                        .opacity(presentFullScreen ? 1 : 0)
+//                        .opacity(presentFullScreen ? 1 : 0)
                         .zIndex(50)
                 }
                 
