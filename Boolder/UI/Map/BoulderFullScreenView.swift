@@ -15,25 +15,33 @@ struct BoulderFullScreenView: View {
 //    @Environment(\.dismiss) private var dismiss
     
     @Binding var presentFullScreen: Bool
+    var animation: Namespace.ID
     
     var body: some View {
-            ZStack(alignment: .topTrailing) {
-                ZoomableScrollView(zoomScale: $zoomScale) {
+            ZStack(alignment: .center) {
+                Color.white
+                    .ignoresSafeArea()
+                
+//                ZoomableScrollView(zoomScale: $zoomScale) {
                     TopoView(
                         topo: mapState.selectedProblem.topo!,
                         problem: $mapState.selectedProblem,
                         mapState: mapState,
                         zoomScale: $zoomScale
                     )
+                    .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
 //                    .matchedTransitionSource(id: "photo", in: animation)
                     
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
-                .background(Color.white)
+//                }
+//                .background(Color.white)
                 .ignoresSafeArea()
                 
                 Button {
-                   presentFullScreen = false
+                    withAnimation {
+                        presentFullScreen = false
+                    }
+                   
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 28))

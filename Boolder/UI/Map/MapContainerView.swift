@@ -95,7 +95,10 @@ struct MapContainerView: View {
                         Spacer()
                         
                         Button {
-                            presentFullScreen = true
+                            withAnimation {
+                                presentFullScreen = true
+                            }
+                            
                         } label: {
                             Text("full screen")
                         }
@@ -149,6 +152,7 @@ struct MapContainerView: View {
                                 mapState: mapState,
                                 zoomScale: $zoomScale
                             )
+                            .matchedGeometryEffect(id: presentFullScreen ? "photo" : "none", in: animation, isSource: false)
 //                            .matchedTransitionSource(id: "photo", in: animation)
 //                        }
                         .background(Color.gray)
@@ -206,10 +210,12 @@ struct MapContainerView: View {
                     .zIndex(40)
                 }
                     
-                if presentFullScreen {
-                    BoulderFullScreenView(mapState: mapState, presentFullScreen: $presentFullScreen)
+                if mapState.selectedProblem != Problem.empty {
+                    BoulderFullScreenView(mapState: mapState, presentFullScreen: $presentFullScreen, animation: animation)
+                        .opacity(presentFullScreen ? 1 : 0)
                         .zIndex(50)
                 }
+                
             }
             .onChange(of: appState.selectedProblem) { newValue in
                 if let problem = appState.selectedProblem {
