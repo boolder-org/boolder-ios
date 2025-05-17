@@ -192,6 +192,15 @@ struct MapContainerView: View {
                                 }
                             }
                     )
+                    .simultaneousGesture(
+                        MagnificationGesture()
+                            .onChanged { scale in
+                                presentFullScreen = true
+                            }
+//                            .onEnded { scale in
+//                                presentFullScreen = true
+//                            }
+                    )
                     
                     .padding(.bottom, 16)
                     .zIndex(.infinity)
