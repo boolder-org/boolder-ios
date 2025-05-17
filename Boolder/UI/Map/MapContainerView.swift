@@ -89,6 +89,48 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
+                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
+                            HStack {
+                                Text(mapState.selectedProblem.localizedName)
+                                    .font(.body.weight(.regular))
+                                
+                                Spacer()
+                                HStack(spacing: 8) {
+                                    Button {
+                                        
+                                    } label: {
+                                        Image(systemName: "ellipsis")
+//                                            .font(.caption.weight(.semibold))
+                                            .font(.body.weight(.semibold))
+//                                            .padding(8)
+                                            .foregroundColor(.gray)
+                                            .frame(width: 24, height: 24)
+                                            .background(Color(.systemGray5))
+                                            .clipShape(Circle())
+                                    }
+                                    
+                                    Button {
+                                        mapState.showAllStarts = true
+                                    } label: {
+                                        Image(systemName: "xmark")
+//                                            .padding(8)
+//                                            .font(.caption.weight(.semibold))
+                                            .font(.body.weight(.semibold))
+                                            .foregroundColor(.gray)
+                                            .frame(width: 24, height: 24)
+                                            .background(Color(.systemGray5))
+                                            .clipShape(Circle())
+                                    }
+                                }
+                            }
+                            
+                            .padding(8)
+                            .background{Color.white}
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .padding(.horizontal, 8)
+//                            .padding(.bottom, 8)
+                        }
+                        
                         ZoomableScrollView(zoomScale: $zoomScale) {
                             TopoView(
                                 topo: mapState.selectedProblem.topo!,
@@ -113,7 +155,7 @@ struct MapContainerView: View {
                     }
 //                    .background{ Color.blue }
                     
-                    .padding(.bottom, 80)
+                    .padding(.bottom, 16)
                     .zIndex(.infinity)
                 }
 
@@ -329,23 +371,23 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .sheet(isPresented: $sheetPresented) {
-                VStack {
-                    if mapState.selectedProblem != Problem.empty {
-                        HStack {
-                            Text(mapState.selectedProblem.localizedName)
-                                .font(.title2.weight(.semibold))
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                    }
-                    else {
-                        Text("12 problems")
-                    }
-                }
-                    .presentationDetents([.height(70), .large])
-                    .presentationBackgroundInteraction(.enabled)
-            }
+//            .sheet(isPresented: $sheetPresented) {
+//                VStack {
+//                    if false { // mapState.selectedProblem != Problem.empty {
+//                        HStack {
+//                            Text(mapState.selectedProblem.localizedName)
+//                                .font(.title2.weight(.semibold))
+//                            Spacer()
+//                        }
+//                        .padding(.horizontal)
+//                    }
+//                    else {
+//                        Text("12 problems")
+//                    }
+//                }
+//                    .presentationDetents([.height(70), .large])
+//                    .presentationBackgroundInteraction(.enabled)
+//            }
             
 //            .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
 //                BoulderFullScreenView(mapState: mapState)
