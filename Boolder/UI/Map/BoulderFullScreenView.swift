@@ -25,7 +25,7 @@ struct BoulderFullScreenView: View {
                         mapState: mapState,
                         zoomScale: $zoomScale
                     )
-                    .matchedTransitionSource(id: "photo", in: animation)
+//                    .matchedTransitionSource(id: "photo", in: animation)
                     
                         .frame(width: proxy.size.width, height: proxy.size.height)
                 }
@@ -40,7 +40,7 @@ struct BoulderFullScreenView: View {
                 }
             }
         }
-        .navigationTransition(.zoom(sourceID: "photo", in: animation))
+//        .navigationTransition(.zoom(sourceID: "photo", in: animation))
     }
 }
 

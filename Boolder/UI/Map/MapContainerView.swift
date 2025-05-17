@@ -94,11 +94,11 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
-//                        Button {
-//                            presentFullScreen = true
-//                        } label: {
-//                            Text("full screen")
-//                        }
+                        Button {
+                            presentFullScreen = true
+                        } label: {
+                            Text("full screen")
+                        }
                         
 //                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
 //                            HStack {
@@ -149,7 +149,7 @@ struct MapContainerView: View {
                                 mapState: mapState,
                                 zoomScale: $zoomScale
                             )
-                            .matchedTransitionSource(id: "photo", in: animation)
+//                            .matchedTransitionSource(id: "photo", in: animation)
 //                        }
                         .background(Color.gray)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -436,10 +436,10 @@ struct MapContainerView: View {
 //                    .presentationBackgroundInteraction(.enabled)
 //            }
             
-           .fullScreenCover(isPresented: $presentFullScreen) {
-               BoulderFullScreenView(mapState: mapState, animation: animation)
-               
-           }
+//           .fullScreenCover(isPresented: $presentFullScreen) {
+//               BoulderFullScreenView(mapState: mapState, animation: animation)
+//               
+//           }
             
 //            .background(
 //                CustomNoClipSheet(
