@@ -153,9 +153,13 @@ struct MapContainerView: View {
 //                                zoomScale: $zoomScale
 //                            )
                         if !presentFullScreen {
-                            Image("yellow-circuit-start")
-                                .resizable()
-                                .scaledToFit()
+                            TopoView(
+                                topo: mapState.selectedProblem.topo!,
+                                problem: $mapState.selectedProblem,
+                                mapState: mapState,
+                                zoomScale: $zoomScale
+                            )
+                                .frame(width: 400, height: 300)
                                 .matchedGeometryEffect(id: "photo", in: animation)
                             //                            .matchedTransitionSource(id: "photo", in: animation)
                             //                        }
