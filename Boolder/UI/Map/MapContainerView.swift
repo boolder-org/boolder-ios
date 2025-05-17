@@ -30,6 +30,8 @@ struct MapContainerView: View {
 
     @State private var presentFullScreen = false
     @Namespace private var animation
+    @State private var dragOffset: CGFloat = 0
+    @State private var isDragging = false
     
     var body: some View {
             ZStack {
@@ -92,11 +94,11 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
-                        Button {
-                            presentFullScreen = true
-                        } label: {
-                            Text("full screen")
-                        }
+//                        Button {
+//                            presentFullScreen = true
+//                        } label: {
+//                            Text("full screen")
+//                        }
                         
 //                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
 //                            HStack {
@@ -140,7 +142,7 @@ struct MapContainerView: View {
 ////                            .padding(.bottom, 8)
 //                        }
                         
-                        ZoomableScrollView(zoomScale: $zoomScale) {
+//                        ZoomableScrollView(zoomScale: $zoomScale) {
                             TopoView(
                                 topo: mapState.selectedProblem.topo!,
                                 problem: $mapState.selectedProblem,
@@ -148,24 +150,48 @@ struct MapContainerView: View {
                                 zoomScale: $zoomScale
                             )
                             .matchedTransitionSource(id: "photo", in: animation)
-                            
-//                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                        }
+//                        }
                         .background(Color.gray)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                        
-//                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 3/4)
                         .aspectRatio(4/3, contentMode: .fit)
                         .padding(.horizontal, 8)
-                        
-                        
-//                        .modify {
-//                            if #available(iOS 18.0, *) {
-//                                $0.matchedTransitionSource(id: "topo", in: namespace)
-//                            }
-//                        }
                     }
-//                    .background{ Color.blue }
+                    .offset(y: dragOffset)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { gesture in
+                                isDragging = true
+                                dragOffset = gesture.translation.height
+                            }
+                            .onEnded { gesture in
+                                isDragging = false
+                                let threshold: CGFloat = 20 // Adjust this value to change the snap threshold
+                                
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                    if abs(gesture.translation.height) < threshold {
+                                        // Snap back if threshold not met
+                                        dragOffset = 0
+                                    } else {
+                                        // Snap to the direction of the drag
+//                                        dragOffset = gesture.translation.height > 0 ? threshold : -threshold
+                                        dragOffset = 0
+                                        
+                                        let verticalAmount = gesture.translation.height
+                                        if abs(verticalAmount) > threshold { // Threshold to avoid tiny movements
+                                            if verticalAmount > 0 {
+                                                // Sliding down
+                                                print("Sliding down: \(verticalAmount)")
+                                                mapState.presentProblemDetails = false
+                                            } else {
+                                                // Sliding up
+                                                print("Sliding up: \(abs(verticalAmount))")
+                                                presentFullScreen = true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                    )
                     
                     .padding(.bottom, 16)
                     .zIndex(.infinity)
