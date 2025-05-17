@@ -266,7 +266,7 @@ struct TopoView: View {
                                                 
                                             }
                                             .foregroundColor(.white)
-                                            .font(.caption2)
+                                            .font(.caption)
                                             .padding(.horizontal, 4)
                                             .padding(.vertical, 2)
                                             .background {
@@ -300,7 +300,7 @@ struct TopoView: View {
                                         Text("\(p.localizedName)")
                                     }
                                         .foregroundColor(.white)
-                                        .font(.caption2)
+                                        .font(.caption)
                                         .padding(.horizontal, 4)
                                         .padding(.vertical, 2)
                                         .background {
