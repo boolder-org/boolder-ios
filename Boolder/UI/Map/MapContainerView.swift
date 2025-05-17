@@ -203,86 +203,13 @@ struct MapContainerView: View {
                     )
                     
                     .padding(.bottom, 16)
-                    .zIndex(.infinity)
+                    .zIndex(40)
                 }
-
-                
-//                if mapState.presentProblemDetails { //} selectedProblem != Problem.empty {
-//                    GeometryReader { geo in
-//                        VStack {
-//                            Spacer()
-//                            
-//                            VStack(spacing: 0) {
-//                                
-//                                if mapState.presentProblemDetails && !mapState.showAllStarts {
-//                                    infosCard
-//                                        .background(Color.white)
-//                                }
-//                                
-//                                
-//                                ZStack(alignment: .topTrailing) {
-//                                    
-//                                    TopoView(
-//                                        problem: $mapState.selectedProblem,
-//                                        mapState: mapState,
-//                                        selectedDetent: $selectedDetent
-//                                    )
-//                                    .frame(width: geo.size.width, height: geo.size.width * 3/4)
-//                                    .toolbar(.hidden, for: .tabBar)
-////                                    .onAppear {
-////                                        mapState.showAllStarts = true
-////                                    }
-//                                    .modify {
-//                                        if #available(iOS 18.0, *) {
-//                                            $0.matchedTransitionSource(id: "photo", in: namespace)
-//                                        } else {
-//                                            // Fallback on earlier versions
-//                                        }
-//                                    }
-//                                    .navigationDestination(isPresented: $mapState.presentStartSheet)
-//                                    {
-//                                            TopoView(
-//                                                problem: $mapState.selectedProblem,
-//                                                mapState: mapState,
-//                                                selectedDetent: $selectedDetent
-//                                            )
-//                                            .modify {
-//                                                if #available(iOS 18.0, *) {
-//                                                    $0
-//                                                        .matchedTransitionSource(id: "photo", in: namespace) // reuse same ID/namespace
-//                                                        .navigationTransition(.zoom(sourceID: "photo", in: namespace))
-//                                                } else {
-//                                                    // Fallback on earlier versions
-//                                                }
-//                                                
-//                                            }
-//                                            .navigationTitle(problem.localizedName)
-//                                            .navigationBarTitleDisplayMode(.inline)
-//                                            
-//                                            
-//                                        }
-//                                    
-//                                    //                        .clipShape(RoundedRectangle(cornerRadius: 8))
-//                                    //                        .zIndex(10)
-//                                    
-//                                    Button {
-//                                        mapState.presentProblemDetails = false
-//                                    } label: {
-//                                        Image(systemName: "xmark.circle.fill")
-//                                            .font(Font.title2.weight(.semibold))
-//                                            .foregroundColor(Color(.secondaryLabel))
-//                                            .padding()
-//                                        //                                        .padding(.horizontal, 16)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        //                .padding(8)
-//                        
-//                    }
-//                    .zIndex(40)
-//                }
-                
+                    
+                if presentFullScreen {
+                    BoulderFullScreenView(mapState: mapState, presentFullScreen: $presentFullScreen)
+                        .zIndex(50)
+                }
             }
             .onChange(of: appState.selectedProblem) { newValue in
                 if let problem = appState.selectedProblem {

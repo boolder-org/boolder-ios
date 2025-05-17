@@ -12,11 +12,11 @@ struct BoulderFullScreenView: View {
     @State private var zoomScale: CGFloat = 1
 //    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
-    @Environment(\.dismiss) private var dismiss
-    var animation: Namespace.ID
+//    @Environment(\.dismiss) private var dismiss
+    
+    @Binding var presentFullScreen: Bool
     
     var body: some View {
-        GeometryReader { proxy in
             ZStack(alignment: .topTrailing) {
                 ZoomableScrollView(zoomScale: $zoomScale) {
                     TopoView(
@@ -27,19 +27,20 @@ struct BoulderFullScreenView: View {
                     )
 //                    .matchedTransitionSource(id: "photo", in: animation)
                     
-                        .frame(width: proxy.size.width, height: proxy.size.height)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .background(Color.white)
                 .ignoresSafeArea()
                 
-                Button(action: { dismiss() }) {
+                Button {
+                   presentFullScreen = false
+                } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 28))
                         .foregroundColor(.primary)
                         .padding(16)
                 }
             }
-        }
 //        .navigationTransition(.zoom(sourceID: "photo", in: animation))
     }
 }
