@@ -29,14 +29,17 @@ struct BoulderFullScreenView: View {
 //                        mapState: mapState,
 //                        zoomScale: $zoomScale
 //                    )
-                TopoView(
-                    topo: mapState.selectedProblem.topo!,
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState,
-                    zoomScale: $zoomScale
-                )
-                    .frame(width: 400, height: 300)
+//                TopoView(
+//                    topo: mapState.selectedProblem.topo!,
+//                    problem: $mapState.selectedProblem,
+//                    mapState: mapState,
+//                    zoomScale: $zoomScale
+//                )
+                Image("yellow-circuit-start")
+                    .resizable()
+                    
                     .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
+                    .frame(width: 400, height: 300)
 //                    .matchedTransitionSource(id: "photo", in: animation)
                     
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

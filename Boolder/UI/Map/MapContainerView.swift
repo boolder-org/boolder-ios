@@ -153,14 +153,17 @@ struct MapContainerView: View {
 //                                zoomScale: $zoomScale
 //                            )
                         if !presentFullScreen {
-                            TopoView(
-                                topo: mapState.selectedProblem.topo!,
-                                problem: $mapState.selectedProblem,
-                                mapState: mapState,
-                                zoomScale: $zoomScale
-                            )
-                                .frame(width: 400, height: 300)
+//                            TopoView(
+//                                topo: mapState.selectedProblem.topo!,
+//                                problem: $mapState.selectedProblem,
+//                                mapState: mapState,
+//                                zoomScale: $zoomScale
+//                            )
+                            Image("yellow-circuit-start")
+                                .resizable()
+                                
                                 .matchedGeometryEffect(id: "photo", in: animation)
+                                .frame(width: 320, height: 240)
                             //                            .matchedTransitionSource(id: "photo", in: animation)
                             //                        }
 //                                .background(Color.gray)
