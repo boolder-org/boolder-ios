@@ -89,47 +89,47 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
-                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
-                            HStack {
-                                Text(mapState.selectedProblem.localizedName)
-                                    .font(.body.weight(.regular))
-                                
-                                Spacer()
-                                HStack(spacing: 8) {
-                                    Button {
-                                        
-                                    } label: {
-                                        Image(systemName: "ellipsis")
-//                                            .font(.caption.weight(.semibold))
-                                            .font(.body.weight(.semibold))
-//                                            .padding(8)
-                                            .foregroundColor(.gray)
-                                            .frame(width: 24, height: 24)
-                                            .background(Color(.systemGray5))
-                                            .clipShape(Circle())
-                                    }
-                                    
-                                    Button {
-                                        mapState.showAllStarts = true
-                                    } label: {
-                                        Image(systemName: "xmark")
-//                                            .padding(8)
-//                                            .font(.caption.weight(.semibold))
-                                            .font(.body.weight(.semibold))
-                                            .foregroundColor(.gray)
-                                            .frame(width: 24, height: 24)
-                                            .background(Color(.systemGray5))
-                                            .clipShape(Circle())
-                                    }
-                                }
-                            }
-                            
-                            .padding(8)
-                            .background{Color.white}
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                            .padding(.horizontal, 8)
-//                            .padding(.bottom, 8)
-                        }
+//                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
+//                            HStack {
+//                                Text(mapState.selectedProblem.localizedName)
+//                                    .font(.body.weight(.regular))
+//                                
+//                                Spacer()
+//                                HStack(spacing: 8) {
+//                                    Button {
+//                                        
+//                                    } label: {
+//                                        Image(systemName: "ellipsis")
+////                                            .font(.caption.weight(.semibold))
+//                                            .font(.body.weight(.semibold))
+////                                            .padding(8)
+//                                            .foregroundColor(.gray)
+//                                            .frame(width: 24, height: 24)
+//                                            .background(Color(.systemGray5))
+//                                            .clipShape(Circle())
+//                                    }
+//                                    
+//                                    Button {
+//                                        mapState.showAllStarts = true
+//                                    } label: {
+//                                        Image(systemName: "xmark")
+////                                            .padding(8)
+////                                            .font(.caption.weight(.semibold))
+//                                            .font(.body.weight(.semibold))
+//                                            .foregroundColor(.gray)
+//                                            .frame(width: 24, height: 24)
+//                                            .background(Color(.systemGray5))
+//                                            .clipShape(Circle())
+//                                    }
+//                                }
+//                            }
+//                            
+//                            .padding(8)
+//                            .background{Color.white}
+//                            .clipShape(RoundedRectangle(cornerRadius: 8))
+//                            .padding(.horizontal, 8)
+////                            .padding(.bottom, 8)
+//                        }
                         
                         ZoomableScrollView(zoomScale: $zoomScale) {
                             TopoView(
