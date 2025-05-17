@@ -13,7 +13,7 @@ import TipKit
 
 struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Namespace private var namespace
+    
     
     @EnvironmentObject var appState: AppState
     @StateObject private var mapState = MapState()
@@ -27,6 +27,9 @@ struct MapContainerView: View {
     static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 96)
     
     @State private var zoomScale: CGFloat = 1
+
+    @State private var presentFullScreen = false
+    @Namespace private var animation
     
     var body: some View {
             ZStack {
@@ -89,6 +92,12 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
+                        Button {
+                            presentFullScreen = true
+                        } label: {
+                            Text("full screen")
+                        }
+                        
 //                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
 //                            HStack {
 //                                Text(mapState.selectedProblem.localizedName)
@@ -138,6 +147,8 @@ struct MapContainerView: View {
                                 mapState: mapState,
                                 zoomScale: $zoomScale
                             )
+                            .matchedTransitionSource(id: "photo", in: animation)
+                            
 //                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         .background(Color.gray)
@@ -146,6 +157,7 @@ struct MapContainerView: View {
 //                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 3/4)
                         .aspectRatio(4/3, contentMode: .fit)
                         .padding(.horizontal, 8)
+                        
                         
 //                        .modify {
 //                            if #available(iOS 18.0, *) {
@@ -389,10 +401,10 @@ struct MapContainerView: View {
 //                    .presentationBackgroundInteraction(.enabled)
 //            }
             
-//            .fullScreenCover(isPresented: $mapState.presentProblemDetails) {
-//                BoulderFullScreenView(mapState: mapState)
-//                
-//            }
+           .fullScreenCover(isPresented: $presentFullScreen) {
+               BoulderFullScreenView(mapState: mapState, animation: animation)
+               
+           }
             
 //            .background(
 //                CustomNoClipSheet(

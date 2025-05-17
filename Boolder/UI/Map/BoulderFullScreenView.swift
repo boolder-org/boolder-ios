@@ -13,6 +13,7 @@ struct BoulderFullScreenView: View {
 //    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @Environment(\.dismiss) private var dismiss
+    var animation: Namespace.ID
     
     var body: some View {
         GeometryReader { proxy in
@@ -24,6 +25,8 @@ struct BoulderFullScreenView: View {
                         mapState: mapState,
                         zoomScale: $zoomScale
                     )
+                    .matchedTransitionSource(id: "photo", in: animation)
+                    
                         .frame(width: proxy.size.width, height: proxy.size.height)
                 }
                 .background(Color.white)
@@ -37,6 +40,7 @@ struct BoulderFullScreenView: View {
                 }
             }
         }
+        .navigationTransition(.zoom(sourceID: "photo", in: animation))
     }
 }
 

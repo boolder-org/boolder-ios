@@ -594,11 +594,13 @@ struct TopoView: View {
     
     func displayLine() {
         if problem.line?.coordinates != nil {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                animate { lineDrawPercentage = 1.0 }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                animate { lineDrawPercentage = 1.0 }
 //                lineDrawPercentage = 1.0
-                showMissingLineNotice = false
-            }
+//                showMissingLineNotice = false
+//            }
+            lineDrawPercentage = 1.0
+            showMissingLineNotice = false
         }
         else {
             withAnimation { showMissingLineNotice = true }
