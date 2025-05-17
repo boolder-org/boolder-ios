@@ -159,7 +159,7 @@ struct MapContainerView: View {
                                 .matchedGeometryEffect(id: "photo", in: animation)
                             //                            .matchedTransitionSource(id: "photo", in: animation)
                             //                        }
-                                .background(Color.gray)
+//                                .background(Color.gray)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                                 .aspectRatio(4/3, contentMode: .fit)
                                 .padding(.horizontal, 8)
@@ -168,6 +168,7 @@ struct MapContainerView: View {
                             .background(Color.gray)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                             .aspectRatio(4/3, contentMode: .fit)
+                            .opacity(0)
                             .padding(.horizontal, 8)
                         }
                         
