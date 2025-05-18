@@ -164,7 +164,7 @@ struct MapContainerView: View {
 //                                .aspectRatio(4/3, contentMode: .fit)
                                 
                                 .matchedGeometryEffect(id: "photo", in: animation)
-                                .frame(width: 320)
+                                .frame(maxWidth: .infinity)
                             //                            .matchedTransitionSource(id: "photo", in: animation)
                             //                        }
 //                                .background(Color.gray)
@@ -220,7 +220,9 @@ struct MapContainerView: View {
                     .simultaneousGesture(
                         MagnificationGesture()
                             .onChanged { scale in
-                                presentFullScreen = true
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                    presentFullScreen = true
+                                }
                             }
 //                            .onEnded { scale in
 //                                presentFullScreen = true
