@@ -28,6 +28,12 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.zoomScale = zoomScale
         scrollView.contentInsetAdjustmentBehavior = .never // To avoid a wierb animation buf with safe areas
 
+        // Add double tap gesture recognizer
+        let doubleTapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        doubleTapGesture.delegate = context.coordinator
+        scrollView.addGestureRecognizer(doubleTapGesture)
+
         // Host SwiftUI content
         let hostedController = UIHostingController(rootView: content())
         hostedController.view.backgroundColor = .clear
@@ -59,13 +65,23 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         }
     }
 
-    class Coordinator: NSObject, UIScrollViewDelegate {
+    class Coordinator: NSObject, UIScrollViewDelegate, UIGestureRecognizerDelegate {
         var hostingController: UIHostingController<Content>?
         var parent: ZoomableScrollView
 
         init(_ parent: ZoomableScrollView) {
             self.parent = parent
             super.init()
+        }
+
+        // Allow simultaneous gesture recognition
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
+
+        @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+            guard let scrollView = gesture.view as? UIScrollView else { return }
+            scrollView.setZoomScale(1.0, animated: true)
         }
 
         func viewForZooming(in scrollView: UIScrollView) -> UIView? {

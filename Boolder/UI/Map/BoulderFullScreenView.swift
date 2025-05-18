@@ -81,17 +81,6 @@ struct BoulderFullScreenView: View {
                                 }
                             }
                     )
-                    .simultaneousGesture(
-                        MagnificationGesture()
-                            .onChanged { scale in
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    presentFullScreen = true
-                                }
-                            }
-//                            .onEnded { scale in
-//                                presentFullScreen = true
-//                            }
-                    )
                     
                     Button {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
