@@ -27,14 +27,14 @@ struct BoulderFullScreenView: View {
                 ZStack {
                     
                     
-//                    ZoomableScrollView(zoomScale: $zoomScale) {
+                    ZoomableScrollView(zoomScale: $zoomScale) {
                         TopoView(
                             //                    topo: mapState.selectedProblem.topo!,
                             problem: $mapState.selectedProblem,
                             mapState: mapState,
                             zoomScale: $zoomScale
                         )
-//                    }
+                    }
                     
                     .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
                     .frame(maxWidth: .infinity)

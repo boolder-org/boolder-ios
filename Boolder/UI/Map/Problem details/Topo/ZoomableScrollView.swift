@@ -26,6 +26,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.zoomScale = zoomScale
+        scrollView.contentInsetAdjustmentBehavior = .never // To avoid a wierb animation buf with safe areas
 
         // Host SwiftUI content
         let hostedController = UIHostingController(rootView: content())
