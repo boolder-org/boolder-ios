@@ -27,7 +27,6 @@ struct BoulderFullScreenView: View {
             .overlay(
                 ZStack {
                     
-                    
                     ZoomableScrollView(zoomScale: $zoomScale) {
                         TopoView(
                             //                    topo: mapState.selectedProblem.topo!,
@@ -56,7 +55,7 @@ struct BoulderFullScreenView: View {
                                 isDragging = false
                                 
                                 if abs(gesture.translation.height) >= 44 {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
                                         presentFullScreen = false
                                     }
                                 }
@@ -64,7 +63,8 @@ struct BoulderFullScreenView: View {
                     )
                     
                     Button {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        // we use a bigger dampingFraction to avoid a weird bug with zoomableScrollView
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
                             presentFullScreen = false
                         }
                         
