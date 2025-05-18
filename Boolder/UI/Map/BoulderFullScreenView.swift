@@ -46,6 +46,7 @@ struct BoulderFullScreenView: View {
                     .ignoresSafeArea()
                     .offset(y: dragOffset)
                     .gesture(
+                        // TODO: use PanGesture like https://www.youtube.com/watch?v=vqPK8qFsoBg
                         DragGesture()
                             .onChanged { gesture in
                                 isDragging = true
