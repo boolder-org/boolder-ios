@@ -37,6 +37,7 @@ struct BoulderFullScreenView: View {
 //                )
                 Image("yellow-circuit-start")
                     .resizable()
+                    .aspectRatio(4/3, contentMode: .fit)
                     
                     .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
                     .frame(width: 400, height: 300)

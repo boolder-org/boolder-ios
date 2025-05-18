@@ -161,6 +161,7 @@ struct MapContainerView: View {
 //                            )
                             Image("yellow-circuit-start")
                                 .resizable()
+                                .aspectRatio(4/3, contentMode: .fit)
                                 
                                 .matchedGeometryEffect(id: "photo", in: animation)
                                 .frame(width: 320, height: 240)
