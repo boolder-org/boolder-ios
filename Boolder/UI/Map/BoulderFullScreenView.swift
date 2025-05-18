@@ -22,6 +22,7 @@ struct BoulderFullScreenView: View {
     
     var body: some View {
         Color.systemBackground
+            .opacity(Double(1 - min(abs(dragOffset) / 500, 1)))
             .ignoresSafeArea()
             .overlay(
                 ZStack {
