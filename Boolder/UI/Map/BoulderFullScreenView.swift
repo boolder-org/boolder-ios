@@ -33,7 +33,10 @@ struct BoulderFullScreenView: View {
                             //                    topo: mapState.selectedProblem.topo!,
                             problem: $mapState.selectedProblem,
                             mapState: mapState,
-                            zoomScale: $zoomScale
+                            zoomScale: $zoomScale,
+                            onBackgroundTap: {
+                                // do something?
+                            }
                         )
                     }
                     

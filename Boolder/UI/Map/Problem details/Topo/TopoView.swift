@@ -23,6 +23,7 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     @Binding var zoomScale: CGFloat
+    var onBackgroundTap: (() -> Void)?
  
     
     var zoomScaleAdapted: CGFloat {
@@ -274,8 +275,8 @@ struct TopoView: View {
         .background(Color(.imageBackground))
         .onTapGesture {
             print("Tapped on image")
-            mapState.selectAllStarts()
-            
+            // mapState.selectAllStarts()
+            onBackgroundTap?()
         }
     }
     

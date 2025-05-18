@@ -95,55 +95,12 @@ struct MapContainerView: View {
                         Spacer()
                         
                         Button {
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                presentFullScreen = true
-                            }
+                            mapState.showAllStarts = true
                             
                         } label: {
-                            Text("full screen")
+                            Text("all starts")
                         }
                         
-//                        if mapState.presentProblemDetails && !mapState.anyStartSelected {
-//                            HStack {
-//                                Text(mapState.selectedProblem.localizedName)
-//                                    .font(.body.weight(.regular))
-//                                
-//                                Spacer()
-//                                HStack(spacing: 8) {
-//                                    Button {
-//                                        
-//                                    } label: {
-//                                        Image(systemName: "ellipsis")
-////                                            .font(.caption.weight(.semibold))
-//                                            .font(.body.weight(.semibold))
-////                                            .padding(8)
-//                                            .foregroundColor(.gray)
-//                                            .frame(width: 24, height: 24)
-//                                            .background(Color(.systemGray5))
-//                                            .clipShape(Circle())
-//                                    }
-//                                    
-//                                    Button {
-//                                        mapState.showAllStarts = true
-//                                    } label: {
-//                                        Image(systemName: "xmark")
-////                                            .padding(8)
-////                                            .font(.caption.weight(.semibold))
-//                                            .font(.body.weight(.semibold))
-//                                            .foregroundColor(.gray)
-//                                            .frame(width: 24, height: 24)
-//                                            .background(Color(.systemGray5))
-//                                            .clipShape(Circle())
-//                                    }
-//                                }
-//                            }
-//                            
-//                            .padding(8)
-//                            .background{Color.white}
-//                            .clipShape(RoundedRectangle(cornerRadius: 8))
-//                            .padding(.horizontal, 8)
-////                            .padding(.bottom, 8)
-//                        }
                         
 //                        ZoomableScrollView(zoomScale: $zoomScale) {
 //                            TopoView(
@@ -154,11 +111,15 @@ struct MapContainerView: View {
 //                            )
                         if !presentFullScreen {
                             TopoView(
-//                                topo: mapState.selectedProblem.topo!,
+                                //                                topo: mapState.selectedProblem.topo!,
                                 problem: $mapState.selectedProblem,
                                 mapState: mapState,
-                                zoomScale: $zoomScale
-                            )
+                                zoomScale: $zoomScale,
+                                onBackgroundTap: {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                        presentFullScreen = true
+                                    }
+                                })
 //                            Image("yellow-circuit-start")
 //                                .resizable()
 //                                .aspectRatio(4/3, contentMode: .fit)
