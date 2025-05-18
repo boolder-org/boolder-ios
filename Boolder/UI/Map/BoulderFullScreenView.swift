@@ -46,7 +46,7 @@ struct BoulderFullScreenView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity) // greedy to take the full screen
 //                }
 //                .background(Color.white)
-//                .ignoresSafeArea()
+                .ignoresSafeArea()
                 
                 Button {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
