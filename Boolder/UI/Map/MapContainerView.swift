@@ -94,12 +94,12 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
-                        Button {
-                            mapState.showAllStarts = true
-                            
-                        } label: {
-                            Text("all starts")
-                        }
+//                        Button {
+//                            mapState.showAllStarts = true
+//                            
+//                        } label: {
+//                            Text("all starts")
+//                        }
                         
                         
 //                        ZoomableScrollView(zoomScale: $zoomScale) {
@@ -154,10 +154,14 @@ struct MapContainerView: View {
                                         presentFullScreen = true
                                     }
                                 }
+                                
+                                if abs(gesture.translation.width) > 20 {
+                                    mapState.showAllStarts = true
+                                }
                             }
                             .onEnded { gesture in
                                 isDragging = false
-                                let threshold: CGFloat = 20 // Adjust this value to change the snap threshold
+                                let threshold: CGFloat = 50 // Adjust this value to change the snap threshold
                                 
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                     if abs(gesture.translation.height) < threshold {
