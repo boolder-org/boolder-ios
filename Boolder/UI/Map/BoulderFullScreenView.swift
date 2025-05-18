@@ -78,6 +78,13 @@ struct BoulderFullScreenView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 }
             )
+            .onChange(of: zoomScale) { oldValue, newValue in
+                if newValue < 0.7 {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                        presentFullScreen = false
+                    }
+                }
+            }
     }
 }
 
