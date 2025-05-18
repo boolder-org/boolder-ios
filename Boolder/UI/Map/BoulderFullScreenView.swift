@@ -42,7 +42,7 @@ struct BoulderFullScreenView: View {
                     .frame(width: 400, height: 300)
 //                    .matchedTransitionSource(id: "photo", in: animation)
                     
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) // greedy to take the full screen
 //                }
 //                .background(Color.white)
 //                .ignoresSafeArea()
