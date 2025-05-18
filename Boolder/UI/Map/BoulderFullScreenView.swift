@@ -18,49 +18,41 @@ struct BoulderFullScreenView: View {
     var animation: Namespace.ID
     
     var body: some View {
-            ZStack(alignment: .topTrailing) {
-                Color.white
-                    .ignoresSafeArea()
-                
-//                ZoomableScrollView(zoomScale: $zoomScale) {
-//                    TopoView(
-//                        topo: mapState.selectedProblem.topo!,
-//                        problem: $mapState.selectedProblem,
-//                        mapState: mapState,
-//                        zoomScale: $zoomScale
-//                    )
-                TopoView(
-//                    topo: mapState.selectedProblem.topo!,
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState,
-                    zoomScale: $zoomScale
-                )
-//                Image("yellow-circuit-start")
-//                    .resizable()
-//                    .aspectRatio(4/3, contentMode: .fit)
+        Color.systemBackground
+            .ignoresSafeArea()
+            .overlay(
+                ZStack {
+                    
+                    
+//                    ZoomableScrollView(zoomScale: $zoomScale) {
+                        TopoView(
+                            //                    topo: mapState.selectedProblem.topo!,
+                            problem: $mapState.selectedProblem,
+                            mapState: mapState,
+                            zoomScale: $zoomScale
+                        )
+//                    }
                     
                     .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
                     .frame(maxWidth: .infinity)
-//                    .matchedTransitionSource(id: "photo", in: animation)
                     
                     .frame(maxWidth: .infinity, maxHeight: .infinity) // greedy to take the full screen
-//                }
-//                .background(Color.white)
-                .ignoresSafeArea()
-                
-                Button {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        presentFullScreen = false
+                    .ignoresSafeArea()
+                    
+                    Button {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            presentFullScreen = false
+                        }
+                        
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.primary)
+                            .padding(16)
                     }
-                   
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 28))
-                        .foregroundColor(.primary)
-                        .padding(16)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 }
-            }
-//        .navigationTransition(.zoom(sourceID: "photo", in: animation))
+            )
     }
 }
 
