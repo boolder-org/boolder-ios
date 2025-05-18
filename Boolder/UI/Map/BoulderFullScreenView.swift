@@ -54,29 +54,10 @@ struct BoulderFullScreenView: View {
                             }
                             .onEnded { gesture in
                                 isDragging = false
-                                let threshold: CGFloat = 20 // Adjust this value to change the snap threshold
                                 
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    if abs(gesture.translation.height) < threshold {
-                                        // Snap back if threshold not met
-                                        dragOffset = 0
-                                    } else {
-                                        // Snap to the direction of the drag
-//                                        dragOffset = gesture.translation.height > 0 ? threshold : -threshold
-                                        dragOffset = 0
-                                        
-                                        let verticalAmount = gesture.translation.height
-                                        if abs(verticalAmount) > threshold { // Threshold to avoid tiny movements
-                                            if verticalAmount > 0 {
-                                                // Sliding down
-                                                print("Sliding down: \(verticalAmount)")
-                                                presentFullScreen = false
-                                            } else {
-                                                // Sliding up
-                                                print("Sliding up: \(abs(verticalAmount))")
-//                                                presentFullScreen = true
-                                            }
-                                        }
+                                if abs(gesture.translation.height) >= 44 {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                        presentFullScreen = false
                                     }
                                 }
                             }
