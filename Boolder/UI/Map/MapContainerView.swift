@@ -148,6 +148,12 @@ struct MapContainerView: View {
                             .onChanged { gesture in
                                 isDragging = true
                                 dragOffset = gesture.translation.height
+                                
+                                if gesture.translation.height < -20 {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                        presentFullScreen = true
+                                    }
+                                }
                             }
                             .onEnded { gesture in
                                 isDragging = false
