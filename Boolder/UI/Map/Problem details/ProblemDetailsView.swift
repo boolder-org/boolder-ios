@@ -198,15 +198,15 @@ struct ProblemDetailsView: View {
                     TabView(selection: $currentPage) {
                         ForEach(problem.toposOnSameBoulder) { topo in
                             
-                            TopoView(
-                                topo: topo,
-                                problem: $problem,
-                                mapState: mapState,
-                                zoomScale: .constant(1.0)
-                            )
-                            .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                            .zIndex(10)
-                            .tag(topo.id) // use tag or id?
+//                            TopoView(
+//                                topo: topo,
+//                                problem: $problem,
+//                                mapState: mapState,
+//                                zoomScale: .constant(1.0)
+//                            )
+//                            .frame(width: geo.size.width, height: geo.size.width * 3/4)
+//                            .zIndex(10)
+//                            .tag(topo.id) // use tag or id?
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
