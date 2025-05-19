@@ -81,6 +81,7 @@ struct MapContainerView: View {
                     
                     fabButtons
                         .zIndex(10)
+                        .opacity(mapState.presentProblemDetails ? 0 : 1)
                     
                     SearchView(mapState: mapState)
                         .zIndex(20)
@@ -118,7 +119,7 @@ struct MapContainerView: View {
                                 }
                                 .scrollTargetLayout()
                             }
-                            .contentMargins(8, for: .scrollContent)
+                            .contentMargins(.horizontal, 8, for: .scrollContent)
                             .scrollTargetBehavior(.viewAligned)
 //                            .onScrollPhaseChange { old, new, context in
 //                                print("phase change")
@@ -227,15 +228,15 @@ struct MapContainerView: View {
     }
 
     func tapOnBackground() {
-        withAnimation(.easeIn(duration: 0.5)) {
+//        withAnimation(.easeIn(duration: 0.5)) {
             showTopoButtons = true
-        }
+//        }
         
         // Hide buttons after 2 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            withAnimation(.easeOut(duration: 0.5)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            withAnimation(.easeOut(duration: 0.5)) {
                 showTopoButtons = false
-            }
+//            }
         }
         
         mapState.showAllStarts = true
