@@ -34,7 +34,7 @@ struct BoulderFullScreenView: View {
                             mapState: mapState,
                             zoomScale: $zoomScale,
                             onBackgroundTap: {
-                                // do something?
+                                mapState.showAllStarts = true
                             }
                         )
                     }

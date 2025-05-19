@@ -33,6 +33,18 @@ struct MapContainerView: View {
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging = false
     
+    func tapOnBackground() {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            mapState.showAllStarts = true
+        }
+    }
+    
+    func animatePresentFullScreen() {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            presentFullScreen = true
+        }
+    }
+    
     var body: some View {
             ZStack {
                 mapbox
@@ -112,42 +124,20 @@ struct MapContainerView: View {
                         if !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
-                                    TopoView(
-                                        //                                topo: mapState.selectedProblem.topo!,
-                                        problem: $mapState.selectedProblem,
-                                        mapState: mapState,
-                                        zoomScale: $zoomScale,
-                                        onBackgroundTap: {
-                                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                                presentFullScreen = true
-                                            }
-                                        })
-                                    
-                                    .matchedGeometryEffect(id: "photo", in: animation)
-                                    .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-//                                    .aspectRatio(4/3, contentMode: .fit)
-                                    
-                                    TopoView(
-                                        //                                topo: mapState.selectedProblem.topo!,
-                                        problem: $mapState.selectedProblem,
-                                        mapState: mapState,
-                                        zoomScale: $zoomScale,
-                                        onBackgroundTap: {
-                                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                                presentFullScreen = true
-                                            }
-                                        })
-                                    
-                                    .matchedGeometryEffect(id: "photo2", in: animation)
-                                    .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-//                                    .aspectRatio(4/3, contentMode: .fit)
+                                    topoViewWithButtons
                                 }
                                 .scrollTargetLayout()
                             }
                             .contentMargins(8, for: .scrollContent)
                             .scrollTargetBehavior(.viewAligned)
+//                            .onScrollPhaseChange { old, new, context in
+//                                print("phase change")
+////                                print(new)
+////                                print(context)
+//                                if new == .interacting {
+//                                    mapState.showAllStarts = true
+//                                }
+//                            }
                         } else {
                             Rectangle()
                             .background(Color.gray)
@@ -166,9 +156,7 @@ struct MapContainerView: View {
                                 dragOffset = gesture.translation.height
                                 
                                 if gesture.translation.height < -20 {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                        presentFullScreen = true
-                                    }
+                                    animatePresentFullScreen()
                                 }
                                 
                                 if abs(gesture.translation.width) > 20 {
@@ -207,9 +195,7 @@ struct MapContainerView: View {
                     .simultaneousGesture(
                         MagnificationGesture()
                             .onChanged { scale in
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    presentFullScreen = true
-                                }
+                                animatePresentFullScreen()
                             }
 //                            .onEnded { scale in
 //                                presentFullScreen = true
@@ -247,6 +233,51 @@ struct MapContainerView: View {
                     mapState.presentAreaView = false
                 }
             }
+        
+    }
+    
+    var topoViewWithButtons: some View {
+        TopoView(
+            //                                topo: mapState.selectedProblem.topo!,
+            problem: $mapState.selectedProblem,
+            mapState: mapState,
+            zoomScale: $zoomScale,
+            onBackgroundTap: {
+                tapOnBackground()
+            })
+        
+        .matchedGeometryEffect(id: "photo", in: animation)
+        .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay {
+            HStack {
+                Button {
+                    animatePresentFullScreen()
+                } label: {
+                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                        .padding(8)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                        .padding(8)
+                }
+                
+                Spacer()
+                
+                Button {
+                    mapState.presentProblemDetails = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                        .padding(8)
+                        .background(.ultraThinMaterial, in: Circle())
+                        .padding(8)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+//                                    .aspectRatio(4/3, contentMode: .fit)
         
     }
     
