@@ -70,9 +70,11 @@ struct BoulderFullScreenView: View {
                         }
                         
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 28))
+                        Image(systemName: "xmark")
+                            .font(.headline)
                             .foregroundColor(.primary)
+                            .padding(8)
+                            .background(.ultraThinMaterial, in: Circle())
                             .padding(16)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
