@@ -33,18 +33,8 @@ struct MapContainerView: View {
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging = false
     
-    func tapOnBackground() {
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            mapState.showAllStarts = true
-        }
-    }
-    
-    func animatePresentFullScreen() {
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-            presentFullScreen = true
-        }
-    }
-    
+    @State private var showTopoButtons = false
+
     var body: some View {
             ZStack {
                 mapbox
@@ -235,6 +225,27 @@ struct MapContainerView: View {
             }
         
     }
+
+    func tapOnBackground() {
+        withAnimation(.easeIn(duration: 0.5)) {
+            showTopoButtons = true
+        }
+        
+        // Hide buttons after 2 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            withAnimation(.easeOut(duration: 0.5)) {
+                showTopoButtons = false
+            }
+        }
+        
+        mapState.showAllStarts = true
+    }
+    
+    func animatePresentFullScreen() {
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            presentFullScreen = true
+        }
+    }
     
     var topoViewWithButtons: some View {
         TopoView(
@@ -276,6 +287,7 @@ struct MapContainerView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .opacity(showTopoButtons ? 1 : 0)
         }
 //                                    .aspectRatio(4/3, contentMode: .fit)
         
