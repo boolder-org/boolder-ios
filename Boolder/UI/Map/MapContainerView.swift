@@ -110,28 +110,44 @@ struct MapContainerView: View {
 //                                zoomScale: $zoomScale
 //                            )
                         if !presentFullScreen {
-                            TopoView(
-                                //                                topo: mapState.selectedProblem.topo!,
-                                problem: $mapState.selectedProblem,
-                                mapState: mapState,
-                                zoomScale: $zoomScale,
-                                onBackgroundTap: {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                        presentFullScreen = true
-                                    }
-                                })
-//                            Image("yellow-circuit-start")
-//                                .resizable()
-//                                .aspectRatio(4/3, contentMode: .fit)
-                                
-                                .matchedGeometryEffect(id: "photo", in: animation)
-                                .frame(maxWidth: .infinity)
-                            //                            .matchedTransitionSource(id: "photo", in: animation)
-                            //                        }
-//                                .background(Color.gray)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .aspectRatio(4/3, contentMode: .fit)
-                                .padding(.horizontal, 8)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    TopoView(
+                                        //                                topo: mapState.selectedProblem.topo!,
+                                        problem: $mapState.selectedProblem,
+                                        mapState: mapState,
+                                        zoomScale: $zoomScale,
+                                        onBackgroundTap: {
+                                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                                presentFullScreen = true
+                                            }
+                                        })
+                                    
+                                    .matchedGeometryEffect(id: "photo", in: animation)
+                                    .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+//                                    .aspectRatio(4/3, contentMode: .fit)
+                                    
+                                    TopoView(
+                                        //                                topo: mapState.selectedProblem.topo!,
+                                        problem: $mapState.selectedProblem,
+                                        mapState: mapState,
+                                        zoomScale: $zoomScale,
+                                        onBackgroundTap: {
+                                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                                presentFullScreen = true
+                                            }
+                                        })
+                                    
+                                    .matchedGeometryEffect(id: "photo2", in: animation)
+                                    .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+//                                    .aspectRatio(4/3, contentMode: .fit)
+                                }
+                                .scrollTargetLayout()
+                            }
+                            .contentMargins(8, for: .scrollContent)
+                            .scrollTargetBehavior(.viewAligned)
                         } else {
                             Rectangle()
                             .background(Color.gray)
