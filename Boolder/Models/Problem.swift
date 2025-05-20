@@ -100,7 +100,7 @@ struct Problem : Identifiable {
             return UIColor.black
         }
         else {
-            return UIColor.black
+            return UIColor.white
         }
     }
     
