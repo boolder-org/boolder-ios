@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct BoulderFullScreenView: View {
+    @Environment(\.openURL) var openURL
+    
     @State private var zoomScale: CGFloat = 1
 //    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
@@ -89,50 +91,55 @@ struct BoulderFullScreenView: View {
                     .padding(.top, 16)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     
-                    HStack(spacing: 16) {
-                        Spacer()
-                        
-                        Button {
-                            // TODO: Implement share functionality
-                        } label: {
-                            Image(systemName: "bookmark")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .padding(8)
-                                .padding(.horizontal, 2)
-                                .background(.ultraThinMaterial, in: Circle())
-                        }
-                        
-                        
-                        
-                        Button {
-                            // TODO: Implement share functionality
-                        } label: {
-                            HStack(spacing: 4) {
-                                Image(systemName: "arrow.up.forward.app")
-                                Text("Bleau.info")
+                    if !mapState.anyStartSelected {
+                        HStack(spacing: 16) {
+                            Spacer()
+                            
+                            Button {
+                                // TODO
+                            } label: {
+                                Image(systemName: "bookmark")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                    .padding(8)
+                                    .padding(.horizontal, 2)
+                                    .background(.ultraThinMaterial, in: Circle())
                             }
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .padding(8)
-                                .background(.ultraThinMaterial, in: Capsule())
+                            
+                            
+                            let problem = mapState.selectedProblem
+                            if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                                Button {
+                                    openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                                } label: {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "arrow.up.forward.app")
+                                        Text("Bleau.info")
+                                    }
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                    .padding(8)
+                                    .background(.ultraThinMaterial, in: Capsule())
+                                }
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "square.and.arrow.up")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                    .padding(8)
+                                    .background(.ultraThinMaterial, in: Circle())
+                            }
+                            
+                            
+                            Spacer()
                         }
-                        
-                        Button {
-                            // TODO: Implement share functionality
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .padding(8)
-                                .background(.ultraThinMaterial, in: Circle())
-                        }
-                        
-                        Spacer()
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 16)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     
 //                    .background(
 //                        Rectangle()
