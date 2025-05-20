@@ -20,38 +20,31 @@ struct GradeBadgeView: View {
     var scaleEffect: CGFloat = 1.0
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                .fill(Color(color))
-//                .fill(.white)
-                .modifier(DropShadow(visible: showShadow))
-            HStack(spacing: 0) {
-                Text(number)
-                
-                //                .foregroundColor(Color(color))
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .foregroundColor(Color(readableColor()))
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-                    .overlay(
-                        RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
-                            .stroke(Color(UIColor.systemGray3), lineWidth: 1)
-                            .frame(width: height, height: height)
-                            .opacity(showStroke ? 1.0 : 0.0)
-                    )
-                    .frame(width: height-2, height: height-2)
-                
-//                if sitStart {
-////                    Image(systemName: "figure.rower")
-//                    Image(systemName: "arrow.down")
-//                        .font(.caption)
-//                        .foregroundColor(Color(readableColor()))
-//                }
-            }
-        }
-        .scaleEffect(0.7)
-        .frame(width: height, height: height)
+        Text(number)
+        
+        //                .foregroundColor(Color(color))
+            .font(.caption)
+            .fontWeight(.regular)
+            .foregroundColor(Color(readableColor()))
+//            .minimumScaleFactor(0.5)
+//            .lineLimit(1)
+            .padding(2)
+            .background(
+                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                    .fill(Color(color))
+    //                .fill(.white)
+                    .modifier(DropShadow(visible: showShadow))
+                )
+            .overlay(
+                RoundedRectangle(cornerSize: CGSize(width: 5, height: 5))
+                    .stroke(Color(UIColor.systemGray3), lineWidth: 1)
+//                    .frame(width: height, height: height)
+                    .opacity(showStroke ? 1.0 : 0.0)
+            )
+//            .frame(width: height-2, height: height-2)
+        
+        .scaleEffect(0.9)
+//        .frame(width: height, height: height)
     }
     
     func readableColor() -> UIColor {
