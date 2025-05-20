@@ -34,6 +34,8 @@ struct MapContainerView: View {
     @State private var isDragging = false
     
     @State private var showTopoButtons = false
+    
+    @Environment(\.openURL) var openURL
 
     var body: some View {
             ZStack {
@@ -103,6 +105,49 @@ struct MapContainerView: View {
 //                        } label: {
 //                            Text("all starts")
 //                        }
+                        
+                        if false { // !mapState.anyStartSelected && problem != Problem.empty  && problem.sitStart {
+                            
+                            HStack {
+                                HStack {
+                                    Image(systemName: "figure.rower")
+                                    Text("problem.sit_start")
+                                        .font(.body)
+                                }
+                                
+                                Spacer()
+                                
+                                Button(action: {
+                                    openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                                }) {
+                                    HStack(alignment: .center, spacing: 8) {
+                                        Image(systemName: "arrow.up.forward.app") //Image(systemName: "info")
+                                        Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+                                    }
+                                    .font(.body)
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 8)
+                                }
+//                                .buttonStyle(Pill(fill: true))
+                                
+                                Button(action: {
+
+                                }) {
+                                    HStack(alignment: .center, spacing: 8) {
+                                        Image(systemName: "square.and.arrow.up")
+//                                        Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+                                    }
+                                    .font(.body)
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 8)
+                                }
+//                                .buttonStyle(Pill(fill: true))
+                            }
+                            .padding(8)
+                            .background(Color.systemBackground)
+                            .clipShape(.rect(cornerRadius: 8))
+                            .padding(.horizontal, 8)
+                        }
                         
                         
 //                        ZoomableScrollView(zoomScale: $zoomScale) {
@@ -266,11 +311,18 @@ struct MapContainerView: View {
                 Button {
                     animatePresentFullScreen()
                 } label: {
-                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+//                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+//                        .font(.headline)
+//                        .foregroundColor(.primary)
+//                        .padding(8)
+//                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+//                        .padding(8)
+                    Image(systemName: "chevron.up")
                         .font(.headline)
+                        .frame(width: 16, height: 16)
                         .foregroundColor(.primary)
                         .padding(8)
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                        .background(.ultraThinMaterial, in: Circle())
                         .padding(8)
                 }
                 
@@ -281,6 +333,7 @@ struct MapContainerView: View {
                 } label: {
                     Image(systemName: "xmark")
                         .font(.headline)
+                        .frame(width: 16, height: 16)
                         .foregroundColor(.primary)
                         .padding(8)
                         .background(.ultraThinMaterial, in: Circle())
@@ -288,7 +341,7 @@ struct MapContainerView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .opacity(showTopoButtons ? 1 : 0)
+//            .opacity(showTopoButtons ? 1 : 0)
         }
 //                                    .aspectRatio(4/3, contentMode: .fit)
         

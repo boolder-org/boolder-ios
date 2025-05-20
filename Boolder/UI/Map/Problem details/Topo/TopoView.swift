@@ -53,7 +53,7 @@ struct TopoView: View {
                             if problem.sitStart && !mapState.anyStartSelected {
                                 HStack {
                                     Image(systemName: "figure.rower")
-                                    Text("problem.sit_start")
+                                    Text("assis")
 //                                        .font(.body)
                                         
                                 }
