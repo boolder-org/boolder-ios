@@ -69,21 +69,99 @@ struct BoulderFullScreenView: View {
                             }
                     )
                     
-                    Button {
-                        // we use a bigger dampingFraction to avoid a weird bug with zoomableScrollView
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                            presentFullScreen = false
+                    
+                    HStack {
+                        Button {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                                presentFullScreen = false
+                            }
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(8)
+                                .background(.ultraThinMaterial, in: Circle())
                         }
                         
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                            .padding(8)
-                            .background(.ultraThinMaterial, in: Circle())
-                            .padding(16)
+                        Spacer()
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    
+                    HStack(spacing: 16) {
+                        Spacer()
+                        
+                        Button {
+                            // TODO: Implement share functionality
+                        } label: {
+                            Image(systemName: "bookmark")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(8)
+                                .padding(.horizontal, 2)
+                                .background(.ultraThinMaterial, in: Circle())
+                        }
+                        
+                        
+                        
+                        Button {
+                            // TODO: Implement share functionality
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "arrow.up.forward.app")
+                                Text("Bleau.info")
+                            }
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(8)
+                                .background(.ultraThinMaterial, in: Capsule())
+                        }
+                        
+                        Button {
+                            // TODO: Implement share functionality
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(8)
+                                .background(.ultraThinMaterial, in: Circle())
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    
+//                    .background(
+//                        Rectangle()
+//                            .fill(.ultraThinMaterial)
+//                            .frame(height: 60)
+//                            .overlay(
+//                                Rectangle()
+//                                    .frame(height: 0.5)
+//                                    .foregroundColor(.secondary.opacity(0.3)),
+//                                alignment: .bottom
+//                            )
+//                    )
+                    
+                    
+//                    Button {
+//                        // we use a bigger dampingFraction to avoid a weird bug with zoomableScrollView
+//                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+//                            presentFullScreen = false
+//                        }
+//                        
+//                    } label: {
+//                        Image(systemName: "xmark")
+//                            .font(.headline)
+//                            .foregroundColor(.primary)
+//                            .padding(8)
+//                            .background(.ultraThinMaterial, in: Circle())
+//                            .padding(16)
+//                    }
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 }
             )
             .onChange(of: zoomScale) { oldValue, newValue in
