@@ -187,7 +187,7 @@ struct TopoView: View {
                                             
                                         }
                                         .foregroundColor(Color(problem.readableColor))
-                                        .font(.caption)
+                                        .font(.callout)
                                         .padding(.horizontal, 4)
                                         .padding(.vertical, 2)
                                         .background { Color(p.circuitUIColor)}
@@ -200,7 +200,7 @@ struct TopoView: View {
                                     //                                            .frame(width: 80, height: 32)
                                     .scaleEffect(1/zoomScaleAdapted)
                                     .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
-                                    .offset(x: 0, y: -16)
+                                    .offset(x: 0, y: -24/zoomScaleAdapted)
                                     .zIndex(.infinity)
                                     
                                     
@@ -219,7 +219,7 @@ struct TopoView: View {
                                     Text("\(p.localizedName)")
                                 }
                                 .foregroundColor(Color(problem.readableColor))
-                                .font(.caption)
+                                .font(.callout)
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 2)
                                 .background { Color(p.circuitUIColor) }
@@ -228,7 +228,7 @@ struct TopoView: View {
                                 
                                 .scaleEffect(1/zoomScaleAdapted)
                                 .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
-                                .offset(x: 0, y: -16)
+                                .offset(x: 0, y: -24/zoomScaleAdapted)
                                 .zIndex(.infinity)
                                 .onTapGesture {
                                     mapState.selectProblem(p)

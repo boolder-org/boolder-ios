@@ -23,7 +23,7 @@ struct GradeBadgeView: View {
         Text(number)
         
         //                .foregroundColor(Color(color))
-            .font(.caption)
+            .font(.callout)
             .fontWeight(.regular)
             .foregroundColor(Color(readableColor()))
 //            .minimumScaleFactor(0.5)
