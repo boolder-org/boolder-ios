@@ -106,40 +106,32 @@ struct MapContainerView: View {
 //                            Text("all starts")
 //                        }
                         
-                        if false { // !mapState.anyStartSelected && problem != Problem.empty  && problem.sitStart {
+                        if false { //} !mapState.anyStartSelected && problem != Problem.empty {
                             
                             HStack {
+                                Spacer()
+                                
                                 HStack {
-                                    Image(systemName: "figure.rower")
-                                    Text("problem.sit_start")
+                                    Text(problem.localizedName)
+                                        .font(.body)
+                                    
+                                    Text(problem.grade.string)
                                         .font(.body)
                                 }
                                 
                                 Spacer()
                                 
                                 Button(action: {
-                                    openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-                                }) {
-                                    HStack(alignment: .center, spacing: 8) {
-                                        Image(systemName: "arrow.up.forward.app") //Image(systemName: "info")
-                                        Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
-                                    }
-                                    .font(.body)
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal, 8)
-                                }
-//                                .buttonStyle(Pill(fill: true))
-                                
-                                Button(action: {
 
                                 }) {
                                     HStack(alignment: .center, spacing: 8) {
-                                        Image(systemName: "square.and.arrow.up")
+                                        Image(systemName: "ellipsis")
 //                                        Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
                                     }
-                                    .font(.body)
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal, 8)
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                    .padding(8)
+                                    .background(Color.gray.opacity(0.5), in: Circle())
                                 }
 //                                .buttonStyle(Pill(fill: true))
                             }
@@ -308,36 +300,50 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay {
             HStack {
-                Button {
-                    animatePresentFullScreen()
-                } label: {
-//                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+//                Button {
+//                    animatePresentFullScreen()
+//                } label: {
+////                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+////                        .font(.headline)
+////                        .foregroundColor(.primary)
+////                        .padding(8)
+////                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+////                        .padding(8)
+//                    Image(systemName: "chevron.up")
 //                        .font(.headline)
+//                        .frame(width: 12, height: 12)
 //                        .foregroundColor(.primary)
 //                        .padding(8)
-//                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+//                        .background(.ultraThinMaterial, in: Circle())
 //                        .padding(8)
-                    Image(systemName: "chevron.up")
-                        .font(.headline)
-                        .frame(width: 16, height: 16)
-                        .foregroundColor(.primary)
-                        .padding(8)
-                        .background(.ultraThinMaterial, in: Circle())
-                        .padding(8)
-                }
+//                }
                 
                 Spacer()
                 
-                Button {
-                    mapState.presentProblemDetails = false
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.headline)
-                        .frame(width: 16, height: 16)
-                        .foregroundColor(.primary)
-                        .padding(8)
-                        .background(.ultraThinMaterial, in: Circle())
-                        .padding(8)
+//                Button {
+//                    mapState.presentProblemDetails = false
+//                } label: {
+//                    Image(systemName: "xmark")
+//                        .font(.headline)
+//                        .frame(width: 16, height: 16)
+//                        .foregroundColor(.primary)
+//                        .padding(8)
+//                        .background(.ultraThinMaterial, in: Circle())
+//                        .padding(8)
+//                }
+                
+                if !mapState.anyStartSelected && problem != Problem.empty {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.headline)
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.primary)
+                            .padding(8)
+                            .background(.ultraThinMaterial, in: Circle())
+                            .padding(8)
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

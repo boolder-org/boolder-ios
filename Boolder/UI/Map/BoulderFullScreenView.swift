@@ -114,7 +114,7 @@ struct BoulderFullScreenView: View {
                                     openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
                                 } label: {
                                     HStack(spacing: 4) {
-                                        Image(systemName: "arrow.up.forward.app")
+                                        Image(systemName: "info") // Image(systemName: "arrow.up.forward.app")
                                         Text("Bleau.info")
                                     }
                                     .font(.headline)
