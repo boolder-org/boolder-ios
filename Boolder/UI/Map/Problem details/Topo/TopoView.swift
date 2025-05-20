@@ -186,7 +186,7 @@ struct TopoView: View {
                                             Image(systemName: "chevron.down")
                                             
                                         }
-                                        .foregroundColor(.white)
+                                        .foregroundColor(Color(problem.readableColor))
                                         .font(.caption)
                                         .padding(.horizontal, 4)
                                         .padding(.vertical, 2)
@@ -218,7 +218,7 @@ struct TopoView: View {
                                 HStack {
                                     Text("\(p.localizedName)")
                                 }
-                                .foregroundColor(.white)
+                                .foregroundColor(Color(problem.readableColor))
                                 .font(.caption)
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 2)

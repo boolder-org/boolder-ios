@@ -95,6 +95,15 @@ struct Problem : Identifiable {
         return Double(popularity ?? 0) + bonusCircuit + tiebreaker
     }
     
+    var readableColor: UIColor {
+        if circuitColor == Circuit.CircuitColor.white {
+            return UIColor.black
+        }
+        else {
+            return UIColor.black
+        }
+    }
+    
     func distance(to other: Line.PhotoPercentCoordinate) -> Double {
         if let point = lineFirstPoint {
             return point.distance(to: other)

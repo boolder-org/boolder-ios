@@ -47,6 +47,7 @@ struct GradeBadgeView: View {
 //        .frame(width: height, height: height)
     }
     
+    // TODO: extract to CircuitColor
     func readableColor() -> UIColor {
         if color == Circuit.CircuitColor.white.uicolor {
             return .black
