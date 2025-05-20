@@ -19,7 +19,7 @@ struct LineView: View {
             .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk
             .stroke(
                 Color(problem.circuitUIColorForPhotoOverlay),
-                style: StrokeStyle(lineWidth: 4/pinchToZoomScale, lineCap: .round, lineJoin: .round)
+                style: StrokeStyle(lineWidth: 4/(pinchToZoomScale/2 + 0.5), lineCap: .round, lineJoin: .round)
             )
             .modifier(DropShadow())
     }
