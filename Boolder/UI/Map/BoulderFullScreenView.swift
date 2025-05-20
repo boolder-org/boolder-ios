@@ -55,9 +55,15 @@ struct BoulderFullScreenView: View {
                             .onEnded { gesture in
                                 isDragging = false
                                 
-                                if abs(gesture.translation.height) >= 44 {
+                                
+                                if abs(gesture.translation.height) >= 80 {
                                     withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
                                         presentFullScreen = false
+                                    }
+                                }
+                                else {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                                        dragOffset = 0
                                     }
                                 }
                             }
