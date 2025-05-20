@@ -50,7 +50,25 @@ struct TopoView: View {
                             //                                            }
                             
                             
-                            
+                            if problem.sitStart && !mapState.anyStartSelected {
+                                HStack {
+                                    Image(systemName: "figure.rower")
+                                    Text("problem.sit_start")
+//                                        .font(.body)
+                                        
+                                }
+                                .foregroundColor(.primary.opacity(0.8))
+                                .font(.caption)
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 2)
+//                                .background { Color(problem.circuitUIColor) }
+//                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
+                                .scaleEffect(1/zoomScaleAdapted)
+                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                .offset(x: 0, y: 28/zoomScaleAdapted)
+                                .zIndex(.infinity)
+                            }
                             
                         }
                     }
@@ -172,11 +190,9 @@ struct TopoView: View {
                                         .font(.caption)
                                         .padding(.horizontal, 4)
                                         .padding(.vertical, 2)
-                                        .background {
-                                            Color(p.circuitUIColor)
-                                            
-                                        }
+                                        .background { Color(p.circuitUIColor)}
                                         .clipShape(RoundedRectangle(cornerRadius: 4))
+//                                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
                                         //                                                .contentShape(Rectangle())
                                         //                                                .frame(width: 80, height: 32)
                                     }
@@ -206,11 +222,9 @@ struct TopoView: View {
                                 .font(.caption)
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 2)
-                                .background {
-                                    Color(p.circuitUIColor)
-                                    
-                                }
+                                .background { Color(p.circuitUIColor) }
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
+//                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
                                 
                                 .scaleEffect(1/zoomScaleAdapted)
                                 .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height)
