@@ -92,6 +92,7 @@ struct TopoView: View {
                         ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
                             if p.showLine {
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
+                                    .zIndex(p == problem ? 90000 : p.zIndex)
                                 //                                    .opacity(showAllLines ? 1 : 0.7)
                                 //                                                .opacity(0.5)
                                     .onTapGesture {
@@ -105,7 +106,7 @@ struct TopoView: View {
                         if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
                             if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
                                 
-                                let array = problems.sorted{$0.zIndex > $1.zIndex}
+                                let array = problems.sorted{$0.zIndex > $1.zIndex || $0 == problem}
                                 
                                 ZStack {
                                     ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(10)
@@ -114,14 +115,16 @@ struct TopoView: View {
                                     //                                                    .stroke(Color(UIColor.black).opacity(0.7), lineWidth: 2)
                                     //                                                    .frame(width: 20, height: 20)
                                     //                                            )
-                                    //                                        ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
-                                    //                                            .scaleEffect(1.2)
-                                    //                                            .offset(x: 3, y: 3)
-                                    //                                            .offset(x: xOffset, y: yOffset)
-                                    //                                            .animation(.easeOut(duration: 0.1), value: motion.roll)
+                                    ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
+                                        .shadow(color: Color.black.opacity(0.5), radius: 5)
+                                        .scaleEffect(0.9)
+                                        .offset(x: 0, y: 3)
+//                                        .offset(x: xOffset, y: yOffset)
+//                                        .animation(.easeOut(duration: 0.1), value: motion.roll)
                                 }
                                 .scaleEffect(1/zoomScaleAdapted)
                                 .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                .zIndex(array[0] == problem ? 100000 : array[0].zIndex+10)
                                 .onTapGesture {
                                     // TODO: use the start parent
                                     if let startId = group.startId, let start = Problem.load(id: startId) {
@@ -148,7 +151,7 @@ struct TopoView: View {
                                 //                                            .offset(x: Double((i-(offseeet ?? 0))*4), y: 0)
                                 //                                                .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
                                 
-                                    .zIndex(p == problem ? .infinity : p.zIndex)
+                                    .zIndex(p == problem ? 100000 : p.zIndex+10)
                                     .onTapGesture {
                                         mapState.selectProblem(p)
                                     }
