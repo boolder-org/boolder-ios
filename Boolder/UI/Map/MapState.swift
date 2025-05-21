@@ -34,6 +34,26 @@ class MapState : ObservableObject {
     @Published var presentCircuitPicker = false
     @Published var displayCircuitStartButton = false
     
+    enum Selection {
+        case none
+        case topo(topoId: Int)
+        case start(startId: Int)
+        case problem(problemId: Int)
+        
+//        var label: String {
+//            switch self {
+//            case .downloaded:
+//                "downloaded"
+//            case .initial:
+//                "-"
+//            case .downloading(progress: let progress):
+//                "\(Int(progress*100))%"
+//            case .queued:
+//                "queued"
+//            }
+//        }
+    }
+    
     func centerOnArea(_ area: Area) {
         centerOnArea = area
     }
