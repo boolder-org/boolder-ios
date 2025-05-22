@@ -242,6 +242,10 @@ struct BoulderFullScreenView: View {
                                 Text(p.grade.string)
                                 
                             }
+                            .onTapGesture {
+                                sheetPresented = false
+                                mapState.selectProblem(p)
+                            }
                         }
                     }
                 }
