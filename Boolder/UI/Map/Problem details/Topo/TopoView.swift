@@ -66,7 +66,7 @@ struct TopoView: View {
                                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
                                 .scaleEffect(1/zoomScaleAdapted)
                                 .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                .offset(x: 0, y: (problem.isCircuit ? 20 : 20)/zoomScaleAdapted)
+                                .offset(x: 0, y: (problem.isCircuit ? 28 : 24)/zoomScaleAdapted)
                                 .zIndex(.infinity)
                             }
                             
@@ -105,7 +105,7 @@ struct TopoView: View {
                     ForEach(problems.indices, id: \.self) { (i: Int) in
                         let p = problems[i]
                         
-                        if !mapState.showAllStarts && p.id != problem.id && p.startId != problem.startId {
+                        if true { //}!mapState.showAllStarts { // }&& p.id != problem.id && p.startId != problem.startId {
                         
                             if let line = p.line, let firstPoint = line.firstPoint {
                                 ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
