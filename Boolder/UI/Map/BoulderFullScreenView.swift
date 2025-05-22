@@ -22,6 +22,8 @@ struct BoulderFullScreenView: View {
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging = false
     
+    @State private var sheetPresented = false
+    
     var body: some View {
         Color.systemBackground
             .opacity(Double(1 - min(abs(dragOffset) / 500, 1)))
@@ -141,6 +143,36 @@ struct BoulderFullScreenView: View {
                         .padding(.bottom, 16)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     }
+                    else {
+                        HStack(spacing: 16) {
+                            Spacer()
+                            
+                            
+                            
+                            let problem = mapState.selectedProblem
+                            if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                                Button {
+                                    sheetPresented = true
+                                } label: {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "list.bullet") // Image(systemName: "arrow.up.forward.app")
+                                        Text("Liste")
+                                    }
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                    .padding(8)
+                                    .background(.ultraThinMaterial, in: Capsule())
+                                }
+                            }
+                            
+                            
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    }
                     
 //                    .background(
 //                        Rectangle()
@@ -179,6 +211,45 @@ struct BoulderFullScreenView: View {
                     }
                 }
             }
+            .sheet(isPresented: $sheetPresented) {
+                bottomSheet
+//                    .presentationDetents([Self.smallDetent, .medium, .large], selection: $selectedDetent)
+                    .presentationDetents([.medium, .large])
+//                    .presentationBackgroundInteraction(.enabled)
+            }
+    }
+    
+    @ViewBuilder
+    private var bottomSheet: some View {
+        if mapState.anyStartSelected {
+            if false { // selectedDetent == Self.smallDetent {
+                VStack {
+                    Text("xx problems")
+                    .padding(.horizontal)
+                }
+            }
+            else {
+                List {
+                    let problem = mapState.selectedProblem
+                    ForEach(problem.startGroups) { (group: StartGroup) in
+                        let problems = group.problemsToDisplay
+                        
+                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                            HStack {
+                                ProblemCircleView(problem: p)
+                                Text(p.localizedName)
+                                Spacer()
+                                Text(p.grade.string)
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            Text("N/A")
+        }
     }
 }
 

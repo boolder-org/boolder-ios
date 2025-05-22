@@ -451,7 +451,7 @@ struct MapContainerView: View {
         
     }
     
-    @State private var sheetPresented = false
+    
     
     var mapbox : some View {
         MapboxView(mapState: mapState)
@@ -464,18 +464,13 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .onChange(of: presentFullScreen) { old, newValue in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    sheetPresented = newValue
-                }
-            }
+//            .onChange(of: presentFullScreen) { old, newValue in
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    sheetPresented = newValue
+//                }
+//            }
         
-            .sheet(isPresented: $sheetPresented) {
-                bottomSheet
-//                    .presentationDetents([Self.smallDetent, .medium, .large], selection: $selectedDetent)
-                    .presentationDetents([.medium, .large], selection: $selectedDetent)
-//                    .presentationBackgroundInteraction(.enabled)
-            }
+
             
 //           .fullScreenCover(isPresented: $presentFullScreen) {
 //               BoulderFullScreenView(mapState: mapState, animation: animation)
@@ -510,37 +505,7 @@ struct MapContainerView: View {
     }
     
     
-    @ViewBuilder
-    private var bottomSheet: some View {
-        if mapState.anyStartSelected {
-            if false { // selectedDetent == Self.smallDetent {
-                VStack {
-                    Text("xx problems")
-                    .padding(.horizontal)
-                }
-            }
-            else {
-                List {
-                    ForEach(problem.startGroups) { (group: StartGroup) in
-                        let problems = group.problemsToDisplay
-                        
-                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
-                            HStack {
-                                ProblemCircleView(problem: p)
-                                Text(p.localizedName)
-                                Spacer()
-                                Text(p.grade.string)
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else {
-            Text("N/A")
-        }
-    }
+    
     
 //    var detent: PresentationDetent {
 //        if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
