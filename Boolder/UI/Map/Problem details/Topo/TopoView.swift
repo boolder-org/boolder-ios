@@ -66,7 +66,7 @@ struct TopoView: View {
                                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
                                 .scaleEffect(1/zoomScaleAdapted)
                                 .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                .offset(x: 0, y: 20/zoomScaleAdapted)
+                                .offset(x: 0, y: (problem.isCircuit ? 16 : 16)/zoomScaleAdapted)
                                 .zIndex(.infinity)
                             }
                             
@@ -102,67 +102,20 @@ struct TopoView: View {
                         }
                     }
                     
-                    
-                    
-                    if (problems.count >= 2) {
-                        if let problemToUseAsStart = (problems.firstIndex(of: problem) != nil) ? problem : problems.first {
-                            if let line = problemToUseAsStart.line, let firstPoint = line.firstPoint {
-                                
-                                let array = problems.sorted{$0.zIndex > $1.zIndex || $0 == problem }
-                                
-                                if true { //} !array[0].circuitNumber.isEmpty || (!mapState.showAllStarts && group.startId != problem.startId) {
-                                    
-                                    ZStack {
-                                        ProblemCircleView(problem: array[0], isDisplayedOnPhoto: true).zIndex(10)
-                                        //                                            .overlay(
-                                        //                                                Circle()
-                                        //                                                    .stroke(Color(UIColor.black).opacity(0.7), lineWidth: 2)
-                                        //                                                    .frame(width: 20, height: 20)
-                                        //                                            )
-                                        ProblemCircleView(problem: array[1], isDisplayedOnPhoto: true)
-                                            .shadow(color: Color.black.opacity(0.5), radius: 5)
-                                        //                                        .scaleEffect(0.9)
-                                            .offset(x: 0, y: -4)
-                                        //                                        .offset(x: xOffset, y: yOffset)
-                                        //                                        .animation(.easeOut(duration: 0.1), value: motion.roll)
-                                    }
+                    ForEach(problems.indices, id: \.self) { (i: Int) in
+                        let p = problems[i]
+                        
+                        if !mapState.showAllStarts && p.id != problem.id && p.startId != problem.startId {
+                        
+                            if let line = p.line, let firstPoint = line.firstPoint {
+                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                     .scaleEffect(1/zoomScaleAdapted)
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    .zIndex(array[0] == problem ? 100000 : array[0].zIndex+10000)
+                                    .zIndex(p == problem ? 100000 : p.zIndex+10000)
                                     .onTapGesture {
-                                        // TODO: use the start parent
-                                        if let startId = group.startId, let start = Problem.load(id: startId) {
-                                            mapState.selectStart(start)
-                                        }
+                                        mapState.selectStartOrProblem(p)
                                     }
-                                }
-                            
-                            }
-                        }
-                    }
-                    else  {
-                        ForEach(problems.indices, id: \.self) { (i: Int) in
-                            let p = problems[i]
-                            //                                    let offseeet = group.sortedProblems.firstIndex(of: problem)
-                            
-                            if true { // !p.circuitNumber.isEmpty || (!mapState.showAllStarts && group.startId != problem.startId) {
-                            
-                                if let line = p.line, let firstPoint = line.firstPoint {
-                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                        .scaleEffect(1/zoomScaleAdapted)
-                                    //                                            .scaleEffect(0.8)
-                                    //                                            .opacity(0.5)
-                                    //                                                .allowsHitTesting(false)
-                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    //                                            .offset(x: Double((i-(offseeet ?? 0))*4), y: 0)
-                                    //                                                .offset(x: (p.lineFirstPoint?.x == group.topProblem?.lineFirstPoint?.x && p.id != group.topProblem?.id) ? 4 : 0, y: 0)
-                                    
-                                        .zIndex(p == problem ? 100000 : p.zIndex+10000)
-                                        .onTapGesture {
-                                            mapState.selectProblem(p)
-                                        }
-                                    
-                                }
+                                
                             }
                         }
                     }
