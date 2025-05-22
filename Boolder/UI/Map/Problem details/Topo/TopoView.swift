@@ -66,7 +66,7 @@ struct TopoView: View {
                                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
                                 .scaleEffect(1/zoomScaleAdapted)
                                 .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                .offset(x: 0, y: (problem.isCircuit ? 16 : 16)/zoomScaleAdapted)
+                                .offset(x: 0, y: (problem.isCircuit ? 20 : 20)/zoomScaleAdapted)
                                 .zIndex(.infinity)
                             }
                             
