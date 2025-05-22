@@ -451,7 +451,7 @@ struct MapContainerView: View {
         
     }
     
-    @State private var sheetPresented = true
+    @State private var sheetPresented = false
     
     var mapbox : some View {
         MapboxView(mapState: mapState)
@@ -464,23 +464,17 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-//            .sheet(isPresented: $sheetPresented) {
-//                VStack {
-//                    if false { // mapState.selectedProblem != Problem.empty {
-//                        HStack {
-//                            Text(mapState.selectedProblem.localizedName)
-//                                .font(.title2.weight(.semibold))
-//                            Spacer()
-//                        }
-//                        .padding(.horizontal)
-//                    }
-//                    else {
-//                        Text("12 problems")
-//                    }
-//                }
-//                    .presentationDetents([.height(70), .large])
-//                    .presentationBackgroundInteraction(.enabled)
-//            }
+            .onChange(of: presentFullScreen) { old, newValue in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    sheetPresented = newValue
+                }
+            }
+        
+            .sheet(isPresented: $sheetPresented) {
+                bottomSheet
+                    .presentationDetents([.height(80), .medium, .large])
+                    .presentationBackgroundInteraction(.enabled)
+            }
             
 //           .fullScreenCover(isPresented: $presentFullScreen) {
 //               BoulderFullScreenView(mapState: mapState, animation: animation)
@@ -512,6 +506,37 @@ struct MapContainerView: View {
 //                }
 //            )
         
+    }
+    
+    @ViewBuilder
+    private var bottomSheet: some View {
+        if mapState.anyStartSelected {
+            List {
+                ForEach(problem.startGroups) { (group: StartGroup) in
+                    let problems = group.problemsToDisplay
+                    
+                    ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                        HStack {
+                            ProblemCircleView(problem: p)
+                            Text(p.localizedName)
+                            Spacer()
+                            Text(p.grade.string)
+                            
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            VStack {
+                HStack {
+                    Text(mapState.selectedProblem.localizedName)
+                        .font(.title2.weight(.semibold))
+                    Spacer()
+                }
+                .padding(.horizontal)
+            }
+        }
     }
     
 //    var detent: PresentationDetent {
