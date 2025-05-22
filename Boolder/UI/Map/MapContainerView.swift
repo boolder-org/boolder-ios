@@ -24,7 +24,7 @@ struct MapContainerView: View {
     
     @State private var selectedDetent: PresentationDetent = smallDetent
     static let maxDetent = PresentationDetent.fraction(0.90)
-    static let smallDetent = PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 96)
+    static let smallDetent = PresentationDetent.height(80) // PresentationDetent.height(UIScreen.main.bounds.width*3/4 + 96)
     
     @State private var zoomScale: CGFloat = 1
 
@@ -472,8 +472,9 @@ struct MapContainerView: View {
         
             .sheet(isPresented: $sheetPresented) {
                 bottomSheet
-                    .presentationDetents([.height(80), .medium, .large])
-                    .presentationBackgroundInteraction(.enabled)
+//                    .presentationDetents([Self.smallDetent, .medium, .large], selection: $selectedDetent)
+                    .presentationDetents([.medium, .large], selection: $selectedDetent)
+//                    .presentationBackgroundInteraction(.enabled)
             }
             
 //           .fullScreenCover(isPresented: $presentFullScreen) {
@@ -508,34 +509,36 @@ struct MapContainerView: View {
         
     }
     
+    
     @ViewBuilder
     private var bottomSheet: some View {
         if mapState.anyStartSelected {
-            List {
-                ForEach(problem.startGroups) { (group: StartGroup) in
-                    let problems = group.problemsToDisplay
-                    
-                    ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
-                        HStack {
-                            ProblemCircleView(problem: p)
-                            Text(p.localizedName)
-                            Spacer()
-                            Text(p.grade.string)
-                            
+            if false { // selectedDetent == Self.smallDetent {
+                VStack {
+                    Text("xx problems")
+                    .padding(.horizontal)
+                }
+            }
+            else {
+                List {
+                    ForEach(problem.startGroups) { (group: StartGroup) in
+                        let problems = group.problemsToDisplay
+                        
+                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                            HStack {
+                                ProblemCircleView(problem: p)
+                                Text(p.localizedName)
+                                Spacer()
+                                Text(p.grade.string)
+                                
+                            }
                         }
                     }
                 }
             }
         }
         else {
-            VStack {
-                HStack {
-                    Text(mapState.selectedProblem.localizedName)
-                        .font(.title2.weight(.semibold))
-                    Spacer()
-                }
-                .padding(.horizontal)
-            }
+            Text("N/A")
         }
     }
     
