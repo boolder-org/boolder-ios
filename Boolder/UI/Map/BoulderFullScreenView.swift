@@ -230,22 +230,17 @@ struct BoulderFullScreenView: View {
             }
             else {
                 List {
-                    let problem = mapState.selectedProblem
-                    ForEach(problem.startGroups) { (group: StartGroup) in
-                        let problems = group.problemsToDisplay
-                        
-                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
-                            HStack {
-                                ProblemCircleView(problem: p)
-                                Text(p.localizedName)
-                                Spacer()
-                                Text(p.grade.string)
-                                
-                            }
-                            .onTapGesture {
-                                sheetPresented = false
-                                mapState.selectProblem(p)
-                            }
+                    ForEach(mapState.selectedProblem.otherProblemsOnSameTopo.sorted{ $0.grade < $1.grade }) { p in
+                        HStack {
+                            ProblemCircleView(problem: p)
+                            Text(p.localizedName)
+                            Spacer()
+                            Text(p.grade.string)
+                            
+                        }
+                        .onTapGesture {
+                            sheetPresented = false
+                            mapState.selectProblem(p)
                         }
                     }
                 }
