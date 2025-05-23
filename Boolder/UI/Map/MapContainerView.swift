@@ -300,23 +300,27 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay {
             HStack {
-//                Button {
-//                    animatePresentFullScreen()
-//                } label: {
-////                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
-////                        .font(.headline)
-////                        .foregroundColor(.primary)
-////                        .padding(8)
-////                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
-////                        .padding(8)
-//                    Image(systemName: "chevron.up")
-//                        .font(.headline)
-//                        .frame(width: 12, height: 12)
-//                        .foregroundColor(.primary)
-//                        .padding(8)
-//                        .background(.ultraThinMaterial, in: Circle())
-//                        .padding(8)
-//                }
+                if mapState.showAllStarts {
+                    
+                    
+                    Button {
+                        animatePresentFullScreen()
+                    } label: {
+                        //                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+                        //                        .font(.headline)
+                        //                        .foregroundColor(.primary)
+                        //                        .padding(8)
+                        //                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                        //                        .padding(8)
+                        Image(systemName: "chevron.up")
+                            .font(.headline)
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.primary)
+                            .padding(8)
+                            .background(.ultraThinMaterial, in: Circle())
+                            .padding(8)
+                    }
+                }
                 
                 Spacer()
                 
