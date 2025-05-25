@@ -276,7 +276,12 @@ struct MapContainerView: View {
 //            }
         }
         
-        mapState.showAllStarts = true
+        if mapState.showAllStarts {
+            animatePresentFullScreen()
+        }
+        else {
+            mapState.showAllStarts = true
+        }
     }
     
     func animatePresentFullScreen() {
