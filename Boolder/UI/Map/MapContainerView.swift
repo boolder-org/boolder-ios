@@ -305,7 +305,7 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay {
             HStack {
-                if mapState.showAllStarts {
+                if true { // mapState.showAllStarts {
                     
                     
                     Button {
@@ -317,7 +317,9 @@ struct MapContainerView: View {
                         //                        .padding(8)
                         //                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
                         //                        .padding(8)
-                        Image(systemName: "chevron.up")
+                        
+                        Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+                        //Image(systemName: "chevron.up")
                             .font(.headline)
                             .frame(width: 12, height: 12)
                             .foregroundColor(.primary)
