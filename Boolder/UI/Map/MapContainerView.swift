@@ -341,19 +341,19 @@ struct MapContainerView: View {
 //                        .padding(8)
 //                }
                 
-                if !mapState.anyStartSelected && problem != Problem.empty {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.headline)
-                            .frame(width: 12, height: 12)
-                            .foregroundColor(.primary)
-                            .padding(8)
-                            .background(.ultraThinMaterial, in: Circle())
-                            .padding(8)
-                    }
-                }
+//                if !mapState.anyStartSelected && problem != Problem.empty {
+//                    Button {
+//                        
+//                    } label: {
+//                        Image(systemName: "ellipsis")
+//                            .font(.headline)
+//                            .frame(width: 12, height: 12)
+//                            .foregroundColor(.primary)
+//                            .padding(8)
+//                            .background(.ultraThinMaterial, in: Circle())
+//                            .padding(8)
+//                    }
+//                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 //            .opacity(showTopoButtons ? 1 : 0)
