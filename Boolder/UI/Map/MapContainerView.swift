@@ -30,6 +30,7 @@ struct MapContainerView: View {
 
     @State private var presentFullScreen = false
     @Namespace private var animation
+    @Namespace private var animationNil
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging = false
     
@@ -151,7 +152,7 @@ struct MapContainerView: View {
 //                                mapState: mapState,
 //                                zoomScale: $zoomScale
 //                            )
-                        if !presentFullScreen {
+                        if true { // !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 
                                 HStack {
@@ -253,11 +254,11 @@ struct MapContainerView: View {
                     .zIndex(40)
                 }
                     
-                if presentFullScreen {
+//                if presentFullScreen {
                     BoulderFullScreenView(mapState: mapState, presentFullScreen: $presentFullScreen, animation: animation)
-//                        .opacity(presentFullScreen ? 1 : 0)
+                        .opacity(presentFullScreen ? 1 : 0)
                         .zIndex(50)
-                }
+//                }
                 
             }
             .onChange(of: appState.selectedProblem) { newValue in
@@ -319,7 +320,7 @@ struct MapContainerView: View {
                 tapOnBackground()
             })
         
-        .matchedGeometryEffect(id: "topo-\(topo.id)", in: animation)
+//        .matchedGeometryEffect(id: "topo-\(topo.id)", in: presentFullScreen ? animation : animationNil, isSource: false)
         .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay {
