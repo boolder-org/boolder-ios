@@ -57,6 +57,7 @@ struct BoulderFullScreenView: View {
 //                        position.scrollTo(id: new.topoId)
 //                    }
                     .onAppear {
+                        print("on appear")
                         position.scrollTo(id: mapState.selectedProblem.topoId)
                     }
                     
@@ -81,7 +82,36 @@ struct BoulderFullScreenView: View {
                     .padding(.top, 16)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     
-                    if !mapState.anyStartSelected {
+                    switch mapState.selection {
+                    case .none:
+                        EmptyView()
+                    case .topo(topo: let topo):
+                        HStack(spacing: 16) {
+                            Spacer()
+                            
+                            Button {
+                                sheetPresented = true
+                            } label: {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "list.bullet") // Image(systemName: "arrow.up.forward.app")
+                                    Text("Liste")
+                                }
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(8)
+                                .background(.ultraThinMaterial, in: Capsule())
+                            }
+                            
+                            
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    case .start(start: let start):
+                        EmptyView()
+                    case .problem(problem: let problem):
                         HStack(spacing: 16) {
                             Spacer()
                             
@@ -97,7 +127,7 @@ struct BoulderFullScreenView: View {
                             }
                             
                             
-                            let problem = mapState.selectedProblem
+//                            let problem = mapState.selectedProblem
                             if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
                                 Button {
                                     openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
@@ -130,36 +160,8 @@ struct BoulderFullScreenView: View {
                         .padding(.bottom, 16)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     }
-                    else {
-                        HStack(spacing: 16) {
-                            Spacer()
-                            
-                            
-                            
-                            let problem = mapState.selectedProblem
-                            if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-                                Button {
-                                    sheetPresented = true
-                                } label: {
-                                    HStack(spacing: 4) {
-                                        Image(systemName: "list.bullet") // Image(systemName: "arrow.up.forward.app")
-                                        Text("Liste")
-                                    }
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                    .padding(8)
-                                    .background(.ultraThinMaterial, in: Capsule())
-                                }
-                            }
-                            
-                            
-                            
-                            Spacer()
-                        }
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 16)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    }
+                    
+                    
                     
 //                    .background(
 //                        Rectangle()

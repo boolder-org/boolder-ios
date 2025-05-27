@@ -22,7 +22,7 @@ struct ZoomableTopoView: View {
                 mapState: mapState,
                 zoomScale: $zoomScale,
                 onBackgroundTap: {
-                    mapState.showAllStarts = true
+                    mapState.selection = .topo(topo: topo)
                 }
             )
         }

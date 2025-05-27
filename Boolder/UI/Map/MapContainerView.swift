@@ -64,23 +64,7 @@ struct MapContainerView: View {
                 
                 //            browseButtons
                 
-                //            if !mapState.showAllStarts && mapState.presentProblemDetails {
-                //                VStack(spacing: 0) {
-                //                    Spacer()
-                //                    //                selectedStart
-                //                    
-                //                    infosCard
-                ////                        .background(.thinMaterial)
-                //                        .background(Color.white)
-                //                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                //                        .overlay(
-                //                            RoundedRectangle(cornerRadius: 12)
-                //                                .stroke(Color(.secondaryLabel), lineWidth: 0.5)
-                //                        )
-                //                        .padding(8)
-                //                }
-                //                    .offset(CGSize(width: 0, height: -290)) // FIXME: don't hardcode value
-                //            }
+
                 
                 Group {
                     
@@ -101,13 +85,6 @@ struct MapContainerView: View {
                 if mapState.presentProblemDetails {
                     VStack {
                         Spacer()
-                        
-//                        Button {
-//                            mapState.showAllStarts = true
-//                            
-//                        } label: {
-//                            Text("all starts")
-//                        }
                         
                         if false { //} !mapState.anyStartSelected && problem != Problem.empty {
                             
@@ -183,7 +160,6 @@ struct MapContainerView: View {
 ////                                print(new)
 ////                                print(context)
 //                                if new == .interacting {
-//                                    mapState.showAllStarts = true
 //                                }
 //                            }
                         } else {
@@ -207,9 +183,8 @@ struct MapContainerView: View {
                                     animatePresentFullScreen()
                                 }
                                 
-                                if abs(gesture.translation.width) > 20 {
-                                    mapState.showAllStarts = true
-                                }
+//                                if abs(gesture.translation.width) > 20 {
+//                                }
                             }
                             .onEnded { gesture in
                                 isDragging = false
@@ -284,25 +259,25 @@ struct MapContainerView: View {
         
     }
 
-    func tapOnBackground() {
-//        withAnimation(.easeIn(duration: 0.5)) {
-            showTopoButtons = true
+//    func tapOnBackground() {
+////        withAnimation(.easeIn(duration: 0.5)) {
+//            showTopoButtons = true
+////        }
+//        
+//        // Hide buttons after 2 seconds
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+////            withAnimation(.easeOut(duration: 0.5)) {
+//                showTopoButtons = false
+////            }
 //        }
-        
-        // Hide buttons after 2 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            withAnimation(.easeOut(duration: 0.5)) {
-                showTopoButtons = false
-//            }
-        }
-        
-        if mapState.showAllStarts {
-            animatePresentFullScreen()
-        }
-        else {
-            mapState.showAllStarts = true
-        }
-    }
+//        
+//        if mapState.showAllStarts {
+//            animatePresentFullScreen()
+//        }
+//        else {
+//            mapState.showAllStarts = true
+//        }
+//    }
     
     func animatePresentFullScreen() {
         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
@@ -317,7 +292,7 @@ struct MapContainerView: View {
             mapState: mapState,
             zoomScale: $zoomScale,
             onBackgroundTap: {
-                tapOnBackground()
+                mapState.selection = .topo(topo: topo)
             })
         
 //        .matchedGeometryEffect(id: "topo-\(topo.id)", in: presentFullScreen ? animation : animationNil, isSource: false)
@@ -384,105 +359,9 @@ struct MapContainerView: View {
         
     }
     
-    var infosCard: some View {
-        
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                
-                ProblemCircleView(problem: problem)
-                
-                Text(problem.localizedName)
-                    .font(.body)
-                //                            .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .minimumScaleFactor(0.5)
-                
-//                Spacer()
-                
-                if(problem.sitStart) {
-                    Image(systemName: "figure.rower")
-//                    Text("problem.sit_start")
-//                        .font(.body)
-                }
-
-                    Text(problem.grade.string)
-                        .font(.body)
-                
-                Spacer()
-                
-                Button {
-                    mapState.showAllStarts = true
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(Font.title2.weight(.semibold))
-                        .foregroundColor(Color(.secondaryLabel))
-                }
-
-            }
-            
-//            HStack(alignment: .firstTextBaseline) {
-//                
-//                if(problem.sitStart) {
-//                    Image(systemName: "figure.rower")
-//                    Text("problem.sit_start")
-//                        .font(.body)
-//                }
-//                
-//                Spacer()
-//
-//            }
-        }
-        
-        .padding(.horizontal)
-        .padding(.vertical)
-    }
-    
     var problem : Problem {
         mapState.selectedProblem
     }
-    
-    var selectedStart: some View {
-        
-                HStack {
-                    
-                    
-                    Spacer()
-                    
-                    HStack {
-                        ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                        
-                        Text(problem.localizedName)
-                            .font(.body)
-                        Text(problem.grade.string)
-                            .font(.body)
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        mapState.showAllStarts = true
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(Font.body.weight(.semibold))
-                            .foregroundColor(Color(.secondaryLabel))
-                        //                                        .padding(.horizontal, 16)
-                    }
-                    
-                }
-                .padding(.horizontal)
-                .frame(maxWidth: .infinity)
-                .frame(height: 38)
-                .background(.regularMaterial)
-                //                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                //                            .zIndex(20)
-            
-        
-    }
-    
-    
     
     var mapbox : some View {
         MapboxView(mapState: mapState)

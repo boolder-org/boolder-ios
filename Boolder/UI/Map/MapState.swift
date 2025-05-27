@@ -10,9 +10,9 @@ import SwiftUI
 import CoreLocation
 
 class MapState : ObservableObject {
+    @Published var selection = Selection.none
     @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published var selectedStart: Problem?
-    @Published var showAllStarts = false
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var currentLocation: Bool = false
@@ -36,9 +36,9 @@ class MapState : ObservableObject {
     
     enum Selection {
         case none
-        case topo(topoId: Int)
-        case start(startId: Int)
-        case problem(problemId: Int)
+        case topo(topo: Topo)
+        case start(start: Problem)
+        case problem(problem: Problem)
         
 //        var label: String {
 //            switch self {
@@ -134,27 +134,28 @@ class MapState : ObservableObject {
         centerOnProblem = problem
     }
     
-    // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
-    func selectProblem(_ problem: Problem, showAllStarts: Bool = false) {
-        selectedProblem = problem
+    func selectTopo(_ topo: Topo) {
+        selection = .topo(topo: topo)
+        selectedProblem = Problem.empty
         selectedStart = nil
         
-        self.showAllStarts = showAllStarts
-//        if !showAllStarts {
-//            presentStartSheet = true
-//        }
+//        selectedArea = Area.load(id: problem.areaId)
+    }
+    
+    // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
+    func selectProblem(_ problem: Problem) {
+        selection = .problem(problem: problem)
+        selectedProblem = problem
+        selectedStart = nil
         
         selectedArea = Area.load(id: problem.areaId)
     }
     
-    func selectStart(_ start: Problem, showAllStarts: Bool = false) {
+    func selectStart(_ start: Problem) {
+        selection = .start(start: start)
         selectedStart = start // FIXME: check if there is a start parent
         selectedProblem = start
         
-        self.showAllStarts = showAllStarts
-//        if !showAllStarts {
-//            presentStartSheet = true
-//        }
 //        selectedArea = Area.load(id: problem.areaId)
     }
     
@@ -172,11 +173,7 @@ class MapState : ObservableObject {
     }
     
     var anyStartSelected: Bool {
-        isStartSelected || showAllStarts
-    }
-    
-    func selectAllStarts() {
-        showAllStarts = true
+        isStartSelected
     }
     
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
