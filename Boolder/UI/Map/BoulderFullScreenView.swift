@@ -24,54 +24,75 @@ struct BoulderFullScreenView: View {
     
     @State private var sheetPresented = false
     
+//    let topo: Topo // FIXME: what happens when page changes?
+//    var topo: Topo {
+//        mapState.selectedProblem.topo!
+//    }
+    
+    func topoViewWithButtons(topo: Topo) -> some View {
+        ZoomableScrollView(zoomScale: $zoomScale) {
+            TopoView(
+                topo: topo,
+//                            problem: $mapState.selectedProblem,
+                mapState: mapState,
+                zoomScale: $zoomScale,
+                onBackgroundTap: {
+                    mapState.showAllStarts = true
+                }
+            )
+        }
+        
+        .matchedGeometryEffect(id: "topo-\(topo.id)", in: animation, isSource: true)
+//        .frame(maxWidth: .infinity)
+        .containerRelativeFrame(.horizontal)
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // greedy to take the full screen
+        .ignoresSafeArea()
+//        .offset(y: dragOffset)
+//        .gesture(
+//            // TODO: use PanGesture like https://www.youtube.com/watch?v=vqPK8qFsoBg
+//            DragGesture()
+//                .onChanged { gesture in
+//                    isDragging = true
+//                    dragOffset = gesture.translation.height
+//                }
+//                .onEnded { gesture in
+//                    isDragging = false
+//                    
+//                    
+//                    if abs(gesture.translation.height) >= 80 {
+//                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+//                            presentFullScreen = false
+//                        }
+//                    }
+//                    else {
+//                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+//                            dragOffset = 0
+//                        }
+//                    }
+//                }
+//        )
+    }
+    
     var body: some View {
         Color.systemBackground
             .opacity(Double(1 - min(abs(dragOffset) / 80, 1)))
             .ignoresSafeArea()
             .overlay(
                 ZStack {
-                    
-                    ZoomableScrollView(zoomScale: $zoomScale) {
-                        TopoView(
-                            topo: mapState.selectedProblem.topo!,
-//                            problem: $mapState.selectedProblem,
-                            mapState: mapState,
-                            zoomScale: $zoomScale,
-                            onBackgroundTap: {
-                                mapState.showAllStarts = true
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        
+                        HStack(spacing: 0) {
+                            ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
+                                topoViewWithButtons(topo: topo)
                             }
-                        )
+                            
+                        }
+                        .scrollTargetLayout()
                     }
+//                    .contentMargins(.horizontal, 8, for: .scrollContent)
+                    .scrollTargetBehavior(.viewAligned)
                     
-                    .matchedGeometryEffect(id: "photo", in: animation, isSource: true)
-                    .frame(maxWidth: .infinity)
-                    
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) // greedy to take the full screen
-                    .ignoresSafeArea()
-                    .offset(y: dragOffset)
-                    .gesture(
-                        // TODO: use PanGesture like https://www.youtube.com/watch?v=vqPK8qFsoBg
-                        DragGesture()
-                            .onChanged { gesture in
-                                isDragging = true
-                                dragOffset = gesture.translation.height
-                            }
-                            .onEnded { gesture in
-                                isDragging = false
-                                
-                                
-                                if abs(gesture.translation.height) >= 80 {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                                        presentFullScreen = false
-                                    }
-                                }
-                                else {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                                        dragOffset = 0
-                                    }
-                                }
-                            }
-                    )
                     
                     
                     HStack {

@@ -151,8 +151,12 @@ struct MapContainerView: View {
 //                            )
                         if !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
+                                
                                 HStack {
-                                    topoViewWithButtons
+                                    ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
+                                        topoViewWithButtons(topo: topo)
+                                    }
+                                    
                                 }
                                 .scrollTargetLayout()
                             }
@@ -290,9 +294,9 @@ struct MapContainerView: View {
         }
     }
     
-    var topoViewWithButtons: some View {
+    func topoViewWithButtons(topo: Topo) -> some View {
         TopoView(
-            topo: mapState.selectedProblem.topo!,
+            topo: topo,
 //            problem: $mapState.selectedProblem,
             mapState: mapState,
             zoomScale: $zoomScale,
@@ -300,7 +304,7 @@ struct MapContainerView: View {
                 tapOnBackground()
             })
         
-        .matchedGeometryEffect(id: "photo", in: animation)
+        .matchedGeometryEffect(id: "topo-\(topo.id)", in: animation)
         .containerRelativeFrame(.horizontal, count: 1, spacing: 8)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay {
