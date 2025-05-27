@@ -33,8 +33,8 @@ struct BoulderFullScreenView: View {
                     
                     ZoomableScrollView(zoomScale: $zoomScale) {
                         TopoView(
-                            //                    topo: mapState.selectedProblem.topo!,
-                            problem: $mapState.selectedProblem,
+                            topo: mapState.selectedProblem.topo!,
+//                            problem: $mapState.selectedProblem,
                             mapState: mapState,
                             zoomScale: $zoomScale,
                             onBackgroundTap: {

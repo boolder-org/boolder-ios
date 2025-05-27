@@ -292,8 +292,8 @@ struct MapContainerView: View {
     
     var topoViewWithButtons: some View {
         TopoView(
-            //                                topo: mapState.selectedProblem.topo!,
-            problem: $mapState.selectedProblem,
+            topo: mapState.selectedProblem.topo!,
+//            problem: $mapState.selectedProblem,
             mapState: mapState,
             zoomScale: $zoomScale,
             onBackgroundTap: {

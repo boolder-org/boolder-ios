@@ -11,12 +11,16 @@ import SwiftUI
 struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
-//    let topo: Topo // FIXME: what happends when page changes?
-    var topo: Topo {
-        problem.topo! // FIXME: don't use bang
+    let topo: Topo // FIXME: what happens when page changes?
+//    var topo: Topo {
+//        problem.topo! // FIXME: don't use bang
+//    }
+    
+//    @Binding var problem: Problem
+    var problem: Problem? {
+        mapState.selectedProblem.topoId == topo.id ? mapState.selectedProblem : nil
     }
     
-    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = 1.0
 //    @State private var photoStatus: PhotoStatus = .initial
@@ -33,7 +37,7 @@ struct TopoView: View {
     var overlayView: some View {
         ZStack {
             GeometryReader { geo in
-                if problem.line?.coordinates != nil {
+                if let problem = problem, problem.line?.coordinates != nil {
                     LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
                     
                     if true { // showAllLines { // selectedDetent == .large {
@@ -85,11 +89,11 @@ struct TopoView: View {
                 }
                 
                 
-                ForEach(problem.startGroups) { (group: StartGroup) in
+                ForEach(topo.startGroups) { (group: StartGroup) in
                     let problems = group.problemsToDisplay
                     
                     if mapState.anyStartSelected { // }(showAllLines) {
-                        ForEach(problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { p in
+                        ForEach(problems.filter{$0.startId == problem?.startId || mapState.showAllStarts}) { p in
                             if p.showLine {
                                 LineView(problem: p, drawPercentage: $lineDrawPercentage, pinchToZoomScale: $zoomScale)
                                     .zIndex(p == problem ? 90000 : p.zIndex)
@@ -122,7 +126,7 @@ struct TopoView: View {
                     
                     if !mapState.showAllStarts {
                         
-                        if mapState.isStartSelected {
+                        if let problem = problem, mapState.isStartSelected {
                             let p = problem.start
                             let problems = problem.startGroup?.problems ?? []
                             
@@ -148,7 +152,7 @@ struct TopoView: View {
                                             Image(systemName: "chevron.down")
                                             
                                         }
-                                        .foregroundColor(Color(problem.readableColor))
+                                        .foregroundColor(Color(p.readableColor))
                                         .font(.caption)
                                         .padding(.horizontal, 4)
                                         .padding(.vertical, 2)
@@ -171,8 +175,8 @@ struct TopoView: View {
                                 //                                    }
                             }
                         }
-                        else {
-                            let p = problem
+                        else if let p = problem {
+                            
                             
                             // if variants then show menu
                             
@@ -180,7 +184,7 @@ struct TopoView: View {
                                 HStack {
                                     Text("\(p.localizedName)")
                                 }
-                                .foregroundColor(Color(problem.readableColor))
+                                .foregroundColor(Color(p.readableColor))
                                 .font(.caption)
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 2)
@@ -214,8 +218,8 @@ struct TopoView: View {
                 
                 if mapState.anyStartSelected {
                     
-                    ForEach(problem.startGroups) { (group: StartGroup) in
-                        ForEach(group.problems.filter{$0.startId == problem.startId || mapState.showAllStarts}) { (p: Problem) in
+                    ForEach(topo.startGroups) { (group: StartGroup) in
+                        ForEach(group.problems.filter{$0.startId == problem?.startId || mapState.showAllStarts}) { (p: Problem) in
                             if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
                                 
                                 if p.showLine {
@@ -292,7 +296,7 @@ struct TopoView: View {
     }
     
     func displayLine() {
-        if problem.line?.coordinates != nil {
+        if let problem = problem, problem.line?.coordinates != nil {
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 //                animate { lineDrawPercentage = 1.0 }
 //                lineDrawPercentage = 1.0
