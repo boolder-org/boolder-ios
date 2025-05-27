@@ -104,7 +104,11 @@ struct TopoView: View {
                     .onTapGesture {
                         mapState.selectProblem(p)
                     }
+                    
+                    
                 }
+                
+                
             }
             else {
                 Text("problem.missing_line")
@@ -115,6 +119,19 @@ struct TopoView: View {
                     .cornerRadius(16)
                     .transition(.opacity)
                     .opacity(showMissingLineNotice ? 1.0 : 0.0)
+            }
+            
+            ForEach(problem.otherProblemsOnSameTopo) { p in
+                if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
+                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                        .scaleEffect(1/zoomScaleAdapted)
+                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                    //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
+                        .zIndex(p.zIndex+10000)
+                        .onTapGesture {
+                            mapState.selectStartOrProblem(p)
+                        }
+                }
             }
         }
     }
