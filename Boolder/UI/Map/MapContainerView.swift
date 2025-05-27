@@ -35,6 +35,8 @@ struct MapContainerView: View {
     
     @State private var showTopoButtons = false
     
+    @State private var position = ScrollPosition(edge: .top)
+    
     @Environment(\.openURL) var openURL
 
     var body: some View {
@@ -155,6 +157,7 @@ struct MapContainerView: View {
                                 HStack {
                                     ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
                                         topoViewWithButtons(topo: topo)
+                                            .id(topo.id)
                                     }
                                     
                                 }
@@ -162,6 +165,18 @@ struct MapContainerView: View {
                             }
                             .contentMargins(.horizontal, 8, for: .scrollContent)
                             .scrollTargetBehavior(.viewAligned)
+                            .scrollPosition($position)
+//                            .animation(.default, value: position)
+                            .onChange(of: position) { old, new in
+                                print("scroll to \(new)")
+                            }
+                            .onChange(of: mapState.selectedProblem) { old, new in
+//                                print("scroll to \(new)")
+                                position.scrollTo(id: new.topoId)
+                            }
+                            .onAppear {
+                                position.scrollTo(id: mapState.selectedProblem.topoId)
+                            }
 //                            .onScrollPhaseChange { old, new, context in
 //                                print("phase change")
 ////                                print(new)
