@@ -11,7 +11,7 @@ import SwiftUI
 struct BoulderFullScreenView: View {
     @Environment(\.openURL) var openURL
     
-    @State private var zoomScale: CGFloat = 1
+    
 //    @Binding var problem: Problem
     @ObservedObject var mapState: MapState
 //    @Environment(\.dismiss) private var dismiss
@@ -29,50 +29,6 @@ struct BoulderFullScreenView: View {
 //        mapState.selectedProblem.topo!
 //    }
     
-    func topoViewWithButtons(topo: Topo) -> some View {
-        ZoomableScrollView(zoomScale: $zoomScale) {
-            TopoView(
-                topo: topo,
-//                            problem: $mapState.selectedProblem,
-                mapState: mapState,
-                zoomScale: $zoomScale,
-                onBackgroundTap: {
-                    mapState.showAllStarts = true
-                }
-            )
-        }
-        
-        .matchedGeometryEffect(id: "topo-\(topo.id)", in: animation, isSource: true)
-//        .frame(maxWidth: .infinity)
-        .containerRelativeFrame(.horizontal)
-        
-        .frame(maxWidth: .infinity, maxHeight: .infinity) // greedy to take the full screen
-        .ignoresSafeArea()
-//        .offset(y: dragOffset)
-//        .gesture(
-//            // TODO: use PanGesture like https://www.youtube.com/watch?v=vqPK8qFsoBg
-//            DragGesture()
-//                .onChanged { gesture in
-//                    isDragging = true
-//                    dragOffset = gesture.translation.height
-//                }
-//                .onEnded { gesture in
-//                    isDragging = false
-//                    
-//                    
-//                    if abs(gesture.translation.height) >= 80 {
-//                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-//                            presentFullScreen = false
-//                        }
-//                    }
-//                    else {
-//                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-//                            dragOffset = 0
-//                        }
-//                    }
-//                }
-//        )
-    }
     
     var body: some View {
         Color.systemBackground
@@ -84,7 +40,7 @@ struct BoulderFullScreenView: View {
                         
                         HStack(spacing: 0) {
                             ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
-                                topoViewWithButtons(topo: topo)
+                                ZoomableTopoView(topo: topo, mapState: mapState, animation: animation)
                             }
                             
                         }
@@ -226,13 +182,13 @@ struct BoulderFullScreenView: View {
 //                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 }
             )
-            .onChange(of: zoomScale) { oldValue, newValue in
-                if newValue < 0.7 {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                        presentFullScreen = false
-                    }
-                }
-            }
+//            .onChange(of: zoomScale) { oldValue, newValue in
+//                if newValue < 0.7 {
+//                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+//                        presentFullScreen = false
+//                    }
+//                }
+//            }
             .sheet(isPresented: $sheetPresented) {
                 bottomSheet
 //                    .presentationDetents([Self.smallDetent, .medium, .large], selection: $selectedDetent)
