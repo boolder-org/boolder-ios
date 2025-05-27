@@ -24,6 +24,8 @@ struct BoulderFullScreenView: View {
     
     @State private var sheetPresented = false
     
+    @State private var position = ScrollPosition(edge: .top)
+    
 //    let topo: Topo // FIXME: what happens when page changes?
 //    var topo: Topo {
 //        mapState.selectedProblem.topo!
@@ -41,6 +43,7 @@ struct BoulderFullScreenView: View {
                         HStack(spacing: 0) {
                             ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
                                 ZoomableTopoView(topo: topo, mapState: mapState, animation: animation)
+                                    .id(topo.id)
                             }
                             
                         }
@@ -48,8 +51,14 @@ struct BoulderFullScreenView: View {
                     }
 //                    .contentMargins(.horizontal, 8, for: .scrollContent)
                     .scrollTargetBehavior(.viewAligned)
-                    
-                    
+                    .scrollPosition($position)
+//                    .onChange(of: mapState.selectedProblem) { old, new in
+////                                print("scroll to \(new)")
+//                        position.scrollTo(id: new.topoId)
+//                    }
+                    .onAppear {
+                        position.scrollTo(id: mapState.selectedProblem.topoId)
+                    }
                     
                     HStack {
                         Button {
