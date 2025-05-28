@@ -42,7 +42,7 @@ struct BoulderFullScreenView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         
                         HStack(spacing: 0) {
-                            ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
+                            ForEach(mapState.selection.topo?.onSameBoulder ?? []) { topo in
                                 ZoomableTopoView(topo: topo, mapState: mapState, animation: animation)
                                     .id(topo.id)
                             }
@@ -242,7 +242,7 @@ struct BoulderFullScreenView: View {
             }
             else {
                 List {
-                    ForEach(mapState.selectedProblem.otherProblemsOnSameTopo.sorted{ $0.grade < $1.grade }) { p in
+                    ForEach((mapState.selection.topo?.problems ?? []).sorted{ $0.grade < $1.grade }) { p in
                         HStack {
                             ProblemCircleView(problem: p)
                             Text(p.localizedName)

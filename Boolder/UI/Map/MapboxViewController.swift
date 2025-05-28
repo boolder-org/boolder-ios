@@ -588,12 +588,12 @@ class MapboxViewController: UIViewController {
                         
                         if (sortedProblems.filter{$0.startId == startId || $0.id == startId}.count > 1) {
                             self.delegate?.selectStart(id: first.startId ?? first.id)
-                            self.setProblemAsSelected(problemFeatureId: String(startId))
+//                            self.setProblemAsSelected(problemFeatureId: String(startId))
                             print("select start")
                         }
                         else {
                             self.delegate?.selectProblem(id: first.id)
-                            self.setProblemAsSelected(problemFeatureId: String(first.id))
+//                            self.setProblemAsSelected(problemFeatureId: String(first.id))
                             print("select problem")
                         }
                         
@@ -640,7 +640,7 @@ class MapboxViewController: UIViewController {
                     }
                     else {
                         // TODO: make it more explicit that this works only at a certain zoom level
-                        self.unselectPreviousProblem()
+                        self.unselectPreviousProblems()
                         self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
@@ -667,7 +667,7 @@ class MapboxViewController: UIViewController {
                        case .point(let point) = feature.geometry
                     {
                         self.delegate?.selectProblem(id: Int(id))
-                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+//                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
                         
                         // if problem is hidden by the bottom sheet
                         if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
@@ -970,28 +970,30 @@ class MapboxViewController: UIViewController {
         }
     }
     
-    private var previouslyTappedProblemId: String = ""
+    private var previouslyTappedProblemIds: Set<String> = Set()
     
-    func setProblemAsSelected(problemFeatureId: String) {
-        self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
-                                               sourceLayerId: problemsSourceLayerId,
-                                               featureId: problemFeatureId,
-                                               state: ["selected": true]) { result in
-            
-        }
-        
-        if problemFeatureId != self.previouslyTappedProblemId {
-            unselectPreviousProblem()
-        }
-        
-        self.previouslyTappedProblemId = problemFeatureId
-    }
-    
-    func unselectPreviousProblem() {
-        if(self.previouslyTappedProblemId != "") {
+    func setProblemsAsSelected(problemFeatureIds: Set<String>) {
+        for problemFeatureId in problemFeatureIds {
             self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                    sourceLayerId: problemsSourceLayerId,
-                                                   featureId: self.previouslyTappedProblemId,
+                                                   featureId: problemFeatureId,
+                                                   state: ["selected": true]) { result in
+            }
+        }
+        
+        
+        if problemFeatureIds != self.previouslyTappedProblemIds {
+            unselectPreviousProblems()
+        }
+        
+        self.previouslyTappedProblemIds = problemFeatureIds
+    }
+    
+    func unselectPreviousProblems() {
+        for previouslyTappedProblemId in previouslyTappedProblemIds {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                   sourceLayerId: problemsSourceLayerId,
+                                                   featureId: previouslyTappedProblemId,
                                                    state: ["selected": false]) { result in
                 
             }

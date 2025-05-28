@@ -406,140 +406,87 @@ struct MapContainerView: View {
         }
     }
     
-    var browseButtons : some View {
-        Group {
-            
-            if mapState.presentProblemDetails, let boulderId = mapState.selectedProblem.topo?.boulderId {
-                HStack(spacing: 0) {
-                    
-                    if let previous = Boulder(id: boulderId).previous(before: mapState.selectedProblem) {
-                        Button(action: {
-                            mapState.selectStart(previous)
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .padding(10)
-                        }
-                        .font(.body.weight(.semibold))
-                        .accentColor(.black)
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
-                    }
-                    
-                    Spacer()
-                    
-                    if let next = Boulder(id: boulderId).next(after: mapState.selectedProblem) {
-                        
-                        Button(action: {
-                            
-                                mapState.selectStart(next)
-                            
-                        }) {
-                            Image(systemName: "arrow.right")
-                                .padding(10)
-                        }
-                        .font(.body.weight(.semibold))
-                        .accentColor(.black)
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
-                    }
-                }
-                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
-            }
-            
-        }
-    }
-    
-    var circuitButtons : some View {
-        Group {
-            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
-                HStack(spacing: 0) {
-                    
-                    if(mapState.canGoToPreviousCircuitProblem) {
-                        Button(action: {
-                            mapState.selectCircuit(circuit)
-                            mapState.goToPreviousCircuitProblem()
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .padding(10)
-                        }
-                        .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
-                    }
-                    
-                    Spacer()
-                    
-                    if(mapState.canGoToNextCircuitProblem) {
-                        
-                        Button(action: {
-                            mapState.selectCircuit(circuit)
-                            mapState.goToNextCircuitProblem()
-                        }) {
-                            Image(systemName: "arrow.right")
-                                .padding(10)
-                        }
-                        .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .padding(.horizontal)
-                    }
-                }
-                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
-            }
-            
-            if mapState.displayCircuitStartButton {
-                if let circuit = mapState.selectedCircuit, let start = circuit.firstProblem {
-                    VStack {
-                        Spacer()
-                        
-                        HStack {
-                            Button {
-                                mapState.selectAndPresentAndCenterOnProblem(start)
-                                mapState.displayCircuitStartButton = false
-                            } label: {
-                                HStack {
-                                    Text("map.circuit_start")
-                                }
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .font(.body.weight(.semibold))
-                            .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                            .background(.thinMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 32))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                            )
-                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                            
-                        }
-                        .padding()
-                    }
-                }
-            }
-        }
-    }
+//    var circuitButtons : some View {
+//        Group {
+//            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
+//                HStack(spacing: 0) {
+//                    
+//                    if(mapState.canGoToPreviousCircuitProblem) {
+//                        Button(action: {
+//                            mapState.selectCircuit(circuit)
+//                            mapState.goToPreviousCircuitProblem()
+//                        }) {
+//                            Image(systemName: "arrow.left")
+//                                .padding(10)
+//                        }
+//                        .font(.body.weight(.semibold))
+//                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+//                        .background(Color.systemBackground)
+//                        .clipShape(Circle())
+//                        .overlay(
+//                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                        )
+//                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                        .padding(.horizontal)
+//                    }
+//                    
+//                    Spacer()
+//                    
+//                    if(mapState.canGoToNextCircuitProblem) {
+//                        
+//                        Button(action: {
+//                            mapState.selectCircuit(circuit)
+//                            mapState.goToNextCircuitProblem()
+//                        }) {
+//                            Image(systemName: "arrow.right")
+//                                .padding(10)
+//                        }
+//                        .font(.body.weight(.semibold))
+//                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+//                        .background(Color.systemBackground)
+//                        .clipShape(Circle())
+//                        .overlay(
+//                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                        )
+//                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                        .padding(.horizontal)
+//                    }
+//                }
+//                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+//            }
+//            
+//            if mapState.displayCircuitStartButton {
+//                if let circuit = mapState.selectedCircuit, let start = circuit.firstProblem {
+//                    VStack {
+//                        Spacer()
+//                        
+//                        HStack {
+//                            Button {
+//                                mapState.selectAndPresentAndCenterOnProblem(start)
+//                                mapState.displayCircuitStartButton = false
+//                            } label: {
+//                                HStack {
+//                                    Text("map.circuit_start")
+//                                }
+//                            }
+//                            .padding(.horizontal, 16)
+//                            .padding(.vertical, 8)
+//                            .font(.body.weight(.semibold))
+//                            .accentColor(Color(circuit.color.uicolorForSystemBackground))
+//                            .background(.thinMaterial)
+//                            .clipShape(RoundedRectangle(cornerRadius: 32))
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                            )
+//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                            
+//                        }
+//                        .padding()
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     var fabButtons: some View {
         HStack {

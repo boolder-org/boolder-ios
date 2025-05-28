@@ -46,17 +46,16 @@ struct MapboxView: UIViewControllerRepresentable {
         }
         
         private func subscribeToMapState() {
-            parent.mapState.$selectedProblem
-                .sink { [weak self] problem in
+            parent.mapState.$selection
+                .sink { [weak self] selection in
                     guard let self = self else { return }
                     DispatchQueue.main.async {
-                        self.viewController?.setProblemAsSelected(problemFeatureId: String(self.parent.mapState.selectedProblem.id))
+//                        self.viewController?.setProblemAsSelected(problemFeatureId: String(self.parent.mapState.selectedProblem.id))
+                        
+                        self.viewController?.setProblemsAsSelected(problemFeatureIds: Set(self.parent.mapState.selection.problems.map{String($0.id)}))
                     }
                 }
                 .store(in: &cancellables)
-            
-            // TODO: select start
-            
             
             parent.mapState.$centerOnProblem
                 .sink { [weak self] problem in

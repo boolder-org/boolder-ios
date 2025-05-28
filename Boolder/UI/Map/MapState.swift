@@ -11,7 +11,7 @@ import CoreLocation
 
 class MapState : ObservableObject {
     @Published var selection = Selection.none
-    @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+//    @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     @Published var selectedStart: Problem?
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
@@ -70,6 +70,17 @@ class MapState : ObservableObject {
         var topoId: Int? {
             topo?.id
         }
+        
+        var problems: [Problem] {
+            if case .problem(let problem) = self {
+                return [problem]
+            }
+            else if case .topo(let topo) = self {
+                return topo.problems
+            }
+            
+            return []
+        }
     }
     
     func centerOnArea(_ area: Area) {
@@ -110,42 +121,44 @@ class MapState : ObservableObject {
     }
     
     var canGoToNextCircuitProblem: Bool {
-        selectedProblem.next != nil
+//        selectedProblem.next != nil
+        true
     }
     
     func goToNextCircuitProblem() {
-        if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let next = selectedProblem.next {
-                    selectAndPresentAndCenterOnProblem(next)
-                }
-            }
-            else {
-                if let problem = circuit.firstProblem {
-                    selectAndPresentAndCenterOnProblem(problem)
-                }
-            }
-        }
+//        if let circuit = selectedCircuit {
+//            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
+//                if let next = selectedProblem.next {
+//                    selectAndPresentAndCenterOnProblem(next)
+//                }
+//            }
+//            else {
+//                if let problem = circuit.firstProblem {
+//                    selectAndPresentAndCenterOnProblem(problem)
+//                }
+//            }
+//        }
     }
     
     var canGoToPreviousCircuitProblem: Bool {
-        selectedProblem.previous != nil
+//        selectedProblem.previous != nil
+        true
     }
     
     func goToPreviousCircuitProblem() {
-        if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let previous = selectedProblem.previous {
-                    selectAndPresentAndCenterOnProblem(previous)
-                }
-            }
-            else {
-                // not sure what to do here
-                if let problem = circuit.firstProblem {
-                    selectAndPresentAndCenterOnProblem(problem)
-                }
-            }
-        }
+//        if let circuit = selectedCircuit {
+//            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
+//                if let previous = selectedProblem.previous {
+//                    selectAndPresentAndCenterOnProblem(previous)
+//                }
+//            }
+//            else {
+//                // not sure what to do here
+//                if let problem = circuit.firstProblem {
+//                    selectAndPresentAndCenterOnProblem(problem)
+//                }
+//            }
+//        }
     }
     
     private func centerOnProblem(_ problem: Problem) {
@@ -154,7 +167,7 @@ class MapState : ObservableObject {
     
     func selectTopo(_ topo: Topo) {
         selection = .topo(topo: topo)
-        selectedProblem = Problem.empty
+//        selectedProblem = Problem.empty
         selectedStart = nil
         
 //        selectedArea = Area.load(id: problem.areaId)
@@ -163,7 +176,7 @@ class MapState : ObservableObject {
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem) {
         selection = .problem(problem: problem)
-        selectedProblem = problem
+//        selectedProblem = problem
         selectedStart = nil
         
         selectedArea = Area.load(id: problem.areaId)
@@ -172,7 +185,7 @@ class MapState : ObservableObject {
     func selectStart(_ start: Problem) {
         selection = .start(start: start)
         selectedStart = start // FIXME: check if there is a start parent
-        selectedProblem = start
+//        selectedProblem = start
         
 //        selectedArea = Area.load(id: problem.areaId)
     }
