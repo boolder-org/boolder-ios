@@ -77,7 +77,7 @@ class MapState : ObservableObject {
             case .topo(topo: let topo):
                 topo.problems
             case .start(start: let start):
-                start.otherProblemsOnSameTopo.filter{$0.startId == start.id}
+                start.otherProblemsOnSameTopo.filter{$0.startId == start.startId}
             case .problem(problem: let problem):
                 [problem]
             }
