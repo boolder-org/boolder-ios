@@ -88,49 +88,6 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
-                        if false { //} !mapState.anyStartSelected && problem != Problem.empty {
-                            
-                            HStack {
-                                Spacer()
-                                
-                                HStack {
-                                    Text(problem.localizedName)
-                                        .font(.body)
-                                    
-                                    Text(problem.grade.string)
-                                        .font(.body)
-                                }
-                                
-                                Spacer()
-                                
-                                Button(action: {
-
-                                }) {
-                                    HStack(alignment: .center, spacing: 8) {
-                                        Image(systemName: "ellipsis")
-//                                        Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
-                                    }
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                    .padding(8)
-                                    .background(Color.gray.opacity(0.5), in: Circle())
-                                }
-//                                .buttonStyle(Pill(fill: true))
-                            }
-                            .padding(8)
-                            .background(Color.systemBackground)
-                            .clipShape(.rect(cornerRadius: 8))
-                            .padding(.horizontal, 8)
-                        }
-                        
-                        
-//                        ZoomableScrollView(zoomScale: $zoomScale) {
-//                            TopoView(
-//                                topo: mapState.selectedProblem.topo!,
-//                                problem: $mapState.selectedProblem,
-//                                mapState: mapState,
-//                                zoomScale: $zoomScale
-//                            )
                         if true { // !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 
@@ -375,10 +332,6 @@ struct MapContainerView: View {
         }
 //                                    .aspectRatio(4/3, contentMode: .fit)
         
-    }
-    
-    var problem : Problem {
-        mapState.selectedProblem
     }
     
     var mapbox : some View {
