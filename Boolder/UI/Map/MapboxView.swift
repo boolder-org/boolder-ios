@@ -148,6 +148,13 @@ struct MapboxView: UIViewControllerRepresentable {
             }
         }
         
+        func selectStartOrProblem(id: Int) {
+            if let problem = Problem.load(id: id) {
+                parent.mapState.selectStartOrProblem(problem)
+                parent.mapState.presentProblemDetails = true
+            }
+        }
+        
         func selectArea(id: Int) {
             if let area = Area.load(id: id) {
                 parent.mapState.selectArea(area)

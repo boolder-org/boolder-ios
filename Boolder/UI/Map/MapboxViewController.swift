@@ -581,21 +581,12 @@ class MapboxViewController: UIViewController {
 //                       case .point(let point) = feature.geometry
                     if let first = sortedProblems.first
                     {
-                        print("first id: \(first.id)")
-                        print("first start_id: \(first.startId)")
-                        let startId = first.startId ?? first.id
-                        print("start_id: \(startId)")
+//                        print("first id: \(first.id)")
+//                        print("first start_id: \(first.startId)")
+//                        let startId = first.startId ?? first.id
+//                        print("start_id: \(startId)")
                         
-                        if (sortedProblems.filter{$0.startId == startId || $0.id == startId}.count > 1) {
-                            self.delegate?.selectStart(id: first.startId ?? first.id)
-//                            self.setProblemAsSelected(problemFeatureId: String(startId))
-                            print("select start")
-                        }
-                        else {
-                            self.delegate?.selectProblem(id: first.id)
-//                            self.setProblemAsSelected(problemFeatureId: String(first.id))
-                            print("select problem")
-                        }
+                        self.delegate?.selectStartOrProblem(id: first.id)
                         
                         // if problem is hidden by the bottom sheet
                         if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
@@ -1076,6 +1067,7 @@ import CoreLocation
 protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
     func selectStart(id: Int)
+    func selectStartOrProblem(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func selectCluster(id: Int)
