@@ -973,6 +973,12 @@ class MapboxViewController: UIViewController {
     private var previouslyTappedProblemIds: Set<String> = Set()
     
     func setProblemsAsSelected(problemFeatureIds: Set<String>) {
+        if problemFeatureIds != self.previouslyTappedProblemIds {
+            unselectPreviousProblems()
+        }
+        
+        self.previouslyTappedProblemIds = problemFeatureIds
+        
         for problemFeatureId in problemFeatureIds {
             self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                    sourceLayerId: problemsSourceLayerId,
@@ -982,11 +988,7 @@ class MapboxViewController: UIViewController {
         }
         
         
-        if problemFeatureIds != self.previouslyTappedProblemIds {
-            unselectPreviousProblems()
-        }
         
-        self.previouslyTappedProblemIds = problemFeatureIds
     }
     
     func unselectPreviousProblems() {
