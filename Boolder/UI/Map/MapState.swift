@@ -34,7 +34,7 @@ class MapState : ObservableObject {
     @Published var presentCircuitPicker = false
     @Published var displayCircuitStartButton = false
     
-    enum Selection {
+    enum Selection: Equatable {
         case none
         case topo(topo: Topo)
         case start(start: Problem)
@@ -52,6 +52,20 @@ class MapState : ObservableObject {
 //                "queued"
 //            }
 //        }
+        
+        var topoId: Int? {
+            switch self {
+                
+            case .none:
+                nil
+            case .topo(topo: let topo):
+                topo.id
+            case .start(start: let start):
+                start.topoId
+            case .problem(problem: let problem):
+                problem.topoId
+            }
+        }
     }
     
     func centerOnArea(_ area: Area) {
