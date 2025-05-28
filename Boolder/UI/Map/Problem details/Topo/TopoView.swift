@@ -61,7 +61,7 @@ struct TopoView: View {
                         //                                            }
                         
                         
-                        if problem.sitStart && !mapState.anyStartSelected {
+                        if problem.sitStart {
                             HStack {
                                 Image(systemName: "figure.rower")
                                 Text("assis")
@@ -121,18 +121,7 @@ struct TopoView: View {
                     .opacity(showMissingLineNotice ? 1.0 : 0.0)
             }
             
-            ForEach(problem.otherProblemsOnSameTopo) { p in
-                if let line = p.line, let firstPoint = line.firstPoint, let lastPoint = line.lastPoint, let middlePoint = p.overlayBadgePosition, let topPoint = p.topPosition {
-                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                        .scaleEffect(1/zoomScaleAdapted)
-                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                    //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
-                        .zIndex(p.zIndex+10000)
-                        .onTapGesture {
-                            mapState.selectStartOrProblem(p)
-                        }
-                }
-            }
+            
         }
     }
     
@@ -246,20 +235,37 @@ struct TopoView: View {
     
     var overlayView: some View {
         ZStack {
-            if case .problem(let problem) = mapState.selection {
-                if problem.topoId == topo.id {
-                    problemOverlayView(problem)
-                }
-                else {
-                    problemsOverlayView(topo.problems)
-                }
-            }
-            else if case .topo(let _) = mapState.selection {
+            if mapState.selection.topoId != topo.id {
                 problemsOverlayView(topo.problems)
             }
-                
+            else {
+                switch mapState.selection {
+                    
+                case .none:
+                    EmptyView()
+                case .topo(topo: let topo):
+                    problemsOverlayView(topo.problems)
+                case .start(start: let start):
+                    problemsOverlayView(mapState.selection.problems)
+                case .problem(problem: let problem):
+                    problemOverlayView(problem)
+                }
+            }            
             
-            
+            GeometryReader { geo in
+                ForEach(topo.orderedProblems) { p in
+                    if let line = p.line, let firstPoint = line.firstPoint {
+                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                            .scaleEffect(1/zoomScaleAdapted)
+                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                        //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
+                            .zIndex(p.zIndex+10000)
+                            .onTapGesture {
+                                mapState.selectStartOrProblem(p)
+                            }
+                    }
+                }
+            }
             
             
             //                GeometryReader { geo in

@@ -11,8 +11,6 @@ import CoreLocation
 
 class MapState : ObservableObject {
     @Published var selection = Selection.none
-//    @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
-    @Published var selectedStart: Problem?
     @Published private(set) var centerOnProblem: Problem? = nil
     @Published private(set) var selectedArea: Area? = nil
     @Published private(set) var currentLocation: Bool = false
@@ -72,14 +70,17 @@ class MapState : ObservableObject {
         }
         
         var problems: [Problem] {
-            if case .problem(let problem) = self {
-                return [problem]
+            switch self {
+                
+            case .none:
+                []
+            case .topo(topo: let topo):
+                topo.problems
+            case .start(start: let start):
+                start.otherProblemsOnSameTopo.filter{$0.startId == start.id}
+            case .problem(problem: let problem):
+                [problem]
             }
-            else if case .topo(let topo) = self {
-                return topo.problems
-            }
-            
-            return []
         }
     }
     
@@ -167,8 +168,6 @@ class MapState : ObservableObject {
     
     func selectTopo(_ topo: Topo) {
         selection = .topo(topo: topo)
-//        selectedProblem = Problem.empty
-        selectedStart = nil
         
 //        selectedArea = Area.load(id: problem.areaId)
     }
@@ -176,16 +175,12 @@ class MapState : ObservableObject {
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem) {
         selection = .problem(problem: problem)
-//        selectedProblem = problem
-        selectedStart = nil
         
         selectedArea = Area.load(id: problem.areaId)
     }
     
     func selectStart(_ start: Problem) {
-        selection = .start(start: start)
-        selectedStart = start // FIXME: check if there is a start parent
-//        selectedProblem = start
+        selection = .start(start: start) // FIXME: check if there is a start parent
         
 //        selectedArea = Area.load(id: problem.areaId)
     }
@@ -197,14 +192,6 @@ class MapState : ObservableObject {
         else {
             selectProblem(start)
         }
-    }
-    
-    var isStartSelected: Bool {
-        selectedStart != nil
-    }
-    
-    var anyStartSelected: Bool {
-        isStartSelected
     }
     
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {

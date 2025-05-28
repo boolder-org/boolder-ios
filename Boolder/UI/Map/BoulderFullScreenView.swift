@@ -223,17 +223,12 @@ struct BoulderFullScreenView: View {
     
     func scrollToCurrent() {
         
-        if case .problem(let problem) = mapState.selection {
-            position.scrollTo(id: problem.topoId)
-        }
-        else if case .topo(let topo) = mapState.selection {
-            position.scrollTo(id: topo.id)
-        }
+        position.scrollTo(id: mapState.selection.topoId)
     }
     
     @ViewBuilder
     private var bottomSheet: some View {
-        if mapState.anyStartSelected {
+        if true {
             if false { // selectedDetent == Self.smallDetent {
                 VStack {
                     Text("xx problems")

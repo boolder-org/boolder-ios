@@ -225,13 +225,7 @@ struct MapContainerView: View {
     }
     
     func scrollToCurrent() {
-        
-        if case .problem(let problem) = mapState.selection {
-            position.scrollTo(id: problem.topoId)
-        }
-        else if case .topo(let topo) = mapState.selection {
-            position.scrollTo(id: topo.id)
-        }
+        position.scrollTo(id: mapState.selection.topoId)
     }
 
 //    func tapOnBackground() {
