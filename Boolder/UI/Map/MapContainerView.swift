@@ -135,7 +135,7 @@ struct MapContainerView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 
                                 HStack { // TODO: use LazyHStack ?
-                                    ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
+                                    ForEach(mapState.selection.topo?.onSameBoulder ?? []) { topo in
                                         topoViewWithButtons(topo: topo)
                                             .id(topo.id)
                                     }

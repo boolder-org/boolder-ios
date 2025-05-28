@@ -53,18 +53,22 @@ class MapState : ObservableObject {
 //            }
 //        }
         
-        var topoId: Int? {
+        var topo: Topo? {
             switch self {
                 
             case .none:
                 nil
             case .topo(topo: let topo):
-                topo.id
+                topo
             case .start(start: let start):
-                start.topoId
+                start.topo
             case .problem(problem: let problem):
-                problem.topoId
+                problem.topo
             }
+        }
+        
+        var topoId: Int? {
+            topo?.id
         }
     }
     
