@@ -247,9 +247,14 @@ struct TopoView: View {
     var overlayView: some View {
         ZStack {
             if case .problem(let problem) = mapState.selection {
-                problemOverlayView(problem)
+                if problem.topoId == topo.id {
+                    problemOverlayView(problem)
+                }
+                else {
+                    problemsOverlayView(topo.problems)
+                }
             }
-            else if case .topo(let topo) = mapState.selection {
+            else if case .topo(let _) = mapState.selection {
                 problemsOverlayView(topo.problems)
             }
                 
