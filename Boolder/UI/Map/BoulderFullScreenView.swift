@@ -25,6 +25,7 @@ struct BoulderFullScreenView: View {
     @State private var sheetPresented = false
     
     @State private var position = ScrollPosition(edge: .top)
+    @State private var visibleTopoId: Int?
     
 //    let topo: Topo // FIXME: what happens when page changes?
 //    var topo: Topo {
@@ -52,13 +53,25 @@ struct BoulderFullScreenView: View {
 //                    .contentMargins(.horizontal, 8, for: .scrollContent)
                     .scrollTargetBehavior(.viewAligned)
                     .scrollPosition($position)
-//                    .onChange(of: mapState.selectedProblem) { old, new in
-////                                print("scroll to \(new)")
-//                        position.scrollTo(id: new.topoId)
-//                    }
+                    .onScrollPhaseChange { oldPhase, newPhase in
+//                                print("\(oldPhase) -> \(newPhase)")
+                        
+                        if newPhase == .idle && oldPhase != .idle {
+                            if let visibleTopoId = visibleTopoId, let topo = Topo.load(id: visibleTopoId) {
+                                print("select topo \(visibleTopoId)")
+                                mapState.selection = .topo(topo: topo)
+                            }
+                        }
+                    }
+                    .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.8) { ids in
+                        visibleTopoId = ids.first
+                    }
+                    .onChange(of: mapState.selection) { old, new in
+                        scrollToCurrent()
+                    }
                     .onAppear {
-                        print("on appear")
-                        position.scrollTo(id: mapState.selectedProblem.topoId)
+                        print("appear")
+                        scrollToCurrent()
                     }
                     
                     HStack {
@@ -206,6 +219,16 @@ struct BoulderFullScreenView: View {
                     .presentationDetents([.medium, .large])
 //                    .presentationBackgroundInteraction(.enabled)
             }
+    }
+    
+    func scrollToCurrent() {
+        
+        if case .problem(let problem) = mapState.selection {
+            position.scrollTo(id: problem.topoId)
+        }
+        else if case .topo(let topo) = mapState.selection {
+            position.scrollTo(id: topo.id)
+        }
     }
     
     @ViewBuilder

@@ -37,6 +37,8 @@ struct MapContainerView: View {
     @State private var showTopoButtons = false
     
     @State private var position = ScrollPosition(edge: .top)
+//    @State private var scrollPhase: ScrollPhase = .idle
+    @State private var visibleTopoId: Int?
     
     @Environment(\.openURL) var openURL
 
@@ -132,7 +134,7 @@ struct MapContainerView: View {
                         if true { // !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 
-                                HStack {
+                                HStack { // TODO: use LazyHStack ?
                                     ForEach(mapState.selectedProblem.toposOnSameBoulder) { topo in
                                         topoViewWithButtons(topo: topo)
                                             .id(topo.id)
@@ -145,23 +147,29 @@ struct MapContainerView: View {
                             .scrollTargetBehavior(.viewAligned)
                             .scrollPosition($position)
 //                            .animation(.default, value: position)
-                            .onChange(of: position) { old, new in
-                                print("scroll to \(new)")
-                            }
-                            .onChange(of: mapState.selectedProblem) { old, new in
+//                            .onChange(of: position) { old, new in
 //                                print("scroll to \(new)")
-                                position.scrollTo(id: new.topoId)
+//                            }
+                            .onChange(of: mapState.selection) { old, new in
+                                scrollToCurrent()
                             }
                             .onAppear {
-                                position.scrollTo(id: mapState.selectedProblem.topoId)
+                                print("appear")
+                                scrollToCurrent()
                             }
-//                            .onScrollPhaseChange { old, new, context in
-//                                print("phase change")
-////                                print(new)
-////                                print(context)
-//                                if new == .interacting {
-//                                }
-//                            }
+                            .onScrollPhaseChange { oldPhase, newPhase in
+//                                print("\(oldPhase) -> \(newPhase)")
+                                
+                                if newPhase == .idle && oldPhase != .idle {
+                                    if let visibleTopoId = visibleTopoId, let topo = Topo.load(id: visibleTopoId) {
+                                        print("select topo \(visibleTopoId)")
+                                        mapState.selection = .topo(topo: topo)
+                                    }
+                                }
+                            }
+                            .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.8) { ids in
+                                visibleTopoId = ids.first
+                            }
                         } else {
                             Rectangle()
                             .background(Color.gray)
@@ -257,6 +265,16 @@ struct MapContainerView: View {
                 }
             }
         
+    }
+    
+    func scrollToCurrent() {
+        
+        if case .problem(let problem) = mapState.selection {
+            position.scrollTo(id: problem.topoId)
+        }
+        else if case .topo(let topo) = mapState.selection {
+            position.scrollTo(id: topo.id)
+        }
     }
 
 //    func tapOnBackground() {
