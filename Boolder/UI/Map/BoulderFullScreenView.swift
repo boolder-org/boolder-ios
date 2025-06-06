@@ -80,7 +80,7 @@ struct BoulderFullScreenView: View {
                                 presentFullScreen = false
                             }
                         } label: {
-                            Image(systemName: "arrow.up.right.and.arrow.down.left")
+                            Image(systemName: "xmark")
 //                            Image(systemName: "chevron.down")
                                 .font(.headline)
                                 .frame(width: 18, height: 18)

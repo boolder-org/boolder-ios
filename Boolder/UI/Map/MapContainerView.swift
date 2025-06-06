@@ -261,7 +261,8 @@ struct MapContainerView: View {
             mapState: mapState,
             zoomScale: $zoomScale,
             onBackgroundTap: {
-                mapState.selection = .topo(topo: topo)
+//                mapState.selection = .topo(topo: topo)
+                presentFullScreen = true
             })
         
 //        .matchedGeometryEffect(id: "topo-\(topo.id)", in: presentFullScreen ? animation : animationNil, isSource: false)
@@ -272,25 +273,25 @@ struct MapContainerView: View {
                 if true { // mapState.showAllStarts {
                     
                     
-                    Button {
-                        animatePresentFullScreen()
-                    } label: {
-                        //                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
-                        //                        .font(.headline)
-                        //                        .foregroundColor(.primary)
-                        //                        .padding(8)
-                        //                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
-                        //                        .padding(8)
-                        
-                        Image(systemName: "arrow.down.backward.and.arrow.up.forward")
-                        //Image(systemName: "chevron.up")
-                            .font(.headline)
-                            .frame(width: 12, height: 12)
-                            .foregroundColor(.primary)
-                            .padding(8)
-                            .background(.ultraThinMaterial, in: Circle())
-                            .padding(8)
-                    }
+//                    Button {
+//                        animatePresentFullScreen()
+//                    } label: {
+//                        //                    Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+//                        //                        .font(.headline)
+//                        //                        .foregroundColor(.primary)
+//                        //                        .padding(8)
+//                        //                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+//                        //                        .padding(8)
+//                        
+//                        Image(systemName: "arrow.down.backward.and.arrow.up.forward")
+//                        //Image(systemName: "chevron.up")
+//                            .font(.headline)
+//                            .frame(width: 12, height: 12)
+//                            .foregroundColor(.primary)
+//                            .padding(8)
+//                            .background(.ultraThinMaterial, in: Circle())
+//                            .padding(8)
+//                    }
                 }
                 
                 Spacer()
