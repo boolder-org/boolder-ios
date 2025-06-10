@@ -69,6 +69,10 @@ class MapState : ObservableObject {
             topo?.id
         }
         
+        var boulderId: Int? {
+            topo?.boulderId
+        }
+        
         var problems: [Problem] {
             switch self {
                 
@@ -80,6 +84,20 @@ class MapState : ObservableObject {
                 start.otherProblemsOnSameTopo.filter{$0.startId == start.startId}
             case .problem(problem: let problem):
                 [problem]
+            }
+        }
+        
+        var displayBar: Bool {
+            switch self {
+                
+            case .none:
+                false
+            case .topo(topo: let topo):
+                true
+            case .start(start: let start):
+                true
+            case .problem(problem: let problem):
+                true
             }
         }
     }

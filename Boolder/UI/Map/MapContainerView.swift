@@ -88,6 +88,10 @@ struct MapContainerView: View {
                     VStack {
                         Spacer()
                         
+                        if mapState.selection.displayBar {
+                            topoBar
+                        }
+                        
                         if true { // !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 
@@ -222,6 +226,72 @@ struct MapContainerView: View {
                 }
             }
         
+    }
+    
+    var topoBar: some View {
+        HStack {
+            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+                if let previous = Boulder(id: boulderId).previous(before: current) {
+                    Button {
+                        mapState.selectStartOrProblem(previous)
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
+            
+            
+            Spacer()
+            
+            switch mapState.selection {
+            case .topo(topo: let topo):
+                Text("topo.id")
+            case .problem(problem: let problem):
+                Text(problem.localizedName)
+            case .none:
+                Text("")
+            case .start(start: let start):
+                Menu {
+                    ForEach(mapState.selection.problems) { p in
+                        Button {
+                            mapState.selectProblem(p)
+                        } label: {
+                            Text(p.localizedName)
+                        }
+                    }
+                } label: {
+//                    Text(start.localizedName)
+                    HStack {
+                        Text("\(start.localizedName) +\(mapState.selection.problems.count-1)")
+                        Image(systemName: "chevron.down")
+                            .font(.callout)
+                            .padding(4)
+                            .background{ Color.gray.opacity(0.5) }
+                            .clipShape(Circle())
+                    }
+                    .foregroundColor(.primary)
+                }
+                
+            }
+            
+            Spacer()
+            
+            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+                if let next = Boulder(id: boulderId).next(after: current) {
+                    Button {
+                        mapState.selectStartOrProblem(next)
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
+        }
+        .padding(8)
+        .background { Color.white }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .padding(.horizontal, 8)
     }
     
     func scrollToCurrent() {
