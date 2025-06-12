@@ -74,6 +74,10 @@ struct BoulderFullScreenView: View {
                         scrollToCurrent()
                     }
                     
+                    quickSelect
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .padding(.bottom, 80)
+                    
                     HStack {
                         Button {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
@@ -224,6 +228,24 @@ struct BoulderFullScreenView: View {
     func scrollToCurrent() {
         
         position.scrollTo(id: mapState.selection.topoId)
+    }
+    
+    @ViewBuilder
+    private var quickSelect: some View {
+        if let boulderId = mapState.selection.boulderId {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 4) {
+                    ForEach(Boulder(id: boulderId).starts) { p in
+                        Button {
+                            mapState.selectStartOrProblem(p)
+                        } label: {
+                            ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                        }
+                    }
+                }
+                .contentMargins(.horizontal, 8, for: .scrollContent)
+            }
+        }
     }
     
     @ViewBuilder

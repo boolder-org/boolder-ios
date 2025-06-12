@@ -123,8 +123,8 @@ struct MapContainerView: View {
                                 
                                 if newPhase == .idle && oldPhase != .idle {
                                     if let visibleTopoId = visibleTopoId, let topo = Topo.load(id: visibleTopoId) {
-                                        print("select topo \(visibleTopoId)")
-                                        mapState.selection = .topo(topo: topo)
+//                                        print("select topo \(visibleTopoId)")
+//                                        mapState.selection = .topo(topo: topo)
                                     }
                                 }
                             }
@@ -141,58 +141,58 @@ struct MapContainerView: View {
                         }
                         
                     }
-                    .offset(y: dragOffset)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { gesture in
-                                isDragging = true
-                                dragOffset = gesture.translation.height
-                                
-                                if gesture.translation.height < -20 {
-                                    animatePresentFullScreen()
-                                }
-                                
-//                                if abs(gesture.translation.width) > 20 {
+//                    .offset(y: dragOffset)
+//                    .gesture(
+//                        DragGesture()
+//                            .onChanged { gesture in
+//                                isDragging = true
+//                                dragOffset = gesture.translation.height
+//                                
+//                                if gesture.translation.height < -20 {
+//                                    animatePresentFullScreen()
 //                                }
-                            }
-                            .onEnded { gesture in
-                                isDragging = false
-                                let threshold: CGFloat = 50 // Adjust this value to change the snap threshold
-                                
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                    if abs(gesture.translation.height) < threshold {
-                                        // Snap back if threshold not met
-                                        dragOffset = 0
-                                    } else {
-                                        // Snap to the direction of the drag
-//                                        dragOffset = gesture.translation.height > 0 ? threshold : -threshold
-                                        dragOffset = 0
-                                        
-                                        let verticalAmount = gesture.translation.height
-                                        if abs(verticalAmount) > threshold { // Threshold to avoid tiny movements
-                                            if verticalAmount > 0 {
-                                                // Sliding down
-                                                print("Sliding down: \(verticalAmount)")
-                                                mapState.presentProblemDetails = false
-                                            } else {
-                                                // Sliding up
-                                                print("Sliding up: \(abs(verticalAmount))")
-                                                presentFullScreen = true
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                    )
-                    .simultaneousGesture(
-                        MagnificationGesture()
-                            .onChanged { scale in
-                                animatePresentFullScreen()
-                            }
-//                            .onEnded { scale in
-//                                presentFullScreen = true
+//                                
+////                                if abs(gesture.translation.width) > 20 {
+////                                }
 //                            }
-                    )
+//                            .onEnded { gesture in
+//                                isDragging = false
+//                                let threshold: CGFloat = 50 // Adjust this value to change the snap threshold
+//                                
+//                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+//                                    if abs(gesture.translation.height) < threshold {
+//                                        // Snap back if threshold not met
+//                                        dragOffset = 0
+//                                    } else {
+//                                        // Snap to the direction of the drag
+////                                        dragOffset = gesture.translation.height > 0 ? threshold : -threshold
+//                                        dragOffset = 0
+//                                        
+//                                        let verticalAmount = gesture.translation.height
+//                                        if abs(verticalAmount) > threshold { // Threshold to avoid tiny movements
+//                                            if verticalAmount > 0 {
+//                                                // Sliding down
+//                                                print("Sliding down: \(verticalAmount)")
+//                                                mapState.presentProblemDetails = false
+//                                            } else {
+//                                                // Sliding up
+//                                                print("Sliding up: \(abs(verticalAmount))")
+//                                                presentFullScreen = true
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                    )
+//                    .simultaneousGesture(
+//                        MagnificationGesture()
+//                            .onChanged { scale in
+//                                animatePresentFullScreen()
+//                            }
+////                            .onEnded { scale in
+////                                presentFullScreen = true
+////                            }
+//                    )
                     
                     .padding(.bottom, 16)
                     .zIndex(40)
@@ -246,9 +246,9 @@ struct MapContainerView: View {
             
             switch mapState.selection {
             case .topo(topo: let topo):
-                Text("topo.id")
+                Text("") // Text("topo.id")
             case .problem(problem: let problem):
-                Text(problem.localizedName)
+                Text("") // Text(problem.localizedName)
             case .none:
                 Text("")
             case .start(start: let start):
@@ -263,7 +263,7 @@ struct MapContainerView: View {
                 } label: {
 //                    Text(start.localizedName)
                     HStack {
-                        Text("\(start.localizedName) +\(mapState.selection.problems.count-1)")
+                        Text("\(mapState.selection.problems.count-2)")
                         Image(systemName: "chevron.down")
                             .font(.callout)
                             .padding(4)
