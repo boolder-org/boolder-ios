@@ -74,9 +74,9 @@ struct BoulderFullScreenView: View {
                         scrollToCurrent()
                     }
                     
-                    quickSelect
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                        .padding(.bottom, 80)
+//                    quickSelect
+//                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+//                        .padding(.bottom, 80)
                     
                     HStack {
                         Button {

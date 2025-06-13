@@ -230,14 +230,14 @@ struct MapContainerView: View {
     
     var topoBar: some View {
         HStack {
-            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
-                if let previous = Boulder(id: boulderId).previous(before: current) {
-                    Button {
-                        mapState.selectStartOrProblem(previous)
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.primary)
-                    }
+            if let topo = mapState.selection.topo {
+                Button {
+                    mapState.selection = .topo(topo: topo)
+                } label: {
+                    Image(systemName: "xmark")
+//                    Text("Tout")
+                        .foregroundColor(.primary)
+                        .padding(.horizontal, 4)
                 }
             }
             
@@ -263,7 +263,7 @@ struct MapContainerView: View {
                 } label: {
 //                    Text(start.localizedName)
                     HStack {
-                        Text("\(mapState.selection.problems.count-2)")
+                        Text("\(mapState.selection.problems.count)")
                         Image(systemName: "chevron.down")
                             .font(.callout)
                             .padding(4)
@@ -278,12 +278,26 @@ struct MapContainerView: View {
             Spacer()
             
             if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+                if let previous = Boulder(id: boulderId).previous(before: current) {
+                    Button {
+                        mapState.selectStartOrProblem(previous)
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.primary)
+                            .padding(.horizontal, 4)
+                    }
+                    
+                }
+            }
+            
+            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
                 if let next = Boulder(id: boulderId).next(after: current) {
                     Button {
                         mapState.selectStartOrProblem(next)
                     } label: {
                         Image(systemName: "chevron.right")
                             .foregroundColor(.primary)
+                            .padding(.horizontal, 4)
                     }
                 }
             }
