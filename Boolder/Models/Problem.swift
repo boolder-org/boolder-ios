@@ -355,6 +355,26 @@ extension Problem {
         startGroup?.problemsToDisplay.firstIndex(of: self)
     }
     
+    var nextWithinStartGroup: Problem? {
+        let problems = startGroup?.problemsToDisplay ?? []
+        
+        if let index = problems.firstIndex(of: self) {
+            return problems[(index + 1) % problems.count]
+        }
+        
+        return nil
+    }
+    
+    var previousWithinStartGroup: Problem? {
+        let problems = startGroup?.problemsToDisplay ?? []
+        
+        if let index = problems.firstIndex(of: self) {
+            return problems[(index + problems.count - 1) % problems.count]
+        }
+        
+        return nil
+    }
+    
     var start: Problem {
         if let startId = startId {
             return Self.load(id: startId) ?? self

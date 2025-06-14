@@ -248,59 +248,90 @@ struct MapContainerView: View {
             case .topo(topo: let topo):
                 Text("") // Text("topo.id")
             case .problem(problem: let problem):
-                Text("") // Text(problem.localizedName)
+                Text(problem.localizedName)
             case .none:
                 Text("")
             case .start(start: let start):
-                Menu {
-                    ForEach(mapState.selection.problems) { p in
-                        Button {
-                            mapState.selectProblem(p)
-                        } label: {
-                            Text(p.localizedName)
-                        }
-                    }
-                } label: {
-//                    Text(start.localizedName)
-                    HStack {
-                        Text("\(mapState.selection.problems.count)")
-                        Image(systemName: "chevron.down")
-                            .font(.callout)
-                            .padding(4)
-                            .background{ Color.gray.opacity(0.5) }
-                            .clipShape(Circle())
-                    }
-                    .foregroundColor(.primary)
-                }
+                Text("")
+//                Menu {
+//                    ForEach(mapState.selection.problems) { p in
+//                        Button {
+//                            mapState.selectProblem(p)
+//                        } label: {
+//                            Text(p.localizedName)
+//                        }
+//                    }
+//                } label: {
+////                    Text(start.localizedName)
+//                    HStack {
+//                        Text("\(mapState.selection.problems.count)")
+//                        Image(systemName: "chevron.down")
+//                            .font(.callout)
+//                            .padding(4)
+//                            .background{ Color.gray.opacity(0.5) }
+//                            .clipShape(Circle())
+//                    }
+//                    .foregroundColor(.primary)
+//                }
                 
             }
             
             Spacer()
             
-            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
-                if let previous = Boulder(id: boulderId).previous(before: current) {
-                    Button {
-                        mapState.selectProblem(previous)
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.primary)
-                            .padding(.horizontal, 4)
+            if case .problem(let problem) = mapState.selection {
+                if let group = problem.startGroup {
+                    if group.problems.count > 1 {
+                        
+                        if let previous = problem.previousWithinStartGroup {
+                            Button {
+                                mapState.selectProblem(previous)
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal, 4)
+                            }
+                            
+                        }
+                        
+                        if let next = problem.nextWithinStartGroup {
+                            Button {
+                                mapState.selectProblem(next)
+                            } label: {
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.primary)
+                                    .padding(.horizontal, 4)
+                            }
+                            
+                        }
+                        
                     }
-                    
                 }
             }
             
-            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
-                if let next = Boulder(id: boulderId).next(after: current) {
-                    Button {
-                        mapState.selectProblem(next)
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.primary)
-                            .padding(.horizontal, 4)
-                    }
-                }
-            }
+//            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+//                if let previous = Boulder(id: boulderId).previous(before: current) {
+//                    Button {
+//                        mapState.selectProblem(previous)
+//                    } label: {
+//                        Image(systemName: "chevron.left")
+//                            .foregroundColor(.primary)
+//                            .padding(.horizontal, 4)
+//                    }
+//                    
+//                }
+//            }
+//            
+//            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+//                if let next = Boulder(id: boulderId).next(after: current) {
+//                    Button {
+//                        mapState.selectProblem(next)
+//                    } label: {
+//                        Image(systemName: "chevron.right")
+//                            .foregroundColor(.primary)
+//                            .padding(.horizontal, 4)
+//                    }
+//                }
+//            }
         }
         .padding(8)
         .background { Color.white }
