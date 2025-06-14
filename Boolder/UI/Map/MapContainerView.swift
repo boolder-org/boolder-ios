@@ -280,7 +280,7 @@ struct MapContainerView: View {
             if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
                 if let previous = Boulder(id: boulderId).previous(before: current) {
                     Button {
-                        mapState.selectStartOrProblem(previous)
+                        mapState.selectProblem(previous)
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.primary)
@@ -293,7 +293,7 @@ struct MapContainerView: View {
             if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
                 if let next = Boulder(id: boulderId).next(after: current) {
                     Button {
-                        mapState.selectStartOrProblem(next)
+                        mapState.selectProblem(next)
                     } label: {
                         Image(systemName: "chevron.right")
                             .foregroundColor(.primary)
