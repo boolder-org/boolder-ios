@@ -252,7 +252,7 @@ struct MapContainerView: View {
             case .none:
                 Text("")
             case .start(start: let start):
-                Text("")
+                Text("\(mapState.selection.problems.count) voies")
 //                Menu {
 //                    ForEach(mapState.selection.problems) { p in
 //                        Button {
@@ -308,30 +308,6 @@ struct MapContainerView: View {
                 }
             }
             
-//            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
-//                if let previous = Boulder(id: boulderId).previous(before: current) {
-//                    Button {
-//                        mapState.selectProblem(previous)
-//                    } label: {
-//                        Image(systemName: "chevron.left")
-//                            .foregroundColor(.primary)
-//                            .padding(.horizontal, 4)
-//                    }
-//                    
-//                }
-//            }
-//            
-//            if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
-//                if let next = Boulder(id: boulderId).next(after: current) {
-//                    Button {
-//                        mapState.selectProblem(next)
-//                    } label: {
-//                        Image(systemName: "chevron.right")
-//                            .foregroundColor(.primary)
-//                            .padding(.horizontal, 4)
-//                    }
-//                }
-//            }
         }
         .padding(8)
         .background { Color.white }

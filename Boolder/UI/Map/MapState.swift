@@ -95,7 +95,7 @@ class MapState : ObservableObject {
             case .topo(topo: let topo):
                 false
             case .start(start: let start):
-                false
+                true
             case .problem(problem: let problem):
                 true
             }
