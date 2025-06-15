@@ -228,91 +228,123 @@ struct MapContainerView: View {
         
     }
     
+    @ViewBuilder
     var topoBar: some View {
-        HStack {
-            if let topo = mapState.selection.topo {
-                Button {
-                    mapState.selection = .topo(topo: topo)
-                } label: {
-                    Image(systemName: "xmark")
-//                    Text("Tout")
-                        .foregroundColor(.primary)
-                        .padding(.horizontal, 4)
-                }
-            }
-            
-            
-            Spacer()
-            
-            switch mapState.selection {
-            case .topo(topo: let topo):
-                Text("") // Text("topo.id")
-            case .problem(problem: let problem):
-                Text(problem.localizedName)
-            case .none:
-                Text("")
-            case .start(start: let start):
-                Text("\(mapState.selection.problems.count) voies")
-//                Menu {
-//                    ForEach(mapState.selection.problems) { p in
-//                        Button {
-//                            mapState.selectProblem(p)
-//                        } label: {
-//                            Text(p.localizedName)
-//                        }
-//                    }
-//                } label: {
-////                    Text(start.localizedName)
-//                    HStack {
-//                        Text("\(mapState.selection.problems.count)")
-//                        Image(systemName: "chevron.down")
-//                            .font(.callout)
-//                            .padding(4)
-//                            .background{ Color.gray.opacity(0.5) }
-//                            .clipShape(Circle())
-//                    }
-//                    .foregroundColor(.primary)
-//                }
-                
-            }
-            
-            Spacer()
-            
-            if case .problem(let problem) = mapState.selection {
-                if let group = problem.startGroup {
-                    if group.problems.count > 1 {
+        if case .problem(problem: let problem) = mapState.selection {
+            VStack {
+                HStack {
+                    if let topo = mapState.selection.topo {
+                        Button {
+                            mapState.selection = .topo(topo: topo)
+                        } label: {
+                            Image(systemName: "xmark")
+                            //                    Text("Tout")
+                                .foregroundColor(.primary)
+                                .padding(.horizontal, 4)
+                        }
+                    }
+                    
+                    
+                    Spacer()
+                    
+                    Text(problem.localizedName)
+                    
+                    Menu {
                         
-                        if let previous = problem.previousWithinStartGroup {
-                            Button {
-                                mapState.selectProblem(previous)
-                            } label: {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal, 4)
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(.primary)
+                            .frame(width: 20, height: 20)
+                            .background(Color.gray.opacity(0.5))
+                            .clipShape(Circle())
+                            
+                    }
+                    
+                    Spacer()
+                    
+                    if let group = problem.startGroup {
+                        if group.problems.count > 1 {
+                            
+                            //                        if let previous = problem.previousWithinStartGroup {
+                            //                            Button {
+                            //                                mapState.selectProblem(previous)
+                            //                            } label: {
+                            //                                Image(systemName: "chevron.left")
+                            //                                    .foregroundColor(.primary)
+                            //                                    .padding(.horizontal, 4)
+                            //                            }
+                            //
+                            //                        }
+                            
+                            if let next = problem.nextWithinStartGroup {
+                                Button {
+                                    mapState.selectProblem(next)
+                                } label: {
+                                    Text("\((problem.indexWithinStartGroup ?? 0) + 1)/\(group.problems.count)")
+                                        .font(.callout)
+                                        .padding(.horizontal, 2)
+                                        .background{Color.gray.opacity(0.5)}
+                                        .clipShape(RoundedRectangle(cornerRadius: 2))
+                                    //                                Image(systemName: "chevron.right")
+                                        .foregroundColor(.primary)
+                                        .padding(.horizontal, 4)
+                                }
+                                
                             }
                             
                         }
-                        
-                        if let next = problem.nextWithinStartGroup {
-                            Button {
-                                mapState.selectProblem(next)
-                            } label: {
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.primary)
-                                    .padding(.horizontal, 4)
-                            }
-                            
-                        }
-                        
                     }
                 }
+                
+                
+                
+//                HStack(alignment: .center, spacing: 16) {
+//                                
+//                                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+//                                    Button(action: {
+//                                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+//                                    }) {
+//                                        HStack(alignment: .center, spacing: 8) {
+//                                            Image(systemName: "info.circle")
+//                                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+//                                        }
+//                                        .padding(.vertical, 4)
+//                                        .padding(.horizontal, 8)
+//                                    }
+//                                    .buttonStyle(Pill(fill: true))
+//                                }
+//                                
+//                                Button(action: {
+//                                }) {
+//                                    HStack(alignment: .center, spacing: 8) {
+//                                        Image(systemName: "bookmark")
+////                                        Text("problem.action.save")
+////                                            .fixedSize(horizontal: true, vertical: true)
+//                                    }
+//                                    .padding(.vertical, 4)
+//                                    .padding(.horizontal, 8)
+//                                }
+//                                .buttonStyle(Pill())
+//                                
+//                                Button(action: {
+//                                }) {
+//                                    HStack(alignment: .center, spacing: 8) {
+//                                        Image(systemName: "square.and.arrow.up")
+////                                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+//                                    }
+//                                    .padding(.vertical, 4)
+//                                    .padding(.horizontal, 8)
+//                                }
+//                                .buttonStyle(Pill())
+//                            }
+//                            .padding(.horizontal)
+//                            .padding(.vertical, 4)
             }
-            
+            .padding(8)
+            .background { Color.white }
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(.horizontal, 8)
         }
-        .padding(8)
-        .background { Color.white }
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .padding(.horizontal, 8)
     }
     
     func scrollToCurrent() {
