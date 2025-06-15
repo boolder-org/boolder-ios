@@ -205,7 +205,8 @@ class MapState : ObservableObject {
     
     func selectStartOrProblem(_ start: Problem) {
         if (start.startGroup?.problems.count ?? 0) >= 2 {
-            selectStart(start)
+//            selectStart(start)
+            selectProblem(start)
         }
         else {
             selectProblem(start)
