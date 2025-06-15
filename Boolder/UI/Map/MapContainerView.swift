@@ -252,6 +252,23 @@ struct MapContainerView: View {
                     Spacer()
                     
                     Menu {
+                        Button {
+                            
+                        } label: {
+                            Text("Bleau.info")
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Text("Enregistrer")
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Text("Partager")
+                        }
                         
                     } label: {
                         Image(systemName: "ellipsis")
