@@ -107,6 +107,45 @@ struct MapContainerView: View {
                                 
                                 Spacer()
                                 
+                                if case .problem(let problem) = mapState.selection {
+                                    
+                                    
+                                    if let group = problem.startGroup {
+                                        if group.problems.count > 1 {
+                                            
+                                            //                        if let previous = problem.previousWithinStartGroup {
+                                            //                            Button {
+                                            //                                mapState.selectProblem(previous)
+                                            //                            } label: {
+                                            //                                Image(systemName: "chevron.left")
+                                            //                                    .foregroundColor(.primary)
+                                            //                                    .padding(.horizontal, 4)
+                                            //                            }
+                                            //
+                                            //                        }
+                                            
+                                            if let next = problem.nextWithinStartGroup {
+                                                Button {
+                                                    mapState.selectProblem(next)
+                                                } label: {
+                                                    Text("\((problem.indexWithinStartGroup ?? 0) + 1)/\(group.problems.count)")
+                                                        .font(.callout)
+                                                        .padding(.horizontal, 2)
+                                                        .background{Color.gray.opacity(0.5)}
+                                                        .clipShape(RoundedRectangle(cornerRadius: 2))
+                                                    //                                Image(systemName: "chevron.right")
+                                                        .foregroundColor(.primary)
+                                                        .padding(.horizontal, 4)
+                                                }
+                                                
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                
+                                Spacer()
+                                
                                 if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
                                     if let next = Boulder(id: boulderId).next(after: current) {
                                         Button {
@@ -328,38 +367,7 @@ struct MapContainerView: View {
                             
                     }
                     
-                    if let group = problem.startGroup {
-                        if group.problems.count > 1 {
-                            
-                            //                        if let previous = problem.previousWithinStartGroup {
-                            //                            Button {
-                            //                                mapState.selectProblem(previous)
-                            //                            } label: {
-                            //                                Image(systemName: "chevron.left")
-                            //                                    .foregroundColor(.primary)
-                            //                                    .padding(.horizontal, 4)
-                            //                            }
-                            //
-                            //                        }
-                            
-                            if let next = problem.nextWithinStartGroup {
-                                Button {
-                                    mapState.selectProblem(next)
-                                } label: {
-                                    Text("\((problem.indexWithinStartGroup ?? 0) + 1)/\(group.problems.count)")
-                                        .font(.callout)
-                                        .padding(.horizontal, 2)
-                                        .background{Color.gray.opacity(0.5)}
-                                        .clipShape(RoundedRectangle(cornerRadius: 2))
-                                    //                                Image(systemName: "chevron.right")
-                                        .foregroundColor(.primary)
-                                        .padding(.horizontal, 4)
-                                }
-                                
-                            }
-                            
-                        }
-                    }
+                    
                 }
                 
                 
