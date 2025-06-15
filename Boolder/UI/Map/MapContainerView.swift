@@ -268,21 +268,35 @@ struct MapContainerView: View {
         if case .problem(problem: let problem) = mapState.selection {
             VStack {
                 HStack {
-                    if let topo = mapState.selection.topo {
-                        Button {
-                            mapState.selection = .topo(topo: topo)
-                        } label: {
-                            Image(systemName: "xmark")
-                            //                    Text("Tout")
-                                .foregroundColor(.primary)
-                                .padding(.horizontal, 4)
-                        }
-                    }
+//                    if let topo = mapState.selection.topo {
+//                        Button {
+//                            mapState.selection = .topo(topo: topo)
+//                        } label: {
+//                            Image(systemName: "xmark")
+//                            //                    Text("Tout")
+//                                .foregroundColor(.primary)
+//                                .padding(.horizontal, 4)
+//                        }
+//                    }
                     
                     
                     Spacer()
                     
-                    Text(problem.localizedName)
+                    Button {
+                        presentFullScreen = true
+                    } label : {
+                        HStack {
+                            Text(problem.localizedName)
+                                .foregroundColor(.primary)
+                            //                            .lineLimit(1)
+                            //                            .truncationMode(.head)
+                            
+//                            Image(systemName: "info.circle")
+                        }
+                        
+//                        .padding(.vertical, 10)
+                    }
+                    
                     
                     Spacer()
                     
@@ -397,6 +411,30 @@ struct MapContainerView: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .padding(.horizontal, 8)
         }
+//        else if case .topo(let topo) = mapState.selection {
+//            HStack(spacing: 16) {
+//                Spacer()
+//                
+//                Button {
+//                    presentFullScreen = true
+//                } label: {
+//                    HStack(spacing: 4) {
+//                        Image(systemName: "arrow.down.left.and.arrow.up.right") // Image(systemName: "arrow.up.forward.app")
+//                        Text("Zoom")
+//                    }
+//                    .font(.headline)
+//                    .foregroundColor(.primary)
+//                    .padding(8)
+//                    .background(.ultraThinMaterial, in: Capsule())
+//                }
+//                
+//                
+//                
+//                Spacer()
+//            }
+//            .padding(.horizontal, 16)
+//            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+//        }
     }
     
     func scrollToCurrent() {
@@ -436,8 +474,12 @@ struct MapContainerView: View {
             mapState: mapState,
             zoomScale: $zoomScale,
             onBackgroundTap: {
-//                mapState.selection = .topo(topo: topo)
-                presentFullScreen = true
+                if case .problem(let problem) = mapState.selection {
+                    mapState.selection = .topo(topo: topo)
+                }
+                else {
+                    presentFullScreen = true
+                }
             })
         
 //        .matchedGeometryEffect(id: "topo-\(topo.id)", in: presentFullScreen ? animation : animationNil, isSource: false)
