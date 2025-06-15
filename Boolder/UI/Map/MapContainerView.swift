@@ -89,6 +89,40 @@ struct MapContainerView: View {
                         Spacer()
                         
                         if mapState.selection.displayBar {
+                            
+                            HStack {
+                                if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+                                    if let previous = Boulder(id: boulderId).previous(before: current) {
+                                        Button {
+                                            mapState.selectStartOrProblem(previous)
+                                        } label: {
+                                            Image(systemName: "chevron.left")
+                                                .foregroundColor(.primary)
+                                        }
+                                        .padding(8)
+                                        .background { Color.white }
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    }
+                                }
+                                
+                                Spacer()
+                                
+                                if let boulderId = mapState.selection.boulderId, let current = mapState.selection.problems.first {
+                                    if let next = Boulder(id: boulderId).next(after: current) {
+                                        Button {
+                                            mapState.selectStartOrProblem(next)
+                                        } label: {
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.primary)
+                                        }
+                                        .padding(8)
+                                        .background { Color.white }
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 8)
+                            
                             topoBar
                                 .opacity(visibleTopoId == mapState.selection.topoId ? 1.0 : 0.0)
                         }
