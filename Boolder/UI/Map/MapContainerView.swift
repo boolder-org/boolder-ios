@@ -249,6 +249,8 @@ struct MapContainerView: View {
                     
                     Text(problem.localizedName)
                     
+                    Spacer()
+                    
                     Menu {
                         
                     } label: {
@@ -259,8 +261,6 @@ struct MapContainerView: View {
                             .clipShape(Circle())
                             
                     }
-                    
-                    Spacer()
                     
                     if let group = problem.startGroup {
                         if group.problems.count > 1 {
