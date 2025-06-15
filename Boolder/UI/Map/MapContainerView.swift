@@ -90,6 +90,7 @@ struct MapContainerView: View {
                         
                         if mapState.selection.displayBar {
                             topoBar
+                                .opacity(visibleTopoId == mapState.selection.topoId ? 1.0 : 0.0)
                         }
                         
                         if true { // !presentFullScreen {
