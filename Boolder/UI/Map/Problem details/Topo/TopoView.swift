@@ -121,7 +121,25 @@ struct TopoView: View {
                     .opacity(showMissingLineNotice ? 1.0 : 0.0)
             }
             
-            
+            ForEach(topo.orderedProblems) { p in
+                if let line = p.line, let firstPoint = line.firstPoint {
+                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                        .scaleEffect(1/zoomScaleAdapted)
+                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                    //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
+                        .zIndex(p == problem ? .infinity : p.zIndex+10000)
+                        .onTapGesture {
+                            if p.startId == problem.startId && problem.startId != nil {
+                                if let next = problem.nextWithinStartGroup {
+                                    mapState.selectProblem(next)
+                                }
+                            }
+                            else {
+                                mapState.selectStartOrProblem(p)
+                            }
+                        }
+                }
+            }
         }
     }
     
@@ -168,6 +186,18 @@ struct TopoView: View {
                 }
             }
             
+            ForEach(topo.orderedProblems) { p in
+                if let line = p.line, let firstPoint = line.firstPoint {
+                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                        .scaleEffect(1/zoomScaleAdapted)
+                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                    //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
+                        .zIndex(p.zIndex+10000)
+                        .onTapGesture {
+                            mapState.selectStartOrProblem(p)
+                        }
+                }
+            }
             
                 
             
@@ -252,20 +282,7 @@ struct TopoView: View {
                 }
             }            
             
-            GeometryReader { geo in
-                ForEach(topo.orderedProblems) { p in
-                    if let line = p.line, let firstPoint = line.firstPoint {
-                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                            .scaleEffect(1/zoomScaleAdapted)
-                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                        //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
-                            .zIndex(p.zIndex+10000)
-                            .onTapGesture {
-                                mapState.selectStartOrProblem(p)
-                            }
-                    }
-                }
-            }
+            
             
             
             //                GeometryReader { geo in
