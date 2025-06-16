@@ -37,35 +37,35 @@ struct Boulder {
         starts.flatMap{$0.startGroup?.problems ?? []}.compactMap{$0}
     }
     
-//    func next(after: Problem) -> Problem? {
-//        if let index = problems.firstIndex(of: after) {
-//            return problems[(index + 1) % problems.count]
-//        }
-//        
-//        return nil
-//    }
-//    
-//    func previous(before: Problem) -> Problem? {
-//        if let index = problems.firstIndex(of: before) {
-//            return problems[(index + problems.count - 1) % problems.count]
-//        }
-//        
-//        return nil
-//    }
-    
     func next(after: Problem) -> Problem? {
-        if let index = starts.firstIndex(of: after.start) {
-            return starts[(index + 1) % starts.count]
+        if let index = problems.firstIndex(of: after) {
+            return problems[(index + 1) % problems.count]
         }
         
         return nil
     }
     
     func previous(before: Problem) -> Problem? {
-        if let index = starts.firstIndex(of: before.start) {
-            return starts[(index + starts.count - 1) % starts.count]
+        if let index = problems.firstIndex(of: before) {
+            return problems[(index + problems.count - 1) % problems.count]
         }
         
         return nil
     }
+    
+//    func next(after: Problem) -> Problem? {
+//        if let index = starts.firstIndex(of: after.start) {
+//            return starts[(index + 1) % starts.count]
+//        }
+//        
+//        return nil
+//    }
+//    
+//    func previous(before: Problem) -> Problem? {
+//        if let index = starts.firstIndex(of: before.start) {
+//            return starts[(index + starts.count - 1) % starts.count]
+//        }
+//        
+//        return nil
+//    }
 }

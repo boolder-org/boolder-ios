@@ -98,6 +98,7 @@ struct MapContainerView: View {
                                         } label: {
                                             Image(systemName: "chevron.left")
                                                 .foregroundColor(.primary)
+                                                .padding(.horizontal, 8)
                                         }
                                         .padding(8)
                                         .background { Color.white }
@@ -153,6 +154,7 @@ struct MapContainerView: View {
                                         } label: {
                                             Image(systemName: "chevron.right")
                                                 .foregroundColor(.primary)
+                                                .padding(.horizontal, 8)
                                         }
                                         .padding(8)
                                         .background { Color.white }
@@ -302,11 +304,8 @@ struct MapContainerView: View {
         
     }
     
-    @ViewBuilder
-    var topoBar: some View {
-        if case .problem(problem: let problem) = mapState.selection {
-            VStack {
-                HStack {
+    func problemViewWithButtons(problem: Problem) -> some View {
+        HStack {
 //                    if let topo = mapState.selection.topo {
 //                        Button {
 //                            mapState.selection = .topo(topo: topo)
@@ -317,107 +316,82 @@ struct MapContainerView: View {
 //                                .padding(.horizontal, 4)
 //                        }
 //                    }
+            
+            
+            Spacer()
+            
+            Button {
+                presentFullScreen = true
+            } label : {
+                HStack {
+                    Text(problem.localizedName)
+                        .foregroundColor(.primary)
+                    //                            .lineLimit(1)
+                    //                            .truncationMode(.head)
                     
-                    
-                    Spacer()
-                    
-                    Button {
-                        presentFullScreen = true
-                    } label : {
-                        HStack {
-                            Text(problem.localizedName)
-                                .foregroundColor(.primary)
-                            //                            .lineLimit(1)
-                            //                            .truncationMode(.head)
-                            
 //                            Image(systemName: "info.circle")
-                        }
-                        
-//                        .padding(.vertical, 10)
-                    }
-                    
-                    
-                    Spacer()
-                    
-                    Menu {
-                        Button {
-                            
-                        } label: {
-                            Text("Bleau.info")
-                        }
-                        
-                        Button {
-                            
-                        } label: {
-                            Text("Enregistrer")
-                        }
-                        
-                        Button {
-                            
-                        } label: {
-                            Text("Partager")
-                        }
-                        
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .foregroundColor(.primary)
-                            .frame(width: 20, height: 20)
-                            .background(Color.gray.opacity(0.5))
-                            .clipShape(Circle())
-                            
-                    }
-                    
-                    
                 }
                 
-                
-                
-//                HStack(alignment: .center, spacing: 16) {
-//                                
-//                                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-//                                    Button(action: {
-//                                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-//                                    }) {
-//                                        HStack(alignment: .center, spacing: 8) {
-//                                            Image(systemName: "info.circle")
-//                                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
-//                                        }
-//                                        .padding(.vertical, 4)
-//                                        .padding(.horizontal, 8)
-//                                    }
-//                                    .buttonStyle(Pill(fill: true))
-//                                }
-//                                
-//                                Button(action: {
-//                                }) {
-//                                    HStack(alignment: .center, spacing: 8) {
-//                                        Image(systemName: "bookmark")
-////                                        Text("problem.action.save")
-////                                            .fixedSize(horizontal: true, vertical: true)
-//                                    }
-//                                    .padding(.vertical, 4)
-//                                    .padding(.horizontal, 8)
-//                                }
-//                                .buttonStyle(Pill())
-//                                
-//                                Button(action: {
-//                                }) {
-//                                    HStack(alignment: .center, spacing: 8) {
-//                                        Image(systemName: "square.and.arrow.up")
-////                                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
-//                                    }
-//                                    .padding(.vertical, 4)
-//                                    .padding(.horizontal, 8)
-//                                }
-//                                .buttonStyle(Pill())
-//                            }
-//                            .padding(.horizontal)
-//                            .padding(.vertical, 4)
+//                        .padding(.vertical, 10)
             }
-            .padding(8)
-            .background { Color.white }
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .padding(.horizontal, 8)
+            
+            
+            Spacer()
+            
+            Menu {
+                Button {
+                    
+                } label: {
+                    Text("Bleau.info")
+                }
+                
+                Button {
+                    
+                } label: {
+                    Text("Enregistrer")
+                }
+                
+                Button {
+                    
+                } label: {
+                    Text("Partager")
+                }
+                
+            } label: {
+                Image(systemName: "ellipsis")
+                    .foregroundColor(.primary)
+                    .frame(width: 20, height: 20)
+                    .background(Color.gray.opacity(0.5))
+                    .clipShape(Circle())
+                    
+            }
+            
+            
+        }
+        .padding(8)
+        .background { Color.white }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+    
+    @ViewBuilder
+    var topoBar: some View {
+        if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
+            
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                
+                HStack {
+                    ForEach(Boulder(id: boulderId).problems) { p in
+                        problemViewWithButtons(problem: p)
+                            .id(p.id)
+                    }
+                    
+                }
+                .scrollTargetLayout()
+            }
+            .contentMargins(.horizontal, 8, for: .scrollContent)
+            
+            
         }
 //        else if case .topo(let topo) = mapState.selection {
 //            HStack(spacing: 16) {
