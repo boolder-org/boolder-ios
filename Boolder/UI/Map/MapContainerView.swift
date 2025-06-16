@@ -330,10 +330,10 @@ struct MapContainerView: View {
                 HStack {
                     Text(problem.localizedName)
                         .foregroundColor(.primary)
-                    //                            .lineLimit(1)
+                                                .lineLimit(1)
                     //                            .truncationMode(.head)
                     
-//                            Image(systemName: "info.circle")
+                            Image(systemName: "info.circle")
                 }
                 
 //                        .padding(.vertical, 10)
@@ -346,18 +346,21 @@ struct MapContainerView: View {
                 Button {
                     
                 } label: {
+                    Image(systemName: "info.circle")
                     Text("Bleau.info")
                 }
                 
                 Button {
                     
                 } label: {
+                    Image(systemName: "bookmark")
                     Text("Enregistrer")
                 }
                 
                 Button {
                     
                 } label: {
+                    Image(systemName: "square.and.arrow.up")
                     Text("Partager")
                 }
                 
