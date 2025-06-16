@@ -40,6 +40,10 @@ struct MapContainerView: View {
 //    @State private var scrollPhase: ScrollPhase = .idle
     @State private var visibleTopoId: Int?
     
+    @State private var positionProblem = ScrollPosition(edge: .top)
+//    @State private var scrollPhase: ScrollPhase = .idle
+    @State private var visibleProblemId: Int?
+    
     @Environment(\.openURL) var openURL
 
     var body: some View {
@@ -371,6 +375,7 @@ struct MapContainerView: View {
         .padding(8)
         .background { Color.white }
         .clipShape(RoundedRectangle(cornerRadius: 8))
+        .containerRelativeFrame(.horizontal)
     }
     
     @ViewBuilder
@@ -390,7 +395,32 @@ struct MapContainerView: View {
                 .scrollTargetLayout()
             }
             .contentMargins(.horizontal, 8, for: .scrollContent)
-            
+            .scrollTargetBehavior(.viewAligned)
+            .scrollPosition($positionProblem)
+//                            .animation(.default, value: position)
+//                            .onChange(of: position) { old, new in
+//                                print("scroll to \(new)")
+//                            }
+            .onChange(of: mapState.selection) { old, new in
+                scrollToCurrentProblem()
+            }
+            .onAppear {
+                print("appear")
+                scrollToCurrentProblem()
+            }
+            .onScrollPhaseChange { oldPhase, newPhase in
+//                                print("\(oldPhase) -> \(newPhase)")
+                
+                if newPhase == .idle && oldPhase != .idle {
+                    if let visibleProblemId = visibleProblemId, let problem = Problem.load(id: visibleProblemId) {
+                        print("select problem \(visibleProblemId)")
+                        mapState.selection = .problem(problem: problem)
+                    }
+                }
+            }
+            .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.8) { ids in
+                visibleProblemId = ids.first
+            }
             
         }
 //        else if case .topo(let topo) = mapState.selection {
@@ -421,6 +451,12 @@ struct MapContainerView: View {
     
     func scrollToCurrent() {
         position.scrollTo(id: mapState.selection.topoId)
+    }
+    
+    func scrollToCurrentProblem() {
+        if case .problem(let problem) = mapState.selection {
+            positionProblem.scrollTo(id: problem.id)
+        }
     }
 
 //    func tapOnBackground() {
