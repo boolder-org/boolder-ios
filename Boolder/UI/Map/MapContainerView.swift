@@ -466,6 +466,20 @@ struct MapContainerView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 
                 HStack {
+                    HStack {
+                        Button {
+                            if let topo = mapState.selection.topo {
+                                mapState.selection = .topo(topo: topo)
+                            }
+                        } label: {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    .padding(8)
+                    .background { Color.white }
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    
                     ForEach(group.problems) { p in
                         problemViewWithoutButtons(problem: p)
 //                            .containerRelativeFrame(.horizontal)
