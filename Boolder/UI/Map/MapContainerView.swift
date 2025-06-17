@@ -197,14 +197,10 @@ struct MapContainerView: View {
 //                            }
                             .onChange(of: mapState.selection) { old, new in
                                 scrollToCurrent()
-                                
-                                computeBoulderProblems()
                             }
                             .onAppear {
                                 print("appear")
                                 scrollToCurrent()
-                                
-                                computeBoulderProblems()
                             }
                             .onScrollPhaseChange { oldPhase, newPhase in
 //                                print("\(oldPhase) -> \(newPhase)")
@@ -316,30 +312,18 @@ struct MapContainerView: View {
         
     }
     
-    func computeBoulderProblems() {
-        if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
-            boulderProblems = Boulder(id: boulderId).problems
-            
-            print(boulderProblems)
-            
-            if !isDragging {
-                self.offset = boulderProblems.firstIndex(of: problem) ?? 0
-            }
-        }
-    }
-    
     func problemViewWithButtons(problem: Problem) -> some View {
         HStack {
-//                    if let topo = mapState.selection.topo {
-//                        Button {
-//                            mapState.selection = .topo(topo: topo)
-//                        } label: {
-//                            Image(systemName: "xmark")
-//                            //                    Text("Tout")
-//                                .foregroundColor(.primary)
-//                                .padding(.horizontal, 4)
-//                        }
-//                    }
+            if let topo = mapState.selection.topo {
+                Button {
+                    mapState.selection = .topo(topo: topo)
+                } label: {
+                    Image(systemName: "xmark")
+                    //                    Text("Tout")
+                        .foregroundColor(.primary)
+                        .padding(.horizontal, 4)
+                }
+            }
             
             
             Spacer()
@@ -400,19 +384,6 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
-    func seekToProblem(percentage: CGFloat) -> Problem? {
-        print(percentage)
-        let index = Int(percentage * CGFloat(boulderProblems.count - 1))
-        print(index)
-        
-        print("offset \(offset)")
-        
-        guard boulderProblems.count > 0 else { return nil }
-        
-        return boulderProblems[circular: index + offset]
-        
-    }
-    
     @ViewBuilder
     var topoBar: some View {
         if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
@@ -423,28 +394,6 @@ struct MapContainerView: View {
                     problemViewWithButtons(problem: problem)
                 }
                 .padding(.horizontal, 8)
-                .highPriorityGesture(DragGesture()
-                    .onChanged { value in
-                        
-                        self.isDragging = true
-                        
-                        self.dragOffset = value.translation
-                        print(dragOffset)
-//                        self.dragOffsetPredicted = value.predictedEndTranslation
-                        
-                        let percentage = (value.location.x-value.startLocation.x) / (UIScreen.main.bounds.width - value.startLocation.x)
-                        
-                        print("offset: \(offset)")
-//                        print(seekToProblem(percentage: percentage))
-                        if let p = seekToProblem(percentage: percentage) {
-                            mapState.selection = .problem(problem: p)
-                        }
-                    }
-                    .onEnded { value in
-                        self.isDragging = false
-                        computeBoulderProblems()
-                    }
-                )
             
             
 //            ScrollView(.horizontal, showsIndicators: false) {
