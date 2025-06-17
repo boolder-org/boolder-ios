@@ -394,24 +394,17 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
-    func seekToProblem(percentage: CGFloat) -> Problem? {
+    func seekToProblem(percentage: CGFloat, offset: Int) -> Problem? {
         print(percentage)
         let index = Int(percentage * CGFloat(boulderProblems.count - 1))
         print(index)
-        if boulderProblems.count > 0 {
-            if index >= boulderProblems.count {
-                return boulderProblems[index - boulderProblems.count]
-            }
-            else if index < 0 {
-                return boulderProblems[index + boulderProblems.count]
-            }
-            else {
-                return boulderProblems[index]
-            }
-        }
-        else {
-            return nil
-        }
+        
+        guard boulderProblems.count > 0 else { return nil }
+        
+        let offsetIndex = index + offset
+        
+        return boulderProblems[circular: index]
+        
     }
     
     @ViewBuilder
@@ -433,7 +426,7 @@ struct MapContainerView: View {
                         
                         let percentage = (value.location.x-value.startLocation.x) / (UIScreen.main.bounds.width - value.startLocation.x)
 //                        print(seekToProblem(percentage: percentage))
-                        if let p = seekToProblem(percentage: percentage) {
+                        if let p = seekToProblem(percentage: percentage, offset: 0) {
                             mapState.selection = .problem(problem: p)
                         }
                     }

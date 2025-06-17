@@ -102,3 +102,12 @@ extension String {
             .lowercased()
     }
 }
+
+extension Array {
+    /// Safe “circular” indexing: wraps any Int into 0..<count
+    subscript(circular index: Int) -> Element? {
+        guard !isEmpty else { return nil }
+        let idx = ((index % count) + count) % count
+        return self[idx]
+    }
+}
