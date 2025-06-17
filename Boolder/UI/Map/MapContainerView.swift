@@ -46,6 +46,7 @@ struct MapContainerView: View {
     @State private var visibleProblemId: Int?
     
     @State private var boulderProblems: [Problem] = []
+    @State private var offset: Int = 0
     
     @Environment(\.openURL) var openURL
 
@@ -318,7 +319,12 @@ struct MapContainerView: View {
     func computeBoulderProblems() {
         if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
             boulderProblems = Boulder(id: boulderId).problems
+            
             print(boulderProblems)
+            
+            if !isDragging {
+                self.offset = boulderProblems.firstIndex(of: problem) ?? 0
+            }
         }
     }
     
@@ -394,16 +400,16 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
-    func seekToProblem(percentage: CGFloat, offset: Int) -> Problem? {
+    func seekToProblem(percentage: CGFloat) -> Problem? {
         print(percentage)
         let index = Int(percentage * CGFloat(boulderProblems.count - 1))
         print(index)
         
+        print("offset \(offset)")
+        
         guard boulderProblems.count > 0 else { return nil }
         
-        let offsetIndex = index + offset
-        
-        return boulderProblems[circular: index]
+        return boulderProblems[circular: index + offset]
         
     }
     
@@ -420,18 +426,23 @@ struct MapContainerView: View {
                 .highPriorityGesture(DragGesture()
                     .onChanged { value in
                         
+                        self.isDragging = true
+                        
                         self.dragOffset = value.translation
                         print(dragOffset)
 //                        self.dragOffsetPredicted = value.predictedEndTranslation
                         
                         let percentage = (value.location.x-value.startLocation.x) / (UIScreen.main.bounds.width - value.startLocation.x)
+                        
+                        print("offset: \(offset)")
 //                        print(seekToProblem(percentage: percentage))
-                        if let p = seekToProblem(percentage: percentage, offset: 0) {
+                        if let p = seekToProblem(percentage: percentage) {
                             mapState.selection = .problem(problem: p)
                         }
                     }
                     .onEnded { value in
-                        
+                        self.isDragging = false
+                        computeBoulderProblems()
                     }
                 )
             
