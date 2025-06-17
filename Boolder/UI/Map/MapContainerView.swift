@@ -392,7 +392,7 @@ struct MapContainerView: View {
                 mapState.selectProblem(problem)
             } label : {
                 HStack {
-                    Text(problem.localizedName)
+                    Text([problem.localizedName, problem.grade.string].joined(separator: " "))
                         .foregroundColor(.primary)
                                                 .lineLimit(1)
                     //                            .truncationMode(.head)
@@ -562,6 +562,9 @@ struct MapContainerView: View {
             zoomScale: $zoomScale,
             onBackgroundTap: {
                 if case .problem(let problem) = mapState.selection {
+                    mapState.selection = .topo(topo: topo)
+                }
+                else if case .start(let start) = mapState.selection {
                     mapState.selection = .topo(topo: topo)
                 }
                 else {
