@@ -385,6 +385,29 @@ struct MapContainerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
     
+    func problemViewWithoutButtons(problem: Problem) -> some View {
+        HStack {
+            
+            Button {
+                mapState.selectProblem(problem)
+            } label : {
+                HStack {
+                    Text(problem.localizedName)
+                        .foregroundColor(.primary)
+                                                .lineLimit(1)
+                    //                            .truncationMode(.head)
+                    
+//                            Image(systemName: "info.circle")
+                }
+                
+//                        .padding(.vertical, 10)
+            }
+        }
+        .padding(8)
+        .background { Color.white }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+    
     @ViewBuilder
     var topoBar: some View {
         if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
@@ -438,6 +461,23 @@ struct MapContainerView: View {
 //            }
             
         }
+        else if case .start(start: let start) = mapState.selection, let group = start.startGroup {
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                
+                HStack {
+                    ForEach(group.problems) { p in
+                        problemViewWithoutButtons(problem: p)
+//                            .containerRelativeFrame(.horizontal)
+                            .id(p.id)
+                    }
+                    
+                }
+                .scrollTargetLayout()
+            }
+            .contentMargins(.horizontal, 8, for: .scrollContent)
+        }
+        
 //        else if case .topo(let topo) = mapState.selection {
 //            HStack(spacing: 16) {
 //                Spacer()

@@ -129,14 +129,7 @@ struct TopoView: View {
                     //                            .zIndex(p == problem ? 100000 : p.zIndex+10000)
                         .zIndex(p == problem ? .infinity : p.zIndex+10000)
                         .onTapGesture {
-                            if p.startId == problem.startId && problem.startId != nil {
-                                if let next = problem.nextWithinStartGroup {
-                                    mapState.selectProblem(next)
-                                }
-                            }
-                            else {
-                                mapState.selectStartOrProblem(p)
-                            }
+                            mapState.selectStartOrProblem(p)
                         }
                 }
             }
