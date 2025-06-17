@@ -31,7 +31,8 @@ struct MapContainerView: View {
     @State private var presentFullScreen = false
     @Namespace private var animation
     @Namespace private var animationNil
-    @State private var dragOffset: CGFloat = 0
+    @State var dragOffset: CGSize = CGSize.zero
+    @State var dragOffsetPredicted: CGSize = CGSize.zero
     @State private var isDragging = false
     
     @State private var showTopoButtons = false
@@ -43,6 +44,8 @@ struct MapContainerView: View {
     @State private var positionProblem = ScrollPosition(edge: .top)
 //    @State private var scrollPhase: ScrollPhase = .idle
     @State private var visibleProblemId: Int?
+    
+    @State private var boulderProblems: [Problem] = []
     
     @Environment(\.openURL) var openURL
 
@@ -193,10 +196,14 @@ struct MapContainerView: View {
 //                            }
                             .onChange(of: mapState.selection) { old, new in
                                 scrollToCurrent()
+                                
+                                computeBoulderProblems()
                             }
                             .onAppear {
                                 print("appear")
                                 scrollToCurrent()
+                                
+                                computeBoulderProblems()
                             }
                             .onScrollPhaseChange { oldPhase, newPhase in
 //                                print("\(oldPhase) -> \(newPhase)")
@@ -308,6 +315,13 @@ struct MapContainerView: View {
         
     }
     
+    func computeBoulderProblems() {
+        if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
+            boulderProblems = Boulder(id: boulderId).problems
+            print(boulderProblems)
+        }
+    }
+    
     func problemViewWithButtons(problem: Problem) -> some View {
         HStack {
 //                    if let topo = mapState.selection.topo {
@@ -378,7 +392,26 @@ struct MapContainerView: View {
         .padding(8)
         .background { Color.white }
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        .containerRelativeFrame(.horizontal)
+    }
+    
+    func seekToProblem(percentage: CGFloat) -> Problem? {
+        print(percentage)
+        let index = Int(percentage * CGFloat(boulderProblems.count - 1))
+        print(index)
+        if boulderProblems.count > 0 {
+            if index >= boulderProblems.count {
+                return boulderProblems[index - boulderProblems.count]
+            }
+            else if index < 0 {
+                return boulderProblems[index + boulderProblems.count]
+            }
+            else {
+                return boulderProblems[index]
+            }
+        }
+        else {
+            return nil
+        }
     }
     
     @ViewBuilder
@@ -386,44 +419,69 @@ struct MapContainerView: View {
         if case .problem(problem: let problem) = mapState.selection, let boulderId = problem.topo?.boulderId {
             
             
-            ScrollView(.horizontal, showsIndicators: false) {
                 
                 HStack {
-                    ForEach(Boulder(id: boulderId).problems) { p in
-                        problemViewWithButtons(problem: p)
-                            .id(p.id)
-                    }
-                    
+                    problemViewWithButtons(problem: problem)
                 }
-                .scrollTargetLayout()
-            }
-            .contentMargins(.horizontal, 8, for: .scrollContent)
-            .scrollTargetBehavior(.viewAligned)
-            .scrollPosition($positionProblem)
-//                            .animation(.default, value: position)
-//                            .onChange(of: position) { old, new in
-//                                print("scroll to \(new)")
-//                            }
-            .onChange(of: mapState.selection) { old, new in
-                scrollToCurrentProblem()
-            }
-            .onAppear {
-                print("appear")
-                scrollToCurrentProblem()
-            }
-            .onScrollPhaseChange { oldPhase, newPhase in
-//                                print("\(oldPhase) -> \(newPhase)")
-                
-                if newPhase == .idle && oldPhase != .idle {
-                    if let visibleProblemId = visibleProblemId, let problem = Problem.load(id: visibleProblemId) {
-                        print("select problem \(visibleProblemId)")
-                        mapState.selection = .problem(problem: problem)
+                .padding(.horizontal, 8)
+                .highPriorityGesture(DragGesture()
+                    .onChanged { value in
+                        
+                        self.dragOffset = value.translation
+                        print(dragOffset)
+//                        self.dragOffsetPredicted = value.predictedEndTranslation
+                        
+                        let percentage = (value.location.x-value.startLocation.x) / (UIScreen.main.bounds.width - value.startLocation.x)
+//                        print(seekToProblem(percentage: percentage))
+                        if let p = seekToProblem(percentage: percentage) {
+                            mapState.selection = .problem(problem: p)
+                        }
                     }
-                }
-            }
-            .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.8) { ids in
-                visibleProblemId = ids.first
-            }
+                    .onEnded { value in
+                        
+                    }
+                )
+            
+            
+//            ScrollView(.horizontal, showsIndicators: false) {
+//                
+//                HStack {
+//                    ForEach(Boulder(id: boulderId).problems) { p in
+//                        problemViewWithButtons(problem: p)
+//        .containerRelativeFrame(.horizontal)
+//                            .id(p.id)
+//                    }
+//                    
+//                }
+//                .scrollTargetLayout()
+//            }
+//            .contentMargins(.horizontal, 8, for: .scrollContent)
+//            .scrollTargetBehavior(.viewAligned)
+//            .scrollPosition($positionProblem)
+////                            .animation(.default, value: position)
+////                            .onChange(of: position) { old, new in
+////                                print("scroll to \(new)")
+////                            }
+//            .onChange(of: mapState.selection) { old, new in
+//                scrollToCurrentProblem()
+//            }
+//            .onAppear {
+//                print("appear")
+//                scrollToCurrentProblem()
+//            }
+//            .onScrollPhaseChange { oldPhase, newPhase in
+////                                print("\(oldPhase) -> \(newPhase)")
+//                
+//                if newPhase == .idle && oldPhase != .idle {
+//                    if let visibleProblemId = visibleProblemId, let problem = Problem.load(id: visibleProblemId) {
+//                        print("select problem \(visibleProblemId)")
+//                        mapState.selection = .problem(problem: problem)
+//                    }
+//                }
+//            }
+//            .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.8) { ids in
+//                visibleProblemId = ids.first
+//            }
             
         }
 //        else if case .topo(let topo) = mapState.selection {
