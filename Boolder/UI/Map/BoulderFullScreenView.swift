@@ -32,6 +32,10 @@ struct BoulderFullScreenView: View {
 //        mapState.selectedProblem.topo!
 //    }
     
+    func subtitle(for problem: Problem) -> String {
+        let first = problem.steepness == .other ? nil : problem.steepness.localizedName.localizedLowercase
+        return [problem.grade.string, first].compactMap{$0}.joined(separator: " ")
+    }
     
     var body: some View {
         Color.systemBackground
@@ -96,7 +100,11 @@ struct BoulderFullScreenView: View {
                         Spacer()
                         
                         if case .problem(let problem) = mapState.selection {
-                            Text(problem.localizedName)
+                            
+                            VStack(alignment: .center) {
+                                Text(problem.localizedName)
+                                Text(subtitle(for: problem)).foregroundColor(.secondary)
+                            }
                             
                             Spacer()
                             
