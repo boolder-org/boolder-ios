@@ -131,7 +131,18 @@ struct BoulderFullScreenView: View {
                                     }
                                     
                                 }
+                                else { // quick hack to center text
+                                    Image(systemName: "chevron.left")
+        //                            Image(systemName: "chevron.down")
+                                        .font(.headline)
+                                        .frame(width: 18, height: 18)
+                                        .foregroundColor(.primary)
+                                        .padding(8)
+                                        .background(.ultraThinMaterial, in: Circle())
+                                        .opacity(0)
+                                }
                             }
+                            
                         }
                         
 
