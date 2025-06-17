@@ -347,41 +347,6 @@ struct MapContainerView: View {
             Spacer()
             
             
-            
-            if let group = problem.startGroup {
-                if group.problems.count > 1 {
-                    
-                    //                        if let previous = problem.previousWithinStartGroup {
-                    //                            Button {
-                    //                                mapState.selectProblem(previous)
-                    //                            } label: {
-                    //                                Image(systemName: "chevron.left")
-                    //                                    .foregroundColor(.primary)
-                    //                                    .padding(.horizontal, 4)
-                    //                            }
-                    //
-                    //                        }
-                    
-                    if let next = problem.nextWithinStartGroup {
-                        Button {
-                            mapState.selectProblem(next)
-                        } label: {
-                            Text("\((problem.indexWithinStartGroup ?? 0) + 1)/\(group.problems.count)")
-                                .font(.callout)
-                                .padding(.horizontal, 6)
-                                .background{Color.gray.opacity(0.5)}
-                                .clipShape(Capsule())
-                            //                                Image(systemName: "chevron.right")
-                                .foregroundColor(.primary)
-                                .padding(.horizontal, 4)
-                        }
-                        
-                    }
-                    
-                }
-            }
-            
-            
             Menu {
                 Button {
                     
