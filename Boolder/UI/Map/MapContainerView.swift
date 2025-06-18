@@ -377,6 +377,7 @@ struct MapContainerView: View {
                     .clipShape(Circle())
                     
             }
+            .opacity(0)
             
             
         }

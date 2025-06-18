@@ -130,31 +130,9 @@ struct BoulderFullScreenView: View {
                     case .none:
                         EmptyView()
                     case .topo(topo: let topo):
-                        HStack(spacing: 16) {
-                            Spacer()
-                            
-                            Button {
-                                sheetPresented = true
-                            } label: {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "list.bullet") // Image(systemName: "arrow.up.forward.app")
-                                    Text("Liste")
-                                }
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .padding(8)
-                                .background(.ultraThinMaterial, in: Capsule())
-                            }
-                            
-                            
-                            
-                            Spacer()
-                        }
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 16)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        listButton
                     case .start(start: let start):
-                        EmptyView()
+                        listButton
                     case .problem(problem: let problem):
                         HStack(spacing: 16) {
                             Spacer()
@@ -257,6 +235,30 @@ struct BoulderFullScreenView: View {
         position.scrollTo(id: mapState.selection.topoId)
     }
     
+    private var listButton: some View {
+        HStack(spacing: 16) {
+            Spacer()
+            
+            Button {
+                sheetPresented = true
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: "list.bullet") // Image(systemName: "arrow.up.forward.app")
+                    Text("\(mapState.selection.problems.count) voies")
+                }
+                .font(.headline)
+                .foregroundColor(.primary)
+                .padding(8)
+                .background(.ultraThinMaterial, in: Capsule())
+            }
+            
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+    }
+    
     @ViewBuilder
     private var quickSelect: some View {
         if let boulderId = mapState.selection.boulderId {
@@ -286,17 +288,18 @@ struct BoulderFullScreenView: View {
             }
             else {
                 List {
-                    ForEach((mapState.selection.topo?.problems ?? []).sorted{ $0.grade < $1.grade }) { p in
-                        HStack {
-                            ProblemCircleView(problem: p)
-                            Text(p.localizedName)
-                            Spacer()
-                            Text(p.grade.string)
-                            
-                        }
-                        .onTapGesture {
+                    ForEach((mapState.selection.problems).sorted{ $0.grade < $1.grade }) { p in
+                        Button {
                             sheetPresented = false
                             mapState.selectProblem(p)
+                        } label: {
+                            HStack {
+                                ProblemCircleView(problem: p)
+                                Text(p.localizedName)
+                                Spacer()
+                                Text(p.grade.string)
+                                
+                            }
                         }
                     }
                 }
