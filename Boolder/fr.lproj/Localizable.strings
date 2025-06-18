@@ -158,7 +158,7 @@
 "circuit.short_name.off_circuit" = "Hors circuit";
 
 // MARK: Steepness
-"steepness.wall" = "Mur vertical";
+"steepness.wall" = "Mur";
 "steepness.slab" = "Dalle";
 "steepness.overhang" = "Dévers";
 "steepness.roof" = "Toit";
