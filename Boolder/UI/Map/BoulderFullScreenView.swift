@@ -300,6 +300,7 @@ struct BoulderFullScreenView: View {
                                 Text(p.grade.string)
                                 
                             }
+                            .foregroundColor(.primary)
                         }
                     }
                 }
