@@ -100,6 +100,10 @@ class MapState : ObservableObject {
                 true
             }
         }
+        
+        var topos: [Topo] {
+            topo?.onSameBoulder ?? []
+        }
     }
     
     func centerOnArea(_ area: Area) {

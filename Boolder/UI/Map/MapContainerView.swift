@@ -173,19 +173,21 @@ struct MapContainerView: View {
 //                            .padding(.horizontal, 8)
                             
                             topoBar
-                                .opacity(visibleTopoId == mapState.selection.topoId ? 1.0 : 0.0)
+//                                .opacity(visibleTopoId == mapState.selection.topoId ? 1.0 : 0.0)
                         }
                         
                         if true { // !presentFullScreen {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 
-                                HStack { 
-                                    ForEach(mapState.selection.topo?.onSameBoulder ?? []) { topo in
+                                LazyHStack {
+                                    ForEach(0..<10_000, id: \.self) { i in
+                                        let topo = mapState.selection.topos[i % mapState.selection.topos.count]
                                         topoViewWithButtons(topo: topo)
-                                            .id(topo.id)
+                                            .id(i)
                                     }
                                     
                                 }
+                                .frame(height: 300) // FIXME: don't hardcode value
                                 .scrollTargetLayout()
                             }
                             .contentMargins(.horizontal, 8, for: .scrollContent)
@@ -520,7 +522,7 @@ struct MapContainerView: View {
     }
     
     func scrollToCurrent() {
-        position.scrollTo(id: mapState.selection.topoId)
+        position.scrollTo(id: (mapState.selection.topo?.position ?? 0) + 100 * mapState.selection.topos.count)
     }
     
     func scrollToCurrentProblem() {
