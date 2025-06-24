@@ -40,6 +40,12 @@ struct DiscoverView: View {
     @State var presentArea110 = false
     @State var presentArea111 = false
     @State var presentArea112 = false
+    @State var presentArea113 = false
+    @State var presentArea114 = false
+    @State var presentArea115 = false
+    @State var presentArea116 = false
+    @State var presentArea117 = false
+    @State var presentArea118 = false
     
     @State private var presentSettings = false
     @State private var searchText = ""
@@ -218,27 +224,29 @@ struct DiscoverView: View {
                                     
                                     // bug with foreach & navigation link: https://stackoverflow.com/questions/66017531/swiftui-navigationlink-bug-swiftui-encountered-an-issue-when-pushing-anavigatio
 //                                    ForEach(areasDisplayed) { area in
-                                        NavigationLink(
-                                            destination: AreaView(),
-                                            isActive: $presentArea92,
-                                            label: {
-                                                HStack {
-                                                    Text("Mont d'Olivet")
-                                                        .font(.body)
-                                                        .foregroundColor(Color.appGreen)
-                                                    Spacer()
-                                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                                }
-                                                .contentShape(Rectangle())
-                                                .onTapGesture {
-                                                    dataStore.areaId = 92
-                                                    dataStore.filters = Filters()
-                                                    presentArea92 = true
-                                                }
-                                            }
-                                        )
-                                        
-                                        Divider()
+                                    
+                                    
+//                                        NavigationLink(
+//                                            destination: AreaView(),
+//                                            isActive: $presentArea92,
+//                                            label: {
+//                                                HStack {
+//                                                    Text("Mont d'Olivet")
+//                                                        .font(.body)
+//                                                        .foregroundColor(Color.appGreen)
+//                                                    Spacer()
+//                                                    Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+//                                                }
+//                                                .contentShape(Rectangle())
+//                                                .onTapGesture {
+//                                                    dataStore.areaId = 92
+//                                                    dataStore.filters = Filters()
+//                                                    presentArea92 = true
+//                                                }
+//                                            }
+//                                        )
+//                                        
+//                                        Divider()
                                     
 //                                    NavigationLink(
 //                                        destination: AreaView(),
@@ -284,27 +292,27 @@ struct DiscoverView: View {
 //                                    
 //                                    Divider()
                                     
-                                    NavigationLink(
-                                        destination: AreaView(),
-                                        isActive: $presentArea96,
-                                        label: {
-                                            HStack {
-                                                Text("Mont Ussy Est")
-                                                    .font(.body)
-                                                    .foregroundColor(Color.appGreen)
-                                                Spacer()
-                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                            }
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                dataStore.areaId = 96
-                                                dataStore.filters = Filters()
-                                                presentArea96 = true
-                                            }
-                                        }
-                                    )
-                                    
-                                    Divider()
+//                                    NavigationLink(
+//                                        destination: AreaView(),
+//                                        isActive: $presentArea96,
+//                                        label: {
+//                                            HStack {
+//                                                Text("Mont Ussy Est")
+//                                                    .font(.body)
+//                                                    .foregroundColor(Color.appGreen)
+//                                                Spacer()
+//                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+//                                            }
+//                                            .contentShape(Rectangle())
+//                                            .onTapGesture {
+//                                                dataStore.areaId = 96
+//                                                dataStore.filters = Filters()
+//                                                presentArea96 = true
+//                                            }
+//                                        }
+//                                    )
+//                                    
+//                                    Divider()
                                     
                                     NavigationLink(
                                         destination: AreaView(),
@@ -394,27 +402,27 @@ struct DiscoverView: View {
                                     
                                     Divider()
                                     
-                                    NavigationLink(
-                                        destination: AreaView(),
-                                        isActive: $presentArea101,
-                                        label: {
-                                            HStack {
-                                                Text("Darvault")
-                                                    .font(.body)
-                                                    .foregroundColor(Color.appGreen)
-                                                Spacer()
-                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
-                                            }
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                dataStore.areaId = 101
-                                                dataStore.filters = Filters()
-                                                presentArea101 = true
-                                            }
-                                        }
-                                    )
-                                    
-                                    Divider()
+//                                    NavigationLink(
+//                                        destination: AreaView(),
+//                                        isActive: $presentArea101,
+//                                        label: {
+//                                            HStack {
+//                                                Text("Darvault")
+//                                                    .font(.body)
+//                                                    .foregroundColor(Color.appGreen)
+//                                                Spacer()
+//                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+//                                            }
+//                                            .contentShape(Rectangle())
+//                                            .onTapGesture {
+//                                                dataStore.areaId = 101
+//                                                dataStore.filters = Filters()
+//                                                presentArea101 = true
+//                                            }
+//                                        }
+//                                    )
+//                                    
+//                                    Divider()
                                     
                                     NavigationLink(
                                         destination: AreaView(),
@@ -476,6 +484,138 @@ struct DiscoverView: View {
                                                 dataStore.areaId = 112
                                                 dataStore.filters = Filters()
                                                 presentArea112 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea113,
+                                        label: {
+                                            HStack {
+                                                Text("Bois Rond Auberge")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 113
+                                                dataStore.filters = Filters()
+                                                presentArea113 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea114,
+                                        label: {
+                                            HStack {
+                                                Text("Justice de Noisy")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 114
+                                                dataStore.filters = Filters()
+                                                presentArea114 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea115,
+                                        label: {
+                                            HStack {
+                                                Text("Roche aux Sabots Est")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 115
+                                                dataStore.filters = Filters()
+                                                presentArea115 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea116,
+                                        label: {
+                                            HStack {
+                                                Text("Roche aux Sabots Sud")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 116
+                                                dataStore.filters = Filters()
+                                                presentArea116 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea117,
+                                        label: {
+                                            HStack {
+                                                Text("Mont Pivot")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 117
+                                                dataStore.filters = Filters()
+                                                presentArea117 = true
+                                            }
+                                        }
+                                    )
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(
+                                        destination: AreaView(),
+                                        isActive: $presentArea118,
+                                        label: {
+                                            HStack {
+                                                Text("Apremont Butte aux Peintres")
+                                                    .font(.body)
+                                                    .foregroundColor(Color.appGreen)
+                                                Spacer()
+                                                Image(systemName: "chevron.right").foregroundColor(Color(UIColor.lightGray))
+                                            }
+                                            .contentShape(Rectangle())
+                                            .onTapGesture {
+                                                dataStore.areaId = 118
+                                                dataStore.filters = Filters()
+                                                presentArea118 = true
                                             }
                                         }
                                     )

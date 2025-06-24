@@ -62,7 +62,12 @@ class DataStore : ObservableObject {
         Area(id: 110, name: "Feuillardière", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 111, name: "Buthiers Canard (enfants)", problemsCount: 0, latitude: 0, longitude: 0, published: false),
         Area(id: 112, name: "Chamarande Belvédère", problemsCount: 0, latitude: 0, longitude: 0, published: false),
-        
+        Area(id: 113, name: "Bois Rond Auberge", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 114, name: "Justice Noisy", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 115, name: "Roche aux Sabots Est", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 116, name: "Roche aux Sabots Sud", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 117, name: "Mont Pivot", problemsCount: 0, latitude: 0, longitude: 0, published: false),
+        Area(id: 118, name: "Apremont Butte aux Peintres", problemsCount: 0, latitude: 0, longitude: 0, published: false),
     ]
 
     init() {
