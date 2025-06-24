@@ -173,7 +173,7 @@ struct MapContainerView: View {
 //                            .padding(.horizontal, 8)
                             
                             topoBar
-//                                .opacity(visibleTopoId == mapState.selection.topoId ? 1.0 : 0.0)
+                                .opacity(visibleTopoId == mapState.selection.topoId ? 1.0 : 0.0)
                         }
                         
                         if true { // !presentFullScreen {
@@ -215,7 +215,12 @@ struct MapContainerView: View {
                                 }
                             }
                             .onScrollTargetVisibilityChange(idType: Int.self, threshold: 0.8) { ids in
-                                visibleTopoId = ids.first
+                                print(ids)
+
+                                if let first = ids.first {
+                                    visibleTopoId = mapState.selection.topos[first % mapState.selection.topos.count].id
+//                                    print(visibleTopoId)
+                                }
                             }
                         } else {
                             Rectangle()
