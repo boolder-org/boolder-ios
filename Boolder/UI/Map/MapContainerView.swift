@@ -187,7 +187,7 @@ struct MapContainerView: View {
                                     }
                                     
                                 }
-                                .frame(height: 300) // FIXME: don't hardcode value
+                                .frame(height: 292) // FIXME: don't hardcode value
                                 .scrollTargetLayout()
                             }
                             .contentMargins(.horizontal, 8, for: .scrollContent)
@@ -522,7 +522,13 @@ struct MapContainerView: View {
     }
     
     func scrollToCurrent() {
-        position.scrollTo(id: (mapState.selection.topo?.position ?? 0) + 100 * mapState.selection.topos.count)
+        guard let topo = mapState.selection.topo else { return }
+        
+        let index = mapState.selection.topos.firstIndex(of: topo)
+        let computedIndex = (index ?? 0) + 100 * mapState.selection.topos.count
+        
+        print("scrollto :\(computedIndex)")
+        position.scrollTo(id: computedIndex)
     }
     
     func scrollToCurrentProblem() {
