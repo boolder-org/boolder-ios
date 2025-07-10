@@ -37,8 +37,8 @@ class MapboxViewController: UIViewController {
         
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.simultaneousRotateAndPinchZoomEnabled = false
-        mapView.gestures.options.doubleTapToZoomInEnabled = false // prevents the delay for tapGesture
-        mapView.gestures.options.doubleTouchToZoomOutEnabled = false // prevents the delay for tapGesture
+        mapView.gestures.options.doubleTapToZoomInEnabled = false // prevents the delay for TapInteraction
+        mapView.gestures.options.doubleTouchToZoomOutEnabled = false // prevents the delay for TapInteraction
         
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
@@ -56,9 +56,10 @@ class MapboxViewController: UIViewController {
             self.addLayers()
         }.store(in: &cancelables)
         
-        mapView.gestures.onMapTap.observe { context in
+        mapView.mapboxMap.addInteraction(TapInteraction { context in
             self.findFeatures(tapPoint: context.point)
-        }.store(in: &cancelables)
+            return true
+        })
         
         mapView.mapboxMap.onCameraChanged
             .throttle(for: .milliseconds(100), scheduler: DispatchQueue.main, latest: true)
@@ -80,7 +81,7 @@ class MapboxViewController: UIViewController {
     func addSources() {
         var problems = VectorSource(id: "problems")
         problems.url = "mapbox://nmondollot.4xsv235p"
-        problems.promoteId = .string("id") // needed to make Feature-State work
+        problems.promoteId2 = .byLayer([problemsSourceLayerId: .constant("id")]) // needed to make Feature-State work
         
         var circuits = VectorSource(id: "circuits")
         circuits.url = "mapbox://nmondollot.11sumdgh"
