@@ -25,15 +25,13 @@ struct ClusterView: View {
         List {
             bigButton
             
-            if #available(iOS 17.0, *) {
-                TipView(tip)
-                    .tipBackground(Color.systemBackground)
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-                    .onChange(of: clusterDownloader.queueRunning) { oldValue, newValue in
-                        tip.invalidate(reason: .actionPerformed)
-                    }
-            }
+            TipView(tip)
+                .tipBackground(Color.systemBackground)
+                .listRowInsets(EdgeInsets())
+                .listRowBackground(Color.clear)
+                .onChange(of: clusterDownloader.queueRunning) { oldValue, newValue in
+                    tip.invalidate(reason: .actionPerformed)
+                }
             
             Section(header: Text("download.cluster.areas")) {
                 ForEach(areas) { a in
@@ -47,15 +45,8 @@ struct ClusterView: View {
                 }
             }
         }
-        .modify {
-            if #available(iOS 17.0, *) {
-                $0.sensoryFeedback(.success, trigger: clusterDownloader.allDownloaded) { oldValue, newValue in
-                    newValue
-                }
-            }
-            else {
-                $0
-            }
+        .sensoryFeedback(.success, trigger: clusterDownloader.allDownloaded) { oldValue, newValue in
+            newValue
         }
     }
     

@@ -67,10 +67,8 @@ struct SettingsView: View {
             Section(header: Text("Tips")) {
                 HStack {
                     Button(action: {
-                        if #available(iOS 17.0, *) {
-                            try? Tips.resetDatastore()
-                            try? Tips.configure()
-                        }
+                        try? Tips.resetDatastore()
+                        try? Tips.configure()
                     }) {
                         Text("Reset Tips datastore").foregroundColor(.red)
                     }
@@ -78,9 +76,7 @@ struct SettingsView: View {
                 
                 HStack {
                     Button(action: {
-                        if #available(iOS 17.0, *) {
-                            Tips.showAllTipsForTesting()
-                        }
+                        Tips.showAllTipsForTesting()
                     }) {
                         Text("Show all tips")
                     }
@@ -88,9 +84,7 @@ struct SettingsView: View {
                 
                 HStack {
                     Button(action: {
-                        if #available(iOS 17.0, *) {
-                            Tips.hideAllTipsForTesting()
-                        }
+                        Tips.hideAllTipsForTesting()
                     }) {
                         Text("Hide all tips")
                     }
