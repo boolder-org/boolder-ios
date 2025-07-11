@@ -9,14 +9,13 @@
 import Foundation
 import Combine
 
-// we use separate objects to avoid redrawing the entire swiftui views everytime
-// it probably won't be necessary anymore with iOS 17's @Observable
-class AreaDownloader: Identifiable, ObservableObject {
+@Observable
+class AreaDownloader: Identifiable {
     let areaId: Int
-    @Published var status: DownloadStatus
-    var cancellable: Cancellable?
+    var status: DownloadStatus
     
-    var task: Task<(), any Error>?
+    @ObservationIgnored var cancellable: Cancellable?
+    @ObservationIgnored var task: Task<(), any Error>?
     
     init(areaId: Int) {
         self.areaId = areaId
@@ -40,7 +39,8 @@ class AreaDownloader: Identifiable, ObservableObject {
             let topos = area.topos
             let downloader = Downloader()
             
-            self.cancellable = downloader.$progress.receive(on: DispatchQueue.main)
+            self.cancellable = downloader.progressPublisher
+                .receive(on: DispatchQueue.main)
                 .sink() { progress in
                     self.status = .downloading(progress: progress)
                 }

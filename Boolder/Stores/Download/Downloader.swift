@@ -7,9 +7,18 @@
 //
 
 import Foundation
+import Combine
 
-class Downloader : ObservableObject {
-    @Published var progress: Double = 0
+@Observable
+class Downloader {
+    var progress: Double = 0 {
+        didSet {
+            self.progressPublisher.send(progress)
+        }
+    }
+    
+    var progressPublisher: PassthroughSubject<Double, Never> = .init()
+    
     private var count: Int = 0
     private var totalCount: Int = 0
     
