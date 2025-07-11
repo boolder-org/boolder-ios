@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var appState = AppState()
+    @State var appState = AppState()
     
     var body: some View {
         TabView(selection: $appState.tab) {
@@ -38,7 +38,7 @@ struct ContentView: View {
                 }
                 .tag(AppState.Tab.contribute)
         }
-        .environmentObject(appState)
+        .environment(appState)
     }
 }
 

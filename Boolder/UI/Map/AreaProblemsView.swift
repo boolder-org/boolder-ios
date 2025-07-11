@@ -12,7 +12,7 @@ struct AreaProblemsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let area: Area
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     @State private var problems = [Problem]()
     @State private var searchText = ""

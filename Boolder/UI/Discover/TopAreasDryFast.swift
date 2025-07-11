@@ -11,7 +11,7 @@ import SwiftUI
 struct TopAreasDryFast: View {
     @Environment(\.openURL) var openURL
     
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     @State private var areas = [Area]()
     

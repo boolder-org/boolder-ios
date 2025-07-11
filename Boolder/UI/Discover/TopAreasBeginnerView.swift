@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopAreasBeginnerView: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     @State private var areasForBeginners = [Area]()
     
