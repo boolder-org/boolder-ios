@@ -12,7 +12,7 @@ import CoreLocation
 struct DownloadButtonView: View {
     let cluster: Cluster
     @Binding var presentDownloads: Bool
-    @ObservedObject var clusterDownloader: ClusterDownloader
+    var clusterDownloader: ClusterDownloader
     
     var body: some View {
         Button {

@@ -12,7 +12,7 @@ import TipKit
 struct ClusterView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var clusterDownloader: ClusterDownloader
+    var clusterDownloader: ClusterDownloader
     
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
