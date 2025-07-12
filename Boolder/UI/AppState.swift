@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-// Careful: the whole app is redrawn when these properties are changed => big hit on performance, use only when there is no other way
-// update: may not be true with the migration to @observable (?)
 @Observable
 @MainActor class AppState {
     var tab = Tab.map
