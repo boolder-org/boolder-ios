@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AreaToolbarView: View {
-    var mapState: MapState
+    @Bindable var mapState: MapState
     
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
