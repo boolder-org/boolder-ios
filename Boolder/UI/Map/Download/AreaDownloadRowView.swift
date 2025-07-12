@@ -11,12 +11,12 @@ import SwiftUI
 struct AreaDownloadRowView : View {
     let area: Area
     
-    @ObservedObject var areaDownloader: AreaDownloader
+    var areaDownloader: AreaDownloader
     @Binding var presentRemoveDownloadSheet: Bool
     @Binding var presentCancelDownloadSheet: Bool
     @Binding var areaToEdit: Area?
     
-    @ObservedObject var clusterDownloader: ClusterDownloader
+    var clusterDownloader: ClusterDownloader
     
     init(area: Area, areaToEdit: Binding<Area?>, presentRemoveDownloadSheet: Binding<Bool>, presentCancelDownloadSheet: Binding<Bool>, clusterDownloader: ClusterDownloader) {
         self.area = area

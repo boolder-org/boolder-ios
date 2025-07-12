@@ -23,7 +23,7 @@ struct ProblemDetailsView: View {
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
     @Binding var problem: Problem
-    @ObservedObject var mapState: MapState
+    var mapState: MapState
     
     @State private var areaResourcesDownloaded = false
     @State private var presentSaveActionsheet = false
@@ -48,25 +48,18 @@ struct ProblemDetailsView: View {
             
             Spacer()
         }
-        .modify {
-            if #available(iOS 17.0, *) {
-                $0.onAppear {
-                    viewCount += 1
-                }
-                // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
-                .onChange(of: viewCount) {
-                    guard let currentAppVersion = Bundle.currentAppVersion else {
-                        return
-                    }
-
-                    if viewCount >= 100, currentAppVersion != lastVersionPromptedForReview {
-                        presentReview()
-                        lastVersionPromptedForReview = currentAppVersion
-                    }
-                }
+        .onAppear {
+            viewCount += 1
+        }
+        // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
+        .onChange(of: viewCount) {
+            guard let currentAppVersion = Bundle.currentAppVersion else {
+                return
             }
-            else {
-                $0
+
+            if viewCount >= 100, currentAppVersion != lastVersionPromptedForReview {
+                presentReview()
+                lastVersionPromptedForReview = currentAppVersion
             }
         }
     }

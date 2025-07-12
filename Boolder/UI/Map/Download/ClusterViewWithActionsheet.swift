@@ -8,10 +8,8 @@
 
 import SwiftUI
 
-// we use a separate view to avoid redrawing the entire view everytime, which makes the actionsheet unresponsive
-// it probably won't be necessary anymore with iOS 17's @Observable
 struct ClusterViewWithActionsheet: View {
-    let clusterDownloader: ClusterDownloader // we don't use @ObservedObject because it would make the actionsheets unresponsive
+    let clusterDownloader: ClusterDownloader
     
     @State private var presentRemoveDownloadSheet = false
     @State private var presentCancelDownloadSheet = false

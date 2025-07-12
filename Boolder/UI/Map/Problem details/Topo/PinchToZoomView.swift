@@ -10,7 +10,7 @@ import SwiftUI
 
 // inspired by https://github.com/Jake-Short/swiftui-image-viewer
 struct PinchToZoom: UIViewRepresentable {
-    @ObservedObject var state: PinchToZoomState
+    var state: PinchToZoomState
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -68,11 +68,11 @@ struct PinchToZoom: UIViewRepresentable {
     }
 }
 
-class PinchToZoomState: ObservableObject {
-    @Published var scale: CGFloat = 1
-    @Published var anchor: UnitPoint = .center
-    @Published var offset: CGSize = .zero
-    @Published var isPinching: Bool = false
+@Observable class PinchToZoomState {
+    var scale: CGFloat = 1
+    var anchor: UnitPoint = .center
+    var offset: CGSize = .zero
+    var isPinching: Bool = false
 }
 
 class PinchToZoomView: UIView {

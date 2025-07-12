@@ -17,7 +17,7 @@ struct DiscoverView: View {
     @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
     
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) private var appState: AppState
     
     var body: some View {
         NavigationView {

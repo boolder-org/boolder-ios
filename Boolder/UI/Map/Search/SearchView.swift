@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @ObservedObject var mapState: MapState
+    var mapState: MapState
     @State private var isEditing = false
     @State private var query = ""
     @FocusState private var isFocused: Bool

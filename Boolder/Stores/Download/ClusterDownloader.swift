@@ -9,29 +9,18 @@
 import Foundation
 import Combine
 
-class ClusterDownloader: ObservableObject {
+@Observable class ClusterDownloader {
     let cluster: Cluster
-    @Published var areas = [AreaDownloader]()
+    var areas = [AreaDownloader]()
     
-    @Published var queueRunning = false
-    @Published var queueType: QueueType = .auto
-    
-    var cancellables = [AnyCancellable]()
+    var queueRunning = false
+    var queueType: QueueType = .auto
     
     init(cluster: Cluster, mainArea: Area) {
         self.cluster = cluster
         
         areas = cluster.areasSortedByDistance(mainArea).map { area in
             DownloadCenter.shared.areaDownloader(id: area.id)
-        }
-        
-        // hack to make sure we publish changes when any of the AreaDownloader publishes a change
-        // inspired by https://stackoverflow.com/a/57302695
-        self.areas.forEach { area in
-            let c = area.objectWillChange
-                .throttle(for: .milliseconds(500), scheduler: RunLoop.main, latest: true)
-                .sink(receiveValue: { self.objectWillChange.send() })
-            self.cancellables.append(c)
         }
     }
     

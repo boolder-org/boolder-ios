@@ -9,27 +9,28 @@
 import SwiftUI
 import CoreLocation
 
-class MapState : ObservableObject {
-    @Published var selectedProblem: Problem = Problem.empty // TODO: use nil instead
-    @Published private(set) var centerOnProblem: Problem? = nil
-    @Published private(set) var selectedArea: Area? = nil
-    @Published private(set) var currentLocation: Bool = false
-    @Published private(set) var center: CLLocationCoordinate2D? = nil
-    @Published private(set) var zoom: CGFloat? = nil
-    @Published private(set) var centerOnArea: Area? = nil
-    @Published private(set) var selectedCluster: Cluster? = nil
-    @Published private(set) var selectedCircuit: Circuit? = nil
-    @Published private(set) var centerOnCircuit: Circuit? = nil
-    @Published var selectedPoi: Poi? = nil
-    @Published var filters: Filters = Filters()
-    @Published private(set) var refreshFilters: Bool = false
+@Observable
+class MapState {
+    var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+    private(set) var centerOnProblem: Problem? = nil
+    private(set) var selectedArea: Area? = nil
+    private(set) var currentLocationCount: Int = 0
+    private(set) var center: CLLocationCoordinate2D? = nil
+    private(set) var zoom: CGFloat? = nil
+    private(set) var centerOnArea: Area? = nil
+    private(set) var selectedCluster: Cluster? = nil
+    private(set) var selectedCircuit: Circuit? = nil
+    private(set) var centerOnCircuit: Circuit? = nil
+    var selectedPoi: Poi? = nil
+    var filters: Filters = Filters()
+    private(set) var refreshFiltersCount: Int = 0
     
-    @Published var presentProblemDetails = false
-    @Published var presentPoiActionSheet = false
-    @Published var presentFilters = false
-    @Published var presentAreaView = false
-    @Published var presentCircuitPicker = false
-    @Published var displayCircuitStartButton = false
+    var presentProblemDetails = false
+    var presentPoiActionSheet = false
+    var presentFilters = false
+    var presentAreaView = false
+    var presentCircuitPicker = false
+    var displayCircuitStartButton = false
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
@@ -128,7 +129,7 @@ class MapState : ObservableObject {
     }
     
     func centerOnCurrentLocation() {
-        currentLocation = true
+        currentLocationCount += 1
     }
     
     func clearFilters() {
@@ -137,7 +138,7 @@ class MapState : ObservableObject {
     }
     
     func filtersRefresh() {
-        refreshFilters = true
+        refreshFiltersCount += 1
     }
     
     func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {
