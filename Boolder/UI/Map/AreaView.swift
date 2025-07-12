@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Charts
+import CoreLocation
 
 struct AreaView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -22,6 +23,9 @@ struct AreaView: View {
     @State private var showChart = false
     @State private var chartData: [Level] = []
     @State private var poiRoutes = [PoiRoute]()
+    
+    @State private var selectedPoi: Poi?
+    @State private var presentPoiActionSheet: Bool = false
     
     var body: some View {
         ZStack {
@@ -71,6 +75,14 @@ struct AreaView: View {
             }
 
         }
+        .background(
+            PoiActionSheet(
+                name: (selectedPoi?.name ?? ""),
+                googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
+                coordinates: selectedPoi?.coordinate ?? CLLocationCoordinate2D(),
+                presentPoiActionSheet: $presentPoiActionSheet
+            )
+        )
         .task {
             circuits = area.circuits
             popularProblems = area.popularProblems
@@ -234,9 +246,8 @@ struct AreaView: View {
                 if let poi = poiRoute.poi {
                     
                     Button {
-                        if let url = URL(string: poi.googleUrl) {
-                            openURL(url)
-                        }
+                        selectedPoi = poi
+                        presentPoiActionSheet = true
                     } label: {
                         HStack {
                             if poi.type == .parking {
