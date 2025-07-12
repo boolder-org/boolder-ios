@@ -14,7 +14,7 @@ class MapState {
     var selectedProblem: Problem = Problem.empty // TODO: use nil instead
     private(set) var centerOnProblem: Problem? = nil
     private(set) var selectedArea: Area? = nil
-    private(set) var currentLocation: Bool = false
+    private(set) var currentLocationCount: Int = 0
     private(set) var center: CLLocationCoordinate2D? = nil
     private(set) var zoom: CGFloat? = nil
     private(set) var centerOnArea: Area? = nil
@@ -23,7 +23,7 @@ class MapState {
     private(set) var centerOnCircuit: Circuit? = nil
     var selectedPoi: Poi? = nil
     var filters: Filters = Filters()
-    private(set) var refreshFilters: Bool = false
+    private(set) var refreshFiltersCount: Int = 0
     
     var presentProblemDetails = false
     var presentPoiActionSheet = false
@@ -129,7 +129,7 @@ class MapState {
     }
     
     func centerOnCurrentLocation() {
-        currentLocation = true
+        currentLocationCount += 1
     }
     
     func clearFilters() {
@@ -138,7 +138,7 @@ class MapState {
     }
     
     func filtersRefresh() {
-        refreshFilters = true
+        refreshFiltersCount += 1
     }
     
     func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {

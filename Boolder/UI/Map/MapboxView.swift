@@ -13,7 +13,7 @@ import Combine
 
 // Bridge between SwiftUI-world (driven by MapState) and UIKit-world (MapboxViewController)
 // 2 ways to communicate:
-// SwiftUI -> UIKit : MapboxView.Coordinator.subscribeToMapState()
+// SwiftUI -> UIKit : MapboxView.updateUIViewController
 // UIKit -> SwiftUI : MapBoxViewDelegate protocol
 
 struct MapboxView: UIViewControllerRepresentable {
@@ -27,6 +27,69 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
+        // Handle selectedProblem changes
+        let selectedId = mapState.selectedProblem.id
+        if context.coordinator.lastSelectedProblemId != selectedId && selectedId != 0 {
+            context.coordinator.lastSelectedProblemId = selectedId
+            vc.setProblemAsSelected(problemFeatureId: String(selectedId))
+        }
+        
+        // Handle centerOnProblem changes
+        if let centerOnProblem = mapState.centerOnProblem {
+            let centerOnProblemId = centerOnProblem.id
+            if context.coordinator.lastCenterOnProblemId != centerOnProblemId {
+                context.coordinator.lastCenterOnProblemId = centerOnProblemId
+                vc.centerOnProblem(centerOnProblem)
+            }
+        }
+        
+        // Handle centerOnArea changes
+        if let centerOnArea = mapState.centerOnArea {
+            let centerOnAreaId = centerOnArea.id
+            if context.coordinator.lastCenterOnAreaId != centerOnAreaId {
+                context.coordinator.lastCenterOnAreaId = centerOnAreaId
+                vc.centerOnArea(centerOnArea)
+            }
+        }
+        
+        // Handle centerOnCurrentLocation changes
+        if mapState.currentLocationCount != context.coordinator.lastCurrentLocationCount {
+            context.coordinator.lastCurrentLocationCount = mapState.currentLocationCount
+            vc.centerOnCurrentLocation()
+        }
+        
+        // Handle centerOnCircuit changes
+        if let centerOnCircuit = mapState.centerOnCircuit {
+            let centerOnCircuitId = centerOnCircuit.id
+            if context.coordinator.lastCenterOnCircuitId != centerOnCircuitId {
+                context.coordinator.lastCenterOnCircuitId = centerOnCircuitId
+                vc.centerOnCircuit(centerOnCircuit)
+            }
+        }
+        else {
+            vc.unselectCircuit()
+        }
+
+        // Handle selectedCircuit changes
+        if let selectedCircuit = mapState.selectedCircuit {
+            let selectedCircuitId = selectedCircuit.id
+            if context.coordinator.lastSelectedCircuitId != selectedCircuitId {
+                context.coordinator.lastSelectedCircuitId = selectedCircuitId
+                vc.setCircuitAsSelected(circuit: selectedCircuit)
+            }
+        }
+        else {
+            if context.coordinator.lastSelectedCircuitId != 0 {
+                context.coordinator.lastSelectedCircuitId = 0
+                vc.unselectCircuit()
+            }
+        }
+        
+        // Handle refreshFilters changes
+        if mapState.refreshFiltersCount != context.coordinator.lastRefreshFiltersCount {
+            context.coordinator.lastRefreshFiltersCount = mapState.refreshFiltersCount
+            vc.applyFilters(mapState.filters)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -38,98 +101,17 @@ struct MapboxView: UIViewControllerRepresentable {
     class Coordinator: MapBoxViewDelegate {
         var parent: MapboxView
         var viewController: MapboxViewController?
-        private var cancellables = Set<AnyCancellable>()
+        
+        var lastSelectedProblemId: Int = 0
+        var lastCenterOnProblemId: Int = 0
+        var lastCenterOnAreaId: Int = 0
+        var lastCurrentLocationCount: Int = 0
+        var lastCenterOnCircuitId: Int = 0
+        var lastSelectedCircuitId: Int = 0
+        var lastRefreshFiltersCount: Int = 0
 
         init(_ parent: MapboxView) {
             self.parent = parent
-            subscribeToMapState()
-        }
-        
-        private func subscribeToMapState() {
-            parent.mapState.$selectedProblem
-                .sink { [weak self] problem in
-                    guard let self = self else { return }
-                    DispatchQueue.main.async {
-                        self.viewController?.setProblemAsSelected(problemFeatureId: String(self.parent.mapState.selectedProblem.id))
-                    }
-                }
-                .store(in: &cancellables)
-            
-            parent.mapState.$centerOnProblem
-                .sink { [weak self] problem in
-                    guard let self = self else { return }
-                    if let problem = problem {
-                        DispatchQueue.main.async {
-                            self.viewController?.centerOnProblem(problem)
-                        }
-                    }
-                }
-                .store(in: &cancellables)
-            
-            parent.mapState.$centerOnArea
-                .sink { [weak self] area in
-                    guard let self = self else { return }
-                    if let area = area {
-                        DispatchQueue.main.async {
-                            self.viewController?.centerOnArea(area)
-                        }
-                    }
-                }
-                .store(in: &cancellables)
-            
-            parent.mapState.$currentLocation
-                .sink { [weak self] centerOnCurrentLocation in
-                    guard let self = self else { return }
-                    if centerOnCurrentLocation {
-                        DispatchQueue.main.async {
-                            self.viewController?.centerOnCurrentLocation()
-                        }
-                    }
-                }
-                .store(in: &cancellables)
-            
-            parent.mapState.$centerOnCircuit
-                .sink { [weak self] circuit in
-                    guard let self = self else { return }
-                    if let circuit = circuit {
-                        DispatchQueue.main.async {
-                            self.viewController?.centerOnCircuit(circuit)
-                        }
-                    }
-                    else {
-                        DispatchQueue.main.async {
-                            self.viewController?.unselectCircuit()
-                        }
-                    }
-                }
-                .store(in: &cancellables)
-            
-            parent.mapState.$selectedCircuit
-                .sink { [weak self] circuit in
-                    guard let self = self else { return }
-                    if let circuit = circuit {
-                        DispatchQueue.main.async {
-                            self.viewController?.setCircuitAsSelected(circuit: circuit)
-                        }
-                    }
-                    else {
-                        DispatchQueue.main.async {
-                            self.viewController?.unselectCircuit()
-                        }
-                    }
-                }
-                .store(in: &cancellables)
-            
-            parent.mapState.$refreshFilters
-                .sink { [weak self] refresh in
-                    guard let self = self else { return }
-                    if refresh {
-                        DispatchQueue.main.async {
-                            self.viewController?.applyFilters(self.parent.mapState.filters)
-                        }
-                    }
-                }
-                .store(in: &cancellables)
         }
         
         func selectProblem(id: Int) {
