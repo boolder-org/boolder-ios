@@ -152,16 +152,16 @@ struct TopoView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
-        .onChange(of: photoStatus) { value in
-            switch value {
+        .onChange(of: photoStatus) { oldValue, newValue in
+            switch newValue {
             case .ready(image: _):
                 displayLine()
             default:
                 print("")
             }
         }
-        .onChange(of: problem) { [problem] newValue in
-            if problem.topoId == newValue.topoId {
+        .onChange(of: problem) { oldValue, newValue in
+            if oldValue.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
                 displayLine()
