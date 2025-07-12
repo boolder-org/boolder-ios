@@ -521,21 +521,29 @@ class MapboxViewController: UIViewController {
                 switch result {
                 case .success(let queriedfeatures):
                     
-                    if let feature = queriedfeatures.first?.queriedFeature.feature,
-                       case .number(let id) = feature.properties?["id"],
-                       case .point(let point) = feature.geometry
-                    {
-                        self.delegate?.selectProblem(id: Int(id))
-                        self.setProblemAsSelected(problemFeatureId: String(Int(id)))
+                    let sortedFeatures = getSortedFeaturesByDistance(from: tapPoint, for: queriedfeatures)
+                    
+                    let sortedProblems = sortedFeatures.compactMap { feature in
+                        if case .number(let id) = feature.properties?["id"] {
+                            return Int(id)
+                        }
+                        return nil
+                    }.compactMap { Problem.load(id: $0) }
+                    
+                    if let first = sortedProblems.first {
+                        self.delegate?.selectProblem(id: first.id)
+                        self.setProblemAsSelected(problemFeatureId: String(first.id))
                         
                         // if problem is hidden by the bottom sheet
                         if tapPoint.y >= (self.mapView.bounds.height/2 - 40) {
-                            
-                            let cameraOptions = CameraOptions(
-                                center: point.coordinates,
-                                padding: self.safePaddingForBottomSheet
-                            )
-                            self.easeTo(cameraOptions)
+                            if let feature = sortedFeatures.first, case .point(let point) = feature.geometry {
+                                
+                                let cameraOptions = CameraOptions(
+                                    center: point.coordinates,
+                                    padding: self.safePaddingForBottomSheet
+                                )
+                                self.easeTo(cameraOptions)
+                            }
                         }
                     }
                     else {
@@ -946,6 +954,26 @@ class MapboxViewController: UIViewController {
         }
         
         return nil
+    }
+    
+    private func getSortedFeaturesByDistance(from tapPoint: CGPoint, for features: [QueriedRenderedFeature]) -> [Feature] {
+        let tapCoord = mapView.mapboxMap.coordinate(for: tapPoint)
+        let tapLoc = CLLocation(latitude: tapCoord.latitude, longitude: tapCoord.longitude)
+        
+        let withDistances = features.compactMap { qf -> (QueriedRenderedFeature, CLLocationDistance)? in
+            guard case let .point(ptCoords) = qf.queriedFeature.feature.geometry else { 
+                return nil 
+            }
+            
+            let featureLoc = CLLocation(
+                latitude: ptCoords.coordinates.latitude, 
+                longitude: ptCoords.coordinates.longitude
+            )
+            let distance = featureLoc.distance(from: tapLoc)
+            return (qf, distance)
+        }
+        
+        return withDistances.sorted { $0.1 < $1.1 }.map { $0.0.queriedFeature.feature }
     }
 }
 
