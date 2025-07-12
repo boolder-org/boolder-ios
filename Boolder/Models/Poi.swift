@@ -7,6 +7,7 @@
 //
 
 import SQLite
+import CoreLocation
 
 struct Poi : Identifiable {
     let id: Int
@@ -14,6 +15,7 @@ struct Poi : Identifiable {
     let name: String
     let shortName: String
     let googleUrl: String
+    let coordinate: CLLocationCoordinate2D
     
     enum PoiType {
         case parking
@@ -37,6 +39,8 @@ extension Poi {
     static let name = Expression<String>("name")
     static let shortName = Expression<String>("short_name")
     static let googleUrl = Expression<String>("google_url")
+    static let latitude = Expression<Double>("latitude")
+    static let longitude = Expression<Double>("longitude")
     
     static func load(id: Int) -> Poi? {
         let pois = Table("pois")
@@ -50,7 +54,8 @@ extension Poi {
                     type: p[poiType] == "train_station" ? .trainStation : .parking,
                     name: p[name],
                     shortName: p[shortName],
-                    googleUrl: p[googleUrl]
+                    googleUrl: p[googleUrl],
+                    coordinate: CLLocationCoordinate2D(latitude: p[latitude], longitude: p[longitude])
                 )
             }
             
