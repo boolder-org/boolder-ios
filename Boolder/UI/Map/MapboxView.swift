@@ -158,7 +158,9 @@ struct MapboxView: UIViewControllerRepresentable {
         }
         
         func cameraChanged(state: MapboxMaps.CameraState) {
-            parent.mapState.displayCircuitStartButton = false
+            if parent.mapState.displayCircuitStartButton {
+                parent.mapState.displayCircuitStartButton = false
+            }
             
             // TODO: deal with padding
             parent.mapState.updateCameraState(center: state.center, zoom: state.zoom)

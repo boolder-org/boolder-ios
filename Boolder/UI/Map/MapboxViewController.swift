@@ -61,6 +61,9 @@ class MapboxViewController: UIViewController {
             return true
         })
         
+        // Important
+        // This callback is called on every rendering frame. Don’t use it to modify @State variables, it will lead to excessive body execution and higher CPU consumption.
+        // https://docs.mapbox.com/ios/maps/api/11.0.0-rc.1-docc/documentation/mapboxmaps/map-swift.struct/oncamerachanged(action:)/
         mapView.mapboxMap.onCameraChanged
             .filter { [weak self] _ in
                 guard let self = self else { return false }

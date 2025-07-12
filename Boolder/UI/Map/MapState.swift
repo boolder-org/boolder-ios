@@ -37,15 +37,19 @@ class MapState {
     }
     
     func selectArea(_ area: Area) {
-        selectedArea = area
-        
-        if let clusterId = area.clusterId, let cluster = Cluster.load(id: clusterId) {
-            selectCluster(cluster)
+        if area != self.selectedArea {
+            selectedArea = area
+            
+            if let clusterId = area.clusterId, let cluster = Cluster.load(id: clusterId) {
+                selectCluster(cluster)
+            }
         }
     }
     
     func selectCluster(_ cluster: Cluster) {
-        selectedCluster = cluster
+        if cluster != self.selectedCluster {
+            selectedCluster = cluster
+        }
     }
     
     func unselectArea() {
