@@ -62,15 +62,17 @@ class MapboxViewController: UIViewController {
         })
         
         mapView.mapboxMap.onCameraChanged
+            .filter { [weak self] _ in
+                guard let self = self else { return false }
+                return !self.flyinToSomething
+            }
             .throttle(for: .milliseconds(100), scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] event in
                 guard let self = self else { return }
                 
-                if(!flyinToSomething) {
-                    self.inferAreaFromMap()
-                    self.inferClusterFromMap()
-                    self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
-                }
+                self.inferAreaFromMap()
+                self.inferClusterFromMap()
+                self.delegate?.cameraChanged(state: mapView.mapboxMap.cameraState)
             }.store(in: &cancelables)
         
         self.view.addSubview(mapView)
