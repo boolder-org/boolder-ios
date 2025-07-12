@@ -15,7 +15,7 @@ struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @Environment(AppState.self) private var appState: AppState
-    @StateObject private var mapState = MapState()
+    @State private var mapState = MapState()
     
     // TODO: make this more DRY
     @State private var presentDownloads = false
