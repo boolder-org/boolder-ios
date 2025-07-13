@@ -63,7 +63,7 @@ struct MapContainerView: View {
     
     var mapbox : some View {
         MapboxView(mapState: mapState)
-            .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.vertical)
             .ignoresSafeArea(.keyboard)
             .background(
                 PoiActionSheet(
