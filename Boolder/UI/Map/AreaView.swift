@@ -62,8 +62,10 @@ struct AreaView: View {
                     Spacer()
                     
                     Button {
-                        appState.selectedArea = area
                         appState.tab = .map
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // FIXME
+                            appState.selectedArea = area
+                        }
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))

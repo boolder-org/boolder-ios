@@ -34,7 +34,9 @@ struct AreaProblemsView: View {
                     ForEach(problemsFilteredBySearch) { problem in
                         Button {
                             appState.tab = .map
-                            appState.selectedProblem = problem
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // FIXME
+                                appState.selectedProblem = problem
+                            }
                         } label: {
                             HStack {
                                 ProblemCircleView(problem: problem)
