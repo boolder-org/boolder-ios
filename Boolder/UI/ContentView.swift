@@ -28,9 +28,10 @@ struct ContentView: View {
             }
             
             Tab("Search", systemImage: "magnifyingglass", value: .search, role: .search) {
-                EmptyView()
+                NavigationStack {
+                    SearchView()
+                }
             }
-                
         }
         .environment(appState)
         .environment(mapState)
