@@ -25,5 +25,6 @@ import SwiftUI
         case discover
         case ticklist
         case contribute
+        case search
     }
 }

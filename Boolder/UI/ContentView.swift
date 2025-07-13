@@ -14,29 +14,22 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $appState.tab) {
             
-            MapContainerView()
-                .tabItem {
-                    Label("tabs.map", systemImage: "map")
-                }
-                .tag(AppState.Tab.map)
+            Tab("tabs.map", systemImage: "map", value: .map) {
+                MapContainerView()
+            }
             
-            DiscoverView()
-                .tabItem {
-                    Label("tabs.discover", systemImage: "sparkles")
-                }
-                .tag(AppState.Tab.discover)
+            Tab("tabs.discover", systemImage: "sparkles", value: .discover) {
+                DiscoverView()
+            }
             
-            TickList()
-                .tabItem {
-                    Label("tabs.ticklist", systemImage: "bookmark")
-                }
-                .tag(AppState.Tab.ticklist)
+            Tab("tabs.ticklist", systemImage: "bookmark", value: .ticklist) {
+                TickList()
+            }
             
-            ContributeView()
-                .tabItem {
-                    Label("tabs.contribute", systemImage: "person.2")
-                }
-                .tag(AppState.Tab.contribute)
+            Tab("Search", systemImage: "magnifyingglass", value: .search, role: .search) {
+                EmptyView()
+            }
+                
         }
         .environment(appState)
     }
