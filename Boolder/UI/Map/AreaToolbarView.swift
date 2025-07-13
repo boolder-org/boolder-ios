@@ -22,17 +22,7 @@ struct AreaToolbarView: View {
 
         return VStack {
             HStack {
-                HStack {
-                    Button {
-                        mapState.unselectArea()
-                        mapState.presentProblemDetails = false
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(Font.body.weight(.semibold))
-                            .foregroundColor(Color(.secondaryLabel))
-                            .padding(.horizontal, 16)
-                    }
-                    
+                HStack {                    
                     Spacer()
                     
                     Button {
@@ -65,11 +55,6 @@ struct AreaToolbarView: View {
                     }
                     
                     Spacer()
-                    
-                    Color.white.opacity(0)
-                        .frame(height: 20)
-                        .frame(maxWidth: 40)
-                        .layoutPriority(-1)
                 }
                 .background(Color(.systemBackground))
                 .cornerRadius(12)
