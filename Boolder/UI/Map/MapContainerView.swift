@@ -117,12 +117,13 @@ struct MapContainerView: View {
                         }
                         .font(.body.weight(.semibold))
                         .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                        .background(Color.systemBackground)
+//                        .clipShape(Circle())
+//                        .overlay(
+//                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                        )
+//                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .glassEffect(.regular)
                         .padding(.horizontal)
                     }
                     
@@ -139,12 +140,13 @@ struct MapContainerView: View {
                         }
                         .font(.body.weight(.semibold))
                         .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                        .background(Color.systemBackground)
+//                        .clipShape(Circle())
+//                        .overlay(
+//                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                        )
+//                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .glassEffect(.regular)
                         .padding(.horizontal)
                     }
                 }
@@ -169,12 +171,13 @@ struct MapContainerView: View {
                             .padding(.vertical, 8)
                             .font(.body.weight(.semibold))
                             .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                            .background(Color.systemBackground)
-                            .clipShape(RoundedRectangle(cornerRadius: 32))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                            )
-                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+//                            .background(Color.systemBackground)
+//                            .clipShape(RoundedRectangle(cornerRadius: 32))
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
+//                            )
+//                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            .glassEffect(.regular)
                             
                         }
                         .padding()
