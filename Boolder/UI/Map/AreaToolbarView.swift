@@ -21,7 +21,7 @@ struct AreaToolbarView: View {
         @Bindable var mapState = mapState
 
         return VStack {
-            HStack {
+//            HStack {
                 HStack {                    
                     Spacer()
                     
@@ -56,9 +56,10 @@ struct AreaToolbarView: View {
                     
                     Spacer()
                 }
-                .background(Color(.systemBackground))
-                .cornerRadius(12)
-                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+//                .background(Color(.systemBackground))
+//                .cornerRadius(12)
+//                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                .glassEffect()
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
@@ -66,7 +67,7 @@ struct AreaToolbarView: View {
                     }
                 }
 
-            }
+//            }
             .padding(.horizontal)
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -87,8 +88,9 @@ struct AreaToolbarView: View {
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
                             .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
-                            .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
-                            .cornerRadius(32)
+//                            .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+//                            .cornerRadius(32)
+                            .glassEffect(circuitFilterActive ? .regular.tint(.appGreen) : .regular)
                         }
                         .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
                             
@@ -110,8 +112,9 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+//                        .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
+//                        .cornerRadius(32)
+                        .glassEffect(mapState.filters.gradeRange != nil ? .regular.tint(.appGreen) : .regular)
                     }
                     .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                         mapState.filtersRefresh() // TODO: simplify refresh logic
@@ -135,8 +138,9 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+//                        .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
+//                        .cornerRadius(32)
+                        .glassEffect(mapState.filters.popular ? .regular.tint(.appGreen) : .regular)
                     }
                     
                     Button {
@@ -166,8 +170,9 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+//                        .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
+//                        .cornerRadius(32)
+                        .glassEffect(mapState.filters.favorite ? .regular.tint(.appGreen) : .regular)
                     }
                     .alert(isPresented: $showingAlertFavorite) {
                         Alert(title: Text("filters.no_favorites_alert.title"), message: Text("filters.no_favorites_alert.message"), dismissButton: .default(Text("OK")))
@@ -199,8 +204,9 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+//                        .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
+//                        .cornerRadius(32)
+                        .glassEffect(mapState.filters.ticked ? .regular.tint(.appGreen) : .regular)
                     }
                     .alert(isPresented: $showingAlertTicked) {
                         Alert(title: Text("filters.no_ticks_alert.title"), message: Text("filters.no_ticks_alert.message"), dismissButton: .default(Text("OK")))
