@@ -33,6 +33,7 @@ struct ContentView: View {
                 }
             }
         }
+//        .tabBarMinimizeBehavior(.onScrollDown)
         .environment(appState)
         .environment(mapState)
     }
