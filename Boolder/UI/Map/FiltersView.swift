@@ -13,7 +13,7 @@ struct FiltersView: View {
     @Binding var presentFilters: Bool
     @Binding var filters: Filters
     
-    let mapState: MapState
+    @Environment(MapState.self) private var mapState: MapState
     
     var body: some View {
         NavigationView {

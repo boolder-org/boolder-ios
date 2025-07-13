@@ -24,7 +24,7 @@ struct GradeRangePickerView: View {
                         Text($0)
                     }
                 }
-                .onChange(of: gradeMin) { _ in
+                .onChange(of: gradeMin) { _, _ in
                     gradeMax = max(Grade(gradeMax), Grade(gradeMin)).string
                     save()
                 }
@@ -37,7 +37,7 @@ struct GradeRangePickerView: View {
                     }
                 }
             }
-            .onChange(of: gradeMax) { _ in
+            .onChange(of: gradeMax) { _, _ in
                 gradeMin = min(Grade(gradeMax), Grade(gradeMin)).string
                 save()
             }

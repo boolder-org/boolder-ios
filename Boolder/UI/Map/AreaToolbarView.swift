@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AreaToolbarView: View {
-    @Bindable var mapState: MapState
+    @Environment(MapState.self) private var mapState: MapState
     
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
@@ -18,7 +18,9 @@ struct AreaToolbarView: View {
     @State private var showingAlertTicked = false
     
     var body: some View {
-        VStack {
+        @Bindable var mapState = mapState
+
+        return VStack {
             HStack {
                 HStack {
                     Button {
@@ -106,7 +108,7 @@ struct AreaToolbarView: View {
                         .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
                             
                         }) {
-                            CircuitPickerView(area: mapState.selectedArea!, mapState: mapState)
+                            CircuitPickerView(area: mapState.selectedArea!)
                                 .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                         }
                     }
@@ -129,7 +131,7 @@ struct AreaToolbarView: View {
                     .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                         mapState.filtersRefresh() // TODO: simplify refresh logic
                     }) {
-                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters, mapState: mapState)
+                        FiltersView(presentFilters: $mapState.presentFilters, filters: $mapState.filters)
                             .presentationDetents([.medium]).presentationDragIndicator(.hidden) // TODO: use heights?
                     }
                     

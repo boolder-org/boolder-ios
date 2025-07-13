@@ -12,7 +12,7 @@ struct TopoView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var problem: Problem
-    var mapState: MapState
+    @Environment(MapState.self) private var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
     @State private var presentTopoFullScreenView = false

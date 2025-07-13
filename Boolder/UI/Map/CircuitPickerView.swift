@@ -12,7 +12,7 @@ struct CircuitPickerView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let area: Area
-    let mapState: MapState
+    @Environment(MapState.self) private var mapState: MapState
     
     @State private var circuits = [Circuit]()
     

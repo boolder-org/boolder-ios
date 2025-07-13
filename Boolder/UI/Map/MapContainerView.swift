@@ -15,7 +15,8 @@ struct MapContainerView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @Environment(AppState.self) private var appState: AppState
-    @State private var mapState = MapState()
+    @Environment(MapState.self) private var mapState: MapState
+    
     
     // TODO: make this more DRY
     @State private var presentDownloads = false
@@ -31,11 +32,11 @@ struct MapContainerView: View {
             fabButtons
                 .zIndex(10)
             
-            SearchView(mapState: mapState)
+            SearchView()
                 .zIndex(20)
                 .opacity(mapState.selectedArea != nil ? 0 : 1)
             
-            AreaToolbarView(mapState: mapState)
+            AreaToolbarView()
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
@@ -62,7 +63,8 @@ struct MapContainerView: View {
     }
     
     var mapbox : some View {
-        MapboxView(mapState: mapState)
+        @Bindable var mapState = mapState
+        return MapboxView(mapState: mapState)
             .edgesIgnoringSafeArea(.vertical)
             .ignoresSafeArea(.keyboard)
             .background(
@@ -75,8 +77,7 @@ struct MapContainerView: View {
             )
             .sheet(isPresented: $mapState.presentProblemDetails) {
                 ProblemDetailsView(
-                    problem: $mapState.selectedProblem,
-                    mapState: mapState
+                    problem: $mapState.selectedProblem
                 )
                 .presentationDetents([detent])
 //                .presentationDetents([.medium])
