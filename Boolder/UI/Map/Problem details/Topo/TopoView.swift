@@ -59,7 +59,8 @@ struct TopoView: View {
                                         ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                             .allowsHitTesting(false)
                                             .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                            .zIndex(p == problem ? .infinity : p.zIndex)
+                                        // TODO: find a fix
+//                                            .zIndex(p == problem ? .infinity : p.zIndex)
                                     }
                                 }
                             }
