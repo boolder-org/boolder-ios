@@ -11,8 +11,8 @@ import SwiftUI
 struct FabButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
-//            .accentColor(.primary)
-//            .opacity(configuration.isPressed ? 0.2 : 1)
+            .accentColor(.primary)
+            .opacity(configuration.isPressed ? 0.2 : 1)
 //            .frame(width: 18, height: 18)
             .padding(12)
 //            .background(Color.systemBackground)

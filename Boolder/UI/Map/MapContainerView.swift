@@ -187,6 +187,8 @@ struct MapContainerView: View {
         }
     }
     
+    @Namespace private var namespace
+    
     var fabButtons: some View {
         HStack {
             Spacer()
@@ -194,23 +196,31 @@ struct MapContainerView: View {
             VStack(alignment: .trailing) {
                 Spacer()
                 
-                if let cluster = mapState.selectedCluster {
-                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                GlassEffectContainer {
+                    
+                    VStack {
+                        
+                        if let cluster = mapState.selectedCluster {
+                            DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                                .glassEffectUnion(id: "test", namespace: namespace)
+                        }
+                        else {
+                            DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
+                                .glassEffectUnion(id: "test", namespace: namespace)
+                        }
+                        
+                        
+                        Button(action: {
+                            mapState.centerOnCurrentLocation()
+                        }) {
+                            Image(systemName: "location")
+                                .offset(x: -1, y: 0)
+                            //                        .font(.system(size: 20, weight: .regular))
+                        }
+                        .buttonStyle(FabButton())
+                        .glassEffectUnion(id: "test", namespace: namespace)
+                    }
                 }
-                else {
-                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
-
-                }
-                
-                Button(action: {
-                    mapState.centerOnCurrentLocation()
-                }) {
-                    Image(systemName: "location")
-                        .offset(x: -1, y: 0)
-//                        .font(.system(size: 20, weight: .regular))
-                }
-                .buttonStyle(FabButton())
-                
             }
             .padding(.trailing)
         }
