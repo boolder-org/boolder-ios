@@ -123,7 +123,7 @@ struct MapContainerView: View {
 //                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
 //                        )
 //                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .glassEffect(.regular)
+                        .glassEffect(.regular, in: Circle())
                         .padding(.horizontal)
                     }
                     
@@ -146,7 +146,7 @@ struct MapContainerView: View {
 //                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
 //                        )
 //                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                        .glassEffect(.regular)
+                        .glassEffect(.regular, in: Circle())
                         .padding(.horizontal)
                     }
                 }
