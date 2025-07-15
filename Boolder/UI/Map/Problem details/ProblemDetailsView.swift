@@ -33,9 +33,13 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    TopoView(
-                        problem: $problem
-                    )
+                    ZStack {
+                        TopoView(
+                            problem: $problem
+                        )
+                        
+                        variants
+                    }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
@@ -60,6 +64,50 @@ struct ProblemDetailsView: View {
                 presentReview()
                 lastVersionPromptedForReview = currentAppVersion
             }
+        }
+    }
+    
+    var variants: some View {
+        VStack {
+            HStack {
+                Spacer()
+        
+                if(problem.variants.count > 1) {
+                    Menu {
+                        ForEach(problem.variants) { variant in
+                            Button {
+                                mapState.selectProblem(variant)
+                            } label: {
+                                Text("\(variant.localizedName) \(variant.grade.string)")
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Text(numberOfVariantsForProblem(problem))
+                            Image(systemName: "chevron.down")
+                        }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color.gray.opacity(0.8))
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
+                            .padding(8)
+                    }
+                }
+            }
+            
+            Spacer()
+        }
+    }
+    
+    // TODO: use the proper i18n method for plural
+    func numberOfVariantsForProblem(_ p: Problem) -> String {
+        let count = problem.variants.count
+        if count >= 2 {
+            return String(format: NSLocalizedString("problem.variants.other", comment: ""), count)
+        }
+        else {
+            return NSLocalizedString("problem.variants.one", comment: "")
         }
     }
     
@@ -168,7 +216,7 @@ struct ProblemDetailsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: "square.and.arrow.up")
-                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+//                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)

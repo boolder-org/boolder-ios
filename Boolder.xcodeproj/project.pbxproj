@@ -44,8 +44,6 @@
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
 		031F36B7291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
-		031F36B9291D271300BD0C2B /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B8291D271300BD0C2B /* PinchToZoomView.swift */; };
-		031F36BA291D271300BD0C2B /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B8291D271300BD0C2B /* PinchToZoomView.swift */; };
 		031F36BF291E4E4400BD0C2B /* TickList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BE291E4E4400BD0C2B /* TickList.swift */; };
 		031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BE291E4E4400BD0C2B /* TickList.swift */; };
 		031F36C2291EA62900BD0C2B /* TestFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36C1291EA62900BD0C2B /* TestFontSize.swift */; };
@@ -59,6 +57,8 @@
 		033F70DF291959FF000DD3F4 /* TopAreasDryFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */; };
 		0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
 		0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343F94B2869A29F00BBAC38 /* AreaCardView.swift */; };
+		03502F732E263ACC00E8319E /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03502F722E263ACC00E8319E /* ZoomableScrollView.swift */; };
+		03502F742E263ACC00E8319E /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03502F722E263ACC00E8319E /* ZoomableScrollView.swift */; };
 		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */; };
@@ -192,12 +192,12 @@
 		031A61BA29EC7CE200B2B46E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
-		031F36B8291D271300BD0C2B /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
 		031F36BE291E4E4400BD0C2B /* TickList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickList.swift; sourceTree = "<group>"; };
 		031F36C1291EA62900BD0C2B /* TestFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFontSize.swift; sourceTree = "<group>"; };
 		033F70D329191755000DD3F4 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		033F70D62919535A000DD3F4 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		0343F94B2869A29F00BBAC38 /* AreaCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaCardView.swift; sourceTree = "<group>"; };
+		03502F722E263ACC00E8319E /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		035D41B226F7CF5D00FC96EB /* Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Dev-Info.plist"; sourceTree = SOURCE_ROOT; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterViewWithActionsheet.swift; sourceTree = "<group>"; };
@@ -488,7 +488,7 @@
 				37B45230259144D300241091 /* TopoView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
-				031F36B8291D271300BD0C2B /* PinchToZoomView.swift */,
+				03502F722E263ACC00E8319E /* ZoomableScrollView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
 			);
@@ -691,6 +691,7 @@
 				031A4CAF296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
+				03502F742E263ACC00E8319E /* ZoomableScrollView.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
@@ -732,7 +733,6 @@
 				03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */,
-				031F36BA291D271300BD0C2B /* PinchToZoomView.swift in Sources */,
 				37B452362591450200241091 /* TopoView.swift in Sources */,
 				03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */,
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
@@ -770,6 +770,7 @@
 				031F36B0291CE56100BD0C2B /* MapState.swift in Sources */,
 				031A61BB29EC7CE200B2B46E /* AppState.swift in Sources */,
 				03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */,
+				03502F732E263ACC00E8319E /* ZoomableScrollView.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
@@ -821,7 +822,6 @@
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
 				030AC1A627BAF77500AF85E7 /* TopAreasTrain.swift in Sources */,
-				031F36B9291D271300BD0C2B /* PinchToZoomView.swift in Sources */,
 				031F36C2291EA62900BD0C2B /* TestFontSize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

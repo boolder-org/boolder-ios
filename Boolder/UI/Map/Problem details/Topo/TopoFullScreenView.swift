@@ -11,14 +11,15 @@ import SwiftUI
 struct TopoFullScreenView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let image: UIImage
-    let problem: Problem
+//    let image: UIImage
+    @Binding var problem: Problem
     
-    @State var pinchToZoomState = PinchToZoomState()
+    @State private var zoomScale: CGFloat = 1
     
-    // drag gesture (to dismiss the sheet)
-    @State var dragOffset: CGSize = CGSize.zero
-    @State var dragOffsetPredicted: CGSize = CGSize.zero
+//    @State var pinchToZoomState = PinchToZoomState()
+//    // drag gesture (to dismiss the sheet)
+//    @State var dragOffset: CGSize = CGSize.zero
+//    @State var dragOffsetPredicted: CGSize = CGSize.zero
     
     var body: some View {
         VStack {
@@ -39,60 +40,16 @@ struct TopoFullScreenView: View {
                 .padding()
                 .zIndex(2)
                 
-                VStack {
-                    ZStack {
-                        VStack {
-                            Spacer()
-                            Group {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .overlay(
-                                        ZStack {
-                                            LineView(problem: problem, drawPercentage: .constant(1), pinchToZoomScale: $pinchToZoomState.scale)
-                                            
-                                            GeometryReader { geo in
-                                                if let firstPoint = problem.lineFirstPoint {
-                                                    ProblemCircleView(problem: problem, isDisplayedOnPhoto: true)
-                                                        .scaleEffect(1/pinchToZoomState.scale)
-                                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                                }
-                                            }
-                                        }
-                                    )
-                            }
-                            Spacer()
-                        }
-                        .offset(x: 0, y: self.dragOffset.height) // drag gesture
-                        .scaleEffect(pinchToZoomState.scale, anchor: pinchToZoomState.anchor)
-                        .offset(pinchToZoomState.offset)
-                        .overlay(PinchToZoom(state: pinchToZoomState))
-                        .gesture(DragGesture()
-                            .onChanged { value in
-                                self.dragOffset = value.translation
-                                self.dragOffsetPredicted = value.predictedEndTranslation
-                            }
-                            .onEnded { value in
-                                if(self.dragOffset.height > 200
-                                  || (self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3)) {
-                                    withAnimation(.spring()) {
-                                        self.dragOffset = self.dragOffsetPredicted
-                                    }
-                                    presentationMode.wrappedValue.dismiss()
-                                    
-                                    return
-                                }
-                                withAnimation(.interactiveSpring()) {
-                                    self.dragOffset = .zero
-                                }
-                            }
-                        )
-                    }
+                ZoomableScrollView(zoomScale: $zoomScale) {
+                    TopoView(problem: $problem)
                 }
+                .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black)
                 .edgesIgnoringSafeArea(.all)
                 .zIndex(1)
+                
+                
             }
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
