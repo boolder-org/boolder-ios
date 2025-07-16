@@ -15,7 +15,6 @@ struct TopoView: View {
     @Environment(MapState.self) private var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
-    @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     
     @Binding var zoomScale: CGFloat
@@ -28,16 +27,6 @@ struct TopoView: View {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .modify {
-                            if case .ready(_) = photoStatus  {
-                                $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                                    TopoFullScreenView(problem: $problem)
-                                }
-                            }
-                            else {
-                                $0
-                            }
-                        }
                     
                     if problem.line?.coordinates != nil {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
@@ -249,7 +238,7 @@ struct TopoView: View {
     }
     
     func handleTapOnBackground() {
-        presentTopoFullScreenView = true
+        onBackgroundTap?()
     }
 }
 

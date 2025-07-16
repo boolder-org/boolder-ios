@@ -28,6 +28,7 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
+    @State private var presentTopoFullScreenView = false
     
     var body: some View {
         VStack {
@@ -38,9 +39,12 @@ struct ProblemDetailsView: View {
                             problem: $problem,
                             zoomScale: .constant(1),
                             onBackgroundTap: {
-                                
+                                presentTopoFullScreenView = true
                             }
                         )
+                        .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                            TopoFullScreenView(problem: $problem)
+                        }
                         
                         variants
                     }
