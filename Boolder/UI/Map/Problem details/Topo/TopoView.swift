@@ -18,6 +18,9 @@ struct TopoView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showMissingLineNotice = false
     
+    @Binding var zoomScale: CGFloat
+    var onBackgroundTap: (() -> Void)?
+    
     var body: some View {
         ZStack(alignment: .center) {
             if case .ready(let image) = photoStatus  {
@@ -26,7 +29,7 @@ struct TopoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .modify {
-                            if case .ready(let image) = photoStatus  {
+                            if case .ready(_) = photoStatus  {
                                 $0.fullScreenCover(isPresented: $presentTopoFullScreenView) {
                                     TopoFullScreenView(problem: $problem)
                                 }
@@ -37,7 +40,10 @@ struct TopoView: View {
                         }
                     
                     if problem.line?.coordinates != nil {
-                        LineView(problem: problem, drawPercentage: $lineDrawPercentage, pinchToZoomScale: .constant(1))
+                        LineView(problem: problem, drawPercentage: $lineDrawPercentage, zoomScale: Binding(
+                            get: { zoomScaleAdapted },
+                            set: { _ in } // Read-only binding since we're transforming the value
+                        ))
                     }
                     else {
                         Text("problem.missing_line")
@@ -56,6 +62,7 @@ struct TopoView: View {
                                 if let firstPoint = p.lineFirstPoint {
                                     ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                         .allowsHitTesting(false)
+                                        .scaleEffect(1/zoomScaleAdapted)
                                         .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                         .zIndex(p == problem ? .infinity : p.zIndex)
                                 }
@@ -143,6 +150,10 @@ struct TopoView: View {
         .task {
             await loadData()
         }
+    }
+    
+    var zoomScaleAdapted: CGFloat {
+        (zoomScale / 2) + 0.5
     }
     
     func displayLine() {

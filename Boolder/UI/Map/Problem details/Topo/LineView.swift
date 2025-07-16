@@ -12,14 +12,14 @@ struct LineView: View {
     let problem: Problem
     @Binding var drawPercentage: CGFloat
     
-    @Binding var pinchToZoomScale: CGFloat
+    @Binding var zoomScale: CGFloat
     
     var body: some View {
         ResizablePath(path: linePath)
             .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk
             .stroke(
                 Color(problem.circuitUIColorForPhotoOverlay),
-                style: StrokeStyle(lineWidth: 4/pinchToZoomScale, lineCap: .round, lineJoin: .round)
+                style: StrokeStyle(lineWidth: 4/zoomScale, lineCap: .round, lineJoin: .round)
             )
             .modifier(DropShadow())
     }

@@ -41,7 +41,7 @@ struct TopoFullScreenView: View {
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem)
+                    TopoView(problem: $problem, zoomScale: $zoomScale)
                 }
                 .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

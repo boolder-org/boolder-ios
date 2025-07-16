@@ -35,7 +35,11 @@ struct ProblemDetailsView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     ZStack {
                         TopoView(
-                            problem: $problem
+                            problem: $problem,
+                            zoomScale: .constant(1),
+                            onBackgroundTap: {
+                                
+                            }
                         )
                         
                         variants
