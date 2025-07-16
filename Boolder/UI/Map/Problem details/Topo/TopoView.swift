@@ -40,10 +40,7 @@ struct TopoView: View {
                         }
                     
                     if problem.line?.coordinates != nil {
-                        LineView(problem: problem, drawPercentage: $lineDrawPercentage, zoomScale: Binding(
-                            get: { zoomScaleAdapted },
-                            set: { _ in } // Read-only binding since we're transforming the value
-                        ))
+                        LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
                     }
                     else {
                         Text("problem.missing_line")
@@ -62,7 +59,7 @@ struct TopoView: View {
                                 if let firstPoint = p.lineFirstPoint {
                                     ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                         .allowsHitTesting(false)
-                                        .scaleEffect(1/zoomScaleAdapted)
+                                        .scaleEffect(counterZoomScale.wrappedValue)
                                         .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                         .zIndex(p == problem ? .infinity : p.zIndex)
                                 }
@@ -152,8 +149,12 @@ struct TopoView: View {
         }
     }
     
-    var zoomScaleAdapted: CGFloat {
-        (zoomScale / 2) + 0.5
+    // The UI above the photo (lines, circle views, ...) should get a little smaller as the user zooms into the photo
+    var counterZoomScale: Binding<CGFloat> {
+        Binding(
+            get: { 1/((zoomScale / 2) + 0.5) },
+            set: { _ in } // Read-only
+        )
     }
     
     func displayLine() {
