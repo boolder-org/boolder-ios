@@ -30,6 +30,9 @@ struct ProblemDetailsView: View {
     @State private var presentSharesheet = false
     @State private var presentTopoFullScreenView = false
     
+    @State private var variants: [Problem] = []
+    @State private var startGroup: StartGroup? = nil
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
@@ -46,7 +49,7 @@ struct ProblemDetailsView: View {
                             TopoFullScreenView(problem: $problem)
                         }
                         
-                        variants
+                        startGroupMenu
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
@@ -58,6 +61,12 @@ struct ProblemDetailsView: View {
             }
             
             Spacer()
+        }
+        .onAppear {
+            computeStartGroup()
+        }
+        .onChange(of: problem) {
+            computeStartGroup()
         }
         .onAppear {
             viewCount += 1
@@ -75,31 +84,34 @@ struct ProblemDetailsView: View {
         }
     }
     
-    var variants: some View {
+    var startGroupMenu: some View {
         VStack {
             HStack {
                 Spacer()
-        
-                if(problem.variants.count > 1) {
-                    Menu {
-                        ForEach(problem.variants) { variant in
-                            Button {
-                                mapState.selectProblem(variant)
-                            } label: {
-                                Text("\(variant.localizedName) \(variant.grade.string)")
+                
+                if let startGroup = startGroup {
+                    
+                    if(startGroup.problems.count > 1) {
+                        Menu {
+                            ForEach(startGroup.sortedProblems) { p in
+                                Button {
+                                    mapState.selectProblem(p)
+                                } label: {
+                                    Text("\(p.localizedName) \(p.grade.string)")
+                                }
                             }
-                        }
-                    } label: {
-                        HStack {
-                            Text(numberOfVariantsForProblem(problem))
-                            Image(systemName: "chevron.down")
-                        }
+                        } label: {
+                            HStack {
+                                Text(paginationText)
+                                Image(systemName: "chevron.down")
+                            }
                             .padding(.vertical, 4)
                             .padding(.horizontal, 8)
                             .background(Color.gray.opacity(0.8))
                             .foregroundColor(Color(UIColor.systemBackground))
                             .cornerRadius(16)
                             .padding(8)
+                        }
                     }
                 }
             }
@@ -108,16 +120,17 @@ struct ProblemDetailsView: View {
         }
     }
     
-    // TODO: use the proper i18n method for plural
-    func numberOfVariantsForProblem(_ p: Problem) -> String {
-        let count = problem.variants.count
-        if count >= 2 {
-            return String(format: NSLocalizedString("problem.variants.other", comment: ""), count)
-        }
-        else {
-            return NSLocalizedString("problem.variants.one", comment: "")
-        }
+    private var paginationText: String {
+        let index = startGroup?.sortedProblems.firstIndex(of: problem) ?? 0
+        let count = startGroup?.sortedProblems.count ?? 0
+        return String(format: NSLocalizedString("problem.pagination", comment: ""), index+1, count)
     }
+    
+    private func computeStartGroup() {
+        variants = problem.variants
+        startGroup = problem.startGroup
+    }
+
     
     var infos: some View {
         VStack(alignment: .leading, spacing: 4) {

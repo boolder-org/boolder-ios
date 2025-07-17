@@ -180,8 +180,7 @@
 "problem.action.untick" = "Untick";
 "problem.action.share.description" = "“%@” at %@";
 "problem.image.loading" = "Loading area...";
-"problem.variants.one" = "1 variant";
-"problem.variants.other" = "%d variants";
+"problem.pagination" = "%d on %d";
 "problem.missing_line" = "Missing line";
 "problem.topo.no_internet" = "No Internet connection";
 "problem.topo.timeout" = "Check your Internet connection";
