@@ -11,15 +11,12 @@ import SwiftUI
 struct TopoFullScreenView: View {
     @Environment(\.presentationMode) var presentationMode
     
-//    let image: UIImage
     @Binding var problem: Problem
-    
     @State private var zoomScale: CGFloat = 1
     
-//    @State var pinchToZoomState = PinchToZoomState()
-//    // drag gesture (to dismiss the sheet)
-//    @State var dragOffset: CGSize = CGSize.zero
-//    @State var dragOffsetPredicted: CGSize = CGSize.zero
+    // drag gesture (to dismiss the sheet)
+    @State var dragOffset: CGSize = CGSize.zero
+    @State var dragOffsetPredicted: CGSize = CGSize.zero
     
     var body: some View {
         VStack {
@@ -45,10 +42,31 @@ struct TopoFullScreenView: View {
                 }
                 .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                .zIndex(1)
+                .offset(x: 0, y: self.dragOffset.height) // drag gesture
+                .gesture(DragGesture()
+                    .onChanged { value in
+                        self.dragOffset = value.translation
+                        self.dragOffsetPredicted = value.predictedEndTranslation
+                    }
+                    .onEnded { value in
+                        if(self.dragOffset.height > 200
+                           || (self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3)) {
+                            withAnimation(.spring()) {
+                                self.dragOffset = self.dragOffsetPredicted
+                            }
+                            presentationMode.wrappedValue.dismiss()
+                            
+                            return
+                        }
+                        withAnimation(.interactiveSpring()) {
+                            self.dragOffset = .zero
+                        }
+                    }
+                )
                 .background(Color.black)
                 .edgesIgnoringSafeArea(.all)
-                .zIndex(1)
-                
                 
             }
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
