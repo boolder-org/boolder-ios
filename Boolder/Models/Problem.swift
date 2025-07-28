@@ -253,6 +253,10 @@ extension Problem {
         
         return groups
     }
+    
+    var startGroup : StartGroup? {
+        startGroups.first { $0.problems.contains(self) }
+    }
 
     var children: [Problem] {
         let problems = Table("problems")
@@ -382,15 +386,19 @@ class StartGroup: Identifiable, Equatable {
     }
     
     func next(after: Problem) -> Problem? {
-        if let index = problems.firstIndex(of: after) {
-            return problems[(index + 1) % problems.count]
+        if let index = sortedProblems.firstIndex(of: after) {
+            return sortedProblems[(index + 1) % sortedProblems.count]
         }
         
         return nil
     }
     
     var topProblem: Problem? {
-        problems.sorted { $0.zIndex > $1.zIndex }.first
+        sortedProblems.first
+    }
+    
+    var sortedProblems: [Problem] {
+        problems.sorted { $0.zIndex > $1.zIndex }
     }
     
     static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {

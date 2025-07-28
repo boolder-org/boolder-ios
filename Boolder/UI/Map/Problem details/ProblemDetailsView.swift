@@ -28,14 +28,29 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
+    @State private var presentTopoFullScreenView = false
+    
+    @State private var variants: [Problem] = []
+    @State private var startGroup: StartGroup? = nil
     
     var body: some View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    TopoView(
-                        problem: $problem
-                    )
+                    ZStack {
+                        TopoView(
+                            problem: $problem,
+                            zoomScale: .constant(1),
+                            onBackgroundTap: {
+                                presentTopoFullScreenView = true
+                            }
+                        )
+                        .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                            TopoFullScreenView(problem: $problem)
+                        }
+                        
+                        startGroupMenu
+                    }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
@@ -46,6 +61,12 @@ struct ProblemDetailsView: View {
             }
             
             Spacer()
+        }
+        .onAppear {
+            computeStartGroup()
+        }
+        .onChange(of: problem) {
+            computeStartGroup()
         }
         .onAppear {
             viewCount += 1
@@ -62,6 +83,54 @@ struct ProblemDetailsView: View {
             }
         }
     }
+    
+    var startGroupMenu: some View {
+        VStack {
+            HStack {
+                Spacer()
+                
+                if let startGroup = startGroup {
+                    
+                    if(startGroup.problems.count > 1) {
+                        Menu {
+                            ForEach(startGroup.sortedProblems) { p in
+                                Button {
+                                    mapState.selectProblem(p)
+                                } label: {
+                                    Text("\(p.localizedName) \(p.grade.string)")
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(paginationText)
+                                Image(systemName: "chevron.down")
+                            }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color.gray.opacity(0.8))
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .cornerRadius(16)
+                            .padding(8)
+                        }
+                    }
+                }
+            }
+            
+            Spacer()
+        }
+    }
+    
+    private var paginationText: String {
+        let index = startGroup?.sortedProblems.firstIndex(of: problem) ?? 0
+        let count = startGroup?.sortedProblems.count ?? 0
+        return String(format: NSLocalizedString("problem.pagination", comment: ""), index+1, count)
+    }
+    
+    private func computeStartGroup() {
+        variants = problem.variants
+        startGroup = problem.startGroup
+    }
+
     
     var infos: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -168,7 +237,7 @@ struct ProblemDetailsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: "square.and.arrow.up")
-                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
+//                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
