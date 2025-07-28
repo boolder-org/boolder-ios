@@ -2,15 +2,6 @@
 //  ZoomableScrollView.swift
 //  Boolder
 //
-//  Created by Nicolas Mondollot on 15/07/2025.
-//  Copyright © 2025 Nicolas Mondollot. All rights reserved.
-//
-
-
-//
-//  ZoomableScrollView.swift
-//  Boolder
-//
 //  Created by Nicolas Mondollot on 26/04/2025.
 //  Copyright © 2025 Nicolas Mondollot. All rights reserved.
 //
