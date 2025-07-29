@@ -67,7 +67,10 @@ struct MapboxView: UIViewControllerRepresentable {
             }
         }
         else {
-            vc.unselectCircuit()
+            if context.coordinator.lastSelectedCircuitId != 0 {
+                context.coordinator.lastSelectedCircuitId = 0
+                vc.unselectCircuit()
+            }
         }
 
         // Handle selectedCircuit changes
