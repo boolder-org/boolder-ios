@@ -31,7 +31,7 @@ struct ProblemDetailsView: View {
     @State private var presentTopoFullScreenView = false
     
     @State private var variants: [Problem] = []
-//    @State private var startGroup: StartGroup? = nil
+    @State private var startGroup: StartGroup? = nil
     
     var body: some View {
         VStack {
@@ -89,11 +89,11 @@ struct ProblemDetailsView: View {
             HStack {
                 Spacer()
                 
-//                if let startGroup = startGroup {
+                if let startGroup = startGroup {
                     
-                    if(variants.count > 1) {
+                    if(startGroup.problems.count > 1) {
                         Menu {
-                            ForEach(variants) { p in
+                            ForEach(startGroup.sortedProblems) { p in
                                 Button {
                                     mapState.selectProblem(p)
                                 } label: {
@@ -102,8 +102,7 @@ struct ProblemDetailsView: View {
                             }
                         } label: {
                             HStack {
-//                                Text(paginationText)
-                                Text(String(format: NSLocalizedString("problem.variants", comment: ""), variants.count))
+                                Text(paginationText)
                                 Image(systemName: "chevron.down")
                             }
                             .padding(.vertical, 4)
@@ -114,28 +113,22 @@ struct ProblemDetailsView: View {
                             .padding(8)
                         }
                     }
-//                }
+                }
             }
             
             Spacer()
         }
     }
     
-//    private var paginationText: String {
-//        let index = startGroup?.sortedProblems.firstIndex(of: problem) ?? 0
-//        let count = startGroup?.sortedProblems.count ?? 0
-//        return String(format: NSLocalizedString("problem.pagination", comment: ""), index+1, count)
-//    }
-    
     private var paginationText: String {
-        let index = variants.firstIndex(of: problem) ?? 0
-        let count = variants.count
+        let index = startGroup?.sortedProblems.firstIndex(of: problem) ?? 0
+        let count = startGroup?.sortedProblems.count ?? 0
         return String(format: NSLocalizedString("problem.pagination", comment: ""), index+1, count)
     }
     
     private func computeStartGroup() {
         variants = problem.variants
-//        startGroup = problem.startGroup
+        startGroup = problem.startGroup
     }
 
     

@@ -180,7 +180,6 @@
 "problem.action.share.description" = "« %@ » à %@";
 "problem.image.loading" = "Chargement du secteur...";
 "problem.pagination" = "%d sur %d";
-"problem.variants" = "%d variantes";
 "problem.missing_line" = "Ligne manquante";
 "problem.topo.no_internet" = "Pas de connexion à Internet";
 "problem.topo.timeout" = "Vérifiez votre connexion à Internet";
