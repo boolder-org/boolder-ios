@@ -102,6 +102,12 @@ struct Problem : Identifiable {
         return firstPoint
     }
     
+    var overlayBadgePosition: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+
+        return line.overlayPoint(at: 0.4)
+    }
+    
     
     var isFavorite: Bool {
         favorite != nil

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import SQLite
 
 struct Line: Decodable {
@@ -22,6 +23,41 @@ struct Line: Decodable {
             let dx = other.x - self.x
             let dy = other.y - self.y
             return (dx * dx + dy * dy).squareRoot()
+        }
+    }
+    
+    func overlayPoint(at: CGFloat) -> Line.PhotoPercentCoordinate? {
+        guard let cgPoint = path.cgPath.point(at: at) else { return nil }
+        
+        return PhotoPercentCoordinate(x: cgPoint.x, y: cgPoint.y)
+    }
+    
+    private var cgPoints: [CGPoint] {
+        if let coordinates = coordinates {
+            return coordinates.map{CGPoint(x: $0.x, y: $0.y)}
+        }
+        else {
+            return []
+        }
+    }
+    
+    var path: Path {
+        guard cgPoints.count > 0 else { return Path() }
+        
+        let points = cgPoints
+        let controlPoints = CubicCurveAlgorithm().controlPointsFromPoints(dataPoints: points)
+        
+        return Path { path in
+            for i in 0..<points.count {
+                let point = points[i]
+                
+                if i==0 {
+                    path.move(to: CGPoint(x: point.x, y: point.y))
+                } else {
+                    let segment = controlPoints[i-1]
+                    path.addCurve(to: point, control1: segment.controlPoint1, control2: segment.controlPoint2)
+                }
+            }
         }
     }
 }

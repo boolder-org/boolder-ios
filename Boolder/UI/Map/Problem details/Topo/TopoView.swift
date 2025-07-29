@@ -30,6 +30,15 @@ struct TopoView: View {
                     
                     if problem.line?.coordinates != nil {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
+                        
+                        GeometryReader { geo in
+                            if let middlePoint = problem.overlayBadgePosition {
+                                GradeBadgeView(number: problem.grade.string, sitStart: problem.sitStart, color: problem.circuitUIColorForPhotoOverlay)
+                                    .scaleEffect(counterZoomScale.wrappedValue)
+                                    .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
+                                    .zIndex(.infinity)
+                            }
+                        }
                     }
                     else {
                         Text("problem.missing_line")

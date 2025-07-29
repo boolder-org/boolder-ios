@@ -20,6 +20,10 @@
 		030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */; };
 		030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
 		030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC1B127BD590000AF85E7 /* DropShadow.swift */; };
+		031143572E29864B001FDCD9 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031143562E29864B001FDCD9 /* CGPathExtensions.swift */; };
+		031143582E29864B001FDCD9 /* CGPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031143562E29864B001FDCD9 /* CGPathExtensions.swift */; };
+		0311435A2E298686001FDCD9 /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031143592E298686001FDCD9 /* GradeBadgeView.swift */; };
+		0311435B2E298686001FDCD9 /* GradeBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031143592E298686001FDCD9 /* GradeBadgeView.swift */; };
 		03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */; };
 		03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03147EE42B470F59005771C3 /* AreaDownloader.swift */; };
@@ -180,6 +184,8 @@
 		030AC1A827BAFBFE00AF85E7 /* TopAreasDryFast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasDryFast.swift; sourceTree = "<group>"; };
 		030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		030AC1B127BD590000AF85E7 /* DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
+		031143562E29864B001FDCD9 /* CGPathExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPathExtensions.swift; sourceTree = "<group>"; };
+		031143592E298686001FDCD9 /* GradeBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeBadgeView.swift; sourceTree = "<group>"; };
 		03147EDE2B46A3F0005771C3 /* DownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenter.swift; sourceTree = "<group>"; };
 		03147EE42B470F59005771C3 /* AreaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDownloader.swift; sourceTree = "<group>"; };
 		031498992B4FEF4B0014C883 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
@@ -385,6 +391,7 @@
 		37254DE525557BAD00264034 /* CircleView */ = {
 			isa = PBXGroup;
 			children = (
+				031143592E298686001FDCD9 /* GradeBadgeView.swift */,
 				37E42EE0245DB52F00EEBA96 /* CircleView.swift */,
 				37166735255405CA0078AE09 /* ProblemCircleView.swift */,
 			);
@@ -491,6 +498,7 @@
 				03502F722E263ACC00E8319E /* ZoomableScrollView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+				031143562E29864B001FDCD9 /* CGPathExtensions.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";
@@ -691,6 +699,7 @@
 				031A4CAF296B0DF3002CBF52 /* PoiRoute.swift in Sources */,
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
+				031143572E29864B001FDCD9 /* CGPathExtensions.swift in Sources */,
 				03502F742E263ACC00E8319E /* ZoomableScrollView.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
@@ -701,6 +710,7 @@
 				031A61BC29EC7CE200B2B46E /* AppState.swift in Sources */,
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */,
+				0311435A2E298686001FDCD9 /* GradeBadgeView.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
 				033F70DE291959FD000DD3F4 /* TopAreasTrain.swift in Sources */,
@@ -770,6 +780,7 @@
 				031F36B0291CE56100BD0C2B /* MapState.swift in Sources */,
 				031A61BB29EC7CE200B2B46E /* AppState.swift in Sources */,
 				03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */,
+				031143582E29864B001FDCD9 /* CGPathExtensions.swift in Sources */,
 				03502F732E263ACC00E8319E /* ZoomableScrollView.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
@@ -780,6 +791,7 @@
 				03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */,
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
+				0311435B2E298686001FDCD9 /* GradeBadgeView.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
 				03FD89932D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */,
