@@ -41,6 +41,10 @@ struct Problem : Identifiable {
         circuitColor?.uicolorForPhotoOverlay ?? UIColor.gray
     }
     
+    var isCircuit: Bool {
+        !circuitNumber.isEmpty
+    }
+    
     var localizedName: String {
         if NSLocale.websiteLocale == "fr" {
             return name ?? ""

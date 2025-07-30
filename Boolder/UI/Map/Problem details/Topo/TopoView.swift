@@ -38,6 +38,29 @@ struct TopoView: View {
                                     .position(x: middlePoint.x * geo.size.width, y: middlePoint.y * geo.size.height)
                                     .zIndex(.infinity)
                             }
+                            
+                            if problem.sitStart {
+                                if let firstPoint = problem.lineFirstPoint {
+                                    
+                                    HStack {
+                                        Image(systemName: "figure.rower")
+                                        Text("assis")
+                                        //                                        .font(.body)
+                                        
+                                    }
+                                    .foregroundColor(.primary.opacity(0.8))
+                                    .font(.caption)
+                                    .padding(.horizontal, 4)
+                                    .padding(.vertical, 2)
+                                    //                                .background { Color(problem.circuitUIColor) }
+                                    //                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
+                                    .scaleEffect(counterZoomScale.wrappedValue)
+                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                    .offset(x: 0, y: (problem.isCircuit ? 28 : 24) * counterZoomScale.wrappedValue)
+                                    .zIndex(.infinity)
+                                }
+                            }
                         }
                     }
                     else {
