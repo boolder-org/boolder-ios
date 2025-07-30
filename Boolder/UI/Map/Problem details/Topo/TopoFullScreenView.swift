@@ -27,8 +27,10 @@ struct TopoFullScreenView: View {
                         
                         Button(action: { presentationMode.wrappedValue.dismiss() }) {
                             Image(systemName: "xmark")
-                                .foregroundColor(Color(UIColor.white))
-                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(8)
+                                .background(.ultraThinMaterial, in: Circle())
                         }
                     }
                     
