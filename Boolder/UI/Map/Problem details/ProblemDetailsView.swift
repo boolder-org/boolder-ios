@@ -48,8 +48,6 @@ struct ProblemDetailsView: View {
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
                             TopoFullScreenView(problem: $problem)
                         }
-                        
-                        startGroupMenu
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
@@ -120,6 +118,29 @@ struct ProblemDetailsView: View {
         }
     }
     
+    var variantsMenu: some View {
+        Menu {
+            ForEach(variants) { p in
+                Button {
+                    mapState.selectProblem(p)
+                } label: {
+                    Text("\(p.localizedName) \(p.grade.string)")
+                }
+            }
+        } label: {
+            HStack {
+                Text(problem.grade.string)
+                Image(systemName: "chevron.down")
+            }
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background(Color.gray.opacity(0.8))
+            .foregroundColor(Color(UIColor.systemBackground))
+            .cornerRadius(16)
+            .padding(8)
+        }
+    }
+    
     private var paginationText: String {
         let index = startGroup?.sortedProblems.firstIndex(of: problem) ?? 0
         let count = startGroup?.sortedProblems.count ?? 0
@@ -127,7 +148,7 @@ struct ProblemDetailsView: View {
     }
     
     private func computeStartGroup() {
-        variants = problem.variants
+        variants = problem.variants.sorted{ $0.grade > $1.grade }
         startGroup = problem.startGroup
     }
 
@@ -149,35 +170,40 @@ struct ProblemDetailsView: View {
                         
                         Spacer()
                         
-                        Text(problem.grade.string)
-                            .font(.title)
-                            .fontWeight(.bold)
+                        if(variants.count > 1) {
+                            variantsMenu
+                        }
+                        else {
+                            Text(problem.grade.string)
+//                                .font(.title)
+//                                .fontWeight(.bold)
+                        }
                     }
                     .padding(.top, 4)
                 }
                 
                 HStack(alignment: .firstTextBaseline) {
                     
-                    if(problem.sitStart) {
-                        Image(systemName: "figure.rower")
-                        Text("problem.sit_start")
-                            .font(.body)
-                    }
+//                    if(problem.sitStart) {
+////                        Image(systemName: "figure.rower")
+//                        Text("problem.sit_start")
+//                            .font(.body)
+//                    }
                     
-                    if problem.steepness != .other {
-                        if problem.sitStart {
-                            Text("•")
-                                .font(.body)
-                        }
-                        
-                        HStack(alignment: .firstTextBaseline) {
-                            Image(problem.steepness.imageName)
-                                .frame(minWidth: 16)
-                            Text(problem.steepness.localizedName)
-                            
-                        }
-                        .font(.body)
-                    }
+//                    if problem.steepness != .other {
+////                        if problem.sitStart {
+////                            Text("•")
+////                                .font(.body)
+////                        }
+//                        
+//                        HStack(alignment: .firstTextBaseline) {
+////                            Image(problem.steepness.imageName)
+////                                .frame(minWidth: 16)
+//                            Text(problem.steepness.localizedName)
+//                            
+//                        }
+//                        .font(.body)
+//                    }
                     
                     Spacer()
                     

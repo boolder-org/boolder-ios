@@ -82,6 +82,8 @@ struct TopoView: View {
                                         .allowsHitTesting(false)
                                         .scaleEffect(counterZoomScale.wrappedValue)
                                         .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                        // TODO: offset when 2 lines are identical
+                                    
                                         .zIndex(p == problem ? .infinity : p.zIndex)
                                 }
                             }
