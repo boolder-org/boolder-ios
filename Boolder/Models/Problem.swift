@@ -96,6 +96,12 @@ struct Problem : Identifiable {
         let tiebreaker = Double(id) / 100
         return Double(popularity ?? 0) + bonusCircuit + tiebreaker
     }
+    
+    var xIndex: Double {
+        guard let coordinates = line?.coordinates else { return 0 }
+        
+        return coordinates.map{$0.x}.min() ?? 0
+    }
 
     // TODO: move to Line
     var lineFirstPoint: Line.PhotoPercentCoordinate? {
@@ -404,11 +410,11 @@ class StartGroup: Identifiable, Equatable {
     }
     
     var topProblem: Problem? {
-        sortedProblems.first
+        problems.sorted { $0.zIndex > $1.zIndex }.first
     }
     
     var sortedProblems: [Problem] {
-        problems.sorted { $0.zIndex > $1.zIndex }
+        problems.sorted { $0.xIndex < $1.xIndex }
     }
     
     static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
