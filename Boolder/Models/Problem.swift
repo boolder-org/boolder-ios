@@ -100,7 +100,10 @@ struct Problem : Identifiable {
     var xIndex: Double {
         guard let coordinates = line?.coordinates else { return 0 }
         
-        return coordinates.map{$0.x}.min() ?? 0
+        let minX = coordinates.map{$0.x}.min() ?? 0
+        let tiebreaker = (parentId == nil) ? 0 : 0.001
+        
+        return minX + tiebreaker
     }
 
     // TODO: move to Line
