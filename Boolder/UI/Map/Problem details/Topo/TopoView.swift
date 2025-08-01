@@ -99,6 +99,7 @@ struct TopoView: View {
             }
             else if case .loading = photoStatus {
                 ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             else if case .none = photoStatus {
                 Image("nophoto")
