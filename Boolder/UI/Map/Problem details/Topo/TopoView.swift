@@ -13,15 +13,20 @@ struct TopoView: View {
     
     @Binding var problem: Problem
     @Environment(MapState.self) private var mapState: MapState
-    @State private var lineDrawPercentage: CGFloat = .zero
+    @State private var lineDrawPercentage: CGFloat = 1.0
     @State private var photoStatus: PhotoStatus = .initial
     @State private var showMissingLineNotice = false
     
     @Binding var zoomScale: CGFloat
     var onBackgroundTap: (() -> Void)?
     
+    @State private var yOffset: CGFloat = 0
+    
     var body: some View {
-        ZStack(alignment: .center) {
+        let allProblems = problem.startGroups.flatMap { $0.problems }
+        let indexedProblems = Array(allProblems.enumerated())
+        
+        return ZStack(alignment: .center) {
             if case .ready(let image) = photoStatus  {
                 Group {
                     Image(uiImage: image)
@@ -75,19 +80,36 @@ struct TopoView: View {
                     }
                     
                     GeometryReader { geo in
-                        ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems) { (p: Problem) in
-                                if let firstPoint = p.lineFirstPoint {
-                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                        .allowsHitTesting(false)
-                                        .scaleEffect(counterZoomScale.wrappedValue)
-                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                        // TODO: offset when 2 lines are identical
+                        ForEach(indexedProblems, id: \.element.id) { idx, p in
+                            if let firstPoint = p.lineFirstPoint {
+                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                    .allowsHitTesting(false)
+                                    .scaleEffect(counterZoomScale.wrappedValue)
+                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                    .zIndex(p == problem ? .infinity : p.zIndex)
+                                    .offset(y: yOffset)
+                                    .animation(
+                                        .interpolatingSpring(stiffness: 100, damping: 8).delay(Double(idx) * 0.05),
+                                        value: yOffset
+                                    )
+//                                    .modify {
+//                                        if p.startGroup == problem.startGroup && p != problem {
+//                                            $0.offset(y: yOffset)
+//                                                .animation(
+//                                                    .interpolatingSpring(stiffness: 100, damping: 8).delay(Double(idx) * 0.05),
+//                                                    value: yOffset
+//                                                )
+//                                        }
+//                                        else {
+//                                            $0
+//                                        }
+//                                    }
                                     
-                                        .zIndex(p == problem ? .infinity : p.zIndex)
-                                }
                             }
+                            
                         }
+                        
+                        
                     }
                     
                     GeometryReader { geo in
@@ -155,18 +177,22 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { oldValue, newValue in
+
+            animateBounce()
+            
             if oldValue.topoId == newValue.topoId {
-                lineDrawPercentage = 0.0
-                
-                displayLine()
+//                lineDrawPercentage = 0.0
+//                
+//                displayLine()
             }
             else {
-                lineDrawPercentage = 0.0
+//                lineDrawPercentage = 0.0
                 
                 Task {
                     await loadData()
                 }
             }
+            
         }
         .task {
             await loadData()
@@ -274,6 +300,24 @@ struct TopoView: View {
     
     func handleTapOnBackground() {
         onBackgroundTap?()
+    }
+    
+    func animateBounce() {
+        // First, animate to bounce position
+        yOffset = -40
+        
+        // Then animate back to original position
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            yOffset = 0
+        }
+        
+        // First, immediately set to bounce position (no animation)
+//            yOffset = -100
+        
+        // Then animate back to 0 with a spring
+//            withAnimation(.interpolatingSpring(stiffness: 100, damping: 8)) {
+//                yOffset = -100
+//            }
     }
 }
 
