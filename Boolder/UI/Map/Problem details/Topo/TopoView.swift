@@ -20,7 +20,7 @@ struct TopoView: View {
     @Binding var zoomScale: CGFloat
     var onBackgroundTap: (() -> Void)?
     
-    @State private var yOffset: CGFloat = 0
+    @State private var bounceAnimation = false
     
     var body: some View {
         let allProblems = problem.startGroups.flatMap { $0.problems }
@@ -87,11 +87,32 @@ struct TopoView: View {
                                     .scaleEffect(counterZoomScale.wrappedValue)
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .zIndex(p == problem ? .infinity : p.zIndex)
-                                    .offset(y: yOffset)
-                                    .animation(
-                                        .interpolatingSpring(stiffness: 100, damping: 8).delay(Double(idx) * 0.05),
-                                        value: yOffset
-                                    )
+                                    // https://chatgpt.com/c/688dc673-12a4-832b-a1c6-bd8040ba8047
+                                    .keyframeAnimator(initialValue: CGFloat(0), trigger: bounceAnimation) { content, y in
+                                        content.offset(y: y)
+                                    } keyframes: { _ in
+                                        KeyframeTrack(\.self) {
+                                            // Physics-ish timing (points, not pixels):
+                                            // g ≈ 3300 pt/s², e ≈ 0.6
+                                            // Heights: 100, 36, 12.96, 4.67
+                                            // Half-bounce times t = sqrt(2h/g): 0.246, 0.148, 0.089, 0.053 s
+
+                                            // Up 100, down to floor
+                                            CubicKeyframe(-100/2,  duration: 0.246)
+                                            CubicKeyframe(   0,  duration: 0.246)
+
+                                            // Diminishing bounces (never below 0)
+                                            CubicKeyframe( -36/2,  duration: 0.148)
+                                            CubicKeyframe(   0,  duration: 0.148)
+                                            CubicKeyframe(-12.96/2, duration: 0.089)
+                                            CubicKeyframe(     0, duration: 0.089)
+                                            CubicKeyframe( -4.67/2, duration: 0.053)
+                                            CubicKeyframe(   0,  duration: 0.053)
+
+                                            // Hold at rest
+                                            CubicKeyframe(0, duration: 0.30)
+                                        }
+                                    }
 //                                    .modify {
 //                                        if p.startGroup == problem.startGroup && p != problem {
 //                                            $0.offset(y: yOffset)
@@ -303,13 +324,15 @@ struct TopoView: View {
     }
     
     func animateBounce() {
-        // First, animate to bounce position
-        yOffset = -40
+        bounceAnimation.toggle()
         
-        // Then animate back to original position
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            yOffset = 0
-        }
+//        // First, animate to bounce position
+//        yOffset = -40
+//        
+//        // Then animate back to original position
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+//            yOffset = 0
+//        }
         
         // First, immediately set to bounce position (no animation)
 //            yOffset = -100
