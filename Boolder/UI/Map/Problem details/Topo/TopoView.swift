@@ -62,7 +62,7 @@ struct TopoView: View {
                                     
                                     HStack {
                                         Image(systemName: "figure.rower")
-                                        Text("assis")
+                                        Text("départ assis")
                                         //                                        .font(.body)
                                         
                                     }
@@ -75,7 +75,7 @@ struct TopoView: View {
                                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 4))
                                     .scaleEffect(counterZoomScale.wrappedValue)
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    .offset(x: 0, y: (problem.isCircuit ? 28 : 24) * counterZoomScale.wrappedValue)
+                                    .offset(x: 0, y: (problem.isCircuit ? 32 : 28) * counterZoomScale.wrappedValue)
                                     .zIndex(.infinity)
                                 }
                             }
