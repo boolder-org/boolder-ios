@@ -113,16 +113,16 @@ struct TopoView: View {
                                                         // Half-bounce times t = sqrt(2h/g): 0.246, 0.148, 0.089, 0.053 s
 
                                                         // Up 100, down to floor
-                                                        CubicKeyframe(-100/2,  duration: 0.246)
-                                                        CubicKeyframe(   0,  duration: 0.246)
+                                                        CubicKeyframe(-100/5,  duration: 0.246/1.5)
+                                                        CubicKeyframe(   0,  duration: 0.246/1.5)
 
                                                         // Diminishing bounces (never below 0)
-                                                        CubicKeyframe( -36/2,  duration: 0.148)
-                                                        CubicKeyframe(   0,  duration: 0.148)
-                                                        CubicKeyframe(-12.96/2, duration: 0.089)
-                                                        CubicKeyframe(     0, duration: 0.089)
-                                                        CubicKeyframe( -4.67/2, duration: 0.053)
-                                                        CubicKeyframe(   0,  duration: 0.053)
+                                                        CubicKeyframe( -36/5,  duration: 0.148/1.5)
+                                                        CubicKeyframe(   0,  duration: 0.148/1.5)
+                                                        CubicKeyframe(-12.96/5, duration: 0.089/1.5)
+                                                        CubicKeyframe(     0, duration: 0.089/1.5)
+                                                        CubicKeyframe( -4.67/5, duration: 0.053/1.5)
+                                                        CubicKeyframe(   0,  duration: 0.053/1.5)
 
                                                         // Hold at rest
                                                         CubicKeyframe(0, duration: 0.30)
