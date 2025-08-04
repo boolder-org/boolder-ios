@@ -26,7 +26,7 @@ struct TopoView: View {
         let problem: Problem
         let inGroup: Bool
         let index: Int?
-        
+        let count: Int
         
         internal var id: Int { problem.id }
     }
@@ -34,7 +34,7 @@ struct TopoView: View {
     var body: some View {
         let allProblems = problem.startGroups.flatMap { group in
             group.problems.map { p in
-                ProblemWithGroup(problem: p, inGroup: group.mainGroup, index: group.problems.firstIndex(of: p))
+                ProblemWithGroup(problem: p, inGroup: group.mainGroup, index: group.problems.firstIndex(of: p), count: group.problems.count)
             }
         }
         let indexedProblems = Array(allProblems.enumerated())
@@ -208,6 +208,7 @@ struct TopoView: View {
             switch newValue {
             case .ready(image: _):
                 displayLine()
+                animateBounce()
             default:
                 print("")
             }
