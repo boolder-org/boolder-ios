@@ -25,6 +25,8 @@ struct TopoView: View {
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
         let inGroup: Bool
+        let index: Int?
+        
         
         internal var id: Int { problem.id }
     }
@@ -32,7 +34,7 @@ struct TopoView: View {
     var body: some View {
         let allProblems = problem.startGroups.flatMap { group in
             group.problems.map { p in
-                ProblemWithGroup(problem: p, inGroup: group.mainGroup)
+                ProblemWithGroup(problem: p, inGroup: group.mainGroup, index: group.problems.firstIndex(of: p))
             }
         }
         let indexedProblems = Array(allProblems.enumerated())
@@ -107,6 +109,9 @@ struct TopoView: View {
                                                     content.offset(y: y)
                                                 } keyframes: { _ in
                                                     KeyframeTrack(\.self) {
+                                                        // initial delay (hold at floor)
+                                                        CubicKeyframe(0, duration: Double(pWithGroup.index ?? 0) * 0.05)
+                                                        
                                                         // Physics-ish timing (points, not pixels):
                                                         // g ≈ 3300 pt/s², e ≈ 0.6
                                                         // Heights: 100, 36, 12.96, 4.67
