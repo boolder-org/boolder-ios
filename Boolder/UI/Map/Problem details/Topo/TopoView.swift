@@ -71,6 +71,7 @@ struct TopoView: View {
                 Image("nophoto")
                     .font(.system(size: 60))
                     .foregroundColor(Color.gray)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
                 VStack(spacing: 16) {
