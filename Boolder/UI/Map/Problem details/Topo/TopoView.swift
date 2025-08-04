@@ -105,6 +105,7 @@ struct TopoView: View {
                     }
                     .foregroundColor(Color.gray)
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             else {
                 EmptyView()
