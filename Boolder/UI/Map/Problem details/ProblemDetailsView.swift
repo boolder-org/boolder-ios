@@ -174,6 +174,7 @@ struct ProblemDetailsView: View {
                             variantsMenu
                         }
                         else {
+                            // TODO: harmonize UI with variantsMenu
                             Text(problem.grade.string)
 //                                .font(.title)
 //                                .fontWeight(.bold)
