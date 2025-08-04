@@ -22,8 +22,19 @@ struct TopoView: View {
     
     @State private var bounceAnimation = false
     
+    struct ProblemWithGroup: Identifiable {
+        let problem: Problem
+        let inGroup: Bool
+        
+        internal var id: Int { problem.id }
+    }
+    
     var body: some View {
-        let allProblems = problem.startGroups.flatMap { $0.problems }
+        let allProblems = problem.startGroups.flatMap { group in
+            group.problems.map { p in
+                ProblemWithGroup(problem: p, inGroup: group.mainGroup)
+            }
+        }
         let indexedProblems = Array(allProblems.enumerated())
         
         return ZStack(alignment: .center) {
@@ -80,51 +91,48 @@ struct TopoView: View {
                     }
                     
                     GeometryReader { geo in
-                        ForEach(indexedProblems, id: \.element.id) { idx, p in
+                        ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
+                            let p = pWithGroup.problem
                             if let firstPoint = p.lineFirstPoint {
                                 ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                     .allowsHitTesting(false)
                                     .scaleEffect(counterZoomScale.wrappedValue)
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .zIndex(p == problem ? .infinity : p.zIndex)
-                                    // https://chatgpt.com/c/688dc673-12a4-832b-a1c6-bd8040ba8047
-                                    .keyframeAnimator(initialValue: CGFloat(0), trigger: bounceAnimation) { content, y in
-                                        content.offset(y: y)
-                                    } keyframes: { _ in
-                                        KeyframeTrack(\.self) {
-                                            // Physics-ish timing (points, not pixels):
-                                            // g ≈ 3300 pt/s², e ≈ 0.6
-                                            // Heights: 100, 36, 12.96, 4.67
-                                            // Half-bounce times t = sqrt(2h/g): 0.246, 0.148, 0.089, 0.053 s
+                                    .modify {
+                                        if pWithGroup.inGroup && p != problem {
+                                            $0
+                                                // https://chatgpt.com/c/688dc673-12a4-832b-a1c6-bd8040ba8047
+                                                .keyframeAnimator(initialValue: CGFloat(0), trigger: bounceAnimation) { content, y in
+                                                    content.offset(y: y)
+                                                } keyframes: { _ in
+                                                    KeyframeTrack(\.self) {
+                                                        // Physics-ish timing (points, not pixels):
+                                                        // g ≈ 3300 pt/s², e ≈ 0.6
+                                                        // Heights: 100, 36, 12.96, 4.67
+                                                        // Half-bounce times t = sqrt(2h/g): 0.246, 0.148, 0.089, 0.053 s
 
-                                            // Up 100, down to floor
-                                            CubicKeyframe(-100/2,  duration: 0.246)
-                                            CubicKeyframe(   0,  duration: 0.246)
+                                                        // Up 100, down to floor
+                                                        CubicKeyframe(-100/2,  duration: 0.246)
+                                                        CubicKeyframe(   0,  duration: 0.246)
 
-                                            // Diminishing bounces (never below 0)
-                                            CubicKeyframe( -36/2,  duration: 0.148)
-                                            CubicKeyframe(   0,  duration: 0.148)
-                                            CubicKeyframe(-12.96/2, duration: 0.089)
-                                            CubicKeyframe(     0, duration: 0.089)
-                                            CubicKeyframe( -4.67/2, duration: 0.053)
-                                            CubicKeyframe(   0,  duration: 0.053)
+                                                        // Diminishing bounces (never below 0)
+                                                        CubicKeyframe( -36/2,  duration: 0.148)
+                                                        CubicKeyframe(   0,  duration: 0.148)
+                                                        CubicKeyframe(-12.96/2, duration: 0.089)
+                                                        CubicKeyframe(     0, duration: 0.089)
+                                                        CubicKeyframe( -4.67/2, duration: 0.053)
+                                                        CubicKeyframe(   0,  duration: 0.053)
 
-                                            // Hold at rest
-                                            CubicKeyframe(0, duration: 0.30)
+                                                        // Hold at rest
+                                                        CubicKeyframe(0, duration: 0.30)
+                                                    }
+                                                }
+                                        }
+                                        else {
+                                            $0
                                         }
                                     }
-//                                    .modify {
-//                                        if p.startGroup == problem.startGroup && p != problem {
-//                                            $0.offset(y: yOffset)
-//                                                .animation(
-//                                                    .interpolatingSpring(stiffness: 100, damping: 8).delay(Double(idx) * 0.05),
-//                                                    value: yOffset
-//                                                )
-//                                        }
-//                                        else {
-//                                            $0
-//                                        }
-//                                    }
                                     
                             }
                             
@@ -199,7 +207,9 @@ struct TopoView: View {
         }
         .onChange(of: problem) { oldValue, newValue in
 
-            animateBounce()
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                animateBounce()
+//            }
             
             if oldValue.topoId == newValue.topoId {
 //                lineDrawPercentage = 0.0

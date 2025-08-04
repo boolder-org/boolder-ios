@@ -270,9 +270,15 @@ extension Problem {
             groups.append(newGroup)
         }
         
+        // quick hack
+        if let main = (groups.first { $0.problems.contains(self) }) {
+            main.mainGroup = true
+        }
+        
         return groups
     }
     
+    // TODO: remove?
     var startGroup : StartGroup? {
         startGroups.first { $0.problems.contains(self) }
     }
@@ -379,6 +385,7 @@ extension Problem : Hashable {
 // TODO: move to Topo
 class StartGroup: Identifiable, Equatable {
     private(set) var problems: [Problem]
+    var mainGroup: Bool = false // quick hack
 
     init(problem: Problem) {
         self.problems = [problem]
