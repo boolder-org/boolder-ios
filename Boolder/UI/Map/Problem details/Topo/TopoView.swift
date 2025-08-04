@@ -13,7 +13,7 @@ struct TopoView: View {
     
     @Binding var problem: Problem
     @Environment(MapState.self) private var mapState: MapState
-    @State private var lineDrawPercentage: CGFloat = 1.0
+    @State private var lineDrawPercentage: CGFloat = 0
     @State private var photoStatus: PhotoStatus = .initial
     @State private var showMissingLineNotice = false
     
@@ -220,12 +220,12 @@ struct TopoView: View {
 //            }
             
             if oldValue.topoId == newValue.topoId {
-//                lineDrawPercentage = 0.0
-//                
-//                displayLine()
+                lineDrawPercentage = 0.0
+                
+                displayLine()
             }
             else {
-//                lineDrawPercentage = 0.0
+                lineDrawPercentage = 0.0
                 
                 Task {
                     await loadData()
