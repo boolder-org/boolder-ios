@@ -42,7 +42,9 @@ struct CircuitView: View {
                     ForEach(circuit.problems) { problem in
                         Button {
                             appState.tab = .map
-                            appState.selectedProblem = problem
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
+                                appState.selectedProblem = problem
+                            }
                         } label: {
                             HStack {
                                 ProblemCircleView(problem: problem)
