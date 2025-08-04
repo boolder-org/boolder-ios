@@ -110,7 +110,7 @@ struct TopoView: View {
                                                 } keyframes: { _ in
                                                     KeyframeTrack(\.self) {
                                                         // initial delay (hold at floor)
-                                                        CubicKeyframe(0, duration: Double(pWithGroup.index ?? 0) * 0.05)
+                                                        CubicKeyframe(0, duration: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.05))
                                                         
                                                         // Physics-ish timing (points, not pixels):
                                                         // g ≈ 3300 pt/s², e ≈ 0.6
