@@ -155,69 +155,67 @@ struct ProblemDetailsView: View {
     
     var infos: some View {
         VStack(alignment: .leading, spacing: 4) {
+            
             VStack(alignment: .leading, spacing: 4) {
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(problem.localizedName)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .lineLimit(1)
-                            .truncationMode(.middle)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .minimumScaleFactor(0.5)
-                        
-                        Spacer()
-                        
-                        if(variants.count > 1) {
-                            variantsMenu
-                        }
-                        else {
-                            // TODO: harmonize UI with variantsMenu
-                            Text(problem.grade.string)
-//                                .font(.title)
-//                                .fontWeight(.bold)
-                        }
-                    }
-                    .padding(.top, 4)
-                }
-                
-                HStack(alignment: .firstTextBaseline) {
-                    
-//                    if(problem.sitStart) {
-////                        Image(systemName: "figure.rower")
-//                        Text("problem.sit_start")
-//                            .font(.body)
-//                    }
-                    
-//                    if problem.steepness != .other {
-////                        if problem.sitStart {
-////                            Text("•")
-////                                .font(.body)
-////                        }
-//                        
-//                        HStack(alignment: .firstTextBaseline) {
-////                            Image(problem.steepness.imageName)
-////                                .frame(minWidth: 16)
-//                            Text(problem.steepness.localizedName)
-//                            
-//                        }
-//                        .font(.body)
-//                    }
+                HStack {
+                    Text(problem.localizedName)
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                        .fixedSize(horizontal: false, vertical: true)
+//                        .minimumScaleFactor(0.5)
                     
                     Spacer()
                     
-                    if isTicked() {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(Color.appGreen)
+                    if(variants.count > 1) {
+                        variantsMenu
                     }
-                    else if isFavorite() {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color.yellow)
+                    else {
+                        // TODO: harmonize UI with variantsMenu
+                        Text(problem.grade.string)
+//                                .font(.title)
+//                                .fontWeight(.bold)
                     }
                 }
+                .padding(.top, 4)
             }
+            
+//            HStack(alignment: .firstTextBaseline) {
+//                
+////                    if(problem.sitStart) {
+//////                        Image(systemName: "figure.rower")
+////                        Text("problem.sit_start")
+////                            .font(.body)
+////                    }
+//                
+////                    if problem.steepness != .other {
+//////                        if problem.sitStart {
+//////                            Text("•")
+//////                                .font(.body)
+//////                        }
+////                        
+////                        HStack(alignment: .firstTextBaseline) {
+//////                            Image(problem.steepness.imageName)
+//////                                .frame(minWidth: 16)
+////                            Text(problem.steepness.localizedName)
+////                            
+////                        }
+////                        .font(.body)
+////                    }
+//                
+//                Spacer()
+//                
+//                if isTicked() {
+//                    Image(systemName: "checkmark.circle.fill")
+//                        .foregroundColor(Color.appGreen)
+//                }
+//                else if isFavorite() {
+//                    Image(systemName: "star.fill")
+//                        .foregroundColor(Color.yellow)
+//                }
+//            }
         }
         .padding(.top, 0)
         .padding(.horizontal)
@@ -263,7 +261,7 @@ struct ProblemDetailsView: View {
                             Image(systemName: "bookmark")
                             Text("problem.action.save")
                                 .fixedSize(horizontal: true, vertical: true)
-                        }   
+                        }
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
