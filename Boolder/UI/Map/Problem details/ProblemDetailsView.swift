@@ -158,13 +158,19 @@ struct ProblemDetailsView: View {
             
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text(problem.localizedName)
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                        .fixedSize(horizontal: false, vertical: true)
+                    MarqueeText(problem.localizedName,
+                                font: .title2,
+                                        speed: 40,        // px/s
+                                        delay: 1.0,       // pause before each pass
+                                        gap: 40,          // space between loops
+                                        fadeWidth: 18)    // edge fade like Spotify
+//                    Text(problem.localizedName)
+//                        .font(.title2)
+//                        .fontWeight(.semibold)
+//                        .foregroundColor(.primary)
+//                        .lineLimit(1)
+//                        .truncationMode(.middle)
+//                        .fixedSize(horizontal: false, vertical: true)
 //                        .minimumScaleFactor(0.5)
                     
                     Spacer()

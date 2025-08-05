@@ -115,6 +115,8 @@
 		03D199192C556B550082B56C /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199172C556B550082B56C /* DownloadTip.swift */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
+		03EE8ECE2E41ECA000FDD16A /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE8ECD2E41EC9F00FDD16A /* MarqueeText.swift */; };
+		03EE8ECF2E41ECA000FDD16A /* MarqueeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EE8ECD2E41EC9F00FDD16A /* MarqueeText.swift */; };
 		03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -229,6 +231,7 @@
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
+		03EE8ECD2E41EC9F00FDD16A /* MarqueeText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeText.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
@@ -507,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				37638B8524546D9800C5CD82 /* ProblemDetailsView.swift */,
+				03EE8ECD2E41EC9F00FDD16A /* MarqueeText.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
 				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
@@ -732,6 +736,7 @@
 				03C5A3652C4F9E980057C42A /* Topo.swift in Sources */,
 				37379929258E619400711EDA /* Problem.swift in Sources */,
 				030AC1B327BD590000AF85E7 /* DropShadow.swift in Sources */,
+				03EE8ECE2E41ECA000FDD16A /* MarqueeText.swift in Sources */,
 				038F7F492C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
 				03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */,
 				031A4CA62968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
@@ -813,6 +818,7 @@
 				031A4C9629673C90002CBF52 /* FlowLayout.swift in Sources */,
 				039A22A6295F21FA0096E137 /* AreaProblemsView.swift in Sources */,
 				37BCA98624670DC000D56252 /* Problem.swift in Sources */,
+				03EE8ECF2E41ECA000FDD16A /* MarqueeText.swift in Sources */,
 				03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */,
 				030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */,
 				039A22A0295EE75B0096E137 /* CircuitView.swift in Sources */,
