@@ -170,6 +170,8 @@
 "problem.sit_start" = "départ assis";
 "problem.action.save" = "Enregistrer";
 "problem.action.saved" = "Enregistré";
+"problem.action.ticked" = "Réussi";
+"problem.action.favorited" = "Projet";
 "problem.action.share" = "Partager";
 "problem.action.report" = "Signaler";
 "problem.action.edit" = "Éditer";

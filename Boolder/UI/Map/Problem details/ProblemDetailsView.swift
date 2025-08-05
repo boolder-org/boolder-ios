@@ -247,9 +247,23 @@ struct ProblemDetailsView: View {
                     presentSaveActionsheet = true
                 }) {
                     HStack(alignment: .center, spacing: 8) {
-                        Image(systemName: (isFavorite() || isTicked()) ? "bookmark.fill" : "bookmark")
-                        Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
-                            .fixedSize(horizontal: true, vertical: true)
+                        if isTicked() {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(Color.appGreen)
+                            Text("problem.action.ticked")
+                                .fixedSize(horizontal: true, vertical: true)
+                        }
+                        else if isFavorite() {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(Color.yellow)
+                            Text("problem.action.favorited")
+                                .fixedSize(horizontal: true, vertical: true)
+                        }
+                        else {
+                            Image(systemName: "bookmark")
+                            Text("problem.action.save")
+                                .fixedSize(horizontal: true, vertical: true)
+                        }   
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
