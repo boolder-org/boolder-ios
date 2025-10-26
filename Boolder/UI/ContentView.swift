@@ -32,12 +32,6 @@ struct ContentView: View {
                     Label("tabs.ticklist", systemImage: "bookmark")
                 }
                 .tag(AppState.Tab.ticklist)
-            
-            ContributeView()
-                .tabItem {
-                    Label("tabs.contribute", systemImage: "person.2")
-                }
-                .tag(AppState.Tab.contribute)
         }
         .environment(appState)
         .environment(mapState)
