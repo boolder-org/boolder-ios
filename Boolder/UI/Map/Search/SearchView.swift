@@ -17,7 +17,7 @@ struct SearchView: View {
     var body: some View {
         Group {
             Color.systemBackground
-                .edgesIgnoringSafeArea(.top)
+                .edgesIgnoringSafeArea(.vertical)
                 .ignoresSafeArea(.keyboard)
                 .opacity(isEditing ? 1 : 0)
             
