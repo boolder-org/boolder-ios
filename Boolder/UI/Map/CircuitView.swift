@@ -71,8 +71,10 @@ struct CircuitView: View {
                 Spacer()
                 
                 Button {
-                    appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
                     appState.tab = .map
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
+                        appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
+                    }
                 } label: {
                     Text("area.see_on_the_map")
                         .font(.body.weight(.semibold))
