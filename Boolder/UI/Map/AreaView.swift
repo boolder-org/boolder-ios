@@ -11,7 +11,7 @@ import Charts
 import CoreLocation
 
 struct AreaView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) var openURL
     
     let area: Area
@@ -110,15 +110,22 @@ struct AreaView: View {
                 $0
             }
             else {
-                $0.navigationBarItems(
-                    leading: Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("area.close")
-                            .padding(.vertical)
-                            .font(.body)
-                    }
-                )
+                if #available(iOS 26, *) {
+                    $0.navigationBarItems(
+                        leading: Button(role: .close) { dismiss() }
+                        )
+                }
+                else {
+                    $0.navigationBarItems(
+                        leading: Button(action: {
+                            dismiss()
+                        }) {
+                            Text("area.close")
+                                .padding(.vertical)
+                                .font(.body)
+                        }
+                    )
+                }
             }
         }
         
