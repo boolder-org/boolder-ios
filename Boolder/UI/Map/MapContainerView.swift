@@ -65,7 +65,14 @@ struct MapContainerView: View {
     var mapbox : some View {
         @Bindable var mapState = mapState
         return MapboxView(mapState: mapState)
-            .edgesIgnoringSafeArea(.top)
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.edgesIgnoringSafeArea(.vertical)
+                }
+                else {
+                    $0.edgesIgnoringSafeArea(.top)
+                }
+            }
             .ignoresSafeArea(.keyboard)
             .background(
                 PoiActionSheet(
