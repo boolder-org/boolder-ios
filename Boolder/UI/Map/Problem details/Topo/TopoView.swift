@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct TopoView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     @Binding var problem: Problem
     @Environment(MapState.self) private var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CircuitPickerView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     let area: Area
     @Environment(MapState.self) private var mapState: MapState
@@ -22,7 +22,7 @@ struct CircuitPickerView: View {
                 Section {
                     ForEach(circuits) { circuit in
                         Button {
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                             mapState.clearFilters()
                             mapState.selectAndCenterOnCircuit(circuit)
                             mapState.displayCircuitStartButton = true
@@ -56,7 +56,7 @@ struct CircuitPickerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                     mapState.unselectCircuit()
                     mapState.clearFilters()
                 }) {

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GradeRangePickerView: View {
     var gradeRange: GradeRange
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     @State private var gradeMin: String
     @State private var gradeMax: String
@@ -45,7 +45,7 @@ struct GradeRangePickerView: View {
         .navigationTitle("filters.grade.range_picker.level")
         .navigationBarItems(
             trailing: Button(action: {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             }) {
                 Text("OK")
                     .bold()

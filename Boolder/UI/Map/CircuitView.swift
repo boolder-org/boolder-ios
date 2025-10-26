@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct CircuitView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     let area: Area
     let circuit: Circuit
     @Environment(AppState.self) private var appState: AppState

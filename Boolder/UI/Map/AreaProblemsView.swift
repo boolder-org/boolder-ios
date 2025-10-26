@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct AreaProblemsView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     let area: Area
     @Environment(AppState.self) private var appState: AppState
     

@@ -10,8 +10,6 @@ import SwiftUI
 import TipKit
 
 struct ClusterView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var clusterDownloader: ClusterDownloader
     
     @Binding var presentRemoveDownloadSheet: Bool

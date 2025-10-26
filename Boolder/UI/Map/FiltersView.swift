@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct FiltersView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @Binding var presentFilters: Bool
     @Binding var filters: Filters
     
@@ -27,7 +27,7 @@ struct FiltersView: View {
                             }
                             else {
                                 filters.gradeRange = range
-                                presentationMode.wrappedValue.dismiss()
+                                dismiss()
                             }
                         } label : {
                             HStack {
@@ -63,14 +63,14 @@ struct FiltersView: View {
                 leading: Button {
                     mapState.clearFilters()
                     mapState.unselectCircuit()
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 } label: {
                     Text("filters.clear")
                         .padding(.vertical)
                         .font(.body)
                 },
                 trailing: Button {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 } label: {
                     Text("OK")
                         .bold()

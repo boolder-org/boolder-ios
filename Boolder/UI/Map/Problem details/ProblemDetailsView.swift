@@ -11,7 +11,6 @@ import StoreKit
 import MapKit
 
 struct ProblemDetailsView: View {
-    @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) var openURL
     
     @AppStorage("problemDetails/viewCount") var viewCount = 0
