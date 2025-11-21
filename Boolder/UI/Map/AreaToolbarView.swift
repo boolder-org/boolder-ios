@@ -71,9 +71,17 @@ struct AreaToolbarView: View {
                         .frame(maxWidth: 40)
                         .layoutPriority(-1)
                 }
-                .background(Color(.systemBackground))
-                .cornerRadius(12)
-                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.glassEffect()
+                    }
+                    else {
+                        $0
+                            .background(Color(.systemBackground))
+                            .cornerRadius(12)
+                            .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                    }
+                }
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
