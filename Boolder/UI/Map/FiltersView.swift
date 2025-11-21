@@ -69,14 +69,25 @@ struct FiltersView: View {
                         .padding(.vertical)
                         .font(.body)
                 },
-                trailing: Button {
+                trailing: confirmButton
+            )
+        }
+    }
+    
+    var confirmButton: some View {
+        Group {
+            if #available(iOS 26, *) {
+                Button(role: .confirm) { dismiss() }
+            }
+            else {
+                Button {
                     dismiss()
                 } label: {
                     Text("OK")
                         .bold()
                         .padding(.vertical)
                 }
-            )
+            }
         }
     }
     

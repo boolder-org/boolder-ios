@@ -44,16 +44,27 @@ struct GradeRangePickerView: View {
         }
         .navigationTitle("filters.grade.range_picker.level")
         .navigationBarItems(
-            trailing: Button(action: {
-                dismiss()
-            }) {
-                Text("OK")
-                    .bold()
-                    .padding(.vertical)
-            }
+            trailing: confirmButton
         )
         .task {
             save()
+        }
+    }
+    
+    var confirmButton: some View {
+        Group {
+            if #available(iOS 26, *) {
+                Button(role: .confirm) { dismiss() }
+            }
+            else {
+                Button {
+                    dismiss()
+                } label: {
+                    Text("OK")
+                        .bold()
+                        .padding(.vertical)
+                }
+            }
         }
     }
     
