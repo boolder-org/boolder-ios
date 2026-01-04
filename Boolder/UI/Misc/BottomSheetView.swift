@@ -20,7 +20,7 @@ struct BottomSheetView<Content: View>: View {
     
     var body: some View {
         GeometryReader { geo in
-            let calculatedHeight = geo.size.height * 0.5
+            let calculatedHeight = (geo.size.height) * 0.5 + 24
             let sheetY = geo.size.height - calculatedHeight
             let offscreenY = geo.size.height + 20
             
@@ -70,7 +70,7 @@ struct BottomSheetView<Content: View>: View {
                 }
             }
         }
-        .ignoresSafeArea(edges: .bottom)
+        .ignoresSafeArea(edges: .all)
         .allowsHitTesting(isPresented)
     }
 }
