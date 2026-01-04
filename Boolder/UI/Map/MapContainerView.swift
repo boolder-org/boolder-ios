@@ -29,7 +29,7 @@ struct MapContainerView: View {
             
             circuitButtons
             
-            fabButtons
+            fabButtonsContainer
                 .zIndex(10)
             
             SearchView()
@@ -195,35 +195,67 @@ struct MapContainerView: View {
         }
     }
     
-    var fabButtons: some View {
+    var fabButtonsContainer: some View {
         HStack {
             Spacer()
             
             VStack(alignment: .trailing) {
                 Spacer()
                 
-                if let cluster = mapState.selectedCluster {
-                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                if #available(iOS 26.0, *) {
+                    GlassEffectContainer {
+                        fabButtons
+                    }
+                } else {
+                    fabButtons
                 }
-                else {
-                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
-
-                }
-                
-                Button(action: {
-                    mapState.centerOnCurrentLocation()
-                }) {
-                    Image(systemName: "location")
-                        .offset(x: -1, y: 0)
-//                        .font(.system(size: 20, weight: .regular))
-                }
-                .buttonStyle(FabButton())
-                
             }
             .padding(.trailing)
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
+    }
+    
+    var fabButtons: some View {
+        Group {
+            Group {
+                if let cluster = mapState.selectedCluster {
+                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                }
+                else {
+                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
+                    
+                }
+            }
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.buttonStyle(.plain).glassEffect(.regular.interactive(), in: Circle())
+                }
+                else {
+                    $0.buttonStyle(FabButton())
+                }
+            }
+            
+            Button {
+                print("location")
+                mapState.centerOnCurrentLocation()
+            } label: {
+                Image(systemName: "location")
+//                    .frame(width: 22, height: 22)
+                    .padding(12)
+                    
+//                    .offset(x: -1, y: 0)
+                //                        .font(.system(size: 20, weight: .regular))
+            }
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.glassEffect(.regular.interactive(), in: .circle)
+                }
+                else {
+                    $0.buttonStyle(FabButton())
+                }
+            }
+        }
     }
     
     // TODO: remove after October 2024

@@ -17,8 +17,9 @@ struct DownloadButtonPlaceholderView: View {
             presentDownloadsPlaceholder = true
         } label: {
             Image(systemName: "icloud.and.arrow.down")
+                .frame(width: 44, height: 44)
         }
-        .buttonStyle(FabButton())
+//        .buttonStyle(FabButton())
         .sheet(isPresented: $presentDownloadsPlaceholder) {
             placeholderView
                 .presentationDetents([.fraction(0.3)])

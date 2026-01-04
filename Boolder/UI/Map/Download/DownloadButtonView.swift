@@ -18,17 +18,20 @@ struct DownloadButtonView: View {
         Button {
             presentDownloads = true
         } label: {
-            if clusterDownloader.downloadingOrQueued {
-                CircularProgressView(progress: clusterDownloader.progress)
+            Group {
+                if clusterDownloader.downloadingOrQueued {
+                    CircularProgressView(progress: clusterDownloader.progress)
+                }
+                else if clusterDownloader.allDownloaded {
+                    Image(systemName: "checkmark.icloud")
+                }
+                else {
+                    Image(systemName: "icloud.and.arrow.down")
+                }
             }
-            else if clusterDownloader.allDownloaded {
-                Image(systemName: "checkmark.icloud")
-            }
-            else {
-                Image(systemName: "icloud.and.arrow.down")
-            }
+            .frame(width: 44, height: 44)
         }
-        .buttonStyle(FabButton())
+//        .buttonStyle(FabButton())
         .sheet(isPresented: $presentDownloads) {
             ClusterViewWithActionsheet(clusterDownloader: clusterDownloader)
                 .presentationDetents([.medium, .large])
