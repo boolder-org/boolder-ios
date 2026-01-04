@@ -13,25 +13,35 @@ struct ContentView: View {
     @State private var mapState = MapState()
     
     var body: some View {
-        TabView(selection: $appState.tab) {
+        ZStack {
+            TabView(selection: $appState.tab) {
+                
+                MapContainerView()
+                    .tabItem {
+                        Label("tabs.map", systemImage: "map")
+                    }
+                    .tag(AppState.Tab.map)
+                
+                DiscoverView()
+                    .tabItem {
+                        Label("tabs.discover", systemImage: "sparkles")
+                    }
+                    .tag(AppState.Tab.discover)
+                
+                TickList()
+                    .tabItem {
+                        Label("tabs.ticklist", systemImage: "bookmark")
+                    }
+                    .tag(AppState.Tab.ticklist)
+            }
             
-            MapContainerView()
-                .tabItem {
-                    Label("tabs.map", systemImage: "map")
+            if #available(iOS 26, *) {
+                BottomSheetView(isPresented: $mapState.presentProblemDetails) {
+                    ProblemDetailsView(
+                        problem: $mapState.selectedProblem
+                    )
                 }
-                .tag(AppState.Tab.map)
-            
-            DiscoverView()
-                .tabItem {
-                    Label("tabs.discover", systemImage: "sparkles")
-                }
-                .tag(AppState.Tab.discover)
-            
-            TickList()
-                .tabItem {
-                    Label("tabs.ticklist", systemImage: "bookmark")
-                }
-                .tag(AppState.Tab.ticklist)
+            }
         }
         .environment(appState)
         .environment(mapState)

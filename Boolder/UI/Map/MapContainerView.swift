@@ -82,16 +82,22 @@ struct MapContainerView: View {
                     presentPoiActionSheet: $mapState.presentPoiActionSheet
                 )
             )
-            .sheet(isPresented: $mapState.presentProblemDetails) {
-                ProblemDetailsView(
-                    problem: $mapState.selectedProblem
-                )
-                .presentationDetents([detent])
-//                .presentationDetents([.medium])
-                .presentationBackgroundInteraction(
-                    .enabled(upThrough: detent)
-                )
-                .presentationDragIndicator(.hidden)
+            .modify {
+                if #available(iOS 26, *) {
+                    $0 // Sheet presented via overlay for iOS 26
+                }
+                else {
+                    $0.sheet(isPresented: $mapState.presentProblemDetails) {
+                        ProblemDetailsView(
+                            problem: $mapState.selectedProblem
+                        )
+                        .presentationDetents([detent])
+                        .presentationBackgroundInteraction(
+                            .enabled(upThrough: detent)
+                        )
+                        .presentationDragIndicator(.hidden)
+                    }
+                }
             }
     }
     
