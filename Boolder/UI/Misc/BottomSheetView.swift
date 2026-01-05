@@ -66,8 +66,8 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
             sheetView.backgroundColor = .clear
             sheetView.translatesAutoresizingMaskIntoConstraints = false
             sheetView.clipsToBounds = true
-            sheetView.layer.cornerRadius = 16
-            sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            sheetView.layer.cornerRadius = 32
+//            sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             sheetView.layer.shadowColor = UIColor.black.cgColor
             sheetView.layer.shadowOpacity = 0.15
             sheetView.layer.shadowRadius = 12
