@@ -105,12 +105,24 @@ struct ProblemDetailsView: View {
                                 Text(String(format: NSLocalizedString("problem.variants", comment: ""), variants.count))
                                 Image(systemName: "chevron.down")
                             }
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 8)
-                            .background(Color.gray.opacity(0.8))
-                            .foregroundColor(Color(UIColor.systemBackground))
-                            .cornerRadius(16)
-                            .padding(8)
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.foregroundColor(.primary)
+                                        .padding(.vertical, 4)
+                                        .padding(.horizontal, 8)
+                                        .glassEffect()
+                                        .padding(12)
+                                } else {
+                                    $0
+                                        .padding(.vertical, 4)
+                                        .padding(.horizontal, 8)
+                                        .background(Color.gray.opacity(0.8))
+                                        .foregroundColor(Color(UIColor.systemBackground))
+                                        .cornerRadius(16)
+                                        .padding(8)
+                                }
+                            }
+                            
                         }
                     }
 //                }
