@@ -208,16 +208,24 @@ struct MapContainerView: View {
                                     Text("map.circuit_start")
                                 }
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .font(.body.weight(.semibold))
-                            .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                            .background(Color.systemBackground)
-                            .clipShape(RoundedRectangle(cornerRadius: 32))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                            )
-                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.buttonStyle(.glassProminent).tint(Color(circuit.color.uicolorForSystemBackground))
+                                        //.foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                                } else {
+                                    $0
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .font(.body.weight(.semibold))
+                                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                        .background(Color.systemBackground)
+                                        .clipShape(RoundedRectangle(cornerRadius: 32))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                        )
+                                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                                }
+                            }
                             
                         }
                         .padding()
