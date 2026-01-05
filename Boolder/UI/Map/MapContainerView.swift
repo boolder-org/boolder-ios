@@ -249,6 +249,7 @@ struct MapContainerView: View {
                 Image(systemName: "location")
 //                    .frame(width: 22, height: 22)
                     .padding(12)
+                    .foregroundColor(.primary)
                     
 //                    .offset(x: -1, y: 0)
                 //                        .font(.system(size: 20, weight: .regular))
