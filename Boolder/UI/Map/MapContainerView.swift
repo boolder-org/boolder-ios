@@ -130,16 +130,29 @@ struct MapContainerView: View {
                             mapState.goToPreviousCircuitProblem()
                         }) {
                             Image(systemName: "arrow.left")
-                                .padding(10)
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0
+                                    } else {
+                                        $0.padding(10)
+                                    }
+                                }
                         }
                         .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass).foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                            } else {
+                                $0
+                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                    .background(Color.systemBackground)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                    )
+                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            }
+                        }
                         .padding(.horizontal)
                     }
                     
@@ -152,16 +165,29 @@ struct MapContainerView: View {
                             mapState.goToNextCircuitProblem()
                         }) {
                             Image(systemName: "arrow.right")
-                                .padding(10)
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0
+                                    } else {
+                                        $0.padding(10)
+                                    }
+                                }
                         }
                         .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass).foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                            } else {
+                                $0
+                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                    .background(Color.systemBackground)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                    )
+                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            }
+                        }
                         .padding(.horizontal)
                     }
                 }
