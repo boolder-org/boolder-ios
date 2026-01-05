@@ -233,9 +233,10 @@ struct MapContainerView: View {
                     
                 }
             }
+            .foregroundColor(.primary)
             .modify {
                 if #available(iOS 26, *) {
-                    $0.buttonStyle(.plain).glassEffect(.regular.interactive(), in: Circle())
+                    $0.glassEffect(.regular.interactive(), in: Circle())
                 }
                 else {
                     $0.buttonStyle(FabButton())
