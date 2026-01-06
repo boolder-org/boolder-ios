@@ -25,7 +25,6 @@ struct AreaView: View {
     @State private var poiRoutes = [PoiRoute]()
     
     @State private var selectedPoi: Poi?
-    @State private var presentPoiActionSheet: Bool = false
     
     var body: some View {
         ZStack {
@@ -78,14 +77,6 @@ struct AreaView: View {
             }
 
         }
-        .background(
-            PoiActionSheet(
-                name: (selectedPoi?.name ?? ""),
-                googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
-                coordinates: selectedPoi?.coordinate ?? CLLocationCoordinate2D(),
-                presentPoiActionSheet: $presentPoiActionSheet
-            )
-        )
         .task {
             circuits = area.circuits
             popularProblems = area.popularProblems
@@ -257,7 +248,6 @@ struct AreaView: View {
                     
                     Button {
                         selectedPoi = poi
-                        presentPoiActionSheet = true
                     } label: {
                         HStack {
                             if poi.type == .parking {
@@ -285,6 +275,7 @@ struct AreaView: View {
                         }
                         .foregroundColor(.primary)
                     }
+                    .poiActionSheet(selectedPoi: $selectedPoi)
                 }
             }
         }

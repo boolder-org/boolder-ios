@@ -74,14 +74,7 @@ struct MapContainerView: View {
                 }
             }
             .ignoresSafeArea(.keyboard)
-            .background(
-                PoiActionSheet(
-                    name: (mapState.selectedPoi?.name ?? ""),
-                    googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
-                    coordinates: mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(),
-                    presentPoiActionSheet: $mapState.presentPoiActionSheet
-                )
-            )
+            .poiActionSheet(selectedPoi: $mapState.selectedPoi)
             .modify {
                 if #available(iOS 26, *) {
                     $0 // Sheet presented via overlay for iOS 26
