@@ -23,9 +23,14 @@ struct MapContainerView: View {
     @State private var presentDownloadsPlaceholder = false
     
     var body: some View {
+        @Bindable var mapState = mapState
         
         ZStack {
             mapbox
+            
+            // fake view acting as an anchor point for poi sheet
+            Color.clear.frame(width: 10, height: 10).allowsHitTesting(false)
+                .poiActionSheet(selectedPoi: $mapState.selectedPoi)
             
             circuitButtons
             
@@ -74,7 +79,6 @@ struct MapContainerView: View {
                 }
             }
             .ignoresSafeArea(.keyboard)
-            .poiActionSheet(selectedPoi: $mapState.selectedPoi)
             .modify {
                 if #available(iOS 26, *) {
                     $0 // Sheet presented via overlay for iOS 26
