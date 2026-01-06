@@ -228,10 +228,25 @@ struct ProblemDetailsView: View {
                             Image(systemName: "info.circle")
                             Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
                         }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                            } else {
+                                $0
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 16)
+                            }
+                        }
                     }
-                    .buttonStyle(Pill(fill: true))
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glassProminent)
+                        } else {
+                            $0
+                                .buttonStyle(Pill(fill: true))
+                        }
+                    }
+                    
                 }
                 
                 Button(action: {
@@ -242,10 +257,24 @@ struct ProblemDetailsView: View {
                         Text((isFavorite() || isTicked()) ? "problem.action.saved" : "problem.action.save")
                             .fixedSize(horizontal: true, vertical: true)
                     }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0
+                        } else {
+                            $0
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 16)
+                        }
+                    }
                 }
-                .buttonStyle(Pill())
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                    } else {
+                        $0
+                            .buttonStyle(Pill())
+                    }
+                }
                 .actionSheet(isPresented: $presentSaveActionsheet) {
                     ActionSheet(title: Text("problem.action.save"), buttons: saveButtons)
                 }
@@ -257,10 +286,24 @@ struct ProblemDetailsView: View {
                         Image(systemName: "square.and.arrow.up")
 //                        Text("problem.action.share").fixedSize(horizontal: true, vertical: true)
                     }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0
+                        } else {
+                            $0
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 16)
+                        }
+                    }
                 }
-                .buttonStyle(Pill())
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                    } else {
+                        $0
+                            .buttonStyle(Pill())
+                    }
+                }
                 .sheet(isPresented: $presentSharesheet,
                        content: {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil) }
@@ -269,6 +312,7 @@ struct ProblemDetailsView: View {
             .padding(.horizontal)
             .padding(.vertical, 4)
         }
+        .scrollClipDisabled()
     }
     
     var saveButtons: [ActionSheet.Button] {
