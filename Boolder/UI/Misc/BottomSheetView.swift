@@ -14,10 +14,11 @@ struct BottomSheetView<Content: View>: View {
     @ViewBuilder var content: () -> Content
     
     var body: some View {
+        
         GeometryReader { geo in
             BottomSheetUIKitView(
                 isPresented: $isPresented,
-                sheetHeight: geo.size.height * 0.5 + 24,
+                sheetHeight: geo.size.height * 0.5 + 32,
                 content: content
             )
         }
