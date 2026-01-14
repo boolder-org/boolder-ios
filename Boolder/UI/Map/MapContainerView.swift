@@ -23,13 +23,18 @@ struct MapContainerView: View {
     @State private var presentDownloadsPlaceholder = false
     
     var body: some View {
+        @Bindable var mapState = mapState
         
         ZStack {
             mapbox
             
+            // fake view acting as an anchor point for poi sheet
+            Color.clear.frame(width: 10, height: 10).allowsHitTesting(false)
+                .poiActionSheet(selectedPoi: $mapState.selectedPoi)
+            
             circuitButtons
             
-            fabButtons
+            fabButtonsContainer
                 .zIndex(10)
             
             SearchView()
@@ -65,26 +70,31 @@ struct MapContainerView: View {
     var mapbox : some View {
         @Bindable var mapState = mapState
         return MapboxView(mapState: mapState)
-            .edgesIgnoringSafeArea(.top)
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.edgesIgnoringSafeArea(.vertical)
+                }
+                else {
+                    $0.edgesIgnoringSafeArea(.top)
+                }
+            }
             .ignoresSafeArea(.keyboard)
-            .background(
-                PoiActionSheet(
-                    name: (mapState.selectedPoi?.name ?? ""),
-                    googleUrl: URL(string: mapState.selectedPoi?.googleUrl ?? ""),
-                    coordinates: mapState.selectedPoi?.coordinate ?? CLLocationCoordinate2D(),
-                    presentPoiActionSheet: $mapState.presentPoiActionSheet
-                )
-            )
-            .sheet(isPresented: $mapState.presentProblemDetails) {
-                ProblemDetailsView(
-                    problem: $mapState.selectedProblem
-                )
-                .presentationDetents([detent])
-//                .presentationDetents([.medium])
-                .presentationBackgroundInteraction(
-                    .enabled(upThrough: detent)
-                )
-                .presentationDragIndicator(.hidden)
+            .modify {
+                if #available(iOS 26, *) {
+                    $0 // Sheet presented via overlay for iOS 26
+                }
+                else {
+                    $0.sheet(isPresented: $mapState.presentProblemDetails) {
+                        ProblemDetailsView(
+                            problem: $mapState.selectedProblem
+                        )
+                        .presentationDetents([detent])
+                        .presentationBackgroundInteraction(
+                            .enabled(upThrough: detent)
+                        )
+                        .presentationDragIndicator(.hidden)
+                    }
+                }
             }
     }
     
@@ -99,7 +109,12 @@ struct MapContainerView: View {
     
     var offsetToBeOnTopOfSheet: CGFloat {
         if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
-            return -104
+            if #available(iOS 26, *) {
+                return -80
+            }
+            else {
+                return -104
+            }
         }
         else {
             return -48
@@ -117,16 +132,30 @@ struct MapContainerView: View {
                             mapState.goToPreviousCircuitProblem()
                         }) {
                             Image(systemName: "arrow.left")
-                                .padding(10)
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.padding(2)
+                                    } else {
+                                        $0.padding(10)
+                                    }
+                                }
                         }
                         .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
+                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                            } else {
+                                $0
+                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                    .background(Color.systemBackground)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                    )
+                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            }
+                        }
                         .padding(.horizontal)
                     }
                     
@@ -139,16 +168,30 @@ struct MapContainerView: View {
                             mapState.goToNextCircuitProblem()
                         }) {
                             Image(systemName: "arrow.right")
-                                .padding(10)
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.padding(2)
+                                    } else {
+                                        $0.padding(10)
+                                    }
+                                }
                         }
                         .font(.body.weight(.semibold))
-                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                        .background(Color.systemBackground)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                        )
-                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
+                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                            } else {
+                                $0
+                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                    .background(Color.systemBackground)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                    )
+                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            }
+                        }
                         .padding(.horizontal)
                     }
                 }
@@ -169,16 +212,24 @@ struct MapContainerView: View {
                                     Text("map.circuit_start")
                                 }
                             }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .font(.body.weight(.semibold))
-                            .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                            .background(Color.systemBackground)
-                            .clipShape(RoundedRectangle(cornerRadius: 32))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                            )
-                            .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.buttonStyle(.glassProminent).tint(Color(circuit.color.uicolorForSystemBackground))
+                                        //.foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                                } else {
+                                    $0
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .font(.body.weight(.semibold))
+                                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                        .background(Color.systemBackground)
+                                        .clipShape(RoundedRectangle(cornerRadius: 32))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 32).stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                        )
+                                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                                }
+                            }
                             
                         }
                         .padding()
@@ -188,35 +239,69 @@ struct MapContainerView: View {
         }
     }
     
-    var fabButtons: some View {
+    var fabButtonsContainer: some View {
         HStack {
             Spacer()
             
             VStack(alignment: .trailing) {
                 Spacer()
                 
-                if let cluster = mapState.selectedCluster {
-                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                if #available(iOS 26.0, *) {
+                    GlassEffectContainer {
+                        fabButtons
+                    }
+                } else {
+                    fabButtons
                 }
-                else {
-                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
-
-                }
-                
-                Button(action: {
-                    mapState.centerOnCurrentLocation()
-                }) {
-                    Image(systemName: "location")
-                        .offset(x: -1, y: 0)
-//                        .font(.system(size: 20, weight: .regular))
-                }
-                .buttonStyle(FabButton())
-                
             }
             .padding(.trailing)
         }
         .padding(.bottom)
         .ignoresSafeArea(.keyboard)
+    }
+    
+    var fabButtons: some View {
+        Group {
+            Group {
+                if let cluster = mapState.selectedCluster {
+                    DownloadButtonView(cluster: cluster, presentDownloads: $presentDownloads, clusterDownloader: ClusterDownloader(cluster: cluster, mainArea: areaBestGuess(in: cluster) ?? cluster.mainArea))
+                }
+                else {
+                    DownloadButtonPlaceholderView(presentDownloadsPlaceholder: $presentDownloadsPlaceholder)
+                    
+                }
+            }
+            .foregroundColor(.primary)
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.glassEffect(.regular.interactive(), in: Circle())
+                }
+                else {
+                    $0.buttonStyle(FabButton())
+                }
+            }
+            
+            Button {
+                print("location")
+                mapState.centerOnCurrentLocation()
+            } label: {
+                Image(systemName: "location")
+//                    .frame(width: 22, height: 22)
+                    .padding(12)
+                    .foregroundColor(.primary)
+                    
+//                    .offset(x: -1, y: 0)
+                //                        .font(.system(size: 20, weight: .regular))
+            }
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.glassEffect(.regular.interactive(), in: .circle)
+                }
+                else {
+                    $0.buttonStyle(FabButton())
+                }
+            }
+        }
     }
     
     // TODO: remove after October 2024

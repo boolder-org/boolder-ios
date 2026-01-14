@@ -11,7 +11,7 @@ import Charts
 import CoreLocation
 
 struct AreaView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) var openURL
     
     let area: Area
@@ -25,7 +25,6 @@ struct AreaView: View {
     @State private var poiRoutes = [PoiRoute]()
     
     @State private var selectedPoi: Poi?
-    @State private var presentPoiActionSheet: Bool = false
     
     var body: some View {
         ZStack {
@@ -62,27 +61,37 @@ struct AreaView: View {
                     Spacer()
                     
                     Button {
-                        appState.selectedArea = area
                         appState.tab = .map
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
+                            appState.selectedArea = area
+                        }
                     } label: {
                         Text("area.see_on_the_map")
                             .font(.body.weight(.semibold))
-                            .padding(.vertical)
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0
+                                }
+                                else {
+                                    $0.padding(.vertical)
+                                }
+                            }
                     }
-                    .buttonStyle(LargeButton())
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glassProminent).controlSize(.large)
+                                
+                        }
+                        else {
+                            $0.buttonStyle(LargeButton())
+                        }
+                    }
                     .padding()
                 }
             }
 
         }
-        .background(
-            PoiActionSheet(
-                name: (selectedPoi?.name ?? ""),
-                googleUrl: URL(string: selectedPoi?.googleUrl ?? ""),
-                coordinates: selectedPoi?.coordinate ?? CLLocationCoordinate2D(),
-                presentPoiActionSheet: $presentPoiActionSheet
-            )
-        )
         .task {
             circuits = area.circuits
             popularProblems = area.popularProblems
@@ -107,15 +116,22 @@ struct AreaView: View {
                 $0
             }
             else {
-                $0.navigationBarItems(
-                    leading: Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("area.close")
-                            .padding(.vertical)
-                            .font(.body)
-                    }
-                )
+                if #available(iOS 26, *) {
+                    $0.navigationBarItems(
+                        leading: Button(role: .close) { dismiss() }
+                        )
+                }
+                else {
+                    $0.navigationBarItems(
+                        leading: Button(action: {
+                            dismiss()
+                        }) {
+                            Text("area.close")
+                                .padding(.vertical)
+                                .font(.body)
+                        }
+                    )
+                }
             }
         }
         
@@ -247,7 +263,6 @@ struct AreaView: View {
                     
                     Button {
                         selectedPoi = poi
-                        presentPoiActionSheet = true
                     } label: {
                         HStack {
                             if poi.type == .parking {
@@ -275,6 +290,7 @@ struct AreaView: View {
                         }
                         .foregroundColor(.primary)
                     }
+                    .poiActionSheet(selectedPoi: $selectedPoi)
                 }
             }
         }

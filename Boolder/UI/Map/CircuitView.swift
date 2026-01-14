@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct CircuitView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     let area: Area
     let circuit: Circuit
     @Environment(AppState.self) private var appState: AppState
@@ -71,14 +69,31 @@ struct CircuitView: View {
                 Spacer()
                 
                 Button {
-                    appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
                     appState.tab = .map
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
+                        appState.selectedCircuit = AppState.CircuitWithArea(circuit: circuit, area: area)
+                    }
                 } label: {
                     Text("area.see_on_the_map")
                         .font(.body.weight(.semibold))
-                        .padding(.vertical)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                            }
+                            else {
+                                $0.padding(.vertical)
+                            }
+                        }
                 }
-                .buttonStyle(LargeButton())
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glassProminent).controlSize(.large)
+                            
+                    }
+                    else {
+                        $0.buttonStyle(LargeButton())
+                    }
+                }
                 .padding()
             }
         }

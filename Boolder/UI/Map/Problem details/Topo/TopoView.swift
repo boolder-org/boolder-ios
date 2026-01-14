@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct TopoView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     @Binding var problem: Problem
     @Environment(MapState.self) private var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
@@ -35,9 +33,16 @@ struct TopoView: View {
                         Text("problem.missing_line")
                             .padding(.vertical, 4)
                             .padding(.horizontal, 8)
-                            .background(Color.gray.opacity(0.8))
-                            .foregroundColor(Color(UIColor.systemBackground))
-                            .cornerRadius(16)
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.glassEffect()
+                                }
+                                else {
+                                    $0.background(Color.gray.opacity(0.8))
+                                        .foregroundColor(Color(UIColor.systemBackground))
+                                        .cornerRadius(16)
+                                }
+                            }
                             .transition(.opacity)
                             .opacity(showMissingLineNotice ? 1.0 : 0.0)
                     }

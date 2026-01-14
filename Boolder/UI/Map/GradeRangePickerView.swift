@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GradeRangePickerView: View {
     var gradeRange: GradeRange
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     @State private var gradeMin: String
     @State private var gradeMax: String
@@ -44,17 +44,27 @@ struct GradeRangePickerView: View {
         }
         .navigationTitle("filters.grade.range_picker.level")
         .navigationBarItems(
-            trailing: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("OK")
-                    .bold()
-                    .padding(.vertical)
-                    .padding(.leading, 32)
-            }
+            trailing: confirmButton
         )
         .task {
             save()
+        }
+    }
+    
+    var confirmButton: some View {
+        Group {
+            if #available(iOS 26, *) {
+                Button(role: .confirm) { dismiss() }
+            }
+            else {
+                Button {
+                    dismiss()
+                } label: {
+                    Text("OK")
+                        .bold()
+                        .padding(.vertical)
+                }
+            }
         }
     }
     

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopoFullScreenView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     @Binding var problem: Problem
     @State private var zoomScale: CGFloat = 1
@@ -25,10 +25,21 @@ struct TopoFullScreenView: View {
                     HStack {
                         Spacer()
                         
-                        Button(action: { presentationMode.wrappedValue.dismiss() }) {
-                            Image(systemName: "xmark")
-                                .foregroundColor(Color(UIColor.white))
-                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                        if #available(iOS 26, *) {
+                            Button(action: { dismiss() }) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 28)))
+                                    .padding(4)
+                            }
+                            .buttonStyle(.glass)
+                            .buttonBorderShape(.circle)
+                        }
+                        else {
+                            Button(action: { dismiss() }) {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(Color(UIColor.white))
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                            }
                         }
                     }
                     
@@ -56,7 +67,7 @@ struct TopoFullScreenView: View {
                             withAnimation(.spring()) {
                                 self.dragOffset = self.dragOffsetPredicted
                             }
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                             
                             return
                         }

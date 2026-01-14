@@ -71,9 +71,17 @@ struct AreaToolbarView: View {
                         .frame(maxWidth: 40)
                         .layoutPriority(-1)
                 }
-                .background(Color(.systemBackground))
-                .cornerRadius(12)
-                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.glassEffect()
+                    }
+                    else {
+                        $0
+                            .background(Color(.systemBackground))
+                            .cornerRadius(12)
+                            .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                    }
+                }
                 .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
@@ -102,8 +110,17 @@ struct AreaToolbarView: View {
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
                             .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
-                            .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
-                            .cornerRadius(32)
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.glassEffect(circuitFilterActive ? .regular.tint(.appGreen) : .regular)
+                                }
+                                else {
+                                    $0
+                                        .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
+                                        .cornerRadius(32)
+                                }
+                            }
+                            
                         }
                         .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
                             
@@ -125,8 +142,17 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.glassEffect(mapState.filters.gradeRange != nil ? .regular.tint(.appGreen) : .regular)
+                            }
+                            else {
+                                $0
+                                    .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
+                                    .cornerRadius(32)
+                            }
+                        }
+                        
                     }
                     .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                         mapState.filtersRefresh() // TODO: simplify refresh logic
@@ -150,8 +176,17 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.glassEffect(mapState.filters.popular ? .regular.tint(.appGreen) : .regular)
+                            }
+                            else {
+                                $0
+                                    .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
+                                    .cornerRadius(32)
+                            }
+                        }
+                        
                     }
                     
                     Button {
@@ -181,8 +216,16 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.glassEffect(mapState.filters.favorite ? .regular.tint(.appGreen) : .regular)
+                            }
+                            else {
+                                $0
+                                    .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
+                                    .cornerRadius(32)
+                            }
+                        }
                     }
                     .alert(isPresented: $showingAlertFavorite) {
                         Alert(title: Text("filters.no_favorites_alert.title"), message: Text("filters.no_favorites_alert.message"), dismissButton: .default(Text("OK")))
@@ -214,8 +257,16 @@ struct AreaToolbarView: View {
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
-                        .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
-                        .cornerRadius(32)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.glassEffect(mapState.filters.ticked ? .regular.tint(.appGreen) : .regular)
+                            }
+                            else {
+                                $0
+                                    .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
+                                    .cornerRadius(32)
+                            }
+                        }
                     }
                     .alert(isPresented: $showingAlertTicked) {
                         Alert(title: Text("filters.no_ticks_alert.title"), message: Text("filters.no_ticks_alert.message"), dismissButton: .default(Text("OK")))
@@ -225,6 +276,7 @@ struct AreaToolbarView: View {
                 }
 
             }
+            .scrollClipDisabled()
             .padding(.top, 8)
             .opacity(mapState.presentProblemDetails ? 0 : 1)
             

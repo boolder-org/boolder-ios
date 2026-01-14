@@ -17,7 +17,7 @@ struct SearchView: View {
     var body: some View {
         Group {
             Color.systemBackground
-                .edgesIgnoringSafeArea(.top)
+                .edgesIgnoringSafeArea(.vertical)
                 .ignoresSafeArea(.keyboard)
                 .opacity(isEditing ? 1 : 0)
             
@@ -28,8 +28,16 @@ struct SearchView: View {
                   .padding(10)
                   .padding(.horizontal, 25)
                   .focused($isFocused)
-                  .background(isEditing ? Color(.imageBackground) : Color(.systemBackground))
-                  .cornerRadius(12)
+                  .modify {
+                      if #available(iOS 26, *) {
+                          $0.glassEffect()
+                      }
+                      else {
+                          $0
+                              .background(isEditing ? Color(.imageBackground) : Color(.systemBackground))
+                              .cornerRadius(12)
+                      }
+                  }
                   .shadow(color: Color(.secondaryLabel).opacity(isEditing ? 0 : 0.5), radius: 5)
                   .simultaneousGesture(TapGesture().onEnded {
                       mapState.presentProblemDetails = false

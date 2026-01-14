@@ -26,7 +26,6 @@ class MapState {
     private(set) var refreshFiltersCount: Int = 0
     
     var presentProblemDetails = false
-    var presentPoiActionSheet = false
     var presentFilters = false
     var presentAreaView = false
     var presentCircuitPicker = false

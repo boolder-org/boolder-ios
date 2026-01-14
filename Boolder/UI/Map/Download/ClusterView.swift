@@ -10,8 +10,6 @@ import SwiftUI
 import TipKit
 
 struct ClusterView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     var clusterDownloader: ClusterDownloader
     
     @Binding var presentRemoveDownloadSheet: Bool
@@ -89,7 +87,7 @@ struct ClusterView: View {
                             Text(titleDownloading)
                         }
                         .font(.title3.weight(.semibold))
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 12)
                     }
                     .buttonStyle(LargeButton())
                 }
@@ -106,7 +104,7 @@ struct ClusterView: View {
                             Text("download.cluster.download")
                         }
                         .font(.title3.weight(.semibold))
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 12)
                         
                     }
                     .buttonStyle(LargeButton())

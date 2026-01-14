@@ -10,54 +10,44 @@
 import SwiftUI
 import CoreLocation
 
-struct PoiActionSheet: View {
-    let name: String
-    let googleUrl: URL?
-    let coordinates: CLLocationCoordinate2D
+struct PoiActionSheet: ViewModifier {
+    @Binding var selectedPoi: Poi?
     
     @Environment(\.openURL) var openURL
-    @Binding var presentPoiActionSheet: Bool
     
-    var body: some View {
-        EmptyView()
-            .actionSheet(isPresented: $presentPoiActionSheet) {
-                ActionSheet(
-                    title: Text(name),
-                    buttons: buttons
-                )
-        }
+    func body(content: Content) -> some View {
+        content
+            .confirmationDialog(
+                selectedPoi?.name ?? "",
+                isPresented: isPresentedBinding,
+                titleVisibility: .visible,
+                presenting: selectedPoi
+            ) { poi in
+                Button("Apple Maps") {
+                    openAppleMaps(coordinates: poi.coordinate, name: poi.name)
+                }
+                
+                if let googleUrl = URL(string: poi.googleUrl ?? "") {
+                    Button("Google Maps") {
+                        openURL(googleUrl)
+                    }
+                }
+                
+                if canOpenWaze() {
+                    Button("Waze") {
+                        openWaze(coordinates: poi.coordinate)
+                    }
+                }
+                
+                Button("poi.cancel", role: .cancel) { }
+            }
     }
     
-    private var buttons : [Alert.Button] {
-        var buttons = [Alert.Button]()
-        
-        buttons.append(
-            .default(Text("Apple Maps")) {
-                openAppleMaps(coordinates: coordinates, name: name)
-            }
+    private var isPresentedBinding: Binding<Bool> {
+        Binding(
+            get: { selectedPoi != nil },
+            set: { if !$0 { selectedPoi = nil } }
         )
-        
-        if let googleUrl = googleUrl {
-            buttons.append(
-                .default(Text("Google Maps")) {
-                    openURL(googleUrl)
-                }
-            )
-        }
-        
-        if canOpenWaze() {
-            buttons.append(
-                .default(Text("Waze")) {
-                    openWaze(coordinates: coordinates)
-                }
-            )
-        }
-        
-        buttons.append(
-            .cancel(Text("poi.cancel"))
-        )
-        
-        return buttons
     }
     
     private func openAppleMaps(coordinates: CLLocationCoordinate2D, name: String) {
@@ -77,5 +67,11 @@ struct PoiActionSheet: View {
     private func canOpenWaze() -> Bool {
         guard let url = URL(string: "waze://") else { return false }
         return UIApplication.shared.canOpenURL(url)
+    }
+}
+
+extension View {
+    func poiActionSheet(selectedPoi: Binding<Poi?>) -> some View {
+        modifier(PoiActionSheet(selectedPoi: selectedPoi))
     }
 }

@@ -153,7 +153,6 @@ struct MapboxView: UIViewControllerRepresentable {
             // FIXME: don't use id=0
             let poi = Poi(id: 0, type: .parking, name: name, shortName: name, googleUrl: googleUrl, coordinate: location)
             parent.mapState.selectedPoi = poi
-            parent.mapState.presentPoiActionSheet = true
         }
         
         func dismissProblemDetails() {
