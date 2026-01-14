@@ -920,9 +920,9 @@ class MapboxViewController: UIViewController {
     
     var flyinToSomething = false // TODO: replace with MapboxMap.isAnimationInProgress in v11 (probably more reliable)
     let flyinDuration = 0.5
-    let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 80, right: 20)
+    let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 120, right: 20)
     var safePaddingForBottomSheet : UIEdgeInsets {
-        UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2, right: 0)
+        UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2 + 28, right: 0)
     }
     let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
     
