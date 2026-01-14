@@ -134,7 +134,7 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.left")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0
+                                        $0.padding(2)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -143,7 +143,8 @@ struct MapContainerView: View {
                         .font(.body.weight(.semibold))
                         .modify {
                             if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass).foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
+                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
                             } else {
                                 $0
                                     .accentColor(Color(circuit.color.uicolorForSystemBackground))
@@ -169,7 +170,7 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.right")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0
+                                        $0.padding(2)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -178,7 +179,8 @@ struct MapContainerView: View {
                         .font(.body.weight(.semibold))
                         .modify {
                             if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass).foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
+                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
                             } else {
                                 $0
                                     .accentColor(Color(circuit.color.uicolorForSystemBackground))

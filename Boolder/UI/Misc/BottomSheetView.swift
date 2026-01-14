@@ -27,7 +27,7 @@ struct BottomSheetView<Content: View>: View {
         GeometryReader { geo in
             BottomSheetUIKitView(
                 isPresented: $isPresented,
-                sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 32),
+                sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 28),
                 content: content
             )
         }
