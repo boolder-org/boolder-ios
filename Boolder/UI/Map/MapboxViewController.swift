@@ -17,7 +17,7 @@ class MapboxViewController: UIViewController {
     
     // Map styles for light and dark mode
     private let lightStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")!
-    private let darkStyleURI = StyleURI.dark
+    private let darkStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cmkea670800a701sdc5n67k3q")!
     
     private var currentStyleURI: StyleURI {
         traitCollection.userInterfaceStyle == .dark ? darkStyleURI : lightStyleURI
@@ -188,6 +188,8 @@ class MapboxViewController: UIViewController {
                 1
             }
         )
+        
+        problemsLayer.circleEmissiveStrength = .constant(0.9)
         
         var problemsTextsLayer = SymbolLayer(id: "problems-texts", source: "problems")
         problemsTextsLayer.sourceLayer = problemsSourceLayerId
