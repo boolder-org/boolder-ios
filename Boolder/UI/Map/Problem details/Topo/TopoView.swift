@@ -170,6 +170,9 @@ struct TopoView: View {
     }
     
     func loadData() async {
+        // Don't show "no photo" for the empty placeholder problem
+        guard problem.id != 0 else { return }
+        
         guard let topo = problem.topo else {
             photoStatus = .none
             return
