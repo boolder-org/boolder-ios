@@ -231,6 +231,8 @@ struct ProblemDetailsView: View {
                         .modify {
                             if #available(iOS 26, *) {
                                 $0
+                                    .padding(.vertical, 2)
+                                    .padding(.horizontal, 4)
                             } else {
                                 $0
                                     .padding(.vertical, 8)
@@ -260,6 +262,8 @@ struct ProblemDetailsView: View {
                     .modify {
                         if #available(iOS 26, *) {
                             $0
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 4)
                         } else {
                             $0
                                 .padding(.vertical, 8)
@@ -289,6 +293,8 @@ struct ProblemDetailsView: View {
                     .modify {
                         if #available(iOS 26, *) {
                             $0
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 4)
                         } else {
                             $0
                                 .padding(.vertical, 8)
