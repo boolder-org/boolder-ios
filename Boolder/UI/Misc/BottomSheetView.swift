@@ -13,12 +13,21 @@ struct BottomSheetView<Content: View>: View {
     @Binding var isPresented: Bool
     @ViewBuilder var content: () -> Content
     
+    private func heightWithFallbackForSmallDevices(defaultHeight: CGFloat) -> CGFloat {
+        if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
+            return 420
+        }
+        else {
+            return defaultHeight
+        }
+    }
+    
     var body: some View {
         
         GeometryReader { geo in
             BottomSheetUIKitView(
                 isPresented: $isPresented,
-                sheetHeight: geo.size.height * 0.5 + 32,
+                sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 32),
                 content: content
             )
         }
@@ -68,7 +77,10 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
             sheetView.translatesAutoresizingMaskIntoConstraints = false
             sheetView.clipsToBounds = true
             sheetView.layer.cornerRadius = 32
-//            sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
+                sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            }
+                
             sheetView.layer.shadowColor = UIColor.black.cgColor
             sheetView.layer.shadowOpacity = 0.15
             sheetView.layer.shadowRadius = 12

@@ -109,7 +109,12 @@ struct MapContainerView: View {
     
     var offsetToBeOnTopOfSheet: CGFloat {
         if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
-            return -104
+            if #available(iOS 26, *) {
+                return -80
+            }
+            else {
+                return -104
+            }
         }
         else {
             return -48
