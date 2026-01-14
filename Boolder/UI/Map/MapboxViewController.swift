@@ -15,6 +15,14 @@ class MapboxViewController: UIViewController {
     var delegate: MapBoxViewDelegate?
     var cancelables = Set<AnyCancelable>()
     
+    // Map styles for light and dark mode
+    private let lightStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")!
+    private let darkStyleURI = StyleURI.dark
+    
+    private var currentStyleURI: StyleURI {
+        traitCollection.userInterfaceStyle == .dark ? darkStyleURI : lightStyleURI
+    }
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +33,7 @@ class MapboxViewController: UIViewController {
         
         let myMapInitOptions = MapInitOptions(
             cameraOptions: cameraOptions,
-            styleURI: StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")
+            styleURI: currentStyleURI
         )
         
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
@@ -79,6 +87,30 @@ class MapboxViewController: UIViewController {
             }.store(in: &cancelables)
         
         self.view.addSubview(mapView)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        // Check if the user interface style has changed
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateMapStyle()
+        }
+    }
+    
+    private func updateMapStyle() {
+        mapView.mapboxMap.loadStyle(currentStyleURI) { [weak self] error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error loading style: \(error)")
+                return
+            }
+            
+            // Re-add sources and layers after style change
+            self.addSources()
+            self.addLayers()
+        }
     }
 
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
@@ -245,8 +277,9 @@ class MapboxViewController: UIViewController {
                 1.5
             }
         )
-        problemsNamesLayer.textHaloColor = .constant(.init(.white))
+        problemsNamesLayer.textHaloColor = .constant(.init(traitCollection.userInterfaceStyle == .dark ? .black : .white))
         problemsNamesLayer.textHaloWidth = .constant(1)
+        problemsNamesLayer.textColor = .constant(.init(traitCollection.userInterfaceStyle == .dark ? .white : .black))
         
         problemsNamesLayer.textAllowOverlap = .constant(false)
         problemsNamesLayer.textOptional = .constant(true)
