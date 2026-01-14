@@ -76,9 +76,24 @@ struct CircuitView: View {
                 } label: {
                     Text("area.see_on_the_map")
                         .font(.body.weight(.semibold))
-                        .padding(.vertical)
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                            }
+                            else {
+                                $0.padding(.vertical)
+                            }
+                        }
                 }
-                .buttonStyle(LargeButton())
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glassProminent).controlSize(.large)
+                            
+                    }
+                    else {
+                        $0.buttonStyle(LargeButton())
+                    }
+                }
                 .padding()
             }
         }
