@@ -25,10 +25,21 @@ struct TopoFullScreenView: View {
                     HStack {
                         Spacer()
                         
-                        Button(action: { dismiss() }) {
-                            Image(systemName: "xmark")
-                                .foregroundColor(Color(UIColor.white))
-                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                        if #available(iOS 26, *) {
+                            Button(action: { dismiss() }) {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 28)))
+                                    .padding(4)
+                            }
+                            .buttonStyle(.glass)
+                            .buttonBorderShape(.circle)
+                        }
+                        else {
+                            Button(action: { dismiss() }) {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(Color(UIColor.white))
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                            }
                         }
                     }
                     
