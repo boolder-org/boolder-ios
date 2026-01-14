@@ -331,6 +331,7 @@ class MapboxViewController: UIViewController {
         circuitsLayer.lineDasharray = .constant([4,1])
         circuitsLayer.lineColor = circuitColorExp(attribute: "color")
         circuitsLayer.visibility = .constant(.none)
+        circuitsLayer.lineEmissiveStrength = .constant(0.9)
         
         var circuitProblemsLayer = CircleLayer(id: "circuit-problems", source: "problems")
         circuitProblemsLayer.sourceLayer = problemsSourceLayerId
@@ -349,6 +350,8 @@ class MapboxViewController: UIViewController {
                 16
             }
         )
+        
+        circuitProblemsLayer.circleEmissiveStrength = .constant(0.9)
         
         circuitProblemsLayer.circleColor = problemsLayer.circleColor
         circuitProblemsLayer.circleStrokeWidth = problemsLayer.circleStrokeWidth
