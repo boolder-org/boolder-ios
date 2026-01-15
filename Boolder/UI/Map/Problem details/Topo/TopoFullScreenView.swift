@@ -28,7 +28,7 @@ struct TopoFullScreenView: View {
                         if #available(iOS 26, *) {
                             Button(action: { dismiss() }) {
                                 Image(systemName: "xmark")
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 28)))
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                     .padding(4)
                             }
                             .buttonStyle(.glass)
