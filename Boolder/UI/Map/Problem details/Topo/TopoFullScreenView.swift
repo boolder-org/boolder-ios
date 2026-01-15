@@ -55,10 +55,16 @@ struct TopoFullScreenView: View {
                     Spacer()
                     
                     overlayInfos
-                        .padding(2)
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.edgesIgnoringSafeArea(.bottom)
+                    }
+                    else {
+                        $0
+                    }
                 }
                 .zIndex(2)
-                .edgesIgnoringSafeArea(.bottom)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
                     TopoView(problem: $problem, zoomScale: $zoomScale)
@@ -159,7 +165,9 @@ struct TopoFullScreenView: View {
             if #available(iOS 26, *) {
                 $0
                     .padding()
-                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 32))
+                    .frame(minHeight: 140, alignment: .top)
+                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 16))
+                    
             } else {
                 $0
                     .padding()
