@@ -19,6 +19,7 @@ struct TopoView: View {
     var onBackgroundTap: (() -> Void)?
     
     @State private var bounceAnimation = false
+    @State private var pendingBounceAnimation = false
     
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
@@ -172,18 +173,24 @@ struct TopoView: View {
             switch newValue {
             case .ready(image: _):
                 displayLine()
-                animateBounce()
+                if pendingBounceAnimation {
+                    animateBounce()
+                    pendingBounceAnimation = false
+                }
             default:
                 print("")
             }
         }
         .onChange(of: problem) { oldValue, newValue in
-            animateBounce()
-            
             if oldValue.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
                 displayLine()
+                
+                if pendingBounceAnimation {
+                    animateBounce()
+                    pendingBounceAnimation = false
+                }
             }
             else {
                 lineDrawPercentage = 0.0
@@ -191,6 +198,7 @@ struct TopoView: View {
                 Task {
                     await loadData()
                 }
+                // pendingBounceAnimation will be handled in photoStatus onChange when photo loads
             }
         }
         .task {
@@ -290,11 +298,13 @@ struct TopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
+                pendingBounceAnimation = true
                 mapState.selectProblem(next)
             }
         }
         else {
             if let topProblem = group.topProblem {
+                pendingBounceAnimation = true
                 mapState.selectProblem(topProblem)
             }
         }
