@@ -71,26 +71,6 @@ struct TopoFullScreenView: View {
                 
                 .zIndex(1)
                 .offset(x: 0, y: self.dragOffset.height) // drag gesture
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        self.dragOffset = value.translation
-                        self.dragOffsetPredicted = value.predictedEndTranslation
-                    }
-                    .onEnded { value in
-                        if(self.dragOffset.height > 200
-                           || (self.dragOffsetPredicted.height > 0 && abs(self.dragOffsetPredicted.height) / abs(self.dragOffset.height) > 3)) {
-                            withAnimation(.spring()) {
-                                self.dragOffset = self.dragOffsetPredicted
-                            }
-                            dismiss()
-                            
-                            return
-                        }
-                        withAnimation(.interactiveSpring()) {
-                            self.dragOffset = .zero
-                        }
-                    }
-                )
                 .background(Color.black)
                 .edgesIgnoringSafeArea(.all)
                 
