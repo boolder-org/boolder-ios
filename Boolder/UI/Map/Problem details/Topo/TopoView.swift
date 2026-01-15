@@ -29,6 +29,34 @@ struct TopoView: View {
         internal var id: Int { problem.id }
     }
     
+    enum BouncePhase: CaseIterable {
+        case rest
+        case up1, down1
+        case up2, down2
+        case up3, down3
+        case up4, down4
+        
+        var yOffset: CGFloat {
+            switch self {
+            case .rest, .down1, .down2, .down3, .down4: return 0
+            case .up1: return -20      // 100/5
+            case .up2: return -7.2     // 36/5
+            case .up3: return -2.6     // 12.96/5
+            case .up4: return -0.93    // 4.67/5
+            }
+        }
+        
+        var animation: Animation {
+            switch self {
+            case .rest: return .easeOut(duration: 0.033)
+            case .up1, .down1: return .easeOut(duration: 0.109)
+            case .up2, .down2: return .easeOut(duration: 0.066)
+            case .up3, .down3: return .easeOut(duration: 0.039)
+            case .up4, .down4: return .easeOut(duration: 0.023)
+            }
+        }
+    }
+    
     var body: some View {
         let allProblems = problem.startGroups.flatMap { group in
             group.problems.map { p in
@@ -73,42 +101,11 @@ struct TopoView: View {
                                     .scaleEffect(counterZoomScale.wrappedValue)
                                     .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
                                     .zIndex(p == problem ? .infinity : p.zIndex)
-                                    .modify {
-                                        if pWithGroup.inGroup && p != problem {
-                                            $0
-                                                .keyframeAnimator(initialValue: CGFloat(0), trigger: bounceAnimation) { content, y in
-                                                    content.offset(y: y)
-                                                } keyframes: { _ in
-                                                    KeyframeTrack(\.self) {
-                                                        // initial delay (hold at floor)
-                                                        CubicKeyframe(0, duration: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.05))
-                                                        
-                                                        // Physics-ish timing (points, not pixels):
-                                                        // g ≈ 3300 pt/s², e ≈ 0.6
-                                                        // Heights: 100, 36, 12.96, 4.67
-                                                        // Half-bounce times t = sqrt(2h/g): 0.246, 0.148, 0.089, 0.053 s
-
-                                                        // Up 100, down to floor
-                                                        CubicKeyframe(-100/5,  duration: 0.246/1.5)
-                                                        CubicKeyframe(   0,  duration: 0.246/1.5)
-
-                                                        // Diminishing bounces (never below 0)
-                                                        CubicKeyframe( -36/5,  duration: 0.148/1.5)
-                                                        CubicKeyframe(   0,  duration: 0.148/1.5)
-                                                        CubicKeyframe(-12.96/5, duration: 0.089/1.5)
-                                                        CubicKeyframe(     0, duration: 0.089/1.5)
-                                                        CubicKeyframe( -4.67/5, duration: 0.053/1.5)
-                                                        CubicKeyframe(   0,  duration: 0.053/1.5)
-
-                                                        // Hold at rest
-                                                        CubicKeyframe(0, duration: 0.30)
-                                                    }
-                                                }
-                                        }
-                                        else {
-                                            $0
-                                        }
-                                    }
+                                    .modifier(BounceModifier(
+                                        shouldAnimate: pWithGroup.inGroup && p != problem,
+                                        trigger: bounceAnimation,
+                                        delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
+                                    ))
                             }
                         }
                     }
@@ -309,6 +306,32 @@ struct TopoView: View {
     
     func animateBounce() {
         bounceAnimation.toggle()
+    }
+    
+    struct BounceModifier: ViewModifier {
+        let shouldAnimate: Bool
+        let trigger: Bool
+        let delay: Double
+        
+        @State private var delayedTrigger = false
+        
+        func body(content: Content) -> some View {
+            if shouldAnimate {
+                content
+                    .phaseAnimator(BouncePhase.allCases, trigger: delayedTrigger) { view, phase in
+                        view.offset(y: phase.yOffset)
+                    } animation: { phase in
+                        phase.animation
+                    }
+                    .onChange(of: trigger) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                            delayedTrigger.toggle()
+                        }
+                    }
+            } else {
+                content
+            }
+        }
     }
 }
 
