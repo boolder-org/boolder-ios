@@ -21,6 +21,8 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
     
+    @Namespace private var topoTransitionNamespace
+    
     var body: some View {
         VStack {
             GeometryReader { geo in
@@ -34,6 +36,14 @@ struct ProblemDetailsView: View {
                                 presentTopoFullScreenView = true
                             }
                         )
+                        .modify {
+                            if #available(iOS 18, *) {
+                                $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace)
+                            }
+                            else {
+                                $0
+                            }
+                        }
                         .gesture(
                             MagnificationGesture()
                                 .onChanged { value in
@@ -45,6 +55,14 @@ struct ProblemDetailsView: View {
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
                             TopoFullScreenView(problem: $problem)
+                                .modify {
+                                    if #available(iOS 18, *) {
+                                        $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
+                                    }
+                                    else {
+                                        $0
+                                    }
+                                }
                         }
                         
                         VStack {
