@@ -107,20 +107,9 @@ struct TopoFullScreenView: View {
             
             ProblemActionButtonsView(problem: problem, withHorizontalPadding: false)
         }
-        .modify {
-            if #available(iOS 26, *) {
-                $0
-                    .padding()
-                    .frame(minHeight: 140, alignment: .top)
-                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 16))
-                    
-            } else {
-                $0
-                    .padding()
-                    .background(Color.black.opacity(0.6))
-                    .cornerRadius(16)
-            }
-        }
+        .padding()
+        .frame(minHeight: 148, alignment: .top)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 0))
     }
 }
 
