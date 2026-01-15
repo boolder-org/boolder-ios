@@ -30,6 +30,7 @@ struct ProblemDetailsView: View {
                             problem: $problem,
                             zoomScale: .constant(1),
                             onBackgroundTap: {
+                                mapState.skipBounceAnimation = true
                                 presentTopoFullScreenView = true
                             }
                         )
