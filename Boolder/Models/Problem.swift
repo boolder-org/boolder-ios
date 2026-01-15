@@ -360,6 +360,10 @@ extension Problem : Hashable {
 // TODO: move to Topo
 class StartGroup: Identifiable, Equatable {
     private(set) var problems: [Problem]
+    
+    var id: String {
+        problems.map { String($0.id) }.sorted().joined(separator: "-")
+    }
 
     init(problem: Problem) {
         self.problems = [problem]
