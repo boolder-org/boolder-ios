@@ -102,13 +102,13 @@ struct TopoFullScreenView: View {
     
     var overlayInfos: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ProblemInfoView(problem: problem, titleFont: .title2)
+            ProblemInfoView(problem: problem)
                 .foregroundColor(.primary.opacity(0.8))
             
             ProblemActionButtonsView(problem: problem, withHorizontalPadding: false)
         }
         .padding()
-        .frame(minHeight: 148, alignment: .top)
+        .frame(minHeight: 150, alignment: .top)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 0))
     }
 }
