@@ -53,14 +53,7 @@ struct TopoFullScreenView: View {
                     
                     overlayInfos
                 }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.edgesIgnoringSafeArea(.bottom)
-                    }
-                    else {
-                        $0
-                    }
-                }
+                .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
@@ -89,7 +82,14 @@ struct TopoFullScreenView: View {
         }
         .padding()
         .frame(minHeight: 150, alignment: .top)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 0))
+        .modify {
+            if #available(iOS 26, *) {
+                $0.background(.regularMaterial, in: RoundedRectangle(cornerRadius: 0))
+            }
+            else {
+                $0.background(Color.systemBackground)
+            }
+        }
     }
 }
 
