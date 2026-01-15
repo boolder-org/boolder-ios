@@ -13,6 +13,10 @@ struct BottomSheetView<Content: View>: View {
     @Binding var isPresented: Bool
     @ViewBuilder var content: () -> Content
     
+    private var isIPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
     private func heightWithFallbackForSmallDevices(defaultHeight: CGFloat) -> CGFloat {
         if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
             return 420
@@ -23,15 +27,21 @@ struct BottomSheetView<Content: View>: View {
     }
     
     var body: some View {
-        
-        GeometryReader { geo in
-            BottomSheetUIKitView(
-                isPresented: $isPresented,
-                sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 28),
-                content: content
-            )
+        if isIPad {
+            Color.clear
+                .sheet(isPresented: $isPresented) {
+                    content()
+                }
+        } else {
+            GeometryReader { geo in
+                BottomSheetUIKitView(
+                    isPresented: $isPresented,
+                    sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 28),
+                    content: content
+                )
+            }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }
 
