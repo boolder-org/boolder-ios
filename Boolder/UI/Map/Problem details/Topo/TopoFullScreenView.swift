@@ -46,6 +46,11 @@ struct TopoFullScreenView: View {
                     
                     Spacer()
                     
+                    HStack {
+                        Spacer()
+                        VariantsMenuView(problem: $problem)
+                    }
+                    
                     overlayInfos
                 }
                 .modify {
