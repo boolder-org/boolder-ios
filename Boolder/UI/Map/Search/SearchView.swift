@@ -39,20 +39,14 @@ struct SearchView: View {
                               .shadow(color: Color(.secondaryLabel).opacity(isEditing ? 0 : 0.5), radius: 5)
                       }
                   }
-                  .simultaneousGesture(TapGesture().onEnded {
-                      mapState.presentProblemDetails = false
-                      withAnimation {
-                          isEditing = true
-                          isFocused = true
-                      }
-                  })
+                  
                   .overlay(
                     HStack {
                       Image(systemName: "magnifyingglass")
                             .foregroundColor(Color(.secondaryLabel))
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 10)
-                        .disabled(true)
+                        .allowsHitTesting(false)
                       if isEditing && !query.isEmpty {
                         Button(action: {
                             query = ""
@@ -65,7 +59,16 @@ struct SearchView: View {
                                })
                       }
                     }
+                    .allowsHitTesting(isEditing && !query.isEmpty)
                   )
+                  .contentShape(Rectangle())
+                  .simultaneousGesture(TapGesture().onEnded {
+                      mapState.presentProblemDetails = false
+                      withAnimation {
+                          isEditing = true
+                          isFocused = true
+                      }
+                  })
                     
                   if isEditing {
                       Button(action: {
