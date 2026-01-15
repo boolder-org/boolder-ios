@@ -34,6 +34,15 @@ struct ProblemDetailsView: View {
                                 presentTopoFullScreenView = true
                             }
                         )
+                        .gesture(
+                            MagnificationGesture()
+                                .onChanged { value in
+                                    if value > 1.1 {
+                                        mapState.skipBounceAnimation = true
+                                        presentTopoFullScreenView = true
+                                    }
+                                }
+                        )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
                             TopoFullScreenView(problem: $problem)
                         }
