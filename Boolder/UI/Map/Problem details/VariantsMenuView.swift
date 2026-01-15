@@ -12,7 +12,9 @@ struct VariantsMenuView: View {
     @Binding var problem: Problem
     @Environment(MapState.self) private var mapState: MapState
     
-    @State private var variants: [Problem] = []
+    private var variants: [Problem] {
+        problem.variants
+    }
     
     var body: some View {
         Group {
@@ -50,16 +52,6 @@ struct VariantsMenuView: View {
                 }
             }
         }
-        .onAppear {
-            computeVariants()
-        }
-        .onChange(of: problem) {
-            computeVariants()
-        }
-    }
-    
-    private func computeVariants() {
-        variants = problem.variants
     }
 }
 
