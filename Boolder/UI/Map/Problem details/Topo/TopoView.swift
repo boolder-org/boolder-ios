@@ -48,11 +48,11 @@ struct TopoView: View {
         
         var animation: Animation {
             switch self {
-            case .rest: return .easeOut(duration: 0.033)
-            case .up1, .down1: return .easeOut(duration: 0.109)
-            case .up2, .down2: return .easeOut(duration: 0.066)
-            case .up3, .down3: return .easeOut(duration: 0.039)
-            case .up4, .down4: return .easeOut(duration: 0.023)
+            case .rest: return .spring(duration: 0.033)
+            case .up1, .down1: return .spring(duration: 0.109)
+            case .up2, .down2: return .spring(duration: 0.066)
+            case .up3, .down3: return .spring(duration: 0.039)
+            case .up4, .down4: return .spring(duration: 0.023)
             }
         }
     }
