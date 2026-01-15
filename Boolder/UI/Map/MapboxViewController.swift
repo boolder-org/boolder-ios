@@ -57,6 +57,10 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
         mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
         
+        // Make attribution elements less noticeable
+        mapView.ornaments.logoView.alpha = 0.5
+        mapView.ornaments.attributionButton.alpha = 0.5
+        
         // Wait for the map to load its style before adding data.
         mapView.mapboxMap.onStyleLoaded.observeNext { [weak self] _ in
             guard let self = self else { return }
