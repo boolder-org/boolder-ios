@@ -19,7 +19,6 @@ struct TopoView: View {
     var onBackgroundTap: (() -> Void)?
     
     @State private var bounceAnimation = false
-    @State private var pendingBounceAnimation = false
     
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
@@ -173,10 +172,7 @@ struct TopoView: View {
             switch newValue {
             case .ready(image: _):
                 displayLine()
-                if pendingBounceAnimation {
-                    animateBounce()
-                    pendingBounceAnimation = false
-                }
+                animateBounceIfAllowed()
             default:
                 print("")
             }
@@ -186,11 +182,7 @@ struct TopoView: View {
                 lineDrawPercentage = 0.0
                 
                 displayLine()
-                
-                if pendingBounceAnimation {
-                    animateBounce()
-                    pendingBounceAnimation = false
-                }
+                animateBounceIfAllowed()
             }
             else {
                 lineDrawPercentage = 0.0
@@ -198,7 +190,7 @@ struct TopoView: View {
                 Task {
                     await loadData()
                 }
-                // pendingBounceAnimation will be handled in photoStatus onChange when photo loads
+                // animateBounceIfAllowed will be called in photoStatus onChange when photo loads
             }
         }
         .task {
@@ -298,13 +290,11 @@ struct TopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
-                pendingBounceAnimation = true
                 mapState.selectProblem(next)
             }
         }
         else {
             if let topProblem = group.topProblem {
-                pendingBounceAnimation = true
                 mapState.selectProblem(topProblem)
             }
         }
@@ -316,6 +306,14 @@ struct TopoView: View {
     
     func animateBounce() {
         bounceAnimation.toggle()
+    }
+    
+    func animateBounceIfAllowed() {
+        if mapState.skipBounceAnimation {
+            mapState.skipBounceAnimation = false
+        } else {
+            animateBounce()
+        }
     }
     
     struct BounceModifier: ViewModifier {
