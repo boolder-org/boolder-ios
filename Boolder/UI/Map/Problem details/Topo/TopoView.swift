@@ -18,7 +18,24 @@ struct TopoView: View {
     @Binding var zoomScale: CGFloat
     var onBackgroundTap: (() -> Void)?
     
+    @State private var bounceAnimation = false
+    
+    struct ProblemWithGroup: Identifiable {
+        let problem: Problem
+        let inGroup: Bool
+        let index: Int?
+        let count: Int
+        
+        internal var id: Int { problem.id }
+    }
+    
     var body: some View {
+        let allProblems = problem.startGroups.flatMap { group in
+            group.problems.map { p in
+                ProblemWithGroup(problem: p, inGroup: group.problems.contains(problem), index: group.problems.firstIndex(of: p), count: group.problems.count)
+            }
+        }
+        let indexedProblems = Array(allProblems.enumerated())
         ZStack(alignment: .center) {
             if case .ready(let image) = photoStatus  {
                 Group {
@@ -48,15 +65,50 @@ struct TopoView: View {
                     }
                     
                     GeometryReader { geo in
-                        ForEach(problem.startGroups) { (group: StartGroup) in
-                            ForEach(group.problems) { (p: Problem) in
-                                if let firstPoint = p.lineFirstPoint {
-                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                        .allowsHitTesting(false)
-                                        .scaleEffect(counterZoomScale.wrappedValue)
-                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                        .zIndex(p == problem ? .infinity : p.zIndex)
-                                }
+                        ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
+                            let p = pWithGroup.problem
+                            if let firstPoint = p.lineFirstPoint {
+                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                    .allowsHitTesting(false)
+                                    .scaleEffect(counterZoomScale.wrappedValue)
+                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                    .zIndex(p == problem ? .infinity : p.zIndex)
+                                    .modify {
+                                        if pWithGroup.inGroup && p != problem {
+                                            $0
+                                                .keyframeAnimator(initialValue: CGFloat(0), trigger: bounceAnimation) { content, y in
+                                                    content.offset(y: y)
+                                                } keyframes: { _ in
+                                                    KeyframeTrack(\.self) {
+                                                        // initial delay (hold at floor)
+                                                        CubicKeyframe(0, duration: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.05))
+                                                        
+                                                        // Physics-ish timing (points, not pixels):
+                                                        // g ≈ 3300 pt/s², e ≈ 0.6
+                                                        // Heights: 100, 36, 12.96, 4.67
+                                                        // Half-bounce times t = sqrt(2h/g): 0.246, 0.148, 0.089, 0.053 s
+
+                                                        // Up 100, down to floor
+                                                        CubicKeyframe(-100/5,  duration: 0.246/1.5)
+                                                        CubicKeyframe(   0,  duration: 0.246/1.5)
+
+                                                        // Diminishing bounces (never below 0)
+                                                        CubicKeyframe( -36/5,  duration: 0.148/1.5)
+                                                        CubicKeyframe(   0,  duration: 0.148/1.5)
+                                                        CubicKeyframe(-12.96/5, duration: 0.089/1.5)
+                                                        CubicKeyframe(     0, duration: 0.089/1.5)
+                                                        CubicKeyframe( -4.67/5, duration: 0.053/1.5)
+                                                        CubicKeyframe(   0,  duration: 0.053/1.5)
+
+                                                        // Hold at rest
+                                                        CubicKeyframe(0, duration: 0.30)
+                                                    }
+                                                }
+                                        }
+                                        else {
+                                            $0
+                                        }
+                                    }
                             }
                         }
                     }
@@ -123,11 +175,14 @@ struct TopoView: View {
             switch newValue {
             case .ready(image: _):
                 displayLine()
+                animateBounce()
             default:
                 print("")
             }
         }
         .onChange(of: problem) { oldValue, newValue in
+            animateBounce()
+            
             if oldValue.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
@@ -250,6 +305,10 @@ struct TopoView: View {
     
     func handleTapOnBackground() {
         onBackgroundTap?()
+    }
+    
+    func animateBounce() {
+        bounceAnimation.toggle()
     }
 }
 
