@@ -72,15 +72,7 @@ struct TopoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
-                    if showAllLines {
-                        ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
-                            if p.line?.coordinates != nil {
-                                LineView(problem: p, drawPercentage: .constant(1.0), counterZoomScale: counterZoomScale)
-                            }
-                        }
-                        
-                    }
-                    else if problem.line?.coordinates != nil {
+                    if !showAllLines && problem.line?.coordinates != nil {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
                     }
                     else {
@@ -126,6 +118,30 @@ struct TopoView: View {
                     }
                     
                     if showAllLines {
+                        // Tappable lines - placed after TapLocationView so they receive taps
+                        ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                            if p.line?.coordinates != nil {
+                                TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
+                                    showAllLines = false
+                                    mapState.skipBounceAnimation = true
+                                    mapState.selectProblem(p)
+                                }
+                            }
+                        }
+                        
+                        // Problem circles - on top of lines
+                        GeometryReader { geo in
+                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                if let firstPoint = p.lineFirstPoint {
+                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                        .allowsHitTesting(false)
+                                        .scaleEffect(counterZoomScale.wrappedValue)
+                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                }
+                            }
+                        }
+                        
+                        // Grade labels
                         GeometryReader { geo in
                             ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
                                 if let gradePoint = p.lineGradePoint {
