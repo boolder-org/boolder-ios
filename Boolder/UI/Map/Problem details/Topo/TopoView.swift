@@ -311,7 +311,11 @@ struct TopoView: View {
     }
     
     func handleTapOnBackground() {
-        onBackgroundTap?()
+        if onBackgroundTap != nil {
+            onBackgroundTap?()
+        } else {
+            showAllLines = true
+        }
     }
     
     func animateBounce() {
