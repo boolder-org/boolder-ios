@@ -102,6 +102,17 @@ struct Problem : Identifiable {
         return firstPoint
     }
     
+    // Point along the line where the grade label should be displayed (around 30% of the way)
+    var lineGradePoint: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        guard let coordinates = line.coordinates else { return nil }
+        guard coordinates.count >= 2 else { return nil }
+        
+        // Pick the second point, or interpolate if needed
+        let index = min(1, coordinates.count - 1)
+        return coordinates[index]
+    }
+    
     
     var isFavorite: Bool {
         favorite != nil

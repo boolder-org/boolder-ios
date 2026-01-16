@@ -78,6 +78,7 @@ struct TopoView: View {
                                 LineView(problem: p, drawPercentage: .constant(1.0), counterZoomScale: counterZoomScale)
                             }
                         }
+                        
                     }
                     else if problem.line?.coordinates != nil {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
@@ -121,6 +122,23 @@ struct TopoView: View {
                     GeometryReader { geo in
                         TapLocationView { location in
                             handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                        }
+                    }
+                    
+                    if showAllLines {
+                        GeometryReader { geo in
+                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                if let gradePoint = p.lineGradePoint {
+                                    GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                        .scaleEffect(counterZoomScale.wrappedValue)
+                                        .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                        .onTapGesture {
+                                            showAllLines = false
+                                            mapState.skipBounceAnimation = true
+                                            mapState.selectProblem(p)
+                                        }
+                                }
+                            }
                         }
                     }
                 }
