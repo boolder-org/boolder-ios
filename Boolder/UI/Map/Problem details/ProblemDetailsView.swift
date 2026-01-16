@@ -31,6 +31,7 @@ struct ProblemDetailsView: View {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
+                            showAllLines: .constant(false),
                             onBackgroundTap: {
                                 mapState.skipBounceAnimation = true
                                 presentTopoFullScreenView = true

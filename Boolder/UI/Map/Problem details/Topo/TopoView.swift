@@ -16,6 +16,7 @@ struct TopoView: View {
     @State private var showMissingLineNotice = false
     
     @Binding var zoomScale: CGFloat
+    @Binding var showAllLines: Bool
     var onBackgroundTap: (() -> Void)?
     
     @State private var bounceAnimation = false
@@ -71,7 +72,14 @@ struct TopoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
-                    if problem.line?.coordinates != nil {
+                    if showAllLines {
+                        ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                            if p.line?.coordinates != nil {
+                                LineView(problem: p, drawPercentage: .constant(1.0), counterZoomScale: counterZoomScale)
+                            }
+                        }
+                    }
+                    else if problem.line?.coordinates != nil {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
                     }
                     else {
@@ -290,11 +298,13 @@ struct TopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
+                showAllLines = false
                 mapState.selectProblem(next)
             }
         }
         else {
             if let topProblem = group.topProblem {
+                showAllLines = false
                 mapState.selectProblem(topProblem)
             }
         }

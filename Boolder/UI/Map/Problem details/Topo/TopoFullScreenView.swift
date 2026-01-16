@@ -13,6 +13,7 @@ struct TopoFullScreenView: View {
     
     @Binding var problem: Problem
     @State private var zoomScale: CGFloat = 1
+    @State private var showAllLines: Bool = false
     
     // drag gesture (to dismiss the sheet)
     @State var dragOffset: CGSize = CGSize.zero
@@ -23,6 +24,23 @@ struct TopoFullScreenView: View {
             ZStack {
                 VStack {
                     HStack {
+                        if #available(iOS 26, *) {
+                            Button(action: { showAllLines.toggle() }) {
+                                Image(systemName: showAllLines ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                    .padding(4)
+                            }
+                            .buttonStyle(.glass)
+                            .buttonBorderShape(.circle)
+                        }
+                        else {
+                            Button(action: { showAllLines.toggle() }) {
+                                Image(systemName: showAllLines ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                                    .foregroundColor(Color(UIColor.white))
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                            }
+                        }
+                        
                         Spacer()
                         
                         if #available(iOS 26, *) {
@@ -46,18 +64,23 @@ struct TopoFullScreenView: View {
                     
                     Spacer()
                     
-                    HStack {
-                        Spacer()
-                        VariantsMenuView(problem: $problem)
+                    if !showAllLines {
+                        HStack {
+                            Spacer()
+                            VariantsMenuView(problem: $problem)
+                        }
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        
+                        overlayInfos
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
-                    
-                    overlayInfos
                 }
+                .animation(.easeInOut(duration: 0.3), value: showAllLines)
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale)
+                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines)
                 }
                 .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
