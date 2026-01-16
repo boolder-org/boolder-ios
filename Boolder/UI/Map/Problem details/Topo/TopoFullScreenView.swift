@@ -64,7 +64,7 @@ struct TopoFullScreenView: View {
                 
                 .zIndex(1)
                 .offset(x: 0, y: self.dragOffset.height) // drag gesture
-                .background(Color.black)
+                .background(Color.systemBackground)
                 .edgesIgnoringSafeArea(.all)
                 
             }
