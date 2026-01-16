@@ -14,11 +14,11 @@ struct GradeLabelView: View {
     
     var body: some View {
         Text(grade)
-            .font(.caption)
+            .font(.caption2)
             .fontWeight(.semibold)
             .foregroundColor(Color(readableColor))
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
+            .padding(.horizontal, 4)
+            .padding(.vertical, 1)
             .background(Color(color))
             .clipShape(Capsule())
             .modifier(DropShadow())

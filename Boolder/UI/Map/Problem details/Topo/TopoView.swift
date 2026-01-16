@@ -109,6 +109,14 @@ struct TopoView: View {
                                     ))
                             }
                         }
+                        
+                        // Grade label for current problem
+                        if !showAllLines, let gradePoint = problem.lineGradePoint {
+                            GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+                                .scaleEffect(counterZoomScale.wrappedValue)
+                                .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                .allowsHitTesting(false)
+                        }
                     }
                     
                     GeometryReader { geo in
