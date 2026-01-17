@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030738992F1BD3960034B178 /* SegmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030738982F1BD3960034B178 /* SegmentType.swift */; };
+		0307389A2F1BD3960034B178 /* SegmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030738982F1BD3960034B178 /* SegmentType.swift */; };
 		030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */; };
 		030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */; };
 		030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* Pill.swift */; };
@@ -184,6 +186,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030738982F1BD3960034B178 /* SegmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentType.swift; sourceTree = "<group>"; };
 		030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		030AC19C27ABCF5300AF85E7 /* Pill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pill.swift; sourceTree = "<group>"; };
 		030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasLevelView.swift; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 				37379903258E157D00711EDA /* LargeButton.swift */,
 				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
+				030738982F1BD3960034B178 /* SegmentType.swift */,
 				030AC1B127BD590000AF85E7 /* DropShadow.swift */,
 				37DE480D25AF9AB60052428E /* TestColorView.swift */,
 				031F36C1291EA62900BD0C2B /* TestFontSize.swift */,
@@ -754,6 +758,7 @@
 				03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */,
 				031A4CA62968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
 				0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */,
+				0307389A2F1BD3960034B178 /* SegmentType.swift in Sources */,
 				033F70D82919535A000DD3F4 /* Area.swift in Sources */,
 				3737992A258E619400711EDA /* Filters.swift in Sources */,
 				030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */,
@@ -839,6 +844,7 @@
 				030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */,
 				039A22A0295EE75B0096E137 /* CircuitView.swift in Sources */,
 				033F70D72919535A000DD3F4 /* Area.swift in Sources */,
+				030738992F1BD3960034B178 /* SegmentType.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
