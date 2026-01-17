@@ -127,40 +127,49 @@ struct TopoView: View {
                     
                     if showAllLines {
                         // Tappable lines - placed after TapLocationView so they receive taps
-                        ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
-                            if p.line?.coordinates != nil {
-                                TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
-                                    showAllLines = false
-                                    mapState.skipBounceAnimation = true
-                                    mapState.selectProblem(p)
+                        ZStack {
+                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                if p.line?.coordinates != nil {
+                                    TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
+                                        showAllLines = false
+                                        mapState.skipBounceAnimation = true
+                                        mapState.selectProblem(p)
+                                    }
+                                    .zIndex(p.zIndex)
                                 }
                             }
                         }
                         
                         // Problem circles - on top of lines
                         GeometryReader { geo in
-                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
-                                if let firstPoint = p.lineFirstPoint {
-                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                        .allowsHitTesting(false)
-                                        .scaleEffect(counterZoomScale.wrappedValue)
-                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                            ZStack {
+                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                    if let firstPoint = p.lineFirstPoint {
+                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                            .allowsHitTesting(false)
+                                            .scaleEffect(counterZoomScale.wrappedValue)
+                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            .zIndex(p.zIndex)
+                                    }
                                 }
                             }
                         }
                         
                         // Grade labels
                         GeometryReader { geo in
-                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
-                                if let gradePoint = p.lineGradePoint {
-                                    GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-                                        .scaleEffect(counterZoomScale.wrappedValue)
-                                        .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
-                                        .onTapGesture {
-                                            showAllLines = false
-                                            mapState.skipBounceAnimation = true
-                                            mapState.selectProblem(p)
-                                        }
+                            ZStack {
+                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                    if let gradePoint = p.lineGradePoint {
+                                        GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                            .scaleEffect(counterZoomScale.wrappedValue)
+                                            .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                            .zIndex(p.zIndex)
+                                            .onTapGesture {
+                                                showAllLines = false
+                                                mapState.skipBounceAnimation = true
+                                                mapState.selectProblem(p)
+                                            }
+                                    }
                                 }
                             }
                         }
