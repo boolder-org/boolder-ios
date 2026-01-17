@@ -105,7 +105,13 @@ struct Problem : Identifiable {
     var lineGradePoint: Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         
-        return line.overlayPoint(at: 0.4)
+        // quick hack
+        if sitStart {
+            return line.overlayPoint(at: 0.25)
+        }
+        else {
+            return line.overlayPoint(at: 0.4)
+        }
     }
     
     var isFavorite: Bool {
