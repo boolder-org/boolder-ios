@@ -370,7 +370,7 @@ struct TopoView: View {
     }
     
     func animateBounce() {
-        bounceAnimation.toggle()
+        // bounceAnimation.toggle()
     }
     
     func animateBounceIfAllowed() {
