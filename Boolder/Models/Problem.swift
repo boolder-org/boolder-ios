@@ -106,7 +106,7 @@ struct Problem : Identifiable {
         guard let line = line else { return nil }
         
         // quick hack
-        if sitStart {
+        if parentId != nil {
             return line.overlayPoint(at: 0.25)
         }
         else {
