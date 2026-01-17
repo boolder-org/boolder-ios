@@ -48,11 +48,11 @@ struct TopoFullScreenView: View {
                     Spacer()
                     
                     if !showAllLines {
-                        HStack {
-                            Spacer()
-                            VariantsMenuView(problem: $problem)
-                        }
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+//                        HStack {
+//                            Spacer()
+//                            VariantsMenuView(problem: $problem)
+//                        }
+//                        .transition(.move(edge: .bottom).combined(with: .opacity))
                         
                         overlayInfos
                             .transition(.move(edge: .bottom).combined(with: .opacity))

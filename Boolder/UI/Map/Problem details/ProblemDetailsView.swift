@@ -66,13 +66,13 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        VStack {
-                            HStack {
-                                Spacer()
-                                VariantsMenuView(problem: $problem)
-                            }
-                            Spacer()
-                        }
+//                        VStack {
+//                            HStack {
+//                                Spacer()
+//                                VariantsMenuView(problem: $problem)
+//                            }
+//                            Spacer()
+//                        }
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
