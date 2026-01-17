@@ -20,6 +20,7 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
+    @State private var showAllLines = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -27,15 +28,11 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    ZStack {
+                    ZStack(alignment: .topTrailing) {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
-                            showAllLines: .constant(false),
-                            onBackgroundTap: {
-                                mapState.skipBounceAnimation = true
-                                presentTopoFullScreenView = true
-                            }
+                            showAllLines: $showAllLines
                         )
                         .modify {
                             if #available(iOS 18, *) {
@@ -55,7 +52,7 @@ struct ProblemDetailsView: View {
                                 }
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem)
+                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLines)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -66,13 +63,18 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-//                        VStack {
-//                            HStack {
-//                                Spacer()
-//                                VariantsMenuView(problem: $problem)
-//                            }
-//                            Spacer()
-//                        }
+                        Button {
+                            mapState.skipBounceAnimation = true
+                            presentTopoFullScreenView = true
+                        } label: {
+                            Image(systemName: "arrow.up.left.and.arrow.down.right")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(.white)
+                                .padding(8)
+                                .background(.black.opacity(0.5))
+                                .clipShape(Circle())
+                        }
+                        .padding(8)
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)

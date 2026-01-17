@@ -1,3 +1,4 @@
+
 //
 //  TopoView.swift
 //  Boolder
@@ -362,11 +363,8 @@ struct TopoView: View {
     }
     
     func handleTapOnBackground() {
-        if onBackgroundTap != nil {
-            onBackgroundTap?()
-        } else {
-            showAllLines = true
-        }
+        showAllLines = true
+        onBackgroundTap?()
     }
     
     func animateBounce() {
