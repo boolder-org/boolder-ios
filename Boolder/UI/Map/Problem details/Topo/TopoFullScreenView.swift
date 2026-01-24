@@ -24,6 +24,25 @@ struct TopoFullScreenView: View {
             ZStack {
                 VStack {
                     HStack {
+                        if !showAllLines {
+                            if #available(iOS 26, *) {
+                                Button(action: { showAllLines = true }) {
+                                    Text("Show all lines")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 14)))
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                }
+                                .buttonStyle(.glass)
+                            }
+                            else {
+                                Button(action: { showAllLines = true }) {
+                                    Text("Show all lines")
+                                        .foregroundColor(Color(UIColor.white))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 14)))
+                                }
+                            }
+                        }
+                        
                         Spacer()
                         
                         if #available(iOS 26, *) {
