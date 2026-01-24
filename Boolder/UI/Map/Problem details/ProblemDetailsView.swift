@@ -79,13 +79,11 @@ struct ProblemDetailsView: View {
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
-                    if !showAllLines {
-                        ProblemInfoView(problem: problem)
-                            .padding(.top, 4)
-                            .padding(.horizontal)
-                        
-                        ProblemActionButtonsView(problem: problem)
-                    }
+                    ProblemInfoView(problem: problem)
+                        .padding(.top, 4)
+                        .padding(.horizontal)
+                    
+                    ProblemActionButtonsView(problem: problem)
                 }
             }
             

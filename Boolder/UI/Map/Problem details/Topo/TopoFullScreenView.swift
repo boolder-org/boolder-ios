@@ -63,7 +63,7 @@ struct TopoFullScreenView: View {
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines)
+                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, onBackgroundTap: { dismiss() })
                 }
                 .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
