@@ -20,7 +20,6 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
-    @State private var showAllLines = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -28,11 +27,15 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    ZStack(alignment: .topTrailing) {
+                    ZStack {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
-                            showAllLines: $showAllLines
+                            showAllLines: .constant(false),
+                            onBackgroundTap: {
+                                mapState.skipBounceAnimation = true
+                                presentTopoFullScreenView = true
+                            }
                         )
                         .modify {
                             if #available(iOS 18, *) {
@@ -52,7 +55,7 @@ struct ProblemDetailsView: View {
                                 }
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLines)
+                            TopoFullScreenView(problem: $problem)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -63,18 +66,13 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        Button {
-                            mapState.skipBounceAnimation = true
-                            presentTopoFullScreenView = true
-                        } label: {
-                            Image(systemName: "arrow.up.left.and.arrow.down.right")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.white)
-                                .padding(8)
-                                .background(.black.opacity(0.5))
-                                .clipShape(Circle())
-                        }
-                        .padding(8)
+//                        VStack {
+//                            HStack {
+//                                Spacer()
+//                                VariantsMenuView(problem: $problem)
+//                            }
+//                            Spacer()
+//                        }
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
