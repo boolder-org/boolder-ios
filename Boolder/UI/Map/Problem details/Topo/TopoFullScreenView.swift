@@ -27,18 +27,17 @@ struct TopoFullScreenView: View {
                         if !showAllLines {
                             if #available(iOS 26, *) {
                                 Button(action: { showAllLines = true }) {
-                                    Text("Show all lines")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 14)))
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
+                                    Image(systemName: "chevron.left")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .padding(4)
                                 }
                                 .buttonStyle(.glass)
                             }
                             else {
                                 Button(action: { showAllLines = true }) {
-                                    Text("Show all lines")
+                                    Image(systemName: "chevron.left")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 14)))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
                             }
                         }
