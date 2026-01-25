@@ -32,6 +32,7 @@ struct TopoFullScreenView: View {
                                         .padding(4)
                                 }
                                 .buttonStyle(.glass)
+                                .buttonBorderShape(.circle)
                             }
                             else {
                                 Button(action: { showAllLines = true }) {
