@@ -365,12 +365,12 @@ struct TopoView: View {
         if onBackgroundTap != nil {
             onBackgroundTap?()
         } else {
-            showAllLines = true
+//            showAllLines = true
         }
     }
     
     func animateBounce() {
-        // bounceAnimation.toggle()
+         bounceAnimation.toggle()
     }
     
     func animateBounceIfAllowed() {
