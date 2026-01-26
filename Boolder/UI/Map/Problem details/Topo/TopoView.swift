@@ -253,14 +253,21 @@ struct TopoView: View {
                             }
                         }
                     } label: {
-                        Text("\(indicator.current) sur \(indicator.total)")
-                            .font(.subheadline.weight(.medium))
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(.ultraThinMaterial)
-                            .clipShape(Capsule())
-                            .foregroundColor(.primary)
+                        HStack(spacing: 4) {
+                            Text("\(indicator.current) sur \(indicator.total)")
+                            Image(systemName: "chevron.down")
+                                .font(.caption2.weight(.semibold))
+                        }
+                        .font(.subheadline.weight(.medium))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Capsule())
+                        .foregroundColor(.primary)
                     }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        cancelGroupIndicatorTimer()
+                    })
                     .padding(.top, 8)
                     .transition(.opacity.combined(with: .scale))
                 }
@@ -422,6 +429,10 @@ struct TopoView: View {
         groupIndicator = nil
     }
     
+    func cancelGroupIndicatorTimer() {
+        groupIndicatorSession = UUID()
+    }
+    
     func showGroupIndicator(current: Int, total: Int, problems: [Problem], autoHide: Bool = true) {
         groupIndicator = GroupIndicator(current: current, total: total, problems: problems)
         
@@ -429,7 +440,7 @@ struct TopoView: View {
         groupIndicatorSession = currentSession
         
         if autoHide {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 if groupIndicatorSession == currentSession {
                     groupIndicator = nil
                 }
