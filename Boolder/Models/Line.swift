@@ -15,7 +15,7 @@ struct Line: Decodable {
     let topoId: Int
     let coordinates: [PhotoPercentCoordinate]?
     
-    struct PhotoPercentCoordinate: Decodable {
+    struct PhotoPercentCoordinate: Decodable, Equatable {
         let x: Double
         let y: Double
         
