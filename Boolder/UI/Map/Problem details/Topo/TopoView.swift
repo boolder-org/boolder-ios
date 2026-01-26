@@ -20,6 +20,13 @@ struct TopoView: View {
     var onBackgroundTap: (() -> Void)?
     
     @State private var bounceAnimation = false
+    @State private var groupIndicator: GroupIndicator? = nil
+    @State private var groupIndicatorSession: UUID = UUID()
+    
+    struct GroupIndicator: Equatable {
+        let current: Int
+        let total: Int
+    }
     
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
@@ -227,6 +234,19 @@ struct TopoView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
+        .overlay(alignment: .top) {
+            if let indicator = groupIndicator {
+                Text("\(indicator.current)/\(indicator.total)")
+                    .font(.subheadline.weight(.medium))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(.ultraThinMaterial)
+                    .clipShape(Capsule())
+                    .padding(.top, 8)
+                    .transition(.opacity.combined(with: .scale))
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: groupIndicator)
         .onChange(of: photoStatus) { oldValue, newValue in
             switch newValue {
             case .ready(image: _):
@@ -351,17 +371,53 @@ struct TopoView: View {
             if let next = group.next(after: problem) {
                 showAllLines = false
                 mapState.selectProblem(next)
+                
+                // Show group indicator if there are multiple problems
+                if group.problems.count > 1 {
+                    let sortedProblems = group.sortedProblems
+                    if let currentIndex = sortedProblems.firstIndex(of: next) {
+                        showGroupIndicator(current: currentIndex + 1, total: sortedProblems.count)
+                    }
+                } else {
+                    hideGroupIndicator()
+                }
             }
         }
         else {
             if let topProblem = group.topProblem {
                 showAllLines = false
                 mapState.selectProblem(topProblem)
+                
+                // Show group indicator if there are multiple problems
+                if group.problems.count > 1 {
+                    showGroupIndicator(current: 1, total: group.problems.count)
+                } else {
+                    hideGroupIndicator()
+                }
+            }
+        }
+    }
+    
+    func hideGroupIndicator() {
+        groupIndicator = nil
+    }
+    
+    func showGroupIndicator(current: Int, total: Int) {
+        groupIndicator = GroupIndicator(current: current, total: total)
+        
+        let currentSession = UUID()
+        groupIndicatorSession = currentSession
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if groupIndicatorSession == currentSession {
+                groupIndicator = nil
             }
         }
     }
     
     func handleTapOnBackground() {
+        hideGroupIndicator()
+        
         if onBackgroundTap != nil {
             onBackgroundTap?()
         } else {
