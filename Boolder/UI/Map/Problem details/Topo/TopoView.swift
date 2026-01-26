@@ -235,20 +235,18 @@ struct TopoView: View {
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
         .overlay(alignment: .top) {
-            Group {
-                if let indicator = groupIndicator {
-                    Text("\(indicator.current)/\(indicator.total)")
-                        .font(.subheadline.weight(.medium))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(.ultraThinMaterial)
-                        .clipShape(Capsule())
-                        .padding(.top, 8)
-                        .transition(.opacity.combined(with: .scale))
-                }
+            if let indicator = groupIndicator {
+                Text("\(indicator.current)/\(indicator.total)")
+                    .font(.subheadline.weight(.medium))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(.ultraThinMaterial)
+                    .clipShape(Capsule())
+                    .padding(.top, 8)
+                    .transition(.opacity.combined(with: .scale))
             }
-            .animation(.easeInOut(duration: 0.2), value: groupIndicator)
         }
+        .animation(.easeInOut(duration: 0.2), value: groupIndicator)
         .onChange(of: photoStatus) { oldValue, newValue in
             switch newValue {
             case .ready(image: _):
