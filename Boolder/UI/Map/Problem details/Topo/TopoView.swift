@@ -237,7 +237,7 @@ struct TopoView: View {
         .overlay(alignment: .top) {
             Group {
                 if let indicator = groupIndicator {
-                    Text("\(indicator.current)/\(indicator.total)")
+                    Text("\(indicator.current) sur \(indicator.total)")
                         .font(.subheadline.weight(.medium))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
