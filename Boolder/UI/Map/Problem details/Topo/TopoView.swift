@@ -26,7 +26,6 @@ struct TopoView: View {
     struct GroupIndicator: Equatable {
         let current: Int
         let total: Int
-        let problems: [Problem]
     }
     
     struct ProblemWithGroup: Identifiable {
@@ -238,31 +237,14 @@ struct TopoView: View {
         .overlay(alignment: .top) {
             Group {
                 if let indicator = groupIndicator {
-                    Menu {
-                        ForEach(Array(indicator.problems.enumerated()), id: \.element.id) { index, p in
-                            Button {
-                                showAllLines = false
-                                mapState.selectProblem(p)
-                                showGroupIndicator(current: index + 1, total: indicator.total, problems: indicator.problems, autoHide: false)
-                            } label: {
-                                if p == problem {
-                                    Label(p.localizedName.isEmpty ? p.grade.string : "\(p.localizedName) \(p.grade.string)", systemImage: "checkmark")
-                                } else {
-                                    Text(p.localizedName.isEmpty ? p.grade.string : "\(p.localizedName) \(p.grade.string)")
-                                }
-                            }
-                        }
-                    } label: {
-                        Text("\(indicator.current) sur \(indicator.total)")
-                            .font(.subheadline.weight(.medium))
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(.ultraThinMaterial)
-                            .clipShape(Capsule())
-                            .foregroundColor(.primary)
-                    }
-                    .padding(.top, 8)
-                    .transition(.opacity.combined(with: .scale))
+                    Text("\(indicator.current) sur \(indicator.total)")
+                        .font(.subheadline.weight(.medium))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Capsule())
+                        .padding(.top, 8)
+                        .transition(.opacity.combined(with: .scale))
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: groupIndicator)
@@ -396,7 +378,7 @@ struct TopoView: View {
                 if group.problems.count > 1 {
                     let sortedProblems = group.sortedProblems
                     if let currentIndex = sortedProblems.firstIndex(of: next) {
-                        showGroupIndicator(current: currentIndex + 1, total: sortedProblems.count, problems: sortedProblems)
+                        showGroupIndicator(current: currentIndex + 1, total: sortedProblems.count)
                     }
                 } else {
                     hideGroupIndicator()
@@ -410,7 +392,7 @@ struct TopoView: View {
                 
                 // Show group indicator if there are multiple problems
                 if group.problems.count > 1 {
-                    showGroupIndicator(current: 1, total: group.problems.count, problems: group.sortedProblems)
+                    showGroupIndicator(current: 1, total: group.problems.count)
                 } else {
                     hideGroupIndicator()
                 }
@@ -422,17 +404,15 @@ struct TopoView: View {
         groupIndicator = nil
     }
     
-    func showGroupIndicator(current: Int, total: Int, problems: [Problem], autoHide: Bool = true) {
-        groupIndicator = GroupIndicator(current: current, total: total, problems: problems)
+    func showGroupIndicator(current: Int, total: Int) {
+        groupIndicator = GroupIndicator(current: current, total: total)
         
         let currentSession = UUID()
         groupIndicatorSession = currentSession
         
-        if autoHide {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                if groupIndicatorSession == currentSession {
-                    groupIndicator = nil
-                }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            if groupIndicatorSession == currentSession {
+                groupIndicator = nil
             }
         }
     }
