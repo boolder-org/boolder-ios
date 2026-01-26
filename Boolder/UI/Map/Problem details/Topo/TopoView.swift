@@ -27,7 +27,6 @@ struct TopoView: View {
         let current: Int
         let total: Int
         let problems: [Problem]
-        let position: Line.PhotoPercentCoordinate
     }
     
     struct ProblemWithGroup: Identifiable {
@@ -236,50 +235,44 @@ struct TopoView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
-        .overlay {
-            GeometryReader { geo in
-                Group {
-                    if let indicator = groupIndicator {
-                        Menu {
-                            ForEach(Array(indicator.problems.enumerated()), id: \.element.id) { index, p in
-                                Button {
-                                    showAllLines = false
-                                    mapState.selectProblem(p)
-                                    showGroupIndicator(current: index + 1, total: indicator.total, problems: indicator.problems, position: indicator.position, autoHide: false)
-                                } label: {
-                                    if p == problem {
-                                        Label(p.localizedName.isEmpty ? p.grade.string : "\(p.localizedName) \(p.grade.string)", systemImage: "checkmark")
-                                    } else {
-                                        Text(p.localizedName.isEmpty ? p.grade.string : "\(p.localizedName) \(p.grade.string)")
-                                    }
+        .overlay(alignment: .top) {
+            Group {
+                if let indicator = groupIndicator {
+                    Menu {
+                        ForEach(Array(indicator.problems.enumerated()), id: \.element.id) { index, p in
+                            Button {
+                                showAllLines = false
+                                mapState.selectProblem(p)
+                                showGroupIndicator(current: index + 1, total: indicator.total, problems: indicator.problems, autoHide: false)
+                            } label: {
+                                if p == problem {
+                                    Label(p.localizedName.isEmpty ? p.grade.string : "\(p.localizedName) \(p.grade.string)", systemImage: "checkmark")
+                                } else {
+                                    Text(p.localizedName.isEmpty ? p.grade.string : "\(p.localizedName) \(p.grade.string)")
                                 }
                             }
-                        } label: {
-                            HStack(spacing: 4) {
-                                Text("\(indicator.current) sur \(indicator.total)")
-                                Image(systemName: "chevron.down")
-                                    .font(.caption2.weight(.semibold))
-                            }
-                            .font(.subheadline.weight(.medium))
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(.ultraThinMaterial)
-                            .clipShape(Capsule())
-                            .foregroundColor(.primary)
                         }
-                        .scaleEffect(counterZoomScale.wrappedValue)
-                        .simultaneousGesture(TapGesture().onEnded {
-                            cancelGroupIndicatorTimer()
-                        })
-                        .position(
-                            x: indicator.position.x * geo.size.width,
-                            y: indicator.position.y * geo.size.height + 32 * counterZoomScale.wrappedValue
-                        )
-                        .transition(.opacity.combined(with: .scale))
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text("\(indicator.current) sur \(indicator.total)")
+                            Image(systemName: "chevron.down")
+                                .font(.caption2.weight(.semibold))
+                        }
+                        .font(.subheadline.weight(.medium))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Capsule())
+                        .foregroundColor(.primary)
                     }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        cancelGroupIndicatorTimer()
+                    })
+                    .padding(.top, 8)
+                    .transition(.opacity.combined(with: .scale))
                 }
-                .animation(.easeInOut(duration: 0.2), value: groupIndicator)
             }
+            .animation(.easeInOut(duration: 0.2), value: groupIndicator)
         }
         .onChange(of: photoStatus) { oldValue, newValue in
             switch newValue {
@@ -407,10 +400,10 @@ struct TopoView: View {
                 mapState.selectProblem(next)
                 
                 // Show group indicator if there are multiple problems
-                if group.problems.count > 1, let position = next.lineFirstPoint {
+                if group.problems.count > 1 {
                     let sortedProblems = group.sortedProblems
                     if let currentIndex = sortedProblems.firstIndex(of: next) {
-                        showGroupIndicator(current: currentIndex + 1, total: sortedProblems.count, problems: sortedProblems, position: position)
+                        showGroupIndicator(current: currentIndex + 1, total: sortedProblems.count, problems: sortedProblems)
                     }
                 } else {
                     hideGroupIndicator()
@@ -423,8 +416,8 @@ struct TopoView: View {
                 mapState.selectProblem(topProblem)
                 
                 // Show group indicator if there are multiple problems
-                if group.problems.count > 1, let position = topProblem.lineFirstPoint {
-                    showGroupIndicator(current: 1, total: group.problems.count, problems: group.sortedProblems, position: position)
+                if group.problems.count > 1 {
+                    showGroupIndicator(current: 1, total: group.problems.count, problems: group.sortedProblems)
                 } else {
                     hideGroupIndicator()
                 }
@@ -440,8 +433,8 @@ struct TopoView: View {
         groupIndicatorSession = UUID()
     }
     
-    func showGroupIndicator(current: Int, total: Int, problems: [Problem], position: Line.PhotoPercentCoordinate, autoHide: Bool = true) {
-        groupIndicator = GroupIndicator(current: current, total: total, problems: problems, position: position)
+    func showGroupIndicator(current: Int, total: Int, problems: [Problem], autoHide: Bool = true) {
+        groupIndicator = GroupIndicator(current: current, total: total, problems: problems)
         
         let currentSession = UUID()
         groupIndicatorSession = currentSession
