@@ -54,8 +54,13 @@ struct StartGroupMenuView: View {
             scheduleHide()
         }
         .onChange(of: problem) {
-            isVisible = true
-            scheduleHide()
+            if problems.count > 1 {
+                isVisible = true
+                scheduleHide()
+            } else {
+                hideTask?.cancel()
+                isVisible = false
+            }
         }
     }
     
