@@ -65,7 +65,7 @@ struct TopoView: View {
             }
         }
         let indexedProblems = Array(allProblems.enumerated())
-        ZStack(alignment: .top) {
+        ZStack(alignment: .center) {
             if case .ready(let image) = photoStatus  {
                 Group {
                     Image(uiImage: image)
@@ -224,8 +224,6 @@ struct TopoView: View {
             else {
                 EmptyView()
             }
-            
-            StartGroupMenuView(problem: $problem)
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))

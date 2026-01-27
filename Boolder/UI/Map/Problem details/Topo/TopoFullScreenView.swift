@@ -23,30 +23,11 @@ struct TopoFullScreenView: View {
         VStack {
             ZStack {
                 VStack {
-                    HStack {
-                        if #available(iOS 26, *) {
-                            Button(action: { dismiss() }) {
-                                Image(systemName: "chevron.left")
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                    .padding(4)
-                            }
-                            .buttonStyle(.glass)
-                            .buttonBorderShape(.circle)
-                        }
-                        else {
-                            Button(action: { dismiss() }) {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(Color(UIColor.white))
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                            }
-                        }
-                        
-                        Spacer()
-                        
-                        if !showAllLines {
+                    ZStack {
+                        HStack {
                             if #available(iOS 26, *) {
-                                Button(action: { showAllLines = true }) {
-                                    Image(systemName: "arrow.trianglehead.branch")
+                                Button(action: { dismiss() }) {
+                                    Image(systemName: "chevron.left")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
@@ -54,12 +35,37 @@ struct TopoFullScreenView: View {
                                 .buttonBorderShape(.circle)
                             }
                             else {
-                                Button(action: { showAllLines = true }) {
-                                    Image(systemName: "arrow.trianglehead.branch")
+                                Button(action: { dismiss() }) {
+                                    Image(systemName: "chevron.left")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
                             }
+                            
+                            Spacer()
+                            
+                            if !showAllLines {
+                                if #available(iOS 26, *) {
+                                    Button(action: { showAllLines = true }) {
+                                        Image(systemName: "arrow.trianglehead.branch")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(4)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                                }
+                                else {
+                                    Button(action: { showAllLines = true }) {
+                                        Image(systemName: "arrow.trianglehead.branch")
+                                            .foregroundColor(Color(UIColor.white))
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if !showAllLines {
+                            StartGroupMenuView(problem: $problem)
                         }
                     }
                     .padding()

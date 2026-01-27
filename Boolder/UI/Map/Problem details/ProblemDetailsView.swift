@@ -27,7 +27,7 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    ZStack {
+                    ZStack(alignment: .top) {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
@@ -66,13 +66,7 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-//                        VStack {
-//                            HStack {
-//                                Spacer()
-//                                VariantsMenuView(problem: $problem)
-//                            }
-//                            Spacer()
-//                        }
+                        StartGroupMenuView(problem: $problem)
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
