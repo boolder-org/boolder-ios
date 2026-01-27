@@ -20,6 +20,10 @@ struct StartGroupMenuView: View {
         startGroup?.sortedProblems ?? []
     }
     
+    private var currentIndex: Int {
+        (problems.firstIndex(of: problem) ?? 0) + 1
+    }
+    
     var body: some View {
         Group {
             if problems.count > 1 {
@@ -39,7 +43,7 @@ struct StartGroupMenuView: View {
                     }
                 } label: {
                     HStack {
-                        Text(String(format: NSLocalizedString("problem.startgroup.problems", comment: ""), problems.count))
+                        Text(String(format: NSLocalizedString("problem.startgroup.pagination", comment: ""), currentIndex, problems.count))
                         Image(systemName: "chevron.down")
                     }
                     .modify {
