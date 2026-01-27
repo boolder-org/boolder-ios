@@ -134,9 +134,9 @@ struct MapContainerView: View {
                 
                 showAllLinesButton
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 4)
             .opacity(mapState.selectedArea != nil && mapState.presentProblemDetails ? 1 : 0)
-            .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet - 8)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
         }
     }
     
@@ -334,12 +334,14 @@ struct MapContainerView: View {
             presentTopoShowAllLines = true
         } label: {
             Image(systemName: "arrow.trianglehead.branch")
-                .padding(10)
+                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                .padding(4)
                 .foregroundColor(.primary)
         }
         .modify {
             if #available(iOS 26, *) {
-                $0.glassEffect(.regular.interactive(), in: .circle)
+                $0.buttonStyle(.glass)
+                    .buttonBorderShape(.circle)
             }
             else {
                 $0.buttonStyle(FabButton())
