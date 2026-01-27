@@ -60,7 +60,8 @@ struct StartGroupMenuView: View {
                                 }
                             }
                         } label: {
-                            Text(String(format: NSLocalizedString("problem.startgroup.variants", comment: ""), variantsNotInGroup.count))
+                            let key = variantsNotInGroup.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural"
+                            Text(String(format: NSLocalizedString(key, comment: ""), variantsNotInGroup.count))
                         }
                         
                         Divider()

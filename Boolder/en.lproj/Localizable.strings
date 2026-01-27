@@ -184,7 +184,8 @@
 "problem.variants" = "%d variants";
 "problem.startgroup.pagination" = "%d on %d";
 "problem.startgroup.show_all_lines" = "Show all lines";
-"problem.startgroup.variants" = "%d variants";
+"problem.startgroup.variants.singular" = "%d variant";
+"problem.startgroup.variants.plural" = "%d variants";
 "problem.missing_line" = "Missing line";
 "problem.topo.no_internet" = "No Internet connection";
 "problem.topo.timeout" = "Check your Internet connection";
