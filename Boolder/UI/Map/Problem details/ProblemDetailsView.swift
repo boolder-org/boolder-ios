@@ -21,12 +21,7 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
     
-    @Namespace private var localTopoTransitionNamespace
-    var topoTransitionNamespace: Namespace.ID?
-    
-    private var activeNamespace: Namespace.ID {
-        topoTransitionNamespace ?? localTopoTransitionNamespace
-    }
+    @Namespace private var topoTransitionNamespace
     
     var body: some View {
         VStack {
@@ -44,7 +39,7 @@ struct ProblemDetailsView: View {
                         )
                         .modify {
                             if #available(iOS 18, *) {
-                                $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: activeNamespace)
+                                $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace)
                             }
                             else {
                                 $0
@@ -63,7 +58,7 @@ struct ProblemDetailsView: View {
                             TopoFullScreenView(problem: $problem)
                                 .modify {
                                     if #available(iOS 18, *) {
-                                        $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: activeNamespace))
+                                        $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
                                     }
                                     else {
                                         $0
