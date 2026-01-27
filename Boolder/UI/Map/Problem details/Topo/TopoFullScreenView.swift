@@ -12,9 +12,9 @@ struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
     
     @Binding var problem: Problem
-    @Binding var showAllLines: Bool
     
     @State private var zoomScale: CGFloat = 1
+    @State private var showAllLines: Bool = false
     
     // drag gesture (to dismiss the sheet)
     @State var dragOffset: CGSize = CGSize.zero
@@ -66,7 +66,7 @@ struct TopoFullScreenView: View {
                         }
                         
                         if !showAllLines {
-                            StartGroupMenuView(problem: $problem, showAllLines: $showAllLines)
+                            StartGroupMenuView(problem: $problem)
                         }
                     }
                     .padding()

@@ -10,8 +10,9 @@ import SwiftUI
 
 struct StartGroupMenuView: View {
     @Binding var problem: Problem
-    @Binding var showAllLines: Bool
-    @Environment(MapState.self) private var mapState: MapState
+    
+    @State private var isVisible = true
+    @State private var hideTask: Task<Void, Never>?
     
     private var startGroup: StartGroup? {
         problem.startGroup
@@ -25,60 +26,10 @@ struct StartGroupMenuView: View {
         (problems.firstIndex(of: problem) ?? 0) + 1
     }
     
-    private var variantsNotInGroup: [Problem] {
-        startGroup?.variantsNotInGroup(for: problem) ?? []
-    }
-    
     var body: some View {
         Group {
-            if problems.count > 1 {
-                Menu {
-                    ForEach(problems) { p in
-                        Button {
-                            mapState.skipBounceAnimation = true
-                            mapState.selectProblem(p)
-                        } label: {
-                            HStack {
-                                Text("\(p.localizedName) \(p.grade.string)")
-                                if p.id == problem.id {
-                                    Image(systemName: "checkmark")
-                                }
-                            }
-                        }
-                    }
-                    
-                    if !variantsNotInGroup.isEmpty {
-                        Divider()
-                        
-                        Menu {
-                            ForEach(variantsNotInGroup) { p in
-                                Button {
-                                    mapState.skipBounceAnimation = true
-                                    mapState.selectProblem(p)
-                                } label: {
-                                    Text("\(p.localizedName) \(p.grade.string)")
-                                }
-                            }
-                        } label: {
-                            let key = variantsNotInGroup.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural"
-                            Text(String(format: NSLocalizedString(key, comment: ""), variantsNotInGroup.count))
-                        }
-                        
-                        Divider()
-                    } else {
-                        Divider()
-                    }
-                    
-                    Button {
-                        showAllLines = true
-                    } label: {
-                        Label(String(localized: "problem.startgroup.show_all_lines"), systemImage: "arrow.trianglehead.branch")
-                    }
-                } label: {
-                    HStack {
-                        Text(String(format: NSLocalizedString("problem.startgroup.pagination", comment: ""), currentIndex, problems.count))
-                        Image(systemName: "chevron.down")
-                    }
+            if problems.count > 1 && isVisible {
+                Text(String(format: NSLocalizedString("problem.startgroup.pagination", comment: ""), currentIndex, problems.count))
                     .modify {
                         if #available(iOS 26, *) {
                             $0.foregroundColor(.primary)
@@ -94,10 +45,27 @@ struct StartGroupMenuView: View {
                                 .cornerRadius(16)
                         }
                     }
-                }
-                .padding(.top, 8)
+                    .padding(.top, 8)
+                    .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut(duration: 0.3), value: isVisible)
+        .onAppear {
+            scheduleHide()
+        }
+        .onChange(of: problem) {
+            isVisible = true
+            scheduleHide()
+        }
+    }
+    
+    private func scheduleHide() {
+        hideTask?.cancel()
+        hideTask = Task {
+            try? await Task.sleep(for: .seconds(2))
+            if !Task.isCancelled {
+                isVisible = false
             }
         }
     }
 }
-

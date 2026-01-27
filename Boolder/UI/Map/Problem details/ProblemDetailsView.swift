@@ -20,7 +20,6 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
-    @State private var showAllLines = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -55,10 +54,8 @@ struct ProblemDetailsView: View {
                                     }
                                 }
                         )
-                        .fullScreenCover(isPresented: $presentTopoFullScreenView, onDismiss: {
-                            showAllLines = false
-                        }) {
-                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLines)
+                        .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                            TopoFullScreenView(problem: $problem)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -69,13 +66,7 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        StartGroupMenuView(problem: $problem, showAllLines: $showAllLines)
-                            .onChange(of: showAllLines) {
-                                if showAllLines {
-                                    mapState.skipBounceAnimation = true
-                                    presentTopoFullScreenView = true
-                                }
-                            }
+                        StartGroupMenuView(problem: $problem)
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
