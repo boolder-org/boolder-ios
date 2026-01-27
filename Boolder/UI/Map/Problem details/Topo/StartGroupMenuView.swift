@@ -25,6 +25,10 @@ struct StartGroupMenuView: View {
         (problems.firstIndex(of: problem) ?? 0) + 1
     }
     
+    private var variantsNotInGroup: [Problem] {
+        startGroup?.variantsNotInGroup(for: problem) ?? []
+    }
+    
     var body: some View {
         Group {
             if problems.count > 1 {
@@ -43,7 +47,26 @@ struct StartGroupMenuView: View {
                         }
                     }
                     
-                    Divider()
+                    if !variantsNotInGroup.isEmpty {
+                        Divider()
+                        
+                        Menu {
+                            ForEach(variantsNotInGroup) { p in
+                                Button {
+                                    mapState.skipBounceAnimation = true
+                                    mapState.selectProblem(p)
+                                } label: {
+                                    Text("\(p.localizedName) \(p.grade.string)")
+                                }
+                            }
+                        } label: {
+                            Text(String(format: NSLocalizedString("problem.startgroup.variants", comment: ""), variantsNotInGroup.count))
+                        }
+                        
+                        Divider()
+                    } else {
+                        Divider()
+                    }
                     
                     Button {
                         showAllLines = true

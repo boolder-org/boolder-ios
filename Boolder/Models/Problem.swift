@@ -416,6 +416,11 @@ class StartGroup: Identifiable, Equatable {
         problems.sorted { $0.zIndex > $1.zIndex }
     }
     
+    func variantsNotInGroup(for problem: Problem) -> [Problem] {
+        let problemIds = Set(problems.map { $0.id })
+        return problem.variants.filter { !problemIds.contains($0.id) }
+    }
+    
     static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
         Set(lhs.problems.map{$0.id}) == Set(rhs.problems.map{$0.id})
     }
