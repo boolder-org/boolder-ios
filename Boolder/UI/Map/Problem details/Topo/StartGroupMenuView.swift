@@ -10,6 +10,7 @@ import SwiftUI
 
 struct StartGroupMenuView: View {
     @Binding var problem: Problem
+    @Binding var showAllLines: Bool
     @Environment(MapState.self) private var mapState: MapState
     
     private var startGroup: StartGroup? {
@@ -40,6 +41,14 @@ struct StartGroupMenuView: View {
                                 }
                             }
                         }
+                    }
+                    
+                    Divider()
+                    
+                    Button {
+                        showAllLines = true
+                    } label: {
+                        Label(String(localized: "problem.startgroup.show_all_lines"), systemImage: "arrow.trianglehead.branch")
                     }
                 } label: {
                     HStack {

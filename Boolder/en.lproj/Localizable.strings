@@ -183,6 +183,7 @@
 "problem.pagination" = "%d on %d";
 "problem.variants" = "%d variants";
 "problem.startgroup.pagination" = "%d on %d";
+"problem.startgroup.show_all_lines" = "Show all lines";
 "problem.missing_line" = "Missing line";
 "problem.topo.no_internet" = "No Internet connection";
 "problem.topo.timeout" = "Check your Internet connection";
