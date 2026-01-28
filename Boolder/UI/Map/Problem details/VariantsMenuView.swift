@@ -22,7 +22,6 @@ struct VariantsMenuView: View {
                 Menu {
                     ForEach(variants) { p in
                         Button {
-                            mapState.skipBounceAnimation = true
                             mapState.selectProblem(p)
                         } label: {
                             Text("\(p.localizedName) \(p.grade.string)")

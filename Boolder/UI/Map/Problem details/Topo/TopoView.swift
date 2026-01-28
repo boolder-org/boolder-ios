@@ -120,7 +120,7 @@ struct TopoView: View {
                         }
                         
                         // Pagination capsule positioned 40 points below the start group
-                        if !showAllLines, let paginationPos = paginationPosition {
+                        if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView {
                             StartGroupMenuView(problem: $problem)
                                 .scaleEffect(counterZoomScaleIdentity)
                                 .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
@@ -140,7 +140,6 @@ struct TopoView: View {
                                 if p.line?.coordinates != nil {
                                     TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
                                         showAllLines = false
-                                        mapState.skipBounceAnimation = true
                                         mapState.selectProblem(p)
                                     }
                                     .zIndex(p.zIndex)
@@ -174,7 +173,6 @@ struct TopoView: View {
                                             .zIndex(p.zIndex)
                                             .onTapGesture {
                                                 showAllLines = false
-                                                mapState.skipBounceAnimation = true
                                                 mapState.selectProblem(p)
                                             }
                                     }
@@ -366,13 +364,13 @@ struct TopoView: View {
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
                 showAllLines = false
-                mapState.selectProblem(next)
+                mapState.selectProblem(next, source: .circleView)
             }
         }
         else {
             if let topProblem = group.topProblem {
                 showAllLines = false
-                mapState.selectProblem(topProblem)
+                mapState.selectProblem(topProblem, source: .circleView)
             }
         }
     }
@@ -385,15 +383,12 @@ struct TopoView: View {
         }
     }
     
-    func animateBounce() {
-         bounceAnimation.toggle()
-    }
-    
     func animateBounceIfAllowed() {
-        if mapState.skipBounceAnimation {
-            mapState.skipBounceAnimation = false
-        } else {
-            animateBounce()
+        switch mapState.selectionSource {
+        case .circleView, .map:
+            bounceAnimation.toggle()
+        case .other:
+            break
         }
     }
     

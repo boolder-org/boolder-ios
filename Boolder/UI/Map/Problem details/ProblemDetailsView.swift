@@ -34,7 +34,6 @@ struct ProblemDetailsView: View {
                             zoomScale: .constant(1),
                             showAllLines: .constant(false),
                             onBackgroundTap: {
-                                mapState.skipBounceAnimation = true
                                 showAllLinesInFullScreen = false
                                 presentTopoFullScreenView = true
                             }
@@ -51,7 +50,6 @@ struct ProblemDetailsView: View {
                             MagnificationGesture()
                                 .onChanged { value in
                                     if value > 1.1 {
-                                        mapState.skipBounceAnimation = true
                                         showAllLinesInFullScreen = false
                                         presentTopoFullScreenView = true
                                     }
@@ -74,7 +72,6 @@ struct ProblemDetailsView: View {
                                 Spacer()
                                 if #available(iOS 26, *) {
                                     Button(action: {
-                                        mapState.skipBounceAnimation = true
                                         showAllLinesInFullScreen = true
                                         presentTopoFullScreenView = true
                                     }) {
@@ -87,7 +84,6 @@ struct ProblemDetailsView: View {
                                 }
                                 else {
                                     Button(action: {
-                                        mapState.skipBounceAnimation = true
                                         showAllLinesInFullScreen = true
                                         presentTopoFullScreenView = true
                                     }) {

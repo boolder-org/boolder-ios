@@ -9,9 +9,16 @@
 import SwiftUI
 import CoreLocation
 
+enum ProblemSelectionSource {
+    case circleView
+    case map
+    case other
+}
+
 @Observable
 class MapState {
     var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+    private(set) var selectionSource: ProblemSelectionSource = .other
     private(set) var centerOnProblem: Problem? = nil
     private(set) var selectedArea: Area? = nil
     private(set) var currentLocationCount: Int = 0
@@ -30,7 +37,6 @@ class MapState {
     var presentAreaView = false
     var presentCircuitPicker = false
     var displayCircuitStartButton = false
-    var skipBounceAnimation = false
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
@@ -117,8 +123,9 @@ class MapState {
     }
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
-    func selectProblem(_ problem: Problem) {
+    func selectProblem(_ problem: Problem, source: ProblemSelectionSource = .other) {
         selectedProblem = problem
+        selectionSource = source
         
         selectedArea = Area.load(id: problem.areaId)
     }

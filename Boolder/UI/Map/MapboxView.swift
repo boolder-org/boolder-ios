@@ -119,7 +119,7 @@ struct MapboxView: UIViewControllerRepresentable {
         
         func selectProblem(id: Int) {
             if let problem = Problem.load(id: id) {
-                parent.mapState.selectProblem(problem)
+                parent.mapState.selectProblem(problem, source: .map)
                 parent.mapState.presentProblemDetails = true
             }
         }
