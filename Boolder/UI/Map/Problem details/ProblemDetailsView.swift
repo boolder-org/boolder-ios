@@ -69,8 +69,6 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        StartGroupMenuView(problem: $problem)
-                        
                         if problem.otherProblemsOnSameTopo.count > 1 {
                             HStack {
                                 Spacer()

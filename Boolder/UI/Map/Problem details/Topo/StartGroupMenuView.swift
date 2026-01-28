@@ -45,7 +45,6 @@ struct StartGroupMenuView: View {
                                 .cornerRadius(16)
                         }
                     }
-                    .padding(.top, 8)
                     .transition(.opacity)
             }
         }

@@ -117,6 +117,13 @@ struct TopoView: View {
                                 .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
                                 .allowsHitTesting(false)
                         }
+                        
+                        // Pagination capsule positioned 40 points below the selected problem
+                        if !showAllLines, let firstPoint = problem.lineFirstPoint {
+                            StartGroupMenuView(problem: $problem)
+                                .scaleEffect(counterZoomScale.wrappedValue)
+                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 40)
+                        }
                     }
                     
                     GeometryReader { geo in

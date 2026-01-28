@@ -72,10 +72,6 @@ struct TopoFullScreenView: View {
                                 }
                             }
                         }
-                        
-                        if !showAllLines {
-                            StartGroupMenuView(problem: $problem)
-                        }
                     }
                     .padding()
                     
