@@ -94,7 +94,8 @@ struct MapContainerView: View {
                 else {
                     $0.sheet(isPresented: $mapState.presentProblemDetails) {
                         ProblemDetailsView(
-                            problem: $mapState.selectedProblem
+                            problem: $mapState.selectedProblem,
+                            topoTransitionNamespace: topoTransitionNamespace
                         )
                         .presentationDetents([detent])
                         .presentationBackgroundInteraction(
@@ -349,19 +350,11 @@ struct MapContainerView: View {
                 $0.buttonStyle(FabButton())
             }
         }
-        .modify {
-            if #available(iOS 18, *) {
-                $0.matchedTransitionSource(id: "topo-showAllLines-\(mapState.selectedProblem.topoId ?? 0)", in: topoTransitionNamespace)
-            }
-            else {
-                $0
-            }
-        }
         .fullScreenCover(isPresented: $presentTopoShowAllLines) {
             TopoFullScreenView(problem: $mapState.selectedProblem, initialShowAllLines: true)
                 .modify {
                     if #available(iOS 18, *) {
-                        $0.navigationTransition(.zoom(sourceID: "topo-showAllLines-\(mapState.selectedProblem.topoId ?? 0)", in: topoTransitionNamespace))
+                        $0.navigationTransition(.zoom(sourceID: "topo-\(mapState.selectedProblem.topoId ?? 0)", in: topoTransitionNamespace))
                     }
                     else {
                         $0
