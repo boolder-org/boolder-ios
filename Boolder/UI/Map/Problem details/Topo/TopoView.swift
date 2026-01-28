@@ -121,8 +121,8 @@ struct TopoView: View {
                         // Pagination capsule positioned 40 points below the selected problem
                         if !showAllLines, let firstPoint = problem.lineFirstPoint {
                             StartGroupMenuView(problem: $problem)
-                                .scaleEffect(counterZoomScale.wrappedValue)
-                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 40)
+                                .scaleEffect(counterZoomScaleIdentity)
+                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 40 * counterZoomScaleIdentity)
                         }
                     }
                     
@@ -270,6 +270,11 @@ struct TopoView: View {
             get: { 1/((zoomScale / 2) + 0.5) },
             set: { _ in } // Read-only
         )
+    }
+    
+    // Exactly cancels the zoom scale (1:1 ratio)
+    var counterZoomScaleIdentity: CGFloat {
+        1 / zoomScale
     }
     
     func displayLine() {
