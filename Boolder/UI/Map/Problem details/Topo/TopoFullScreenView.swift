@@ -53,7 +53,7 @@ struct TopoFullScreenView: View {
                             
                             Spacer()
                             
-                            if !showAllLines {
+                            if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
                                 if #available(iOS 26, *) {
                                     Button(action: { showAllLines = true }) {
                                         Image(systemName: "arrow.trianglehead.branch")

@@ -71,22 +71,24 @@ struct ProblemDetailsView: View {
                         
                         StartGroupMenuView(problem: $problem)
                         
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                mapState.skipBounceAnimation = true
-                                initialShowAllLines = true
-                                presentTopoFullScreenView = true
-                            }) {
-                                Image(systemName: "arrow.trianglehead.branch")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                    .padding(8)
-                                    .background(Color.black.opacity(0.3))
-                                    .clipShape(Circle())
+                        if problem.otherProblemsOnSameTopo.count > 1 {
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    mapState.skipBounceAnimation = true
+                                    initialShowAllLines = true
+                                    presentTopoFullScreenView = true
+                                }) {
+                                    Image(systemName: "arrow.trianglehead.branch")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .padding(8)
+                                        .background(Color.black.opacity(0.3))
+                                        .clipShape(Circle())
+                                }
                             }
+                            .padding()
                         }
-                        .padding()
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
