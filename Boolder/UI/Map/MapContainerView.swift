@@ -137,7 +137,7 @@ struct MapContainerView: View {
                 showAllLinesButton
             }
             .padding(.horizontal, 4)
-            .opacity(mapState.selectedArea != nil && mapState.presentProblemDetails && mapState.selectedProblem.otherProblemsOnSameTopo.count > 1 ? 1 : 0)
+            .opacity(mapState.selectedArea != nil && mapState.presentProblemDetails ? 1 : 0)
             .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet - 8)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
         }
     }
