@@ -123,7 +123,7 @@ struct TopoView: View {
                         if !showAllLines, let paginationPos = paginationPosition {
                             StartGroupMenuView(problem: $problem)
                                 .scaleEffect(counterZoomScaleIdentity)
-                                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 40 * counterZoomScaleIdentity)
+                                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
                         }
                     }
                     
