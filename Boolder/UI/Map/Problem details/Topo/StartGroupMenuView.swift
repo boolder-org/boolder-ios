@@ -30,19 +30,20 @@ struct StartGroupMenuView: View {
         Group {
             if problems.count > 1 && isVisible {
                 Text(String(format: NSLocalizedString("problem.startgroup.pagination", comment: ""), currentIndex, problems.count))
+                    .font(.footnote)
                     .modify {
                         if #available(iOS 26, *) {
                             $0.foregroundColor(.primary)
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
                                 .glassEffect()
                         } else {
                             $0
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 8)
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 6)
                                 .background(Color.gray.opacity(0.8))
                                 .foregroundColor(Color(UIColor.systemBackground))
-                                .cornerRadius(16)
+                                .cornerRadius(12)
                         }
                     }
                     .transition(.opacity)
