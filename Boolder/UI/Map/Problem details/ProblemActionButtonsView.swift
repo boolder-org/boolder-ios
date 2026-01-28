@@ -11,6 +11,7 @@ import SwiftUI
 struct ProblemActionButtonsView: View {
     @Environment(\.openURL) var openURL
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(MapState.self) private var mapState: MapState
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
@@ -72,7 +73,7 @@ struct ProblemActionButtonsView: View {
                     Menu {
                         ForEach(problem.variants.sorted { $0.grade > $1.grade }) { variant in
                             Button {
-                                problem = variant
+                                mapState.selectProblem(variant)
                             } label: {
                                 HStack {
                                     Text("\(variant.grade.string) - \(variant.localizedName)")
