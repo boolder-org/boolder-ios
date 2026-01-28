@@ -21,7 +21,6 @@ struct MapContainerView: View {
     // TODO: make this more DRY
     @State private var presentDownloads = false
     @State private var presentDownloadsPlaceholder = false
-    @State private var presentTopoShowAllLines = false
     
     var body: some View {
         @Bindable var mapState = mapState
@@ -45,10 +44,6 @@ struct MapContainerView: View {
             AreaToolbarView()
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
-            
-            showAllLinesButton
-                .zIndex(31)
-                .opacity(mapState.selectedArea != nil && mapState.presentProblemDetails ? 1 : 0)
         }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in
             if let problem = appState.selectedProblem {
@@ -306,39 +301,6 @@ struct MapContainerView: View {
                     $0.buttonStyle(FabButton())
                 }
             }
-        }
-    }
-    
-    var showAllLinesButton: some View {
-        @Bindable var mapState = mapState
-        
-        return VStack {
-            HStack {
-                Spacer()
-                
-                Button {
-                    presentTopoShowAllLines = true
-                } label: {
-                    Image(systemName: "arrow.trianglehead.branch")
-                        .padding(10)
-                        .foregroundColor(.primary)
-                }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.glassEffect(.regular.interactive(), in: .circle)
-                    }
-                    else {
-                        $0.buttonStyle(FabButton())
-                    }
-                }
-            }
-            .padding(.horizontal)
-            .padding(.top, 56)
-            
-            Spacer()
-        }
-        .fullScreenCover(isPresented: $presentTopoShowAllLines) {
-            TopoFullScreenView(problem: $mapState.selectedProblem, initialShowAllLines: true)
         }
     }
     
