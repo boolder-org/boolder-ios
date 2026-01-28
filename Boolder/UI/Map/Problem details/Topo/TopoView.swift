@@ -20,6 +20,7 @@ struct TopoView: View {
     var onBackgroundTap: (() -> Void)?
     
     @State private var bounceAnimation = false
+    @State private var paginationPosition: Line.PhotoPercentCoordinate?
     
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
@@ -118,11 +119,11 @@ struct TopoView: View {
                                 .allowsHitTesting(false)
                         }
                         
-                        // Pagination capsule positioned 40 points below the selected problem
-                        if !showAllLines, let firstPoint = problem.lineFirstPoint {
+                        // Pagination capsule positioned 40 points below the start group
+                        if !showAllLines, let paginationPos = paginationPosition {
                             StartGroupMenuView(problem: $problem)
                                 .scaleEffect(counterZoomScaleIdentity)
-                                .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height + 40 * counterZoomScaleIdentity)
+                                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 40 * counterZoomScaleIdentity)
                         }
                     }
                     
@@ -244,6 +245,8 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { oldValue, newValue in
+            paginationPosition = newValue.startGroup?.paginationPosition
+            
             if oldValue.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
@@ -260,6 +263,7 @@ struct TopoView: View {
             }
         }
         .task {
+            paginationPosition = problem.startGroup?.paginationPosition
             await loadData()
         }
     }

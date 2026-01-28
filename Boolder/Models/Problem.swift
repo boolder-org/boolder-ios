@@ -416,6 +416,16 @@ class StartGroup: Identifiable, Equatable {
         problems.sorted { $0.zIndex > $1.zIndex }
     }
     
+    var paginationPosition: Line.PhotoPercentCoordinate? {
+        let points = problems.compactMap { $0.lineFirstPoint }
+        guard !points.isEmpty else { return nil }
+        
+        let avgX = points.map { $0.x }.reduce(0, +) / Double(points.count)
+        let maxY = points.map { $0.y }.max() ?? 0
+        
+        return Line.PhotoPercentCoordinate(x: avgX, y: maxY)
+    }
+    
     func variantsNotInGroup(for problem: Problem) -> [Problem] {
         let problemIds = Set(problems.map { $0.id })
         return problem.variants.filter { !problemIds.contains($0.id) }
