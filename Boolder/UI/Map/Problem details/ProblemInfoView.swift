@@ -16,7 +16,7 @@ struct ProblemInfoView: View {
     let problem: Problem
     let titleFont: Font
     
-    init(problem: Problem, titleFont: Font = .title) {
+    init(problem: Problem, titleFont: Font = .title2) {
         self.problem = problem
         self.titleFont = titleFont
     }
@@ -39,7 +39,7 @@ struct ProblemInfoView: View {
                 
                 Text(problem.localizedName)
                     .font(titleFont)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .foregroundColor(.primary)
                     .lineLimit(1)
                     .truncationMode(.middle)
@@ -50,7 +50,7 @@ struct ProblemInfoView: View {
                 
                 Text(problem.grade.string)
                     .font(titleFont)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .foregroundColor(.primary)
             }
             
