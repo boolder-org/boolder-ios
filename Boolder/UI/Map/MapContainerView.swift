@@ -23,8 +23,6 @@ struct MapContainerView: View {
     @State private var presentDownloadsPlaceholder = false
     @State private var presentTopoShowAllLines = false
     
-    @Namespace private var topoTransitionNamespace
-    
     var body: some View {
         @Bindable var mapState = mapState
         
@@ -349,24 +347,8 @@ struct MapContainerView: View {
                 $0.buttonStyle(FabButton())
             }
         }
-        .modify {
-            if #available(iOS 18, *) {
-                $0.matchedTransitionSource(id: "topo-showAllLines-\(mapState.selectedProblem.topoId ?? 0)", in: topoTransitionNamespace)
-            }
-            else {
-                $0
-            }
-        }
         .fullScreenCover(isPresented: $presentTopoShowAllLines) {
             TopoFullScreenView(problem: $mapState.selectedProblem, initialShowAllLines: true)
-                .modify {
-                    if #available(iOS 18, *) {
-                        $0.navigationTransition(.zoom(sourceID: "topo-showAllLines-\(mapState.selectedProblem.topoId ?? 0)", in: topoTransitionNamespace))
-                    }
-                    else {
-                        $0
-                    }
-                }
         }
     }
     
