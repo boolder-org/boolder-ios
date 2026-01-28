@@ -100,7 +100,7 @@ struct ProblemDetailsView: View {
                                     }
                                 }
                             }
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 10)
                             .padding(.horizontal, 4)
                         }
                     }
