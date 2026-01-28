@@ -33,6 +33,10 @@ struct ProblemInfoView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
+                if problem.circuitId != nil {
+                    ProblemCircleView(problem: problem)
+                }
+                
                 Text(problem.localizedName)
                     .font(titleFont)
                     .fontWeight(.bold)
