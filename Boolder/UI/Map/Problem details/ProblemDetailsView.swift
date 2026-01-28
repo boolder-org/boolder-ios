@@ -95,7 +95,7 @@ struct ProblemDetailsView: View {
                         .padding(.top, 4)
                         .padding(.horizontal)
                     
-                    ProblemActionButtonsView(problem: problem)
+                    ProblemActionButtonsView(problem: $problem)
                 }
             }
             
