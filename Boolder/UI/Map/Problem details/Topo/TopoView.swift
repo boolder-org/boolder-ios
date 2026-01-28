@@ -21,7 +21,6 @@ struct TopoView: View {
     var skipInitialBounceAnimation: Bool = false
     
     @State private var isInitialLoad = true
-    @State private var hasUserInteracted = false
     
     @State private var bounceAnimation = false
     @State private var paginationPosition: Line.PhotoPercentCoordinate?
@@ -124,7 +123,7 @@ struct TopoView: View {
                         }
                         
                         // Pagination capsule positioned 40 points below the start group
-                        if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !skipInitialBounceAnimation || hasUserInteracted {
+                        if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
                             StartGroupMenuView(problem: $problem)
                                 .scaleEffect(counterZoomScaleIdentity)
                                 .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
@@ -368,14 +367,14 @@ struct TopoView: View {
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
                 showAllLines = false
-                hasUserInteracted = true
+                isInitialLoad = false
                 mapState.selectProblem(next, source: .circleView)
             }
         }
         else {
             if let topProblem = group.topProblem {
                 showAllLines = false
-                hasUserInteracted = true
+                isInitialLoad = false
                 mapState.selectProblem(topProblem, source: .circleView)
             }
         }
@@ -390,10 +389,7 @@ struct TopoView: View {
     }
     
     func animateBounceIfAllowed() {
-        if isInitialLoad {
-            isInitialLoad = false
-            if skipInitialBounceAnimation { return }
-        }
+        if skipInitialBounceAnimation && isInitialLoad { return }
         
         switch mapState.selectionSource {
         case .circleView, .map:
