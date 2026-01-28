@@ -20,6 +20,7 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
+    @State private var initialShowAllLines = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -34,6 +35,7 @@ struct ProblemDetailsView: View {
                             showAllLines: .constant(false),
                             onBackgroundTap: {
                                 mapState.skipBounceAnimation = true
+                                initialShowAllLines = false
                                 presentTopoFullScreenView = true
                             }
                         )
@@ -50,12 +52,13 @@ struct ProblemDetailsView: View {
                                 .onChanged { value in
                                     if value > 1.1 {
                                         mapState.skipBounceAnimation = true
+                                        initialShowAllLines = false
                                         presentTopoFullScreenView = true
                                     }
                                 }
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem)
+                            TopoFullScreenView(problem: $problem, initialShowAllLines: initialShowAllLines)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -67,6 +70,23 @@ struct ProblemDetailsView: View {
                         }
                         
                         StartGroupMenuView(problem: $problem)
+                        
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                mapState.skipBounceAnimation = true
+                                initialShowAllLines = true
+                                presentTopoFullScreenView = true
+                            }) {
+                                Image(systemName: "arrow.trianglehead.branch")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                    .padding(8)
+                                    .background(Color.black.opacity(0.3))
+                                    .clipShape(Circle())
+                            }
+                        }
+                        .padding()
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
