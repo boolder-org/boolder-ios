@@ -70,22 +70,38 @@ struct ProblemDetailsView: View {
                         }
                         
                         if problem.otherProblemsOnSameTopo.count > 1 {
-                            HStack {
+                            HStack(spacing: 0) {
                                 Spacer()
-                                Button(action: {
-                                    mapState.skipBounceAnimation = true
-                                    showAllLinesInFullScreen = true
-                                    presentTopoFullScreenView = true
-                                }) {
-                                    Image(systemName: "arrow.trianglehead.branch")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                        .padding(8)
-                                        .background(Color.black.opacity(0.3))
-                                        .clipShape(Circle())
+                                if #available(iOS 26, *) {
+                                    Button(action: {
+                                        mapState.skipBounceAnimation = true
+                                        showAllLinesInFullScreen = true
+                                        presentTopoFullScreenView = true
+                                    }) {
+                                        Image(systemName: "arrow.trianglehead.branch")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(2)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                                }
+                                else {
+                                    Button(action: {
+                                        mapState.skipBounceAnimation = true
+                                        showAllLinesInFullScreen = true
+                                        presentTopoFullScreenView = true
+                                    }) {
+                                        Image(systemName: "arrow.trianglehead.branch")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(8)
+                                            .background(Color.black.opacity(0.3))
+                                            .clipShape(Circle())
+                                    }
                                 }
                             }
-                            .padding()
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 4)
                         }
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
