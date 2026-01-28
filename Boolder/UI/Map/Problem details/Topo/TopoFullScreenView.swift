@@ -12,21 +12,13 @@ struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
     
     @Binding var problem: Problem
+    @Binding var showAllLines: Bool
     
-    @State private var zoomScale: CGFloat
-    @State private var showAllLines: Bool
+    @State private var zoomScale: CGFloat = 1
     
     // drag gesture (to dismiss the sheet)
-    @State var dragOffset: CGSize
-    @State var dragOffsetPredicted: CGSize
-    
-    init(problem: Binding<Problem>, initialShowAllLines: Bool = false) {
-        self._problem = problem
-        self._zoomScale = State(initialValue: 1)
-        self._showAllLines = State(initialValue: initialShowAllLines)
-        self._dragOffset = State(initialValue: .zero)
-        self._dragOffsetPredicted = State(initialValue: .zero)
-    }
+    @State var dragOffset: CGSize = .zero
+    @State var dragOffsetPredicted: CGSize = .zero
     
     var body: some View {
         VStack {

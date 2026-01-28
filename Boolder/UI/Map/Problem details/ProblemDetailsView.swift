@@ -20,7 +20,7 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
-    @State private var initialShowAllLines = false
+    @State private var showAllLinesInFullScreen = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -35,7 +35,7 @@ struct ProblemDetailsView: View {
                             showAllLines: .constant(false),
                             onBackgroundTap: {
                                 mapState.skipBounceAnimation = true
-                                initialShowAllLines = false
+                                showAllLinesInFullScreen = false
                                 presentTopoFullScreenView = true
                             }
                         )
@@ -52,13 +52,13 @@ struct ProblemDetailsView: View {
                                 .onChanged { value in
                                     if value > 1.1 {
                                         mapState.skipBounceAnimation = true
-                                        initialShowAllLines = false
+                                        showAllLinesInFullScreen = false
                                         presentTopoFullScreenView = true
                                     }
                                 }
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem, initialShowAllLines: initialShowAllLines)
+                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLinesInFullScreen)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -74,7 +74,7 @@ struct ProblemDetailsView: View {
                                 Spacer()
                                 Button(action: {
                                     mapState.skipBounceAnimation = true
-                                    initialShowAllLines = true
+                                    showAllLinesInFullScreen = true
                                     presentTopoFullScreenView = true
                                 }) {
                                     Image(systemName: "arrow.trianglehead.branch")
