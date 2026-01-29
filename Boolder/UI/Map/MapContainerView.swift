@@ -117,86 +117,89 @@ struct MapContainerView: View {
             }
         }
         else {
-            return -48
+            if #available(iOS 26, *) {
+                return -32
+            }
+            else {
+                return -48
+            }
         }
     }
     
     var circuitButtons : some View {
         Group {
-//            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
-//                HStack(spacing: 0) {
-//                    
-//                    if(mapState.canGoToPreviousCircuitProblem) {
-//                        Button(action: {
-//                            mapState.selectCircuit(circuit)
-//                            mapState.goToPreviousCircuitProblem()
-//                        }) {
-//                            Image(systemName: "arrow.left")
-//                                .modify {
-//                                    if #available(iOS 26, *) {
-//                                        $0.padding(2)
-//                                    } else {
-//                                        $0.padding(10)
-//                                    }
-//                                }
-//                        }
-//                        .font(.body.weight(.semibold))
-//                        .modify {
-//                            if #available(iOS 26, *) {
-//                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
-//                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
-//                            } else {
-//                                $0
-//                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
-//                                    .background(Color.systemBackground)
-//                                    .clipShape(Circle())
-//                                    .overlay(
-//                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                                    )
-//                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                            }
-//                        }
-//                        .padding(.horizontal)
-//                    }
-//                    
-//                    Spacer()
-//                    
-//                    if(mapState.canGoToNextCircuitProblem) {
-//                        
-//                        Button(action: {
-//                            mapState.selectCircuit(circuit)
-//                            mapState.goToNextCircuitProblem()
-//                        }) {
-//                            Image(systemName: "arrow.right")
-//                                .modify {
-//                                    if #available(iOS 26, *) {
-//                                        $0.padding(2)
-//                                    } else {
-//                                        $0.padding(10)
-//                                    }
-//                                }
-//                        }
-//                        .font(.body.weight(.semibold))
-//                        .modify {
-//                            if #available(iOS 26, *) {
-//                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
-//                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
-//                            } else {
-//                                $0
-//                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
-//                                    .background(Color.systemBackground)
-//                                    .clipShape(Circle())
-//                                    .overlay(
-//                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-//                                    )
-//                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-//                            }
-//                        }
-//                        .padding(.horizontal)
-//                    }
-//                }
-//                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
-//            }
+            if let circuit = mapState.selectedCircuit, mapState.presentProblemDetails, circuit.id == mapState.selectedProblem.circuitId {
+                HStack(spacing: 0) {
+                    
+                    if(mapState.canGoToPreviousCircuitProblem) {
+                        Button(action: {
+                            mapState.goToPreviousCircuitProblem()
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.padding(2)
+                                    } else {
+                                        $0.padding(10)
+                                    }
+                                }
+                        }
+                        .font(.body.weight(.semibold))
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
+                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                            } else {
+                                $0
+                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                    .background(Color.systemBackground)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                    )
+                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                    
+                    Spacer()
+                    
+                    if(mapState.canGoToNextCircuitProblem) {
+                        
+                        Button(action: {
+                            mapState.goToNextCircuitProblem()
+                        }) {
+                            Image(systemName: "arrow.right")
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.padding(2)
+                                    } else {
+                                        $0.padding(10)
+                                    }
+                                }
+                        }
+                        .font(.body.weight(.semibold))
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
+                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                            } else {
+                                $0
+                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                                    .background(Color.systemBackground)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                                    )
+                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+                .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            }
             
             if mapState.displayCircuitStartButton {
                 if let circuit = mapState.selectedCircuit, let start = circuit.firstProblem {
