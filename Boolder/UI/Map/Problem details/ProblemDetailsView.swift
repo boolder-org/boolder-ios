@@ -67,7 +67,7 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        if problem.otherProblemsOnSameTopo.count > 1 {
+                        if false { // problem.otherProblemsOnSameTopo.count > 1 {
                             HStack(spacing: 0) {
                                 Spacer()
                                 if #available(iOS 26, *) {
