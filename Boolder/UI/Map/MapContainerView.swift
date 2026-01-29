@@ -138,7 +138,7 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.left")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.padding(2)
+                                        $0.padding(4)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -160,7 +160,7 @@ struct MapContainerView: View {
                                     .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 4)
                     }
                     
                     Spacer()
@@ -173,7 +173,7 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.right")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.padding(2)
+                                        $0.padding(4)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -195,7 +195,7 @@ struct MapContainerView: View {
                                     .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 4)
                     }
                 }
                 .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
