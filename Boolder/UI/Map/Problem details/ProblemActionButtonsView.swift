@@ -86,7 +86,7 @@ struct ProblemActionButtonsView: View {
                     } label: {
                         HStack(alignment: .center, spacing: 8) {
                             Image(systemName: "arrow.trianglehead.branch")
-                            Text(problem.variants.count == 1 ? "1 variante" : "\(problem.variants.count) variantes")
+                            Text(String(format: NSLocalizedString(problem.variants.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural", comment: ""), problem.variants.count))
                                 .fixedSize(horizontal: true, vertical: true)
                         }
                         .modify {
