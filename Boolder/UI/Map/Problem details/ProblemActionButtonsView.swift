@@ -17,13 +17,15 @@ struct ProblemActionButtonsView: View {
     
     @Binding var problem: Problem
     let withHorizontalPadding: Bool
+    let showCircuitButton: Bool
     
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
     
-    init(problem: Binding<Problem>, withHorizontalPadding: Bool = true) {
+    init(problem: Binding<Problem>, withHorizontalPadding: Bool = true, showCircuitButton: Bool = true) {
         self._problem = problem
         self.withHorizontalPadding = withHorizontalPadding
+        self.showCircuitButton = showCircuitButton
     }
     
     private var saveManager: ProblemSaveManager {
@@ -69,7 +71,7 @@ struct ProblemActionButtonsView: View {
                     }
                 }
                 
-                if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.selectedCircuit?.id != circuitId {
+                if showCircuitButton, let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.selectedCircuit?.id != circuitId {
                     Button(action: {
                         mapState.selectCircuit(circuit)
                     }) {
