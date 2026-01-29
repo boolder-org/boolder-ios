@@ -191,7 +191,7 @@
 "problem.topo.timeout" = "Check your Internet connection";
 "problem.topo.error" = "Failed to load the photo";
 "problem.topo.retry" = "Retry";
-"problem.topo.all_lines" = "Voir bloc";
+"problem.topo.all_lines" = "Around";
 
 // MARK: Tick List
 "ticklist.title" = "Tick List";
