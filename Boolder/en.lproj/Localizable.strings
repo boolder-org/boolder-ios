@@ -192,6 +192,7 @@
 "problem.topo.error" = "Failed to load the photo";
 "problem.topo.retry" = "Retry";
 "problem.topo.all_lines" = "Walk around";
+"problem.action.see_circuit" = "See circuit";
 
 // MARK: Tick List
 "ticklist.title" = "Tick List";

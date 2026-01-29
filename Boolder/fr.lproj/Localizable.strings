@@ -191,6 +191,7 @@
 "problem.topo.error" = "Échec de chargement de la photo";
 "problem.topo.retry" = "Réessayer";
 "problem.topo.all_lines" = "Faire le tour";
+"problem.action.see_circuit" = "Voir circuit";
 
 // MARK: Tick List
 "ticklist.title" = "Mes voies";

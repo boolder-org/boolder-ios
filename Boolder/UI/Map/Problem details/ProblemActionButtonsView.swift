@@ -69,6 +69,36 @@ struct ProblemActionButtonsView: View {
                     }
                 }
                 
+                if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.selectedCircuit?.id != circuitId {
+                    Button(action: {
+                        mapState.selectCircuit(circuit)
+                    }) {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image("circuit")
+                            Text("problem.action.see_circuit").fixedSize(horizontal: true, vertical: true)
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                                    .padding(.vertical, 2)
+                                    .padding(.horizontal, 4)
+                            } else {
+                                $0
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 16)
+                            }
+                        }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                        } else {
+                            $0
+                                .buttonStyle(Pill())
+                        }
+                    }
+                }
+                
                 if problem.variants.count > 1 {
                     Menu {
                         ForEach(problem.variants.sorted { $0.grade > $1.grade }) { variant in
