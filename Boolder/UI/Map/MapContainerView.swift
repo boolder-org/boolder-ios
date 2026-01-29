@@ -138,7 +138,8 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.left")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.padding(4)
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(4)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -173,7 +174,8 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.right")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.padding(4)
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(4)
                                     } else {
                                         $0.padding(10)
                                     }
