@@ -48,18 +48,22 @@ struct TopoFullScreenView: View {
                             if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
                                 if #available(iOS 26, *) {
                                     Button(action: { showAllLines = true }) {
-                                        Image(systemName: "arrow.trianglehead.branch")
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(4)
+                                        Text("problem.topo.all_lines")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
+//                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 4)
                                     }
                                     .buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
+                                    .buttonBorderShape(.capsule)
                                 }
                                 else {
                                     Button(action: { showAllLines = true }) {
-                                        Image(systemName: "arrow.trianglehead.branch")
+                                        Text("problem.topo.all_lines")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
                                             .foregroundColor(Color(UIColor.white))
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 6)
+                                            .background(Capsule().fill(Color.black.opacity(0.5)))
                                     }
                                 }
                             }

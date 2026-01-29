@@ -190,6 +190,7 @@
 "problem.topo.timeout" = "Vérifiez votre connexion à Internet";
 "problem.topo.error" = "Échec de chargement de la photo";
 "problem.topo.retry" = "Réessayer";
+"problem.topo.all_lines" = "See boulder";
 
 // MARK: Tick List
 "ticklist.title" = "Mes voies";
