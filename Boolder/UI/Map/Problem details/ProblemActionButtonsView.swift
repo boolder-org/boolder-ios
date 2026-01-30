@@ -21,6 +21,7 @@ struct ProblemActionButtonsView: View {
     
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
+    @State private var presentCircuitActionsheet = false
     
     init(problem: Binding<Problem>, withHorizontalPadding: Bool = true, showCircuitButton: Bool = true) {
         self._problem = problem
@@ -71,9 +72,9 @@ struct ProblemActionButtonsView: View {
                     }
                 }
                 
-                if showCircuitButton, let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.selectedCircuit?.id != circuitId {
+                if showCircuitButton, let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
                     Button(action: {
-                        mapState.selectCircuit(circuit)
+                        presentCircuitActionsheet = true
                     }) {
                         HStack(alignment: .center, spacing: 8) {
                             Image("circuit")
@@ -98,6 +99,21 @@ struct ProblemActionButtonsView: View {
                             $0
                                 .buttonStyle(Pill())
                         }
+                    }
+                    .actionSheet(isPresented: $presentCircuitActionsheet) {
+                        ActionSheet(
+                            title: Text(circuit.color.longName),
+                            buttons: [
+                                .default(Text(mapState.selectedCircuit?.id == circuitId ? "problem.action.hide_circuit_on_map" : "problem.action.see_circuit_on_map")) {
+                                    if mapState.selectedCircuit?.id == circuitId {
+                                        mapState.unselectCircuit()
+                                    } else {
+                                        mapState.selectCircuit(circuit)
+                                    }
+                                },
+                                .cancel()
+                            ]
+                        )
                     }
                 }
                 

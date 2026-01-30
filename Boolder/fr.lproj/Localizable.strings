@@ -192,6 +192,8 @@
 "problem.topo.retry" = "Réessayer";
 "problem.topo.all_lines" = "Faire le tour";
 "problem.action.see_circuit" = "Voir circuit";
+"problem.action.see_circuit_on_map" = "Voir le circuit sur la carte";
+"problem.action.hide_circuit_on_map" = "Cacher le circuit sur la carte";
 
 // MARK: Tick List
 "ticklist.title" = "Mes voies";

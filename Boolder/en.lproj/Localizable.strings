@@ -193,6 +193,8 @@
 "problem.topo.retry" = "Retry";
 "problem.topo.all_lines" = "Walk around";
 "problem.action.see_circuit" = "See circuit";
+"problem.action.see_circuit_on_map" = "See the circuit on the map";
+"problem.action.hide_circuit_on_map" = "Hide the circuit on the map";
 
 // MARK: Tick List
 "ticklist.title" = "Tick List";
