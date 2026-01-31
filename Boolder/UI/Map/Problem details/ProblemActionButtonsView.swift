@@ -40,7 +40,7 @@ struct ProblemActionButtonsView: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .center, spacing: 8) {
+            HStack(alignment: .center, spacing: 12) {
                 
                 if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
                     Button(action: {
