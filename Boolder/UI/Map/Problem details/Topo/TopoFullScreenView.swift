@@ -44,28 +44,6 @@ struct TopoFullScreenView: View {
                             }
                             
                             Spacer()
-                            
-                            if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
-                                if #available(iOS 26, *) {
-                                    Button(action: { showAllLines = true }) {
-                                        Label("problem.topo.all_lines", systemImage: "eye")
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
-                                            .padding(.vertical, 4)
-                                    }
-                                    .buttonStyle(.glass)
-                                    .buttonBorderShape(.capsule)
-                                }
-                                else {
-                                    Button(action: { showAllLines = true }) {
-                                        Label("problem.topo.all_lines", systemImage: "eye")
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
-                                            .foregroundColor(Color(UIColor.white))
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 6)
-                                            .background(Capsule().fill(Color.black.opacity(0.5)))
-                                    }
-                                }
-                            }
                         }
                     }
                     .padding()
@@ -88,11 +66,14 @@ struct TopoFullScreenView: View {
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, skipInitialBounceAnimation: true)
+                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, onBackgroundTap: {
+                        if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
+                            showAllLines = true
+                        }
+                    }, skipInitialBounceAnimation: true)
                 }
                 .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
                 .zIndex(1)
                 .offset(x: 0, y: self.dragOffset.height) // drag gesture
                 .background(Color.systemBackground)
