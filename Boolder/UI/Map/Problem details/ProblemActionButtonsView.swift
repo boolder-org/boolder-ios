@@ -17,16 +17,16 @@ struct ProblemActionButtonsView: View {
     
     @Binding var problem: Problem
     let withHorizontalPadding: Bool
-    let showCircuitButton: Bool
+    let onCircuitSelected: (() -> Void)?
     
     @State private var presentSaveActionsheet = false
     @State private var presentSharesheet = false
     @State private var presentCircuitActionsheet = false
     
-    init(problem: Binding<Problem>, withHorizontalPadding: Bool = true, showCircuitButton: Bool = true) {
+    init(problem: Binding<Problem>, withHorizontalPadding: Bool = true, onCircuitSelected: (() -> Void)? = nil) {
         self._problem = problem
         self.withHorizontalPadding = withHorizontalPadding
-        self.showCircuitButton = showCircuitButton
+        self.onCircuitSelected = onCircuitSelected
     }
     
     private var saveManager: ProblemSaveManager {
@@ -72,7 +72,7 @@ struct ProblemActionButtonsView: View {
                     }
                 }
                 
-                if showCircuitButton, let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
+                if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
                     Button(action: {
                         presentCircuitActionsheet = true
                     }) {
@@ -109,6 +109,7 @@ struct ProblemActionButtonsView: View {
                                         mapState.unselectCircuit()
                                     } else {
                                         mapState.selectCircuit(circuit)
+                                        onCircuitSelected?()
                                     }
                                 },
                                 .cancel()

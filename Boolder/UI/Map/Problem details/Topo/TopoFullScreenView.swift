@@ -109,7 +109,7 @@ struct TopoFullScreenView: View {
             ProblemInfoView(problem: problem)
                 .foregroundColor(.primary.opacity(0.8))
             
-            ProblemActionButtonsView(problem: $problem, withHorizontalPadding: false, showCircuitButton: false)
+            ProblemActionButtonsView(problem: $problem, withHorizontalPadding: false, onCircuitSelected: { dismiss() })
         }
         .padding()
         .frame(minHeight: 150, alignment: .top)
