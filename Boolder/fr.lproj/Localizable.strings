@@ -193,7 +193,7 @@
 "problem.topo.all_lines" = "Vue bloc";
 "problem.action.see_circuit" = "Circuit";
 "problem.action.see_circuit_on_map" = "Voir le circuit sur la carte";
-"problem.action.hide_circuit_on_map" = "Cacher le circuit sur la carte";
+"problem.action.hide_circuit_on_map" = "Masquer le circuit sur la carte";
 
 // MARK: Tick List
 "ticklist.title" = "Mes voies";
