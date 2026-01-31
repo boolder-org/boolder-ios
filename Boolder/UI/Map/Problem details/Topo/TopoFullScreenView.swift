@@ -48,7 +48,7 @@ struct TopoFullScreenView: View {
                             if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
                                 if #available(iOS 26, *) {
                                     Button(action: { showAllLines = true }) {
-                                        Text("problem.topo.all_lines")
+                                        Label("problem.topo.all_lines", systemImage: "eye")
                                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
                                             .padding(.vertical, 4)
                                     }
@@ -57,7 +57,7 @@ struct TopoFullScreenView: View {
                                 }
                                 else {
                                     Button(action: { showAllLines = true }) {
-                                        Text("problem.topo.all_lines")
+                                        Label("problem.topo.all_lines", systemImage: "eye")
                                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
                                             .foregroundColor(Color(UIColor.white))
                                             .padding(.horizontal, 12)

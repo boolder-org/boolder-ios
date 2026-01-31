@@ -191,7 +191,7 @@
 "problem.topo.timeout" = "Check your Internet connection";
 "problem.topo.error" = "Failed to load the photo";
 "problem.topo.retry" = "Retry";
-"problem.topo.all_lines" = "Boulder view";
+"problem.topo.all_lines" = "Look around";
 "problem.action.see_circuit" = "Circuit";
 "problem.action.see_circuit_on_map" = "See the circuit on the map";
 "problem.action.hide_circuit_on_map" = "Hide the circuit on the map";
