@@ -182,7 +182,6 @@
 "problem.pagination" = "%d sur %d";
 "problem.variants" = "%d variantes";
 "problem.startgroup.pagination" = "%d sur %d";
-"problem.startgroup.show_all_lines" = "Afficher toutes les lignes";
 "problem.startgroup.variants.singular" = "%d variante";
 "problem.startgroup.variants.plural" = "%d variantes";
 "problem.missing_line" = "Ligne manquante";
@@ -190,7 +189,6 @@
 "problem.topo.timeout" = "Vérifiez votre connexion à Internet";
 "problem.topo.error" = "Échec de chargement de la photo";
 "problem.topo.retry" = "Réessayer";
-"problem.topo.all_lines" = "Parcourir";
 "problem.action.see_circuit" = "Circuit";
 "problem.action.see_circuit_on_map" = "Voir le circuit sur la carte";
 "problem.action.hide_circuit_on_map" = "Masquer le circuit sur la carte";
