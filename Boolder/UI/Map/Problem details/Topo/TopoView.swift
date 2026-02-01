@@ -16,9 +16,14 @@ struct TopoView: View {
     @State private var showMissingLineNotice = false
     
     @Binding var zoomScale: CGFloat
+    @Binding var showAllLines: Bool
     var onBackgroundTap: (() -> Void)?
+    var skipInitialBounceAnimation: Bool = false
+    
+    @State private var isInitialLoad = true
     
     @State private var bounceAnimation = false
+    @State private var paginationPosition: Line.PhotoPercentCoordinate?
     
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
@@ -71,7 +76,7 @@ struct TopoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
-                    if problem.line?.coordinates != nil {
+                    if !showAllLines && problem.line?.coordinates != nil {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
                     }
                     else {
@@ -108,11 +113,74 @@ struct TopoView: View {
                                     ))
                             }
                         }
+                        
+                        // Grade label for current problem
+                        if !showAllLines, let gradePoint = problem.lineGradePoint {
+                            GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+                                .scaleEffect(counterZoomScale.wrappedValue)
+                                .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                .allowsHitTesting(false)
+                        }
+                        
+                        // Pagination capsule positioned 40 points below the start group
+                        if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
+                            StartGroupMenuView(problem: $problem)
+                                .scaleEffect(counterZoomScaleIdentity)
+                                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
+                        }
                     }
                     
                     GeometryReader { geo in
                         TapLocationView { location in
                             handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                        }
+                    }
+                    
+                    if showAllLines {
+                        // Tappable lines - placed after TapLocationView so they receive taps
+                        ZStack {
+                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                if p.line?.coordinates != nil {
+                                    TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
+                                        showAllLines = false
+                                        mapState.selectProblem(p)
+                                    }
+                                    .zIndex(p.zIndex)
+                                }
+                            }
+                        }
+                        
+                        // Problem circles - on top of lines
+                        GeometryReader { geo in
+                            ZStack {
+                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                    if let firstPoint = p.lineFirstPoint {
+                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                            .allowsHitTesting(false)
+                                            .scaleEffect(counterZoomScale.wrappedValue)
+                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                            .zIndex(p.zIndex)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // Grade labels
+                        GeometryReader { geo in
+                            ZStack {
+                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                    if let gradePoint = p.lineGradePoint {
+                                        GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                                            .scaleEffect(counterZoomScale.wrappedValue)
+                                            .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                            .zIndex(p.zIndex)
+                                            .onTapGesture {
+                                                showAllLines = false
+                                                mapState.selectProblem(p)
+                                            }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -178,6 +246,8 @@ struct TopoView: View {
             }
         }
         .onChange(of: problem) { oldValue, newValue in
+            paginationPosition = newValue.startGroup?.paginationPosition
+            
             if oldValue.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
                 
@@ -194,6 +264,7 @@ struct TopoView: View {
             }
         }
         .task {
+            paginationPosition = problem.startGroup?.paginationPosition
             await loadData()
         }
     }
@@ -204,6 +275,11 @@ struct TopoView: View {
             get: { 1/((zoomScale / 2) + 0.5) },
             set: { _ in } // Read-only
         )
+    }
+    
+    // Exactly cancels the zoom scale (1:1 ratio)
+    var counterZoomScaleIdentity: CGFloat {
+        1 / zoomScale
     }
     
     func displayLine() {
@@ -290,29 +366,36 @@ struct TopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
-                mapState.selectProblem(next)
+                showAllLines = false
+                isInitialLoad = false
+                mapState.selectProblem(next, source: .circleView)
             }
         }
         else {
             if let topProblem = group.topProblem {
-                mapState.selectProblem(topProblem)
+                showAllLines = false
+                isInitialLoad = false
+                mapState.selectProblem(topProblem, source: .circleView)
             }
         }
     }
     
     func handleTapOnBackground() {
-        onBackgroundTap?()
-    }
-    
-    func animateBounce() {
-        bounceAnimation.toggle()
+        if onBackgroundTap != nil {
+            onBackgroundTap?()
+        } else {
+//            showAllLines = true
+        }
     }
     
     func animateBounceIfAllowed() {
-        if mapState.skipBounceAnimation {
-            mapState.skipBounceAnimation = false
-        } else {
-            animateBounce()
+        if skipInitialBounceAnimation && isInitialLoad { return }
+        
+        switch mapState.selectionSource {
+        case .circleView, .map:
+            bounceAnimation.toggle()
+        case .other:
+            break
         }
     }
     

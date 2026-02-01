@@ -182,11 +182,17 @@
 "problem.image.loading" = "Loading area...";
 "problem.pagination" = "%d on %d";
 "problem.variants" = "%d variants";
+"problem.startgroup.pagination" = "%d on %d";
+"problem.startgroup.variants.singular" = "%d variant";
+"problem.startgroup.variants.plural" = "%d variants";
 "problem.missing_line" = "Missing line";
 "problem.topo.no_internet" = "No Internet connection";
 "problem.topo.timeout" = "Check your Internet connection";
 "problem.topo.error" = "Failed to load the photo";
 "problem.topo.retry" = "Retry";
+"problem.action.see_circuit" = "Circuit";
+"problem.action.see_circuit_on_map" = "See the circuit on the map";
+"problem.action.hide_circuit_on_map" = "Hide the circuit on the map";
 
 // MARK: Tick List
 "ticklist.title" = "Tick List";

@@ -12,56 +12,62 @@ struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
     
     @Binding var problem: Problem
+    @Binding var showAllLines: Bool
+    
     @State private var zoomScale: CGFloat = 1
     
     // drag gesture (to dismiss the sheet)
-    @State var dragOffset: CGSize = CGSize.zero
-    @State var dragOffsetPredicted: CGSize = CGSize.zero
+    @State var dragOffset: CGSize = .zero
+    @State var dragOffsetPredicted: CGSize = .zero
     
     var body: some View {
         VStack {
             ZStack {
                 VStack {
-                    HStack {
-                        Spacer()
-                        
-                        if #available(iOS 26, *) {
-                            Button(action: { dismiss() }) {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                    .padding(4)
+                    ZStack {
+                        HStack {
+                            if #available(iOS 26, *) {
+                                Button(action: { dismiss() }) {
+                                    Image(systemName: "chevron.left")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .padding(4)
+                                }
+                                .buttonStyle(.glass)
+                                .buttonBorderShape(.circle)
                             }
-                            .buttonStyle(.glass)
-                            .buttonBorderShape(.circle)
-                        }
-                        else {
-                            Button(action: { dismiss() }) {
-                                Image(systemName: "xmark")
-                                    .foregroundColor(Color(UIColor.white))
-                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                            else {
+                                Button(action: { dismiss() }) {
+                                    Image(systemName: "chevron.left")
+                                        .foregroundColor(Color(UIColor.white))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                }
                             }
+                            
+                            Spacer()
                         }
                     }
                     .padding()
                     
                     Spacer()
                     
-                    HStack {
-                        Spacer()
-                        VariantsMenuView(problem: $problem)
+                    if !showAllLines {                        
+                        overlayInfos
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
-                    
-                    overlayInfos
                 }
+                .animation(.easeInOut(duration: 0.3), value: showAllLines)
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale)
+                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, onBackgroundTap: {
+                        if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
+                            showAllLines = true
+                        }
+                    }, skipInitialBounceAnimation: true)
                 }
                 .containerRelativeFrame(.horizontal)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
                 .zIndex(1)
                 .offset(x: 0, y: self.dragOffset.height) // drag gesture
                 .background(Color.systemBackground)
@@ -78,7 +84,7 @@ struct TopoFullScreenView: View {
             ProblemInfoView(problem: problem)
                 .foregroundColor(.primary.opacity(0.8))
             
-            ProblemActionButtonsView(problem: problem, withHorizontalPadding: false)
+            ProblemActionButtonsView(problem: $problem, withHorizontalPadding: false, onCircuitSelected: { dismiss() })
         }
         .padding()
         .frame(minHeight: 150, alignment: .top)

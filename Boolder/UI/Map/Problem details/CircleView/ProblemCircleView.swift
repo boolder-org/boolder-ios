@@ -23,7 +23,7 @@ struct ProblemCircleView: View {
     
     var scaleEffect: CGFloat {
         if isDisplayedOnPhoto {
-            0.7
+            problem.circuitNumber.isEmpty ? 0.6 : 0.7
         }
         else {
             problem.circuitNumber.isEmpty ? 0.7 : 1.0

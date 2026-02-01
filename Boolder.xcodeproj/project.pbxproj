@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030738992F1BD3960034B178 /* SegmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030738982F1BD3960034B178 /* SegmentType.swift */; };
+		0307389A2F1BD3960034B178 /* SegmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030738982F1BD3960034B178 /* SegmentType.swift */; };
 		030A0B3C2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */; };
 		030A0B3D2BEB852800F4E370 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */; };
 		030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030AC19C27ABCF5300AF85E7 /* Pill.swift */; };
@@ -38,6 +40,10 @@
 		031A4CAF296B0DF3002CBF52 /* PoiRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */; };
 		031A61BB29EC7CE200B2B46E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A61BA29EC7CE200B2B46E /* AppState.swift */; };
 		031A61BC29EC7CE200B2B46E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A61BA29EC7CE200B2B46E /* AppState.swift */; };
+		031EE76D2F1A35E700FCC590 /* GradeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EE76C2F1A35E700FCC590 /* GradeLabelView.swift */; };
+		031EE76E2F1A35E700FCC590 /* GradeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EE76C2F1A35E700FCC590 /* GradeLabelView.swift */; };
+		031EE7702F1A46FD00FCC590 /* TappableLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EE76F2F1A46FD00FCC590 /* TappableLineView.swift */; };
+		031EE7712F1A46FD00FCC590 /* TappableLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EE76F2F1A46FD00FCC590 /* TappableLineView.swift */; };
 		031F36B0291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
@@ -63,8 +69,6 @@
 		03638D162F196CBA008A6EB8 /* ProblemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03638D112F196CBA008A6EB8 /* ProblemInfoView.swift */; };
 		03638D182F196CD4008A6EB8 /* ProblemActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03638D172F196CD4008A6EB8 /* ProblemActionButtonsView.swift */; };
 		03638D192F196CD4008A6EB8 /* ProblemActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03638D172F196CD4008A6EB8 /* ProblemActionButtonsView.swift */; };
-		03638D1B2F196EC5008A6EB8 /* VariantsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03638D1A2F196EC5008A6EB8 /* VariantsMenuView.swift */; };
-		03638D1C2F196EC5008A6EB8 /* VariantsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03638D1A2F196EC5008A6EB8 /* VariantsMenuView.swift */; };
 		0371528A296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */; };
@@ -117,6 +121,8 @@
 		03D199192C556B550082B56C /* DownloadTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D199172C556B550082B56C /* DownloadTip.swift */; };
 		03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
 		03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */; };
+		03EC6F322F282712009EF938 /* StartGroupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC6F312F282711009EF938 /* StartGroupMenuView.swift */; };
+		03EC6F332F282712009EF938 /* StartGroupMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EC6F312F282711009EF938 /* StartGroupMenuView.swift */; };
 		03F21EE42956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */; };
 		03F75D5F2B44547C002227EE /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -180,6 +186,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030738982F1BD3960034B178 /* SegmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentType.swift; sourceTree = "<group>"; };
 		030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		030AC19C27ABCF5300AF85E7 /* Pill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pill.swift; sourceTree = "<group>"; };
 		030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasLevelView.swift; sourceTree = "<group>"; };
@@ -197,6 +204,8 @@
 		031A4CAA296B0A74002CBF52 /* PoiActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiActionSheet.swift; sourceTree = "<group>"; };
 		031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiRoute.swift; sourceTree = "<group>"; };
 		031A61BA29EC7CE200B2B46E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		031EE76C2F1A35E700FCC590 /* GradeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeLabelView.swift; sourceTree = "<group>"; };
+		031EE76F2F1A46FD00FCC590 /* TappableLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableLineView.swift; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
 		031F36BE291E4E4400BD0C2B /* TickList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickList.swift; sourceTree = "<group>"; };
@@ -209,7 +218,6 @@
 		03638D112F196CBA008A6EB8 /* ProblemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemInfoView.swift; sourceTree = "<group>"; };
 		03638D122F196CBA008A6EB8 /* ProblemSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemSaveManager.swift; sourceTree = "<group>"; };
 		03638D172F196CD4008A6EB8 /* ProblemActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemActionButtonsView.swift; sourceTree = "<group>"; };
-		03638D1A2F196EC5008A6EB8 /* VariantsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariantsMenuView.swift; sourceTree = "<group>"; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterViewWithActionsheet.swift; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
@@ -234,6 +242,7 @@
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
 		03D199172C556B550082B56C /* DownloadTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTip.swift; sourceTree = "<group>"; };
 		03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRangePickerView.swift; sourceTree = "<group>"; };
+		03EC6F312F282711009EF938 /* StartGroupMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGroupMenuView.swift; sourceTree = "<group>"; };
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		03FD89952E26400000000000 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
@@ -307,6 +316,7 @@
 				37379903258E157D00711EDA /* LargeButton.swift */,
 				030AC19C27ABCF5300AF85E7 /* Pill.swift */,
 				375397C525AC6C4C00430BF4 /* Extensions.swift */,
+				030738982F1BD3960034B178 /* SegmentType.swift */,
 				030AC1B127BD590000AF85E7 /* DropShadow.swift */,
 				37DE480D25AF9AB60052428E /* TestColorView.swift */,
 				031F36C1291EA62900BD0C2B /* TestFontSize.swift */,
@@ -502,7 +512,10 @@
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
 				03502F722E263ACC00E8319E /* ZoomableScrollView.swift */,
 				37A4833F2559A73A00DBD526 /* LineView.swift */,
+				03EC6F312F282711009EF938 /* StartGroupMenuView.swift */,
+				031EE76F2F1A46FD00FCC590 /* TappableLineView.swift */,
 				3790C35E2456008F005E786E /* CubicCurveAlgorithm.swift */,
+				031EE76C2F1A35E700FCC590 /* GradeLabelView.swift */,
 			);
 			path = Topo;
 			sourceTree = "<group>";
@@ -514,7 +527,6 @@
 				03638D172F196CD4008A6EB8 /* ProblemActionButtonsView.swift */,
 				03638D112F196CBA008A6EB8 /* ProblemInfoView.swift */,
 				03638D122F196CBA008A6EB8 /* ProblemSaveManager.swift */,
-				03638D1A2F196EC5008A6EB8 /* VariantsMenuView.swift */,
 				37254DE525557BAD00264034 /* CircleView */,
 				37B4522B259144B000241091 /* Topo */,
 				030AC1AB27BBF53D00AF85E7 /* ActivityView.swift */,
@@ -693,6 +705,7 @@
 				031A4CAC296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				37DE481125AF9AC80052428E /* TestColorView.swift in Sources */,
 				3737990E258E619400711EDA /* ProblemCircleView.swift in Sources */,
+				031EE7712F1A46FD00FCC590 /* TappableLineView.swift in Sources */,
 				03D199162C5565A50082B56C /* DownloadButtonPlaceholderView.swift in Sources */,
 				3737990F258E619400711EDA /* Steepness.swift in Sources */,
 				031A4C9729673C90002CBF52 /* FlowLayout.swift in Sources */,
@@ -712,6 +725,7 @@
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37379919258E619400711EDA /* Poi.swift in Sources */,
+				031EE76D2F1A35E700FCC590 /* GradeLabelView.swift in Sources */,
 				3737991A258E619400711EDA /* CircleView.swift in Sources */,
 				038F7F472C3A8CC500AE7028 /* ClusterView.swift in Sources */,
 				031A61BC29EC7CE200B2B46E /* AppState.swift in Sources */,
@@ -744,6 +758,7 @@
 				03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */,
 				031A4CA62968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
 				0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */,
+				0307389A2F1BD3960034B178 /* SegmentType.swift in Sources */,
 				033F70D82919535A000DD3F4 /* Area.swift in Sources */,
 				3737992A258E619400711EDA /* Filters.swift in Sources */,
 				030AC19E27ABCF5300AF85E7 /* Pill.swift in Sources */,
@@ -761,8 +776,8 @@
 				031F36C3291EA62900BD0C2B /* TestFontSize.swift in Sources */,
 				03F21EE52956FFCA00D6956E /* CircuitPickerView.swift in Sources */,
 				03147EE02B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
-				03638D1C2F196EC5008A6EB8 /* VariantsMenuView.swift in Sources */,
 				03147EE62B470F59005771C3 /* AreaDownloader.swift in Sources */,
+				03EC6F322F282712009EF938 /* StartGroupMenuView.swift in Sources */,
 				03FD89952E26400000000002 /* BottomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -776,6 +791,7 @@
 				37DE480E25AF9AB60052428E /* TestColorView.swift in Sources */,
 				0314FFDF295054C500B7E249 /* AreaView.swift in Sources */,
 				038F7F482C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
+				031EE7702F1A46FD00FCC590 /* TappableLineView.swift in Sources */,
 				037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */,
 				37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */,
 				37A8C80E245326F200DC161F /* Steepness.swift in Sources */,
@@ -795,6 +811,7 @@
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
 				0314989A2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
+				031EE76E2F1A35E700FCC590 /* GradeLabelView.swift in Sources */,
 				37E260C624674466003BC672 /* Poi.swift in Sources */,
 				37E42EE1245DB52F00EEBA96 /* CircleView.swift in Sources */,
 				03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */,
@@ -827,6 +844,7 @@
 				030AC1B227BD590000AF85E7 /* DropShadow.swift in Sources */,
 				039A22A0295EE75B0096E137 /* CircuitView.swift in Sources */,
 				033F70D72919535A000DD3F4 /* Area.swift in Sources */,
+				030738992F1BD3960034B178 /* SegmentType.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
@@ -844,8 +862,8 @@
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				0343F94C2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
 				030AC1A627BAF77500AF85E7 /* TopAreasTrain.swift in Sources */,
-				03638D1B2F196EC5008A6EB8 /* VariantsMenuView.swift in Sources */,
 				031F36C2291EA62900BD0C2B /* TestFontSize.swift in Sources */,
+				03EC6F332F282712009EF938 /* StartGroupMenuView.swift in Sources */,
 				03FD89952E26400000000001 /* BottomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

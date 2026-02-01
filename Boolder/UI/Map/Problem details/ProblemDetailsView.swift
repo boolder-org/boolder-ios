@@ -20,6 +20,7 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
+    @State private var showAllLinesInFullScreen = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -27,12 +28,13 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    ZStack {
+                    ZStack(alignment: .top) {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
+                            showAllLines: .constant(false),
                             onBackgroundTap: {
-                                mapState.skipBounceAnimation = true
+                                showAllLinesInFullScreen = false
                                 presentTopoFullScreenView = true
                             }
                         )
@@ -48,13 +50,13 @@ struct ProblemDetailsView: View {
                             MagnificationGesture()
                                 .onChanged { value in
                                     if value > 1.1 {
-                                        mapState.skipBounceAnimation = true
+                                        showAllLinesInFullScreen = false
                                         presentTopoFullScreenView = true
                                     }
                                 }
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem)
+                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLinesInFullScreen)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -65,12 +67,37 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        VStack {
-                            HStack {
+                        if false { // problem.otherProblemsOnSameTopo.count > 1 {
+                            HStack(spacing: 0) {
                                 Spacer()
-                                VariantsMenuView(problem: $problem)
+                                if #available(iOS 26, *) {
+                                    Button(action: {
+                                        showAllLinesInFullScreen = true
+                                        presentTopoFullScreenView = true
+                                    }) {
+                                        Image(systemName: "arrow.trianglehead.branch")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(2)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                                }
+                                else {
+                                    Button(action: {
+                                        showAllLinesInFullScreen = true
+                                        presentTopoFullScreenView = true
+                                    }) {
+                                        Image(systemName: "arrow.trianglehead.branch")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(8)
+                                            .background(Color.black.opacity(0.3))
+                                            .clipShape(Circle())
+                                    }
+                                }
                             }
-                            Spacer()
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 4)
                         }
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
@@ -80,7 +107,7 @@ struct ProblemDetailsView: View {
                         .padding(.top, 4)
                         .padding(.horizontal)
                     
-                    ProblemActionButtonsView(problem: problem)
+                    ProblemActionButtonsView(problem: $problem)
                 }
             }
             

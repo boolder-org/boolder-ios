@@ -117,24 +117,29 @@ struct MapContainerView: View {
             }
         }
         else {
-            return -48
+            if #available(iOS 26, *) {
+                return -32
+            }
+            else {
+                return -48
+            }
         }
     }
     
     var circuitButtons : some View {
         Group {
-            if let circuitId = mapState.selectedProblem.circuitId, let circuit = Circuit.load(id: circuitId), mapState.presentProblemDetails {
+            if let circuit = mapState.selectedCircuit, mapState.presentProblemDetails, circuit.id == mapState.selectedProblem.circuitId {
                 HStack(spacing: 0) {
                     
                     if(mapState.canGoToPreviousCircuitProblem) {
                         Button(action: {
-                            mapState.selectCircuit(circuit)
                             mapState.goToPreviousCircuitProblem()
                         }) {
                             Image(systemName: "arrow.left")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.padding(2)
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(4)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -156,7 +161,7 @@ struct MapContainerView: View {
                                     .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 4)
                     }
                     
                     Spacer()
@@ -164,13 +169,13 @@ struct MapContainerView: View {
                     if(mapState.canGoToNextCircuitProblem) {
                         
                         Button(action: {
-                            mapState.selectCircuit(circuit)
                             mapState.goToNextCircuitProblem()
                         }) {
                             Image(systemName: "arrow.right")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.padding(2)
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                            .padding(4)
                                     } else {
                                         $0.padding(10)
                                     }
@@ -192,7 +197,7 @@ struct MapContainerView: View {
                                     .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 4)
                     }
                 }
                 .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)

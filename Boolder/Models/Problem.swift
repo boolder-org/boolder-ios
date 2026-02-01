@@ -102,6 +102,17 @@ struct Problem : Identifiable {
         return firstPoint
     }
     
+    var lineGradePoint: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        
+        // quick hack
+        if parentId != nil {
+            return line.overlayPoint(at: 0.25)
+        }
+        else {
+            return line.overlayPoint(at: 0.4)
+        }
+    }
     
     var isFavorite: Bool {
         favorite != nil
@@ -403,6 +414,16 @@ class StartGroup: Identifiable, Equatable {
     
     var sortedProblems: [Problem] {
         problems.sorted { $0.zIndex > $1.zIndex }
+    }
+    
+    var paginationPosition: Line.PhotoPercentCoordinate? {
+        let points = problems.compactMap { $0.lineFirstPoint }
+        guard !points.isEmpty else { return nil }
+        
+        let avgX = points.map { $0.x }.reduce(0, +) / Double(points.count)
+        let maxY = points.map { $0.y }.max() ?? 0
+        
+        return Line.PhotoPercentCoordinate(x: avgX, y: maxY)
     }
     
     static func == (lhs: StartGroup, rhs: StartGroup) -> Bool {
