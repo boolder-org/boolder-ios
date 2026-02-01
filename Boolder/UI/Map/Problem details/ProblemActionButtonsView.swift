@@ -120,7 +120,7 @@ struct ProblemActionButtonsView: View {
                 
                 if problem.variants.count > 1 {
                     Menu {
-                        ForEach(problem.variants.sorted { $0.grade > $1.grade }) { variant in
+                        ForEach(problem.variants.sorted { $0.grade < $1.grade }) { variant in
                             Button {
                                 mapState.selectProblem(variant)
                             } label: {
