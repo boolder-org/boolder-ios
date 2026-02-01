@@ -114,7 +114,6 @@ struct TopoView: View {
                             }
                         }
                         
-                        // Grade label for current problem
                         if !showAllLines, let gradePoint = problem.lineGradePoint {
                             GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
                                 .scaleEffect(counterZoomScale.wrappedValue)
@@ -122,7 +121,6 @@ struct TopoView: View {
                                 .allowsHitTesting(false)
                         }
                         
-                        // Pagination capsule positioned 40 points below the start group
                         if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
                             StartGroupMenuView(problem: $problem)
                                 .scaleEffect(counterZoomScaleIdentity)
@@ -137,7 +135,6 @@ struct TopoView: View {
                     }
                     
                     if showAllLines {
-                        // Tappable lines - placed after TapLocationView so they receive taps
                         ZStack {
                             ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
                                 if p.line?.coordinates != nil {
@@ -150,7 +147,6 @@ struct TopoView: View {
                             }
                         }
                         
-                        // Problem circles - on top of lines
                         GeometryReader { geo in
                             ZStack {
                                 ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
@@ -165,7 +161,6 @@ struct TopoView: View {
                             }
                         }
                         
-                        // Grade labels
                         GeometryReader { geo in
                             ZStack {
                                 ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
