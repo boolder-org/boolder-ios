@@ -90,7 +90,11 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
 
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
             recenterContent(in: scrollView)
-            parent.zoomScale = scrollView.zoomScale
+            // Defer state update to avoid "Modifying state during view update" warning
+            let newScale = scrollView.zoomScale
+            DispatchQueue.main.async { [weak self] in
+                self?.parent.zoomScale = newScale
+            }
         }
 
         /// Centers the hosted view within the scroll view if it's smaller than the scroll view bounds.

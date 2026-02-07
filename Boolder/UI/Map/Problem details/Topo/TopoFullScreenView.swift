@@ -19,6 +19,7 @@ struct TopoFullScreenView: View {
     @State private var toposOnBoulder: [Topo] = []
     @State private var scrollPosition: Int?
     @State private var isAdjustingScroll = false
+    @State private var isZoomedIn = false
     
     // drag gesture (to dismiss the sheet)
     @State var dragOffset: CGSize = .zero
@@ -107,13 +108,14 @@ struct TopoFullScreenView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 LazyHStack(spacing: 0) {
                                     ForEach(extendedTopos, id: \.id) { item in
-                                        ZoomableScrollView(zoomScale: $zoomScale) {
-                                            TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, onBackgroundTap: {
-                                                if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
-                                                    showAllLines = true
-                                                }
-                                            }, skipInitialBounceAnimation: true, displayedTopo: item.topo)
-                                        }
+                                        TopoPageView(
+                                            problem: $problem,
+                                            showAllLines: $showAllLines,
+                                            topo: item.topo,
+                                            onZoomChanged: { zoomed in
+                                                isZoomedIn = zoomed
+                                            }
+                                        )
                                         .containerRelativeFrame(.horizontal)
                                         .id(item.id)
                                     }
@@ -122,7 +124,7 @@ struct TopoFullScreenView: View {
                             }
                             .scrollTargetBehavior(.paging)
                             .scrollPosition(id: $scrollPosition)
-                            .scrollDisabled(zoomScale > 1.01)
+                            .scrollDisabled(isZoomedIn)
                             .onChange(of: scrollPosition) { oldValue, newValue in
                                 guard !isAdjustingScroll, let newPosition = newValue else { return }
                                 
@@ -131,7 +133,6 @@ struct TopoFullScreenView: View {
                                 // Update current topo based on scroll position
                                 if newPosition >= 1 && newPosition <= count {
                                     currentTopo = toposOnBoulder[newPosition - 1]
-                                    zoomScale = 1
                                 }
                                 
                                 // Handle infinite loop jump
@@ -139,7 +140,6 @@ struct TopoFullScreenView: View {
                                     // Scrolled to fake last item -> jump to real last
                                     isAdjustingScroll = true
                                     currentTopo = toposOnBoulder.last
-                                    zoomScale = 1
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                         var transaction = Transaction()
                                         transaction.disablesAnimations = true
@@ -155,7 +155,6 @@ struct TopoFullScreenView: View {
                                     // Scrolled to fake first item -> jump to real first
                                     isAdjustingScroll = true
                                     currentTopo = toposOnBoulder.first
-                                    zoomScale = 1
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                         var transaction = Transaction()
                                         transaction.disablesAnimations = true
@@ -246,6 +245,41 @@ struct TopoFullScreenView: View {
             }
             else {
                 $0.background(Color.systemBackground)
+            }
+        }
+    }
+}
+
+// MARK: - TopoPageView
+// Separate view for each page with its own zoom state to avoid performance issues
+private struct TopoPageView: View {
+    @Binding var problem: Problem
+    @Binding var showAllLines: Bool
+    let topo: Topo
+    let onZoomChanged: (Bool) -> Void
+    
+    @State private var zoomScale: CGFloat = 1
+    
+    var body: some View {
+        ZoomableScrollView(zoomScale: $zoomScale) {
+            TopoView(
+                problem: $problem,
+                zoomScale: $zoomScale,
+                showAllLines: $showAllLines,
+                onBackgroundTap: {
+                    if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
+                        showAllLines = true
+                    }
+                },
+                skipInitialBounceAnimation: true,
+                displayedTopo: topo
+            )
+        }
+        .onChange(of: zoomScale) { oldValue, newValue in
+            let isZoomed = newValue > 1.01
+            let wasZoomed = oldValue > 1.01
+            if isZoomed != wasZoomed {
+                onZoomChanged(isZoomed)
             }
         }
     }
