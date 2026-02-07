@@ -135,6 +135,11 @@ struct TopoFullScreenView: View {
                                     currentTopo = toposOnBoulder[newPosition - 1]
                                 }
                                 
+                                // Show all lines when paginating
+                                if oldValue != nil && oldValue != newValue {
+                                    showAllLines = true
+                                }
+                                
                                 // Handle infinite loop jump
                                 if newPosition == 0 {
                                     // Scrolled to fake last item -> jump to real last

@@ -29,6 +29,19 @@ struct TopoView: View {
         displayedTopo == nil || displayedTopo?.id == problem.topo?.id
     }
     
+    // Get all problems on the currently displayed topo
+    private var problemsOnDisplayedTopo: [Problem] {
+        guard let topo = effectiveTopo else { return [] }
+        
+        // If showing the problem's topo, use the existing computed property
+        if isShowingProblemTopo {
+            return problem.otherProblemsOnSameTopo
+        }
+        
+        // Otherwise, query problems for the displayed topo
+        return Problem.onTopo(topo.id)
+    }
+    
     @State private var isInitialLoad = true
     
     @State private var bounceAnimation = false
@@ -145,9 +158,9 @@ struct TopoView: View {
                         }
                     }
                     
-                    if showAllLines && isShowingProblemTopo {
+                    if showAllLines {
                         ZStack {
-                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                            ForEach(problemsOnDisplayedTopo, id: \.id) { p in
                                 if p.line?.coordinates != nil {
                                     TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
                                         showAllLines = false
@@ -160,7 +173,7 @@ struct TopoView: View {
                         
                         GeometryReader { geo in
                             ZStack {
-                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                ForEach(problemsOnDisplayedTopo, id: \.id) { p in
                                     if let firstPoint = p.lineFirstPoint {
                                         ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                             .allowsHitTesting(false)
@@ -174,7 +187,7 @@ struct TopoView: View {
                         
                         GeometryReader { geo in
                             ZStack {
-                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                ForEach(problemsOnDisplayedTopo, id: \.id) { p in
                                     if let gradePoint = p.lineGradePoint {
                                         GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(counterZoomScale.wrappedValue)

@@ -244,6 +244,25 @@ extension Problem {
         }
     }
     
+    static func onTopo(_ topoId: Int) -> [Problem] {
+        let lines = Table("lines")
+            .filter(Line.topoId == topoId)
+
+        do {
+            let problems = try SqliteStore.shared.db.prepare(lines).map { l in
+                Self.load(id: l[Line.problemId])
+            }
+            
+            return problems.compactMap{$0}
+                .filter { $0.topoId == topoId } // to avoid showing multi-lines problems (eg. traverses) that don't actually *start* on this topo
+                .filter { $0.line?.coordinates != nil }
+        }
+        catch {
+            print (error)
+            return []
+        }
+    }
+    
     // TODO: move to Topo
     var startGroups: [StartGroup] {
         var groups = [StartGroup]()
