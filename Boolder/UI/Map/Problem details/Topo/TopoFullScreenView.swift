@@ -177,16 +177,6 @@ struct TopoFullScreenView: View {
                                     }
                                 }
                             }
-                            .onAppear {
-                                // Jump to initial position without animation
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    var transaction = Transaction()
-                                    transaction.disablesAnimations = true
-                                    withTransaction(transaction) {
-                                        proxy.scrollTo(realIndexForCurrentTopo, anchor: .center)
-                                    }
-                                }
-                            }
                         }
                         
                         // Page indicator dots
@@ -237,6 +227,8 @@ struct TopoFullScreenView: View {
             if let topo = problem.topo {
                 toposOnBoulder = topo.onSameBoulder
                 extendedToposList = Self.buildExtendedTopos(from: toposOnBoulder)
+                // Set initial scroll position immediately to avoid flash
+                scrollPosition = realIndexForCurrentTopo
             }
         }
     }
