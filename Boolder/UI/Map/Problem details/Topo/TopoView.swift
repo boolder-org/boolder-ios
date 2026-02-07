@@ -19,6 +19,15 @@ struct TopoView: View {
     @Binding var showAllLines: Bool
     var onBackgroundTap: (() -> Void)?
     var skipInitialBounceAnimation: Bool = false
+    var displayedTopo: Topo? = nil
+    
+    private var effectiveTopo: Topo? {
+        displayedTopo ?? problem.topo
+    }
+    
+    private var isShowingProblemTopo: Bool {
+        displayedTopo == nil || displayedTopo?.id == problem.topo?.id
+    }
     
     @State private var isInitialLoad = true
     
@@ -76,7 +85,7 @@ struct TopoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                     
-                    if !showAllLines && problem.line?.coordinates != nil {
+                    if !showAllLines && problem.line?.coordinates != nil && isShowingProblemTopo {
                         LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
                     }
                     else {
@@ -98,33 +107,35 @@ struct TopoView: View {
                     }
                     
                     GeometryReader { geo in
-                        ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
-                            let p = pWithGroup.problem
-                            if let firstPoint = p.lineFirstPoint {
-                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                    .allowsHitTesting(false)
-                                    .scaleEffect(counterZoomScale.wrappedValue)
-                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    .zIndex(p == problem ? .infinity : p.zIndex)
-                                    .modifier(BounceModifier(
-                                        shouldAnimate: pWithGroup.inGroup && p != problem,
-                                        trigger: bounceAnimation,
-                                        delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
-                                    ))
+                        if isShowingProblemTopo {
+                            ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
+                                let p = pWithGroup.problem
+                                if let firstPoint = p.lineFirstPoint {
+                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                        .allowsHitTesting(false)
+                                        .scaleEffect(counterZoomScale.wrappedValue)
+                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                        .zIndex(p == problem ? .infinity : p.zIndex)
+                                        .modifier(BounceModifier(
+                                            shouldAnimate: pWithGroup.inGroup && p != problem,
+                                            trigger: bounceAnimation,
+                                            delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
+                                        ))
+                                }
                             }
-                        }
-                        
-                        if !showAllLines, let gradePoint = problem.lineGradePoint {
-                            GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
-                                .scaleEffect(counterZoomScale.wrappedValue)
-                                .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
-                                .allowsHitTesting(false)
-                        }
-                        
-                        if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
-                            StartGroupMenuView(problem: $problem)
-                                .scaleEffect(counterZoomScaleIdentity)
-                                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
+                            
+                            if !showAllLines, let gradePoint = problem.lineGradePoint {
+                                GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+                                    .scaleEffect(counterZoomScale.wrappedValue)
+                                    .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                    .allowsHitTesting(false)
+                            }
+                            
+                            if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
+                                StartGroupMenuView(problem: $problem)
+                                    .scaleEffect(counterZoomScaleIdentity)
+                                    .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
+                            }
                         }
                     }
                     
@@ -134,7 +145,7 @@ struct TopoView: View {
                         }
                     }
                     
-                    if showAllLines {
+                    if showAllLines && isShowingProblemTopo {
                         ZStack {
                             ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
                                 if p.line?.coordinates != nil {
@@ -296,12 +307,12 @@ struct TopoView: View {
         // Don't show "no photo" for the empty placeholder problem
         guard problem.id != 0 else { return }
         
-        guard let topo = problem.topo else {
+        guard let topo = effectiveTopo else {
             photoStatus = .none
             return
         }
         
-        if let photo = problem.onDiskPhoto {
+        if let photo = topo.onDiskPhoto {
             self.photoStatus = .ready(image: photo)
             return
         }
@@ -316,7 +327,7 @@ struct TopoView: View {
         if result == .success
         {
             // TODO: move this logic to Downloader
-            if let photo = problem.onDiskPhoto {
+            if let photo = topo.onDiskPhoto {
                 self.photoStatus = .ready(image: photo)
                 return
             }
@@ -351,6 +362,12 @@ struct TopoView: View {
     }
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
+        // Only handle taps for problem navigation when showing the problem's topo
+        guard isShowingProblemTopo else {
+            handleTapOnBackground()
+            return
+        }
+        
         let groups = problem.startGroups
             .filter { $0.distance(to: tapPoint) < 0.1 }
             .sorted { $0.distance(to: tapPoint) < $1.distance(to: tapPoint) }
