@@ -71,7 +71,7 @@ struct Problem : Identifiable {
     var topo: Topo? {
         guard let topoId = topoId else { return nil }
         
-        return Topo(id: topoId, areaId: areaId)
+        return Topo.load(id: topoId)
     }
     
     var onDiskPhoto: UIImage? {
