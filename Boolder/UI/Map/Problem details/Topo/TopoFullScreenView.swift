@@ -195,15 +195,16 @@ struct TopoFullScreenView: View {
                             HStack(spacing: 8) {
                                 ForEach(0..<toposOnBoulder.count, id: \.self) { index in
                                     Circle()
-                                        .fill(index == currentTopoIndex ? Color.white : Color.white.opacity(0.5))
+                                        .fill(index == currentTopoIndex ? Color.primary : Color.primary.opacity(0.3))
                                         .frame(width: 8, height: 8)
                                 }
                             }
                             .padding(.vertical, 8)
                             .padding(.horizontal, 12)
                             .background(.ultraThinMaterial, in: Capsule())
-                            .padding(.bottom, 180)
+                            .padding(.bottom, 32)
                         }
+                        .safeAreaPadding(.bottom)
                     }
                     .containerRelativeFrame(.horizontal)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
