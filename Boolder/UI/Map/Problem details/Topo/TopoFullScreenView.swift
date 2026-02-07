@@ -17,6 +17,7 @@ struct TopoFullScreenView: View {
     @State private var zoomScale: CGFloat = 1
     @State private var currentTopo: Topo?
     @State private var toposOnBoulder: [Topo] = []
+    @State private var extendedToposList: [ExtendedTopo] = []
     @State private var scrollPosition: Int?
     @State private var isAdjustingScroll = false
     @State private var isZoomedIn = false
@@ -25,30 +26,33 @@ struct TopoFullScreenView: View {
     @State var dragOffset: CGSize = .zero
     @State var dragOffsetPredicted: CGSize = .zero
     
+    // Struct for extended topos to avoid tuple overhead
+    struct ExtendedTopo: Identifiable {
+        let id: Int
+        let topo: Topo
+    }
+    
     private var boulder: Boulder? {
         guard let boulderId = problem.topo?.boulderId else { return nil }
         return Boulder(id: boulderId)
     }
     
-    // For infinite scroll: [last, ...all, first] so we can loop
-    // Index 0 = duplicate of last item
-    // Index 1 to count = real items
-    // Index count+1 = duplicate of first item
-    private var extendedTopos: [(id: Int, topo: Topo, isReal: Bool)] {
-        guard toposOnBoulder.count > 1 else { return [] }
+    // Build extended topos list for infinite scroll
+    private static func buildExtendedTopos(from topos: [Topo]) -> [ExtendedTopo] {
+        guard topos.count > 1 else { return [] }
         
-        var result: [(id: Int, topo: Topo, isReal: Bool)] = []
+        var result: [ExtendedTopo] = []
         
         // Add last topo as first (fake, for looping backward)
-        result.append((id: 0, topo: toposOnBoulder.last!, isReal: false))
+        result.append(ExtendedTopo(id: 0, topo: topos.last!))
         
         // Add all real topos
-        for (index, topo) in toposOnBoulder.enumerated() {
-            result.append((id: index + 1, topo: topo, isReal: true))
+        for (index, topo) in topos.enumerated() {
+            result.append(ExtendedTopo(id: index + 1, topo: topo))
         }
         
         // Add first topo as last (fake, for looping forward)
-        result.append((id: toposOnBoulder.count + 1, topo: toposOnBoulder.first!, isReal: false))
+        result.append(ExtendedTopo(id: topos.count + 1, topo: topos.first!))
         
         return result
     }
@@ -102,12 +106,12 @@ struct TopoFullScreenView: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
-                if toposOnBoulder.count > 1 {
+                if !extendedToposList.isEmpty {
                     ZStack {
                         ScrollViewReader { proxy in
                             ScrollView(.horizontal, showsIndicators: false) {
                                 LazyHStack(spacing: 0) {
-                                    ForEach(extendedTopos, id: \.id) { item in
+                                    ForEach(extendedToposList) { item in
                                         TopoPageView(
                                             problem: $problem,
                                             showAllLines: $showAllLines,
@@ -231,6 +235,7 @@ struct TopoFullScreenView: View {
             currentTopo = problem.topo
             if let topo = problem.topo {
                 toposOnBoulder = topo.onSameBoulder
+                extendedToposList = Self.buildExtendedTopos(from: toposOnBoulder)
             }
         }
     }

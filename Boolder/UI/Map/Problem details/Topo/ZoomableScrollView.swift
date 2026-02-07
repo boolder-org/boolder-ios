@@ -14,7 +14,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     @ViewBuilder var content: () -> Content
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(zoomScale: $zoomScale)
     }
 
     func makeUIView(context: Context) -> UIScrollView {
@@ -26,7 +26,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.zoomScale = zoomScale
-        scrollView.contentInsetAdjustmentBehavior = .never // To avoid a wierb animation buf with safe areas
+        scrollView.contentInsetAdjustmentBehavior = .never
 
         // Add double tap gesture recognizer
         let doubleTapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleDoubleTap(_:)))
@@ -55,26 +55,30 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIScrollView, context: Context) {
-        // Update content and recenter on layout/zoom changes
-        context.coordinator.hostingController?.rootView = content()
+        // Only update content when not actively zooming to avoid performance issues
+        if !context.coordinator.isZooming {
+            context.coordinator.hostingController?.rootView = content()
+        }
         context.coordinator.recenterContent(in: uiView)
         
-        // Update zoom scale if it changed externally
-        if uiView.zoomScale != zoomScale {
+        // Update zoom scale if it changed externally (not from user gesture)
+        if !context.coordinator.isZooming && abs(uiView.zoomScale - zoomScale) > 0.01 {
             uiView.setZoomScale(zoomScale, animated: false)
         }
     }
 
     class Coordinator: NSObject, UIScrollViewDelegate, UIGestureRecognizerDelegate {
         var hostingController: UIHostingController<Content>?
-        var parent: ZoomableScrollView
+        var zoomScaleBinding: Binding<CGFloat>
+        var isZooming = false
+        private var lastReportedScale: CGFloat = 1.0
 
-        init(_ parent: ZoomableScrollView) {
-            self.parent = parent
+        init(zoomScale: Binding<CGFloat>) {
+            self.zoomScaleBinding = zoomScale
+            self.lastReportedScale = zoomScale.wrappedValue
             super.init()
         }
 
-        // Allow simultaneous gesture recognition
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
             return true
         }
@@ -87,17 +91,35 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         func viewForZooming(in scrollView: UIScrollView) -> UIView? {
             hostingController?.view
         }
+        
+        func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+            isZooming = true
+        }
+        
+        func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+            isZooming = false
+            // Update SwiftUI state after zoom ends
+            updateZoomScale(scale)
+            // Trigger content update after zooming ends
+            hostingController?.view.setNeedsLayout()
+        }
 
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
             recenterContent(in: scrollView)
-            // Defer state update to avoid "Modifying state during view update" warning
+            // Only update binding periodically during zoom to reduce overhead
             let newScale = scrollView.zoomScale
+            if abs(newScale - lastReportedScale) > 0.1 {
+                updateZoomScale(newScale)
+            }
+        }
+        
+        private func updateZoomScale(_ scale: CGFloat) {
+            lastReportedScale = scale
             DispatchQueue.main.async { [weak self] in
-                self?.parent.zoomScale = newScale
+                self?.zoomScaleBinding.wrappedValue = scale
             }
         }
 
-        /// Centers the hosted view within the scroll view if it's smaller than the scroll view bounds.
         func recenterContent(in scrollView: UIScrollView) {
             guard let view = hostingController?.view else { return }
             let offsetX = max((scrollView.bounds.width - view.frame.width) * 0.5, 0)
