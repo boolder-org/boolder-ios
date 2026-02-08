@@ -61,6 +61,12 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         }
         context.coordinator.recenterContent(in: uiView)
         
+        // At zoom 1.0, content fits exactly — reset any stale content offset
+        // that may have accumulated from inset changes during content loading.
+        if !context.coordinator.isZooming && uiView.zoomScale <= 1.0 {
+            uiView.contentOffset = .zero
+        }
+        
         // Update zoom scale if it changed externally (not from user gesture)
         if !context.coordinator.isZooming && abs(uiView.zoomScale - zoomScale) > 0.01 {
             uiView.setZoomScale(zoomScale, animated: false)
@@ -122,8 +128,16 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
 
         func recenterContent(in scrollView: UIScrollView) {
             guard let view = hostingController?.view else { return }
-            let offsetX = max((scrollView.bounds.width - view.frame.width) * 0.5, 0)
-            let offsetY = max((scrollView.bounds.height - view.frame.height) * 0.5, 0)
+            let boundsSize = scrollView.bounds.size
+            let frameSize = view.frame.size
+            
+            // Don't adjust insets before layout is complete — computing insets
+            // against a zero frame produces large offsets that drift contentOffset.
+            guard boundsSize.width > 0, boundsSize.height > 0,
+                  frameSize.width > 0, frameSize.height > 0 else { return }
+            
+            let offsetX = max((boundsSize.width - frameSize.width) * 0.5, 0)
+            let offsetY = max((boundsSize.height - frameSize.height) * 0.5, 0)
             scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: offsetY, right: offsetX)
         }
     }
