@@ -139,9 +139,9 @@ struct TopoFullScreenView: View {
                                     currentTopo = toposOnBoulder[newPosition - 1]
                                 }
                                 
-                                // Show all lines when paginating
-                                if oldValue != nil && oldValue != newValue {
-                                    showAllLines = true
+                                // When not showing all lines, select the appropriate problem
+                                if !showAllLines, oldValue != nil && oldValue != newValue {
+                                    selectProblemForCurrentTopo()
                                 }
                                 
                                 // Handle infinite loop jump
@@ -149,6 +149,7 @@ struct TopoFullScreenView: View {
                                     // Scrolled to fake last item -> jump to real last
                                     isAdjustingScroll = true
                                     currentTopo = toposOnBoulder.last
+                                    if !showAllLines { selectProblemForCurrentTopo() }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                         var transaction = Transaction()
                                         transaction.disablesAnimations = true
@@ -164,6 +165,7 @@ struct TopoFullScreenView: View {
                                     // Scrolled to fake first item -> jump to real first
                                     isAdjustingScroll = true
                                     currentTopo = toposOnBoulder.first
+                                    if !showAllLines { selectProblemForCurrentTopo() }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                         var transaction = Transaction()
                                         transaction.disablesAnimations = true
@@ -230,6 +232,23 @@ struct TopoFullScreenView: View {
                 // Set initial scroll position immediately to avoid flash
                 scrollPosition = realIndexForCurrentTopo
             }
+        }
+    }
+    
+    /// When showAllLines is false, ensure the displayed problem matches the current topo.
+    /// If the current problem is on this topo, keep it. Otherwise, select the problem with the highest zIndex.
+    private func selectProblemForCurrentTopo() {
+        guard let topo = currentTopo else { return }
+        
+        // Current problem is already on this topo — keep it
+        if problem.topoId == topo.id {
+            return
+        }
+        
+        // Otherwise, pick the problem with the highest zIndex on this topo
+        let problems = Problem.onTopo(topo.id)
+        if let best = problems.max(by: { $0.zIndex < $1.zIndex }) {
+            problem = best
         }
     }
     
