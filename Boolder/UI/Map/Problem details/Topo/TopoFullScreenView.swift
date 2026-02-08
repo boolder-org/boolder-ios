@@ -21,6 +21,7 @@ struct TopoFullScreenView: View {
     @State private var scrollPosition: Int?
     @State private var isAdjustingScroll = false
     @State private var isZoomedIn = false
+    @State private var idleTask: Task<Void, Never>?
     
     // drag gesture (to dismiss the sheet)
     @State var dragOffset: CGSize = .zero
@@ -148,7 +149,7 @@ struct TopoFullScreenView: View {
                                 
                                 let count = toposOnBoulder.count
                                 
-                                // Handle infinite loop jumps (fake boundary pages)
+                                // Handle infinite loop jumps (fake boundary pages) — must be immediate
                                 if position == 0 {
                                     isAdjustingScroll = true
                                     var transaction = Transaction()
@@ -173,9 +174,15 @@ struct TopoFullScreenView: View {
                                     }
                                 }
                                 
-                                // Select the appropriate problem after the page settles
-                                if !showAllLines {
-                                    selectProblemForCurrentTopo()
+                                // Defer problem selection until idle for 0.5s
+                                // so rapid pagination doesn't trigger repeated heavy UI updates
+                                idleTask?.cancel()
+                                idleTask = Task {
+                                    try? await Task.sleep(for: .seconds(0.2))
+                                    guard !Task.isCancelled else { return }
+                                    if !showAllLines {
+                                        selectProblemForCurrentTopo()
+                                    }
                                 }
                             }
                         }
