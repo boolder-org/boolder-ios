@@ -29,6 +29,10 @@ struct TopoView: View {
         displayedTopo == nil || displayedTopo?.id == problem.topo?.id
     }
     
+    private var shouldAnimateLine: Bool {
+        mapState.selectionSource == .map || mapState.selectionSource == .circleView
+    }
+    
     // Get all problems on the currently displayed topo
     private var problemsOnDisplayedTopo: [Problem] {
         guard let topo = effectiveTopo else { return [] }
@@ -295,15 +299,14 @@ struct TopoView: View {
         }
         .onChange(of: problem) { oldValue, newValue in
             paginationPosition = newValue.startGroup?.paginationPosition
-            
             if oldValue.topoId == newValue.topoId {
-                lineDrawPercentage = 0.0
+                lineDrawPercentage = shouldAnimateLine ? 0.0 : 1.0
                 
                 displayLine()
                 animateBounceIfAllowed()
             }
             else {
-                lineDrawPercentage = 0.0
+                lineDrawPercentage = shouldAnimateLine ? 0.0 : 1.0
                 
                 Task {
                     await loadData()
@@ -332,8 +335,13 @@ struct TopoView: View {
     
     func displayLine() {
         if problem.line?.coordinates != nil {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                animate { lineDrawPercentage = 1.0 }
+            if shouldAnimateLine {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animate { lineDrawPercentage = 1.0 }
+                    showMissingLineNotice = false
+                }
+            } else {
+                lineDrawPercentage = 1.0
                 showMissingLineNotice = false
             }
         }

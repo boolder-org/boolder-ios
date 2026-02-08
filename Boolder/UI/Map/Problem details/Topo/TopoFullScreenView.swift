@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(MapState.self) private var mapState: MapState
     
     @Binding var problem: Problem
     @Binding var showAllLines: Bool
@@ -254,7 +255,7 @@ struct TopoFullScreenView: View {
         // Otherwise, pick the problem with the highest zIndex on this topo
         let problems = Problem.onTopo(topo.id)
         if let best = problems.max(by: { $0.zIndex < $1.zIndex }) {
-            problem = best
+            mapState.selectProblem(best)
         }
     }
     
