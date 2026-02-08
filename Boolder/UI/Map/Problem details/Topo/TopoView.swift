@@ -150,6 +150,19 @@ struct TopoView: View {
                                     .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
                             }
                         }
+                        else if !showAllLines {
+                            // Show circles (no lines) for problems on this topo
+                            // so the UI is ready when selectProblemForCurrentTopo fires
+                            ForEach(problemsOnDisplayedTopo, id: \.id) { p in
+                                if let firstPoint = p.lineFirstPoint {
+                                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                                        .allowsHitTesting(false)
+                                        .scaleEffect(counterZoomScale.wrappedValue)
+                                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                                        .zIndex(p.zIndex)
+                                }
+                            }
+                        }
                     }
                     
                     GeometryReader { geo in
