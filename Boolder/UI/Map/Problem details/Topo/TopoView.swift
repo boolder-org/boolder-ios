@@ -42,6 +42,11 @@ struct TopoView: View {
         return Problem.onTopo(topo.id)
     }
     
+    // The problem with the highest zIndex on the displayed topo (precomputed for the body)
+    private var topProblemOnDisplayedTopo: Problem? {
+        problemsOnDisplayedTopo.max(by: { $0.zIndex < $1.zIndex })
+    }
+    
     @State private var isInitialLoad = true
     
     @State private var bounceAnimation = false
@@ -151,8 +156,19 @@ struct TopoView: View {
                             }
                         }
                         else if !showAllLines {
-                            // Show circles (no lines) for problems on this topo
+                            // Show circles and the top problem's line for problems on this topo
                             // so the UI is ready when selectProblemForCurrentTopo fires
+                            if let topProblem = topProblemOnDisplayedTopo, topProblem.line?.coordinates != nil {
+                                LineView(problem: topProblem, drawPercentage: .constant(1.0), counterZoomScale: counterZoomScale)
+                            }
+                            
+                            if let topProblem = topProblemOnDisplayedTopo, let gradePoint = topProblem.lineGradePoint {
+                                GradeLabelView(grade: topProblem.grade.string, color: topProblem.circuitUIColorForPhotoOverlay)
+                                    .scaleEffect(counterZoomScale.wrappedValue)
+                                    .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                                    .allowsHitTesting(false)
+                            }
+                            
                             ForEach(problemsOnDisplayedTopo, id: \.id) { p in
                                 if let firstPoint = p.lineFirstPoint {
                                     ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
