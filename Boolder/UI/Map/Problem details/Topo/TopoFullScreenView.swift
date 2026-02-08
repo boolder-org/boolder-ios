@@ -178,7 +178,7 @@ struct TopoFullScreenView: View {
                                 // so rapid pagination doesn't trigger repeated heavy UI updates
                                 idleTask?.cancel()
                                 idleTask = Task {
-                                    try? await Task.sleep(for: .seconds(0.2))
+                                    try? await Task.sleep(for: .seconds(0.1))
                                     guard !Task.isCancelled else { return }
                                     if !showAllLines {
                                         selectProblemForCurrentTopo()
