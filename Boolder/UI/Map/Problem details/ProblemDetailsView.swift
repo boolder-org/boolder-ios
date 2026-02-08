@@ -22,86 +22,173 @@ struct ProblemDetailsView: View {
     @State private var presentTopoFullScreenView = false
     @State private var showAllLinesInFullScreen = false
     
+    // Pagination state
+    @State private var currentTopo: Topo?
+    @State private var toposOnBoulder: [Topo] = []
+    @State private var extendedToposList: [ExtendedTopo] = []
+    @State private var scrollPosition: Int?
+    @State private var isAdjustingScroll = false
+    @State private var idleTask: Task<Void, Never>?
+    
     @Namespace private var topoTransitionNamespace
+    
+    struct ExtendedTopo: Identifiable {
+        let id: Int
+        let topo: Topo
+    }
+    
+    private static func buildExtendedTopos(from topos: [Topo]) -> [ExtendedTopo] {
+        guard topos.count > 1 else { return [] }
+        
+        var result: [ExtendedTopo] = []
+        
+        // Add last topo as first (fake, for looping backward)
+        result.append(ExtendedTopo(id: 0, topo: topos.last!))
+        
+        // Add all real topos
+        for (index, topo) in topos.enumerated() {
+            result.append(ExtendedTopo(id: index + 1, topo: topo))
+        }
+        
+        // Add first topo as last (fake, for looping forward)
+        result.append(ExtendedTopo(id: topos.count + 1, topo: topos.first!))
+        
+        return result
+    }
+    
+    private var realIndexForCurrentTopo: Int {
+        guard let currentTopo = currentTopo else { return 1 }
+        return (toposOnBoulder.firstIndex(of: currentTopo) ?? 0) + 1
+    }
+    
+    private var currentTopoIndex: Int {
+        guard let currentTopo = currentTopo else { return 0 }
+        return toposOnBoulder.firstIndex(of: currentTopo) ?? 0
+    }
     
     var body: some View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
                     ZStack(alignment: .top) {
-                        TopoView(
-                            problem: $problem,
-                            zoomScale: .constant(1),
-                            showAllLines: .constant(false),
-                            onBackgroundTap: {
-                                showAllLinesInFullScreen = false
-                                presentTopoFullScreenView = true
-                            }
-                        )
-                        .modify {
-                            if #available(iOS 18, *) {
-                                $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace)
-                            }
-                            else {
-                                $0
-                            }
-                        }
-                        .gesture(
-                            MagnificationGesture()
-                                .onChanged { value in
-                                    if value > 1.1 {
-                                        showAllLinesInFullScreen = false
-                                        presentTopoFullScreenView = true
+                        if !extendedToposList.isEmpty {
+                            ZStack {
+                                ScrollViewReader { proxy in
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        LazyHStack(spacing: 0) {
+                                            ForEach(extendedToposList) { item in
+                                                TopoView(
+                                                    problem: $problem,
+                                                    zoomScale: .constant(1),
+                                                    showAllLines: .constant(false),
+                                                    onBackgroundTap: {
+                                                        showAllLinesInFullScreen = false
+                                                        presentTopoFullScreenView = true
+                                                    },
+                                                    skipInitialBounceAnimation: true,
+                                                    displayedTopo: item.topo
+                                                )
+                                                .containerRelativeFrame(.horizontal)
+                                                .id(item.id)
+                                            }
+                                        }
+                                        .scrollTargetLayout()
+                                    }
+                                    .scrollTargetBehavior(.paging)
+                                    .scrollPosition(id: $scrollPosition)
+                                    .onChange(of: scrollPosition) { _, newValue in
+                                        guard !isAdjustingScroll, let newPosition = newValue else { return }
+                                        let count = toposOnBoulder.count
+                                        if newPosition >= 1 && newPosition <= count {
+                                            currentTopo = toposOnBoulder[newPosition - 1]
+                                        } else if newPosition == 0 {
+                                            currentTopo = toposOnBoulder.last
+                                        } else if newPosition == count + 1 {
+                                            currentTopo = toposOnBoulder.first
+                                        }
+                                    }
+                                    .onScrollPhaseChange { _, newPhase in
+                                        guard newPhase == .idle, !isAdjustingScroll else { return }
+                                        guard let position = scrollPosition else { return }
+                                        
+                                        let count = toposOnBoulder.count
+                                        
+                                        if position == 0 {
+                                            isAdjustingScroll = true
+                                            var transaction = Transaction()
+                                            transaction.disablesAnimations = true
+                                            withTransaction(transaction) {
+                                                proxy.scrollTo(count, anchor: .center)
+                                                scrollPosition = count
+                                            }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                                isAdjustingScroll = false
+                                            }
+                                        } else if position == count + 1 {
+                                            isAdjustingScroll = true
+                                            var transaction = Transaction()
+                                            transaction.disablesAnimations = true
+                                            withTransaction(transaction) {
+                                                proxy.scrollTo(1, anchor: .center)
+                                                scrollPosition = 1
+                                            }
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                                isAdjustingScroll = false
+                                            }
+                                        }
+                                        
+                                        idleTask?.cancel()
+                                        idleTask = Task {
+                                            try? await Task.sleep(for: .seconds(0.2))
+                                            guard !Task.isCancelled else { return }
+                                            selectProblemForCurrentTopo()
+                                        }
                                     }
                                 }
-                        )
-                        .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLinesInFullScreen)
-                                .modify {
-                                    if #available(iOS 18, *) {
-                                        $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
-                                    }
-                                    else {
-                                        $0
-                                    }
-                                }
-                        }
-                        
-                        if false { // problem.otherProblemsOnSameTopo.count > 1 {
-                            HStack(spacing: 0) {
-                                Spacer()
-                                if #available(iOS 26, *) {
-                                    Button(action: {
-                                        showAllLinesInFullScreen = true
-                                        presentTopoFullScreenView = true
-                                    }) {
-                                        Image(systemName: "arrow.trianglehead.branch")
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(2)
-                                    }
-                                    .buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                                }
-                                else {
-                                    Button(action: {
-                                        showAllLinesInFullScreen = true
-                                        presentTopoFullScreenView = true
-                                    }) {
-                                        Image(systemName: "arrow.trianglehead.branch")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(8)
-                                            .background(Color.black.opacity(0.3))
-                                            .clipShape(Circle())
-                                    }
-                                }
+                                
                             }
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 4)
+                        } else {
+                            TopoView(
+                                problem: $problem,
+                                zoomScale: .constant(1),
+                                showAllLines: .constant(false),
+                                onBackgroundTap: {
+                                    showAllLinesInFullScreen = false
+                                    presentTopoFullScreenView = true
+                                }
+                            )
                         }
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
+                    .modify {
+                        if #available(iOS 18, *) {
+                            $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace)
+                        }
+                        else {
+                            $0
+                        }
+                    }
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                if value > 1.1 {
+                                    showAllLinesInFullScreen = false
+                                    presentTopoFullScreenView = true
+                                }
+                            }
+                    )
+                    .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                        TopoFullScreenView(problem: $problem, showAllLines: $showAllLinesInFullScreen)
+                            .modify {
+                                if #available(iOS 18, *) {
+                                    $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
+                                }
+                                else {
+                                    $0
+                                }
+                            }
+                    }
                     
                     ProblemInfoView(problem: problem)
                         .padding(.top, 4)
@@ -115,6 +202,17 @@ struct ProblemDetailsView: View {
         }
         .onAppear {
             viewCount += 1
+            setupTopos()
+        }
+        .onChange(of: problem) { oldValue, newValue in
+            if oldValue.topo?.boulderId != newValue.topo?.boulderId {
+                // Different boulder: rebuild the entire topo list
+                setupTopos()
+            } else if oldValue.topoId != newValue.topoId {
+                // Same boulder, different topo: scroll to the right page
+                currentTopo = newValue.topo
+                scrollPosition = realIndexForCurrentTopo
+            }
         }
         // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
         .onChange(of: viewCount) {
@@ -126,6 +224,32 @@ struct ProblemDetailsView: View {
                 presentReview()
                 lastVersionPromptedForReview = currentAppVersion
             }
+        }
+    }
+    
+    private func setupTopos() {
+        currentTopo = problem.topo
+        if let topo = problem.topo {
+            toposOnBoulder = topo.onSameBoulder
+            extendedToposList = Self.buildExtendedTopos(from: toposOnBoulder)
+            scrollPosition = realIndexForCurrentTopo
+        } else {
+            toposOnBoulder = []
+            extendedToposList = []
+            scrollPosition = nil
+        }
+    }
+    
+    private func selectProblemForCurrentTopo() {
+        guard let topo = currentTopo else { return }
+        
+        if problem.topoId == topo.id {
+            return
+        }
+        
+        let problems = Problem.onTopo(topo.id)
+        if let best = problems.max(by: { $0.zIndex < $1.zIndex }) {
+            mapState.selectProblem(best)
         }
     }
     
@@ -147,4 +271,3 @@ struct ProblemDetailsView: View {
 //            .environment(\.managedObjectContext, context)
 //    }
 //}
-
