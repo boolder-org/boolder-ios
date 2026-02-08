@@ -189,6 +189,7 @@
 "problem.topo.timeout" = "Vérifiez votre connexion à Internet";
 "problem.topo.error" = "Échec de chargement de la photo";
 "problem.topo.retry" = "Réessayer";
+"problem.topo.show_all" = "Afficher tout";
 "problem.action.see_circuit" = "Circuit";
 "problem.action.see_circuit_on_map" = "Voir le circuit sur la carte";
 "problem.action.hide_circuit_on_map" = "Masquer le circuit sur la carte";

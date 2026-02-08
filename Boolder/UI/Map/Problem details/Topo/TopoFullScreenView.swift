@@ -93,6 +93,27 @@ struct TopoFullScreenView: View {
                             }
                             
                             Spacer()
+                            
+                            if !showAllLines {
+                                if #available(iOS 26, *) {
+                                    Button(action: { showAllLines = true }) {
+                                        Text("problem.topo.show_all")
+                                            .foregroundColor(.primary)
+                                            .padding(.horizontal, 4)
+                                            .padding(.vertical, 2)
+                                    }
+                                    .buttonStyle(.glass)
+                                }
+                                else {
+                                    Button(action: { showAllLines = true }) {
+                                        Text("problem.topo.show_all")
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 6)
+                                            .background(.ultraThinMaterial, in: Capsule())
+                                    }
+                                }
+                            }
                         }
                     }
                     .padding()
