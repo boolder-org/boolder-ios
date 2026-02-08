@@ -129,54 +129,53 @@ struct TopoFullScreenView: View {
                             .scrollTargetBehavior(.paging)
                             .scrollPosition(id: $scrollPosition)
                             .scrollDisabled(isZoomedIn)
-                            .onChange(of: scrollPosition) { oldValue, newValue in
+                            .onChange(of: scrollPosition) { _, newValue in
+                                // Lightweight: only update currentTopo for the page indicator dots
                                 guard !isAdjustingScroll, let newPosition = newValue else { return }
+                                let count = toposOnBoulder.count
+                                if newPosition >= 1 && newPosition <= count {
+                                    currentTopo = toposOnBoulder[newPosition - 1]
+                                } else if newPosition == 0 {
+                                    currentTopo = toposOnBoulder.last
+                                } else if newPosition == count + 1 {
+                                    currentTopo = toposOnBoulder.first
+                                }
+                            }
+                            .onScrollPhaseChange { _, newPhase in
+                                // Wait until scrolling is fully done before doing any heavy work
+                                guard newPhase == .idle, !isAdjustingScroll else { return }
+                                guard let position = scrollPosition else { return }
                                 
                                 let count = toposOnBoulder.count
                                 
-                                // Update current topo based on scroll position
-                                if newPosition >= 1 && newPosition <= count {
-                                    currentTopo = toposOnBoulder[newPosition - 1]
+                                // Handle infinite loop jumps (fake boundary pages)
+                                if position == 0 {
+                                    isAdjustingScroll = true
+                                    var transaction = Transaction()
+                                    transaction.disablesAnimations = true
+                                    withTransaction(transaction) {
+                                        proxy.scrollTo(count, anchor: .center)
+                                        scrollPosition = count
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                        isAdjustingScroll = false
+                                    }
+                                } else if position == count + 1 {
+                                    isAdjustingScroll = true
+                                    var transaction = Transaction()
+                                    transaction.disablesAnimations = true
+                                    withTransaction(transaction) {
+                                        proxy.scrollTo(1, anchor: .center)
+                                        scrollPosition = 1
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                        isAdjustingScroll = false
+                                    }
                                 }
                                 
-                                // When not showing all lines, select the appropriate problem
-                                if !showAllLines, oldValue != nil && oldValue != newValue {
+                                // Select the appropriate problem after the page settles
+                                if !showAllLines {
                                     selectProblemForCurrentTopo()
-                                }
-                                
-                                // Handle infinite loop jump
-                                if newPosition == 0 {
-                                    // Scrolled to fake last item -> jump to real last
-                                    isAdjustingScroll = true
-                                    currentTopo = toposOnBoulder.last
-                                    if !showAllLines { selectProblemForCurrentTopo() }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        var transaction = Transaction()
-                                        transaction.disablesAnimations = true
-                                        withTransaction(transaction) {
-                                            proxy.scrollTo(count, anchor: .center)
-                                            scrollPosition = count
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                            isAdjustingScroll = false
-                                        }
-                                    }
-                                } else if newPosition == count + 1 {
-                                    // Scrolled to fake first item -> jump to real first
-                                    isAdjustingScroll = true
-                                    currentTopo = toposOnBoulder.first
-                                    if !showAllLines { selectProblemForCurrentTopo() }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        var transaction = Transaction()
-                                        transaction.disablesAnimations = true
-                                        withTransaction(transaction) {
-                                            proxy.scrollTo(1, anchor: .center)
-                                            scrollPosition = 1
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                            isAdjustingScroll = false
-                                        }
-                                    }
                                 }
                             }
                         }
