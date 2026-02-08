@@ -411,11 +411,11 @@ struct TopoView: View {
     }
     
     func handleTap(at tapPoint: Line.PhotoPercentCoordinate) {
-        // Only handle taps for problem navigation when showing the problem's topo
-        guard isShowingProblemTopo else {
-            handleTapOnBackground()
-            return
-        }
+//        // Only handle taps for problem navigation when showing the problem's topo
+//        guard isShowingProblemTopo else {
+//            handleTapOnBackground()
+//            return
+//        }
         
         let groups = problem.startGroups
             .filter { $0.distance(to: tapPoint) < 0.1 }
