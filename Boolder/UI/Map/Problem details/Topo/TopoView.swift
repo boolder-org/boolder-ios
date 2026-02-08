@@ -299,22 +299,21 @@ struct TopoView: View {
         }
         .onChange(of: problem) { oldValue, newValue in
             paginationPosition = newValue.startGroup?.paginationPosition
-            if oldValue.topoId == newValue.topoId {
-                lineDrawPercentage = shouldAnimateLine ? 0.0 : 1.0
-                
-                displayLine()
-                animateBounceIfAllowed()
-            }
-            else {
-                lineDrawPercentage = shouldAnimateLine ? 0.0 : 1.0
-                
+            lineDrawPercentage = shouldAnimateLine ? 0.0 : 1.0
+            
+            if oldValue.topoId != newValue.topoId && displayedTopo == nil {
+                // No fixed displayedTopo — reload photo for the new topo
                 Task {
                     await loadData()
                 }
-                // animateBounceIfAllowed will be called in photoStatus onChange when photo loads
+                // displayLine & animateBounce will be called in photoStatus onChange when photo loads
+            }
+            else {
+                displayLine()
+                animateBounceIfAllowed()
             }
         }
-        .task {
+        .task(id: effectiveTopo?.id) {
             paginationPosition = problem.startGroup?.paginationPosition
             await loadData()
         }
