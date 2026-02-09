@@ -34,6 +34,9 @@ struct MapContainerView: View {
             
             circuitButtons
             
+            dismissButton
+                .zIndex(35)
+            
             fabButtonsContainer
                 .zIndex(10)
             
@@ -43,7 +46,7 @@ struct MapContainerView: View {
             
             AreaToolbarView()
                 .zIndex(30)
-                .opacity(mapState.selectedArea != nil ? 1 : 0)
+                .opacity(mapState.selectedArea != nil && !mapState.presentProblemDetails ? 1 : 0)
         }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in
             if let problem = appState.selectedProblem {
@@ -306,6 +309,46 @@ struct MapContainerView: View {
                     $0.buttonStyle(FabButton())
                 }
             }
+        }
+    }
+    
+    var dismissButton: some View {
+        VStack {
+            HStack {
+                if mapState.presentProblemDetails {
+                    Button(action: {
+                        mapState.presentProblemDetails = false
+                    }) {
+                        Image(systemName: "xmark")
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .padding(4)
+                                } else {
+                                    $0.foregroundColor(.primary)
+                                        .padding(10)
+                                }
+                            }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                                .buttonBorderShape(.circle)
+                        } else {
+                            $0
+                                .background(Color(.systemBackground))
+                                .clipShape(Circle())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                        }
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
+            
+            Spacer()
         }
     }
     
