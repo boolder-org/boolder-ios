@@ -58,6 +58,28 @@ extension Topo {
         }
     }
     
+    var problems: [Problem] {
+        let lines = Table("lines")
+            .filter(Line.topoId == id)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(lines).map { l in
+                Problem.load(id: l[Line.problemId])
+            }
+            .compactMap { $0 }
+            .filter { $0.topoId == id }
+            .filter { $0.line?.coordinates != nil }
+        }
+        catch {
+            print(error)
+            return []
+        }
+    }
+    
+    var topProblem: Problem? {
+        problems.max { $0.zIndex < $1.zIndex }
+    }
+    
     var onSameBoulder: [Topo] {
         guard let boulderId = boulderId else { return [] }
         

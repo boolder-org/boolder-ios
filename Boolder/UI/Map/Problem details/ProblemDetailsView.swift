@@ -102,12 +102,21 @@ struct ProblemDetailsView: View {
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     
-                    ProblemInfoView(problem: problem)
-                        .padding(.top, 4)
-                        .padding(.horizontal)
-                    
-                    ProblemActionButtonsView(problem: $problem)
+                    if !mapState.showAllLines {
+                        VStack(alignment: .leading) {
+                            ProblemInfoView(problem: problem)
+                                .padding(.top, 4)
+                                .padding(.horizontal)
+                            
+                            ProblemActionButtonsView(problem: $problem)
+                        }
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                    } else {
+                        topoNavigationButtons
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
                 }
+                .animation(.easeInOut(duration: 0.3), value: mapState.showAllLines)
             }
             
             Spacer()
@@ -125,6 +134,73 @@ struct ProblemDetailsView: View {
                 presentReview()
                 lastVersionPromptedForReview = currentAppVersion
             }
+        }
+    }
+    
+    var topoNavigationButtons: some View {
+        HStack {
+            if let previousTopo = previousTopo {
+                Button(action: {
+                    goToTopo(previousTopo)
+                }) {
+                    Label("Previous", systemImage: "chevron.left")
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                            .buttonBorderShape(.capsule)
+                    } else {
+                        $0
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color(.systemBackground))
+                            .clipShape(Capsule())
+                            .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            if let nextTopo = nextTopo {
+                Button(action: {
+                    goToTopo(nextTopo)
+                }) {
+                    Label("Next", systemImage: "chevron.right")
+                        .environment(\.layoutDirection, .rightToLeft)
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                            .buttonBorderShape(.capsule)
+                    } else {
+                        $0
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color(.systemBackground))
+                            .clipShape(Capsule())
+                            .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                    }
+                }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, 8)
+    }
+    
+    private var nextTopo: Topo? {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return nil }
+        return Boulder(id: boulderId).nextTopo(after: topo)
+    }
+    
+    private var previousTopo: Topo? {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return nil }
+        return Boulder(id: boulderId).previousTopo(before: topo)
+    }
+    
+    private func goToTopo(_ topo: Topo) {
+        if let topProblem = topo.topProblem {
+            mapState.selectProblem(topProblem)
         }
     }
     
