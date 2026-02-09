@@ -78,6 +78,9 @@ struct TopoFullScreenView: View {
                     if !mapState.showAllLines {                        
                         overlayInfos
                             .transition(.move(edge: .bottom).combined(with: .opacity))
+                    } else {
+                        topoNavigationButtons
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
                 .animation(.easeInOut(duration: 0.3), value: mapState.showAllLines)
@@ -102,6 +105,73 @@ struct TopoFullScreenView: View {
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    var topoNavigationButtons: some View {
+        HStack {
+            if let previousTopo = previousTopo {
+                Button(action: {
+                    goToTopo(previousTopo)
+                }) {
+                    Label("Previous", systemImage: "chevron.left")
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                            .buttonBorderShape(.capsule)
+                    } else {
+                        $0
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color.black.opacity(0.3))
+                            .clipShape(Capsule())
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            if let nextTopo = nextTopo {
+                Button(action: {
+                    goToTopo(nextTopo)
+                }) {
+                    Label("Next", systemImage: "chevron.right")
+                        .environment(\.layoutDirection, .rightToLeft)
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                            .buttonBorderShape(.capsule)
+                    } else {
+                        $0
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color.black.opacity(0.3))
+                            .clipShape(Capsule())
+                    }
+                }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.bottom)
+    }
+    
+    private var nextTopo: Topo? {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return nil }
+        return Boulder(id: boulderId).nextTopo(after: topo)
+    }
+    
+    private var previousTopo: Topo? {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return nil }
+        return Boulder(id: boulderId).previousTopo(before: topo)
+    }
+    
+    private func goToTopo(_ topo: Topo) {
+        if let topProblem = topo.topProblem {
+            mapState.selectProblem(topProblem)
+        }
     }
     
     var overlayInfos: some View {
