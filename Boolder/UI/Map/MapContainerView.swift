@@ -345,24 +345,30 @@ struct MapContainerView: View {
                 
                 Spacer()
                 
-                if mapState.presentProblemDetails && !mapState.showAllLines {
+                if mapState.presentProblemDetails {
                     if #available(iOS 26, *) {
-                        Button(action: { mapState.showAllLines = true }) {
-                            Text("Afficher tout")
+                        Button(action: { mapState.showAllLines.toggle() }) {
+                            Text("Vue bloc")
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 2)
                         }
-                        .buttonStyle(.glass)
+                        .modify {
+                            if mapState.showAllLines {
+                                $0.buttonStyle(.glassProminent)
+                            } else {
+                                $0.buttonStyle(.glass)
+                            }
+                        }
                         .buttonBorderShape(.capsule)
                     }
                     else {
-                        Button(action: { mapState.showAllLines = true }) {
-                            Text("Afficher tout")
+                        Button(action: { mapState.showAllLines.toggle() }) {
+                            Text("Vue bloc")
                                 .foregroundColor(.primary)
                                 .font(.body)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 6)
-                                .background(Color(.systemBackground))
+                                .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
                                 .clipShape(Capsule())
                                 .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                         }

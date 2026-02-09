@@ -47,26 +47,30 @@ struct TopoFullScreenView: View {
                             
                             Spacer()
                             
-                            if !mapState.showAllLines {
-                                if #available(iOS 26, *) {
-                                    Button(action: { mapState.showAllLines = true }) {
-                                        Text("Afficher tout")
-                                            .padding(.horizontal, 4)
-                                            .padding(.vertical, 2)
-                                    }
-                                    .buttonStyle(.glass)
-                                    .buttonBorderShape(.capsule)
+                            if #available(iOS 26, *) {
+                                Button(action: { mapState.showAllLines.toggle() }) {
+                                    Text("Vue bloc")
+                                        .padding(.horizontal, 4)
+                                        .padding(.vertical, 2)
                                 }
-                                else {
-                                    Button(action: { mapState.showAllLines = true }) {
-                                        Text("Afficher tout")
-                                            .foregroundColor(Color(UIColor.white))
-                                            .font(.body)
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 6)
-                                            .background(Color.black.opacity(0.3))
-                                            .clipShape(Capsule())
+                                .modify {
+                                    if mapState.showAllLines {
+                                        $0.buttonStyle(.glassProminent)
+                                    } else {
+                                        $0.buttonStyle(.glass)
                                     }
+                                }
+                                .buttonBorderShape(.capsule)
+                            }
+                            else {
+                                Button(action: { mapState.showAllLines.toggle() }) {
+                                    Text("Vue bloc")
+                                        .foregroundColor(Color(UIColor.white))
+                                        .font(.body)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(mapState.showAllLines ? Color.accentColor.opacity(0.5) : Color.black.opacity(0.3))
+                                        .clipShape(Capsule())
                                 }
                             }
                         }
