@@ -20,7 +20,7 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
-    @State private var showAllLinesInFullScreen = false
+    @State private var showAllLines = false
     
     // Pagination state
     @State private var currentTopo: Topo?
@@ -80,10 +80,9 @@ struct ProblemDetailsView: View {
                                                 TopoView(
                                                     problem: $problem,
                                                     zoomScale: .constant(1),
-                                                    showAllLines: .constant(false),
+                                                    showAllLines: $showAllLines,
                                                     onBackgroundTap: {
-                                                        showAllLinesInFullScreen = false
-                                                        presentTopoFullScreenView = true
+                                                        showAllLines = true
                                                     },
                                                     skipInitialBounceAnimation: true,
                                                     displayedTopo: item.topo
@@ -151,10 +150,9 @@ struct ProblemDetailsView: View {
                             TopoView(
                                 problem: $problem,
                                 zoomScale: .constant(1),
-                                showAllLines: .constant(false),
+                                showAllLines: $showAllLines,
                                 onBackgroundTap: {
-                                    showAllLinesInFullScreen = false
-                                    presentTopoFullScreenView = true
+                                    showAllLines = true
                                 }
                             )
                         }
@@ -173,13 +171,20 @@ struct ProblemDetailsView: View {
                         MagnificationGesture()
                             .onChanged { value in
                                 if value > 1.1 {
-                                    showAllLinesInFullScreen = false
+                                    presentTopoFullScreenView = true
+                                }
+                            }
+                    )
+                    .simultaneousGesture(
+                        DragGesture(minimumDistance: 30)
+                            .onEnded { value in
+                                if value.translation.height < -50 && abs(value.translation.height) > abs(value.translation.width) {
                                     presentTopoFullScreenView = true
                                 }
                             }
                     )
                     .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                        TopoFullScreenView(problem: $problem, showAllLines: $showAllLinesInFullScreen)
+                        TopoFullScreenView(problem: $problem, showAllLines: $showAllLines)
                             .modify {
                                 if #available(iOS 18, *) {
                                     $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -212,6 +217,12 @@ struct ProblemDetailsView: View {
                 // Same boulder, different topo: scroll to the right page
                 currentTopo = newValue.topo
                 scrollPosition = realIndexForCurrentTopo
+            }
+        }
+        .onChange(of: mapState.requestTopoFullScreen) { _, newValue in
+            if newValue {
+                presentTopoFullScreenView = true
+                mapState.requestTopoFullScreen = false
             }
         }
         // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews

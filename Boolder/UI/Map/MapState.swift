@@ -37,6 +37,7 @@ class MapState {
     var presentAreaView = false
     var presentCircuitPicker = false
     var displayCircuitStartButton = false
+    var requestTopoFullScreen = false
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
