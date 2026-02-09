@@ -344,6 +344,30 @@ struct MapContainerView: View {
                 }
                 
                 Spacer()
+                
+                if mapState.presentProblemDetails && !mapState.showAllLines {
+                    if #available(iOS 26, *) {
+                        Button(action: { mapState.showAllLines = true }) {
+                            Text("Afficher tout")
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 2)
+                        }
+                        .buttonStyle(.glass)
+                        .buttonBorderShape(.capsule)
+                    }
+                    else {
+                        Button(action: { mapState.showAllLines = true }) {
+                            Text("Afficher tout")
+                                .foregroundColor(.primary)
+                                .font(.body)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(Color(.systemBackground))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                        }
+                    }
+                }
             }
             .padding(.horizontal)
             .padding(.top, 8)

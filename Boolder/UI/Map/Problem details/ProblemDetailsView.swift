@@ -20,11 +20,12 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
-    @State private var showAllLinesInFullScreen = false
     
     @Namespace private var topoTransitionNamespace
     
     var body: some View {
+        @Bindable var mapState = mapState
+        
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
@@ -32,7 +33,7 @@ struct ProblemDetailsView: View {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
-                            showAllLines: $showAllLinesInFullScreen,
+                            showAllLines: $mapState.showAllLines,
                             onBackgroundTap: {
                                 presentTopoFullScreenView = true
                             }
@@ -54,7 +55,7 @@ struct ProblemDetailsView: View {
                                 }
                         )
                         .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem, showAllLines: $showAllLinesInFullScreen)
+                            TopoFullScreenView(problem: $problem)
                                 .modify {
                                     if #available(iOS 18, *) {
                                         $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
@@ -70,7 +71,7 @@ struct ProblemDetailsView: View {
                                 Spacer()
                                 if #available(iOS 26, *) {
                                     Button(action: {
-                                        showAllLinesInFullScreen = true
+                                        mapState.showAllLines = true
                                         presentTopoFullScreenView = true
                                     }) {
                                         Image(systemName: "arrow.trianglehead.branch")
@@ -82,7 +83,7 @@ struct ProblemDetailsView: View {
                                 }
                                 else {
                                     Button(action: {
-                                        showAllLinesInFullScreen = true
+                                        mapState.showAllLines = true
                                         presentTopoFullScreenView = true
                                     }) {
                                         Image(systemName: "arrow.trianglehead.branch")

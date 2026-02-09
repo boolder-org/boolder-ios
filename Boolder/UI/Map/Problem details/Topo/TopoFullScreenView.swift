@@ -10,9 +10,9 @@ import SwiftUI
 
 struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(MapState.self) private var mapState: MapState
     
     @Binding var problem: Problem
-    @Binding var showAllLines: Bool
     
     @State private var zoomScale: CGFloat = 1
     
@@ -21,6 +21,8 @@ struct TopoFullScreenView: View {
     @State var dragOffsetPredicted: CGSize = .zero
     
     var body: some View {
+        @Bindable var mapState = mapState
+        
         VStack {
             ZStack {
                 VStack {
@@ -44,25 +46,48 @@ struct TopoFullScreenView: View {
                             }
                             
                             Spacer()
+                            
+                            if !mapState.showAllLines {
+                                if #available(iOS 26, *) {
+                                    Button(action: { mapState.showAllLines = true }) {
+                                        Text("Afficher tout")
+                                            .padding(.horizontal, 4)
+                                            .padding(.vertical, 2)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.capsule)
+                                }
+                                else {
+                                    Button(action: { mapState.showAllLines = true }) {
+                                        Text("Afficher tout")
+                                            .foregroundColor(Color(UIColor.white))
+                                            .font(.body)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 6)
+                                            .background(Color.black.opacity(0.3))
+                                            .clipShape(Capsule())
+                                    }
+                                }
+                            }
                         }
                     }
                     .padding()
                     
                     Spacer()
                     
-                    if !showAllLines {                        
+                    if !mapState.showAllLines {                        
                         overlayInfos
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
-                .animation(.easeInOut(duration: 0.3), value: showAllLines)
+                .animation(.easeInOut(duration: 0.3), value: mapState.showAllLines)
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, onBackgroundTap: {
-                        if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
-                            showAllLines = true
+                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $mapState.showAllLines, onBackgroundTap: {
+                        if !mapState.showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
+                            mapState.showAllLines = true
                         }
                     }, skipInitialBounceAnimation: true)
                 }
