@@ -95,6 +95,8 @@
 		039A22A7295F21FA0096E137 /* AreaProblemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A22A5295F21F90096E137 /* AreaProblemsView.swift */; };
 		039FFC8B2F379C8900A5E597 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 039FFC8A2F379C8900A5E597 /* boolder.db */; };
 		039FFC8C2F379C8900A5E597 /* boolder.db in Resources */ = {isa = PBXBuildFile; fileRef = 039FFC8A2F379C8900A5E597 /* boolder.db */; };
+		039FFC8E2F379ECF00A5E597 /* Boulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FFC8D2F379ECF00A5E597 /* Boulder.swift */; };
+		039FFC8F2F379ECF00A5E597 /* Boulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039FFC8D2F379ECF00A5E597 /* Boulder.swift */; };
 		03AB8B862C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AB8B852C8EF32D00093D76 /* TapLocationView.swift */; };
 		03B910702B2C798200DE7B45 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */; };
@@ -231,6 +233,7 @@
 		039A229F295EE75B0096E137 /* CircuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitView.swift; sourceTree = "<group>"; };
 		039A22A5295F21F90096E137 /* AreaProblemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaProblemsView.swift; sourceTree = "<group>"; };
 		039FFC8A2F379C8900A5E597 /* boolder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = boolder.db; sourceTree = "<group>"; };
+		039FFC8D2F379ECF00A5E597 /* Boulder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boulder.swift; sourceTree = "<group>"; };
 		03AB8B852C8EF32D00093D76 /* TapLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapLocationView.swift; sourceTree = "<group>"; };
 		03B9106F2B2C798200DE7B45 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxViewController.swift; sourceTree = "<group>"; };
@@ -497,6 +500,7 @@
 				37254DE825557F9700264034 /* GradeRange.swift */,
 				37A8C80C245326F200DC161F /* Line.swift */,
 				03C5A3632C4F9E980057C42A /* Topo.swift */,
+				039FFC8D2F379ECF00A5E597 /* Boulder.swift */,
 				37A8C80D245326F200DC161F /* Filters.swift */,
 				37E260C524674466003BC672 /* Poi.swift */,
 				031A4CAD296B0DF3002CBF52 /* PoiRoute.swift */,
@@ -721,6 +725,7 @@
 				37379914258E619400711EDA /* UserStore.xcdatamodeld in Sources */,
 				37379915258E619400711EDA /* AppDelegate.swift in Sources */,
 				03502F742E263ACC00E8319E /* ZoomableScrollView.swift in Sources */,
+				039FFC8F2F379ECF00A5E597 /* Boulder.swift in Sources */,
 				37C8D3C325ABA6FB002FBDCF /* SettingsView.swift in Sources */,
 				37379917258E619400711EDA /* SceneDelegate.swift in Sources */,
 				03C104EA290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
@@ -807,6 +812,7 @@
 				031A61BB29EC7CE200B2B46E /* AppState.swift in Sources */,
 				03147EE52B470F59005771C3 /* AreaDownloader.swift in Sources */,
 				03502F732E263ACC00E8319E /* ZoomableScrollView.swift in Sources */,
+				039FFC8E2F379ECF00A5E597 /* Boulder.swift in Sources */,
 				3794555F25AB6DC9009C47A4 /* SettingsView.swift in Sources */,
 				03C104E9290ACC1A007A94D7 /* MapboxViewController.swift in Sources */,
 				37A8C62C2453263300DC161F /* SceneDelegate.swift in Sources */,
