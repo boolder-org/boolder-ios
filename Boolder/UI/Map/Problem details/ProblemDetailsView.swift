@@ -32,9 +32,8 @@ struct ProblemDetailsView: View {
                         TopoView(
                             problem: $problem,
                             zoomScale: .constant(1),
-                            showAllLines: .constant(false),
+                            showAllLines: $showAllLinesInFullScreen,
                             onBackgroundTap: {
-                                showAllLinesInFullScreen = false
                                 presentTopoFullScreenView = true
                             }
                         )
@@ -50,7 +49,6 @@ struct ProblemDetailsView: View {
                             MagnificationGesture()
                                 .onChanged { value in
                                     if value > 1.1 {
-                                        showAllLinesInFullScreen = false
                                         presentTopoFullScreenView = true
                                     }
                                 }
