@@ -141,13 +141,39 @@ struct ProblemDetailsView: View {
         GeometryReader { geo in
             let count = CGFloat(boulderTopos.count)
             let spacing: CGFloat = 8
+            let buttonSize: CGFloat = 54
             let horizontalPadding: CGFloat = 16
-            let availableWidth = geo.size.width - horizontalPadding * 2 - spacing * max(count - 1, 0)
+            let buttonsWidth = buttonSize * 2 + spacing * 2
+            let availableWidth = geo.size.width - horizontalPadding * 2 - buttonsWidth - spacing * max(count - 1, 0)
             let thumbnailWidth = min(72, availableWidth / max(count, 1))
             
             HStack(spacing: spacing) {
+                Button {
+                    goToPreviousTopo()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.primary)
+                        .frame(width: buttonSize, height: buttonSize)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
+                }
+                
+                Spacer(minLength: 0)
+                
                 ForEach(boulderTopos) { topo in
                     topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth)
+                }
+                
+                Spacer(minLength: 0)
+                
+                Button {
+                    goToNextTopo()
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.primary)
+                        .frame(width: buttonSize, height: buttonSize)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
                 }
             }
             .padding(.horizontal, horizontalPadding)
@@ -198,6 +224,18 @@ struct ProblemDetailsView: View {
         if let topProblem = topo.topProblem {
             mapState.selectProblem(topProblem)
         }
+    }
+    
+    private func goToPreviousTopo() {
+        guard let topo = problem.topo, let boulderId = topo.boulderId,
+              let previous = Boulder(id: boulderId).previousTopo(before: topo) else { return }
+        goToTopo(previous)
+    }
+    
+    private func goToNextTopo() {
+        guard let topo = problem.topo, let boulderId = topo.boulderId,
+              let next = Boulder(id: boulderId).nextTopo(after: topo) else { return }
+        goToTopo(next)
     }
     
     private func presentReview() {
