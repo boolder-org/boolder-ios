@@ -138,41 +138,57 @@ struct ProblemDetailsView: View {
     }
     
     var topoCarousel: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                ForEach(boulderTopos) { topo in
-                    Button {
-                        goToTopo(topo)
-                    } label: {
-                        if let photo = topo.onDiskPhoto {
-                            Image(uiImage: photo)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 72, height: 54)
-                                .clipped()
-                                .cornerRadius(6)
-                        } else {
-                            RoundedRectangle(cornerRadius: 6)
-                                .fill(Color(.secondarySystemFill))
-                                .frame(width: 72, height: 54)
-                        }
-                    }
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 6)
-                            .stroke(topo.id == problem.topoId ? Color.accentColor : Color.clear, lineWidth: 2.5)
-                    )
-                    .overlay {
-                        Text("\(topo.problems.count)")
-                            .font(.caption2.weight(.semibold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color(white: 0.3).opacity(0.9), in: RoundedRectangle(cornerRadius: 2))
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(boulderTopos) { topo in
+                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId)
+                            .id(topo.id)
                     }
                 }
+                .padding(.horizontal)
+                .padding(.top, 8)
             }
-            .padding(.horizontal)
-            .padding(.top, 8)
+            .onAppear {
+                proxy.scrollTo(problem.topoId ?? 0, anchor: .center)
+            }
+            .onChange(of: problem.topoId) {
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    proxy.scrollTo(problem.topoId ?? 0, anchor: .center)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func topoThumbnail(topo: Topo, isCurrent: Bool) -> some View {
+        Button {
+            goToTopo(topo)
+        } label: {
+            if let photo = topo.onDiskPhoto {
+                Image(uiImage: photo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 72, height: 54)
+                    .clipped()
+                    .cornerRadius(6)
+            } else {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color(.secondarySystemFill))
+                    .frame(width: 72, height: 54)
+            }
+        }
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(isCurrent ? Color.accentColor : Color.clear, lineWidth: 2.5)
+        )
+        .overlay {
+            Text("\(topo.problems.count)")
+                .font(.caption2.weight(.semibold))
+                .foregroundColor(.white)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color(white: 0.3).opacity(0.9), in: RoundedRectangle(cornerRadius: 2))
         }
     }
     
