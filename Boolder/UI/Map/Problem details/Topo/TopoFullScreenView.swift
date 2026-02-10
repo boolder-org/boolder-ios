@@ -135,6 +135,14 @@ struct TopoFullScreenView: View {
                         RoundedRectangle(cornerRadius: 6)
                             .stroke(topo.id == problem.topoId ? Color.accentColor : Color.clear, lineWidth: 2.5)
                     )
+                    .overlay {
+                        Text("\(topo.problems.count)")
+                            .font(.caption2.weight(.semibold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color(white: 0.3).opacity(0.9), in: RoundedRectangle(cornerRadius: 2))
+                    }
                 }
             }
             .padding(.horizontal)
