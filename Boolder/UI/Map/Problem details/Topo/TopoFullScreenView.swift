@@ -175,7 +175,7 @@ struct TopoFullScreenView: View {
                 .stroke(isCurrent ? Color.accentColor : Color.clear, lineWidth: 2.5)
         )
         .overlay {
-            Text("\(topo.problems.count)")
+            Text("\(topo.allProblems.count)")
                 .font(.caption2.weight(.semibold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 6)

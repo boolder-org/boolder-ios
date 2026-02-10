@@ -58,7 +58,7 @@ extension Topo {
         }
     }
     
-    var problems: [Problem] {
+    var allProblems: [Problem] {
         let lines = Table("lines")
             .filter(Line.topoId == id)
         
@@ -68,7 +68,6 @@ extension Topo {
             }
             .compactMap { $0 }
             .filter { $0.topoId == id }
-            .filter { $0.line?.coordinates != nil }
         }
         catch {
             print(error)
@@ -76,8 +75,12 @@ extension Topo {
         }
     }
     
+    var problems: [Problem] {
+        allProblems.filter { $0.line?.coordinates != nil }
+    }
+    
     var topProblem: Problem? {
-        problems.max { $0.zIndex < $1.zIndex }
+        allProblems.max { $0.zIndex < $1.zIndex }
     }
     
     var onSameBoulder: [Topo] {
