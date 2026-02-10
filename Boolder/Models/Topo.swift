@@ -80,7 +80,7 @@ extension Topo {
     }
     
     var topProblem: Problem? {
-        allProblems.max { $0.zIndex < $1.zIndex }
+        problems.max { $0.zIndex < $1.zIndex } ?? allProblems.max { $0.zIndex < $1.zIndex }
     }
     
     var onSameBoulder: [Topo] {
