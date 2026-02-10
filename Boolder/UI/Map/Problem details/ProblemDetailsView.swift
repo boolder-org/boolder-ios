@@ -74,7 +74,7 @@ struct ProblemDetailsView: View {
                                         mapState.showAllLines = true
                                         presentTopoFullScreenView = true
                                     }) {
-                                        Image(systemName: "arrow.trianglehead.branch")
+                                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
                                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                             .padding(2)
                                     }
@@ -86,7 +86,7 @@ struct ProblemDetailsView: View {
                                         mapState.showAllLines = true
                                         presentTopoFullScreenView = true
                                     }) {
-                                        Image(systemName: "arrow.trianglehead.branch")
+                                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
                                             .foregroundColor(.white)
                                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                             .padding(8)

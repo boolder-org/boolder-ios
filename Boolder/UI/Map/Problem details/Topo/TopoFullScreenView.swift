@@ -49,9 +49,9 @@ struct TopoFullScreenView: View {
                             
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Text("Vue bloc")
-                                        .padding(.horizontal, 4)
-                                        .padding(.vertical, 2)
+                                    Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .padding(4)
                                 }
                                 .modify {
                                     if mapState.showAllLines {
@@ -60,17 +60,16 @@ struct TopoFullScreenView: View {
                                         $0.buttonStyle(.glass)
                                     }
                                 }
-                                .buttonBorderShape(.capsule)
+                                .buttonBorderShape(.circle)
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Text("Vue bloc")
+                                    Image(systemName: "lines.measurement.horizontal.aligned.bottom")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.body)
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 6)
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .padding(8)
                                         .background(mapState.showAllLines ? Color.accentColor.opacity(0.5) : Color.black.opacity(0.3))
-                                        .clipShape(Capsule())
+                                        .clipShape(Circle())
                                 }
                             }
                         }
