@@ -32,10 +32,12 @@ struct MapContainerView: View {
             Color.clear.frame(width: 10, height: 10).allowsHitTesting(false)
                 .poiActionSheet(selectedPoi: $mapState.selectedPoi)
             
+            aboveSheetNavigationButtons
+                .opacity(mapState.presentProblemDetails ? 1 : 0)
+            
             circuitButtons
             
-            dismissButton
-                .zIndex(35)
+            circuitStartButton
             
             fabButtonsContainer
                 .zIndex(10)
@@ -134,6 +136,78 @@ struct MapContainerView: View {
         }
     }
     
+    var aboveSheetNavigationButtons : some View {
+        VStack {
+            HStack {
+                if mapState.presentProblemDetails {
+                    Button(action: {
+                        mapState.presentProblemDetails = false
+                    }) {
+                        Image(systemName: "xmark")
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .padding(4)
+                                } else {
+                                    $0.foregroundColor(.primary)
+                                        .padding(10)
+                                }
+                            }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                                .buttonBorderShape(.circle)
+                        } else {
+                            $0
+                                .background(Color(.systemBackground))
+                                .clipShape(Circle())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                        }
+                    }
+                }
+                
+                Spacer()
+                
+                if mapState.presentProblemDetails {
+                    if #available(iOS 26, *) {
+                        Button(action: { mapState.showAllLines.toggle() }) {
+                            Text("Vue bloc")
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 2)
+                        }
+                        .modify {
+                            if mapState.showAllLines {
+                                $0.buttonStyle(.glassProminent)
+                            } else {
+                                $0.buttonStyle(.glass)
+                            }
+                        }
+                        .buttonBorderShape(.capsule)
+                    }
+                    else {
+                        Button(action: { mapState.showAllLines.toggle() }) {
+                            Text("Vue bloc")
+                                .foregroundColor(.primary)
+                                .font(.body)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                        }
+                    }
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
+            .padding(.bottom, 8)
+            
+//            Spacer()
+        }
+        .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+    }
+    
     var circuitButtons : some View {
         Group {
             if let circuit = mapState.selectedCircuit, mapState.presentProblemDetails, circuit.id == mapState.selectedProblem.circuitId {
@@ -210,7 +284,11 @@ struct MapContainerView: View {
                 }
                 .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
             }
-            
+        }
+    }
+    
+    var circuitStartButton : some View {
+        Group {
             if mapState.displayCircuitStartButton {
                 if let circuit = mapState.selectedCircuit, let start = circuit.firstProblem {
                     VStack {
@@ -317,75 +395,6 @@ struct MapContainerView: View {
         }
     }
     
-    var dismissButton: some View {
-        VStack {
-            HStack {
-                if mapState.presentProblemDetails {
-                    Button(action: {
-                        mapState.presentProblemDetails = false
-                    }) {
-                        Image(systemName: "xmark")
-                            .modify {
-                                if #available(iOS 26, *) {
-                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                        .padding(4)
-                                } else {
-                                    $0.foregroundColor(.primary)
-                                        .padding(10)
-                                }
-                            }
-                    }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                                .buttonBorderShape(.circle)
-                        } else {
-                            $0
-                                .background(Color(.systemBackground))
-                                .clipShape(Circle())
-                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                        }
-                    }
-                }
-                
-                Spacer()
-                
-                if mapState.presentProblemDetails {
-                    if #available(iOS 26, *) {
-                        Button(action: { mapState.showAllLines.toggle() }) {
-                            Text("Vue bloc")
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                        }
-                        .modify {
-                            if mapState.showAllLines {
-                                $0.buttonStyle(.glassProminent)
-                            } else {
-                                $0.buttonStyle(.glass)
-                            }
-                        }
-                        .buttonBorderShape(.capsule)
-                    }
-                    else {
-                        Button(action: { mapState.showAllLines.toggle() }) {
-                            Text("Vue bloc")
-                                .foregroundColor(.primary)
-                                .font(.body)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
-                                .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
-                                .clipShape(Capsule())
-                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                        }
-                    }
-                }
-            }
-            .padding(.horizontal)
-            .padding(.top, 8)
-            
-            Spacer()
-        }
-    }
     
     // TODO: remove after October 2024
     private var userDidUseOldOfflineMode: Bool {
