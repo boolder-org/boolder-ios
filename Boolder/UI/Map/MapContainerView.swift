@@ -170,30 +170,31 @@ struct MapContainerView: View {
                 Spacer()
                 
                 if mapState.presentProblemDetails {
-                    if #available(iOS 26, *) {
-                        Button(action: { mapState.showAllLines.toggle() }) {
-                            Text("Vue bloc")
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                        }
-                        .modify {
+                    Button(action: { mapState.showAllLines.toggle() }) {
+                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .padding(4)
+                                } else {
+                                    $0.foregroundColor(.primary)
+                                        .padding(10)
+                                }
+                            }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
                             if mapState.showAllLines {
                                 $0.buttonStyle(.glassProminent)
+                                    .buttonBorderShape(.circle)
                             } else {
                                 $0.buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
                             }
-                        }
-                        .buttonBorderShape(.capsule)
-                    }
-                    else {
-                        Button(action: { mapState.showAllLines.toggle() }) {
-                            Text("Vue bloc")
-                                .foregroundColor(.primary)
-                                .font(.body)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
+                        } else {
+                            $0
                                 .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
-                                .clipShape(Capsule())
+                                .clipShape(Circle())
                                 .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                         }
                     }
@@ -201,7 +202,7 @@ struct MapContainerView: View {
             }
             .padding(.horizontal)
             .padding(.top, 8)
-            .padding(.bottom, 8)
+            .padding(.bottom, 16)
             
 //            Spacer()
         }

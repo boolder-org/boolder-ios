@@ -50,7 +50,7 @@ struct TopoFullScreenView: View {
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     Image(systemName: "lines.measurement.horizontal.aligned.bottom")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
                                 .modify {
@@ -66,10 +66,7 @@ struct TopoFullScreenView: View {
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     Image(systemName: "lines.measurement.horizontal.aligned.bottom")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                        .padding(8)
-                                        .background(mapState.showAllLines ? Color.accentColor.opacity(0.5) : Color.black.opacity(0.3))
-                                        .clipShape(Circle())
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
                             }
                         }

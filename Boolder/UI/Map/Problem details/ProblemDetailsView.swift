@@ -66,38 +66,6 @@ struct ProblemDetailsView: View {
                                 }
                         }
                         
-                        if false { // problem.otherProblemsOnSameTopo.count > 1 {
-                            HStack(spacing: 0) {
-                                Spacer()
-                                if #available(iOS 26, *) {
-                                    Button(action: {
-                                        mapState.showAllLines = true
-                                        presentTopoFullScreenView = true
-                                    }) {
-                                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(2)
-                                    }
-                                    .buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                                }
-                                else {
-                                    Button(action: {
-                                        mapState.showAllLines = true
-                                        presentTopoFullScreenView = true
-                                    }) {
-                                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(8)
-                                            .background(Color.black.opacity(0.3))
-                                            .clipShape(Circle())
-                                    }
-                                }
-                            }
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 4)
-                        }
                     }
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
