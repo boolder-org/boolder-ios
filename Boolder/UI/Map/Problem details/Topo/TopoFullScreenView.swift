@@ -112,31 +112,28 @@ struct TopoFullScreenView: View {
     }
     
     var topoCarousel: some View {
-        ScrollViewReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(boulderTopos) { topo in
-                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId)
-                            .id(topo.id)
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.bottom)
-                .safeAreaPadding(.bottom)
-            }
-            .onAppear {
-                proxy.scrollTo(problem.topoId ?? 0, anchor: .center)
-            }
-            .onChange(of: problem.topoId) {
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    proxy.scrollTo(problem.topoId ?? 0, anchor: .center)
+        GeometryReader { geo in
+            let count = CGFloat(boulderTopos.count)
+            let spacing: CGFloat = 8
+            let horizontalPadding: CGFloat = 16
+            let availableWidth = geo.size.width - horizontalPadding * 2 - spacing * max(count - 1, 0)
+            let thumbnailWidth = min(72, availableWidth / max(count, 1))
+            
+            HStack(spacing: spacing) {
+                ForEach(boulderTopos) { topo in
+                    topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth)
                 }
             }
+            .padding(.horizontal, horizontalPadding)
+            .frame(maxWidth: .infinity)
+            .padding(.bottom)
+            .safeAreaPadding(.bottom)
         }
+        .frame(height: 70)
     }
     
     @ViewBuilder
-    private func topoThumbnail(topo: Topo, isCurrent: Bool) -> some View {
+    private func topoThumbnail(topo: Topo, isCurrent: Bool, width: CGFloat) -> some View {
         Button {
             goToTopo(topo)
         } label: {
@@ -144,13 +141,13 @@ struct TopoFullScreenView: View {
                 Image(uiImage: photo)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 72, height: 54)
+                    .frame(width: width, height: 54)
                     .clipped()
                     .cornerRadius(6)
             } else {
                 RoundedRectangle(cornerRadius: 6)
                     .fill(Color(.secondarySystemFill))
-                    .frame(width: 72, height: 54)
+                    .frame(width: width, height: 54)
             }
         }
         .overlay(
