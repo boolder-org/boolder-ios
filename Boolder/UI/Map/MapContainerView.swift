@@ -48,6 +48,11 @@ struct MapContainerView: View {
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil && !mapState.presentProblemDetails ? 1 : 0)
         }
+        .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
+            if !newValue {
+                mapState.showAllLines = false
+            }
+        }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in
             if let problem = appState.selectedProblem {
                 mapState.selectAndPresentAndCenterOnProblem(problem)
