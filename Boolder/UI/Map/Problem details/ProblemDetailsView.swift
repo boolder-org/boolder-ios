@@ -138,49 +138,43 @@ struct ProblemDetailsView: View {
     }
     
     var topoCarousel: some View {
-        GeometryReader { geo in
-            let count = CGFloat(boulderTopos.count)
-            let spacing: CGFloat = 8
-            let buttonSize: CGFloat = 54
-            let horizontalPadding: CGFloat = 16
-            let buttonsWidth = buttonSize * 2 + spacing * 2
-            let availableWidth = geo.size.width - horizontalPadding * 2 - buttonsWidth - spacing * max(count - 1, 0)
-            let thumbnailWidth = min(72, availableWidth / max(count, 1))
-            
-            HStack(spacing: spacing) {
-                Button {
-                    goToPreviousTopo()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.primary)
-                        .frame(width: buttonSize, height: buttonSize)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(6)
-                }
-                
-                Spacer(minLength: 0)
-                
-                ForEach(boulderTopos) { topo in
-                    topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth)
-                }
-                
-                Spacer(minLength: 0)
-                
-                Button {
-                    goToNextTopo()
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.primary)
-                        .frame(width: buttonSize, height: buttonSize)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(6)
-                }
+        HStack(spacing: 8) {
+            Button {
+                goToPreviousTopo()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.primary)
+                    .frame(width: 54, height: 54)
+                    .background(Color(.systemGray5))
+                    .cornerRadius(6)
             }
-            .padding(.horizontal, horizontalPadding)
-            .frame(maxWidth: .infinity)
-            .padding(.top, 8)
+            
+            GeometryReader { geo in
+                let count = CGFloat(boulderTopos.count)
+                let totalSpacing = 8 * max(count - 1, 0)
+                let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
+                
+                HStack(spacing: 8) {
+                    ForEach(boulderTopos) { topo in
+                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .frame(height: 54)
+            
+            Button {
+                goToNextTopo()
+            } label: {
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.primary)
+                    .frame(width: 54, height: 54)
+                    .background(Color(.systemGray5))
+                    .cornerRadius(6)
+            }
         }
-        .frame(height: 62)
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
     }
     
     @ViewBuilder
