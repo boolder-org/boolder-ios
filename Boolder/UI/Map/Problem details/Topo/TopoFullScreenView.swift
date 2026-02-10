@@ -60,7 +60,7 @@ struct TopoFullScreenView: View {
                                         $0.buttonStyle(.glass)
                                     }
                                 }
-                                .buttonBorderShape(.circle)
+                                .buttonBorderShape(.capsule)
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
