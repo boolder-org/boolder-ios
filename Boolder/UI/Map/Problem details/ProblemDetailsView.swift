@@ -123,8 +123,8 @@ struct ProblemDetailsView: View {
                 let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
                 
                 HStack(spacing: 8) {
-                    ForEach(boulderTopos) { topo in
-                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth)
+                    ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
+                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -146,8 +146,10 @@ struct ProblemDetailsView: View {
     }
     
     @ViewBuilder
-    private func topoThumbnail(topo: Topo, isCurrent: Bool, width: CGFloat) -> some View {
-        Button {
+    private func topoThumbnail(topo: Topo, isCurrent: Bool, width: CGFloat, index: Int) -> some View {
+        let letter = String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
+        
+        return Button {
             goToTopo(topo)
         } label: {
             if let photo = topo.onDiskPhoto {
@@ -168,7 +170,7 @@ struct ProblemDetailsView: View {
                 .stroke(isCurrent ? Color.accentColor : Color.clear, lineWidth: 2.5)
         )
         .overlay {
-            Text("\(topo.allProblems.count)")
+            Text(letter)
                 .font(.caption2.weight(.semibold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 6)
