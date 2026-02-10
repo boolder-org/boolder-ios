@@ -83,7 +83,7 @@ struct TopoFullScreenView: View {
                         overlayInfos
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     } else {
-                        topoNavigationButtons
+                        topoCarousel
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
@@ -111,65 +111,41 @@ struct TopoFullScreenView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    var topoNavigationButtons: some View {
-        HStack {
-            if let previousTopo = previousTopo {
-                Button(action: {
-                    goToTopo(previousTopo)
-                }) {
-                    Label("Previous", systemImage: "chevron.left")
-                }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.buttonStyle(.glass)
-                            .buttonBorderShape(.capsule)
-                    } else {
-                        $0
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(Color.black.opacity(0.3))
-                            .clipShape(Capsule())
+    var topoCarousel: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(boulderTopos) { topo in
+                    Button {
+                        goToTopo(topo)
+                    } label: {
+                        if let photo = topo.onDiskPhoto {
+                            Image(uiImage: photo)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 72, height: 54)
+                                .clipped()
+                                .cornerRadius(6)
+                        } else {
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color(.secondarySystemFill))
+                                .frame(width: 72, height: 54)
+                        }
                     }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(topo.id == problem.topoId ? Color.accentColor : Color.clear, lineWidth: 2.5)
+                    )
                 }
             }
-            
-            Spacer()
-            
-            if let nextTopo = nextTopo {
-                Button(action: {
-                    goToTopo(nextTopo)
-                }) {
-                    Label("Next", systemImage: "chevron.right")
-                        .environment(\.layoutDirection, .rightToLeft)
-                }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.buttonStyle(.glass)
-                            .buttonBorderShape(.capsule)
-                    } else {
-                        $0
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(Color.black.opacity(0.3))
-                            .clipShape(Capsule())
-                    }
-                }
-            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            .safeAreaPadding(.bottom)
         }
-        .padding(.horizontal)
-        .padding(.bottom)
     }
     
-    private var nextTopo: Topo? {
-        guard let topo = problem.topo, let boulderId = topo.boulderId else { return nil }
-        return Boulder(id: boulderId).nextTopo(after: topo)
-    }
-    
-    private var previousTopo: Topo? {
-        guard let topo = problem.topo, let boulderId = topo.boulderId else { return nil }
-        return Boulder(id: boulderId).previousTopo(before: topo)
+    private var boulderTopos: [Topo] {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return [] }
+        return Boulder(id: boulderId).topos
     }
     
     private func goToTopo(_ topo: Topo) {
