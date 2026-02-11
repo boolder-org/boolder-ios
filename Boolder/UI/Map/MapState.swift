@@ -122,14 +122,34 @@ class MapState {
     // MARK: Topo problem navigation (prev/next on boulder)
     
     func goToNextTopoProblem() {
-        if let next = nextTopoProblem {
-            selectAndPresentAndCenterOnProblem(next)
+        if showAllLines {
+            goToNextTopo()
+        } else if let next = nextTopoProblem {
+            selectProblem(next)
         }
     }
     
     func goToPreviousTopoProblem() {
-        if let prev = previousTopoProblem {
-            selectAndPresentAndCenterOnProblem(prev)
+        if showAllLines {
+            goToPreviousTopo()
+        } else if let prev = previousTopoProblem {
+            selectProblem(prev)
+        }
+    }
+    
+    private func goToNextTopo() {
+        guard let topo = selectedProblem.topo, let boulderId = topo.boulderId,
+              let next = Boulder(id: boulderId).nextTopo(after: topo) else { return }
+        if let topProblem = next.topProblem {
+            selectProblem(topProblem)
+        }
+    }
+    
+    private func goToPreviousTopo() {
+        guard let topo = selectedProblem.topo, let boulderId = topo.boulderId,
+              let previous = Boulder(id: boulderId).previousTopo(before: topo) else { return }
+        if let topProblem = previous.topProblem {
+            selectProblem(topProblem)
         }
     }
     
