@@ -156,7 +156,7 @@ class MapState {
     private var nextTopoProblem: Problem? {
         guard let topo = selectedProblem.topo else { return nil }
         
-        let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
+        let sorted = topo.allProblems.sorted { $0.xIndex < $1.xIndex }
         
         if let index = sorted.firstIndex(of: selectedProblem) {
             let nextIndex = index + 1
@@ -169,14 +169,13 @@ class MapState {
         let toposOnBoulder = topo.onSameBoulder
         guard toposOnBoulder.count > 1 else {
             // Only one topo: wrap within it
-            let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
             return sorted.first
         }
         
         if let topoIndex = toposOnBoulder.firstIndex(of: topo) {
             let nextTopoIndex = (topoIndex + 1) % toposOnBoulder.count
             let nextTopo = toposOnBoulder[nextTopoIndex]
-            let nextSorted = nextTopo.problems.sorted { $0.xIndex < $1.xIndex }
+            let nextSorted = nextTopo.allProblems.sorted { $0.xIndex < $1.xIndex }
             return nextSorted.first
         }
         
@@ -186,7 +185,7 @@ class MapState {
     private var previousTopoProblem: Problem? {
         guard let topo = selectedProblem.topo else { return nil }
         
-        let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
+        let sorted = topo.allProblems.sorted { $0.xIndex < $1.xIndex }
         
         if let index = sorted.firstIndex(of: selectedProblem) {
             let prevIndex = index - 1
@@ -199,14 +198,13 @@ class MapState {
         let toposOnBoulder = topo.onSameBoulder
         guard toposOnBoulder.count > 1 else {
             // Only one topo: wrap within it
-            let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
             return sorted.last
         }
         
         if let topoIndex = toposOnBoulder.firstIndex(of: topo) {
             let prevTopoIndex = (topoIndex - 1 + toposOnBoulder.count) % toposOnBoulder.count
             let prevTopo = toposOnBoulder[prevTopoIndex]
-            let prevSorted = prevTopo.problems.sorted { $0.xIndex < $1.xIndex }
+            let prevSorted = prevTopo.allProblems.sorted { $0.xIndex < $1.xIndex }
             return prevSorted.last
         }
         

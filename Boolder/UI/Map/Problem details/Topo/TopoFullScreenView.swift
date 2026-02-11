@@ -67,14 +67,14 @@ struct TopoFullScreenView: View {
                                         Image(systemName: "arrow.left")
                                             .foregroundColor(.primary)
                                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(8)
+                                            .padding(12)
                                     }
                                     
                                     Button(action: { mapState.goToNextTopoProblem() }) {
                                         Image(systemName: "arrow.right")
                                             .foregroundColor(.primary)
                                             .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(8)
+                                            .padding(12)
                                     }
                                 }
                                 .glassEffect(.regular.interactive(), in: .capsule)
@@ -90,14 +90,14 @@ struct TopoFullScreenView: View {
                                     Image(systemName: "arrow.left")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(8)
+                                        .padding(12)
                                 }
                                 
                                 Button(action: { mapState.goToNextTopoProblem() }) {
                                     Image(systemName: "arrow.right")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(8)
+                                        .padding(12)
                                 }
                             }
                         }

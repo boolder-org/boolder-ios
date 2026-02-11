@@ -146,7 +146,7 @@ struct MapContainerView: View {
                         Image(systemName: "xmark")
                             .modify {
                                 if #available(iOS 26, *) {
-                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 } else {
                                     $0.foregroundColor(.primary)
@@ -204,14 +204,14 @@ struct MapContainerView: View {
                             Image(systemName: "arrow.left")
                                 .foregroundColor(.primary)
                                 .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                .padding(8)
+                                .padding(12)
                         }
                         
                         Button(action: { mapState.goToNextTopoProblem() }) {
                             Image(systemName: "arrow.right")
                                 .foregroundColor(.primary)
                                 .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                .padding(8)
+                                .padding(12)
                         }
                     }
                     .modify {
