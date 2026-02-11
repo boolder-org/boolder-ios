@@ -119,6 +119,80 @@ class MapState {
         }
     }
     
+    // MARK: Topo problem navigation (prev/next on boulder)
+    
+    func goToNextTopoProblem() {
+        if let next = nextTopoProblem {
+            selectAndPresentAndCenterOnProblem(next)
+        }
+    }
+    
+    func goToPreviousTopoProblem() {
+        if let prev = previousTopoProblem {
+            selectAndPresentAndCenterOnProblem(prev)
+        }
+    }
+    
+    private var nextTopoProblem: Problem? {
+        guard let topo = selectedProblem.topo else { return nil }
+        
+        let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
+        
+        if let index = sorted.firstIndex(of: selectedProblem) {
+            let nextIndex = index + 1
+            if nextIndex < sorted.count {
+                return sorted[nextIndex]
+            }
+        }
+        
+        // Wrap to next topo on the same boulder
+        let toposOnBoulder = topo.onSameBoulder
+        guard toposOnBoulder.count > 1 else {
+            // Only one topo: wrap within it
+            let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
+            return sorted.first
+        }
+        
+        if let topoIndex = toposOnBoulder.firstIndex(of: topo) {
+            let nextTopoIndex = (topoIndex + 1) % toposOnBoulder.count
+            let nextTopo = toposOnBoulder[nextTopoIndex]
+            let nextSorted = nextTopo.problems.sorted { $0.xIndex < $1.xIndex }
+            return nextSorted.first
+        }
+        
+        return nil
+    }
+    
+    private var previousTopoProblem: Problem? {
+        guard let topo = selectedProblem.topo else { return nil }
+        
+        let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
+        
+        if let index = sorted.firstIndex(of: selectedProblem) {
+            let prevIndex = index - 1
+            if prevIndex >= 0 {
+                return sorted[prevIndex]
+            }
+        }
+        
+        // Wrap to previous topo on the same boulder
+        let toposOnBoulder = topo.onSameBoulder
+        guard toposOnBoulder.count > 1 else {
+            // Only one topo: wrap within it
+            let sorted = topo.problems.sorted { $0.xIndex < $1.xIndex }
+            return sorted.last
+        }
+        
+        if let topoIndex = toposOnBoulder.firstIndex(of: topo) {
+            let prevTopoIndex = (topoIndex - 1 + toposOnBoulder.count) % toposOnBoulder.count
+            let prevTopo = toposOnBoulder[prevTopoIndex]
+            let prevSorted = prevTopo.problems.sorted { $0.xIndex < $1.xIndex }
+            return prevSorted.last
+        }
+        
+        return nil
+    }
+    
     private func centerOnProblem(_ problem: Problem) {
         centerOnProblem = problem
     }

@@ -170,6 +170,56 @@ struct MapContainerView: View {
                 Spacer()
                 
                 if mapState.presentProblemDetails {
+                    HStack(spacing: 8) {
+                        Button(action: { mapState.goToPreviousTopoProblem() }) {
+                            Image(systemName: "chevron.left")
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                            .padding(4)
+                                    } else {
+                                        $0.foregroundColor(.primary)
+                                            .padding(10)
+                                    }
+                                }
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                            } else {
+                                $0
+                                    .background(Color(.systemBackground))
+                                    .clipShape(Circle())
+                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                            }
+                        }
+                        
+                        Button(action: { mapState.goToNextTopoProblem() }) {
+                            Image(systemName: "chevron.right")
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                            .padding(4)
+                                    } else {
+                                        $0.foregroundColor(.primary)
+                                            .padding(10)
+                                    }
+                                }
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                            } else {
+                                $0
+                                    .background(Color(.systemBackground))
+                                    .clipShape(Circle())
+                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                            }
+                        }
+                    }
+                    
                     Button(action: { mapState.showAllLines.toggle() }) {
                         Image(systemName: "lines.measurement.horizontal.aligned.bottom")
                             .modify {
