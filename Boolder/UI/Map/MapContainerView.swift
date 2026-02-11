@@ -171,6 +171,35 @@ struct MapContainerView: View {
                 
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
+                        Button(action: { mapState.showAllLines.toggle() }) {
+                            Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(4)
+                                    } else {
+                                        $0.foregroundColor(.primary)
+                                            .padding(10)
+                                    }
+                                }
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                if mapState.showAllLines {
+                                    $0.buttonStyle(.glassProminent)
+                                        .buttonBorderShape(.capsule)
+                                } else {
+                                    $0.buttonStyle(.glass)
+                                        .buttonBorderShape(.capsule)
+                                }
+                            } else {
+                                $0
+                                    .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
+                                    .clipShape(Capsule())
+                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                            }
+                        }
+                        
                         Button(action: { mapState.goToPreviousTopoProblem() }) {
                             Image(systemName: "chevron.left")
                                 .modify {
@@ -217,35 +246,6 @@ struct MapContainerView: View {
                                     .clipShape(Circle())
                                     .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                             }
-                        }
-                    }
-                    
-                    Button(action: { mapState.showAllLines.toggle() }) {
-                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
-                            .modify {
-                                if #available(iOS 26, *) {
-                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
-                                } else {
-                                    $0.foregroundColor(.primary)
-                                        .padding(10)
-                                }
-                            }
-                    }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            if mapState.showAllLines {
-                                $0.buttonStyle(.glassProminent)
-                                    .buttonBorderShape(.capsule)
-                            } else {
-                                $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.capsule)
-                            }
-                        } else {
-                            $0
-                                .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
-                                .clipShape(Capsule())
-                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                         }
                     }
                 }
