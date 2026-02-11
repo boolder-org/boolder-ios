@@ -63,16 +63,16 @@ struct TopoFullScreenView: View {
                                 .buttonBorderShape(.capsule)
                                 
                                 Button(action: { mapState.goToPreviousTopoProblem() }) {
-                                    Image(systemName: "chevron.left")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                    Image(systemName: "arrow.left")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
                                 .buttonStyle(.glass)
                                 .buttonBorderShape(.circle)
                                 
                                 Button(action: { mapState.goToNextTopoProblem() }) {
-                                    Image(systemName: "chevron.right")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                    Image(systemName: "arrow.right")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
                                 .buttonStyle(.glass)
@@ -86,17 +86,17 @@ struct TopoFullScreenView: View {
                                 }
                                 
                                 Button(action: { mapState.goToPreviousTopoProblem() }) {
-                                    Image(systemName: "chevron.left")
+                                    Image(systemName: "arrow.left")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
-                                        .padding(10)
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .padding(4)
                                 }
                                 
                                 Button(action: { mapState.goToNextTopoProblem() }) {
-                                    Image(systemName: "chevron.right")
+                                    Image(systemName: "arrow.right")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
-                                        .padding(10)
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .padding(4)
                                 }
                             }
                         }
@@ -139,16 +139,6 @@ struct TopoFullScreenView: View {
     
     var topoCarousel: some View {
         HStack(spacing: 8) {
-            Button {
-                goToPreviousTopo()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.white)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
-            }
-            
             GeometryReader { geo in
                 let count = CGFloat(boulderTopos.count)
                 let totalSpacing = 8 * max(count - 1, 0)
@@ -162,16 +152,6 @@ struct TopoFullScreenView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(height: 54)
-            
-            Button {
-                goToNextTopo()
-            } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.white)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
-            }
         }
         .padding(.horizontal, 16)
         .padding(.bottom)
@@ -223,17 +203,6 @@ struct TopoFullScreenView: View {
         }
     }
     
-    private func goToPreviousTopo() {
-        guard let topo = problem.topo, let boulderId = topo.boulderId,
-              let previous = Boulder(id: boulderId).previousTopo(before: topo) else { return }
-        goToTopo(previous)
-    }
-    
-    private func goToNextTopo() {
-        guard let topo = problem.topo, let boulderId = topo.boulderId,
-              let next = Boulder(id: boulderId).nextTopo(after: topo) else { return }
-        goToTopo(next)
-    }
     
     var overlayInfos: some View {
         VStack(alignment: .leading, spacing: 12) {

@@ -201,10 +201,10 @@ struct MapContainerView: View {
                         }
                         
                         Button(action: { mapState.goToPreviousTopoProblem() }) {
-                            Image(systemName: "chevron.left")
+                            Image(systemName: "arrow.left")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                             .padding(4)
                                     } else {
                                         $0.foregroundColor(.primary)
@@ -225,10 +225,10 @@ struct MapContainerView: View {
                         }
                         
                         Button(action: { mapState.goToNextTopoProblem() }) {
-                            Image(systemName: "chevron.right")
+                            Image(systemName: "arrow.right")
                                 .modify {
                                     if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                             .padding(4)
                                     } else {
                                         $0.foregroundColor(.primary)

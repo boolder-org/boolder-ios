@@ -107,16 +107,6 @@ struct ProblemDetailsView: View {
     
     var topoCarousel: some View {
         HStack(spacing: 8) {
-            Button {
-                goToPreviousTopo()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.primary)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
-            }
-            
             GeometryReader { geo in
                 let count = CGFloat(boulderTopos.count)
                 let totalSpacing = 8 * max(count - 1, 0)
@@ -130,16 +120,6 @@ struct ProblemDetailsView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(height: 54)
-            
-            Button {
-                goToNextTopo()
-            } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.primary)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
-            }
         }
         .padding(.horizontal, 16)
         .padding(.top, 8)
@@ -190,17 +170,6 @@ struct ProblemDetailsView: View {
         }
     }
     
-    private func goToPreviousTopo() {
-        guard let topo = problem.topo, let boulderId = topo.boulderId,
-              let previous = Boulder(id: boulderId).previousTopo(before: topo) else { return }
-        goToTopo(previous)
-    }
-    
-    private func goToNextTopo() {
-        guard let topo = problem.topo, let boulderId = topo.boulderId,
-              let next = Boulder(id: boulderId).nextTopo(after: topo) else { return }
-        goToTopo(next)
-    }
     
     private func presentReview() {
         Task {
