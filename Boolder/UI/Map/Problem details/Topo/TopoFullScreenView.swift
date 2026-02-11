@@ -49,7 +49,7 @@ struct TopoFullScreenView: View {
                             
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                                    Image(systemName: mapState.showAllLines ? "rectangle" : "point.topleft.down.to.point.bottomright.curvepath.fill")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
@@ -61,12 +61,42 @@ struct TopoFullScreenView: View {
                                     }
                                 }
                                 .buttonBorderShape(.capsule)
+                                
+                                Button(action: { mapState.goToPreviousTopoProblem() }) {
+                                    Image(systemName: "chevron.left")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                        .padding(4)
+                                }
+                                .buttonStyle(.glass)
+                                .buttonBorderShape(.circle)
+                                
+                                Button(action: { mapState.goToNextTopoProblem() }) {
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                        .padding(4)
+                                }
+                                .buttonStyle(.glass)
+                                .buttonBorderShape(.circle)
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                                    Image(systemName: mapState.showAllLines ? "rectangle" : "point.topleft.down.to.point.bottomright.curvepath.fill")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                }
+                                
+                                Button(action: { mapState.goToPreviousTopoProblem() }) {
+                                    Image(systemName: "chevron.left")
+                                        .foregroundColor(Color(UIColor.white))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                        .padding(10)
+                                }
+                                
+                                Button(action: { mapState.goToNextTopoProblem() }) {
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(Color(UIColor.white))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                        .padding(10)
                                 }
                             }
                         }

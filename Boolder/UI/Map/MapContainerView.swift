@@ -172,7 +172,7 @@ struct MapContainerView: View {
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
                         Button(action: { mapState.showAllLines.toggle() }) {
-                            Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                            Image(systemName: mapState.showAllLines ? "rectangle" : "point.topleft.down.to.point.bottomright.curvepath.fill")
                                 .modify {
                                     if #available(iOS 26, *) {
                                         $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
