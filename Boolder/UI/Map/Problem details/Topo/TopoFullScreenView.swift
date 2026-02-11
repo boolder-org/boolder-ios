@@ -49,7 +49,7 @@ struct TopoFullScreenView: View {
                             
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: mapState.showAllLines ? "rectangle" : "point.topleft.down.to.point.bottomright.curvepath.fill")
+                                    Image(systemName: mapState.showAllLines ? "slider.vertical.3" : "guidepoint.vertical")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
@@ -62,25 +62,26 @@ struct TopoFullScreenView: View {
                                 }
                                 .buttonBorderShape(.capsule)
                                 
-                                Button(action: { mapState.goToPreviousTopoProblem() }) {
-                                    Image(systemName: "arrow.left")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
+                                HStack(spacing: 0) {
+                                    Button(action: { mapState.goToPreviousTopoProblem() }) {
+                                        Image(systemName: "arrow.left")
+                                            .foregroundColor(.primary)
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(8)
+                                    }
+                                    
+                                    Button(action: { mapState.goToNextTopoProblem() }) {
+                                        Image(systemName: "arrow.right")
+                                            .foregroundColor(.primary)
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(8)
+                                    }
                                 }
-                                .buttonStyle(.glass)
-                                .buttonBorderShape(.circle)
-                                
-                                Button(action: { mapState.goToNextTopoProblem() }) {
-                                    Image(systemName: "arrow.right")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
-                                }
-                                .buttonStyle(.glass)
-                                .buttonBorderShape(.circle)
+                                .glassEffect(.regular.interactive(), in: .capsule)
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: mapState.showAllLines ? "rectangle" : "point.topleft.down.to.point.bottomright.curvepath.fill")
+                                    Image(systemName: mapState.showAllLines ? "slider.vertical.3" : "guidepoint.vertical")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
@@ -89,14 +90,14 @@ struct TopoFullScreenView: View {
                                     Image(systemName: "arrow.left")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
+                                        .padding(8)
                                 }
                                 
                                 Button(action: { mapState.goToNextTopoProblem() }) {
                                     Image(systemName: "arrow.right")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
+                                        .padding(8)
                                 }
                             }
                         }

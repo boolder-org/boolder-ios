@@ -170,82 +170,59 @@ struct MapContainerView: View {
                 Spacer()
                 
                 if mapState.presentProblemDetails {
-                    HStack(spacing: 8) {
-                        Button(action: { mapState.showAllLines.toggle() }) {
-                            Image(systemName: mapState.showAllLines ? "rectangle" : "point.topleft.down.to.point.bottomright.curvepath.fill")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(4)
-                                    } else {
-                                        $0.foregroundColor(.primary)
-                                            .padding(10)
-                                    }
-                                }
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                if mapState.showAllLines {
-                                    $0.buttonStyle(.glassProminent)
-                                        .buttonBorderShape(.capsule)
+                    Button(action: { mapState.showAllLines.toggle() }) {
+                        Image(systemName: mapState.showAllLines ? "slider.vertical.3" : "guidepoint.vertical")
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .padding(4)
                                 } else {
-                                    $0.buttonStyle(.glass)
-                                        .buttonBorderShape(.capsule)
+                                    $0.foregroundColor(.primary)
+                                        .padding(10)
                                 }
-                            } else {
-                                $0
-                                    .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
-                                    .clipShape(Capsule())
-                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                             }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            if mapState.showAllLines {
+                                $0.buttonStyle(.glassProminent)
+                                    .buttonBorderShape(.capsule)
+                            } else {
+                                $0.buttonStyle(.glass)
+                                    .buttonBorderShape(.capsule)
+                            }
+                        } else {
+                            $0
+                                .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                         }
-                        
+                    }
+                    
+                    HStack(spacing: 0) {
                         Button(action: { mapState.goToPreviousTopoProblem() }) {
                             Image(systemName: "arrow.left")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(4)
-                                    } else {
-                                        $0.foregroundColor(.primary)
-                                            .padding(10)
-                                    }
-                                }
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                            } else {
-                                $0
-                                    .background(Color(.systemBackground))
-                                    .clipShape(Circle())
-                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                            }
+                                .foregroundColor(.primary)
+                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                .padding(8)
                         }
                         
                         Button(action: { mapState.goToNextTopoProblem() }) {
                             Image(systemName: "arrow.right")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(4)
-                                    } else {
-                                        $0.foregroundColor(.primary)
-                                            .padding(10)
-                                    }
-                                }
+                                .foregroundColor(.primary)
+                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                .padding(8)
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                            } else {
-                                $0
-                                    .background(Color(.systemBackground))
-                                    .clipShape(Circle())
-                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                            }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.glassEffect(.regular.interactive(), in: .capsule)
+                        } else {
+                            $0
+                                .foregroundColor(.primary)
+                                .background(Color(.systemBackground))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                         }
                     }
                 }
