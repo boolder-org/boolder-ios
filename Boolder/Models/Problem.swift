@@ -94,12 +94,11 @@ struct Problem : Identifiable {
     }
     
     var xIndex: Double {
-        guard let coordinates = line?.coordinates else { return 0 }
+        guard let firstPoint = line?.coordinates?.first else { return 0 }
 
-        let minX = coordinates.map{$0.x}.min() ?? 0
         let tiebreaker = (parentId == nil) ? 0 : 0.001
 
-        return minX + tiebreaker
+        return firstPoint.x + tiebreaker
     }
 
     // TODO: move to Line
