@@ -281,9 +281,15 @@ struct TopoView: View {
             switch newValue {
             case .ready(image: _):
                 displayLine()
+                displayNameLabel()
                 animateBounceIfAllowed()
             default:
                 print("")
+            }
+        }
+        .onChange(of: showAllLines) { oldValue, newValue in
+            if oldValue == true && newValue == false {
+                displayNameLabel()
             }
         }
         .onChange(of: problem) { oldValue, newValue in
