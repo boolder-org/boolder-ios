@@ -177,6 +177,33 @@ struct TopoView: View {
                                 }
                             }
                         }
+                        
+                        GeometryReader { geo in
+                            let visibleIds = visibleNameLabelIds(
+                                problems: problem.otherProblemsOnSameTopo,
+                                geoSize: geo.size
+                            )
+                            
+                            ZStack {
+                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                    if let lastPoint = p.lineLastPoint,
+                                       !p.localizedName.isEmpty,
+                                       visibleIds.contains(p.id) {
+                                        ProblemNameLabelView(name: p.localizedName, color: p.circuitUIColorForPhotoOverlay)
+                                            .scaleEffect(counterZoomScale.wrappedValue)
+                                            .position(
+                                                x: lastPoint.x * geo.size.width,
+                                                y: lastPoint.y * geo.size.height - 14 * counterZoomScale.wrappedValue
+                                            )
+                                            .zIndex(p.zIndex)
+                                            .onTapGesture {
+                                                showAllLines = false
+                                                mapState.selectProblem(p)
+                                            }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -275,6 +302,46 @@ struct TopoView: View {
     // Exactly cancels the zoom scale (1:1 ratio)
     var counterZoomScaleIdentity: CGFloat {
         1 / zoomScale
+    }
+    
+    /// Returns the set of problem IDs whose name labels can be displayed without overlapping.
+    /// Problems with highest zIndex get priority.
+    func visibleNameLabelIds(problems: [Problem], geoSize: CGSize) -> Set<Int> {
+        let scale = counterZoomScale.wrappedValue
+        let yOffset: CGFloat = 14 * scale
+        
+        let sorted = problems
+            .filter { $0.lineLastPoint != nil && !$0.localizedName.isEmpty }
+            .sorted { $0.zIndex > $1.zIndex }
+        
+        var occupiedRects: [CGRect] = []
+        var visibleIds = Set<Int>()
+        
+        for p in sorted {
+            guard let lastPoint = p.lineLastPoint else { continue }
+            
+            let labelWidth = (CGFloat(p.localizedName.count) * 7 + 12) * scale
+            let labelHeight: CGFloat = 18 * scale
+            
+            let centerX = lastPoint.x * geoSize.width
+            let centerY = lastPoint.y * geoSize.height - yOffset
+            
+            let rect = CGRect(
+                x: centerX - labelWidth / 2,
+                y: centerY - labelHeight / 2,
+                width: labelWidth,
+                height: labelHeight
+            )
+            
+            let hasOverlap = occupiedRects.contains { $0.intersects(rect) }
+            
+            if !hasOverlap {
+                occupiedRects.append(rect)
+                visibleIds.insert(p.id)
+            }
+        }
+        
+        return visibleIds
     }
     
     func displayLine() {

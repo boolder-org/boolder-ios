@@ -102,6 +102,14 @@ struct Problem : Identifiable {
         return firstPoint
     }
     
+    var lineLastPoint: Line.PhotoPercentCoordinate? {
+        guard let line = line else { return nil }
+        guard let coordinates = line.coordinates else { return nil }
+        guard let lastPoint = coordinates.last else { return nil }
+        
+        return lastPoint
+    }
+    
     var lineGradePoint: Line.PhotoPercentCoordinate? {
         guard let line = line else { return nil }
         
