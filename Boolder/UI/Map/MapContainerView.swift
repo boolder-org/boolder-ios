@@ -146,7 +146,7 @@ struct MapContainerView: View {
                         Image(systemName: "xmark")
                             .modify {
                                 if #available(iOS 26, *) {
-                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 } else {
                                     $0.foregroundColor(.primary)
@@ -171,7 +171,7 @@ struct MapContainerView: View {
                 
                 if mapState.presentProblemDetails {
                     Button(action: { mapState.showAllLines.toggle() }) {
-                        Image(systemName: "lines.measurement.horizontal.aligned.bottom")
+                        Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
                             .modify {
                                 if #available(iOS 26, *) {
                                     $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
@@ -186,10 +186,10 @@ struct MapContainerView: View {
                         if #available(iOS 26, *) {
                             if mapState.showAllLines {
                                 $0.buttonStyle(.glassProminent)
-                                    .buttonBorderShape(.capsule)
+                                    .buttonBorderShape(.circle)
                             } else {
                                 $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.capsule)
+                                    .buttonBorderShape(.circle)
                             }
                         } else {
                             $0
