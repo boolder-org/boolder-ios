@@ -49,7 +49,7 @@ struct TopoFullScreenView: View {
                             
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: mapState.showAllLines ? "slider.vertical.3" : "guidepoint.vertical")
+                                    Image(systemName: "slider.vertical.3")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
