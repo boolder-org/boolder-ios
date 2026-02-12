@@ -21,7 +21,6 @@ struct ProblemNameLabelView: View {
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
             .background(Color(color), in: RoundedRectangle(cornerRadius: 4))
-            .modifier(DropShadow())
     }
     
     var readableColor: UIColor {
