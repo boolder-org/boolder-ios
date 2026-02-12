@@ -135,8 +135,10 @@ struct TopoView: View {
                     }
                     
                     if showAllLines {
+                        let otherProblems = problem.otherProblemsOnSameTopo
+                        
                         ZStack {
-                            ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                            ForEach(otherProblems, id: \.id) { p in
                                 if p.line?.coordinates != nil {
                                     TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
                                         showAllLines = false
@@ -149,7 +151,7 @@ struct TopoView: View {
                         
                         GeometryReader { geo in
                             ZStack {
-                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                ForEach(otherProblems, id: \.id) { p in
                                     if let firstPoint = p.lineFirstPoint {
                                         ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
                                             .allowsHitTesting(false)
@@ -163,7 +165,7 @@ struct TopoView: View {
                         
                         GeometryReader { geo in
                             ZStack {
-                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
+                                ForEach(otherProblems, id: \.id) { p in
                                     if let gradePoint = p.lineGradePoint {
                                         GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(counterZoomScale.wrappedValue)
@@ -179,16 +181,21 @@ struct TopoView: View {
                         }
                         
                         GeometryReader { geo in
+                            let lastPoints = Dictionary(
+                                uniqueKeysWithValues: otherProblems.compactMap { p in
+                                    p.lineLastPoint.map { (p.id, $0) }
+                                }
+                            )
                             let visibleIds = visibleNameLabelIds(
-                                problems: problem.otherProblemsOnSameTopo,
+                                problems: otherProblems,
+                                lastPoints: lastPoints,
                                 geoSize: geo.size
                             )
                             
                             ZStack {
-                                ForEach(problem.otherProblemsOnSameTopo, id: \.id) { p in
-                                    if let lastPoint = p.lineLastPoint,
-                                       !p.localizedName.isEmpty,
-                                       visibleIds.contains(p.id) {
+                                ForEach(otherProblems, id: \.id) { p in
+                                    if let lastPoint = lastPoints[p.id], !p.localizedName.isEmpty {
+                                        let isVisible = visibleIds.contains(p.id)
                                         ProblemNameLabelView(name: p.localizedName, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(counterZoomScale.wrappedValue)
                                             .position(
@@ -196,6 +203,8 @@ struct TopoView: View {
                                                 y: lastPoint.y * geo.size.height - 14 * counterZoomScale.wrappedValue
                                             )
                                             .zIndex(p.zIndex)
+                                            .opacity(isVisible ? 1 : 0)
+                                            .allowsHitTesting(isVisible)
                                             .onTapGesture {
                                                 showAllLines = false
                                                 mapState.selectProblem(p)
@@ -306,19 +315,19 @@ struct TopoView: View {
     
     /// Returns the set of problem IDs whose name labels can be displayed without overlapping.
     /// Problems with highest zIndex get priority.
-    func visibleNameLabelIds(problems: [Problem], geoSize: CGSize) -> Set<Int> {
+    func visibleNameLabelIds(problems: [Problem], lastPoints: [Int: Line.PhotoPercentCoordinate], geoSize: CGSize) -> Set<Int> {
         let scale = counterZoomScale.wrappedValue
         let yOffset: CGFloat = 14 * scale
         
         let sorted = problems
-            .filter { $0.lineLastPoint != nil && !$0.localizedName.isEmpty }
+            .filter { lastPoints[$0.id] != nil && !$0.localizedName.isEmpty }
             .sorted { $0.zIndex > $1.zIndex }
         
         var occupiedRects: [CGRect] = []
         var visibleIds = Set<Int>()
         
         for p in sorted {
-            guard let lastPoint = p.lineLastPoint else { continue }
+            guard let lastPoint = lastPoints[p.id] else { continue }
             
             let labelWidth = (CGFloat(p.localizedName.count) * 7 + 12) * scale
             let labelHeight: CGFloat = 18 * scale
