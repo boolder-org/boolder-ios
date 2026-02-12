@@ -24,6 +24,8 @@ struct TopoView: View {
     
     @State private var bounceAnimation = false
     @State private var paginationPosition: Line.PhotoPercentCoordinate?
+    @State private var showProblemNameLabel = false
+    @State private var nameLabelTask: Task<Void, Never>?
     
     struct ProblemWithGroup: Identifiable {
         let problem: Problem
@@ -119,6 +121,14 @@ struct TopoView: View {
                                 .scaleEffect(counterZoomScale.wrappedValue)
                                 .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
                                 .allowsHitTesting(false)
+                        }
+                        
+                        if !showAllLines, showProblemNameLabel, let lastPoint = problem.lineLastPoint, !problem.localizedName.isEmpty {
+                            ProblemNameLabelView(name: problem.localizedName, color: problem.circuitUIColorForPhotoOverlay)
+                                .scaleEffect(counterZoomScale.wrappedValue)
+                                .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height - 14 * counterZoomScale.wrappedValue)
+                                .allowsHitTesting(false)
+                                .transition(.opacity)
                         }
                         
                         if !showAllLines, let paginationPos = paginationPosition, mapState.selectionSource == .map || mapState.selectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
@@ -283,10 +293,13 @@ struct TopoView: View {
                 lineDrawPercentage = 0.0
                 
                 displayLine()
+                displayNameLabel()
                 animateBounceIfAllowed()
             }
             else {
                 lineDrawPercentage = 0.0
+                nameLabelTask?.cancel()
+                showProblemNameLabel = false
                 
                 Task {
                     await loadData()
@@ -351,6 +364,17 @@ struct TopoView: View {
         }
         
         return visibleIds
+    }
+    
+    func displayNameLabel() {
+        nameLabelTask?.cancel()
+        withAnimation { showProblemNameLabel = true }
+        nameLabelTask = Task {
+            try? await Task.sleep(for: .seconds(2))
+            if !Task.isCancelled {
+                withAnimation { showProblemNameLabel = false }
+            }
+        }
     }
     
     func displayLine() {
