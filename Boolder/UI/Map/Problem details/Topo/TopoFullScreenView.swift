@@ -119,7 +119,7 @@ struct TopoFullScreenView: View {
     }
     
     var topoCarousel: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 16) {
             HStack(spacing: 8) {
                 Button {
                     goToPreviousTopo()
@@ -160,11 +160,17 @@ struct TopoFullScreenView: View {
                 presentBoulderProblemsList = true
             } label: {
                 HStack(spacing: 4) {
-                    Image(systemName: "info.circle")
-                    Text(String(format: NSLocalizedString("boulder.info", comment: ""), boulderTopos.count, boulderProblems.count))
+                    Text(String(format: NSLocalizedString("boulder.info_basic", comment: ""), boulderProblems.count))
+                    Image(systemName: "chevron.right")
                 }
-                .font(.caption)
+                .font(.callout)
                 .foregroundColor(.secondary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color.gray, lineWidth: 1)
+//                )
             }
         }
         .padding(.horizontal, 16)

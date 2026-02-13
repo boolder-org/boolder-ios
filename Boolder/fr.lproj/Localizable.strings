@@ -212,3 +212,4 @@
 "boulder.problems_title" = "Sur ce bloc";
 "boulder.level" = "Niveau %d";
 "boulder.info" = "%d photos, %d voies";
+"boulder.info_basic" = "%d voies";

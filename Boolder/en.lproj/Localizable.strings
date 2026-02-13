@@ -213,3 +213,4 @@
 "boulder.problems_title" = "On this boulder";
 "boulder.level" = "Level %d";
 "boulder.info" = "%d photos, %d problems";
+"boulder.info_basic" = "%d problems";
