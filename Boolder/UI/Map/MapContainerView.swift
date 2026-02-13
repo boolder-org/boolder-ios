@@ -168,7 +168,7 @@ struct MapContainerView: View {
                 Spacer()
                 
                 if mapState.presentProblemDetails {
-                    HStack(spacing: 4) {
+                    HStack(spacing: 8) {
                         Button(action: { mapState.showAllLines.toggle() }) {
                             HStack {
                                 Image(systemName: "hexagon")
