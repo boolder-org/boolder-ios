@@ -46,7 +46,7 @@ struct ProblemActionButtonsView: View {
                     mapState.showAllLines = true
                 }) {
                     HStack(alignment: .center, spacing: 8) {
-                        Image(systemName: "mountain.2")
+                        Image(systemName: "hexagon")
                         Text("boulder.name").fixedSize(horizontal: true, vertical: true)
                     }
                     .modify {

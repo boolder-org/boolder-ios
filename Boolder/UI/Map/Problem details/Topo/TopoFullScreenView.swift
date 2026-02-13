@@ -101,7 +101,7 @@ struct TopoFullScreenView: View {
                 Button {
                     goToPreviousTopo()
                 } label: {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: "arrow.left")
                         .foregroundColor(.white)
                         .frame(width: 54, height: 54)
                         .background(Color(.systemGray5))
@@ -125,7 +125,7 @@ struct TopoFullScreenView: View {
                 Button {
                     goToNextTopo()
                 } label: {
-                    Image(systemName: "chevron.right")
+                    Image(systemName: "arrow.right")
                         .foregroundColor(.white)
                         .frame(width: 54, height: 54)
                         .background(Color(.systemGray5))
