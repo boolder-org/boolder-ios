@@ -171,7 +171,7 @@ struct MapContainerView: View {
                 
                 if mapState.presentProblemDetails {
                     Button(action: { mapState.showAllLines.toggle() }) {
-                        Image("goaround")
+                        Image("lines")
                             .modify {
                                 if #available(iOS 26, *) {
                                     $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))

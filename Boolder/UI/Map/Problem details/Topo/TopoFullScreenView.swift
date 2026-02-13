@@ -49,7 +49,7 @@ struct TopoFullScreenView: View {
                             
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image("goaround")
+                                    Image("lines")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
@@ -64,7 +64,7 @@ struct TopoFullScreenView: View {
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image("goaround")
+                                    Image("lines")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
