@@ -209,7 +209,7 @@
 "contribute.learn_more" = "En savoir plus sur Boolder";
 
 // MARK: Boulder
-"boulder.problems_title" = "Sur ce bloc";
+"boulder.problems_title" = "%d voies";
 "boulder.level" = "Niveau %d";
 "boulder.info" = "%d photos, %d voies";
 "boulder.info_basic" = "%d voies";

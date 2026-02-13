@@ -46,7 +46,7 @@ struct BoulderProblemsListView: View {
                     }
                 }
             }
-            .navigationTitle("boulder.problems_title")
+            .navigationTitle(String(format: NSLocalizedString("boulder.problems_title", comment: ""), problems.count))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

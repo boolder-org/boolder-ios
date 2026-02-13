@@ -210,7 +210,7 @@
 "contribute.learn_more" = "Learn more about Boolder";
 
 // MARK: Boulder
-"boulder.problems_title" = "On this boulder";
+"boulder.problems_title" = "%d problems";
 "boulder.level" = "Level %d";
 "boulder.info" = "%d photos, %d problems";
 "boulder.info_basic" = "%d problems";
