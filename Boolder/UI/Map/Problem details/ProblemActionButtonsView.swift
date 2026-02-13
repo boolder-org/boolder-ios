@@ -158,6 +158,36 @@ struct ProblemActionButtonsView: View {
                     }
                 }
                 
+                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                    Button(action: {
+                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                    }) {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "info.circle")
+                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                                    .padding(.vertical, 2)
+                                    .padding(.horizontal, 4)
+                            } else {
+                                $0
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 16)
+                            }
+                        }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                        } else {
+                            $0
+                                .buttonStyle(Pill(fill: true))
+                        }
+                    }
+                }
+                
                 Button(action: {
                     presentSaveActionsheet = true
                 }) {
@@ -190,33 +220,24 @@ struct ProblemActionButtonsView: View {
                     ActionSheet(title: Text("problem.action.save"), buttons: saveManager.saveButtons())
                 }
                 
-                Menu {
-                    Button {
-                        presentSharesheet = true
-                    } label: {
-                        Label("problem.action.share", systemImage: "square.and.arrow.up")
+                Button(action: {
+                    presentSharesheet = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("problem.action.share")
                     }
-                    
-                    if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-                        Button {
-                            openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-                        } label: {
-                            Label("Bleau.info", systemImage: "info.circle")
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 4)
+                        } else {
+                            $0
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 16)
                         }
                     }
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
                 }
                 .modify {
                     if #available(iOS 26, *) {
