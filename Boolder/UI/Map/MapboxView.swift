@@ -27,11 +27,22 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
+        // Update showAllLines before setProblemAsSelected uses it
+        vc.showAllLines = mapState.showAllLines
+        
         // Handle selectedProblem changes
         let selectedId = mapState.selectedProblem.id
         if context.coordinator.lastSelectedProblemId != selectedId && selectedId != 0 {
             context.coordinator.lastSelectedProblemId = selectedId
             vc.setProblemAsSelected(problemFeatureId: String(selectedId))
+        }
+        
+        // Handle showAllLines changes (re-select current problem to apply new mode)
+        if context.coordinator.lastShowAllLines != mapState.showAllLines {
+            context.coordinator.lastShowAllLines = mapState.showAllLines
+            if selectedId != 0 {
+                vc.setProblemAsSelected(problemFeatureId: String(selectedId))
+            }
         }
         
         // Handle centerOnProblem changes
@@ -112,6 +123,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnCircuitId: Int = 0
         var lastSelectedCircuitId: Int = 0
         var lastRefreshFiltersCount: Int = 0
+        var lastShowAllLines: Bool = false
 
         init(_ parent: MapboxView) {
             self.parent = parent

@@ -903,8 +903,13 @@ class MapboxViewController: UIViewController {
     }
     
     private var previouslyTappedProblemId: String = ""
+    private var previouslySelectedTopoIds: [String] = []
+    var showAllLines = false
     
     func setProblemAsSelected(problemFeatureId: String) {
+        // Unselect previously selected topo problems
+        unselectPreviousTopoProblems()
+        
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                sourceLayerId: problemsSourceLayerId,
                                                featureId: problemFeatureId,
@@ -917,6 +922,25 @@ class MapboxViewController: UIViewController {
         }
         
         self.previouslyTappedProblemId = problemFeatureId
+        
+        // If showAllLines, also select all problems on the same topo
+        if showAllLines, let problemId = Int(problemFeatureId), let problem = Problem.load(id: problemId) {
+            var selectedIds: [String] = []
+            
+            for p in problem.otherProblemsOnSameTopo {
+                let featureId = String(p.id)
+                if featureId != problemFeatureId {
+                    self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                           sourceLayerId: problemsSourceLayerId,
+                                                           featureId: featureId,
+                                                           state: ["selected": true]) { result in
+                    }
+                    selectedIds.append(featureId)
+                }
+            }
+            
+            previouslySelectedTopoIds = selectedIds
+        }
     }
     
     func unselectPreviousProblem() {
@@ -928,6 +952,17 @@ class MapboxViewController: UIViewController {
                 
             }
         }
+    }
+    
+    private func unselectPreviousTopoProblems() {
+        for featureId in previouslySelectedTopoIds {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                   sourceLayerId: problemsSourceLayerId,
+                                                   featureId: featureId,
+                                                   state: ["selected": false]) { result in
+            }
+        }
+        previouslySelectedTopoIds = []
     }
     
     func flyTo(_ cameraOptions: CameraOptions) {
