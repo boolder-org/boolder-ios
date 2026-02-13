@@ -176,7 +176,7 @@ struct TopoFullScreenView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 16)
-        .background(.ultraThinMaterial)
+        .background(.regularMaterial)
         .padding(.bottom)
         .safeAreaPadding(.bottom)
     }
