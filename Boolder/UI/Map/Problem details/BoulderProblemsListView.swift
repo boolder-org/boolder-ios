@@ -24,7 +24,7 @@ struct BoulderProblemsListView: View {
         NavigationStack {
             List {
                 ForEach(groupedProblems, id: \.category) { group in
-                    Section(String(format: NSLocalizedString("boulder.level", comment: ""), group.category)) {
+                    Section {
                         ForEach(group.problems) { problem in
                             Button {
                                 mapState.showAllLines = false
