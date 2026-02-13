@@ -46,7 +46,7 @@ struct ProblemActionButtonsView: View {
                     mapState.showAllLines = true
                 }) {
                     HStack(alignment: .center, spacing: 8) {
-                        Image(systemName: "chevron.left")
+                        Image(systemName: "mountain.2")
                         Text("boulder.name").fixedSize(horizontal: true, vertical: true)
                     }
                     .modify {
@@ -67,36 +67,6 @@ struct ProblemActionButtonsView: View {
                     } else {
                         $0
                             .buttonStyle(Pill())
-                    }
-                }
-                
-                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
-                    Button(action: {
-                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
-                    }) {
-                        HStack(alignment: .center, spacing: 8) {
-                            Image(systemName: "info.circle")
-                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
-                    }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill(fill: true))
-                        }
                     }
                 }
                 
@@ -185,6 +155,36 @@ struct ProblemActionButtonsView: View {
                                 .cancel()
                             ]
                         )
+                    }
+                }
+                
+                if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
+                    Button(action: {
+                        openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)
+                    }) {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "info.circle")
+                            Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                                    .padding(.vertical, 2)
+                                    .padding(.horizontal, 4)
+                            } else {
+                                $0
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 16)
+                            }
+                        }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                        } else {
+                            $0
+                                .buttonStyle(Pill(fill: true))
+                        }
                     }
                 }
                 
