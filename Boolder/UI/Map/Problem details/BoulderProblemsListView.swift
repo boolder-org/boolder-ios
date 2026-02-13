@@ -49,14 +49,9 @@ struct BoulderProblemsListView: View {
             .navigationTitle("boulder.problems_title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { dismiss() }) {
                         Image(systemName: "xmark")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(Color(.secondaryLabel))
-                            .padding(6)
-                            .background(Color(.systemGray5))
-                            .clipShape(Circle())
                     }
                 }
             }
