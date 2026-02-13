@@ -72,6 +72,48 @@ struct ProblemActionButtonsView: View {
                     }
                 }
                 
+                if problem.variants.count > 1 {
+                    Menu {
+                        ForEach(problem.variants.sorted { $0.grade < $1.grade }) { variant in
+                            Button {
+                                mapState.selectProblem(variant)
+                            } label: {
+                                HStack {
+                                    Text("\(variant.grade.string) - \(variant.localizedName)")
+                                    if variant.id == problem.id {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            }
+                        }
+                    } label: {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image(systemName: "arrow.trianglehead.branch")
+                            Text(String(format: NSLocalizedString(problem.variants.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural", comment: ""), problem.variants.count))
+                                .fixedSize(horizontal: true, vertical: true)
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0
+                                    .padding(.vertical, 2)
+                                    .padding(.horizontal, 4)
+                            } else {
+                                $0
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 16)
+                            }
+                        }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                        } else {
+                            $0
+                                .buttonStyle(Pill())
+                        }
+                    }
+                }
+                
                 if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
                     Button(action: {
                         presentCircuitActionsheet = true
@@ -115,48 +157,6 @@ struct ProblemActionButtonsView: View {
                                 .cancel()
                             ]
                         )
-                    }
-                }
-                
-                if problem.variants.count > 1 {
-                    Menu {
-                        ForEach(problem.variants.sorted { $0.grade < $1.grade }) { variant in
-                            Button {
-                                mapState.selectProblem(variant)
-                            } label: {
-                                HStack {
-                                    Text("\(variant.grade.string) - \(variant.localizedName)")
-                                    if variant.id == problem.id {
-                                        Image(systemName: "checkmark")
-                                    }
-                                }
-                            }
-                        }
-                    } label: {
-                        HStack(alignment: .center, spacing: 8) {
-                            Image(systemName: "arrow.trianglehead.branch")
-                            Text(String(format: NSLocalizedString(problem.variants.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural", comment: ""), problem.variants.count))
-                                .fixedSize(horizontal: true, vertical: true)
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
-                    }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill())
-                        }
                     }
                 }
                 
