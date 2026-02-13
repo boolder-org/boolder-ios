@@ -146,7 +146,7 @@ struct MapContainerView: View {
                         Image(systemName: "xmark")
                             .modify {
                                 if #available(iOS 26, *) {
-                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                         .padding(4)
                                 } else {
                                     $0.foregroundColor(.primary)
