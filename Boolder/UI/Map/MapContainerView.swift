@@ -219,27 +219,29 @@ struct MapContainerView: View {
     
     func circuitButtonsContent(circuit: Circuit) -> some View {
         HStack(spacing: 0) {
-            if(mapState.canGoToPreviousCircuitProblem) {
-                Button(action: {
+            Button(action: {
+                if mapState.canGoToPreviousCircuitProblem {
                     mapState.goToPreviousCircuitProblem()
-                }) {
-                    Image(systemName: "arrow.left")
-                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                        .padding(12)
                 }
-                .font(.body.weight(.semibold))
+            }) {
+                Image(systemName: "arrow.left")
+                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                    .padding(12)
             }
+            .font(.body.weight(.semibold))
+            .opacity(mapState.canGoToPreviousCircuitProblem ? 1 : 0.3)
             
-            if(mapState.canGoToNextCircuitProblem) {
-                Button(action: {
+            Button(action: {
+                if mapState.canGoToNextCircuitProblem {
                     mapState.goToNextCircuitProblem()
-                }) {
-                    Image(systemName: "arrow.right")
-                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                        .padding(12)
                 }
-                .font(.body.weight(.semibold))
+            }) {
+                Image(systemName: "arrow.right")
+                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                    .padding(12)
             }
+            .font(.body.weight(.semibold))
+            .opacity(mapState.canGoToNextCircuitProblem ? 1 : 0.3)
         }
         .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
         .modify {
