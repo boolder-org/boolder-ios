@@ -20,6 +20,7 @@ struct ProblemDetailsView: View {
     
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
+    @State private var presentBoulderProblemsList = false
     
     @Namespace private var topoTransitionNamespace
     
@@ -106,39 +107,56 @@ struct ProblemDetailsView: View {
     }
     
     var topoCarousel: some View {
-        HStack(spacing: 8) {
-            Button {
-                goToPreviousTopo()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.primary)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
-            }
-            
-            GeometryReader { geo in
-                let count = CGFloat(boulderTopos.count)
-                let totalSpacing = 8 * max(count - 1, 0)
-                let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
-                
-                HStack(spacing: 8) {
-                    ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
-                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
-                    }
+        VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                Button {
+                    goToPreviousTopo()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.primary)
+                        .frame(width: 54, height: 54)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                GeometryReader { geo in
+                    let count = CGFloat(boulderTopos.count)
+                    let totalSpacing = 8 * max(count - 1, 0)
+                    let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
+                    
+                    HStack(spacing: 8) {
+                        ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
+                            topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(height: 54)
+                
+                Button {
+                    goToNextTopo()
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.primary)
+                        .frame(width: 54, height: 54)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
+                }
             }
-            .frame(height: 54)
             
             Button {
-                goToNextTopo()
+                presentBoulderProblemsList = true
             } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.primary)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
+                HStack(spacing: 4) {
+                    Image(systemName: "info.circle")
+                    Text(String(format: NSLocalizedString("boulder.info", comment: ""), boulderTopos.count, boulderProblems.count))
+                }
+                .font(.caption)
+                .foregroundColor(.secondary)
+            }
+            .sheet(isPresented: $presentBoulderProblemsList) {
+                BoulderProblemsListView(problems: boulderProblems)
+                    .presentationDetents([.large])
             }
         }
         .padding(.horizontal, 16)
@@ -182,6 +200,11 @@ struct ProblemDetailsView: View {
     private var boulderTopos: [Topo] {
         guard let topo = problem.topo, let boulderId = topo.boulderId else { return [] }
         return Boulder(id: boulderId).topos
+    }
+    
+    private var boulderProblems: [Problem] {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return [] }
+        return Boulder(id: boulderId).problems
     }
     
     private func goToTopo(_ topo: Topo) {

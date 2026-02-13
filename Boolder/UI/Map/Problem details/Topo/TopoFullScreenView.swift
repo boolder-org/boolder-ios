@@ -50,16 +50,6 @@ struct TopoFullScreenView: View {
                             Spacer()
                             
                             if #available(iOS 26, *) {
-                                if mapState.showAllLines {
-                                    Button(action: { presentBoulderProblemsList = true }) {
-                                        Image(systemName: "list.bullet")
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                            .padding(4)
-                                    }
-                                    .buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                                }
-                                
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     Image("lines")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
@@ -75,14 +65,6 @@ struct TopoFullScreenView: View {
                                 .buttonBorderShape(.circle)
                             }
                             else {
-                                if mapState.showAllLines {
-                                    Button(action: { presentBoulderProblemsList = true }) {
-                                        Image(systemName: "list.bullet")
-                                            .foregroundColor(Color(UIColor.white))
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                    }
-                                }
-                                
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     Image("lines")
                                         .foregroundColor(Color(UIColor.white))
@@ -137,39 +119,52 @@ struct TopoFullScreenView: View {
     }
     
     var topoCarousel: some View {
-        HStack(spacing: 8) {
-            Button {
-                goToPreviousTopo()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.white)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
-            }
-            
-            GeometryReader { geo in
-                let count = CGFloat(boulderTopos.count)
-                let totalSpacing = 8 * max(count - 1, 0)
-                let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
-                
-                HStack(spacing: 8) {
-                    ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
-                        topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
-                    }
+        VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                Button {
+                    goToPreviousTopo()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
+                        .frame(width: 54, height: 54)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                GeometryReader { geo in
+                    let count = CGFloat(boulderTopos.count)
+                    let totalSpacing = 8 * max(count - 1, 0)
+                    let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
+                    
+                    HStack(spacing: 8) {
+                        ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
+                            topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(height: 54)
+                
+                Button {
+                    goToNextTopo()
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.white)
+                        .frame(width: 54, height: 54)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(6)
+                }
             }
-            .frame(height: 54)
             
             Button {
-                goToNextTopo()
+                presentBoulderProblemsList = true
             } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.white)
-                    .frame(width: 54, height: 54)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(6)
+                HStack(spacing: 4) {
+                    Image(systemName: "info.circle")
+                    Text(String(format: NSLocalizedString("boulder.info", comment: ""), boulderTopos.count, boulderProblems.count))
+                }
+                .font(.caption)
+                .foregroundColor(.secondary)
             }
         }
         .padding(.horizontal, 16)
