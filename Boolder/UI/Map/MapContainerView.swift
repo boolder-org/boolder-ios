@@ -169,7 +169,20 @@ struct MapContainerView: View {
                 
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
-                        Button(action: { mapState.showAllLines.toggle() }) {
+                        Button(action: {
+                            mapState.showAllLines.toggle()
+                            
+                            if mapState.showAllLines {
+                                if let topo = mapState.selectedProblem.topo,
+                                   let boulderId = topo.boulderId {
+                                    let boulder = Boulder(id: boulderId)
+                                    let coordinates = boulder.problems.map { $0.coordinate }
+                                    if !coordinates.isEmpty {
+                                        mapState.centerOnBoulder(coordinates: coordinates)
+                                    }
+                                }
+                            }
+                        }) {
                             HStack {
                                 Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
                                 Text(!mapState.showAllLines ? "boulder.name" : "line.name")

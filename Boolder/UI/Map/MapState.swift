@@ -28,6 +28,8 @@ class MapState {
     private(set) var selectedCluster: Cluster? = nil
     private(set) var selectedCircuit: Circuit? = nil
     private(set) var centerOnCircuit: Circuit? = nil
+    private(set) var centerOnBoulderCoordinates: [CLLocationCoordinate2D] = []
+    private(set) var centerOnBoulderCount: Int = 0
     var selectedPoi: Poi? = nil
     var filters: Filters = Filters()
     private(set) var refreshFiltersCount: Int = 0
@@ -138,6 +140,11 @@ class MapState {
             self.selectProblem(problem)
             self.presentProblemDetails = true
         }
+    }
+    
+    func centerOnBoulder(coordinates: [CLLocationCoordinate2D]) {
+        centerOnBoulderCoordinates = coordinates
+        centerOnBoulderCount += 1
     }
     
     func centerOnCurrentLocation() {

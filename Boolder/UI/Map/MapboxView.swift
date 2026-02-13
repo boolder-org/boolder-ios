@@ -69,6 +69,12 @@ struct MapboxView: UIViewControllerRepresentable {
             vc.centerOnCurrentLocation()
         }
         
+        // Handle centerOnBoulder changes
+        if mapState.centerOnBoulderCount != context.coordinator.lastCenterOnBoulderCount {
+            context.coordinator.lastCenterOnBoulderCount = mapState.centerOnBoulderCount
+            vc.centerOnBoulderCoordinates(mapState.centerOnBoulderCoordinates)
+        }
+        
         // Handle centerOnCircuit changes
         if let centerOnCircuit = mapState.centerOnCircuit {
             let centerOnCircuitId = centerOnCircuit.id
@@ -124,6 +130,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastSelectedCircuitId: Int = 0
         var lastRefreshFiltersCount: Int = 0
         var lastShowAllLines: Bool = false
+        var lastCenterOnBoulderCount: Int = 0
 
         init(_ parent: MapboxView) {
             self.parent = parent

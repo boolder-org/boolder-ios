@@ -852,6 +852,29 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func centerOnBoulderCoordinates(_ coordinates: [CLLocationCoordinate2D]) {
+        guard coordinates.count >= 2 else {
+            // Single problem or empty: just center on the single coordinate
+            if let coord = coordinates.first {
+                flyTo(CameraOptions(
+                    center: coord,
+                    padding: safePaddingForBoulder,
+                    zoom: 20
+                ))
+            }
+            return
+        }
+        
+        if let cameraOptions = try? self.mapView.mapboxMap.camera(
+            for: coordinates,
+            camera: CameraOptions(padding: UIEdgeInsets(), bearing: 0, pitch: 0),
+            coordinatesPadding: safePaddingForBoulder,
+            maxZoom: nil,
+            offset: nil) {
+            flyTo(cameraOptions)
+        }
+    }
+    
     func setCircuitAsSelected(circuit: Circuit) {
         do {
             try ["circuits"].forEach { layerId in
@@ -1001,6 +1024,9 @@ class MapboxViewController: UIViewController {
     var safePaddingForBottomSheet : UIEdgeInsets {
         UIEdgeInsets(top: 20, left: 0, bottom: view.bounds.height/2 + 40, right: 0)
     } // FIXME: use old values for iOS < 26
+    var safePaddingForBoulder: UIEdgeInsets {
+        UIEdgeInsets(top: 80, left: view.bounds.width / 3, bottom: view.bounds.height/2 + 40, right: view.bounds.width / 3)
+    }
     let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
     
     private func coordinatesFrom(southWestLat: String, southWestLon: String, northEastLat: String, northEastLon: String) -> [CLLocationCoordinate2D] {
