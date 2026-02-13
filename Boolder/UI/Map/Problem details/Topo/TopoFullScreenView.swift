@@ -52,24 +52,20 @@ struct TopoFullScreenView: View {
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     HStack {
-                                        Image(systemName: "hexagon")
-                                        Text("boulder.name")
+                                        Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
+                                        Text(!mapState.showAllLines ? "boulder.name" : "line.name")
+//                                        Image(systemName: "chevron.down")
                                     }
                                         .padding(4)
                                 }
-                                .modify {
-                                    if mapState.showAllLines {
-                                        $0.buttonStyle(.glassProminent)
-                                    } else {
-                                        $0.buttonStyle(.glass)
-                                    }
-                                }
+                                .buttonStyle(.glass)
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     HStack {
-                                        Image(systemName: "hexagon")
-                                        Text("boulder.name")
+                                        Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
+                                        Text(!mapState.showAllLines ? "boulder.name" : "line.name")
+//                                        Image(systemName: "chevron.down")
                                     }
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))

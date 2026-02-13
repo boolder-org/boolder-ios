@@ -171,8 +171,9 @@ struct MapContainerView: View {
                     HStack(spacing: 8) {
                         Button(action: { mapState.showAllLines.toggle() }) {
                             HStack {
-                                Image(systemName: "hexagon")
-                                Text("boulder.name")
+                                Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
+                                Text(!mapState.showAllLines ? "boulder.name" : "line.name")
+//                                Image(systemName: "chevron.down")
                             }
                                 .modify {
                                     if #available(iOS 26, *) {
@@ -185,11 +186,7 @@ struct MapContainerView: View {
                         }
                         .modify {
                             if #available(iOS 26, *) {
-                                if mapState.showAllLines {
-                                    $0.buttonStyle(.glassProminent)
-                                } else {
-                                    $0.buttonStyle(.glass)
-                                }
+                                $0.buttonStyle(.glass)
                             } else {
                                 $0
                                     .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
