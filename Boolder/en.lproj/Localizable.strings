@@ -214,3 +214,4 @@
 "boulder.level" = "Level %d";
 "boulder.info" = "%d photos, %d problems";
 "boulder.info_basic" = "%d problems";
+"boulder.name" = "Boulder";

@@ -42,6 +42,34 @@ struct ProblemActionButtonsView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .center, spacing: 12) {
                 
+                Button(action: {
+                    mapState.showAllLines = true
+                }) {
+                    HStack(alignment: .center, spacing: 8) {
+                        Image(systemName: "chevron.left")
+                        Text("boulder.name").fixedSize(horizontal: true, vertical: true)
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0
+                                .padding(.vertical, 2)
+                                .padding(.horizontal, 4)
+                        } else {
+                            $0
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 16)
+                        }
+                    }
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                    } else {
+                        $0
+                            .buttonStyle(Pill())
+                    }
+                }
+                
                 if problem.bleauInfoId != nil && problem.bleauInfoId != "" {
                     Button(action: {
                         openURL(URL(string: "https://bleau.info/a/\(problem.bleauInfoId ?? "").html")!)

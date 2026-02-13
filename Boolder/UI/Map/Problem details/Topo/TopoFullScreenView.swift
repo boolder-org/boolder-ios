@@ -48,29 +48,6 @@ struct TopoFullScreenView: View {
                             }
                             
                             Spacer()
-                            
-                            if #available(iOS 26, *) {
-                                Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image("lines")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
-                                }
-                                .modify {
-                                    if mapState.showAllLines {
-                                        $0.buttonStyle(.glassProminent)
-                                    } else {
-                                        $0.buttonStyle(.glass)
-                                    }
-                                }
-                                .buttonBorderShape(.circle)
-                            }
-                            else {
-                                Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image("lines")
-                                        .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                }
-                            }
                         }
                     }
                     .padding()
