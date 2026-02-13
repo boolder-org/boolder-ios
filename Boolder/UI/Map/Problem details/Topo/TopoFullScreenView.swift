@@ -33,7 +33,7 @@ struct TopoFullScreenView: View {
                             if #available(iOS 26, *) {
                                 Button(action: { dismiss() }) {
                                     Image(systemName: "chevron.left")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                         .padding(4)
                                 }
                                 .buttonStyle(.glass)
@@ -43,7 +43,7 @@ struct TopoFullScreenView: View {
                                 Button(action: { dismiss() }) {
                                     Image(systemName: "chevron.left")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                 }
                             }
                             
