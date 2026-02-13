@@ -48,6 +48,35 @@ struct TopoFullScreenView: View {
                             }
                             
                             Spacer()
+                            
+                            if #available(iOS 26, *) {
+                                Button(action: { mapState.showAllLines.toggle() }) {
+                                    HStack {
+                                        Image(systemName: "hexagon")
+                                        Text("boulder.name")
+                                    }
+                                        .padding(4)
+                                }
+                                .modify {
+                                    if mapState.showAllLines {
+                                        $0.buttonStyle(.glassProminent)
+                                    } else {
+                                        $0.buttonStyle(.glass)
+                                    }
+                                }
+                                .buttonBorderShape(.circle)
+                            }
+                            else {
+                                Button(action: { mapState.showAllLines.toggle() }) {
+                                    HStack {
+                                        Image(systemName: "hexagon")
+                                        Text("boulder.name")
+                                    }
+                                        .foregroundColor(Color(UIColor.white))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                }
+                            }
+
                         }
                     }
                     .padding()

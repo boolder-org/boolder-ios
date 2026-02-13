@@ -168,6 +168,40 @@ struct MapContainerView: View {
                 }
                 
                 Spacer()
+                
+                if mapState.presentProblemDetails {
+                    Button(action: { mapState.showAllLines.toggle() }) {
+                        HStack {
+                            Image(systemName: "hexagon")
+                            Text("boulder.name")
+                        }
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.padding(4)
+                                } else {
+                                    $0.foregroundColor(.primary)
+                                        .padding(10)
+                                }
+                            }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            if mapState.showAllLines {
+                                $0.buttonStyle(.glassProminent)
+//                                    .buttonBorderShape(.circle)
+                            } else {
+                                $0.buttonStyle(.glass)
+//                                    .buttonBorderShape(.circle)
+                            }
+                        } else {
+                            $0
+                                .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                        }
+                    }
+                }
+
             }
             .padding(.horizontal)
             .padding(.top, 8)
