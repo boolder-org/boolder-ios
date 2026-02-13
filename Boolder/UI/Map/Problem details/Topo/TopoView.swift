@@ -374,7 +374,7 @@ struct TopoView: View {
     
     func displayNameLabel() {
         nameLabelTask?.cancel()
-        withAnimation { showProblemNameLabel = true }
+        showProblemNameLabel = true
         nameLabelTask = Task {
             try? await Task.sleep(for: .seconds(2))
             if !Task.isCancelled {
