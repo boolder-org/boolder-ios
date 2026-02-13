@@ -211,6 +211,8 @@
 
 // MARK: Boulder
 "boulder.problems_title" = "%d problems";
+"boulder.problems_list.photo" = "By face";
+"boulder.problems_list.grade" = "By grade";
 "boulder.level" = "Level %d";
 "boulder.info" = "%d photos, %d problems";
 "boulder.info_basic" = "%d problems";

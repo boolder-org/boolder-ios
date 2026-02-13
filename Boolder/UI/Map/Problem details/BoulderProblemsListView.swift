@@ -13,37 +13,60 @@ struct BoulderProblemsListView: View {
     @Environment(MapState.self) private var mapState: MapState
     
     let problems: [Problem]
+    let boulderId: Int?
+    @State private var selectedSegment: Segment = .photo
     
-    private var groupedProblems: [(category: Int, problems: [Problem])] {
-        let sorted = problems.sorted { $0.grade < $1.grade }
-        let grouped = Dictionary(grouping: sorted) { $0.grade.category }
-        return grouped.sorted { $0.key < $1.key }.map { (category: $0.key, problems: $0.value) }
+    private enum Segment: String, CaseIterable, Identifiable {
+        case photo
+        case grade
+        
+        var id: String { rawValue }
+        
+        var title: String {
+            switch self {
+            case .photo:
+                return NSLocalizedString("boulder.problems_list.photo", comment: "")
+            case .grade:
+                return NSLocalizedString("boulder.problems_list.grade", comment: "")
+            }
+        }
+    }
+    
+    // MARK: - Photo grouping (by topo position)
+    
+    private var boulderTopos: [Topo] {
+        guard let boulderId = boulderId else { return [] }
+        return Boulder(id: boulderId).topos
+    }
+    
+    private var groupedByTopo: [(index: Int, letter: String, topo: Topo, problems: [Problem])] {
+        boulderTopos.enumerated().compactMap { index, topo in
+            let letter = String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
+            let topoProblems = problems
+                .filter { $0.topoId == topo.id }
+                .sorted { $0.grade < $1.grade }
+            guard !topoProblems.isEmpty else { return nil }
+            return (index: index, letter: letter, topo: topo, problems: topoProblems)
+        }
     }
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(groupedProblems, id: \.category) { group in
-                    Section {
-                        ForEach(group.problems) { problem in
-                            Button {
-                                mapState.showAllLines = false
-                                mapState.selectProblem(problem)
-                                dismiss()
-                            } label: {
-                                HStack {
-                                    ProblemCircleView(problem: problem)
-                                    Text(problem.localizedName)
-                                    Spacer()
-                                    if problem.featured {
-                                        Image(systemName: "heart.fill").foregroundColor(.pink)
-                                    }
-                                    Text(problem.grade.string)
-                                }
-                                .foregroundColor(.primary)
-                            }
-                        }
+            VStack(spacing: 0) {
+                Picker("", selection: $selectedSegment) {
+                    ForEach(Segment.allCases) { segment in
+                        Text(segment.title).tag(segment)
                     }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                
+                switch selectedSegment {
+                case .photo:
+                    photoList
+                case .grade:
+                    gradeList
                 }
             }
             .navigationTitle(String(format: NSLocalizedString("boulder.problems_title", comment: ""), problems.count))
@@ -57,5 +80,49 @@ struct BoulderProblemsListView: View {
             }
         }
     }
+    
+    private var photoList: some View {
+        List {
+            ForEach(groupedByTopo, id: \.index) { group in
+                Section {
+                    ForEach(group.problems) { problem in
+                        problemRow(problem)
+                    }
+                } header: {
+                    Text("Face \(group.letter)")
+                }
+            }
+        }
+    }
+    
+    private var sortedByGrade: [Problem] {
+        problems.sorted { $0.grade < $1.grade }
+    }
+    
+    private var gradeList: some View {
+        List {
+            ForEach(sortedByGrade) { problem in
+                problemRow(problem)
+            }
+        }
+    }
+    
+    private func problemRow(_ problem: Problem) -> some View {
+        Button {
+            mapState.showAllLines = false
+            mapState.selectProblem(problem)
+            dismiss()
+        } label: {
+            HStack {
+                ProblemCircleView(problem: problem)
+                Text(problem.localizedName)
+                Spacer()
+                if problem.featured {
+                    Image(systemName: "heart.fill").foregroundColor(.pink)
+                }
+                Text(problem.grade.string)
+            }
+            .foregroundColor(.primary)
+        }
+    }
 }
-

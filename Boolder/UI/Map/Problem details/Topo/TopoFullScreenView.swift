@@ -109,7 +109,7 @@ struct TopoFullScreenView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .sheet(isPresented: $presentBoulderProblemsList) {
-            BoulderProblemsListView(problems: boulderProblems)
+            BoulderProblemsListView(problems: boulderProblems, boulderId: problem.topo?.boulderId)
                 .presentationDetents([.large])
         }
     }

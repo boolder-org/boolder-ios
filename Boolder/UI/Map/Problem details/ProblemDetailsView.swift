@@ -161,7 +161,7 @@ struct ProblemDetailsView: View {
 //                )
             }
             .sheet(isPresented: $presentBoulderProblemsList) {
-                BoulderProblemsListView(problems: boulderProblems)
+                BoulderProblemsListView(problems: boulderProblems, boulderId: problem.topo?.boulderId)
                     .presentationDetents([.large])
             }
         }
