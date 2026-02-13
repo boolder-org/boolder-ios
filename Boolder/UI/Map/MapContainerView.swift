@@ -169,7 +169,7 @@ struct MapContainerView: View {
                 
                 Spacer()
                 
-                if mapState.presentProblemDetails {
+                if mapState.presentProblemDetails, mapState.selectedCircuit == nil || mapState.selectedCircuit?.id != mapState.selectedProblem.circuitId {
                     Button(action: { mapState.showAllLines.toggle() }) {
                         HStack {
                             Image(systemName: "hexagon")
@@ -215,78 +215,91 @@ struct MapContainerView: View {
     var circuitButtons : some View {
         Group {
             if let circuit = mapState.selectedCircuit, mapState.presentProblemDetails, circuit.id == mapState.selectedProblem.circuitId {
-                HStack(spacing: 0) {
-                    
-                    if(mapState.canGoToPreviousCircuitProblem) {
-                        Button(action: {
-                            mapState.goToPreviousCircuitProblem()
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(4)
-                                    } else {
-                                        $0.padding(10)
-                                    }
-                                }
-                        }
-                        .font(.body.weight(.semibold))
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
-                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
-                            } else {
-                                $0
-                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                                    .background(Color.systemBackground)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                                    )
-                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                            }
-                        }
-                        .padding(.horizontal, 4)
-                    }
-                    
+                HStack {
                     Spacer()
                     
-                    if(mapState.canGoToNextCircuitProblem) {
-                        
-                        Button(action: {
-                            mapState.goToNextCircuitProblem()
-                        }) {
-                            Image(systemName: "arrow.right")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(4)
-                                    } else {
-                                        $0.padding(10)
-                                    }
-                                }
+                    if #available(iOS 26.0, *) {
+                        GlassEffectContainer {
+                            circuitButtonsContent(circuit: circuit)
                         }
-                        .font(.body.weight(.semibold))
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass).buttonBorderShape(.circle)
-                                    .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
-                            } else {
-                                $0
-                                    .accentColor(Color(circuit.color.uicolorForSystemBackground))
-                                    .background(Color.systemBackground)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                                    )
-                                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-                            }
-                        }
-                        .padding(.horizontal, 4)
+                    } else {
+                        circuitButtonsContent(circuit: circuit)
                     }
                 }
+                .padding(.horizontal)
                 .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+            }
+        }
+    }
+    
+    func circuitButtonsContent(circuit: Circuit) -> some View {
+        HStack(spacing: 4) {
+            Button(action: {
+                mapState.unselectCircuit()
+            }) {
+                Image(systemName: "xmark")
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                                .padding(4)
+                        } else {
+                            $0.padding(10)
+                        }
+                    }
+            }
+            .font(.body.weight(.semibold))
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.glassEffect(.regular.interactive(), in: .circle)
+                        .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+                } else {
+                    $0
+                        .accentColor(Color(circuit.color.uicolorForSystemBackground))
+                        .background(Color.systemBackground)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                }
+            }
+            
+            HStack(spacing: 0) {
+                if(mapState.canGoToPreviousCircuitProblem) {
+                    Button(action: {
+                        mapState.goToPreviousCircuitProblem()
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                            .padding(12)
+                    }
+                    .font(.body.weight(.semibold))
+                }
+                
+                if(mapState.canGoToNextCircuitProblem) {
+                    Button(action: {
+                        mapState.goToNextCircuitProblem()
+                    }) {
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                            .padding(12)
+                    }
+                    .font(.body.weight(.semibold))
+                }
+            }
+            .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
+            .modify {
+                if #available(iOS 26, *) {
+                    $0.glassEffect(.regular.interactive(), in: .capsule)
+                } else {
+                    $0
+                        .background(Color.systemBackground)
+                        .clipShape(Capsule())
+                        .overlay(
+                            Capsule().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                        )
+                        .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
+                }
             }
         }
     }
