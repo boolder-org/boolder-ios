@@ -210,3 +210,4 @@
 
 // MARK: Boulder
 "boulder.problems_title" = "Sur ce bloc";
+"boulder.level" = "Niveau %d";
