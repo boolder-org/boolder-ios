@@ -197,6 +197,7 @@ struct ProblemActionButtonsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: "square.and.arrow.up")
+                        Text("problem.action.share")
                     }
                     .modify {
                         if #available(iOS 26, *) {
