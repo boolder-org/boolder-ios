@@ -64,7 +64,7 @@ struct ProblemActionButtonsView: View {
                     }
                     .modify {
                         if #available(iOS 26, *) {
-                            $0.buttonStyle(.glassProminent)
+                            $0.buttonStyle(.glass)
                         } else {
                             $0
                                 .buttonStyle(Pill(fill: true))
