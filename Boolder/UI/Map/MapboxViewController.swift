@@ -853,8 +853,25 @@ class MapboxViewController: UIViewController {
     }
     
     func centerOnBoulderCoordinates(_ coordinates: [CLLocationCoordinate2D]) {
-        guard coordinates.count >= 2 else {
-            // Single problem or empty: just center on the single coordinate
+        guard !coordinates.isEmpty else { return }
+        
+        // Only recenter if at least one problem is outside the visible region (with bottom sheet padding)
+        let padding = safePaddingForBottomSheet
+        let visibleRect = CGRect(
+            x: padding.left,
+            y: padding.top,
+            width: view.bounds.width - padding.left - padding.right,
+            height: view.bounds.height - padding.top - padding.bottom
+        )
+        
+        let allVisible = coordinates.allSatisfy { coord in
+            let point = mapView.mapboxMap.point(for: coord)
+            return visibleRect.contains(point)
+        }
+        
+        guard !allVisible else { return }
+        
+        if coordinates.count < 2 {
             if let coord = coordinates.first {
                 flyTo(CameraOptions(
                     center: coord,
