@@ -207,3 +207,6 @@
 "contribute.report" = "Signalez des erreurs";
 "contribute.cta" = "Commencer à contribuer";
 "contribute.learn_more" = "En savoir plus sur Boolder";
+
+// MARK: Boulder
+"boulder.problems_title" = "Sur ce bloc";

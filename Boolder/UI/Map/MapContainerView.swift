@@ -21,6 +21,7 @@ struct MapContainerView: View {
     // TODO: make this more DRY
     @State private var presentDownloads = false
     @State private var presentDownloadsPlaceholder = false
+    @State private var presentBoulderProblemsList = false
     
     var body: some View {
         @Bindable var mapState = mapState
@@ -170,6 +171,36 @@ struct MapContainerView: View {
                 Spacer()
                 
                 if mapState.presentProblemDetails {
+                    if mapState.showAllLines {
+                        Button(action: { presentBoulderProblemsList = true }) {
+                            Image(systemName: "list.bullet")
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(4)
+                                    } else {
+                                        $0.foregroundColor(.primary)
+                                            .padding(10)
+                                    }
+                                }
+                        }
+                        .modify {
+                            if #available(iOS 26, *) {
+                                $0.buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                            } else {
+                                $0
+                                    .background(Color(.systemBackground))
+                                    .clipShape(Capsule())
+                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                            }
+                        }
+                        .sheet(isPresented: $presentBoulderProblemsList) {
+                            BoulderProblemsListView(problems: boulderProblems)
+                                .presentationDetents([.large])
+                        }
+                    }
+                    
                     Button(action: { mapState.showAllLines.toggle() }) {
                         Image("lines")
                             .modify {
@@ -427,6 +458,12 @@ struct MapContainerView: View {
         cluster.areas.sorted {
             $0.center.distance(from: center) < $1.center.distance(from: center)
         }.first
+    }
+    
+    private var boulderProblems: [Problem] {
+        guard let topo = mapState.selectedProblem.topo,
+              let boulderId = topo.boulderId else { return [] }
+        return Boulder(id: boulderId).problems
     }
 }
 

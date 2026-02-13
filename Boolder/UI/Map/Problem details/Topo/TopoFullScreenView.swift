@@ -16,6 +16,8 @@ struct TopoFullScreenView: View {
     
     @State private var zoomScale: CGFloat = 1
     
+    @State private var presentBoulderProblemsList = false
+    
     // drag gesture (to dismiss the sheet)
     @State var dragOffset: CGSize = .zero
     @State var dragOffsetPredicted: CGSize = .zero
@@ -48,6 +50,16 @@ struct TopoFullScreenView: View {
                             Spacer()
                             
                             if #available(iOS 26, *) {
+                                if mapState.showAllLines {
+                                    Button(action: { presentBoulderProblemsList = true }) {
+                                        Image(systemName: "list.bullet")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(4)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
+                                }
+                                
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     Image("lines")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
@@ -63,6 +75,14 @@ struct TopoFullScreenView: View {
                                 .buttonBorderShape(.circle)
                             }
                             else {
+                                if mapState.showAllLines {
+                                    Button(action: { presentBoulderProblemsList = true }) {
+                                        Image(systemName: "list.bullet")
+                                            .foregroundColor(Color(UIColor.white))
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                    }
+                                }
+                                
                                 Button(action: { mapState.showAllLines.toggle() }) {
                                     Image("lines")
                                         .foregroundColor(Color(UIColor.white))
@@ -105,6 +125,15 @@ struct TopoFullScreenView: View {
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(isPresented: $presentBoulderProblemsList) {
+            BoulderProblemsListView(problems: boulderProblems)
+                .presentationDetents([.large])
+        }
+    }
+    
+    private var boulderProblems: [Problem] {
+        guard let topo = problem.topo, let boulderId = topo.boulderId else { return [] }
+        return Boulder(id: boulderId).problems
     }
     
     var topoCarousel: some View {

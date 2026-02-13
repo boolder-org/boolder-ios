@@ -208,3 +208,6 @@
 "contribute.report" = "Report errors";
 "contribute.cta" = "Start contributing";
 "contribute.learn_more" = "Learn more about Boolder";
+
+// MARK: Boulder
+"boulder.problems_title" = "On this boulder";
