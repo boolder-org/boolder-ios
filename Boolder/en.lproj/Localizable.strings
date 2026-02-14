@@ -218,5 +218,6 @@
 "boulder.level" = "Level %d";
 "boulder.info" = "%d photos, %d problems";
 "boulder.info_basic" = "%d problems";
+"boulder.info_basic_singular" = "%d problem";
 "boulder.name" = "Boulder";
 "line.name" = "Line";

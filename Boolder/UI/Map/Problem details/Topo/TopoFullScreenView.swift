@@ -162,7 +162,7 @@ struct TopoFullScreenView: View {
                 presentBoulderProblemsList = true
             } label: {
                 HStack(spacing: 4) {
-                    Text(String(format: NSLocalizedString("boulder.info_basic", comment: ""), problem.topo?.allProblems.count ?? 0))
+                    Text(String(format: NSLocalizedString((problem.topo?.allProblems.count ?? 0) == 1 ? "boulder.info_basic_singular" : "boulder.info_basic", comment: ""), problem.topo?.allProblems.count ?? 0))
                     Image(systemName: "chevron.right")
                 }
                 .font(.callout)
