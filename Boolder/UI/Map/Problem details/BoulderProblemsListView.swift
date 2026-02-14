@@ -57,6 +57,7 @@ struct BoulderProblemsListView: View {
                     } label: {
                         Text(NSLocalizedString("boulder.problems_list.all_on_boulder", comment: ""))
                     }
+                    .disabled(boulderTopos.count <= 1)
                 }
             }
             .navigationTitle("Face \(currentTopoLetter)")
