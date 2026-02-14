@@ -214,6 +214,7 @@
 "boulder.problems_list.grade" = "Par cotation";
 "boulder.problems_list.all_faces" = "Toutes les faces";
 "boulder.problems_list.title" = "Voies";
+"boulder.problems_list.all_on_boulder" = "Toutes les voies sur ce bloc";
 "boulder.level" = "Niveau %d";
 "boulder.info" = "%d photos, %d voies";
 "boulder.info_basic" = "%d voies";
