@@ -213,6 +213,7 @@
 "boulder.problems_list.photo" = "Par face";
 "boulder.problems_list.grade" = "Par cotation";
 "boulder.problems_list.all_faces" = "Toutes les faces";
+"boulder.problems_list.title" = "Voies";
 "boulder.level" = "Niveau %d";
 "boulder.info" = "%d photos, %d voies";
 "boulder.info_basic" = "%d voies";

@@ -52,22 +52,26 @@ struct BoulderProblemsListView: View {
     var body: some View {
         NavigationStack {
             List {
-                Picker(selection: $selectedTopoId) {
-                    Text(NSLocalizedString("boulder.problems_list.all_faces", comment: ""))
-                        .tag(nil as Int?)
-                    ForEach(topoEntries, id: \.id) { entry in
-                        Text("Face \(entry.letter)")
-                            .tag(entry.id as Int?)
+                Section {
+                    Picker(selection: $selectedTopoId) {
+                        Text(NSLocalizedString("boulder.problems_list.all_faces", comment: ""))
+                            .tag(nil as Int?)
+                        ForEach(topoEntries, id: \.id) { entry in
+                            Text("Face \(entry.letter)")
+                                .tag(entry.id as Int?)
+                        }
+                    } label: {
+                        Text("Face")
                     }
-                } label: {
-                    Text("Face")
                 }
                 
-                ForEach(filteredProblems) { problem in
-                    problemRow(problem)
+                Section {
+                    ForEach(filteredProblems) { problem in
+                        problemRow(problem)
+                    }
                 }
             }
-            .navigationTitle(String(format: NSLocalizedString("boulder.problems_title", comment: ""), filteredProblems.count))
+            .navigationTitle(NSLocalizedString("boulder.problems_list.title", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

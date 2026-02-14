@@ -214,6 +214,7 @@
 "boulder.problems_list.photo" = "By face";
 "boulder.problems_list.grade" = "By grade";
 "boulder.problems_list.all_faces" = "All the faces";
+"boulder.problems_list.title" = "Problems";
 "boulder.level" = "Level %d";
 "boulder.info" = "%d photos, %d problems";
 "boulder.info_basic" = "%d problems";
