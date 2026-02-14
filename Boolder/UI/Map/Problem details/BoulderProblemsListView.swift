@@ -14,62 +14,60 @@ struct BoulderProblemsListView: View {
     
     let problems: [Problem]
     let boulderId: Int?
-    @State private var selectedSegment: Segment = .photo
+    let currentTopoId: Int?
     
-    private enum Segment: String, CaseIterable, Identifiable {
-        case photo
-        case grade
-        
-        var id: String { rawValue }
-        
-        var title: String {
-            switch self {
-            case .photo:
-                return NSLocalizedString("boulder.problems_list.photo", comment: "")
-            case .grade:
-                return NSLocalizedString("boulder.problems_list.grade", comment: "")
-            }
-        }
+    @State private var selectedTopoId: Int?
+    
+    init(problems: [Problem], boulderId: Int?, currentTopoId: Int?) {
+        self.problems = problems
+        self.boulderId = boulderId
+        self.currentTopoId = currentTopoId
+        self._selectedTopoId = State(initialValue: currentTopoId)
     }
     
-    // MARK: - Photo grouping (by topo position)
+    // MARK: - Topo data
     
     private var boulderTopos: [Topo] {
         guard let boulderId = boulderId else { return [] }
         return Boulder(id: boulderId).topos
     }
     
-    private var groupedByTopo: [(index: Int, letter: String, topo: Topo, problems: [Problem])] {
-        boulderTopos.enumerated().compactMap { index, topo in
+    private var topoEntries: [(id: Int, letter: String)] {
+        boulderTopos.enumerated().map { index, topo in
             let letter = String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
-            let topoProblems = problems
-                .filter { $0.topoId == topo.id }
-                .sorted { $0.grade < $1.grade }
-            guard !topoProblems.isEmpty else { return nil }
-            return (index: index, letter: letter, topo: topo, problems: topoProblems)
+            return (id: topo.id, letter: letter)
         }
+    }
+    
+    private var filteredProblems: [Problem] {
+        let filtered: [Problem]
+        if let topoId = selectedTopoId {
+            filtered = problems.filter { $0.topoId == topoId }
+        } else {
+            filtered = problems
+        }
+        return filtered.sorted { $0.grade < $1.grade }
     }
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                Picker("", selection: $selectedSegment) {
-                    ForEach(Segment.allCases) { segment in
-                        Text(segment.title).tag(segment)
+            List {
+                Picker(selection: $selectedTopoId) {
+                    Text(NSLocalizedString("boulder.problems_list.all_faces", comment: ""))
+                        .tag(nil as Int?)
+                    ForEach(topoEntries, id: \.id) { entry in
+                        Text("Face \(entry.letter)")
+                            .tag(entry.id as Int?)
                     }
+                } label: {
+                    Text("Face")
                 }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
                 
-                switch selectedSegment {
-                case .photo:
-                    photoList
-                case .grade:
-                    gradeList
+                ForEach(filteredProblems) { problem in
+                    problemRow(problem)
                 }
             }
-            .navigationTitle(String(format: NSLocalizedString("boulder.problems_title", comment: ""), problems.count))
+            .navigationTitle(String(format: NSLocalizedString("boulder.problems_title", comment: ""), filteredProblems.count))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -77,32 +75,6 @@ struct BoulderProblemsListView: View {
                         Image(systemName: "xmark")
                     }
                 }
-            }
-        }
-    }
-    
-    private var photoList: some View {
-        List {
-            ForEach(groupedByTopo, id: \.index) { group in
-                Section {
-                    ForEach(group.problems) { problem in
-                        problemRow(problem)
-                    }
-                } header: {
-                    Text("Face \(group.letter)")
-                }
-            }
-        }
-    }
-    
-    private var sortedByGrade: [Problem] {
-        problems.sorted { $0.grade < $1.grade }
-    }
-    
-    private var gradeList: some View {
-        List {
-            ForEach(sortedByGrade) { problem in
-                problemRow(problem)
             }
         }
     }
