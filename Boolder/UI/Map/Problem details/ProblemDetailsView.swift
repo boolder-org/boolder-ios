@@ -148,7 +148,7 @@ struct ProblemDetailsView: View {
                 presentBoulderProblemsList = true
             } label: {
                 HStack(spacing: 4) {
-                    Text(String(format: NSLocalizedString("boulder.info_basic", comment: ""), boulderProblems.count))
+                    Text(String(format: NSLocalizedString("boulder.info_basic", comment: ""), problem.topo?.allProblems.count ?? 0))
                     Image(systemName: "chevron.right")
                 }
                 .font(.callout)
