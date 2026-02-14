@@ -183,11 +183,8 @@ struct MapContainerView: View {
                                 }
                             }
                         }) {
-                            HStack {
-                                Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
-                                Text(!mapState.showAllLines ? "boulder.name" : "line.name")
-//                                Image(systemName: "chevron.down")
-                            }
+                            Image(systemName: "binoculars.fill")
+                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                 .modify {
                                     if #available(iOS 26, *) {
                                         $0.padding(4)
@@ -199,7 +196,13 @@ struct MapContainerView: View {
                         }
                         .modify {
                             if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass)
+                                if mapState.showAllLines {
+                                    $0.buttonStyle(.glassProminent)
+                                        .buttonBorderShape(.circle)
+                                } else {
+                                    $0.buttonStyle(.glass)
+                                        .buttonBorderShape(.circle)
+                                }
                             } else {
                                 $0
                                     .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))

@@ -51,24 +51,25 @@ struct TopoFullScreenView: View {
                             
                             if #available(iOS 26, *) {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    HStack {
-                                        Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
-                                        Text(!mapState.showAllLines ? "boulder.name" : "line.name")
-//                                        Image(systemName: "chevron.down")
-                                    }
+                                    Image(systemName: "binoculars.fill")
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                         .padding(4)
                                 }
-                                .buttonStyle(.glass)
+                                .modify {
+                                    if mapState.showAllLines {
+                                        $0.buttonStyle(.glassProminent)
+                                            .buttonBorderShape(.circle)
+                                    } else {
+                                        $0.buttonStyle(.glass)
+                                            .buttonBorderShape(.circle)
+                                    }
+                                }
                             }
                             else {
                                 Button(action: { mapState.showAllLines.toggle() }) {
-                                    HStack {
-                                        Image(systemName: !mapState.showAllLines ? "hexagon" : "point.topleft.down.to.point.bottomright.curvepath.fill")
-                                        Text(!mapState.showAllLines ? "boulder.name" : "line.name")
-//                                        Image(systemName: "chevron.down")
-                                    }
+                                    Image(systemName: "binoculars.fill")
                                         .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                 }
                             }
 
@@ -263,3 +264,4 @@ struct TopoFullScreenView: View {
 //        TopoFullScreenView()
 //    }
 //}
+
