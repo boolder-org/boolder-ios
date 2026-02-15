@@ -142,6 +142,17 @@ class MapState {
         }
     }
     
+    func selectBoulder(id: Int) {
+        let boulder = Boulder(id: id)
+        
+        if let topo = boulder.topos.first,
+           let problem = topo.problems.first {
+            showAllLines = true
+            selectProblem(problem, source: .map)
+            presentProblemDetails = true
+        }
+    }
+    
     func centerOnBoulder(coordinates: [CLLocationCoordinate2D]) {
         centerOnBoulderCoordinates = coordinates
         centerOnBoulderCount += 1

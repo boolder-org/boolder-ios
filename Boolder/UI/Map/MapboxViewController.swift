@@ -157,7 +157,7 @@ class MapboxViewController: UIViewController {
                     Exp(.featureState) { "selected" }
                     false
                 }
-                UIColor(white: 0.9, alpha: 1.0)
+                UIColor(white: 0.5, alpha: 1.0)
                 UIColor(white: 0.8, alpha: 1.0)
             }
         )
@@ -545,11 +545,8 @@ class MapboxViewController: UIViewController {
                     print(queriedfeatures)
                     
                     if let feature = queriedfeatures.first?.queriedFeature.feature, case .number(let id) = feature.properties?["id"] {
-//                        print(feature)
-//                        print(feature.properties)
-                        print(id)
-                        
-                        setBoulderAsSelected(boulderFeatureId: String(Int(id)))
+                        self.setBoulderAsSelected(boulderFeatureId: String(Int(id)))
+                        self.delegate?.selectBoulder(id: Int(id))
                     }
                     
 //                    if(queriedfeatures.first?.queriedFeature.feature.geometry != nil) {
@@ -631,8 +628,8 @@ class MapboxViewController: UIViewController {
                     }
                     else {
                         // TODO: make it more explicit that this works only at a certain zoom level
-                        self.unselectPreviousProblem()
-                        self.delegate?.dismissProblemDetails()
+//                        self.unselectPreviousProblem()
+//                        self.delegate?.dismissProblemDetails()
                     }
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
@@ -1165,6 +1162,7 @@ import CoreLocation
 
 protocol MapBoxViewDelegate {
     func selectProblem(id: Int)
+    func selectBoulder(id: Int)
     func selectPoi(name: String, location: CLLocationCoordinate2D, googleUrl: String)
     func selectArea(id: Int)
     func selectCluster(id: Int)

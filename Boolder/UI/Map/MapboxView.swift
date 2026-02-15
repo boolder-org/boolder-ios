@@ -143,6 +143,10 @@ struct MapboxView: UIViewControllerRepresentable {
             }
         }
         
+        func selectBoulder(id: Int) {
+            parent.mapState.selectBoulder(id: id)
+        }
+        
         func selectArea(id: Int) {
             if let area = Area.load(id: id) {
                 parent.mapState.selectArea(area)
