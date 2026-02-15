@@ -157,7 +157,7 @@ class MapboxViewController: UIViewController {
                     Exp(.featureState) { "selected" }
                     false
                 }
-                UIColor(white: 0.5, alpha: 1.0)
+                UIColor(white: 0.9, alpha: 1.0)
                 UIColor(white: 0.8, alpha: 1.0)
             }
         )
