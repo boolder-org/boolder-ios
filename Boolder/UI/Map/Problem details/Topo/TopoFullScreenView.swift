@@ -226,7 +226,7 @@ struct TopoFullScreenView: View {
     
     private func goToTopo(_ topo: Topo) {
         if let topProblem = topo.topProblem {
-            mapState.selectProblem(topProblem)
+            mapState.selectProblem(topProblem, showAllLines: true)
         }
     }
     

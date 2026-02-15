@@ -126,9 +126,17 @@ class MapState {
     }
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
-    func selectProblem(_ problem: Problem, source: ProblemSelectionSource = .other) {
+    func selectProblem(_ problem: Problem, source: ProblemSelectionSource = .other, showAllLines: Bool? = nil) {
         selectedProblem = problem
         selectionSource = source
+        
+        // FIXME: quick hack
+        if let showAllLines = showAllLines {
+            self.showAllLines = showAllLines
+        }
+        else {
+            self.showAllLines = false
+        }
         
         selectedArea = Area.load(id: problem.areaId)
     }
@@ -148,7 +156,7 @@ class MapState {
         if let topo = boulder.topos.first,
            let problem = topo.problems.first {
             showAllLines = true
-            selectProblem(problem, source: .map)
+            selectProblem(problem, source: .map, showAllLines: true)
             presentProblemDetails = true
         }
     }

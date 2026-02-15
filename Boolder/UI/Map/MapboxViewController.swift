@@ -986,6 +986,11 @@ class MapboxViewController: UIViewController {
     var showAllLines = false
     
     func setProblemAsSelected(problemFeatureId: String) {
+        if showAllLines {
+            unselectPreviousTopoProblems()
+            return
+        }
+        
         // Unselect previously selected topo problems
         unselectPreviousTopoProblems()
         
