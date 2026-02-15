@@ -117,17 +117,22 @@ class MapboxViewController: UIViewController {
         }
     }
 
-    let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
+    let problemsSourceLayerId = "problems-v3-02d7tw" // name of the layer in the mapbox tileset
     
     func addSources() {
         var problems = VectorSource(id: "problems")
-        problems.url = "mapbox://nmondollot.4xsv235p"
+        problems.url = "mapbox://nmondollot.4hfrdfne"
         problems.promoteId2 = .byLayer([problemsSourceLayerId: .constant("id")]) // needed to make Feature-State work
+        
+        var boulders = VectorSource(id: "boulders-v3")
+        boulders.url = "mapbox://nmondollot.4hfrdfne"
+        boulders.promoteId2 = .byLayer([problemsSourceLayerId: .constant("id")]) // needed to make Feature-State work
         
         var circuits = VectorSource(id: "circuits")
         circuits.url = "mapbox://nmondollot.11sumdgh"
 
         do {
+            try self.mapView.mapboxMap.addSource(boulders)
             try self.mapView.mapboxMap.addSource(problems)
             try self.mapView.mapboxMap.addSource(circuits)
         }
@@ -137,6 +142,27 @@ class MapboxViewController: UIViewController {
     }
     
     func addLayers() {
+        var bouldersLayer = FillLayer(id: "boulders-v3", source: "boulders-v3")
+        bouldersLayer.sourceLayer = problemsSourceLayerId
+//        bouldersLayer.minZoom = 15
+        bouldersLayer.filter = Exp(.match) {
+            ["geometry-type"]
+            ["Polygon"]
+            true
+            false
+        }
+        bouldersLayer.fillColor = .expression(
+            Exp(.switchCase) {
+                Exp(.boolean) {
+                    Exp(.featureState) { "selected" }
+                    false
+                }
+                UIColor(white: 0.5, alpha: 1.0)
+                UIColor(white: 0.8, alpha: 1.0)
+            }
+        )
+//            .constant(StyleColor(UIColor(white: 0.8, alpha: 1.0)))
+        
         var problemsLayer = CircleLayer(id: "problems", source: "problems")
         problemsLayer.sourceLayer = problemsSourceLayerId
         problemsLayer.minZoom = 15
@@ -393,6 +419,11 @@ class MapboxViewController: UIViewController {
         // ===========================
         
         do {
+            try self.mapView.mapboxMap.removeLayer(withId: "boulders")
+            try self.mapView.mapboxMap.removeLayer(withId: "boulders-outlines")
+            
+            try self.mapView.mapboxMap.addLayer(bouldersLayer)
+            
             try self.mapView.mapboxMap.addLayer(problemsLayer) // TODO: use layerPosition like on the web?
             try self.mapView.mapboxMap.addLayer(problemsTextsLayer)
             
@@ -504,23 +535,38 @@ class MapboxViewController: UIViewController {
         // hack to be able to zoom to a level where problems are tappable
         mapView.mapboxMap.queryRenderedFeatures(
             with: CGRect(x: tapPoint.x-16, y: tapPoint.y-16, width: 32, height: 32),
-            options: RenderedQueryOptions(layerIds: ["boulders", "problems-names"], filter: nil)) { [weak self] result in
+            options: RenderedQueryOptions(layerIds: ["boulders-v3", "problems-names"], filter: nil)) { [weak self] result in
                 
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let queriedfeatures):
                     
-                    if(queriedfeatures.first?.queriedFeature.feature.geometry != nil) {
-                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
-                            let cameraOptions = CameraOptions(
-                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
-                                padding: self.safePadding,
-                                zoom: 19
-                            )
-                            self.flyTo(cameraOptions)
+                    print(queriedfeatures)
+                    
+                    if let feature = queriedfeatures.first?.queriedFeature.feature, case .number(let id) = feature.properties?["id"] {
+//                        print(feature)
+//                        print(feature.properties)
+                        print(id)
+                        
+                        self.mapView.mapboxMap.setFeatureState(sourceId: "boulders-v3",
+                                                               sourceLayerId: problemsSourceLayerId,
+                                                               featureId: String(Int(id)),
+                                                               state: ["selected": true]) { result in
+                            
                         }
                     }
+                    
+//                    if(queriedfeatures.first?.queriedFeature.feature.geometry != nil) {
+//                        if self.mapView.mapboxMap.cameraState.zoom >= 15 && self.mapView.mapboxMap.cameraState.zoom < 19 {
+//                            let cameraOptions = CameraOptions(
+//                                center: self.mapView.mapboxMap.coordinate(for: tapPoint),
+//                                padding: self.safePadding,
+//                                zoom: 19
+//                            )
+//                            self.flyTo(cameraOptions)
+//                        }
+//                    }
                     
                 case .failure(let error):
                     print("An error occurred: \(error.localizedDescription)")
