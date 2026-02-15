@@ -137,8 +137,60 @@ struct MapContainerView: View {
     var aboveSheetNavigationButtons : some View {
         VStack {
             HStack {
+                if mapState.presentProblemDetails && !mapState.showAllLines {
+                    Button(action: {
+                        mapState.showAllLines = true
+                        
+                        if let topo = mapState.selectedProblem.topo,
+                           let boulderId = topo.boulderId {
+                            let boulder = Boulder(id: boulderId)
+                            let coordinates = boulder.problems.map { $0.coordinate }
+                            if !coordinates.isEmpty {
+                                mapState.centerOnBoulder(coordinates: coordinates)
+                            }
+                        }
+                    }) {
+                        Label(NSLocalizedString("boulder.name", comment: ""), systemImage: "chevron.left")
+                            .modify {
+                                if #available(iOS 26, *) {
+                                    $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
+                                        .padding(.horizontal, 4)
+                                        .padding(.vertical, 2)
+                                } else {
+                                    $0.foregroundColor(.primary)
+                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 8)
+                                }
+                            }
+                    }
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.buttonStyle(.glass)
+                                .buttonBorderShape(.capsule)
+                        } else {
+                            $0
+                                .background(Color(.systemBackground))
+                                .clipShape(Capsule())
+                                .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                        }
+                    }
+                }
+                
+                Spacer()
+                
                 if mapState.presentProblemDetails {
-                    if mapState.showAllLines {
+                    HStack(spacing: 8) {
+                        if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem.circuitId {
+                            if #available(iOS 26.0, *) {
+                                GlassEffectContainer {
+                                    circuitButtonsContent(circuit: circuit)
+                                }
+                            } else {
+                                circuitButtonsContent(circuit: circuit)
+                            }
+                        }
+                        
                         Button(action: {
                             mapState.presentProblemDetails = false
                         }) {
@@ -162,60 +214,6 @@ struct MapContainerView: View {
                                     .background(Color(.systemBackground))
                                     .clipShape(Circle())
                                     .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                            }
-                        }
-                    } else {
-                        Button(action: {
-                            mapState.showAllLines = true
-                            
-                            if let topo = mapState.selectedProblem.topo,
-                               let boulderId = topo.boulderId {
-                                let boulder = Boulder(id: boulderId)
-                                let coordinates = boulder.problems.map { $0.coordinate }
-                                if !coordinates.isEmpty {
-                                    mapState.centerOnBoulder(coordinates: coordinates)
-                                }
-                            }
-                        }) {
-                            Label(NSLocalizedString("boulder.name", comment: ""), systemImage: "chevron.left")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
-                                            .padding(.horizontal, 4)
-                                            .padding(.vertical, 2)
-                                    } else {
-                                        $0.foregroundColor(.primary)
-                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 8)
-                                    }
-                                }
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.capsule)
-                            } else {
-                                $0
-                                    .background(Color(.systemBackground))
-                                    .clipShape(Capsule())
-                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                            }
-                        }
-                    }
-                }
-                
-                Spacer()
-                
-                if mapState.presentProblemDetails {
-                    HStack(spacing: 8) {
-                        if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem.circuitId {
-                            if #available(iOS 26.0, *) {
-                                GlassEffectContainer {
-                                    circuitButtonsContent(circuit: circuit)
-                                }
-                            } else {
-                                circuitButtonsContent(circuit: circuit)
                             }
                         }
                     }

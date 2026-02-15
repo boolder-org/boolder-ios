@@ -30,9 +30,39 @@ struct TopoFullScreenView: View {
                 VStack {
                     ZStack {
                         HStack {
+                            if !mapState.showAllLines {
+                                Button(action: {
+                                    mapState.showAllLines = true
+                                }) {
+                                    Label(NSLocalizedString("boulder.name", comment: ""), systemImage: "chevron.left")
+                                        .modify {
+                                            if #available(iOS 26, *) {
+                                                $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
+                                                    .padding(.horizontal, 4)
+                                                    .padding(.vertical, 2)
+                                            } else {
+                                                $0.foregroundColor(Color(UIColor.white))
+                                                    .font(.system(size: UIFontMetrics.default.scaledValue(for: 16), weight: .medium))
+                                                    .padding(.horizontal, 12)
+                                                    .padding(.vertical, 8)
+                                            }
+                                        }
+                                }
+                                .modify {
+                                    if #available(iOS 26, *) {
+                                        $0.buttonStyle(.glass)
+                                            .buttonBorderShape(.capsule)
+                                    } else {
+                                        $0
+                                    }
+                                }
+                            }
+                            
+                            Spacer()
+                            
                             if #available(iOS 26, *) {
                                 Button(action: { dismiss() }) {
-                                    Image(systemName: "chevron.left")
+                                    Image(systemName: "xmark")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
@@ -41,38 +71,11 @@ struct TopoFullScreenView: View {
                             }
                             else {
                                 Button(action: { dismiss() }) {
-                                    Image(systemName: "chevron.left")
+                                    Image(systemName: "xmark")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
                             }
-                            
-                            Spacer()
-                            
-                            if #available(iOS 26, *) {
-                                Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: "binoculars.fill")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
-                                }
-                                .modify {
-                                    if mapState.showAllLines {
-                                        $0.buttonStyle(.glassProminent)
-                                            .buttonBorderShape(.circle)
-                                    } else {
-                                        $0.buttonStyle(.glass)
-                                            .buttonBorderShape(.circle)
-                                    }
-                                }
-                            }
-                            else {
-                                Button(action: { mapState.showAllLines.toggle() }) {
-                                    Image(systemName: "binoculars.fill")
-                                        .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                }
-                            }
-
                         }
                     }
                     .padding()
