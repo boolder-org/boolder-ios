@@ -157,7 +157,7 @@ class MapboxViewController: UIViewController {
                     Exp(.featureState) { "selected" }
                     false
                 }
-                UIColor(white: 0.5, alpha: 1.0)
+                UIColor(white: 0.9, alpha: 1.0)
                 UIColor(white: 0.8, alpha: 1.0)
             }
         )
@@ -549,12 +549,7 @@ class MapboxViewController: UIViewController {
 //                        print(feature.properties)
                         print(id)
                         
-                        self.mapView.mapboxMap.setFeatureState(sourceId: "boulders-v3",
-                                                               sourceLayerId: problemsSourceLayerId,
-                                                               featureId: String(Int(id)),
-                                                               state: ["selected": true]) { result in
-                            
-                        }
+                        setBoulderAsSelected(boulderFeatureId: String(Int(id)))
                     }
                     
 //                    if(queriedfeatures.first?.queriedFeature.feature.geometry != nil) {
@@ -990,6 +985,7 @@ class MapboxViewController: UIViewController {
     
     private var previouslyTappedProblemId: String = ""
     private var previouslySelectedTopoIds: [String] = []
+    private var previouslySelectedBoulderId: String = ""
     var showAllLines = false
     
     func setProblemAsSelected(problemFeatureId: String) {
@@ -1036,6 +1032,28 @@ class MapboxViewController: UIViewController {
                                                    featureId: self.previouslyTappedProblemId,
                                                    state: ["selected": false]) { result in
                 
+            }
+        }
+    }
+    
+    func setBoulderAsSelected(boulderFeatureId: String) {
+        unselectPreviousBoulder()
+        
+        self.mapView.mapboxMap.setFeatureState(sourceId: "boulders-v3",
+                                               sourceLayerId: problemsSourceLayerId,
+                                               featureId: boulderFeatureId,
+                                               state: ["selected": true]) { result in
+        }
+        
+        self.previouslySelectedBoulderId = boulderFeatureId
+    }
+    
+    func unselectPreviousBoulder() {
+        if self.previouslySelectedBoulderId != "" {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "boulders-v3",
+                                                   sourceLayerId: problemsSourceLayerId,
+                                                   featureId: self.previouslySelectedBoulderId,
+                                                   state: ["selected": false]) { result in
             }
         }
     }
