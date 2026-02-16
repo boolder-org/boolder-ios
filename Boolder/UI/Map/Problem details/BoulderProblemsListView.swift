@@ -50,15 +50,6 @@ struct BoulderProblemsListView: View {
                         problemRow(problem)
                     }
                 }
-                
-                Section {
-                    NavigationLink {
-                        AllBoulderProblemsView(problems: allBoulderProblems, dismiss: { dismiss() })
-                    } label: {
-                        Text(NSLocalizedString("boulder.problems_list.all_on_boulder", comment: ""))
-                    }
-                    .disabled(boulderTopos.count <= 1)
-                }
             }
             .navigationTitle("Face \(currentTopoLetter)")
             .navigationBarTitleDisplayMode(.inline)
@@ -89,39 +80,5 @@ struct BoulderProblemsListView: View {
             }
             .foregroundColor(.primary)
         }
-    }
-}
-
-// MARK: - All Boulder Problems View
-
-private struct AllBoulderProblemsView: View {
-    @Environment(MapState.self) private var mapState: MapState
-    
-    let problems: [Problem]
-    let dismiss: () -> Void
-    
-    var body: some View {
-        List {
-            ForEach(problems) { problem in
-                Button {
-                    mapState.showAllLines = false
-                    mapState.selectProblem(problem)
-                    dismiss()
-                } label: {
-                    HStack {
-                        ProblemCircleView(problem: problem)
-                        Text(problem.localizedName)
-                        Spacer()
-                        if problem.featured {
-                            Image(systemName: "heart.fill").foregroundColor(.pink)
-                        }
-                        Text(problem.grade.string)
-                    }
-                    .foregroundColor(.primary)
-                }
-            }
-        }
-        .navigationTitle(NSLocalizedString("boulder.problems_list.title", comment: ""))
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
