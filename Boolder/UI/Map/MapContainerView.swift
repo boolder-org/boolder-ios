@@ -50,7 +50,9 @@ struct MapContainerView: View {
         }
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {
-                mapState.showAllLines = false
+                if case .topo(let topo) = mapState.selection {
+                    mapState.selection = .problem(problem: topo.topProblem ?? Problem.empty)
+                }
             }
         }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in
@@ -170,16 +172,18 @@ struct MapContainerView: View {
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
                         Button(action: {
-                            mapState.showAllLines.toggle()
-                            
-                            if mapState.showAllLines {
-                                if let topo = mapState.selectedProblem.topo,
-                                   let boulderId = topo.boulderId {
+                            if case .problem(let problem) = mapState.selection, let topo = problem.topo {
+                                mapState.selection = .topo(topo: topo)
+                                if let boulderId = topo.boulderId {
                                     let boulder = Boulder(id: boulderId)
                                     let coordinates = boulder.problems.map { $0.coordinate }
                                     if !coordinates.isEmpty {
                                         mapState.centerOnBoulder(coordinates: coordinates)
                                     }
+                                }
+                            } else if case .topo(let topo) = mapState.selection {
+                                if let topProblem = topo.topProblem {
+                                    mapState.selectProblem(topProblem)
                                 }
                             }
                         }) {
@@ -196,7 +200,7 @@ struct MapContainerView: View {
                         }
                         .modify {
                             if #available(iOS 26, *) {
-                                if mapState.showAllLines {
+                                if case .topo = mapState.selection {
                                     $0.buttonStyle(.glassProminent)
                                         .buttonBorderShape(.circle)
                                 } else {
@@ -205,7 +209,7 @@ struct MapContainerView: View {
                                 }
                             } else {
                                 $0
-                                    .background(mapState.showAllLines ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
+                                    .background(mapState.selectedTopo != nil ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
                                     .clipShape(Capsule())
                                     .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                             }

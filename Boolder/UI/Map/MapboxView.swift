@@ -27,19 +27,16 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        // Update showAllLines before setProblemAsSelected uses it
-        vc.showAllLines = mapState.showAllLines
+        // Update selectedTopo before setProblemAsSelected uses it
+        vc.selectedTopo = mapState.selectedTopo
         
-        // Handle selectedProblem changes
+        // Handle selection changes (problem or topo)
         let selectedId = mapState.selectedProblem.id
-        if context.coordinator.lastSelectedProblemId != selectedId && selectedId != 0 {
-            context.coordinator.lastSelectedProblemId = selectedId
-            vc.setProblemAsSelected(problemFeatureId: String(selectedId))
-        }
+        let isTopoMode = mapState.selectedTopo != nil
         
-        // Handle showAllLines changes (re-select current problem to apply new mode)
-        if context.coordinator.lastShowAllLines != mapState.showAllLines {
-            context.coordinator.lastShowAllLines = mapState.showAllLines
+        if context.coordinator.lastSelectedProblemId != selectedId || context.coordinator.lastIsTopoMode != isTopoMode {
+            context.coordinator.lastSelectedProblemId = selectedId
+            context.coordinator.lastIsTopoMode = isTopoMode
             if selectedId != 0 {
                 vc.setProblemAsSelected(problemFeatureId: String(selectedId))
             }
@@ -129,7 +126,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnCircuitId: Int = 0
         var lastSelectedCircuitId: Int = 0
         var lastRefreshFiltersCount: Int = 0
-        var lastShowAllLines: Bool = false
+        var lastIsTopoMode: Bool = false
         var lastCenterOnBoulderCount: Int = 0
 
         init(_ parent: MapboxView) {

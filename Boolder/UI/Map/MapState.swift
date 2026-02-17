@@ -17,7 +17,13 @@ enum ProblemSelectionSource {
 
 @Observable
 class MapState {
-    var selectedProblem: Problem = Problem.empty // TODO: use nil instead
+    enum Selection: Equatable {
+        case none
+        case topo(topo: Topo)
+        case problem(problem: Problem)
+    }
+    
+    var selection: Selection = .none
     private(set) var selectionSource: ProblemSelectionSource = .other
     private(set) var centerOnProblem: Problem? = nil
     private(set) var selectedArea: Area? = nil
@@ -39,7 +45,24 @@ class MapState {
     var presentAreaView = false
     var presentCircuitPicker = false
     var displayCircuitStartButton = false
-    var showAllLines = false
+    
+    var selectedProblem: Problem {
+        get {
+            switch selection {
+            case .problem(let problem): return problem
+            case .topo(let topo): return topo.topProblem ?? Problem.empty
+            case .none: return Problem.empty
+            }
+        }
+        set {
+            selection = .problem(problem: newValue)
+        }
+    }
+    
+    var selectedTopo: Topo? {
+        if case .topo(let topo) = selection { return topo }
+        return nil
+    }
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
@@ -127,7 +150,7 @@ class MapState {
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem, source: ProblemSelectionSource = .other) {
-        selectedProblem = problem
+        selection = .problem(problem: problem)
         selectionSource = source
         
         selectedArea = Area.load(id: problem.areaId)

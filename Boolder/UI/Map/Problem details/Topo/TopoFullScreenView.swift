@@ -50,13 +50,13 @@ struct TopoFullScreenView: View {
                             Spacer()
                             
                             if #available(iOS 26, *) {
-                                Button(action: { mapState.showAllLines.toggle() }) {
+                                Button(action: { toggleTopoSelection() }) {
                                     Image(systemName: "binoculars.fill")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
                                 .modify {
-                                    if mapState.showAllLines {
+                                    if case .topo = mapState.selection {
                                         $0.buttonStyle(.glassProminent)
                                             .buttonBorderShape(.circle)
                                     } else {
@@ -66,7 +66,7 @@ struct TopoFullScreenView: View {
                                 }
                             }
                             else {
-                                Button(action: { mapState.showAllLines.toggle() }) {
+                                Button(action: { toggleTopoSelection() }) {
                                     Image(systemName: "binoculars.fill")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
@@ -79,22 +79,22 @@ struct TopoFullScreenView: View {
                     
                     Spacer()
                     
-                    if !mapState.showAllLines {                        
-                        overlayInfos
+                    if case .topo = mapState.selection {
+                        topoCarousel
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     } else {
-                        topoCarousel
+                        overlayInfos
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
-                .animation(.easeInOut(duration: 0.3), value: mapState.showAllLines)
+                .animation(.easeInOut(duration: 0.3), value: mapState.selection)
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
                 ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $mapState.showAllLines, onBackgroundTap: {
-                        if !mapState.showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
-                            mapState.showAllLines = true
+                    TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: {
+                        if case .problem = mapState.selection, problem.otherProblemsOnSameTopo.count > 1, let topo = problem.topo {
+                            mapState.selection = .topo(topo: topo)
                         }
                     }, skipInitialBounceAnimation: true)
                 }
@@ -110,13 +110,13 @@ struct TopoFullScreenView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .sheet(isPresented: $presentBoulderProblemsList) {
-            BoulderProblemsListView(problems: boulderProblems, boulderId: problem.topo?.boulderId, currentTopoId: problem.topoId)
+            BoulderProblemsListView(problems: boulderProblems, boulderId: mapState.selectedTopo?.boulderId, currentTopoId: mapState.selectedTopo?.id)
                 .presentationDetents([.large])
         }
     }
     
     private var boulderProblems: [Problem] {
-        guard let topo = problem.topo, let boulderId = topo.boulderId else { return [] }
+        guard let topo = mapState.selectedTopo, let boulderId = topo.boulderId else { return [] }
         return Boulder(id: boulderId).problems
     }
     
@@ -140,7 +140,7 @@ struct TopoFullScreenView: View {
                     
                     HStack(spacing: 8) {
                         ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
-                            topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
+                            topoThumbnail(topo: topo, isCurrent: topo.id == mapState.selectedTopo?.id, width: thumbnailWidth, index: index)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -162,7 +162,7 @@ struct TopoFullScreenView: View {
                 presentBoulderProblemsList = true
             } label: {
                 HStack(spacing: 4) {
-                    Text(String(format: NSLocalizedString((problem.topo?.allProblems.count ?? 0) == 1 ? "boulder.info_basic_singular" : "boulder.info_basic", comment: ""), problem.topo?.allProblems.count ?? 0))
+                    Text(String(format: NSLocalizedString((mapState.selectedTopo?.allProblems.count ?? 0) == 1 ? "boulder.info_basic_singular" : "boulder.info_basic", comment: ""), mapState.selectedTopo?.allProblems.count ?? 0))
                     Image(systemName: "chevron.right")
                 }
                 .font(.callout)
@@ -217,25 +217,31 @@ struct TopoFullScreenView: View {
     }
     
     private var boulderTopos: [Topo] {
-        guard let topo = problem.topo, let boulderId = topo.boulderId else { return [] }
+        guard let topo = mapState.selectedTopo, let boulderId = topo.boulderId else { return [] }
         return Boulder(id: boulderId).topos
     }
     
-    private func goToTopo(_ topo: Topo) {
-        if let topProblem = topo.topProblem {
+    private func toggleTopoSelection() {
+        if case .problem(let problem) = mapState.selection, let topo = problem.topo {
+            mapState.selection = .topo(topo: topo)
+        } else if case .topo(let topo) = mapState.selection, let topProblem = topo.topProblem {
             mapState.selectProblem(topProblem)
         }
     }
     
+    private func goToTopo(_ topo: Topo) {
+        mapState.selection = .topo(topo: topo)
+    }
+    
     private func goToPreviousTopo() {
-        guard let topo = problem.topo, let boulderId = topo.boulderId,
-              let previous = Boulder(id: boulderId).previousTopo(before: topo) else { return }
+        guard let currentTopo = mapState.selectedTopo, let boulderId = currentTopo.boulderId,
+              let previous = Boulder(id: boulderId).previousTopo(before: currentTopo) else { return }
         goToTopo(previous)
     }
     
     private func goToNextTopo() {
-        guard let topo = problem.topo, let boulderId = topo.boulderId,
-              let next = Boulder(id: boulderId).nextTopo(after: topo) else { return }
+        guard let currentTopo = mapState.selectedTopo, let boulderId = currentTopo.boulderId,
+              let next = Boulder(id: boulderId).nextTopo(after: currentTopo) else { return }
         goToTopo(next)
     }
     

@@ -944,7 +944,7 @@ class MapboxViewController: UIViewController {
     
     private var previouslyTappedProblemId: String = ""
     private var previouslySelectedTopoIds: [String] = []
-    var showAllLines = false
+    var selectedTopo: Topo? = nil
     
     func setProblemAsSelected(problemFeatureId: String) {
         // Unselect previously selected topo problems
@@ -963,11 +963,11 @@ class MapboxViewController: UIViewController {
         
         self.previouslyTappedProblemId = problemFeatureId
         
-        // If showAllLines, also select all problems on the same topo
-        if showAllLines, let problemId = Int(problemFeatureId), let problem = Problem.load(id: problemId) {
+        // If a topo is selected, also select all problems on the same topo
+        if let topo = selectedTopo {
             var selectedIds: [String] = []
             
-            for p in problem.otherProblemsOnSameTopo {
+            for p in topo.allProblems {
                 let featureId = String(p.id)
                 if featureId != problemFeatureId {
                     self.mapView.mapboxMap.setFeatureState(sourceId: "problems",

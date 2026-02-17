@@ -65,7 +65,6 @@ struct BoulderProblemsListView: View {
     
     private func problemRow(_ problem: Problem) -> some View {
         Button {
-            mapState.showAllLines = false
             mapState.selectProblem(problem)
             dismiss()
         } label: {

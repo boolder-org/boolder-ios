@@ -16,9 +16,13 @@ struct TopoView: View {
     @State private var showMissingLineNotice = false
     
     @Binding var zoomScale: CGFloat
-    @Binding var showAllLines: Bool
     var onBackgroundTap: (() -> Void)?
     var skipInitialBounceAnimation: Bool = false
+    
+    private var showAllLines: Bool {
+        if case .topo = mapState.selection { return true }
+        return false
+    }
     
     @State private var isInitialLoad = true
     
@@ -151,7 +155,6 @@ struct TopoView: View {
                             ForEach(otherProblems, id: \.id) { p in
                                 if p.line?.coordinates != nil {
                                     TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
-                                        showAllLines = false
                                         mapState.selectProblem(p)
                                     }
                                     .zIndex(p.zIndex)
@@ -182,7 +185,6 @@ struct TopoView: View {
                                             .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
                                             .zIndex(p.zIndex)
                                             .onTapGesture {
-                                                showAllLines = false
                                                 mapState.selectProblem(p)
                                             }
                                     }
@@ -216,7 +218,6 @@ struct TopoView: View {
                                             .opacity(isVisible ? 1 : 0)
                                             .allowsHitTesting(isVisible)
                                             .onTapGesture {
-                                                showAllLines = false
                                                 mapState.selectProblem(p)
                                             }
                                     }
@@ -287,8 +288,8 @@ struct TopoView: View {
                 print("")
             }
         }
-        .onChange(of: showAllLines) { oldValue, newValue in
-            if oldValue == true && newValue == false {
+        .onChange(of: mapState.selection) { oldValue, newValue in
+            if case .topo = oldValue, case .problem = newValue {
                 displayNameLabel()
             }
         }
@@ -467,14 +468,12 @@ struct TopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
-                showAllLines = false
                 isInitialLoad = false
                 mapState.selectProblem(next, source: .circleView)
             }
         }
         else {
             if let topProblem = group.topProblem {
-                showAllLines = false
                 isInitialLoad = false
                 mapState.selectProblem(topProblem, source: .circleView)
             }
@@ -484,8 +483,6 @@ struct TopoView: View {
     func handleTapOnBackground() {
         if onBackgroundTap != nil {
             onBackgroundTap?()
-        } else {
-//            showAllLines = true
         }
     }
     
