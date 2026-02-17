@@ -16,7 +16,7 @@ class MapState {
         case topo(topo: Topo)
         case problem(problem: Problem, source: Source = .other)
         
-        enum Source {
+        enum Source: Equatable {
             case circleView
             case map
             case other
@@ -24,8 +24,31 @@ class MapState {
     }
     
     var selection: Selection = .none {
-        didSet { refreshBoulderCacheIfNeeded() }
+        didSet {
+            refreshBoulderCacheIfNeeded()
+            
+            // Update narrow derived properties – they only publish a change
+            // when the *mode* flips, not on every topo-to-topo swap.
+            let newMode = { if case .topo = selection { return true } else { return false } }()
+            if isInTopoMode != newMode { isInTopoMode = newMode }
+            
+            let newSource: Selection.Source = {
+                if case .problem(_, let s) = selection { return s } else { return .other }
+            }()
+            if currentSelectionSource != newSource { currentSelectionSource = newSource }
+        }
     }
+    
+    // MARK: - Narrow observation tokens (stable during topo-to-topo swipes)
+    
+    /// `true` when selection is `.topo(…)`. Views that only care about the
+    /// mode (not *which* topo) should read this instead of `selection` to
+    /// avoid unnecessary body re-evaluations.
+    private(set) var isInTopoMode: Bool = false
+    
+    /// Mirrors `Selection.Source` but only changes when the source actually
+    /// differs, keeping views stable during topo-to-topo swipes.
+    private(set) var currentSelectionSource: Selection.Source = .other
     
     // MARK: - Cached boulder data (only refreshed when boulder changes)
     
@@ -34,6 +57,8 @@ class MapState {
     @ObservationIgnored private var cachedBoulderId: Int? = nil
     /// Pre-computed top problems per topo – avoids SQLite queries during scroll.
     @ObservationIgnored private var cachedTopProblems: [Int: Problem] = [:]
+    /// Pre-computed allProblems count per topo – avoids SQLite in carousel.
+    @ObservationIgnored private var cachedTopoAllProblemsCount: [Int: Int] = [:]
     
     private func refreshBoulderCacheIfNeeded() {
         let boulderId: Int?
@@ -50,21 +75,32 @@ class MapState {
             let boulder = Boulder(id: boulderId)
             boulderTopos = boulder.topos
             boulderProblems = boulder.problems
-            // Pre-cache top problems so page views never hit SQLite during scroll
+            // Pre-cache per-topo data so page views never hit SQLite during scroll
             cachedTopProblems = [:]
+            cachedTopoAllProblemsCount = [:]
             for topo in boulderTopos {
-                cachedTopProblems[topo.id] = topo.topProblem
+                let allProblems = topo.allProblems
+                let withLines = allProblems.filter { $0.line?.coordinates != nil }
+                cachedTopProblems[topo.id] = withLines.max { $0.zIndex < $1.zIndex }
+                    ?? allProblems.max { $0.zIndex < $1.zIndex }
+                cachedTopoAllProblemsCount[topo.id] = allProblems.count
             }
         } else {
             boulderTopos = []
             boulderProblems = []
             cachedTopProblems = [:]
+            cachedTopoAllProblemsCount = [:]
         }
     }
     
     /// Returns the pre-cached top problem for a topo (no database access).
     func topProblem(for topoId: Int) -> Problem? {
         cachedTopProblems[topoId]
+    }
+    
+    /// Returns the pre-cached allProblems count for a topo (no database access).
+    func allProblemsCount(for topoId: Int) -> Int {
+        cachedTopoAllProblemsCount[topoId] ?? 0
     }
     
     func nextTopo(after topo: Topo) -> Topo? {
