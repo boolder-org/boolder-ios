@@ -21,6 +21,7 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
     @State private var presentBoulderProblemsList = false
+    @State private var scrolledTopoId: Int?
     
     @Namespace private var topoTransitionNamespace
     
@@ -30,45 +31,37 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    ZStack(alignment: .top) {
-                        TopoView(
-                            problem: $problem,
-                            zoomScale: .constant(1),
-                            onBackgroundTap: {
-                                presentTopoFullScreenView = true
-                            }
-                        )
-                        .modify {
-                            if #available(iOS 18, *) {
-                                $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace)
-                            }
-                            else {
-                                $0
-                            }
-                        }
-                        .gesture(
-                            MagnificationGesture()
-                                .onChanged { value in
-                                    if value > 1.1 {
-                                        presentTopoFullScreenView = true
-                                    }
-                                }
-                        )
-                        .fullScreenCover(isPresented: $presentTopoFullScreenView) {
-                            TopoFullScreenView(problem: $problem)
-                                .modify {
-                                    if #available(iOS 18, *) {
-                                        $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
-                                    }
-                                    else {
-                                        $0
-                                    }
-                                }
-                        }
-                        
-                    }
+                    topoSwipeView(width: geo.size.width)
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
+                    .clipped()
                     .zIndex(10)
+                    .modify {
+                        if #available(iOS 18, *) {
+                            $0.matchedTransitionSource(id: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace)
+                        }
+                        else {
+                            $0
+                        }
+                    }
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                if value > 1.1 {
+                                    presentTopoFullScreenView = true
+                                }
+                            }
+                    )
+                    .fullScreenCover(isPresented: $presentTopoFullScreenView) {
+                        TopoFullScreenView(problem: $problem)
+                            .modify {
+                                if #available(iOS 18, *) {
+                                    $0.navigationTransition(.zoom(sourceID: "topo-\(problem.topoId ?? 0)", in: topoTransitionNamespace))
+                                }
+                                else {
+                                    $0
+                                }
+                            }
+                    }
                     
                     if case .topo = mapState.selection {
                         topoCarousel
@@ -90,7 +83,15 @@ struct ProblemDetailsView: View {
             Spacer()
         }
         .onAppear {
+            scrolledTopoId = problem.topoId
             viewCount += 1
+        }
+        .onChange(of: problem.topoId) { _, newTopoId in
+            if let newTopoId, scrolledTopoId != newTopoId {
+                withAnimation {
+                    scrolledTopoId = newTopoId
+                }
+            }
         }
         // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
         .onChange(of: viewCount) {
@@ -218,6 +219,43 @@ struct ProblemDetailsView: View {
         goToTopo(next)
     }
     
+    // MARK: - Topo horizontal swipe
+    
+    @ViewBuilder
+    private func topoSwipeView(width: CGFloat) -> some View {
+        if mapState.boulderTopos.count > 1 {
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 0) {
+                    ForEach(mapState.boulderTopos) { topo in
+                        TopoPageView(topo: topo, onBackgroundTap: {
+                            presentTopoFullScreenView = true
+                        })
+                        .containerRelativeFrame(.horizontal)
+                        .id(topo.id)
+                    }
+                }
+                .scrollTargetLayout()
+            }
+            .scrollTargetBehavior(.viewAligned)
+            .scrollPosition(id: $scrolledTopoId)
+            .scrollIndicators(.hidden)
+            .onChange(of: scrolledTopoId) { _, newId in
+                guard let newId,
+                      let topo = mapState.boulderTopos.first(where: { $0.id == newId }),
+                      problem.topoId != newId else { return }
+                mapState.selection = .topo(topo: topo)
+            }
+        } else {
+            TopoView(
+                problem: $problem,
+                zoomScale: .constant(1),
+                onBackgroundTap: {
+                    presentTopoFullScreenView = true
+                }
+            )
+        }
+    }
+    
     private func presentReview() {
         Task {
             // Delay for two seconds to avoid interrupting the person using the app.
@@ -227,6 +265,36 @@ struct ProblemDetailsView: View {
     }
 }
 
+// MARK: - Topo page wrapper (per-page state for LazyHStack)
+
+private struct TopoPageView: View {
+    let topo: Topo
+    var onBackgroundTap: (() -> Void)?
+    
+    @State private var problem: Problem
+    @Environment(MapState.self) private var mapState
+    
+    init(topo: Topo, onBackgroundTap: (() -> Void)? = nil) {
+        self.topo = topo
+        self.onBackgroundTap = onBackgroundTap
+        self._problem = State(initialValue: topo.topProblem ?? Problem.empty)
+    }
+    
+    var body: some View {
+        TopoView(
+            problem: $problem,
+            zoomScale: .constant(1),
+            onBackgroundTap: onBackgroundTap
+        )
+        .onChange(of: mapState.selection, initial: true) {
+            if case .problem(let p, _) = mapState.selection, p.topoId == topo.id {
+                problem = p
+            } else if case .topo(let t) = mapState.selection, t.id == topo.id {
+                problem = t.topProblem ?? Problem.empty
+            }
+        }
+    }
+}
 
 //struct ProblemDetailsView_Previews: PreviewProvider {
 //    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

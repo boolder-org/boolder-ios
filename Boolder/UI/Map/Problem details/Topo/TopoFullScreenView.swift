@@ -15,12 +15,9 @@ struct TopoFullScreenView: View {
     @Binding var problem: Problem
     
     @State private var zoomScale: CGFloat = 1
+    @State private var scrolledTopoId: Int?
     
     @State private var presentBoulderProblemsList = false
-    
-    // drag gesture (to dismiss the sheet)
-    @State var dragOffset: CGSize = .zero
-    @State var dragOffsetPredicted: CGSize = .zero
     
     var body: some View {
         @Bindable var mapState = mapState
@@ -91,27 +88,66 @@ struct TopoFullScreenView: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
-                ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: {
-                        if case .problem = mapState.selection, problem.otherProblemsOnSameTopo.count > 1, let topo = problem.topo {
-                            mapState.selection = .topo(topo: topo)
-                        }
-                    }, skipInitialBounceAnimation: true)
-                }
-                .containerRelativeFrame(.horizontal)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .zIndex(1)
-                .offset(x: 0, y: self.dragOffset.height) // drag gesture
-                .background(Color.systemBackground)
-                .edgesIgnoringSafeArea(.all)
+                fullScreenTopoContent
+                    .zIndex(1)
+                    .background(Color.systemBackground)
+                    .edgesIgnoringSafeArea(.all)
                 
             }
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear {
+            scrolledTopoId = problem.topoId
+        }
+        .onChange(of: problem.topoId) { _, newTopoId in
+            if let newTopoId, scrolledTopoId != newTopoId {
+                withAnimation {
+                    scrolledTopoId = newTopoId
+                }
+            }
+        }
         .sheet(isPresented: $presentBoulderProblemsList) {
             BoulderProblemsListView(problems: mapState.boulderProblems, boulderId: mapState.selectedTopo?.boulderId, currentTopoId: mapState.selectedTopo?.id)
                 .presentationDetents([.large])
+        }
+    }
+    
+    // MARK: - Topo horizontal swipe
+    
+    @ViewBuilder
+    private var fullScreenTopoContent: some View {
+        if mapState.boulderTopos.count > 1 {
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 0) {
+                    ForEach(mapState.boulderTopos) { topo in
+                        FullScreenTopoPageView(topo: topo)
+                            .containerRelativeFrame(.horizontal)
+                            .frame(maxHeight: .infinity)
+                            .id(topo.id)
+                    }
+                }
+                .scrollTargetLayout()
+            }
+            .scrollTargetBehavior(.viewAligned)
+            .scrollPosition(id: $scrolledTopoId)
+            .scrollIndicators(.hidden)
+            .onChange(of: scrolledTopoId) { _, newId in
+                guard let newId,
+                      let topo = mapState.boulderTopos.first(where: { $0.id == newId }),
+                      problem.topoId != newId else { return }
+                mapState.selection = .topo(topo: topo)
+            }
+        } else {
+            ZoomableScrollView(zoomScale: $zoomScale) {
+                TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: {
+                    if case .problem = mapState.selection, problem.otherProblemsOnSameTopo.count > 1, let topo = problem.topo {
+                        mapState.selection = .topo(topo: topo)
+                    }
+                }, skipInitialBounceAnimation: true)
+            }
+            .containerRelativeFrame(.horizontal)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
     
@@ -259,9 +295,39 @@ struct TopoFullScreenView: View {
     }
 }
 
+// MARK: - Full-screen topo page wrapper (per-page state + zoom for LazyHStack)
+
+private struct FullScreenTopoPageView: View {
+    let topo: Topo
+    @State private var problem: Problem
+    @State private var zoomScale: CGFloat = 1
+    @Environment(MapState.self) private var mapState
+    
+    init(topo: Topo) {
+        self.topo = topo
+        self._problem = State(initialValue: topo.topProblem ?? Problem.empty)
+    }
+    
+    var body: some View {
+        ZoomableScrollView(zoomScale: $zoomScale) {
+            TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: {
+                if case .problem = mapState.selection, problem.otherProblemsOnSameTopo.count > 1, let topo = problem.topo {
+                    mapState.selection = .topo(topo: topo)
+                }
+            }, skipInitialBounceAnimation: true)
+        }
+        .onChange(of: mapState.selection, initial: true) {
+            if case .problem(let p, _) = mapState.selection, p.topoId == topo.id {
+                problem = p
+            } else if case .topo(let t) = mapState.selection, t.id == topo.id {
+                problem = t.topProblem ?? Problem.empty
+            }
+        }
+    }
+}
+
 //struct TopoFullScreenView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TopoFullScreenView()
 //    }
 //}
-
