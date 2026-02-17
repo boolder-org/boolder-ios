@@ -27,8 +27,14 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        // Update selectedTopo before setProblemAsSelected uses it
-        vc.selectedTopo = mapState.selectedTopo
+        // Pass pre-cached topo problem IDs so setProblemAsSelected never hits SQLite
+        if let topoId = mapState.selectedTopo?.id {
+            vc.selectedTopoProblemIds = mapState.boulderProblems
+                .filter { $0.topoId == topoId }
+                .map { String($0.id) }
+        } else {
+            vc.selectedTopoProblemIds = []
+        }
         
         // Handle selection changes (problem or topo)
         let selectedId = mapState.selectedProblem.id

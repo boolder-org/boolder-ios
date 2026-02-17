@@ -944,7 +944,9 @@ class MapboxViewController: UIViewController {
     
     private var previouslyTappedProblemId: String = ""
     private var previouslySelectedTopoIds: [String] = []
-    var selectedTopo: Topo? = nil
+    /// Pre-cached problem IDs for the currently selected topo.
+    /// Set from MapboxView using cached data – avoids SQLite in the hot path.
+    var selectedTopoProblemIds: [String] = []
     
     func setProblemAsSelected(problemFeatureId: String) {
         // Unselect previously selected topo problems
@@ -963,12 +965,11 @@ class MapboxViewController: UIViewController {
         
         self.previouslyTappedProblemId = problemFeatureId
         
-        // If a topo is selected, also select all problems on the same topo
-        if let topo = selectedTopo {
+        // Also select all sibling problems on the same topo (using pre-cached IDs)
+        if !selectedTopoProblemIds.isEmpty {
             var selectedIds: [String] = []
             
-            for p in topo.allProblems {
-                let featureId = String(p.id)
+            for featureId in selectedTopoProblemIds {
                 if featureId != problemFeatureId {
                     self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                            sourceLayerId: problemsSourceLayerId,

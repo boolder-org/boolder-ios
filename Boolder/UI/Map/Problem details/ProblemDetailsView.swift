@@ -248,12 +248,11 @@ struct ProblemDetailsView: View {
                 guard let newId,
                       let topo = mapState.boulderTopos.first(where: { $0.id == newId }),
                       problem.topoId != newId else { return }
-                // Only update selection when leaving problem mode.
-                // In topo mode, selection stays put → zero view invalidation during swipe.
-                if case .problem = mapState.selection {
-                    Task { @MainActor in
-                        mapState.selection = .topo(topo: topo)
-                    }
+                // Defer to next run-loop tick so the scroll animation finishes first.
+                // Safe for scroll perf: scroll views observe isInTopoMode (stable),
+                // not selection directly.
+                Task { @MainActor in
+                    mapState.selection = .topo(topo: topo)
                 }
             }
         } else {
