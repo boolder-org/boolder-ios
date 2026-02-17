@@ -172,7 +172,7 @@ struct MapContainerView: View {
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
                         Button(action: {
-                            if case .problem(let problem) = mapState.selection, let topo = problem.topo {
+                            if case .problem(let problem, _) = mapState.selection, let topo = problem.topo {
                                 mapState.selection = .topo(topo: topo)
                                 if let boulderId = topo.boulderId {
                                     let boulder = Boulder(id: boulderId)

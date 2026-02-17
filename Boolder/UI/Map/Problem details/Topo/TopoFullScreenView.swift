@@ -222,7 +222,7 @@ struct TopoFullScreenView: View {
     }
     
     private func toggleTopoSelection() {
-        if case .problem(let problem) = mapState.selection, let topo = problem.topo {
+        if case .problem(let problem, _) = mapState.selection, let topo = problem.topo {
             mapState.selection = .topo(topo: topo)
         } else if case .topo(let topo) = mapState.selection, let topProblem = topo.topProblem {
             mapState.selectProblem(topProblem)
