@@ -9,22 +9,21 @@
 import SwiftUI
 import CoreLocation
 
-enum ProblemSelectionSource {
-    case circleView
-    case map
-    case other
-}
-
 @Observable
 class MapState {
     enum Selection: Equatable {
         case none
         case topo(topo: Topo)
-        case problem(problem: Problem)
+        case problem(problem: Problem, source: Source = .other)
+        
+        enum Source {
+            case circleView
+            case map
+            case other
+        }
     }
     
     var selection: Selection = .none
-    private(set) var selectionSource: ProblemSelectionSource = .other
     private(set) var centerOnProblem: Problem? = nil
     private(set) var selectedArea: Area? = nil
     private(set) var currentLocationCount: Int = 0
@@ -49,7 +48,7 @@ class MapState {
     var selectedProblem: Problem {
         get {
             switch selection {
-            case .problem(let problem): return problem
+            case .problem(let problem, _): return problem
             case .topo(let topo): return topo.topProblem ?? Problem.empty
             case .none: return Problem.empty
             }
@@ -57,6 +56,11 @@ class MapState {
         set {
             selection = .problem(problem: newValue)
         }
+    }
+    
+    var selectionSource: Selection.Source {
+        if case .problem(_, let source) = selection { return source }
+        return .other
     }
     
     var selectedTopo: Topo? {
@@ -149,9 +153,8 @@ class MapState {
     }
     
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
-    func selectProblem(_ problem: Problem, source: ProblemSelectionSource = .other) {
-        selection = .problem(problem: problem)
-        selectionSource = source
+    func selectProblem(_ problem: Problem, source: Selection.Source = .other) {
+        selection = .problem(problem: problem, source: source)
         
         selectedArea = Area.load(id: problem.areaId)
     }
