@@ -227,9 +227,11 @@ struct ProblemDetailsView: View {
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 0) {
                     ForEach(mapState.boulderTopos) { topo in
-                        TopoPageView(topo: topo, onBackgroundTap: {
-                            presentTopoFullScreenView = true
-                        })
+                        TopoPageView(
+                            topo: topo,
+                            topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
+                            onBackgroundTap: { presentTopoFullScreenView = true }
+                        )
                         .containerRelativeFrame(.horizontal)
                         .id(topo.id)
                     }
@@ -243,7 +245,10 @@ struct ProblemDetailsView: View {
                 guard let newId,
                       let topo = mapState.boulderTopos.first(where: { $0.id == newId }),
                       problem.topoId != newId else { return }
-                mapState.selection = .topo(topo: topo)
+                // Defer to next run-loop tick so the scroll animation finishes first
+                Task { @MainActor in
+                    mapState.selection = .topo(topo: topo)
+                }
             }
         } else {
             TopoView(
@@ -274,10 +279,10 @@ private struct TopoPageView: View {
     @State private var problem: Problem
     @Environment(MapState.self) private var mapState
     
-    init(topo: Topo, onBackgroundTap: (() -> Void)? = nil) {
+    init(topo: Topo, topProblem: Problem, onBackgroundTap: (() -> Void)? = nil) {
         self.topo = topo
         self.onBackgroundTap = onBackgroundTap
-        self._problem = State(initialValue: topo.topProblem ?? Problem.empty)
+        self._problem = State(initialValue: topProblem)
     }
     
     var body: some View {
@@ -288,9 +293,12 @@ private struct TopoPageView: View {
         )
         .onChange(of: mapState.selection, initial: true) {
             if case .problem(let p, _) = mapState.selection, p.topoId == topo.id {
-                problem = p
+                if p.id != problem.id { problem = p }
             } else if case .topo(let t) = mapState.selection, t.id == topo.id {
-                problem = t.topProblem ?? Problem.empty
+                // Use cached top problem (no SQLite) and skip if already showing it
+                if let cached = mapState.topProblem(for: t.id), cached.id != problem.id {
+                    problem = cached
+                }
             }
         }
     }

@@ -32,6 +32,8 @@ class MapState {
     private(set) var boulderTopos: [Topo] = []
     private(set) var boulderProblems: [Problem] = []
     @ObservationIgnored private var cachedBoulderId: Int? = nil
+    /// Pre-computed top problems per topo – avoids SQLite queries during scroll.
+    @ObservationIgnored private var cachedTopProblems: [Int: Problem] = [:]
     
     private func refreshBoulderCacheIfNeeded() {
         let boulderId: Int?
@@ -48,10 +50,21 @@ class MapState {
             let boulder = Boulder(id: boulderId)
             boulderTopos = boulder.topos
             boulderProblems = boulder.problems
+            // Pre-cache top problems so page views never hit SQLite during scroll
+            cachedTopProblems = [:]
+            for topo in boulderTopos {
+                cachedTopProblems[topo.id] = topo.topProblem
+            }
         } else {
             boulderTopos = []
             boulderProblems = []
+            cachedTopProblems = [:]
         }
+    }
+    
+    /// Returns the pre-cached top problem for a topo (no database access).
+    func topProblem(for topoId: Int) -> Problem? {
+        cachedTopProblems[topoId]
     }
     
     func nextTopo(after topo: Topo) -> Topo? {
@@ -89,7 +102,7 @@ class MapState {
         get {
             switch selection {
             case .problem(let problem, _): return problem
-            case .topo(let topo): return topo.topProblem ?? Problem.empty
+            case .topo(let topo): return cachedTopProblems[topo.id] ?? topo.topProblem ?? Problem.empty
             case .none: return Problem.empty
             }
         }
