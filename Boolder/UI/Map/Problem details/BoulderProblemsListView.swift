@@ -19,8 +19,7 @@ struct BoulderProblemsListView: View {
     // MARK: - Topo data
     
     private var boulderTopos: [Topo] {
-        guard let boulderId = boulderId else { return [] }
-        return Boulder(id: boulderId).topos
+        mapState.boulderTopos
     }
     
     private var currentTopoLetter: String {

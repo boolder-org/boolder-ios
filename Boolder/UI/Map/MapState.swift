@@ -23,7 +23,47 @@ class MapState {
         }
     }
     
-    var selection: Selection = .none
+    var selection: Selection = .none {
+        didSet { refreshBoulderCacheIfNeeded() }
+    }
+    
+    // MARK: - Cached boulder data (only refreshed when boulder changes)
+    
+    private(set) var boulderTopos: [Topo] = []
+    private(set) var boulderProblems: [Problem] = []
+    @ObservationIgnored private var cachedBoulderId: Int? = nil
+    
+    private func refreshBoulderCacheIfNeeded() {
+        let boulderId: Int?
+        switch selection {
+        case .topo(let topo): boulderId = topo.boulderId
+        case .problem(let problem, _): boulderId = problem.topo?.boulderId
+        case .none: boulderId = nil
+        }
+        
+        guard boulderId != cachedBoulderId else { return }
+        cachedBoulderId = boulderId
+        
+        if let boulderId {
+            let boulder = Boulder(id: boulderId)
+            boulderTopos = boulder.topos
+            boulderProblems = boulder.problems
+        } else {
+            boulderTopos = []
+            boulderProblems = []
+        }
+    }
+    
+    func nextTopo(after topo: Topo) -> Topo? {
+        guard let index = boulderTopos.firstIndex(of: topo) else { return nil }
+        return boulderTopos[(index + 1) % boulderTopos.count]
+    }
+    
+    func previousTopo(before topo: Topo) -> Topo? {
+        guard let index = boulderTopos.firstIndex(of: topo) else { return nil }
+        return boulderTopos[(index + boulderTopos.count - 1) % boulderTopos.count]
+    }
+    
     private(set) var centerOnProblem: Problem? = nil
     private(set) var selectedArea: Area? = nil
     private(set) var currentLocationCount: Int = 0

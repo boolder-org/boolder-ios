@@ -119,12 +119,12 @@ struct ProblemDetailsView: View {
                 }
                 
                 GeometryReader { geo in
-                    let count = CGFloat(boulderTopos.count)
+                    let count = CGFloat(mapState.boulderTopos.count)
                     let totalSpacing = 8 * max(count - 1, 0)
                     let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
                     
                     HStack(spacing: 8) {
-                        ForEach(Array(boulderTopos.enumerated()), id: \.element.id) { index, topo in
+                        ForEach(Array(mapState.boulderTopos.enumerated()), id: \.element.id) { index, topo in
                             topoThumbnail(topo: topo, isCurrent: topo.id == mapState.selectedTopo?.id, width: thumbnailWidth, index: index)
                         }
                     }
@@ -160,7 +160,7 @@ struct ProblemDetailsView: View {
 //                )
             }
             .sheet(isPresented: $presentBoulderProblemsList) {
-                BoulderProblemsListView(problems: boulderProblems, boulderId: mapState.selectedTopo?.boulderId, currentTopoId: mapState.selectedTopo?.id)
+                BoulderProblemsListView(problems: mapState.boulderProblems, boulderId: mapState.selectedTopo?.boulderId, currentTopoId: mapState.selectedTopo?.id)
                     .presentationDetents([.large])
             }
         }
@@ -202,29 +202,19 @@ struct ProblemDetailsView: View {
         }
     }
     
-    private var boulderTopos: [Topo] {
-        guard let topo = mapState.selectedTopo, let boulderId = topo.boulderId else { return [] }
-        return Boulder(id: boulderId).topos
-    }
-    
-    private var boulderProblems: [Problem] {
-        guard let topo = mapState.selectedTopo, let boulderId = topo.boulderId else { return [] }
-        return Boulder(id: boulderId).problems
-    }
-    
     private func goToTopo(_ topo: Topo) {
         mapState.selection = .topo(topo: topo)
     }
     
     private func goToPreviousTopo() {
-        guard let currentTopo = mapState.selectedTopo, let boulderId = currentTopo.boulderId,
-              let previous = Boulder(id: boulderId).previousTopo(before: currentTopo) else { return }
+        guard let currentTopo = mapState.selectedTopo,
+              let previous = mapState.previousTopo(before: currentTopo) else { return }
         goToTopo(previous)
     }
     
     private func goToNextTopo() {
-        guard let currentTopo = mapState.selectedTopo, let boulderId = currentTopo.boulderId,
-              let next = Boulder(id: boulderId).nextTopo(after: currentTopo) else { return }
+        guard let currentTopo = mapState.selectedTopo,
+              let next = mapState.nextTopo(after: currentTopo) else { return }
         goToTopo(next)
     }
     

@@ -174,12 +174,9 @@ struct MapContainerView: View {
                         Button(action: {
                             if case .problem(let problem, _) = mapState.selection, let topo = problem.topo {
                                 mapState.selection = .topo(topo: topo)
-                                if let boulderId = topo.boulderId {
-                                    let boulder = Boulder(id: boulderId)
-                                    let coordinates = boulder.problems.map { $0.coordinate }
-                                    if !coordinates.isEmpty {
-                                        mapState.centerOnBoulder(coordinates: coordinates)
-                                    }
+                                let coordinates = mapState.boulderProblems.map { $0.coordinate }
+                                if !coordinates.isEmpty {
+                                    mapState.centerOnBoulder(coordinates: coordinates)
                                 }
                             } else if case .topo(let topo) = mapState.selection {
                                 if let topProblem = topo.topProblem {
