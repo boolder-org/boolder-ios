@@ -63,7 +63,7 @@ class MapState {
     
     private(set) var boulderTopos: [Topo] = []
     private(set) var boulderProblems: [Problem] = []
-    @ObservationIgnored private var cachedBoulderId: Int? = nil
+    @ObservationIgnored private(set) var cachedBoulderId: Int? = nil
     /// Pre-computed top problems per topo – avoids SQLite queries during scroll.
     @ObservationIgnored private var cachedTopProblems: [Int: Problem] = [:]
     /// Pre-computed allProblems count per topo – avoids SQLite in carousel.

@@ -22,6 +22,7 @@ struct ProblemDetailsView: View {
     @State private var presentTopoFullScreenView = false
     @State private var presentBoulderProblemsList = false
     @State private var scrolledTopoId: Int?
+    @State private var lastSeenBoulderId: Int?
     
     @Namespace private var topoTransitionNamespace
     
@@ -84,10 +85,16 @@ struct ProblemDetailsView: View {
         }
         .onAppear {
             scrolledTopoId = problem.topoId
+            lastSeenBoulderId = mapState.cachedBoulderId
             viewCount += 1
         }
         .onChange(of: problem.topoId) { _, newTopoId in
-            if let newTopoId, scrolledTopoId != newTopoId {
+            guard let newTopoId, scrolledTopoId != newTopoId else { return }
+            if lastSeenBoulderId != mapState.cachedBoulderId {
+                // Boulder changed — snap without animation
+                lastSeenBoulderId = mapState.cachedBoulderId
+                scrolledTopoId = newTopoId
+            } else {
                 withAnimation {
                     scrolledTopoId = newTopoId
                 }

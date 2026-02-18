@@ -16,6 +16,7 @@ struct TopoFullScreenView: View {
     
     @State private var zoomScale: CGFloat = 1
     @State private var scrolledTopoId: Int?
+    @State private var lastSeenBoulderId: Int?
     
     @State private var presentBoulderProblemsList = false
     
@@ -99,9 +100,14 @@ struct TopoFullScreenView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             scrolledTopoId = problem.topoId
+            lastSeenBoulderId = mapState.cachedBoulderId
         }
         .onChange(of: problem.topoId) { _, newTopoId in
-            if let newTopoId, scrolledTopoId != newTopoId {
+            guard let newTopoId, scrolledTopoId != newTopoId else { return }
+            if lastSeenBoulderId != mapState.cachedBoulderId {
+                lastSeenBoulderId = mapState.cachedBoulderId
+                scrolledTopoId = newTopoId
+            } else {
                 withAnimation {
                     scrolledTopoId = newTopoId
                 }
