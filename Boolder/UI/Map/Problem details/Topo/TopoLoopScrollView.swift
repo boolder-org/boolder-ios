@@ -8,13 +8,16 @@
 
 import SwiftUI
 
-/// A paging ScrollView that wraps its items in 3 copies (before · center · after)
+/// A paging ScrollView that wraps its items in multiple copies
 /// to give the illusion of infinite looping.
 ///
 /// Because `scrollLoopId` lives here instead of in the parent, a page change
 /// only re-evaluates this lightweight body – the parent stays untouched until
 /// the `onTopoChanged` callback fires (typically deferred via `Task`).
 struct TopoLoopScrollView<Content: View>: View {
+    private let loopCopies = 5
+    private let centerCopy = 2
+
     let boulderTopos: [Topo]
     let topoId: Int?
     let boulderId: Int?
@@ -41,12 +44,12 @@ struct TopoLoopScrollView<Content: View>: View {
     @State private var pendingTopoChangeTask: Task<Void, Never>?
 
     private func centerLoopId(for topoId: Int?) -> Int? {
-        topoId.map { 1_000_000 + $0 }
+        topoId.map { centerCopy * 1_000_000 + $0 }
     }
 
     private func rebuildLoopedTopos() {
         topoById = Dictionary(uniqueKeysWithValues: boulderTopos.map { ($0.id, $0) })
-        loopedTopos = (0..<3).flatMap { copy in
+        loopedTopos = (0..<loopCopies).flatMap { copy in
             boulderTopos.map { LoopedTopo(topo: $0, copy: copy) }
         }
         TopoImageCache.shared.preload(topos: boulderTopos)
@@ -100,16 +103,6 @@ struct TopoLoopScrollView<Content: View>: View {
             guard let newLoopId else { return }
             let realId = newLoopId % 1_000_000
             preloadNeighbors(around: realId)
-
-            // Keep the scroll position in the center copy so pagination stays infinite.
-            let centeredLoopId = 1_000_000 + realId
-            if newLoopId != centeredLoopId {
-                var noAnimation = Transaction()
-                noAnimation.disablesAnimations = true
-                withTransaction(noAnimation) {
-                    scrollLoopId = centeredLoopId
-                }
-            }
 
             // Commit only the settled topo once small transient scroll updates stop.
             guard realId != topoId, let topo = topoById[realId] else { return }
