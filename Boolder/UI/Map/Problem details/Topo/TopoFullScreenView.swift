@@ -15,29 +15,8 @@ struct TopoFullScreenView: View {
     @Binding var problem: Problem
     
     @State private var zoomScale: CGFloat = 1
-    @State private var scrollLoopId: Int?
+    @State private var scrolledTopoId: Int?
     @State private var lastSeenBoulderId: Int?
-    
-    // Infinite-loop scroll: 5 copies (2 before · center · 2 after)
-    private struct LoopedTopo: Identifiable {
-        let topo: Topo
-        let copy: Int
-        var id: Int { copy * 1_000_000 + topo.id }
-    }
-    
-    private var scrolledTopoId: Int? {
-        scrollLoopId.map { $0 % 1_000_000 }
-    }
-    
-    private func centerLoopId(for topoId: Int?) -> Int? {
-        topoId.map { 2 * 1_000_000 + $0 }
-    }
-    
-    private var loopedBoulderTopos: [LoopedTopo] {
-        (0..<5).flatMap { copy in
-            mapState.boulderTopos.map { LoopedTopo(topo: $0, copy: copy) }
-        }
-    }
     
     @State private var presentBoulderProblemsList = false
     
@@ -120,17 +99,17 @@ struct TopoFullScreenView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
-            scrollLoopId = centerLoopId(for: problem.topoId)
+            scrolledTopoId = problem.topoId
             lastSeenBoulderId = mapState.cachedBoulderId
         }
         .onChange(of: problem.topoId) { _, newTopoId in
             guard let newTopoId, scrolledTopoId != newTopoId else { return }
             if lastSeenBoulderId != mapState.cachedBoulderId {
                 lastSeenBoulderId = mapState.cachedBoulderId
-                scrollLoopId = centerLoopId(for: newTopoId)
+                scrolledTopoId = newTopoId
             } else {
                 withAnimation {
-                    scrollLoopId = centerLoopId(for: newTopoId)
+                    scrolledTopoId = newTopoId
                 }
             }
         }
@@ -148,26 +127,25 @@ struct TopoFullScreenView: View {
         if mapState.boulderTopos.count > 1 {
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 0) {
-                    ForEach(loopedBoulderTopos) { item in
+                    ForEach(mapState.boulderTopos) { topo in
                         FullScreenTopoPageView(
-                            topo: item.topo,
-                            topProblem: mapState.topProblem(for: item.topo.id) ?? Problem.empty
+                            topo: topo,
+                            topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty
                         )
                         .containerRelativeFrame(.horizontal)
                         .frame(maxHeight: .infinity)
-                        .id(item.id)
+                        .id(topo.id)
                     }
                 }
                 .scrollTargetLayout()
             }
             .scrollTargetBehavior(.viewAligned)
-            .scrollPosition(id: $scrollLoopId)
+            .scrollPosition(id: $scrolledTopoId)
             .scrollIndicators(.hidden)
-            .onChange(of: scrollLoopId) { _, newLoopId in
-                guard let newLoopId else { return }
-                let realId = newLoopId % 1_000_000
-                guard let topo = mapState.boulderTopos.first(where: { $0.id == realId }),
-                      problem.topoId != realId else { return }
+            .onChange(of: scrolledTopoId) { _, newId in
+                guard let newId,
+                      let topo = mapState.boulderTopos.first(where: { $0.id == newId }),
+                      problem.topoId != newId else { return }
                 // Defer to next run-loop tick so the scroll animation finishes first.
                 // Safe for scroll perf: scroll views observe isInTopoMode (stable),
                 // not selection directly.
@@ -297,7 +275,7 @@ struct TopoFullScreenView: View {
     
     private func goToTopo(_ topo: Topo) {
         withAnimation {
-            scrollLoopId = centerLoopId(for: topo.id)
+            scrolledTopoId = topo.id
         }
         mapState.selection = .topo(topo: topo)
     }
