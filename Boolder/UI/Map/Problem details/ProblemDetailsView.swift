@@ -207,7 +207,9 @@ struct ProblemDetailsView: View {
     }
     
     private func goToTopo(_ topo: Topo) {
-        mapState.selection = .topo(topo: topo)
+        withAnimation(.easeInOut(duration: 0.25)) {
+            mapState.selection = .topo(topo: topo)
+        }
     }
     
     // MARK: - Topo horizontal swipe
