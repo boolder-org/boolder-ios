@@ -24,7 +24,7 @@ struct ProblemDetailsView: View {
     @State private var scrollLoopId: Int?
     @State private var lastSeenBoulderId: Int?
     
-    // Infinite-loop scroll: 5 copies (2 before · center · 2 after)
+    // Infinite-loop scroll: 3 copies (before · center · after)
     private struct LoopedTopo: Identifiable {
         let topo: Topo
         let copy: Int
@@ -36,11 +36,11 @@ struct ProblemDetailsView: View {
     }
     
     private func centerLoopId(for topoId: Int?) -> Int? {
-        topoId.map { 2 * 1_000_000 + $0 }
+        topoId.map { 1_000_000 + $0 }
     }
     
     private var loopedBoulderTopos: [LoopedTopo] {
-        (0..<5).flatMap { copy in
+        (0..<3).flatMap { copy in
             mapState.boulderTopos.map { LoopedTopo(topo: $0, copy: copy) }
         }
     }
