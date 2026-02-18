@@ -15,8 +15,8 @@ import SwiftUI
 /// only re-evaluates this lightweight body – the parent stays untouched until
 /// the `onTopoChanged` callback fires (typically deferred via `Task`).
 struct TopoLoopScrollView<Content: View>: View {
-    private let loopCopies = 5
-    private let centerCopy = 2
+    private let loopCopies = 3
+    private let centerCopy = 1 // loopCopies / 2
 
     let boulderTopos: [Topo]
     let topoId: Int?
