@@ -178,16 +178,6 @@ struct TopoFullScreenView: View {
     var topoCarousel: some View {
         VStack(spacing: 16) {
             HStack(spacing: 8) {
-                Button {
-                    goToPreviousTopo()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(.white)
-                        .frame(width: 54, height: 54)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(6)
-                }
-                
                 GeometryReader { geo in
                     let count = CGFloat(mapState.boulderTopos.count)
                     let totalSpacing = 8 * max(count - 1, 0)
@@ -201,16 +191,6 @@ struct TopoFullScreenView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .frame(height: 54)
-                
-                Button {
-                    goToNextTopo()
-                } label: {
-                    Image(systemName: "arrow.right")
-                        .foregroundColor(.white)
-                        .frame(width: 54, height: 54)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(6)
-                }
             }
             
             Button {
@@ -280,20 +260,6 @@ struct TopoFullScreenView: View {
     
     private func goToTopo(_ topo: Topo) {
         mapState.selection = .topo(topo: topo)
-    }
-    
-    private func goToPreviousTopo() {
-        guard let currentId = problem.topoId,
-              let current = mapState.boulderTopos.first(where: { $0.id == currentId }),
-              let previous = mapState.previousTopo(before: current) else { return }
-        goToTopo(previous)
-    }
-    
-    private func goToNextTopo() {
-        guard let currentId = problem.topoId,
-              let current = mapState.boulderTopos.first(where: { $0.id == currentId }),
-              let next = mapState.nextTopo(after: current) else { return }
-        goToTopo(next)
     }
     
     var overlayInfos: some View {
