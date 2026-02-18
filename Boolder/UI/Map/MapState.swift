@@ -36,6 +36,11 @@ class MapState {
                 if case .problem(_, let s) = selection { return s } else { return .other }
             }()
             if currentSelectionSource != newSource { currentSelectionSource = newSource }
+            
+            let newProblemId: Int = {
+                if case .problem(let p, _) = selection { return p.id } else { return 0 }
+            }()
+            if activeProblemId != newProblemId { activeProblemId = newProblemId }
         }
     }
     
@@ -49,6 +54,10 @@ class MapState {
     /// Mirrors `Selection.Source` but only changes when the source actually
     /// differs, keeping views stable during topo-to-topo swipes.
     private(set) var currentSelectionSource: Selection.Source = .other
+    
+    /// The id of the actively selected problem (0 when in topo mode or none).
+    /// Stable during topo-to-topo swipes; only changes on problem-to-problem taps.
+    private(set) var activeProblemId: Int = 0
     
     // MARK: - Cached boulder data (only refreshed when boulder changes)
     

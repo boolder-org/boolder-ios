@@ -309,6 +309,13 @@ private struct TopoPageView: View {
                 }
             }
         }
+        .onChange(of: mapState.activeProblemId) { _, _ in
+            // Fires on problem-to-problem taps (isInTopoMode stays false so
+            // the handler above doesn't run). Silent during topo-to-topo swipes.
+            if case .problem(let p, _) = mapState.selection, p.topoId == topo.id, p.id != problem.id {
+                problem = p
+            }
+        }
     }
 }
 
