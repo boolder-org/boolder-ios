@@ -21,8 +21,29 @@ struct ProblemDetailsView: View {
     @State private var areaResourcesDownloaded = false
     @State private var presentTopoFullScreenView = false
     @State private var presentBoulderProblemsList = false
-    @State private var scrolledTopoId: Int?
+    @State private var scrollLoopId: Int?
     @State private var lastSeenBoulderId: Int?
+    
+    // Infinite-loop scroll: 5 copies (2 before · center · 2 after)
+    private struct LoopedTopo: Identifiable {
+        let topo: Topo
+        let copy: Int
+        var id: Int { copy * 1_000_000 + topo.id }
+    }
+    
+    private var scrolledTopoId: Int? {
+        scrollLoopId.map { $0 % 1_000_000 }
+    }
+    
+    private func centerLoopId(for topoId: Int?) -> Int? {
+        topoId.map { 2 * 1_000_000 + $0 }
+    }
+    
+    private var loopedBoulderTopos: [LoopedTopo] {
+        (0..<5).flatMap { copy in
+            mapState.boulderTopos.map { LoopedTopo(topo: $0, copy: copy) }
+        }
+    }
     
     @Namespace private var topoTransitionNamespace
     
@@ -84,7 +105,7 @@ struct ProblemDetailsView: View {
             Spacer()
         }
         .onAppear {
-            scrolledTopoId = problem.topoId
+            scrollLoopId = centerLoopId(for: problem.topoId)
             lastSeenBoulderId = mapState.cachedBoulderId
             viewCount += 1
         }
@@ -93,10 +114,10 @@ struct ProblemDetailsView: View {
             if lastSeenBoulderId != mapState.cachedBoulderId {
                 // Boulder changed — snap without animation
                 lastSeenBoulderId = mapState.cachedBoulderId
-                scrolledTopoId = newTopoId
+                scrollLoopId = centerLoopId(for: newTopoId)
             } else {
                 withAnimation {
-                    scrolledTopoId = newTopoId
+                    scrollLoopId = centerLoopId(for: newTopoId)
                 }
             }
         }
@@ -210,7 +231,7 @@ struct ProblemDetailsView: View {
     
     private func goToTopo(_ topo: Topo) {
         withAnimation {
-            scrolledTopoId = topo.id
+            scrollLoopId = centerLoopId(for: topo.id)
         }
         mapState.selection = .topo(topo: topo)
     }
@@ -236,25 +257,26 @@ struct ProblemDetailsView: View {
         if mapState.boulderTopos.count > 1 {
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 0) {
-                    ForEach(mapState.boulderTopos) { topo in
+                    ForEach(loopedBoulderTopos) { item in
                         TopoPageView(
-                            topo: topo,
-                            topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
+                            topo: item.topo,
+                            topProblem: mapState.topProblem(for: item.topo.id) ?? Problem.empty,
                             onBackgroundTap: { presentTopoFullScreenView = true }
                         )
                         .containerRelativeFrame(.horizontal)
-                        .id(topo.id)
+                        .id(item.id)
                     }
                 }
                 .scrollTargetLayout()
             }
             .scrollTargetBehavior(.viewAligned)
-            .scrollPosition(id: $scrolledTopoId)
+            .scrollPosition(id: $scrollLoopId)
             .scrollIndicators(.hidden)
-            .onChange(of: scrolledTopoId) { _, newId in
-                guard let newId,
-                      let topo = mapState.boulderTopos.first(where: { $0.id == newId }),
-                      problem.topoId != newId else { return }
+            .onChange(of: scrollLoopId) { _, newLoopId in
+                guard let newLoopId else { return }
+                let realId = newLoopId % 1_000_000
+                guard let topo = mapState.boulderTopos.first(where: { $0.id == realId }),
+                      problem.topoId != realId else { return }
                 // Defer to next run-loop tick so the scroll animation finishes first.
                 // Safe for scroll perf: scroll views observe isInTopoMode (stable),
                 // not selection directly.
