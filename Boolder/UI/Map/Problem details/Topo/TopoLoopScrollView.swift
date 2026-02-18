@@ -37,15 +37,26 @@ struct TopoLoopScrollView<Content: View>: View {
     @State private var scrollLoopId: Int?
     @State private var loopedTopos: [LoopedTopo] = []
     @State private var lastSeenBoulderId: Int?
+    @State private var topoById: [Int: Topo] = [:]
+    @State private var pendingTopoChangeTask: Task<Void, Never>?
 
     private func centerLoopId(for topoId: Int?) -> Int? {
         topoId.map { 1_000_000 + $0 }
     }
 
     private func rebuildLoopedTopos() {
+        topoById = Dictionary(uniqueKeysWithValues: boulderTopos.map { ($0.id, $0) })
         loopedTopos = (0..<3).flatMap { copy in
             boulderTopos.map { LoopedTopo(topo: $0, copy: copy) }
         }
+        TopoImageCache.shared.preload(topos: boulderTopos)
+    }
+
+    private func preloadNeighbors(around realId: Int) {
+        guard let currentIndex = boulderTopos.firstIndex(where: { $0.id == realId }), !boulderTopos.isEmpty else { return }
+        let prevIndex = (currentIndex + boulderTopos.count - 1) % boulderTopos.count
+        let nextIndex = (currentIndex + 1) % boulderTopos.count
+        TopoImageCache.shared.preload(topos: [boulderTopos[currentIndex], boulderTopos[prevIndex], boulderTopos[nextIndex]])
     }
 
     // MARK: - Body
@@ -88,11 +99,32 @@ struct TopoLoopScrollView<Content: View>: View {
         .onChange(of: scrollLoopId) { _, newLoopId in
             guard let newLoopId else { return }
             let realId = newLoopId % 1_000_000
-            // Only call back when the topo actually differs from what the parent knows
-            guard realId != topoId,
-                  let topo = boulderTopos.first(where: { $0.id == realId })
-            else { return }
-            onTopoChanged(topo)
+            preloadNeighbors(around: realId)
+
+            // Keep the scroll position in the center copy so pagination stays infinite.
+            let centeredLoopId = 1_000_000 + realId
+            if newLoopId != centeredLoopId {
+                var noAnimation = Transaction()
+                noAnimation.disablesAnimations = true
+                withTransaction(noAnimation) {
+                    scrollLoopId = centeredLoopId
+                }
+            }
+
+            // Commit only the settled topo once small transient scroll updates stop.
+            guard realId != topoId, let topo = topoById[realId] else { return }
+            pendingTopoChangeTask?.cancel()
+            pendingTopoChangeTask = Task {
+                try? await Task.sleep(for: .milliseconds(60))
+                guard !Task.isCancelled, realId != topoId else { return }
+                await MainActor.run {
+                    onTopoChanged(topo)
+                }
+            }
+        }
+        .onDisappear {
+            pendingTopoChangeTask?.cancel()
+            pendingTopoChangeTask = nil
         }
     }
 }

@@ -17,13 +17,24 @@ struct TopoFullScreenView: View {
     @State private var zoomScale: CGFloat = 1
     @State private var lastSeenBoulderId: Int?
     @State private var thumbnailPhotos: [Int: UIImage] = [:]
+    @State private var thumbnailTask: Task<Void, Never>?
     
     private func buildThumbnailPhotos() {
-        var photos: [Int: UIImage] = [:]
-        for topo in mapState.boulderTopos {
-            photos[topo.id] = topo.onDiskPhoto
+        let topos = mapState.boulderTopos
+        thumbnailTask?.cancel()
+        thumbnailTask = Task(priority: .utility) {
+            var photos: [Int: UIImage] = [:]
+            for topo in topos {
+                if Task.isCancelled { return }
+                if let image = await TopoImageCache.shared.image(for: topo) {
+                    photos[topo.id] = image
+                }
+            }
+            if Task.isCancelled { return }
+            await MainActor.run {
+                thumbnailPhotos = photos
+            }
         }
-        thumbnailPhotos = photos
     }
     
     @State private var presentBoulderProblemsList = false
@@ -116,6 +127,10 @@ struct TopoFullScreenView: View {
                 buildThumbnailPhotos()
             }
         }
+        .onDisappear {
+            thumbnailTask?.cancel()
+            thumbnailTask = nil
+        }
         .sheet(isPresented: $presentBoulderProblemsList) {
             let currentBoulderId = mapState.boulderTopos.first(where: { $0.id == problem.topoId })?.boulderId
             BoulderProblemsListView(problems: mapState.boulderProblems, boulderId: currentBoulderId, currentTopoId: problem.topoId)
@@ -133,9 +148,8 @@ struct TopoFullScreenView: View {
                 topoId: problem.topoId,
                 boulderId: mapState.cachedBoulderId,
                 onTopoChanged: { topo in
-                    Task { @MainActor in
-                        mapState.selection = .topo(topo: topo)
-                    }
+                    guard problem.topoId != topo.id else { return }
+                    mapState.selection = .topo(topo: topo)
                 }
             ) { topo in
                 FullScreenTopoPageView(

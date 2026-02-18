@@ -23,13 +23,24 @@ struct ProblemDetailsView: View {
     @State private var presentBoulderProblemsList = false
     @State private var lastSeenBoulderId: Int?
     @State private var thumbnailPhotos: [Int: UIImage] = [:]
+    @State private var thumbnailTask: Task<Void, Never>?
     
     private func buildThumbnailPhotos() {
-        var photos: [Int: UIImage] = [:]
-        for topo in mapState.boulderTopos {
-            photos[topo.id] = topo.onDiskPhoto
+        let topos = mapState.boulderTopos
+        thumbnailTask?.cancel()
+        thumbnailTask = Task(priority: .utility) {
+            var photos: [Int: UIImage] = [:]
+            for topo in topos {
+                if Task.isCancelled { return }
+                if let image = await TopoImageCache.shared.image(for: topo) {
+                    photos[topo.id] = image
+                }
+            }
+            if Task.isCancelled { return }
+            await MainActor.run {
+                thumbnailPhotos = photos
+            }
         }
-        thumbnailPhotos = photos
     }
     
     @Namespace private var topoTransitionNamespace
@@ -113,6 +124,10 @@ struct ProblemDetailsView: View {
                 presentReview()
                 lastVersionPromptedForReview = currentAppVersion
             }
+        }
+        .onDisappear {
+            thumbnailTask?.cancel()
+            thumbnailTask = nil
         }
     }
     
@@ -239,10 +254,8 @@ struct ProblemDetailsView: View {
                 topoId: problem.topoId,
                 boulderId: mapState.cachedBoulderId,
                 onTopoChanged: { topo in
-                    // Deferred so the parent doesn't re-render during the scroll animation
-                    Task { @MainActor in
-                        mapState.selection = .topo(topo: topo)
-                    }
+                    guard problem.topoId != topo.id else { return }
+                    mapState.selection = .topo(topo: topo)
                 }
             ) { topo in
                 TopoPageView(

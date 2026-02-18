@@ -403,12 +403,16 @@ struct TopoView: View {
         guard problem.id != 0 else { return }
         
         guard let topo = problem.topo else {
-            photoStatus = .none
+            await MainActor.run {
+                photoStatus = .none
+            }
             return
         }
         
-        if let photo = problem.onDiskPhoto {
-            self.photoStatus = .ready(image: photo)
+        if let photo = await TopoImageCache.shared.image(for: topo) {
+            await MainActor.run {
+                self.photoStatus = .ready(image: photo)
+            }
             return
         }
         
@@ -416,27 +420,36 @@ struct TopoView: View {
     }
     
     func downloadPhoto(topo: Topo) async {
-        photoStatus = .loading
+        await MainActor.run {
+            photoStatus = .loading
+        }
         
         let result = await Downloader().downloadFile(topo: topo)
         if result == .success
         {
-            // TODO: move this logic to Downloader
-            if let photo = problem.onDiskPhoto {
-                self.photoStatus = .ready(image: photo)
+            if let photo = await TopoImageCache.shared.image(for: topo) {
+                await MainActor.run {
+                    self.photoStatus = .ready(image: photo)
+                }
                 return
             }
         }
         else if result == .noInternet {
-            self.photoStatus = .noInternet
+            await MainActor.run {
+                self.photoStatus = .noInternet
+            }
             return
         }
         else if result == .timeout {
-            self.photoStatus = .timeout
+            await MainActor.run {
+                self.photoStatus = .timeout
+            }
             return
         }
         
-        self.photoStatus = .error
+        await MainActor.run {
+            self.photoStatus = .error
+        }
         return
     }
     
