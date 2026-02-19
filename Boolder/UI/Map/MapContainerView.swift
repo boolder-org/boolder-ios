@@ -141,9 +141,9 @@ struct MapContainerView: View {
             HStack {
                 if mapState.presentProblemDetails {
                     Button(action: {
-                        mapState.presentProblemDetails = false
+                        mapState.requestTopoFullScreenPresentation()
                     }) {
-                        Image(systemName: "xmark")
+                        Image(systemName: "arrow.down.left.and.arrow.up.right")
                             .modify {
                                 if #available(iOS 26, *) {
                                     $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
@@ -172,12 +172,12 @@ struct MapContainerView: View {
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
                         Button(action: {
-                            mapState.requestTopoFullScreenPresentation()
+                            mapState.presentProblemDetails = false
                         }) {
-                            Image(systemName: "arrow.down.left.and.arrow.up.right")
-                                .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+                            Image(systemName: "xmark")
                                 .modify {
                                     if #available(iOS 26, *) {
+                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                         $0.padding(4)
                                     } else {
                                         $0.foregroundColor(.primary)
