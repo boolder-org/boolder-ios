@@ -19,48 +19,38 @@ struct BoulderProblemsListView: View {
     // MARK: - Topo data
     
     private var boulderTopos: [Topo] {
-        guard let boulderId else { return mapState.boulderTopos }
-        return mapState.boulderTopos.filter { $0.boulderId == boulderId }
+        mapState.boulderTopos
+    }
+    
+    private var currentTopoLetter: String {
+        guard let currentTopoId = currentTopoId else { return "" }
+        for (index, topo) in boulderTopos.enumerated() {
+            if topo.id == currentTopoId {
+                return String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
+            }
+        }
+        return ""
+    }
+    
+    private var topoProblems: [Problem] {
+        guard let topoId = currentTopoId else { return [] }
+        return problems.filter { $0.topoId == topoId }.sorted { $0.grade < $1.grade }
     }
     
     private var allBoulderProblems: [Problem] {
         problems.sorted { $0.grade < $1.grade }
     }
-
-    private var topoSections: [(title: String, problems: [Problem])] {
-        let topoOrder = Dictionary(uniqueKeysWithValues: boulderTopos.enumerated().map { ($0.element.id, $0.offset) })
-        let grouped = Dictionary(grouping: allBoulderProblems) { $0.topoId ?? -1 }
-
-        var sections: [(title: String, problems: [Problem])] = boulderTopos.map { topo in
-            let topoProblems = grouped[topo.id] ?? []
-            let faceLetter = topoLetter(for: topo.id)
-            return (title: "Face \(faceLetter)", problems: topoProblems)
-        }
-
-        // Keep orphan/unknown topo problems visible at the end.
-        let unknownTopoProblems = grouped
-            .filter { key, value in key != -1 && topoOrder[key] == nil && !value.isEmpty }
-            .flatMap(\.value)
-            .sorted { $0.grade < $1.grade }
-        if !unknownTopoProblems.isEmpty {
-            sections.append((title: "Autres", problems: unknownTopoProblems))
-        }
-
-        return sections
-    }
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(topoSections, id: \.title) { section in
-                    Section(section.title) {
-                        ForEach(section.problems) { problem in
-                            problemRow(problem)
-                        }
+                Section {
+                    ForEach(topoProblems) { problem in
+                        problemRow(problem)
                     }
                 }
             }
-            .navigationTitle("\(allBoulderProblems.count) voies")
+            .navigationTitle("Face \(currentTopoLetter)")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -88,12 +78,5 @@ struct BoulderProblemsListView: View {
             }
             .foregroundColor(.primary)
         }
-    }
-
-    private func topoLetter(for topoId: Int) -> String {
-        guard let index = boulderTopos.firstIndex(where: { $0.id == topoId }) else {
-            return "?"
-        }
-        return String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
     }
 }

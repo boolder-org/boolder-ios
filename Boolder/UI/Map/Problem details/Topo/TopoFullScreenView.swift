@@ -184,8 +184,8 @@ struct TopoFullScreenView: View {
                     let thumbnailWidth = min(72, max(0, (geo.size.width - totalSpacing) / max(count, 1)))
                     
                     HStack(spacing: 8) {
-                        ForEach(mapState.boulderTopos, id: \.id) { topo in
-                            topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth)
+                        ForEach(Array(mapState.boulderTopos.enumerated()), id: \.element.id) { index, topo in
+                            topoThumbnail(topo: topo, isCurrent: topo.id == problem.topoId, width: thumbnailWidth, index: index)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -197,7 +197,8 @@ struct TopoFullScreenView: View {
                 presentBoulderProblemsList = true
             } label: {
                 HStack(spacing: 4) {
-                    Text("Liste")
+                    let count = mapState.allProblemsCount(for: problem.topoId ?? 0)
+                    Text(String(format: NSLocalizedString(count == 1 ? "boulder.info_basic_singular" : "boulder.info_basic", comment: ""), count))
                     Image(systemName: "chevron.right")
                 }
                 .font(.callout)
@@ -214,7 +215,9 @@ struct TopoFullScreenView: View {
     }
     
     @ViewBuilder
-    private func topoThumbnail(topo: Topo, isCurrent: Bool, width: CGFloat) -> some View {
+    private func topoThumbnail(topo: Topo, isCurrent: Bool, width: CGFloat, index: Int) -> some View {
+        let letter = String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
+        
         return Button {
             goToTopo(topo)
         } label: {
@@ -235,6 +238,14 @@ struct TopoFullScreenView: View {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(isCurrent ? Color.accentColor : Color.clear, lineWidth: 2.5)
         )
+        .overlay {
+            Text(letter)
+                .font(.caption2.weight(.semibold))
+                .foregroundColor(.white)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color(white: 0.3).opacity(0.9), in: RoundedRectangle(cornerRadius: 2))
+        }
     }
     
     private func toggleTopoSelection() {
