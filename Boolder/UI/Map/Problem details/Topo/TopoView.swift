@@ -16,7 +16,7 @@ struct TopoView: View {
     @State private var showMissingLineNotice = false
     
     @Binding var zoomScale: CGFloat
-    var onBackgroundTap: (() -> Void)?
+    var onBackgroundTap: (() -> Void)? = nil
     var skipInitialBounceAnimation: Bool = false
     
     private var showAllLines: Bool {
@@ -493,8 +493,17 @@ struct TopoView: View {
     }
     
     func handleTapOnBackground() {
-        if onBackgroundTap != nil {
-            onBackgroundTap?()
+        if let onBackgroundTap {
+            onBackgroundTap()
+            return
+        }
+        
+        guard let topo = problem.topo else { return }
+        mapState.selection = .topo(topo: topo)
+        
+        let coordinates = mapState.boulderProblems.map { $0.coordinate }
+        if !coordinates.isEmpty {
+            mapState.centerOnBoulder(coordinates: coordinates)
         }
     }
     

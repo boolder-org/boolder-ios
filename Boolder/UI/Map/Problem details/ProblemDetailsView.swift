@@ -114,6 +114,9 @@ struct ProblemDetailsView: View {
                 buildThumbnailPhotos()
             }
         }
+        .onChange(of: mapState.presentTopoFullScreenRequestCount) { _, _ in
+            presentTopoFullScreenView = true
+        }
         // Inspired by https://developer.apple.com/documentation/storekit/requesting-app-store-reviews
         .onChange(of: viewCount) {
             guard let currentAppVersion = Bundle.currentAppVersion else {
@@ -228,17 +231,13 @@ struct ProblemDetailsView: View {
             ) { topo in
                 TopoPageView(
                     topo: topo,
-                    topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
-                    onBackgroundTap: { presentTopoFullScreenView = true }
+                    topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty
                 )
             }
         } else {
             TopoView(
                 problem: $problem,
-                zoomScale: .constant(1),
-                onBackgroundTap: {
-                    presentTopoFullScreenView = true
-                }
+                zoomScale: .constant(1)
             )
         }
     }

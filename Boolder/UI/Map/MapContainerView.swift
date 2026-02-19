@@ -172,19 +172,9 @@ struct MapContainerView: View {
                 if mapState.presentProblemDetails {
                     HStack(spacing: 8) {
                         Button(action: {
-                            if case .problem(let problem, _) = mapState.selection, let topo = problem.topo {
-                                mapState.selection = .topo(topo: topo)
-                                let coordinates = mapState.boulderProblems.map { $0.coordinate }
-                                if !coordinates.isEmpty {
-                                    mapState.centerOnBoulder(coordinates: coordinates)
-                                }
-                            } else if case .topo(let topo) = mapState.selection {
-                                if let topProblem = topo.topProblem {
-                                    mapState.selectProblem(topProblem)
-                                }
-                            }
+                            mapState.requestTopoFullScreenPresentation()
                         }) {
-                            Image(systemName: "binoculars.fill")
+                            Image(systemName: "arrow.down.left.and.arrow.up.right")
                                 .font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
                                 .modify {
                                     if #available(iOS 26, *) {
@@ -197,17 +187,12 @@ struct MapContainerView: View {
                         }
                         .modify {
                             if #available(iOS 26, *) {
-                                if case .topo = mapState.selection {
-                                    $0.buttonStyle(.glassProminent)
-                                        .buttonBorderShape(.circle)
-                                } else {
-                                    $0.buttonStyle(.glass)
-                                        .buttonBorderShape(.circle)
-                                }
+                                $0.buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
                             } else {
                                 $0
-                                    .background(mapState.selectedTopo != nil ? Color.accentColor.opacity(0.2) : Color(.systemBackground))
-                                    .clipShape(Capsule())
+                                    .background(Color(.systemBackground))
+                                    .clipShape(Circle())
                                     .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                             }
                         }

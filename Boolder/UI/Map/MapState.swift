@@ -142,6 +142,7 @@ class MapState {
     var presentAreaView = false
     var presentCircuitPicker = false
     var displayCircuitStartButton = false
+    private(set) var presentTopoFullScreenRequestCount: Int = 0
     
     var selectedProblem: Problem {
         get {
@@ -273,6 +274,10 @@ class MapState {
     
     func centerOnCurrentLocation() {
         currentLocationCount += 1
+    }
+    
+    func requestTopoFullScreenPresentation() {
+        presentTopoFullScreenRequestCount += 1
     }
     
     func clearFilters() {
