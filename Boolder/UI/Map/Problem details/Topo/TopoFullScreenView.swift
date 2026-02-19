@@ -65,30 +65,6 @@ struct TopoFullScreenView: View {
                             }
                             
                             Spacer()
-                            
-                            if #available(iOS 26, *) {
-                                Button(action: { toggleTopoSelection() }) {
-                                    Image(systemName: "binoculars.fill")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
-                                }
-                                .modify {
-                                    if mapState.isInTopoMode {
-                                        $0.buttonStyle(.glassProminent)
-                                            .buttonBorderShape(.circle)
-                                    } else {
-                                        $0.buttonStyle(.glass)
-                                            .buttonBorderShape(.circle)
-                                    }
-                                }
-                            }
-                            else {
-                                Button(action: { toggleTopoSelection() }) {
-                                    Image(systemName: "binoculars.fill")
-                                        .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                }
-                            }
 
                         }
                     }
@@ -245,16 +221,6 @@ struct TopoFullScreenView: View {
                 .padding(.horizontal, 6)
                 .padding(.vertical, 2)
                 .background(Color(white: 0.3).opacity(0.9), in: RoundedRectangle(cornerRadius: 2))
-        }
-    }
-    
-    private func toggleTopoSelection() {
-        if case .problem(let problem, _) = mapState.selection, let topo = problem.topo {
-            mapState.selection = .topo(topo: topo)
-        } else if let currentId = problem.topoId,
-                  let topo = mapState.boulderTopos.first(where: { $0.id == currentId }),
-                  let topProblem = mapState.topProblem(for: topo.id) {
-            mapState.selectProblem(topProblem)
         }
     }
     
