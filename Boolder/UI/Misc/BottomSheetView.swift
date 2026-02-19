@@ -11,6 +11,7 @@ import SwiftUI
 @available(iOS 26.0, *)
 struct BottomSheetView<Content: View>: View {
     @Binding var isPresented: Bool
+    var onSwipeUp: (() -> Void)? = nil
     @ViewBuilder var content: () -> Content
     
     private var isIPad: Bool {
@@ -37,6 +38,7 @@ struct BottomSheetView<Content: View>: View {
                 BottomSheetUIKitView(
                     isPresented: $isPresented,
                     sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 12),
+                    onSwipeUp: onSwipeUp,
                     content: content
                 )
             }
@@ -49,6 +51,7 @@ struct BottomSheetView<Content: View>: View {
 private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
     @Binding var isPresented: Bool
     let sheetHeight: CGFloat
+    let onSwipeUp: (() -> Void)?
     @ViewBuilder var content: () -> Content
     
     func makeUIView(context: Context) -> PassThroughView {
@@ -63,11 +66,12 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(isPresented: $isPresented)
+        Coordinator(isPresented: $isPresented, onSwipeUp: onSwipeUp)
     }
     
     class Coordinator: NSObject {
         @Binding var isPresented: Bool
+        private let onSwipeUp: (() -> Void)?
         
         private var sheetView: UIView!
         private var hostingController: UIHostingController<Content>?
@@ -75,8 +79,9 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
         private var panGesture: UIPanGestureRecognizer!
         private var isAnimating = false
         
-        init(isPresented: Binding<Bool>) {
+        init(isPresented: Binding<Bool>, onSwipeUp: (() -> Void)?) {
             _isPresented = isPresented
+            self.onSwipeUp = onSwipeUp
         }
         
         func setupSheet<C: View>(in containerView: UIView, content: () -> C, height: CGFloat) {
@@ -189,9 +194,21 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
                 }
                 
             case .ended, .cancelled:
+                let shouldExpand = translation.y < -120 || velocity.y < -500
                 let shouldDismiss = translation.y > 120 || velocity.y > 500
                 
-                if shouldDismiss {
+                if shouldExpand {
+                    onSwipeUp?()
+                    UIView.animate(
+                        withDuration: 0.4,
+                        delay: 0,
+                        usingSpringWithDamping: 0.85,
+                        initialSpringVelocity: 0,
+                        options: .curveEaseOut
+                    ) {
+                        self.sheetView.transform = .identity
+                    }
+                } else if shouldDismiss {
                     isAnimating = true
                     UIView.animate(
                         withDuration: 0.3,
