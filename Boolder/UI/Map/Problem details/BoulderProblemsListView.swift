@@ -22,16 +22,6 @@ struct BoulderProblemsListView: View {
         mapState.boulderTopos
     }
     
-    private var currentTopoLetter: String {
-        guard let currentTopoId = currentTopoId else { return "" }
-        for (index, topo) in boulderTopos.enumerated() {
-            if topo.id == currentTopoId {
-                return String(UnicodeScalar("A".unicodeScalars.first!.value + UInt32(index))!)
-            }
-        }
-        return ""
-    }
-    
     private var topoProblems: [Problem] {
         guard let topoId = currentTopoId else { return [] }
         return problems.filter { $0.topoId == topoId }.sorted { $0.grade < $1.grade }
@@ -50,7 +40,7 @@ struct BoulderProblemsListView: View {
                     }
                 }
             }
-            .navigationTitle("Face \(currentTopoLetter)")
+            .navigationTitle("\(topoProblems.count) voies")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
