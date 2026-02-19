@@ -27,6 +27,17 @@ struct BoulderProblemsListView: View {
         return problems.filter { $0.topoId == topoId }.sorted { $0.grade < $1.grade }
     }
     
+    private var topoProblemsTitle: String {
+        let count = topoProblems.count
+        return String(
+            format: NSLocalizedString(
+                count == 1 ? "boulder.info_basic_singular" : "boulder.info_basic",
+                comment: ""
+            ),
+            count
+        )
+    }
+    
     private var allBoulderProblems: [Problem] {
         problems.sorted { $0.grade < $1.grade }
     }
@@ -40,7 +51,7 @@ struct BoulderProblemsListView: View {
                     }
                 }
             }
-            .navigationTitle("\(topoProblems.count) voies")
+            .navigationTitle(topoProblemsTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
