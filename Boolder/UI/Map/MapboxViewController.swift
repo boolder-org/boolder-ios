@@ -873,24 +873,16 @@ class MapboxViewController: UIViewController {
         
         let currentZoom = mapView.mapboxMap.cameraState.zoom
         
-        // Compute the camera that fits all coordinates at the current zoom level,
-        // only panning (no zoom change).
+        // Fit all coordinates within the padded area, keeping the current zoom
+        // unless it's too tight (maxZoom caps the zoom so it only pans or zooms out).
         if let fittedCamera = try? mapView.mapboxMap.camera(
             for: coordinates,
             camera: CameraOptions(padding: UIEdgeInsets(), bearing: 0, pitch: 0),
             coordinatesPadding: padding,
-            maxZoom: nil,
+            maxZoom: currentZoom,
             offset: nil
         ) {
-            let neededZoom = fittedCamera.zoom ?? currentZoom
-            // Only zoom out if the current zoom is too tight to fit all problems
-            let finalZoom = min(currentZoom, neededZoom)
-            
-            flyTo(CameraOptions(
-                center: fittedCamera.center,
-                padding: fittedCamera.padding,
-                zoom: finalZoom
-            ))
+            flyTo(fittedCamera)
         }
     }
     
