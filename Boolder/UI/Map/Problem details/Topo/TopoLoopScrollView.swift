@@ -93,7 +93,7 @@ struct TopoLoopScrollView<Content: View>: View {
                             try? await Task.sleep(for: .milliseconds(500))
                             guard !Task.isCancelled else { return }
                             let realId = currentId % 1_000_000
-                            scrollLoopId = centerCopy * 1_000_000 + realId
+                            scrollLoopId = centerLoopId(for: realId)
                         }
                     } else {
                         recenterTask?.cancel()
@@ -128,6 +128,13 @@ struct TopoLoopScrollView<Content: View>: View {
             guard let newLoopId else { return }
             let realId = newLoopId % 1_000_000
             preloadNeighbors(around: realId)
+
+            // If we've hit the very first or last item, re-center immediately.
+            if newLoopId == loopedTopos.first?.id || newLoopId == loopedTopos.last?.id {
+                recenterTask?.cancel()
+                scrollLoopId = centerLoopId(for: realId)
+                return
+            }
 
             // Commit only the settled topo once small transient scroll updates stop.
             guard realId != topoId, let topo = topoById[realId] else { return }
