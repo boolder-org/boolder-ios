@@ -42,6 +42,7 @@ struct TopoLoopScrollView<Content: View>: View {
     @State private var lastSeenBoulderId: Int?
     @State private var topoById: [Int: Topo] = [:]
     @State private var pendingTopoChangeTask: Task<Void, Never>?
+    @State private var recenterTask: Task<Void, Never>?
 
     private func centerLoopId(for topoId: Int?) -> Int? {
         topoId.map { centerCopy * 1_000_000 + $0 }
@@ -79,6 +80,29 @@ struct TopoLoopScrollView<Content: View>: View {
         .scrollPosition(id: $scrollLoopId)
         .scrollIndicators(.hidden)
         .scrollClipDisabled()
+        .modify {
+            if #available(iOS 18.0, *) {
+                $0.onScrollPhaseChange { _, newPhase in
+                    if newPhase == .idle {
+                        guard let currentId = scrollLoopId else { return }
+                        let copyIndex = currentId / 1_000_000
+                        guard copyIndex != centerCopy else { return }
+
+                        recenterTask?.cancel()
+                        recenterTask = Task {
+                            try? await Task.sleep(for: .milliseconds(500))
+                            guard !Task.isCancelled else { return }
+                            let realId = currentId % 1_000_000
+                            scrollLoopId = centerCopy * 1_000_000 + realId
+                        }
+                    } else {
+                        recenterTask?.cancel()
+                    }
+                }
+            } else {
+                $0
+            }
+        }
         .onAppear {
             rebuildLoopedTopos()
             scrollLoopId = centerLoopId(for: topoId)
@@ -119,6 +143,8 @@ struct TopoLoopScrollView<Content: View>: View {
         .onDisappear {
             pendingTopoChangeTask?.cancel()
             pendingTopoChangeTask = nil
+            recenterTask?.cancel()
+            recenterTask = nil
         }
     }
 }
