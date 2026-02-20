@@ -32,6 +32,13 @@ class MapState {
             let newMode = { if case .topo = selection { return true } else { return false } }()
             if isInTopoMode != newMode { isInTopoMode = newMode }
             
+            if newMode {
+                let coordinates = boulderProblems.map { $0.coordinate }
+                if !coordinates.isEmpty {
+                    centerOnBoulder(coordinates: coordinates)
+                }
+            }
+            
             let newSource: Selection.Source = {
                 if case .problem(_, let s) = selection { return s } else { return .other }
             }()
