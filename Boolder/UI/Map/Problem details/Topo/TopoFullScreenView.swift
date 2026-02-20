@@ -47,9 +47,11 @@ struct TopoFullScreenView: View {
                 VStack {
                     ZStack {
                         HStack {
+                            Spacer()
+                            
                             if #available(iOS 26, *) {
                                 Button(action: { dismiss() }) {
-                                    Image(systemName: "chevron.left")
+                                    Image(systemName: "xmark")
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                         .padding(4)
                                 }
@@ -58,13 +60,13 @@ struct TopoFullScreenView: View {
                             }
                             else {
                                 Button(action: { dismiss() }) {
-                                    Image(systemName: "chevron.left")
+                                    Image(systemName: "xmark")
                                         .foregroundColor(Color(UIColor.white))
                                         .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
                                 }
                             }
                             
-                            Spacer()
+                            
 
                         }
                     }
