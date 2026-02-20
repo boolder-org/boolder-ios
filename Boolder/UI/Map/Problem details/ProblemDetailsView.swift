@@ -30,15 +30,32 @@ struct ProblemDetailsView: View {
         thumbnailTask?.cancel()
         thumbnailTask = Task(priority: .utility) {
             var photos: [Int: UIImage] = [:]
+            var missingTopos: [Topo] = []
+            
+            // First pass: load from cache/disk
             for topo in topos {
                 if Task.isCancelled { return }
                 if let image = await TopoImageCache.shared.image(for: topo) {
                     photos[topo.id] = image
+                } else {
+                    missingTopos.append(topo)
                 }
             }
             if Task.isCancelled { return }
             await MainActor.run {
                 thumbnailPhotos = photos
+            }
+            
+            // Second pass: download missing photos and update thumbnails as they arrive
+            for topo in missingTopos {
+                if Task.isCancelled { return }
+                let result = await Downloader().downloadFile(topo: topo)
+                if result == .success, let image = await TopoImageCache.shared.image(for: topo) {
+                    if Task.isCancelled { return }
+                    await MainActor.run {
+                        thumbnailPhotos[topo.id] = image
+                    }
+                }
             }
         }
     }
