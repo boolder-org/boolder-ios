@@ -83,11 +83,25 @@ struct TopoLoopScrollView<Content: View>: View {
         .modify {
             if #available(iOS 18.0, *) {
                 $0.onScrollPhaseChange { _, newPhase in
-                    if newPhase == .idle {
-                        guard let currentId = scrollLoopId else { return }
-                        let copyIndex = currentId / 1_000_000
-                        guard copyIndex != centerCopy else { return }
+                    // Only attempt re-centering once the user isn't touching the scroll view.
+                    guard newPhase != .interacting, newPhase != .tracking else {
+                        recenterTask?.cancel()
+                        return
+                    }
 
+                    guard let currentId = scrollLoopId else { return }
+                    let copyIndex = currentId / 1_000_000
+                    guard copyIndex != centerCopy else { return }
+
+                    let isAtEdge = currentId == loopedTopos.first?.id || currentId == loopedTopos.last?.id
+
+                    if isAtEdge {
+                        // At the boundary — re-center right away.
+                        recenterTask?.cancel()
+                        let realId = currentId % 1_000_000
+                        scrollLoopId = centerLoopId(for: realId)
+                    } else if newPhase == .idle {
+                        // Not at the edge — wait 0.5 s of idle before re-centering.
                         recenterTask?.cancel()
                         recenterTask = Task {
                             try? await Task.sleep(for: .milliseconds(500))
@@ -95,8 +109,6 @@ struct TopoLoopScrollView<Content: View>: View {
                             let realId = currentId % 1_000_000
                             scrollLoopId = centerLoopId(for: realId)
                         }
-                    } else {
-                        recenterTask?.cancel()
                     }
                 }
             } else {
@@ -128,13 +140,6 @@ struct TopoLoopScrollView<Content: View>: View {
             guard let newLoopId else { return }
             let realId = newLoopId % 1_000_000
             preloadNeighbors(around: realId)
-
-            // If we've hit the very first or last item, re-center immediately.
-            if newLoopId == loopedTopos.first?.id || newLoopId == loopedTopos.last?.id {
-                recenterTask?.cancel()
-                scrollLoopId = centerLoopId(for: realId)
-                return
-            }
 
             // Commit only the settled topo once small transient scroll updates stop.
             guard realId != topoId, let topo = topoById[realId] else { return }
