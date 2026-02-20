@@ -127,9 +127,10 @@ struct TopoView: View {
                         }
                         
                         if !showAllLines, showProblemNameLabel, let lastPoint = problem.lineLastPoint, !problem.localizedName.isEmpty {
+                            let labelPos = clampedNameLabelPosition(name: problem.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
                             ProblemNameLabelView(name: problem.localizedName, color: problem.circuitUIColorForPhotoOverlay)
                                 .scaleEffect(counterZoomScale.wrappedValue)
-                                .position(x: lastPoint.x * geo.size.width, y: lastPoint.y * geo.size.height - 14 * counterZoomScale.wrappedValue)
+                                .position(x: labelPos.x, y: labelPos.y)
                                 .allowsHitTesting(false)
                                 .transition(.opacity)
                         }
@@ -207,12 +208,10 @@ struct TopoView: View {
                                 ForEach(otherProblems, id: \.id) { p in
                                     if let lastPoint = lastPoints[p.id], !p.localizedName.isEmpty {
                                         let isVisible = visibleIds.contains(p.id)
+                                        let labelPos = clampedNameLabelPosition(name: p.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
                                         ProblemNameLabelView(name: p.localizedName, color: p.circuitUIColorForPhotoOverlay)
                                             .scaleEffect(counterZoomScale.wrappedValue)
-                                            .position(
-                                                x: lastPoint.x * geo.size.width,
-                                                y: lastPoint.y * geo.size.height - 14 * counterZoomScale.wrappedValue
-                                            )
+                                            .position(x: labelPos.x, y: labelPos.y)
                                             .zIndex(p.zIndex)
                                             .opacity(isVisible ? 1 : 0)
                                             .allowsHitTesting(isVisible)
@@ -332,11 +331,21 @@ struct TopoView: View {
         1 / zoomScale
     }
     
+    /// Clamps the name label center so it stays fully within the photo bounds.
+    func clampedNameLabelPosition(name: String, lastPoint: Line.PhotoPercentCoordinate, geoSize: CGSize, scale: CGFloat) -> CGPoint {
+        let labelWidth = (CGFloat(name.count) * 7 + 12) * scale
+        let labelHeight: CGFloat = 18 * scale
+        let rawX = lastPoint.x * geoSize.width
+        let rawY = lastPoint.y * geoSize.height - 14 * scale
+        let clampedX = max(labelWidth / 2, min(rawX, geoSize.width - labelWidth / 2))
+        let clampedY = max(labelHeight / 2, min(rawY, geoSize.height - labelHeight / 2))
+        return CGPoint(x: clampedX, y: clampedY)
+    }
+
     /// Returns the set of problem IDs whose name labels can be displayed without overlapping.
     /// Problems with highest zIndex get priority.
     func visibleNameLabelIds(problems: [Problem], lastPoints: [Int: Line.PhotoPercentCoordinate], geoSize: CGSize) -> Set<Int> {
         let scale = counterZoomScale.wrappedValue
-        let yOffset: CGFloat = 14 * scale
         
         let sorted = problems
             .filter { lastPoints[$0.id] != nil && !$0.localizedName.isEmpty }
@@ -351,12 +360,11 @@ struct TopoView: View {
             let labelWidth = (CGFloat(p.localizedName.count) * 7 + 12) * scale
             let labelHeight: CGFloat = 18 * scale
             
-            let centerX = lastPoint.x * geoSize.width
-            let centerY = lastPoint.y * geoSize.height - yOffset
+            let center = clampedNameLabelPosition(name: p.localizedName, lastPoint: lastPoint, geoSize: geoSize, scale: scale)
             
             let rect = CGRect(
-                x: centerX - labelWidth / 2,
-                y: centerY - labelHeight / 2,
+                x: center.x - labelWidth / 2,
+                y: center.y - labelHeight / 2,
                 width: labelWidth,
                 height: labelHeight
             )
