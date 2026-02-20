@@ -139,45 +139,45 @@ struct MapContainerView: View {
     var aboveSheetNavigationButtons : some View {
         VStack {
             HStack {
-                if mapState.presentProblemDetails {
-                    HStack(spacing: 8) {
-                        Button(action: {
-                            mapState.presentProblemDetails = false
-                        }) {
-                            Image(systemName: "xmark")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(4)
-                                    } else {
-                                        $0.foregroundColor(.primary)
-                                            .padding(10)
-                                    }
-                                }
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                            } else {
-                                $0
-                                    .background(Color(.systemBackground))
-                                    .clipShape(Circle())
-                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                            }
-                        }
-                        
-                        if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem.circuitId {
-                            if #available(iOS 26.0, *) {
-                                GlassEffectContainer {
-                                    circuitButtonsContent(circuit: circuit)
-                                }
-                            } else {
-                                circuitButtonsContent(circuit: circuit)
-                            }
-                        }
-                    }
-                }
+//                if mapState.presentProblemDetails {
+//                    HStack(spacing: 8) {
+//                        Button(action: {
+//                            mapState.presentProblemDetails = false
+//                        }) {
+//                            Image(systemName: "xmark")
+//                                .modify {
+//                                    if #available(iOS 26, *) {
+//                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
+//                                            .padding(4)
+//                                    } else {
+//                                        $0.foregroundColor(.primary)
+//                                            .padding(10)
+//                                    }
+//                                }
+//                        }
+//                        .modify {
+//                            if #available(iOS 26, *) {
+//                                $0.buttonStyle(.glass)
+//                                    .buttonBorderShape(.circle)
+//                            } else {
+//                                $0
+//                                    .background(Color(.systemBackground))
+//                                    .clipShape(Circle())
+//                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+//                            }
+//                        }
+//                        
+//                        if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem.circuitId {
+//                            if #available(iOS 26.0, *) {
+//                                GlassEffectContainer {
+//                                    circuitButtonsContent(circuit: circuit)
+//                                }
+//                            } else {
+//                                circuitButtonsContent(circuit: circuit)
+//                            }
+//                        }
+//                    }
+//                }
                 
                 Spacer()
                 
