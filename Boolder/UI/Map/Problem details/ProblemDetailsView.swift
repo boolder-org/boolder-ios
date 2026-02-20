@@ -53,7 +53,6 @@ struct ProblemDetailsView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     topoSwipeView(width: geo.size.width)
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
-                    .clipped()
                     .zIndex(10)
                     .modify {
                         if #available(iOS 18, *) {

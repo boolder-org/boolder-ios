@@ -78,6 +78,7 @@ struct TopoLoopScrollView<Content: View>: View {
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(id: $scrollLoopId)
         .scrollIndicators(.hidden)
+        .scrollClipDisabled()
         .onAppear {
             rebuildLoopedTopos()
             scrollLoopId = centerLoopId(for: topoId)
