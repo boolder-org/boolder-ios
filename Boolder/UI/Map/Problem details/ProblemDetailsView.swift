@@ -120,7 +120,11 @@ struct ProblemDetailsView: View {
         } else {
             TopoView(
                 problem: $problem,
-                zoomScale: .constant(1)
+                zoomScale: .constant(1),
+                onBackgroundTap: {
+                    guard let topo = problem.topo else { return }
+                    mapState.selection = .topo(topo: topo)
+                }
             )
         }
     }

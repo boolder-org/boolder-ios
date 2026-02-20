@@ -501,18 +501,7 @@ struct TopoView: View {
     }
     
     func handleTapOnBackground() {
-        if let onBackgroundTap {
-            onBackgroundTap()
-            return
-        }
-        
-        guard let topo = problem.topo else { return }
-        mapState.selection = .topo(topo: topo)
-        
-        let coordinates = mapState.boulderProblems.map { $0.coordinate }
-        if !coordinates.isEmpty {
-            mapState.centerOnBoulder(coordinates: coordinates)
-        }
+        onBackgroundTap?()
     }
     
     func animateBounceIfAllowed() {

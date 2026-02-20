@@ -16,16 +16,14 @@ import SwiftUI
 struct TopoPageView: View {
     let topo: Topo
     let zoomable: Bool
-    let backgroundTapTogglesMode: Bool
     
     @State private var problem: Problem
     @State private var zoomScale: CGFloat = 1
     @Environment(MapState.self) private var mapState
     
-    init(topo: Topo, topProblem: Problem, zoomable: Bool = false, backgroundTapTogglesMode: Bool = false) {
+    init(topo: Topo, topProblem: Problem, zoomable: Bool = false) {
         self.topo = topo
         self.zoomable = zoomable
-        self.backgroundTapTogglesMode = backgroundTapTogglesMode
         self._problem = State(initialValue: topProblem)
     }
     
@@ -60,7 +58,7 @@ struct TopoPageView: View {
                 TopoView(
                     problem: $problem,
                     zoomScale: $zoomScale,
-                    onBackgroundTap: backgroundTapAction,
+                    onBackgroundTap: selectTopo,
                     skipInitialBounceAnimation: true
                 )
             }
@@ -68,18 +66,14 @@ struct TopoPageView: View {
             TopoView(
                 problem: $problem,
                 zoomScale: .constant(1),
-                onBackgroundTap: backgroundTapAction
+                onBackgroundTap: selectTopo
             )
         }
     }
     
-    private var backgroundTapAction: (() -> Void)? {
-        guard backgroundTapTogglesMode else { return nil }
-        return {
-            if case .problem = mapState.selection, problem.otherProblemsOnSameTopo.count > 1, let topo = problem.topo {
-                mapState.selection = .topo(topo: topo)
-            }
-        }
+    private func selectTopo() {
+        guard let topo = problem.topo else { return }
+        mapState.selection = .topo(topo: topo)
     }
 }
 

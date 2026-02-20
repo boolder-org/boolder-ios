@@ -90,17 +90,15 @@ struct TopoFullScreenView: View {
                 TopoPageView(
                     topo: topo,
                     topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
-                    zoomable: true,
-                    backgroundTapTogglesMode: true
+                    zoomable: true
                 )
                 .frame(maxHeight: .infinity)
             }
         } else {
             ZoomableScrollView(zoomScale: $zoomScale) {
                 TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: {
-                    if case .problem = mapState.selection, problem.otherProblemsOnSameTopo.count > 1, let topo = problem.topo {
-                        mapState.selection = .topo(topo: topo)
-                    }
+                    guard let topo = problem.topo else { return }
+                    mapState.selection = .topo(topo: topo)
                 }, skipInitialBounceAnimation: true)
             }
             .containerRelativeFrame(.horizontal)
