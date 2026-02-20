@@ -855,40 +855,42 @@ class MapboxViewController: UIViewController {
     func centerOnBoulderCoordinates(_ coordinates: [CLLocationCoordinate2D]) {
         guard !coordinates.isEmpty else { return }
         
-        // Only recenter if at least one problem is outside the visible region (with bottom sheet padding)
-        let padding = safePaddingForBottomSheet
-        let visibleRect = CGRect(
+        let padding = safePaddingForBoulder
+        let paddedRect = CGRect(
             x: padding.left,
             y: padding.top,
             width: view.bounds.width - padding.left - padding.right,
             height: view.bounds.height - padding.top - padding.bottom
         )
         
+        // Check if all coordinates are already visible within the padded area
         let allVisible = coordinates.allSatisfy { coord in
             let point = mapView.mapboxMap.point(for: coord)
-            return visibleRect.contains(point)
+            return paddedRect.contains(point)
         }
         
         guard !allVisible else { return }
         
-        if coordinates.count < 2 {
-            if let coord = coordinates.first {
-                flyTo(CameraOptions(
-                    center: coord,
-                    padding: safePaddingForBoulder,
-                    zoom: 20
-                ))
-            }
-            return
-        }
+        let currentZoom = mapView.mapboxMap.cameraState.zoom
         
-        if let cameraOptions = try? self.mapView.mapboxMap.camera(
+        // Compute the camera that fits all coordinates at the current zoom level,
+        // only panning (no zoom change).
+        if let fittedCamera = try? mapView.mapboxMap.camera(
             for: coordinates,
             camera: CameraOptions(padding: UIEdgeInsets(), bearing: 0, pitch: 0),
-            coordinatesPadding: safePaddingForBoulder,
+            coordinatesPadding: padding,
             maxZoom: nil,
-            offset: nil) {
-            flyTo(cameraOptions)
+            offset: nil
+        ) {
+            let neededZoom = fittedCamera.zoom ?? currentZoom
+            // Only zoom out if the current zoom is too tight to fit all problems
+            let finalZoom = min(currentZoom, neededZoom)
+            
+            flyTo(CameraOptions(
+                center: fittedCamera.center,
+                padding: fittedCamera.padding,
+                zoom: finalZoom
+            ))
         }
     }
     
@@ -1043,7 +1045,7 @@ class MapboxViewController: UIViewController {
         UIEdgeInsets(top: 20, left: 0, bottom: view.bounds.height/2 + 40, right: 0)
     } // FIXME: use old values for iOS < 26
     var safePaddingForBoulder: UIEdgeInsets {
-        UIEdgeInsets(top: 80, left: view.bounds.width / 3, bottom: view.bounds.height/2 + 40, right: view.bounds.width / 3)
+        UIEdgeInsets(top: 40, left: 20, bottom: view.bounds.height/2 + 40, right: 20)
     }
     let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
     
