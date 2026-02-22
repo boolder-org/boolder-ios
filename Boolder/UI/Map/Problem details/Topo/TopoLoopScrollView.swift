@@ -141,16 +141,6 @@ struct TopoLoopScrollView<Content: View>: View {
             let realId = newLoopId % 1_000_000
             preloadNeighbors(around: realId)
 
-            // Haptic bump when the user swipes to the first or last topo of any copy.
-            if let oldLoopId, oldLoopId % 1_000_000 != realId,
-               let oldIdx = loopedTopos.firstIndex(where: { $0.id == oldLoopId }),
-               let newIdx = loopedTopos.firstIndex(where: { $0.id == newLoopId }) {
-                if (newIdx < oldIdx && realId == boulderTopos.first?.id) ||
-                   (newIdx > oldIdx && realId == boulderTopos.last?.id) {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                }
-            }
-
             // Commit only the settled topo once small transient scroll updates stop.
             guard realId != topoId, let topo = topoById[realId] else { return }
             pendingTopoChangeTask?.cancel()
