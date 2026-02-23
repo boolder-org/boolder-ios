@@ -77,3 +77,54 @@ struct TopoPageView: View {
     }
 }
 
+// MARK: - Shared topo swipe content
+
+/// Displays the topo image(s) for the current boulder, either as
+/// a looping horizontal scroll (multi-topo) or a single topo view.
+/// Set `zoomable` to `true` for the fullscreen presentation.
+struct TopoSwipeContentView: View {
+    @Binding var problem: Problem
+    let zoomable: Bool
+
+    @State private var zoomScale: CGFloat = 1
+    @Environment(MapState.self) private var mapState: MapState
+
+    var body: some View {
+        if mapState.boulderTopos.count > 1 {
+            TopoLoopScrollView(
+                boulderTopos: mapState.boulderTopos,
+                topoId: problem.topoId,
+                boulderId: mapState.cachedBoulderId,
+                onTopoChanged: { topo in
+                    guard problem.topoId != topo.id else { return }
+                    mapState.selection = .topo(topo: topo)
+                }
+            ) { topo in
+                TopoPageView(
+                    topo: topo,
+                    topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
+                    zoomable: zoomable
+                )
+                .frame(maxHeight: zoomable ? .infinity : nil)
+            }
+        } else if zoomable {
+            ZoomableScrollView(zoomScale: $zoomScale) {
+                TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
+            }
+            .containerRelativeFrame(.horizontal)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            TopoView(
+                problem: $problem,
+                zoomScale: .constant(1),
+                onBackgroundTap: selectTopo
+            )
+        }
+    }
+
+    private func selectTopo() {
+        guard let topo = problem.topo else { return }
+        mapState.selection = .topo(topo: topo)
+    }
+}
+

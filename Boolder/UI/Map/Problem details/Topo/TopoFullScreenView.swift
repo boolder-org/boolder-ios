@@ -14,8 +14,6 @@ struct TopoFullScreenView: View {
     
     @Binding var problem: Problem
     
-    @State private var zoomScale: CGFloat = 1
-    
     var body: some View {
         @Bindable var mapState = mapState
         
@@ -64,7 +62,7 @@ struct TopoFullScreenView: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .zIndex(2)
                 
-                fullScreenTopoContent
+                TopoSwipeContentView(problem: $problem, zoomable: true)
                     .zIndex(1)
                     .background(Color.systemBackground)
                     .edgesIgnoringSafeArea(.all)
@@ -73,39 +71,6 @@ struct TopoFullScreenView: View {
             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-    
-    // MARK: - Topo horizontal swipe
-    
-    @ViewBuilder
-    private var fullScreenTopoContent: some View {
-        if mapState.boulderTopos.count > 1 {
-            TopoLoopScrollView(
-                boulderTopos: mapState.boulderTopos,
-                topoId: problem.topoId,
-                boulderId: mapState.cachedBoulderId,
-                onTopoChanged: { topo in
-                    guard problem.topoId != topo.id else { return }
-                    mapState.selection = .topo(topo: topo)
-                }
-            ) { topo in
-                TopoPageView(
-                    topo: topo,
-                    topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
-                    zoomable: true
-                )
-                .frame(maxHeight: .infinity)
-            }
-        } else {
-            ZoomableScrollView(zoomScale: $zoomScale) {
-                TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: {
-                    guard let topo = problem.topo else { return }
-                    mapState.selection = .topo(topo: topo)
-                }, skipInitialBounceAnimation: true)
-            }
-            .containerRelativeFrame(.horizontal)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
     }
     
     var overlayInfos: some View {

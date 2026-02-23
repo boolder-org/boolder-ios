@@ -29,7 +29,7 @@ struct ProblemDetailsView: View {
         VStack {
             GeometryReader { geo in
                 VStack(alignment: .leading, spacing: 8) {
-                    topoSwipeView(width: geo.size.width)
+                    TopoSwipeContentView(problem: $problem, zoomable: false)
                     .frame(width: geo.size.width, height: geo.size.width * 3/4)
                     .zIndex(10)
                     .modify {
@@ -95,37 +95,6 @@ struct ProblemDetailsView: View {
                 presentReview()
                 lastVersionPromptedForReview = currentAppVersion
             }
-        }
-    }
-    
-    // MARK: - Topo horizontal swipe
-    
-    @ViewBuilder
-    private func topoSwipeView(width: CGFloat) -> some View {
-        if mapState.boulderTopos.count > 1 {
-            TopoLoopScrollView(
-                boulderTopos: mapState.boulderTopos,
-                topoId: problem.topoId,
-                boulderId: mapState.cachedBoulderId,
-                onTopoChanged: { topo in
-                    guard problem.topoId != topo.id else { return }
-                    mapState.selection = .topo(topo: topo)
-                }
-            ) { topo in
-                TopoPageView(
-                    topo: topo,
-                    topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty
-                )
-            }
-        } else {
-            TopoView(
-                problem: $problem,
-                zoomScale: .constant(1),
-                onBackgroundTap: {
-                    guard let topo = problem.topo else { return }
-                    mapState.selection = .topo(topo: topo)
-                }
-            )
         }
     }
     
