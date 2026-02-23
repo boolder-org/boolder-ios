@@ -75,41 +75,32 @@ class MapState {
     }
     
     var canGoToNextCircuitProblem: Bool {
-        selectedProblem.next != nil
+        selectedProblem?.next != nil
     }
     
     func goToNextCircuitProblem() {
-        if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let next = selectedProblem.next {
-                    selectAndPresentAndCenterOnProblem(next)
-                }
+        guard let circuit = selectedCircuit else { return }
+        if let problem = selectedProblem, !problem.circuitNumber.isEmpty, problem.circuitId == circuit.id {
+            if let next = problem.next {
+                selectAndPresentAndCenterOnProblem(next)
             }
-            else {
-                if let problem = circuit.firstProblem {
-                    selectAndPresentAndCenterOnProblem(problem)
-                }
-            }
+        } else if let first = circuit.firstProblem {
+            selectAndPresentAndCenterOnProblem(first)
         }
     }
     
     var canGoToPreviousCircuitProblem: Bool {
-        selectedProblem.previous != nil
+        selectedProblem?.previous != nil
     }
     
     func goToPreviousCircuitProblem() {
-        if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let previous = selectedProblem.previous {
-                    selectAndPresentAndCenterOnProblem(previous)
-                }
+        guard let circuit = selectedCircuit else { return }
+        if let problem = selectedProblem, !problem.circuitNumber.isEmpty, problem.circuitId == circuit.id {
+            if let previous = problem.previous {
+                selectAndPresentAndCenterOnProblem(previous)
             }
-            else {
-                // not sure what to do here
-                if let problem = circuit.firstProblem {
-                    selectAndPresentAndCenterOnProblem(problem)
-                }
-            }
+        } else if let first = circuit.firstProblem {
+            selectAndPresentAndCenterOnProblem(first)
         }
     }
     
@@ -145,7 +136,11 @@ class MapState {
     
     func deselectTopo() {
         guard case .topo(let topo) = selection else { return }
-        selection = .problem(problem: topo.topProblem ?? Problem.empty)
+        if let topProblem = topo.topProblem {
+            selection = .problem(problem: topProblem)
+        } else {
+            selection = .none
+        }
     }
     
     func centerOnBoulder(coordinates: [CLLocationCoordinate2D]) {
@@ -210,19 +205,12 @@ class MapState {
         }
     }
     
-    var selectedProblem: Problem {
+    var selectedProblem: Problem? {
         switch selection {
         case .problem(let problem, _): return problem
-        case .topo(let topo): return cachedTopProblems[topo.id] ?? topo.topProblem ?? Problem.empty
-        case .none: return Problem.empty
+        case .topo(let topo): return cachedTopProblems[topo.id] ?? topo.topProblem
+        case .none: return nil
         }
-    }
-    
-    var selectedProblemBinding: Binding<Problem> {
-        Binding(
-            get: { self.selectedProblem },
-            set: { self.selectProblem($0) }
-        )
     }
     
     private var selectionSource: Selection.Source {

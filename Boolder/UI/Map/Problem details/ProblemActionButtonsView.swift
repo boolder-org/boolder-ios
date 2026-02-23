@@ -15,7 +15,7 @@ struct ProblemActionButtonsView: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var problem: Problem
+    let problem: Problem
     let withHorizontalPadding: Bool
     let onCircuitSelected: (() -> Void)?
     
@@ -23,8 +23,8 @@ struct ProblemActionButtonsView: View {
     @State private var presentSharesheet = false
     @State private var presentCircuitActionsheet = false
     
-    init(problem: Binding<Problem>, withHorizontalPadding: Bool = true, onCircuitSelected: (() -> Void)? = nil) {
-        self._problem = problem
+    init(problem: Problem, withHorizontalPadding: Bool = true, onCircuitSelected: (() -> Void)? = nil) {
+        self.problem = problem
         self.withHorizontalPadding = withHorizontalPadding
         self.onCircuitSelected = onCircuitSelected
     }

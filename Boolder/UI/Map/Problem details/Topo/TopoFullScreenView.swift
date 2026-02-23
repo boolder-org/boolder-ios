@@ -12,73 +12,68 @@ struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(MapState.self) private var mapState: MapState
     
-    @Binding var problem: Problem
-    
     var body: some View {
-        @Bindable var mapState = mapState
-        
-        VStack {
-            ZStack {
-                VStack {
-                    ZStack {
-                        HStack {
-                            Spacer()
-                            
-                            if #available(iOS 26, *) {
-                                Button(action: { dismiss() }) {
-                                    Image(systemName: "xmark")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
+        if let problem = mapState.selectedProblem {
+            VStack {
+                ZStack {
+                    VStack {
+                        ZStack {
+                            HStack {
+                                Spacer()
+                                
+                                if #available(iOS 26, *) {
+                                    Button(action: { dismiss() }) {
+                                        Image(systemName: "xmark")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(4)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
                                 }
-                                .buttonStyle(.glass)
-                                .buttonBorderShape(.circle)
-                            }
-                            else {
-                                Button(action: { dismiss() }) {
-                                    Image(systemName: "xmark")
-                                        .foregroundColor(.primary)
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
-                                        .frame(width: 32, height: 32)
-                                        .background(.regularMaterial, in: Circle())
+                                else {
+                                    Button(action: { dismiss() }) {
+                                        Image(systemName: "xmark")
+                                            .foregroundColor(.primary)
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                            .frame(width: 32, height: 32)
+                                            .background(.regularMaterial, in: Circle())
+                                    }
                                 }
                             }
-                            
-
+                        }
+                        .padding()
+                        
+                        Spacer()
+                        
+                        if mapState.isInTopoMode {
+                            TopoCarouselView(problem: problem, style: .overlay)
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
+                        } else {
+                            overlayInfos(problem: problem)
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
                         }
                     }
-                    .padding()
+                    .animation(.easeInOut(duration: 0.3), value: mapState.isInTopoMode)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .zIndex(2)
                     
-                    Spacer()
-                    
-                    if mapState.isInTopoMode {
-                        TopoCarouselView(problem: $problem, style: .overlay)
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
-                    } else {
-                        overlayInfos
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
+                    TopoSwipeContentView(problem: problem, zoomable: true)
+                        .zIndex(1)
+                        .background(Color.systemBackground)
+                        .edgesIgnoringSafeArea(.all)
                 }
-                .animation(.easeInOut(duration: 0.3), value: mapState.isInTopoMode)
-                .edgesIgnoringSafeArea(.bottom)
-                .zIndex(2)
-                
-                TopoSwipeContentView(problem: $problem, zoomable: true)
-                    .zIndex(1)
-                    .background(Color.systemBackground)
-                    .edgesIgnoringSafeArea(.all)
-                
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
-            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    var overlayInfos: some View {
+    private func overlayInfos(problem: Problem) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             ProblemInfoView(problem: problem)
                 .foregroundColor(.primary.opacity(0.8))
             
-            ProblemActionButtonsView(problem: $problem, withHorizontalPadding: false, onCircuitSelected: { dismiss() })
+            ProblemActionButtonsView(problem: problem, withHorizontalPadding: false, onCircuitSelected: { dismiss() })
         }
         .padding()
         .frame(minHeight: 150, alignment: .top)

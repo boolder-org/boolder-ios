@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopoCarouselView: View {
-    @Binding var problem: Problem
+    let problem: Problem
     let style: Style
     
     enum Style {

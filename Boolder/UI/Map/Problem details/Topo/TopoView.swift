@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TopoView: View {
-    @Binding var problem: Problem
+    var problem: Problem
     @Environment(MapState.self) private var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
@@ -136,7 +136,7 @@ struct TopoView: View {
                         }
                         
                         if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
-                            StartGroupMenuView(problem: $problem)
+                            StartGroupMenuView(problem: problem)
                                 .scaleEffect(counterZoomScaleIdentity)
                                 .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
                         }

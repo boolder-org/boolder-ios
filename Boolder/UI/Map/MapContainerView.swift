@@ -93,9 +93,7 @@ struct MapContainerView: View {
                 }
                 else {
                     $0.sheet(isPresented: $mapState.presentProblemDetails) {
-                        ProblemDetailsView(
-                            problem: mapState.selectedProblemBinding
-                        )
+                        ProblemDetailsView()
                         .presentationDetents([detent])
                         .presentationBackgroundInteraction(
                             .enabled(upThrough: detent)
@@ -198,7 +196,7 @@ struct MapContainerView: View {
                         }
                     }
                     
-                    if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem.circuitId {
+                    if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem?.circuitId {
                         if #available(iOS 26.0, *) {
                             GlassEffectContainer {
                                 circuitButtonsContent(circuit: circuit)

@@ -31,23 +31,15 @@ struct TopoPageView: View {
         topoContent
             .onChange(of: mapState.isInTopoMode, initial: true) { _, isTopoMode in
                 if isTopoMode {
-                    // Topo mode: show the cached top problem
                     if let cached = mapState.topProblem(for: topo.id), cached.id != problem.id {
                         problem = cached
                     }
-                } else {
-                    // Problem mode: show the selected problem if it belongs to this topo
-                    let p = mapState.selectedProblem
-                    if p.id != 0, p.topoId == topo.id, p.id != problem.id {
-                        problem = p
-                    }
+                } else if let p = mapState.selectedProblem, p.topoId == topo.id, p.id != problem.id {
+                    problem = p
                 }
             }
             .onChange(of: mapState.activeProblemId) { _, _ in
-                // Fires on problem-to-problem taps (isInTopoMode stays false so
-                // the handler above doesn't run). Silent during topo-to-topo swipes.
-                let p = mapState.selectedProblem
-                if p.id != 0, p.topoId == topo.id, p.id != problem.id {
+                if let p = mapState.selectedProblem, p.topoId == topo.id, p.id != problem.id {
                     problem = p
                 }
             }
@@ -58,7 +50,7 @@ struct TopoPageView: View {
         if zoomable {
             ZoomableScrollView(zoomScale: $zoomScale) {
                 TopoView(
-                    problem: $problem,
+                    problem: problem,
                     zoomScale: $zoomScale,
                     onBackgroundTap: selectTopo,
                     skipInitialBounceAnimation: true
@@ -66,7 +58,7 @@ struct TopoPageView: View {
             }
         } else {
             TopoView(
-                problem: $problem,
+                problem: problem,
                 zoomScale: .constant(1),
                 onBackgroundTap: selectTopo
             )
@@ -85,7 +77,7 @@ struct TopoPageView: View {
 /// a looping horizontal scroll (multi-topo) or a single topo view.
 /// Set `zoomable` to `true` for the fullscreen presentation.
 struct TopoSwipeContentView: View {
-    @Binding var problem: Problem
+    let problem: Problem
     let zoomable: Bool
 
     @State private var zoomScale: CGFloat = 1
@@ -102,22 +94,24 @@ struct TopoSwipeContentView: View {
                     mapState.selectTopo(topo)
                 }
             ) { topo in
-                TopoPageView(
-                    topo: topo,
-                    topProblem: mapState.topProblem(for: topo.id) ?? Problem.empty,
-                    zoomable: zoomable
-                )
-                .frame(maxHeight: zoomable ? .infinity : nil)
+                if let topProblem = mapState.topProblem(for: topo.id) {
+                    TopoPageView(
+                        topo: topo,
+                        topProblem: topProblem,
+                        zoomable: zoomable
+                    )
+                    .frame(maxHeight: zoomable ? .infinity : nil)
+                }
             }
         } else if zoomable {
             ZoomableScrollView(zoomScale: $zoomScale) {
-                TopoView(problem: $problem, zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
+                TopoView(problem: problem, zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
             }
             .containerRelativeFrame(.horizontal)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             TopoView(
-                problem: $problem,
+                problem: problem,
                 zoomScale: .constant(1),
                 onBackgroundTap: selectTopo
             )

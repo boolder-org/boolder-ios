@@ -37,7 +37,7 @@ struct MapboxView: UIViewControllerRepresentable {
         }
         
         // Handle selection changes (problem or topo)
-        let selectedId = mapState.selectedProblem.id
+        let selectedId = mapState.selectedProblem?.id ?? 0
         let isTopoMode = mapState.selectedTopo != nil
         
         if context.coordinator.lastSelectedProblemId != selectedId || context.coordinator.lastIsTopoMode != isTopoMode {

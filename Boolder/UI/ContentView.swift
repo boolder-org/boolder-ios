@@ -42,9 +42,7 @@ struct ContentView: View {
                         mapState.requestTopoFullScreenPresentation()
                     }
                 ) {
-                    ProblemDetailsView(
-                        problem: mapState.selectedProblemBinding
-                    )
+                    ProblemDetailsView()
                 }
             }
         }
