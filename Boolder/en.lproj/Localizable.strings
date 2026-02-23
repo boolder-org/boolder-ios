@@ -210,15 +210,5 @@
 "contribute.learn_more" = "Learn more about Boolder";
 
 // MARK: Boulder
-"boulder.problems_title" = "%d problems";
-"boulder.problems_list.photo" = "By face";
-"boulder.problems_list.grade" = "By grade";
-"boulder.problems_list.all_faces" = "All the faces";
-"boulder.problems_list.title" = "Problems";
-"boulder.problems_list.all_on_boulder" = "All problems on this boulder";
-"boulder.level" = "Level %d";
-"boulder.info" = "%d photos, %d problems";
 "boulder.info_basic" = "%d problems";
 "boulder.info_basic_singular" = "%d problem";
-"boulder.name" = "Boulder";
-"line.name" = "Line";

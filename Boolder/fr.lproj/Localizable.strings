@@ -209,15 +209,5 @@
 "contribute.learn_more" = "En savoir plus sur Boolder";
 
 // MARK: Boulder
-"boulder.problems_title" = "%d voies";
-"boulder.problems_list.photo" = "Par face";
-"boulder.problems_list.grade" = "Par cotation";
-"boulder.problems_list.all_faces" = "Toutes les faces";
-"boulder.problems_list.title" = "Voies";
-"boulder.problems_list.all_on_boulder" = "Toutes les voies sur ce bloc";
-"boulder.level" = "Niveau %d";
-"boulder.info" = "%d photos, %d voies";
 "boulder.info_basic" = "%d voies";
 "boulder.info_basic_singular" = "%d voie";
-"boulder.name" = "Bloc";
-"line.name" = "Ligne";
