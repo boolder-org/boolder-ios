@@ -50,9 +50,7 @@ struct MapContainerView: View {
         }
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {
-                if case .topo(let topo) = mapState.selection {
-                    mapState.selection = .problem(problem: topo.topProblem ?? Problem.empty)
-                }
+                mapState.deselectTopo()
             }
         }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in
@@ -96,7 +94,7 @@ struct MapContainerView: View {
                 else {
                     $0.sheet(isPresented: $mapState.presentProblemDetails) {
                         ProblemDetailsView(
-                            problem: $mapState.selectedProblem
+                            problem: mapState.selectedProblemBinding
                         )
                         .presentationDetents([detent])
                         .presentationBackgroundInteraction(

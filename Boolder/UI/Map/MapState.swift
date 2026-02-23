@@ -124,6 +124,20 @@ class MapState {
         selectedArea = Area.load(id: problem.areaId)
     }
     
+    func selectTopo(_ topo: Topo) {
+        selection = .topo(topo: topo)
+        
+        let coordinates = boulderProblems.map { $0.coordinate }
+        if !coordinates.isEmpty {
+            centerOnBoulder(coordinates: coordinates)
+        }
+    }
+    
+    func deselectTopo() {
+        guard case .topo(let topo) = selection else { return }
+        selection = .problem(problem: topo.topProblem ?? Problem.empty)
+    }
+    
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
         centerOnProblem(problem)
         
@@ -174,7 +188,7 @@ class MapState {
         }
     }
     
-    var selection: Selection = .none {
+    private var selection: Selection = .none {
         didSet {
             refreshBoulderCacheIfNeeded()
             
@@ -182,13 +196,6 @@ class MapState {
             // when the *mode* flips, not on every topo-to-topo swap.
             let newMode = { if case .topo = selection { return true } else { return false } }()
             if isInTopoMode != newMode { isInTopoMode = newMode }
-            
-            if newMode {
-                let coordinates = boulderProblems.map { $0.coordinate }
-                if !coordinates.isEmpty {
-                    centerOnBoulder(coordinates: coordinates)
-                }
-            }
             
             let newSource: Selection.Source = {
                 if case .problem(_, let s) = selection { return s } else { return .other }
@@ -203,19 +210,21 @@ class MapState {
     }
     
     var selectedProblem: Problem {
-        get {
-            switch selection {
-            case .problem(let problem, _): return problem
-            case .topo(let topo): return cachedTopProblems[topo.id] ?? topo.topProblem ?? Problem.empty
-            case .none: return Problem.empty
-            }
-        }
-        set {
-            selection = .problem(problem: newValue)
+        switch selection {
+        case .problem(let problem, _): return problem
+        case .topo(let topo): return cachedTopProblems[topo.id] ?? topo.topProblem ?? Problem.empty
+        case .none: return Problem.empty
         }
     }
     
-    var selectionSource: Selection.Source {
+    var selectedProblemBinding: Binding<Problem> {
+        Binding(
+            get: { self.selectedProblem },
+            set: { self.selectProblem($0) }
+        )
+    }
+    
+    private var selectionSource: Selection.Source {
         if case .problem(_, let source) = selection { return source }
         return .other
     }

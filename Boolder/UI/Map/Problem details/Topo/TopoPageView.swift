@@ -37,7 +37,8 @@ struct TopoPageView: View {
                     }
                 } else {
                     // Problem mode: show the selected problem if it belongs to this topo
-                    if case .problem(let p, _) = mapState.selection, p.topoId == topo.id, p.id != problem.id {
+                    let p = mapState.selectedProblem
+                    if p.id != 0, p.topoId == topo.id, p.id != problem.id {
                         problem = p
                     }
                 }
@@ -45,7 +46,8 @@ struct TopoPageView: View {
             .onChange(of: mapState.activeProblemId) { _, _ in
                 // Fires on problem-to-problem taps (isInTopoMode stays false so
                 // the handler above doesn't run). Silent during topo-to-topo swipes.
-                if case .problem(let p, _) = mapState.selection, p.topoId == topo.id, p.id != problem.id {
+                let p = mapState.selectedProblem
+                if p.id != 0, p.topoId == topo.id, p.id != problem.id {
                     problem = p
                 }
             }
@@ -73,7 +75,7 @@ struct TopoPageView: View {
     
     private func selectTopo() {
         guard let topo = problem.topo else { return }
-        mapState.selection = .topo(topo: topo)
+        mapState.selectTopo(topo)
     }
 }
 
@@ -97,7 +99,7 @@ struct TopoSwipeContentView: View {
                 boulderId: mapState.cachedBoulderId,
                 onTopoChanged: { topo in
                     guard problem.topoId != topo.id else { return }
-                    mapState.selection = .topo(topo: topo)
+                    mapState.selectTopo(topo)
                 }
             ) { topo in
                 TopoPageView(
@@ -124,7 +126,7 @@ struct TopoSwipeContentView: View {
 
     private func selectTopo() {
         guard let topo = problem.topo else { return }
-        mapState.selection = .topo(topo: topo)
+        mapState.selectTopo(topo)
     }
 }
 

@@ -43,7 +43,7 @@ struct ContentView: View {
                     }
                 ) {
                     ProblemDetailsView(
-                        problem: $mapState.selectedProblem
+                        problem: mapState.selectedProblemBinding
                     )
                 }
             }

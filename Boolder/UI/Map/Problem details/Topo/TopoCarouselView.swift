@@ -115,7 +115,7 @@ struct TopoCarouselView: View {
     
     private func goToTopo(_ topo: Topo) {
         withAnimation(.easeInOut(duration: 0.25)) {
-            mapState.selection = .topo(topo: topo)
+            mapState.selectTopo(topo)
         }
     }
     
