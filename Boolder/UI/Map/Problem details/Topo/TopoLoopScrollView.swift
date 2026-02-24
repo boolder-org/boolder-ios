@@ -42,7 +42,6 @@ struct TopoLoopScrollView<Content: View>: View {
     @State private var lastSeenBoulderId: Int?
     @State private var topoById: [Int: Topo] = [:]
     @State private var pendingTopoChangeTask: Task<Void, Never>?
-    @State private var recenterTask: Task<Void, Never>?
 
     private func centerLoopId(for topoId: Int?) -> Int? {
         topoId.map { centerCopy * 1_000_000 + $0 }
@@ -83,33 +82,10 @@ struct TopoLoopScrollView<Content: View>: View {
         .modify {
             if #available(iOS 18.0, *) {
                 $0.onScrollPhaseChange { _, newPhase in
-                    // Only attempt re-centering once the user isn't touching the scroll view.
-                    guard newPhase != .interacting, newPhase != .tracking else {
-                        recenterTask?.cancel()
-                        return
-                    }
-
-                    guard let currentId = scrollLoopId else { return }
-                    let copyIndex = currentId / 1_000_000
-                    guard copyIndex != centerCopy else { return }
-
+                    guard newPhase == .idle, let currentId = scrollLoopId else { return }
                     let isAtEdge = currentId == loopedTopos.first?.id || currentId == loopedTopos.last?.id
-
-                    if isAtEdge {
-                        // At the boundary — re-center right away.
-                        recenterTask?.cancel()
-                        let realId = currentId % 1_000_000
-                        scrollLoopId = centerLoopId(for: realId)
-                    } else if newPhase == .idle {
-                        // Not at the edge — wait 0.5 s of idle before re-centering.
-                        recenterTask?.cancel()
-                        recenterTask = Task {
-                            try? await Task.sleep(for: .milliseconds(500))
-                            guard !Task.isCancelled else { return }
-                            let realId = currentId % 1_000_000
-                            scrollLoopId = centerLoopId(for: realId)
-                        }
-                    }
+                    guard isAtEdge else { return }
+                    scrollLoopId = centerLoopId(for: currentId % 1_000_000)
                 }
             } else {
                 $0
@@ -155,8 +131,6 @@ struct TopoLoopScrollView<Content: View>: View {
         .onDisappear {
             pendingTopoChangeTask?.cancel()
             pendingTopoChangeTask = nil
-            recenterTask?.cancel()
-            recenterTask = nil
         }
     }
 }
