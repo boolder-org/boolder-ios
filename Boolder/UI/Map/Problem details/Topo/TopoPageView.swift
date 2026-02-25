@@ -50,7 +50,7 @@ struct TopoPageView: View {
         if zoomable {
             ZoomableScrollView(zoomScale: $zoomScale) {
                 TopoView(
-                    problem: problem,
+                    problem: $problem,
                     zoomScale: $zoomScale,
                     onBackgroundTap: selectTopo,
                     skipInitialBounceAnimation: true
@@ -58,7 +58,7 @@ struct TopoPageView: View {
             }
         } else {
             TopoView(
-                problem: problem,
+                problem: $problem,
                 zoomScale: .constant(1),
                 onBackgroundTap: selectTopo
             )
@@ -105,13 +105,13 @@ struct TopoSwipeContentView: View {
             }
         } else if zoomable {
             ZoomableScrollView(zoomScale: $zoomScale) {
-                TopoView(problem: problem, zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
+                TopoView(problem: .constant(problem), zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
             }
             .containerRelativeFrame(.horizontal)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             TopoView(
-                problem: problem,
+                problem: .constant(problem),
                 zoomScale: .constant(1),
                 onBackgroundTap: selectTopo
             )

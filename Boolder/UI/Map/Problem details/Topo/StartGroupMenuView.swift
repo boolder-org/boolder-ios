@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct StartGroupMenuView: View {
-    var problem: Problem
+    @Binding var problem: Problem
     
     @State private var isVisible = true
     @State private var hideTask: Task<Void, Never>?
