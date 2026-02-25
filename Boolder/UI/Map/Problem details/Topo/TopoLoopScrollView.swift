@@ -26,25 +26,25 @@ struct TopoLoopScrollView<Content: View>: View {
 
     // MARK: - Internal state
 
+    private struct LoopedTopoId: Hashable {
+        let copy: Int
+        let topoId: Int
+    }
+
     private struct LoopedTopo: Identifiable {
         let topo: Topo
         let copy: Int
-        let id: Int
-        init(topo: Topo, copy: Int) {
-            self.topo = topo
-            self.copy = copy
-            self.id = copy * 1_000_000 + topo.id
-        }
+        var id: LoopedTopoId { LoopedTopoId(copy: copy, topoId: topo.id) }
     }
 
-    @State private var scrollLoopId: Int?
+    @State private var scrollLoopId: LoopedTopoId?
     @State private var loopedTopos: [LoopedTopo] = []
     @State private var lastSeenBoulderId: Int?
     @State private var topoById: [Int: Topo] = [:]
     @State private var pendingTopoChangeTask: Task<Void, Never>?
 
-    private func centerLoopId(for topoId: Int?) -> Int? {
-        topoId.map { centerCopy * 1_000_000 + $0 }
+    private func centerLoopId(for topoId: Int?) -> LoopedTopoId? {
+        topoId.map { LoopedTopoId(copy: centerCopy, topoId: $0) }
     }
 
     private func rebuildLoopedTopos() {
@@ -85,7 +85,7 @@ struct TopoLoopScrollView<Content: View>: View {
                     guard newPhase == .idle, let currentId = scrollLoopId else { return }
                     let isAtEdge = currentId == loopedTopos.first?.id || currentId == loopedTopos.last?.id
                     guard isAtEdge else { return }
-                    scrollLoopId = centerLoopId(for: currentId % 1_000_000)
+                    scrollLoopId = centerLoopId(for: currentId.topoId)
                 }
             } else {
                 $0
@@ -98,7 +98,7 @@ struct TopoLoopScrollView<Content: View>: View {
         }
         .onChange(of: topoId) { _, newTopoId in
             guard let newTopoId else { return }
-            let currentRealId = scrollLoopId.map { $0 % 1_000_000 }
+            let currentRealId = scrollLoopId?.topoId
             guard currentRealId != newTopoId else { return }
 
             if lastSeenBoulderId != boulderId {
@@ -114,7 +114,7 @@ struct TopoLoopScrollView<Content: View>: View {
         }
         .onChange(of: scrollLoopId) { oldLoopId, newLoopId in
             guard let newLoopId else { return }
-            let realId = newLoopId % 1_000_000
+            let realId = newLoopId.topoId
             preloadNeighbors(around: realId)
 
             // Commit only the settled topo once small transient scroll updates stop.
