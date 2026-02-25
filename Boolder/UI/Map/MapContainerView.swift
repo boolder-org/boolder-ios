@@ -173,27 +173,9 @@ struct MapContainerView: View {
                             mapState.requestTopoFullScreenPresentation()
                         }) {
                             Image(systemName: "arrow.down.left.and.arrow.up.right")
-                                .modify {
-                                    if #available(iOS 26, *) {
-                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-                                            .padding(4)
-                                    } else {
-                                        $0.foregroundColor(.primary)
-                                            .padding(10)
-                                    }
-                                }
+                                .adaptiveCircleButtonIcon()
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.buttonStyle(.glass)
-                                    .buttonBorderShape(.circle)
-                            } else {
-                                $0
-                                    .background(Color(.systemBackground))
-                                    .clipShape(Circle())
-                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-                            }
-                        }
+                        .adaptiveCircleButtonStyle()
                     }
                     
                     if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem?.circuitId {
@@ -243,19 +225,7 @@ struct MapContainerView: View {
             .opacity(mapState.canGoToNextCircuitProblem ? 1 : 0.3)
         }
         .foregroundColor(Color(circuit.color.uicolorForSystemBackground))
-        .modify {
-            if #available(iOS 26, *) {
-                $0.glassEffect(.regular.interactive(), in: .capsule)
-            } else {
-                $0
-                    .background(Color.systemBackground)
-                    .clipShape(Capsule())
-                    .overlay(
-                        Capsule().stroke(Color(.secondaryLabel), lineWidth: 0.25)
-                    )
-                    .shadow(color: Color(UIColor.init(white: 0.8, alpha: 0.8)), radius: 8)
-            }
-        }
+        .adaptiveCapsuleStyle()
     }
     
     var circuitStartButton : some View {
@@ -334,14 +304,7 @@ struct MapContainerView: View {
                 }
             }
             .foregroundColor(.primary)
-            .modify {
-                if #available(iOS 26, *) {
-                    $0.glassEffect(.regular.interactive(), in: Circle())
-                }
-                else {
-                    $0.buttonStyle(FabButton())
-                }
-            }
+            .adaptiveFabStyle()
             
             Button {
                 print("location")
@@ -355,14 +318,7 @@ struct MapContainerView: View {
 //                    .offset(x: -1, y: 0)
                 //                        .font(.system(size: 20, weight: .regular))
             }
-            .modify {
-                if #available(iOS 26, *) {
-                    $0.glassEffect(.regular.interactive(), in: .circle)
-                }
-                else {
-                    $0.buttonStyle(FabButton())
-                }
-            }
+            .adaptiveFabStyle()
         }
     }
     

@@ -50,26 +50,9 @@ struct ProblemActionButtonsView: View {
                             Image(systemName: "info.circle")
                             Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
+                        .adaptivePillPadding()
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill(fill: true))
-                        }
-                    }
+                    .adaptivePillStyle(fill: true)
                 }
                 
                 if problem.variants.count > 1 {
@@ -92,26 +75,9 @@ struct ProblemActionButtonsView: View {
                             Text(String(format: NSLocalizedString(problem.variants.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural", comment: ""), problem.variants.count))
                                 .fixedSize(horizontal: true, vertical: true)
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
+                        .adaptivePillPadding()
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill())
-                        }
-                    }
+                    .adaptivePillStyle()
                 }
                 
                 if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
@@ -122,26 +88,9 @@ struct ProblemActionButtonsView: View {
                             Image("circuit")
                             Text("problem.action.see_circuit").fixedSize(horizontal: true, vertical: true)
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
+                        .adaptivePillPadding()
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill())
-                        }
-                    }
+                    .adaptivePillStyle()
                     .actionSheet(isPresented: $presentCircuitActionsheet) {
                         ActionSheet(
                             title: Text(circuit.color.longName),
@@ -168,26 +117,9 @@ struct ProblemActionButtonsView: View {
                         Text((saveManager.isFavorite() || saveManager.isTicked()) ? "problem.action.saved" : "problem.action.save")
                             .fixedSize(horizontal: true, vertical: true)
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0
-                                .padding(.vertical, 2)
-                                .padding(.horizontal, 4)
-                        } else {
-                            $0
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                        }
-                    }
+                    .adaptivePillPadding()
                 }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.buttonStyle(.glass)
-                    } else {
-                        $0
-                            .buttonStyle(Pill())
-                    }
-                }
+                .adaptivePillStyle()
                 .actionSheet(isPresented: $presentSaveActionsheet) {
                     ActionSheet(title: Text("problem.action.save"), buttons: saveManager.saveButtons())
                 }
@@ -199,26 +131,9 @@ struct ProblemActionButtonsView: View {
                         Image(systemName: "square.and.arrow.up")
                         Text("problem.action.share")
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0
-                                .padding(.vertical, 2)
-                                .padding(.horizontal, 4)
-                        } else {
-                            $0
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                        }
-                    }
+                    .adaptivePillPadding()
                 }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.buttonStyle(.glass)
-                    } else {
-                        $0
-                            .buttonStyle(Pill())
-                    }
-                }
+                .adaptivePillStyle()
                 .sheet(isPresented: $presentSharesheet,
                        content: {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil)
