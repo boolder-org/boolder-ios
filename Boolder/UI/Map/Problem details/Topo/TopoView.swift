@@ -68,226 +68,35 @@ struct TopoView: View {
     }
     
     var body: some View {
-        let allProblems = problem.startGroups.flatMap { group in
-            group.problems.map { p in
-                ProblemWithGroup(problem: p, inGroup: group.problems.contains(problem), index: group.problems.firstIndex(of: p), count: group.problems.count)
-            }
-        }
-        let indexedProblems = Array(allProblems.enumerated())
         ZStack(alignment: .center) {
-            if case .ready(let image) = photoStatus  {
-                Group {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    
-                    if !showAllLines && problem.line?.coordinates != nil {
-                        LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
-                    }
-                    else {
-                        Text("problem.missing_line")
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 8)
-                            .modify {
-                                if #available(iOS 26, *) {
-                                    $0.glassEffect()
-                                }
-                                else {
-                                    $0.background(Color.gray.opacity(0.8))
-                                        .foregroundColor(Color(UIColor.systemBackground))
-                                        .cornerRadius(16)
-                                }
-                            }
-                            .transition(.opacity)
-                            .opacity(showMissingLineNotice ? 1.0 : 0.0)
-                    }
-                    
-                    GeometryReader { geo in
-                        ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
-                            let p = pWithGroup.problem
-                            if let firstPoint = p.lineFirstPoint {
-                                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                    .allowsHitTesting(false)
-                                    .scaleEffect(counterZoomScale.wrappedValue)
-                                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                    .zIndex(p == problem ? .infinity : p.zIndex)
-                                    .modifier(BounceModifier(
-                                        shouldAnimate: pWithGroup.inGroup && p != problem,
-                                        trigger: bounceAnimation,
-                                        delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
-                                    ))
-                            }
-                        }
-                        
-                        if !showAllLines, let gradePoint = problem.lineGradePoint {
-                            GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
-                                .scaleEffect(counterZoomScale.wrappedValue)
-                                .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
-                                .allowsHitTesting(false)
-                        }
-                        
-                        if !showAllLines, showProblemNameLabel, let lastPoint = problem.lineLastPoint, !problem.localizedName.isEmpty {
-                            let labelPos = clampedNameLabelPosition(name: problem.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
-                            ProblemNameLabelView(name: problem.localizedName, color: problem.circuitUIColorForPhotoOverlay)
-                                .scaleEffect(counterZoomScale.wrappedValue)
-                                .position(x: labelPos.x, y: labelPos.y)
-                                .allowsHitTesting(false)
-                                .transition(.opacity)
-                        }
-                        
-                        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
-                            StartGroupMenuView(problem: $problem)
-                                .scaleEffect(counterZoomScaleIdentity)
-                                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
-                        }
-                    }
-                    
-                    GeometryReader { geo in
-                        TapLocationView { location in
-                            handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
-                        }
-                    }
-                    
-                    if showAllLines {
-                        let otherProblems = problem.otherProblemsOnSameTopo
-                        
-                        ZStack {
-                            ForEach(otherProblems, id: \.id) { p in
-                                if p.line?.coordinates != nil {
-                                    TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
-                                        mapState.selectProblem(p)
-                                    }
-                                    .zIndex(p.zIndex)
-                                }
-                            }
-                        }
-                        
-                        GeometryReader { geo in
-                            ZStack {
-                                ForEach(otherProblems, id: \.id) { p in
-                                    if let firstPoint = p.lineFirstPoint {
-                                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                                            .allowsHitTesting(false)
-                                            .scaleEffect(counterZoomScale.wrappedValue)
-                                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                                            .zIndex(p.zIndex)
-                                    }
-                                }
-                            }
-                        }
-                        
-                        GeometryReader { geo in
-                            ZStack {
-                                ForEach(otherProblems, id: \.id) { p in
-                                    if let gradePoint = p.lineGradePoint {
-                                        GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
-                                            .scaleEffect(counterZoomScale.wrappedValue)
-                                            .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
-                                            .zIndex(p.zIndex)
-                                            .onTapGesture {
-                                                mapState.selectProblem(p)
-                                            }
-                                    }
-                                }
-                            }
-                        }
-                        
-                        GeometryReader { geo in
-                            let lastPoints = Dictionary(
-                                uniqueKeysWithValues: otherProblems.compactMap { p in
-                                    p.lineLastPoint.map { (p.id, $0) }
-                                }
-                            )
-                            let visibleIds = visibleNameLabelIds(
-                                problems: otherProblems,
-                                lastPoints: lastPoints,
-                                geoSize: geo.size
-                            )
-                            
-                            ZStack {
-                                ForEach(otherProblems, id: \.id) { p in
-                                    if let lastPoint = lastPoints[p.id], !p.localizedName.isEmpty {
-                                        let isVisible = visibleIds.contains(p.id)
-                                        let labelPos = clampedNameLabelPosition(name: p.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
-                                        ProblemNameLabelView(name: p.localizedName, color: p.circuitUIColorForPhotoOverlay)
-                                            .scaleEffect(counterZoomScale.wrappedValue)
-                                            .position(x: labelPos.x, y: labelPos.y)
-                                            .zIndex(p.zIndex)
-                                            .opacity(isVisible ? 1 : 0)
-                                            .allowsHitTesting(isVisible)
-                                            .onTapGesture {
-                                                mapState.selectProblem(p)
-                                            }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else if case .loading = photoStatus {
+            switch photoStatus {
+            case .ready(let image):
+                readyPhotoContent(image: image)
+            case .loading:
                 ProgressView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            else if case .none = photoStatus {
+            case .none:
                 Image("nophoto")
                     .font(.system(size: 60))
                     .foregroundColor(Color.gray)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            else if photoStatus == .noInternet || photoStatus == .timeout || photoStatus == .error {
-                VStack(spacing: 16) {
-                    if photoStatus == .noInternet {
-                        Text("problem.topo.no_internet")
-                            .foregroundColor(Color.gray)
-                    }
-                    else if photoStatus == .timeout {
-                        Text("problem.topo.timeout")
-                            .foregroundColor(Color.gray)
-                    }
-                    else {
-                        Text("problem.topo.error")
-                            .foregroundColor(Color.gray)
-                    }
-                    
-                    Button {
-                        Task {
-                            await loadData()
-                        }
-                    } label: {
-                        
-                        Label {
-                            Text("problem.topo.retry")
-                        } icon: {
-                            Image(systemName: "arrow.clockwise")
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .background(.gray.opacity(0.2))
-                        .clipShape(Capsule())
-                    }
-                    .foregroundColor(Color.gray)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            else {
+            case .noInternet, .timeout, .error:
+                errorRetryContent
+            case .initial:
                 EmptyView()
             }
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
-        .onChange(of: photoStatus) { oldValue, newValue in
-            switch newValue {
-            case .ready(image: _):
+        .onChange(of: photoStatus) { _, newValue in
+            if case .ready = newValue {
                 displayLine()
                 displayNameLabel()
                 animateBounceIfAllowed()
-            default:
-                print("")
             }
         }
         .onChange(of: mapState.isInTopoMode) { oldValue, newValue in
-            if oldValue && !newValue { // topo → problem
+            if oldValue && !newValue {
                 displayNameLabel()
             }
         }
@@ -296,7 +105,6 @@ struct TopoView: View {
             
             if oldValue.topoId == newValue.topoId {
                 lineDrawPercentage = 0.0
-                
                 displayLine()
                 displayNameLabel()
                 animateBounceIfAllowed()
@@ -305,17 +113,220 @@ struct TopoView: View {
                 lineDrawPercentage = 0.0
                 nameLabelTask?.cancel()
                 showProblemNameLabel = false
-                
                 Task {
                     await loadData()
                 }
-                // animateBounceIfAllowed will be called in photoStatus onChange when photo loads
             }
         }
         .task {
             paginationPosition = problem.startGroup?.paginationPosition
             await loadData()
         }
+    }
+    
+    // MARK: - Subviews
+    
+    @ViewBuilder
+    private func readyPhotoContent(image: UIImage) -> some View {
+        let allProblems = problem.startGroups.flatMap { group in
+            group.problems.map { p in
+                ProblemWithGroup(problem: p, inGroup: group.problems.contains(problem), index: group.problems.firstIndex(of: p), count: group.problems.count)
+            }
+        }
+        let indexedProblems = Array(allProblems.enumerated())
+        
+        Group {
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            
+            if !showAllLines && problem.line?.coordinates != nil {
+                LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
+            }
+            else {
+                Text("problem.missing_line")
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 8)
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.glassEffect()
+                        }
+                        else {
+                            $0.background(Color.gray.opacity(0.8))
+                                .foregroundColor(Color(UIColor.systemBackground))
+                                .cornerRadius(16)
+                        }
+                    }
+                    .transition(.opacity)
+                    .opacity(showMissingLineNotice ? 1.0 : 0.0)
+            }
+            
+            GeometryReader { geo in
+                problemOverlay(in: geo, indexedProblems: indexedProblems)
+            }
+            
+            GeometryReader { geo in
+                TapLocationView { location in
+                    handleTap(at: Line.PhotoPercentCoordinate(x: location.x / geo.size.width, y: location.y / geo.size.height))
+                }
+            }
+            
+            if showAllLines {
+                allLinesOverlay
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func problemOverlay(in geo: GeometryProxy, indexedProblems: [(offset: Int, element: ProblemWithGroup)]) -> some View {
+        ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
+            let p = pWithGroup.problem
+            if let firstPoint = p.lineFirstPoint {
+                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                    .allowsHitTesting(false)
+                    .scaleEffect(counterZoomScale.wrappedValue)
+                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                    .zIndex(p == problem ? .infinity : p.zIndex)
+                    .modifier(BounceModifier(
+                        shouldAnimate: pWithGroup.inGroup && p != problem,
+                        trigger: bounceAnimation,
+                        delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
+                    ))
+            }
+        }
+        
+        if !showAllLines, let gradePoint = problem.lineGradePoint {
+            GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
+                .scaleEffect(counterZoomScale.wrappedValue)
+                .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                .allowsHitTesting(false)
+        }
+        
+        if !showAllLines, showProblemNameLabel, let lastPoint = problem.lineLastPoint, !problem.localizedName.isEmpty {
+            let labelPos = clampedNameLabelPosition(name: problem.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
+            ProblemNameLabelView(name: problem.localizedName, color: problem.circuitUIColorForPhotoOverlay)
+                .scaleEffect(counterZoomScale.wrappedValue)
+                .position(x: labelPos.x, y: labelPos.y)
+                .allowsHitTesting(false)
+                .transition(.opacity)
+        }
+        
+        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
+            StartGroupMenuView(problem: $problem)
+                .scaleEffect(counterZoomScaleIdentity)
+                .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
+        }
+    }
+    
+    @ViewBuilder
+    private var allLinesOverlay: some View {
+        let otherProblems = problem.otherProblemsOnSameTopo
+        
+        ZStack {
+            ForEach(otherProblems, id: \.id) { p in
+                if p.line?.coordinates != nil {
+                    TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
+                        mapState.selectProblem(p)
+                    }
+                    .zIndex(p.zIndex)
+                }
+            }
+        }
+        
+        GeometryReader { geo in
+            ZStack {
+                ForEach(otherProblems, id: \.id) { p in
+                    if let firstPoint = p.lineFirstPoint {
+                        ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                            .allowsHitTesting(false)
+                            .scaleEffect(counterZoomScale.wrappedValue)
+                            .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                            .zIndex(p.zIndex)
+                    }
+                }
+            }
+        }
+        
+        GeometryReader { geo in
+            ZStack {
+                ForEach(otherProblems, id: \.id) { p in
+                    if let gradePoint = p.lineGradePoint {
+                        GradeLabelView(grade: p.grade.string, color: p.circuitUIColorForPhotoOverlay)
+                            .scaleEffect(counterZoomScale.wrappedValue)
+                            .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
+                            .zIndex(p.zIndex)
+                            .onTapGesture {
+                                mapState.selectProblem(p)
+                            }
+                    }
+                }
+            }
+        }
+        
+        GeometryReader { geo in
+            let lastPoints = Dictionary(
+                uniqueKeysWithValues: otherProblems.compactMap { p in
+                    p.lineLastPoint.map { (p.id, $0) }
+                }
+            )
+            let visibleIds = visibleNameLabelIds(
+                problems: otherProblems,
+                lastPoints: lastPoints,
+                geoSize: geo.size
+            )
+            
+            ZStack {
+                ForEach(otherProblems, id: \.id) { p in
+                    if let lastPoint = lastPoints[p.id], !p.localizedName.isEmpty {
+                        let isVisible = visibleIds.contains(p.id)
+                        let labelPos = clampedNameLabelPosition(name: p.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
+                        ProblemNameLabelView(name: p.localizedName, color: p.circuitUIColorForPhotoOverlay)
+                            .scaleEffect(counterZoomScale.wrappedValue)
+                            .position(x: labelPos.x, y: labelPos.y)
+                            .zIndex(p.zIndex)
+                            .opacity(isVisible ? 1 : 0)
+                            .allowsHitTesting(isVisible)
+                            .onTapGesture {
+                                mapState.selectProblem(p)
+                            }
+                    }
+                }
+            }
+        }
+    }
+    
+    private var errorRetryContent: some View {
+        VStack(spacing: 16) {
+            switch photoStatus {
+            case .noInternet:
+                Text("problem.topo.no_internet")
+                    .foregroundColor(Color.gray)
+            case .timeout:
+                Text("problem.topo.timeout")
+                    .foregroundColor(Color.gray)
+            default:
+                Text("problem.topo.error")
+                    .foregroundColor(Color.gray)
+            }
+            
+            Button {
+                Task {
+                    await loadData()
+                }
+            } label: {
+                Label {
+                    Text("problem.topo.retry")
+                } icon: {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .background(.gray.opacity(0.2))
+                .clipShape(Capsule())
+            }
+            .foregroundColor(Color.gray)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     // The UI above the photo (lines, circle views, ...) should get a little smaller as the user zooms into the photo
@@ -541,11 +552,3 @@ struct TopoView: View {
         }
     }
 }
-
-//struct TopoView_Previews: PreviewProvider {
-//    static let dataStore = DataStore()
-//    
-//    static var previews: some View {
-//        TopoView(problem: .constant(dataStore.problems.first!), areaResourcesDownloaded: .constant(true), scale: .constant(1))
-//    }
-//}
