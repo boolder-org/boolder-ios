@@ -16,12 +16,6 @@ struct BoulderProblemsListView: View {
     let boulderId: Int?
     let currentTopoId: Int?
     
-    // MARK: - Topo data
-    
-    private var boulderTopos: [Topo] {
-        mapState.boulderTopos
-    }
-    
     private var topoProblems: [Problem] {
         guard let topoId = currentTopoId else { return [] }
         return problems.filter { $0.topoId == topoId }.sorted { $0.grade < $1.grade }
@@ -36,10 +30,6 @@ struct BoulderProblemsListView: View {
             ),
             count
         )
-    }
-    
-    private var allBoulderProblems: [Problem] {
-        problems.sorted { $0.grade < $1.grade }
     }
     
     var body: some View {
