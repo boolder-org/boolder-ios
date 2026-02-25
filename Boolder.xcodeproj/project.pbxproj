@@ -48,12 +48,6 @@
 		031F36B1291CE56100BD0C2B /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36AF291CE56100BD0C2B /* MapState.swift */; };
 		031F36B6291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
 		031F36B7291D235000BD0C2B /* TopoFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */; };
-		03FD89B12F4E100000000001 /* TopoCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000001 /* TopoCarouselView.swift */; };
-		03FD89B22F4E100000000001 /* TopoCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000001 /* TopoCarouselView.swift */; };
-		03FD89B12F4E100000000005 /* TopoImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000005 /* TopoImageCache.swift */; };
-		03FD89B22F4E100000000005 /* TopoImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000005 /* TopoImageCache.swift */; };
-		03FD89B12F4E100000000002 /* TopoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000002 /* TopoPageView.swift */; };
-		03FD89B22F4E100000000002 /* TopoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000002 /* TopoPageView.swift */; };
 		031F36BF291E4E4400BD0C2B /* TickList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BE291E4E4400BD0C2B /* TickList.swift */; };
 		031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36BE291E4E4400BD0C2B /* TickList.swift */; };
 		031F36C2291EA62900BD0C2B /* TestFontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F36C1291EA62900BD0C2B /* TestFontSize.swift */; };
@@ -145,6 +139,12 @@
 		03FD89942D8DB18000B7FAD9 /* Bundle+AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */; };
 		03FD89952E26400000000001 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89952E26400000000000 /* BottomSheetView.swift */; };
 		03FD89952E26400000000002 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89952E26400000000000 /* BottomSheetView.swift */; };
+		03FD89B12F4E100000000001 /* TopoCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000001 /* TopoCarouselView.swift */; };
+		03FD89B12F4E100000000002 /* TopoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000002 /* TopoPageView.swift */; };
+		03FD89B12F4E100000000005 /* TopoImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000005 /* TopoImageCache.swift */; };
+		03FD89B22F4E100000000001 /* TopoCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000001 /* TopoCarouselView.swift */; };
+		03FD89B22F4E100000000002 /* TopoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000002 /* TopoPageView.swift */; };
+		03FD89B22F4E100000000005 /* TopoImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD89B02F4E100000000005 /* TopoImageCache.swift */; };
 		37043E292458D5A0002782AB /* UserStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37043E272458D5A0002782AB /* UserStore.xcdatamodeld */; };
 		37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		37166736255405CA0078AE09 /* ProblemCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37166735255405CA0078AE09 /* ProblemCircleView.swift */; };
@@ -222,9 +222,6 @@
 		031EE76F2F1A46FD00FCC590 /* TappableLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableLineView.swift; sourceTree = "<group>"; };
 		031F36AF291CE56100BD0C2B /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
 		031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoFullScreenView.swift; sourceTree = "<group>"; };
-		03FD89B02F4E100000000001 /* TopoCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoCarouselView.swift; sourceTree = "<group>"; };
-		03FD89B02F4E100000000005 /* TopoImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoImageCache.swift; sourceTree = "<group>"; };
-		03FD89B02F4E100000000002 /* TopoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoPageView.swift; sourceTree = "<group>"; };
 		031F36BE291E4E4400BD0C2B /* TickList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickList.swift; sourceTree = "<group>"; };
 		031F36C1291EA62900BD0C2B /* TestFontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFontSize.swift; sourceTree = "<group>"; };
 		03389D202F45FFC000D5011D /* TopoLoopScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoLoopScrollView.swift; sourceTree = "<group>"; };
@@ -267,6 +264,9 @@
 		03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
 		03FD89922D8DB18000B7FAD9 /* Bundle+AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppVersion.swift"; sourceTree = "<group>"; };
 		03FD89952E26400000000000 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		03FD89B02F4E100000000001 /* TopoCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoCarouselView.swift; sourceTree = "<group>"; };
+		03FD89B02F4E100000000002 /* TopoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoPageView.swift; sourceTree = "<group>"; };
+		03FD89B02F4E100000000005 /* TopoImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoImageCache.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
@@ -941,7 +941,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 95;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -968,7 +968,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 95;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -1118,7 +1118,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 95;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
@@ -1142,7 +1142,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 95;
+				CURRENT_PROJECT_VERSION = 96;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
