@@ -36,10 +36,13 @@ struct ContentView: View {
             }
             
             if #available(iOS 26, *) {
-                BottomSheetView(isPresented: $mapState.presentProblemDetails) {
-                    ProblemDetailsView(
-                        problem: $mapState.selectedProblem
-                    )
+                BottomSheetView(
+                    isPresented: $mapState.presentProblemDetails,
+                    onSwipeUp: {
+                        mapState.requestTopoFullScreenPresentation()
+                    }
+                ) {
+                    ProblemDetailsView()
                 }
             }
         }

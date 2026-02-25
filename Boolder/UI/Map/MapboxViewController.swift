@@ -852,6 +852,40 @@ class MapboxViewController: UIViewController {
         }
     }
     
+    func centerOnBoulderCoordinates(_ coordinates: [CLLocationCoordinate2D]) {
+        guard !coordinates.isEmpty else { return }
+        
+        let padding = safePaddingForBoulder
+        let paddedRect = CGRect(
+            x: padding.left,
+            y: padding.top,
+            width: view.bounds.width - padding.left - padding.right,
+            height: view.bounds.height - padding.top - padding.bottom
+        )
+        
+        // Check if all coordinates are already visible within the padded area
+        let allVisible = coordinates.allSatisfy { coord in
+            let point = mapView.mapboxMap.point(for: coord)
+            return paddedRect.contains(point)
+        }
+        
+        guard !allVisible else { return }
+        
+        let currentZoom = mapView.mapboxMap.cameraState.zoom
+        
+        // Fit all coordinates within the padded area, keeping the current zoom
+        // unless it's too tight (maxZoom caps the zoom so it only pans or zooms out).
+        if let fittedCamera = try? mapView.mapboxMap.camera(
+            for: coordinates,
+            camera: CameraOptions(padding: UIEdgeInsets(), bearing: 0, pitch: 0),
+            coordinatesPadding: padding,
+            maxZoom: currentZoom,
+            offset: nil
+        ) {
+            flyTo(fittedCamera)
+        }
+    }
+    
     func setCircuitAsSelected(circuit: Circuit) {
         do {
             try ["circuits"].forEach { layerId in
@@ -903,8 +937,15 @@ class MapboxViewController: UIViewController {
     }
     
     private var previouslyTappedProblemId: String = ""
+    private var previouslySelectedTopoIds: [String] = []
+    /// Pre-cached problem IDs for the currently selected topo.
+    /// Set from MapboxView using cached data – avoids SQLite in the hot path.
+    var selectedTopoProblemIds: [String] = []
     
     func setProblemAsSelected(problemFeatureId: String) {
+        // Unselect previously selected topo problems
+        unselectPreviousTopoProblems()
+        
         self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
                                                sourceLayerId: problemsSourceLayerId,
                                                featureId: problemFeatureId,
@@ -917,6 +958,24 @@ class MapboxViewController: UIViewController {
         }
         
         self.previouslyTappedProblemId = problemFeatureId
+        
+        // Also select all sibling problems on the same topo (using pre-cached IDs)
+        if !selectedTopoProblemIds.isEmpty {
+            var selectedIds: [String] = []
+            
+            for featureId in selectedTopoProblemIds {
+                if featureId != problemFeatureId {
+                    self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                           sourceLayerId: problemsSourceLayerId,
+                                                           featureId: featureId,
+                                                           state: ["selected": true]) { result in
+                    }
+                    selectedIds.append(featureId)
+                }
+            }
+            
+            previouslySelectedTopoIds = selectedIds
+        }
     }
     
     func unselectPreviousProblem() {
@@ -928,6 +987,17 @@ class MapboxViewController: UIViewController {
                 
             }
         }
+    }
+    
+    private func unselectPreviousTopoProblems() {
+        for featureId in previouslySelectedTopoIds {
+            self.mapView.mapboxMap.setFeatureState(sourceId: "problems",
+                                                   sourceLayerId: problemsSourceLayerId,
+                                                   featureId: featureId,
+                                                   state: ["selected": false]) { result in
+            }
+        }
+        previouslySelectedTopoIds = []
     }
     
     func flyTo(_ cameraOptions: CameraOptions) {
@@ -962,9 +1032,12 @@ class MapboxViewController: UIViewController {
     
     var flyinToSomething = false // TODO: replace with MapboxMap.isAnimationInProgress in v11 (probably more reliable)
     let flyinDuration = 0.5
-    let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 120, right: 20)
+    let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 180, right: 20)
     var safePaddingForBottomSheet : UIEdgeInsets {
-        UIEdgeInsets(top: 60, left: 0, bottom: view.bounds.height/2 + 28, right: 0)
+        UIEdgeInsets(top: 20, left: 0, bottom: view.bounds.height/2 + 40, right: 0)
+    }
+    var safePaddingForBoulder: UIEdgeInsets {
+        UIEdgeInsets(top: 40, left: 20, bottom: view.bounds.height/2 + 40, right: 20)
     }
     let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
     

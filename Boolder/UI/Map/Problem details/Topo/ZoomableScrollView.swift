@@ -25,6 +25,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.bouncesZoom = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.alwaysBounceHorizontal = false // Don't steal horizontal gestures from outer paging ScrollView at 1x zoom
         scrollView.zoomScale = zoomScale
         scrollView.contentInsetAdjustmentBehavior = .never // To avoid a wierb animation buf with safe areas
 
@@ -91,6 +92,9 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         func scrollViewDidZoom(_ scrollView: UIScrollView) {
             recenterContent(in: scrollView)
             parent.zoomScale = scrollView.zoomScale
+            // Enable horizontal bounce only when zoomed, so panning feels natural.
+            // At 1x zoom, keep it off to let an outer paging ScrollView handle swipes.
+            scrollView.alwaysBounceHorizontal = scrollView.zoomScale > scrollView.minimumZoomScale + 0.01
         }
 
         /// Centers the hosted view within the scroll view if it's smaller than the scroll view bounds.

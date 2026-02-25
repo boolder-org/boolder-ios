@@ -10,81 +10,70 @@ import SwiftUI
 
 struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
-    
-    @Binding var problem: Problem
-    @Binding var showAllLines: Bool
-    
-    @State private var zoomScale: CGFloat = 1
-    
-    // drag gesture (to dismiss the sheet)
-    @State var dragOffset: CGSize = .zero
-    @State var dragOffsetPredicted: CGSize = .zero
+    @Environment(MapState.self) private var mapState: MapState
     
     var body: some View {
-        VStack {
-            ZStack {
-                VStack {
-                    ZStack {
-                        HStack {
-                            if #available(iOS 26, *) {
-                                Button(action: { dismiss() }) {
-                                    Image(systemName: "chevron.left")
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
-                                        .padding(4)
+        if let problem = mapState.selectedProblem {
+            VStack {
+                ZStack {
+                    VStack {
+                        ZStack {
+                            HStack {
+                                Spacer()
+                                
+                                if #available(iOS 26, *) {
+                                    Button(action: { dismiss() }) {
+                                        Image(systemName: "xmark")
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                            .padding(4)
+                                    }
+                                    .buttonStyle(.glass)
+                                    .buttonBorderShape(.circle)
                                 }
-                                .buttonStyle(.glass)
-                                .buttonBorderShape(.circle)
-                            }
-                            else {
-                                Button(action: { dismiss() }) {
-                                    Image(systemName: "chevron.left")
-                                        .foregroundColor(Color(UIColor.white))
-                                        .font(.system(size: UIFontMetrics.default.scaledValue(for: 24)))
+                                else {
+                                    Button(action: { dismiss() }) {
+                                        Image(systemName: "xmark")
+                                            .foregroundColor(.primary)
+                                            .font(.system(size: UIFontMetrics.default.scaledValue(for: 16)))
+                                            .frame(width: 32, height: 32)
+                                            .background(.regularMaterial, in: Circle())
+                                    }
                                 }
                             }
-                            
-                            Spacer()
+                        }
+                        .padding()
+                        
+                        Spacer()
+                        
+                        if mapState.isInTopoMode {
+                            TopoCarouselView(problem: problem, style: .overlay)
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
+                        } else {
+                            overlayInfos(problem: problem)
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
                         }
                     }
-                    .padding()
+                    .animation(.easeInOut(duration: 0.3), value: mapState.isInTopoMode)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .zIndex(2)
                     
-                    Spacer()
-                    
-                    if !showAllLines {                        
-                        overlayInfos
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
+                    TopoSwipeContentView(problem: problem, zoomable: true)
+                        .zIndex(1)
+                        .background(Color.systemBackground)
+                        .edgesIgnoringSafeArea(.all)
                 }
-                .animation(.easeInOut(duration: 0.3), value: showAllLines)
-                .edgesIgnoringSafeArea(.bottom)
-                .zIndex(2)
-                
-                ZoomableScrollView(zoomScale: $zoomScale) {
-                    TopoView(problem: $problem, zoomScale: $zoomScale, showAllLines: $showAllLines, onBackgroundTap: {
-                        if !showAllLines && problem.otherProblemsOnSameTopo.count > 1 {
-                            showAllLines = true
-                        }
-                    }, skipInitialBounceAnimation: true)
-                }
-                .containerRelativeFrame(.horizontal)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .zIndex(1)
-                .offset(x: 0, y: self.dragOffset.height) // drag gesture
-                .background(Color.systemBackground)
-                .edgesIgnoringSafeArea(.all)
-                
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
-            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    var overlayInfos: some View {
+    private func overlayInfos(problem: Problem) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             ProblemInfoView(problem: problem)
                 .foregroundColor(.primary.opacity(0.8))
             
-            ProblemActionButtonsView(problem: $problem, withHorizontalPadding: false, onCircuitSelected: { dismiss() })
+            ProblemActionButtonsView(problem: problem, withHorizontalPadding: false, onCircuitSelected: { dismiss() })
         }
         .padding()
         .frame(minHeight: 150, alignment: .top)

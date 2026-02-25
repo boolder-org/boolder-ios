@@ -15,7 +15,7 @@ struct ProblemActionButtonsView: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
-    @Binding var problem: Problem
+    let problem: Problem
     let withHorizontalPadding: Bool
     let onCircuitSelected: (() -> Void)?
     
@@ -23,8 +23,8 @@ struct ProblemActionButtonsView: View {
     @State private var presentSharesheet = false
     @State private var presentCircuitActionsheet = false
     
-    init(problem: Binding<Problem>, withHorizontalPadding: Bool = true, onCircuitSelected: (() -> Void)? = nil) {
-        self._problem = problem
+    init(problem: Problem, withHorizontalPadding: Bool = true, onCircuitSelected: (() -> Void)? = nil) {
+        self.problem = problem
         self.withHorizontalPadding = withHorizontalPadding
         self.onCircuitSelected = onCircuitSelected
     }
@@ -50,72 +50,9 @@ struct ProblemActionButtonsView: View {
                             Image(systemName: "info.circle")
                             Text("Bleau.info").fixedSize(horizontal: true, vertical: true)
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
+                        .adaptivePillPadding()
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glassProminent)
-                        } else {
-                            $0
-                                .buttonStyle(Pill(fill: true))
-                        }
-                    }
-                }
-                
-                if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
-                    Button(action: {
-                        presentCircuitActionsheet = true
-                    }) {
-                        HStack(alignment: .center, spacing: 8) {
-                            Image("circuit")
-                            Text("problem.action.see_circuit").fixedSize(horizontal: true, vertical: true)
-                        }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
-                    }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill())
-                        }
-                    }
-                    .actionSheet(isPresented: $presentCircuitActionsheet) {
-                        ActionSheet(
-                            title: Text(circuit.color.longName),
-                            buttons: [
-                                .default(Text(mapState.selectedCircuit?.id == circuitId ? "problem.action.hide_circuit_on_map" : "problem.action.see_circuit_on_map")) {
-                                    if mapState.selectedCircuit?.id == circuitId {
-                                        mapState.unselectCircuit()
-                                    } else {
-                                        mapState.selectCircuit(circuit)
-                                        onCircuitSelected?()
-                                    }
-                                },
-                                .cancel()
-                            ]
-                        )
-                    }
+                    .adaptivePillStyle(fill: true)
                 }
                 
                 if problem.variants.count > 1 {
@@ -138,25 +75,37 @@ struct ProblemActionButtonsView: View {
                             Text(String(format: NSLocalizedString(problem.variants.count == 1 ? "problem.startgroup.variants.singular" : "problem.startgroup.variants.plural", comment: ""), problem.variants.count))
                                 .fixedSize(horizontal: true, vertical: true)
                         }
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0
-                                    .padding(.vertical, 2)
-                                    .padding(.horizontal, 4)
-                            } else {
-                                $0
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 16)
-                            }
-                        }
+                        .adaptivePillPadding()
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0.buttonStyle(.glass)
-                        } else {
-                            $0
-                                .buttonStyle(Pill())
+                    .adaptivePillStyle()
+                }
+                
+                if let circuitId = problem.circuitId, let circuit = Circuit.load(id: circuitId) {
+                    Button(action: {
+                        presentCircuitActionsheet = true
+                    }) {
+                        HStack(alignment: .center, spacing: 8) {
+                            Image("circuit")
+                            Text("problem.action.see_circuit").fixedSize(horizontal: true, vertical: true)
                         }
+                        .adaptivePillPadding()
+                    }
+                    .adaptivePillStyle()
+                    .actionSheet(isPresented: $presentCircuitActionsheet) {
+                        ActionSheet(
+                            title: Text(circuit.color.longName),
+                            buttons: [
+                                .default(Text(mapState.selectedCircuit?.id == circuitId ? "problem.action.hide_circuit_on_map" : "problem.action.see_circuit_on_map")) {
+                                    if mapState.selectedCircuit?.id == circuitId {
+                                        mapState.unselectCircuit()
+                                    } else {
+                                        mapState.selectCircuit(circuit)
+                                        onCircuitSelected?()
+                                    }
+                                },
+                                .cancel()
+                            ]
+                        )
                     }
                 }
                 
@@ -168,26 +117,9 @@ struct ProblemActionButtonsView: View {
                         Text((saveManager.isFavorite() || saveManager.isTicked()) ? "problem.action.saved" : "problem.action.save")
                             .fixedSize(horizontal: true, vertical: true)
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0
-                                .padding(.vertical, 2)
-                                .padding(.horizontal, 4)
-                        } else {
-                            $0
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                        }
-                    }
+                    .adaptivePillPadding()
                 }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.buttonStyle(.glass)
-                    } else {
-                        $0
-                            .buttonStyle(Pill())
-                    }
-                }
+                .adaptivePillStyle()
                 .actionSheet(isPresented: $presentSaveActionsheet) {
                     ActionSheet(title: Text("problem.action.save"), buttons: saveManager.saveButtons())
                 }
@@ -197,27 +129,11 @@ struct ProblemActionButtonsView: View {
                 }) {
                     HStack(alignment: .center, spacing: 8) {
                         Image(systemName: "square.and.arrow.up")
+                        Text("problem.action.share")
                     }
-                    .modify {
-                        if #available(iOS 26, *) {
-                            $0
-                                .padding(.vertical, 2)
-                                .padding(.horizontal, 4)
-                        } else {
-                            $0
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                        }
-                    }
+                    .adaptivePillPadding()
                 }
-                .modify {
-                    if #available(iOS 26, *) {
-                        $0.buttonStyle(.glass)
-                    } else {
-                        $0
-                            .buttonStyle(Pill())
-                    }
-                }
+                .adaptivePillStyle()
                 .sheet(isPresented: $presentSharesheet,
                        content: {
                     ActivityView(activityItems: [boolderURL] as [Any], applicationActivities: nil)

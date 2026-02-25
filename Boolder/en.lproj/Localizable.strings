@@ -208,3 +208,7 @@
 "contribute.report" = "Report errors";
 "contribute.cta" = "Start contributing";
 "contribute.learn_more" = "Learn more about Boolder";
+
+// MARK: Boulder
+"boulder.info_basic" = "%d problems";
+"boulder.info_basic_singular" = "%d problem";

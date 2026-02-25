@@ -9,16 +9,8 @@
 import SwiftUI
 import CoreLocation
 
-enum ProblemSelectionSource {
-    case circleView
-    case map
-    case other
-}
-
 @Observable
 class MapState {
-    var selectedProblem: Problem = Problem.empty // TODO: use nil instead
-    private(set) var selectionSource: ProblemSelectionSource = .other
     private(set) var centerOnProblem: Problem? = nil
     private(set) var selectedArea: Area? = nil
     private(set) var currentLocationCount: Int = 0
@@ -28,6 +20,8 @@ class MapState {
     private(set) var selectedCluster: Cluster? = nil
     private(set) var selectedCircuit: Circuit? = nil
     private(set) var centerOnCircuit: Circuit? = nil
+    private(set) var centerOnBoulderCoordinates: [CLLocationCoordinate2D] = []
+    private(set) var centerOnBoulderCount: Int = 0
     var selectedPoi: Poi? = nil
     var filters: Filters = Filters()
     private(set) var refreshFiltersCount: Int = 0
@@ -37,6 +31,7 @@ class MapState {
     var presentAreaView = false
     var presentCircuitPicker = false
     var displayCircuitStartButton = false
+    private(set) var presentTopoFullScreenRequestCount: Int = 0
     
     func centerOnArea(_ area: Area) {
         centerOnArea = area
@@ -80,55 +75,42 @@ class MapState {
     }
     
     var canGoToNextCircuitProblem: Bool {
-        selectedProblem.next != nil
+        selectedProblem?.next != nil
     }
     
     func goToNextCircuitProblem() {
-        if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let next = selectedProblem.next {
-                    selectAndPresentAndCenterOnProblem(next)
-                }
+        guard let circuit = selectedCircuit else { return }
+        if let problem = selectedProblem, !problem.circuitNumber.isEmpty, problem.circuitId == circuit.id {
+            if let next = problem.next {
+                selectAndPresentAndCenterOnProblem(next)
             }
-            else {
-                if let problem = circuit.firstProblem {
-                    selectAndPresentAndCenterOnProblem(problem)
-                }
-            }
+        } else if let first = circuit.firstProblem {
+            selectAndPresentAndCenterOnProblem(first)
         }
     }
     
     var canGoToPreviousCircuitProblem: Bool {
-        selectedProblem.previous != nil
+        selectedProblem?.previous != nil
     }
     
     func goToPreviousCircuitProblem() {
-        if let circuit = selectedCircuit {
-            if !selectedProblem.circuitNumber.isEmpty && selectedProblem.circuitId == circuit.id {
-                if let previous = selectedProblem.previous {
-                    selectAndPresentAndCenterOnProblem(previous)
-                }
+        guard let circuit = selectedCircuit else { return }
+        if let problem = selectedProblem, !problem.circuitNumber.isEmpty, problem.circuitId == circuit.id {
+            if let previous = problem.previous {
+                selectAndPresentAndCenterOnProblem(previous)
             }
-            else {
-                // not sure what to do here
-                if let problem = circuit.firstProblem {
-                    selectAndPresentAndCenterOnProblem(problem)
-                }
-            }
+        } else if let first = circuit.firstProblem {
+            selectAndPresentAndCenterOnProblem(first)
         }
     }
     
-    private func centerOnProblem(_ problem: Problem) {
-        centerOnProblem = problem
-    }
-    
     // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
-    func selectProblem(_ problem: Problem, source: ProblemSelectionSource = .other) {
-        selectedProblem = problem
-        selectionSource = source
+    func selectProblem(_ problem: Problem, source: Selection.Source = .other) {
+        selection = .problem(problem: problem, source: source)
         
         selectedArea = Area.load(id: problem.areaId)
     }
+    
     
     func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
         centerOnProblem(problem)
@@ -139,8 +121,39 @@ class MapState {
         }
     }
     
+    private func centerOnProblem(_ problem: Problem) {
+        centerOnProblem = problem
+    }
+    
+    func selectTopo(_ topo: Topo) {
+        selection = .topo(topo: topo)
+        
+        let coordinates = boulderProblems.map { $0.coordinate }
+        if !coordinates.isEmpty {
+            centerOnBoulder(coordinates: coordinates)
+        }
+    }
+    
+    func deselectTopo() {
+        guard case .topo(let topo) = selection else { return }
+        if let topProblem = topo.topProblem {
+            selection = .problem(problem: topProblem)
+        } else {
+            selection = .none
+        }
+    }
+    
+    func centerOnBoulder(coordinates: [CLLocationCoordinate2D]) {
+        centerOnBoulderCoordinates = coordinates
+        centerOnBoulderCount += 1
+    }
+    
     func centerOnCurrentLocation() {
         currentLocationCount += 1
+    }
+    
+    func requestTopoFullScreenPresentation() {
+        presentTopoFullScreenRequestCount += 1
     }
     
     func clearFilters() {
@@ -155,5 +168,138 @@ class MapState {
     func updateCameraState(center: CLLocationCoordinate2D, zoom: CGFloat) {
         self.center = center
         self.zoom = zoom
+    }
+    
+    // MARK: - Select a problem or topo
+    
+    enum Selection: Equatable {
+        case none
+        case topo(topo: Topo)
+        case problem(problem: Problem, source: Source = .other)
+        
+        enum Source: Equatable {
+            case circleView
+            case map
+            case other
+        }
+    }
+    
+    private var selection: Selection = .none {
+        didSet {
+            refreshBoulderCacheIfNeeded()
+            
+            // Update narrow derived properties – they only publish a change
+            // when the *mode* flips, not on every topo-to-topo swap.
+            let newMode = { if case .topo = selection { return true } else { return false } }()
+            if isInTopoMode != newMode { isInTopoMode = newMode }
+            
+            let newSource: Selection.Source = {
+                if case .problem(_, let s) = selection { return s } else { return .other }
+            }()
+            if currentSelectionSource != newSource { currentSelectionSource = newSource }
+            
+            let newProblemId: Int = {
+                if case .problem(let p, _) = selection { return p.id } else { return 0 }
+            }()
+            if activeProblemId != newProblemId { activeProblemId = newProblemId }
+        }
+    }
+    
+    var selectedProblem: Problem? {
+        switch selection {
+        case .problem(let problem, _): return problem
+        case .topo(let topo): return cachedTopProblems[topo.id] ?? topo.topProblem
+        case .none: return nil
+        }
+    }
+    
+    private var selectionSource: Selection.Source {
+        if case .problem(_, let source) = selection { return source }
+        return .other
+    }
+    
+    var selectedTopo: Topo? {
+        if case .topo(let topo) = selection { return topo }
+        return nil
+    }
+    
+    // MARK: - Narrow observation tokens (stable during topo-to-topo swipes)
+    
+    /// `true` when selection is `.topo(…)`. Views that only care about the
+    /// mode (not *which* topo) should read this instead of `selection` to
+    /// avoid unnecessary body re-evaluations.
+    private(set) var isInTopoMode: Bool = false
+    
+    /// Mirrors `Selection.Source` but only changes when the source actually
+    /// differs, keeping views stable during topo-to-topo swipes.
+    private(set) var currentSelectionSource: Selection.Source = .other
+    
+    /// The id of the actively selected problem (0 when in topo mode or none).
+    /// Stable during topo-to-topo swipes; only changes on problem-to-problem taps.
+    private(set) var activeProblemId: Int = 0
+    
+    // MARK: - Cached boulder data (only refreshed when boulder changes)
+    
+    private(set) var boulderTopos: [Topo] = []
+    private(set) var boulderProblems: [Problem] = []
+    @ObservationIgnored private(set) var cachedBoulderId: Int? = nil
+    /// Pre-computed top problems per topo – avoids SQLite queries during scroll.
+    @ObservationIgnored private var cachedTopProblems: [Int: Problem] = [:]
+    /// Pre-computed problems count per topo – avoids SQLite in carousel.
+    @ObservationIgnored private var cachedTopoProblemsCount: [Int: Int] = [:]
+    
+    private func refreshBoulderCacheIfNeeded() {
+        let boulderId: Int?
+        switch selection {
+        case .topo(let topo): boulderId = topo.boulderId
+        case .problem(let problem, _): boulderId = problem.topo?.boulderId
+        case .none: boulderId = nil
+        }
+        
+        guard boulderId != cachedBoulderId else { return }
+        cachedBoulderId = boulderId
+        
+        if let boulderId {
+            let boulder = Boulder(id: boulderId)
+            boulderTopos = boulder.topos
+            boulderProblems = boulder.problems
+            // Pre-cache per-topo data so page views never hit SQLite during scroll
+            cachedTopProblems = [:]
+            cachedTopoProblemsCount = [:]
+            for topo in boulderTopos {
+                let problems = topo.problems
+                let withLines = problems.filter { $0.line?.coordinates != nil }
+                cachedTopProblems[topo.id] = withLines.max { $0.zIndex < $1.zIndex }
+                    ?? problems.max { $0.zIndex < $1.zIndex }
+                cachedTopoProblemsCount[topo.id] = problems.count
+            }
+        } else {
+            boulderTopos = []
+            boulderProblems = []
+            cachedTopProblems = [:]
+            cachedTopoProblemsCount = [:]
+        }
+    }
+    
+    /// Returns the pre-cached top problem for a topo (no database access).
+    func topProblem(for topoId: Int) -> Problem? {
+        cachedTopProblems[topoId]
+    }
+    
+    /// Returns the pre-cached problems count for a topo (no database access).
+    func problemsCount(for topoId: Int) -> Int {
+        cachedTopoProblemsCount[topoId] ?? 0
+    }
+    
+    // MARK: - Navigate a boulder's topos
+    
+    func nextTopo(after topo: Topo) -> Topo? {
+        guard let index = boulderTopos.firstIndex(of: topo) else { return nil }
+        return boulderTopos[(index + 1) % boulderTopos.count]
+    }
+    
+    func previousTopo(before topo: Topo) -> Topo? {
+        guard let index = boulderTopos.firstIndex(of: topo) else { return nil }
+        return boulderTopos[(index + boulderTopos.count - 1) % boulderTopos.count]
     }
 }

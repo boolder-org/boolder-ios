@@ -77,6 +77,82 @@ extension View {
     }
 }
 
+// MARK: - Adaptive iOS 26 glass styling
+
+extension View {
+    func adaptivePillPadding() -> some View {
+        modify {
+            if #available(iOS 26, *) {
+                $0.padding(.vertical, 2).padding(.horizontal, 4)
+            } else {
+                $0.padding(.vertical, 8).padding(.horizontal, 16)
+            }
+        }
+    }
+    
+    func adaptivePillStyle(fill: Bool = false) -> some View {
+        modify {
+            if #available(iOS 26, *) {
+                $0.buttonStyle(.glass)
+            } else {
+                $0.buttonStyle(Pill(fill: fill))
+            }
+        }
+    }
+    
+    func adaptiveCircleButtonIcon(size: CGFloat = 20) -> some View {
+        modify {
+            if #available(iOS 26, *) {
+                $0.font(.system(size: UIFontMetrics.default.scaledValue(for: size)))
+                    .padding(4)
+            } else {
+                $0.foregroundColor(.primary)
+                    .padding(10)
+            }
+        }
+    }
+    
+    func adaptiveCircleButtonStyle() -> some View {
+        modify {
+            if #available(iOS 26, *) {
+                $0.buttonStyle(.glass)
+                    .buttonBorderShape(.circle)
+            } else {
+                $0
+                    .background(Color(.systemBackground))
+                    .clipShape(Circle())
+                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+            }
+        }
+    }
+    
+    func adaptiveFabStyle() -> some View {
+        modify {
+            if #available(iOS 26, *) {
+                $0.glassEffect(.regular.interactive(), in: .circle)
+            } else {
+                $0.buttonStyle(FabButton())
+            }
+        }
+    }
+    
+    func adaptiveCapsuleStyle() -> some View {
+        modify {
+            if #available(iOS 26, *) {
+                $0.glassEffect(.regular.interactive(), in: .capsule)
+            } else {
+                $0
+                    .background(Color.systemBackground)
+                    .clipShape(Capsule())
+                    .overlay(
+                        Capsule().stroke(Color(.secondaryLabel), lineWidth: 0.25)
+                    )
+                    .shadow(color: Color(UIColor(white: 0.8, alpha: 0.8)), radius: 8)
+            }
+        }
+    }
+}
+
 // FIXME: is there a cleaner way?
 // https://stackoverflow.com/a/58988238/230309
 extension UIApplication {

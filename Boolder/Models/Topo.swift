@@ -8,15 +8,13 @@
 
 import Foundation
 import UIKit
+import SQLite
 
-struct Topo: Hashable {
+struct Topo: Hashable, Identifiable {
     let id: Int
     let areaId: Int
-    
-    init(id: Int, areaId: Int) {
-        self.id = id
-        self.areaId = areaId
-    }
+    let boulderId: Int?
+    let position: Int?
     
     var onDiskPhoto: UIImage? {
         UIImage(contentsOfFile: onDiskFile.path)
@@ -32,5 +30,78 @@ struct Topo: Hashable {
     
     var remoteFile: URL {
         URL(string: "https://assets.boolder.com/proxy/topos/\(id)")!
+    }
+}
+
+// MARK: SQLite
+extension Topo {
+    static let id = Expression<Int>("id")
+    static let areaId = Expression<Int>("area_id")
+    static let boulderId = Expression<Int?>("boulder_id")
+    static let position = Expression<Int?>("position")
+    
+    static func load(id: Int) -> Topo? {
+        do {
+            let topos = Table("topos").filter(self.id == id)
+            
+            do {
+                if let t = try SqliteStore.shared.db.pluck(topos) {
+                    return Topo(id: t[self.id], areaId: t[areaId], boulderId: t[boulderId], position: t[position])
+                }
+                
+                return nil
+            }
+            catch {
+                print (error)
+                return nil
+            }
+        }
+    }
+    
+    var problems: [Problem] {
+        let lines = Table("lines")
+            .filter(Line.topoId == id)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(lines).map { l in
+                Problem.load(id: l[Line.problemId])
+            }
+            .compactMap { $0 }
+            .filter { $0.topoId == id }
+        }
+        catch {
+            print(error)
+            return []
+        }
+    }
+    
+    var problemsWithLine: [Problem] {
+        problems.filter { $0.line?.coordinates != nil }
+    }
+    
+    var topProblem: Problem? {
+        problemsWithLine.max { $0.zIndex < $1.zIndex } ?? problems.max { $0.zIndex < $1.zIndex }
+    }
+    
+    var onSameBoulder: [Topo] {
+        guard let boulderId = boulderId else { return [] }
+        
+        return Topo.onBoulder(boulderId)
+    }
+    
+    static func onBoulder(_ id: Int) -> [Topo] {
+        let query = Table("topos")
+            .filter(Topo.boulderId == id)
+            .order(Topo.position)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { t in
+                Topo.load(id: t[Topo.id])! // FIXME: don't ue bang
+            }
+        }
+        catch {
+            print (error)
+            return []
+        }
     }
 }

@@ -27,11 +27,25 @@ struct MapboxView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ vc: MapboxViewController, context: Context) {
-        // Handle selectedProblem changes
-        let selectedId = mapState.selectedProblem.id
-        if context.coordinator.lastSelectedProblemId != selectedId && selectedId != 0 {
+        // Pass pre-cached topo problem IDs so setProblemAsSelected never hits SQLite
+        if let topoId = mapState.selectedTopo?.id {
+            vc.selectedTopoProblemIds = mapState.boulderProblems
+                .filter { $0.topoId == topoId }
+                .map { String($0.id) }
+        } else {
+            vc.selectedTopoProblemIds = []
+        }
+        
+        // Handle selection changes (problem or topo)
+        let selectedId = mapState.selectedProblem?.id ?? 0
+        let isTopoMode = mapState.selectedTopo != nil
+        
+        if context.coordinator.lastSelectedProblemId != selectedId || context.coordinator.lastIsTopoMode != isTopoMode {
             context.coordinator.lastSelectedProblemId = selectedId
-            vc.setProblemAsSelected(problemFeatureId: String(selectedId))
+            context.coordinator.lastIsTopoMode = isTopoMode
+            if selectedId != 0 {
+                vc.setProblemAsSelected(problemFeatureId: String(selectedId))
+            }
         }
         
         // Handle centerOnProblem changes
@@ -56,6 +70,12 @@ struct MapboxView: UIViewControllerRepresentable {
         if mapState.currentLocationCount != context.coordinator.lastCurrentLocationCount {
             context.coordinator.lastCurrentLocationCount = mapState.currentLocationCount
             vc.centerOnCurrentLocation()
+        }
+        
+        // Handle centerOnBoulder changes
+        if mapState.centerOnBoulderCount != context.coordinator.lastCenterOnBoulderCount {
+            context.coordinator.lastCenterOnBoulderCount = mapState.centerOnBoulderCount
+            vc.centerOnBoulderCoordinates(mapState.centerOnBoulderCoordinates)
         }
         
         // Handle centerOnCircuit changes
@@ -112,6 +132,8 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastCenterOnCircuitId: Int = 0
         var lastSelectedCircuitId: Int = 0
         var lastRefreshFiltersCount: Int = 0
+        var lastIsTopoMode: Bool = false
+        var lastCenterOnBoulderCount: Int = 0
 
         init(_ parent: MapboxView) {
             self.parent = parent
