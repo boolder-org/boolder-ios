@@ -239,7 +239,7 @@ extension Area {
                 Topo.load(id: line[Line.topoId])
             }
             
-            return topos.compactMap{$0}.sorted{$0.id < $1.id}
+            return Array(Set(topos.compactMap{$0})).sorted{$0.id < $1.id}
         }
         catch {
             print (error)
