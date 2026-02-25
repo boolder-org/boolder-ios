@@ -45,7 +45,7 @@ struct TopoCarouselView: View {
                 presentBoulderProblemsList = true
             } label: {
                 HStack(spacing: 4) {
-                    let count = mapState.allProblemsCount(for: problem.topoId ?? 0)
+                    let count = mapState.problemsCount(for: problem.topoId ?? 0)
                     Text(String(format: NSLocalizedString(count == 1 ? "boulder.info_basic_singular" : "boulder.info_basic", comment: ""), count))
                     Image(systemName: "chevron.right")
                 }

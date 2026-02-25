@@ -14,7 +14,7 @@ struct Boulder {
     }
     
     var problems: [Problem] {
-        topos.flatMap { $0.allProblems }
+        topos.flatMap { $0.problems }
     }
     
     func nextTopo(after: Topo) -> Topo? {

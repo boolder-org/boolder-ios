@@ -245,8 +245,8 @@ class MapState {
     @ObservationIgnored private(set) var cachedBoulderId: Int? = nil
     /// Pre-computed top problems per topo – avoids SQLite queries during scroll.
     @ObservationIgnored private var cachedTopProblems: [Int: Problem] = [:]
-    /// Pre-computed allProblems count per topo – avoids SQLite in carousel.
-    @ObservationIgnored private var cachedTopoAllProblemsCount: [Int: Int] = [:]
+    /// Pre-computed problems count per topo – avoids SQLite in carousel.
+    @ObservationIgnored private var cachedTopoProblemsCount: [Int: Int] = [:]
     
     private func refreshBoulderCacheIfNeeded() {
         let boulderId: Int?
@@ -265,19 +265,19 @@ class MapState {
             boulderProblems = boulder.problems
             // Pre-cache per-topo data so page views never hit SQLite during scroll
             cachedTopProblems = [:]
-            cachedTopoAllProblemsCount = [:]
+            cachedTopoProblemsCount = [:]
             for topo in boulderTopos {
-                let allProblems = topo.allProblems
-                let withLines = allProblems.filter { $0.line?.coordinates != nil }
+                let problems = topo.problems
+                let withLines = problems.filter { $0.line?.coordinates != nil }
                 cachedTopProblems[topo.id] = withLines.max { $0.zIndex < $1.zIndex }
-                    ?? allProblems.max { $0.zIndex < $1.zIndex }
-                cachedTopoAllProblemsCount[topo.id] = allProblems.count
+                    ?? problems.max { $0.zIndex < $1.zIndex }
+                cachedTopoProblemsCount[topo.id] = problems.count
             }
         } else {
             boulderTopos = []
             boulderProblems = []
             cachedTopProblems = [:]
-            cachedTopoAllProblemsCount = [:]
+            cachedTopoProblemsCount = [:]
         }
     }
     
@@ -286,9 +286,9 @@ class MapState {
         cachedTopProblems[topoId]
     }
     
-    /// Returns the pre-cached allProblems count for a topo (no database access).
-    func allProblemsCount(for topoId: Int) -> Int {
-        cachedTopoAllProblemsCount[topoId] ?? 0
+    /// Returns the pre-cached problems count for a topo (no database access).
+    func problemsCount(for topoId: Int) -> Int {
+        cachedTopoProblemsCount[topoId] ?? 0
     }
     
     // MARK: - Navigate a boulder's topos
