@@ -68,6 +68,10 @@ class MapboxViewController: UIViewController {
             self.addLayers()
         }.store(in: &cancelables)
         
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: MapboxViewController, _) in
+            self.updateMapStyle()
+        }
+        
         mapView.mapboxMap.addInteraction(TapInteraction { context in
             self.findFeatures(tapPoint: context.point)
             return true
@@ -91,15 +95,6 @@ class MapboxViewController: UIViewController {
             }.store(in: &cancelables)
         
         self.view.addSubview(mapView)
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        // Check if the user interface style has changed
-        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            updateMapStyle()
-        }
     }
     
     private func updateMapStyle() {
