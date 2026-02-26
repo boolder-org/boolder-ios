@@ -14,6 +14,8 @@ struct AreaToolbarView: View {
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @FetchRequest(entity: Tick.entity(), sortDescriptors: []) var ticks: FetchedResults<Tick>
     
+    @State private var presentSearch = false
+    @State private var presentAllFilters = false
     @State private var showingAlertFavorite = false
     @State private var showingAlertTicked = false
     
@@ -21,40 +23,46 @@ struct AreaToolbarView: View {
         @Bindable var mapState = mapState
 
         return VStack {
-            HStack {
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        if(mapState.presentProblemDetails) {
-                            mapState.presentProblemDetails = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
-                                mapState.presentAreaView = true
-                            }
-                        }
-                        else {
+            HStack(spacing: 12) {
+                Button {
+                    presentSearch = true
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .adaptiveCircleButtonIcon()
+                }
+                .adaptiveCircleButtonStyle()
+                .sheet(isPresented: $presentSearch) {
+                    SearchSheetView()
+                }
+                
+                Button {
+                    if(mapState.presentProblemDetails) {
+                        mapState.presentProblemDetails = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // to avoid a weird race condition
                             mapState.presentAreaView = true
                         }
-                    } label: {
-                        HStack {
-                            Text(mapState.selectedArea?.name ?? "")
-                                .foregroundColor(.primary)
-                                .lineLimit(1)
-                                .truncationMode(.head)
-                            
-                            if let area = mapState.selectedArea {
-                                if let _ = area.warningFr, let _ = area.warningEn {
-                                    Image(systemName: "exclamationmark.triangle.fill")
-                                        .foregroundColor(.yellow)
-                                }
-                                
-                                Image(systemName: "info.circle")
-                            }
-                        }
-                        .padding(.vertical, 10)
                     }
-                    
-                    Spacer()
+                    else {
+                        mapState.presentAreaView = true
+                    }
+                } label: {
+                    HStack {
+                        Text(mapState.selectedArea?.name ?? "")
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
+                            .truncationMode(.head)
+                        
+                        if let area = mapState.selectedArea {
+                            if let _ = area.warningFr, let _ = area.warningEn {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundColor(.yellow)
+                            }
+                            
+                            Image(systemName: "info.circle")
+                        }
+                    }
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: .infinity)
                 }
                 .modify {
                     if #available(iOS 26, *) {
@@ -67,16 +75,30 @@ struct AreaToolbarView: View {
                             .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
                     }
                 }
-                .padding(.top, 8)
                 .sheet(isPresented: $mapState.presentAreaView) {
                     NavigationView {
                         AreaView(area: mapState.selectedArea!, linkToMap: false)
                     }
                 }
-
+                
+                Button {
+                    presentAllFilters = true
+                } label: {
+                    Image(systemName: filtersActive ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                        .adaptiveCircleButtonIcon()
+                }
+                .adaptiveCircleButtonStyle()
+                .sheet(isPresented: $presentAllFilters, onDismiss: {
+                    mapState.filtersRefresh()
+                }) {
+                    AllFiltersView()
+                        .presentationDetents([.medium, .large])
+                        .presentationDragIndicator(.hidden)
+                }
             }
             .padding(.horizontal)
-            
+            .padding(.top, 8)
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 8) {
                     Spacer()
@@ -266,9 +288,3 @@ private extension View {
         }
     }
 }
-
-//struct AreaToolbarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AreaToolbarView()
-//    }
-//}
