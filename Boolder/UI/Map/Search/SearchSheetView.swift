@@ -13,34 +13,11 @@ struct SearchSheetView: View {
     @Environment(MapState.self) private var mapState: MapState
     
     @State private var query = ""
-    @FocusState private var isFocused: Bool
+    @State private var isSearchFocused = false
     
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color(.secondaryLabel))
-                    
-                    TextField("search.placeholder", text: $query)
-                        .focused($isFocused)
-                        .disableAutocorrection(true)
-                    
-                    if !query.isEmpty {
-                        Button {
-                            query = ""
-                        } label: {
-                            Image(systemName: "multiply.circle.fill")
-                                .foregroundColor(Color(.secondaryLabel))
-                        }
-                    }
-                }
-                .padding(10)
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(10)
-                .padding(.horizontal)
-                .padding(.top, 8)
-                
                 if query.isEmpty {
                     VStack(spacing: 16) {
                         Text("search.examples")
@@ -112,6 +89,7 @@ struct SearchSheetView: View {
             }
             .navigationTitle("search.title")
             .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $query, isPresented: $isSearchFocused, placement: .navigationBarDrawer, prompt: "search.placeholder")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     if #available(iOS 26, *) {
@@ -129,7 +107,9 @@ struct SearchSheetView: View {
             }
         }
         .onAppear {
-            isFocused = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                isSearchFocused = true
+            }
         }
     }
     
