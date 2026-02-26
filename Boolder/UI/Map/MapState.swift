@@ -162,6 +162,26 @@ class MapState {
         filtersRefresh()
     }
     
+    private func clearFiltersIfProblemHidden(_ problem: Problem) {
+        var hidden = false
+        
+        if let range = filters.gradeRange {
+            if problem.grade < range.min || problem.grade >= range.max {
+                hidden = true
+            }
+        }
+        if filters.popular && !problem.featured {
+            hidden = true
+        }
+        if filters.favorite || filters.ticked {
+            hidden = true
+        }
+        
+        if hidden {
+            clearFilters()
+        }
+    }
+    
     func filtersRefresh() {
         refreshFiltersCount += 1
     }
@@ -188,6 +208,15 @@ class MapState {
     private var selection: Selection = .none {
         didSet {
             refreshBoulderCacheIfNeeded()
+            
+            switch selection {
+            case .problem(let problem, .circleView):
+                clearFiltersIfProblemHidden(problem)
+            case .topo:
+                clearFilters()
+            default:
+                break
+            }
             
             // Update narrow derived properties – they only publish a change
             // when the *mode* flips, not on every topo-to-topo swap.
