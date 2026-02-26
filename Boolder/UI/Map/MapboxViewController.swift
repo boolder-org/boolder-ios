@@ -15,6 +15,8 @@ class MapboxViewController: UIViewController {
     var delegate: MapBoxViewDelegate?
     var cancelables = Set<AnyCancelable>()
     
+    private var currentFilters: Filters?
+    
     // Map styles for light and dark mode
     private let lightStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")!
     private let darkStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cmkea670800a701sdc5n67k3q")!
@@ -61,11 +63,16 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.logoView.alpha = 0.5
         mapView.ornaments.attributionButton.alpha = 0.5
         
-        // Wait for the map to load its style before adding data.
-        mapView.mapboxMap.onStyleLoaded.observeNext { [weak self] _ in
+        // Re-add sources, layers, and filters every time the style is (re)loaded.
+        // This covers the initial load, dark/light mode switches, and background/foreground
+        // transitions where Mapbox silently reloads the style after the Metal context is released.
+        mapView.mapboxMap.onStyleLoaded.observe { [weak self] _ in
             guard let self = self else { return }
             self.addSources()
             self.addLayers()
+            if let filters = self.currentFilters {
+                self.applyFilters(filters)
+            }
         }.store(in: &cancelables)
         
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: MapboxViewController, _) in
@@ -98,18 +105,7 @@ class MapboxViewController: UIViewController {
     }
     
     private func updateMapStyle() {
-        mapView.mapboxMap.loadStyle(currentStyleURI) { [weak self] error in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error loading style: \(error)")
-                return
-            }
-            
-            // Re-add sources and layers after style change
-            self.addSources()
-            self.addLayers()
-        }
+        mapView.mapboxMap.loadStyle(currentStyleURI)
     }
 
     let problemsSourceLayerId = "problems-ayes3a" // name of the layer in the mapbox tileset
@@ -738,6 +734,8 @@ class MapboxViewController: UIViewController {
     }
 
     func applyFilters(_ filters: Filters) {
+        currentFilters = filters
+        
         do {
             let gradeMin = filters.gradeRange?.min ?? Grade.min
             let gradeMax = filters.gradeRange?.max ?? Grade.max
