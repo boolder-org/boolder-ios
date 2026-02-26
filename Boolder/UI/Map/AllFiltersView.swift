@@ -24,50 +24,38 @@ struct AllFiltersView: View {
         NavigationView {
             List {
                 Section {
-                    ForEach([GradeRange.beginner, .level4, .level5, .level6, .level7], id: \.self) { range in
-                        Button {
-                            mapState.unselectCircuit()
-                            if mapState.filters.gradeRange == range {
-                                mapState.filters.gradeRange = nil
-                            } else {
-                                mapState.filters.gradeRange = range
-                            }
-                            mapState.filtersRefresh()
+                    if circuits.count > 0 {
+                        NavigationLink {
+                            CircuitFilterList()
                         } label: {
                             HStack {
-                                Text(range.description).foregroundColor(.primary)
+                                Image("circuit")
+                                Text("Circuits")
                                 Spacer()
-                                if range == .beginner {
-                                    Text("filters.beginner").foregroundColor(Color(.systemGray))
-                                }
-                                if mapState.filters.gradeRange == range {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(.appGreen)
+                                if let circuit = mapState.selectedCircuit {
+                                    CircleView(number: "", color: circuit.color.uicolor, height: 16)
+                                    Text(circuit.color.shortName)
+                                        .foregroundColor(Color(.systemGray))
                                 }
                             }
+                            .foregroundColor(.primary)
                         }
                     }
                     
-                    NavigationLink(destination: GradeRangePickerView(
-                        gradeRange: mapState.filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")),
-                        onSave: { range in
-                            mapState.unselectCircuit()
-                            mapState.filters.gradeRange = range
-                            mapState.filtersRefresh()
-                        }
-                    )) {
+                    NavigationLink {
+                        LevelFilterList()
+                    } label: {
                         HStack {
-                            Text("filters.grade.range.custom").foregroundColor(.primary)
+                            Image(systemName: "chart.bar")
+                            Text("filters.levels")
                             Spacer()
-                            if let range = mapState.filters.gradeRange, range.isCustom {
-                                Text(range.description).foregroundColor(Color(.systemGray))
-                                Image(systemName: "checkmark")
-                                    .foregroundColor(.appGreen)
+                            if let range = mapState.filters.gradeRange {
+                                Text(range.description)
+                                    .foregroundColor(Color(.systemGray))
                             }
                         }
+                        .foregroundColor(.primary)
                     }
-                } header: {
-                    Text("filters.levels")
                 }
                 
                 Section {
@@ -193,4 +181,163 @@ struct AllFiltersView: View {
         }
     }
     
+    var circuits: [Circuit] {
+        guard let area = mapState.selectedArea else { return [] }
+        return area.circuits
+    }
+}
+
+// MARK: - Circuit Filter List
+
+private struct CircuitFilterList: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(MapState.self) private var mapState: MapState
+    
+    var body: some View {
+        List {
+            Section {
+                ForEach(circuits) { circuit in
+                    Button {
+                        if mapState.selectedCircuit?.id == circuit.id {
+                            mapState.unselectCircuit()
+                        } else {
+                            mapState.clearFilters()
+                            mapState.selectAndCenterOnCircuit(circuit)
+                            mapState.displayCircuitStartButton = true
+                        }
+                    } label: {
+                        HStack {
+                            CircleView(number: "", color: circuit.color.uicolor, height: 20)
+                            Text(circuit.color.longName)
+                            Spacer()
+                            if circuit.beginnerFriendly {
+                                Image(systemName: "face.smiling")
+                                    .foregroundColor(.green)
+                                    .font(.title3)
+                            }
+                            if circuit.dangerous {
+                                Image(systemName: "exclamationmark.circle")
+                                    .foregroundColor(.orange)
+                                    .font(.title3)
+                            }
+                            Text(circuit.averageGrade.string)
+                            
+                            if mapState.selectedCircuit?.id == circuit.id {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.appGreen)
+                            }
+                        }
+                        .foregroundColor(.primary)
+                    }
+                }
+            }
+        }
+        .navigationTitle("Circuits")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                confirmButton
+            }
+        }
+    }
+    
+    var confirmButton: some View {
+        Group {
+            if #available(iOS 26, *) {
+                Button(role: .confirm) { dismiss() }
+            } else {
+                Button {
+                    dismiss()
+                } label: {
+                    Text("OK").bold().padding(.vertical)
+                }
+            }
+        }
+    }
+    
+    var circuits: [Circuit] {
+        guard let area = mapState.selectedArea else { return [] }
+        return area.circuits
+    }
+}
+
+// MARK: - Level Filter List
+
+private struct LevelFilterList: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(MapState.self) private var mapState: MapState
+    
+    var body: some View {
+        @Bindable var mapState = mapState
+        
+        List {
+            Section {
+                ForEach([GradeRange.beginner, .level4, .level5, .level6, .level7], id: \.self) { range in
+                    Button {
+                        mapState.unselectCircuit()
+                        if mapState.filters.gradeRange == range {
+                            mapState.filters.gradeRange = nil
+                        } else {
+                            mapState.filters.gradeRange = range
+                        }
+                        mapState.filtersRefresh()
+                    } label: {
+                        HStack {
+                            Text(range.description).foregroundColor(.primary)
+                            Spacer()
+                            if range == .beginner {
+                                Text("filters.beginner").foregroundColor(Color(.systemGray))
+                            }
+                            if mapState.filters.gradeRange == range {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.appGreen)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            Section {
+                NavigationLink(destination: GradeRangePickerView(
+                    gradeRange: mapState.filters.gradeRange ?? GradeRange(min: Grade("1a"), max: Grade("9a+")),
+                    onSave: { range in
+                        mapState.unselectCircuit()
+                        mapState.filters.gradeRange = range
+                        mapState.filtersRefresh()
+                    }
+                )) {
+                    HStack {
+                        Text("filters.grade.range.custom").foregroundColor(.primary)
+                        Spacer()
+                        if let range = mapState.filters.gradeRange, range.isCustom {
+                            Text(range.description).foregroundColor(Color(.systemGray))
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.appGreen)
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("filters.levels")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                confirmButton
+            }
+        }
+    }
+    
+    var confirmButton: some View {
+        Group {
+            if #available(iOS 26, *) {
+                Button(role: .confirm) { dismiss() }
+            } else {
+                Button {
+                    dismiss()
+                } label: {
+                    Text("OK").bold().padding(.vertical)
+                }
+            }
+        }
+    }
 }
