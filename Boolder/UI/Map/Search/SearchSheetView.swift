@@ -110,14 +110,14 @@ struct SearchSheetView: View {
                     )
                 }
             }
-            .navigationTitle("search.placeholder")
+            .navigationTitle("search.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button {
                         dismiss()
                     } label: {
-                        Text("search.cancel")
+                        Image(systemName: "xmark.circle.fill")
                     }
                 }
             }
