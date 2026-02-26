@@ -24,7 +24,7 @@ struct AreaToolbarView: View {
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .adaptiveCircleButtonIcon()
-                        .frame(minWidth: 28, minHeight: 28)
+                        .frame(minWidth: 32, minHeight: 32)
                 }
                 .adaptiveCircleButtonStyle()
                 
@@ -54,7 +54,8 @@ struct AreaToolbarView: View {
                             Image(systemName: "info.circle")
                         }
                     }
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 12)
                     .frame(maxWidth: .infinity)
                 }
                 .modify {
@@ -80,7 +81,7 @@ struct AreaToolbarView: View {
                 } label: {
                     Image(systemName: "line.3.horizontal.decrease")
                         .adaptiveCircleButtonIcon()
-                        .frame(minWidth: 28, minHeight: 28)
+                        .frame(minWidth: 32, minHeight: 32)
                 }
                 .modify {
                     if #available(iOS 26, *) {
