@@ -19,8 +19,9 @@ class MapboxViewController: UIViewController {
     private let lightStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")!
     private let darkStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cmkea670800a701sdc5n67k3q")!
     
-    private var currentStyleURI: StyleURI {
-        traitCollection.userInterfaceStyle == .dark ? darkStyleURI : lightStyleURI
+    private var currentMapStyle: MapStyle {
+        let uri = traitCollection.userInterfaceStyle == .dark ? darkStyleURI : lightStyleURI
+        return MapStyle(uri: uri)
     }
     
     override public func viewDidLoad() {
@@ -33,7 +34,7 @@ class MapboxViewController: UIViewController {
         
         let myMapInitOptions = MapInitOptions(
             cameraOptions: cameraOptions,
-            styleURI: currentStyleURI
+            mapStyle: currentMapStyle
         )
         
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
@@ -103,7 +104,7 @@ class MapboxViewController: UIViewController {
     }
     
     private func updateMapStyle() {
-        mapView.mapboxMap.loadStyle(currentStyleURI) { [weak self] error in
+        mapView.mapboxMap.loadStyle(currentMapStyle) { [weak self] error in
             guard let self = self else { return }
             
             if let error = error {
