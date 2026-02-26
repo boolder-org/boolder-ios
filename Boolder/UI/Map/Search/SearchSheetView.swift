@@ -13,7 +13,7 @@ struct SearchSheetView: View {
     @Environment(MapState.self) private var mapState: MapState
     
     @State private var query = ""
-    @State private var isSearchFocused = false
+    @State private var isSearchFocused = true
     
     var body: some View {
         NavigationView {
@@ -87,11 +87,6 @@ struct SearchSheetView: View {
                         }
                     }
                 }
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                isSearchFocused = true
             }
         }
         .onChange(of: isSearchFocused) { oldValue, newValue in
