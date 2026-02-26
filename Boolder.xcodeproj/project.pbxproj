@@ -75,6 +75,10 @@
 		0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */; };
 		037AF0342C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */; };
 		037AF0352C538F2700AB9392 /* ClusterViewWithActionsheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */; };
+		03809ACF2F508F4600ACDC06 /* AllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03809ACE2F508F4600ACDC06 /* AllFiltersView.swift */; };
+		03809AD02F508F4600ACDC06 /* AllFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03809ACE2F508F4600ACDC06 /* AllFiltersView.swift */; };
+		03809AD22F50911E00ACDC06 /* SearchSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03809AD12F50911E00ACDC06 /* SearchSheetView.swift */; };
+		03809AD32F50911E00ACDC06 /* SearchSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03809AD12F50911E00ACDC06 /* SearchSheetView.swift */; };
 		038C2EF129201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF229201152006581CD /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF029201152006581CD /* MapContainerView.swift */; };
 		038C2EF429201315006581CD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C2EF329201315006581CD /* SearchView.swift */; };
@@ -235,6 +239,8 @@
 		03638D172F196CD4008A6EB8 /* ProblemActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemActionButtonsView.swift; sourceTree = "<group>"; };
 		03715289296F5FE0008FD130 /* AreaLevelsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaLevelsBarView.swift; sourceTree = "<group>"; };
 		037AF0332C538F2700AB9392 /* ClusterViewWithActionsheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterViewWithActionsheet.swift; sourceTree = "<group>"; };
+		03809ACE2F508F4600ACDC06 /* AllFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFiltersView.swift; sourceTree = "<group>"; };
+		03809AD12F50911E00ACDC06 /* SearchSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSheetView.swift; sourceTree = "<group>"; };
 		038C2EF029201152006581CD /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		038C2EF329201315006581CD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		038F7F3E2C3A8CC500AE7028 /* ClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
@@ -360,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				038C2EF329201315006581CD /* SearchView.swift */,
+				03809AD12F50911E00ACDC06 /* SearchSheetView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -399,6 +406,7 @@
 				03C104E8290ACC1A007A94D7 /* MapboxViewController.swift */,
 				038F7F432C3A8CC500AE7028 /* Download */,
 				033F70D329191755000DD3F4 /* FiltersView.swift */,
+				03809ACE2F508F4600ACDC06 /* AllFiltersView.swift */,
 				03DE504427BFA895003E5B2A /* GradeRangePickerView.swift */,
 				0314FFE42950786F00B7E249 /* AreaToolbarView.swift */,
 				03F21EE32956FFCA00D6956E /* CircuitPickerView.swift */,
@@ -761,6 +769,8 @@
 				3737991C258E619400711EDA /* ProblemDetailsView.swift in Sources */,
 				03638D132F196CBA008A6EB8 /* ProblemSaveManager.swift in Sources */,
 				03638D142F196CBA008A6EB8 /* ProblemInfoView.swift in Sources */,
+				03809AD02F508F4600ACDC06 /* AllFiltersView.swift in Sources */,
+				03809AD22F50911E00ACDC06 /* SearchSheetView.swift in Sources */,
 				031F36C0291E4E4400BD0C2B /* TickList.swift in Sources */,
 				030AC1AD27BBF53D00AF85E7 /* ActivityView.swift in Sources */,
 				0371528B296F5FE0008FD130 /* AreaLevelsBarView.swift in Sources */,
@@ -854,6 +864,8 @@
 				031A4CAB296B0A74002CBF52 /* PoiActionSheet.swift in Sources */,
 				03638D152F196CBA008A6EB8 /* ProblemSaveManager.swift in Sources */,
 				03638D162F196CBA008A6EB8 /* ProblemInfoView.swift in Sources */,
+				03809ACF2F508F4600ACDC06 /* AllFiltersView.swift in Sources */,
+				03809AD32F50911E00ACDC06 /* SearchSheetView.swift in Sources */,
 				038F7F572C3A8D3700AE7028 /* Cluster.swift in Sources */,
 				37638B8624546D9800C5CD82 /* ProblemDetailsView.swift in Sources */,
 				038F7F4E2C3A8CC500AE7028 /* FabButton.swift in Sources */,
