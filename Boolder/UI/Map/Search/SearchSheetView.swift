@@ -94,6 +94,11 @@ struct SearchSheetView: View {
                 isSearchFocused = true
             }
         }
+        .onChange(of: isSearchFocused) { oldValue, newValue in
+            if oldValue && !newValue {
+                dismiss()
+            }
+        }
     }
     
     private var problems: [Problem] {
