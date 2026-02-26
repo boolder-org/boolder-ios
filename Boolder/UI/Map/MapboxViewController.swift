@@ -53,15 +53,15 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
         mapView.ornaments.options.compass.position = .bottomLeft
-        mapView.ornaments.options.compass.margins = CGPoint(x: 8, y: 40)
+        mapView.ornaments.options.compass.margins = CGPoint(x: 8, y: 72)
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
-        mapView.ornaments.options.attributionButton.margins = CGPoint(x: -4, y: 6)
-        mapView.ornaments.options.logo.margins = CGPoint(x: 36, y: 8)
+        mapView.ornaments.options.attributionButton.margins = CGPoint(x: 4, y: 0)
+        mapView.ornaments.options.logo.margins = CGPoint(x: 16, y: 8)
         
         // Make attribution elements less noticeable
         mapView.ornaments.logoView.alpha = 0.5
-        mapView.ornaments.attributionButton.alpha = 0.5
+        mapView.ornaments.attributionButton.alpha = 0.2
         
         // Re-add sources, layers, and filters every time the style is (re)loaded.
         // This covers the initial load, dark/light mode switches, and background/foreground
