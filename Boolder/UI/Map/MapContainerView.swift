@@ -135,67 +135,43 @@ struct MapContainerView: View {
     var aboveSheetNavigationButtons : some View {
         VStack {
             HStack {
-//                if mapState.presentProblemDetails {
-//                    
-//                        Button(action: {
-//                            mapState.presentProblemDetails = false
-//                        }) {
-//                            Image(systemName: "xmark")
-//                                .modify {
-//                                    if #available(iOS 26, *) {
-//                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-//                                            .padding(4)
-//                                    } else {
-//                                        $0.foregroundColor(.primary)
-//                                            .padding(10)
-//                                    }
-//                                }
-//                        }
-//                        .modify {
-//                            if #available(iOS 26, *) {
-//                                $0.buttonStyle(.glass)
-//                                    .buttonBorderShape(.circle)
-//                            } else {
-//                                $0
-//                                    .background(Color(.systemBackground))
-//                                    .clipShape(Circle())
-//                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-//                            }
-//                        }
-//                }
-                
-                Spacer()
-                
-                HStack(spacing: 8) {
-                    
+                if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem?.circuitId {
                     if mapState.presentProblemDetails {
-                        Button(action: {
-                            mapState.requestTopoFullScreenPresentation()
-                        }) {
-                            Image(systemName: "arrow.down.left.and.arrow.up.right")
-                                .adaptiveCircleButtonIcon()
-                        }
-                        .adaptiveCircleButtonStyle()
+                        fullScreenButton
                     }
                     
-                    if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem?.circuitId {
-                        if #available(iOS 26.0, *) {
-                            GlassEffectContainer {
-                                circuitButtonsContent(circuit: circuit)
-                            }
-                        } else {
+                    Spacer()
+                    
+                    if #available(iOS 26.0, *) {
+                        GlassEffectContainer {
                             circuitButtonsContent(circuit: circuit)
                         }
+                    } else {
+                        circuitButtonsContent(circuit: circuit)
+                    }
+                } else {
+                    Spacer()
+                    
+                    if mapState.presentProblemDetails {
+                        fullScreenButton
                     }
                 }
             }
             .padding(.horizontal)
             .padding(.top, 8)
             .padding(.bottom, 16)
-            
-//            Spacer()
         }
         .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+    }
+    
+    var fullScreenButton: some View {
+        Button(action: {
+            mapState.requestTopoFullScreenPresentation()
+        }) {
+            Image(systemName: "arrow.down.left.and.arrow.up.right")
+                .adaptiveCircleButtonIcon()
+        }
+        .adaptiveCircleButtonStyle()
     }
     
     func circuitButtonsContent(circuit: Circuit) -> some View {
