@@ -266,13 +266,19 @@ struct MapContainerView: View {
                         Spacer()
                     }
                     .frame(maxWidth: 400)
-                    .padding(10)
-                    .padding(.horizontal, 25)
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.padding(.vertical, 4)
+                        } else {
+                            $0
+                                .padding(10)
+                                .padding(.horizontal, 25)
+                        }
+                    }
                 }
-                .buttonStyle(.plain)
                 .modify {
                     if #available(iOS 26, *) {
-                        $0.glassEffect()
+                        $0.buttonStyle(.glass)
                     } else {
                         $0
                             .background(Color(.systemBackground))
