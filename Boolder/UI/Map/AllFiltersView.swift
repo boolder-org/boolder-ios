@@ -153,9 +153,12 @@ struct AllFiltersView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button {
-                    mapState.clearFilters()
-                    mapState.unselectCircuit()
                     dismiss()
+                    Task { @MainActor in
+                        try? await Task.sleep(for: .milliseconds(350))
+                        mapState.clearFilters()
+                        mapState.unselectCircuit()
+                    }
                 } label: {
                     Text("filters.clear")
                         .padding(.vertical)
