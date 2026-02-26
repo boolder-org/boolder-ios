@@ -27,7 +27,7 @@ struct SearchSheetView: View {
                         }
                         
                         Section(header: Text("search.popular_problems")) {
-                            ForEach(Problem.popular(limit: 10), id: \.self) { problem in
+                            ForEach(Problem.popularUniqueAreas(limit: 10), id: \.self) { problem in
                                 searchProblemRow(problem: problem)
                             }
                         }
