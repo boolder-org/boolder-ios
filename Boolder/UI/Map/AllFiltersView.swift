@@ -26,7 +26,7 @@ struct AllFiltersView: View {
                 Section {
                     if circuits.count > 0 {
                         NavigationLink {
-                            CircuitFilterList()
+                            CircuitFilterList(dismissSheet: dismiss)
                         } label: {
                             HStack {
                                 Image("circuit")
@@ -43,7 +43,7 @@ struct AllFiltersView: View {
                     }
                     
                     NavigationLink {
-                        LevelFilterList()
+                        LevelFilterList(dismissSheet: dismiss)
                     } label: {
                         HStack {
                             Image(systemName: "chart.bar")
@@ -190,7 +190,7 @@ struct AllFiltersView: View {
 // MARK: - Circuit Filter List
 
 private struct CircuitFilterList: View {
-    @Environment(\.dismiss) private var dismiss
+    var dismissSheet: DismissAction
     @Environment(MapState.self) private var mapState: MapState
     
     var body: some View {
@@ -244,10 +244,10 @@ private struct CircuitFilterList: View {
     var confirmButton: some View {
         Group {
             if #available(iOS 26, *) {
-                Button(role: .confirm) { dismiss() }
+                Button(role: .confirm) { dismissSheet() }
             } else {
                 Button {
-                    dismiss()
+                    dismissSheet()
                 } label: {
                     Text("OK").bold().padding(.vertical)
                 }
@@ -264,7 +264,7 @@ private struct CircuitFilterList: View {
 // MARK: - Level Filter List
 
 private struct LevelFilterList: View {
-    @Environment(\.dismiss) private var dismiss
+    var dismissSheet: DismissAction
     @Environment(MapState.self) private var mapState: MapState
     
     var body: some View {
@@ -330,10 +330,10 @@ private struct LevelFilterList: View {
     var confirmButton: some View {
         Group {
             if #available(iOS 26, *) {
-                Button(role: .confirm) { dismiss() }
+                Button(role: .confirm) { dismissSheet() }
             } else {
                 Button {
-                    dismiss()
+                    dismissSheet()
                 } label: {
                     Text("OK").bold().padding(.vertical)
                 }
