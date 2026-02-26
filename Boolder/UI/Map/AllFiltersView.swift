@@ -155,6 +155,7 @@ struct AllFiltersView: View {
                 leading: Button {
                     mapState.clearFilters()
                     mapState.unselectCircuit()
+                    dismiss()
                 } label: {
                     Text("filters.clear")
                         .padding(.vertical)
