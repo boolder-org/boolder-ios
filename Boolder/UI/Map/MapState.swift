@@ -105,7 +105,6 @@ class MapState {
         }
     }
     
-    // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem, source: Selection.Source = .other) {
         selection = .problem(problem: problem, source: source)
         
