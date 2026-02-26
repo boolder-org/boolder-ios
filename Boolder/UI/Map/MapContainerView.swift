@@ -51,6 +51,7 @@ struct MapContainerView: View {
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {
                 mapState.deselectTopo()
+                mapState.restoreSavedFilters()
             }
         }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in

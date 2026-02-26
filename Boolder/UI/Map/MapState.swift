@@ -25,6 +25,8 @@ class MapState {
     var selectedPoi: Poi? = nil
     var filters: Filters = Filters()
     private(set) var refreshFiltersCount: Int = 0
+    private var savedFilters: Filters? = nil
+    private var savedCircuit: Circuit? = nil
     
     var presentProblemDetails = false
     var presentFilters = false
@@ -162,6 +164,45 @@ class MapState {
         filtersRefresh()
     }
     
+    func suspendFiltersIfNeeded(for problem: Problem) {
+        var hidden = false
+        
+        if let range = filters.gradeRange {
+            if problem.grade < range.min || problem.grade >= range.max {
+                hidden = true
+            }
+        }
+        if filters.popular && !problem.featured {
+            hidden = true
+        }
+        if filters.favorite || filters.ticked {
+            hidden = true
+        }
+        if let circuit = selectedCircuit, problem.circuitId != circuit.id {
+            hidden = true
+        }
+        
+        if hidden {
+            savedFilters = filters
+            savedCircuit = selectedCircuit
+            filters = Filters()
+            selectedCircuit = nil
+            filtersRefresh()
+        }
+    }
+    
+    func restoreSavedFilters() {
+        if let saved = savedFilters {
+            filters = saved
+            savedFilters = nil
+            if let circuit = savedCircuit {
+                selectedCircuit = circuit
+            }
+            savedCircuit = nil
+            filtersRefresh()
+        }
+    }
+    
     func filtersRefresh() {
         refreshFiltersCount += 1
     }
@@ -189,6 +230,10 @@ class MapState {
         didSet {
             refreshBoulderCacheIfNeeded()
             
+            if let problem = selectionProblem {
+                suspendFiltersIfNeeded(for: problem)
+            }
+            
             // Update narrow derived properties – they only publish a change
             // when the *mode* flips, not on every topo-to-topo swap.
             let newMode = { if case .topo = selection { return true } else { return false } }()
@@ -203,6 +248,14 @@ class MapState {
                 if case .problem(let p, _) = selection { return p.id } else { return 0 }
             }()
             if activeProblemId != newProblemId { activeProblemId = newProblemId }
+        }
+    }
+    
+    private var selectionProblem: Problem? {
+        switch selection {
+        case .problem(let problem, _): return problem
+        case .topo(let topo): return topo.topProblem
+        case .none: return nil
         }
     }
     
