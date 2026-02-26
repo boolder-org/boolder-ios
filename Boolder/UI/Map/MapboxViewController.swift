@@ -16,6 +16,7 @@ class MapboxViewController: UIViewController {
     var cancelables = Set<AnyCancelable>()
     
     private var currentFilters: Filters?
+    private var currentCircuit: Circuit?
     
     // Map styles for light and dark mode
     private let lightStyleURI = StyleURI(rawValue: "mapbox://styles/nmondollot/cl95n147u003k15qry7pvfmq2")!
@@ -72,6 +73,9 @@ class MapboxViewController: UIViewController {
             self.addLayers()
             if let filters = self.currentFilters {
                 self.applyFilters(filters)
+            }
+            if let circuit = self.currentCircuit {
+                self.setCircuitAsSelected(circuit: circuit)
             }
         }.store(in: &cancelables)
         
@@ -880,6 +884,8 @@ class MapboxViewController: UIViewController {
     }
     
     func setCircuitAsSelected(circuit: Circuit) {
+        currentCircuit = circuit
+        
         do {
             try ["circuits"].forEach { layerId in
                 try mapView.mapboxMap.updateLayer(withId: layerId, type: LineLayer.self) { layer in
@@ -911,6 +917,8 @@ class MapboxViewController: UIViewController {
     }
     
     func unselectCircuit() {
+        currentCircuit = nil
+        
         do {
             try ["circuits"].forEach { layerId in
                 try mapView.mapboxMap.updateLayer(withId: layerId, type: LineLayer.self) { layer in
