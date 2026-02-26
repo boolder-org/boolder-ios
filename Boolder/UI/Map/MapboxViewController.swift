@@ -53,7 +53,7 @@ class MapboxViewController: UIViewController {
         mapView.ornaments.options.scaleBar.visibility = .hidden
         
         mapView.ornaments.options.compass.position = .bottomLeft
-        mapView.ornaments.options.compass.margins = CGPoint(x: 8, y: 72)
+        mapView.ornaments.options.compass.margins = CGPoint(x: 12, y: 72)
         
         mapView.ornaments.options.attributionButton.position = .bottomLeading
         mapView.ornaments.options.attributionButton.margins = CGPoint(x: 4, y: 0)
