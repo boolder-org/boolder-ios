@@ -46,7 +46,7 @@ struct MapContainerView: View {
             
             AreaToolbarView()
                 .zIndex(30)
-                .opacity(mapState.selectedArea != nil && !mapState.presentProblemDetails ? 1 : 0)
+                .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {

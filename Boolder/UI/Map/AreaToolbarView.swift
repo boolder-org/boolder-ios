@@ -25,6 +25,7 @@ struct AreaToolbarView: View {
         return VStack {
             HStack(spacing: 12) {
                 Button {
+                    mapState.presentProblemDetails = false
                     presentSearch = true
                 } label: {
                     Image(systemName: "magnifyingglass")
@@ -82,6 +83,7 @@ struct AreaToolbarView: View {
                 }
                 
                 Button {
+                    mapState.presentProblemDetails = false
                     presentAllFilters = true
                 } label: {
                     Image(systemName: filtersActive ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
@@ -222,7 +224,7 @@ struct AreaToolbarView: View {
             }
             .scrollClipDisabled()
             .padding(.top, 8)
-            .opacity(mapState.presentProblemDetails ? 0 : 1)
+            .opacity(mapState.presentProblemDetails || filtersActive ? 0 : 1)
             
             Spacer()
         }
