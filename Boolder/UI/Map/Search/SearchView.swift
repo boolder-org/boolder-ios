@@ -173,9 +173,10 @@ struct SearchView: View {
     }
     
     func dismiss() {
-        isEditing =  false
+        isEditing = false
         isFocused = false
         query = ""
+        mapState.presentSearch = false
         
         UIApplication.shared.dismissKeyboard()
     }

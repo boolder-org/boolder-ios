@@ -30,6 +30,7 @@ class MapState {
     var presentFilters = false
     var presentAreaView = false
     var presentCircuitPicker = false
+    var presentSearch = false
     var displayCircuitStartButton = false
     private(set) var presentTopoFullScreenRequestCount: Int = 0
     
