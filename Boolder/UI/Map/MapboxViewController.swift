@@ -1027,10 +1027,10 @@ class MapboxViewController: UIViewController {
     let flyinDuration = 0.5
     let safePadding = UIEdgeInsets(top: 180, left: 20, bottom: 180, right: 20)
     var safePaddingForBottomSheet : UIEdgeInsets {
-        UIEdgeInsets(top: 20, left: 0, bottom: view.bounds.height/2 + 40, right: 0)
+        UIEdgeInsets(top: 100, left: 0, bottom: view.bounds.height/2 + 40, right: 0)
     }
     var safePaddingForBoulder: UIEdgeInsets {
-        UIEdgeInsets(top: 40, left: 20, bottom: view.bounds.height/2 + 40, right: 20)
+        UIEdgeInsets(top: 100, left: 20, bottom: view.bounds.height/2 + 40, right: 20)
     }
     let safePaddingYForAreaDetector : CGFloat = 30 // TODO: check if it works
     
