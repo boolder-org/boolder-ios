@@ -55,8 +55,11 @@ struct BoulderProblemsListView: View {
     
     private func problemRow(_ problem: Problem) -> some View {
         Button {
-            mapState.selectProblem(problem)
             dismiss()
+            Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(150))
+                mapState.selectProblem(problem)
+            }
         } label: {
             HStack {
                 ProblemCircleView(problem: problem)

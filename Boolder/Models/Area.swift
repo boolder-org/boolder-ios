@@ -46,6 +46,10 @@ struct Area : Identifiable {
             }
     }
     
+    static var popularAreas: [Area] {
+        all.filter { $0.popular }
+    }
+    
     var popularProblems: [Problem] {
         problems.filter{$0.featured}
     }

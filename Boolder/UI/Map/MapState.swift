@@ -30,6 +30,7 @@ class MapState {
     var presentFilters = false
     var presentAreaView = false
     var presentCircuitPicker = false
+    var presentSearch = false
     var displayCircuitStartButton = false
     private(set) var presentTopoFullScreenRequestCount: Int = 0
     
@@ -104,7 +105,6 @@ class MapState {
         }
     }
     
-    // TODO: check if problem is hidden because of the grade filter (in which case, should we clear the filter?)
     func selectProblem(_ problem: Problem, source: Selection.Source = .other) {
         selection = .problem(problem: problem, source: source)
         
@@ -161,6 +161,26 @@ class MapState {
         filtersRefresh()
     }
     
+    private func clearFiltersIfProblemHidden(_ problem: Problem) {
+        var hidden = false
+        
+        if let range = filters.gradeRange {
+            if problem.grade < range.min || problem.grade >= range.max {
+                hidden = true
+            }
+        }
+        if filters.popular && !problem.featured {
+            hidden = true
+        }
+        if filters.favorite || filters.ticked {
+            hidden = true
+        }
+        
+        if hidden {
+            clearFilters()
+        }
+    }
+    
     func filtersRefresh() {
         refreshFiltersCount += 1
     }
@@ -187,6 +207,15 @@ class MapState {
     private var selection: Selection = .none {
         didSet {
             refreshBoulderCacheIfNeeded()
+            
+            switch selection {
+            case .problem(let problem, .circleView):
+                clearFiltersIfProblemHidden(problem)
+            case .topo:
+                clearFilters()
+            default:
+                break
+            }
             
             // Update narrow derived properties – they only publish a change
             // when the *mode* flips, not on every topo-to-topo swap.

@@ -54,6 +54,8 @@
 "search.no_results" = "No results";
 "search.request_error" = "Connection issue";
 "search.examples" = "Examples:";
+"search.popular_areas" = "Popular areas";
+"search.popular_problems" = "Popular problems";
 
 // MARK: Discover view
 "discover.title" = "Discover";

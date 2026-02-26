@@ -193,6 +193,37 @@ extension Problem {
         }
     }
     
+    static func popular(limit: Int = 10) -> [Problem] {
+        let query = Table("problems")
+            .order(popularity.desc)
+            .limit(limit)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { p in
+                Problem.load(id: p[id])
+            }.compactMap { $0 }
+        }
+        catch {
+            print(error)
+            return []
+        }
+    }
+    
+    /// Returns popular problems with at most one problem per area, for variety in search suggestions.
+    static func popularUniqueAreas(limit: Int = 10) -> [Problem] {
+        let all = popular(limit: 100)
+        var result: [Problem] = []
+        var seenAreaIds: Set<Int> = []
+        for problem in all {
+            if result.count >= limit { break }
+            if !seenAreaIds.contains(problem.areaId) {
+                seenAreaIds.insert(problem.areaId)
+                result.append(problem)
+            }
+        }
+        return result
+    }
+    
     static func search(_ text: String) -> [Problem] {
         let query = Table("problems")
             .order(popularity.desc)

@@ -40,13 +40,17 @@ struct MapContainerView: View {
             fabButtonsContainer
                 .zIndex(10)
             
-            SearchView()
-                .zIndex(20)
-                .opacity(mapState.selectedArea != nil ? 0 : 1)
+            if mapState.selectedArea == nil {
+                searchButtonOverlay
+                    .zIndex(20)
+            }
             
             AreaToolbarView()
                 .zIndex(30)
-                .opacity(mapState.selectedArea != nil && !mapState.presentProblemDetails ? 1 : 0)
+                .opacity(mapState.selectedArea != nil ? 1 : 0)
+        }
+        .sheet(isPresented: $mapState.presentSearch) {
+            SearchSheetView()
         }
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {
@@ -135,67 +139,43 @@ struct MapContainerView: View {
     var aboveSheetNavigationButtons : some View {
         VStack {
             HStack {
-//                if mapState.presentProblemDetails {
-//                    
-//                        Button(action: {
-//                            mapState.presentProblemDetails = false
-//                        }) {
-//                            Image(systemName: "xmark")
-//                                .modify {
-//                                    if #available(iOS 26, *) {
-//                                        $0.font(.system(size: UIFontMetrics.default.scaledValue(for: 20)))
-//                                            .padding(4)
-//                                    } else {
-//                                        $0.foregroundColor(.primary)
-//                                            .padding(10)
-//                                    }
-//                                }
-//                        }
-//                        .modify {
-//                            if #available(iOS 26, *) {
-//                                $0.buttonStyle(.glass)
-//                                    .buttonBorderShape(.circle)
-//                            } else {
-//                                $0
-//                                    .background(Color(.systemBackground))
-//                                    .clipShape(Circle())
-//                                    .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
-//                            }
-//                        }
-//                }
-                
-                Spacer()
-                
-                HStack(spacing: 8) {
-                    
+                if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem?.circuitId {
                     if mapState.presentProblemDetails {
-                        Button(action: {
-                            mapState.requestTopoFullScreenPresentation()
-                        }) {
-                            Image(systemName: "arrow.down.left.and.arrow.up.right")
-                                .adaptiveCircleButtonIcon()
-                        }
-                        .adaptiveCircleButtonStyle()
+                        fullScreenButton
                     }
                     
-                    if let circuit = mapState.selectedCircuit, circuit.id == mapState.selectedProblem?.circuitId {
-                        if #available(iOS 26.0, *) {
-                            GlassEffectContainer {
-                                circuitButtonsContent(circuit: circuit)
-                            }
-                        } else {
+                    Spacer()
+                    
+                    if #available(iOS 26.0, *) {
+                        GlassEffectContainer {
                             circuitButtonsContent(circuit: circuit)
                         }
+                    } else {
+                        circuitButtonsContent(circuit: circuit)
+                    }
+                } else {
+                    Spacer()
+                    
+                    if mapState.presentProblemDetails {
+                        fullScreenButton
                     }
                 }
             }
             .padding(.horizontal)
             .padding(.top, 8)
             .padding(.bottom, 16)
-            
-//            Spacer()
         }
         .offset(CGSize(width: 0, height: offsetToBeOnTopOfSheet)) // FIXME: might break in the future (we assume the sheet is exactly half the screen height)
+    }
+    
+    var fullScreenButton: some View {
+        Button(action: {
+            mapState.requestTopoFullScreenPresentation()
+        }) {
+            Image(systemName: "arrow.down.left.and.arrow.up.right")
+                .adaptiveCircleButtonIcon()
+        }
+        .adaptiveCircleButtonStyle()
     }
     
     func circuitButtonsContent(circuit: Circuit) -> some View {
@@ -268,6 +248,52 @@ struct MapContainerView: View {
                     }
                 }
             }
+        }
+    }
+    
+    var searchButtonOverlay: some View {
+        VStack {
+            HStack {
+                Button {
+                    mapState.presentProblemDetails = false
+                    mapState.presentSearch = true
+                } label: {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color(.secondaryLabel))
+                        Text("search.placeholder")
+                            .foregroundColor(Color(.secondaryLabel))
+                        Spacer()
+                    }
+                    .frame(maxWidth: 400)
+                    .modify {
+                        if #available(iOS 26, *) {
+                            $0.padding(.vertical, 4)
+                        } else {
+                            $0
+                                .padding(10)
+                                .padding(.horizontal, 25)
+                        }
+                    }
+                }
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.buttonStyle(.glass)
+                    } else {
+                        $0
+                            .background(Color(.systemBackground))
+                            .cornerRadius(12)
+                            .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                    }
+                }
+                .contentShape(Rectangle())
+                
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
+            
+            Spacer()
         }
     }
     
