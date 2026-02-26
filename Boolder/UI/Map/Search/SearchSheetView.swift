@@ -70,6 +70,8 @@ struct SearchSheetView: View {
                                 ForEach(areas, id: \.self) { area in
                                     Button {
                                         dismiss()
+                                        mapState.clearFilters()
+                                        mapState.unselectCircuit()
                                         mapState.selectArea(area)
                                         mapState.centerOnArea(area)
                                     } label: {
@@ -84,6 +86,8 @@ struct SearchSheetView: View {
                                 ForEach(problems, id: \.self) { problem in
                                     Button {
                                         dismiss()
+                                        mapState.clearFilters()
+                                        mapState.unselectCircuit()
                                         mapState.selectAndPresentAndCenterOnProblem(problem)
                                     } label: {
                                         HStack {
