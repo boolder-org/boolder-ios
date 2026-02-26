@@ -74,7 +74,7 @@ struct SearchSheetView: View {
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $query, isPresented: $isSearchFocused, placement: .navigationBarDrawer, prompt: "search.placeholder")
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
+                ToolbarItem(placement: .topBarTrailing) {
                     if #available(iOS 26, *) {
                         Button(role: .close) {
                             dismiss()
