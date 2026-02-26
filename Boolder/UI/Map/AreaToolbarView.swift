@@ -91,22 +91,9 @@ struct AreaToolbarView: View {
                                 Image("circuit")
                                 Text(circuitFilterActive ? mapState.selectedCircuit!.color.shortName : "Circuits")
                             }
-                            .font(.callout.weight(.regular))
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .foregroundColor(circuitFilterActive ? Color(UIColor.systemBackground) : .primary)
-                            .modify {
-                                if #available(iOS 26, *) {
-                                    $0.glassEffect(circuitFilterActive ? .regular.tint(.appGreen) : .regular)
-                                }
-                                else {
-                                    $0
-                                        .background(circuitFilterActive ? Color.appGreen : Color(UIColor.systemBackground))
-                                        .cornerRadius(32)
-                                }
-                            }
-                            
+                            .filterLabelStyle(isActive: circuitFilterActive)
                         }
+                        .filterButtonStyle(isActive: circuitFilterActive)
                         .sheet(isPresented: $mapState.presentCircuitPicker, onDismiss: {
                             
                         }) {
@@ -123,22 +110,9 @@ struct AreaToolbarView: View {
                             Image(systemName: "chart.bar")
                             Text(mapState.filters.gradeRange?.description ?? NSLocalizedString("filters.levels", comment: ""))
                         }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.gradeRange != nil ? Color(UIColor.systemBackground) : .primary)
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.glassEffect(mapState.filters.gradeRange != nil ? .regular.tint(.appGreen) : .regular)
-                            }
-                            else {
-                                $0
-                                    .background(mapState.filters.gradeRange != nil ? Color.appGreen : Color(UIColor.systemBackground))
-                                    .cornerRadius(32)
-                            }
-                        }
-                        
+                        .filterLabelStyle(isActive: mapState.filters.gradeRange != nil)
                     }
+                    .filterButtonStyle(isActive: mapState.filters.gradeRange != nil)
                     .sheet(isPresented: $mapState.presentFilters, onDismiss: {
                         mapState.filtersRefresh() // TODO: simplify refresh logic
                     }) {
@@ -157,22 +131,9 @@ struct AreaToolbarView: View {
                             Image(systemName: "heart")
                             Text("filters.popular")
                         }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.popular ? Color(UIColor.systemBackground) : .primary)
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.glassEffect(mapState.filters.popular ? .regular.tint(.appGreen) : .regular)
-                            }
-                            else {
-                                $0
-                                    .background(mapState.filters.popular ? Color.appGreen : Color(UIColor.systemBackground))
-                                    .cornerRadius(32)
-                            }
-                        }
-                        
+                        .filterLabelStyle(isActive: mapState.filters.popular)
                     }
+                    .filterButtonStyle(isActive: mapState.filters.popular)
                     
                     Button {
                         if(favorites.isEmpty) {
@@ -197,21 +158,9 @@ struct AreaToolbarView: View {
                             Image(systemName: "star")
                             Text("filters.favorite")
                         }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.favorite ? Color(UIColor.systemBackground) : .primary)
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.glassEffect(mapState.filters.favorite ? .regular.tint(.appGreen) : .regular)
-                            }
-                            else {
-                                $0
-                                    .background(mapState.filters.favorite ? Color.appGreen : Color(UIColor.systemBackground))
-                                    .cornerRadius(32)
-                            }
-                        }
+                        .filterLabelStyle(isActive: mapState.filters.favorite)
                     }
+                    .filterButtonStyle(isActive: mapState.filters.favorite)
                     .alert(isPresented: $showingAlertFavorite) {
                         Alert(title: Text("filters.no_favorites_alert.title"), message: Text("filters.no_favorites_alert.message"), dismissButton: .default(Text("OK")))
                     }
@@ -238,21 +187,9 @@ struct AreaToolbarView: View {
                             Image(systemName: "checkmark.circle")
                             Text("filters.ticked")
                         }
-                        .font(.callout.weight(.regular))
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .foregroundColor(mapState.filters.ticked ? Color(UIColor.systemBackground) : .primary)
-                        .modify {
-                            if #available(iOS 26, *) {
-                                $0.glassEffect(mapState.filters.ticked ? .regular.tint(.appGreen) : .regular)
-                            }
-                            else {
-                                $0
-                                    .background(mapState.filters.ticked ? Color.appGreen : Color(UIColor.systemBackground))
-                                    .cornerRadius(32)
-                            }
-                        }
+                        .filterLabelStyle(isActive: mapState.filters.ticked)
                     }
+                    .filterButtonStyle(isActive: mapState.filters.ticked)
                     .alert(isPresented: $showingAlertTicked) {
                         Alert(title: Text("filters.no_ticks_alert.title"), message: Text("filters.no_ticks_alert.message"), dismissButton: .default(Text("OK")))
                     }
@@ -291,6 +228,42 @@ struct AreaToolbarView: View {
         guard let area = mapState.selectedArea else { return [] }
         
         return area.circuits
+    }
+}
+
+private extension View {
+    func filterLabelStyle(isActive: Bool) -> some View {
+        self
+            .font(.callout.weight(.regular))
+            .modify {
+                if #available(iOS 26, *) {
+                    $0
+                }
+                else {
+                    $0
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .foregroundColor(isActive ? Color(UIColor.systemBackground) : .primary)
+                        .background(isActive ? Color.appGreen : Color(UIColor.systemBackground))
+                        .cornerRadius(32)
+                }
+            }
+    }
+    
+    func filterButtonStyle(isActive: Bool) -> some View {
+        self.modify {
+            if #available(iOS 26, *) {
+                if isActive {
+                    $0.buttonStyle(.glassProminent)
+                }
+                else {
+                    $0.buttonStyle(.glass)
+                }
+            }
+            else {
+                $0
+            }
+        }
     }
 }
 
