@@ -54,7 +54,7 @@ struct AreaToolbarView: View {
                             Image(systemName: "info.circle")
                         }
                     }
-                    .padding(.vertical, 12)
+                    .padding(.vertical, 10)
                     .padding(.horizontal, 12)
                     .frame(maxWidth: .infinity)
                 }
