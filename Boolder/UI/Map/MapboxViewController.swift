@@ -33,8 +33,7 @@ class MapboxViewController: UIViewController {
         )
         
         let myMapInitOptions = MapInitOptions(
-            cameraOptions: cameraOptions,
-            mapStyle: currentMapStyle
+            mapStyle: currentMapStyle, cameraOptions: cameraOptions
         )
         
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
