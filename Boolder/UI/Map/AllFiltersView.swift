@@ -23,47 +23,6 @@ struct AllFiltersView: View {
         
         NavigationView {
             List {
-                if circuits.count > 0 {
-                    Section {
-                        ForEach(circuits) { circuit in
-                            Button {
-                                if mapState.selectedCircuit?.id == circuit.id {
-                                    mapState.unselectCircuit()
-                                } else {
-                                    mapState.clearFilters()
-                                    mapState.selectAndCenterOnCircuit(circuit)
-                                    mapState.displayCircuitStartButton = true
-                                }
-                            } label: {
-                                HStack {
-                                    CircleView(number: "", color: circuit.color.uicolor, height: 20)
-                                    Text(circuit.color.longName)
-                                    Spacer()
-                                    if circuit.beginnerFriendly {
-                                        Image(systemName: "face.smiling")
-                                            .foregroundColor(.green)
-                                            .font(.title3)
-                                    }
-                                    if circuit.dangerous {
-                                        Image(systemName: "exclamationmark.circle")
-                                            .foregroundColor(.orange)
-                                            .font(.title3)
-                                    }
-                                    Text(circuit.averageGrade.string)
-                                    
-                                    if mapState.selectedCircuit?.id == circuit.id {
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(.appGreen)
-                                    }
-                                }
-                                .foregroundColor(.primary)
-                            }
-                        }
-                    } header: {
-                        Text("Circuits")
-                    }
-                }
-                
                 Section {
                     ForEach([GradeRange.beginner, .level4, .level5, .level6, .level7], id: \.self) { range in
                         Button {
@@ -234,8 +193,4 @@ struct AllFiltersView: View {
         }
     }
     
-    var circuits: [Circuit] {
-        guard let area = mapState.selectedArea else { return [] }
-        return area.circuits
-    }
 }
