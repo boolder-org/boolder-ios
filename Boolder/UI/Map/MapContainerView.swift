@@ -40,13 +40,17 @@ struct MapContainerView: View {
             fabButtonsContainer
                 .zIndex(10)
             
-            SearchView()
-                .zIndex(20)
-                .opacity(mapState.selectedArea != nil ? 0 : 1)
+            if mapState.selectedArea == nil {
+                searchButtonOverlay
+                    .zIndex(20)
+            }
             
             AreaToolbarView()
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
+        }
+        .sheet(isPresented: $mapState.presentSearch) {
+            SearchSheetView()
         }
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {
@@ -244,6 +248,46 @@ struct MapContainerView: View {
                     }
                 }
             }
+        }
+    }
+    
+    var searchButtonOverlay: some View {
+        VStack {
+            HStack {
+                Button {
+                    mapState.presentProblemDetails = false
+                    mapState.presentSearch = true
+                } label: {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color(.secondaryLabel))
+                        Text("search.placeholder")
+                            .foregroundColor(Color(.secondaryLabel))
+                        Spacer()
+                    }
+                    .frame(maxWidth: 400)
+                    .padding(10)
+                    .padding(.horizontal, 25)
+                }
+                .buttonStyle(.plain)
+                .modify {
+                    if #available(iOS 26, *) {
+                        $0.glassEffect()
+                    } else {
+                        $0
+                            .background(Color(.systemBackground))
+                            .cornerRadius(12)
+                            .shadow(color: Color(.secondaryLabel).opacity(0.5), radius: 5)
+                    }
+                }
+                .contentShape(Rectangle())
+                
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
+            
+            Spacer()
         }
     }
     

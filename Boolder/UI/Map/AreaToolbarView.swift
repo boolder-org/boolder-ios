@@ -11,7 +11,6 @@ import SwiftUI
 struct AreaToolbarView: View {
     @Environment(MapState.self) private var mapState: MapState
     
-    @State private var presentSearch = false
     @State private var presentAllFilters = false
     
     var body: some View {
@@ -21,16 +20,13 @@ struct AreaToolbarView: View {
             HStack(spacing: 12) {
                 Button {
                     mapState.presentProblemDetails = false
-                    presentSearch = true
+                    mapState.presentSearch = true
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .adaptiveCircleButtonIcon()
                         .frame(minWidth: 28, minHeight: 28)
                 }
                 .adaptiveCircleButtonStyle()
-                .sheet(isPresented: $presentSearch) {
-                    SearchSheetView()
-                }
                 
                 Button {
                     if(mapState.presentProblemDetails) {
