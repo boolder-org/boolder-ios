@@ -310,7 +310,7 @@ struct DiscoverView: View {
                 }
                 .navigationBarTitle(Text("discover.title"))
                 .task {
-                    popularAreas = Area.all.filter{$0.popular}
+                    popularAreas = Area.popularAreas
                     
                     areas = Area.all.sorted{
                         $0.name.folding(options: .diacriticInsensitive, locale: .current) < $1.name.folding(options: .diacriticInsensitive, locale: .current)

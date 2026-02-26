@@ -193,6 +193,22 @@ extension Problem {
         }
     }
     
+    static func popular(limit: Int = 10) -> [Problem] {
+        let query = Table("problems")
+            .order(popularity.desc)
+            .limit(limit)
+        
+        do {
+            return try SqliteStore.shared.db.prepare(query).map { p in
+                Problem.load(id: p[id])
+            }.compactMap { $0 }
+        }
+        catch {
+            print(error)
+            return []
+        }
+    }
+    
     static func search(_ text: String) -> [Problem] {
         let query = Table("problems")
             .order(popularity.desc)

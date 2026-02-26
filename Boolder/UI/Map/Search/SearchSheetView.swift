@@ -19,21 +19,25 @@ struct SearchSheetView: View {
         NavigationView {
             VStack(spacing: 0) {
                 if query.isEmpty {
-                    VStack(spacing: 16) {
-                        Text("search.examples")
-                            .foregroundColor(Color.secondary)
+                    List {
+                        Section(header: Text("search.popular_areas")) {
+                            ForEach(Array(Area.popularAreas.prefix(3)), id: \.self) { area in
+                                searchAreaRow(area: area)
+                            }
+                        }
                         
-                        ForEach(["Isatis", "La Marie-Rose", "Cul de Chien"], id: \.self) { q in
-                            Button {
-                                query = q
-                            } label: {
-                                Text(q).foregroundColor(.appGreen)
+                        Section(header: Text("search.popular_problems")) {
+                            ForEach(Problem.popular(limit: 10), id: \.self) { problem in
+                                searchProblemRow(problem: problem)
                             }
                         }
                     }
-                    .padding(.top, 40)
-                    
-                    Spacer()
+                    .listStyle(.grouped)
+                    .gesture(DragGesture()
+                        .onChanged({ _ in
+                            UIApplication.shared.dismissKeyboard()
+                        })
+                    )
                 }
                 else if problems.isEmpty && areas.isEmpty {
                     Spacer()
@@ -45,15 +49,7 @@ struct SearchSheetView: View {
                         if !areas.isEmpty {
                             Section(header: Text("search.areas")) {
                                 ForEach(areas, id: \.self) { area in
-                                    Button {
-                                        dismiss()
-                                        mapState.clearFilters()
-                                        mapState.unselectCircuit()
-                                        mapState.selectArea(area)
-                                        mapState.centerOnArea(area)
-                                    } label: {
-                                        Text(area.name).foregroundColor(.primary)
-                                    }
+                                    searchAreaRow(area: area)
                                 }
                             }
                         }
@@ -61,20 +57,7 @@ struct SearchSheetView: View {
                         if !problems.isEmpty {
                             Section(header: Text("search.problems")) {
                                 ForEach(problems, id: \.self) { problem in
-                                    Button {
-                                        dismiss()
-                                        mapState.clearFilters()
-                                        mapState.unselectCircuit()
-                                        mapState.selectAndPresentAndCenterOnProblem(problem)
-                                    } label: {
-                                        HStack {
-                                            ProblemCircleView(problem: problem)
-                                            Text(problem.localizedName).foregroundColor(.primary)
-                                            Text(problem.grade.string).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
-                                            Spacer()
-                                            Text(Area.load(id: problem.areaId)?.name ?? "").foregroundColor(Color(.secondaryLabel)).font(.caption)
-                                        }
-                                    }
+                                    searchProblemRow(problem: problem)
                                 }
                             }
                         }
@@ -119,5 +102,44 @@ struct SearchSheetView: View {
     
     private var areas: [Area] {
         Area.search(query)
+    }
+    
+    @ViewBuilder
+    private func searchAreaRow(area: Area) -> some View {
+        Button {
+            selectArea(area)
+        } label: {
+            Text(area.name).foregroundColor(.primary)
+        }
+    }
+    
+    @ViewBuilder
+    private func searchProblemRow(problem: Problem) -> some View {
+        Button {
+            selectProblem(problem)
+        } label: {
+            HStack {
+                ProblemCircleView(problem: problem)
+                Text(problem.localizedName).foregroundColor(.primary)
+                Text(problem.grade.string).foregroundColor(Color(.secondaryLabel)).padding(.leading, 2)
+                Spacer()
+                Text(Area.load(id: problem.areaId)?.name ?? "").foregroundColor(Color(.secondaryLabel)).font(.caption)
+            }
+        }
+    }
+    
+    private func selectArea(_ area: Area) {
+        dismiss()
+        mapState.clearFilters()
+        mapState.unselectCircuit()
+        mapState.selectArea(area)
+        mapState.centerOnArea(area)
+    }
+    
+    private func selectProblem(_ problem: Problem) {
+        dismiss()
+        mapState.clearFilters()
+        mapState.unselectCircuit()
+        mapState.selectAndPresentAndCenterOnProblem(problem)
     }
 }
