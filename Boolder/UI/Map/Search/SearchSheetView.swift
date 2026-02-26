@@ -33,11 +33,7 @@ struct SearchSheetView: View {
                         }
                     }
                     .listStyle(.grouped)
-                    .gesture(DragGesture()
-                        .onChanged({ _ in
-                            UIApplication.shared.dismissKeyboard()
-                        })
-                    )
+                    .scrollDismissesKeyboard(.interactively)
                 }
                 else if problems.isEmpty && areas.isEmpty {
                     Spacer()
@@ -63,11 +59,7 @@ struct SearchSheetView: View {
                         }
                     }
                     .listStyle(.grouped)
-                    .gesture(DragGesture()
-                        .onChanged({ _ in
-                            UIApplication.shared.dismissKeyboard()
-                        })
-                    )
+                    .scrollDismissesKeyboard(.interactively)
                 }
             }
             .navigationTitle("search.title")
