@@ -196,6 +196,11 @@ struct AreaView: View {
                         Spacer()
                         
                         AreaLevelsBarView(area: area)
+                        
+                        Image(systemName: showChart ? "chevron.down" : "chevron.right")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundColor(Color(UIColor.tertiaryLabel))
+                            .frame(minWidth: 16)
                     }
                 }
 
