@@ -18,7 +18,9 @@ struct TapLocationView: UIViewRepresentable {
         return view
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {}
+    func updateUIView(_ uiView: UIView, context: Context) {
+        context.coordinator.onTap = onTap
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(onTap: onTap)
