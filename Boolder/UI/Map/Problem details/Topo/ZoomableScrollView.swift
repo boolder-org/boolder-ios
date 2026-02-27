@@ -8,6 +8,24 @@
 
 import SwiftUI
 
+// MARK: - Dismiss-friendly UIScrollView
+
+/// At 1× zoom the content fits exactly, so there is nothing to scroll.
+/// Reject predominantly-vertical pan gestures in that state so the
+/// system's navigation-transition dismiss swipe can take precedence.
+private class DismissFriendlyScrollView: UIScrollView {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panGestureRecognizer,
+           zoomScale <= minimumZoomScale + 0.01 {
+            let translation = panGestureRecognizer.translation(in: self)
+            if abs(translation.y) > abs(translation.x) {
+                return false
+            }
+        }
+        return super.gestureRecognizerShouldBegin(gestureRecognizer)
+    }
+}
+
 // MARK: – ZoomableScrollView
 struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     @Binding var zoomScale: CGFloat
@@ -18,7 +36,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> UIScrollView {
-        let scrollView = UIScrollView()
+        let scrollView = DismissFriendlyScrollView()
         scrollView.delegate = context.coordinator
         scrollView.maximumZoomScale = 5.0
         scrollView.minimumZoomScale = 1.0
@@ -26,6 +44,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.alwaysBounceHorizontal = false // Don't steal horizontal gestures from outer paging ScrollView at 1x zoom
+        scrollView.alwaysBounceVertical = false
         scrollView.zoomScale = zoomScale
         scrollView.contentInsetAdjustmentBehavior = .never // To avoid a wierb animation buf with safe areas
 
