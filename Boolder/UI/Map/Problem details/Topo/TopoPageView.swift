@@ -80,7 +80,6 @@ struct TopoSwipeContentView: View {
     let problem: Problem
     let zoomable: Bool
 
-    @State private var zoomScale: CGFloat = 1
     @Environment(MapState.self) private var mapState: MapState
 
     var body: some View {
@@ -103,24 +102,11 @@ struct TopoSwipeContentView: View {
                     .frame(maxHeight: zoomable ? .infinity : nil)
                 }
             }
-        } else if zoomable {
-            ZoomableScrollView(zoomScale: $zoomScale) {
-                TopoView(problem: .constant(problem), zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
-            }
-            .containerRelativeFrame(.horizontal)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        } else {
-            TopoView(
-                problem: .constant(problem),
-                zoomScale: .constant(1),
-                onBackgroundTap: selectTopo
-            )
+        } else if let topo = mapState.boulderTopos.first, let topProblem = mapState.topProblem(for: topo.id) {
+            TopoPageView(topo: topo, topProblem: topProblem, zoomable: zoomable)
+                .containerRelativeFrame(zoomable ? .horizontal : [])
+                .frame(maxWidth: zoomable ? .infinity : nil, maxHeight: zoomable ? .infinity : nil)
         }
-    }
-
-    private func selectTopo() {
-        guard let topo = problem.topo else { return }
-        mapState.selectTopo(topo)
     }
 }
 
