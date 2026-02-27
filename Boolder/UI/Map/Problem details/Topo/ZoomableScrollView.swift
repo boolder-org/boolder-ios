@@ -113,7 +113,9 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
             parent.zoomScale = scrollView.zoomScale
             // Enable horizontal bounce only when zoomed, so panning feels natural.
             // At 1x zoom, keep it off to let an outer paging ScrollView handle swipes.
-            scrollView.alwaysBounceHorizontal = scrollView.zoomScale > scrollView.minimumZoomScale + 0.01
+            let isZoomed = scrollView.zoomScale > scrollView.minimumZoomScale + 0.01
+            scrollView.alwaysBounceHorizontal = isZoomed
+            scrollView.alwaysBounceVertical = isZoomed
         }
 
         /// Centers the hosted view within the scroll view if it's smaller than the scroll view bounds.

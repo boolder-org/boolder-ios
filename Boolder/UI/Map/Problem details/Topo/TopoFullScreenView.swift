@@ -11,6 +11,8 @@ import SwiftUI
 struct TopoFullScreenView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(MapState.self) private var mapState: MapState
+    @State private var dismissOffset: CGFloat = 0
+    @State private var isDismissDragging = false
     
     var body: some View {
         if let problem = mapState.selectedProblem {
@@ -65,7 +67,41 @@ struct TopoFullScreenView: View {
                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+//            .scaleEffect(dismissScale, anchor: .center)
+            .offset(y: dismissOffset)
+            .simultaneousGesture(dismissDragGesture)
         }
+    }
+    
+    private var dismissScale: CGFloat {
+        1 - min(max(dismissOffset, 0) / 1000, 0.1)
+    }
+    
+    private var dismissDragGesture: some Gesture {
+        DragGesture(minimumDistance: 10)
+            .onChanged { value in
+                if !isDismissDragging {
+                    guard value.translation.height > 0,
+                          abs(value.translation.height) > abs(value.translation.width) else { return }
+                    isDismissDragging = true
+                }
+                if isDismissDragging {
+                    dismissOffset = max(0, value.translation.height)
+                }
+            }
+            .onEnded { value in
+                if isDismissDragging {
+                    if dismissOffset > 120 || value.predictedEndTranslation.height > 500 {
+                        dismissOffset = 0
+                        dismiss()
+                    } else {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
+                            dismissOffset = 0
+                        }
+                    }
+                }
+                isDismissDragging = false
+            }
     }
     
     private func overlayInfos(problem: Problem) -> some View {
