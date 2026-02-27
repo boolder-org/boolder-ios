@@ -26,6 +26,14 @@ struct Line: Decodable {
         }
     }
     
+    var firstPoint: PhotoPercentCoordinate? {
+        coordinates?.first
+    }
+    
+    var lastPoint: PhotoPercentCoordinate? {
+        coordinates?.last
+    }
+    
     func overlayPoint(at: CGFloat) -> Line.PhotoPercentCoordinate? {
         guard let cgPoint = path.cgPath.point(at: at) else { return nil }
         

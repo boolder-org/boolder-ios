@@ -10,8 +10,10 @@ import SwiftUI
 
 struct TopoView: View {
     @Binding var problem: Problem
+    let topoId: Int?
     @Environment(MapState.self) private var mapState: MapState
     @State private var lineDrawPercentage: CGFloat = .zero
+    @State private var continuationDrawPercentage: CGFloat = .zero
     @State private var photoStatus: PhotoStatus = .initial
     @State private var showMissingLineNotice = false
     
@@ -21,6 +23,22 @@ struct TopoView: View {
     
     private var showAllLines: Bool {
         mapState.isInTopoMode
+    }
+    
+    private var isContinuationTopo: Bool {
+        guard let topoId else { return false }
+        return problem.continuationLine(for: topoId) != nil
+    }
+    
+    private var currentLine: Line? {
+        guard let topoId else { return problem.line }
+        if problem.line?.topoId == topoId { return problem.line }
+        return problem.continuationLine(for: topoId)
+    }
+    
+    private var currentTopo: Topo? {
+        if let topoId { return Topo.load(id: topoId) }
+        return problem.topo
     }
     
     @State private var isInitialLoad = true
@@ -103,14 +121,23 @@ struct TopoView: View {
         .onChange(of: problem) { oldValue, newValue in
             paginationPosition = newValue.startGroup?.paginationPosition
             
-            if oldValue.topoId == newValue.topoId {
+            let sameTopoPage: Bool = {
+                guard let topoId else { return oldValue.topoId == newValue.topoId }
+                let oldHasLine = oldValue.line?.topoId == topoId || oldValue.continuationLine(for: topoId) != nil
+                let newHasLine = newValue.line?.topoId == topoId || newValue.continuationLine(for: topoId) != nil
+                return oldHasLine && newHasLine
+            }()
+            
+            if sameTopoPage {
                 lineDrawPercentage = 0.0
+                continuationDrawPercentage = 0.0
                 displayLine()
                 displayNameLabel()
                 animateBounceIfAllowed()
             }
             else {
                 lineDrawPercentage = 0.0
+                continuationDrawPercentage = 0.0
                 nameLabelTask?.cancel()
                 showProblemNameLabel = false
                 Task {
@@ -140,10 +167,10 @@ struct TopoView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             
-            if !showAllLines && problem.line?.coordinates != nil {
-                LineView(problem: problem, drawPercentage: $lineDrawPercentage, counterZoomScale: counterZoomScale)
+            if !showAllLines, let line = currentLine, line.coordinates != nil {
+                LineView(line: line, color: Color(problem.circuitUIColorForPhotoOverlay), drawPercentage: isContinuationTopo ? $continuationDrawPercentage : $lineDrawPercentage, counterZoomScale: counterZoomScale)
             }
-            else {
+            else if !showAllLines {
                 Text("problem.missing_line")
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
@@ -179,30 +206,32 @@ struct TopoView: View {
     
     @ViewBuilder
     private func problemOverlay(in geo: GeometryProxy, indexedProblems: [(offset: Int, element: ProblemWithGroup)]) -> some View {
-        ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
-            let p = pWithGroup.problem
-            if let firstPoint = p.lineFirstPoint {
-                ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
-                    .allowsHitTesting(false)
-                    .scaleEffect(counterZoomScale.wrappedValue)
-                    .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
-                    .zIndex(p == problem ? .infinity : p.zIndex)
-                    .modifier(BounceModifier(
-                        shouldAnimate: pWithGroup.inGroup && p != problem,
-                        trigger: bounceAnimation,
-                        delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
-                    ))
+        if !isContinuationTopo {
+            ForEach(indexedProblems, id: \.element.id) { idx, pWithGroup in
+                let p = pWithGroup.problem
+                if let firstPoint = p.lineFirstPoint {
+                    ProblemCircleView(problem: p, isDisplayedOnPhoto: true)
+                        .allowsHitTesting(false)
+                        .scaleEffect(counterZoomScale.wrappedValue)
+                        .position(x: firstPoint.x * geo.size.width, y: firstPoint.y * geo.size.height)
+                        .zIndex(p == problem ? .infinity : p.zIndex)
+                        .modifier(BounceModifier(
+                            shouldAnimate: pWithGroup.inGroup && p != problem,
+                            trigger: bounceAnimation,
+                            delay: Double(pow(Double(pWithGroup.index ?? 0), 0.7) * 0.033)
+                        ))
+                }
             }
         }
         
-        if !showAllLines, let gradePoint = problem.lineGradePoint {
+        if !showAllLines, let gradePoint = currentLine?.overlayPoint(at: isContinuationTopo ? 0.25 : 0.4) {
             GradeLabelView(grade: problem.grade.string, color: problem.circuitUIColorForPhotoOverlay)
                 .scaleEffect(counterZoomScale.wrappedValue)
                 .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
                 .allowsHitTesting(false)
         }
         
-        if !showAllLines, showProblemNameLabel, let lastPoint = problem.lineLastPoint, !problem.localizedName.isEmpty {
+        if !showAllLines, showProblemNameLabel, let lastPoint = currentLine?.lastPoint, !problem.localizedName.isEmpty {
             let labelPos = clampedNameLabelPosition(name: problem.localizedName, lastPoint: lastPoint, geoSize: geo.size, scale: counterZoomScale.wrappedValue)
             ProblemNameLabelView(name: problem.localizedName, color: problem.circuitUIColorForPhotoOverlay)
                 .scaleEffect(counterZoomScale.wrappedValue)
@@ -211,11 +240,68 @@ struct TopoView: View {
                 .transition(.opacity)
         }
         
-        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
+        if !showAllLines, let paginationPos = paginationPosition, !isContinuationTopo, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
             StartGroupMenuView(problem: $problem)
                 .scaleEffect(counterZoomScaleIdentity)
                 .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
         }
+        
+        // Continuation markers
+        if !showAllLines {
+            continuationMarkers(in: geo)
+        }
+    }
+    
+    @ViewBuilder
+    private func continuationMarkers(in geo: GeometryProxy) -> some View {
+        let markers = continuationMarkerData()
+        
+        ForEach(markers, id: \.id) { marker in
+            ContinuationMarkerView(color: problem.circuitUIColorForPhotoOverlay, direction: marker.direction) {
+                mapState.navigateToContinuation(topoId: marker.targetTopoId)
+            }
+            .scaleEffect(counterZoomScale.wrappedValue)
+            .position(x: marker.point.x * geo.size.width, y: marker.point.y * geo.size.height)
+        }
+    }
+    
+    private struct ContinuationMarkerData: Identifiable {
+        let id: String
+        let point: Line.PhotoPercentCoordinate
+        let direction: ContinuationMarkerView.Direction
+        let targetTopoId: Int
+    }
+    
+    private func continuationMarkerData() -> [ContinuationMarkerData] {
+        guard let topoId else { return [] }
+        let lines = problem.lines
+        guard lines.count > 1, let currentLine else { return [] }
+        let boulderTopoIds = Set(mapState.boulderTopos.map(\.id))
+        let eligibleLines = lines.filter { boulderTopoIds.contains($0.topoId) }
+        guard eligibleLines.count > 1 else { return [] }
+        guard let currentIndex = eligibleLines.firstIndex(where: { $0.topoId == topoId }) else { return [] }
+        
+        var result: [ContinuationMarkerData] = []
+        
+        if currentIndex + 1 < eligibleLines.count, let lastPoint = currentLine.lastPoint {
+            result.append(ContinuationMarkerData(
+                id: "forward-\(topoId)",
+                point: lastPoint,
+                direction: .forward,
+                targetTopoId: eligibleLines[currentIndex + 1].topoId
+            ))
+        }
+        
+        if currentIndex > 0, let firstPoint = currentLine.firstPoint {
+            result.append(ContinuationMarkerData(
+                id: "backward-\(topoId)",
+                point: firstPoint,
+                direction: .backward,
+                targetTopoId: eligibleLines[currentIndex - 1].topoId
+            ))
+        }
+        
+        return result
     }
     
     @ViewBuilder
@@ -403,9 +489,13 @@ struct TopoView: View {
     }
     
     func displayLine() {
-        if problem.line?.coordinates != nil {
+        let line = currentLine
+        if line?.coordinates != nil {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 animate { lineDrawPercentage = 1.0 }
+                if isContinuationTopo {
+                    animate { continuationDrawPercentage = 1.0 }
+                }
                 showMissingLineNotice = false
             }
         }
@@ -418,10 +508,9 @@ struct TopoView: View {
     }
     
     func loadData() async {
-        // Don't show "no photo" for the empty placeholder problem
         guard problem.id != 0 else { return }
         
-        guard let topo = problem.topo else {
+        guard let topo = currentTopo else {
             await MainActor.run {
                 photoStatus = .none
             }

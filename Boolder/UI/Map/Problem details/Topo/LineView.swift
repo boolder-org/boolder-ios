@@ -9,16 +9,30 @@
 import SwiftUI
 
 struct LineView: View {
-    let problem: Problem
+    let linePath: Path
+    let color: Color
     @Binding var drawPercentage: CGFloat
-    
     @Binding var counterZoomScale: CGFloat
     
+    init(problem: Problem, drawPercentage: Binding<CGFloat>, counterZoomScale: Binding<CGFloat>) {
+        self.linePath = problem.line?.path ?? Path()
+        self.color = Color(problem.circuitUIColorForPhotoOverlay)
+        self._drawPercentage = drawPercentage
+        self._counterZoomScale = counterZoomScale
+    }
+    
+    init(line: Line, color: Color, drawPercentage: Binding<CGFloat>, counterZoomScale: Binding<CGFloat>) {
+        self.linePath = line.path
+        self.color = color
+        self._drawPercentage = drawPercentage
+        self._counterZoomScale = counterZoomScale
+    }
+    
     var body: some View {
-        ResizablePath(path: problem.line?.path ?? Path())
-            .trim(from: 0, to: drawPercentage) // make the path animatable chunk by chunk
+        ResizablePath(path: linePath)
+            .trim(from: 0, to: drawPercentage)
             .stroke(
-                Color(problem.circuitUIColorForPhotoOverlay),
+                color,
                 style: StrokeStyle(lineWidth: 4 * counterZoomScale, lineCap: .round, lineJoin: .round)
             )
             .modifier(DropShadow())

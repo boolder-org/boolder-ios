@@ -21,6 +21,8 @@ struct TopoLoopScrollView<Content: View>: View {
     let boulderTopos: [Topo]
     let topoId: Int?
     let boulderId: Int?
+    let navigateToTopoId: Int?
+    let onNavigationHandled: () -> Void
     let onTopoChanged: (Topo) -> Void
     @ViewBuilder let content: (Topo) -> Content
 
@@ -112,12 +114,18 @@ struct TopoLoopScrollView<Content: View>: View {
                 }
             }
         }
+        .onChange(of: navigateToTopoId) { _, newId in
+            guard let newId else { return }
+            withAnimation {
+                scrollLoopId = centerLoopId(for: newId)
+            }
+            onNavigationHandled()
+        }
         .onChange(of: scrollLoopId) { oldLoopId, newLoopId in
             guard let newLoopId else { return }
             let realId = newLoopId.topoId
             preloadNeighbors(around: realId)
 
-            // Commit only the settled topo once small transient scroll updates stop.
             guard realId != topoId, let topo = topoById[realId] else { return }
             pendingTopoChangeTask?.cancel()
             pendingTopoChangeTask = Task {

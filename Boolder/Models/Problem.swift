@@ -241,22 +241,43 @@ extension Problem {
         }
     }
     
-    // TODO: handle multiple lines
-    var line: Line? {
-        let lines = Table("lines")
+    var lines: [Line] {
+        let query = Table("lines")
             .filter(Line.problemId == id)
+            .order(Line.id)
         
         do {
-            if let l = try SqliteStore.shared.db.pluck(lines) {
-                return Line.load(id: l[Line.id])
+            return try SqliteStore.shared.db.prepare(query).compactMap { row in
+                Line.load(id: row[Line.id])
             }
-            
-            return nil
         }
         catch {
-            print (error)
-            return nil
+            print(error)
+            return []
         }
+    }
+    
+    var line: Line? {
+        lines.first
+    }
+    
+    var continuationLines: [Line] {
+        Array(lines.dropFirst())
+    }
+    
+    func continuationLine(for topoId: Int) -> Line? {
+        continuationLines.first { $0.topoId == topoId }
+    }
+    
+    func lineIndex(for topoId: Int) -> Int? {
+        lines.firstIndex { $0.topoId == topoId }
+    }
+    
+    func adjacentLineTopoId(from topoId: Int, direction: Int) -> Int? {
+        guard let idx = lineIndex(for: topoId) else { return nil }
+        let target = idx + direction
+        guard lines.indices.contains(target) else { return nil }
+        return lines[target].topoId
     }
     
     var otherProblemsOnSameTopo: [Problem] {

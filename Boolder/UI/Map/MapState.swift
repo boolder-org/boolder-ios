@@ -320,6 +320,18 @@ class MapState {
         cachedTopoProblemsCount[topoId] ?? 0
     }
     
+    // MARK: - Continuation navigation (scroll without changing selection)
+    
+    private(set) var navigateToTopoId: Int? = nil
+    
+    func navigateToContinuation(topoId: Int) {
+        navigateToTopoId = topoId
+    }
+    
+    func clearContinuationNavigation() {
+        navigateToTopoId = nil
+    }
+    
     // MARK: - Navigate a boulder's topos
     
     func nextTopo(after topo: Topo) -> Topo? {

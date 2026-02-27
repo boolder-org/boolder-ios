@@ -34,15 +34,24 @@ struct TopoPageView: View {
                     if let cached = mapState.topProblem(for: topo.id), cached.id != problem.id {
                         problem = cached
                     }
-                } else if let p = mapState.selectedProblem, p.topoId == topo.id, p.id != problem.id {
+                } else if let p = mapState.selectedProblem, problemBelongsToTopo(p), p.id != problem.id {
                     problem = p
                 }
             }
             .onChange(of: mapState.activeProblemId) { _, _ in
-                if let p = mapState.selectedProblem, p.topoId == topo.id, p.id != problem.id {
+                if let p = mapState.selectedProblem, problemBelongsToTopo(p), p.id != problem.id {
                     problem = p
                 }
             }
+            .onChange(of: mapState.navigateToTopoId) { _, newTopoId in
+                if newTopoId == topo.id, let p = mapState.selectedProblem, problemBelongsToTopo(p), p.id != problem.id {
+                    problem = p
+                }
+            }
+    }
+    
+    private func problemBelongsToTopo(_ p: Problem) -> Bool {
+        p.topoId == topo.id || p.continuationLine(for: topo.id) != nil
     }
     
     @ViewBuilder
@@ -51,6 +60,7 @@ struct TopoPageView: View {
             ZoomableScrollView(zoomScale: $zoomScale) {
                 TopoView(
                     problem: $problem,
+                    topoId: topo.id,
                     zoomScale: $zoomScale,
                     onBackgroundTap: selectTopo,
                     skipInitialBounceAnimation: true
@@ -59,6 +69,7 @@ struct TopoPageView: View {
         } else {
             TopoView(
                 problem: $problem,
+                topoId: topo.id,
                 zoomScale: .constant(1),
                 onBackgroundTap: selectTopo
             )
@@ -89,8 +100,16 @@ struct TopoSwipeContentView: View {
                 boulderTopos: mapState.boulderTopos,
                 topoId: problem.topoId,
                 boulderId: mapState.cachedBoulderId,
+                navigateToTopoId: mapState.navigateToTopoId,
+                onNavigationHandled: { mapState.clearContinuationNavigation() },
                 onTopoChanged: { topo in
                     guard problem.topoId != topo.id else { return }
+                    
+                    if let selected = mapState.selectedProblem,
+                       selected.continuationLine(for: topo.id) != nil {
+                        return
+                    }
+                    
                     mapState.selectTopo(topo)
                 }
             ) { topo in
@@ -105,13 +124,14 @@ struct TopoSwipeContentView: View {
             }
         } else if zoomable {
             ZoomableScrollView(zoomScale: $zoomScale) {
-                TopoView(problem: .constant(problem), zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
+                TopoView(problem: .constant(problem), topoId: problem.topoId, zoomScale: $zoomScale, onBackgroundTap: selectTopo, skipInitialBounceAnimation: true)
             }
             .containerRelativeFrame(.horizontal)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             TopoView(
                 problem: .constant(problem),
+                topoId: problem.topoId,
                 zoomScale: .constant(1),
                 onBackgroundTap: selectTopo
             )
