@@ -121,6 +121,8 @@
 		03C104F8290C0688007A94D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F6290C0688007A94D7 /* ContentView.swift */; };
 		03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
+		03C1693D2F5105220034A752 /* ContinuationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1693C2F5105220034A752 /* ContinuationMarkerView.swift */; };
+		03C1693E2F5105220034A752 /* ContinuationMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1693C2F5105220034A752 /* ContinuationMarkerView.swift */; };
 		03C5A3612C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3642C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
@@ -258,6 +260,7 @@
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
+		03C1693C2F5105220034A752 /* ContinuationMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuationMarkerView.swift; sourceTree = "<group>"; };
 		03C5A3602C4F9E750057C42A /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		03C5A3632C4F9E980057C42A /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
@@ -534,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				37B45230259144D300241091 /* TopoView.swift */,
+				03C1693C2F5105220034A752 /* ContinuationMarkerView.swift */,
 				03AB8B852C8EF32D00093D76 /* TapLocationView.swift */,
 				03389D202F45FFC000D5011D /* TopoLoopScrollView.swift */,
 				031F36B5291D235000BD0C2B /* TopoFullScreenView.swift */,
@@ -795,6 +799,7 @@
 				038F7F492C3A8CC500AE7028 /* AreaDownloadRowView.swift in Sources */,
 				03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */,
 				031A4CA62968D06D002CBF52 /* TopAreasBeginnerView.swift in Sources */,
+				03C1693E2F5105220034A752 /* ContinuationMarkerView.swift in Sources */,
 				0314FFE62950786F00B7E249 /* AreaToolbarView.swift in Sources */,
 				0307389A2F1BD3960034B178 /* SegmentType.swift in Sources */,
 				033F70D82919535A000DD3F4 /* Area.swift in Sources */,
@@ -889,6 +894,7 @@
 				039A22A0295EE75B0096E137 /* CircuitView.swift in Sources */,
 				033F70D72919535A000DD3F4 /* Area.swift in Sources */,
 				030738992F1BD3960034B178 /* SegmentType.swift in Sources */,
+				03C1693D2F5105220034A752 /* ContinuationMarkerView.swift in Sources */,
 				37A8C812245326F200DC161F /* Filters.swift in Sources */,
 				030AC19D27ABCF5300AF85E7 /* Pill.swift in Sources */,
 				03147EDF2B46A3F0005771C3 /* DownloadCenter.swift in Sources */,
