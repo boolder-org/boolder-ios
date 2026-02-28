@@ -77,7 +77,9 @@ struct AllFiltersView: View {
                         }
                         .foregroundColor(.primary)
                     }
-                    
+                }
+                
+                Section {
                     Button {
                         if favorites.isEmpty {
                             if mapState.filters.favorite {
@@ -149,7 +151,7 @@ struct AllFiltersView: View {
                     }
                 }
             }
-            .navigationTitle("Filters")
+            .navigationTitle("filters.title")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button {
