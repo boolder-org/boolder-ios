@@ -26,7 +26,7 @@
 "filters.levels" = "Levels";
 "filters.circuit" = "Circuit";
 "filters.popular" = "Popular";
-"filters.favorite" = "Projects";
+"filters.favorite" = "Project";
 "filters.ticked" = "Ticked";
 "filters.no_favorites_alert.title" = "You don't have any projects yet";
 "filters.no_favorites_alert.message" = "Add your first project to use this filter.";

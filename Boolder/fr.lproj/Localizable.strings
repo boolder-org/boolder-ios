@@ -25,9 +25,9 @@
 "filters.level" = "Niveau";
 "filters.levels" = "Niveaux";
 "filters.circuit" = "Circuit";
-"filters.popular" = "Populaires";
-"filters.favorite" = "Projets";
-"filters.ticked" = "Réussies";
+"filters.popular" = "Populaire";
+"filters.favorite" = "Projet";
+"filters.ticked" = "Réussie";
 "filters.no_favorites_alert.title" = "Vous n'avez pas encore de projet";
 "filters.no_favorites_alert.message" = "Enregistrez votre premier projet pour utiliser ce filtre.";
 "filters.no_ticks_alert.title" = "Vous n'avez pas encore de voie réussie";

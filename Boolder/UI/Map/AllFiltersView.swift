@@ -30,7 +30,7 @@ struct AllFiltersView: View {
                         } label: {
                             HStack {
                                 Image("circuit")
-                                Text("Circuits")
+                                Text("Circuit")
                                 Spacer()
                                 if let circuit = mapState.selectedCircuit {
                                     CircleView(number: "", color: circuit.color.uicolor, height: 16)
@@ -47,7 +47,7 @@ struct AllFiltersView: View {
                     } label: {
                         HStack {
                             Image(systemName: "chart.bar")
-                            Text("filters.levels")
+                            Text("filters.level")
                             Spacer()
                             if let range = mapState.filters.gradeRange {
                                 Text(range.description)
