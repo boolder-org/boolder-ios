@@ -105,6 +105,13 @@ struct TopoSwipeContentView: View {
             TopoPageView(topo: topo, topProblem: topProblem, zoomable: zoomable)
                 .containerRelativeFrame(zoomable ? .horizontal : [])
                 .frame(maxWidth: zoomable ? .infinity : nil, maxHeight: zoomable ? .infinity : nil)
+        } else {
+            Image("nophoto")
+                .font(.system(size: 60))
+                .foregroundColor(Color.gray)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .aspectRatio(4/3, contentMode: .fit)
+                .background(Color(.imageBackground))
         }
     }
 }
