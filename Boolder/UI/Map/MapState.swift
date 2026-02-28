@@ -209,7 +209,7 @@ class MapState {
             refreshBoulderCacheIfNeeded()
             
             switch selection {
-            case .problem(let problem, .circleView):
+            case .problem(let problem, let _):
                 clearFiltersIfProblemHidden(problem)
             case .topo:
                 clearFilters()
