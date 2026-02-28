@@ -199,6 +199,7 @@ class MapState {
         
         enum Source: Equatable {
             case circleView
+            case line
             case map
             case other
         }

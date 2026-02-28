@@ -208,7 +208,7 @@ struct TopoView: View {
                 .transition(.opacity)
         }
         
-        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView {
+        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource != .line {
             StartGroupMenuView(problem: $problem)
                 .scaleEffect(counterZoomScaleIdentity)
                 .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
@@ -223,7 +223,7 @@ struct TopoView: View {
             ForEach(otherProblems, id: \.id) { p in
                 if p.line?.coordinates != nil {
                     TappableLineView(problem: p, counterZoomScale: counterZoomScale) {
-                        mapState.selectProblem(p)
+                        mapState.selectProblem(p, source: .line)
                     }
                     .zIndex(p.zIndex)
                 }
@@ -253,7 +253,7 @@ struct TopoView: View {
                             .position(x: gradePoint.x * geo.size.width, y: gradePoint.y * geo.size.height)
                             .zIndex(p.zIndex)
                             .onTapGesture {
-                                mapState.selectProblem(p)
+                                mapState.selectProblem(p, source: .line)
                             }
                     }
                 }
@@ -514,7 +514,7 @@ struct TopoView: View {
         switch mapState.currentSelectionSource {
         case .circleView, .map:
             bounceAnimation.toggle()
-        case .other:
+        case .line, .other:
             break
         }
     }
