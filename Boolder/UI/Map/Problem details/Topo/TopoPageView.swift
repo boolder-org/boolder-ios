@@ -52,8 +52,7 @@ struct TopoPageView: View {
                 TopoView(
                     problem: $problem,
                     zoomScale: $zoomScale,
-                    onBackgroundTap: selectTopo,
-                    skipInitialBounceAnimation: true
+                    onBackgroundTap: selectTopo
                 )
             }
         } else {

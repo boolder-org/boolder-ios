@@ -17,13 +17,10 @@ struct TopoView: View {
     
     @Binding var zoomScale: CGFloat
     var onBackgroundTap: (() -> Void)? = nil
-    var skipInitialBounceAnimation: Bool = false
     
     private var showAllLines: Bool {
         mapState.isInTopoMode
     }
-    
-    @State private var isInitialLoad = true
     
     @State private var bounceAnimation = false
     @State private var paginationPosition: Line.PhotoPercentCoordinate?
@@ -211,7 +208,7 @@ struct TopoView: View {
                 .transition(.opacity)
         }
         
-        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView, !(skipInitialBounceAnimation && isInitialLoad) {
+        if !showAllLines, let paginationPos = paginationPosition, mapState.currentSelectionSource == .map || mapState.currentSelectionSource == .circleView {
             StartGroupMenuView(problem: $problem)
                 .scaleEffect(counterZoomScaleIdentity)
                 .position(x: paginationPos.x * geo.size.width, y: paginationPos.y * geo.size.height + 32 * counterZoomScale.wrappedValue)
@@ -499,13 +496,11 @@ struct TopoView: View {
         
         if group.problems.contains(problem) {
             if let next = group.next(after: problem) {
-                isInitialLoad = false
                 mapState.selectProblem(next, source: .circleView)
             }
         }
         else {
             if let topProblem = group.topProblem {
-                isInitialLoad = false
                 mapState.selectProblem(topProblem, source: .circleView)
             }
         }
@@ -516,8 +511,6 @@ struct TopoView: View {
     }
     
     func animateBounceIfAllowed() {
-        if skipInitialBounceAnimation && isInitialLoad { return }
-        
         switch mapState.currentSelectionSource {
         case .circleView, .map:
             bounceAnimation.toggle()
