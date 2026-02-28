@@ -238,7 +238,7 @@ private struct CircuitFilterList: View {
                 }
             }
         }
-        .navigationTitle("Circuits")
+        .navigationTitle("Circuit")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
@@ -324,7 +324,7 @@ private struct LevelFilterList: View {
                 }
             }
         }
-        .navigationTitle("filters.levels")
+        .navigationTitle("filters.level")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
