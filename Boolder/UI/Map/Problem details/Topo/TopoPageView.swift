@@ -105,6 +105,10 @@ struct TopoSwipeContentView: View {
             TopoPageView(topo: topo, topProblem: topProblem, zoomable: zoomable)
                 .containerRelativeFrame(zoomable ? .horizontal : [])
                 .frame(maxWidth: zoomable ? .infinity : nil, maxHeight: zoomable ? .infinity : nil)
+        } else if let topo = problem.topo {
+            TopoPageView(topo: topo, topProblem: problem, zoomable: zoomable)
+                .containerRelativeFrame(zoomable ? .horizontal : [])
+                .frame(maxWidth: zoomable ? .infinity : nil, maxHeight: zoomable ? .infinity : nil)
         } else {
             Image("nophoto")
                 .font(.system(size: 60))
