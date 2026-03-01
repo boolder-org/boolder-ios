@@ -181,9 +181,8 @@
 "problem.action.untick" = "Marquer comme non réussi";
 "problem.action.share.description" = "« %@ » à %@";
 "problem.image.loading" = "Chargement du secteur...";
-"problem.pagination" = "%d sur %d";
 "problem.variants" = "%d variantes";
-"problem.startgroup.pagination" = "%d sur %d";
+"problem.startgroup.pagination" = "%d/%d";
 "problem.startgroup.variants.singular" = "%d variante";
 "problem.startgroup.variants.plural" = "%d variantes";
 "problem.missing_line" = "Ligne manquante";

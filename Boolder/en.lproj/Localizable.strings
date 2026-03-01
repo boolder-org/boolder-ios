@@ -182,9 +182,8 @@
 "problem.action.untick" = "Untick";
 "problem.action.share.description" = "“%@” at %@";
 "problem.image.loading" = "Loading area...";
-"problem.pagination" = "%d on %d";
 "problem.variants" = "%d variants";
-"problem.startgroup.pagination" = "%d on %d";
+"problem.startgroup.pagination" = "%d/%d";
 "problem.startgroup.variants.singular" = "%d variant";
 "problem.startgroup.variants.plural" = "%d variants";
 "problem.missing_line" = "Missing line";
