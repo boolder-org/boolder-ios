@@ -22,23 +22,34 @@ struct PoiActionSheet: ViewModifier {
                 isPresented: isPresentedBinding,
                 presenting: selectedPoi
             ) { poi in
-                Button("Apple Maps") {
+                Button {
                     openAppleMaps(coordinates: poi.coordinate, name: poi.name)
+                } label: {
+                    Text("Apple Maps")
                 }
                 
                 if let googleUrl = URL(string: poi.googleUrl ?? "") {
-                    Button("Google Maps") {
+                    Button {
                         openURL(googleUrl)
+                    } label : {
+                        Text("Google Maps")
                     }
                 }
                 
                 if canOpenWaze() {
-                    Button("Waze") {
+                    Button {
                         openWaze(coordinates: poi.coordinate)
+                    } label: {
+                        Text("Waze")
                     }
                 }
                 
-                Button("poi.cancel", role: .cancel) { }
+                Button(role: .cancel) {
+                    
+                }
+                label: {
+                    Text("poi.cancel")
+                }
             } message: { _ in }
     }
     
