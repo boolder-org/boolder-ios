@@ -46,6 +46,7 @@ struct MapContainerView: View {
             }
             
             AreaToolbarView()
+                .frame(maxWidth: 600)
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
@@ -254,6 +255,7 @@ struct MapContainerView: View {
     var searchButtonOverlay: some View {
         VStack {
             HStack {
+                Spacer()
                 Button {
                     mapState.presentProblemDetails = false
                     mapState.presentSearch = true
@@ -265,7 +267,7 @@ struct MapContainerView: View {
                             .foregroundColor(Color(.secondaryLabel))
                         Spacer()
                     }
-                    .frame(maxWidth: 400)
+                    .frame(maxWidth: 600)
                     .modify {
                         if #available(iOS 26, *) {
                             $0.padding(.vertical, 4)
