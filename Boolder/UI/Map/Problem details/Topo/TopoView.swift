@@ -154,6 +154,7 @@ struct TopoView: View {
                                 .cornerRadius(16)
                         }
                     }
+                    .scaleEffect(counterZoomScaleIdentity)
                     .transition(.opacity)
                     .opacity(showMissingLineNotice ? 1.0 : 0.0)
             }
