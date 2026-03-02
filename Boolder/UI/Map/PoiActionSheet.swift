@@ -17,10 +17,9 @@ struct PoiActionSheet: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .confirmationDialog(
+            .alert(
                 selectedPoi?.name ?? "",
                 isPresented: isPresentedBinding,
-                titleVisibility: .visible,
                 presenting: selectedPoi
             ) { poi in
                 Button("Apple Maps") {
@@ -40,7 +39,7 @@ struct PoiActionSheet: ViewModifier {
                 }
                 
                 Button("poi.cancel", role: .cancel) { }
-            }
+            } message: { _ in }
     }
     
     private var isPresentedBinding: Binding<Bool> {
