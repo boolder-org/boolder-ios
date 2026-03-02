@@ -14,10 +14,6 @@ struct BottomSheetView<Content: View>: View {
     var onSwipeUp: (() -> Void)? = nil
     @ViewBuilder var content: () -> Content
     
-    private var isIPad: Bool {
-        UIDevice.current.userInterfaceIdiom == .pad
-    }
-    
     private func heightWithFallbackForSmallDevices(defaultHeight: CGFloat) -> CGFloat {
         if UIScreen.main.bounds.height <= 667 { // iPhone SE (all generations) & iPhone 8 and earlier
             return 420
@@ -28,22 +24,15 @@ struct BottomSheetView<Content: View>: View {
     }
     
     var body: some View {
-        if isIPad {
-            Color.clear
-                .sheet(isPresented: $isPresented) {
-                    content()
-                }
-        } else {
-            GeometryReader { geo in
-                BottomSheetUIKitView(
-                    isPresented: $isPresented,
-                    sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 12),
-                    onSwipeUp: onSwipeUp,
-                    content: content
-                )
-            }
-            .ignoresSafeArea()
+        GeometryReader { geo in
+            BottomSheetUIKitView(
+                isPresented: $isPresented,
+                sheetHeight: heightWithFallbackForSmallDevices(defaultHeight: geo.size.height * 0.5 + 12),
+                onSwipeUp: onSwipeUp,
+                content: content
+            )
         }
+        .ignoresSafeArea()
     }
 }
 
@@ -116,6 +105,12 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
             
             containerView.addSubview(sheetView)
             
+            // Width = min(containerWidth, 600), centered
+            let preferredWidth = sheetView.widthAnchor.constraint(equalToConstant: 600)
+            preferredWidth.priority = UILayoutPriority(999)
+            let maxLeading = sheetView.leadingAnchor.constraint(greaterThanOrEqualTo: containerView.leadingAnchor)
+            let maxTrailing = sheetView.trailingAnchor.constraint(lessThanOrEqualTo: containerView.trailingAnchor)
+
             NSLayoutConstraint.activate([
                 blurView.topAnchor.constraint(equalTo: sheetView.topAnchor),
                 blurView.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor),
@@ -127,10 +122,12 @@ private struct BottomSheetUIKitView<Content: View>: UIViewRepresentable {
                 hosting.view.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor),
                 hosting.view.bottomAnchor.constraint(equalTo: sheetView.bottomAnchor),
                 
-                sheetView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                sheetView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                sheetView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                maxLeading,
+                maxTrailing,
                 sheetView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-                sheetView.heightAnchor.constraint(equalToConstant: height)
+                sheetView.heightAnchor.constraint(equalToConstant: height),
+                preferredWidth
             ])
             
             // Start off-screen
