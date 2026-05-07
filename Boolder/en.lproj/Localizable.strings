@@ -213,3 +213,13 @@
 // MARK: Boulder
 "boulder.info_basic" = "%d problems";
 "boulder.info_basic_singular" = "%d problem";
+
+// MARK: Map cardinal directions (HUD abbreviations)
+"map.cardinal.n" = "N";
+"map.cardinal.ne" = "NE";
+"map.cardinal.e" = "E";
+"map.cardinal.se" = "SE";
+"map.cardinal.s" = "S";
+"map.cardinal.sw" = "SW";
+"map.cardinal.w" = "W";
+"map.cardinal.nw" = "NW";

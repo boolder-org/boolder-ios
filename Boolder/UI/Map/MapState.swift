@@ -112,11 +112,11 @@ class MapState {
     }
     
     
-    func selectAndPresentAndCenterOnProblem (_ problem: Problem) {
+    func selectAndPresentAndCenterOnProblem (_ problem: Problem, source: Selection.Source = .other) {
         centerOnProblem(problem)
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
-            self.selectProblem(problem)
+            self.selectProblem(problem, source: source)
             self.presentProblemDetails = true
         }
     }
@@ -201,6 +201,8 @@ class MapState {
             case circleView
             case line
             case map
+            case search
+            case navigation
             case other
         }
     }
@@ -267,6 +269,32 @@ class MapState {
     /// The id of the actively selected problem (0 when in topo mode or none).
     /// Stable during topo-to-topo swipes; only changes on problem-to-problem taps.
     private(set) var activeProblemId: Int = 0
+
+    /// User's last known coordinate (forwarded from the Mapbox location stream).
+    /// Drives the dotted line and the navigation HUD. `nil` until the first fix
+    /// arrives or when the user has denied location access.
+    private(set) var userCoordinate: CLLocationCoordinate2D?
+
+    func updateUserCoordinate(_ coordinate: CLLocationCoordinate2D?) {
+        userCoordinate = coordinate
+    }
+
+    func clearProblemSelection() {
+        selection = .none
+    }
+
+    /// `true` when the user reached the current selection through a navigation
+    /// flow (search, discover, deep link, circuit start) — i.e. we should
+    /// guide them to the boulder with a halo + dotted line + HUD. Hidden in
+    /// topo mode and for direct map/circle taps where the user is already
+    /// looking at the boulder.
+    var shouldShowNavigationOverlay: Bool {
+        guard !isInTopoMode, selectedProblem != nil else { return false }
+        switch currentSelectionSource {
+        case .search, .navigation: return true
+        case .map, .line, .circleView, .other: return false
+        }
+    }
     
     // MARK: - Cached boulder data (only refreshed when boulder changes)
     
