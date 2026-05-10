@@ -132,6 +132,6 @@ struct SearchSheetView: View {
         dismiss()
         mapState.clearFilters()
         mapState.unselectCircuit()
-        mapState.selectAndPresentAndCenterOnProblem(problem)
+        mapState.selectAndPresentAndCenterOnProblem(problem, source: .search)
     }
 }
