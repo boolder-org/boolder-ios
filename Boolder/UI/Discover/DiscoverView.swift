@@ -26,6 +26,10 @@ struct DiscoverView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         
+                        fireWarningBanner
+                            .padding(.horizontal)
+                            .padding(.top)
+                        
                         VStack {
                             HStack {
                                 Button {
@@ -131,11 +135,7 @@ struct DiscoverView: View {
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.top)
-                        
-                        fireWarningBanner
-                            .padding(.horizontal)
-                            .padding(.top, 12)
+                        .padding(.top, 12)
                     }
                     
                     if popularAreas.isEmpty {
