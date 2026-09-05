@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var appState = AppState()
     @State private var mapState = MapState()
+    @AppStorage("discover/fireWarningBadgeDismissed") private var fireWarningBadgeDismissed = false
     
     var body: some View {
         ZStack {
@@ -26,6 +27,7 @@ struct ContentView: View {
                     .tabItem {
                         Label("tabs.discover", systemImage: "sparkles")
                     }
+                    .badge(fireWarningBadgeDismissed ? nil : "")
                     .tag(AppState.Tab.discover)
                 
                 TickList()
@@ -33,6 +35,11 @@ struct ContentView: View {
                         Label("tabs.ticklist", systemImage: "bookmark")
                     }
                     .tag(AppState.Tab.ticklist)
+            }
+            .onChange(of: appState.tab) { _, newTab in
+                if newTab == .discover {
+                    fireWarningBadgeDismissed = true
+                }
             }
             
             if #available(iOS 26, *) {

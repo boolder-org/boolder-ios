@@ -13,6 +13,7 @@ struct DiscoverView: View {
 
     @State var presentArea = false
     @State private var presentWebView = false
+    @State private var presentFireWarningWebView = false
     
     @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
@@ -24,6 +25,10 @@ struct DiscoverView: View {
             GeometryReader { geo in
                 ScrollView {
                     VStack(alignment: .leading) {
+                        
+                        fireWarningBanner
+                            .padding(.horizontal)
+                            .padding(.top)
                         
                         VStack {
                             HStack {
@@ -130,7 +135,7 @@ struct DiscoverView: View {
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.top)
+                        .padding(.top, 12)
                     }
                     
                     if popularAreas.isEmpty {
@@ -319,6 +324,45 @@ struct DiscoverView: View {
             }
         }
         .phoneOnlyStackNavigationView()
+    }
+    
+    private var fireWarningBanner: some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.body)
+                .foregroundColor(Color.orange.opacity(0.8))
+            
+            VStack(alignment: .leading, spacing: 6) {
+                Text("discover.fire_warning")
+                    .font(.body)
+                    .foregroundColor(Color.orange.opacity(0.8))
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Button {
+                    presentFireWarningWebView = true
+                } label: {
+                    Text("discover.fire_warning.learn_more")
+                        .font(.body.weight(.semibold))
+                        .foregroundColor(Color.appGreen)
+                }
+            }
+            
+            Spacer(minLength: 0)
+        }
+        .padding()
+        .background(Color.yellow.opacity(0.2))
+        .cornerRadius(8)
+        .fullScreenCover(isPresented: $presentFireWarningWebView) {
+            SafariWebView(url: fireWarningURL)
+                .ignoresSafeArea()
+        }
+    }
+    
+    var fireWarningURL: URL {
+        if NSLocale.websiteLocale == "en" {
+            return URL(string: "https://www-onf-fr.translate.goog/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en")!
+        }
+        return URL(string: "https://www.onf.fr/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html")!
     }
     
     var contributeURL: URL {
