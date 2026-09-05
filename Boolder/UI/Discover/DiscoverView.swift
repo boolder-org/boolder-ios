@@ -330,10 +330,12 @@ struct DiscoverView: View {
         HStack(alignment: .top, spacing: 8) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.body)
+                .foregroundColor(Color.orange.opacity(0.8))
             
             VStack(alignment: .leading, spacing: 6) {
                 Text("discover.fire_warning")
                     .font(.body)
+                    .foregroundColor(Color.orange.opacity(0.8))
                     .fixedSize(horizontal: false, vertical: true)
                 
                 Button {
@@ -347,7 +349,6 @@ struct DiscoverView: View {
             
             Spacer(minLength: 0)
         }
-        .foregroundColor(Color.orange.opacity(0.8))
         .padding()
         .background(Color.yellow.opacity(0.2))
         .cornerRadius(8)
