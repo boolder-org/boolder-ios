@@ -13,6 +13,7 @@ struct DiscoverView: View {
 
     @State var presentArea = false
     @State private var presentWebView = false
+    @State private var presentFireWarningWebView = false
     
     @State private var popularAreas = [Area]()
     @State private var areas = [Area]()
@@ -131,6 +132,10 @@ struct DiscoverView: View {
                         }
                         .padding(.horizontal)
                         .padding(.top)
+                        
+                        fireWarningBanner
+                            .padding(.horizontal)
+                            .padding(.top, 12)
                     }
                     
                     if popularAreas.isEmpty {
@@ -319,6 +324,37 @@ struct DiscoverView: View {
             }
         }
         .phoneOnlyStackNavigationView()
+    }
+    
+    private var fireWarningBanner: some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.body)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                Text("discover.fire_warning")
+                    .font(.body)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Button {
+                    presentFireWarningWebView = true
+                } label: {
+                    Text("discover.fire_warning.learn_more")
+                        .font(.body.weight(.semibold))
+                        .foregroundColor(Color.appGreen)
+                }
+            }
+            
+            Spacer(minLength: 0)
+        }
+        .foregroundColor(Color.orange.opacity(0.8))
+        .padding()
+        .background(Color.yellow.opacity(0.2))
+        .cornerRadius(8)
+        .fullScreenCover(isPresented: $presentFireWarningWebView) {
+            SafariWebView(url: URL(string: "https://www.onf.fr/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html")!)
+                .ignoresSafeArea()
+        }
     }
     
     var contributeURL: URL {
