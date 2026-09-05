@@ -353,9 +353,16 @@ struct DiscoverView: View {
         .background(Color.yellow.opacity(0.2))
         .cornerRadius(8)
         .fullScreenCover(isPresented: $presentFireWarningWebView) {
-            SafariWebView(url: URL(string: "https://www.onf.fr/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html")!)
+            SafariWebView(url: fireWarningURL)
                 .ignoresSafeArea()
         }
+    }
+    
+    var fireWarningURL: URL {
+        if NSLocale.websiteLocale == "en" {
+            return URL(string: "https://www-onf-fr.translate.goog/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en")!
+        }
+        return URL(string: "https://www.onf.fr/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html")!
     }
     
     var contributeURL: URL {
