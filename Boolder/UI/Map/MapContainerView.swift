@@ -44,23 +44,34 @@ struct MapContainerView: View {
                 searchButtonOverlay
                     .zIndex(20)
             }
-            
+
+            if mapState.shouldShowNavigationOverlay {
+                NavigationHUD()
+                    .zIndex(25)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+
             AreaToolbarView()
                 .frame(maxWidth: 600)
                 .zIndex(30)
                 .opacity(mapState.selectedArea != nil ? 1 : 0)
         }
+        .animation(.easeInOut(duration: 0.25), value: mapState.shouldShowNavigationOverlay)
         .sheet(isPresented: $mapState.presentSearch) {
             SearchSheetView()
         }
         .onChange(of: mapState.presentProblemDetails) { oldValue, newValue in
             if !newValue {
+                let wasNavigating = mapState.shouldShowNavigationOverlay
                 mapState.deselectTopo()
+                if wasNavigating {
+                    mapState.clearProblemSelection()
+                }
             }
         }
         .onChange(of: appState.selectedProblem) { oldValue, newValue in
             if let problem = appState.selectedProblem {
-                mapState.selectAndPresentAndCenterOnProblem(problem)
+                mapState.selectAndPresentAndCenterOnProblem(problem, source: .navigation)
                 mapState.presentAreaView = false
             }
         }
@@ -218,7 +229,7 @@ struct MapContainerView: View {
                         
                         HStack {
                             Button {
-                                mapState.selectAndPresentAndCenterOnProblem(start)
+                                mapState.selectAndPresentAndCenterOnProblem(start, source: .navigation)
                                 mapState.displayCircuitStartButton = false
                             } label: {
                                 HStack {

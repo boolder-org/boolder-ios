@@ -71,12 +71,27 @@ class MapboxViewController: UIViewController {
             guard let self = self else { return }
             self.addSources()
             self.addLayers()
+            self.addNavigationOverlaySourcesAndLayers()
             if let filters = self.currentFilters {
                 self.applyFilters(filters)
             }
             if let circuit = self.currentCircuit {
                 self.setCircuitAsSelected(circuit: circuit)
             }
+            // Restore the pulse/line for whatever was selected before the reload.
+            if let coord = self.pulseCoordinate {
+                self.showSelectedProblemPulse(at: coord)
+            }
+            if self.lineTargetCoordinate != nil {
+                self.refreshUserToProblemLine()
+            }
+        }.store(in: &cancelables)
+
+        mapView.location.onLocationChange.observe { [weak self] locations in
+            guard let self = self, let coord = locations.last?.coordinate else { return }
+            self.lastUserCoordinate = coord
+            self.refreshUserToProblemLine()
+            self.delegate?.locationDidChange(coordinate: coord)
         }.store(in: &cancelables)
         
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: MapboxViewController, _) in
@@ -1091,6 +1106,172 @@ class MapboxViewController: UIViewController {
         
         return withDistances.sorted { $0.1 < $1.1 }.map { $0.0.queriedFeature.feature }
     }
+
+    // MARK: - Selected-problem navigation overlay (pulse halo + dotted line)
+
+    private let pulseSourceId = "selected-problem-pulse"
+    private let pulseInnerLayerId = "selected-problem-pulse-inner"
+    private let pulseOuterLayerId = "selected-problem-pulse-outer"
+    private let userToProblemSourceId = "user-to-problem-line"
+    private let userToProblemLayerId = "user-to-problem-line"
+
+    private var pulseDisplayLink: CADisplayLink?
+    private var pulseStartTime: CFTimeInterval = 0
+    private var pulseCoordinate: CLLocationCoordinate2D?
+
+    private var lastUserCoordinate: CLLocationCoordinate2D?
+    private(set) var lineTargetCoordinate: CLLocationCoordinate2D?
+
+    private func addNavigationOverlaySourcesAndLayers() {
+        do {
+            var pulse = GeoJSONSource(id: pulseSourceId)
+            pulse.data = .empty
+            try mapView.mapboxMap.addSource(pulse)
+
+            var outer = CircleLayer(id: pulseOuterLayerId, source: pulseSourceId)
+            outer.circleColor = .constant(StyleColor(UIColor(resource: .appGreen)))
+            outer.circleRadius = .constant(0)
+            outer.circleOpacity = .constant(0)
+            outer.circleEmissiveStrength = .constant(1.0)
+            outer.circlePitchAlignment = .constant(.map)
+            outer.visibility = .constant(.none)
+
+            var inner = CircleLayer(id: pulseInnerLayerId, source: pulseSourceId)
+            inner.circleColor = .constant(StyleColor(UIColor(resource: .appGreen)))
+            inner.circleRadius = .constant(0)
+            inner.circleOpacity = .constant(0)
+            inner.circleEmissiveStrength = .constant(1.0)
+            inner.circlePitchAlignment = .constant(.map)
+            inner.visibility = .constant(.none)
+
+            try mapView.mapboxMap.addLayer(outer, layerPosition: .above("problems"))
+            try mapView.mapboxMap.addLayer(inner, layerPosition: .above(pulseOuterLayerId))
+
+            var line = GeoJSONSource(id: userToProblemSourceId)
+            line.data = .empty
+            try mapView.mapboxMap.addSource(line)
+
+            var lineLayer = LineLayer(id: userToProblemLayerId, source: userToProblemSourceId)
+            lineLayer.lineColor = .constant(StyleColor(UIColor(resource: .appGreen)))
+            lineLayer.lineWidth = .constant(3)
+            lineLayer.lineDasharray = .constant([1.5, 2.0])
+            lineLayer.lineCap = .constant(.round)
+            lineLayer.lineJoin = .constant(.round)
+            lineLayer.lineEmissiveStrength = .constant(0.9)
+            lineLayer.lineOpacity = .constant(0.9)
+            lineLayer.visibility = .constant(.none)
+
+            try mapView.mapboxMap.addLayer(lineLayer, layerPosition: .below("problems"))
+        } catch {
+            print("Ran into an error adding the navigation overlay layers: \(error)")
+        }
+    }
+
+    func showSelectedProblemPulse(at coordinate: CLLocationCoordinate2D) {
+        pulseCoordinate = coordinate
+        let feature = Feature(geometry: .point(Point(coordinate)))
+        try? mapView.mapboxMap.updateGeoJSONSource(
+            withId: pulseSourceId,
+            geoJSON: .feature(feature)
+        )
+        setCircleLayerVisibility(pulseInnerLayerId, .visible)
+        setCircleLayerVisibility(pulseOuterLayerId, .visible)
+        startPulseDisplayLink()
+    }
+
+    func hideSelectedProblemPulse() {
+        pulseCoordinate = nil
+        stopPulseDisplayLink()
+        setCircleLayerVisibility(pulseInnerLayerId, .none)
+        setCircleLayerVisibility(pulseOuterLayerId, .none)
+    }
+
+    func showUserToProblemLine(target: CLLocationCoordinate2D) {
+        lineTargetCoordinate = target
+        refreshUserToProblemLine()
+    }
+
+    func hideUserToProblemLine() {
+        lineTargetCoordinate = nil
+        try? mapView.mapboxMap.updateLayer(withId: userToProblemLayerId, type: LineLayer.self) { layer in
+            layer.visibility = .constant(.none)
+        }
+    }
+
+    private func refreshUserToProblemLine() {
+        guard let target = lineTargetCoordinate,
+              let user = lastUserCoordinate ?? mapView.location.latestLocation?.coordinate else {
+            try? mapView.mapboxMap.updateLayer(withId: userToProblemLayerId, type: LineLayer.self) { layer in
+                layer.visibility = .constant(.none)
+            }
+            return
+        }
+        let line = LineString([user, target])
+        let feature = Feature(geometry: .lineString(line))
+        try? mapView.mapboxMap.updateGeoJSONSource(
+            withId: userToProblemSourceId,
+            geoJSON: .feature(feature)
+        )
+        try? mapView.mapboxMap.updateLayer(withId: userToProblemLayerId, type: LineLayer.self) { layer in
+            layer.visibility = .constant(.visible)
+        }
+    }
+
+    private func startPulseDisplayLink() {
+        stopPulseDisplayLink()
+        pulseStartTime = CACurrentMediaTime()
+        let link = CADisplayLink(target: self, selector: #selector(pulseTick))
+        link.preferredFramesPerSecond = 30
+        link.add(to: .main, forMode: .common)
+        pulseDisplayLink = link
+    }
+
+    private func stopPulseDisplayLink() {
+        pulseDisplayLink?.invalidate()
+        pulseDisplayLink = nil
+    }
+
+    @objc private func pulseTick() {
+        let period: CFTimeInterval = 1.6
+        let elapsed = CACurrentMediaTime() - pulseStartTime
+        let tInner = elapsed.truncatingRemainder(dividingBy: period) / period
+        let tOuter = (elapsed + period / 2).truncatingRemainder(dividingBy: period) / period
+
+        let innerR = 12.0 + 24.0 * tInner
+        let innerA = 0.85 * (1.0 - tInner)
+        let outerR = 24.0 + 36.0 * tOuter
+        let outerA = 0.55 * (1.0 - tOuter)
+
+        try? mapView.mapboxMap.updateLayer(withId: pulseInnerLayerId, type: CircleLayer.self) { l in
+            l.circleRadius = .constant(innerR)
+            l.circleOpacity = .constant(innerA)
+        }
+        try? mapView.mapboxMap.updateLayer(withId: pulseOuterLayerId, type: CircleLayer.self) { l in
+            l.circleRadius = .constant(outerR)
+            l.circleOpacity = .constant(outerA)
+        }
+    }
+
+    private func setCircleLayerVisibility(_ id: String, _ visibility: Visibility) {
+        try? mapView.mapboxMap.updateLayer(withId: id, type: CircleLayer.self) { layer in
+            layer.visibility = .constant(visibility)
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if pulseCoordinate != nil { startPulseDisplayLink() }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopPulseDisplayLink()
+    }
+
+    deinit {
+        pulseDisplayLink?.invalidate()
+        pulseDisplayLink = nil
+    }
 }
 
 import CoreLocation
@@ -1105,4 +1286,5 @@ protocol MapBoxViewDelegate {
     func unselectCircuit()
     func cameraChanged(state: CameraState)
     func dismissProblemDetails()
+    func locationDidChange(coordinate: CLLocationCoordinate2D?)
 }

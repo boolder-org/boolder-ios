@@ -515,7 +515,7 @@ struct TopoView: View {
         switch mapState.currentSelectionSource {
         case .circleView, .map:
             bounceAnimation.toggle()
-        case .line, .other:
+        case .line, .other, .search, .navigation:
             break
         }
     }

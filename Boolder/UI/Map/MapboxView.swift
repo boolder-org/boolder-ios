@@ -47,6 +47,21 @@ struct MapboxView: UIViewControllerRepresentable {
                 vc.setProblemAsSelected(problemFeatureId: String(selectedId))
             }
         }
+
+        // Pulse halo + dotted line: only show when the selection came from a
+        // navigation flow (search, discover, deep link, circuit start).
+        let shouldShowNav = mapState.shouldShowNavigationOverlay
+        let navTargetId = shouldShowNav ? (mapState.selectedProblem?.id ?? 0) : 0
+        if context.coordinator.lastNavTargetProblemId != navTargetId {
+            context.coordinator.lastNavTargetProblemId = navTargetId
+            if navTargetId != 0, let coord = mapState.selectedProblem?.coordinate {
+                vc.showSelectedProblemPulse(at: coord)
+                vc.showUserToProblemLine(target: coord)
+            } else {
+                vc.hideSelectedProblemPulse()
+                vc.hideUserToProblemLine()
+            }
+        }
         
         // Handle centerOnProblem changes
         if let centerOnProblem = mapState.centerOnProblem {
@@ -134,6 +149,7 @@ struct MapboxView: UIViewControllerRepresentable {
         var lastRefreshFiltersCount: Int = 0
         var lastIsTopoMode: Bool = false
         var lastCenterOnBoulderCount: Int = 0
+        var lastNavTargetProblemId: Int = 0
 
         init(_ parent: MapboxView) {
             self.parent = parent
@@ -181,6 +197,10 @@ struct MapboxView: UIViewControllerRepresentable {
             parent.mapState.presentProblemDetails = false
         }
         
+        func locationDidChange(coordinate: CLLocationCoordinate2D?) {
+            parent.mapState.updateUserCoordinate(coordinate)
+        }
+
         func cameraChanged(state: MapboxMaps.CameraState) {
             if parent.mapState.displayCircuitStartButton {
                 parent.mapState.displayCircuitStartButton = false
