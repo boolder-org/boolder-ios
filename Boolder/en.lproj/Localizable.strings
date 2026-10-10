@@ -9,7 +9,6 @@
 "tabs.map" = "Map";
 "tabs.discover" = "Discover";
 "tabs.ticklist" = "Tick List";
-"tabs.contribute" = "Contribute";
 
 // MARK: Map
 "map.circuit_start" = "Circuit start";
@@ -73,7 +72,6 @@
 "discover.search_prompt" = "Area";
 "discover.support" = "Want to help?";
 "discover.rate" = "Rate the app";
-"discover.contribute" = "Contribute";
 "discover.fire_warning" = "Following the July 2026 fires, many areas are closed, notably in the Trois Pignons forest.";
 "discover.fire_warning.learn_more" = "Learn more";
 
@@ -176,8 +174,6 @@
 "problem.action.save" = "Save";
 "problem.action.saved" = "Saved";
 "problem.action.share" = "Share";
-"problem.action.report" = "Report";
-"problem.action.edit" = "Edit";
 "problem.action.favorite.add" = "Add to projects";
 "problem.action.favorite.remove" = "Remove from projects";
 "problem.action.tick" = "Tick";
@@ -201,16 +197,6 @@
 "ticklist.title" = "Tick List";
 "ticklist.empty_state_title" = "Ready to climb?";
 "ticklist.empty_state_body" = "Your projects and ticks will appear here.";
-
-// MARK: Contribute
-"contribute.title" = "Contribute to Boolder";
-"contribute.intro" = "Help us build the best collaborative guidebook for Fontainebleau!";
-"contribute.photo" = "Take photos of missing boulders";
-"contribute.location" = "Enter the GPS position";
-"contribute.line" = "Draw the route line";
-"contribute.report" = "Report errors";
-"contribute.cta" = "Start contributing";
-"contribute.learn_more" = "Learn more about Boolder";
 
 // MARK: Boulder
 "boulder.info_basic" = "%d problems";
