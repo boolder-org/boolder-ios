@@ -72,6 +72,12 @@ struct SettingsView: View {
                 }
 
                 HStack {
+                    Text("Price")
+                    Spacer()
+                    Text(PremiumStore.shared.product?.displayPrice ?? "-").foregroundColor(.gray)
+                }
+
+                HStack {
                     Button(action: {
                         Task {
                             await PremiumStore.shared.refreshStatus()

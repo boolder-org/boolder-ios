@@ -23,12 +23,13 @@ class PremiumStore {
     private static let productId = "boolder_premium_yearly"
     private static let statusKey = "premium/status"
 
-    // cached locally so that a subscriber keeps access when offline
     var status: Status {
         didSet {
             UserDefaults.standard.set(status.rawValue, forKey: Self.statusKey)
         }
     }
+
+    var product: Product?
 
     private init() {
         let cachedStatus = UserDefaults.standard.string(forKey: Self.statusKey) ?? ""
@@ -44,7 +45,6 @@ class PremiumStore {
     }
 
     func start() {
-        // purchases, refunds and approvals that happen outside of the app
         Task.detached {
             for await result in Transaction.updates {
                 if case .verified(let transaction) = result {
@@ -55,15 +55,22 @@ class PremiumStore {
         }
 
         Task {
+            await loadProduct()
             await refreshStatus()
         }
     }
 
     @MainActor
+    func loadProduct() async {
+        guard product == nil else { return }
+
+        product = try? await Product.products(for: [Self.productId]).first
+    }
+
+    @MainActor
     func refreshStatus() async {
         do {
-            guard let product = try await Product.products(for: [Self.productId]).first,
-                  let subscriptionStatuses = try await product.subscription?.status else {
+            guard let subscriptionStatuses = try await product?.subscription?.status else {
                 return
             }
 
