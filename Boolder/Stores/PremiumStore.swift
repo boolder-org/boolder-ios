@@ -36,6 +36,11 @@ class PremiumStore {
 
     private static let productId = "boolder_premium_yearly"
     private static let statusKey = "premium/status"
+    private static let introSeenKey = "premium/introSeen"
+    static let forceIntroKey = "premium/forceIntro"
+
+    // TODO(premium): set to the build number of the first Premium release
+    private static let premiumFirstBuild = "100"
 
     var status: Status {
         didSet {
@@ -128,10 +133,67 @@ class PremiumStore {
     }
 
     @MainActor
-    func refreshStatus() async {
+    func shouldShowIntro() async -> Bool {
+        guard !UserDefaults.standard.bool(forKey: Self.introSeenKey) else { return false }
+
+        // nil when the App Store did not answer in time: the question is asked again at the next launch
+        guard let isEligible = await firstResult(within: 3, of: { await self.isEligibleForIntro() }) else {
+            return false
+        }
+
+        if !isEligible {
+            markIntroSeen()
+        }
+        return isEligible
+    }
+
+    func markIntroSeen() {
+        UserDefaults.standard.set(true, forKey: Self.introSeenKey)
+    }
+
+    func resetIntroSeen() {
+        UserDefaults.standard.removeObject(forKey: Self.introSeenKey)
+    }
+
+    @MainActor
+    private func isEligibleForIntro() async -> Bool? {
+        await loadProduct()
+        guard await refreshStatus() else { return nil }
+        guard status == .notSubscribed else { return false }
+
+        #if DEVELOPMENT
+        if UserDefaults.standard.bool(forKey: Self.forceIntroKey) { return true }
+        #endif
+
+        guard case .verified(let appTransaction) = try? await AppTransaction.shared else { return nil }
+        return appTransaction.originalAppVersion.compare(Self.premiumFirstBuild, options: .numeric) == .orderedAscending
+    }
+
+    private func firstResult<T>(within seconds: Double, of operation: @escaping () async -> T?) async -> T? {
+        let results = AsyncStream<T?> { continuation in
+            Task {
+                continuation.yield(await operation())
+                continuation.finish()
+            }
+            Task {
+                try? await Task.sleep(for: .seconds(seconds))
+                continuation.yield(nil)
+                continuation.finish()
+            }
+        }
+
+        for await result in results {
+            return result
+        }
+        return nil
+    }
+
+    @MainActor
+    @discardableResult
+    func refreshStatus() async -> Bool {
         do {
             guard let subscriptionStatuses = try await product?.subscription?.status else {
-                return
+                return false
             }
 
             let verifiedStatus = subscriptionStatuses.first { subscriptionStatus in
@@ -157,8 +219,10 @@ class PremiumStore {
             default:
                 status = .notSubscribed
             }
+            return true
         } catch {
             // keep the cached status: a network error must never lock out a subscriber
+            return false
         }
     }
 }

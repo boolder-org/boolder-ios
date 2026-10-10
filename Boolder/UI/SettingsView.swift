@@ -14,6 +14,8 @@ struct SettingsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showAlertToRemoveTicksAndFavorites = false
+    @State private var shouldShowPremiumIntro: Bool?
+    @AppStorage(PremiumStore.forceIntroKey) private var forcePremiumIntro = false
     
     var body: some View {
         Form {
@@ -90,6 +92,29 @@ struct SettingsView: View {
                         }
                     }) {
                         Text("Refresh")
+                    }
+                }
+
+                Toggle("Force premium intro", isOn: $forcePremiumIntro)
+
+                HStack {
+                    Button(action: {
+                        Task {
+                            shouldShowPremiumIntro = await PremiumStore.shared.shouldShowIntro()
+                        }
+                    }) {
+                        Text("Check premium intro")
+                    }
+                    Spacer()
+                    Text(shouldShowPremiumIntro.map { $0 ? "show" : "don't show" } ?? "-").foregroundColor(.gray)
+                }
+
+                HStack {
+                    Button(action: {
+                        PremiumStore.shared.resetIntroSeen()
+                        shouldShowPremiumIntro = nil
+                    }) {
+                        Text("Reset premium intro flag").foregroundColor(.red)
                     }
                 }
             }
