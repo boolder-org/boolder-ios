@@ -22,6 +22,10 @@ struct TopoCarouselView: View {
     @State private var lastSeenBoulderId: Int?
     @State private var thumbnailPhotos: [Int: UIImage] = [:]
     @State private var thumbnailTask: Task<Void, Never>?
+
+    private var isLocked: Bool {
+        PremiumStore.shared.isLocked(areaId: problem.areaId)
+    }
     
     var body: some View {
         VStack(spacing: 16) {
@@ -99,6 +103,7 @@ struct TopoCarouselView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: width, height: 54)
+                    .blur(radius: isLocked ? 4 : 0)
                     .clipped()
                     .cornerRadius(6)
             } else {
