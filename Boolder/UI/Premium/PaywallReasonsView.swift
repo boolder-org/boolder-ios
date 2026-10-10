@@ -20,7 +20,7 @@ struct PaywallReasonsView: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 10) {
-                    // TODO(premium): replace both logos with the original files
+                    // TODO(premium): replace the bleau.info logo with the original file
                     logo("PaywallLogoBoolder")
 
                     Text(verbatim: "×")

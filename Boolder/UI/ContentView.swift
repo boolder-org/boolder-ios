@@ -35,6 +35,12 @@ struct ContentView: View {
                         Label("tabs.ticklist", systemImage: "bookmark")
                     }
                     .tag(AppState.Tab.ticklist)
+
+                PremiumView()
+                    .tabItem {
+                        Label("tabs.premium", image: "boolder.logo")
+                    }
+                    .tag(AppState.Tab.premium)
             }
             .onChange(of: appState.tab) { _, newTab in
                 if newTab == .discover {

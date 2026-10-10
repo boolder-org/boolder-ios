@@ -171,6 +171,8 @@
 		37379930258E619400711EDA /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		03C104FA290C09B5007A9501 /* LockedPhotoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */; };
 		03C104FB290C09B5007A9502 /* LockedPhotoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */; };
+		03C104FA290C09B5007A9539 /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9538 /* PremiumView.swift */; };
+		03C104FB290C09B5007A953A /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9538 /* PremiumView.swift */; };
 		03C104FA290C09B5007A9535 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9534 /* ConfettiView.swift */; };
 		03C104FB290C09B5007A9536 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9534 /* ConfettiView.swift */; };
 		03C104FA290C09B5007A9531 /* PremiumSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */; };
@@ -290,6 +292,7 @@
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotoOverlay.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9538 /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9534 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSuccessView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9510 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
@@ -479,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */,
+				03C104F9290C09B5007A9538 /* PremiumView.swift */,
 				03C104F9290C09B5007A9534 /* ConfettiView.swift */,
 				03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */,
 				03C104F9290C09B5007A9510 /* PaywallView.swift */,
@@ -851,6 +855,7 @@
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
 				03C104FB290C09B5007A9502 /* LockedPhotoOverlay.swift in Sources */,
+				03C104FB290C09B5007A953A /* PremiumView.swift in Sources */,
 				03C104FB290C09B5007A9536 /* ConfettiView.swift in Sources */,
 				03C104FB290C09B5007A9532 /* PremiumSuccessView.swift in Sources */,
 				03C104FB290C09B5007A9512 /* PaywallView.swift in Sources */,
@@ -956,6 +961,7 @@
 				03C5A3642C4F9E980057C42A /* Topo.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
 				03C104FA290C09B5007A9501 /* LockedPhotoOverlay.swift in Sources */,
+				03C104FA290C09B5007A9539 /* PremiumView.swift in Sources */,
 				03C104FA290C09B5007A9535 /* ConfettiView.swift in Sources */,
 				03C104FA290C09B5007A9531 /* PremiumSuccessView.swift in Sources */,
 				03C104FA290C09B5007A9511 /* PaywallView.swift in Sources */,

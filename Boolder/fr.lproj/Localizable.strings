@@ -9,6 +9,7 @@
 "tabs.map" = "Carte";
 "tabs.discover" = "Découvrir";
 "tabs.ticklist" = "Mes voies";
+"tabs.premium" = "Premium";
 
 // MARK: Map
 "map.circuit_start" = "Départ circuit";
