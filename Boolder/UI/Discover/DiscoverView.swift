@@ -263,20 +263,6 @@ struct DiscoverView: View {
                                 })
                                 
                                 Divider()
-                                
-                                Button(action: {
-                                    openURL(contributeURL)
-                                }, label: {
-                                    HStack {
-                                        Image(systemName: "plus.app")
-                                        Text("discover.contribute")
-                                        Spacer()
-                                    }
-                                    .font(.body)
-                                    .foregroundColor(.primary)
-                                })
-                                
-                                Divider()
                             }
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                             .padding(.horizontal)
@@ -363,13 +349,6 @@ struct DiscoverView: View {
             return URL(string: "https://www-onf-fr.translate.goog/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en")!
         }
         return URL(string: "https://www.onf.fr/vivre-la-foret/+/2d9a::foret-de-fontainebleau-carte-des-sentiers-et-routes-forestieres-accessibles.html")!
-    }
-    
-    var contributeURL: URL {
-        if(NSLocale.websiteLocale == "en") {
-            return URL(string: "https://www.boolder.com/en/contribute")!
-        }
-        return URL(string: "https://www.boolder.com/fr/contribute")!
     }
 }
 
