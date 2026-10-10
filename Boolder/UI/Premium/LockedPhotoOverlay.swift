@@ -10,8 +10,7 @@ import SwiftUI
 
 struct LockedPhotoOverlay: View {
     let price: String?
-
-    @State private var presentPaywall = false
+    let onSubscribe: () -> Void
 
     var body: some View {
         VStack(spacing: 10) {
@@ -28,9 +27,7 @@ struct LockedPhotoOverlay: View {
                 .multilineTextAlignment(.center)
                 .modifier(DropShadow())
 
-            Button {
-                presentPaywall = true
-            } label: {
+            Button(action: onSubscribe) {
                 Text(buttonTitle)
                     .font(.footnote.weight(.bold))
                     .foregroundColor(.lockedPhotoOnContent)
@@ -42,9 +39,6 @@ struct LockedPhotoOverlay: View {
             }
         }
         .padding(.horizontal, 26)
-        .fullScreenCover(isPresented: $presentPaywall) {
-            PaywallView(presentation: .sheet)
-        }
     }
 
     private var buttonTitle: String {
@@ -58,7 +52,7 @@ struct LockedPhotoOverlay: View {
 #Preview("With price") {
     ZStack {
         Color.lockedPhotoVeil
-        LockedPhotoOverlay(price: "10,00 €")
+        LockedPhotoOverlay(price: "10,00 €", onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
 }
@@ -66,7 +60,7 @@ struct LockedPhotoOverlay: View {
 #Preview("Without price") {
     ZStack {
         Color.lockedPhotoVeil
-        LockedPhotoOverlay(price: nil)
+        LockedPhotoOverlay(price: nil, onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
 }

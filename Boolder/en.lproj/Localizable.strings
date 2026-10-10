@@ -227,3 +227,7 @@
 "premium.paywall.restore" = "Restore purchase";
 "premium.purchase.pending" = "Purchase awaiting approval";
 "premium.purchase.error" = "The purchase could not be completed. Please try again in a moment.";
+"premium.success.title" = "Welcome to\nBoolder Premium";
+"premium.success.subtitle" = "Photos of all 90 areas\nare now visible.";
+"premium.success.thanks" = "Thank you! Half of your subscription goes to **bleau.info**.";
+"premium.success.continue" = "Continue";

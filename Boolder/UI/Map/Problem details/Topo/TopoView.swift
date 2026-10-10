@@ -27,6 +27,7 @@ struct TopoView: View {
     }
     
     @State private var bounceAnimation = false
+    @State private var presentPaywall = false
     @State private var paginationPosition: Line.PhotoPercentCoordinate?
     @State private var showProblemNameLabel = false
     @State private var nameLabelTask: Task<Void, Never>?
@@ -80,7 +81,7 @@ struct TopoView: View {
 
                     Color.lockedPhotoVeil
 
-                    LockedPhotoOverlay(price: PremiumStore.shared.product?.displayPrice)
+                    LockedPhotoOverlay(price: PremiumStore.shared.product?.displayPrice, onSubscribe: { presentPaywall = true })
                         .scaleEffect(counterZoomScaleIdentity)
                 }
                 else {
@@ -102,6 +103,9 @@ struct TopoView: View {
         }
         .aspectRatio(4/3, contentMode: .fit)
         .background(Color(.imageBackground))
+        .fullScreenCover(isPresented: $presentPaywall) {
+            PaywallView(presentation: .sheet)
+        }
         .onChange(of: photoStatus) { _, newValue in
             if case .ready = newValue {
                 displayLine()

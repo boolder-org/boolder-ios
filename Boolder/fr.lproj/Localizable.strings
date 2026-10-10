@@ -226,3 +226,7 @@
 "premium.paywall.restore" = "Restaurer un achat";
 "premium.purchase.pending" = "Achat en attente de validation";
 "premium.purchase.error" = "L'achat n'a pas pu aboutir. Réessaie dans un instant.";
+"premium.success.title" = "Bienvenue dans\nBoolder Premium";
+"premium.success.subtitle" = "Les photos des 90 secteurs\nsont maintenant visibles.";
+"premium.success.thanks" = "Merci ! La moitié de ton abonnement est reversée à **bleau.info**.";
+"premium.success.continue" = "Continuer";

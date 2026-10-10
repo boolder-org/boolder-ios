@@ -14,6 +14,7 @@ struct PaywallActionsView: View {
     @State private var isPurchasing = false
     @State private var presentPurchasePendingAlert = false
     @State private var presentPurchaseErrorAlert = false
+    @State private var presentSuccess = false
 
     @Environment(\.dismiss) private var dismiss
 
@@ -67,6 +68,9 @@ struct PaywallActionsView: View {
         .alert("premium.purchase.error", isPresented: $presentPurchaseErrorAlert) {
             Button("OK") { }
         }
+        .fullScreenCover(isPresented: $presentSuccess, onDismiss: { dismiss() }) {
+            PremiumSuccessView()
+        }
         .fullScreenCover(isPresented: $presentTerms) {
             // TODO(premium): replace Apple's standard EULA with Boolder's own terms
             SafariWebView(url: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
@@ -112,7 +116,7 @@ struct PaywallActionsView: View {
 
             switch outcome {
             case .purchased:
-                dismiss()
+                presentSuccess = true
             case .cancelled:
                 break
             case .pending:
