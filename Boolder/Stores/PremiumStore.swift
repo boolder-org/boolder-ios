@@ -31,6 +31,8 @@ class PremiumStore {
 
     var product: Product?
 
+    let freeAreaIds = Set(Area.popularAreas.map { $0.id })
+
     private init() {
         let cachedStatus = UserDefaults.standard.string(forKey: Self.statusKey) ?? ""
         status = Status(rawValue: cachedStatus) ?? .notSubscribed
@@ -42,6 +44,10 @@ class PremiumStore {
 
     var hasBillingIssue: Bool {
         status == .inGracePeriod || status == .inBillingRetry
+    }
+
+    func isLocked(areaId: Int) -> Bool {
+        !freeAreaIds.contains(areaId) && !hasAccess
     }
 
     func start() {

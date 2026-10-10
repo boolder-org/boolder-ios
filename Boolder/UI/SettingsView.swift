@@ -78,6 +78,12 @@ struct SettingsView: View {
                 }
 
                 HStack {
+                    Text("Free areas")
+                    Spacer()
+                    Text("\(PremiumStore.shared.freeAreaIds.count)").foregroundColor(.gray)
+                }
+
+                HStack {
                     Button(action: {
                         Task {
                             await PremiumStore.shared.refreshStatus()
