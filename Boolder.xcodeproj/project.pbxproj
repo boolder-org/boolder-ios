@@ -202,6 +202,7 @@
 /* Begin PBXFileReference section */
 		030738982F1BD3960034B178 /* SegmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentType.swift; sourceTree = "<group>"; };
 		030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		030A0B3B2BEB852800F4E371 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		030AC19C27ABCF5300AF85E7 /* Pill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pill.swift; sourceTree = "<group>"; };
 		030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasLevelView.swift; sourceTree = "<group>"; };
 		030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasTrain.swift; sourceTree = "<group>"; };
@@ -464,6 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */,
+				030A0B3B2BEB852800F4E371 /* Configuration.storekit */,
 				37AEBCF425A5CEA200E0E04F /* Boolder dev.entitlements */,
 				37A8C6282453263300DC161F /* Boolder */,
 				37A8C6272453263300DC161F /* Products */,

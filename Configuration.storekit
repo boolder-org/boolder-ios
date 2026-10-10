@@ -1,0 +1,84 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "B00LDE12",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "fr",
+    "_storefront" : "FRA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21700001",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Boolder Premium",
+          "locale" : "fr"
+        },
+        {
+          "description" : "",
+          "displayName" : "Boolder Premium",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "Boolder Premium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "10.00",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6700000001",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Les photos de tous les secteurs",
+              "displayName" : "Boolder Premium (1 an)",
+              "locale" : "fr"
+            },
+            {
+              "description" : "Photos for all areas",
+              "displayName" : "Boolder Premium (1 year)",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "boolder_premium_yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Boolder Premium Yearly",
+          "subscriptionGroupID" : "21700001",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
