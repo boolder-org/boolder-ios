@@ -200,3 +200,8 @@
 // MARK: Boulder
 "boulder.info_basic" = "%d voies";
 "boulder.info_basic_singular" = "%d voie";
+
+// MARK: Premium
+"premium.locked_photo.title" = "Photo disponible\navec Boolder Premium";
+"premium.locked_photo.cta" = "Voir l'abonnement";
+"premium.locked_photo.cta_with_price" = "Voir l'abonnement · %@/an";

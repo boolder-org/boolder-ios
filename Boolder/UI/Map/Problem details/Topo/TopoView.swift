@@ -21,6 +21,10 @@ struct TopoView: View {
     private var showAllLines: Bool {
         mapState.isInTopoMode
     }
+
+    private var isLocked: Bool {
+        PremiumStore.shared.isLocked(areaId: problem.areaId)
+    }
     
     @State private var bounceAnimation = false
     @State private var paginationPosition: Line.PhotoPercentCoordinate?
@@ -68,7 +72,20 @@ struct TopoView: View {
         ZStack(alignment: .center) {
             switch photoStatus {
             case .ready(let image):
-                readyPhotoContent(image: image)
+                if isLocked {
+                    readyPhotoContent(image: image)
+                        .blur(radius: 24)
+                        .clipped()
+                        .allowsHitTesting(false)
+
+                    Color.lockedPhotoVeil
+
+                    LockedPhotoOverlay(price: PremiumStore.shared.product?.displayPrice)
+                        .scaleEffect(counterZoomScaleIdentity)
+                }
+                else {
+                    readyPhotoContent(image: image)
+                }
             case .loading:
                 ProgressView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

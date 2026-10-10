@@ -201,3 +201,8 @@
 // MARK: Boulder
 "boulder.info_basic" = "%d problems";
 "boulder.info_basic_singular" = "%d problem";
+
+// MARK: Premium
+"premium.locked_photo.title" = "Photo available\nwith Boolder Premium";
+"premium.locked_photo.cta" = "See subscription";
+"premium.locked_photo.cta_with_price" = "See subscription · %@/year";
