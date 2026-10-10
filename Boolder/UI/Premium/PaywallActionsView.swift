@@ -11,6 +11,11 @@ import SwiftUI
 struct PaywallActionsView: View {
     @State private var presentTerms = false
     @State private var presentPrivacy = false
+    @State private var isPurchasing = false
+    @State private var presentPurchasePendingAlert = false
+    @State private var presentPurchaseErrorAlert = false
+
+    @Environment(\.dismiss) private var dismiss
 
     private var price: String? {
         PremiumStore.shared.product?.displayPrice
@@ -19,14 +24,21 @@ struct PaywallActionsView: View {
     var body: some View {
         VStack(spacing: 12) {
             Button {
-                // TODO(premium): commit 12
+                purchase()
             } label: {
                 Text(subscribeTitle)
                     .font(.title3.weight(.semibold))
+                    .opacity(isPurchasing ? 0 : 1)
+                    .overlay {
+                        if isPurchasing {
+                            ProgressView()
+                                .tint(Color.systemBackground)
+                        }
+                    }
                     .padding(.vertical)
             }
             .buttonStyle(LargeButton())
-            .disabled(price == nil)
+            .disabled(price == nil || isPurchasing)
             .opacity(price == nil ? 0.5 : 1)
 
             VStack(spacing: 4) {
@@ -49,6 +61,12 @@ struct PaywallActionsView: View {
         .padding(.horizontal, 24)
         .padding(.top, 12)
         .padding(.bottom, 8)
+        .alert("premium.purchase.pending", isPresented: $presentPurchasePendingAlert) {
+            Button("OK") { }
+        }
+        .alert("premium.purchase.error", isPresented: $presentPurchaseErrorAlert) {
+            Button("OK") { }
+        }
         .fullScreenCover(isPresented: $presentTerms) {
             // TODO(premium): replace Apple's standard EULA with Boolder's own terms
             SafariWebView(url: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
@@ -82,6 +100,26 @@ struct PaywallActionsView: View {
             // TODO(premium): commit 14
         } label: {
             Text("premium.paywall.restore").underline()
+        }
+    }
+
+    private func purchase() {
+        isPurchasing = true
+
+        Task {
+            let outcome = await PremiumStore.shared.purchase()
+            isPurchasing = false
+
+            switch outcome {
+            case .purchased:
+                dismiss()
+            case .cancelled:
+                break
+            case .pending:
+                presentPurchasePendingAlert = true
+            case .failed:
+                presentPurchaseErrorAlert = true
+            }
         }
     }
 

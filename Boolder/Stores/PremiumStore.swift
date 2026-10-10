@@ -20,6 +20,13 @@ class PremiumStore {
         case inBillingRetry
     }
 
+    enum PurchaseOutcome {
+        case purchased
+        case cancelled
+        case pending
+        case failed
+    }
+
     private static let productId = "boolder_premium_yearly"
     private static let statusKey = "premium/status"
 
@@ -71,6 +78,30 @@ class PremiumStore {
         guard product == nil else { return }
 
         product = try? await Product.products(for: [Self.productId]).first
+    }
+
+    @MainActor
+    func purchase() async -> PurchaseOutcome {
+        guard let product else { return .failed }
+
+        do {
+            switch try await product.purchase() {
+            case .success(.verified(let transaction)):
+                await transaction.finish()
+                await refreshStatus()
+                return .purchased
+            case .success(.unverified):
+                return .failed
+            case .userCancelled:
+                return .cancelled
+            case .pending:
+                return .pending
+            @unknown default:
+                return .failed
+            }
+        } catch {
+            return .failed
+        }
     }
 
     @MainActor

@@ -225,3 +225,5 @@
 "premium.paywall.terms" = "Terms";
 "premium.paywall.privacy" = "Privacy";
 "premium.paywall.restore" = "Restore purchase";
+"premium.purchase.pending" = "Purchase awaiting approval";
+"premium.purchase.error" = "The purchase could not be completed. Please try again in a moment.";

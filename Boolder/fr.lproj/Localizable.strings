@@ -224,3 +224,5 @@
 "premium.paywall.terms" = "Conditions";
 "premium.paywall.privacy" = "Confidentialité";
 "premium.paywall.restore" = "Restaurer un achat";
+"premium.purchase.pending" = "Achat en attente de validation";
+"premium.purchase.error" = "L'achat n'a pas pu aboutir. Réessaie dans un instant.";
