@@ -11,6 +11,8 @@ import SwiftUI
 struct LockedPhotoOverlay: View {
     let price: String?
 
+    @State private var presentPaywall = false
+
     var body: some View {
         VStack(spacing: 10) {
             Image(systemName: "lock")
@@ -27,7 +29,7 @@ struct LockedPhotoOverlay: View {
                 .modifier(DropShadow())
 
             Button {
-                // TODO(premium): commit 11
+                presentPaywall = true
             } label: {
                 Text(buttonTitle)
                     .font(.footnote.weight(.bold))
@@ -40,6 +42,9 @@ struct LockedPhotoOverlay: View {
             }
         }
         .padding(.horizontal, 26)
+        .fullScreenCover(isPresented: $presentPaywall) {
+            PaywallView(presentation: .sheet)
+        }
     }
 
     private var buttonTitle: String {

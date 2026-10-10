@@ -205,3 +205,22 @@
 "premium.locked_photo.title" = "Photo disponible\navec Boolder Premium";
 "premium.locked_photo.cta" = "Voir l'abonnement";
 "premium.locked_photo.cta_with_price" = "Voir l'abonnement · %@/an";
+
+"premium.paywall.title" = "Boolder Premium";
+"premium.paywall.subtitle" = "Tout Fontainebleau dans ta poche";
+"premium.paywall.benefits.title" = "Ce que tu obtiens";
+"premium.paywall.benefits.areas.title" = "90 secteurs";
+"premium.paywall.benefits.areas.subtitle" = "Tout le massif de Fontainebleau";
+"premium.paywall.benefits.problems.title" = "20 000 voies";
+"premium.paywall.benefits.problems.subtitle" = "Cotées et classées par circuit";
+"premium.paywall.benefits.photos.title" = "10 000 photos de blocs";
+"premium.paywall.benefits.photos.subtitle" = "Avec le tracé de chaque voie";
+"premium.paywall.reasons.title" = "Pourquoi un abonnement";
+"premium.paywall.reasons.card.title" = "Boolder × bleau.info";
+"premium.paywall.reasons.card.body" = "Boolder est un projet bénévole, sans publicité ni investisseur. Ton abonnement est partagé **à parts égales** avec bleau.info, le topo de référence de Fontainebleau.";
+"premium.paywall.subscribe" = "S'abonner";
+"premium.paywall.subscribe_with_price" = "S'abonner — %@/an";
+"premium.paywall.legal" = "Abonnement annuel à renouvellement automatique, résiliable à tout moment dans les réglages de l'App Store.";
+"premium.paywall.terms" = "Conditions";
+"premium.paywall.privacy" = "Confidentialité";
+"premium.paywall.restore" = "Restaurer un achat";

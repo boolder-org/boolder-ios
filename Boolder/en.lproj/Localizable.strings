@@ -206,3 +206,22 @@
 "premium.locked_photo.title" = "Photo available\nwith Boolder Premium";
 "premium.locked_photo.cta" = "See subscription";
 "premium.locked_photo.cta_with_price" = "See subscription · %@/year";
+
+"premium.paywall.title" = "Boolder Premium";
+"premium.paywall.subtitle" = "All of Fontainebleau in your pocket";
+"premium.paywall.benefits.title" = "What you get";
+"premium.paywall.benefits.areas.title" = "90 areas";
+"premium.paywall.benefits.areas.subtitle" = "The whole Fontainebleau forest";
+"premium.paywall.benefits.problems.title" = "20,000 problems";
+"premium.paywall.benefits.problems.subtitle" = "Graded and sorted by circuit";
+"premium.paywall.benefits.photos.title" = "10,000 boulder photos";
+"premium.paywall.benefits.photos.subtitle" = "With the line of each problem";
+"premium.paywall.reasons.title" = "Why a subscription";
+"premium.paywall.reasons.card.title" = "Boolder × bleau.info";
+"premium.paywall.reasons.card.body" = "Boolder is a volunteer project, with no ads and no investors. Your subscription is shared **equally** with bleau.info, the reference guide to Fontainebleau.";
+"premium.paywall.subscribe" = "Subscribe";
+"premium.paywall.subscribe_with_price" = "Subscribe — %@/year";
+"premium.paywall.legal" = "Annual subscription that renews automatically. Cancel anytime in your App Store settings.";
+"premium.paywall.terms" = "Terms";
+"premium.paywall.privacy" = "Privacy";
+"premium.paywall.restore" = "Restore purchase";

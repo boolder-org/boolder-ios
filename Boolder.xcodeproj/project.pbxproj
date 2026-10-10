@@ -171,6 +171,16 @@
 		37379930258E619400711EDA /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
 		03C104FA290C09B5007A9501 /* LockedPhotoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */; };
 		03C104FB290C09B5007A9502 /* LockedPhotoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */; };
+		03C104FA290C09B5007A9511 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9510 /* PaywallView.swift */; };
+		03C104FB290C09B5007A9512 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9510 /* PaywallView.swift */; };
+		03C104FA290C09B5007A9515 /* PaywallHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */; };
+		03C104FB290C09B5007A9516 /* PaywallHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */; };
+		03C104FA290C09B5007A9519 /* PaywallBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */; };
+		03C104FB290C09B5007A951A /* PaywallBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */; };
+		03C104FA290C09B5007A951D /* PaywallReasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A951C /* PaywallReasonsView.swift */; };
+		03C104FB290C09B5007A951E /* PaywallReasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A951C /* PaywallReasonsView.swift */; };
+		03C104FA290C09B5007A9521 /* PaywallActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9520 /* PaywallActionsView.swift */; };
+		03C104FB290C09B5007A9522 /* PaywallActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9520 /* PaywallActionsView.swift */; };
 		37379931258E619400711EDA /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80C245326F200DC161F /* Line.swift */; };
 		37379A0A258E619400711EDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
 		37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6322453263400DC161F /* Preview Assets.xcassets */; };
@@ -276,6 +286,11 @@
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotoOverlay.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9510 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallHeaderView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallBenefitsView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A951C /* PaywallReasonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallReasonsView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9520 /* PaywallActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallActionsView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		37379903258E157D00711EDA /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
@@ -458,6 +473,11 @@
 			isa = PBXGroup;
 			children = (
 				03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */,
+				03C104F9290C09B5007A9510 /* PaywallView.swift */,
+				03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */,
+				03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */,
+				03C104F9290C09B5007A951C /* PaywallReasonsView.swift */,
+				03C104F9290C09B5007A9520 /* PaywallActionsView.swift */,
 			);
 			path = Premium;
 			sourceTree = "<group>";
@@ -823,6 +843,11 @@
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
 				03C104FB290C09B5007A9502 /* LockedPhotoOverlay.swift in Sources */,
+				03C104FB290C09B5007A9512 /* PaywallView.swift in Sources */,
+				03C104FB290C09B5007A9516 /* PaywallHeaderView.swift in Sources */,
+				03C104FB290C09B5007A951A /* PaywallBenefitsView.swift in Sources */,
+				03C104FB290C09B5007A951E /* PaywallReasonsView.swift in Sources */,
+				03C104FB290C09B5007A9522 /* PaywallActionsView.swift in Sources */,
 				37379931258E619400711EDA /* Line.swift in Sources */,
 				0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
 				038F7F582C3A8D3700AE7028 /* Cluster.swift in Sources */,
@@ -921,6 +946,11 @@
 				03C5A3642C4F9E980057C42A /* Topo.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
 				03C104FA290C09B5007A9501 /* LockedPhotoOverlay.swift in Sources */,
+				03C104FA290C09B5007A9511 /* PaywallView.swift in Sources */,
+				03C104FA290C09B5007A9515 /* PaywallHeaderView.swift in Sources */,
+				03C104FA290C09B5007A9519 /* PaywallBenefitsView.swift in Sources */,
+				03C104FA290C09B5007A951D /* PaywallReasonsView.swift in Sources */,
+				03C104FA290C09B5007A9521 /* PaywallActionsView.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				039FFC952F3DBC1000A5E597 /* ProblemNameLabelView.swift in Sources */,
 				039FFC972F3F265700A5E597 /* BoulderProblemsListView.swift in Sources */,
