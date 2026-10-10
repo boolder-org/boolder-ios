@@ -242,3 +242,11 @@
 "premium.management.manage" = "Manage my subscription";
 "premium.management.legal" = "Annual subscription that renews automatically. Cancel anytime.";
 "premium.management.terms" = "Terms of Use";
+"premium.billing_issue.title" = "Payment issue";
+"premium.billing_issue.grace_period_until" = "Your subscription could not be renewed. You keep full access until **%@**, while you update your payment method.";
+"premium.billing_issue.grace_period" = "Your subscription could not be renewed. You keep full access while you update your payment method.";
+"premium.billing_issue.suspended" = "Your subscription could not be renewed. Your subscription is suspended: update your payment method to get access back.";
+"premium.billing_issue.update_payment" = "Update payment";
+"premium.tab.not_subscribed" = "not subscribed";
+"premium.tab.active" = "active";
+"premium.tab.billing_issue" = "payment issue";

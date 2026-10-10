@@ -39,7 +39,9 @@ struct ContentView: View {
                 PremiumView()
                     .tabItem {
                         Label("tabs.premium", image: "boolder.logo")
+                            .accessibilityValue(Text(premiumAccessibilityValue))
                     }
+                    .badge(PremiumStore.shared.hasBillingIssue ? Text(verbatim: "!") : nil)
                     .tag(AppState.Tab.premium)
             }
             .onChange(of: appState.tab) { _, newTab in
@@ -61,6 +63,13 @@ struct ContentView: View {
         }
         .environment(appState)
         .environment(mapState)
+    }
+
+    private var premiumAccessibilityValue: LocalizedStringKey {
+        if PremiumStore.shared.hasBillingIssue {
+            return "premium.tab.billing_issue"
+        }
+        return PremiumStore.shared.hasAccess ? "premium.tab.active" : "premium.tab.not_subscribed"
     }
 }
 

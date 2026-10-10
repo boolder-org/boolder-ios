@@ -19,27 +19,32 @@ struct PremiumManagementView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 16) {
-                    statusCard
+                    if premiumStore.hasBillingIssue {
+                        PremiumBillingIssueView(status: premiumStore.status, gracePeriodExpirationDate: premiumStore.gracePeriodExpirationDate)
+                    }
+                    else {
+                        statusCard
 
-                    Button {
-                        presentManageSubscriptions = true
-                    } label: {
-                        HStack(spacing: 14) {
-                            Image(systemName: "creditcard")
-                                .foregroundColor(.paywallHeaderMiddle)
+                        Button {
+                            presentManageSubscriptions = true
+                        } label: {
+                            HStack(spacing: 14) {
+                                Image(systemName: "creditcard")
+                                    .foregroundColor(.paywallHeaderMiddle)
 
-                            Text("premium.management.manage")
-                                .foregroundColor(.primary)
+                                Text("premium.management.manage")
+                                    .foregroundColor(.primary)
 
-                            Spacer()
+                                Spacer()
 
-                            Image(systemName: "arrow.up.right")
-                                .foregroundColor(Color(.tertiaryLabel))
+                                Image(systemName: "arrow.up.right")
+                                    .foregroundColor(Color(.tertiaryLabel))
+                            }
+                            .font(.body.weight(.medium))
+                            .padding()
+                            .background(Color(.secondarySystemGroupedBackground))
+                            .cornerRadius(16)
                         }
-                        .font(.body.weight(.medium))
-                        .padding()
-                        .background(Color(.secondarySystemGroupedBackground))
-                        .cornerRadius(16)
                     }
 
                     VStack(spacing: 4) {

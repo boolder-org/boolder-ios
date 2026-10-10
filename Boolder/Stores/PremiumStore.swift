@@ -46,6 +46,7 @@ class PremiumStore {
     var product: Product?
     var expirationDate: Date?
     var willAutoRenew = true
+    var gracePeriodExpirationDate: Date?
 
     let freeAreaIds = Set(Area.popularAreas.map { $0.id })
 
@@ -143,6 +144,7 @@ class PremiumStore {
             }
             if case .verified(let renewalInfo) = verifiedStatus?.renewalInfo {
                 willAutoRenew = renewalInfo.willAutoRenew
+                gracePeriodExpirationDate = renewalInfo.gracePeriodExpirationDate
             }
 
             switch verifiedStatus?.state {

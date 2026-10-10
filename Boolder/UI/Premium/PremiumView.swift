@@ -13,7 +13,7 @@ struct PremiumView: View {
 
     var body: some View {
         Group {
-            if PremiumStore.shared.hasAccess {
+            if PremiumStore.shared.hasAccess || PremiumStore.shared.hasBillingIssue {
                 PremiumManagementView()
             }
             else {

@@ -241,3 +241,11 @@
 "premium.management.manage" = "Gérer mon abonnement";
 "premium.management.legal" = "Abonnement annuel à renouvellement automatique, résiliable à tout moment.";
 "premium.management.terms" = "Conditions d'utilisation";
+"premium.billing_issue.title" = "Problème de paiement";
+"premium.billing_issue.grace_period_until" = "Le renouvellement de ton abonnement n'a pas pu être effectué. Tu gardes l'accès complet jusqu'au **%@**, le temps de mettre à jour ton moyen de paiement.";
+"premium.billing_issue.grace_period" = "Le renouvellement de ton abonnement n'a pas pu être effectué. Tu gardes l'accès complet le temps de mettre à jour ton moyen de paiement.";
+"premium.billing_issue.suspended" = "Le renouvellement de ton abonnement n'a pas pu être effectué. Ton abonnement est suspendu : mets à jour ton moyen de paiement pour retrouver l'accès.";
+"premium.billing_issue.update_payment" = "Mettre à jour le paiement";
+"premium.tab.not_subscribed" = "non abonné";
+"premium.tab.active" = "actif";
+"premium.tab.billing_issue" = "problème de paiement";
