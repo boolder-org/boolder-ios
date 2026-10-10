@@ -70,6 +70,16 @@ struct SettingsView: View {
                     Spacer()
                     Text(PremiumStore.shared.status.rawValue).foregroundColor(.gray)
                 }
+
+                HStack {
+                    Button(action: {
+                        Task {
+                            await PremiumStore.shared.refreshStatus()
+                        }
+                    }) {
+                        Text("Refresh")
+                    }
+                }
             }
 
             Section(header: Text("Tips")) {

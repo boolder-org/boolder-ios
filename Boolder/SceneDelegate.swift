@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         DownloadCenter.shared.start()
+        PremiumStore.shared.start()
         
         try? Tips.configure()
 
