@@ -230,3 +230,6 @@
 "premium.success.subtitle" = "Les photos des 90 secteurs\nsont maintenant visibles.";
 "premium.success.thanks" = "Merci ! La moitié de ton abonnement est reversée à **bleau.info**.";
 "premium.success.continue" = "Continuer";
+"premium.restore.restored" = "Ton abonnement a été restauré";
+"premium.restore.nothing_to_restore" = "Aucun abonnement Boolder Premium n'est associé à cet identifiant Apple.";
+"premium.restore.error" = "Impossible de joindre l'App Store. Vérifie ta connexion.";

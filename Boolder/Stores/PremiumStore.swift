@@ -27,6 +27,13 @@ class PremiumStore {
         case failed
     }
 
+    enum RestoreOutcome {
+        case restored
+        case nothingToRestore
+        case cancelled
+        case failed
+    }
+
     private static let productId = "boolder_premium_yearly"
     private static let statusKey = "premium/status"
 
@@ -99,6 +106,19 @@ class PremiumStore {
             @unknown default:
                 return .failed
             }
+        } catch {
+            return .failed
+        }
+    }
+
+    @MainActor
+    func restore() async -> RestoreOutcome {
+        do {
+            try await AppStore.sync()
+            await refreshStatus()
+            return hasAccess ? .restored : .nothingToRestore
+        } catch StoreKitError.userCancelled {
+            return .cancelled
         } catch {
             return .failed
         }

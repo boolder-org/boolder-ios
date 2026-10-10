@@ -231,3 +231,6 @@
 "premium.success.subtitle" = "Photos of all 90 areas\nare now visible.";
 "premium.success.thanks" = "Thank you! Half of your subscription goes to **bleau.info**.";
 "premium.success.continue" = "Continue";
+"premium.restore.restored" = "Your subscription has been restored";
+"premium.restore.nothing_to_restore" = "No Boolder Premium subscription is linked to this Apple Account.";
+"premium.restore.error" = "Unable to reach the App Store. Check your connection.";

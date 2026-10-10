@@ -15,6 +15,10 @@ struct PaywallActionsView: View {
     @State private var presentPurchasePendingAlert = false
     @State private var presentPurchaseErrorAlert = false
     @State private var presentSuccess = false
+    @State private var isRestoring = false
+    @State private var presentRestoredAlert = false
+    @State private var presentNothingToRestoreAlert = false
+    @State private var presentRestoreErrorAlert = false
 
     @Environment(\.dismiss) private var dismiss
 
@@ -39,7 +43,7 @@ struct PaywallActionsView: View {
                     .padding(.vertical)
             }
             .buttonStyle(LargeButton())
-            .disabled(price == nil || isPurchasing)
+            .disabled(price == nil || isPurchasing || isRestoring)
             .opacity(price == nil ? 0.5 : 1)
 
             VStack(spacing: 4) {
@@ -66,6 +70,15 @@ struct PaywallActionsView: View {
             Button("OK") { }
         }
         .alert("premium.purchase.error", isPresented: $presentPurchaseErrorAlert) {
+            Button("OK") { }
+        }
+        .alert("premium.restore.restored", isPresented: $presentRestoredAlert) {
+            Button("OK") { dismiss() }
+        }
+        .alert("premium.restore.nothing_to_restore", isPresented: $presentNothingToRestoreAlert) {
+            Button("OK") { }
+        }
+        .alert("premium.restore.error", isPresented: $presentRestoreErrorAlert) {
             Button("OK") { }
         }
         .fullScreenCover(isPresented: $presentSuccess, onDismiss: { dismiss() }) {
@@ -101,10 +114,11 @@ struct PaywallActionsView: View {
         Text(verbatim: "·")
 
         Button {
-            // TODO(premium): commit 14
+            restore()
         } label: {
             Text("premium.paywall.restore").underline()
         }
+        .disabled(isPurchasing || isRestoring)
     }
 
     private func purchase() {
@@ -123,6 +137,26 @@ struct PaywallActionsView: View {
                 presentPurchasePendingAlert = true
             case .failed:
                 presentPurchaseErrorAlert = true
+            }
+        }
+    }
+
+    private func restore() {
+        isRestoring = true
+
+        Task {
+            let outcome = await PremiumStore.shared.restore()
+            isRestoring = false
+
+            switch outcome {
+            case .restored:
+                presentRestoredAlert = true
+            case .nothingToRestore:
+                presentNothingToRestoreAlert = true
+            case .cancelled:
+                break
+            case .failed:
+                presentRestoreErrorAlert = true
             }
         }
     }
