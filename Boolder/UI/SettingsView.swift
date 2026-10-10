@@ -64,6 +64,14 @@ struct SettingsView: View {
                 }
             }
             
+            Section(header: Text("Premium")) {
+                HStack {
+                    Text("Status")
+                    Spacer()
+                    Text(PremiumStore.shared.status.rawValue).foregroundColor(.gray)
+                }
+            }
+
             Section(header: Text("Tips")) {
                 HStack {
                     Button(action: {
