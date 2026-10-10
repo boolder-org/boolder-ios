@@ -9,8 +9,20 @@
 import SwiftUI
 
 struct PremiumView: View {
+    @State private var presentSuccess = false
+
     var body: some View {
-        PaywallView(presentation: .tab)
+        Group {
+            if PremiumStore.shared.hasAccess {
+                PremiumManagementView()
+            }
+            else {
+                PaywallView(presentation: .tab, onPurchased: { presentSuccess = true })
+            }
+        }
+        .fullScreenCover(isPresented: $presentSuccess) {
+            PremiumSuccessView()
+        }
     }
 }
 

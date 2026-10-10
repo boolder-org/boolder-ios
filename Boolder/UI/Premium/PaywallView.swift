@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PaywallView: View {
     let presentation: Presentation
+    var onPurchased: (() -> Void)? = nil
 
     enum Presentation {
         case sheet
@@ -32,7 +33,7 @@ struct PaywallView: View {
                 .scrollBounceBehavior(.basedOnSize)
                 .ignoresSafeArea(edges: .top)
 
-                PaywallActionsView()
+                PaywallActionsView(onPurchased: onPurchased)
             }
         }
         .background(Color.systemBackground)

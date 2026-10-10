@@ -235,3 +235,10 @@
 "premium.restore.restored" = "Your subscription has been restored";
 "premium.restore.nothing_to_restore" = "No Boolder Premium subscription is linked to this Apple Account.";
 "premium.restore.error" = "Unable to reach the App Store. Check your connection.";
+"premium.management.active" = "Active";
+"premium.management.renews_on" = "Renews on %@";
+"premium.management.ends_on" = "Ends on %@";
+"premium.management.price_per_year" = "%@ per year";
+"premium.management.manage" = "Manage my subscription";
+"premium.management.legal" = "Annual subscription that renews automatically. Cancel anytime.";
+"premium.management.terms" = "Terms of Use";

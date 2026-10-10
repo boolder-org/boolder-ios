@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct PaywallActionsView: View {
-    @State private var presentTerms = false
-    @State private var presentPrivacy = false
+    var onPurchased: (() -> Void)? = nil
+
     @State private var isPurchasing = false
     @State private var presentPurchasePendingAlert = false
     @State private var presentPurchaseErrorAlert = false
@@ -84,32 +84,11 @@ struct PaywallActionsView: View {
         .fullScreenCover(isPresented: $presentSuccess, onDismiss: { dismiss() }) {
             PremiumSuccessView()
         }
-        .fullScreenCover(isPresented: $presentTerms) {
-            // TODO(premium): replace Apple's standard EULA with Boolder's own terms
-            SafariWebView(url: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-                .ignoresSafeArea()
-        }
-        .fullScreenCover(isPresented: $presentPrivacy) {
-            SafariWebView(url: URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/privacy")!)
-                .ignoresSafeArea()
-        }
     }
 
     @ViewBuilder
     private var links: some View {
-        Button {
-            presentTerms = true
-        } label: {
-            Text("premium.paywall.terms").underline()
-        }
-
-        Text(verbatim: "·")
-
-        Button {
-            presentPrivacy = true
-        } label: {
-            Text("premium.paywall.privacy").underline()
-        }
+        PremiumLegalLinksView(termsTitle: "premium.paywall.terms")
 
         Text(verbatim: "·")
 
@@ -130,7 +109,12 @@ struct PaywallActionsView: View {
 
             switch outcome {
             case .purchased:
-                presentSuccess = true
+                if let onPurchased {
+                    onPurchased()
+                }
+                else {
+                    presentSuccess = true
+                }
             case .cancelled:
                 break
             case .pending:

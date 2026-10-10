@@ -44,6 +44,8 @@ class PremiumStore {
     }
 
     var product: Product?
+    var expirationDate: Date?
+    var willAutoRenew = true
 
     let freeAreaIds = Set(Area.popularAreas.map { $0.id })
 
@@ -134,6 +136,13 @@ class PremiumStore {
             let verifiedStatus = subscriptionStatuses.first { subscriptionStatus in
                 if case .verified = subscriptionStatus.transaction { return true }
                 return false
+            }
+
+            if case .verified(let transaction) = verifiedStatus?.transaction {
+                expirationDate = transaction.expirationDate
+            }
+            if case .verified(let renewalInfo) = verifiedStatus?.renewalInfo {
+                willAutoRenew = renewalInfo.willAutoRenew
             }
 
             switch verifiedStatus?.state {
