@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PaywallActionsView: View {
     var onPurchased: (() -> Void)? = nil
+    var onLater: (() -> Void)? = nil
 
     @State private var isPurchasing = false
     @State private var presentPurchasePendingAlert = false
@@ -46,6 +47,14 @@ struct PaywallActionsView: View {
             .disabled(price == nil || isPurchasing || isRestoring)
             .opacity(price == nil ? 0.5 : 1)
 
+            if let onLater {
+                Button(action: onLater) {
+                    Text("premium.intro.later")
+                        .font(.body.weight(.semibold))
+                        .foregroundColor(Color(.secondaryLabel))
+                }
+            }
+
             VStack(spacing: 4) {
                 Text("premium.paywall.legal")
 
@@ -67,7 +76,7 @@ struct PaywallActionsView: View {
         .padding(.top, 12)
         .padding(.bottom, 8)
         .alert("premium.purchase.pending", isPresented: $presentPurchasePendingAlert) {
-            Button("OK") { }
+            Button("OK") { onLater?() }
         }
         .alert("premium.purchase.error", isPresented: $presentPurchaseErrorAlert) {
             Button("OK") { }

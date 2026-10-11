@@ -18,6 +18,7 @@ struct PaywallView: View {
     }
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         GeometryReader { geo in
@@ -27,13 +28,20 @@ struct PaywallView: View {
                         PaywallHeaderView(topInset: geo.safeAreaInsets.top, onClose: presentation == .sheet ? { dismiss() } : nil)
                         PaywallBenefitsView()
                         PaywallReasonsView()
+
+                        // with very large text, pinned actions would leave no room for the content
+                        if dynamicTypeSize.isAccessibilitySize {
+                            PaywallActionsView(onPurchased: onPurchased)
+                        }
                     }
                     .padding(.bottom)
                 }
                 .scrollBounceBehavior(.basedOnSize)
                 .ignoresSafeArea(edges: .top)
 
-                PaywallActionsView(onPurchased: onPurchased)
+                if !dynamicTypeSize.isAccessibilitySize {
+                    PaywallActionsView(onPurchased: onPurchased)
+                }
             }
         }
         .background(Color.systemBackground)

@@ -249,3 +249,6 @@
 "premium.tab.not_subscribed" = "non abonné";
 "premium.tab.active" = "actif";
 "premium.tab.billing_issue" = "problème de paiement";
+"premium.intro.badge" = "Nouveau";
+"premium.intro.body" = "Les **8 secteurs les plus populaires restent gratuits**. Les photos des 82 autres sont disponibles avec Boolder Premium.";
+"premium.intro.later" = "Plus tard";

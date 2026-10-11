@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var appState = AppState()
     @State private var mapState = MapState()
     @AppStorage("discover/fireWarningBadgeDismissed") private var fireWarningBadgeDismissed = false
+    @State private var presentPremiumIntro = false
     
     var body: some View {
         ZStack {
@@ -63,6 +64,26 @@ struct ContentView: View {
         }
         .environment(appState)
         .environment(mapState)
+        .sheet(isPresented: $presentPremiumIntro) {
+            PremiumIntroView()
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+        }
+        .task {
+            if await PremiumStore.shared.shouldShowIntro(), canPresentPremiumIntro {
+                PremiumStore.shared.markIntroSeen()
+                presentPremiumIntro = true
+            }
+        }
+    }
+
+    private var canPresentPremiumIntro: Bool {
+        appState.tab == .map
+            && !mapState.presentProblemDetails
+            && !mapState.presentSearch
+            && !mapState.presentAreaView
+            && !mapState.presentFilters
+            && !mapState.presentCircuitPicker
     }
 
     private var premiumAccessibilityValue: LocalizedStringKey {
