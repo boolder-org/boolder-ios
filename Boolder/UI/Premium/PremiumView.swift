@@ -20,6 +20,9 @@ struct PremiumView: View {
                 PaywallView(presentation: .tab, onPurchased: { presentSuccess = true })
             }
         }
+        .task {
+            await PremiumStore.shared.refreshStatus()
+        }
         .fullScreenCover(isPresented: $presentSuccess) {
             PremiumSuccessView()
         }
