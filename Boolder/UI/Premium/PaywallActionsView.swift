@@ -48,7 +48,9 @@ struct PaywallActionsView: View {
             .opacity(price == nil ? 0.5 : 1)
 
             if let onLater {
-                Button(action: onLater) {
+                Button {
+                    onLater()
+                } label: {
                     Text("premium.intro.later")
                         .font(.body.weight(.semibold))
                         .foregroundColor(Color(.secondaryLabel))

@@ -81,7 +81,6 @@ struct PremiumSuccessView: View {
             .ignoresSafeArea()
         )
     }
-
 }
 
 #Preview {

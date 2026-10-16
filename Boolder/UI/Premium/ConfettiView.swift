@@ -29,7 +29,7 @@ private struct ConfettiPieceView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var hasFallen = false
 
-    // Random values live in @State so that each piece keeps them across view updates.
+    // random values live in @State so that each piece keeps them across view updates
     @State private var column = CGFloat.random(in: 0...1)
     @State private var fallDuration = Double.random(in: 4...8)
     @State private var startDelay = Double.random(in: 0...4)
@@ -49,8 +49,8 @@ private struct ConfettiPieceView: View {
             .onAppear {
                 guard !reduceMotion else { return }
 
-                // The fall starts and ends off screen, so the jump back to the top
-                // on each repeat is never visible.
+                // the fall starts and ends off screen, so the jump back to the top
+                // on each repeat is never visible
                 withAnimation(.linear(duration: fallDuration).repeatForever(autoreverses: false).delay(startDelay)) {
                     hasFallen = true
                 }

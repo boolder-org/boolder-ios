@@ -81,7 +81,7 @@ struct TopoView: View {
 
                     Color.lockedPhotoVeil
 
-                    LockedPhotoOverlay(price: PremiumStore.shared.product?.displayPrice, onSubscribe: { presentPaywall = true })
+                    LockedPhotoOverlayView(price: PremiumStore.shared.product?.displayPrice, onSubscribe: { presentPaywall = true })
                         .scaleEffect(counterZoomScaleIdentity)
                 }
                 else {

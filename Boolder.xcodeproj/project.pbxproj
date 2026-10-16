@@ -169,8 +169,8 @@
 		3737992A258E619400711EDA /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
 		3737992F258E619400711EDA /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
 		37379930258E619400711EDA /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
-		03C104FA290C09B5007A9501 /* LockedPhotoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */; };
-		03C104FB290C09B5007A9502 /* LockedPhotoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */; };
+		03C104FA290C09B5007A9501 /* LockedPhotoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */; };
+		03C104FB290C09B5007A9502 /* LockedPhotoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */; };
 		03C104FA290C09B5007A9549 /* PremiumIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9548 /* PremiumIntroView.swift */; };
 		03C104FB290C09B5007A954A /* PremiumIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9548 /* PremiumIntroView.swift */; };
 		03C104FA290C09B5007A9545 /* PremiumBillingIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */; };
@@ -299,7 +299,7 @@
 		03FD89B02F4E100000000005 /* TopoImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoImageCache.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
-		03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotoOverlay.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotoOverlayView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9548 /* PremiumIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumIntroView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBillingIssueView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A9540 /* PremiumManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManagementView.swift; sourceTree = "<group>"; };
@@ -493,7 +493,7 @@
 		03C104F9290C09B5007A9503 /* Premium */ = {
 			isa = PBXGroup;
 			children = (
-				03C104F9290C09B5007A9500 /* LockedPhotoOverlay.swift */,
+				03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */,
 				03C104F9290C09B5007A9548 /* PremiumIntroView.swift */,
 				03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */,
 				03C104F9290C09B5007A9540 /* PremiumManagementView.swift */,
@@ -870,7 +870,7 @@
 				03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */,
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
-				03C104FB290C09B5007A9502 /* LockedPhotoOverlay.swift in Sources */,
+				03C104FB290C09B5007A9502 /* LockedPhotoOverlayView.swift in Sources */,
 				03C104FB290C09B5007A954A /* PremiumIntroView.swift in Sources */,
 				03C104FB290C09B5007A9546 /* PremiumBillingIssueView.swift in Sources */,
 				03C104FB290C09B5007A9542 /* PremiumManagementView.swift in Sources */,
@@ -980,7 +980,7 @@
 				37A8C810245326F200DC161F /* Circuit.swift in Sources */,
 				03C5A3642C4F9E980057C42A /* Topo.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
-				03C104FA290C09B5007A9501 /* LockedPhotoOverlay.swift in Sources */,
+				03C104FA290C09B5007A9501 /* LockedPhotoOverlayView.swift in Sources */,
 				03C104FA290C09B5007A9549 /* PremiumIntroView.swift in Sources */,
 				03C104FA290C09B5007A9545 /* PremiumBillingIssueView.swift in Sources */,
 				03C104FA290C09B5007A9541 /* PremiumManagementView.swift in Sources */,

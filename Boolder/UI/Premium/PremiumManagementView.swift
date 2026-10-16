@@ -11,16 +11,12 @@ import SwiftUI
 struct PremiumManagementView: View {
     @State private var presentManageSubscriptions = false
 
-    private var premiumStore: PremiumStore {
-        PremiumStore.shared
-    }
-
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 16) {
-                    if premiumStore.hasBillingIssue {
-                        PremiumBillingIssueView(status: premiumStore.status, gracePeriodExpirationDate: premiumStore.gracePeriodExpirationDate)
+                    if PremiumStore.shared.hasBillingIssue {
+                        PremiumBillingIssueView(status: PremiumStore.shared.status, gracePeriodExpirationDate: PremiumStore.shared.gracePeriodExpirationDate)
                     }
                     else {
                         statusCard
@@ -69,7 +65,7 @@ struct PremiumManagementView: View {
         .onChange(of: presentManageSubscriptions) { _, isPresented in
             if !isPresented {
                 Task {
-                    await premiumStore.refreshStatus()
+                    await PremiumStore.shared.refreshStatus()
                 }
             }
         }
@@ -92,11 +88,11 @@ struct PremiumManagementView: View {
             }
 
             VStack(alignment: .leading, spacing: 2) {
-                if let expirationDate = premiumStore.expirationDate {
-                    Text(String(format: NSLocalizedString(premiumStore.willAutoRenew ? "premium.management.renews_on" : "premium.management.ends_on", comment: ""), expirationDate.formatted(date: .long, time: .omitted)))
+                if let expirationDate = PremiumStore.shared.expirationDate {
+                    Text(String(format: NSLocalizedString(PremiumStore.shared.willAutoRenew ? "premium.management.renews_on" : "premium.management.ends_on", comment: ""), expirationDate.formatted(date: .long, time: .omitted)))
                 }
 
-                if let price = premiumStore.product?.displayPrice {
+                if let price = PremiumStore.shared.product?.displayPrice {
                     Text(String(format: NSLocalizedString("premium.management.price_per_year", comment: ""), price))
                 }
             }

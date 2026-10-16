@@ -54,7 +54,9 @@ struct PaywallHeaderView: View {
         .clipped()
         .overlay(alignment: .topTrailing) {
             if let onClose {
-                Button(action: onClose) {
+                Button {
+                    onClose()
+                } label: {
                     Image(systemName: "xmark")
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundColor(.paywallHeaderContent)

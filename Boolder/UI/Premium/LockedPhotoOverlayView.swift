@@ -1,5 +1,5 @@
 //
-//  LockedPhotoOverlay.swift
+//  LockedPhotoOverlayView.swift
 //  Boolder
 //
 //  Created by Ivann Morice on 10/10/2026.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LockedPhotoOverlay: View {
+struct LockedPhotoOverlayView: View {
     let price: String?
     let onSubscribe: () -> Void
 
@@ -27,7 +27,9 @@ struct LockedPhotoOverlay: View {
                 .multilineTextAlignment(.center)
                 .modifier(DropShadow())
 
-            Button(action: onSubscribe) {
+            Button {
+                onSubscribe()
+            } label: {
                 Text(buttonTitle)
                     .font(.footnote.weight(.bold))
                     .foregroundColor(.lockedPhotoOnContent)
@@ -52,7 +54,7 @@ struct LockedPhotoOverlay: View {
 #Preview("With price") {
     ZStack {
         Color.lockedPhotoVeil
-        LockedPhotoOverlay(price: "10,00 €", onSubscribe: {})
+        LockedPhotoOverlayView(price: "10,00 €", onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
 }
@@ -60,7 +62,7 @@ struct LockedPhotoOverlay: View {
 #Preview("Without price") {
     ZStack {
         Color.lockedPhotoVeil
-        LockedPhotoOverlay(price: nil, onSubscribe: {})
+        LockedPhotoOverlayView(price: nil, onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
 }
