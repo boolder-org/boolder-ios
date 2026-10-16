@@ -11,31 +11,22 @@ import SwiftUI
 struct PremiumLegalLinksView: View {
     let termsTitle: LocalizedStringKey
 
-    @State private var presentTerms = false
-    @State private var presentPrivacy = false
+    @Environment(\.openURL) var openURL
 
     var body: some View {
         Button {
-            presentTerms = true
+            // TODO(premium): the terms page must be live on boolder.com before the App Store submission
+            openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/terms")!)
         } label: {
             Text(termsTitle).underline()
-        }
-        .fullScreenCover(isPresented: $presentTerms) {
-            // TODO(premium): replace Apple's standard EULA with Boolder's own terms
-            SafariWebView(url: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-                .ignoresSafeArea()
         }
 
         Text(verbatim: "·")
 
         Button {
-            presentPrivacy = true
+            openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/privacy")!)
         } label: {
             Text("premium.paywall.privacy").underline()
-        }
-        .fullScreenCover(isPresented: $presentPrivacy) {
-            SafariWebView(url: URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/privacy")!)
-                .ignoresSafeArea()
         }
     }
 }
