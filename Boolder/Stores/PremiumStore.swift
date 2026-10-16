@@ -39,8 +39,8 @@ class PremiumStore {
     private static let introSeenKey = "premium/introSeen"
     static let forceIntroKey = "premium/forceIntro"
 
-    // TODO(premium): set to the build number of the first Premium release
-    private static let premiumFirstBuild = "100"
+    // 3.2 (build 100) shipped without Premium
+    private static let premiumFirstBuild = "101"
 
     var status: Status {
         didSet {
