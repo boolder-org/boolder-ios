@@ -11,6 +11,7 @@ import SwiftUI
 struct PaywallActionsView: View {
     var onPurchased: (() -> Void)? = nil
     var onLater: (() -> Void)? = nil
+    var showsRestore = true
 
     @State private var isPurchasing = false
     @State private var presentPurchasePendingAlert = false
@@ -101,14 +102,16 @@ struct PaywallActionsView: View {
     private var links: some View {
         PremiumLegalLinksView(termsTitle: "premium.paywall.terms")
 
-        Text(verbatim: "·")
+        if showsRestore {
+            Text(verbatim: "·")
 
-        Button {
-            restore()
-        } label: {
-            Text("premium.paywall.restore").underline()
+            Button {
+                restore()
+            } label: {
+                Text("premium.paywall.restore").underline()
+            }
+            .disabled(isPurchasing || isRestoring)
         }
-        .disabled(isPurchasing || isRestoring)
     }
 
     private func purchase() {

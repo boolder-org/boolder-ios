@@ -22,7 +22,7 @@ struct PremiumIntroView: View {
 
                     // with very large text, pinned actions would leave no room for the content
                     if dynamicTypeSize.isAccessibilitySize {
-                        PaywallActionsView(onLater: { dismiss() })
+                        PaywallActionsView(onLater: { dismiss() }, showsRestore: false)
                     }
                 }
                 .padding(.bottom)
@@ -30,7 +30,7 @@ struct PremiumIntroView: View {
             .scrollBounceBehavior(.basedOnSize)
 
             if !dynamicTypeSize.isAccessibilitySize {
-                PaywallActionsView(onLater: { dismiss() })
+                PaywallActionsView(onLater: { dismiss() }, showsRestore: false)
             }
         }
         .background(Color.systemBackground)
