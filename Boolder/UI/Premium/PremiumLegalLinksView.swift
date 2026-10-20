@@ -15,7 +15,6 @@ struct PremiumLegalLinksView: View {
 
     var body: some View {
         Button {
-            // TODO(premium): the terms page must be live on boolder.com before the App Store submission
             openURL(URL(string: "https://www.boolder.com/\(NSLocale.websiteLocale)/terms")!)
         } label: {
             Text(termsTitle).underline()
