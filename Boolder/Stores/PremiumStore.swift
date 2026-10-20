@@ -196,10 +196,13 @@ class PremiumStore {
                 return false
             }
 
-            let verifiedStatus = subscriptionStatuses.first { subscriptionStatus in
-                if case .verified = subscriptionStatus.transaction { return true }
-                return false
-            }
+            // several statuses are possible (e.g. own purchase + family sharing): keep the one giving the most access
+            let verifiedStatus = subscriptionStatuses
+                .filter { subscriptionStatus in
+                    if case .verified = subscriptionStatus.transaction { return true }
+                    return false
+                }
+                .max { accessRank(of: $0.state) < accessRank(of: $1.state) }
 
             if case .verified(let transaction) = verifiedStatus?.transaction {
                 expirationDate = transaction.expirationDate
@@ -223,6 +226,19 @@ class PremiumStore {
         } catch {
             // keep the cached status: a network error must never lock out a subscriber
             return false
+        }
+    }
+
+    private func accessRank(of state: Product.SubscriptionInfo.RenewalState) -> Int {
+        switch state {
+        case .subscribed:
+            return 3
+        case .inGracePeriod:
+            return 2
+        case .inBillingRetryPeriod:
+            return 1
+        default:
+            return 0
         }
     }
 }
