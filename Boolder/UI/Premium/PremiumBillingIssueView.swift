@@ -18,7 +18,6 @@ struct PremiumBillingIssueView: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
                 Image(systemName: "exclamationmark.circle")
-                    .foregroundColor(.premiumBillingIssueAccent)
 
                 Text("premium.billing_issue.title")
             }
@@ -32,23 +31,16 @@ struct PremiumBillingIssueView: View {
             } label: {
                 Text("premium.billing_issue.update_payment")
                     .font(.body.weight(.semibold))
-                    .foregroundColor(.white)
                     .padding(.vertical, 14)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.premiumBillingIssueAccent)
-                    .clipShape(Capsule())
             }
+            .buttonStyle(LargeButton())
             .padding(.top, 6)
         }
-        .foregroundColor(.premiumBillingIssueText)
+        .foregroundColor(Color.orange.opacity(0.8))
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .background(Color.premiumBillingIssueBackground)
-        .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.premiumBillingIssueBorder, lineWidth: 1)
-        )
+        .background(Color.yellow.opacity(0.2))
+        .cornerRadius(8)
     }
 
     private var message: String {
