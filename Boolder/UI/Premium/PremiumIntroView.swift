@@ -43,10 +43,10 @@ struct PremiumIntroView: View {
                     .font(.footnote.weight(.bold))
                     .tracking(1)
                     .textCase(.uppercase)
-                    .foregroundColor(.paywallIcon)
+                    .foregroundColor(.appGreen)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 5)
-                    .background(Color.paywallIconBackground)
+                    .background(Color.appGreen.opacity(0.15))
                     .clipShape(Capsule())
 
                 Spacer()

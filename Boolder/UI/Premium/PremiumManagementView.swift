@@ -26,7 +26,7 @@ struct PremiumManagementView: View {
                         } label: {
                             HStack(spacing: 14) {
                                 Image(systemName: "creditcard")
-                                    .foregroundColor(.paywallHeaderMiddle)
+                                    .foregroundColor(.appGreen)
 
                                 Text("premium.management.manage")
                                     .foregroundColor(.primary)
@@ -83,7 +83,7 @@ struct PremiumManagementView: View {
                     .font(.footnote.weight(.semibold))
                     .padding(.horizontal, 12)
                     .padding(.vertical, 4)
-                    .background(Color.paywallHeaderContent.opacity(0.25))
+                    .background(Color.white.opacity(0.25))
                     .clipShape(Capsule())
             }
 
@@ -99,16 +99,10 @@ struct PremiumManagementView: View {
             .font(.callout)
             .opacity(0.9)
         }
-        .foregroundColor(.paywallHeaderContent)
+        .foregroundColor(.white)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(20)
-        .background(
-            LinearGradient(
-                colors: [.premiumSuccessBackgroundStart, .paywallHeaderEnd],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
+        .background(Color.appGreen)
         .cornerRadius(20)
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ConfettiView: View {
-    private let colors: [Color] = [.premiumSuccessConfettiYellow, .premiumSuccessConfettiPink, .paywallHeaderContent]
+    private let colors: [Color] = [.yellow, .pink, .white]
     private let count = 18
 
     var body: some View {
@@ -60,5 +60,5 @@ private struct ConfettiPieceView: View {
 
 #Preview {
     ConfettiView()
-        .background(Color.paywallHeaderEnd)
+        .background(Color.appGreen)
 }

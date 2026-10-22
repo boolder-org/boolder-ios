@@ -32,7 +32,7 @@ struct PremiumBillingIssueView: View {
             } label: {
                 Text("premium.billing_issue.update_payment")
                     .font(.body.weight(.semibold))
-                    .foregroundColor(.paywallHeaderContent)
+                    .foregroundColor(.white)
                     .padding(.vertical, 14)
                     .frame(maxWidth: .infinity)
                     .background(Color.premiumBillingIssueAccent)

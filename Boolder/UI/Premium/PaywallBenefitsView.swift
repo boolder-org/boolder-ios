@@ -30,9 +30,9 @@ struct PaywallBenefitsView: View {
         HStack(spacing: 16) {
             Image(systemName: icon)
                 .font(.system(size: 20, weight: .semibold))
-                .foregroundColor(.paywallIcon)
+                .foregroundColor(.appGreen)
                 .frame(width: 50, height: 50)
-                .background(Color.paywallIconBackground)
+                .background(Color.appGreen.opacity(0.15))
                 .cornerRadius(14)
 
             VStack(alignment: .leading, spacing: 2) {

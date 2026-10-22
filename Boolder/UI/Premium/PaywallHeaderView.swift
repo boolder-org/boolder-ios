@@ -21,7 +21,7 @@ struct PaywallHeaderView: View {
                 .font(.callout.weight(.medium))
                 .opacity(0.88)
         }
-        .foregroundColor(.paywallHeaderContent)
+        .foregroundColor(.white)
         .multilineTextAlignment(.center)
         .padding(.horizontal, 56)
         .padding(.top, topInset + 12)
@@ -29,15 +29,7 @@ struct PaywallHeaderView: View {
         .frame(maxWidth: .infinity)
         .background(
             ZStack {
-                LinearGradient(
-                    stops: [
-                        .init(color: .paywallHeaderStart, location: 0),
-                        .init(color: .paywallHeaderMiddle, location: 0.62),
-                        .init(color: .paywallHeaderEnd, location: 1)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+                Color.appGreen
 
                 GeometryReader { geo in
                     Ellipse()
@@ -48,7 +40,7 @@ struct PaywallHeaderView: View {
                         .frame(width: 137, height: 92)
                         .position(x: geo.size.width - 44, y: geo.size.height - 31)
                 }
-                .foregroundColor(Color.paywallHeaderContent.opacity(0.13))
+                .foregroundColor(Color.white.opacity(0.13))
             }
         )
         .clipped()
@@ -59,9 +51,9 @@ struct PaywallHeaderView: View {
                 } label: {
                     Image(systemName: "xmark")
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(.paywallHeaderContent)
+                        .foregroundColor(.white)
                         .frame(width: 36, height: 36)
-                        .background(Color.paywallHeaderContent.opacity(0.28))
+                        .background(Color.white.opacity(0.28))
                         .clipShape(Circle())
                 }
                 .padding(.horizontal, 16)

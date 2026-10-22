@@ -18,9 +18,9 @@ struct PremiumSuccessView: View {
             VStack(spacing: 20) {
                 Image(systemName: "checkmark")
                     .font(.system(size: 44, weight: .bold))
-                    .foregroundColor(.paywallHeaderEnd)
+                    .foregroundColor(.appGreen)
                     .frame(width: 104, height: 104)
-                    .background(Color.paywallHeaderContent.opacity(0.96))
+                    .background(Color.white.opacity(0.96))
                     .clipShape(Circle())
 
                 Text("premium.success.title")
@@ -44,10 +44,10 @@ struct PremiumSuccessView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(18)
-                .background(Color.paywallHeaderContent.opacity(0.16))
+                .background(Color.white.opacity(0.16))
                 .cornerRadius(20)
             }
-            .foregroundColor(.paywallHeaderContent)
+            .foregroundColor(.white)
             .multilineTextAlignment(.center)
             .padding(.horizontal, 40)
 
@@ -59,10 +59,10 @@ struct PremiumSuccessView: View {
             } label: {
                 Text("premium.success.continue")
                     .font(.title3.weight(.semibold))
-                    .foregroundColor(.premiumSuccessButtonText)
+                    .foregroundColor(.appGreen)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
-                    .background(Color.paywallHeaderContent)
+                    .background(Color.white)
                     .clipShape(Capsule())
             }
             .padding(.horizontal, 24)
@@ -70,11 +70,7 @@ struct PremiumSuccessView: View {
         }
         .background(
             ZStack {
-                LinearGradient(
-                    colors: [.premiumSuccessBackgroundStart, .paywallHeaderEnd],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
+                Color.appGreen
 
                 ConfettiView()
             }
