@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PremiumIntroView: View {
+    let onSeeFreeAreas: () -> Void
+
     @Environment(\.dismiss) private var dismiss
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -74,6 +76,15 @@ struct PremiumIntroView: View {
             Text("premium.intro.body")
                 .font(.body)
                 .padding(.top, 8)
+
+            Button {
+                onSeeFreeAreas()
+                dismiss()
+            } label: {
+                Text("premium.intro.see_popular_areas")
+                    .font(.body.weight(.semibold))
+                    .foregroundColor(.appGreen)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 26)
@@ -82,5 +93,5 @@ struct PremiumIntroView: View {
 }
 
 #Preview {
-    PremiumIntroView()
+    PremiumIntroView(onSeeFreeAreas: {})
 }

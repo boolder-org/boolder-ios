@@ -65,7 +65,7 @@ struct ContentView: View {
         .environment(appState)
         .environment(mapState)
         .sheet(isPresented: $presentPremiumIntro) {
-            PremiumIntroView()
+            PremiumIntroView(onSeeFreeAreas: { appState.tab = .discover })
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }
