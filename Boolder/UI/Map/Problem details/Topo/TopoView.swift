@@ -79,7 +79,7 @@ struct TopoView: View {
                         .clipped()
                         .allowsHitTesting(false)
 
-                    Color.lockedPhotoVeil
+                    Color.black.opacity(0.34)
 
                     LockedPhotoOverlayView(price: PremiumStore.shared.product?.displayPrice, onSubscribe: { presentPaywall = true })
                         .scaleEffect(counterZoomScaleIdentity)

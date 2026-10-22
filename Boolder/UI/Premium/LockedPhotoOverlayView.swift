@@ -16,14 +16,14 @@ struct LockedPhotoOverlayView: View {
         VStack(spacing: 10) {
             Image(systemName: "lock")
                 .font(.system(size: 20, weight: .semibold))
-                .foregroundColor(.lockedPhotoOnContent)
+                .foregroundColor(.black)
                 .frame(width: 46, height: 46)
-                .background(Color.lockedPhotoContent.opacity(0.95))
+                .background(Color.white.opacity(0.95))
                 .clipShape(Circle())
 
             Text("premium.locked_photo.title")
                 .font(.subheadline.weight(.semibold))
-                .foregroundColor(.lockedPhotoContent)
+                .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .modifier(DropShadow())
 
@@ -32,12 +32,12 @@ struct LockedPhotoOverlayView: View {
             } label: {
                 Text(buttonTitle)
                     .font(.footnote.weight(.bold))
-                    .foregroundColor(.lockedPhotoOnContent)
+                    .foregroundColor(.black)
                     .padding(.horizontal, 18)
                     .padding(.vertical, 9)
-                    .background(Color.lockedPhotoContent)
+                    .background(Color.white)
                     .clipShape(Capsule())
-                    .shadow(color: .lockedPhotoOnContent.opacity(0.2), radius: 8, y: 2)
+                    .shadow(color: .black.opacity(0.2), radius: 8, y: 2)
             }
         }
         .padding(.horizontal, 26)
@@ -53,7 +53,7 @@ struct LockedPhotoOverlayView: View {
 
 #Preview("With price") {
     ZStack {
-        Color.lockedPhotoVeil
+        Color.black.opacity(0.34)
         LockedPhotoOverlayView(price: "10,00 €", onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
@@ -61,7 +61,7 @@ struct LockedPhotoOverlayView: View {
 
 #Preview("Without price") {
     ZStack {
-        Color.lockedPhotoVeil
+        Color.black.opacity(0.34)
         LockedPhotoOverlayView(price: nil, onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
