@@ -75,6 +75,8 @@
 "discover.rate" = "Noter l'appli";
 "discover.fire_warning" = "Suite aux incendies de Juillet 2026 de nombreux secteurs sont fermés, notamment dans la forêt des Trois Pignons.";
 "discover.fire_warning.learn_more" = "En savoir plus";
+"discover.free_areas" = "Les photos et tracés des voies sont disponibles gratuitement sur les secteurs populaires.";
+"discover.free_areas.see_areas" = "Voir les secteurs";
 
 // MARK: Area view
 "area.tags.popular" = "populaire";

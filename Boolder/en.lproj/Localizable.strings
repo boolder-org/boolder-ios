@@ -75,6 +75,8 @@
 "discover.rate" = "Rate the app";
 "discover.fire_warning" = "Following the July 2026 fires, many areas are closed, notably in the Trois Pignons forest.";
 "discover.fire_warning.learn_more" = "Learn more";
+"discover.free_areas" = "Problem photos and lines are available for free in popular areas.";
+"discover.free_areas.see_areas" = "See the areas";
 
 // MARK: Area view
 "area.tags.popular" = "popular";
