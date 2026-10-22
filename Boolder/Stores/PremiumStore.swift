@@ -83,7 +83,6 @@ class PremiumStore {
         }
 
         Task {
-            await loadProduct()
             await refreshStatus()
         }
     }
@@ -157,7 +156,6 @@ class PremiumStore {
 
     @MainActor
     private func isEligibleForIntro() async -> Bool? {
-        await loadProduct()
         guard await refreshStatus() else { return nil }
         guard status == .notSubscribed else { return false }
 
@@ -191,6 +189,8 @@ class PremiumStore {
     @MainActor
     @discardableResult
     func refreshStatus() async -> Bool {
+        await loadProduct()
+
         do {
             guard let subscriptionStatuses = try await product?.subscription?.status else {
                 return false
