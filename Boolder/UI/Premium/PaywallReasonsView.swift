@@ -25,27 +25,27 @@ struct PaywallReasonsView: View {
 
                     Text(verbatim: "×")
                         .font(.callout)
-                        .foregroundColor(Color.paywallCardText.opacity(0.5))
+                        .foregroundColor(Color.bleauInfoBlue.opacity(0.5))
 
                     logo("PaywallLogoBleauInfo")
 
                     Text("premium.paywall.reasons.card.title")
                         .font(.headline)
-                        .foregroundColor(.paywallCardTitle)
+                        .foregroundColor(.bleauInfoBlue)
                         .padding(.leading, 4)
                 }
 
                 Text("premium.paywall.reasons.card.body")
                     .font(.callout)
-                    .foregroundColor(.paywallCardText)
+                    .foregroundColor(Color(.secondaryLabel))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(16)
-            .background(Color.paywallCardBackground)
+            .background(Color.bleauInfoBlue.opacity(0.08))
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.paywallCardBorder, lineWidth: 1)
+                    .stroke(Color.bleauInfoBlue.opacity(0.2), lineWidth: 1)
             )
         }
         .padding(.horizontal, 24)
