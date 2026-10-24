@@ -30,11 +30,6 @@ struct DiscoverView: View {
                             fireWarningBanner
                                 .padding(.horizontal)
                                 .padding(.top)
-
-                            if !PremiumStore.shared.hasAccess {
-                                freeAreasBanner(proxy: proxy)
-                                    .padding(.horizontal)
-                            }
                         
                             VStack {
                                 HStack {
@@ -158,6 +153,11 @@ struct DiscoverView: View {
                         }
                         else {
                         
+                            if !PremiumStore.shared.hasAccess {
+                                freeAreasBanner(proxy: proxy)
+                                    .padding(.horizontal)
+                            }
+
                             VStack(alignment: .leading) {
                                 Text("discover.popular")
                                     .font(.title2).bold()
