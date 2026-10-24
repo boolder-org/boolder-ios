@@ -221,7 +221,7 @@
 "premium.paywall.benefits.photos.subtitle" = "With the line of each problem";
 "premium.paywall.reasons.title" = "Why a subscription";
 "premium.paywall.reasons.card.title" = "Boolder × bleau.info";
-"premium.paywall.reasons.card.body" = "Boolder is a volunteer project, with no ads and no investors. Your subscription is shared **equally** with bleau.info, the reference guide to Fontainebleau.";
+"premium.paywall.reasons.card.body" = "Boolder is a volunteer project, with no ads and no investors. Your subscription is shared **equally** with bleau.info, the reference guide to Fontainebleau, and will only be used to develop climbing.\n[Learn more](https://www.boolder.com/en)";
 "premium.paywall.subscribe" = "Subscribe";
 "premium.paywall.subscribe_with_price" = "Subscribe — %@/year";
 "premium.paywall.legal" = "Annual subscription that renews automatically. Cancel anytime in your App Store settings.";

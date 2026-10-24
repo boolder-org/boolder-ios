@@ -38,6 +38,7 @@ struct PaywallReasonsView: View {
                 Text("premium.paywall.reasons.card.body")
                     .font(.callout)
                     .foregroundColor(Color(.secondaryLabel))
+                    .tint(.bleauInfoBlue)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(16)
