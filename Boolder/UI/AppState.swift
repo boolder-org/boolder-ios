@@ -24,6 +24,6 @@ import SwiftUI
         case map
         case discover
         case ticklist
-        case contribute
+        case premium
     }
 }

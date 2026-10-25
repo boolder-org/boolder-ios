@@ -14,6 +14,8 @@ struct SettingsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var showAlertToRemoveTicksAndFavorites = false
+    @State private var shouldShowPremiumIntro: Bool?
+    @AppStorage(PremiumStore.forceIntroKey) private var forcePremiumIntro = false
     
     var body: some View {
         Form {
@@ -64,6 +66,59 @@ struct SettingsView: View {
                 }
             }
             
+            Section(header: Text("Premium")) {
+                HStack {
+                    Text("Status")
+                    Spacer()
+                    Text(PremiumStore.shared.status.rawValue).foregroundColor(.gray)
+                }
+
+                HStack {
+                    Text("Price")
+                    Spacer()
+                    Text(PremiumStore.shared.product?.displayPrice ?? "-").foregroundColor(.gray)
+                }
+
+                HStack {
+                    Text("Free areas")
+                    Spacer()
+                    Text("\(PremiumStore.shared.freeAreaIds.count)").foregroundColor(.gray)
+                }
+
+                HStack {
+                    Button(action: {
+                        Task {
+                            await PremiumStore.shared.refreshStatus()
+                        }
+                    }) {
+                        Text("Refresh")
+                    }
+                }
+
+                Toggle("Force premium intro", isOn: $forcePremiumIntro)
+
+                HStack {
+                    Button(action: {
+                        Task {
+                            shouldShowPremiumIntro = await PremiumStore.shared.shouldShowIntro()
+                        }
+                    }) {
+                        Text("Check premium intro")
+                    }
+                    Spacer()
+                    Text(shouldShowPremiumIntro.map { $0 ? "show" : "don't show" } ?? "-").foregroundColor(.gray)
+                }
+
+                HStack {
+                    Button(action: {
+                        PremiumStore.shared.resetIntroSeen()
+                        shouldShowPremiumIntro = nil
+                    }) {
+                        Text("Reset premium intro flag").foregroundColor(.red)
+                    }
+                }
+            }
+
             Section(header: Text("Tips")) {
                 HStack {
                     Button(action: {

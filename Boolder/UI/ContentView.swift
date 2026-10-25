@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var appState = AppState()
     @State private var mapState = MapState()
     @AppStorage("discover/fireWarningBadgeDismissed") private var fireWarningBadgeDismissed = false
+    @State private var presentPremiumIntro = false
     
     var body: some View {
         ZStack {
@@ -35,6 +36,14 @@ struct ContentView: View {
                         Label("tabs.ticklist", systemImage: "bookmark")
                     }
                     .tag(AppState.Tab.ticklist)
+
+                PremiumView()
+                    .tabItem {
+                        Label("tabs.premium", image: "boolder.logo")
+                            .accessibilityValue(Text(premiumAccessibilityValue))
+                    }
+                    .badge(PremiumStore.shared.hasBillingIssue ? Text(verbatim: "!") : nil)
+                    .tag(AppState.Tab.premium)
             }
             .onChange(of: appState.tab) { _, newTab in
                 if newTab == .discover {
@@ -55,6 +64,33 @@ struct ContentView: View {
         }
         .environment(appState)
         .environment(mapState)
+        .sheet(isPresented: $presentPremiumIntro) {
+            PremiumIntroView(onSeeFreeAreas: { appState.tab = .discover })
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+        }
+        .task {
+            if await PremiumStore.shared.shouldShowIntro(), canPresentPremiumIntro {
+                PremiumStore.shared.markIntroSeen()
+                presentPremiumIntro = true
+            }
+        }
+    }
+
+    private var canPresentPremiumIntro: Bool {
+        appState.tab == .map
+            && !mapState.presentProblemDetails
+            && !mapState.presentSearch
+            && !mapState.presentAreaView
+            && !mapState.presentFilters
+            && !mapState.presentCircuitPicker
+    }
+
+    private var premiumAccessibilityValue: LocalizedStringKey {
+        if PremiumStore.shared.hasBillingIssue {
+            return "premium.tab.billing_issue"
+        }
+        return PremiumStore.shared.hasAccess ? "premium.tab.active" : "premium.tab.not_subscribed"
     }
 }
 

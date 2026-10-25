@@ -119,6 +119,8 @@
 		03C104F8290C0688007A94D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F6290C0688007A94D7 /* ContentView.swift */; };
 		03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
 		03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94D7 /* SqliteStore.swift */; };
+		03C104FA290C09B5007A94E1 /* PremiumStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94E0 /* PremiumStore.swift */; };
+		03C104FB290C09B5007A94E2 /* PremiumStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A94E0 /* PremiumStore.swift */; };
 		03C5A3612C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3622C4F9E750057C42A /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3602C4F9E750057C42A /* Downloader.swift */; };
 		03C5A3642C4F9E980057C42A /* Topo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5A3632C4F9E980057C42A /* Topo.swift */; };
@@ -167,6 +169,32 @@
 		3737992A258E619400711EDA /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80D245326F200DC161F /* Filters.swift */; };
 		3737992F258E619400711EDA /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80B245326F200DC161F /* Circuit.swift */; };
 		37379930258E619400711EDA /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37158D0525487F4F00A8B696 /* DiscoverView.swift */; };
+		03C104FA290C09B5007A9501 /* LockedPhotoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */; };
+		03C104FB290C09B5007A9502 /* LockedPhotoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */; };
+		03C104FA290C09B5007A9549 /* PremiumIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9548 /* PremiumIntroView.swift */; };
+		03C104FB290C09B5007A954A /* PremiumIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9548 /* PremiumIntroView.swift */; };
+		03C104FA290C09B5007A9545 /* PremiumBillingIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */; };
+		03C104FB290C09B5007A9546 /* PremiumBillingIssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */; };
+		03C104FA290C09B5007A9541 /* PremiumManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9540 /* PremiumManagementView.swift */; };
+		03C104FB290C09B5007A9542 /* PremiumManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9540 /* PremiumManagementView.swift */; };
+		03C104FA290C09B5007A953D /* PremiumLegalLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A953C /* PremiumLegalLinksView.swift */; };
+		03C104FB290C09B5007A953E /* PremiumLegalLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A953C /* PremiumLegalLinksView.swift */; };
+		03C104FA290C09B5007A9539 /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9538 /* PremiumView.swift */; };
+		03C104FB290C09B5007A953A /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9538 /* PremiumView.swift */; };
+		03C104FA290C09B5007A9535 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9534 /* ConfettiView.swift */; };
+		03C104FB290C09B5007A9536 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9534 /* ConfettiView.swift */; };
+		03C104FA290C09B5007A9531 /* PremiumSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */; };
+		03C104FB290C09B5007A9532 /* PremiumSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */; };
+		03C104FA290C09B5007A9511 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9510 /* PaywallView.swift */; };
+		03C104FB290C09B5007A9512 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9510 /* PaywallView.swift */; };
+		03C104FA290C09B5007A9515 /* PaywallHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */; };
+		03C104FB290C09B5007A9516 /* PaywallHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */; };
+		03C104FA290C09B5007A9519 /* PaywallBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */; };
+		03C104FB290C09B5007A951A /* PaywallBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */; };
+		03C104FA290C09B5007A951D /* PaywallReasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A951C /* PaywallReasonsView.swift */; };
+		03C104FB290C09B5007A951E /* PaywallReasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A951C /* PaywallReasonsView.swift */; };
+		03C104FA290C09B5007A9521 /* PaywallActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9520 /* PaywallActionsView.swift */; };
+		03C104FB290C09B5007A9522 /* PaywallActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C104F9290C09B5007A9520 /* PaywallActionsView.swift */; };
 		37379931258E619400711EDA /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A8C80C245326F200DC161F /* Line.swift */; };
 		37379A0A258E619400711EDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37F9358D250578D000B1CAB2 /* InfoPlist.strings */; };
 		37379A15258E619400711EDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A8C6322453263400DC161F /* Preview Assets.xcassets */; };
@@ -202,6 +230,7 @@
 /* Begin PBXFileReference section */
 		030738982F1BD3960034B178 /* SegmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentType.swift; sourceTree = "<group>"; };
 		030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		030A0B3B2BEB852800F4E371 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		030AC19C27ABCF5300AF85E7 /* Pill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pill.swift; sourceTree = "<group>"; };
 		030AC19F27B1257200AF85E7 /* TopAreasLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasLevelView.swift; sourceTree = "<group>"; };
 		030AC1A527BAF77500AF85E7 /* TopAreasTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAreasTrain.swift; sourceTree = "<group>"; };
@@ -255,6 +284,7 @@
 		03C104EB290ACDC6007A94D7 /* MapboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxView.swift; sourceTree = "<group>"; };
 		03C104F6290C0688007A94D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		03C104F9290C09B5007A94D7 /* SqliteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStore.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A94E0 /* PremiumStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumStore.swift; sourceTree = "<group>"; };
 		03C5A3602C4F9E750057C42A /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		03C5A3632C4F9E980057C42A /* Topo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topo.swift; sourceTree = "<group>"; };
 		03D199142C5565A50082B56C /* DownloadButtonPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonPlaceholderView.swift; sourceTree = "<group>"; };
@@ -269,6 +299,19 @@
 		03FD89B02F4E100000000005 /* TopoImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoImageCache.swift; sourceTree = "<group>"; };
 		37043E282458D5A0002782AB /* UserStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserStore.xcdatamodel; sourceTree = "<group>"; };
 		37158D0525487F4F00A8B696 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotoOverlayView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9548 /* PremiumIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumIntroView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumBillingIssueView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9540 /* PremiumManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumManagementView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A953C /* PremiumLegalLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumLegalLinksView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9538 /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9534 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSuccessView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9510 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallHeaderView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallBenefitsView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A951C /* PaywallReasonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallReasonsView.swift; sourceTree = "<group>"; };
+		03C104F9290C09B5007A9520 /* PaywallActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallActionsView.swift; sourceTree = "<group>"; };
 		37166735255405CA0078AE09 /* ProblemCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCircleView.swift; sourceTree = "<group>"; };
 		37254DE825557F9700264034 /* GradeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRange.swift; sourceTree = "<group>"; };
 		37379903258E157D00711EDA /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
@@ -440,10 +483,31 @@
 			children = (
 				37043E272458D5A0002782AB /* UserStore.xcdatamodeld */,
 				03C104F9290C09B5007A94D7 /* SqliteStore.swift */,
+				03C104F9290C09B5007A94E0 /* PremiumStore.swift */,
 				03A8FF27304C3B020070FCEB /* boolder.db */,
 				038F7F592C3BDB3800AE7028 /* Download */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		03C104F9290C09B5007A9503 /* Premium */ = {
+			isa = PBXGroup;
+			children = (
+				03C104F9290C09B5007A9500 /* LockedPhotoOverlayView.swift */,
+				03C104F9290C09B5007A9548 /* PremiumIntroView.swift */,
+				03C104F9290C09B5007A9544 /* PremiumBillingIssueView.swift */,
+				03C104F9290C09B5007A9540 /* PremiumManagementView.swift */,
+				03C104F9290C09B5007A953C /* PremiumLegalLinksView.swift */,
+				03C104F9290C09B5007A9538 /* PremiumView.swift */,
+				03C104F9290C09B5007A9534 /* ConfettiView.swift */,
+				03C104F9290C09B5007A9530 /* PremiumSuccessView.swift */,
+				03C104F9290C09B5007A9510 /* PaywallView.swift */,
+				03C104F9290C09B5007A9514 /* PaywallHeaderView.swift */,
+				03C104F9290C09B5007A9518 /* PaywallBenefitsView.swift */,
+				03C104F9290C09B5007A951C /* PaywallReasonsView.swift */,
+				03C104F9290C09B5007A9520 /* PaywallActionsView.swift */,
+			);
+			path = Premium;
 			sourceTree = "<group>";
 		};
 		37379902258E155A00711EDA /* UI */ = {
@@ -454,6 +518,7 @@
 				03C104E7290ACBEE007A94D7 /* Map */,
 				37158D0425487F1700A8B696 /* Discover */,
 				031F36C4291EAD8A00BD0C2B /* Tick List */,
+				03C104F9290C09B5007A9503 /* Premium */,
 				3794555E25AB6DC9009C47A4 /* SettingsView.swift */,
 				033F70E4291AA1B1000DD3F4 /* Misc */,
 			);
@@ -464,6 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				030A0B3B2BEB852800F4E370 /* PrivacyInfo.xcprivacy */,
+				030A0B3B2BEB852800F4E371 /* Configuration.storekit */,
 				37AEBCF425A5CEA200E0E04F /* Boolder dev.entitlements */,
 				37A8C6282453263300DC161F /* Boolder */,
 				37A8C6272453263300DC161F /* Products */,
@@ -799,10 +865,24 @@
 				03DE504627BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				0314989B2B4FEF4B0014C883 /* SafariWebView.swift in Sources */,
 				03C104FB290C09B5007A94D7 /* SqliteStore.swift in Sources */,
+				03C104FB290C09B5007A94E2 /* PremiumStore.swift in Sources */,
 				37B452362591450200241091 /* TopoView.swift in Sources */,
 				03AB8B872C8EF32D00093D76 /* TapLocationView.swift in Sources */,
 				3737992F258E619400711EDA /* Circuit.swift in Sources */,
 				37379930258E619400711EDA /* DiscoverView.swift in Sources */,
+				03C104FB290C09B5007A9502 /* LockedPhotoOverlayView.swift in Sources */,
+				03C104FB290C09B5007A954A /* PremiumIntroView.swift in Sources */,
+				03C104FB290C09B5007A9546 /* PremiumBillingIssueView.swift in Sources */,
+				03C104FB290C09B5007A9542 /* PremiumManagementView.swift in Sources */,
+				03C104FB290C09B5007A953E /* PremiumLegalLinksView.swift in Sources */,
+				03C104FB290C09B5007A953A /* PremiumView.swift in Sources */,
+				03C104FB290C09B5007A9536 /* ConfettiView.swift in Sources */,
+				03C104FB290C09B5007A9532 /* PremiumSuccessView.swift in Sources */,
+				03C104FB290C09B5007A9512 /* PaywallView.swift in Sources */,
+				03C104FB290C09B5007A9516 /* PaywallHeaderView.swift in Sources */,
+				03C104FB290C09B5007A951A /* PaywallBenefitsView.swift in Sources */,
+				03C104FB290C09B5007A951E /* PaywallReasonsView.swift in Sources */,
+				03C104FB290C09B5007A9522 /* PaywallActionsView.swift in Sources */,
 				37379931258E619400711EDA /* Line.swift in Sources */,
 				0343F94D2869A29F00BBAC38 /* AreaCardView.swift in Sources */,
 				038F7F582C3A8D3700AE7028 /* Cluster.swift in Sources */,
@@ -894,11 +974,25 @@
 				03D199182C556B550082B56C /* DownloadTip.swift in Sources */,
 				03DE504527BFA895003E5B2A /* GradeRangePickerView.swift in Sources */,
 				03C104FA290C09B5007A94D7 /* SqliteStore.swift in Sources */,
+				03C104FA290C09B5007A94E1 /* PremiumStore.swift in Sources */,
 				37B45231259144D300241091 /* TopoView.swift in Sources */,
 				031F36BF291E4E4400BD0C2B /* TickList.swift in Sources */,
 				37A8C810245326F200DC161F /* Circuit.swift in Sources */,
 				03C5A3642C4F9E980057C42A /* Topo.swift in Sources */,
 				37158D0625487F4F00A8B696 /* DiscoverView.swift in Sources */,
+				03C104FA290C09B5007A9501 /* LockedPhotoOverlayView.swift in Sources */,
+				03C104FA290C09B5007A9549 /* PremiumIntroView.swift in Sources */,
+				03C104FA290C09B5007A9545 /* PremiumBillingIssueView.swift in Sources */,
+				03C104FA290C09B5007A9541 /* PremiumManagementView.swift in Sources */,
+				03C104FA290C09B5007A953D /* PremiumLegalLinksView.swift in Sources */,
+				03C104FA290C09B5007A9539 /* PremiumView.swift in Sources */,
+				03C104FA290C09B5007A9535 /* ConfettiView.swift in Sources */,
+				03C104FA290C09B5007A9531 /* PremiumSuccessView.swift in Sources */,
+				03C104FA290C09B5007A9511 /* PaywallView.swift in Sources */,
+				03C104FA290C09B5007A9515 /* PaywallHeaderView.swift in Sources */,
+				03C104FA290C09B5007A9519 /* PaywallBenefitsView.swift in Sources */,
+				03C104FA290C09B5007A951D /* PaywallReasonsView.swift in Sources */,
+				03C104FA290C09B5007A9521 /* PaywallActionsView.swift in Sources */,
 				37A8C811245326F200DC161F /* Line.swift in Sources */,
 				039FFC952F3DBC1000A5E597 /* ProblemNameLabelView.swift in Sources */,
 				039FFC972F3F265700A5E597 /* BoulderProblemsListView.swift in Sources */,
@@ -941,7 +1035,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -952,7 +1046,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 3.3;
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -968,7 +1062,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_ENTITLEMENTS = "Boolder dev.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -979,7 +1073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 3.3;
 				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nicolasmondollot.boolder-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1025,7 +1119,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 8Y46BCZUL9;
+				DEVELOPMENT_TEAM = WSJ6L2J3XT;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1090,7 +1184,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8Y46BCZUL9;
+				DEVELOPMENT_TEAM = WSJ6L2J3XT;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1118,7 +1212,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
@@ -1128,7 +1222,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;
@@ -1142,7 +1236,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppGreen;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100;
+				CURRENT_PROJECT_VERSION = 103;
 				DEVELOPMENT_ASSET_PATHS = "\"Boolder/Preview Content\"";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_PREVIEWS = YES;
@@ -1152,7 +1246,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nicolasmondollot.boolder;
 				PRODUCT_NAME = Boolder;
 				SWIFT_VERSION = 5.0;

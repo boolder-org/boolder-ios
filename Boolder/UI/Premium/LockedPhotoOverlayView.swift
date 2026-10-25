@@ -1,0 +1,68 @@
+//
+//  LockedPhotoOverlayView.swift
+//  Boolder
+//
+//  Created by Ivann Morice on 10/10/2026.
+//  Copyright © 2026 Nicolas Mondollot. All rights reserved.
+//
+
+import SwiftUI
+
+struct LockedPhotoOverlayView: View {
+    let price: String?
+    let onSubscribe: () -> Void
+
+    var body: some View {
+        VStack(spacing: 10) {
+            Image(systemName: "lock")
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundColor(.black)
+                .frame(width: 46, height: 46)
+                .background(Color.white.opacity(0.95))
+                .clipShape(Circle())
+
+            Text("premium.locked_photo.title")
+                .font(.subheadline.weight(.semibold))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .modifier(DropShadow())
+
+            Button {
+                onSubscribe()
+            } label: {
+                Text(buttonTitle)
+                    .font(.footnote.weight(.bold))
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 9)
+                    .background(Color.white)
+                    .clipShape(Capsule())
+                    .shadow(color: .black.opacity(0.2), radius: 8, y: 2)
+            }
+        }
+        .padding(.horizontal, 26)
+    }
+
+    private var buttonTitle: String {
+        if let price {
+            return String(format: NSLocalizedString("premium.locked_photo.cta_with_price", comment: ""), price)
+        }
+        return NSLocalizedString("premium.locked_photo.cta", comment: "")
+    }
+}
+
+#Preview("With price") {
+    ZStack {
+        Color.black.opacity(0.3)
+        LockedPhotoOverlayView(price: "10,00 €", onSubscribe: {})
+    }
+    .aspectRatio(4/3, contentMode: .fit)
+}
+
+#Preview("Without price") {
+    ZStack {
+        Color.black.opacity(0.3)
+        LockedPhotoOverlayView(price: nil, onSubscribe: {})
+    }
+    .aspectRatio(4/3, contentMode: .fit)
+}

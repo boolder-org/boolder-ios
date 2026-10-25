@@ -9,7 +9,7 @@
 "tabs.map" = "Map";
 "tabs.discover" = "Discover";
 "tabs.ticklist" = "Tick List";
-"tabs.contribute" = "Contribute";
+"tabs.premium" = "Premium";
 
 // MARK: Map
 "map.circuit_start" = "Circuit start";
@@ -73,9 +73,9 @@
 "discover.search_prompt" = "Area";
 "discover.support" = "Want to help?";
 "discover.rate" = "Rate the app";
-"discover.contribute" = "Contribute";
 "discover.fire_warning" = "Following the July 2026 fires, many areas are closed, notably in the Trois Pignons forest.";
 "discover.fire_warning.learn_more" = "Learn more";
+"discover.free_areas" = "These areas are available for free.";
 
 // MARK: Area view
 "area.tags.popular" = "popular";
@@ -176,8 +176,6 @@
 "problem.action.save" = "Save";
 "problem.action.saved" = "Saved";
 "problem.action.share" = "Share";
-"problem.action.report" = "Report";
-"problem.action.edit" = "Edit";
 "problem.action.favorite.add" = "Add to projects";
 "problem.action.favorite.remove" = "Remove from projects";
 "problem.action.tick" = "Tick";
@@ -202,16 +200,58 @@
 "ticklist.empty_state_title" = "Ready to climb?";
 "ticklist.empty_state_body" = "Your projects and ticks will appear here.";
 
-// MARK: Contribute
-"contribute.title" = "Contribute to Boolder";
-"contribute.intro" = "Help us build the best collaborative guidebook for Fontainebleau!";
-"contribute.photo" = "Take photos of missing boulders";
-"contribute.location" = "Enter the GPS position";
-"contribute.line" = "Draw the route line";
-"contribute.report" = "Report errors";
-"contribute.cta" = "Start contributing";
-"contribute.learn_more" = "Learn more about Boolder";
-
 // MARK: Boulder
 "boulder.info_basic" = "%d problems";
 "boulder.info_basic_singular" = "%d problem";
+
+// MARK: Premium
+"premium.locked_photo.title" = "Photo available\nwith Boolder Premium";
+"premium.locked_photo.cta" = "See subscription";
+"premium.locked_photo.cta_with_price" = "See subscription · %@/year";
+
+"premium.paywall.title" = "Boolder Premium";
+"premium.paywall.subtitle" = "All of Fontainebleau in your pocket";
+"premium.paywall.benefits.title" = "What you get";
+"premium.paywall.benefits.areas.title" = "90 areas";
+"premium.paywall.benefits.areas.subtitle" = "The whole Fontainebleau forest";
+"premium.paywall.benefits.problems.title" = "20,000 problems";
+"premium.paywall.benefits.problems.subtitle" = "Graded and sorted by circuit";
+"premium.paywall.benefits.photos.title" = "10,000 boulder photos";
+"premium.paywall.benefits.photos.subtitle" = "With the line of each problem";
+"premium.paywall.reasons.title" = "Why a subscription";
+"premium.paywall.reasons.card.title" = "Boolder × bleau.info";
+"premium.paywall.reasons.card.body" = "Boolder is a volunteer project, with no ads and no investors. Your subscription is shared **equally** with bleau.info, the reference guide to Fontainebleau, and will only be used to develop climbing.\n[Learn more](https://www.boolder.com/en/bleau-info-partnership)";
+"premium.paywall.subscribe" = "Subscribe";
+"premium.paywall.subscribe_with_price" = "Subscribe — %@/year";
+"premium.paywall.legal" = "Annual subscription that renews automatically. Cancel anytime in your App Store settings.";
+"premium.paywall.terms" = "Terms";
+"premium.paywall.privacy" = "Privacy";
+"premium.paywall.restore" = "Restore purchase";
+"premium.purchase.pending" = "Purchase awaiting approval";
+"premium.purchase.error" = "The purchase could not be completed. Please try again in a moment.";
+"premium.success.title" = "Welcome to\nBoolder Premium";
+"premium.success.subtitle" = "Photos of all 90 areas\nare now visible.";
+"premium.success.thanks" = "Thank you! Half of your subscription goes to **bleau.info**.";
+"premium.success.continue" = "Continue";
+"premium.restore.restored" = "Your subscription has been restored";
+"premium.restore.nothing_to_restore" = "No Boolder Premium subscription is linked to this Apple Account.";
+"premium.restore.error" = "Unable to reach the App Store. Check your connection.";
+"premium.management.active" = "Active";
+"premium.management.renews_on" = "Renews on %@";
+"premium.management.ends_on" = "Ends on %@";
+"premium.management.price_per_year" = "%@ per year";
+"premium.management.manage" = "Manage my subscription";
+"premium.management.legal" = "Annual subscription that renews automatically. Cancel anytime.";
+"premium.management.terms" = "Terms of Use";
+"premium.billing_issue.title" = "Payment issue";
+"premium.billing_issue.grace_period_until" = "Your subscription could not be renewed. You keep full access until **%@**, while you update your payment method.";
+"premium.billing_issue.grace_period" = "Your subscription could not be renewed. You keep full access while you update your payment method.";
+"premium.billing_issue.suspended" = "Your subscription could not be renewed. Your subscription is suspended: update your payment method to get access back.";
+"premium.billing_issue.update_payment" = "Update payment";
+"premium.tab.not_subscribed" = "not subscribed";
+"premium.tab.active" = "active";
+"premium.tab.billing_issue" = "payment issue";
+"premium.intro.badge" = "New";
+"premium.intro.body" = "The **8 most popular areas stay free**. Photos of the other 82 are available with Boolder Premium.";
+"premium.intro.see_popular_areas" = "See the popular areas";
+"premium.intro.later" = "Later";
