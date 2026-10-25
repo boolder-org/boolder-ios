@@ -75,8 +75,7 @@
 "discover.rate" = "Noter l'appli";
 "discover.fire_warning" = "Suite aux incendies de Juillet 2026 de nombreux secteurs sont fermés, notamment dans la forêt des Trois Pignons.";
 "discover.fire_warning.learn_more" = "En savoir plus";
-"discover.free_areas" = "Les photos et tracés des voies sont disponibles gratuitement sur les secteurs populaires.";
-"discover.free_areas.see_areas" = "Voir les secteurs";
+"discover.free_areas" = "Ces secteurs sont disponibles gratuitement.";
 
 // MARK: Area view
 "area.tags.popular" = "populaire";
@@ -220,7 +219,7 @@
 "premium.paywall.benefits.photos.subtitle" = "Avec le tracé de chaque voie";
 "premium.paywall.reasons.title" = "Pourquoi un abonnement";
 "premium.paywall.reasons.card.title" = "Boolder × bleau.info";
-"premium.paywall.reasons.card.body" = "Boolder est un projet bénévole, sans publicité ni investisseur. Ton abonnement est partagé **à parts égales** avec bleau.info, le topo de référence de Fontainebleau et ne servira qu'à développer l'escalade.\n[En savoir plus](https://www.boolder.com/fr)";
+"premium.paywall.reasons.card.body" = "Boolder est un projet bénévole, sans publicité ni investisseur. Ton abonnement est partagé **à parts égales** avec bleau.info, le topo de référence de Fontainebleau et ne servira qu'à développer l'escalade.\n[En savoir plus](https://www.boolder.com/fr/bleau-info-partnership)";
 "premium.paywall.subscribe" = "S'abonner";
 "premium.paywall.subscribe_with_price" = "S'abonner — %@/an";
 "premium.paywall.legal" = "Abonnement annuel à renouvellement automatique, résiliable à tout moment dans les réglages de l'App Store.";

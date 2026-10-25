@@ -75,8 +75,7 @@
 "discover.rate" = "Rate the app";
 "discover.fire_warning" = "Following the July 2026 fires, many areas are closed, notably in the Trois Pignons forest.";
 "discover.fire_warning.learn_more" = "Learn more";
-"discover.free_areas" = "Problem photos and lines are available for free in popular areas.";
-"discover.free_areas.see_areas" = "See the areas";
+"discover.free_areas" = "These areas are available for free.";
 
 // MARK: Area view
 "area.tags.popular" = "popular";
@@ -221,7 +220,7 @@
 "premium.paywall.benefits.photos.subtitle" = "With the line of each problem";
 "premium.paywall.reasons.title" = "Why a subscription";
 "premium.paywall.reasons.card.title" = "Boolder × bleau.info";
-"premium.paywall.reasons.card.body" = "Boolder is a volunteer project, with no ads and no investors. Your subscription is shared **equally** with bleau.info, the reference guide to Fontainebleau, and will only be used to develop climbing.\n[Learn more](https://www.boolder.com/en)";
+"premium.paywall.reasons.card.body" = "Boolder is a volunteer project, with no ads and no investors. Your subscription is shared **equally** with bleau.info, the reference guide to Fontainebleau, and will only be used to develop climbing.\n[Learn more](https://www.boolder.com/en/bleau-info-partnership)";
 "premium.paywall.subscribe" = "Subscribe";
 "premium.paywall.subscribe_with_price" = "Subscribe — %@/year";
 "premium.paywall.legal" = "Annual subscription that renews automatically. Cancel anytime in your App Store settings.";
