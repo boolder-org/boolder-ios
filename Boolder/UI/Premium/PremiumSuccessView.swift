@@ -20,7 +20,7 @@ struct PremiumSuccessView: View {
                     .font(.system(size: 44, weight: .bold))
                     .foregroundColor(.appGreen)
                     .frame(width: 104, height: 104)
-                    .background(Color.white.opacity(0.96))
+                    .background(Color.white.opacity(0.95))
                     .clipShape(Circle())
 
                 Text("premium.success.title")
@@ -28,10 +28,9 @@ struct PremiumSuccessView: View {
 
                 Text("premium.success.subtitle")
                     .font(.title3)
-                    .opacity(0.93)
+                    .opacity(0.95)
 
                 HStack(spacing: 16) {
-                    // TODO(premium): replace the logo with the original file
                     Image("PaywallLogoBleauInfo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -44,7 +43,7 @@ struct PremiumSuccessView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(18)
-                .background(Color.white.opacity(0.16))
+                .background(Color.white.opacity(0.15))
                 .cornerRadius(20)
             }
             .foregroundColor(.white)

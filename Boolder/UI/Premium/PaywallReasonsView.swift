@@ -42,7 +42,7 @@ struct PaywallReasonsView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(16)
-            .background(Color.bleauInfoBlue.opacity(0.08))
+            .background(Color.bleauInfoBlue.opacity(0.1))
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)

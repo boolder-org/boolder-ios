@@ -53,7 +53,7 @@ struct LockedPhotoOverlayView: View {
 
 #Preview("With price") {
     ZStack {
-        Color.black.opacity(0.34)
+        Color.black.opacity(0.3)
         LockedPhotoOverlayView(price: "10,00 €", onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)
@@ -61,7 +61,7 @@ struct LockedPhotoOverlayView: View {
 
 #Preview("Without price") {
     ZStack {
-        Color.black.opacity(0.34)
+        Color.black.opacity(0.3)
         LockedPhotoOverlayView(price: nil, onSubscribe: {})
     }
     .aspectRatio(4/3, contentMode: .fit)

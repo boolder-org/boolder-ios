@@ -19,7 +19,7 @@ struct PaywallHeaderView: View {
 
             Text("premium.paywall.subtitle")
                 .font(.callout.weight(.medium))
-                .opacity(0.88)
+                .opacity(0.9)
         }
         .foregroundColor(.white)
         .multilineTextAlignment(.center)
@@ -40,7 +40,7 @@ struct PaywallHeaderView: View {
                         .frame(width: 137, height: 92)
                         .position(x: geo.size.width - 44, y: geo.size.height - 31)
                 }
-                .foregroundColor(Color.white.opacity(0.13))
+                .foregroundColor(Color.white.opacity(0.1))
             }
         )
         .clipped()
@@ -53,7 +53,7 @@ struct PaywallHeaderView: View {
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(width: 36, height: 36)
-                        .background(Color.white.opacity(0.28))
+                        .background(Color.white.opacity(0.3))
                         .clipShape(Circle())
                 }
                 .padding(.horizontal, 16)
